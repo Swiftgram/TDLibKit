@@ -15,6 +15,9 @@ jobs:
   Build:
     runs-on: macos-latest
 
+    - name: Checkout
+      uses: actions/checkout@v2 
+
     - name: Resolve Deps
       run: xcodebuild -resolvePackageDependencies
 
