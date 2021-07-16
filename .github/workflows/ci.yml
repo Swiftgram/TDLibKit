@@ -1,0 +1,37 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  TL_PARSER_REPO: https://github.com/Swiftgram/tl2swift
+
+jobs:
+  Build:
+    runs-on: macos-latest
+
+    - name: Resolve Deps
+      run: xcodebuild -resolvePackageDependencies
+
+    - name: Get TDLib commit & version
+      run: |
+          TDLIB_COMMIT=$(python3 scripts/parse_tdlib_version.py commit)
+          TDLIB_VERSION=$(python3 scripts/parse_tdlib_version.py version)
+
+          echo "TDLIB_COMMIT=$TDLIB_COMMIT" >> $GITHUB_ENV
+          echo "TDLIB_VERSION=$TDLIB_VERSION" >> $GITHUB_ENV
+
+    - name: Download td_api.tl
+      run: wget https://raw.githubusercontent.com/tdlib/td/$TDLIB_COMMIT/td/generate/scheme/td_api.tl
+
+    - name: Download Generator
+      run: git clone https://github.com/Swiftgram/tl2swift
+
+    - name: Run Generator
+      working-directory: tl2swift
+      run: swift run tl2swift ../td_api.tl ../Sources/Generated $TDLIB_VERSION $TDLIB_COMMIT

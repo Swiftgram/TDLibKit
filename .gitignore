@@ -5,3 +5,5 @@
 xcuserdata/
 DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+tl2swift
+*.tl
