@@ -21,13 +21,17 @@ jobs:
       - name: Resolve Deps
         run: xcodebuild -resolvePackageDependencies
 
-      - name: Get TDLib commit & version
+      - name: Get commit & version
         run: |
             TDLIB_COMMIT=$(python3 scripts/parse_tdlib_version.py commit)
             TDLIB_VERSION=$(python3 scripts/parse_tdlib_version.py version)
+            PACKAGE_VERSION=$(cat version | python3 -c "print(input().strip())")
+            RELEASE_TAG=${PACKAGE_VERSION}-tdlib-${TDLIB_VERSION}-${TDLIB_COMMIT}
 
             echo "TDLIB_COMMIT=$TDLIB_COMMIT" >> $GITHUB_ENV
             echo "TDLIB_VERSION=$TDLIB_VERSION" >> $GITHUB_ENV
+            echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+            echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
       - name: Download td_api.tl
         run: wget https://raw.githubusercontent.com/tdlib/td/$TDLIB_COMMIT/td/generate/scheme/td_api.tl
@@ -39,7 +43,26 @@ jobs:
         working-directory: tl2swift
         run: swift run tl2swift ../td_api.tl ../Sources/Generated $TDLIB_VERSION $TDLIB_COMMIT
 
-      - name: Debug
+      - name: Update Files
         run: |
-            ls -l Sources/Generated
-            cat Sources/Generated/API/TdApi.swift
+          git add . || true
+          git commit -m "[no ci] Version ${{ env.${{ env.TDLIB_VERSION }}-${{ env.TDLIB_COMMIT }}" || true
+          git push origin main || true
+
+      - name: Remove previous release
+        uses: dev-drprasad/delete-tag-and-release@85fa8bcea0379a6ada9bbfdcb0a9d24d58e1a0d7
+        with:
+          delete_release: true
+          tag_name: ${{ env.RELEASE_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@9729932bfb75c05ad1f6e3a729294e05abaa7001
+        with:
+          target_commitish: main
+          tag_name: ${{ env.RELEASE_TAG }}
+          files: ${{ env.ARTIFACT_PATH }}
+          body: "TDLibKit based on TDLib-${{ env.TDLIB_VERSION }} commit [${{ env.TDLIB_COMMIT }}](${{ env.TDLIB_COMMIT_URL }})"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
