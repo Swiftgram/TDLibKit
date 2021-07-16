@@ -35,3 +35,8 @@ jobs:
     - name: Run Generator
       working-directory: tl2swift
       run: swift run tl2swift ../td_api.tl ../Sources/Generated $TDLIB_VERSION $TDLIB_COMMIT
+
+    - name: [Debug]
+      run: |
+          ls -l Sources/Generated
+          cat Sources/Generated/API/TdApi.swift
