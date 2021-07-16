@@ -46,7 +46,7 @@ jobs:
       - name: Update Files
         run: |
           git add . || true
-          git commit -m "[no ci] Version ${{ env.${{ env.TDLIB_VERSION }}-${{ env.TDLIB_COMMIT }}" || true
+          git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
           git push origin main || true
 
       - name: Remove previous release
