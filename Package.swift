@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "TDLibKit",
+    platforms: [
+        .iOS(.v9),
+        .macOS(.v10_12),
+        .watchOS(.v2), // Based on iOS 9 version
+        .tvOS(.v9) // Based on iOS 9 version
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -20,8 +26,5 @@ let package = Package(
         .target(
             name: "TDLibKit",
             dependencies: ["TDLibFramework"]),
-        .testTarget(
-            name: "TDLibKitTests",
-            dependencies: ["TDLibKit"]),
     ]
 )
