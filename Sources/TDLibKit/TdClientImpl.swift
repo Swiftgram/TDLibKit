@@ -42,9 +42,8 @@ open class TdClientImpl: TdClient {
         if !stopFlag {
             send(query: DTO(Close()), completion: { _ in })
         }
-        // TODO: correct destroy client
         isClientDestroyed = true
-        // td_json_client_destroy(client)
+        td_json_client_destroy(client)
     }
     
     /// Receives incoming updates and request responses from the TDLib client
