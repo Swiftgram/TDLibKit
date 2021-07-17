@@ -20,7 +20,7 @@ This could take a while cause it downloads ~300mb zip file with binary from [TDL
 #### Create Client & API instance
 ```swift
 import TDLibKit
-let client = TdClientImpl(completionQueue: .main, logger: logger)
+let client = TdClientImpl(completionQueue: .main)
 let api: TdApi = TdApi(client: client)
 ```
 
@@ -110,6 +110,38 @@ api.client.run {
         print("Error in update handler \(error.localizedDescription)")
     }
 }
+```
+
+
+### Logging
+You can pass additional parameter with `Logger` type to log "send, receive, execute" and custom entries. 
+```swift
+import TDLibKit
+public final class StdOutLogger: Logger {
+    
+    let queue: DispatchQueue
+    
+    public init() {
+        queue = DispatchQueue(label: "Logger", qos: .userInitiated)
+    }
+    
+    public func log(_ message: String, type: LoggerMessageType?) {
+        queue.async {
+            var fisrtLine = "---------------------------"
+            if let type = type {
+                fisrtLine = ">> \(type.description): ---------------"
+            }
+            print("""
+                \(fisrtLine)
+                \(message)
+                ---------------------------
+                """)
+        }
+    }
+}
+
+
+let client = TdClientImpl(completionQueue: .main, logger: StdOutLogger())
 ```
 
 ### Build
