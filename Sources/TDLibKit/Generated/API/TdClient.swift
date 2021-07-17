@@ -20,7 +20,7 @@ public protocol TdClient {
     func send(query: TdQuery, completion: ((Data) -> Void)?)
 
     /// Synchronously executes TDLib request. Only a few requests can be executed synchronously.
-    func execute(query: TdQuery)
+    func execute(query: TdQuery) -> Result<[String:Any]?, Swift.Error>
 
     /// Close connection with TDLib.
     func close()

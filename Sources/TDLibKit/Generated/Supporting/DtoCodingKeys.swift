@@ -10,7 +10,7 @@
 import Foundation
 
 
-enum DtoCodingKeys: String, CodingKey {
+public enum DtoCodingKeys: String, CodingKey {
     case type = "@type"
     case extra = "@extra"
 }
