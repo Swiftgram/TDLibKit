@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - "version" # on version updates
+      - "Package.swift"
+      - "Package.resolved"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,22 +20,22 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v2
 
       - name: Resolve Deps
         run: xcodebuild -resolvePackageDependencies
 
       - name: Get commit & version
         run: |
-            TDLIB_COMMIT=$(python3 scripts/parse_tdlib_version.py commit)
-            TDLIB_VERSION=$(python3 scripts/parse_tdlib_version.py version)
-            PACKAGE_VERSION=$(cat version | python3 -c "print(input().strip())")
-            RELEASE_TAG=${PACKAGE_VERSION}-tdlib-${TDLIB_VERSION}-${TDLIB_COMMIT}
+          TDLIB_COMMIT=$(python3 scripts/parse_tdlib_version.py commit)
+          TDLIB_VERSION=$(python3 scripts/parse_tdlib_version.py version)
+          PACKAGE_VERSION=$(cat version | python3 -c "print(input().strip())")
+          RELEASE_TAG=${PACKAGE_VERSION}-tdlib-${TDLIB_VERSION}-${TDLIB_COMMIT}
 
-            echo "TDLIB_COMMIT=$TDLIB_COMMIT" >> $GITHUB_ENV
-            echo "TDLIB_VERSION=$TDLIB_VERSION" >> $GITHUB_ENV
-            echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-            echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
+          echo "TDLIB_COMMIT=$TDLIB_COMMIT" >> $GITHUB_ENV
+          echo "TDLIB_VERSION=$TDLIB_VERSION" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
       - name: Download td_api.tl
         run: wget https://raw.githubusercontent.com/tdlib/td/$TDLIB_COMMIT/td/generate/scheme/td_api.tl
