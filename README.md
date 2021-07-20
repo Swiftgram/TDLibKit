@@ -6,7 +6,8 @@ TDLibKit is a native Swift wrapper for [TDLib](https://github.com/tdlib/td) with
 
 Powered by pre-built multi-platform [TDLibFramework](https://github.com/Swiftgram/TDLibFramework) implementation of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](https://github.com/Swiftgram/tl2swift)
 
-### Installation
+## Installation
+### Xcode
 1. Install Xcode 12.5+
 2. Add `https://github.com/Swiftgram/TDLibKit` as SPM dependency in `Project > Swift Packages`. 
 This could take a while cause it downloads ~300mb zip file with binary from [TDLibFramework dependency](https://github.com/Swiftgram/TDLibFramework)
@@ -15,17 +16,19 @@ This could take a while cause it downloads ~300mb zip file with binary from [TDL
 5. Add `libz.1.tbd` and `libc++.1.tbd` as your target dependencies.
 6. If something is not accesible from TDLibFramework, make sure to add `libSystem.B.tbd` for all platforms and `libc++abi.tbd` if you're building non-macOS app. [Source](https://github.com/modestman/tdlib-swift/blob/master/td-xcframework/td.xcodeproj/project.pbxproj#L301)
 7. Code!
+### Cocoapods
+Integration requires similar to [TDLibFramework Cocoapods & Flutter guide](https://github.com/Swiftgram/TDLibFramework/wiki/CocoaPods-&-Flutter) adaptation.
 
 
-### Usage
-#### Create Client & API instance
+## Usage
+### Create Client & API instance
 ```swift
 import TDLibKit
 let client = TdClientImpl(completionQueue: .main)
 let api: TdApi = TdApi(client: client)
 ```
 
-#### Synchronious requests
+### Synchronious requests
 Only for methods with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)" in docs
 ```swift
 let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
@@ -41,7 +44,7 @@ if case .failure(let error) = result {
 ```
 
 
-#### Async requests
+### Async requests
 ```swift
 try? api.getChatHistory(
             chatId: chatId,
@@ -85,7 +88,7 @@ try? api.getChatHistory(
 ```
 
 
-#### Listen for updates
+### Listen for updates
 ```swift
 api.client.run {
     do {
@@ -145,20 +148,20 @@ public final class StdOutLogger: Logger {
 let client = TdClientImpl(completionQueue: .main, logger: StdOutLogger())
 ```
 
-### Build
+## Build
 You can find more about build process in [Github Actions](.github/workflows/ci.yml) file.
 
 
-### M1 Support
+## M1 Support
 **TLDR** - No M1 support. Use Apple Rosetta.
 
 Covered in [TDLibFramework readme](https://github.com/Swiftgram/TDLibFramework#m1-support) 
 
-### Credits
+## Credits
 - Anton Glezman for [Build Guide](https://github.com/modestman/tdlib-swift), [TL Scheme parser](https://github.com/modestman/tl2swift) and basic implementation
 - Leo Mehlig for [TDLib-iOS](https://github.com/leoMehlig/TDLib-iOS) and contributions to run TDLib on Swift
 - Telegram Team for [TDLib](https://github.com/tdlib/td)
 
 
-### License
+## License
 [MIT](LICENSE)
