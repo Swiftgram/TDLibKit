@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public struct GetMessageLink: Codable {
     /// Pass true to create a link to the message as a channel post comment, or from a message thread
     public let forComment: Bool
 
+    /// If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its link preview
+    public let mediaTimestamp: Int
+
     /// Identifier of the message
     public let messageId: Int64
 
@@ -30,11 +33,13 @@ public struct GetMessageLink: Codable {
         chatId: Int64,
         forAlbum: Bool,
         forComment: Bool,
+        mediaTimestamp: Int,
         messageId: Int64
     ) {
         self.chatId = chatId
         self.forAlbum = forAlbum
         self.forComment = forComment
+        self.mediaTimestamp = mediaTimestamp
         self.messageId = messageId
     }
 }

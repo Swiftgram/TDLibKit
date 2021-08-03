@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -97,7 +97,7 @@ public struct Message: Codable {
     /// For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
     public let ttl: Int
 
-    /// Time left before the message expires, in seconds
+    /// Time left before the message expires, in seconds. If the TTL timer isn't started yet, equals to the value of the ttl field
     public let ttlExpiresIn: Double
 
     /// If non-zero, the user identifier of the bot through which this message was sent

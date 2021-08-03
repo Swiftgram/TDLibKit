@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -144,7 +144,7 @@ public struct ChatMemberStatusAdministrator: Codable {
     /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     public let canPromoteMembers: Bool
 
-    /// True, if the administrator can restrict, ban, or unban chat members
+    /// True, if the administrator can restrict, ban, or unban chat members; always true for channels
     public let canRestrictMembers: Bool
 
     /// A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only

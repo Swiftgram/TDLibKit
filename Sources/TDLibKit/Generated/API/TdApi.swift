@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -1155,11 +1155,13 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter forComment: Pass true to create a link to the message as a channel post comment, or from a message thread
+    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its link preview
     /// - Parameter messageId: Identifier of the message
     public func getMessageLink(
         chatId: Int64,
         forAlbum: Bool,
         forComment: Bool,
+        mediaTimestamp: Int,
         messageId: Int64,
         completion: @escaping (Result<MessageLink, Swift.Error>) -> Void) throws {
 
@@ -1167,6 +1169,7 @@ public final class TdApi {
             chatId: chatId,
             forAlbum: forAlbum,
             forComment: forComment,
+            mediaTimestamp: mediaTimestamp,
             messageId: messageId
         )
         execute(query: query, completion: completion)
@@ -2492,7 +2495,7 @@ public final class TdApi {
 
     /// Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; must be one of 0, 86400, 604800 unless chat is secret
+    /// - Parameter ttl: New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
     public func setChatMessageTtlSetting(
         chatId: Int64,
         ttl: Int,
@@ -3019,6 +3022,21 @@ public final class TdApi {
         let query = CancelDownloadFile(
             fileId: fileId,
             onlyIfPending: onlyIfPending
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns suggested name for saving a file in a given directory
+    /// - Parameter directory: Directory in which the file is supposed to be saved
+    /// - Parameter fileId: Identifier of the file
+    public func getSuggestedFileName(
+        directory: String,
+        fileId: Int,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
+
+        let query = GetSuggestedFileName(
+            directory: directory,
+            fileId: fileId
         )
         execute(query: query, completion: completion)
     }

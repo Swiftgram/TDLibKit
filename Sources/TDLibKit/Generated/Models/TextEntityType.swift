@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public enum TextEntityType: Codable {
     /// A cashtag text, beginning with "$" and consisting of capital english letters (i.e. "$USD")
     case textEntityTypeCashtag
 
-    /// A bot command, beginning with "/". This shouldn't be highlighted if there are no bots in the chat
+    /// A bot command, beginning with "/"
     case textEntityTypeBotCommand
 
     /// An HTTP URL

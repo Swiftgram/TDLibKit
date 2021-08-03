@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct AutoDownloadSettings: Codable {
     /// True, if "use less data for calls" option needs to be enabled
     public let useLessDataForCalls: Bool
 
-    /// The maximum suggested bitrate for uploaded videos
+    /// The maximum suggested bitrate for uploaded videos, in kbit/s
     public let videoUploadBitrate: Int
 
 

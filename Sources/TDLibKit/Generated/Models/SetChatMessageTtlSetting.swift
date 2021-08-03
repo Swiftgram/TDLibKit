@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SetChatMessageTtlSetting: Codable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// New TTL value, in seconds; must be one of 0, 86400, 604800 unless chat is secret
+    /// New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
     public let ttl: Int
 
 

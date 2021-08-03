@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.5-73d8fb4
-//  https://github.com/tdlib/td/tree/73d8fb4
+//  Based on TDLib 1.7.6-9e7bce1
+//  https://github.com/tdlib/td/tree/9e7bce1
 //
 
 import Foundation
@@ -25,6 +25,9 @@ public struct MessageLinkInfo: Codable {
     /// True, if the link is a public link for a message in a chat
     public let isPublic: Bool
 
+    /// Timestamp from which the video/audio/video note/voice note playing should start, in seconds; 0 if not specified. The media can be in the message content or in its link preview
+    public let mediaTimestamp: Int
+
     /// If found, the linked message; may be null
     public let message: Message?
 
@@ -34,12 +37,14 @@ public struct MessageLinkInfo: Codable {
         forAlbum: Bool,
         forComment: Bool,
         isPublic: Bool,
+        mediaTimestamp: Int,
         message: Message?
     ) {
         self.chatId = chatId
         self.forAlbum = forAlbum
         self.forComment = forComment
         self.isPublic = isPublic
+        self.mediaTimestamp = mediaTimestamp
         self.message = message
     }
 }
