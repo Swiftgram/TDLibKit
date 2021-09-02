@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -28,19 +28,24 @@ public struct MessageThreadInfo: Codable {
     /// Contains information about the message thread
     public let replyInfo: MessageReplyInfo
 
+    /// Approximate number of unread messages in the message thread
+    public let unreadMessageCount: Int
+
 
     public init(
         chatId: Int64,
         draftMessage: DraftMessage?,
         messageThreadId: Int64,
         messages: [Message],
-        replyInfo: MessageReplyInfo
+        replyInfo: MessageReplyInfo,
+        unreadMessageCount: Int
     ) {
         self.chatId = chatId
         self.draftMessage = draftMessage
         self.messageThreadId = messageThreadId
         self.messages = messages
         self.replyInfo = replyInfo
+        self.unreadMessageCount = unreadMessageCount
     }
 }
 

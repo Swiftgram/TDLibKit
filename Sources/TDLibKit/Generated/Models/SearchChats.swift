@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SearchChats: Codable {
     /// The maximum number of chats to be returned
     public let limit: Int
 
-    /// Query to search for. If the query is empty, returns up to 20 recently found chats
+    /// Query to search for. If the query is empty, returns up to 50 recently found chats
     public let query: String
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Describes an instant view page for a web page
 public struct WebPageInstantView: Codable {
+
+    /// An internal link to be opened to leave feedback about the instant view
+    public let feedbackLink: InternalLinkType
 
     /// True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
     public let isFull: Bool
@@ -30,12 +33,14 @@ public struct WebPageInstantView: Codable {
 
 
     public init(
+        feedbackLink: InternalLinkType,
         isFull: Bool,
         isRtl: Bool,
         pageBlocks: [PageBlock],
         version: Int,
         viewCount: Int
     ) {
+        self.feedbackLink = feedbackLink
         self.isFull = isFull
         self.isRtl = isRtl
         self.pageBlocks = pageBlocks

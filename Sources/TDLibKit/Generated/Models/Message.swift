@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct Message: Codable {
 
     /// True, if the message can be forwarded
     public let canBeForwarded: Bool
+
+    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
+    public let canGetMediaTimestampLinks: Bool
 
     /// True, if the message thread info is available
     public let canGetMessageThread: Bool
@@ -51,6 +54,9 @@ public struct Message: Codable {
 
     /// Information about the initial message sender; may be null
     public let forwardInfo: MessageForwardInfo?
+
+    /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
+    public let hasTimestampedMedia: Bool
 
     /// Message identifier; unique for the chat to which the message belongs
     public let id: Int64
@@ -110,6 +116,7 @@ public struct Message: Codable {
         canBeDeletedOnlyForSelf: Bool,
         canBeEdited: Bool,
         canBeForwarded: Bool,
+        canGetMediaTimestampLinks: Bool,
         canGetMessageThread: Bool,
         canGetStatistics: Bool,
         chatId: Int64,
@@ -118,6 +125,7 @@ public struct Message: Codable {
         date: Int,
         editDate: Int,
         forwardInfo: MessageForwardInfo?,
+        hasTimestampedMedia: Bool,
         id: Int64,
         interactionInfo: MessageInteractionInfo?,
         isChannelPost: Bool,
@@ -141,6 +149,7 @@ public struct Message: Codable {
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
+        self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
         self.canGetMessageThread = canGetMessageThread
         self.canGetStatistics = canGetStatistics
         self.chatId = chatId
@@ -149,6 +158,7 @@ public struct Message: Codable {
         self.date = date
         self.editDate = editDate
         self.forwardInfo = forwardInfo
+        self.hasTimestampedMedia = hasTimestampedMedia
         self.id = id
         self.interactionInfo = interactionInfo
         self.isChannelPost = isChannelPost

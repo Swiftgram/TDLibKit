@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -22,8 +22,8 @@ public struct IdentityDocument: Codable {
     /// Document number; 1-24 characters
     public let number: String
 
-    /// Reverse side of the document; only for driver license and identity card
-    public let reverseSide: DatedFile
+    /// Reverse side of the document; only for driver license and identity card; may be null
+    public let reverseSide: DatedFile?
 
     /// Selfie with the document; may be null
     public let selfie: DatedFile?
@@ -36,7 +36,7 @@ public struct IdentityDocument: Codable {
         expiryDate: Date?,
         frontSide: DatedFile,
         number: String,
-        reverseSide: DatedFile,
+        reverseSide: DatedFile?,
         selfie: DatedFile?,
         translation: [DatedFile]
     ) {

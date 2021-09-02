@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -102,6 +102,9 @@ public enum Update: Codable {
 
     /// The chat action bar was changed
     case updateChatActionBar(UpdateChatActionBar)
+
+    /// The chat theme was changed
+    case updateChatTheme(UpdateChatTheme)
 
     /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     case updateChatReplyMarkup(UpdateChatReplyMarkup)
@@ -300,6 +303,7 @@ public enum Update: Codable {
         case updateScopeNotificationSettings
         case updateChatMessageTtlSetting
         case updateChatActionBar
+        case updateChatTheme
         case updateChatReplyMarkup
         case updateChatDraftMessage
         case updateChatFilters
@@ -451,6 +455,9 @@ public enum Update: Codable {
         case .updateChatActionBar:
             let value = try UpdateChatActionBar(from: decoder)
             self = .updateChatActionBar(value)
+        case .updateChatTheme:
+            let value = try UpdateChatTheme(from: decoder)
+            self = .updateChatTheme(value)
         case .updateChatReplyMarkup:
             let value = try UpdateChatReplyMarkup(from: decoder)
             self = .updateChatReplyMarkup(value)
@@ -711,6 +718,9 @@ public enum Update: Codable {
             try value.encode(to: encoder)
         case .updateChatActionBar(let value):
             try container.encode(Kind.updateChatActionBar, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatTheme(let value):
+            try container.encode(Kind.updateChatTheme, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatReplyMarkup(let value):
             try container.encode(Kind.updateChatReplyMarkup, forKey: .type)
@@ -1477,6 +1487,25 @@ public struct UpdateChatActionBar: Codable {
     ) {
         self.actionBar = actionBar
         self.chatId = chatId
+    }
+}
+
+/// The chat theme was changed
+public struct UpdateChatTheme: Codable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new name of the chat theme; may be empty if none
+    public let themeName: String
+
+
+    public init(
+        chatId: Int64,
+        themeName: String
+    ) {
+        self.chatId = chatId
+        self.themeName = themeName
     }
 }
 

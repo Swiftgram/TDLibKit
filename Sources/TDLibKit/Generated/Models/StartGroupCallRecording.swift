@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -16,16 +16,26 @@ public struct StartGroupCallRecording: Codable {
     /// Group call identifier
     public let groupCallId: Int
 
+    /// Pass true to record a video file instead of an audio file
+    public let recordVideo: Bool
+
     /// Group call recording title; 0-64 characters
     public let title: String
+
+    /// Pass true to use portrait orientation for video instead of landscape one
+    public let usePortraitOrientation: Bool
 
 
     public init(
         groupCallId: Int,
-        title: String
+        recordVideo: Bool,
+        title: String,
+        usePortraitOrientation: Bool
     ) {
         self.groupCallId = groupCallId
+        self.recordVideo = recordVideo
         self.title = title
+        self.usePortraitOrientation = usePortraitOrientation
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -235,7 +235,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+    /// Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
     /// - Parameter newHint: New password hint; may be empty
     /// - Parameter newPassword: New password of the user; may be empty to remove the password
     /// - Parameter newRecoveryEmailAddress: New recovery email address; may be empty
@@ -613,23 +613,32 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library
+    /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+    /// - Parameter chatList: The chat list in which to load chats
+    /// - Parameter limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    public func loadChats(
+        chatList: ChatList,
+        limit: Int,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+
+        let query = LoadChats(
+            chatList: chatList,
+            limit: limit
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats instead to maintain chat lists
     /// - Parameter chatList: The chat list in which to return chats
-    /// - Parameter limit: The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
-    /// - Parameter offsetChatId: Chat identifier to return chats from
-    /// - Parameter offsetOrder: Chat order to return chats from
+    /// - Parameter limit: The maximum number of chats to be returned
     public func getChats(
         chatList: ChatList,
         limit: Int,
-        offsetChatId: Int64,
-        offsetOrder: TdInt64,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
 
         let query = GetChats(
             chatList: chatList,
-            limit: limit,
-            offsetChatId: offsetChatId,
-            offsetOrder: offsetOrder
+            limit: limit
         )
         execute(query: query, completion: completion)
     }
@@ -660,7 +669,7 @@ public final class TdApi {
 
     /// Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
-    /// - Parameter query: Query to search for. If the query is empty, returns up to 20 recently found chats
+    /// - Parameter query: Query to search for. If the query is empty, returns up to 50 recently found chats
     public func searchChats(
         limit: Int,
         query: String,
@@ -832,10 +841,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library. This is an offline request if only_local is true
+    /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: If true, returns only messages that are available locally without sending network requests
     public func getChatHistory(
@@ -856,10 +865,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
+    /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message thread history has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     public func getMessageThreadHistory(
@@ -910,11 +919,11 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance the number of returned messages is chosen by the library
+    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Filter for message content in the search results
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
@@ -943,10 +952,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance the number of returned messages is chosen by the library
+    /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     /// - Parameter filter: Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
-    /// - Parameter limit: The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
     /// - Parameter offsetChatId: The chat identifier of the last found message, or 0 for the first request
@@ -979,10 +988,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance the number of returned messages is chosen by the library
+    /// Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Identifier of the chat in which to search. Specify 0 to search in all secret chats
     /// - Parameter filter: A filter for message content in the search results
-    /// - Parameter limit: The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
     /// - Parameter query: Query to search for. If empty, searchChatMessages should be used instead
     public func searchSecretMessages(
@@ -1003,9 +1012,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
+    /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter onlyMissed: If true, returns only messages with missed calls
     public func searchCallMessages(
         fromMessageId: Int64,
@@ -1100,9 +1109,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns forwarded copies of a channel message to different public channels. For optimal performance the number of returned messages is chosen by the library
+    /// Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier of the message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. Fewer messages may be returned than specified by the limit, even if the end of the list has not been reached
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
     public func getMessagePublicForwards(
@@ -1117,6 +1126,33 @@ public final class TdApi {
             limit: limit,
             messageId: messageId,
             offset: offset
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns sponsored messages to be shown in a chat; for channel chats only
+    /// - Parameter chatId: Identifier of the chat
+    public func getChatSponsoredMessages(
+        chatId: Int64,
+        completion: @escaping (Result<SponsoredMessages, Swift.Error>) -> Void) throws {
+
+        let query = GetChatSponsoredMessages(
+            chatId: chatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a sponsored message was viewed by the user
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: The identifier of the sponsored message being viewed
+    public func viewSponsoredMessage(
+        chatId: Int64,
+        messageId: Data,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+
+        let query = ViewSponsoredMessage(
+            chatId: chatId,
+            messageId: messageId
         )
         execute(query: query, completion: completion)
     }
@@ -1151,11 +1187,11 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. This is an offline request
+    /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter forComment: Pass true to create a link to the message as a channel post comment, or from a message thread
-    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its link preview
+    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
     public func getMessageLink(
         chatId: Int64,
@@ -1193,7 +1229,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a public or private message link
+    /// Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
     /// - Parameter url: The message link
     public func getMessageLinkInfo(
         url: String,
@@ -1308,13 +1344,15 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    /// - Parameter onlyPreview: If true, messages will not be forwarded and instead fake messages will be returned
     /// - Parameter options: Options to be used to send the messages
-    /// - Parameter removeCaption: True, if media caption of message copies needs to be removed. Ignored if send_copy is false
-    /// - Parameter sendCopy: True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+    /// - Parameter removeCaption: If true, media caption of message copies will be removed. Ignored if send_copy is false
+    /// - Parameter sendCopy: If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
     public func forwardMessages(
         chatId: Int64,
         fromChatId: Int64,
         messageIds: [Int64],
+        onlyPreview: Bool,
         options: MessageSendOptions,
         removeCaption: Bool,
         sendCopy: Bool,
@@ -1324,6 +1362,7 @@ public final class TdApi {
             chatId: chatId,
             fromChatId: fromChatId,
             messageIds: messageIds,
+            onlyPreview: onlyPreview,
             options: options,
             removeCaption: removeCaption,
             sendCopy: sendCopy
@@ -1784,9 +1823,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns users voted for the specified option in a non-anonymous polls. For the optimal performance the number of returned users is chosen by the library
+    /// Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
-    /// - Parameter limit: The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
+    /// - Parameter limit: The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter offset: Number of users to skip in the result; must be non-negative
     /// - Parameter optionId: 0-based identifier of the answer option
@@ -2195,7 +2234,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
+    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
     /// - Parameter link: The link
     public func getExternalLinkInfo(
         link: String,
@@ -2523,6 +2562,21 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
+    /// Changes the chat theme. Requires can_change_info administrator right in groups, supergroups and channels
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter themeName: Name of the new chat theme; may be empty to return the default theme
+    public func setChatTheme(
+        chatId: Int64,
+        themeName: String,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+
+        let query = SetChatTheme(
+            chatId: chatId,
+            themeName: themeName
+        )
+        execute(query: query, completion: completion)
+    }
+
     /// Changes the draft message in a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftMessage: New draft message; may be null
@@ -2788,7 +2842,7 @@ public final class TdApi {
     /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
-    /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user. Always true for supergroups and channels
+    /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
     public func banChatMember(
         bannedUntilDate: Int,
         chatId: Int64,
@@ -3730,15 +3784,21 @@ public final class TdApi {
 
     /// Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
     /// - Parameter groupCallId: Group call identifier
+    /// - Parameter recordVideo: Pass true to record a video file instead of an audio file
     /// - Parameter title: Group call recording title; 0-64 characters
+    /// - Parameter usePortraitOrientation: Pass true to use portrait orientation for video instead of landscape one
     public func startGroupCallRecording(
         groupCallId: Int,
+        recordVideo: Bool,
         title: String,
+        usePortraitOrientation: Bool,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
 
         let query = StartGroupCallRecording(
             groupCallId: groupCallId,
-            title: title
+            recordVideo: recordVideo,
+            title: title,
+            usePortraitOrientation: usePortraitOrientation
         )
         execute(query: query, completion: completion)
     }
@@ -3896,20 +3956,26 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns a file with a segment of a group call stream in a modified OGG format
+    /// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+    /// - Parameter channelId: Identifier of an audio/video channel to get as received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter scale: Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
     /// - Parameter timeOffset: Point in time when the stream segment begins; Unix timestamp in milliseconds
+    /// - Parameter videoQuality: Video quality as received from tgcalls
     public func getGroupCallStreamSegment(
+        channelId: Int,
         groupCallId: Int,
         scale: Int,
         timeOffset: Int64,
+        videoQuality: GroupCallVideoQuality,
         completion: @escaping (Result<FilePart, Swift.Error>) -> Void) throws {
 
         let query = GetGroupCallStreamSegment(
+            channelId: channelId,
             groupCallId: groupCallId,
             scale: scale,
-            timeOffset: timeOffset
+            timeOffset: timeOffset,
+            videoQuality: videoQuality
         )
         execute(query: query, completion: completion)
     }
@@ -4142,8 +4208,8 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns a list of trending sticker sets. For the optimal performance the number of returned sticker sets is chosen by the library
-    /// - Parameter limit: The maximum number of sticker sets to be returned; must be non-negative. Fewer sticker sets may be returned than specified by the limit, even if the end of the list has not been reached
+    /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
+    /// - Parameter limit: The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     /// - Parameter offset: The offset from which to return the sticker sets; must be non-negative
     public func getTrendingStickerSets(
         limit: Int,
@@ -4512,8 +4578,8 @@ public final class TdApi {
     }
 
     /// Changes the first and last name of the current user
-    /// - Parameter firstName: The new value of the first name for the user; 1-64 characters
-    /// - Parameter lastName: The new value of the optional last name for the user; 0-64 characters
+    /// - Parameter firstName: The new value of the first name for the current user; 1-64 characters
+    /// - Parameter lastName: The new value of the optional last name for the current user; 0-64 characters
     public func setName(
         firstName: String,
         lastName: String,
@@ -4577,7 +4643,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    /// Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
     public func resendChangePhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
 
         let query = ResendChangePhoneNumberCode()
@@ -5031,6 +5097,13 @@ public final class TdApi {
     public func resetBackgrounds(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
 
         let query = ResetBackgrounds()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of available chat themes
+    public func getChatThemes(completion: @escaping (Result<ChatThemes, Swift.Error>) -> Void) throws {
+
+        let query = GetChatThemes()
         execute(query: query, completion: completion)
     }
 
@@ -6029,6 +6102,21 @@ public final class TdApi {
         completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> Void) throws {
 
         let query = GetPhoneNumberInfo(
+            phoneNumberPrefix: phoneNumberPrefix
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
+    /// - Parameter languageCode: A two-letter ISO 639-1 country code for country information localization
+    /// - Parameter phoneNumberPrefix: The phone number prefix
+    public func getPhoneNumberInfoSync(
+        languageCode: String,
+        phoneNumberPrefix: String,
+        completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> Void) throws {
+
+        let query = GetPhoneNumberInfoSync(
+            languageCode: languageCode,
             phoneNumberPrefix: phoneNumberPrefix
         )
         execute(query: query, completion: completion)

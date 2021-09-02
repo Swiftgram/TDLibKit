@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
 
 
-/// Contains auto-download settings presets for the user
+/// Contains auto-download settings presets for the current user
 public struct AutoDownloadSettingsPresets: Codable {
 
     /// Preset with highest settings; supposed to be used by default when connected on Wi-Fi

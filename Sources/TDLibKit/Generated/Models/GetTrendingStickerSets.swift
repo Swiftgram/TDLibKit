@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
 
 
-/// Returns a list of trending sticker sets. For the optimal performance the number of returned sticker sets is chosen by the library
+/// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
 public struct GetTrendingStickerSets: Codable {
 
-    /// The maximum number of sticker sets to be returned; must be non-negative. Fewer sticker sets may be returned than specified by the limit, even if the end of the list has not been reached
+    /// The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     public let limit: Int
 
     /// The offset from which to return the sticker sets; must be non-negative

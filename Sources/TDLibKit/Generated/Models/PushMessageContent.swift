@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -79,6 +79,9 @@ public enum PushMessageContent: Codable {
     /// A chat title was edited
     case pushMessageContentChatChangeTitle(PushMessageContentChatChangeTitle)
 
+    /// A chat theme was edited
+    case pushMessageContentChatChangeTheme(PushMessageContentChatChangeTheme)
+
     /// A chat member was deleted
     case pushMessageContentChatDeleteMember(PushMessageContentChatDeleteMember)
 
@@ -115,6 +118,7 @@ public enum PushMessageContent: Codable {
         case pushMessageContentChatAddMembers
         case pushMessageContentChatChangePhoto
         case pushMessageContentChatChangeTitle
+        case pushMessageContentChatChangeTheme
         case pushMessageContentChatDeleteMember
         case pushMessageContentChatJoinByLink
         case pushMessageContentMessageForwards
@@ -187,6 +191,9 @@ public enum PushMessageContent: Codable {
         case .pushMessageContentChatChangeTitle:
             let value = try PushMessageContentChatChangeTitle(from: decoder)
             self = .pushMessageContentChatChangeTitle(value)
+        case .pushMessageContentChatChangeTheme:
+            let value = try PushMessageContentChatChangeTheme(from: decoder)
+            self = .pushMessageContentChatChangeTheme(value)
         case .pushMessageContentChatDeleteMember:
             let value = try PushMessageContentChatDeleteMember(from: decoder)
             self = .pushMessageContentChatDeleteMember(value)
@@ -265,6 +272,9 @@ public enum PushMessageContent: Codable {
             try container.encode(Kind.pushMessageContentChatChangePhoto, forKey: .type)
         case .pushMessageContentChatChangeTitle(let value):
             try container.encode(Kind.pushMessageContentChatChangeTitle, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentChatChangeTheme(let value):
+            try container.encode(Kind.pushMessageContentChatChangeTheme, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentChatDeleteMember(let value):
             try container.encode(Kind.pushMessageContentChatDeleteMember, forKey: .type)
@@ -651,6 +661,18 @@ public struct PushMessageContentChatChangeTitle: Codable {
 
     public init(title: String) {
         self.title = title
+    }
+}
+
+/// A chat theme was edited
+public struct PushMessageContentChatChangeTheme: Codable {
+
+    /// Name of the new chat theme
+    public let themeName: String
+
+
+    public init(themeName: String) {
+        self.themeName = themeName
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -64,6 +64,9 @@ public enum TextEntityType: Codable {
     /// A text shows instead of a raw mention of the user (e.g., when the user has no username)
     case textEntityTypeMentionName(TextEntityTypeMentionName)
 
+    /// A media timestamp
+    case textEntityTypeMediaTimestamp(TextEntityTypeMediaTimestamp)
+
 
     private enum Kind: String, Codable {
         case textEntityTypeMention
@@ -83,6 +86,7 @@ public enum TextEntityType: Codable {
         case textEntityTypePreCode
         case textEntityTypeTextUrl
         case textEntityTypeMentionName
+        case textEntityTypeMediaTimestamp
     }
 
     public init(from decoder: Decoder) throws {
@@ -126,6 +130,9 @@ public enum TextEntityType: Codable {
         case .textEntityTypeMentionName:
             let value = try TextEntityTypeMentionName(from: decoder)
             self = .textEntityTypeMentionName(value)
+        case .textEntityTypeMediaTimestamp:
+            let value = try TextEntityTypeMediaTimestamp(from: decoder)
+            self = .textEntityTypeMediaTimestamp(value)
         }
     }
 
@@ -169,6 +176,9 @@ public enum TextEntityType: Codable {
         case .textEntityTypeMentionName(let value):
             try container.encode(Kind.textEntityTypeMentionName, forKey: .type)
             try value.encode(to: encoder)
+        case .textEntityTypeMediaTimestamp(let value):
+            try container.encode(Kind.textEntityTypeMediaTimestamp, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -206,6 +216,18 @@ public struct TextEntityTypeMentionName: Codable {
 
     public init(userId: Int) {
         self.userId = userId
+    }
+}
+
+/// A media timestamp
+public struct TextEntityTypeMediaTimestamp: Codable {
+
+    /// Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+    public let mediaTimestamp: Int
+
+
+    public init(mediaTimestamp: Int) {
+        self.mediaTimestamp = mediaTimestamp
     }
 }
 

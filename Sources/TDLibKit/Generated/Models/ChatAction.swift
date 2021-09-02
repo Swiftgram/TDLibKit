@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public enum ChatAction: Codable {
     /// The user is uploading a document
     case chatActionUploadingDocument(ChatActionUploadingDocument)
 
+    /// The user is picking a sticker to send
+    case chatActionChoosingSticker
+
     /// The user is picking a location or venue to send
     case chatActionChoosingLocation
 
@@ -61,6 +64,7 @@ public enum ChatAction: Codable {
         case chatActionUploadingVoiceNote
         case chatActionUploadingPhoto
         case chatActionUploadingDocument
+        case chatActionChoosingSticker
         case chatActionChoosingLocation
         case chatActionChoosingContact
         case chatActionStartPlayingGame
@@ -91,6 +95,8 @@ public enum ChatAction: Codable {
         case .chatActionUploadingDocument:
             let value = try ChatActionUploadingDocument(from: decoder)
             self = .chatActionUploadingDocument(value)
+        case .chatActionChoosingSticker:
+            self = .chatActionChoosingSticker
         case .chatActionChoosingLocation:
             self = .chatActionChoosingLocation
         case .chatActionChoosingContact:
@@ -128,6 +134,8 @@ public enum ChatAction: Codable {
         case .chatActionUploadingDocument(let value):
             try container.encode(Kind.chatActionUploadingDocument, forKey: .type)
             try value.encode(to: encoder)
+        case .chatActionChoosingSticker:
+            try container.encode(Kind.chatActionChoosingSticker, forKey: .type)
         case .chatActionChoosingLocation:
             try container.encode(Kind.chatActionChoosingLocation, forKey: .type)
         case .chatActionChoosingContact:

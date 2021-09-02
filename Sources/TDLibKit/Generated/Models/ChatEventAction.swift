@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -60,6 +60,9 @@ public enum ChatEventAction: Codable {
 
     /// The chat photo was changed
     case chatEventPhotoChanged(ChatEventPhotoChanged)
+
+    /// The chat theme was changed
+    case chatEventThemeChanged(ChatEventThemeChanged)
 
     /// The can_invite_users permission of a supergroup chat was toggled
     case chatEventInvitesToggled(ChatEventInvitesToggled)
@@ -127,6 +130,7 @@ public enum ChatEventAction: Codable {
         case chatEventDescriptionChanged
         case chatEventUsernameChanged
         case chatEventPhotoChanged
+        case chatEventThemeChanged
         case chatEventInvitesToggled
         case chatEventLinkedChatChanged
         case chatEventSlowModeDelayChanged
@@ -195,6 +199,9 @@ public enum ChatEventAction: Codable {
         case .chatEventPhotoChanged:
             let value = try ChatEventPhotoChanged(from: decoder)
             self = .chatEventPhotoChanged(value)
+        case .chatEventThemeChanged:
+            let value = try ChatEventThemeChanged(from: decoder)
+            self = .chatEventThemeChanged(value)
         case .chatEventInvitesToggled:
             let value = try ChatEventInvitesToggled(from: decoder)
             self = .chatEventInvitesToggled(value)
@@ -294,6 +301,9 @@ public enum ChatEventAction: Codable {
             try value.encode(to: encoder)
         case .chatEventPhotoChanged(let value):
             try container.encode(Kind.chatEventPhotoChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventThemeChanged(let value):
+            try container.encode(Kind.chatEventThemeChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventInvitesToggled(let value):
             try container.encode(Kind.chatEventInvitesToggled, forKey: .type)
@@ -585,6 +595,25 @@ public struct ChatEventPhotoChanged: Codable {
     ) {
         self.newPhoto = newPhoto
         self.oldPhoto = oldPhoto
+    }
+}
+
+/// The chat theme was changed
+public struct ChatEventThemeChanged: Codable {
+
+    /// New chat theme name; empty if none
+    public let newThemeName: String
+
+    /// Previous chat theme name; empty if none
+    public let oldThemeName: String
+
+
+    public init(
+        newThemeName: String,
+        oldThemeName: String
+    ) {
+        self.newThemeName = newThemeName
+        self.oldThemeName = oldThemeName
     }
 }
 

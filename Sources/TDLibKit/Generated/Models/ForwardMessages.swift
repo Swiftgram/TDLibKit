@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -22,13 +22,16 @@ public struct ForwardMessages: Codable {
     /// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
     public let messageIds: [Int64]
 
+    /// If true, messages will not be forwarded and instead fake messages will be returned
+    public let onlyPreview: Bool
+
     /// Options to be used to send the messages
     public let options: MessageSendOptions
 
-    /// True, if media caption of message copies needs to be removed. Ignored if send_copy is false
+    /// If true, media caption of message copies will be removed. Ignored if send_copy is false
     public let removeCaption: Bool
 
-    /// True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+    /// If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
     public let sendCopy: Bool
 
 
@@ -36,6 +39,7 @@ public struct ForwardMessages: Codable {
         chatId: Int64,
         fromChatId: Int64,
         messageIds: [Int64],
+        onlyPreview: Bool,
         options: MessageSendOptions,
         removeCaption: Bool,
         sendCopy: Bool
@@ -43,6 +47,7 @@ public struct ForwardMessages: Codable {
         self.chatId = chatId
         self.fromChatId = fromChatId
         self.messageIds = messageIds
+        self.onlyPreview = onlyPreview
         self.options = options
         self.removeCaption = removeCaption
         self.sendCopy = sendCopy

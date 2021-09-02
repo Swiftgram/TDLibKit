@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -43,6 +43,9 @@ public struct GroupCall: Codable {
     /// True, if the current user's video is paused
     public let isMyVideoPaused: Bool
 
+    /// True, if a video file is being recorded for the call
+    public let isVideoRecorded: Bool
+
     /// True, if all group call participants are loaded
     public let loadedAllParticipants: Bool
 
@@ -79,6 +82,7 @@ public struct GroupCall: Codable {
         isJoined: Bool,
         isMyVideoEnabled: Bool,
         isMyVideoPaused: Bool,
+        isVideoRecorded: Bool,
         loadedAllParticipants: Bool,
         muteNewParticipants: Bool,
         needRejoin: Bool,
@@ -98,6 +102,7 @@ public struct GroupCall: Codable {
         self.isJoined = isJoined
         self.isMyVideoEnabled = isMyVideoEnabled
         self.isMyVideoPaused = isMyVideoPaused
+        self.isVideoRecorded = isVideoRecorded
         self.loadedAllParticipants = loadedAllParticipants
         self.muteNewParticipants = muteNewParticipants
         self.needRejoin = needRejoin

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -31,31 +31,31 @@ public enum InternalLinkType: Codable {
     /// The link is a link to the change phone number section of the app
     case internalLinkTypeChangePhoneNumber
 
-    /// The link is a chat invite link. Call checkChatInviteLink to process the link
-    case internalLinkTypeChatInvite
+    /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
+    case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
     /// The link is a link to the filter settings section of the app
     case internalLinkTypeFilterSettings
 
-    /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a group to send the game, and then call sendMessage with inputMessageGame
+    /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
     /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
-    /// The link is a link to a Telegram message. Call getMessageLinkInfo to process the link
-    case internalLinkTypeMessage
+    /// The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
+    case internalLinkTypeMessage(InternalLinkTypeMessage)
 
     /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat should be open and the text should be added to the input field
     case internalLinkTypeMessageDraft(InternalLinkTypeMessageDraft)
 
-    /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm to process the link if the link was received outside of the app, otherwise ignore it
+    /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
     /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
 
-    /// The link is a link to a proxy. Call addProxy to process the link and add the proxy
+    /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
 
     /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
@@ -77,7 +77,7 @@ public enum InternalLinkType: Codable {
     case internalLinkTypeThemeSettings
 
     /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
-    case internalLinkTypeUnknownDeepLink
+    case internalLinkTypeUnknownDeepLink(InternalLinkTypeUnknownDeepLink)
 
     /// The link is a link to a voice chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
     case internalLinkTypeVoiceChat(InternalLinkTypeVoiceChat)
@@ -130,7 +130,8 @@ public enum InternalLinkType: Codable {
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
         case .internalLinkTypeChatInvite:
-            self = .internalLinkTypeChatInvite
+            let value = try InternalLinkTypeChatInvite(from: decoder)
+            self = .internalLinkTypeChatInvite(value)
         case .internalLinkTypeFilterSettings:
             self = .internalLinkTypeFilterSettings
         case .internalLinkTypeGame:
@@ -140,7 +141,8 @@ public enum InternalLinkType: Codable {
             let value = try InternalLinkTypeLanguagePack(from: decoder)
             self = .internalLinkTypeLanguagePack(value)
         case .internalLinkTypeMessage:
-            self = .internalLinkTypeMessage
+            let value = try InternalLinkTypeMessage(from: decoder)
+            self = .internalLinkTypeMessage(value)
         case .internalLinkTypeMessageDraft:
             let value = try InternalLinkTypeMessageDraft(from: decoder)
             self = .internalLinkTypeMessageDraft(value)
@@ -169,7 +171,8 @@ public enum InternalLinkType: Codable {
         case .internalLinkTypeThemeSettings:
             self = .internalLinkTypeThemeSettings
         case .internalLinkTypeUnknownDeepLink:
-            self = .internalLinkTypeUnknownDeepLink
+            let value = try InternalLinkTypeUnknownDeepLink(from: decoder)
+            self = .internalLinkTypeUnknownDeepLink(value)
         case .internalLinkTypeVoiceChat:
             let value = try InternalLinkTypeVoiceChat(from: decoder)
             self = .internalLinkTypeVoiceChat(value)
@@ -195,8 +198,9 @@ public enum InternalLinkType: Codable {
             try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
-        case .internalLinkTypeChatInvite:
+        case .internalLinkTypeChatInvite(let value):
             try container.encode(Kind.internalLinkTypeChatInvite, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeFilterSettings:
             try container.encode(Kind.internalLinkTypeFilterSettings, forKey: .type)
         case .internalLinkTypeGame(let value):
@@ -205,8 +209,9 @@ public enum InternalLinkType: Codable {
         case .internalLinkTypeLanguagePack(let value):
             try container.encode(Kind.internalLinkTypeLanguagePack, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeMessage:
+        case .internalLinkTypeMessage(let value):
             try container.encode(Kind.internalLinkTypeMessage, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeMessageDraft(let value):
             try container.encode(Kind.internalLinkTypeMessageDraft, forKey: .type)
             try value.encode(to: encoder)
@@ -234,8 +239,9 @@ public enum InternalLinkType: Codable {
             try value.encode(to: encoder)
         case .internalLinkTypeThemeSettings:
             try container.encode(Kind.internalLinkTypeThemeSettings, forKey: .type)
-        case .internalLinkTypeUnknownDeepLink:
+        case .internalLinkTypeUnknownDeepLink(let value):
             try container.encode(Kind.internalLinkTypeUnknownDeepLink, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeVoiceChat(let value):
             try container.encode(Kind.internalLinkTypeVoiceChat, forKey: .type)
             try value.encode(to: encoder)
@@ -305,7 +311,19 @@ public struct InternalLinkTypeBotStartInGroup: Codable {
     }
 }
 
-/// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a group to send the game, and then call sendMessage with inputMessageGame
+/// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
+public struct InternalLinkTypeChatInvite: Codable {
+
+    /// Internal representation of the invite link
+    public let inviteLink: String
+
+
+    public init(inviteLink: String) {
+        self.inviteLink = inviteLink
+    }
+}
+
+/// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
 public struct InternalLinkTypeGame: Codable {
 
     /// Username of the bot that owns the game
@@ -336,6 +354,18 @@ public struct InternalLinkTypeLanguagePack: Codable {
     }
 }
 
+/// The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
+public struct InternalLinkTypeMessage: Codable {
+
+    /// URL to be passed to getMessageLinkInfo
+    public let url: String
+
+
+    public init(url: String) {
+        self.url = url
+    }
+}
+
 /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat should be open and the text should be added to the input field
 public struct InternalLinkTypeMessageDraft: Codable {
 
@@ -355,7 +385,7 @@ public struct InternalLinkTypeMessageDraft: Codable {
     }
 }
 
-/// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm to process the link if the link was received outside of the app, otherwise ignore it
+/// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
 public struct InternalLinkTypePassportDataRequest: Codable {
 
     /// User identifier of the service's bot
@@ -408,7 +438,7 @@ public struct InternalLinkTypePhoneNumberConfirmation: Codable {
     }
 }
 
-/// The link is a link to a proxy. Call addProxy to process the link and add the proxy
+/// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
 public struct InternalLinkTypeProxy: Codable {
 
     /// Proxy server port
@@ -465,6 +495,18 @@ public struct InternalLinkTypeTheme: Codable {
 
     public init(themeName: String) {
         self.themeName = themeName
+    }
+}
+
+/// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
+public struct InternalLinkTypeUnknownDeepLink: Codable {
+
+    /// Link to be passed to getDeepLinkInfo
+    public let link: String
+
+
+    public init(link: String) {
+        self.link = link
     }
 }
 

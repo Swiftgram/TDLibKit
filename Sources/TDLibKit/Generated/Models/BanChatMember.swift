@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.6-9e7bce1
-//  https://github.com/tdlib/td/tree/9e7bce1
+//  Based on TDLib 1.7.7-7135caa
+//  https://github.com/tdlib/td/tree/7135caa
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct BanChatMember: Codable {
     /// Member identifier
     public let memberId: MessageSender
 
-    /// Pass true to delete all messages in the chat for the user. Always true for supergroups and channels
+    /// Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
     public let revokeMessages: Bool
 
 
