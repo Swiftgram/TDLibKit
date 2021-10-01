@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+/// Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
 public struct GetSupergroupMembers: Codable {
 
-    /// The type of users to return. By default, supergroupMembersFilterRecent
+    /// The type of users to return; pass null to use supergroupMembersFilterRecent
     public let filter: SupergroupMembersFilter
 
     /// The maximum number of users be returned; up to 200
@@ -23,14 +23,14 @@ public struct GetSupergroupMembers: Codable {
     public let offset: Int
 
     /// Identifier of the supergroup or channel
-    public let supergroupId: Int
+    public let supergroupId: Int64
 
 
     public init(
         filter: SupergroupMembersFilter,
         limit: Int,
         offset: Int,
-        supergroupId: Int
+        supergroupId: Int64
     ) {
         self.filter = filter
         self.limit = limit

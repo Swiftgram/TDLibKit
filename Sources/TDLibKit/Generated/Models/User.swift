@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -20,7 +20,7 @@ public struct User: Codable {
     public let haveAccess: Bool
 
     /// User identifier
-    public let id: Int
+    public let id: Int64
 
     /// The user is a contact of the current user
     public let isContact: Bool
@@ -68,7 +68,7 @@ public struct User: Codable {
     public init(
         firstName: String,
         haveAccess: Bool,
-        id: Int,
+        id: Int64,
         isContact: Bool,
         isFake: Bool,
         isMutualContact: Bool,

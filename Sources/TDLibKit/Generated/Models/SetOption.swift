@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SetOption: Codable {
     /// The name of the option
     public let name: String
 
-    /// The new value of the option
+    /// The new value of the option; pass null to reset option value to a default value
     public let value: OptionValue
 
 

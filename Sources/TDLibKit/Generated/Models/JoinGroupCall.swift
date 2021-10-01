@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct JoinGroupCall: Codable {
     /// True, if the user's video is enabled
     public let isMyVideoEnabled: Bool
 
-    /// Identifier of a group call participant, which will be used to join the call; voice chats only
+    /// Identifier of a group call participant, which will be used to join the call; pass null to join as self; voice chats only
     public let participantId: MessageSender
 
     /// Group call join payload; received from tgcalls

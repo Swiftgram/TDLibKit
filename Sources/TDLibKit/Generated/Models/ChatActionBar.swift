@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Describes actions which should be possible to do through a chat action bar
+/// Describes actions which must be possible to do through a chat action bar
 public enum ChatActionBar: Codable {
 
     /// The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam
@@ -22,7 +22,7 @@ public enum ChatActionBar: Codable {
     /// The chat is a recently created group chat, to which new members can be invited
     case chatActionBarInviteMembers
 
-    /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method blockUser, or the other user can be added to the contact list using the method addContact
+    /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact
     case chatActionBarReportAddBlock(ChatActionBarReportAddBlock)
 
     /// The chat is a private or secret chat and the other user can be added to the contact list using the method addContact
@@ -95,7 +95,7 @@ public struct ChatActionBarReportSpam: Codable {
     }
 }
 
-/// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method blockUser, or the other user can be added to the contact list using the method addContact
+/// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact
 public struct ChatActionBarReportAddBlock: Codable {
 
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings

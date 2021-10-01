@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,8 +16,8 @@ public struct SetChatDraftMessage: Codable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// New draft message; may be null
-    public let draftMessage: DraftMessage?
+    /// New draft message; pass null to remove the draft
+    public let draftMessage: DraftMessage
 
     /// If not 0, a message thread identifier in which the draft was changed
     public let messageThreadId: Int64
@@ -25,7 +25,7 @@ public struct SetChatDraftMessage: Codable {
 
     public init(
         chatId: Int64,
-        draftMessage: DraftMessage?,
+        draftMessage: DraftMessage,
         messageThreadId: Int64
     ) {
         self.chatId = chatId

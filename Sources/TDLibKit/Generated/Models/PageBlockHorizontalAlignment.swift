@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Describes a horizontal alignment of a table cell content
 public enum PageBlockHorizontalAlignment: Codable {
 
-    /// The content should be left-aligned
+    /// The content must be left-aligned
     case pageBlockHorizontalAlignmentLeft
 
-    /// The content should be center-aligned
+    /// The content must be center-aligned
     case pageBlockHorizontalAlignmentCenter
 
-    /// The content should be right-aligned
+    /// The content must be right-aligned
     case pageBlockHorizontalAlignmentRight
 
 

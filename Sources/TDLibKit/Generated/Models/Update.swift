@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -109,7 +109,7 @@ public enum Update: Codable {
     /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     case updateChatReplyMarkup(UpdateChatReplyMarkup)
 
-    /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied
+    /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     case updateChatDraftMessage(UpdateChatDraftMessage)
 
     /// The list of chat filters or a chat filter has changed
@@ -217,13 +217,16 @@ public enum Update: Codable {
     /// The selected background has changed
     case updateSelectedBackground(UpdateSelectedBackground)
 
+    /// The list of available chat themes has changed
+    case updateChatThemes(UpdateChatThemes)
+
     /// Some language pack strings have been updated
     case updateLanguagePackStrings(UpdateLanguagePackStrings)
 
     /// The connection state has changed. This update must be used only to show a human-readable description of the connection state
     case updateConnectionState(UpdateConnectionState)
 
-    /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update"
+    /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     case updateTermsOfService(UpdateTermsOfService)
 
     /// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
@@ -231,6 +234,9 @@ public enum Update: Codable {
 
     /// The list of supported dice emojis has changed
     case updateDiceEmojis(UpdateDiceEmojis)
+
+    /// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
+    case updateAnimatedEmojiMessageClicked(UpdateAnimatedEmojiMessageClicked)
 
     /// The parameters of animation search through GetOption("animation_search_bot_username") bot has changed
     case updateAnimationSearchParameters(UpdateAnimationSearchParameters)
@@ -341,11 +347,13 @@ public enum Update: Codable {
         case updateFavoriteStickers
         case updateSavedAnimations
         case updateSelectedBackground
+        case updateChatThemes
         case updateLanguagePackStrings
         case updateConnectionState
         case updateTermsOfService
         case updateUsersNearby
         case updateDiceEmojis
+        case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
         case updateSuggestedActions
         case updateNewInlineQuery
@@ -569,6 +577,9 @@ public enum Update: Codable {
         case .updateSelectedBackground:
             let value = try UpdateSelectedBackground(from: decoder)
             self = .updateSelectedBackground(value)
+        case .updateChatThemes:
+            let value = try UpdateChatThemes(from: decoder)
+            self = .updateChatThemes(value)
         case .updateLanguagePackStrings:
             let value = try UpdateLanguagePackStrings(from: decoder)
             self = .updateLanguagePackStrings(value)
@@ -584,6 +595,9 @@ public enum Update: Codable {
         case .updateDiceEmojis:
             let value = try UpdateDiceEmojis(from: decoder)
             self = .updateDiceEmojis(value)
+        case .updateAnimatedEmojiMessageClicked:
+            let value = try UpdateAnimatedEmojiMessageClicked(from: decoder)
+            self = .updateAnimatedEmojiMessageClicked(value)
         case .updateAnimationSearchParameters:
             let value = try UpdateAnimationSearchParameters(from: decoder)
             self = .updateAnimationSearchParameters(value)
@@ -833,6 +847,9 @@ public enum Update: Codable {
         case .updateSelectedBackground(let value):
             try container.encode(Kind.updateSelectedBackground, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatThemes(let value):
+            try container.encode(Kind.updateChatThemes, forKey: .type)
+            try value.encode(to: encoder)
         case .updateLanguagePackStrings(let value):
             try container.encode(Kind.updateLanguagePackStrings, forKey: .type)
             try value.encode(to: encoder)
@@ -847,6 +864,9 @@ public enum Update: Codable {
             try value.encode(to: encoder)
         case .updateDiceEmojis(let value):
             try container.encode(Kind.updateDiceEmojis, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateAnimatedEmojiMessageClicked(let value):
+            try container.encode(Kind.updateAnimatedEmojiMessageClicked, forKey: .type)
             try value.encode(to: encoder)
         case .updateAnimationSearchParameters(let value):
             try container.encode(Kind.updateAnimationSearchParameters, forKey: .type)
@@ -1496,7 +1516,7 @@ public struct UpdateChatTheme: Codable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new name of the chat theme; may be empty if none
+    /// The new name of the chat theme; may be empty if theme was reset to default
     public let themeName: String
 
 
@@ -1528,7 +1548,7 @@ public struct UpdateChatReplyMarkup: Codable {
     }
 }
 
-/// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied
+/// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
 public struct UpdateChatDraftMessage: Codable {
 
     /// Chat identifier
@@ -1611,7 +1631,7 @@ public struct UpdateNotificationGroup: Codable {
     /// Identifier of a chat to which all notifications in the group belong
     public let chatId: Int64
 
-    /// True, if the notifications should be shown without sound
+    /// True, if the notifications must be shown without sound
     public let isSilent: Bool
 
     /// Unique notification group identifier
@@ -1724,14 +1744,14 @@ public struct UpdateUserChatAction: Codable {
     public let messageThreadId: Int64
 
     /// Identifier of a user performing an action
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         action: ChatAction,
         chatId: Int64,
         messageThreadId: Int64,
-        userId: Int
+        userId: Int64
     ) {
         self.action = action
         self.chatId = chatId
@@ -1747,12 +1767,12 @@ public struct UpdateUserStatus: Codable {
     public let status: UserStatus
 
     /// User identifier
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         status: UserStatus,
-        userId: Int
+        userId: Int64
     ) {
         self.status = status
         self.userId = userId
@@ -1814,12 +1834,12 @@ public struct UpdateUserFullInfo: Codable {
     public let userFullInfo: UserFullInfo
 
     /// User identifier
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         userFullInfo: UserFullInfo,
-        userId: Int
+        userId: Int64
     ) {
         self.userFullInfo = userFullInfo
         self.userId = userId
@@ -1833,12 +1853,12 @@ public struct UpdateBasicGroupFullInfo: Codable {
     public let basicGroupFullInfo: BasicGroupFullInfo
 
     /// Identifier of a basic group
-    public let basicGroupId: Int
+    public let basicGroupId: Int64
 
 
     public init(
         basicGroupFullInfo: BasicGroupFullInfo,
-        basicGroupId: Int
+        basicGroupId: Int64
     ) {
         self.basicGroupFullInfo = basicGroupFullInfo
         self.basicGroupId = basicGroupId
@@ -1852,12 +1872,12 @@ public struct UpdateSupergroupFullInfo: Codable {
     public let supergroupFullInfo: SupergroupFullInfo
 
     /// Identifier of the supergroup or channel
-    public let supergroupId: Int
+    public let supergroupId: Int64
 
 
     public init(
         supergroupFullInfo: SupergroupFullInfo,
-        supergroupId: Int
+        supergroupId: Int64
     ) {
         self.supergroupFullInfo = supergroupFullInfo
         self.supergroupId = supergroupId
@@ -1870,7 +1890,7 @@ public struct UpdateServiceNotification: Codable {
     /// Notification content
     public let content: MessageContent
 
-    /// Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
+    /// Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
     public let type: String
 
 
@@ -1898,10 +1918,10 @@ public struct UpdateFile: Codable {
 /// The file generation process needs to be started by the application
 public struct UpdateFileGenerationStart: Codable {
 
-    /// String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the application
+    /// String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application
     public let conversion: String
 
-    /// The path to a file that should be created and where the new file should be generated
+    /// The path to a file that must be created and where the new file is generated
     public let destinationPath: String
 
     /// Unique identifier for the generation process
@@ -2204,6 +2224,18 @@ public struct UpdateSelectedBackground: Codable {
     }
 }
 
+/// The list of available chat themes has changed
+public struct UpdateChatThemes: Codable {
+
+    /// The new list of chat themes
+    public let chatThemes: [ChatTheme]
+
+
+    public init(chatThemes: [ChatTheme]) {
+        self.chatThemes = chatThemes
+    }
+}
+
 /// Some language pack strings have been updated
 public struct UpdateLanguagePackStrings: Codable {
 
@@ -2240,7 +2272,7 @@ public struct UpdateConnectionState: Codable {
     }
 }
 
-/// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update"
+/// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
 public struct UpdateTermsOfService: Codable {
 
     /// The new terms of service
@@ -2280,6 +2312,30 @@ public struct UpdateDiceEmojis: Codable {
 
     public init(emojis: [String]) {
         self.emojis = emojis
+    }
+}
+
+/// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
+public struct UpdateAnimatedEmojiMessageClicked: Codable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Message identifier
+    public let messageId: Int64
+
+    /// The animated sticker to be played
+    public let sticker: Sticker
+
+
+    public init(
+        chatId: Int64,
+        messageId: Int64,
+        sticker: Sticker
+    ) {
+        self.chatId = chatId
+        self.messageId = messageId
+        self.sticker = sticker
     }
 }
 
@@ -2337,7 +2393,7 @@ public struct UpdateNewInlineQuery: Codable {
     public let query: String
 
     /// Identifier of the user who sent the query
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
     /// User location; may be null
     public let userLocation: Location?
@@ -2348,7 +2404,7 @@ public struct UpdateNewInlineQuery: Codable {
         id: TdInt64,
         offset: String,
         query: String,
-        senderUserId: Int,
+        senderUserId: Int64,
         userLocation: Location?
     ) {
         self.chatType = chatType
@@ -2373,7 +2429,7 @@ public struct UpdateNewChosenInlineResult: Codable {
     public let resultId: String
 
     /// Identifier of the user who sent the query
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
     /// User location; may be null
     public let userLocation: Location?
@@ -2383,7 +2439,7 @@ public struct UpdateNewChosenInlineResult: Codable {
         inlineMessageId: String,
         query: String,
         resultId: String,
-        senderUserId: Int,
+        senderUserId: Int64,
         userLocation: Location?
     ) {
         self.inlineMessageId = inlineMessageId
@@ -2413,7 +2469,7 @@ public struct UpdateNewCallbackQuery: Codable {
     public let payload: CallbackQueryPayload
 
     /// Identifier of the user who sent the query
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
 
     public init(
@@ -2422,7 +2478,7 @@ public struct UpdateNewCallbackQuery: Codable {
         id: TdInt64,
         messageId: Int64,
         payload: CallbackQueryPayload,
-        senderUserId: Int
+        senderUserId: Int64
     ) {
         self.chatId = chatId
         self.chatInstance = chatInstance
@@ -2449,7 +2505,7 @@ public struct UpdateNewInlineCallbackQuery: Codable {
     public let payload: CallbackQueryPayload
 
     /// Identifier of the user who sent the query
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
 
     public init(
@@ -2457,7 +2513,7 @@ public struct UpdateNewInlineCallbackQuery: Codable {
         id: TdInt64,
         inlineMessageId: String,
         payload: CallbackQueryPayload,
-        senderUserId: Int
+        senderUserId: Int64
     ) {
         self.chatInstance = chatInstance
         self.id = id
@@ -2477,7 +2533,7 @@ public struct UpdateNewShippingQuery: Codable {
     public let invoicePayload: String
 
     /// Identifier of the user who sent the query
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
     /// User shipping address
     public let shippingAddress: Address
@@ -2486,7 +2542,7 @@ public struct UpdateNewShippingQuery: Codable {
     public init(
         id: TdInt64,
         invoicePayload: String,
-        senderUserId: Int,
+        senderUserId: Int64,
         shippingAddress: Address
     ) {
         self.id = id
@@ -2512,7 +2568,7 @@ public struct UpdateNewPreCheckoutQuery: Codable {
     public let orderInfo: OrderInfo?
 
     /// Identifier of the user who sent the query
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
     /// Identifier of a shipping option chosen by the user; may be empty if not applicable
     public let shippingOptionId: String
@@ -2526,7 +2582,7 @@ public struct UpdateNewPreCheckoutQuery: Codable {
         id: TdInt64,
         invoicePayload: Data,
         orderInfo: OrderInfo?,
-        senderUserId: Int,
+        senderUserId: Int64,
         shippingOptionId: String,
         totalAmount: Int64
     ) {
@@ -2598,13 +2654,13 @@ public struct UpdatePollAnswer: Codable {
     public let pollId: TdInt64
 
     /// The user, who changed the answer to the poll
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         optionIds: [Int],
         pollId: TdInt64,
-        userId: Int
+        userId: Int64
     ) {
         self.optionIds = optionIds
         self.pollId = pollId
@@ -2616,7 +2672,7 @@ public struct UpdatePollAnswer: Codable {
 public struct UpdateChatMember: Codable {
 
     /// Identifier of the user, changing the rights
-    public let actorUserId: Int
+    public let actorUserId: Int64
 
     /// Chat identifier
     public let chatId: Int64
@@ -2635,7 +2691,7 @@ public struct UpdateChatMember: Codable {
 
 
     public init(
-        actorUserId: Int,
+        actorUserId: Int64,
         chatId: Int64,
         date: Int,
         inviteLink: ChatInviteLink?,

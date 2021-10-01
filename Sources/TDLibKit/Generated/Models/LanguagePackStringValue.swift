@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public enum LanguagePackStringValue: Codable {
     /// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
     case languagePackStringValuePluralized(LanguagePackStringValuePluralized)
 
-    /// A deleted language pack string, the value should be taken from the built-in english language pack
+    /// A deleted language pack string, the value must be taken from the built-in English language pack
     case languagePackStringValueDeleted
 
 

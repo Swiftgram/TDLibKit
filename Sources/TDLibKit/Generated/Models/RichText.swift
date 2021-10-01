@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -377,10 +377,10 @@ public struct RichTextIcon: Codable {
     /// The image represented as a document. The image can be in GIF, JPEG or PNG format
     public let document: Document
 
-    /// Height of a bounding box in which the image should be shown; 0 if unknown
+    /// Height of a bounding box in which the image must be shown; 0 if unknown
     public let height: Int
 
-    /// Width of a bounding box in which the image should be shown; 0 if unknown
+    /// Width of a bounding box in which the image must be shown; 0 if unknown
     public let width: Int
 
 
@@ -434,7 +434,7 @@ public struct RichTextAnchor: Codable {
 /// A link to an anchor on the same web page
 public struct RichTextAnchorLink: Codable {
 
-    /// The anchor name. If the name is empty, the link should bring back to top
+    /// The anchor name. If the name is empty, the link must bring back to top
     public let anchorName: String
 
     /// The link text

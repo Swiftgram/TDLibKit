@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -28,13 +28,13 @@ public struct PaymentReceipt: Codable {
     public let orderInfo: OrderInfo?
 
     /// User identifier of the payment provider bot
-    public let paymentsProviderUserId: Int
+    public let paymentsProviderUserId: Int64
 
     /// Product photo; may be null
     public let photo: Photo?
 
     /// User identifier of the seller bot
-    public let sellerBotUserId: Int
+    public let sellerBotUserId: Int64
 
     /// Chosen shipping option; may be null
     public let shippingOption: ShippingOption?
@@ -52,9 +52,9 @@ public struct PaymentReceipt: Codable {
         description: String,
         invoice: Invoice,
         orderInfo: OrderInfo?,
-        paymentsProviderUserId: Int,
+        paymentsProviderUserId: Int64,
         photo: Photo?,
-        sellerBotUserId: Int,
+        sellerBotUserId: Int64,
         shippingOption: ShippingOption?,
         tipAmount: Int64,
         title: String

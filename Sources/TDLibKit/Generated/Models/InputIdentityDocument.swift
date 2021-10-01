@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -22,10 +22,10 @@ public struct InputIdentityDocument: Codable {
     /// Document number; 1-24 characters
     public let number: String
 
-    /// Reverse side of the document; only for driver license and identity card
+    /// Reverse side of the document; only for driver license and identity card; pass null otherwise
     public let reverseSide: InputFile
 
-    /// Selfie with the document, if available
+    /// Selfie with the document; pass null if unavailable
     public let selfie: InputFile
 
     /// List of files containing a certified English translation of the document

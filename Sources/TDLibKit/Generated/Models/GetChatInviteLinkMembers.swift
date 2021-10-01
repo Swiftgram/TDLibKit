@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetChatInviteLinkMembers: Codable {
     /// The maximum number of chat members to return
     public let limit: Int
 
-    /// A chat member from which to return next chat members; use null to get results from the beginning
+    /// A chat member from which to return next chat members; pass null to get results from the beginning
     public let offsetMember: ChatInviteLinkMember
 
 

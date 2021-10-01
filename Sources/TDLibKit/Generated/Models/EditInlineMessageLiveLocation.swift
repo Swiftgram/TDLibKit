@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -19,20 +19,20 @@ public struct EditInlineMessageLiveLocation: Codable {
     /// Inline message identifier
     public let inlineMessageId: String
 
-    /// New location content of the message; may be null. Pass null to stop sharing the live location
-    public let location: Location?
+    /// New location content of the message; pass null to stop sharing the live location
+    public let location: Location
 
     /// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     public let proximityAlertRadius: Int
 
-    /// The new message reply markup
+    /// The new message reply markup; pass null if none
     public let replyMarkup: ReplyMarkup
 
 
     public init(
         heading: Int,
         inlineMessageId: String,
-        location: Location?,
+        location: Location,
         proximityAlertRadius: Int,
         replyMarkup: ReplyMarkup
     ) {

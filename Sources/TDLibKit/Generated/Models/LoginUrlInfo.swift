@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -74,7 +74,7 @@ public struct LoginUrlInfoOpen: Codable {
 public struct LoginUrlInfoRequestConfirmation: Codable {
 
     /// User identifier of a bot linked with the website
-    public let botUserId: Int
+    public let botUserId: Int64
 
     /// A domain of the URL
     public let domain: String
@@ -87,7 +87,7 @@ public struct LoginUrlInfoRequestConfirmation: Codable {
 
 
     public init(
-        botUserId: Int,
+        botUserId: Int64,
         domain: String,
         requestWriteAccess: Bool,
         url: String

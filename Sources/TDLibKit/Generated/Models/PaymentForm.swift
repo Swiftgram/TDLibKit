@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -29,7 +29,7 @@ public struct PaymentForm: Codable {
     public let paymentsProvider: PaymentsProviderStripe?
 
     /// User identifier of the payment provider bot
-    public let paymentsProviderUserId: Int
+    public let paymentsProviderUserId: Int64
 
     /// Contains information about saved card credentials; may be null
     public let savedCredentials: SavedCredentials?
@@ -38,7 +38,7 @@ public struct PaymentForm: Codable {
     public let savedOrderInfo: OrderInfo?
 
     /// User identifier of the seller bot
-    public let sellerBotUserId: Int
+    public let sellerBotUserId: Int64
 
     /// Payment form URL
     public let url: String
@@ -50,10 +50,10 @@ public struct PaymentForm: Codable {
         invoice: Invoice,
         needPassword: Bool,
         paymentsProvider: PaymentsProviderStripe?,
-        paymentsProviderUserId: Int,
+        paymentsProviderUserId: Int64,
         savedCredentials: SavedCredentials?,
         savedOrderInfo: OrderInfo?,
-        sellerBotUserId: Int,
+        sellerBotUserId: Int64,
         url: String
     ) {
         self.canSaveCredentials = canSaveCredentials

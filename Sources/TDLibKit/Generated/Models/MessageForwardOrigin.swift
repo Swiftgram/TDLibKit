@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -85,10 +85,10 @@ public enum MessageForwardOrigin: Codable {
 public struct MessageForwardOriginUser: Codable {
 
     /// Identifier of the user that originally sent the message
-    public let senderUserId: Int
+    public let senderUserId: Int64
 
 
-    public init(senderUserId: Int) {
+    public init(senderUserId: Int64) {
         self.senderUserId = senderUserId
     }
 }

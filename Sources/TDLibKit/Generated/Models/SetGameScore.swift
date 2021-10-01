@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SetGameScore: Codable {
     /// The chat to which the message with the game belongs
     public let chatId: Int64
 
-    /// True, if the message should be edited
+    /// True, if the message needs to be edited
     public let editMessage: Bool
 
     /// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
@@ -29,7 +29,7 @@ public struct SetGameScore: Codable {
     public let score: Int
 
     /// User identifier
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
@@ -38,7 +38,7 @@ public struct SetGameScore: Codable {
         force: Bool,
         messageId: Int64,
         score: Int,
-        userId: Int
+        userId: Int64
     ) {
         self.chatId = chatId
         self.editMessage = editMessage

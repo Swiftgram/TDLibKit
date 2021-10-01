@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,25 +17,30 @@ public struct ThemeSettings: Codable {
     public let accentColor: Int
 
     /// If true, the freeform gradient fill needs to be animated on every sent message
-    public let animateMessageFill: Bool
+    public let animateOutgoingMessageFill: Bool
 
     /// The background to be used in chats; may be null
     public let background: Background?
 
+    /// Accent color of outgoing messages in ARGB format
+    public let outgoingMessageAccentColor: Int
+
     /// The fill to be used as a background for outgoing messages
-    public let messageFill: BackgroundFill
+    public let outgoingMessageFill: BackgroundFill
 
 
     public init(
         accentColor: Int,
-        animateMessageFill: Bool,
+        animateOutgoingMessageFill: Bool,
         background: Background?,
-        messageFill: BackgroundFill
+        outgoingMessageAccentColor: Int,
+        outgoingMessageFill: BackgroundFill
     ) {
         self.accentColor = accentColor
-        self.animateMessageFill = animateMessageFill
+        self.animateOutgoingMessageFill = animateOutgoingMessageFill
         self.background = background
-        self.messageFill = messageFill
+        self.outgoingMessageAccentColor = outgoingMessageAccentColor
+        self.outgoingMessageFill = outgoingMessageFill
     }
 }
 

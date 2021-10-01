@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -23,7 +23,7 @@ public struct Supergroup: Codable {
     public let hasLocation: Bool
 
     /// Supergroup or channel identifier
-    public let id: Int
+    public let id: Int64
 
     /// True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on number of members
     public let isBroadcastGroup: Bool
@@ -49,7 +49,7 @@ public struct Supergroup: Codable {
     /// If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
     public let restrictionReason: String
 
-    /// True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels
+    /// True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
     public let signMessages: Bool
 
     /// Status of the current user in the supergroup or channel; custom title will be always empty
@@ -63,7 +63,7 @@ public struct Supergroup: Codable {
         date: Int,
         hasLinkedChat: Bool,
         hasLocation: Bool,
-        id: Int,
+        id: Int64,
         isBroadcastGroup: Bool,
         isChannel: Bool,
         isFake: Bool,

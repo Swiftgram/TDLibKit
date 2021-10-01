@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -60,7 +60,7 @@ public enum LogStream: Codable {
 /// The log is written to a file
 public struct LogStreamFile: Codable {
 
-    /// The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated
+    /// The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated, in bytes
     public let maxFileSize: Int64
 
     /// Path to the file to where the internal TDLib log will be written

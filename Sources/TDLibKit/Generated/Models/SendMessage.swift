@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -22,10 +22,10 @@ public struct SendMessage: Codable {
     /// If not 0, a message thread identifier in which the message will be sent
     public let messageThreadId: Int64
 
-    /// Options to be used to send the message
+    /// Options to be used to send the message; pass null to use default options
     public let options: MessageSendOptions
 
-    /// Markup for replying to the message; for bots only
+    /// Markup for replying to the message; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup
 
     /// Identifier of the message to reply to or 0

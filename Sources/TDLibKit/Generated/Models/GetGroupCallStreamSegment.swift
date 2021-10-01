@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct GetGroupCallStreamSegment: Codable {
     /// Point in time when the stream segment begins; Unix timestamp in milliseconds
     public let timeOffset: Int64
 
-    /// Video quality as received from tgcalls
+    /// Video quality as received from tgcalls; pass null to get the worst available quality
     public let videoQuality: GroupCallVideoQuality
 
 

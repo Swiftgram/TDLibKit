@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
 public struct Chat: Codable {
 
-    /// Describes actions which should be possible to do through a chat action bar; may be null
+    /// Describes actions which must be possible to do through a chat action bar; may be null
     public let actionBar: ChatActionBar?
 
     /// True, if the chat messages can be deleted for all users
@@ -73,7 +73,7 @@ public struct Chat: Codable {
     /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
     public let replyMarkupMessageId: Int64
 
-    /// If non-empty, name of the theme set for the chat
+    /// If non-empty, name of a theme, set for the chat
     public let themeName: String
 
     /// Chat title

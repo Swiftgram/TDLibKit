@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Finishes the file generation
 public struct FinishFileGeneration: Codable {
 
-    /// If set, means that file generation has failed and should be terminated
+    /// If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
     public let error: Error
 
     /// The identifier of the generation process

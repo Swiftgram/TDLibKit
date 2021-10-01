@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -14,14 +14,14 @@ import Foundation
 public struct BotCommands: Codable {
 
     /// Bot's user identifier
-    public let botUserId: Int
+    public let botUserId: Int64
 
     /// List of bot commands
     public let commands: [BotCommand]
 
 
     public init(
-        botUserId: Int,
+        botUserId: Int64,
         commands: [BotCommand]
     ) {
         self.botUserId = botUserId

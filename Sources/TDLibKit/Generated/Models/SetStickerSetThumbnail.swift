@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,17 +16,17 @@ public struct SetStickerSetThumbnail: Codable {
     /// Sticker set name
     public let name: String
 
-    /// Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileId to delete the thumbnail
+    /// Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
     public let thumbnail: InputFile
 
     /// Sticker set owner
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         name: String,
         thumbnail: InputFile,
-        userId: Int
+        userId: Int64
     ) {
         self.name = name
         self.thumbnail = thumbnail

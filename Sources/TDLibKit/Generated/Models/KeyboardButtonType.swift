@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a keyboard button type
 public enum KeyboardButtonType: Codable {
 
-    /// A simple button, with text that should be sent when the button is pressed
+    /// A simple button, with text that must be sent when the button is pressed
     case keyboardButtonTypeText
 
     /// A button that sends the user's phone number when pressed; available only in private chats

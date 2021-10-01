@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -14,14 +14,14 @@ import Foundation
 public struct CreateBasicGroupChat: Codable {
 
     /// Basic group identifier
-    public let basicGroupId: Int
+    public let basicGroupId: Int64
 
     /// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
     public let force: Bool
 
 
     public init(
-        basicGroupId: Int,
+        basicGroupId: Int64,
         force: Bool
     ) {
         self.basicGroupId = basicGroupId

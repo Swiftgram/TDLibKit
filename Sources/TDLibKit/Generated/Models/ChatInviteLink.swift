@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct ChatInviteLink: Codable {
 
     /// User identifier of an administrator created the link
-    public let creatorUserId: Int
+    public let creatorUserId: Int64
 
     /// Point in time (Unix timestamp) when the link was created
     public let date: Int
@@ -42,7 +42,7 @@ public struct ChatInviteLink: Codable {
 
 
     public init(
-        creatorUserId: Int,
+        creatorUserId: Int64,
         date: Int,
         editDate: Int,
         expireDate: Int,

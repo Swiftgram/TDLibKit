@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public struct ChatInviteLinkInfo: Codable {
     public let memberCount: Int
 
     /// User identifiers of some chat members that may be known to the current user
-    public let memberUserIds: [Int]
+    public let memberUserIds: [Int64]
 
     /// Chat photo; may be null
     public let photo: ChatPhotoInfo?
@@ -43,7 +43,7 @@ public struct ChatInviteLinkInfo: Codable {
         chatId: Int64,
         isPublic: Bool,
         memberCount: Int,
-        memberUserIds: [Int],
+        memberUserIds: [Int64],
         photo: ChatPhotoInfo?,
         title: String,
         type: ChatType

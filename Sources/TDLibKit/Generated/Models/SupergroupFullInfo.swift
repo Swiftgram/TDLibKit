@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -70,7 +70,7 @@ public struct SupergroupFullInfo: Codable {
     public let stickerSetId: TdInt64
 
     /// Identifier of the basic group from which supergroup was upgraded; 0 if none
-    public let upgradedFromBasicGroupId: Int
+    public let upgradedFromBasicGroupId: Int64
 
     /// Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
     public let upgradedFromMaxMessageId: Int64
@@ -96,7 +96,7 @@ public struct SupergroupFullInfo: Codable {
         slowModeDelay: Int,
         slowModeDelayExpiresIn: Double,
         stickerSetId: TdInt64,
-        upgradedFromBasicGroupId: Int,
+        upgradedFromBasicGroupId: Int64,
         upgradedFromMaxMessageId: Int64
     ) {
         self.administratorCount = administratorCount

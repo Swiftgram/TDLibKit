@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct ScopeNotificationSettings: Codable {
     /// Time left before notifications will be unmuted, in seconds
     public let muteFor: Int
 
-    /// True, if message content should be displayed in notifications
+    /// True, if message content must be displayed in notifications
     public let showPreview: Bool
 
     /// The name of an audio file to be used for notification sounds; only applies to iOS applications

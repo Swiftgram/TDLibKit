@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
+/// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
 public struct GetPaymentForm: Codable {
 
     /// Chat identifier of the Invoice message
@@ -19,7 +19,7 @@ public struct GetPaymentForm: Codable {
     /// Message identifier
     public let messageId: Int64
 
-    /// Preferred payment form theme
+    /// Preferred payment form theme; pass null to use the default theme
     public let theme: PaymentFormTheme
 
 

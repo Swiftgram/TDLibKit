@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -36,6 +36,9 @@ public struct Message: Codable {
 
     /// True, if the message statistics are available
     public let canGetStatistics: Bool
+
+    /// True, if chat members already viewed the message can be received through getMessageViewers
+    public let canGetViewers: Bool
 
     /// Chat identifier
     public let chatId: Int64
@@ -107,7 +110,7 @@ public struct Message: Codable {
     public let ttlExpiresIn: Double
 
     /// If non-zero, the user identifier of the bot through which this message was sent
-    public let viaBotUserId: Int
+    public let viaBotUserId: Int64
 
 
     public init(
@@ -119,6 +122,7 @@ public struct Message: Codable {
         canGetMediaTimestampLinks: Bool,
         canGetMessageThread: Bool,
         canGetStatistics: Bool,
+        canGetViewers: Bool,
         chatId: Int64,
         containsUnreadMention: Bool,
         content: MessageContent,
@@ -142,7 +146,7 @@ public struct Message: Codable {
         sendingState: MessageSendingState?,
         ttl: Int,
         ttlExpiresIn: Double,
-        viaBotUserId: Int
+        viaBotUserId: Int64
     ) {
         self.authorSignature = authorSignature
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
@@ -152,6 +156,7 @@ public struct Message: Codable {
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
         self.canGetMessageThread = canGetMessageThread
         self.canGetStatistics = canGetStatistics
+        self.canGetViewers = canGetViewers
         self.chatId = chatId
         self.containsUnreadMention = containsUnreadMention
         self.content = content

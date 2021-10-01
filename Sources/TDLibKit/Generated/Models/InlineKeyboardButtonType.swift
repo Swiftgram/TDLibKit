@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -116,7 +116,7 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable {
     public let forwardText: String
 
     /// Unique button identifier
-    public let id: Int
+    public let id: Int64
 
     /// An HTTP URL to open
     public let url: String
@@ -124,7 +124,7 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable {
 
     public init(
         forwardText: String,
-        id: Int,
+        id: Int64,
         url: String
     ) {
         self.forwardText = forwardText
@@ -160,7 +160,7 @@ public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable {
 /// A button that forces an inline query to the bot to be inserted in the input field
 public struct InlineKeyboardButtonTypeSwitchInline: Codable {
 
-    /// True, if the inline query should be sent from the current chat
+    /// True, if the inline query must be sent from the current chat
     public let inCurrentChat: Bool
 
     /// Inline query to be sent to the bot

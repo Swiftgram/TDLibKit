@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetChatEventLog: Codable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The types of events to return. By default, all types will be returned
+    /// The types of events to return; pass null to get chat events of all types
     public let filters: ChatEventLogFilters
 
     /// Identifier of an event from which to return results. Use 0 to get results from the latest events
@@ -29,7 +29,7 @@ public struct GetChatEventLog: Codable {
     public let query: String
 
     /// User identifiers by which to filter events. By default, events relating to all users will be returned
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
     public init(
@@ -38,7 +38,7 @@ public struct GetChatEventLog: Codable {
         fromEventId: TdInt64,
         limit: Int,
         query: String,
-        userIds: [Int]
+        userIds: [Int64]
     ) {
         self.chatId = chatId
         self.filters = filters

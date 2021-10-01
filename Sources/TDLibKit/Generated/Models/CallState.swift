@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -148,10 +148,10 @@ public struct CallStateReady: Codable {
 /// The call has ended successfully
 public struct CallStateDiscarded: Codable {
 
-    /// True, if the call debug information should be sent to the server
+    /// True, if the call debug information must be sent to the server
     public let needDebugInformation: Bool
 
-    /// True, if the call rating should be sent to the server
+    /// True, if the call rating must be sent to the server
     public let needRating: Bool
 
     /// The reason, why the call has ended

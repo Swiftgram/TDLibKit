@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
 public struct EditMessageCaption: Codable {
 
-    /// New message content caption; 0-GetOption("message_caption_length_max") characters
+    /// New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
     public let caption: FormattedText
 
     /// The chat the message belongs to
@@ -22,7 +22,7 @@ public struct EditMessageCaption: Codable {
     /// Identifier of the message
     public let messageId: Int64
 
-    /// The new message reply markup; for bots only
+    /// The new message reply markup; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup
 
 

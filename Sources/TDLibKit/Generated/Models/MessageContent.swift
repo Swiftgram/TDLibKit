@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -803,7 +803,7 @@ public struct MessageInvoice: Codable {
     /// True, if the invoice is a test invoice
     public let isTest: Bool
 
-    /// True, if the shipping address should be specified
+    /// True, if the shipping address must be specified
     public let needShippingAddress: Bool
 
     /// Product photo; may be null
@@ -919,12 +919,12 @@ public struct MessageInviteVoiceChatParticipants: Codable {
     public let groupCallId: Int
 
     /// Invited user identifiers
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
     public init(
         groupCallId: Int,
-        userIds: [Int]
+        userIds: [Int64]
     ) {
         self.groupCallId = groupCallId
         self.userIds = userIds
@@ -935,14 +935,14 @@ public struct MessageInviteVoiceChatParticipants: Codable {
 public struct MessageBasicGroupChatCreate: Codable {
 
     /// User identifiers of members in the basic group
-    public let memberUserIds: [Int]
+    public let memberUserIds: [Int64]
 
     /// Title of the basic group
     public let title: String
 
 
     public init(
-        memberUserIds: [Int],
+        memberUserIds: [Int64],
         title: String
     ) {
         self.memberUserIds = memberUserIds
@@ -990,10 +990,10 @@ public struct MessageChatChangePhoto: Codable {
 public struct MessageChatAddMembers: Codable {
 
     /// User identifiers of the new members
-    public let memberUserIds: [Int]
+    public let memberUserIds: [Int64]
 
 
-    public init(memberUserIds: [Int]) {
+    public init(memberUserIds: [Int64]) {
         self.memberUserIds = memberUserIds
     }
 }
@@ -1002,10 +1002,10 @@ public struct MessageChatAddMembers: Codable {
 public struct MessageChatDeleteMember: Codable {
 
     /// User identifier of the deleted chat member
-    public let userId: Int
+    public let userId: Int64
 
 
-    public init(userId: Int) {
+    public init(userId: Int64) {
         self.userId = userId
     }
 }
@@ -1014,10 +1014,10 @@ public struct MessageChatDeleteMember: Codable {
 public struct MessageChatUpgradeTo: Codable {
 
     /// Identifier of the supergroup to which the basic group was upgraded
-    public let supergroupId: Int
+    public let supergroupId: Int64
 
 
-    public init(supergroupId: Int) {
+    public init(supergroupId: Int64) {
         self.supergroupId = supergroupId
     }
 }
@@ -1026,14 +1026,14 @@ public struct MessageChatUpgradeTo: Codable {
 public struct MessageChatUpgradeFrom: Codable {
 
     /// The identifier of the original basic group
-    public let basicGroupId: Int
+    public let basicGroupId: Int64
 
     /// Title of the newly created supergroup
     public let title: String
 
 
     public init(
-        basicGroupId: Int,
+        basicGroupId: Int64,
         title: String
     ) {
         self.basicGroupId = basicGroupId
@@ -1056,7 +1056,7 @@ public struct MessagePinMessage: Codable {
 /// A theme in the chat has been changed
 public struct MessageChatSetTheme: Codable {
 
-    /// If non-empty, name of the new theme set for the chat. Otherwise theme was deleted in the chat
+    /// If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
     public let themeName: String
 
 

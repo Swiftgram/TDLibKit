@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Position on a photo where a mask should be placed
+/// Position on a photo where a mask is placed
 public struct MaskPosition: Codable {
 
-    /// Part of the face, relative to which the mask should be placed
+    /// Part of the face, relative to which the mask is placed
     public let point: MaskPoint
 
     /// Mask scaling coefficient. (For example, 2.0 means a doubled size)

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct ChatMember: Codable {
 
     /// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
-    public let inviterUserId: Int
+    public let inviterUserId: Int64
 
     /// Point in time (Unix timestamp) when the user joined the chat
     public let joinedChatDate: Int
@@ -27,7 +27,7 @@ public struct ChatMember: Codable {
 
 
     public init(
-        inviterUserId: Int,
+        inviterUserId: Int64,
         joinedChatDate: Int,
         memberId: MessageSender,
         status: ChatMemberStatus

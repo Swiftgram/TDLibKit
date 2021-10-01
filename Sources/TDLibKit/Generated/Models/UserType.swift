@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -80,7 +80,7 @@ public struct UserTypeBot: Codable {
     /// True, if the bot supports inline queries
     public let isInline: Bool
 
-    /// True, if the location of the user should be sent with every inline query to this bot
+    /// True, if the location of the user is expected to be sent with every inline query to this bot
     public let needLocation: Bool
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct BasicGroupFullInfo: Codable {
     public let botCommands: [BotCommands]
 
     /// User identifier of the creator of the group; 0 if unknown
-    public let creatorUserId: Int
+    public let creatorUserId: Int64
 
     public let description: String
 
@@ -33,7 +33,7 @@ public struct BasicGroupFullInfo: Codable {
 
     public init(
         botCommands: [BotCommands],
-        creatorUserId: Int,
+        creatorUserId: Int64,
         description: String,
         inviteLink: ChatInviteLink?,
         members: [ChatMember],

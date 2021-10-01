@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages mmust be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 public struct SearchChatMessages: Codable {
 
     /// Identifier of the chat in which to search messages
     public let chatId: Int64
 
-    /// Filter for message content in the search results
+    /// Additional filter for messages to search; pass null to search for all messages
     public let filter: SearchMessagesFilter
 
     /// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
@@ -34,7 +34,7 @@ public struct SearchChatMessages: Codable {
     /// Query to search for
     public let query: String
 
-    /// If not null, only messages sent by the specified sender will be returned. Not supported in secret chats
+    /// Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     public let sender: MessageSender
 
 

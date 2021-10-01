@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SearchMessages: Codable {
     /// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     public let chatList: ChatList
 
-    /// Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    /// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
     public let filter: SearchMessagesFilter
 
     /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -31,7 +31,7 @@ public struct SearchMessages: Codable {
     /// The chat identifier of the last found message, or 0 for the first request
     public let offsetChatId: Int64
 
-    /// The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
+    /// The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
     public let offsetDate: Int
 
     /// The message identifier of the last found message, or 0 for the first request

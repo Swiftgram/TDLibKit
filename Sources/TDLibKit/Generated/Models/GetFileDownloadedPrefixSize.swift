@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Returns file downloaded prefix size from a given offset
+/// Returns file downloaded prefix size from a given offset, in bytes
 public struct GetFileDownloadedPrefixSize: Codable {
 
     /// Identifier of the file
     public let fileId: Int
 
-    /// Offset from which downloaded prefix size should be calculated
+    /// Offset from which downloaded prefix size needs to be calculated
     public let offset: Int
 
 

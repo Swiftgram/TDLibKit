@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -57,8 +57,8 @@ public struct InputStickerStatic: Codable {
     /// Emojis corresponding to the sticker
     public let emojis: String
 
-    /// For masks, position where the mask should be placed; may be null
-    public let maskPosition: MaskPosition?
+    /// For masks, position where the mask is placed; pass null if unspecified
+    public let maskPosition: MaskPosition
 
     /// PNG image with the sticker; must be up to 512 KB in size and fit in a 512x512 square
     public let sticker: InputFile
@@ -66,7 +66,7 @@ public struct InputStickerStatic: Codable {
 
     public init(
         emojis: String,
-        maskPosition: MaskPosition?,
+        maskPosition: MaskPosition,
         sticker: InputFile
     ) {
         self.emojis = emojis

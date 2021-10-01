@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order
+/// Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
 public struct Session: Codable {
 
     /// Telegram API identifier, as provided by the application

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Returns all active live locations that should be updated by the application. The list is persistent across application restarts only if the message database is used
+/// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
 public struct GetActiveLiveLocationMessages: Codable {
 
 

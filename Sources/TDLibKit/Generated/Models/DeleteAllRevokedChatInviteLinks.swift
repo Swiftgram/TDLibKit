@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,12 +17,12 @@ public struct DeleteAllRevokedChatInviteLinks: Codable {
     public let chatId: Int64
 
     /// User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
-    public let creatorUserId: Int
+    public let creatorUserId: Int64
 
 
     public init(
         chatId: Int64,
-        creatorUserId: Int
+        creatorUserId: Int64
     ) {
         self.chatId = chatId
         self.creatorUserId = creatorUserId

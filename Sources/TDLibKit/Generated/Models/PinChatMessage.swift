@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct PinChatMessage: Codable {
     /// Identifier of the chat
     public let chatId: Int64
 
-    /// True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
+    /// True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
     public let disableNotification: Bool
 
     /// Identifier of the new pinned message

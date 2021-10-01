@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -21,7 +21,7 @@ public struct CreateNewSupergroupChat: Codable {
     /// True, if a channel chat needs to be created
     public let isChannel: Bool
 
-    /// Chat location if a location-based supergroup is being created
+    /// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     public let location: ChatLocation
 
     /// Title of the new chat; 1-128 characters

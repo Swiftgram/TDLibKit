@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,17 +16,17 @@ public struct AddChatMember: Codable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+    /// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     public let forwardLimit: Int
 
     /// Identifier of the user
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         chatId: Int64,
         forwardLimit: Int,
-        userId: Int
+        userId: Int64
     ) {
         self.chatId = chatId
         self.forwardLimit = forwardLimit

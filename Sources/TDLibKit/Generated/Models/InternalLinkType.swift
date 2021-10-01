@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public enum InternalLinkType: Codable {
     /// The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
     case internalLinkTypeMessage(InternalLinkTypeMessage)
 
-    /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat should be open and the text should be added to the input field
+    /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
     case internalLinkTypeMessageDraft(InternalLinkTypeMessageDraft)
 
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
@@ -366,10 +366,10 @@ public struct InternalLinkTypeMessage: Codable {
     }
 }
 
-/// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat should be open and the text should be added to the input field
+/// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
 public struct InternalLinkTypeMessageDraft: Codable {
 
-    /// True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link should be selected
+    /// True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
     public let containsLink: Bool
 
     /// Message draft text
@@ -389,7 +389,7 @@ public struct InternalLinkTypeMessageDraft: Codable {
 public struct InternalLinkTypePassportDataRequest: Codable {
 
     /// User identifier of the service's bot
-    public let botUserId: Int
+    public let botUserId: Int64
 
     /// An HTTP URL to open once the request is finished or canceled with the parameter tg_passport=success or tg_passport=cancel respectively. If empty, then the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel needs to be opened instead
     public let callbackUrl: String
@@ -405,7 +405,7 @@ public struct InternalLinkTypePassportDataRequest: Codable {
 
 
     public init(
-        botUserId: Int,
+        botUserId: Int64,
         callbackUrl: String,
         nonce: String,
         publicKey: String,
@@ -519,13 +519,18 @@ public struct InternalLinkTypeVoiceChat: Codable {
     /// If non-empty, invite hash to be used to join the voice chat without being muted by administrators
     public let inviteHash: String
 
+    /// True, if the voice chat is expected to be a live stream in a channel or a broadcast group
+    public let isLiveStream: Bool
+
 
     public init(
         chatUsername: String,
-        inviteHash: String
+        inviteHash: String,
+        isLiveStream: Bool
     ) {
         self.chatUsername = chatUsername
         self.inviteHash = inviteHash
+        self.isLiveStream = isLiveStream
     }
 }
 

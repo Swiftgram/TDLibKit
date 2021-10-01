@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -86,8 +86,11 @@ public struct BackgroundTypePattern: Codable {
     /// Description of the background fill
     public let fill: BackgroundFill
 
-    /// Intensity of the pattern when it is shown above the filled background; -100-100. If negative, the pattern color and the filled background colors needs to be inverted
+    /// Intensity of the pattern when it is shown above the filled background; 0-100.
     public let intensity: Int
+
+    /// True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
+    public let isInverted: Bool
 
     /// True, if the background needs to be slightly moved when device is tilted
     public let isMoving: Bool
@@ -96,10 +99,12 @@ public struct BackgroundTypePattern: Codable {
     public init(
         fill: BackgroundFill,
         intensity: Int,
+        isInverted: Bool,
         isMoving: Bool
     ) {
         self.fill = fill
         self.intensity = intensity
+        self.isInverted = isInverted
         self.isMoving = isMoving
     }
 }

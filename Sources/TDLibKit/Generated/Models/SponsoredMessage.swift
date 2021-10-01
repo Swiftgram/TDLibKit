@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct SponsoredMessage: Codable {
     public let content: MessageContent
 
     /// Unique sponsored message identifier
-    public let id: Data
+    public let id: Int
 
     /// Chat identifier
     public let sponsorChatId: Int64
@@ -28,7 +28,7 @@ public struct SponsoredMessage: Codable {
 
     public init(
         content: MessageContent,
-        id: Data,
+        id: Int,
         sponsorChatId: Int64,
         startParameter: String
     ) {

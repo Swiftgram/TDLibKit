@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,12 +17,12 @@ public struct Users: Codable {
     public let totalCount: Int
 
     /// A list of user identifiers
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
     public init(
         totalCount: Int,
-        userIds: [Int]
+        userIds: [Int64]
     ) {
         self.totalCount = totalCount
         self.userIds = userIds

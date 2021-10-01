@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct DraftMessage: Codable {
     /// Point in time (Unix timestamp) when the draft was created
     public let date: Int
 
-    /// Content of the message draft; this should always be of type inputMessageText
+    /// Content of the message draft; must be of the type inputMessageText
     public let inputMessageText: InputMessageContent
 
     /// Identifier of the message to reply to; 0 if none

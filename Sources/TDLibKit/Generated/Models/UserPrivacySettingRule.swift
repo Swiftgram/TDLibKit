@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -107,10 +107,10 @@ public enum UserPrivacySettingRule: Codable {
 public struct UserPrivacySettingRuleAllowUsers: Codable {
 
     /// The user identifiers, total number of users in all rules must not exceed 1000
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
-    public init(userIds: [Int]) {
+    public init(userIds: [Int64]) {
         self.userIds = userIds
     }
 }
@@ -131,10 +131,10 @@ public struct UserPrivacySettingRuleAllowChatMembers: Codable {
 public struct UserPrivacySettingRuleRestrictUsers: Codable {
 
     /// The user identifiers, total number of users in all rules must not exceed 1000
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
-    public init(userIds: [Int]) {
+    public init(userIds: [Int64]) {
         self.userIds = userIds
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -144,7 +144,7 @@ public enum DeviceToken: Codable {
 /// A token for Firebase Cloud Messaging
 public struct DeviceTokenFirebaseCloudMessaging: Codable {
 
-    /// True, if push notifications should be additionally encrypted
+    /// True, if push notifications must be additionally encrypted
     public let encrypt: Bool
 
     /// Device registration token; may be empty to de-register a device
@@ -185,7 +185,7 @@ public struct DeviceTokenApplePushVoIP: Codable {
     /// Device token; may be empty to de-register a device
     public let deviceToken: String
 
-    /// True, if push notifications should be additionally encrypted
+    /// True, if push notifications must be additionally encrypted
     public let encrypt: Bool
 
     /// True, if App Sandbox is enabled

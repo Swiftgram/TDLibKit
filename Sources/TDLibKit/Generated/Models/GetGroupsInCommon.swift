@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -20,13 +20,13 @@ public struct GetGroupsInCommon: Codable {
     public let offsetChatId: Int64
 
     /// User identifier
-    public let userId: Int
+    public let userId: Int64
 
 
     public init(
         limit: Int,
         offsetChatId: Int64,
-        userId: Int
+        userId: Int64
     ) {
         self.limit = limit
         self.offsetChatId = offsetChatId

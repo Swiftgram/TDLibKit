@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,12 +17,12 @@ public struct ImportedContacts: Codable {
     public let importerCount: [Int]
 
     /// User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
     public init(
         importerCount: [Int],
-        userIds: [Int]
+        userIds: [Int64]
     ) {
         self.importerCount = importerCount
         self.userIds = userIds

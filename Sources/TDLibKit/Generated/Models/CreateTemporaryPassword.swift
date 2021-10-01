@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct CreateTemporaryPassword: Codable {
     /// Persistent user password
     public let password: String
 
-    /// Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
+    /// Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
     public let validFor: Int
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SetCommands: Codable {
     /// A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
     public let languageCode: String
 
-    /// The scope to which the commands are relevant
+    /// The scope to which the commands are relevant; pass null to change commands in the default bot command scope
     public let scope: BotCommandScope
 
 

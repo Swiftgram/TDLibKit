@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct GetLoginUrl: Codable {
     public let allowWriteAccess: Bool
 
     /// Button identifier
-    public let buttonId: Int
+    public let buttonId: Int64
 
     /// Chat identifier of the message with the button
     public let chatId: Int64
@@ -28,7 +28,7 @@ public struct GetLoginUrl: Codable {
 
     public init(
         allowWriteAccess: Bool,
-        buttonId: Int,
+        buttonId: Int64,
         chatId: Int64,
         messageId: Int64
     ) {

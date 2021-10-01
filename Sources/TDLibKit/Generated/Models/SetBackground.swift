@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Changes the background selected by the user; adds background to the list of installed backgrounds
 public struct SetBackground: Codable {
 
-    /// The input background to use. Pass null to create a new filled backgrounds. Pass null to remove the current background
+    /// The input background to use; pass null to create a new filled backgrounds or to remove the current background
     public let background: InputBackground
 
     /// True, if the background is chosen for dark theme
     public let forDarkTheme: Bool
 
-    /// Background type. Pass null to use default type of the remote background. Pass null to remove the current background
+    /// Background type; pass null to use the default type of the remote background or to remove the current background
     public let type: BackgroundType
 
 

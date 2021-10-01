@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -17,12 +17,12 @@ public struct AddChatMembers: Codable {
     public let chatId: Int64
 
     /// Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
-    public let userIds: [Int]
+    public let userIds: [Int64]
 
 
     public init(
         chatId: Int64,
-        userIds: [Int]
+        userIds: [Int64]
     ) {
         self.chatId = chatId
         self.userIds = userIds

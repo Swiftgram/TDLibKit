@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -204,10 +204,10 @@ public enum InputMessageContent: Codable {
 /// A text message
 public struct InputMessageText: Codable {
 
-    /// True, if a chat message draft should be deleted
+    /// True, if a chat message draft must be deleted
     public let clearDraft: Bool
 
-    /// True, if rich web page previews for URLs in the message text should be disabled
+    /// True, if rich web page previews for URLs in the message text must be disabled
     public let disableWebPagePreview: Bool
 
     /// Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
@@ -234,7 +234,7 @@ public struct InputMessageAnimation: Codable {
     /// Animation file to be sent
     public let animation: InputFile
 
-    /// Animation caption; 0-GetOption("message_caption_length_max") characters
+    /// Animation caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the animation, in seconds
@@ -243,7 +243,7 @@ public struct InputMessageAnimation: Codable {
     /// Height of the animation; may be replaced by the server
     public let height: Int
 
-    /// Animation thumbnail, if available
+    /// Animation thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail
 
     /// Width of the animation; may be replaced by the server
@@ -272,13 +272,13 @@ public struct InputMessageAnimation: Codable {
 /// An audio message
 public struct InputMessageAudio: Codable {
 
-    /// Thumbnail of the cover for the album, if available
+    /// Thumbnail of the cover for the album; pass null to skip thumbnail uploading
     public let albumCoverThumbnail: InputThumbnail
 
     /// Audio file to be sent
     public let audio: InputFile
 
-    /// Audio caption; 0-GetOption("message_caption_length_max") characters
+    /// Audio caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the audio, in seconds; may be replaced by the server
@@ -311,7 +311,7 @@ public struct InputMessageAudio: Codable {
 /// A document message (general file)
 public struct InputMessageDocument: Codable {
 
-    /// Document caption; 0-GetOption("message_caption_length_max") characters
+    /// Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats
@@ -320,7 +320,7 @@ public struct InputMessageDocument: Codable {
     /// Document to be sent
     public let document: InputFile
 
-    /// Document thumbnail, if available
+    /// Document thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail
 
 
@@ -343,7 +343,7 @@ public struct InputMessagePhoto: Codable {
     /// File identifiers of the stickers added to the photo, if applicable
     public let addedStickerFileIds: [Int]
 
-    /// Photo caption; 0-GetOption("message_caption_length_max") characters
+    /// Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Photo height
@@ -352,7 +352,7 @@ public struct InputMessagePhoto: Codable {
     /// Photo to send
     public let photo: InputFile
 
-    /// Photo thumbnail to be sent, this is sent to the other party in secret chats only
+    /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
     public let thumbnail: InputThumbnail
 
     /// Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
@@ -393,7 +393,7 @@ public struct InputMessageSticker: Codable {
     /// Sticker to be sent
     public let sticker: InputFile
 
-    /// Sticker thumbnail, if available
+    /// Sticker thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail
 
     /// Sticker width
@@ -421,7 +421,7 @@ public struct InputMessageVideo: Codable {
     /// File identifiers of the stickers added to the video, if applicable
     public let addedStickerFileIds: [Int]
 
-    /// Video caption; 0-GetOption("message_caption_length_max") characters
+    /// Video caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the video, in seconds
@@ -430,10 +430,10 @@ public struct InputMessageVideo: Codable {
     /// Video height
     public let height: Int
 
-    /// True, if the video should be tried to be streamed
+    /// True, if the video is supposed to be streamed
     public let supportsStreaming: Bool
 
-    /// Video thumbnail, if available
+    /// Video thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail
 
     /// Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
@@ -478,7 +478,7 @@ public struct InputMessageVideoNote: Codable {
     /// Video width and height; must be positive and not greater than 640
     public let length: Int
 
-    /// Video thumbnail, if available
+    /// Video thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail
 
     /// Video note to be sent
@@ -501,7 +501,7 @@ public struct InputMessageVideoNote: Codable {
 /// A voice note message
 public struct InputMessageVoiceNote: Codable {
 
-    /// Voice note caption; 0-GetOption("message_caption_length_max") characters
+    /// Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the voice note, in seconds
@@ -533,7 +533,7 @@ public struct InputMessageLocation: Codable {
     /// For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int
 
-    /// Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise
+    /// Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
     public let livePeriod: Int
 
     /// Location to be sent
@@ -583,7 +583,7 @@ public struct InputMessageContact: Codable {
 /// A dice message
 public struct InputMessageDice: Codable {
 
-    /// True, if a chat message draft should be deleted
+    /// True, if the chat message draft must be deleted
     public let clearDraft: Bool
 
     /// Emoji on which the dice throw animation is based
@@ -603,14 +603,14 @@ public struct InputMessageDice: Codable {
 public struct InputMessageGame: Codable {
 
     /// User identifier of the bot that owns the game
-    public let botUserId: Int
+    public let botUserId: Int64
 
     /// Short name of the game
     public let gameShortName: String
 
 
     public init(
-        botUserId: Int,
+        botUserId: Int64,
         gameShortName: String
     ) {
         self.botUserId = botUserId
@@ -728,13 +728,13 @@ public struct InputMessagePoll: Codable {
 /// A forwarded message
 public struct InputMessageForwarded: Codable {
 
-    /// Options to be used to copy content of the message without a link to the original message
+    /// Options to be used to copy content of the message without reference to the original sender; pass null to try to forward the message as usual
     public let copyOptions: MessageCopyOptions
 
     /// Identifier for the chat this forwarded message came from
     public let fromChatId: Int64
 
-    /// True, if a game message should be shared within a launched game; applies only to game messages
+    /// True, if a game message is being shared from a launched game; applies only to game messages
     public let inGameShare: Bool
 
     /// Identifier of the message to forward

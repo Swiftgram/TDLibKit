@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public enum NetworkStatisticsEntry: Codable {
 /// Contains information about the total amount of data that was used to send and receive files
 public struct NetworkStatisticsEntryFile: Codable {
 
-    /// Type of the file the data is part of
+    /// Type of the file the data is part of; pass null if the data isn't related to files
     public let fileType: FileType
 
     /// Type of the network the data was sent through. Call setNetworkType to maintain the actual network type

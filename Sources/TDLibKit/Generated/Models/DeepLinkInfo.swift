@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information about a tg: deep link
 public struct DeepLinkInfo: Codable {
 
-    /// True, if user should be asked to update the application
+    /// True, if the user must be asked to update the application
     public let needUpdateApplication: Bool
 
     /// Text to be shown to the user

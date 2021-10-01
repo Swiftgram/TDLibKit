@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -13,19 +13,19 @@ import Foundation
 /// Informs TDLib that a sponsored message was viewed by the user
 public struct ViewSponsoredMessage: Codable {
 
-    /// Chat identifier
+    /// Identifier of the chat with the sponsored message
     public let chatId: Int64
 
     /// The identifier of the sponsored message being viewed
-    public let messageId: Data
+    public let sponsoredMessageId: Int
 
 
     public init(
         chatId: Int64,
-        messageId: Data
+        sponsoredMessageId: Int
     ) {
         self.chatId = chatId
-        self.messageId = messageId
+        self.sponsoredMessageId = sponsoredMessageId
     }
 }
 

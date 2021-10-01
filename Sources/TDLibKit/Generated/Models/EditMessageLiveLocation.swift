@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -19,8 +19,8 @@ public struct EditMessageLiveLocation: Codable {
     /// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int
 
-    /// New location content of the message; may be null. Pass null to stop sharing the live location
-    public let location: Location?
+    /// New location content of the message; pass null to stop sharing the live location
+    public let location: Location
 
     /// Identifier of the message
     public let messageId: Int64
@@ -28,14 +28,14 @@ public struct EditMessageLiveLocation: Codable {
     /// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     public let proximityAlertRadius: Int
 
-    /// The new message reply markup; for bots only
+    /// The new message reply markup; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup
 
 
     public init(
         chatId: Int64,
         heading: Int,
-        location: Location?,
+        location: Location,
         messageId: Int64,
         proximityAlertRadius: Int,
         replyMarkup: ReplyMarkup

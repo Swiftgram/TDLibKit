@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public struct AutoDownloadSettings: Codable {
     /// True, if the auto-download is enabled
     public let isAutoDownloadEnabled: Bool
 
-    /// The maximum size of other file types to be auto-downloaded
+    /// The maximum size of other file types to be auto-downloaded, in bytes
     public let maxOtherFileSize: Int
 
-    /// The maximum size of a photo file to be auto-downloaded
+    /// The maximum size of a photo file to be auto-downloaded, in bytes
     public let maxPhotoFileSize: Int
 
-    /// The maximum size of a video file to be auto-downloaded
+    /// The maximum size of a video file to be auto-downloaded, in bytes
     public let maxVideoFileSize: Int
 
     /// True, if the beginning of video files needs to be preloaded for instant playback

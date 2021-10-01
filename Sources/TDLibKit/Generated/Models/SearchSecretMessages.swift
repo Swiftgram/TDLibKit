@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SearchSecretMessages: Codable {
     /// Identifier of the chat in which to search. Specify 0 to search in all secret chats
     public let chatId: Int64
 
-    /// A filter for message content in the search results
+    /// Additional filter for messages to search; pass null to search for all messages
     public let filter: SearchMessagesFilter
 
     /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -25,7 +25,7 @@ public struct SearchSecretMessages: Codable {
     /// Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
     public let offset: String
 
-    /// Query to search for. If empty, searchChatMessages should be used instead
+    /// Query to search for. If empty, searchChatMessages must be used instead
     public let query: String
 
 

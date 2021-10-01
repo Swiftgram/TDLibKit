@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
 
 
-/// Changes the chat theme. Requires can_change_info administrator right in groups, supergroups and channels
+/// Changes the chat theme. Supported only in private and secret chats
 public struct SetChatTheme: Codable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// Name of the new chat theme; may be empty to return the default theme
+    /// Name of the new chat theme; pass an empty string to return the default theme
     public let themeName: String
 
 

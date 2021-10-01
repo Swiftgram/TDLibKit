@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.7-b713d945
-//  https://github.com/tdlib/td/tree/b713d945
+//  Based on TDLib 1.7.8-5f19e026
+//  https://github.com/tdlib/td/tree/5f19e026
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct GetPassportAuthorizationForm: Codable {
 
     /// User identifier of the service's bot
-    public let botUserId: Int
+    public let botUserId: Int64
 
     /// Unique request identifier provided by the service
     public let nonce: String
@@ -27,7 +27,7 @@ public struct GetPassportAuthorizationForm: Codable {
 
 
     public init(
-        botUserId: Int,
+        botUserId: Int64,
         nonce: String,
         publicKey: String,
         scope: String
