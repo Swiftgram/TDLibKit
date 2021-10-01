@@ -14,10 +14,10 @@ import Foundation
 public struct GetInternalLinkType: Codable {
 
     /// The link
-    public let link: String
+    public let link: String?
 
 
-    public init(link: String) {
+    public init(link: String?) {
         self.link = link
     }
 }

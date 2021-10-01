@@ -14,10 +14,10 @@ import Foundation
 public struct ChangeImportedContacts: Codable {
 
     /// The new list of contacts, contact's vCard are ignored and are not imported
-    public let contacts: [Contact]
+    public let contacts: [Contact]?
 
 
-    public init(contacts: [Contact]) {
+    public init(contacts: [Contact]?) {
         self.contacts = contacts
     }
 }

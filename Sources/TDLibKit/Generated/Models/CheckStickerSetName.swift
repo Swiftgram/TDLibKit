@@ -14,10 +14,10 @@ import Foundation
 public struct CheckStickerSetName: Codable {
 
     /// Name to be checked
-    public let name: String
+    public let name: String?
 
 
-    public init(name: String) {
+    public init(name: String?) {
         self.name = name
     }
 }

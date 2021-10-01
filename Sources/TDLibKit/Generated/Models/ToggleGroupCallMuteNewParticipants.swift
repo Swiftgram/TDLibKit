@@ -14,15 +14,15 @@ import Foundation
 public struct ToggleGroupCallMuteNewParticipants: Codable {
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// New value of the mute_new_participants setting
-    public let muteNewParticipants: Bool
+    public let muteNewParticipants: Bool?
 
 
     public init(
-        groupCallId: Int,
-        muteNewParticipants: Bool
+        groupCallId: Int?,
+        muteNewParticipants: Bool?
     ) {
         self.groupCallId = groupCallId
         self.muteNewParticipants = muteNewParticipants

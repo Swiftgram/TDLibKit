@@ -14,10 +14,10 @@ import Foundation
 public struct CheckAuthenticationPasswordRecoveryCode: Codable {
 
     /// Recovery code to check
-    public let recoveryCode: String
+    public let recoveryCode: String?
 
 
-    public init(recoveryCode: String) {
+    public init(recoveryCode: String?) {
         self.recoveryCode = recoveryCode
     }
 }

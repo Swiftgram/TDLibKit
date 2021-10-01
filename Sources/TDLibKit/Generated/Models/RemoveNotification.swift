@@ -14,15 +14,15 @@ import Foundation
 public struct RemoveNotification: Codable {
 
     /// Identifier of notification group to which the notification belongs
-    public let notificationGroupId: Int
+    public let notificationGroupId: Int?
 
     /// Identifier of removed notification
-    public let notificationId: Int
+    public let notificationId: Int?
 
 
     public init(
-        notificationGroupId: Int,
-        notificationId: Int
+        notificationGroupId: Int?,
+        notificationId: Int?
     ) {
         self.notificationGroupId = notificationGroupId
         self.notificationId = notificationId

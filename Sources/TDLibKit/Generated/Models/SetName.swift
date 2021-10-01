@@ -14,15 +14,15 @@ import Foundation
 public struct SetName: Codable {
 
     /// The new value of the first name for the current user; 1-64 characters
-    public let firstName: String
+    public let firstName: String?
 
     /// The new value of the optional last name for the current user; 0-64 characters
-    public let lastName: String
+    public let lastName: String?
 
 
     public init(
-        firstName: String,
-        lastName: String
+        firstName: String?,
+        lastName: String?
     ) {
         self.firstName = firstName
         self.lastName = lastName

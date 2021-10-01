@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatPhoto: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// New chat photo; pass null to delete the chat photo
-    public let photo: InputChatPhoto
+    public let photo: InputChatPhoto?
 
 
     public init(
-        chatId: Int64,
-        photo: InputChatPhoto
+        chatId: Int64?,
+        photo: InputChatPhoto?
     ) {
         self.chatId = chatId
         self.photo = photo

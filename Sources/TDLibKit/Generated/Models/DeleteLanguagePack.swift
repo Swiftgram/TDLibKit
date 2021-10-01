@@ -14,10 +14,10 @@ import Foundation
 public struct DeleteLanguagePack: Codable {
 
     /// Identifier of the language pack to delete
-    public let languagePackId: String
+    public let languagePackId: String?
 
 
-    public init(languagePackId: String) {
+    public init(languagePackId: String?) {
         self.languagePackId = languagePackId
     }
 }

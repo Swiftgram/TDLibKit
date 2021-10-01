@@ -14,15 +14,15 @@ import Foundation
 public struct SetStickerPositionInSet: Codable {
 
     /// New position of the sticker in the set, zero-based
-    public let position: Int
+    public let position: Int?
 
     /// Sticker
-    public let sticker: InputFile
+    public let sticker: InputFile?
 
 
     public init(
-        position: Int,
-        sticker: InputFile
+        position: Int?,
+        sticker: InputFile?
     ) {
         self.position = position
         self.sticker = sticker

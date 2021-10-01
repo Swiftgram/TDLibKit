@@ -14,19 +14,19 @@ import Foundation
 public struct SetFileGenerationProgress: Codable {
 
     /// Expected size of the generated file, in bytes; 0 if unknown
-    public let expectedSize: Int
+    public let expectedSize: Int?
 
     /// The identifier of the generation process
-    public let generationId: TdInt64
+    public let generationId: TdInt64?
 
     /// The number of bytes already generated
-    public let localPrefixSize: Int
+    public let localPrefixSize: Int?
 
 
     public init(
-        expectedSize: Int,
-        generationId: TdInt64,
-        localPrefixSize: Int
+        expectedSize: Int?,
+        generationId: TdInt64?,
+        localPrefixSize: Int?
     ) {
         self.expectedSize = expectedSize
         self.generationId = generationId

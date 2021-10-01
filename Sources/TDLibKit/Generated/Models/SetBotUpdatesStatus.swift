@@ -14,15 +14,15 @@ import Foundation
 public struct SetBotUpdatesStatus: Codable {
 
     /// The last error message
-    public let errorMessage: String
+    public let errorMessage: String?
 
     /// The number of pending updates
-    public let pendingUpdateCount: Int
+    public let pendingUpdateCount: Int?
 
 
     public init(
-        errorMessage: String,
-        pendingUpdateCount: Int
+        errorMessage: String?,
+        pendingUpdateCount: Int?
     ) {
         self.errorMessage = errorMessage
         self.pendingUpdateCount = pendingUpdateCount

@@ -14,19 +14,19 @@ import Foundation
 public struct AnswerShippingQuery: Codable {
 
     /// An error message, empty on success
-    public let errorMessage: String
+    public let errorMessage: String?
 
     /// Available shipping options
-    public let shippingOptions: [ShippingOption]
+    public let shippingOptions: [ShippingOption]?
 
     /// Identifier of the shipping query
-    public let shippingQueryId: TdInt64
+    public let shippingQueryId: TdInt64?
 
 
     public init(
-        errorMessage: String,
-        shippingOptions: [ShippingOption],
-        shippingQueryId: TdInt64
+        errorMessage: String?,
+        shippingOptions: [ShippingOption]?,
+        shippingQueryId: TdInt64?
     ) {
         self.errorMessage = errorMessage
         self.shippingOptions = shippingOptions

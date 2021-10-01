@@ -14,19 +14,19 @@ import Foundation
 public struct WriteGeneratedFilePart: Codable {
 
     /// The data to write
-    public let data: Data
+    public let data: Data?
 
     /// The identifier of the generation process
-    public let generationId: TdInt64
+    public let generationId: TdInt64?
 
     /// The offset from which to write the data to the file
-    public let offset: Int
+    public let offset: Int?
 
 
     public init(
-        data: Data,
-        generationId: TdInt64,
-        offset: Int
+        data: Data?,
+        generationId: TdInt64?,
+        offset: Int?
     ) {
         self.data = data
         self.generationId = generationId

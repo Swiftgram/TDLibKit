@@ -14,23 +14,23 @@ import Foundation
 public struct AddProxy: Codable {
 
     /// True, if the proxy needs to be enabled
-    public let enable: Bool
+    public let enable: Bool?
 
     /// Proxy server port
-    public let port: Int
+    public let port: Int?
 
     /// Proxy server IP address
-    public let server: String
+    public let server: String?
 
     /// Proxy type
-    public let type: ProxyType
+    public let type: ProxyType?
 
 
     public init(
-        enable: Bool,
-        port: Int,
-        server: String,
-        type: ProxyType
+        enable: Bool?,
+        port: Int?,
+        server: String?,
+        type: ProxyType?
     ) {
         self.enable = enable
         self.port = port

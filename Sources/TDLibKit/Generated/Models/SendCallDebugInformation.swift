@@ -14,15 +14,15 @@ import Foundation
 public struct SendCallDebugInformation: Codable {
 
     /// Call identifier
-    public let callId: Int
+    public let callId: Int?
 
     /// Debug information in application-specific format
-    public let debugInformation: String
+    public let debugInformation: String?
 
 
     public init(
-        callId: Int,
-        debugInformation: String
+        callId: Int?,
+        debugInformation: String?
     ) {
         self.callId = callId
         self.debugInformation = debugInformation

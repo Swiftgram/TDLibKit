@@ -14,15 +14,15 @@ import Foundation
 public struct ClickAnimatedEmojiMessage: Codable {
 
     /// Chat identifier of the message
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Identifier of the clicked message
-    public let messageId: Int64
+    public let messageId: Int64?
 
 
     public init(
-        chatId: Int64,
-        messageId: Int64
+        chatId: Int64?,
+        messageId: Int64?
     ) {
         self.chatId = chatId
         self.messageId = messageId

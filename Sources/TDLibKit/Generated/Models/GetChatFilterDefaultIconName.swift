@@ -14,10 +14,10 @@ import Foundation
 public struct GetChatFilterDefaultIconName: Codable {
 
     /// Chat filter
-    public let filter: ChatFilter
+    public let filter: ChatFilter?
 
 
-    public init(filter: ChatFilter) {
+    public init(filter: ChatFilter?) {
         self.filter = filter
     }
 }

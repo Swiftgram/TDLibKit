@@ -14,10 +14,10 @@ import Foundation
 public struct DeleteFile: Codable {
 
     /// Identifier of the file to delete
-    public let fileId: Int
+    public let fileId: Int?
 
 
-    public init(fileId: Int) {
+    public init(fileId: Int?) {
         self.fileId = fileId
     }
 }

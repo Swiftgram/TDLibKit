@@ -14,19 +14,19 @@ import Foundation
 public struct DeleteChatHistory: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Pass true if the chat needs to be removed from the chat list
-    public let removeFromChatList: Bool
+    public let removeFromChatList: Bool?
 
     /// Pass true to try to delete chat history for all users
-    public let revoke: Bool
+    public let revoke: Bool?
 
 
     public init(
-        chatId: Int64,
-        removeFromChatList: Bool,
-        revoke: Bool
+        chatId: Int64?,
+        removeFromChatList: Bool?,
+        revoke: Bool?
     ) {
         self.chatId = chatId
         self.removeFromChatList = removeFromChatList

@@ -14,10 +14,10 @@ import Foundation
 public struct SetProfilePhoto: Codable {
 
     /// Profile photo to set
-    public let photo: InputChatPhoto
+    public let photo: InputChatPhoto?
 
 
-    public init(photo: InputChatPhoto) {
+    public init(photo: InputChatPhoto?) {
         self.photo = photo
     }
 }

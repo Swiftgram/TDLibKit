@@ -14,31 +14,31 @@ import Foundation
 public struct GetMapThumbnailFile: Codable {
 
     /// Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Map height in pixels before applying scale; 16-1024
-    public let height: Int
+    public let height: Int?
 
     /// Location of the map center
-    public let location: Location
+    public let location: Location?
 
     /// Map scale; 1-3
-    public let scale: Int
+    public let scale: Int?
 
     /// Map width in pixels before applying scale; 16-1024
-    public let width: Int
+    public let width: Int?
 
     /// Map zoom level; 13-20
-    public let zoom: Int
+    public let zoom: Int?
 
 
     public init(
-        chatId: Int64,
-        height: Int,
-        location: Location,
-        scale: Int,
-        width: Int,
-        zoom: Int
+        chatId: Int64?,
+        height: Int?,
+        location: Location?,
+        scale: Int?,
+        width: Int?,
+        zoom: Int?
     ) {
         self.chatId = chatId
         self.height = height

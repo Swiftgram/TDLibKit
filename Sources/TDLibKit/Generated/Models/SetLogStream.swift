@@ -14,10 +14,10 @@ import Foundation
 public struct SetLogStream: Codable {
 
     /// New log stream
-    public let logStream: LogStream
+    public let logStream: LogStream?
 
 
-    public init(logStream: LogStream) {
+    public init(logStream: LogStream?) {
         self.logStream = logStream
     }
 }

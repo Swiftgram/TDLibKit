@@ -14,27 +14,27 @@ import Foundation
 public struct GetGroupCallStreamSegment: Codable {
 
     /// Identifier of an audio/video channel to get as received from tgcalls
-    public let channelId: Int
+    public let channelId: Int?
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
-    public let scale: Int
+    public let scale: Int?
 
     /// Point in time when the stream segment begins; Unix timestamp in milliseconds
-    public let timeOffset: Int64
+    public let timeOffset: Int64?
 
     /// Video quality as received from tgcalls; pass null to get the worst available quality
-    public let videoQuality: GroupCallVideoQuality
+    public let videoQuality: GroupCallVideoQuality?
 
 
     public init(
-        channelId: Int,
-        groupCallId: Int,
-        scale: Int,
-        timeOffset: Int64,
-        videoQuality: GroupCallVideoQuality
+        channelId: Int?,
+        groupCallId: Int?,
+        scale: Int?,
+        timeOffset: Int64?,
+        videoQuality: GroupCallVideoQuality?
     ) {
         self.channelId = channelId
         self.groupCallId = groupCallId

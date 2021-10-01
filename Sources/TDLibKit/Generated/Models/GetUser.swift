@@ -14,10 +14,10 @@ import Foundation
 public struct GetUser: Codable {
 
     /// User identifier
-    public let userId: Int64
+    public let userId: Int64?
 
 
-    public init(userId: Int64) {
+    public init(userId: Int64?) {
         self.userId = userId
     }
 }

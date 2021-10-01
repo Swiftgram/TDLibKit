@@ -14,15 +14,15 @@ import Foundation
 public struct ResendMessages: Codable {
 
     /// Identifier of the chat to send messages
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
-    public let messageIds: [Int64]
+    public let messageIds: [Int64]?
 
 
     public init(
-        chatId: Int64,
-        messageIds: [Int64]
+        chatId: Int64?,
+        messageIds: [Int64]?
     ) {
         self.chatId = chatId
         self.messageIds = messageIds

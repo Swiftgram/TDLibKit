@@ -14,15 +14,15 @@ import Foundation
 public struct SearchChats: Codable {
 
     /// The maximum number of chats to be returned
-    public let limit: Int
+    public let limit: Int?
 
     /// Query to search for. If the query is empty, returns up to 50 recently found chats
-    public let query: String
+    public let query: String?
 
 
     public init(
-        limit: Int,
-        query: String
+        limit: Int?,
+        query: String?
     ) {
         self.limit = limit
         self.query = query

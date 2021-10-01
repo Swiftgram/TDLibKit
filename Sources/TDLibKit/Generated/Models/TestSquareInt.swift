@@ -14,10 +14,10 @@ import Foundation
 public struct TestSquareInt: Codable {
 
     /// Number to square
-    public let x: Int
+    public let x: Int?
 
 
-    public init(x: Int) {
+    public init(x: Int?) {
         self.x = x
     }
 }

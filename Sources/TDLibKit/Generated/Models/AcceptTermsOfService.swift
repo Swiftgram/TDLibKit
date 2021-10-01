@@ -14,10 +14,10 @@ import Foundation
 public struct AcceptTermsOfService: Codable {
 
     /// Terms of service identifier
-    public let termsOfServiceId: String
+    public let termsOfServiceId: String?
 
 
-    public init(termsOfServiceId: String) {
+    public init(termsOfServiceId: String?) {
         self.termsOfServiceId = termsOfServiceId
     }
 }

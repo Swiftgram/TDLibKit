@@ -14,31 +14,31 @@ import Foundation
 public struct SendMessage: Codable {
 
     /// Target chat
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// The content of the message to be sent
-    public let inputMessageContent: InputMessageContent
+    public let inputMessageContent: InputMessageContent?
 
     /// If not 0, a message thread identifier in which the message will be sent
-    public let messageThreadId: Int64
+    public let messageThreadId: Int64?
 
     /// Options to be used to send the message; pass null to use default options
-    public let options: MessageSendOptions
+    public let options: MessageSendOptions?
 
     /// Markup for replying to the message; pass null if none; for bots only
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Identifier of the message to reply to or 0
-    public let replyToMessageId: Int64
+    public let replyToMessageId: Int64?
 
 
     public init(
-        chatId: Int64,
-        inputMessageContent: InputMessageContent,
-        messageThreadId: Int64,
-        options: MessageSendOptions,
-        replyMarkup: ReplyMarkup,
-        replyToMessageId: Int64
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        messageThreadId: Int64?,
+        options: MessageSendOptions?,
+        replyMarkup: ReplyMarkup?,
+        replyToMessageId: Int64?
     ) {
         self.chatId = chatId
         self.inputMessageContent = inputMessageContent

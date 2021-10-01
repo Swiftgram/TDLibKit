@@ -14,19 +14,19 @@ import Foundation
 public struct SendPhoneNumberConfirmationCode: Codable {
 
     /// Hash value from the link
-    public let hash: String
+    public let hash: String?
 
     /// Phone number value from the link
-    public let phoneNumber: String
+    public let phoneNumber: String?
 
     /// Settings for the authentication of the user's phone number; pass null to use default settings
-    public let settings: PhoneNumberAuthenticationSettings
+    public let settings: PhoneNumberAuthenticationSettings?
 
 
     public init(
-        hash: String,
-        phoneNumber: String,
-        settings: PhoneNumberAuthenticationSettings
+        hash: String?,
+        phoneNumber: String?,
+        settings: PhoneNumberAuthenticationSettings?
     ) {
         self.hash = hash
         self.phoneNumber = phoneNumber

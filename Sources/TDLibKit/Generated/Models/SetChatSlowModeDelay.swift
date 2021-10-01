@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatSlowModeDelay: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
-    public let slowModeDelay: Int
+    public let slowModeDelay: Int?
 
 
     public init(
-        chatId: Int64,
-        slowModeDelay: Int
+        chatId: Int64?,
+        slowModeDelay: Int?
     ) {
         self.chatId = chatId
         self.slowModeDelay = slowModeDelay

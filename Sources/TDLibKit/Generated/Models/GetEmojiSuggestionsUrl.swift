@@ -14,10 +14,10 @@ import Foundation
 public struct GetEmojiSuggestionsUrl: Codable {
 
     /// Language code for which the emoji replacements will be suggested
-    public let languageCode: String
+    public let languageCode: String?
 
 
-    public init(languageCode: String) {
+    public init(languageCode: String?) {
         self.languageCode = languageCode
     }
 }

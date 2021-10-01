@@ -14,23 +14,23 @@ import Foundation
 public struct GetSupergroupMembers: Codable {
 
     /// The type of users to return; pass null to use supergroupMembersFilterRecent
-    public let filter: SupergroupMembersFilter
+    public let filter: SupergroupMembersFilter?
 
     /// The maximum number of users be returned; up to 200
-    public let limit: Int
+    public let limit: Int?
 
     /// Number of users to skip
-    public let offset: Int
+    public let offset: Int?
 
     /// Identifier of the supergroup or channel
-    public let supergroupId: Int64
+    public let supergroupId: Int64?
 
 
     public init(
-        filter: SupergroupMembersFilter,
-        limit: Int,
-        offset: Int,
-        supergroupId: Int64
+        filter: SupergroupMembersFilter?,
+        limit: Int?,
+        offset: Int?,
+        supergroupId: Int64?
     ) {
         self.filter = filter
         self.limit = limit

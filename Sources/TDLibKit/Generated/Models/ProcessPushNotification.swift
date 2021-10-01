@@ -14,10 +14,10 @@ import Foundation
 public struct ProcessPushNotification: Codable {
 
     /// JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
-    public let payload: String
+    public let payload: String?
 
 
-    public init(payload: String) {
+    public init(payload: String?) {
         self.payload = payload
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct GetPushReceiverId: Codable {
 
     /// JSON-encoded push notification payload
-    public let payload: String
+    public let payload: String?
 
 
-    public init(payload: String) {
+    public init(payload: String?) {
         self.payload = payload
     }
 }

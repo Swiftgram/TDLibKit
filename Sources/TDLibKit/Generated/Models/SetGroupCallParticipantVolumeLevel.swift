@@ -14,19 +14,19 @@ import Foundation
 public struct SetGroupCallParticipantVolumeLevel: Codable {
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// Participant identifier
-    public let participantId: MessageSender
+    public let participantId: MessageSender?
 
     /// New participant's volume level; 1-20000 in hundreds of percents
-    public let volumeLevel: Int
+    public let volumeLevel: Int?
 
 
     public init(
-        groupCallId: Int,
-        participantId: MessageSender,
-        volumeLevel: Int
+        groupCallId: Int?,
+        participantId: MessageSender?,
+        volumeLevel: Int?
     ) {
         self.groupCallId = groupCallId
         self.participantId = participantId

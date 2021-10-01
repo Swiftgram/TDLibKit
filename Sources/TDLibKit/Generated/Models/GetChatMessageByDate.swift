@@ -14,15 +14,15 @@ import Foundation
 public struct GetChatMessageByDate: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Point in time (Unix timestamp) relative to which to search for messages
-    public let date: Int
+    public let date: Int?
 
 
     public init(
-        chatId: Int64,
-        date: Int
+        chatId: Int64?,
+        date: Int?
     ) {
         self.chatId = chatId
         self.date = date

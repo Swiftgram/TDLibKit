@@ -14,15 +14,15 @@ import Foundation
 public struct CancelDownloadFile: Codable {
 
     /// Identifier of a file to stop downloading
-    public let fileId: Int
+    public let fileId: Int?
 
     /// Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
-    public let onlyIfPending: Bool
+    public let onlyIfPending: Bool?
 
 
     public init(
-        fileId: Int,
-        onlyIfPending: Bool
+        fileId: Int?,
+        onlyIfPending: Bool?
     ) {
         self.fileId = fileId
         self.onlyIfPending = onlyIfPending

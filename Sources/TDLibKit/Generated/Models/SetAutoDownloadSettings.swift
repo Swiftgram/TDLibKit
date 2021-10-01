@@ -14,15 +14,15 @@ import Foundation
 public struct SetAutoDownloadSettings: Codable {
 
     /// New user auto-download settings
-    public let settings: AutoDownloadSettings
+    public let settings: AutoDownloadSettings?
 
     /// Type of the network for which the new settings are relevant
-    public let type: NetworkType
+    public let type: NetworkType?
 
 
     public init(
-        settings: AutoDownloadSettings,
-        type: NetworkType
+        settings: AutoDownloadSettings?,
+        type: NetworkType?
     ) {
         self.settings = settings
         self.type = type

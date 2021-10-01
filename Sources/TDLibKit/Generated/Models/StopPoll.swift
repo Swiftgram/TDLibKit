@@ -14,19 +14,19 @@ import Foundation
 public struct StopPoll: Codable {
 
     /// Identifier of the chat to which the poll belongs
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Identifier of the message containing the poll
-    public let messageId: Int64
+    public let messageId: Int64?
 
     /// The new message reply markup; pass null if none; for bots only
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
 
     public init(
-        chatId: Int64,
-        messageId: Int64,
-        replyMarkup: ReplyMarkup
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
     ) {
         self.chatId = chatId
         self.messageId = messageId

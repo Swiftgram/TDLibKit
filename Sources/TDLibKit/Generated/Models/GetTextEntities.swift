@@ -14,10 +14,10 @@ import Foundation
 public struct GetTextEntities: Codable {
 
     /// The text in which to look for entites
-    public let text: String
+    public let text: String?
 
 
-    public init(text: String) {
+    public init(text: String?) {
         self.text = text
     }
 }

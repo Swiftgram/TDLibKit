@@ -14,10 +14,10 @@ import Foundation
 public struct GetBackgrounds: Codable {
 
     /// True, if the backgrounds must be ordered for dark theme
-    public let forDarkTheme: Bool
+    public let forDarkTheme: Bool?
 
 
-    public init(forDarkTheme: Bool) {
+    public init(forDarkTheme: Bool?) {
         self.forDarkTheme = forDarkTheme
     }
 }

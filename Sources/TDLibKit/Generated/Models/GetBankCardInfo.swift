@@ -14,10 +14,10 @@ import Foundation
 public struct GetBankCardInfo: Codable {
 
     /// The bank card number
-    public let bankCardNumber: String
+    public let bankCardNumber: String?
 
 
-    public init(bankCardNumber: String) {
+    public init(bankCardNumber: String?) {
         self.bankCardNumber = bankCardNumber
     }
 }

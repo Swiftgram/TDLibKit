@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatPermissions: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// New non-administrator members permissions in the chat
-    public let permissions: ChatPermissions
+    public let permissions: ChatPermissions?
 
 
     public init(
-        chatId: Int64,
-        permissions: ChatPermissions
+        chatId: Int64?,
+        permissions: ChatPermissions?
     ) {
         self.chatId = chatId
         self.permissions = permissions

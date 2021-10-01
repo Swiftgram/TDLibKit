@@ -14,10 +14,10 @@ import Foundation
 public struct GetUserPrivacySettingRules: Codable {
 
     /// The privacy setting
-    public let setting: UserPrivacySetting
+    public let setting: UserPrivacySetting?
 
 
-    public init(setting: UserPrivacySetting) {
+    public init(setting: UserPrivacySetting?) {
         self.setting = setting
     }
 }

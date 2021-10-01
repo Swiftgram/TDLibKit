@@ -14,10 +14,10 @@ import Foundation
 public struct SearchBackground: Codable {
 
     /// The name of the background
-    public let name: String
+    public let name: String?
 
 
-    public init(name: String) {
+    public init(name: String?) {
         self.name = name
     }
 }

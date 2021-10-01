@@ -14,23 +14,23 @@ import Foundation
 public struct GetPassportAuthorizationForm: Codable {
 
     /// User identifier of the service's bot
-    public let botUserId: Int64
+    public let botUserId: Int64?
 
     /// Unique request identifier provided by the service
-    public let nonce: String
+    public let nonce: String?
 
     /// Service's public key
-    public let publicKey: String
+    public let publicKey: String?
 
     /// Telegram Passport element types requested by the service
-    public let scope: String
+    public let scope: String?
 
 
     public init(
-        botUserId: Int64,
-        nonce: String,
-        publicKey: String,
-        scope: String
+        botUserId: Int64?,
+        nonce: String?,
+        publicKey: String?,
+        scope: String?
     ) {
         self.botUserId = botUserId
         self.nonce = nonce

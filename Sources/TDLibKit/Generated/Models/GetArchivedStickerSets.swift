@@ -14,19 +14,19 @@ import Foundation
 public struct GetArchivedStickerSets: Codable {
 
     /// Pass true to return mask stickers sets; pass false to return ordinary sticker sets
-    public let isMasks: Bool
+    public let isMasks: Bool?
 
     /// The maximum number of sticker sets to return
-    public let limit: Int
+    public let limit: Int?
 
     /// Identifier of the sticker set from which to return the result
-    public let offsetStickerSetId: TdInt64
+    public let offsetStickerSetId: TdInt64?
 
 
     public init(
-        isMasks: Bool,
-        limit: Int,
-        offsetStickerSetId: TdInt64
+        isMasks: Bool?,
+        limit: Int?,
+        offsetStickerSetId: TdInt64?
     ) {
         self.isMasks = isMasks
         self.limit = limit

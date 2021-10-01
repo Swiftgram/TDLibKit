@@ -14,15 +14,15 @@ import Foundation
 public struct GetExternalLink: Codable {
 
     /// True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
-    public let allowWriteAccess: Bool
+    public let allowWriteAccess: Bool?
 
     /// The HTTP link
-    public let link: String
+    public let link: String?
 
 
     public init(
-        allowWriteAccess: Bool,
-        link: String
+        allowWriteAccess: Bool?,
+        link: String?
     ) {
         self.allowWriteAccess = allowWriteAccess
         self.link = link

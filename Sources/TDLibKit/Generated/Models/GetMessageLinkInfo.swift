@@ -14,10 +14,10 @@ import Foundation
 public struct GetMessageLinkInfo: Codable {
 
     /// The message link
-    public let url: String
+    public let url: String?
 
 
-    public init(url: String) {
+    public init(url: String?) {
         self.url = url
     }
 }

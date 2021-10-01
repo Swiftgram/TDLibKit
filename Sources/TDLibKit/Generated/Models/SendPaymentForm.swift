@@ -14,35 +14,35 @@ import Foundation
 public struct SendPaymentForm: Codable {
 
     /// Chat identifier of the Invoice message
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// The credentials chosen by user for payment
-    public let credentials: InputCredentials
+    public let credentials: InputCredentials?
 
     /// Message identifier
-    public let messageId: Int64
+    public let messageId: Int64?
 
     /// Identifier returned by validateOrderInfo, or an empty string
-    public let orderInfoId: String
+    public let orderInfoId: String?
 
     /// Payment form identifier returned by getPaymentForm
-    public let paymentFormId: TdInt64
+    public let paymentFormId: TdInt64?
 
     /// Identifier of a chosen shipping option, if applicable
-    public let shippingOptionId: String
+    public let shippingOptionId: String?
 
     /// Chosen by the user amount of tip in the smallest units of the currency
-    public let tipAmount: Int64
+    public let tipAmount: Int64?
 
 
     public init(
-        chatId: Int64,
-        credentials: InputCredentials,
-        messageId: Int64,
-        orderInfoId: String,
-        paymentFormId: TdInt64,
-        shippingOptionId: String,
-        tipAmount: Int64
+        chatId: Int64?,
+        credentials: InputCredentials?,
+        messageId: Int64?,
+        orderInfoId: String?,
+        paymentFormId: TdInt64?,
+        shippingOptionId: String?,
+        tipAmount: Int64?
     ) {
         self.chatId = chatId
         self.credentials = credentials

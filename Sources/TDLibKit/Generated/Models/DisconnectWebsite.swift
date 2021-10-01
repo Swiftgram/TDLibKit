@@ -14,10 +14,10 @@ import Foundation
 public struct DisconnectWebsite: Codable {
 
     /// Website identifier
-    public let websiteId: TdInt64
+    public let websiteId: TdInt64?
 
 
-    public init(websiteId: TdInt64) {
+    public init(websiteId: TdInt64?) {
         self.websiteId = websiteId
     }
 }

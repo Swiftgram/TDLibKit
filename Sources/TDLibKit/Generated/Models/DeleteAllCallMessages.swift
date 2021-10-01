@@ -14,10 +14,10 @@ import Foundation
 public struct DeleteAllCallMessages: Codable {
 
     /// Pass true to delete the messages for all users
-    public let revoke: Bool
+    public let revoke: Bool?
 
 
-    public init(revoke: Bool) {
+    public init(revoke: Bool?) {
         self.revoke = revoke
     }
 }

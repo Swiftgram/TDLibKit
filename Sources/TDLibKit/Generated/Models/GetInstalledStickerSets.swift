@@ -14,10 +14,10 @@ import Foundation
 public struct GetInstalledStickerSets: Codable {
 
     /// Pass true to return mask sticker sets; pass false to return ordinary sticker sets
-    public let isMasks: Bool
+    public let isMasks: Bool?
 
 
-    public init(isMasks: Bool) {
+    public init(isMasks: Bool?) {
         self.isMasks = isMasks
     }
 }

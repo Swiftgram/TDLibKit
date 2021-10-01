@@ -14,10 +14,10 @@ import Foundation
 public struct ReorderChatFilters: Codable {
 
     /// Identifiers of chat filters in the new correct order
-    public let chatFilterIds: [Int]
+    public let chatFilterIds: [Int]?
 
 
-    public init(chatFilterIds: [Int]) {
+    public init(chatFilterIds: [Int]?) {
         self.chatFilterIds = chatFilterIds
     }
 }

@@ -14,15 +14,15 @@ import Foundation
 public struct SetCustomLanguagePack: Codable {
 
     /// Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
-    public let info: LanguagePackInfo
+    public let info: LanguagePackInfo?
 
     /// Strings of the new language pack
-    public let strings: [LanguagePackString]
+    public let strings: [LanguagePackString]?
 
 
     public init(
-        info: LanguagePackInfo,
-        strings: [LanguagePackString]
+        info: LanguagePackInfo?,
+        strings: [LanguagePackString]?
     ) {
         self.info = info
         self.strings = strings

@@ -14,10 +14,10 @@ import Foundation
 public struct CheckAuthenticationCode: Codable {
 
     /// The verification code received via SMS, Telegram message, phone call, or flash call
-    public let code: String
+    public let code: String?
 
 
-    public init(code: String) {
+    public init(code: String?) {
         self.code = code
     }
 }

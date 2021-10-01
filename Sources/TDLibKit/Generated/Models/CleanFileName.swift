@@ -14,10 +14,10 @@ import Foundation
 public struct CleanFileName: Codable {
 
     /// File name or path to the file
-    public let fileName: String
+    public let fileName: String?
 
 
-    public init(fileName: String) {
+    public init(fileName: String?) {
         self.fileName = fileName
     }
 }

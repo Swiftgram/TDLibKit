@@ -14,23 +14,23 @@ import Foundation
 public struct GetLanguagePackString: Codable {
 
     /// Language pack key of the string to be returned
-    public let key: String
+    public let key: String?
 
     /// Path to the language pack database in which strings are stored
-    public let languagePackDatabasePath: String
+    public let languagePackDatabasePath: String?
 
     /// Language pack identifier
-    public let languagePackId: String
+    public let languagePackId: String?
 
     /// Localization target to which the language pack belongs
-    public let localizationTarget: String
+    public let localizationTarget: String?
 
 
     public init(
-        key: String,
-        languagePackDatabasePath: String,
-        languagePackId: String,
-        localizationTarget: String
+        key: String?,
+        languagePackDatabasePath: String?,
+        languagePackId: String?,
+        localizationTarget: String?
     ) {
         self.key = key
         self.languagePackDatabasePath = languagePackDatabasePath

@@ -14,10 +14,10 @@ import Foundation
 public struct CheckPhoneNumberConfirmationCode: Codable {
 
     /// The phone number confirmation code
-    public let code: String
+    public let code: String?
 
 
-    public init(code: String) {
+    public init(code: String?) {
         self.code = code
     }
 }

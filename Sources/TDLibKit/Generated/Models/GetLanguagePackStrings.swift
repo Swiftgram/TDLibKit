@@ -14,15 +14,15 @@ import Foundation
 public struct GetLanguagePackStrings: Codable {
 
     /// Language pack keys of the strings to be returned; leave empty to request all available strings
-    public let keys: [String]
+    public let keys: [String]?
 
     /// Language pack identifier of the strings to be returned
-    public let languagePackId: String
+    public let languagePackId: String?
 
 
     public init(
-        keys: [String],
-        languagePackId: String
+        keys: [String]?,
+        languagePackId: String?
     ) {
         self.keys = keys
         self.languagePackId = languagePackId

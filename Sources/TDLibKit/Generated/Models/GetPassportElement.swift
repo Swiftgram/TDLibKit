@@ -14,15 +14,15 @@ import Foundation
 public struct GetPassportElement: Codable {
 
     /// Password of the current user
-    public let password: String
+    public let password: String?
 
     /// Telegram Passport element type
-    public let type: PassportElementType
+    public let type: PassportElementType?
 
 
     public init(
-        password: String,
-        type: PassportElementType
+        password: String?,
+        type: PassportElementType?
     ) {
         self.password = password
         self.type = type

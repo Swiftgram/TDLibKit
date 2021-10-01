@@ -14,10 +14,10 @@ import Foundation
 public struct AddFavoriteSticker: Codable {
 
     /// Sticker file to add
-    public let sticker: InputFile
+    public let sticker: InputFile?
 
 
-    public init(sticker: InputFile) {
+    public init(sticker: InputFile?) {
         self.sticker = sticker
     }
 }

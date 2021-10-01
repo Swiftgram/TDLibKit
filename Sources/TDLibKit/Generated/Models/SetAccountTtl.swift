@@ -14,10 +14,10 @@ import Foundation
 public struct SetAccountTtl: Codable {
 
     /// New account TTL
-    public let ttl: AccountTtl
+    public let ttl: AccountTtl?
 
 
-    public init(ttl: AccountTtl) {
+    public init(ttl: AccountTtl?) {
         self.ttl = ttl
     }
 }

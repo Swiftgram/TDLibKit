@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatTheme: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Name of the new chat theme; pass an empty string to return the default theme
-    public let themeName: String
+    public let themeName: String?
 
 
     public init(
-        chatId: Int64,
-        themeName: String
+        chatId: Int64?,
+        themeName: String?
     ) {
         self.chatId = chatId
         self.themeName = themeName

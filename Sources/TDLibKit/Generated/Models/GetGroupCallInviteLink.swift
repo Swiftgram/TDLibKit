@@ -14,15 +14,15 @@ import Foundation
 public struct GetGroupCallInviteLink: Codable {
 
     /// Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
-    public let canSelfUnmute: Bool
+    public let canSelfUnmute: Bool?
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
 
     public init(
-        canSelfUnmute: Bool,
-        groupCallId: Int
+        canSelfUnmute: Bool?,
+        groupCallId: Int?
     ) {
         self.canSelfUnmute = canSelfUnmute
         self.groupCallId = groupCallId

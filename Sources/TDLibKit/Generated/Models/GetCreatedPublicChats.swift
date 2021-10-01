@@ -14,10 +14,10 @@ import Foundation
 public struct GetCreatedPublicChats: Codable {
 
     /// Type of the public chats to return
-    public let type: PublicChatType
+    public let type: PublicChatType?
 
 
-    public init(type: PublicChatType) {
+    public init(type: PublicChatType?) {
         self.type = type
     }
 }

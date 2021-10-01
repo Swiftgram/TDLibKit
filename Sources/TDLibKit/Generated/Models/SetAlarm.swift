@@ -14,10 +14,10 @@ import Foundation
 public struct SetAlarm: Codable {
 
     /// Number of seconds before the function returns
-    public let seconds: Double
+    public let seconds: Double?
 
 
-    public init(seconds: Double) {
+    public init(seconds: Double?) {
         self.seconds = seconds
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct GetLocalizationTargetInfo: Codable {
 
     /// If true, returns only locally available information without sending network requests
-    public let onlyLocal: Bool
+    public let onlyLocal: Bool?
 
 
-    public init(onlyLocal: Bool) {
+    public init(onlyLocal: Bool?) {
         self.onlyLocal = onlyLocal
     }
 }

@@ -14,15 +14,15 @@ import Foundation
 public struct SetPassportElement: Codable {
 
     /// Input Telegram Passport element
-    public let element: InputPassportElement
+    public let element: InputPassportElement?
 
     /// Password of the current user
-    public let password: String
+    public let password: String?
 
 
     public init(
-        element: InputPassportElement,
-        password: String
+        element: InputPassportElement?,
+        password: String?
     ) {
         self.element = element
         self.password = password

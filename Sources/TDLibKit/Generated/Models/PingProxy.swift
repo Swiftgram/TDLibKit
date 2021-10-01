@@ -14,10 +14,10 @@ import Foundation
 public struct PingProxy: Codable {
 
     /// Proxy identifier. Use 0 to ping a Telegram server without a proxy
-    public let proxyId: Int
+    public let proxyId: Int?
 
 
-    public init(proxyId: Int) {
+    public init(proxyId: Int?) {
         self.proxyId = proxyId
     }
 }

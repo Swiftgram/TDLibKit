@@ -14,19 +14,19 @@ import Foundation
 public struct EditMessageSchedulingState: Codable {
 
     /// The chat the message belongs to
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Identifier of the message
-    public let messageId: Int64
+    public let messageId: Int64?
 
     /// The new message scheduling state; pass null to send the message immediately
-    public let schedulingState: MessageSchedulingState
+    public let schedulingState: MessageSchedulingState?
 
 
     public init(
-        chatId: Int64,
-        messageId: Int64,
-        schedulingState: MessageSchedulingState
+        chatId: Int64?,
+        messageId: Int64?,
+        schedulingState: MessageSchedulingState?
     ) {
         self.chatId = chatId
         self.messageId = messageId

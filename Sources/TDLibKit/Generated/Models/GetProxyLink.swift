@@ -14,10 +14,10 @@ import Foundation
 public struct GetProxyLink: Codable {
 
     /// Proxy identifier
-    public let proxyId: Int
+    public let proxyId: Int?
 
 
-    public init(proxyId: Int) {
+    public init(proxyId: Int?) {
         self.proxyId = proxyId
     }
 }

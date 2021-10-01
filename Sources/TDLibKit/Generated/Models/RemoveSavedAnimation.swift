@@ -14,10 +14,10 @@ import Foundation
 public struct RemoveSavedAnimation: Codable {
 
     /// Animation file to be removed
-    public let animation: InputFile
+    public let animation: InputFile?
 
 
-    public init(animation: InputFile) {
+    public init(animation: InputFile?) {
         self.animation = animation
     }
 }

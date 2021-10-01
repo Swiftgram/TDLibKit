@@ -14,15 +14,15 @@ import Foundation
 public struct DeleteAllRevokedChatInviteLinks: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
-    public let creatorUserId: Int64
+    public let creatorUserId: Int64?
 
 
     public init(
-        chatId: Int64,
-        creatorUserId: Int64
+        chatId: Int64?,
+        creatorUserId: Int64?
     ) {
         self.chatId = chatId
         self.creatorUserId = creatorUserId

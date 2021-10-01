@@ -14,15 +14,15 @@ import Foundation
 public struct AcceptCall: Codable {
 
     /// Call identifier
-    public let callId: Int
+    public let callId: Int?
 
     /// Description of the call protocols supported by the application
-    public let `protocol`: CallProtocol
+    public let `protocol`: CallProtocol?
 
 
     public init(
-        callId: Int,
-        `protocol`: CallProtocol
+        callId: Int?,
+        `protocol`: CallProtocol?
     ) {
         self.callId = callId
         self.`protocol` = `protocol`

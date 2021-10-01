@@ -14,14 +14,14 @@ import Foundation
 public struct SetChatDescription: Codable {
 
     /// Identifier of the chat
-    public let chatId: Int64
+    public let chatId: Int64?
 
-    public let description: String
+    public let description: String?
 
 
     public init(
-        chatId: Int64,
-        description: String
+        chatId: Int64?,
+        description: String?
     ) {
         self.chatId = chatId
         self.description = description

@@ -14,10 +14,10 @@ import Foundation
 public struct TestCallVectorInt: Codable {
 
     /// Vector of numbers to return
-    public let x: [Int]
+    public let x: [Int]?
 
 
-    public init(x: [Int]) {
+    public init(x: [Int]?) {
         self.x = x
     }
 }

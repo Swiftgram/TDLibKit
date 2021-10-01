@@ -14,19 +14,19 @@ import Foundation
 public struct GetCallbackQueryMessage: Codable {
 
     /// Identifier of the callback query
-    public let callbackQueryId: TdInt64
+    public let callbackQueryId: TdInt64?
 
     /// Identifier of the chat the message belongs to
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Message identifier
-    public let messageId: Int64
+    public let messageId: Int64?
 
 
     public init(
-        callbackQueryId: TdInt64,
-        chatId: Int64,
-        messageId: Int64
+        callbackQueryId: TdInt64?,
+        chatId: Int64?,
+        messageId: Int64?
     ) {
         self.callbackQueryId = callbackQueryId
         self.chatId = chatId

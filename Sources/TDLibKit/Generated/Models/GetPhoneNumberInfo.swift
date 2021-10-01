@@ -14,10 +14,10 @@ import Foundation
 public struct GetPhoneNumberInfo: Codable {
 
     /// The phone number prefix
-    public let phoneNumberPrefix: String
+    public let phoneNumberPrefix: String?
 
 
-    public init(phoneNumberPrefix: String) {
+    public init(phoneNumberPrefix: String?) {
         self.phoneNumberPrefix = phoneNumberPrefix
     }
 }

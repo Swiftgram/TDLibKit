@@ -14,27 +14,27 @@ import Foundation
 public struct SearchSecretMessages: Codable {
 
     /// Identifier of the chat in which to search. Specify 0 to search in all secret chats
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Additional filter for messages to search; pass null to search for all messages
-    public let filter: SearchMessagesFilter
+    public let filter: SearchMessagesFilter?
 
     /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    public let limit: Int
+    public let limit: Int?
 
     /// Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
-    public let offset: String
+    public let offset: String?
 
     /// Query to search for. If empty, searchChatMessages must be used instead
-    public let query: String
+    public let query: String?
 
 
     public init(
-        chatId: Int64,
-        filter: SearchMessagesFilter,
-        limit: Int,
-        offset: String,
-        query: String
+        chatId: Int64?,
+        filter: SearchMessagesFilter?,
+        limit: Int?,
+        offset: String?,
+        query: String?
     ) {
         self.chatId = chatId
         self.filter = filter

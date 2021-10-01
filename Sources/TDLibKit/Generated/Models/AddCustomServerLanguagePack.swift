@@ -14,10 +14,10 @@ import Foundation
 public struct AddCustomServerLanguagePack: Codable {
 
     /// Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
-    public let languagePackId: String
+    public let languagePackId: String?
 
 
-    public init(languagePackId: String) {
+    public init(languagePackId: String?) {
         self.languagePackId = languagePackId
     }
 }

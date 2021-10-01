@@ -14,10 +14,10 @@ import Foundation
 public struct DeleteChatFilter: Codable {
 
     /// Chat filter identifier
-    public let chatFilterId: Int
+    public let chatFilterId: Int?
 
 
-    public init(chatFilterId: Int) {
+    public init(chatFilterId: Int?) {
         self.chatFilterId = chatFilterId
     }
 }

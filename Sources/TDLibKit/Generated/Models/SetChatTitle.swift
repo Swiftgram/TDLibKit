@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatTitle: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// New title of the chat; 1-128 characters
-    public let title: String
+    public let title: String?
 
 
     public init(
-        chatId: Int64,
-        title: String
+        chatId: Int64?,
+        title: String?
     ) {
         self.chatId = chatId
         self.title = title

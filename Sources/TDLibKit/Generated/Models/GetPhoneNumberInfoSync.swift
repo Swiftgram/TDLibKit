@@ -14,15 +14,15 @@ import Foundation
 public struct GetPhoneNumberInfoSync: Codable {
 
     /// A two-letter ISO 639-1 country code for country information localization
-    public let languageCode: String
+    public let languageCode: String?
 
     /// The phone number prefix
-    public let phoneNumberPrefix: String
+    public let phoneNumberPrefix: String?
 
 
     public init(
-        languageCode: String,
-        phoneNumberPrefix: String
+        languageCode: String?,
+        phoneNumberPrefix: String?
     ) {
         self.languageCode = languageCode
         self.phoneNumberPrefix = phoneNumberPrefix

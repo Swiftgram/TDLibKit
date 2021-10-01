@@ -14,10 +14,10 @@ import Foundation
 public struct GetMessageImportConfirmationText: Codable {
 
     /// Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
-    public let chatId: Int64
+    public let chatId: Int64?
 
 
-    public init(chatId: Int64) {
+    public init(chatId: Int64?) {
         self.chatId = chatId
     }
 }

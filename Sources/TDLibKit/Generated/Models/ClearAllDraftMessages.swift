@@ -14,10 +14,10 @@ import Foundation
 public struct ClearAllDraftMessages: Codable {
 
     /// If true, local draft messages in secret chats will not be cleared
-    public let excludeSecretChats: Bool
+    public let excludeSecretChats: Bool?
 
 
-    public init(excludeSecretChats: Bool) {
+    public init(excludeSecretChats: Bool?) {
         self.excludeSecretChats = excludeSecretChats
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct GetRecentlyVisitedTMeUrls: Codable {
 
     /// Google Play referrer to identify the user
-    public let referrer: String
+    public let referrer: String?
 
 
-    public init(referrer: String) {
+    public init(referrer: String?) {
         self.referrer = referrer
     }
 }

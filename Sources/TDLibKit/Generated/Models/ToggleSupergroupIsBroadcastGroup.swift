@@ -14,10 +14,10 @@ import Foundation
 public struct ToggleSupergroupIsBroadcastGroup: Codable {
 
     /// Identifier of the supergroup
-    public let supergroupId: Int64
+    public let supergroupId: Int64?
 
 
-    public init(supergroupId: Int64) {
+    public init(supergroupId: Int64?) {
         self.supergroupId = supergroupId
     }
 }

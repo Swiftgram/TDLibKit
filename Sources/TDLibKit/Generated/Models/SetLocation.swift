@@ -14,10 +14,10 @@ import Foundation
 public struct SetLocation: Codable {
 
     /// The new location of the user
-    public let location: Location
+    public let location: Location?
 
 
-    public init(location: Location) {
+    public init(location: Location?) {
         self.location = location
     }
 }

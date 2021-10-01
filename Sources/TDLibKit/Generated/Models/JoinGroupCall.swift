@@ -14,35 +14,35 @@ import Foundation
 public struct JoinGroupCall: Codable {
 
     /// Caller audio channel synchronization source identifier; received from tgcalls
-    public let audioSourceId: Int
+    public let audioSourceId: Int?
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// If non-empty, invite hash to be used to join the group call without being muted by administrators
-    public let inviteHash: String
+    public let inviteHash: String?
 
     /// True, if the user's microphone is muted
-    public let isMuted: Bool
+    public let isMuted: Bool?
 
     /// True, if the user's video is enabled
-    public let isMyVideoEnabled: Bool
+    public let isMyVideoEnabled: Bool?
 
     /// Identifier of a group call participant, which will be used to join the call; pass null to join as self; voice chats only
-    public let participantId: MessageSender
+    public let participantId: MessageSender?
 
     /// Group call join payload; received from tgcalls
-    public let payload: String
+    public let payload: String?
 
 
     public init(
-        audioSourceId: Int,
-        groupCallId: Int,
-        inviteHash: String,
-        isMuted: Bool,
-        isMyVideoEnabled: Bool,
-        participantId: MessageSender,
-        payload: String
+        audioSourceId: Int?,
+        groupCallId: Int?,
+        inviteHash: String?,
+        isMuted: Bool?,
+        isMyVideoEnabled: Bool?,
+        participantId: MessageSender?,
+        payload: String?
     ) {
         self.audioSourceId = audioSourceId
         self.groupCallId = groupCallId

@@ -14,10 +14,10 @@ import Foundation
 public struct DeletePassportElement: Codable {
 
     /// Element type
-    public let type: PassportElementType
+    public let type: PassportElementType?
 
 
-    public init(type: PassportElementType) {
+    public init(type: PassportElementType?) {
         self.type = type
     }
 }

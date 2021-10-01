@@ -14,15 +14,15 @@ import Foundation
 public struct GetRemoteFile: Codable {
 
     /// File type; pass null if unknown
-    public let fileType: FileType
+    public let fileType: FileType?
 
     /// Remote identifier of the file to get
-    public let remoteFileId: String
+    public let remoteFileId: String?
 
 
     public init(
-        fileType: FileType,
-        remoteFileId: String
+        fileType: FileType?,
+        remoteFileId: String?
     ) {
         self.fileType = fileType
         self.remoteFileId = remoteFileId

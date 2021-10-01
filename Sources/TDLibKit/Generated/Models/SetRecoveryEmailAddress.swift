@@ -14,15 +14,15 @@ import Foundation
 public struct SetRecoveryEmailAddress: Codable {
 
     /// New recovery email address
-    public let newRecoveryEmailAddress: String
+    public let newRecoveryEmailAddress: String?
 
     /// Password of the current user
-    public let password: String
+    public let password: String?
 
 
     public init(
-        newRecoveryEmailAddress: String,
-        password: String
+        newRecoveryEmailAddress: String?,
+        password: String?
     ) {
         self.newRecoveryEmailAddress = newRecoveryEmailAddress
         self.password = password

@@ -14,10 +14,10 @@ import Foundation
 public struct AddNetworkStatistics: Codable {
 
     /// The network statistics entry with the data to be added to statistics
-    public let entry: NetworkStatisticsEntry
+    public let entry: NetworkStatisticsEntry?
 
 
-    public init(entry: NetworkStatisticsEntry) {
+    public init(entry: NetworkStatisticsEntry?) {
         self.entry = entry
     }
 }

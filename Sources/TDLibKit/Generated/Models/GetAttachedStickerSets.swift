@@ -14,10 +14,10 @@ import Foundation
 public struct GetAttachedStickerSets: Codable {
 
     /// File identifier
-    public let fileId: Int
+    public let fileId: Int?
 
 
-    public init(fileId: Int) {
+    public init(fileId: Int?) {
         self.fileId = fileId
     }
 }

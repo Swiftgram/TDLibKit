@@ -14,10 +14,10 @@ import Foundation
 public struct SearchStickerSets: Codable {
 
     /// Query to search for
-    public let query: String
+    public let query: String?
 
 
-    public init(query: String) {
+    public init(query: String?) {
         self.query = query
     }
 }

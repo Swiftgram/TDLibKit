@@ -14,10 +14,10 @@ import Foundation
 public struct GetSuggestedStickerSetName: Codable {
 
     /// Sticker set title; 1-64 characters
-    public let title: String
+    public let title: String?
 
 
-    public init(title: String) {
+    public init(title: String?) {
         self.title = title
     }
 }

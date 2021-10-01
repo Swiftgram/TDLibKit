@@ -14,15 +14,15 @@ import Foundation
 public struct RevokeChatInviteLink: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Invite link to be revoked
-    public let inviteLink: String
+    public let inviteLink: String?
 
 
     public init(
-        chatId: Int64,
-        inviteLink: String
+        chatId: Int64?,
+        inviteLink: String?
     ) {
         self.chatId = chatId
         self.inviteLink = inviteLink

@@ -14,15 +14,15 @@ import Foundation
 public struct RemoveTopChat: Codable {
 
     /// Category of frequently used chats
-    public let category: TopChatCategory
+    public let category: TopChatCategory?
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
 
     public init(
-        category: TopChatCategory,
-        chatId: Int64
+        category: TopChatCategory?,
+        chatId: Int64?
     ) {
         self.category = category
         self.chatId = chatId

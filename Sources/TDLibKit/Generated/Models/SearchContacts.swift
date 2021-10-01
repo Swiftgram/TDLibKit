@@ -14,15 +14,15 @@ import Foundation
 public struct SearchContacts: Codable {
 
     /// The maximum number of users to be returned
-    public let limit: Int
+    public let limit: Int?
 
     /// Query to search for; may be empty to return all contacts
-    public let query: String
+    public let query: String?
 
 
     public init(
-        limit: Int,
-        query: String
+        limit: Int?,
+        query: String?
     ) {
         self.limit = limit
         self.query = query

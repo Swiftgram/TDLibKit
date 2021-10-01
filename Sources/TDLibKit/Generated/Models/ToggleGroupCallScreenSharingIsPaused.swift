@@ -14,15 +14,15 @@ import Foundation
 public struct ToggleGroupCallScreenSharingIsPaused: Codable {
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// True if screen sharing is paused
-    public let isPaused: Bool
+    public let isPaused: Bool?
 
 
     public init(
-        groupCallId: Int,
-        isPaused: Bool
+        groupCallId: Int?,
+        isPaused: Bool?
     ) {
         self.groupCallId = groupCallId
         self.isPaused = isPaused

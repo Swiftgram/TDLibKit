@@ -14,19 +14,19 @@ import Foundation
 public struct AddStickerToSet: Codable {
 
     /// Sticker set name
-    public let name: String
+    public let name: String?
 
     /// Sticker to add to the set
-    public let sticker: InputSticker
+    public let sticker: InputSticker?
 
     /// Sticker set owner
-    public let userId: Int64
+    public let userId: Int64?
 
 
     public init(
-        name: String,
-        sticker: InputSticker,
-        userId: Int64
+        name: String?,
+        sticker: InputSticker?,
+        userId: Int64?
     ) {
         self.name = name
         self.sticker = sticker

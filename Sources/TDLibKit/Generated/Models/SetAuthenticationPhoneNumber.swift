@@ -14,15 +14,15 @@ import Foundation
 public struct SetAuthenticationPhoneNumber: Codable {
 
     /// The phone number of the user, in international format
-    public let phoneNumber: String
+    public let phoneNumber: String?
 
     /// Settings for the authentication of the user's phone number; pass null to use default settings
-    public let settings: PhoneNumberAuthenticationSettings
+    public let settings: PhoneNumberAuthenticationSettings?
 
 
     public init(
-        phoneNumber: String,
-        settings: PhoneNumberAuthenticationSettings
+        phoneNumber: String?,
+        settings: PhoneNumberAuthenticationSettings?
     ) {
         self.phoneNumber = phoneNumber
         self.settings = settings

@@ -14,15 +14,15 @@ import Foundation
 public struct SetVoiceChatDefaultParticipant: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Default group call participant identifier to join the voice chats
-    public let defaultParticipantId: MessageSender
+    public let defaultParticipantId: MessageSender?
 
 
     public init(
-        chatId: Int64,
-        defaultParticipantId: MessageSender
+        chatId: Int64?,
+        defaultParticipantId: MessageSender?
     ) {
         self.chatId = chatId
         self.defaultParticipantId = defaultParticipantId

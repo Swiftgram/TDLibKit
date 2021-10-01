@@ -14,10 +14,10 @@ import Foundation
 public struct EditCustomLanguagePackInfo: Codable {
 
     /// New information about the custom local language pack
-    public let info: LanguagePackInfo
+    public let info: LanguagePackInfo?
 
 
-    public init(info: LanguagePackInfo) {
+    public init(info: LanguagePackInfo?) {
         self.info = info
     }
 }

@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatLocation: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// New location for the chat; must be valid and not null
-    public let location: ChatLocation
+    public let location: ChatLocation?
 
 
     public init(
-        chatId: Int64,
-        location: ChatLocation
+        chatId: Int64?,
+        location: ChatLocation?
     ) {
         self.chatId = chatId
         self.location = location

@@ -14,15 +14,15 @@ import Foundation
 public struct ToggleGroupCallIsMyVideoEnabled: Codable {
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// Pass true if the current user's video is enabled
-    public let isMyVideoEnabled: Bool
+    public let isMyVideoEnabled: Bool?
 
 
     public init(
-        groupCallId: Int,
-        isMyVideoEnabled: Bool
+        groupCallId: Int?,
+        isMyVideoEnabled: Bool?
     ) {
         self.groupCallId = groupCallId
         self.isMyVideoEnabled = isMyVideoEnabled

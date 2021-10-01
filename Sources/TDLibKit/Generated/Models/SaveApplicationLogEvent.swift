@@ -14,19 +14,19 @@ import Foundation
 public struct SaveApplicationLogEvent: Codable {
 
     /// Optional chat identifier, associated with the event
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// The log event data
-    public let data: JsonValue
+    public let data: JsonValue?
 
     /// Event type
-    public let type: String
+    public let type: String?
 
 
     public init(
-        chatId: Int64,
-        data: JsonValue,
-        type: String
+        chatId: Int64?,
+        data: JsonValue?,
+        type: String?
     ) {
         self.chatId = chatId
         self.data = data

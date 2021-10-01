@@ -14,10 +14,10 @@ import Foundation
 public struct TestReturnError: Codable {
 
     /// The error to be returned
-    public let error: Error
+    public let error: Error?
 
 
-    public init(error: Error) {
+    public init(error: Error?) {
         self.error = error
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct GetFileMimeType: Codable {
 
     /// The name of the file or path to the file
-    public let fileName: String
+    public let fileName: String?
 
 
-    public init(fileName: String) {
+    public init(fileName: String?) {
         self.fileName = fileName
     }
 }

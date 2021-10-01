@@ -14,10 +14,10 @@ import Foundation
 public struct GetNetworkStatistics: Codable {
 
     /// If true, returns only data for the current library launch
-    public let onlyCurrent: Bool
+    public let onlyCurrent: Bool?
 
 
-    public init(onlyCurrent: Bool) {
+    public init(onlyCurrent: Bool?) {
         self.onlyCurrent = onlyCurrent
     }
 }

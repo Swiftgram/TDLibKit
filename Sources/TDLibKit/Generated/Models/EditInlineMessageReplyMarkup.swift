@@ -14,15 +14,15 @@ import Foundation
 public struct EditInlineMessageReplyMarkup: Codable {
 
     /// Inline message identifier
-    public let inlineMessageId: String
+    public let inlineMessageId: String?
 
     /// The new message reply markup; pass null if none
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
 
     public init(
-        inlineMessageId: String,
-        replyMarkup: ReplyMarkup
+        inlineMessageId: String?,
+        replyMarkup: ReplyMarkup?
     ) {
         self.inlineMessageId = inlineMessageId
         self.replyMarkup = replyMarkup

@@ -14,10 +14,10 @@ import Foundation
 public struct AddSavedAnimation: Codable {
 
     /// The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
-    public let animation: InputFile
+    public let animation: InputFile?
 
 
-    public init(animation: InputFile) {
+    public init(animation: InputFile?) {
         self.animation = animation
     }
 }

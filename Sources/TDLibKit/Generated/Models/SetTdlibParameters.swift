@@ -14,10 +14,10 @@ import Foundation
 public struct SetTdlibParameters: Codable {
 
     /// Parameters for TDLib initialization
-    public let parameters: TdlibParameters
+    public let parameters: TdlibParameters?
 
 
-    public init(parameters: TdlibParameters) {
+    public init(parameters: TdlibParameters?) {
         self.parameters = parameters
     }
 }

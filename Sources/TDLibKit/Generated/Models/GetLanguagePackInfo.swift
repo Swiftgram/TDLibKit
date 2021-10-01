@@ -14,10 +14,10 @@ import Foundation
 public struct GetLanguagePackInfo: Codable {
 
     /// Language pack identifier
-    public let languagePackId: String
+    public let languagePackId: String?
 
 
-    public init(languagePackId: String) {
+    public init(languagePackId: String?) {
         self.languagePackId = languagePackId
     }
 }

@@ -14,15 +14,15 @@ import Foundation
 public struct GetChatMember: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Member identifier
-    public let memberId: MessageSender
+    public let memberId: MessageSender?
 
 
     public init(
-        chatId: Int64,
-        memberId: MessageSender
+        chatId: Int64?,
+        memberId: MessageSender?
     ) {
         self.chatId = chatId
         self.memberId = memberId

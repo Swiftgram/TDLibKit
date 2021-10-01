@@ -14,10 +14,10 @@ import Foundation
 public struct SearchPublicChat: Codable {
 
     /// Username to be resolved
-    public let username: String
+    public let username: String?
 
 
-    public init(username: String) {
+    public init(username: String?) {
         self.username = username
     }
 }

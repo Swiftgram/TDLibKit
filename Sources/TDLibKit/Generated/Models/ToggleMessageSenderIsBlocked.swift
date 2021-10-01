@@ -14,15 +14,15 @@ import Foundation
 public struct ToggleMessageSenderIsBlocked: Codable {
 
     /// New value of is_blocked
-    public let isBlocked: Bool
+    public let isBlocked: Bool?
 
     /// Message Sender
-    public let sender: MessageSender
+    public let sender: MessageSender?
 
 
     public init(
-        isBlocked: Bool,
-        sender: MessageSender
+        isBlocked: Bool?,
+        sender: MessageSender?
     ) {
         self.isBlocked = isBlocked
         self.sender = sender

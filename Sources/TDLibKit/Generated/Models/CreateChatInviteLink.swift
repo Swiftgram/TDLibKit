@@ -14,19 +14,19 @@ import Foundation
 public struct CreateChatInviteLink: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Point in time (Unix timestamp) when the link will expire; pass 0 if never
-    public let expireDate: Int
+    public let expireDate: Int?
 
     /// The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
-    public let memberLimit: Int
+    public let memberLimit: Int?
 
 
     public init(
-        chatId: Int64,
-        expireDate: Int,
-        memberLimit: Int
+        chatId: Int64?,
+        expireDate: Int?,
+        memberLimit: Int?
     ) {
         self.chatId = chatId
         self.expireDate = expireDate

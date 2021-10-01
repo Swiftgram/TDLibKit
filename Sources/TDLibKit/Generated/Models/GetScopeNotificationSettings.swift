@@ -14,10 +14,10 @@ import Foundation
 public struct GetScopeNotificationSettings: Codable {
 
     /// Types of chats for which to return the notification settings information
-    public let scope: NotificationSettingsScope
+    public let scope: NotificationSettingsScope?
 
 
-    public init(scope: NotificationSettingsScope) {
+    public init(scope: NotificationSettingsScope?) {
         self.scope = scope
     }
 }

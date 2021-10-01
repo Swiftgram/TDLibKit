@@ -14,10 +14,10 @@ import Foundation
 public struct CreateSecretChat: Codable {
 
     /// Secret chat identifier
-    public let secretChatId: Int
+    public let secretChatId: Int?
 
 
-    public init(secretChatId: Int) {
+    public init(secretChatId: Int?) {
         self.secretChatId = secretChatId
     }
 }

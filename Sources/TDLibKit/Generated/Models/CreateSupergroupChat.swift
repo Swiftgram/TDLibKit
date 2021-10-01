@@ -14,15 +14,15 @@ import Foundation
 public struct CreateSupergroupChat: Codable {
 
     /// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
-    public let force: Bool
+    public let force: Bool?
 
     /// Supergroup or channel identifier
-    public let supergroupId: Int64
+    public let supergroupId: Int64?
 
 
     public init(
-        force: Bool,
-        supergroupId: Int64
+        force: Bool?,
+        supergroupId: Int64?
     ) {
         self.force = force
         self.supergroupId = supergroupId

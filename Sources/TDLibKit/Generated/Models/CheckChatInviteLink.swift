@@ -14,10 +14,10 @@ import Foundation
 public struct CheckChatInviteLink: Codable {
 
     /// Invite link to be checked
-    public let inviteLink: String
+    public let inviteLink: String?
 
 
-    public init(inviteLink: String) {
+    public init(inviteLink: String?) {
         self.inviteLink = inviteLink
     }
 }

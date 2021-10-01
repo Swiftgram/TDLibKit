@@ -14,15 +14,15 @@ import Foundation
 public struct ParseTextEntities: Codable {
 
     /// Text parse mode
-    public let parseMode: TextParseMode
+    public let parseMode: TextParseMode?
 
     /// The text to parse
-    public let text: String
+    public let text: String?
 
 
     public init(
-        parseMode: TextParseMode,
-        text: String
+        parseMode: TextParseMode?,
+        text: String?
     ) {
         self.parseMode = parseMode
         self.text = text

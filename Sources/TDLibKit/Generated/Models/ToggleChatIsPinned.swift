@@ -14,19 +14,19 @@ import Foundation
 public struct ToggleChatIsPinned: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Chat list in which to change the pinned state of the chat
-    public let chatList: ChatList
+    public let chatList: ChatList?
 
     /// True, if the chat is pinned
-    public let isPinned: Bool
+    public let isPinned: Bool?
 
 
     public init(
-        chatId: Int64,
-        chatList: ChatList,
-        isPinned: Bool
+        chatId: Int64?,
+        chatList: ChatList?,
+        isPinned: Bool?
     ) {
         self.chatId = chatId
         self.chatList = chatList

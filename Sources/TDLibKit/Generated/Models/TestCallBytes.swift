@@ -14,10 +14,10 @@ import Foundation
 public struct TestCallBytes: Codable {
 
     /// Bytes to return
-    public let x: Data
+    public let x: Data?
 
 
-    public init(x: Data) {
+    public init(x: Data?) {
         self.x = x
     }
 }

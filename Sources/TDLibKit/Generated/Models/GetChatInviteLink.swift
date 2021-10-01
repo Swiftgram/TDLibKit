@@ -14,15 +14,15 @@ import Foundation
 public struct GetChatInviteLink: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Invite link to get
-    public let inviteLink: String
+    public let inviteLink: String?
 
 
     public init(
-        chatId: Int64,
-        inviteLink: String
+        chatId: Int64?,
+        inviteLink: String?
     ) {
         self.chatId = chatId
         self.inviteLink = inviteLink

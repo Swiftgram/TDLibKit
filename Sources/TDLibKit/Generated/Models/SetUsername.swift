@@ -14,10 +14,10 @@ import Foundation
 public struct SetUsername: Codable {
 
     /// The new value of the username. Use an empty string to remove the username
-    public let username: String
+    public let username: String?
 
 
-    public init(username: String) {
+    public init(username: String?) {
         self.username = username
     }
 }

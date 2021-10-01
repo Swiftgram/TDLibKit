@@ -14,15 +14,15 @@ import Foundation
 public struct SetSupergroupUsername: Codable {
 
     /// Identifier of the supergroup or channel
-    public let supergroupId: Int64
+    public let supergroupId: Int64?
 
     /// New value of the username. Use an empty string to remove the username
-    public let username: String
+    public let username: String?
 
 
     public init(
-        supergroupId: Int64,
-        username: String
+        supergroupId: Int64?,
+        username: String?
     ) {
         self.supergroupId = supergroupId
         self.username = username

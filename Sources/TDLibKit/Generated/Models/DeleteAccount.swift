@@ -14,10 +14,10 @@ import Foundation
 public struct DeleteAccount: Codable {
 
     /// The reason why the account was deleted; optional
-    public let reason: String
+    public let reason: String?
 
 
-    public init(reason: String) {
+    public init(reason: String?) {
         self.reason = reason
     }
 }

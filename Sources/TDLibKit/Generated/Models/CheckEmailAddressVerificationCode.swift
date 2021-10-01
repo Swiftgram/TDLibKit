@@ -14,10 +14,10 @@ import Foundation
 public struct CheckEmailAddressVerificationCode: Codable {
 
     /// Verification code
-    public let code: String
+    public let code: String?
 
 
-    public init(code: String) {
+    public init(code: String?) {
         self.code = code
     }
 }

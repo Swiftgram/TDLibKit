@@ -14,15 +14,15 @@ import Foundation
 public struct SetChatMessageTtlSetting: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
-    public let ttl: Int
+    public let ttl: Int?
 
 
     public init(
-        chatId: Int64,
-        ttl: Int
+        chatId: Int64?,
+        ttl: Int?
     ) {
         self.chatId = chatId
         self.ttl = ttl

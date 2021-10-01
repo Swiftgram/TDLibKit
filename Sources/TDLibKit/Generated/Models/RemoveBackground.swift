@@ -14,10 +14,10 @@ import Foundation
 public struct RemoveBackground: Codable {
 
     /// The background identifier
-    public let backgroundId: TdInt64
+    public let backgroundId: TdInt64?
 
 
-    public init(backgroundId: TdInt64) {
+    public init(backgroundId: TdInt64?) {
         self.backgroundId = backgroundId
     }
 }

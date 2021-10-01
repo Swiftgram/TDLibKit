@@ -14,10 +14,10 @@ import Foundation
 public struct SearchStickerSet: Codable {
 
     /// Name of the sticker set
-    public let name: String
+    public let name: String?
 
 
-    public init(name: String) {
+    public init(name: String?) {
         self.name = name
     }
 }

@@ -14,15 +14,15 @@ import Foundation
 public struct GetInlineGameHighScores: Codable {
 
     /// Inline message identifier
-    public let inlineMessageId: String
+    public let inlineMessageId: String?
 
     /// User identifier
-    public let userId: Int64
+    public let userId: Int64?
 
 
     public init(
-        inlineMessageId: String,
-        userId: Int64
+        inlineMessageId: String?,
+        userId: Int64?
     ) {
         self.inlineMessageId = inlineMessageId
         self.userId = userId

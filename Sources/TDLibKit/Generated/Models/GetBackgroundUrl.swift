@@ -14,15 +14,15 @@ import Foundation
 public struct GetBackgroundUrl: Codable {
 
     /// Background name
-    public let name: String
+    public let name: String?
 
     /// Background type
-    public let type: BackgroundType
+    public let type: BackgroundType?
 
 
     public init(
-        name: String,
-        type: BackgroundType
+        name: String?,
+        type: BackgroundType?
     ) {
         self.name = name
         self.type = type

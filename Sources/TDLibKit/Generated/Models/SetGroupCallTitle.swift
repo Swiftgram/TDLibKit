@@ -14,15 +14,15 @@ import Foundation
 public struct SetGroupCallTitle: Codable {
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
     /// New group call title; 1-64 characters
-    public let title: String
+    public let title: String?
 
 
     public init(
-        groupCallId: Int,
-        title: String
+        groupCallId: Int?,
+        title: String?
     ) {
         self.groupCallId = groupCallId
         self.title = title

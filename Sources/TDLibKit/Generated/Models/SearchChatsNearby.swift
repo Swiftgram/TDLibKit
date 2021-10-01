@@ -14,10 +14,10 @@ import Foundation
 public struct SearchChatsNearby: Codable {
 
     /// Current user location
-    public let location: Location
+    public let location: Location?
 
 
-    public init(location: Location) {
+    public init(location: Location?) {
         self.location = location
     }
 }

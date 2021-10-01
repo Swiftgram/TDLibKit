@@ -14,10 +14,10 @@ import Foundation
 public struct RequestQrCodeAuthentication: Codable {
 
     /// List of user identifiers of other users currently using the application
-    public let otherUserIds: [Int64]
+    public let otherUserIds: [Int64]?
 
 
-    public init(otherUserIds: [Int64]) {
+    public init(otherUserIds: [Int64]?) {
         self.otherUserIds = otherUserIds
     }
 }

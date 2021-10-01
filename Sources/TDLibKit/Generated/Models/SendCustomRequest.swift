@@ -14,15 +14,15 @@ import Foundation
 public struct SendCustomRequest: Codable {
 
     /// The method name
-    public let method: String
+    public let method: String?
 
     /// JSON-serialized method parameters
-    public let parameters: String
+    public let parameters: String?
 
 
     public init(
-        method: String,
-        parameters: String
+        method: String?,
+        parameters: String?
     ) {
         self.method = method
         self.parameters = parameters

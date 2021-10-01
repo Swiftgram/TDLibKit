@@ -14,15 +14,15 @@ import Foundation
 public struct SetLogTagVerbosityLevel: Codable {
 
     /// New verbosity level; 1-1024
-    public let newVerbosityLevel: Int
+    public let newVerbosityLevel: Int?
 
     /// Logging tag to change verbosity level
-    public let tag: String
+    public let tag: String?
 
 
     public init(
-        newVerbosityLevel: Int,
-        tag: String
+        newVerbosityLevel: Int?,
+        tag: String?
     ) {
         self.newVerbosityLevel = newVerbosityLevel
         self.tag = tag

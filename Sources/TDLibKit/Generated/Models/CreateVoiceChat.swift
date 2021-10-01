@@ -14,19 +14,19 @@ import Foundation
 public struct CreateVoiceChat: Codable {
 
     /// Chat identifier, in which the voice chat will be created
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the voice chat immediately. The date must be at least 10 seconds and at most 8 days in the future
-    public let startDate: Int
+    public let startDate: Int?
 
     /// Group call title; if empty, chat title will be used
-    public let title: String
+    public let title: String?
 
 
     public init(
-        chatId: Int64,
-        startDate: Int,
-        title: String
+        chatId: Int64?,
+        startDate: Int?,
+        title: String?
     ) {
         self.chatId = chatId
         self.startDate = startDate

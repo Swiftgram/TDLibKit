@@ -14,23 +14,23 @@ import Foundation
 public struct SearchChatMembers: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// The type of users to search for; pass null to search among all chat members
-    public let filter: ChatMembersFilter
+    public let filter: ChatMembersFilter?
 
     /// The maximum number of users to be returned
-    public let limit: Int
+    public let limit: Int?
 
     /// Query to search for
-    public let query: String
+    public let query: String?
 
 
     public init(
-        chatId: Int64,
-        filter: ChatMembersFilter,
-        limit: Int,
-        query: String
+        chatId: Int64?,
+        filter: ChatMembersFilter?,
+        limit: Int?,
+        query: String?
     ) {
         self.chatId = chatId
         self.filter = filter

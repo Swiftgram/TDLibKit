@@ -14,15 +14,15 @@ import Foundation
 public struct GetChatStatistics: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Pass true if a dark theme is used by the application
-    public let isDark: Bool
+    public let isDark: Bool?
 
 
     public init(
-        chatId: Int64,
-        isDark: Bool
+        chatId: Int64?,
+        isDark: Bool?
     ) {
         self.chatId = chatId
         self.isDark = isDark

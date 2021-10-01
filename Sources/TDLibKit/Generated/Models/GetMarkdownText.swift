@@ -14,10 +14,10 @@ import Foundation
 public struct GetMarkdownText: Codable {
 
     /// The text
-    public let text: FormattedText
+    public let text: FormattedText?
 
 
-    public init(text: FormattedText) {
+    public init(text: FormattedText?) {
         self.text = text
     }
 }

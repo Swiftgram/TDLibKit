@@ -14,10 +14,10 @@ import Foundation
 public struct CheckAuthenticationPassword: Codable {
 
     /// The password to check
-    public let password: String
+    public let password: String?
 
 
-    public init(password: String) {
+    public init(password: String?) {
         self.password = password
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct GetFileExtension: Codable {
 
     /// The MIME type of the file
-    public let mimeType: String
+    public let mimeType: String?
 
 
-    public init(mimeType: String) {
+    public init(mimeType: String?) {
         self.mimeType = mimeType
     }
 }

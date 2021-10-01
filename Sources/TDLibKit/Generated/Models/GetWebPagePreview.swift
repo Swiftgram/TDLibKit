@@ -14,10 +14,10 @@ import Foundation
 public struct GetWebPagePreview: Codable {
 
     /// Message text with formatting
-    public let text: FormattedText
+    public let text: FormattedText?
 
 
-    public init(text: FormattedText) {
+    public init(text: FormattedText?) {
         self.text = text
     }
 }

@@ -14,15 +14,15 @@ import Foundation
 public struct RemoveNotificationGroup: Codable {
 
     /// The maximum identifier of removed notifications
-    public let maxNotificationId: Int
+    public let maxNotificationId: Int?
 
     /// Notification group identifier
-    public let notificationGroupId: Int
+    public let notificationGroupId: Int?
 
 
     public init(
-        maxNotificationId: Int,
-        notificationGroupId: Int
+        maxNotificationId: Int?,
+        notificationGroupId: Int?
     ) {
         self.maxNotificationId = maxNotificationId
         self.notificationGroupId = notificationGroupId

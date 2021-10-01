@@ -14,10 +14,10 @@ import Foundation
 public struct CheckCreatedPublicChatsLimit: Codable {
 
     /// Type of the public chats, for which to check the limit
-    public let type: PublicChatType
+    public let type: PublicChatType?
 
 
-    public init(type: PublicChatType) {
+    public init(type: PublicChatType?) {
         self.type = type
     }
 }

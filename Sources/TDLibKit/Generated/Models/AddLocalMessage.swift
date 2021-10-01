@@ -14,27 +14,27 @@ import Foundation
 public struct AddLocalMessage: Codable {
 
     /// Target chat
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// Pass true to disable notification for the message
-    public let disableNotification: Bool
+    public let disableNotification: Bool?
 
     /// The content of the message to be added
-    public let inputMessageContent: InputMessageContent
+    public let inputMessageContent: InputMessageContent?
 
     /// Identifier of the message to reply to or 0
-    public let replyToMessageId: Int64
+    public let replyToMessageId: Int64?
 
     /// The sender of the message
-    public let sender: MessageSender
+    public let sender: MessageSender?
 
 
     public init(
-        chatId: Int64,
-        disableNotification: Bool,
-        inputMessageContent: InputMessageContent,
-        replyToMessageId: Int64,
-        sender: MessageSender
+        chatId: Int64?,
+        disableNotification: Bool?,
+        inputMessageContent: InputMessageContent?,
+        replyToMessageId: Int64?,
+        sender: MessageSender?
     ) {
         self.chatId = chatId
         self.disableNotification = disableNotification

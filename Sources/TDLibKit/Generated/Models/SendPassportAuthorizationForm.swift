@@ -14,15 +14,15 @@ import Foundation
 public struct SendPassportAuthorizationForm: Codable {
 
     /// Authorization form identifier
-    public let autorizationFormId: Int
+    public let autorizationFormId: Int?
 
     /// Types of Telegram Passport elements chosen by user to complete the authorization form
-    public let types: [PassportElementType]
+    public let types: [PassportElementType]?
 
 
     public init(
-        autorizationFormId: Int,
-        types: [PassportElementType]
+        autorizationFormId: Int?,
+        types: [PassportElementType]?
     ) {
         self.autorizationFormId = autorizationFormId
         self.types = types

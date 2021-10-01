@@ -14,10 +14,10 @@ import Foundation
 public struct DiscardGroupCall: Codable {
 
     /// Group call identifier
-    public let groupCallId: Int
+    public let groupCallId: Int?
 
 
-    public init(groupCallId: Int) {
+    public init(groupCallId: Int?) {
         self.groupCallId = groupCallId
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct SetDatabaseEncryptionKey: Codable {
 
     /// New encryption key
-    public let newEncryptionKey: Data
+    public let newEncryptionKey: Data?
 
 
-    public init(newEncryptionKey: Data) {
+    public init(newEncryptionKey: Data?) {
         self.newEncryptionKey = newEncryptionKey
     }
 }

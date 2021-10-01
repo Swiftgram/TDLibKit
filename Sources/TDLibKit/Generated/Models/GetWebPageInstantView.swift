@@ -14,15 +14,15 @@ import Foundation
 public struct GetWebPageInstantView: Codable {
 
     /// If true, the full instant view for the web page will be returned
-    public let forceFull: Bool
+    public let forceFull: Bool?
 
     /// The web page URL
-    public let url: String
+    public let url: String?
 
 
     public init(
-        forceFull: Bool,
-        url: String
+        forceFull: Bool?,
+        url: String?
     ) {
         self.forceFull = forceFull
         self.url = url

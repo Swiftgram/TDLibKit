@@ -14,15 +14,15 @@ import Foundation
 public struct SearchChatRecentLocationMessages: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// The maximum number of messages to be returned
-    public let limit: Int
+    public let limit: Int?
 
 
     public init(
-        chatId: Int64,
-        limit: Int
+        chatId: Int64?,
+        limit: Int?
     ) {
         self.chatId = chatId
         self.limit = limit

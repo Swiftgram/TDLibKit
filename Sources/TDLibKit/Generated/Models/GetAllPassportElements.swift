@@ -14,10 +14,10 @@ import Foundation
 public struct GetAllPassportElements: Codable {
 
     /// Password of the current user
-    public let password: String
+    public let password: String?
 
 
-    public init(password: String) {
+    public init(password: String?) {
         self.password = password
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 public struct GetStickerEmojis: Codable {
 
     /// Sticker file identifier
-    public let sticker: InputFile
+    public let sticker: InputFile?
 
 
-    public init(sticker: InputFile) {
+    public init(sticker: InputFile?) {
         self.sticker = sticker
     }
 }

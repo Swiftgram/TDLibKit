@@ -14,15 +14,15 @@ import Foundation
 public struct AddChatToList: Codable {
 
     /// Chat identifier
-    public let chatId: Int64
+    public let chatId: Int64?
 
     /// The chat list. Use getChatListsToAddChat to get suitable chat lists
-    public let chatList: ChatList
+    public let chatList: ChatList?
 
 
     public init(
-        chatId: Int64,
-        chatList: ChatList
+        chatId: Int64?,
+        chatList: ChatList?
     ) {
         self.chatId = chatId
         self.chatList = chatList

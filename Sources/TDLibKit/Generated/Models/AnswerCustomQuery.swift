@@ -14,15 +14,15 @@ import Foundation
 public struct AnswerCustomQuery: Codable {
 
     /// Identifier of a custom query
-    public let customQueryId: TdInt64
+    public let customQueryId: TdInt64?
 
     /// JSON-serialized answer to the query
-    public let data: String
+    public let data: String?
 
 
     public init(
-        customQueryId: TdInt64,
-        data: String
+        customQueryId: TdInt64?,
+        data: String?
     ) {
         self.customQueryId = customQueryId
         self.data = data

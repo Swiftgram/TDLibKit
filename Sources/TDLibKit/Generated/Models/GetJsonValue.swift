@@ -14,10 +14,10 @@ import Foundation
 public struct GetJsonValue: Codable {
 
     /// The JSON-serialized string
-    public let json: String
+    public let json: String?
 
 
-    public init(json: String) {
+    public init(json: String?) {
         self.json = json
     }
 }

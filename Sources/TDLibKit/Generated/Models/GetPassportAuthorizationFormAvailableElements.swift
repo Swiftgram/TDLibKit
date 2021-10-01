@@ -14,15 +14,15 @@ import Foundation
 public struct GetPassportAuthorizationFormAvailableElements: Codable {
 
     /// Authorization form identifier
-    public let autorizationFormId: Int
+    public let autorizationFormId: Int?
 
     /// Password of the current user
-    public let password: String
+    public let password: String?
 
 
     public init(
-        autorizationFormId: Int,
-        password: String
+        autorizationFormId: Int?,
+        password: String?
     ) {
         self.autorizationFormId = autorizationFormId
         self.password = password

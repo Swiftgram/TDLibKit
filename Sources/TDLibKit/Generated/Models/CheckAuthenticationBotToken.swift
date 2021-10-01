@@ -14,10 +14,10 @@ import Foundation
 public struct CheckAuthenticationBotToken: Codable {
 
     /// The bot token
-    public let token: String
+    public let token: String?
 
 
-    public init(token: String) {
+    public init(token: String?) {
         self.token = token
     }
 }

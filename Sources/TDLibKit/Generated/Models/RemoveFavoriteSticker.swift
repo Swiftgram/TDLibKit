@@ -14,10 +14,10 @@ import Foundation
 public struct RemoveFavoriteSticker: Codable {
 
     /// Sticker file to delete from the list
-    public let sticker: InputFile
+    public let sticker: InputFile?
 
 
-    public init(sticker: InputFile) {
+    public init(sticker: InputFile?) {
         self.sticker = sticker
     }
 }

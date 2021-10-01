@@ -14,10 +14,10 @@ import Foundation
 public struct GetMessageFileType: Codable {
 
     /// Beginning of the message file; up to 100 first lines
-    public let messageFileHead: String
+    public let messageFileHead: String?
 
 
-    public init(messageFileHead: String) {
+    public init(messageFileHead: String?) {
         self.messageFileHead = messageFileHead
     }
 }
