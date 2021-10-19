@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-bbae7be4
-//  https://github.com/tdlib/td/tree/bbae7be4
+//  Based on TDLib 1.7.8-3abac232
+//  https://github.com/tdlib/td/tree/3abac232
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// An identity document
 public struct IdentityDocument: Codable {
 
-    /// Document expiry date; may be null
+    /// Document expiry date; may be null if not applicable
     public let expiryDate: Date?
 
     /// Front side of the document
