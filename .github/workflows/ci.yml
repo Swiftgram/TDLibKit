@@ -8,6 +8,7 @@ on:
       - "version" # on version updates
       - "Package.swift"
       - "Package.resolved"
+      - .github/workflows/ci.yml
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
