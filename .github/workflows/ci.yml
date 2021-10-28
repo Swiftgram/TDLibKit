@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Resolve Deps
-        run: xcodebuild -resolvePackageDependencies
+        run: swift package update
 
       - name: Get commit & version
         run: |
