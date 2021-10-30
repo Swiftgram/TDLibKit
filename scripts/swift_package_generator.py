@@ -1,5 +1,9 @@
-// swift-tools-version:5.3
+import argparse
+
+def get_file_content(tdlibframework_version):
+    return f"""// swift-tools-version:5.3
 // The swift-tools-version declares the minimum version of Swift required to build this package.
+// DO NOT EDIT! Generated automatically. See scripts/swift_package_generator.py
 
 import PackageDescription
 
@@ -18,7 +22,7 @@ let package = Package(
             targets: ["TDLibKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.7.8-bbae7be4")),
+        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("{tdlibframework_version}")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,3 +32,13 @@ let package = Package(
             dependencies: ["TDLibFramework"]),
     ]
 )
+
+"""
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("tdlibframework_version", help="Swiftgram/TDLibFramework version")
+    
+    args = parser.parse_args()
+    with open('Package.swift', 'w') as f:
+        f.write(get_file_content(args.tdlibframework_version))

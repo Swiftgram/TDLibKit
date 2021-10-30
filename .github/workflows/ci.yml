@@ -9,6 +9,8 @@ on:
       - "Package.swift"
       - "Package.resolved"
       - .github/workflows/ci.yml
+  schedule:
+    - cron: '0 */12 * * *' # Every 12 hours
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,6 +25,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Get Latest Release
+        id: framework_releases
+        uses: pozetroninc/github-action-get-latest-release@v0.5.0
+        with:
+          repository: Swiftgram/TDLibFramework
+
+      - name: Set TDLibFramework version
+        run: python3 scripts/swift_package_generator.py "${{ steps.framework_releases.outputs.release }}"
 
       - name: Resolve Deps
         run: swift package update
