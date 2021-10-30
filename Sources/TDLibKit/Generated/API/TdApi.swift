@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-bbae7be4
-//  https://github.com/tdlib/td/tree/bbae7be4
+//  Based on TDLib 1.7.8-377bd189
+//  https://github.com/tdlib/td/tree/377bd189
 //
 
 import Foundation
@@ -929,7 +929,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages mmust be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
@@ -2843,7 +2843,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if you need to pass some additional parameters
+    /// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier. Chats can be only banned and unbanned in supergroups and channels
     /// - Parameter status: The new status of the member in the chat

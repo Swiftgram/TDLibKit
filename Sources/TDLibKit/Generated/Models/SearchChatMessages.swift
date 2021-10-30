@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-bbae7be4
-//  https://github.com/tdlib/td/tree/bbae7be4
+//  Based on TDLib 1.7.8-377bd189
+//  https://github.com/tdlib/td/tree/377bd189
 //
 
 import Foundation
 
 
-/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages mmust be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 public struct SearchChatMessages: Codable {
 
     /// Identifier of the chat in which to search messages

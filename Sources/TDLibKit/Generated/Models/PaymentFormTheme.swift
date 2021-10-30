@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-bbae7be4
-//  https://github.com/tdlib/td/tree/bbae7be4
+//  Based on TDLib 1.7.8-377bd189
+//  https://github.com/tdlib/td/tree/377bd189
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct PaymentFormTheme: Codable {
     /// A color of the payment form background in the RGB24 format
     public let backgroundColor: Int
 
-    /// A color of thebuttons in the RGB24 format
+    /// A color of the buttons in the RGB24 format
     public let buttonColor: Int
 
     /// A color of text on the buttons in the RGB24 format

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-bbae7be4
-//  https://github.com/tdlib/td/tree/bbae7be4
+//  Based on TDLib 1.7.8-377bd189
+//  https://github.com/tdlib/td/tree/377bd189
 //
 
 import Foundation
@@ -19,23 +19,23 @@ public struct SponsoredMessage: Codable {
     /// Unique sponsored message identifier
     public let id: Int
 
+    /// An internal link to be opened when the sponsored message is clicked; may be null. If null, the sponsor chat needs to be opened instead
+    public let link: InternalLinkType?
+
     /// Chat identifier
     public let sponsorChatId: Int64
-
-    /// Parameter for the bot start message if the sponsored chat is a chat with a bot
-    public let startParameter: String
 
 
     public init(
         content: MessageContent,
         id: Int,
-        sponsorChatId: Int64,
-        startParameter: String
+        link: InternalLinkType?,
+        sponsorChatId: Int64
     ) {
         self.content = content
         self.id = id
+        self.link = link
         self.sponsorChatId = sponsorChatId
-        self.startParameter = startParameter
     }
 }
 

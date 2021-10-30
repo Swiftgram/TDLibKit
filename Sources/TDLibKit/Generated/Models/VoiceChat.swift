@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-bbae7be4
-//  https://github.com/tdlib/td/tree/bbae7be4
+//  Based on TDLib 1.7.8-377bd189
+//  https://github.com/tdlib/td/tree/377bd189
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct VoiceChat: Codable {
     /// Default group call participant identifier to join the voice chat; may be null
     public let defaultParticipantId: MessageSender?
 
-    /// Group call identifier of an active voice chat; 0 if none. Full informationa about the voice chat can be received through the method getGroupCall
+    /// Group call identifier of an active voice chat; 0 if none. Full information about the voice chat can be received through the method getGroupCall
     public let groupCallId: Int
 
     /// True, if the voice chat has participants
