@@ -26,11 +26,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Get Latest Release
+      - name: Get latest Github release
         id: framework_releases
-        uses: pozetroninc/github-action-get-latest-release@v0.5.0
-        with:
+        uses: rez0n/actions-github-release@v1.1
+        env:
+          token:  ${{ secrets.GH_RELEASES_TOKEN }}
           repository: Swiftgram/TDLibFramework
+          type: latest
 
       - name: Set TDLibFramework version
         run: python3 scripts/swift_package_generator.py "${{ steps.framework_releases.outputs.release }}"
