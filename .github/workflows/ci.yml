@@ -29,12 +29,13 @@ jobs:
       - name: Get latest Github release
         id: framework_releases
         uses: joutvhu/get-release@v1.0.0
-        env:
-          token:  ${{ secrets.GH_RELEASES_TOKEN }}
+        with:
           owner: Swiftgram
           repo: TDLibFramework
           latest: true
           throwing: true
+        env:
+          GITHUB_TOKEN:  ${{ secrets.GH_RELEASES_TOKEN }}
 
       - name: Set TDLibFramework version
         run: python3 scripts/swift_package_generator.py "${{ steps.framework_releases.outputs.tag_name }}"
