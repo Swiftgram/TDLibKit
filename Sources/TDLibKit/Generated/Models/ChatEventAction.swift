@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-f4d20e20
-//  https://github.com/tdlib/td/tree/f4d20e20
+//  Based on TDLib 1.7.8-0208b705
+//  https://github.com/tdlib/td/tree/0208b705
 //
 
 import Foundation
@@ -622,10 +622,10 @@ public struct ChatEventLinkedChatChanged: Codable {
 /// The slow_mode_delay setting of a supergroup was changed
 public struct ChatEventSlowModeDelayChanged: Codable {
 
-    /// New value of slow_mode_delay
+    /// New value of slow_mode_delay, in seconds
     public let newSlowModeDelay: Int
 
-    /// Previous value of slow_mode_delay
+    /// Previous value of slow_mode_delay, in seconds
     public let oldSlowModeDelay: Int
 
 

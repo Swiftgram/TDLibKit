@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-f4d20e20
-//  https://github.com/tdlib/td/tree/f4d20e20
+//  Based on TDLib 1.7.8-0208b705
+//  https://github.com/tdlib/td/tree/0208b705
 //
 
 import Foundation
@@ -2725,7 +2725,7 @@ public final class TdApi {
 
     /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
     /// - Parameter chatId: Chat identifier
-    /// - Parameter slowModeDelay: New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
+    /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     public func setChatSlowModeDelay(
         chatId: Int64?,
         slowModeDelay: Int?,
@@ -2924,7 +2924,7 @@ public final class TdApi {
     /// Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
     /// - Parameter chatId: Chat identifier
     /// - Parameter filter: The type of users to search for; pass null to search among all chat members
-    /// - Parameter limit: The maximum number of users to be returned
+    /// - Parameter limit: The maximum number of users to be returned; up to 200
     /// - Parameter query: Query to search for
     public func searchChatMembers(
         chatId: Int64?,
@@ -3351,7 +3351,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter creatorUserId: User identifier of a chat administrator. Must be an identifier of the current user for non-owner
     /// - Parameter isRevoked: Pass true if revoked links needs to be returned instead of active or expired
-    /// - Parameter limit: The maximum number of invite links to return
+    /// - Parameter limit: The maximum number of invite links to return; up to 100
     /// - Parameter offsetDate: Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     /// - Parameter offsetInviteLink: Invite link starting after which to return invite links; use empty string to get results from the beginning
     public func getChatInviteLinks(
@@ -3377,7 +3377,7 @@ public final class TdApi {
     /// Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to return chat members
-    /// - Parameter limit: The maximum number of chat members to return
+    /// - Parameter limit: The maximum number of chat members to return; up to 100
     /// - Parameter offsetMember: A chat member from which to return next chat members; pass null to get results from the beginning
     public func getChatInviteLinkMembers(
         chatId: Int64?,
@@ -3940,7 +3940,7 @@ public final class TdApi {
 
     /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
     /// - Parameter groupCallId: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
-    /// - Parameter limit: The maximum number of participants to load
+    /// - Parameter limit: The maximum number of participants to load; up to 100
     public func loadGroupCallParticipants(
         groupCallId: Int?,
         limit: Int?,
@@ -4210,7 +4210,7 @@ public final class TdApi {
 
     /// Returns a list of archived sticker sets
     /// - Parameter isMasks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
-    /// - Parameter limit: The maximum number of sticker sets to return
+    /// - Parameter limit: The maximum number of sticker sets to return; up to 100
     /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
     public func getArchivedStickerSets(
         isMasks: Bool?,
@@ -4227,7 +4227,7 @@ public final class TdApi {
     }
 
     /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
-    /// - Parameter limit: The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
+    /// - Parameter limit: The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     /// - Parameter offset: The offset from which to return the sticker sets; must be non-negative
     public func getTrendingStickerSets(
         limit: Int?,

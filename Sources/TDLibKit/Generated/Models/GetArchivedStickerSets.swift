@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-f4d20e20
-//  https://github.com/tdlib/td/tree/f4d20e20
+//  Based on TDLib 1.7.8-0208b705
+//  https://github.com/tdlib/td/tree/0208b705
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetArchivedStickerSets: Codable {
     /// Pass true to return mask stickers sets; pass false to return ordinary sticker sets
     public let isMasks: Bool?
 
-    /// The maximum number of sticker sets to return
+    /// The maximum number of sticker sets to return; up to 100
     public let limit: Int?
 
     /// Identifier of the sticker set from which to return the result

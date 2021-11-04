@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-f4d20e20
-//  https://github.com/tdlib/td/tree/f4d20e20
+//  Based on TDLib 1.7.8-0208b705
+//  https://github.com/tdlib/td/tree/0208b705
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetChatInviteLinks: Codable {
     /// Pass true if revoked links needs to be returned instead of active or expired
     public let isRevoked: Bool?
 
-    /// The maximum number of invite links to return
+    /// The maximum number of invite links to return; up to 100
     public let limit: Int?
 
     /// Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning

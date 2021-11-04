@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-f4d20e20
-//  https://github.com/tdlib/td/tree/f4d20e20
+//  Based on TDLib 1.7.8-0208b705
+//  https://github.com/tdlib/td/tree/0208b705
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SearchChatMembers: Codable {
     /// The type of users to search for; pass null to search among all chat members
     public let filter: ChatMembersFilter?
 
-    /// The maximum number of users to be returned
+    /// The maximum number of users to be returned; up to 200
     public let limit: Int?
 
     /// Query to search for
