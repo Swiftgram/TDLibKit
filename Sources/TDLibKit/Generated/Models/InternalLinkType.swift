@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -79,8 +79,11 @@ public enum InternalLinkType: Codable {
     /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     case internalLinkTypeUnknownDeepLink(InternalLinkTypeUnknownDeepLink)
 
-    /// The link is a link to a voice chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
-    case internalLinkTypeVoiceChat(InternalLinkTypeVoiceChat)
+    /// The link is a link to an unsupported proxy. An alert can be shown to the user
+    case internalLinkTypeUnsupportedProxy
+
+    /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+    case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
 
     private enum Kind: String, Codable {
@@ -106,7 +109,8 @@ public enum InternalLinkType: Codable {
         case internalLinkTypeTheme
         case internalLinkTypeThemeSettings
         case internalLinkTypeUnknownDeepLink
-        case internalLinkTypeVoiceChat
+        case internalLinkTypeUnsupportedProxy
+        case internalLinkTypeVideoChat
     }
 
     public init(from decoder: Decoder) throws {
@@ -173,9 +177,11 @@ public enum InternalLinkType: Codable {
         case .internalLinkTypeUnknownDeepLink:
             let value = try InternalLinkTypeUnknownDeepLink(from: decoder)
             self = .internalLinkTypeUnknownDeepLink(value)
-        case .internalLinkTypeVoiceChat:
-            let value = try InternalLinkTypeVoiceChat(from: decoder)
-            self = .internalLinkTypeVoiceChat(value)
+        case .internalLinkTypeUnsupportedProxy:
+            self = .internalLinkTypeUnsupportedProxy
+        case .internalLinkTypeVideoChat:
+            let value = try InternalLinkTypeVideoChat(from: decoder)
+            self = .internalLinkTypeVideoChat(value)
         }
     }
 
@@ -242,8 +248,10 @@ public enum InternalLinkType: Codable {
         case .internalLinkTypeUnknownDeepLink(let value):
             try container.encode(Kind.internalLinkTypeUnknownDeepLink, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeVoiceChat(let value):
-            try container.encode(Kind.internalLinkTypeVoiceChat, forKey: .type)
+        case .internalLinkTypeUnsupportedProxy:
+            try container.encode(Kind.internalLinkTypeUnsupportedProxy, forKey: .type)
+        case .internalLinkTypeVideoChat(let value):
+            try container.encode(Kind.internalLinkTypeVideoChat, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -510,16 +518,16 @@ public struct InternalLinkTypeUnknownDeepLink: Codable {
     }
 }
 
-/// The link is a link to a voice chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
-public struct InternalLinkTypeVoiceChat: Codable {
+/// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+public struct InternalLinkTypeVideoChat: Codable {
 
-    /// Username of the chat with the voice chat
+    /// Username of the chat with the video chat
     public let chatUsername: String
 
-    /// If non-empty, invite hash to be used to join the voice chat without being muted by administrators
+    /// If non-empty, invite hash to be used to join the video chat without being muted by administrators
     public let inviteHash: String
 
-    /// True, if the voice chat is expected to be a live stream in a channel or a broadcast group
+    /// True, if the video chat is expected to be a live stream in a channel or a broadcast group
     public let isLiveStream: Bool
 
 

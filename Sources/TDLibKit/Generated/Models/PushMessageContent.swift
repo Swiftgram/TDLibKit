@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -88,6 +88,9 @@ public enum PushMessageContent: Codable {
     /// A new member joined the chat by invite link
     case pushMessageContentChatJoinByLink
 
+    /// A new member was accepted to the chat by an administrator
+    case pushMessageContentChatJoinByRequest
+
     /// A forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
 
@@ -121,6 +124,7 @@ public enum PushMessageContent: Codable {
         case pushMessageContentChatSetTheme
         case pushMessageContentChatDeleteMember
         case pushMessageContentChatJoinByLink
+        case pushMessageContentChatJoinByRequest
         case pushMessageContentMessageForwards
         case pushMessageContentMediaAlbum
     }
@@ -199,6 +203,8 @@ public enum PushMessageContent: Codable {
             self = .pushMessageContentChatDeleteMember(value)
         case .pushMessageContentChatJoinByLink:
             self = .pushMessageContentChatJoinByLink
+        case .pushMessageContentChatJoinByRequest:
+            self = .pushMessageContentChatJoinByRequest
         case .pushMessageContentMessageForwards:
             let value = try PushMessageContentMessageForwards(from: decoder)
             self = .pushMessageContentMessageForwards(value)
@@ -281,6 +287,8 @@ public enum PushMessageContent: Codable {
             try value.encode(to: encoder)
         case .pushMessageContentChatJoinByLink:
             try container.encode(Kind.pushMessageContentChatJoinByLink, forKey: .type)
+        case .pushMessageContentChatJoinByRequest:
+            try container.encode(Kind.pushMessageContentChatJoinByRequest, forKey: .type)
         case .pushMessageContentMessageForwards(let value):
             try container.encode(Kind.pushMessageContentMessageForwards, forKey: .type)
             try value.encode(to: encoder)

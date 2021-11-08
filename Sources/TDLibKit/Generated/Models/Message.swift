@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -94,13 +94,13 @@ public struct Message: Codable {
     /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     public let restrictionReason: String
 
-    /// Information about the scheduling state of the message; may be null
+    /// The scheduling state of the message; may be null
     public let schedulingState: MessageSchedulingState?
 
     /// The sender of the message
     public let sender: MessageSender
 
-    /// Information about the sending state of the message; may be null
+    /// The sending state of the message; may be null
     public let sendingState: MessageSendingState?
 
     /// For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires

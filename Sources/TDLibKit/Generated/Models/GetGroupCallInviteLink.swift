@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
 
 
-/// Returns invite link to a voice chat in a public chat
+/// Returns invite link to a video chat in a public chat
 public struct GetGroupCallInviteLink: Codable {
 
     /// Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag

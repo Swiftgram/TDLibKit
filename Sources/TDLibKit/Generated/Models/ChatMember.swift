@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
 
 
-/// Information about a user or a chat as a member of another chat
+/// Describes a user or a chat as a member of another chat
 public struct ChatMember: Codable {
 
     /// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown

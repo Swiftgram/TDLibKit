@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct MessageThreadInfo: Codable {
     /// The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     public let messages: [Message]
 
-    /// Contains information about the message thread
+    /// Information about the message thread
     public let replyInfo: MessageReplyInfo
 
     /// Approximate number of unread messages in the message thread

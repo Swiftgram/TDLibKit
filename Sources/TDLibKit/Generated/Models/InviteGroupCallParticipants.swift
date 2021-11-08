@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
 
 
-/// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for voice chats
+/// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
 public struct InviteGroupCallParticipants: Codable {
 
     /// Group call identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -16,21 +16,31 @@ public struct CreateChatInviteLink: Codable {
     /// Chat identifier
     public let chatId: Int64?
 
+    /// True, if the link only creates join request. If true, member_limit must not be specified
+    public let createsJoinRequest: Bool?
+
     /// Point in time (Unix timestamp) when the link will expire; pass 0 if never
     public let expireDate: Int?
 
     /// The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
     public let memberLimit: Int?
 
+    /// Invite link name; 0-32 characters
+    public let name: String?
+
 
     public init(
         chatId: Int64?,
+        createsJoinRequest: Bool?,
         expireDate: Int?,
-        memberLimit: Int?
+        memberLimit: Int?,
+        name: String?
     ) {
         self.chatId = chatId
+        self.createsJoinRequest = createsJoinRequest
         self.expireDate = expireDate
         self.memberLimit = memberLimit
+        self.name = name
     }
 }
 

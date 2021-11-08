@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -83,7 +83,7 @@ public struct BackgroundTypeWallpaper: Codable {
 /// A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
 public struct BackgroundTypePattern: Codable {
 
-    /// Description of the background fill
+    /// Fill of the background
     public let fill: BackgroundFill
 
     /// Intensity of the pattern when it is shown above the filled background; 0-100.
@@ -112,7 +112,7 @@ public struct BackgroundTypePattern: Codable {
 /// A filled background
 public struct BackgroundTypeFill: Codable {
 
-    /// Description of the background fill
+    /// The background fill
     public let fill: BackgroundFill
 
 

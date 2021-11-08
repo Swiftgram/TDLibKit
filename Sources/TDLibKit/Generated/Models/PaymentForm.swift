@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -25,13 +25,13 @@ public struct PaymentForm: Codable {
     /// True, if the user will be able to save credentials protected by a password they set up
     public let needPassword: Bool
 
-    /// Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
+    /// Information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
     public let paymentsProvider: PaymentsProviderStripe?
 
     /// User identifier of the payment provider bot
     public let paymentsProviderUserId: Int64
 
-    /// Contains information about saved card credentials; may be null
+    /// Information about saved card credentials; may be null
     public let savedCredentials: SavedCredentials?
 
     /// Saved server-side order information; may be null

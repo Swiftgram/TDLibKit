@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -46,8 +46,8 @@ public struct ChatEventLogFilters: Codable {
     /// True, if changes in chat settings need to be returned
     public let settingChanges: Bool
 
-    /// True, if voice chat actions need to be returned
-    public let voiceChatChanges: Bool
+    /// True, if video chat actions need to be returned
+    public let videoChatChanges: Bool
 
 
     public init(
@@ -62,7 +62,7 @@ public struct ChatEventLogFilters: Codable {
         messageEdits: Bool,
         messagePins: Bool,
         settingChanges: Bool,
-        voiceChatChanges: Bool
+        videoChatChanges: Bool
     ) {
         self.infoChanges = infoChanges
         self.inviteLinkChanges = inviteLinkChanges
@@ -75,7 +75,7 @@ public struct ChatEventLogFilters: Codable {
         self.messageEdits = messageEdits
         self.messagePins = messagePins
         self.settingChanges = settingChanges
-        self.voiceChatChanges = voiceChatChanges
+        self.videoChatChanges = videoChatChanges
     }
 }
 

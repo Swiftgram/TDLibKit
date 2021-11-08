@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -76,8 +76,8 @@ public enum Update: Codable {
     /// A chat's has_scheduled_messages field has changed
     case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
 
-    /// A chat voice chat state has changed
-    case updateChatVoiceChat(UpdateChatVoiceChat)
+    /// A chat video chat state has changed
+    case updateChatVideoChat(UpdateChatVideoChat)
 
     /// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
     case updateChatDefaultDisableNotification(UpdateChatDefaultDisableNotification)
@@ -105,6 +105,9 @@ public enum Update: Codable {
 
     /// The chat theme was changed
     case updateChatTheme(UpdateChatTheme)
+
+    /// The chat pending join requests were changed
+    case updateChatPendingJoinRequests(UpdateChatPendingJoinRequests)
 
     /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     case updateChatReplyMarkup(UpdateChatReplyMarkup)
@@ -277,6 +280,9 @@ public enum Update: Codable {
     /// User rights changed in a chat; for bots only
     case updateChatMember(UpdateChatMember)
 
+    /// A user sent a join request to a chat; for bots only
+    case updateNewChatJoinRequest(UpdateNewChatJoinRequest)
+
 
     private enum Kind: String, Codable {
         case updateAuthorizationState
@@ -300,7 +306,7 @@ public enum Update: Codable {
         case updateChatIsMarkedAsUnread
         case updateChatIsBlocked
         case updateChatHasScheduledMessages
-        case updateChatVoiceChat
+        case updateChatVideoChat
         case updateChatDefaultDisableNotification
         case updateChatReadInbox
         case updateChatReadOutbox
@@ -310,6 +316,7 @@ public enum Update: Codable {
         case updateChatMessageTtlSetting
         case updateChatActionBar
         case updateChatTheme
+        case updateChatPendingJoinRequests
         case updateChatReplyMarkup
         case updateChatDraftMessage
         case updateChatFilters
@@ -367,6 +374,7 @@ public enum Update: Codable {
         case updatePoll
         case updatePollAnswer
         case updateChatMember
+        case updateNewChatJoinRequest
     }
 
     public init(from decoder: Decoder) throws {
@@ -436,9 +444,9 @@ public enum Update: Codable {
         case .updateChatHasScheduledMessages:
             let value = try UpdateChatHasScheduledMessages(from: decoder)
             self = .updateChatHasScheduledMessages(value)
-        case .updateChatVoiceChat:
-            let value = try UpdateChatVoiceChat(from: decoder)
-            self = .updateChatVoiceChat(value)
+        case .updateChatVideoChat:
+            let value = try UpdateChatVideoChat(from: decoder)
+            self = .updateChatVideoChat(value)
         case .updateChatDefaultDisableNotification:
             let value = try UpdateChatDefaultDisableNotification(from: decoder)
             self = .updateChatDefaultDisableNotification(value)
@@ -466,6 +474,9 @@ public enum Update: Codable {
         case .updateChatTheme:
             let value = try UpdateChatTheme(from: decoder)
             self = .updateChatTheme(value)
+        case .updateChatPendingJoinRequests:
+            let value = try UpdateChatPendingJoinRequests(from: decoder)
+            self = .updateChatPendingJoinRequests(value)
         case .updateChatReplyMarkup:
             let value = try UpdateChatReplyMarkup(from: decoder)
             self = .updateChatReplyMarkup(value)
@@ -637,6 +648,9 @@ public enum Update: Codable {
         case .updateChatMember:
             let value = try UpdateChatMember(from: decoder)
             self = .updateChatMember(value)
+        case .updateNewChatJoinRequest:
+            let value = try UpdateNewChatJoinRequest(from: decoder)
+            self = .updateNewChatJoinRequest(value)
         }
     }
 
@@ -706,8 +720,8 @@ public enum Update: Codable {
         case .updateChatHasScheduledMessages(let value):
             try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatVoiceChat(let value):
-            try container.encode(Kind.updateChatVoiceChat, forKey: .type)
+        case .updateChatVideoChat(let value):
+            try container.encode(Kind.updateChatVideoChat, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatDefaultDisableNotification(let value):
             try container.encode(Kind.updateChatDefaultDisableNotification, forKey: .type)
@@ -735,6 +749,9 @@ public enum Update: Codable {
             try value.encode(to: encoder)
         case .updateChatTheme(let value):
             try container.encode(Kind.updateChatTheme, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatPendingJoinRequests(let value):
+            try container.encode(Kind.updateChatPendingJoinRequests, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatReplyMarkup(let value):
             try container.encode(Kind.updateChatReplyMarkup, forKey: .type)
@@ -907,6 +924,9 @@ public enum Update: Codable {
         case .updateChatMember(let value):
             try container.encode(Kind.updateChatMember, forKey: .type)
             try value.encode(to: encoder)
+        case .updateNewChatJoinRequest(let value):
+            try container.encode(Kind.updateNewChatJoinRequest, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -957,7 +977,7 @@ public struct UpdateMessageSendAcknowledged: Codable {
 /// A message has been successfully sent
 public struct UpdateMessageSendSucceeded: Codable {
 
-    /// Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+    /// The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
     public let message: Message
 
     /// The previous temporary message identifier
@@ -982,7 +1002,7 @@ public struct UpdateMessageSendFailed: Codable {
     /// Error message
     public let errorMessage: String
 
-    /// Contains information about the message which failed to send
+    /// The failed to send message
     public let message: Message
 
     /// The previous temporary message identifier
@@ -1334,22 +1354,22 @@ public struct UpdateChatHasScheduledMessages: Codable {
     }
 }
 
-/// A chat voice chat state has changed
-public struct UpdateChatVoiceChat: Codable {
+/// A chat video chat state has changed
+public struct UpdateChatVideoChat: Codable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// New value of voice_chat
-    public let voiceChat: VoiceChat
+    /// New value of video_chat
+    public let videoChat: VideoChat
 
 
     public init(
         chatId: Int64,
-        voiceChat: VoiceChat
+        videoChat: VideoChat
     ) {
         self.chatId = chatId
-        self.voiceChat = voiceChat
+        self.videoChat = videoChat
     }
 }
 
@@ -1526,6 +1546,25 @@ public struct UpdateChatTheme: Codable {
     ) {
         self.chatId = chatId
         self.themeName = themeName
+    }
+}
+
+/// The chat pending join requests were changed
+public struct UpdateChatPendingJoinRequests: Codable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new data about pending join requests; may be null
+    public let pendingJoinRequests: ChatJoinRequestsInfo?
+
+
+    public init(
+        chatId: Int64,
+        pendingJoinRequests: ChatJoinRequestsInfo?
+    ) {
+        self.chatId = chatId
+        self.pendingJoinRequests = pendingJoinRequests
     }
 }
 
@@ -2380,7 +2419,7 @@ public struct UpdateSuggestedActions: Codable {
 /// A new incoming inline query; for bots only
 public struct UpdateNewInlineQuery: Codable {
 
-    /// Contains information about the type of the chat, from which the query originated; may be null if unknown
+    /// The type of the chat, from which the query originated; may be null if unknown
     public let chatType: ChatType?
 
     /// Unique query identifier
@@ -2704,6 +2743,30 @@ public struct UpdateChatMember: Codable {
         self.inviteLink = inviteLink
         self.newChatMember = newChatMember
         self.oldChatMember = oldChatMember
+    }
+}
+
+/// A user sent a join request to a chat; for bots only
+public struct UpdateNewChatJoinRequest: Codable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The invite link, which was used to send join request; may be null
+    public let inviteLink: ChatInviteLink?
+
+    /// Join request
+    public let request: ChatJoinRequest
+
+
+    public init(
+        chatId: Int64,
+        inviteLink: ChatInviteLink?,
+        request: ChatJoinRequest
+    ) {
+        self.chatId = chatId
+        self.inviteLink = inviteLink
+        self.request = request
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Information about the authentication code that was sent
 public struct AuthenticationCodeInfo: Codable {
 
-    /// Describes the way the next code will be sent to the user; may be null
+    /// The way the next code will be sent to the user; may be null
     public let nextType: AuthenticationCodeType?
 
     /// A phone number that is being authenticated
@@ -22,7 +22,7 @@ public struct AuthenticationCodeInfo: Codable {
     /// Timeout before the code can be re-sent, in seconds
     public let timeout: Int
 
-    /// Describes the way the code was sent to the user
+    /// The way the code was sent to the user
     public let type: AuthenticationCodeType
 
 

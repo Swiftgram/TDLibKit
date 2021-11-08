@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
 public struct Chat: Codable {
 
-    /// Describes actions which must be possible to do through a chat action bar; may be null
+    /// Information about actions which must be possible to do through the chat action bar; may be null
     public let actionBar: ChatActionBar?
 
     /// True, if the chat messages can be deleted for all users
@@ -25,7 +25,7 @@ public struct Chat: Codable {
     /// True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
     public let canBeReported: Bool
 
-    /// Contains application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
+    /// Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
     public let clientData: String
 
     /// Default value of the disable_notification parameter, used when a message is sent to the chat
@@ -61,6 +61,9 @@ public struct Chat: Codable {
     /// Notification settings for this chat
     public let notificationSettings: ChatNotificationSettings
 
+    /// Information about pending join requests; may be null
+    public let pendingJoinRequests: ChatJoinRequestsInfo?
+
     /// Actions that non-administrator chat members are allowed to take in the chat
     public let permissions: ChatPermissions
 
@@ -88,8 +91,8 @@ public struct Chat: Codable {
     /// Number of unread messages with a mention/reply in the chat
     public let unreadMentionCount: Int
 
-    /// Contains information about voice chat of the chat
-    public let voiceChat: VoiceChat
+    /// Information about video chat of the chat
+    public let videoChat: VideoChat
 
 
     public init(
@@ -109,6 +112,7 @@ public struct Chat: Codable {
         lastReadOutboxMessageId: Int64,
         messageTtlSetting: Int,
         notificationSettings: ChatNotificationSettings,
+        pendingJoinRequests: ChatJoinRequestsInfo?,
         permissions: ChatPermissions,
         photo: ChatPhotoInfo?,
         positions: [ChatPosition],
@@ -118,7 +122,7 @@ public struct Chat: Codable {
         type: ChatType,
         unreadCount: Int,
         unreadMentionCount: Int,
-        voiceChat: VoiceChat
+        videoChat: VideoChat
     ) {
         self.actionBar = actionBar
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
@@ -136,6 +140,7 @@ public struct Chat: Codable {
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
         self.messageTtlSetting = messageTtlSetting
         self.notificationSettings = notificationSettings
+        self.pendingJoinRequests = pendingJoinRequests
         self.permissions = permissions
         self.photo = photo
         self.positions = positions
@@ -145,7 +150,7 @@ public struct Chat: Codable {
         self.type = type
         self.unreadCount = unreadCount
         self.unreadMentionCount = unreadMentionCount
-        self.voiceChat = voiceChat
+        self.videoChat = videoChat
     }
 }
 

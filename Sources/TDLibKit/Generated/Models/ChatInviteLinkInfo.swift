@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -18,6 +18,11 @@ public struct ChatInviteLinkInfo: Codable {
 
     /// Chat identifier of the invite link; 0 if the user has no access to the chat before joining
     public let chatId: Int64
+
+    /// True, if the link only creates join request
+    public let createsJoinRequest: Bool
+
+    public let description: String
 
     /// True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
     public let isPublic: Bool
@@ -34,13 +39,15 @@ public struct ChatInviteLinkInfo: Codable {
     /// Title of the chat
     public let title: String
 
-    /// Contains information about the type of the chat
+    /// Type of the chat
     public let type: ChatType
 
 
     public init(
         accessibleFor: Int,
         chatId: Int64,
+        createsJoinRequest: Bool,
+        description: String,
         isPublic: Bool,
         memberCount: Int,
         memberUserIds: [Int64],
@@ -50,6 +57,8 @@ public struct ChatInviteLinkInfo: Codable {
     ) {
         self.accessibleFor = accessibleFor
         self.chatId = chatId
+        self.createsJoinRequest = createsJoinRequest
+        self.description = description
         self.isPublic = isPublic
         self.memberCount = memberCount
         self.memberUserIds = memberUserIds

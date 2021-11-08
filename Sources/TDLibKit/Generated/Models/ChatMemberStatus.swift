@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public enum ChatMemberStatus: Codable {
     /// The user is the owner of the chat and has all the administrator privileges
     case chatMemberStatusCreator(ChatMemberStatusCreator)
 
-    /// The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage voice chats. In supergroups and channels, there are more detailed options for administrator privileges
+    /// The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
     case chatMemberStatusAdministrator(ChatMemberStatusAdministrator)
 
     /// The user is a member of the chat, without any additional privileges or restrictions
@@ -28,7 +28,7 @@ public enum ChatMemberStatus: Codable {
     /// The user or the chat is not a chat member
     case chatMemberStatusLeft
 
-    /// The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a voice chat of the chat
+    /// The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a video chat of the chat
     case chatMemberStatusBanned(ChatMemberStatusBanned)
 
 
@@ -111,7 +111,7 @@ public struct ChatMemberStatusCreator: Codable {
     }
 }
 
-/// The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage voice chats. In supergroups and channels, there are more detailed options for administrator privileges
+/// The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
 public struct ChatMemberStatusAdministrator: Codable {
 
     /// True, if the current user can edit the administrator privileges for the called user
@@ -132,8 +132,8 @@ public struct ChatMemberStatusAdministrator: Codable {
     /// True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
-    /// True, if the administrator can manage voice chats
-    public let canManageVoiceChats: Bool
+    /// True, if the administrator can manage video chats
+    public let canManageVideoChats: Bool
 
     /// True, if the administrator can pin messages; applicable to basic groups and supergroups only
     public let canPinMessages: Bool
@@ -161,7 +161,7 @@ public struct ChatMemberStatusAdministrator: Codable {
         canEditMessages: Bool,
         canInviteUsers: Bool,
         canManageChat: Bool,
-        canManageVoiceChats: Bool,
+        canManageVideoChats: Bool,
         canPinMessages: Bool,
         canPostMessages: Bool,
         canPromoteMembers: Bool,
@@ -175,7 +175,7 @@ public struct ChatMemberStatusAdministrator: Codable {
         self.canEditMessages = canEditMessages
         self.canInviteUsers = canInviteUsers
         self.canManageChat = canManageChat
-        self.canManageVoiceChats = canManageVoiceChats
+        self.canManageVideoChats = canManageVideoChats
         self.canPinMessages = canPinMessages
         self.canPostMessages = canPostMessages
         self.canPromoteMembers = canPromoteMembers
@@ -209,7 +209,7 @@ public struct ChatMemberStatusRestricted: Codable {
     }
 }
 
-/// The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a voice chat of the chat
+/// The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a video chat of the chat
 public struct ChatMemberStatusBanned: Codable {
 
     /// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Always 0 in basic groups

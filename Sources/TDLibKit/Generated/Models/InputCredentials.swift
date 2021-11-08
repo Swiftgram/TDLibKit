@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -89,7 +89,7 @@ public struct InputCredentialsNew: Codable {
     /// True, if the credential identifier can be saved on the server side
     public let allowSave: Bool
 
-    /// Contains JSON-encoded data with a credential identifier from the payment provider
+    /// JSON-encoded data with the credential identifier from the payment provider
     public let data: String
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.8-0208b705
-//  https://github.com/tdlib/td/tree/0208b705
+//  Based on TDLib 1.7.9-911c5fc3
+//  https://github.com/tdlib/td/tree/911c5fc3
 //
 
 import Foundation
@@ -1088,6 +1088,45 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
+    /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
+    /// - Parameter chatId: Identifier of the chat in which to return information about message positions
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter fromMessageId: The message identifier from which to return information about message positions
+    /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    public func getChatSparseMessagePositions(
+        chatId: Int64?,
+        filter: SearchMessagesFilter?,
+        fromMessageId: Int64?,
+        limit: Int?,
+        completion: @escaping (Result<MessagePositions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatSparseMessagePositions(
+            chatId: chatId,
+            filter: filter,
+            fromMessageId: fromMessageId,
+            limit: limit
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+    /// - Parameter chatId: Identifier of the chat in which to return information about messages
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
+    public func getChatMessageCalendar(
+        chatId: Int64?,
+        filter: SearchMessagesFilter?,
+        fromMessageId: Int64?,
+        completion: @escaping (Result<MessageCalendar, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatMessageCalendar(
+            chatId: chatId,
+            filter: filter,
+            fromMessageId: fromMessageId
+        )
+        execute(query: query, completion: completion)
+    }
+
     /// Returns approximate number of messages of the specified type in the chat
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
@@ -1459,6 +1498,27 @@ public final class TdApi {
         let query = DeleteChatMessagesFromUser(
             chatId: chatId,
             userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter maxDate: The maximum date of the messages to delete
+    /// - Parameter minDate: The minimum date of the messages to delete
+    /// - Parameter revoke: Pass true to try to delete chat messages for all users; private chats only
+    public func deleteChatMessagesByDate(
+        chatId: Int64?,
+        maxDate: Int?,
+        minDate: Int?,
+        revoke: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteChatMessagesByDate(
+            chatId: chatId,
+            maxDate: maxDate,
+            minDate: minDate,
+            revoke: revoke
         )
         execute(query: query, completion: completion)
     }
@@ -3283,39 +3343,51 @@ public final class TdApi {
 
     /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
+    /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
     /// - Parameter expireDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter memberLimit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// - Parameter name: Invite link name; 0-32 characters
     public func createChatInviteLink(
         chatId: Int64?,
+        createsJoinRequest: Bool?,
         expireDate: Int?,
         memberLimit: Int?,
+        name: String?,
         completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
     ) throws {
         let query = CreateChatInviteLink(
             chatId: chatId,
+            createsJoinRequest: createsJoinRequest,
             expireDate: expireDate,
-            memberLimit: memberLimit
+            memberLimit: memberLimit,
+            name: name
         )
         execute(query: query, completion: completion)
     }
 
     /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
+    /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
     /// - Parameter expireDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter inviteLink: Invite link to be edited
     /// - Parameter memberLimit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// - Parameter name: Invite link name; 0-32 characters
     public func editChatInviteLink(
         chatId: Int64?,
+        createsJoinRequest: Bool?,
         expireDate: Int?,
         inviteLink: String?,
         memberLimit: Int?,
+        name: String?,
         completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
     ) throws {
         let query = EditChatInviteLink(
             chatId: chatId,
+            createsJoinRequest: createsJoinRequest,
             expireDate: expireDate,
             inviteLink: inviteLink,
-            memberLimit: memberLimit
+            memberLimit: memberLimit,
+            name: name
         )
         execute(query: query, completion: completion)
     }
@@ -3464,9 +3536,63 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
+    /// Returns pending join requests in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter inviteLink: Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// - Parameter limit: The maximum number of chat join requests to return
+    /// - Parameter offsetRequest: A chat join request from which to return next requests; pass null to get results from the beginning
+    /// - Parameter query: A query to search for in the first names, last names and usernames of the users to return
+    public func getChatJoinRequests(
+        chatId: Int64?,
+        inviteLink: String?,
+        limit: Int?,
+        offsetRequest: ChatJoinRequest?,
+        query: String?,
+        completion: @escaping (Result<ChatJoinRequests, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatJoinRequests(
+            chatId: chatId,
+            inviteLink: inviteLink,
+            limit: limit,
+            offsetRequest: offsetRequest,
+            query: query
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Approves pending join request in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter userId: Identifier of the user, which request will be approved
+    public func approveChatJoinRequest(
+        chatId: Int64?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ApproveChatJoinRequest(
+            chatId: chatId,
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Declines pending join request in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter userId: Identifier of the user, which request will be declined
+    public func declineChatJoinRequest(
+        chatId: Int64?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeclineChatJoinRequest(
+            chatId: chatId,
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
     /// Creates a new call
     /// - Parameter isVideo: True, if a video call needs to be created
-    /// - Parameter `protocol`: Description of the call protocols supported by the application
+    /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
     public func createCall(
         isVideo: Bool?,
@@ -3484,7 +3610,7 @@ public final class TdApi {
 
     /// Accepts an incoming call
     /// - Parameter callId: Call identifier
-    /// - Parameter `protocol`: Description of the call protocols supported by the application
+    /// - Parameter `protocol`: The call protocols supported by the application
     public func acceptCall(
         callId: Int?,
         `protocol`: CallProtocol?,
@@ -3572,44 +3698,44 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns list of participant identifiers, which can be used to join voice chats in a chat
+    /// Returns list of participant identifiers, which can be used to join video chats in a chat
     /// - Parameter chatId: Chat identifier
-    public func getVoiceChatAvailableParticipants(
+    public func getVideoChatAvailableParticipants(
         chatId: Int64?,
         completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
     ) throws {
-        let query = GetVoiceChatAvailableParticipants(
+        let query = GetVideoChatAvailableParticipants(
             chatId: chatId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes default participant identifier, which can be used to join voice chats in a chat
+    /// Changes default participant identifier, which can be used to join video chats in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter defaultParticipantId: Default group call participant identifier to join the voice chats
-    public func setVoiceChatDefaultParticipant(
+    /// - Parameter defaultParticipantId: Default group call participant identifier to join the video chats
+    public func setVideoChatDefaultParticipant(
         chatId: Int64?,
         defaultParticipantId: MessageSender?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetVoiceChatDefaultParticipant(
+        let query = SetVideoChatDefaultParticipant(
             chatId: chatId,
             defaultParticipantId: defaultParticipantId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Creates a voice chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_voice_chats rights
-    /// - Parameter chatId: Chat identifier, in which the voice chat will be created
-    /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the voice chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+    /// - Parameter chatId: Chat identifier, in which the video chat will be created
+    /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
-    public func createVoiceChat(
+    public func createVideoChat(
         chatId: Int64?,
         startDate: Int?,
         title: String?,
         completion: @escaping (Result<GroupCallId, Swift.Error>) -> Void
     ) throws {
-        let query = CreateVoiceChat(
+        let query = CreateVideoChat(
             chatId: chatId,
             startDate: startDate,
             title: title
@@ -3662,7 +3788,7 @@ public final class TdApi {
     /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
     /// - Parameter isMuted: True, if the user's microphone is muted
     /// - Parameter isMyVideoEnabled: True, if the user's video is enabled
-    /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; voice chats only
+    /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
     public func joinGroupCall(
         audioSourceId: Int?,
@@ -3773,7 +3899,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for voice chats
+    /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
     public func inviteGroupCallParticipants(
@@ -3788,7 +3914,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns invite link to a voice chat in a public chat
+    /// Returns invite link to a video chat in a public chat
     /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
     /// - Parameter groupCallId: Group call identifier
     public func getGroupCallInviteLink(
@@ -4462,6 +4588,18 @@ public final class TdApi {
             exactMatch: exactMatch,
             inputLanguageCodes: inputLanguageCodes,
             text: text
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
+    /// - Parameter emoji: The emoji
+    public func getAnimatedEmoji(
+        emoji: String?,
+        completion: @escaping (Result<AnimatedEmoji, Swift.Error>) -> Void
+    ) throws {
+        let query = GetAnimatedEmoji(
+            emoji: emoji
         )
         execute(query: query, completion: completion)
     }
