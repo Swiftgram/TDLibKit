@@ -2,32 +2,46 @@
 
 [![CI](https://github.com/Swiftgram/TDLibKit/actions/workflows/ci.yml/badge.svg)](https://github.com/Swiftgram/TDLibKit/actions/workflows/ci.yml)
 
-TDLibKit is a native Swift wrapper for [TDLib](https://github.com/tdlib/td) with support for iOS, macOS, watchOS and even tvOS.
+TDLibKit is a native Swift wrapper for [TDLib](https://github.com/tdlib/td) with support for iOS, macOS, watchOS and
+even tvOS.
 
-Powered by pre-built multi-platform [TDLibFramework](https://github.com/Swiftgram/TDLibFramework) implementation of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](https://github.com/Swiftgram/tl2swift)
+Powered by pre-built multi-platform [TDLibFramework](https://github.com/Swiftgram/TDLibFramework) implementation
+of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](https://github.com/Swiftgram/tl2swift)
 
 ## Installation
+
 ### Xcode
+
 1. Install Xcode 12.5+
-2. Add `https://github.com/Swiftgram/TDLibKit` as SPM dependency in `Project > Swift Packages`. 
-This could take a while cause it downloads ~300mb zip file with binary from [TDLibFramework dependency](https://github.com/Swiftgram/TDLibFramework)
+2. Add `https://github.com/Swiftgram/TDLibKit` as SPM dependency in `Project > Swift Packages`. This could take a while
+   cause it downloads ~300mb zip file with binary
+   from [TDLibFramework dependency](https://github.com/Swiftgram/TDLibFramework)
 3. Add `TDLibKit` as your target dependency.
 4. Add `libz.1.tbd` and `libc++.1.tbd` as your target dependencies.
-5. If something is not accesible from TDLibFramework, make sure to add `libSystem.B.tbd` for all platforms and `libc++abi.tbd` if you're building non-macOS app. [Source](https://github.com/modestman/tdlib-swift/blob/master/td-xcframework/td.xcodeproj/project.pbxproj#L301)
+5. If something is not accesible from TDLibFramework, make sure to add `libSystem.B.tbd` for all platforms
+   and `libc++abi.tbd` if you're building non-macOS
+   app. [Source](https://github.com/modestman/tdlib-swift/blob/master/td-xcframework/td.xcodeproj/project.pbxproj#L301)
 6. Code!
-### Cocoapods
-Integration requires similar to [TDLibFramework Cocoapods & Flutter guide](https://github.com/Swiftgram/TDLibFramework/wiki/CocoaPods-&-Flutter) adaptation.
 
+### Cocoapods
+
+Integration requires similar
+to [TDLibFramework Cocoapods & Flutter guide](https://github.com/Swiftgram/TDLibFramework/wiki/CocoaPods-&-Flutter)
+adaptation.
 
 ## Usage
+
 Library provides multiple interfaces based on different approaches
+
 - [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch
 - Completion handlers & closures
 
-## Async/Await
+## Async/Await `AsyncTdClientImpl`
+
 Available for iOS 15.0+, macOS 12.0+, watchOS 8.0+, tvOS 15.0+
 
 ### Create Client & API instance
+
 ```swift
 import TDLibKit
 let client = AsyncTdClientImpl()
@@ -36,7 +50,11 @@ api.client.start() // Client start required!
 ```
 
 ### Synchronious requests
-Only for methods with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)" in docs
+
+Only for methods
+with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)"
+in docs
+
 ```swift
 let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
 do {
@@ -48,6 +66,7 @@ print("Response dict \(result)")
 ```
 
 ### Async requests
+
 ```swift
 let chatHistory = try await api.getChatHistory(
     chatId: chatId,
@@ -84,10 +103,38 @@ for message in chatHistory.messages {
 ```
 
 ### Listen for updates
-todo
 
-## Completion handlers
+```swift
+api.client.run {
+    do {
+        let update = try api.decoder.decode(Update.self, from: $0)
+        switch update {
+            case .updateNewMessage(let newMsg):
+                switch newMsg.message.content {
+                    case .messageText(let text):
+                        print("Text Message: \(text.text.text)")
+                    default:
+                        break
+                }
+            case .updateMessageEdited:
+                break
+                
+            // ... etc
+
+            default:
+                print("Unhandled Update \(update)")
+                break
+        }
+    } catch {
+        print("Error in update handler \(error.localizedDescription)")
+    }
+}
+```
+
+## Completion handlers `TdClientImpl`
+
 ### Create Client & API instance
+
 ```swift
 import TDLibKit
 let client = TdClientImpl(completionQueue: .main)
@@ -96,7 +143,11 @@ let api: TdApi = TdApi(client: client)
 ```
 
 ### Synchronious requests
-Only for methods with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)" in docs
+
+Only for methods
+with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)"
+in docs
+
 ```swift
 let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
 let result = api.client.execute(query: DTO(query))
@@ -110,8 +161,8 @@ if case .failure(let error) = result {
 }
 ```
 
-
 ### Async requests
+
 ```swift
 try? api.getChatHistory(
     chatId: chatId,
@@ -155,38 +206,14 @@ try? api.getChatHistory(
 
 ```
 
-
 ### Listen for updates
-```swift
-api.client.run {
-    do {
-        let update = try api.decoder.decode(Update.self, from: $0)
-        switch update {
-            case .updateNewMessage(let newMsg):
-                switch newMsg.message.content {
-                    case .messageText(let text):
-                        print("Text Message: \(text.text.text)")
-                    default:
-                        break
-                }
-            case .updateMessageEdited:
-                break
-                
-            // ... etc
 
-            default:
-                print("Unhandled Update \(update)")
-                break
-        }
-    } catch {
-        print("Error in update handler \(error.localizedDescription)")
-    }
-}
-```
-
+Same as in `AsyncTdClientImpl`
 
 ### Logging
-You can pass additional parameter with `Logger` type to log "send, receive, execute" and custom entries. 
+
+You can pass additional parameter with `Logger` type to log "send, receive, execute" and custom entries.
+
 ```swift
 import TDLibKit
 public final class StdOutLogger: Logger {
@@ -217,13 +244,16 @@ let client = TdClientImpl(completionQueue: .main, logger: StdOutLogger())
 ```
 
 ## Build
+
 You can find more about build process in [Github Actions](.github/workflows/ci.yml) file.
 
 ## Credits
-- Anton Glezman for [Build Guide](https://github.com/modestman/tdlib-swift), [TL Scheme parser](https://github.com/modestman/tl2swift) and basic implementation
+
+- Anton Glezman for [Build Guide](https://github.com/modestman/tdlib-swift)
+  , [TL Scheme parser](https://github.com/modestman/tl2swift) and basic implementation
 - Leo Mehlig for [TDLib-iOS](https://github.com/leoMehlig/TDLib-iOS) and contributions to run TDLib on Swift
 - Telegram Team for [TDLib](https://github.com/tdlib/td)
 
-
 ## License
+
 [MIT](LICENSE)
