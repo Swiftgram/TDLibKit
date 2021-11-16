@@ -16,8 +16,7 @@ open class TdClientImpl: TdClient {
     private let tdlibMainQueue = DispatchQueue(label: "TDLib", qos: .utility)
     private let tdlibQueryQueue = DispatchQueue(label: "TDLibQuery", qos: .userInitiated)
     private let completionQueue: DispatchQueue
-    private var queryId: Int64 = 0
-    private var awaitingCompletions = [Int64: CompletionHandler]()
+    private var awaitingCompletions = [String: CompletionHandler]()
     private var updateHandler: ((Data) -> Void)?
     private let logger: Logger?
     private var isClientDestroyed = true
@@ -75,10 +74,8 @@ open class TdClientImpl: TdClient {
             guard let `self` = self else { return }
             var extra: String? = nil
             if let completion = completion {
-                let nextQueryId = self.queryId + 1
-                extra = "\(nextQueryId)"
-                self.awaitingCompletions[nextQueryId] = completion
-                self.queryId = nextQueryId
+                extra = UUID().uuidString
+                self.awaitingCompletions[extra!] = completion
             }
             if let data = try? query.make(with: extra),
                let str = String(data: data, encoding: .utf8) {
@@ -130,13 +127,12 @@ open class TdClientImpl: TdClient {
                 return
             }
             
-            if let extraStr = dictionary["@extra"] as? String,
-               let extra = Int64(extraStr) {
-                if let completion = self.awaitingCompletions[extra] {
+            if let extraStr = dictionary["@extra"] as? String {
+                if let completion = self.awaitingCompletions[extraStr] {
                     self.completionQueue.async {
                         completion(result)
                     }
-                    self.awaitingCompletions.removeValue(forKey: extra)
+                    self.awaitingCompletions.removeValue(forKey: extraStr)
                 }
             } else {
                 if self.checkClosingUpdate(dictionary) {
