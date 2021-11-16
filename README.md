@@ -20,11 +20,88 @@ Integration requires similar to [TDLibFramework Cocoapods & Flutter guide](https
 
 
 ## Usage
+Library provides multiple classes based on different approaches
+1. [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch
+2. Completion handlers & closures
+
+## Async/Await
+Available for iOS 15.0+, macOS 12.0+, watchOS 8.0+, tvOS 15.0+
+
+### Create Client & API instance
+```swift
+import TDLibKit
+let client = AsyncTdClientImpl()
+let api = AsyncTdApi(client: client)
+api.client.start() // Client start required!
+```
+
+### Synchronious requests
+Only for methods with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)" in docs
+```swift
+let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
+do {
+    let result = try api.client.execute(query: DTO(query))
+} catch {
+    print("Error in SetLogVerbosityLevel request \(error.localizedDescription)")
+}
+print("Response dict \(result)")
+```
+
+### Async requests
+```swift
+let messages = try await api.getChatHistory(
+    chatId: chatId,
+    fromMessageId: 0,
+    limit: 50,
+    offset: 0,
+    onlyLocal: false, // Request remote messages from server
+    completion: { result in
+        // Handle Errors
+        if case .failure(let error) = result {
+            self.delegate?.onError(error)
+            print("Error in getChatHistory request \(error.localizedDescription)")
+        } else if let messages = try? result.get().messages {
+            // Handle messages
+            
+        }
+    }
+)
+for message in chatHistory.messages {
+    switch message.content {
+        case .messageText(let text):
+            print(text.text.text)
+            
+        case .messageAnimation:
+            print("<Animation>")
+            
+        case .messagePhoto(let photo):
+            print("<Photo>\n\(photo.caption.text)")
+            
+        case .messageSticker(let sticker):
+            print(sticker.sticker.emoji)
+            
+        case .messageVideo(let video):
+            print("<Video>\n\(video.caption.text)")
+            
+            // ...
+            
+        default:
+            print("Unknown message content \(message.content)")
+    }
+}
+
+```
+
+### Listen for updates
+todo
+
+## Completion handlers
 ### Create Client & API instance
 ```swift
 import TDLibKit
 let client = TdClientImpl(completionQueue: .main)
 let api: TdApi = TdApi(client: client)
+// Client start not required
 ```
 
 ### Synchronious requests
@@ -46,44 +123,45 @@ if case .failure(let error) = result {
 ### Async requests
 ```swift
 try? api.getChatHistory(
-            chatId: chatId,
-            fromMessageId: 0,
-            limit: 50,
-            offset: 0,
-            onlyLocal: false, // Request remote messages from server
-            completion: { result in
-                // Handle Errors
-                if case .failure(let error) = result {
-                    self.delegate?.onError(error)
-                    print("Error in getChatHistory request \(error.localizedDescription)")
-                } else if let messages = try? result.get().messages {
-                    // Handle messages
-                    for message in messages {
-                        switch message.content {
-                        case .messageText(let text):
-                            print(text.text.text)
-                            
-                        case .messageAnimation:
-                            print("<Animation>")
-
-                        case .messagePhoto(let photo):
-                            print("<Photo>\n\(photo.caption.text)")
-                            
-                        case .messageSticker(let sticker):
-                            print(sticker.sticker.emoji)
-                            
-                        case .messageVideo(let video):
-                            print("<Video>\n\(video.caption.text)")
-                        
-                        // ...
-
-                        default:
-                            print("Unknown message content \(message.content)")
-                        }
-                    }
+    chatId: chatId,
+    fromMessageId: 0,
+    limit: 50,
+    offset: 0,
+    onlyLocal: false, // Request remote messages from server
+    completion: { result in
+        // Handle Errors
+        if case .failure(let error) = result {
+            self.delegate?.onError(error)
+            print("Error in getChatHistory request \(error.localizedDescription)")
+        } else if let messages = try? result.get().messages {
+            // Handle messages
+            for message in messages {
+                switch message.content {
+                case .messageText(let text):
+                    print(text.text.text)
+                    
+                case .messageAnimation:
+                    print("<Animation>")
+                    
+                case .messagePhoto(let photo):
+                    print("<Photo>\n\(photo.caption.text)")
+                    
+                case .messageSticker(let sticker):
+                    print(sticker.sticker.emoji)
+                    
+                case .messageVideo(let video):
+                    print("<Video>\n\(video.caption.text)")
+                    
+                    // ...
+                    
+                default:
+                    print("Unknown message content \(message.content)")
                 }
             }
-        )
+        }
+    }
+)
+
 ```
 
 
