@@ -24,7 +24,7 @@ public final class TdApi {
 
 
     /// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
-    public func getAuthorizationState(completion: @escaping (Result<AuthorizationState, Swift.Error>) -> AuthorizationState) throws {
+    public func getAuthorizationState(, completion: @escaping (Result<AuthorizationState, Swift.Error>) -> Void) throws {
         let query = GetAuthorizationState()
         execute(query: query, completion: completion)
     }
@@ -33,7 +33,7 @@ public final class TdApi {
     /// - Parameter parameters: Parameters for TDLib initialization
     public func setTdlibParameters(
         parameters: TdlibParameters?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetTdlibParameters(
             parameters: parameters
@@ -45,7 +45,7 @@ public final class TdApi {
     /// - Parameter encryptionKey: Encryption key to check or set up
     public func checkDatabaseEncryptionKey(
         encryptionKey: Data?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckDatabaseEncryptionKey(
             encryptionKey: encryptionKey
@@ -59,7 +59,7 @@ public final class TdApi {
     public func setAuthenticationPhoneNumber(
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetAuthenticationPhoneNumber(
             phoneNumber: phoneNumber,
@@ -69,7 +69,7 @@ public final class TdApi {
     }
 
     /// Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed
-    public func resendAuthenticationCode(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func resendAuthenticationCode(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResendAuthenticationCode()
         execute(query: query, completion: completion)
     }
@@ -78,7 +78,7 @@ public final class TdApi {
     /// - Parameter code: The verification code received via SMS, Telegram message, phone call, or flash call
     public func checkAuthenticationCode(
         code: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckAuthenticationCode(
             code: code
@@ -90,7 +90,7 @@ public final class TdApi {
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
     public func requestQrCodeAuthentication(
         otherUserIds: [Int64]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RequestQrCodeAuthentication(
             otherUserIds: otherUserIds
@@ -104,7 +104,7 @@ public final class TdApi {
     public func registerUser(
         firstName: String?,
         lastName: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RegisterUser(
             firstName: firstName,
@@ -117,7 +117,7 @@ public final class TdApi {
     /// - Parameter password: The password to check
     public func checkAuthenticationPassword(
         password: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckAuthenticationPassword(
             password: password
@@ -126,7 +126,7 @@ public final class TdApi {
     }
 
     /// Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
-    public func requestAuthenticationPasswordRecovery(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func requestAuthenticationPasswordRecovery(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = RequestAuthenticationPasswordRecovery()
         execute(query: query, completion: completion)
     }
@@ -135,7 +135,7 @@ public final class TdApi {
     /// - Parameter recoveryCode: Recovery code to check
     public func checkAuthenticationPasswordRecoveryCode(
         recoveryCode: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckAuthenticationPasswordRecoveryCode(
             recoveryCode: recoveryCode
@@ -151,7 +151,7 @@ public final class TdApi {
         newHint: String?,
         newPassword: String?,
         recoveryCode: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RecoverAuthenticationPassword(
             newHint: newHint,
@@ -165,7 +165,7 @@ public final class TdApi {
     /// - Parameter token: The bot token
     public func checkAuthenticationBotToken(
         token: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckAuthenticationBotToken(
             token: token
@@ -174,19 +174,19 @@ public final class TdApi {
     }
 
     /// Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
-    public func logOut(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func logOut(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = LogOut()
         execute(query: query, completion: completion)
     }
 
     /// Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
-    public func close(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func close(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = Close()
         execute(query: query, completion: completion)
     }
 
     /// Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
-    public func destroy(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func destroy(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = Destroy()
         execute(query: query, completion: completion)
     }
@@ -195,7 +195,7 @@ public final class TdApi {
     /// - Parameter link: A link from a QR code. The link must be scanned by the in-app camera
     public func confirmQrCodeAuthentication(
         link: String?
-        completion: @escaping (Result<Session, Swift.Error>) -> Session
+        , completion: @escaping (Result<Session, Swift.Error>) -> Void
     ) throws {
         let query = ConfirmQrCodeAuthentication(
             link: link
@@ -204,7 +204,7 @@ public final class TdApi {
     }
 
     /// Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
-    public func getCurrentState(completion: @escaping (Result<Updates, Swift.Error>) -> Updates) throws {
+    public func getCurrentState(, completion: @escaping (Result<Updates, Swift.Error>) -> Void) throws {
         let query = GetCurrentState()
         execute(query: query, completion: completion)
     }
@@ -213,7 +213,7 @@ public final class TdApi {
     /// - Parameter newEncryptionKey: New encryption key
     public func setDatabaseEncryptionKey(
         newEncryptionKey: Data?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetDatabaseEncryptionKey(
             newEncryptionKey: newEncryptionKey
@@ -222,7 +222,7 @@ public final class TdApi {
     }
 
     /// Returns the current state of 2-step verification
-    public func getPasswordState(completion: @escaping (Result<PasswordState, Swift.Error>) -> PasswordState) throws {
+    public func getPasswordState(, completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
         let query = GetPasswordState()
         execute(query: query, completion: completion)
     }
@@ -239,7 +239,7 @@ public final class TdApi {
         newRecoveryEmailAddress: String?,
         oldPassword: String?,
         setRecoveryEmailAddress: Bool?
-        completion: @escaping (Result<PasswordState, Swift.Error>) -> PasswordState
+        , completion: @escaping (Result<PasswordState, Swift.Error>) -> Void
     ) throws {
         let query = SetPassword(
             newHint: newHint,
@@ -255,7 +255,7 @@ public final class TdApi {
     /// - Parameter password: The password for the current user
     public func getRecoveryEmailAddress(
         password: String?
-        completion: @escaping (Result<RecoveryEmailAddress, Swift.Error>) -> RecoveryEmailAddress
+        , completion: @escaping (Result<RecoveryEmailAddress, Swift.Error>) -> Void
     ) throws {
         let query = GetRecoveryEmailAddress(
             password: password
@@ -269,7 +269,7 @@ public final class TdApi {
     public func setRecoveryEmailAddress(
         newRecoveryEmailAddress: String?,
         password: String?
-        completion: @escaping (Result<PasswordState, Swift.Error>) -> PasswordState
+        , completion: @escaping (Result<PasswordState, Swift.Error>) -> Void
     ) throws {
         let query = SetRecoveryEmailAddress(
             newRecoveryEmailAddress: newRecoveryEmailAddress,
@@ -282,7 +282,7 @@ public final class TdApi {
     /// - Parameter code: Verification code
     public func checkRecoveryEmailAddressCode(
         code: String?
-        completion: @escaping (Result<PasswordState, Swift.Error>) -> PasswordState
+        , completion: @escaping (Result<PasswordState, Swift.Error>) -> Void
     ) throws {
         let query = CheckRecoveryEmailAddressCode(
             code: code
@@ -291,13 +291,13 @@ public final class TdApi {
     }
 
     /// Resends the 2-step verification recovery email address verification code
-    public func resendRecoveryEmailAddressCode(completion: @escaping (Result<PasswordState, Swift.Error>) -> PasswordState) throws {
+    public func resendRecoveryEmailAddressCode(, completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
         let query = ResendRecoveryEmailAddressCode()
         execute(query: query, completion: completion)
     }
 
     /// Requests to send a 2-step verification password recovery code to an email address that was previously set up
-    public func requestPasswordRecovery(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> EmailAddressAuthenticationCodeInfo) throws {
+    public func requestPasswordRecovery(, completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = RequestPasswordRecovery()
         execute(query: query, completion: completion)
     }
@@ -306,7 +306,7 @@ public final class TdApi {
     /// - Parameter recoveryCode: Recovery code to check
     public func checkPasswordRecoveryCode(
         recoveryCode: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckPasswordRecoveryCode(
             recoveryCode: recoveryCode
@@ -322,7 +322,7 @@ public final class TdApi {
         newHint: String?,
         newPassword: String?,
         recoveryCode: String?
-        completion: @escaping (Result<PasswordState, Swift.Error>) -> PasswordState
+        , completion: @escaping (Result<PasswordState, Swift.Error>) -> Void
     ) throws {
         let query = RecoverPassword(
             newHint: newHint,
@@ -333,13 +333,13 @@ public final class TdApi {
     }
 
     /// Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
-    public func resetPassword(completion: @escaping (Result<ResetPasswordResult, Swift.Error>) -> ResetPasswordResult) throws {
+    public func resetPassword(, completion: @escaping (Result<ResetPasswordResult, Swift.Error>) -> Void) throws {
         let query = ResetPassword()
         execute(query: query, completion: completion)
     }
 
     /// Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
-    public func cancelPasswordReset(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func cancelPasswordReset(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = CancelPasswordReset()
         execute(query: query, completion: completion)
     }
@@ -350,7 +350,7 @@ public final class TdApi {
     public func createTemporaryPassword(
         password: String?,
         validFor: Int?
-        completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> TemporaryPasswordState
+        , completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> Void
     ) throws {
         let query = CreateTemporaryPassword(
             password: password,
@@ -360,13 +360,13 @@ public final class TdApi {
     }
 
     /// Returns information about the current temporary password
-    public func getTemporaryPasswordState(completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> TemporaryPasswordState) throws {
+    public func getTemporaryPasswordState(, completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> Void) throws {
         let query = GetTemporaryPasswordState()
         execute(query: query, completion: completion)
     }
 
     /// Returns the current user
-    public func getMe(completion: @escaping (Result<User, Swift.Error>) -> User) throws {
+    public func getMe(, completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetMe()
         execute(query: query, completion: completion)
     }
@@ -375,7 +375,7 @@ public final class TdApi {
     /// - Parameter userId: User identifier
     public func getUser(
         userId: Int64?
-        completion: @escaping (Result<User, Swift.Error>) -> User
+        , completion: @escaping (Result<User, Swift.Error>) -> Void
     ) throws {
         let query = GetUser(
             userId: userId
@@ -387,7 +387,7 @@ public final class TdApi {
     /// - Parameter userId: User identifier
     public func getUserFullInfo(
         userId: Int64?
-        completion: @escaping (Result<UserFullInfo, Swift.Error>) -> UserFullInfo
+        , completion: @escaping (Result<UserFullInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetUserFullInfo(
             userId: userId
@@ -399,7 +399,7 @@ public final class TdApi {
     /// - Parameter basicGroupId: Basic group identifier
     public func getBasicGroup(
         basicGroupId: Int64?
-        completion: @escaping (Result<BasicGroup, Swift.Error>) -> BasicGroup
+        , completion: @escaping (Result<BasicGroup, Swift.Error>) -> Void
     ) throws {
         let query = GetBasicGroup(
             basicGroupId: basicGroupId
@@ -411,7 +411,7 @@ public final class TdApi {
     /// - Parameter basicGroupId: Basic group identifier
     public func getBasicGroupFullInfo(
         basicGroupId: Int64?
-        completion: @escaping (Result<BasicGroupFullInfo, Swift.Error>) -> BasicGroupFullInfo
+        , completion: @escaping (Result<BasicGroupFullInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetBasicGroupFullInfo(
             basicGroupId: basicGroupId
@@ -423,7 +423,7 @@ public final class TdApi {
     /// - Parameter supergroupId: Supergroup or channel identifier
     public func getSupergroup(
         supergroupId: Int64?
-        completion: @escaping (Result<Supergroup, Swift.Error>) -> Supergroup
+        , completion: @escaping (Result<Supergroup, Swift.Error>) -> Void
     ) throws {
         let query = GetSupergroup(
             supergroupId: supergroupId
@@ -435,7 +435,7 @@ public final class TdApi {
     /// - Parameter supergroupId: Supergroup or channel identifier
     public func getSupergroupFullInfo(
         supergroupId: Int64?
-        completion: @escaping (Result<SupergroupFullInfo, Swift.Error>) -> SupergroupFullInfo
+        , completion: @escaping (Result<SupergroupFullInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetSupergroupFullInfo(
             supergroupId: supergroupId
@@ -447,7 +447,7 @@ public final class TdApi {
     /// - Parameter secretChatId: Secret chat identifier
     public func getSecretChat(
         secretChatId: Int?
-        completion: @escaping (Result<SecretChat, Swift.Error>) -> SecretChat
+        , completion: @escaping (Result<SecretChat, Swift.Error>) -> Void
     ) throws {
         let query = GetSecretChat(
             secretChatId: secretChatId
@@ -459,7 +459,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func getChat(
         chatId: Int64?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = GetChat(
             chatId: chatId
@@ -473,7 +473,7 @@ public final class TdApi {
     public func getMessage(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetMessage(
             chatId: chatId,
@@ -488,7 +488,7 @@ public final class TdApi {
     public func getMessageLocally(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageLocally(
             chatId: chatId,
@@ -503,7 +503,7 @@ public final class TdApi {
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetRepliedMessage(
             chatId: chatId,
@@ -516,7 +516,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat the message belongs to
     public func getChatPinnedMessage(
         chatId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetChatPinnedMessage(
             chatId: chatId
@@ -532,7 +532,7 @@ public final class TdApi {
         callbackQueryId: TdInt64?,
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetCallbackQueryMessage(
             callbackQueryId: callbackQueryId,
@@ -548,7 +548,7 @@ public final class TdApi {
     public func getMessages(
         chatId: Int64?,
         messageIds: [Int64]?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = GetMessages(
             chatId: chatId,
@@ -563,7 +563,7 @@ public final class TdApi {
     public func getMessageThread(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<MessageThreadInfo, Swift.Error>) -> MessageThreadInfo
+        , completion: @escaping (Result<MessageThreadInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageThread(
             chatId: chatId,
@@ -578,7 +578,7 @@ public final class TdApi {
     public func getMessageViewers(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Users, Swift.Error>) -> Users
+        , completion: @escaping (Result<Users, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageViewers(
             chatId: chatId,
@@ -591,7 +591,7 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the file to get
     public func getFile(
         fileId: Int?
-        completion: @escaping (Result<File, Swift.Error>) -> File
+        , completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = GetFile(
             fileId: fileId
@@ -605,7 +605,7 @@ public final class TdApi {
     public func getRemoteFile(
         fileType: FileType?,
         remoteFileId: String?
-        completion: @escaping (Result<File, Swift.Error>) -> File
+        , completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = GetRemoteFile(
             fileType: fileType,
@@ -620,7 +620,7 @@ public final class TdApi {
     public func loadChats(
         chatList: ChatList?,
         limit: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = LoadChats(
             chatList: chatList,
@@ -635,7 +635,7 @@ public final class TdApi {
     public func getChats(
         chatList: ChatList?,
         limit: Int?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = GetChats(
             chatList: chatList,
@@ -648,7 +648,7 @@ public final class TdApi {
     /// - Parameter username: Username to be resolved
     public func searchPublicChat(
         username: String?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = SearchPublicChat(
             username: username
@@ -660,7 +660,7 @@ public final class TdApi {
     /// - Parameter query: Query to search for
     public func searchPublicChats(
         query: String?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchPublicChats(
             query: query
@@ -674,7 +674,7 @@ public final class TdApi {
     public func searchChats(
         limit: Int?,
         query: String?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchChats(
             limit: limit,
@@ -689,7 +689,7 @@ public final class TdApi {
     public func searchChatsOnServer(
         limit: Int?,
         query: String?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatsOnServer(
             limit: limit,
@@ -702,7 +702,7 @@ public final class TdApi {
     /// - Parameter location: Current user location
     public func searchChatsNearby(
         location: Location?
-        completion: @escaping (Result<ChatsNearby, Swift.Error>) -> ChatsNearby
+        , completion: @escaping (Result<ChatsNearby, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatsNearby(
             location: location
@@ -716,7 +716,7 @@ public final class TdApi {
     public func getTopChats(
         category: TopChatCategory?,
         limit: Int?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = GetTopChats(
             category: category,
@@ -731,7 +731,7 @@ public final class TdApi {
     public func removeTopChat(
         category: TopChatCategory?,
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveTopChat(
             category: category,
@@ -744,7 +744,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to add
     public func addRecentlyFoundChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddRecentlyFoundChat(
             chatId: chatId
@@ -756,7 +756,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to be removed
     public func removeRecentlyFoundChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveRecentlyFoundChat(
             chatId: chatId
@@ -765,7 +765,7 @@ public final class TdApi {
     }
 
     /// Clears the list of recently found chats
-    public func clearRecentlyFoundChats(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func clearRecentlyFoundChats(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ClearRecentlyFoundChats()
         execute(query: query, completion: completion)
     }
@@ -774,7 +774,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of chats to be returned
     public func getRecentlyOpenedChats(
         limit: Int?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = GetRecentlyOpenedChats(
             limit: limit
@@ -788,7 +788,7 @@ public final class TdApi {
     public func checkChatUsername(
         chatId: Int64?,
         username: String?
-        completion: @escaping (Result<CheckChatUsernameResult, Swift.Error>) -> CheckChatUsernameResult
+        , completion: @escaping (Result<CheckChatUsernameResult, Swift.Error>) -> Void
     ) throws {
         let query = CheckChatUsername(
             chatId: chatId,
@@ -801,7 +801,7 @@ public final class TdApi {
     /// - Parameter type: Type of the public chats to return
     public func getCreatedPublicChats(
         type: PublicChatType?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = GetCreatedPublicChats(
             type: type
@@ -813,7 +813,7 @@ public final class TdApi {
     /// - Parameter type: Type of the public chats, for which to check the limit
     public func checkCreatedPublicChatsLimit(
         type: PublicChatType?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckCreatedPublicChatsLimit(
             type: type
@@ -822,13 +822,13 @@ public final class TdApi {
     }
 
     /// Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
-    public func getSuitableDiscussionChats(completion: @escaping (Result<Chats, Swift.Error>) -> Chats) throws {
+    public func getSuitableDiscussionChats(, completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetSuitableDiscussionChats()
         execute(query: query, completion: completion)
     }
 
     /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
-    public func getInactiveSupergroupChats(completion: @escaping (Result<Chats, Swift.Error>) -> Chats) throws {
+    public func getInactiveSupergroupChats(, completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetInactiveSupergroupChats()
         execute(query: query, completion: completion)
     }
@@ -841,7 +841,7 @@ public final class TdApi {
         limit: Int?,
         offsetChatId: Int64?,
         userId: Int64?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = GetGroupsInCommon(
             limit: limit,
@@ -863,7 +863,7 @@ public final class TdApi {
         limit: Int?,
         offset: Int?,
         onlyLocal: Bool?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = GetChatHistory(
             chatId: chatId,
@@ -887,7 +887,7 @@ public final class TdApi {
         limit: Int?,
         messageId: Int64?,
         offset: Int?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageThreadHistory(
             chatId: chatId,
@@ -907,7 +907,7 @@ public final class TdApi {
         chatId: Int64?,
         removeFromChatList: Bool?,
         revoke: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteChatHistory(
             chatId: chatId,
@@ -921,7 +921,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func deleteChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteChat(
             chatId: chatId
@@ -947,7 +947,7 @@ public final class TdApi {
         offset: Int?,
         query: String?,
         sender: MessageSender?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatMessages(
             chatId: chatId,
@@ -982,7 +982,7 @@ public final class TdApi {
         offsetDate: Int?,
         offsetMessageId: Int64?,
         query: String?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SearchMessages(
             chatList: chatList,
@@ -1010,7 +1010,7 @@ public final class TdApi {
         limit: Int?,
         offset: String?,
         query: String?
-        completion: @escaping (Result<FoundMessages, Swift.Error>) -> FoundMessages
+        , completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
     ) throws {
         let query = SearchSecretMessages(
             chatId: chatId,
@@ -1030,7 +1030,7 @@ public final class TdApi {
         fromMessageId: Int64?,
         limit: Int?,
         onlyMissed: Bool?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SearchCallMessages(
             fromMessageId: fromMessageId,
@@ -1044,7 +1044,7 @@ public final class TdApi {
     /// - Parameter revoke: Pass true to delete the messages for all users
     public func deleteAllCallMessages(
         revoke: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteAllCallMessages(
             revoke: revoke
@@ -1058,7 +1058,7 @@ public final class TdApi {
     public func searchChatRecentLocationMessages(
         chatId: Int64?,
         limit: Int?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatRecentLocationMessages(
             chatId: chatId,
@@ -1068,7 +1068,7 @@ public final class TdApi {
     }
 
     /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
-    public func getActiveLiveLocationMessages(completion: @escaping (Result<Messages, Swift.Error>) -> Messages) throws {
+    public func getActiveLiveLocationMessages(, completion: @escaping (Result<Messages, Swift.Error>) -> Void) throws {
         let query = GetActiveLiveLocationMessages()
         execute(query: query, completion: completion)
     }
@@ -1079,7 +1079,7 @@ public final class TdApi {
     public func getChatMessageByDate(
         chatId: Int64?,
         date: Int?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageByDate(
             chatId: chatId,
@@ -1098,7 +1098,7 @@ public final class TdApi {
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?
-        completion: @escaping (Result<MessagePositions, Swift.Error>) -> MessagePositions
+        , completion: @escaping (Result<MessagePositions, Swift.Error>) -> Void
     ) throws {
         let query = GetChatSparseMessagePositions(
             chatId: chatId,
@@ -1117,7 +1117,7 @@ public final class TdApi {
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?
-        completion: @escaping (Result<MessageCalendar, Swift.Error>) -> MessageCalendar
+        , completion: @escaping (Result<MessageCalendar, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCalendar(
             chatId: chatId,
@@ -1135,7 +1135,7 @@ public final class TdApi {
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?
-        completion: @escaping (Result<Count, Swift.Error>) -> Count
+        , completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCount(
             chatId: chatId,
@@ -1149,7 +1149,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func getChatScheduledMessages(
         chatId: Int64?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = GetChatScheduledMessages(
             chatId: chatId
@@ -1167,7 +1167,7 @@ public final class TdApi {
         limit: Int?,
         messageId: Int64?,
         offset: String?
-        completion: @escaping (Result<FoundMessages, Swift.Error>) -> FoundMessages
+        , completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
     ) throws {
         let query = GetMessagePublicForwards(
             chatId: chatId,
@@ -1182,7 +1182,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     public func getChatSponsoredMessages(
         chatId: Int64?
-        completion: @escaping (Result<SponsoredMessages, Swift.Error>) -> SponsoredMessages
+        , completion: @escaping (Result<SponsoredMessages, Swift.Error>) -> Void
     ) throws {
         let query = GetChatSponsoredMessages(
             chatId: chatId
@@ -1196,7 +1196,7 @@ public final class TdApi {
     public func viewSponsoredMessage(
         chatId: Int64?,
         sponsoredMessageId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ViewSponsoredMessage(
             chatId: chatId,
@@ -1211,7 +1211,7 @@ public final class TdApi {
     public func removeNotification(
         notificationGroupId: Int?,
         notificationId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveNotification(
             notificationGroupId: notificationGroupId,
@@ -1226,7 +1226,7 @@ public final class TdApi {
     public func removeNotificationGroup(
         maxNotificationId: Int?,
         notificationGroupId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveNotificationGroup(
             maxNotificationId: maxNotificationId,
@@ -1247,7 +1247,7 @@ public final class TdApi {
         forComment: Bool?,
         mediaTimestamp: Int?,
         messageId: Int64?
-        completion: @escaping (Result<MessageLink, Swift.Error>) -> MessageLink
+        , completion: @escaping (Result<MessageLink, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageLink(
             chatId: chatId,
@@ -1267,7 +1267,7 @@ public final class TdApi {
         chatId: Int64?,
         forAlbum: Bool?,
         messageId: Int64?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageEmbeddingCode(
             chatId: chatId,
@@ -1281,7 +1281,7 @@ public final class TdApi {
     /// - Parameter url: The message link
     public func getMessageLinkInfo(
         url: String?
-        completion: @escaping (Result<MessageLinkInfo, Swift.Error>) -> MessageLinkInfo
+        , completion: @escaping (Result<MessageLinkInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageLinkInfo(
             url: url
@@ -1303,7 +1303,7 @@ public final class TdApi {
         options: MessageSendOptions?,
         replyMarkup: ReplyMarkup?,
         replyToMessageId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = SendMessage(
             chatId: chatId,
@@ -1328,7 +1328,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         replyToMessageId: Int64?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SendMessageAlbum(
             chatId: chatId,
@@ -1348,7 +1348,7 @@ public final class TdApi {
         botUserId: Int64?,
         chatId: Int64?,
         parameter: String?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = SendBotStartMessage(
             botUserId: botUserId,
@@ -1374,7 +1374,7 @@ public final class TdApi {
         queryId: TdInt64?,
         replyToMessageId: Int64?,
         resultId: String?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = SendInlineQueryResultMessage(
             chatId: chatId,
@@ -1404,7 +1404,7 @@ public final class TdApi {
         options: MessageSendOptions?,
         removeCaption: Bool?,
         sendCopy: Bool?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = ForwardMessages(
             chatId: chatId,
@@ -1424,7 +1424,7 @@ public final class TdApi {
     public func resendMessages(
         chatId: Int64?,
         messageIds: [Int64]?
-        completion: @escaping (Result<Messages, Swift.Error>) -> Messages
+        , completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = ResendMessages(
             chatId: chatId,
@@ -1437,7 +1437,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func sendChatScreenshotTakenNotification(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendChatScreenshotTakenNotification(
             chatId: chatId
@@ -1457,7 +1457,7 @@ public final class TdApi {
         inputMessageContent: InputMessageContent?,
         replyToMessageId: Int64?,
         sender: MessageSender?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = AddLocalMessage(
             chatId: chatId,
@@ -1477,7 +1477,7 @@ public final class TdApi {
         chatId: Int64?,
         messageIds: [Int64]?,
         revoke: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteMessages(
             chatId: chatId,
@@ -1493,7 +1493,7 @@ public final class TdApi {
     public func deleteChatMessagesFromUser(
         chatId: Int64?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteChatMessagesFromUser(
             chatId: chatId,
@@ -1512,7 +1512,7 @@ public final class TdApi {
         maxDate: Int?,
         minDate: Int?,
         revoke: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteChatMessagesByDate(
             chatId: chatId,
@@ -1533,7 +1533,7 @@ public final class TdApi {
         inputMessageContent: InputMessageContent?,
         messageId: Int64?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageText(
             chatId: chatId,
@@ -1558,7 +1558,7 @@ public final class TdApi {
         messageId: Int64?,
         proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageLiveLocation(
             chatId: chatId,
@@ -1581,7 +1581,7 @@ public final class TdApi {
         inputMessageContent: InputMessageContent?,
         messageId: Int64?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageMedia(
             chatId: chatId,
@@ -1602,7 +1602,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageCaption(
             caption: caption,
@@ -1621,7 +1621,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageReplyMarkup(
             chatId: chatId,
@@ -1639,7 +1639,7 @@ public final class TdApi {
         inlineMessageId: String?,
         inputMessageContent: InputMessageContent?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageText(
             inlineMessageId: inlineMessageId,
@@ -1661,7 +1661,7 @@ public final class TdApi {
         location: Location?,
         proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageLiveLocation(
             heading: heading,
@@ -1681,7 +1681,7 @@ public final class TdApi {
         inlineMessageId: String?,
         inputMessageContent: InputMessageContent?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageMedia(
             inlineMessageId: inlineMessageId,
@@ -1699,7 +1699,7 @@ public final class TdApi {
         caption: FormattedText?,
         inlineMessageId: String?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageCaption(
             caption: caption,
@@ -1715,7 +1715,7 @@ public final class TdApi {
     public func editInlineMessageReplyMarkup(
         inlineMessageId: String?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageReplyMarkup(
             inlineMessageId: inlineMessageId,
@@ -1732,7 +1732,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         schedulingState: MessageSchedulingState?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageSchedulingState(
             chatId: chatId,
@@ -1746,7 +1746,7 @@ public final class TdApi {
     /// - Parameter text: The text in which to look for entites
     public func getTextEntities(
         text: String?
-        completion: @escaping (Result<TextEntities, Swift.Error>) -> TextEntities
+        , completion: @escaping (Result<TextEntities, Swift.Error>) -> Void
     ) throws {
         let query = GetTextEntities(
             text: text
@@ -1760,7 +1760,7 @@ public final class TdApi {
     public func parseTextEntities(
         parseMode: TextParseMode?,
         text: String?
-        completion: @escaping (Result<FormattedText, Swift.Error>) -> FormattedText
+        , completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = ParseTextEntities(
             parseMode: parseMode,
@@ -1773,7 +1773,7 @@ public final class TdApi {
     /// - Parameter text: The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
     public func parseMarkdown(
         text: FormattedText?
-        completion: @escaping (Result<FormattedText, Swift.Error>) -> FormattedText
+        , completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = ParseMarkdown(
             text: text
@@ -1785,7 +1785,7 @@ public final class TdApi {
     /// - Parameter text: The text
     public func getMarkdownText(
         text: FormattedText?
-        completion: @escaping (Result<FormattedText, Swift.Error>) -> FormattedText
+        , completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = GetMarkdownText(
             text: text
@@ -1797,7 +1797,7 @@ public final class TdApi {
     /// - Parameter fileName: The name of the file or path to the file
     public func getFileMimeType(
         fileName: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetFileMimeType(
             fileName: fileName
@@ -1809,7 +1809,7 @@ public final class TdApi {
     /// - Parameter mimeType: The MIME type of the file
     public func getFileExtension(
         mimeType: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetFileExtension(
             mimeType: mimeType
@@ -1821,7 +1821,7 @@ public final class TdApi {
     /// - Parameter fileName: File name or path to the file
     public func cleanFileName(
         fileName: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = CleanFileName(
             fileName: fileName
@@ -1839,7 +1839,7 @@ public final class TdApi {
         languagePackDatabasePath: String?,
         languagePackId: String?,
         localizationTarget: String?
-        completion: @escaping (Result<LanguagePackStringValue, Swift.Error>) -> LanguagePackStringValue
+        , completion: @escaping (Result<LanguagePackStringValue, Swift.Error>) -> Void
     ) throws {
         let query = GetLanguagePackString(
             key: key,
@@ -1854,7 +1854,7 @@ public final class TdApi {
     /// - Parameter json: The JSON-serialized string
     public func getJsonValue(
         json: String?
-        completion: @escaping (Result<JsonValue, Swift.Error>) -> JsonValue
+        , completion: @escaping (Result<JsonValue, Swift.Error>) -> Void
     ) throws {
         let query = GetJsonValue(
             json: json
@@ -1866,7 +1866,7 @@ public final class TdApi {
     /// - Parameter jsonValue: The JsonValue object
     public func getJsonString(
         jsonValue: JsonValue?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetJsonString(
             jsonValue: jsonValue
@@ -1882,7 +1882,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         optionIds: [Int]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetPollAnswer(
             chatId: chatId,
@@ -1904,7 +1904,7 @@ public final class TdApi {
         messageId: Int64?,
         offset: Int?,
         optionId: Int?
-        completion: @escaping (Result<Users, Swift.Error>) -> Users
+        , completion: @escaping (Result<Users, Swift.Error>) -> Void
     ) throws {
         let query = GetPollVoters(
             chatId: chatId,
@@ -1924,7 +1924,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         replyMarkup: ReplyMarkup?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = StopPoll(
             chatId: chatId,
@@ -1938,7 +1938,7 @@ public final class TdApi {
     /// - Parameter action: Suggested action to hide
     public func hideSuggestedAction(
         action: SuggestedAction?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = HideSuggestedAction(
             action: action
@@ -1954,7 +1954,7 @@ public final class TdApi {
         buttonId: Int64?,
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<LoginUrlInfo, Swift.Error>) -> LoginUrlInfo
+        , completion: @escaping (Result<LoginUrlInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetLoginUrlInfo(
             buttonId: buttonId,
@@ -1974,7 +1974,7 @@ public final class TdApi {
         buttonId: Int64?,
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl
+        , completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetLoginUrl(
             allowWriteAccess: allowWriteAccess,
@@ -1997,7 +1997,7 @@ public final class TdApi {
         offset: String?,
         query: String?,
         userLocation: Location?
-        completion: @escaping (Result<InlineQueryResults, Swift.Error>) -> InlineQueryResults
+        , completion: @escaping (Result<InlineQueryResults, Swift.Error>) -> Void
     ) throws {
         let query = GetInlineQueryResults(
             botUserId: botUserId,
@@ -2025,7 +2025,7 @@ public final class TdApi {
         results: [InputInlineQueryResult]?,
         switchPmParameter: String?,
         switchPmText: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AnswerInlineQuery(
             cacheTime: cacheTime,
@@ -2047,7 +2047,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         payload: CallbackQueryPayload?
-        completion: @escaping (Result<CallbackQueryAnswer, Swift.Error>) -> CallbackQueryAnswer
+        , completion: @escaping (Result<CallbackQueryAnswer, Swift.Error>) -> Void
     ) throws {
         let query = GetCallbackQueryAnswer(
             chatId: chatId,
@@ -2069,7 +2069,7 @@ public final class TdApi {
         showAlert: Bool?,
         text: String?,
         url: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AnswerCallbackQuery(
             cacheTime: cacheTime,
@@ -2089,7 +2089,7 @@ public final class TdApi {
         errorMessage: String?,
         shippingOptions: [ShippingOption]?,
         shippingQueryId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AnswerShippingQuery(
             errorMessage: errorMessage,
@@ -2105,7 +2105,7 @@ public final class TdApi {
     public func answerPreCheckoutQuery(
         errorMessage: String?,
         preCheckoutQueryId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AnswerPreCheckoutQuery(
             errorMessage: errorMessage,
@@ -2128,7 +2128,7 @@ public final class TdApi {
         messageId: Int64?,
         score: Int?,
         userId: Int64?
-        completion: @escaping (Result<Message, Swift.Error>) -> Message
+        , completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = SetGameScore(
             chatId: chatId,
@@ -2153,7 +2153,7 @@ public final class TdApi {
         inlineMessageId: String?,
         score: Int?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetInlineGameScore(
             editMessage: editMessage,
@@ -2173,7 +2173,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         userId: Int64?
-        completion: @escaping (Result<GameHighScores, Swift.Error>) -> GameHighScores
+        , completion: @escaping (Result<GameHighScores, Swift.Error>) -> Void
     ) throws {
         let query = GetGameHighScores(
             chatId: chatId,
@@ -2189,7 +2189,7 @@ public final class TdApi {
     public func getInlineGameHighScores(
         inlineMessageId: String?,
         userId: Int64?
-        completion: @escaping (Result<GameHighScores, Swift.Error>) -> GameHighScores
+        , completion: @escaping (Result<GameHighScores, Swift.Error>) -> Void
     ) throws {
         let query = GetInlineGameHighScores(
             inlineMessageId: inlineMessageId,
@@ -2204,7 +2204,7 @@ public final class TdApi {
     public func deleteChatReplyMarkup(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteChatReplyMarkup(
             chatId: chatId,
@@ -2221,7 +2221,7 @@ public final class TdApi {
         action: ChatAction?,
         chatId: Int64?,
         messageThreadId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendChatAction(
             action: action,
@@ -2235,7 +2235,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func openChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = OpenChat(
             chatId: chatId
@@ -2247,7 +2247,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func closeChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CloseChat(
             chatId: chatId
@@ -2265,7 +2265,7 @@ public final class TdApi {
         forceRead: Bool?,
         messageIds: [Int64]?,
         messageThreadId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ViewMessages(
             chatId: chatId,
@@ -2282,7 +2282,7 @@ public final class TdApi {
     public func openMessageContent(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = OpenMessageContent(
             chatId: chatId,
@@ -2297,7 +2297,7 @@ public final class TdApi {
     public func clickAnimatedEmojiMessage(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Sticker, Swift.Error>) -> Sticker
+        , completion: @escaping (Result<Sticker, Swift.Error>) -> Void
     ) throws {
         let query = ClickAnimatedEmojiMessage(
             chatId: chatId,
@@ -2310,7 +2310,7 @@ public final class TdApi {
     /// - Parameter link: The link
     public func getInternalLinkType(
         link: String?
-        completion: @escaping (Result<InternalLinkType, Swift.Error>) -> InternalLinkType
+        , completion: @escaping (Result<InternalLinkType, Swift.Error>) -> Void
     ) throws {
         let query = GetInternalLinkType(
             link: link
@@ -2322,7 +2322,7 @@ public final class TdApi {
     /// - Parameter link: The link
     public func getExternalLinkInfo(
         link: String?
-        completion: @escaping (Result<LoginUrlInfo, Swift.Error>) -> LoginUrlInfo
+        , completion: @escaping (Result<LoginUrlInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetExternalLinkInfo(
             link: link
@@ -2336,7 +2336,7 @@ public final class TdApi {
     public func getExternalLink(
         allowWriteAccess: Bool?,
         link: String?
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl
+        , completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetExternalLink(
             allowWriteAccess: allowWriteAccess,
@@ -2349,7 +2349,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func readAllChatMentions(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReadAllChatMentions(
             chatId: chatId
@@ -2363,7 +2363,7 @@ public final class TdApi {
     public func createPrivateChat(
         force: Bool?,
         userId: Int64?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreatePrivateChat(
             force: force,
@@ -2378,7 +2378,7 @@ public final class TdApi {
     public func createBasicGroupChat(
         basicGroupId: Int64?,
         force: Bool?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateBasicGroupChat(
             basicGroupId: basicGroupId,
@@ -2393,7 +2393,7 @@ public final class TdApi {
     public func createSupergroupChat(
         force: Bool?,
         supergroupId: Int64?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateSupergroupChat(
             force: force,
@@ -2406,7 +2406,7 @@ public final class TdApi {
     /// - Parameter secretChatId: Secret chat identifier
     public func createSecretChat(
         secretChatId: Int?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateSecretChat(
             secretChatId: secretChatId
@@ -2420,7 +2420,7 @@ public final class TdApi {
     public func createNewBasicGroupChat(
         title: String?,
         userIds: [Int64]?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewBasicGroupChat(
             title: title,
@@ -2441,7 +2441,7 @@ public final class TdApi {
         isChannel: Bool?,
         location: ChatLocation?,
         title: String?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewSupergroupChat(
             description: description,
@@ -2457,7 +2457,7 @@ public final class TdApi {
     /// - Parameter userId: Identifier of the target user
     public func createNewSecretChat(
         userId: Int64?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewSecretChat(
             userId: userId
@@ -2469,7 +2469,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to upgrade
     public func upgradeBasicGroupChatToSupergroupChat(
         chatId: Int64?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = UpgradeBasicGroupChatToSupergroupChat(
             chatId: chatId
@@ -2481,7 +2481,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func getChatListsToAddChat(
         chatId: Int64?
-        completion: @escaping (Result<ChatLists, Swift.Error>) -> ChatLists
+        , completion: @escaping (Result<ChatLists, Swift.Error>) -> Void
     ) throws {
         let query = GetChatListsToAddChat(
             chatId: chatId
@@ -2495,7 +2495,7 @@ public final class TdApi {
     public func addChatToList(
         chatId: Int64?,
         chatList: ChatList?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddChatToList(
             chatId: chatId,
@@ -2508,7 +2508,7 @@ public final class TdApi {
     /// - Parameter chatFilterId: Chat filter identifier
     public func getChatFilter(
         chatFilterId: Int?
-        completion: @escaping (Result<ChatFilter, Swift.Error>) -> ChatFilter
+        , completion: @escaping (Result<ChatFilter, Swift.Error>) -> Void
     ) throws {
         let query = GetChatFilter(
             chatFilterId: chatFilterId
@@ -2520,7 +2520,7 @@ public final class TdApi {
     /// - Parameter filter: Chat filter
     public func createChatFilter(
         filter: ChatFilter?
-        completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> ChatFilterInfo
+        , completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> Void
     ) throws {
         let query = CreateChatFilter(
             filter: filter
@@ -2534,7 +2534,7 @@ public final class TdApi {
     public func editChatFilter(
         chatFilterId: Int?,
         filter: ChatFilter?
-        completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> ChatFilterInfo
+        , completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> Void
     ) throws {
         let query = EditChatFilter(
             chatFilterId: chatFilterId,
@@ -2547,7 +2547,7 @@ public final class TdApi {
     /// - Parameter chatFilterId: Chat filter identifier
     public func deleteChatFilter(
         chatFilterId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteChatFilter(
             chatFilterId: chatFilterId
@@ -2559,7 +2559,7 @@ public final class TdApi {
     /// - Parameter chatFilterIds: Identifiers of chat filters in the new correct order
     public func reorderChatFilters(
         chatFilterIds: [Int]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReorderChatFilters(
             chatFilterIds: chatFilterIds
@@ -2568,7 +2568,7 @@ public final class TdApi {
     }
 
     /// Returns recommended chat filters for the current user
-    public func getRecommendedChatFilters(completion: @escaping (Result<RecommendedChatFilters, Swift.Error>) -> RecommendedChatFilters) throws {
+    public func getRecommendedChatFilters(, completion: @escaping (Result<RecommendedChatFilters, Swift.Error>) -> Void) throws {
         let query = GetRecommendedChatFilters()
         execute(query: query, completion: completion)
     }
@@ -2577,7 +2577,7 @@ public final class TdApi {
     /// - Parameter filter: Chat filter
     public func getChatFilterDefaultIconName(
         filter: ChatFilter?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetChatFilterDefaultIconName(
             filter: filter
@@ -2591,7 +2591,7 @@ public final class TdApi {
     public func setChatTitle(
         chatId: Int64?,
         title: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatTitle(
             chatId: chatId,
@@ -2606,7 +2606,7 @@ public final class TdApi {
     public func setChatPhoto(
         chatId: Int64?,
         photo: InputChatPhoto?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatPhoto(
             chatId: chatId,
@@ -2621,7 +2621,7 @@ public final class TdApi {
     public func setChatMessageTtlSetting(
         chatId: Int64?,
         ttl: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatMessageTtlSetting(
             chatId: chatId,
@@ -2636,7 +2636,7 @@ public final class TdApi {
     public func setChatPermissions(
         chatId: Int64?,
         permissions: ChatPermissions?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatPermissions(
             chatId: chatId,
@@ -2651,7 +2651,7 @@ public final class TdApi {
     public func setChatTheme(
         chatId: Int64?,
         themeName: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatTheme(
             chatId: chatId,
@@ -2668,7 +2668,7 @@ public final class TdApi {
         chatId: Int64?,
         draftMessage: DraftMessage?,
         messageThreadId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatDraftMessage(
             chatId: chatId,
@@ -2684,7 +2684,7 @@ public final class TdApi {
     public func setChatNotificationSettings(
         chatId: Int64?,
         notificationSettings: ChatNotificationSettings?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatNotificationSettings(
             chatId: chatId,
@@ -2699,7 +2699,7 @@ public final class TdApi {
     public func toggleChatIsMarkedAsUnread(
         chatId: Int64?,
         isMarkedAsUnread: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleChatIsMarkedAsUnread(
             chatId: chatId,
@@ -2714,7 +2714,7 @@ public final class TdApi {
     public func toggleChatDefaultDisableNotification(
         chatId: Int64?,
         defaultDisableNotification: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleChatDefaultDisableNotification(
             chatId: chatId,
@@ -2729,7 +2729,7 @@ public final class TdApi {
     public func setChatClientData(
         chatId: Int64?,
         clientData: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatClientData(
             chatId: chatId,
@@ -2744,7 +2744,7 @@ public final class TdApi {
     public func setChatDescription(
         chatId: Int64?,
         description: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatDescription(
             chatId: chatId,
@@ -2759,7 +2759,7 @@ public final class TdApi {
     public func setChatDiscussionGroup(
         chatId: Int64?,
         discussionChatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatDiscussionGroup(
             chatId: chatId,
@@ -2774,7 +2774,7 @@ public final class TdApi {
     public func setChatLocation(
         chatId: Int64?,
         location: ChatLocation?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatLocation(
             chatId: chatId,
@@ -2789,7 +2789,7 @@ public final class TdApi {
     public func setChatSlowModeDelay(
         chatId: Int64?,
         slowModeDelay: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatSlowModeDelay(
             chatId: chatId,
@@ -2808,7 +2808,7 @@ public final class TdApi {
         disableNotification: Bool?,
         messageId: Int64?,
         onlyForSelf: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = PinChatMessage(
             chatId: chatId,
@@ -2825,7 +2825,7 @@ public final class TdApi {
     public func unpinChatMessage(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = UnpinChatMessage(
             chatId: chatId,
@@ -2838,7 +2838,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     public func unpinAllChatMessages(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = UnpinAllChatMessages(
             chatId: chatId
@@ -2850,7 +2850,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func joinChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = JoinChat(
             chatId: chatId
@@ -2862,7 +2862,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func leaveChat(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = LeaveChat(
             chatId: chatId
@@ -2878,7 +2878,7 @@ public final class TdApi {
         chatId: Int64?,
         forwardLimit: Int?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddChatMember(
             chatId: chatId,
@@ -2894,7 +2894,7 @@ public final class TdApi {
     public func addChatMembers(
         chatId: Int64?,
         userIds: [Int64]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddChatMembers(
             chatId: chatId,
@@ -2911,7 +2911,7 @@ public final class TdApi {
         chatId: Int64?,
         memberId: MessageSender?,
         status: ChatMemberStatus?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetChatMemberStatus(
             chatId: chatId,
@@ -2931,7 +2931,7 @@ public final class TdApi {
         chatId: Int64?,
         memberId: MessageSender?,
         revokeMessages: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = BanChatMember(
             bannedUntilDate: bannedUntilDate,
@@ -2943,7 +2943,7 @@ public final class TdApi {
     }
 
     /// Checks whether the current session can be used to transfer a chat ownership to another user
-    public func canTransferOwnership(completion: @escaping (Result<CanTransferOwnershipResult, Swift.Error>) -> CanTransferOwnershipResult) throws {
+    public func canTransferOwnership(, completion: @escaping (Result<CanTransferOwnershipResult, Swift.Error>) -> Void) throws {
         let query = CanTransferOwnership()
         execute(query: query, completion: completion)
     }
@@ -2956,7 +2956,7 @@ public final class TdApi {
         chatId: Int64?,
         password: String?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = TransferChatOwnership(
             chatId: chatId,
@@ -2972,7 +2972,7 @@ public final class TdApi {
     public func getChatMember(
         chatId: Int64?,
         memberId: MessageSender?
-        completion: @escaping (Result<ChatMember, Swift.Error>) -> ChatMember
+        , completion: @escaping (Result<ChatMember, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMember(
             chatId: chatId,
@@ -2991,7 +2991,7 @@ public final class TdApi {
         filter: ChatMembersFilter?,
         limit: Int?,
         query: String?
-        completion: @escaping (Result<ChatMembers, Swift.Error>) -> ChatMembers
+        , completion: @escaping (Result<ChatMembers, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatMembers(
             chatId: chatId,
@@ -3006,7 +3006,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func getChatAdministrators(
         chatId: Int64?
-        completion: @escaping (Result<ChatAdministrators, Swift.Error>) -> ChatAdministrators
+        , completion: @escaping (Result<ChatAdministrators, Swift.Error>) -> Void
     ) throws {
         let query = GetChatAdministrators(
             chatId: chatId
@@ -3018,7 +3018,7 @@ public final class TdApi {
     /// - Parameter excludeSecretChats: If true, local draft messages in secret chats will not be cleared
     public func clearAllDraftMessages(
         excludeSecretChats: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ClearAllDraftMessages(
             excludeSecretChats: excludeSecretChats
@@ -3032,7 +3032,7 @@ public final class TdApi {
     public func getChatNotificationSettingsExceptions(
         compareSound: Bool?,
         scope: NotificationSettingsScope?
-        completion: @escaping (Result<Chats, Swift.Error>) -> Chats
+        , completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = GetChatNotificationSettingsExceptions(
             compareSound: compareSound,
@@ -3045,7 +3045,7 @@ public final class TdApi {
     /// - Parameter scope: Types of chats for which to return the notification settings information
     public func getScopeNotificationSettings(
         scope: NotificationSettingsScope?
-        completion: @escaping (Result<ScopeNotificationSettings, Swift.Error>) -> ScopeNotificationSettings
+        , completion: @escaping (Result<ScopeNotificationSettings, Swift.Error>) -> Void
     ) throws {
         let query = GetScopeNotificationSettings(
             scope: scope
@@ -3059,7 +3059,7 @@ public final class TdApi {
     public func setScopeNotificationSettings(
         notificationSettings: ScopeNotificationSettings?,
         scope: NotificationSettingsScope?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetScopeNotificationSettings(
             notificationSettings: notificationSettings,
@@ -3069,7 +3069,7 @@ public final class TdApi {
     }
 
     /// Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
-    public func resetAllNotificationSettings(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func resetAllNotificationSettings(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetAllNotificationSettings()
         execute(query: query, completion: completion)
     }
@@ -3082,7 +3082,7 @@ public final class TdApi {
         chatId: Int64?,
         chatList: ChatList?,
         isPinned: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleChatIsPinned(
             chatId: chatId,
@@ -3098,7 +3098,7 @@ public final class TdApi {
     public func setPinnedChats(
         chatIds: [Int64]?,
         chatList: ChatList?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetPinnedChats(
             chatIds: chatIds,
@@ -3119,7 +3119,7 @@ public final class TdApi {
         offset: Int?,
         priority: Int?,
         synchronous: Bool?
-        completion: @escaping (Result<File, Swift.Error>) -> File
+        , completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = DownloadFile(
             fileId: fileId,
@@ -3137,7 +3137,7 @@ public final class TdApi {
     public func getFileDownloadedPrefixSize(
         fileId: Int?,
         offset: Int?
-        completion: @escaping (Result<Count, Swift.Error>) -> Count
+        , completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetFileDownloadedPrefixSize(
             fileId: fileId,
@@ -3152,7 +3152,7 @@ public final class TdApi {
     public func cancelDownloadFile(
         fileId: Int?,
         onlyIfPending: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CancelDownloadFile(
             fileId: fileId,
@@ -3167,7 +3167,7 @@ public final class TdApi {
     public func getSuggestedFileName(
         directory: String?,
         fileId: Int?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetSuggestedFileName(
             directory: directory,
@@ -3184,7 +3184,7 @@ public final class TdApi {
         file: InputFile?,
         fileType: FileType?,
         priority: Int?
-        completion: @escaping (Result<File, Swift.Error>) -> File
+        , completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = UploadFile(
             file: file,
@@ -3198,7 +3198,7 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the file to stop uploading
     public func cancelUploadFile(
         fileId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CancelUploadFile(
             fileId: fileId
@@ -3214,7 +3214,7 @@ public final class TdApi {
         data: Data?,
         generationId: TdInt64?,
         offset: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = WriteGeneratedFilePart(
             data: data,
@@ -3232,7 +3232,7 @@ public final class TdApi {
         expectedSize: Int?,
         generationId: TdInt64?,
         localPrefixSize: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetFileGenerationProgress(
             expectedSize: expectedSize,
@@ -3248,7 +3248,7 @@ public final class TdApi {
     public func finishFileGeneration(
         error: Error?,
         generationId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = FinishFileGeneration(
             error: error,
@@ -3265,7 +3265,7 @@ public final class TdApi {
         count: Int?,
         fileId: Int?,
         offset: Int?
-        completion: @escaping (Result<FilePart, Swift.Error>) -> FilePart
+        , completion: @escaping (Result<FilePart, Swift.Error>) -> Void
     ) throws {
         let query = ReadFilePart(
             count: count,
@@ -3279,7 +3279,7 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the file to delete
     public func deleteFile(
         fileId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteFile(
             fileId: fileId
@@ -3291,7 +3291,7 @@ public final class TdApi {
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
     public func getMessageFileType(
         messageFileHead: String?
-        completion: @escaping (Result<MessageFileType, Swift.Error>) -> MessageFileType
+        , completion: @escaping (Result<MessageFileType, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageFileType(
             messageFileHead: messageFileHead
@@ -3303,7 +3303,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
     public func getMessageImportConfirmationText(
         chatId: Int64?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageImportConfirmationText(
             chatId: chatId
@@ -3319,7 +3319,7 @@ public final class TdApi {
         attachedFiles: [InputFile]?,
         chatId: Int64?,
         messageFile: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ImportMessages(
             attachedFiles: attachedFiles,
@@ -3333,7 +3333,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func replacePrimaryChatInviteLink(
         chatId: Int64?
-        completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> ChatInviteLink
+        , completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
     ) throws {
         let query = ReplacePrimaryChatInviteLink(
             chatId: chatId
@@ -3353,7 +3353,7 @@ public final class TdApi {
         expireDate: Int?,
         memberLimit: Int?,
         name: String?
-        completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> ChatInviteLink
+        , completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
     ) throws {
         let query = CreateChatInviteLink(
             chatId: chatId,
@@ -3379,7 +3379,7 @@ public final class TdApi {
         inviteLink: String?,
         memberLimit: Int?,
         name: String?
-        completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> ChatInviteLink
+        , completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
     ) throws {
         let query = EditChatInviteLink(
             chatId: chatId,
@@ -3398,7 +3398,7 @@ public final class TdApi {
     public func getChatInviteLink(
         chatId: Int64?,
         inviteLink: String?
-        completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> ChatInviteLink
+        , completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
     ) throws {
         let query = GetChatInviteLink(
             chatId: chatId,
@@ -3411,7 +3411,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func getChatInviteLinkCounts(
         chatId: Int64?
-        completion: @escaping (Result<ChatInviteLinkCounts, Swift.Error>) -> ChatInviteLinkCounts
+        , completion: @escaping (Result<ChatInviteLinkCounts, Swift.Error>) -> Void
     ) throws {
         let query = GetChatInviteLinkCounts(
             chatId: chatId
@@ -3433,7 +3433,7 @@ public final class TdApi {
         limit: Int?,
         offsetDate: Int?,
         offsetInviteLink: String?
-        completion: @escaping (Result<ChatInviteLinks, Swift.Error>) -> ChatInviteLinks
+        , completion: @escaping (Result<ChatInviteLinks, Swift.Error>) -> Void
     ) throws {
         let query = GetChatInviteLinks(
             chatId: chatId,
@@ -3456,7 +3456,7 @@ public final class TdApi {
         inviteLink: String?,
         limit: Int?,
         offsetMember: ChatInviteLinkMember?
-        completion: @escaping (Result<ChatInviteLinkMembers, Swift.Error>) -> ChatInviteLinkMembers
+        , completion: @escaping (Result<ChatInviteLinkMembers, Swift.Error>) -> Void
     ) throws {
         let query = GetChatInviteLinkMembers(
             chatId: chatId,
@@ -3473,7 +3473,7 @@ public final class TdApi {
     public func revokeChatInviteLink(
         chatId: Int64?,
         inviteLink: String?
-        completion: @escaping (Result<ChatInviteLinks, Swift.Error>) -> ChatInviteLinks
+        , completion: @escaping (Result<ChatInviteLinks, Swift.Error>) -> Void
     ) throws {
         let query = RevokeChatInviteLink(
             chatId: chatId,
@@ -3488,7 +3488,7 @@ public final class TdApi {
     public func deleteRevokedChatInviteLink(
         chatId: Int64?,
         inviteLink: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteRevokedChatInviteLink(
             chatId: chatId,
@@ -3503,7 +3503,7 @@ public final class TdApi {
     public func deleteAllRevokedChatInviteLinks(
         chatId: Int64?,
         creatorUserId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteAllRevokedChatInviteLinks(
             chatId: chatId,
@@ -3516,7 +3516,7 @@ public final class TdApi {
     /// - Parameter inviteLink: Invite link to be checked
     public func checkChatInviteLink(
         inviteLink: String?
-        completion: @escaping (Result<ChatInviteLinkInfo, Swift.Error>) -> ChatInviteLinkInfo
+        , completion: @escaping (Result<ChatInviteLinkInfo, Swift.Error>) -> Void
     ) throws {
         let query = CheckChatInviteLink(
             inviteLink: inviteLink
@@ -3528,7 +3528,7 @@ public final class TdApi {
     /// - Parameter inviteLink: Invite link to use
     public func joinChatByInviteLink(
         inviteLink: String?
-        completion: @escaping (Result<Chat, Swift.Error>) -> Chat
+        , completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = JoinChatByInviteLink(
             inviteLink: inviteLink
@@ -3548,7 +3548,7 @@ public final class TdApi {
         limit: Int?,
         offsetRequest: ChatJoinRequest?,
         query: String?
-        completion: @escaping (Result<ChatJoinRequests, Swift.Error>) -> ChatJoinRequests
+        , completion: @escaping (Result<ChatJoinRequests, Swift.Error>) -> Void
     ) throws {
         let query = GetChatJoinRequests(
             chatId: chatId,
@@ -3566,7 +3566,7 @@ public final class TdApi {
     public func approveChatJoinRequest(
         chatId: Int64?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ApproveChatJoinRequest(
             chatId: chatId,
@@ -3581,7 +3581,7 @@ public final class TdApi {
     public func declineChatJoinRequest(
         chatId: Int64?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeclineChatJoinRequest(
             chatId: chatId,
@@ -3598,7 +3598,7 @@ public final class TdApi {
         isVideo: Bool?,
         `protocol`: CallProtocol?,
         userId: Int64?
-        completion: @escaping (Result<CallId, Swift.Error>) -> CallId
+        , completion: @escaping (Result<CallId, Swift.Error>) -> Void
     ) throws {
         let query = CreateCall(
             isVideo: isVideo,
@@ -3614,7 +3614,7 @@ public final class TdApi {
     public func acceptCall(
         callId: Int?,
         `protocol`: CallProtocol?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AcceptCall(
             callId: callId,
@@ -3629,7 +3629,7 @@ public final class TdApi {
     public func sendCallSignalingData(
         callId: Int?,
         data: Data?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendCallSignalingData(
             callId: callId,
@@ -3650,7 +3650,7 @@ public final class TdApi {
         duration: Int?,
         isDisconnected: Bool?,
         isVideo: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DiscardCall(
             callId: callId,
@@ -3672,7 +3672,7 @@ public final class TdApi {
         comment: String?,
         problems: [CallProblem]?,
         rating: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendCallRating(
             callId: callId,
@@ -3689,7 +3689,7 @@ public final class TdApi {
     public func sendCallDebugInformation(
         callId: Int?,
         debugInformation: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendCallDebugInformation(
             callId: callId,
@@ -3702,7 +3702,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func getVideoChatAvailableParticipants(
         chatId: Int64?
-        completion: @escaping (Result<MessageSenders, Swift.Error>) -> MessageSenders
+        , completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
     ) throws {
         let query = GetVideoChatAvailableParticipants(
             chatId: chatId
@@ -3716,7 +3716,7 @@ public final class TdApi {
     public func setVideoChatDefaultParticipant(
         chatId: Int64?,
         defaultParticipantId: MessageSender?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetVideoChatDefaultParticipant(
             chatId: chatId,
@@ -3733,7 +3733,7 @@ public final class TdApi {
         chatId: Int64?,
         startDate: Int?,
         title: String?
-        completion: @escaping (Result<GroupCallId, Swift.Error>) -> GroupCallId
+        , completion: @escaping (Result<GroupCallId, Swift.Error>) -> Void
     ) throws {
         let query = CreateVideoChat(
             chatId: chatId,
@@ -3747,7 +3747,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func getGroupCall(
         groupCallId: Int?
-        completion: @escaping (Result<GroupCall, Swift.Error>) -> GroupCall
+        , completion: @escaping (Result<GroupCall, Swift.Error>) -> Void
     ) throws {
         let query = GetGroupCall(
             groupCallId: groupCallId
@@ -3759,7 +3759,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func startScheduledGroupCall(
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = StartScheduledGroupCall(
             groupCallId: groupCallId
@@ -3773,7 +3773,7 @@ public final class TdApi {
     public func toggleGroupCallEnabledStartNotification(
         enabledStartNotification: Bool?,
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallEnabledStartNotification(
             enabledStartNotification: enabledStartNotification,
@@ -3798,7 +3798,7 @@ public final class TdApi {
         isMyVideoEnabled: Bool?,
         participantId: MessageSender?,
         payload: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = JoinGroupCall(
             audioSourceId: audioSourceId,
@@ -3820,7 +3820,7 @@ public final class TdApi {
         audioSourceId: Int?,
         groupCallId: Int?,
         payload: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = StartGroupCallScreenSharing(
             audioSourceId: audioSourceId,
@@ -3836,7 +3836,7 @@ public final class TdApi {
     public func toggleGroupCallScreenSharingIsPaused(
         groupCallId: Int?,
         isPaused: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallScreenSharingIsPaused(
             groupCallId: groupCallId,
@@ -3849,7 +3849,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func endGroupCallScreenSharing(
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EndGroupCallScreenSharing(
             groupCallId: groupCallId
@@ -3863,7 +3863,7 @@ public final class TdApi {
     public func setGroupCallTitle(
         groupCallId: Int?,
         title: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetGroupCallTitle(
             groupCallId: groupCallId,
@@ -3878,7 +3878,7 @@ public final class TdApi {
     public func toggleGroupCallMuteNewParticipants(
         groupCallId: Int?,
         muteNewParticipants: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallMuteNewParticipants(
             groupCallId: groupCallId,
@@ -3891,7 +3891,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func revokeGroupCallInviteLink(
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RevokeGroupCallInviteLink(
             groupCallId: groupCallId
@@ -3905,7 +3905,7 @@ public final class TdApi {
     public func inviteGroupCallParticipants(
         groupCallId: Int?,
         userIds: [Int64]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = InviteGroupCallParticipants(
             groupCallId: groupCallId,
@@ -3920,7 +3920,7 @@ public final class TdApi {
     public func getGroupCallInviteLink(
         canSelfUnmute: Bool?,
         groupCallId: Int?
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl
+        , completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetGroupCallInviteLink(
             canSelfUnmute: canSelfUnmute,
@@ -3939,7 +3939,7 @@ public final class TdApi {
         recordVideo: Bool?,
         title: String?,
         usePortraitOrientation: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = StartGroupCallRecording(
             groupCallId: groupCallId,
@@ -3954,7 +3954,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func endGroupCallRecording(
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EndGroupCallRecording(
             groupCallId: groupCallId
@@ -3968,7 +3968,7 @@ public final class TdApi {
     public func toggleGroupCallIsMyVideoPaused(
         groupCallId: Int?,
         isMyVideoPaused: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallIsMyVideoPaused(
             groupCallId: groupCallId,
@@ -3983,7 +3983,7 @@ public final class TdApi {
     public func toggleGroupCallIsMyVideoEnabled(
         groupCallId: Int?,
         isMyVideoEnabled: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallIsMyVideoEnabled(
             groupCallId: groupCallId,
@@ -4000,7 +4000,7 @@ public final class TdApi {
         audioSource: Int?,
         groupCallId: Int?,
         isSpeaking: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetGroupCallParticipantIsSpeaking(
             audioSource: audioSource,
@@ -4018,7 +4018,7 @@ public final class TdApi {
         groupCallId: Int?,
         isMuted: Bool?,
         participantId: MessageSender?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallParticipantIsMuted(
             groupCallId: groupCallId,
@@ -4036,7 +4036,7 @@ public final class TdApi {
         groupCallId: Int?,
         participantId: MessageSender?,
         volumeLevel: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetGroupCallParticipantVolumeLevel(
             groupCallId: groupCallId,
@@ -4054,7 +4054,7 @@ public final class TdApi {
         groupCallId: Int?,
         isHandRaised: Bool?,
         participantId: MessageSender?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGroupCallParticipantIsHandRaised(
             groupCallId: groupCallId,
@@ -4070,7 +4070,7 @@ public final class TdApi {
     public func loadGroupCallParticipants(
         groupCallId: Int?,
         limit: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = LoadGroupCallParticipants(
             groupCallId: groupCallId,
@@ -4083,7 +4083,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func leaveGroupCall(
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = LeaveGroupCall(
             groupCallId: groupCallId
@@ -4095,7 +4095,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     public func discardGroupCall(
         groupCallId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DiscardGroupCall(
             groupCallId: groupCallId
@@ -4115,7 +4115,7 @@ public final class TdApi {
         scale: Int?,
         timeOffset: Int64?,
         videoQuality: GroupCallVideoQuality?
-        completion: @escaping (Result<FilePart, Swift.Error>) -> FilePart
+        , completion: @escaping (Result<FilePart, Swift.Error>) -> Void
     ) throws {
         let query = GetGroupCallStreamSegment(
             channelId: channelId,
@@ -4133,7 +4133,7 @@ public final class TdApi {
     public func toggleMessageSenderIsBlocked(
         isBlocked: Bool?,
         sender: MessageSender?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleMessageSenderIsBlocked(
             isBlocked: isBlocked,
@@ -4152,7 +4152,7 @@ public final class TdApi {
         deleteMessage: Bool?,
         messageId: Int64?,
         reportSpam: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = BlockMessageSenderFromReplies(
             deleteAllMessages: deleteAllMessages,
@@ -4169,7 +4169,7 @@ public final class TdApi {
     public func getBlockedMessageSenders(
         limit: Int?,
         offset: Int?
-        completion: @escaping (Result<MessageSenders, Swift.Error>) -> MessageSenders
+        , completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
     ) throws {
         let query = GetBlockedMessageSenders(
             limit: limit,
@@ -4184,7 +4184,7 @@ public final class TdApi {
     public func addContact(
         contact: Contact?,
         sharePhoneNumber: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddContact(
             contact: contact,
@@ -4197,7 +4197,7 @@ public final class TdApi {
     /// - Parameter contacts: The list of contacts to import or edit; contacts' vCard are ignored and are not imported
     public func importContacts(
         contacts: [Contact]?
-        completion: @escaping (Result<ImportedContacts, Swift.Error>) -> ImportedContacts
+        , completion: @escaping (Result<ImportedContacts, Swift.Error>) -> Void
     ) throws {
         let query = ImportContacts(
             contacts: contacts
@@ -4206,7 +4206,7 @@ public final class TdApi {
     }
 
     /// Returns all user contacts
-    public func getContacts(completion: @escaping (Result<Users, Swift.Error>) -> Users) throws {
+    public func getContacts(, completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetContacts()
         execute(query: query, completion: completion)
     }
@@ -4217,7 +4217,7 @@ public final class TdApi {
     public func searchContacts(
         limit: Int?,
         query: String?
-        completion: @escaping (Result<Users, Swift.Error>) -> Users
+        , completion: @escaping (Result<Users, Swift.Error>) -> Void
     ) throws {
         let query = SearchContacts(
             limit: limit,
@@ -4230,7 +4230,7 @@ public final class TdApi {
     /// - Parameter userIds: Identifiers of users to be deleted
     public func removeContacts(
         userIds: [Int64]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveContacts(
             userIds: userIds
@@ -4239,7 +4239,7 @@ public final class TdApi {
     }
 
     /// Returns the total number of imported contacts
-    public func getImportedContactCount(completion: @escaping (Result<Count, Swift.Error>) -> Count) throws {
+    public func getImportedContactCount(, completion: @escaping (Result<Count, Swift.Error>) -> Void) throws {
         let query = GetImportedContactCount()
         execute(query: query, completion: completion)
     }
@@ -4248,7 +4248,7 @@ public final class TdApi {
     /// - Parameter contacts: The new list of contacts, contact's vCard are ignored and are not imported
     public func changeImportedContacts(
         contacts: [Contact]?
-        completion: @escaping (Result<ImportedContacts, Swift.Error>) -> ImportedContacts
+        , completion: @escaping (Result<ImportedContacts, Swift.Error>) -> Void
     ) throws {
         let query = ChangeImportedContacts(
             contacts: contacts
@@ -4257,7 +4257,7 @@ public final class TdApi {
     }
 
     /// Clears all imported contacts, contact list remains unchanged
-    public func clearImportedContacts(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func clearImportedContacts(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ClearImportedContacts()
         execute(query: query, completion: completion)
     }
@@ -4266,7 +4266,7 @@ public final class TdApi {
     /// - Parameter userId: Identifier of the user with whom to share the phone number. The user must be a mutual contact
     public func sharePhoneNumber(
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SharePhoneNumber(
             userId: userId
@@ -4282,7 +4282,7 @@ public final class TdApi {
         limit: Int?,
         offset: Int?,
         userId: Int64?
-        completion: @escaping (Result<ChatPhotos, Swift.Error>) -> ChatPhotos
+        , completion: @escaping (Result<ChatPhotos, Swift.Error>) -> Void
     ) throws {
         let query = GetUserProfilePhotos(
             limit: limit,
@@ -4298,7 +4298,7 @@ public final class TdApi {
     public func getStickers(
         emoji: String?,
         limit: Int?
-        completion: @escaping (Result<Stickers, Swift.Error>) -> Stickers
+        , completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = GetStickers(
             emoji: emoji,
@@ -4313,7 +4313,7 @@ public final class TdApi {
     public func searchStickers(
         emoji: String?,
         limit: Int?
-        completion: @escaping (Result<Stickers, Swift.Error>) -> Stickers
+        , completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = SearchStickers(
             emoji: emoji,
@@ -4326,7 +4326,7 @@ public final class TdApi {
     /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
     public func getInstalledStickerSets(
         isMasks: Bool?
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> StickerSets
+        , completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetInstalledStickerSets(
             isMasks: isMasks
@@ -4342,7 +4342,7 @@ public final class TdApi {
         isMasks: Bool?,
         limit: Int?,
         offsetStickerSetId: TdInt64?
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> StickerSets
+        , completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetArchivedStickerSets(
             isMasks: isMasks,
@@ -4358,7 +4358,7 @@ public final class TdApi {
     public func getTrendingStickerSets(
         limit: Int?,
         offset: Int?
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> StickerSets
+        , completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetTrendingStickerSets(
             limit: limit,
@@ -4371,7 +4371,7 @@ public final class TdApi {
     /// - Parameter fileId: File identifier
     public func getAttachedStickerSets(
         fileId: Int?
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> StickerSets
+        , completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetAttachedStickerSets(
             fileId: fileId
@@ -4383,7 +4383,7 @@ public final class TdApi {
     /// - Parameter setId: Identifier of the sticker set
     public func getStickerSet(
         setId: TdInt64?
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> StickerSet
+        , completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = GetStickerSet(
             setId: setId
@@ -4395,7 +4395,7 @@ public final class TdApi {
     /// - Parameter name: Name of the sticker set
     public func searchStickerSet(
         name: String?
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> StickerSet
+        , completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = SearchStickerSet(
             name: name
@@ -4411,7 +4411,7 @@ public final class TdApi {
         isMasks: Bool?,
         limit: Int?,
         query: String?
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> StickerSets
+        , completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = SearchInstalledStickerSets(
             isMasks: isMasks,
@@ -4425,7 +4425,7 @@ public final class TdApi {
     /// - Parameter query: Query to search for
     public func searchStickerSets(
         query: String?
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> StickerSets
+        , completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = SearchStickerSets(
             query: query
@@ -4441,7 +4441,7 @@ public final class TdApi {
         isArchived: Bool?,
         isInstalled: Bool?,
         setId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ChangeStickerSet(
             isArchived: isArchived,
@@ -4455,7 +4455,7 @@ public final class TdApi {
     /// - Parameter stickerSetIds: Identifiers of viewed trending sticker sets
     public func viewTrendingStickerSets(
         stickerSetIds: [TdInt64]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ViewTrendingStickerSets(
             stickerSetIds: stickerSetIds
@@ -4469,7 +4469,7 @@ public final class TdApi {
     public func reorderInstalledStickerSets(
         isMasks: Bool?,
         stickerSetIds: [TdInt64]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReorderInstalledStickerSets(
             isMasks: isMasks,
@@ -4482,7 +4482,7 @@ public final class TdApi {
     /// - Parameter isAttached: Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
     public func getRecentStickers(
         isAttached: Bool?
-        completion: @escaping (Result<Stickers, Swift.Error>) -> Stickers
+        , completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = GetRecentStickers(
             isAttached: isAttached
@@ -4496,7 +4496,7 @@ public final class TdApi {
     public func addRecentSticker(
         isAttached: Bool?,
         sticker: InputFile?
-        completion: @escaping (Result<Stickers, Swift.Error>) -> Stickers
+        , completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = AddRecentSticker(
             isAttached: isAttached,
@@ -4511,7 +4511,7 @@ public final class TdApi {
     public func removeRecentSticker(
         isAttached: Bool?,
         sticker: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveRecentSticker(
             isAttached: isAttached,
@@ -4524,7 +4524,7 @@ public final class TdApi {
     /// - Parameter isAttached: Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
     public func clearRecentStickers(
         isAttached: Bool?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ClearRecentStickers(
             isAttached: isAttached
@@ -4533,7 +4533,7 @@ public final class TdApi {
     }
 
     /// Returns favorite stickers
-    public func getFavoriteStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Stickers) throws {
+    public func getFavoriteStickers(, completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
         let query = GetFavoriteStickers()
         execute(query: query, completion: completion)
     }
@@ -4542,7 +4542,7 @@ public final class TdApi {
     /// - Parameter sticker: Sticker file to add
     public func addFavoriteSticker(
         sticker: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddFavoriteSticker(
             sticker: sticker
@@ -4554,7 +4554,7 @@ public final class TdApi {
     /// - Parameter sticker: Sticker file to delete from the list
     public func removeFavoriteSticker(
         sticker: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveFavoriteSticker(
             sticker: sticker
@@ -4566,7 +4566,7 @@ public final class TdApi {
     /// - Parameter sticker: Sticker file identifier
     public func getStickerEmojis(
         sticker: InputFile?
-        completion: @escaping (Result<Emojis, Swift.Error>) -> Emojis
+        , completion: @escaping (Result<Emojis, Swift.Error>) -> Void
     ) throws {
         let query = GetStickerEmojis(
             sticker: sticker
@@ -4582,7 +4582,7 @@ public final class TdApi {
         exactMatch: Bool?,
         inputLanguageCodes: [String]?,
         text: String?
-        completion: @escaping (Result<Emojis, Swift.Error>) -> Emojis
+        , completion: @escaping (Result<Emojis, Swift.Error>) -> Void
     ) throws {
         let query = SearchEmojis(
             exactMatch: exactMatch,
@@ -4596,7 +4596,7 @@ public final class TdApi {
     /// - Parameter emoji: The emoji
     public func getAnimatedEmoji(
         emoji: String?
-        completion: @escaping (Result<AnimatedEmoji, Swift.Error>) -> AnimatedEmoji
+        , completion: @escaping (Result<AnimatedEmoji, Swift.Error>) -> Void
     ) throws {
         let query = GetAnimatedEmoji(
             emoji: emoji
@@ -4608,7 +4608,7 @@ public final class TdApi {
     /// - Parameter languageCode: Language code for which the emoji replacements will be suggested
     public func getEmojiSuggestionsUrl(
         languageCode: String?
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl
+        , completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetEmojiSuggestionsUrl(
             languageCode: languageCode
@@ -4617,7 +4617,7 @@ public final class TdApi {
     }
 
     /// Returns saved animations
-    public func getSavedAnimations(completion: @escaping (Result<Animations, Swift.Error>) -> Animations) throws {
+    public func getSavedAnimations(, completion: @escaping (Result<Animations, Swift.Error>) -> Void) throws {
         let query = GetSavedAnimations()
         execute(query: query, completion: completion)
     }
@@ -4626,7 +4626,7 @@ public final class TdApi {
     /// - Parameter animation: The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
     public func addSavedAnimation(
         animation: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddSavedAnimation(
             animation: animation
@@ -4638,7 +4638,7 @@ public final class TdApi {
     /// - Parameter animation: Animation file to be removed
     public func removeSavedAnimation(
         animation: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveSavedAnimation(
             animation: animation
@@ -4647,7 +4647,7 @@ public final class TdApi {
     }
 
     /// Returns up to 20 recently used inline bots in the order of their last usage
-    public func getRecentInlineBots(completion: @escaping (Result<Users, Swift.Error>) -> Users) throws {
+    public func getRecentInlineBots(, completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetRecentInlineBots()
         execute(query: query, completion: completion)
     }
@@ -4658,7 +4658,7 @@ public final class TdApi {
     public func searchHashtags(
         limit: Int?,
         prefix: String?
-        completion: @escaping (Result<Hashtags, Swift.Error>) -> Hashtags
+        , completion: @escaping (Result<Hashtags, Swift.Error>) -> Void
     ) throws {
         let query = SearchHashtags(
             limit: limit,
@@ -4671,7 +4671,7 @@ public final class TdApi {
     /// - Parameter hashtag: Hashtag to delete
     public func removeRecentHashtag(
         hashtag: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveRecentHashtag(
             hashtag: hashtag
@@ -4683,7 +4683,7 @@ public final class TdApi {
     /// - Parameter text: Message text with formatting
     public func getWebPagePreview(
         text: FormattedText?
-        completion: @escaping (Result<WebPage, Swift.Error>) -> WebPage
+        , completion: @escaping (Result<WebPage, Swift.Error>) -> Void
     ) throws {
         let query = GetWebPagePreview(
             text: text
@@ -4697,7 +4697,7 @@ public final class TdApi {
     public func getWebPageInstantView(
         forceFull: Bool?,
         url: String?
-        completion: @escaping (Result<WebPageInstantView, Swift.Error>) -> WebPageInstantView
+        , completion: @escaping (Result<WebPageInstantView, Swift.Error>) -> Void
     ) throws {
         let query = GetWebPageInstantView(
             forceFull: forceFull,
@@ -4710,7 +4710,7 @@ public final class TdApi {
     /// - Parameter photo: Profile photo to set
     public func setProfilePhoto(
         photo: InputChatPhoto?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetProfilePhoto(
             photo: photo
@@ -4722,7 +4722,7 @@ public final class TdApi {
     /// - Parameter profilePhotoId: Identifier of the profile photo to delete
     public func deleteProfilePhoto(
         profilePhotoId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteProfilePhoto(
             profilePhotoId: profilePhotoId
@@ -4736,7 +4736,7 @@ public final class TdApi {
     public func setName(
         firstName: String?,
         lastName: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetName(
             firstName: firstName,
@@ -4749,7 +4749,7 @@ public final class TdApi {
     /// - Parameter bio: The new value of the user bio; 0-70 characters without line feeds
     public func setBio(
         bio: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetBio(
             bio: bio
@@ -4761,7 +4761,7 @@ public final class TdApi {
     /// - Parameter username: The new value of the username. Use an empty string to remove the username
     public func setUsername(
         username: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetUsername(
             username: username
@@ -4773,7 +4773,7 @@ public final class TdApi {
     /// - Parameter location: The new location of the user
     public func setLocation(
         location: Location?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetLocation(
             location: location
@@ -4787,7 +4787,7 @@ public final class TdApi {
     public func changePhoneNumber(
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?
-        completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> AuthenticationCodeInfo
+        , completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
     ) throws {
         let query = ChangePhoneNumber(
             phoneNumber: phoneNumber,
@@ -4797,7 +4797,7 @@ public final class TdApi {
     }
 
     /// Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-    public func resendChangePhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> AuthenticationCodeInfo) throws {
+    public func resendChangePhoneNumberCode(, completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendChangePhoneNumberCode()
         execute(query: query, completion: completion)
     }
@@ -4806,7 +4806,7 @@ public final class TdApi {
     /// - Parameter code: Verification code received by SMS, phone call or flash call
     public func checkChangePhoneNumberCode(
         code: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckChangePhoneNumberCode(
             code: code
@@ -4822,7 +4822,7 @@ public final class TdApi {
         commands: [BotCommand]?,
         languageCode: String?,
         scope: BotCommandScope?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetCommands(
             commands: commands,
@@ -4838,7 +4838,7 @@ public final class TdApi {
     public func deleteCommands(
         languageCode: String?,
         scope: BotCommandScope?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteCommands(
             languageCode: languageCode,
@@ -4853,7 +4853,7 @@ public final class TdApi {
     public func getCommands(
         languageCode: String?,
         scope: BotCommandScope?
-        completion: @escaping (Result<BotCommands, Swift.Error>) -> BotCommands
+        , completion: @escaping (Result<BotCommands, Swift.Error>) -> Void
     ) throws {
         let query = GetCommands(
             languageCode: languageCode,
@@ -4863,7 +4863,7 @@ public final class TdApi {
     }
 
     /// Returns all active sessions of the current user
-    public func getActiveSessions(completion: @escaping (Result<Sessions, Swift.Error>) -> Sessions) throws {
+    public func getActiveSessions(, completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
         let query = GetActiveSessions()
         execute(query: query, completion: completion)
     }
@@ -4872,7 +4872,7 @@ public final class TdApi {
     /// - Parameter sessionId: Session identifier
     public func terminateSession(
         sessionId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = TerminateSession(
             sessionId: sessionId
@@ -4881,13 +4881,13 @@ public final class TdApi {
     }
 
     /// Terminates all other sessions of the current user
-    public func terminateAllOtherSessions(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func terminateAllOtherSessions(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TerminateAllOtherSessions()
         execute(query: query, completion: completion)
     }
 
     /// Returns all website where the current user used Telegram to log in
-    public func getConnectedWebsites(completion: @escaping (Result<ConnectedWebsites, Swift.Error>) -> ConnectedWebsites) throws {
+    public func getConnectedWebsites(, completion: @escaping (Result<ConnectedWebsites, Swift.Error>) -> Void) throws {
         let query = GetConnectedWebsites()
         execute(query: query, completion: completion)
     }
@@ -4896,7 +4896,7 @@ public final class TdApi {
     /// - Parameter websiteId: Website identifier
     public func disconnectWebsite(
         websiteId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DisconnectWebsite(
             websiteId: websiteId
@@ -4905,7 +4905,7 @@ public final class TdApi {
     }
 
     /// Disconnects all websites from the current user's Telegram account
-    public func disconnectAllWebsites(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func disconnectAllWebsites(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DisconnectAllWebsites()
         execute(query: query, completion: completion)
     }
@@ -4916,7 +4916,7 @@ public final class TdApi {
     public func setSupergroupUsername(
         supergroupId: Int64?,
         username: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetSupergroupUsername(
             supergroupId: supergroupId,
@@ -4931,7 +4931,7 @@ public final class TdApi {
     public func setSupergroupStickerSet(
         stickerSetId: TdInt64?,
         supergroupId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetSupergroupStickerSet(
             stickerSetId: stickerSetId,
@@ -4946,7 +4946,7 @@ public final class TdApi {
     public func toggleSupergroupSignMessages(
         signMessages: Bool?,
         supergroupId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSupergroupSignMessages(
             signMessages: signMessages,
@@ -4961,7 +4961,7 @@ public final class TdApi {
     public func toggleSupergroupIsAllHistoryAvailable(
         isAllHistoryAvailable: Bool?,
         supergroupId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSupergroupIsAllHistoryAvailable(
             isAllHistoryAvailable: isAllHistoryAvailable,
@@ -4974,7 +4974,7 @@ public final class TdApi {
     /// - Parameter supergroupId: Identifier of the supergroup
     public func toggleSupergroupIsBroadcastGroup(
         supergroupId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSupergroupIsBroadcastGroup(
             supergroupId: supergroupId
@@ -4990,7 +4990,7 @@ public final class TdApi {
         messageIds: [Int64]?,
         supergroupId: Int64?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReportSupergroupSpam(
             messageIds: messageIds,
@@ -5010,7 +5010,7 @@ public final class TdApi {
         limit: Int?,
         offset: Int?,
         supergroupId: Int64?
-        completion: @escaping (Result<ChatMembers, Swift.Error>) -> ChatMembers
+        , completion: @escaping (Result<ChatMembers, Swift.Error>) -> Void
     ) throws {
         let query = GetSupergroupMembers(
             filter: filter,
@@ -5025,7 +5025,7 @@ public final class TdApi {
     /// - Parameter secretChatId: Secret chat identifier
     public func closeSecretChat(
         secretChatId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CloseSecretChat(
             secretChatId: secretChatId
@@ -5047,7 +5047,7 @@ public final class TdApi {
         limit: Int?,
         query: String?,
         userIds: [Int64]?
-        completion: @escaping (Result<ChatEvents, Swift.Error>) -> ChatEvents
+        , completion: @escaping (Result<ChatEvents, Swift.Error>) -> Void
     ) throws {
         let query = GetChatEventLog(
             chatId: chatId,
@@ -5068,7 +5068,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         theme: PaymentFormTheme?
-        completion: @escaping (Result<PaymentForm, Swift.Error>) -> PaymentForm
+        , completion: @escaping (Result<PaymentForm, Swift.Error>) -> Void
     ) throws {
         let query = GetPaymentForm(
             chatId: chatId,
@@ -5088,7 +5088,7 @@ public final class TdApi {
         chatId: Int64?,
         messageId: Int64?,
         orderInfo: OrderInfo?
-        completion: @escaping (Result<ValidatedOrderInfo, Swift.Error>) -> ValidatedOrderInfo
+        , completion: @escaping (Result<ValidatedOrderInfo, Swift.Error>) -> Void
     ) throws {
         let query = ValidateOrderInfo(
             allowSave: allowSave,
@@ -5115,7 +5115,7 @@ public final class TdApi {
         paymentFormId: TdInt64?,
         shippingOptionId: String?,
         tipAmount: Int64?
-        completion: @escaping (Result<PaymentResult, Swift.Error>) -> PaymentResult
+        , completion: @escaping (Result<PaymentResult, Swift.Error>) -> Void
     ) throws {
         let query = SendPaymentForm(
             chatId: chatId,
@@ -5135,7 +5135,7 @@ public final class TdApi {
     public func getPaymentReceipt(
         chatId: Int64?,
         messageId: Int64?
-        completion: @escaping (Result<PaymentReceipt, Swift.Error>) -> PaymentReceipt
+        , completion: @escaping (Result<PaymentReceipt, Swift.Error>) -> Void
     ) throws {
         let query = GetPaymentReceipt(
             chatId: chatId,
@@ -5145,25 +5145,25 @@ public final class TdApi {
     }
 
     /// Returns saved order info, if any
-    public func getSavedOrderInfo(completion: @escaping (Result<OrderInfo, Swift.Error>) -> OrderInfo) throws {
+    public func getSavedOrderInfo(, completion: @escaping (Result<OrderInfo, Swift.Error>) -> Void) throws {
         let query = GetSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
     /// Deletes saved order info
-    public func deleteSavedOrderInfo(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func deleteSavedOrderInfo(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DeleteSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
     /// Deletes saved credentials for all payment provider bots
-    public func deleteSavedCredentials(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func deleteSavedCredentials(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DeleteSavedCredentials()
         execute(query: query, completion: completion)
     }
 
     /// Returns a user that can be contacted to get support
-    public func getSupportUser(completion: @escaping (Result<User, Swift.Error>) -> User) throws {
+    public func getSupportUser(, completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetSupportUser()
         execute(query: query, completion: completion)
     }
@@ -5172,7 +5172,7 @@ public final class TdApi {
     /// - Parameter forDarkTheme: True, if the backgrounds must be ordered for dark theme
     public func getBackgrounds(
         forDarkTheme: Bool?
-        completion: @escaping (Result<Backgrounds, Swift.Error>) -> Backgrounds
+        , completion: @escaping (Result<Backgrounds, Swift.Error>) -> Void
     ) throws {
         let query = GetBackgrounds(
             forDarkTheme: forDarkTheme
@@ -5186,7 +5186,7 @@ public final class TdApi {
     public func getBackgroundUrl(
         name: String?,
         type: BackgroundType?
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl
+        , completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetBackgroundUrl(
             name: name,
@@ -5199,7 +5199,7 @@ public final class TdApi {
     /// - Parameter name: The name of the background
     public func searchBackground(
         name: String?
-        completion: @escaping (Result<Background, Swift.Error>) -> Background
+        , completion: @escaping (Result<Background, Swift.Error>) -> Void
     ) throws {
         let query = SearchBackground(
             name: name
@@ -5215,7 +5215,7 @@ public final class TdApi {
         background: InputBackground?,
         forDarkTheme: Bool?,
         type: BackgroundType?
-        completion: @escaping (Result<Background, Swift.Error>) -> Background
+        , completion: @escaping (Result<Background, Swift.Error>) -> Void
     ) throws {
         let query = SetBackground(
             background: background,
@@ -5229,7 +5229,7 @@ public final class TdApi {
     /// - Parameter backgroundId: The background identifier
     public func removeBackground(
         backgroundId: TdInt64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveBackground(
             backgroundId: backgroundId
@@ -5238,7 +5238,7 @@ public final class TdApi {
     }
 
     /// Resets list of installed backgrounds to its default value
-    public func resetBackgrounds(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func resetBackgrounds(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetBackgrounds()
         execute(query: query, completion: completion)
     }
@@ -5247,7 +5247,7 @@ public final class TdApi {
     /// - Parameter onlyLocal: If true, returns only locally available information without sending network requests
     public func getLocalizationTargetInfo(
         onlyLocal: Bool?
-        completion: @escaping (Result<LocalizationTargetInfo, Swift.Error>) -> LocalizationTargetInfo
+        , completion: @escaping (Result<LocalizationTargetInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetLocalizationTargetInfo(
             onlyLocal: onlyLocal
@@ -5259,7 +5259,7 @@ public final class TdApi {
     /// - Parameter languagePackId: Language pack identifier
     public func getLanguagePackInfo(
         languagePackId: String?
-        completion: @escaping (Result<LanguagePackInfo, Swift.Error>) -> LanguagePackInfo
+        , completion: @escaping (Result<LanguagePackInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetLanguagePackInfo(
             languagePackId: languagePackId
@@ -5273,7 +5273,7 @@ public final class TdApi {
     public func getLanguagePackStrings(
         keys: [String]?,
         languagePackId: String?
-        completion: @escaping (Result<LanguagePackStrings, Swift.Error>) -> LanguagePackStrings
+        , completion: @escaping (Result<LanguagePackStrings, Swift.Error>) -> Void
     ) throws {
         let query = GetLanguagePackStrings(
             keys: keys,
@@ -5286,7 +5286,7 @@ public final class TdApi {
     /// - Parameter languagePackId: Language pack identifier
     public func synchronizeLanguagePack(
         languagePackId: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SynchronizeLanguagePack(
             languagePackId: languagePackId
@@ -5298,7 +5298,7 @@ public final class TdApi {
     /// - Parameter languagePackId: Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
     public func addCustomServerLanguagePack(
         languagePackId: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddCustomServerLanguagePack(
             languagePackId: languagePackId
@@ -5312,7 +5312,7 @@ public final class TdApi {
     public func setCustomLanguagePack(
         info: LanguagePackInfo?,
         strings: [LanguagePackString]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetCustomLanguagePack(
             info: info,
@@ -5325,7 +5325,7 @@ public final class TdApi {
     /// - Parameter info: New information about the custom local language pack
     public func editCustomLanguagePackInfo(
         info: LanguagePackInfo?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditCustomLanguagePackInfo(
             info: info
@@ -5339,7 +5339,7 @@ public final class TdApi {
     public func setCustomLanguagePackString(
         languagePackId: String?,
         newString: LanguagePackString?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetCustomLanguagePackString(
             languagePackId: languagePackId,
@@ -5352,7 +5352,7 @@ public final class TdApi {
     /// - Parameter languagePackId: Identifier of the language pack to delete
     public func deleteLanguagePack(
         languagePackId: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteLanguagePack(
             languagePackId: languagePackId
@@ -5366,7 +5366,7 @@ public final class TdApi {
     public func registerDevice(
         deviceToken: DeviceToken?,
         otherUserIds: [Int64]?
-        completion: @escaping (Result<PushReceiverId, Swift.Error>) -> PushReceiverId
+        , completion: @escaping (Result<PushReceiverId, Swift.Error>) -> Void
     ) throws {
         let query = RegisterDevice(
             deviceToken: deviceToken,
@@ -5379,7 +5379,7 @@ public final class TdApi {
     /// - Parameter payload: JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
     public func processPushNotification(
         payload: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ProcessPushNotification(
             payload: payload
@@ -5391,7 +5391,7 @@ public final class TdApi {
     /// - Parameter payload: JSON-encoded push notification payload
     public func getPushReceiverId(
         payload: String?
-        completion: @escaping (Result<PushReceiverId, Swift.Error>) -> PushReceiverId
+        , completion: @escaping (Result<PushReceiverId, Swift.Error>) -> Void
     ) throws {
         let query = GetPushReceiverId(
             payload: payload
@@ -5403,7 +5403,7 @@ public final class TdApi {
     /// - Parameter referrer: Google Play referrer to identify the user
     public func getRecentlyVisitedTMeUrls(
         referrer: String?
-        completion: @escaping (Result<TMeUrls, Swift.Error>) -> TMeUrls
+        , completion: @escaping (Result<TMeUrls, Swift.Error>) -> Void
     ) throws {
         let query = GetRecentlyVisitedTMeUrls(
             referrer: referrer
@@ -5417,7 +5417,7 @@ public final class TdApi {
     public func setUserPrivacySettingRules(
         rules: UserPrivacySettingRules?,
         setting: UserPrivacySetting?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetUserPrivacySettingRules(
             rules: rules,
@@ -5430,7 +5430,7 @@ public final class TdApi {
     /// - Parameter setting: The privacy setting
     public func getUserPrivacySettingRules(
         setting: UserPrivacySetting?
-        completion: @escaping (Result<UserPrivacySettingRules, Swift.Error>) -> UserPrivacySettingRules
+        , completion: @escaping (Result<UserPrivacySettingRules, Swift.Error>) -> Void
     ) throws {
         let query = GetUserPrivacySettingRules(
             setting: setting
@@ -5442,7 +5442,7 @@ public final class TdApi {
     /// - Parameter name: The name of the option
     public func getOption(
         name: String?
-        completion: @escaping (Result<OptionValue, Swift.Error>) -> OptionValue
+        , completion: @escaping (Result<OptionValue, Swift.Error>) -> Void
     ) throws {
         let query = GetOption(
             name: name
@@ -5456,7 +5456,7 @@ public final class TdApi {
     public func setOption(
         name: String?,
         value: OptionValue?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetOption(
             name: name,
@@ -5469,7 +5469,7 @@ public final class TdApi {
     /// - Parameter ttl: New account TTL
     public func setAccountTtl(
         ttl: AccountTtl?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetAccountTtl(
             ttl: ttl
@@ -5478,7 +5478,7 @@ public final class TdApi {
     }
 
     /// Returns the period of inactivity after which the account of the current user will automatically be deleted
-    public func getAccountTtl(completion: @escaping (Result<AccountTtl, Swift.Error>) -> AccountTtl) throws {
+    public func getAccountTtl(, completion: @escaping (Result<AccountTtl, Swift.Error>) -> Void) throws {
         let query = GetAccountTtl()
         execute(query: query, completion: completion)
     }
@@ -5487,7 +5487,7 @@ public final class TdApi {
     /// - Parameter reason: The reason why the account was deleted; optional
     public func deleteAccount(
         reason: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteAccount(
             reason: reason
@@ -5499,7 +5499,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     public func removeChatActionBar(
         chatId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveChatActionBar(
             chatId: chatId
@@ -5517,7 +5517,7 @@ public final class TdApi {
         messageIds: [Int64]?,
         reason: ChatReportReason?,
         text: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReportChat(
             chatId: chatId,
@@ -5538,7 +5538,7 @@ public final class TdApi {
         fileId: Int?,
         reason: ChatReportReason?,
         text: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReportChatPhoto(
             chatId: chatId,
@@ -5555,7 +5555,7 @@ public final class TdApi {
     public func getChatStatistics(
         chatId: Int64?,
         isDark: Bool?
-        completion: @escaping (Result<ChatStatistics, Swift.Error>) -> ChatStatistics
+        , completion: @escaping (Result<ChatStatistics, Swift.Error>) -> Void
     ) throws {
         let query = GetChatStatistics(
             chatId: chatId,
@@ -5572,7 +5572,7 @@ public final class TdApi {
         chatId: Int64?,
         isDark: Bool?,
         messageId: Int64?
-        completion: @escaping (Result<MessageStatistics, Swift.Error>) -> MessageStatistics
+        , completion: @escaping (Result<MessageStatistics, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageStatistics(
             chatId: chatId,
@@ -5590,7 +5590,7 @@ public final class TdApi {
         chatId: Int64?,
         token: String?,
         x: Int64?
-        completion: @escaping (Result<StatisticalGraph, Swift.Error>) -> StatisticalGraph
+        , completion: @escaping (Result<StatisticalGraph, Swift.Error>) -> Void
     ) throws {
         let query = GetStatisticalGraph(
             chatId: chatId,
@@ -5604,7 +5604,7 @@ public final class TdApi {
     /// - Parameter chatLimit: The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
     public func getStorageStatistics(
         chatLimit: Int?
-        completion: @escaping (Result<StorageStatistics, Swift.Error>) -> StorageStatistics
+        , completion: @escaping (Result<StorageStatistics, Swift.Error>) -> Void
     ) throws {
         let query = GetStorageStatistics(
             chatLimit: chatLimit
@@ -5613,13 +5613,13 @@ public final class TdApi {
     }
 
     /// Quickly returns approximate storage usage statistics. Can be called before authorization
-    public func getStorageStatisticsFast(completion: @escaping (Result<StorageStatisticsFast, Swift.Error>) -> StorageStatisticsFast) throws {
+    public func getStorageStatisticsFast(, completion: @escaping (Result<StorageStatisticsFast, Swift.Error>) -> Void) throws {
         let query = GetStorageStatisticsFast()
         execute(query: query, completion: completion)
     }
 
     /// Returns database statistics
-    public func getDatabaseStatistics(completion: @escaping (Result<DatabaseStatistics, Swift.Error>) -> DatabaseStatistics) throws {
+    public func getDatabaseStatistics(, completion: @escaping (Result<DatabaseStatistics, Swift.Error>) -> Void) throws {
         let query = GetDatabaseStatistics()
         execute(query: query, completion: completion)
     }
@@ -5644,7 +5644,7 @@ public final class TdApi {
         returnDeletedFileStatistics: Bool?,
         size: Int64?,
         ttl: Int?
-        completion: @escaping (Result<StorageStatistics, Swift.Error>) -> StorageStatistics
+        , completion: @escaping (Result<StorageStatistics, Swift.Error>) -> Void
     ) throws {
         let query = OptimizeStorage(
             chatIds: chatIds,
@@ -5664,7 +5664,7 @@ public final class TdApi {
     /// - Parameter type: The new network type; pass null to set network type to networkTypeOther
     public func setNetworkType(
         type: NetworkType?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetNetworkType(
             type: type
@@ -5676,7 +5676,7 @@ public final class TdApi {
     /// - Parameter onlyCurrent: If true, returns only data for the current library launch
     public func getNetworkStatistics(
         onlyCurrent: Bool?
-        completion: @escaping (Result<NetworkStatistics, Swift.Error>) -> NetworkStatistics
+        , completion: @escaping (Result<NetworkStatistics, Swift.Error>) -> Void
     ) throws {
         let query = GetNetworkStatistics(
             onlyCurrent: onlyCurrent
@@ -5688,7 +5688,7 @@ public final class TdApi {
     /// - Parameter entry: The network statistics entry with the data to be added to statistics
     public func addNetworkStatistics(
         entry: NetworkStatisticsEntry?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddNetworkStatistics(
             entry: entry
@@ -5697,13 +5697,13 @@ public final class TdApi {
     }
 
     /// Resets all network data usage statistics to zero. Can be called before authorization
-    public func resetNetworkStatistics(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func resetNetworkStatistics(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetNetworkStatistics()
         execute(query: query, completion: completion)
     }
 
     /// Returns auto-download settings presets for the current user
-    public func getAutoDownloadSettingsPresets(completion: @escaping (Result<AutoDownloadSettingsPresets, Swift.Error>) -> AutoDownloadSettingsPresets) throws {
+    public func getAutoDownloadSettingsPresets(, completion: @escaping (Result<AutoDownloadSettingsPresets, Swift.Error>) -> Void) throws {
         let query = GetAutoDownloadSettingsPresets()
         execute(query: query, completion: completion)
     }
@@ -5714,7 +5714,7 @@ public final class TdApi {
     public func setAutoDownloadSettings(
         settings: AutoDownloadSettings?,
         type: NetworkType?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetAutoDownloadSettings(
             settings: settings,
@@ -5727,7 +5727,7 @@ public final class TdApi {
     /// - Parameter bankCardNumber: The bank card number
     public func getBankCardInfo(
         bankCardNumber: String?
-        completion: @escaping (Result<BankCardInfo, Swift.Error>) -> BankCardInfo
+        , completion: @escaping (Result<BankCardInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetBankCardInfo(
             bankCardNumber: bankCardNumber
@@ -5741,7 +5741,7 @@ public final class TdApi {
     public func getPassportElement(
         password: String?,
         type: PassportElementType?
-        completion: @escaping (Result<PassportElement, Swift.Error>) -> PassportElement
+        , completion: @escaping (Result<PassportElement, Swift.Error>) -> Void
     ) throws {
         let query = GetPassportElement(
             password: password,
@@ -5754,7 +5754,7 @@ public final class TdApi {
     /// - Parameter password: Password of the current user
     public func getAllPassportElements(
         password: String?
-        completion: @escaping (Result<PassportElements, Swift.Error>) -> PassportElements
+        , completion: @escaping (Result<PassportElements, Swift.Error>) -> Void
     ) throws {
         let query = GetAllPassportElements(
             password: password
@@ -5768,7 +5768,7 @@ public final class TdApi {
     public func setPassportElement(
         element: InputPassportElement?,
         password: String?
-        completion: @escaping (Result<PassportElement, Swift.Error>) -> PassportElement
+        , completion: @escaping (Result<PassportElement, Swift.Error>) -> Void
     ) throws {
         let query = SetPassportElement(
             element: element,
@@ -5781,7 +5781,7 @@ public final class TdApi {
     /// - Parameter type: Element type
     public func deletePassportElement(
         type: PassportElementType?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeletePassportElement(
             type: type
@@ -5795,7 +5795,7 @@ public final class TdApi {
     public func setPassportElementErrors(
         errors: [InputPassportElementError]?,
         userId: Int64?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetPassportElementErrors(
             errors: errors,
@@ -5808,7 +5808,7 @@ public final class TdApi {
     /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code
     public func getPreferredCountryLanguage(
         countryCode: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetPreferredCountryLanguage(
             countryCode: countryCode
@@ -5822,7 +5822,7 @@ public final class TdApi {
     public func sendPhoneNumberVerificationCode(
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?
-        completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> AuthenticationCodeInfo
+        , completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
     ) throws {
         let query = SendPhoneNumberVerificationCode(
             phoneNumber: phoneNumber,
@@ -5832,7 +5832,7 @@ public final class TdApi {
     }
 
     /// Re-sends the code to verify a phone number to be added to a user's Telegram Passport
-    public func resendPhoneNumberVerificationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> AuthenticationCodeInfo) throws {
+    public func resendPhoneNumberVerificationCode(, completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendPhoneNumberVerificationCode()
         execute(query: query, completion: completion)
     }
@@ -5841,7 +5841,7 @@ public final class TdApi {
     /// - Parameter code: Verification code
     public func checkPhoneNumberVerificationCode(
         code: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckPhoneNumberVerificationCode(
             code: code
@@ -5853,7 +5853,7 @@ public final class TdApi {
     /// - Parameter emailAddress: Email address
     public func sendEmailAddressVerificationCode(
         emailAddress: String?
-        completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> EmailAddressAuthenticationCodeInfo
+        , completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void
     ) throws {
         let query = SendEmailAddressVerificationCode(
             emailAddress: emailAddress
@@ -5862,7 +5862,7 @@ public final class TdApi {
     }
 
     /// Re-sends the code to verify an email address to be added to a user's Telegram Passport
-    public func resendEmailAddressVerificationCode(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> EmailAddressAuthenticationCodeInfo) throws {
+    public func resendEmailAddressVerificationCode(, completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendEmailAddressVerificationCode()
         execute(query: query, completion: completion)
     }
@@ -5871,7 +5871,7 @@ public final class TdApi {
     /// - Parameter code: Verification code
     public func checkEmailAddressVerificationCode(
         code: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckEmailAddressVerificationCode(
             code: code
@@ -5889,7 +5889,7 @@ public final class TdApi {
         nonce: String?,
         publicKey: String?,
         scope: String?
-        completion: @escaping (Result<PassportAuthorizationForm, Swift.Error>) -> PassportAuthorizationForm
+        , completion: @escaping (Result<PassportAuthorizationForm, Swift.Error>) -> Void
     ) throws {
         let query = GetPassportAuthorizationForm(
             botUserId: botUserId,
@@ -5906,7 +5906,7 @@ public final class TdApi {
     public func getPassportAuthorizationFormAvailableElements(
         autorizationFormId: Int?,
         password: String?
-        completion: @escaping (Result<PassportElementsWithErrors, Swift.Error>) -> PassportElementsWithErrors
+        , completion: @escaping (Result<PassportElementsWithErrors, Swift.Error>) -> Void
     ) throws {
         let query = GetPassportAuthorizationFormAvailableElements(
             autorizationFormId: autorizationFormId,
@@ -5921,7 +5921,7 @@ public final class TdApi {
     public func sendPassportAuthorizationForm(
         autorizationFormId: Int?,
         types: [PassportElementType]?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendPassportAuthorizationForm(
             autorizationFormId: autorizationFormId,
@@ -5938,7 +5938,7 @@ public final class TdApi {
         hash: String?,
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?
-        completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> AuthenticationCodeInfo
+        , completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
     ) throws {
         let query = SendPhoneNumberConfirmationCode(
             hash: hash,
@@ -5949,7 +5949,7 @@ public final class TdApi {
     }
 
     /// Resends phone number confirmation code
-    public func resendPhoneNumberConfirmationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> AuthenticationCodeInfo) throws {
+    public func resendPhoneNumberConfirmationCode(, completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendPhoneNumberConfirmationCode()
         execute(query: query, completion: completion)
     }
@@ -5958,7 +5958,7 @@ public final class TdApi {
     /// - Parameter code: The phone number confirmation code
     public func checkPhoneNumberConfirmationCode(
         code: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckPhoneNumberConfirmationCode(
             code: code
@@ -5972,7 +5972,7 @@ public final class TdApi {
     public func setBotUpdatesStatus(
         errorMessage: String?,
         pendingUpdateCount: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetBotUpdatesStatus(
             errorMessage: errorMessage,
@@ -5987,7 +5987,7 @@ public final class TdApi {
     public func uploadStickerFile(
         sticker: InputSticker?,
         userId: Int64?
-        completion: @escaping (Result<File, Swift.Error>) -> File
+        , completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = UploadStickerFile(
             sticker: sticker,
@@ -6000,7 +6000,7 @@ public final class TdApi {
     /// - Parameter title: Sticker set title; 1-64 characters
     public func getSuggestedStickerSetName(
         title: String?
-        completion: @escaping (Result<Text, Swift.Error>) -> Text
+        , completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetSuggestedStickerSetName(
             title: title
@@ -6012,7 +6012,7 @@ public final class TdApi {
     /// - Parameter name: Name to be checked
     public func checkStickerSetName(
         name: String?
-        completion: @escaping (Result<CheckStickerSetNameResult, Swift.Error>) -> CheckStickerSetNameResult
+        , completion: @escaping (Result<CheckStickerSetNameResult, Swift.Error>) -> Void
     ) throws {
         let query = CheckStickerSetName(
             name: name
@@ -6034,7 +6034,7 @@ public final class TdApi {
         stickers: [InputSticker]?,
         title: String?,
         userId: Int64?
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> StickerSet
+        , completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewStickerSet(
             isMasks: isMasks,
@@ -6055,7 +6055,7 @@ public final class TdApi {
         name: String?,
         sticker: InputSticker?,
         userId: Int64?
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> StickerSet
+        , completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = AddStickerToSet(
             name: name,
@@ -6073,7 +6073,7 @@ public final class TdApi {
         name: String?,
         thumbnail: InputFile?,
         userId: Int64?
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> StickerSet
+        , completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = SetStickerSetThumbnail(
             name: name,
@@ -6089,7 +6089,7 @@ public final class TdApi {
     public func setStickerPositionInSet(
         position: Int?,
         sticker: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetStickerPositionInSet(
             position: position,
@@ -6102,7 +6102,7 @@ public final class TdApi {
     /// - Parameter sticker: Sticker
     public func removeStickerFromSet(
         sticker: InputFile?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveStickerFromSet(
             sticker: sticker
@@ -6124,7 +6124,7 @@ public final class TdApi {
         scale: Int?,
         width: Int?,
         zoom: Int?
-        completion: @escaping (Result<File, Swift.Error>) -> File
+        , completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = GetMapThumbnailFile(
             chatId: chatId,
@@ -6141,7 +6141,7 @@ public final class TdApi {
     /// - Parameter termsOfServiceId: Terms of service identifier
     public func acceptTermsOfService(
         termsOfServiceId: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AcceptTermsOfService(
             termsOfServiceId: termsOfServiceId
@@ -6155,7 +6155,7 @@ public final class TdApi {
     public func sendCustomRequest(
         method: String?,
         parameters: String?
-        completion: @escaping (Result<CustomRequestResult, Swift.Error>) -> CustomRequestResult
+        , completion: @escaping (Result<CustomRequestResult, Swift.Error>) -> Void
     ) throws {
         let query = SendCustomRequest(
             method: method,
@@ -6170,7 +6170,7 @@ public final class TdApi {
     public func answerCustomQuery(
         customQueryId: TdInt64?,
         data: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AnswerCustomQuery(
             customQueryId: customQueryId,
@@ -6183,7 +6183,7 @@ public final class TdApi {
     /// - Parameter seconds: Number of seconds before the function returns
     public func setAlarm(
         seconds: Double?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetAlarm(
             seconds: seconds
@@ -6192,13 +6192,13 @@ public final class TdApi {
     }
 
     /// Returns information about existing countries. Can be called before authorization
-    public func getCountries(completion: @escaping (Result<Countries, Swift.Error>) -> Countries) throws {
+    public func getCountries(, completion: @escaping (Result<Countries, Swift.Error>) -> Void) throws {
         let query = GetCountries()
         execute(query: query, completion: completion)
     }
 
     /// Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
-    public func getCountryCode(completion: @escaping (Result<Text, Swift.Error>) -> Text) throws {
+    public func getCountryCode(, completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
         let query = GetCountryCode()
         execute(query: query, completion: completion)
     }
@@ -6207,7 +6207,7 @@ public final class TdApi {
     /// - Parameter phoneNumberPrefix: The phone number prefix
     public func getPhoneNumberInfo(
         phoneNumberPrefix: String?
-        completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> PhoneNumberInfo
+        , completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetPhoneNumberInfo(
             phoneNumberPrefix: phoneNumberPrefix
@@ -6221,7 +6221,7 @@ public final class TdApi {
     public func getPhoneNumberInfoSync(
         languageCode: String?,
         phoneNumberPrefix: String?
-        completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> PhoneNumberInfo
+        , completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetPhoneNumberInfoSync(
             languageCode: languageCode,
@@ -6231,7 +6231,7 @@ public final class TdApi {
     }
 
     /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    public func getApplicationDownloadLink(completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl) throws {
+    public func getApplicationDownloadLink(, completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void) throws {
         let query = GetApplicationDownloadLink()
         execute(query: query, completion: completion)
     }
@@ -6240,7 +6240,7 @@ public final class TdApi {
     /// - Parameter link: The link
     public func getDeepLinkInfo(
         link: String?
-        completion: @escaping (Result<DeepLinkInfo, Swift.Error>) -> DeepLinkInfo
+        , completion: @escaping (Result<DeepLinkInfo, Swift.Error>) -> Void
     ) throws {
         let query = GetDeepLinkInfo(
             link: link
@@ -6249,7 +6249,7 @@ public final class TdApi {
     }
 
     /// Returns application config, provided by the server. Can be called before authorization
-    public func getApplicationConfig(completion: @escaping (Result<JsonValue, Swift.Error>) -> JsonValue) throws {
+    public func getApplicationConfig(, completion: @escaping (Result<JsonValue, Swift.Error>) -> Void) throws {
         let query = GetApplicationConfig()
         execute(query: query, completion: completion)
     }
@@ -6262,7 +6262,7 @@ public final class TdApi {
         chatId: Int64?,
         data: JsonValue?,
         type: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SaveApplicationLogEvent(
             chatId: chatId,
@@ -6282,7 +6282,7 @@ public final class TdApi {
         port: Int?,
         server: String?,
         type: ProxyType?
-        completion: @escaping (Result<Proxy, Swift.Error>) -> Proxy
+        , completion: @escaping (Result<Proxy, Swift.Error>) -> Void
     ) throws {
         let query = AddProxy(
             enable: enable,
@@ -6305,7 +6305,7 @@ public final class TdApi {
         proxyId: Int?,
         server: String?,
         type: ProxyType?
-        completion: @escaping (Result<Proxy, Swift.Error>) -> Proxy
+        , completion: @escaping (Result<Proxy, Swift.Error>) -> Void
     ) throws {
         let query = EditProxy(
             enable: enable,
@@ -6321,7 +6321,7 @@ public final class TdApi {
     /// - Parameter proxyId: Proxy identifier
     public func enableProxy(
         proxyId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EnableProxy(
             proxyId: proxyId
@@ -6330,7 +6330,7 @@ public final class TdApi {
     }
 
     /// Disables the currently enabled proxy. Can be called before authorization
-    public func disableProxy(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func disableProxy(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DisableProxy()
         execute(query: query, completion: completion)
     }
@@ -6339,7 +6339,7 @@ public final class TdApi {
     /// - Parameter proxyId: Proxy identifier
     public func removeProxy(
         proxyId: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RemoveProxy(
             proxyId: proxyId
@@ -6348,7 +6348,7 @@ public final class TdApi {
     }
 
     /// Returns list of proxies that are currently set up. Can be called before authorization
-    public func getProxies(completion: @escaping (Result<Proxies, Swift.Error>) -> Proxies) throws {
+    public func getProxies(, completion: @escaping (Result<Proxies, Swift.Error>) -> Void) throws {
         let query = GetProxies()
         execute(query: query, completion: completion)
     }
@@ -6357,7 +6357,7 @@ public final class TdApi {
     /// - Parameter proxyId: Proxy identifier
     public func getProxyLink(
         proxyId: Int?
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> HttpUrl
+        , completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetProxyLink(
             proxyId: proxyId
@@ -6369,7 +6369,7 @@ public final class TdApi {
     /// - Parameter proxyId: Proxy identifier. Use 0 to ping a Telegram server without a proxy
     public func pingProxy(
         proxyId: Int?
-        completion: @escaping (Result<Seconds, Swift.Error>) -> Seconds
+        , completion: @escaping (Result<Seconds, Swift.Error>) -> Void
     ) throws {
         let query = PingProxy(
             proxyId: proxyId
@@ -6381,7 +6381,7 @@ public final class TdApi {
     /// - Parameter logStream: New log stream
     public func setLogStream(
         logStream: LogStream?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetLogStream(
             logStream: logStream
@@ -6390,7 +6390,7 @@ public final class TdApi {
     }
 
     /// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
-    public func getLogStream(completion: @escaping (Result<LogStream, Swift.Error>) -> LogStream) throws {
+    public func getLogStream(, completion: @escaping (Result<LogStream, Swift.Error>) -> Void) throws {
         let query = GetLogStream()
         execute(query: query, completion: completion)
     }
@@ -6399,7 +6399,7 @@ public final class TdApi {
     /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
     public func setLogVerbosityLevel(
         newVerbosityLevel: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetLogVerbosityLevel(
             newVerbosityLevel: newVerbosityLevel
@@ -6408,13 +6408,13 @@ public final class TdApi {
     }
 
     /// Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
-    public func getLogVerbosityLevel(completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> LogVerbosityLevel) throws {
+    public func getLogVerbosityLevel(, completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> Void) throws {
         let query = GetLogVerbosityLevel()
         execute(query: query, completion: completion)
     }
 
     /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
-    public func getLogTags(completion: @escaping (Result<LogTags, Swift.Error>) -> LogTags) throws {
+    public func getLogTags(, completion: @escaping (Result<LogTags, Swift.Error>) -> Void) throws {
         let query = GetLogTags()
         execute(query: query, completion: completion)
     }
@@ -6425,7 +6425,7 @@ public final class TdApi {
     public func setLogTagVerbosityLevel(
         newVerbosityLevel: Int?,
         tag: String?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetLogTagVerbosityLevel(
             newVerbosityLevel: newVerbosityLevel,
@@ -6438,7 +6438,7 @@ public final class TdApi {
     /// - Parameter tag: Logging tag to change verbosity level
     public func getLogTagVerbosityLevel(
         tag: String?
-        completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> LogVerbosityLevel
+        , completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> Void
     ) throws {
         let query = GetLogTagVerbosityLevel(
             tag: tag
@@ -6452,7 +6452,7 @@ public final class TdApi {
     public func addLogMessage(
         text: String?,
         verbosityLevel: Int?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddLogMessage(
             text: text,
@@ -6462,7 +6462,7 @@ public final class TdApi {
     }
 
     /// Does nothing; for testing only. This is an offline method. Can be called before authorization
-    public func testCallEmpty(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func testCallEmpty(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TestCallEmpty()
         execute(query: query, completion: completion)
     }
@@ -6471,7 +6471,7 @@ public final class TdApi {
     /// - Parameter x: String to return
     public func testCallString(
         x: String?
-        completion: @escaping (Result<TestString, Swift.Error>) -> TestString
+        , completion: @escaping (Result<TestString, Swift.Error>) -> Void
     ) throws {
         let query = TestCallString(
             x: x
@@ -6483,7 +6483,7 @@ public final class TdApi {
     /// - Parameter x: Bytes to return
     public func testCallBytes(
         x: Data?
-        completion: @escaping (Result<TestBytes, Swift.Error>) -> TestBytes
+        , completion: @escaping (Result<TestBytes, Swift.Error>) -> Void
     ) throws {
         let query = TestCallBytes(
             x: x
@@ -6495,7 +6495,7 @@ public final class TdApi {
     /// - Parameter x: Vector of numbers to return
     public func testCallVectorInt(
         x: [Int]?
-        completion: @escaping (Result<TestVectorInt, Swift.Error>) -> TestVectorInt
+        , completion: @escaping (Result<TestVectorInt, Swift.Error>) -> Void
     ) throws {
         let query = TestCallVectorInt(
             x: x
@@ -6507,7 +6507,7 @@ public final class TdApi {
     /// - Parameter x: Vector of objects to return
     public func testCallVectorIntObject(
         x: [TestInt]?
-        completion: @escaping (Result<TestVectorIntObject, Swift.Error>) -> TestVectorIntObject
+        , completion: @escaping (Result<TestVectorIntObject, Swift.Error>) -> Void
     ) throws {
         let query = TestCallVectorIntObject(
             x: x
@@ -6519,7 +6519,7 @@ public final class TdApi {
     /// - Parameter x: Vector of strings to return
     public func testCallVectorString(
         x: [String]?
-        completion: @escaping (Result<TestVectorString, Swift.Error>) -> TestVectorString
+        , completion: @escaping (Result<TestVectorString, Swift.Error>) -> Void
     ) throws {
         let query = TestCallVectorString(
             x: x
@@ -6531,7 +6531,7 @@ public final class TdApi {
     /// - Parameter x: Vector of objects to return
     public func testCallVectorStringObject(
         x: [TestString]?
-        completion: @escaping (Result<TestVectorStringObject, Swift.Error>) -> TestVectorStringObject
+        , completion: @escaping (Result<TestVectorStringObject, Swift.Error>) -> Void
     ) throws {
         let query = TestCallVectorStringObject(
             x: x
@@ -6543,7 +6543,7 @@ public final class TdApi {
     /// - Parameter x: Number to square
     public func testSquareInt(
         x: Int?
-        completion: @escaping (Result<TestInt, Swift.Error>) -> TestInt
+        , completion: @escaping (Result<TestInt, Swift.Error>) -> Void
     ) throws {
         let query = TestSquareInt(
             x: x
@@ -6552,7 +6552,7 @@ public final class TdApi {
     }
 
     /// Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
-    public func testNetwork(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func testNetwork(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TestNetwork()
         execute(query: query, completion: completion)
     }
@@ -6569,7 +6569,7 @@ public final class TdApi {
         server: String?,
         timeout: Double?,
         type: ProxyType?
-        completion: @escaping (Result<Ok, Swift.Error>) -> Ok
+        , completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = TestProxy(
             dcId: dcId,
@@ -6582,13 +6582,13 @@ public final class TdApi {
     }
 
     /// Forces an updates.getDifference call to the Telegram servers; for testing only
-    public func testGetDifference(completion: @escaping (Result<Ok, Swift.Error>) -> Ok) throws {
+    public func testGetDifference(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TestGetDifference()
         execute(query: query, completion: completion)
     }
 
     /// Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
-    public func testUseUpdate(completion: @escaping (Result<Update, Swift.Error>) -> Update) throws {
+    public func testUseUpdate(, completion: @escaping (Result<Update, Swift.Error>) -> Void) throws {
         let query = TestUseUpdate()
         execute(query: query, completion: completion)
     }
@@ -6597,7 +6597,7 @@ public final class TdApi {
     /// - Parameter error: The error to be returned
     public func testReturnError(
         error: Error?
-        completion: @escaping (Result<Error, Swift.Error>) -> Error
+        , completion: @escaping (Result<Error, Swift.Error>) -> Void
     ) throws {
         let query = TestReturnError(
             error: error
