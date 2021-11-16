@@ -49,7 +49,7 @@ print("Response dict \(result)")
 
 ### Async requests
 ```swift
-let messages = try await api.getChatHistory(
+let chatHistory = try await api.getChatHistory(
     chatId: chatId,
     fromMessageId: 0,
     limit: 50,
