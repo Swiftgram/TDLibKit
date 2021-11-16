@@ -54,18 +54,9 @@ let chatHistory = try await api.getChatHistory(
     fromMessageId: 0,
     limit: 50,
     offset: 0,
-    onlyLocal: false, // Request remote messages from server
-    completion: { result in
-        // Handle Errors
-        if case .failure(let error) = result {
-            self.delegate?.onError(error)
-            print("Error in getChatHistory request \(error.localizedDescription)")
-        } else if let messages = try? result.get().messages {
-            // Handle messages
-            
-        }
-    }
+    onlyLocal: false // Request remote messages from server
 )
+
 for message in chatHistory.messages {
     switch message.content {
         case .messageText(let text):
