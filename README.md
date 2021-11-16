@@ -36,7 +36,7 @@ Library provides multiple interfaces based on different approaches
 - [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch
 - Completion handlers & closures
 
-## Async/Await `AsyncTdClientImpl`
+## Async/Await
 
 Available for iOS 15.0+, macOS 12.0+, watchOS 8.0+, tvOS 15.0+
 
@@ -131,7 +131,7 @@ api.client.run {
 }
 ```
 
-## Completion handlers `TdClientImpl`
+## Completion handlers
 
 ### Create Client & API instance
 
