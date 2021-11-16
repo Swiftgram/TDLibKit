@@ -20,9 +20,9 @@ Integration requires similar to [TDLibFramework Cocoapods & Flutter guide](https
 
 
 ## Usage
-Library provides multiple classes based on different approaches
-1. [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch
-2. Completion handlers & closures
+Library provides multiple interfaces based on different approaches
+- [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch
+- Completion handlers & closures
 
 ## Async/Await
 Available for iOS 15.0+, macOS 12.0+, watchOS 8.0+, tvOS 15.0+
