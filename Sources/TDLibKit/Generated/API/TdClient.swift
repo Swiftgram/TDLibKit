@@ -28,6 +28,28 @@ public protocol TdClient {
 }
 
 
+/// Basic Async protocol for communicate with TdLib.
+@available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+public protocol AsyncTdClient {
+
+    /// Creates client and starts updates poller to work with async requests
+    func run(updateHandler: @escaping (Data) -> Void)
+
+    /// Continuously listen for updates and asynchronously process them via provided updateHandler
+    func run(updateHandler: @escaping (Data) -> Void)
+
+    /// Asynchronously Sends request to the TDLib client.
+    func send(query: TdQuery) async throws -> Data
+
+    /// Synchronously executes TDLib request.
+    func execute(query: TdQuery) throws -> [String:Any]?
+
+    /// Close connection with TDLib and stop updates polling.
+    func close()
+
+}
+
+
 public protocol TdQuery {
 
     func make(with extra: String?) throws -> Data
