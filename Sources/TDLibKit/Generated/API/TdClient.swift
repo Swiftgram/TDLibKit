@@ -33,7 +33,7 @@ public protocol TdClient {
 public protocol AsyncTdClient {
 
     /// Creates client and starts updates poller to work with async requests
-    func run(updateHandler: @escaping (Data) -> Void)
+    func start()
 
     /// Continuously listen for updates and asynchronously process them via provided updateHandler
     func run(updateHandler: @escaping (Data) -> Void)

@@ -24,7 +24,7 @@ public final class TdApi {
 
 
     /// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
-    public func getAuthorizationState(, completion: @escaping (Result<AuthorizationState, Swift.Error>) -> Void) throws {
+    public func getAuthorizationState(completion: @escaping (Result<AuthorizationState, Swift.Error>) -> Void) throws {
         let query = GetAuthorizationState()
         execute(query: query, completion: completion)
     }
@@ -69,7 +69,7 @@ public final class TdApi {
     }
 
     /// Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed
-    public func resendAuthenticationCode(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func resendAuthenticationCode(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResendAuthenticationCode()
         execute(query: query, completion: completion)
     }
@@ -126,7 +126,7 @@ public final class TdApi {
     }
 
     /// Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
-    public func requestAuthenticationPasswordRecovery(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func requestAuthenticationPasswordRecovery(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = RequestAuthenticationPasswordRecovery()
         execute(query: query, completion: completion)
     }
@@ -174,19 +174,19 @@ public final class TdApi {
     }
 
     /// Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
-    public func logOut(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func logOut(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = LogOut()
         execute(query: query, completion: completion)
     }
 
     /// Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
-    public func close(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func close(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = Close()
         execute(query: query, completion: completion)
     }
 
     /// Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
-    public func destroy(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func destroy(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = Destroy()
         execute(query: query, completion: completion)
     }
@@ -204,7 +204,7 @@ public final class TdApi {
     }
 
     /// Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
-    public func getCurrentState(, completion: @escaping (Result<Updates, Swift.Error>) -> Void) throws {
+    public func getCurrentState(completion: @escaping (Result<Updates, Swift.Error>) -> Void) throws {
         let query = GetCurrentState()
         execute(query: query, completion: completion)
     }
@@ -222,7 +222,7 @@ public final class TdApi {
     }
 
     /// Returns the current state of 2-step verification
-    public func getPasswordState(, completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
+    public func getPasswordState(completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
         let query = GetPasswordState()
         execute(query: query, completion: completion)
     }
@@ -291,13 +291,13 @@ public final class TdApi {
     }
 
     /// Resends the 2-step verification recovery email address verification code
-    public func resendRecoveryEmailAddressCode(, completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
+    public func resendRecoveryEmailAddressCode(completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
         let query = ResendRecoveryEmailAddressCode()
         execute(query: query, completion: completion)
     }
 
     /// Requests to send a 2-step verification password recovery code to an email address that was previously set up
-    public func requestPasswordRecovery(, completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+    public func requestPasswordRecovery(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = RequestPasswordRecovery()
         execute(query: query, completion: completion)
     }
@@ -333,13 +333,13 @@ public final class TdApi {
     }
 
     /// Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
-    public func resetPassword(, completion: @escaping (Result<ResetPasswordResult, Swift.Error>) -> Void) throws {
+    public func resetPassword(completion: @escaping (Result<ResetPasswordResult, Swift.Error>) -> Void) throws {
         let query = ResetPassword()
         execute(query: query, completion: completion)
     }
 
     /// Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
-    public func cancelPasswordReset(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func cancelPasswordReset(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = CancelPasswordReset()
         execute(query: query, completion: completion)
     }
@@ -360,13 +360,13 @@ public final class TdApi {
     }
 
     /// Returns information about the current temporary password
-    public func getTemporaryPasswordState(, completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> Void) throws {
+    public func getTemporaryPasswordState(completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> Void) throws {
         let query = GetTemporaryPasswordState()
         execute(query: query, completion: completion)
     }
 
     /// Returns the current user
-    public func getMe(, completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
+    public func getMe(completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetMe()
         execute(query: query, completion: completion)
     }
@@ -765,7 +765,7 @@ public final class TdApi {
     }
 
     /// Clears the list of recently found chats
-    public func clearRecentlyFoundChats(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func clearRecentlyFoundChats(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ClearRecentlyFoundChats()
         execute(query: query, completion: completion)
     }
@@ -822,13 +822,13 @@ public final class TdApi {
     }
 
     /// Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
-    public func getSuitableDiscussionChats(, completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
+    public func getSuitableDiscussionChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetSuitableDiscussionChats()
         execute(query: query, completion: completion)
     }
 
     /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
-    public func getInactiveSupergroupChats(, completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
+    public func getInactiveSupergroupChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetInactiveSupergroupChats()
         execute(query: query, completion: completion)
     }
@@ -1068,7 +1068,7 @@ public final class TdApi {
     }
 
     /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
-    public func getActiveLiveLocationMessages(, completion: @escaping (Result<Messages, Swift.Error>) -> Void) throws {
+    public func getActiveLiveLocationMessages(completion: @escaping (Result<Messages, Swift.Error>) -> Void) throws {
         let query = GetActiveLiveLocationMessages()
         execute(query: query, completion: completion)
     }
@@ -2568,7 +2568,7 @@ public final class TdApi {
     }
 
     /// Returns recommended chat filters for the current user
-    public func getRecommendedChatFilters(, completion: @escaping (Result<RecommendedChatFilters, Swift.Error>) -> Void) throws {
+    public func getRecommendedChatFilters(completion: @escaping (Result<RecommendedChatFilters, Swift.Error>) -> Void) throws {
         let query = GetRecommendedChatFilters()
         execute(query: query, completion: completion)
     }
@@ -2943,7 +2943,7 @@ public final class TdApi {
     }
 
     /// Checks whether the current session can be used to transfer a chat ownership to another user
-    public func canTransferOwnership(, completion: @escaping (Result<CanTransferOwnershipResult, Swift.Error>) -> Void) throws {
+    public func canTransferOwnership(completion: @escaping (Result<CanTransferOwnershipResult, Swift.Error>) -> Void) throws {
         let query = CanTransferOwnership()
         execute(query: query, completion: completion)
     }
@@ -3069,7 +3069,7 @@ public final class TdApi {
     }
 
     /// Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
-    public func resetAllNotificationSettings(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func resetAllNotificationSettings(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetAllNotificationSettings()
         execute(query: query, completion: completion)
     }
@@ -4206,7 +4206,7 @@ public final class TdApi {
     }
 
     /// Returns all user contacts
-    public func getContacts(, completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
+    public func getContacts(completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetContacts()
         execute(query: query, completion: completion)
     }
@@ -4239,7 +4239,7 @@ public final class TdApi {
     }
 
     /// Returns the total number of imported contacts
-    public func getImportedContactCount(, completion: @escaping (Result<Count, Swift.Error>) -> Void) throws {
+    public func getImportedContactCount(completion: @escaping (Result<Count, Swift.Error>) -> Void) throws {
         let query = GetImportedContactCount()
         execute(query: query, completion: completion)
     }
@@ -4257,7 +4257,7 @@ public final class TdApi {
     }
 
     /// Clears all imported contacts, contact list remains unchanged
-    public func clearImportedContacts(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func clearImportedContacts(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ClearImportedContacts()
         execute(query: query, completion: completion)
     }
@@ -4533,7 +4533,7 @@ public final class TdApi {
     }
 
     /// Returns favorite stickers
-    public func getFavoriteStickers(, completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+    public func getFavoriteStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
         let query = GetFavoriteStickers()
         execute(query: query, completion: completion)
     }
@@ -4617,7 +4617,7 @@ public final class TdApi {
     }
 
     /// Returns saved animations
-    public func getSavedAnimations(, completion: @escaping (Result<Animations, Swift.Error>) -> Void) throws {
+    public func getSavedAnimations(completion: @escaping (Result<Animations, Swift.Error>) -> Void) throws {
         let query = GetSavedAnimations()
         execute(query: query, completion: completion)
     }
@@ -4647,7 +4647,7 @@ public final class TdApi {
     }
 
     /// Returns up to 20 recently used inline bots in the order of their last usage
-    public func getRecentInlineBots(, completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
+    public func getRecentInlineBots(completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetRecentInlineBots()
         execute(query: query, completion: completion)
     }
@@ -4797,7 +4797,7 @@ public final class TdApi {
     }
 
     /// Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-    public func resendChangePhoneNumberCode(, completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+    public func resendChangePhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendChangePhoneNumberCode()
         execute(query: query, completion: completion)
     }
@@ -4863,7 +4863,7 @@ public final class TdApi {
     }
 
     /// Returns all active sessions of the current user
-    public func getActiveSessions(, completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
+    public func getActiveSessions(completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
         let query = GetActiveSessions()
         execute(query: query, completion: completion)
     }
@@ -4881,13 +4881,13 @@ public final class TdApi {
     }
 
     /// Terminates all other sessions of the current user
-    public func terminateAllOtherSessions(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func terminateAllOtherSessions(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TerminateAllOtherSessions()
         execute(query: query, completion: completion)
     }
 
     /// Returns all website where the current user used Telegram to log in
-    public func getConnectedWebsites(, completion: @escaping (Result<ConnectedWebsites, Swift.Error>) -> Void) throws {
+    public func getConnectedWebsites(completion: @escaping (Result<ConnectedWebsites, Swift.Error>) -> Void) throws {
         let query = GetConnectedWebsites()
         execute(query: query, completion: completion)
     }
@@ -4905,7 +4905,7 @@ public final class TdApi {
     }
 
     /// Disconnects all websites from the current user's Telegram account
-    public func disconnectAllWebsites(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func disconnectAllWebsites(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DisconnectAllWebsites()
         execute(query: query, completion: completion)
     }
@@ -5145,25 +5145,25 @@ public final class TdApi {
     }
 
     /// Returns saved order info, if any
-    public func getSavedOrderInfo(, completion: @escaping (Result<OrderInfo, Swift.Error>) -> Void) throws {
+    public func getSavedOrderInfo(completion: @escaping (Result<OrderInfo, Swift.Error>) -> Void) throws {
         let query = GetSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
     /// Deletes saved order info
-    public func deleteSavedOrderInfo(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func deleteSavedOrderInfo(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DeleteSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
     /// Deletes saved credentials for all payment provider bots
-    public func deleteSavedCredentials(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func deleteSavedCredentials(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DeleteSavedCredentials()
         execute(query: query, completion: completion)
     }
 
     /// Returns a user that can be contacted to get support
-    public func getSupportUser(, completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
+    public func getSupportUser(completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetSupportUser()
         execute(query: query, completion: completion)
     }
@@ -5238,7 +5238,7 @@ public final class TdApi {
     }
 
     /// Resets list of installed backgrounds to its default value
-    public func resetBackgrounds(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func resetBackgrounds(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetBackgrounds()
         execute(query: query, completion: completion)
     }
@@ -5478,7 +5478,7 @@ public final class TdApi {
     }
 
     /// Returns the period of inactivity after which the account of the current user will automatically be deleted
-    public func getAccountTtl(, completion: @escaping (Result<AccountTtl, Swift.Error>) -> Void) throws {
+    public func getAccountTtl(completion: @escaping (Result<AccountTtl, Swift.Error>) -> Void) throws {
         let query = GetAccountTtl()
         execute(query: query, completion: completion)
     }
@@ -5613,13 +5613,13 @@ public final class TdApi {
     }
 
     /// Quickly returns approximate storage usage statistics. Can be called before authorization
-    public func getStorageStatisticsFast(, completion: @escaping (Result<StorageStatisticsFast, Swift.Error>) -> Void) throws {
+    public func getStorageStatisticsFast(completion: @escaping (Result<StorageStatisticsFast, Swift.Error>) -> Void) throws {
         let query = GetStorageStatisticsFast()
         execute(query: query, completion: completion)
     }
 
     /// Returns database statistics
-    public func getDatabaseStatistics(, completion: @escaping (Result<DatabaseStatistics, Swift.Error>) -> Void) throws {
+    public func getDatabaseStatistics(completion: @escaping (Result<DatabaseStatistics, Swift.Error>) -> Void) throws {
         let query = GetDatabaseStatistics()
         execute(query: query, completion: completion)
     }
@@ -5697,13 +5697,13 @@ public final class TdApi {
     }
 
     /// Resets all network data usage statistics to zero. Can be called before authorization
-    public func resetNetworkStatistics(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func resetNetworkStatistics(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetNetworkStatistics()
         execute(query: query, completion: completion)
     }
 
     /// Returns auto-download settings presets for the current user
-    public func getAutoDownloadSettingsPresets(, completion: @escaping (Result<AutoDownloadSettingsPresets, Swift.Error>) -> Void) throws {
+    public func getAutoDownloadSettingsPresets(completion: @escaping (Result<AutoDownloadSettingsPresets, Swift.Error>) -> Void) throws {
         let query = GetAutoDownloadSettingsPresets()
         execute(query: query, completion: completion)
     }
@@ -5832,7 +5832,7 @@ public final class TdApi {
     }
 
     /// Re-sends the code to verify a phone number to be added to a user's Telegram Passport
-    public func resendPhoneNumberVerificationCode(, completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+    public func resendPhoneNumberVerificationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendPhoneNumberVerificationCode()
         execute(query: query, completion: completion)
     }
@@ -5862,7 +5862,7 @@ public final class TdApi {
     }
 
     /// Re-sends the code to verify an email address to be added to a user's Telegram Passport
-    public func resendEmailAddressVerificationCode(, completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+    public func resendEmailAddressVerificationCode(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendEmailAddressVerificationCode()
         execute(query: query, completion: completion)
     }
@@ -5949,7 +5949,7 @@ public final class TdApi {
     }
 
     /// Resends phone number confirmation code
-    public func resendPhoneNumberConfirmationCode(, completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+    public func resendPhoneNumberConfirmationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendPhoneNumberConfirmationCode()
         execute(query: query, completion: completion)
     }
@@ -6192,13 +6192,13 @@ public final class TdApi {
     }
 
     /// Returns information about existing countries. Can be called before authorization
-    public func getCountries(, completion: @escaping (Result<Countries, Swift.Error>) -> Void) throws {
+    public func getCountries(completion: @escaping (Result<Countries, Swift.Error>) -> Void) throws {
         let query = GetCountries()
         execute(query: query, completion: completion)
     }
 
     /// Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
-    public func getCountryCode(, completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
+    public func getCountryCode(completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
         let query = GetCountryCode()
         execute(query: query, completion: completion)
     }
@@ -6231,7 +6231,7 @@ public final class TdApi {
     }
 
     /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    public func getApplicationDownloadLink(, completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void) throws {
+    public func getApplicationDownloadLink(completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void) throws {
         let query = GetApplicationDownloadLink()
         execute(query: query, completion: completion)
     }
@@ -6249,7 +6249,7 @@ public final class TdApi {
     }
 
     /// Returns application config, provided by the server. Can be called before authorization
-    public func getApplicationConfig(, completion: @escaping (Result<JsonValue, Swift.Error>) -> Void) throws {
+    public func getApplicationConfig(completion: @escaping (Result<JsonValue, Swift.Error>) -> Void) throws {
         let query = GetApplicationConfig()
         execute(query: query, completion: completion)
     }
@@ -6330,7 +6330,7 @@ public final class TdApi {
     }
 
     /// Disables the currently enabled proxy. Can be called before authorization
-    public func disableProxy(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func disableProxy(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DisableProxy()
         execute(query: query, completion: completion)
     }
@@ -6348,7 +6348,7 @@ public final class TdApi {
     }
 
     /// Returns list of proxies that are currently set up. Can be called before authorization
-    public func getProxies(, completion: @escaping (Result<Proxies, Swift.Error>) -> Void) throws {
+    public func getProxies(completion: @escaping (Result<Proxies, Swift.Error>) -> Void) throws {
         let query = GetProxies()
         execute(query: query, completion: completion)
     }
@@ -6390,7 +6390,7 @@ public final class TdApi {
     }
 
     /// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
-    public func getLogStream(, completion: @escaping (Result<LogStream, Swift.Error>) -> Void) throws {
+    public func getLogStream(completion: @escaping (Result<LogStream, Swift.Error>) -> Void) throws {
         let query = GetLogStream()
         execute(query: query, completion: completion)
     }
@@ -6408,13 +6408,13 @@ public final class TdApi {
     }
 
     /// Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
-    public func getLogVerbosityLevel(, completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> Void) throws {
+    public func getLogVerbosityLevel(completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> Void) throws {
         let query = GetLogVerbosityLevel()
         execute(query: query, completion: completion)
     }
 
     /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
-    public func getLogTags(, completion: @escaping (Result<LogTags, Swift.Error>) -> Void) throws {
+    public func getLogTags(completion: @escaping (Result<LogTags, Swift.Error>) -> Void) throws {
         let query = GetLogTags()
         execute(query: query, completion: completion)
     }
@@ -6462,7 +6462,7 @@ public final class TdApi {
     }
 
     /// Does nothing; for testing only. This is an offline method. Can be called before authorization
-    public func testCallEmpty(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func testCallEmpty(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TestCallEmpty()
         execute(query: query, completion: completion)
     }
@@ -6552,7 +6552,7 @@ public final class TdApi {
     }
 
     /// Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
-    public func testNetwork(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func testNetwork(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TestNetwork()
         execute(query: query, completion: completion)
     }
@@ -6582,13 +6582,13 @@ public final class TdApi {
     }
 
     /// Forces an updates.getDifference call to the Telegram servers; for testing only
-    public func testGetDifference(, completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+    public func testGetDifference(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TestGetDifference()
         execute(query: query, completion: completion)
     }
 
     /// Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
-    public func testUseUpdate(, completion: @escaping (Result<Update, Swift.Error>) -> Void) throws {
+    public func testUseUpdate(completion: @escaping (Result<Update, Swift.Error>) -> Void) throws {
         let query = TestUseUpdate()
         execute(query: query, completion: completion)
     }
