@@ -71,7 +71,6 @@ jobs:
         run: |
           git add . || true
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
-          git push origin main || true
 
       - name: Tests
         run: |
@@ -79,6 +78,9 @@ jobs:
           do
               ./scripts/test.sh $platform
           done
+      
+      - name: Push update
+        run: git push origin main || true
 
       - name: Remove previous release
         uses: dev-drprasad/delete-tag-and-release@85fa8bcea0379a6ada9bbfdcb0a9d24d58e1a0d7
