@@ -73,8 +73,9 @@ jobs:
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
 
       - name: Tests
+        # requires macos-12 to test on macOS 
         run: |
-          for platform in "macOS iOS-simulator tvOS-simulator"
+          for platform in "iOS-simulator tvOS-simulator"
           do
               ./scripts/test.sh $platform
           done
