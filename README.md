@@ -70,7 +70,7 @@ do {
 You must run _at least empty_ updates handler to get responses for async requests.
 
 ```swift
-client.run { _ in }
+api.client.run { _ in }
 ```
 
 #### Async/Await
