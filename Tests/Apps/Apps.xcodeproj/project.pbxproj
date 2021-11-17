@@ -38,6 +38,8 @@
 		A510FA4D269D109E000EA28C /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A510FA4C269D109E000EA28C /* libz.1.tbd */; };
 		A510FA55269DF435000EA28C /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A510FA54269DF435000EA28C /* libc++.1.tbd */; };
 		A510FA57269DF442000EA28C /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A510FA56269DF442000EA28C /* libz.1.tbd */; };
+		A547C45427456D310047282F /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A547C45327456D310047282F /* TDLibKit */; };
+		A547C45627456D390047282F /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A547C45527456D390047282F /* TDLibKit */; };
 		A57204BF274404F80031CC42 /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A57204BE274404F80031CC42 /* TDLibKit */; };
 		A57204C1274404FD0031CC42 /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A57204C0274404FD0031CC42 /* TDLibKit */; };
 		A57204C3274405060031CC42 /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A57204C2274405060031CC42 /* TDLibKit */; };
@@ -206,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A547C45627456D390047282F /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A547C45427456D310047282F /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +528,9 @@
 			dependencies = (
 			);
 			name = "watchOSApp WatchKit Extension";
+			packageProductDependencies = (
+				A547C45527456D390047282F /* TDLibKit */,
+			);
 			productName = "watchOSApp WatchKit Extension";
 			productReference = A510F9BC269D0804000EA28C /* watchOSApp WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -542,6 +549,9 @@
 				A510F9D0269D0805000EA28C /* PBXTargetDependency */,
 			);
 			name = watchOSAppTests;
+			packageProductDependencies = (
+				A547C45327456D310047282F /* TDLibKit */,
+			);
 			productName = watchOSAppTests;
 			productReference = A510F9CE269D0805000EA28C /* watchOSAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1553,6 +1563,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A547C45327456D310047282F /* TDLibKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TDLibKit;
+		};
+		A547C45527456D390047282F /* TDLibKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TDLibKit;
+		};
 		A57204BE274404F80031CC42 /* TDLibKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TDLibKit;
