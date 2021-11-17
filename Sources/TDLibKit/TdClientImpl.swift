@@ -86,8 +86,8 @@ open class TdClientImpl: TdClient {
     }
     
     /// Synchronously executes TDLib request.
-    public func execute(query: TdQuery) -> Result<[String:Any]?, Swift.Error> {
-        guard !self.isClientDestroyed else { return .failure(Error(code: 404, message: "Client destroyed")) }
+    public func execute(query: TdQuery) throws -> [String:Any]? {
+        guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
         
         do {
             let data = try query.make(with: nil)
@@ -99,12 +99,12 @@ open class TdClientImpl: TdClient {
                 let resData = resString.data(using: .utf8)
                 let json = try JSONSerialization.jsonObject(with: resData!, options:[])
                 let dictionary = json as! [String:Any]
-                return .success(dictionary)
+                return dictionary
             } else {
-                return .failure(Error(code: 404, message: "Empty response from TDLib"))
+                throw Error(code: 404, message: "Empty response from TDLib")
             }
         } catch {
-            return .failure(error)
+            throw error
         }
     }
     
