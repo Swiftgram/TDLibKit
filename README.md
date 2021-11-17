@@ -125,7 +125,6 @@ try? api.getChatHistory(
     completion: { result in
         // Handle Errors
         if case .failure(let error) = result {
-            self.delegate?.onError(error)
             print("Error in getChatHistory request \(error.localizedDescription)")
         } else if let messages = try? result.get().messages {
             // Handle messages
