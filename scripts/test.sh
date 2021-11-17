@@ -15,7 +15,7 @@ elif [[ $PLATFORM = "macOS" ]]; then
 elif [[ $PLATFORM = "watchOS-simulator" ]]; then
     SDK="watchsimulator"
     SCHEME="watchOSApp"
-    DESTINATION='platform=watchOS Simulator,name=watch OS'
+    DESTINATION='platform=iOS Simulator'
 elif [[ $PLATFORM = "tvOS-simulator" ]]; then
     SDK="appletvsimulator"
     SCHEME="tvOSApp"
