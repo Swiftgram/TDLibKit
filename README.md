@@ -31,22 +31,18 @@ adaptation.
 
 ## Usage
 
-Library provides multiple interfaces based on different approaches
+Library provides multiple API interfaces based on different approaches
 
-- [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch
+- [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch. Available for iOS
+  15.0+, macOS 12.0+, watchOS 8.0+, tvOS 15.0+
 - Completion handlers & closures
-
-## Async/Await
-
-Available for iOS 15.0+, macOS 12.0+, watchOS 8.0+, tvOS 15.0+
 
 ### Create Client & API instance
 
 ```swift
 import TDLibKit
-let client = AsyncTdClientImpl()
-let api = AsyncTdApi(client: client)
-api.client.start() // Client start required!
+let client = TdClientImpl()
+let api = TdApi(client: client)
 ```
 
 ### Synchronious requests
@@ -59,24 +55,37 @@ in docs
 let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
 do {
     let result = try api.client.execute(query: DTO(query))
+    if let resultDict = result {
+        print("Response: \(resultDict)")
+    } else {
+        print("Empty result")
+    }
 } catch {
     print("Error in SetLogVerbosityLevel request \(error.localizedDescription)")
 }
-print("Response dict \(result)")
 ```
 
 ### Async requests
 
-```swift
-let chatHistory = try await api.getChatHistory(
-    chatId: chatId,
-    fromMessageId: 0,
-    limit: 50,
-    offset: 0,
-    onlyLocal: false // Request remote messages from server
-)
+You must run _at least empty_ updates handler to get responses for async requests.
 
-for message in chatHistory.messages {
+```swift
+client.run { _ in }
+```
+
+#### Async/Await
+
+```swift
+do {
+    let chatHistory = try await api.getChatHistory(
+        chatId: chatId,
+        fromMessageId: 0,
+        limit: 50,
+        offset: 0,
+        onlyLocal: false // Request remote messages from server
+    )
+
+    for message in chatHistory.messages {
     switch message.content {
         case .messageText(let text):
             print(text.text.text)
@@ -97,71 +106,14 @@ for message in chatHistory.messages {
             
         default:
             print("Unknown message content \(message.content)")
-    }
-}
-
-```
-
-### Listen for updates
-
-```swift
-api.client.run {
-    do {
-        let update = try api.decoder.decode(Update.self, from: $0)
-        switch update {
-            case .updateNewMessage(let newMsg):
-                switch newMsg.message.content {
-                    case .messageText(let text):
-                        print("Text Message: \(text.text.text)")
-                    default:
-                        break
-                }
-            case .updateMessageEdited:
-                break
-                
-            // ... etc
-
-            default:
-                print("Unhandled Update \(update)")
-                break
         }
-    } catch {
-        print("Error in update handler \(error.localizedDescription)")
     }
+} catch {
+    print("Error in getChatHistory \(error)")
 }
 ```
 
-## Completion handlers
-
-### Create Client & API instance
-
-```swift
-import TDLibKit
-let client = TdClientImpl(completionQueue: .main)
-let api: TdApi = TdApi(client: client)
-// Client start not required
-```
-
-### Synchronious requests
-
-Only for methods
-with "[Can be called synchronously](https://github.com/tdlib/td/blob/73d8fb4b3584633b0ffde97a20bbff6602e7a5c4/td/generate/scheme/td_api.tl#L4294)"
-in docs
-
-```swift
-let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
-let result = api.client.execute(query: DTO(query))
-
-if case .failure(let error) = result {
-    print("Error in SetLogVerbosityLevel request \(error.localizedDescription)")
-} else if let resultData = try? result.get() {
-    print("Response dict \(resultData)")
-} else {
-    print("Empty Response")
-}
-```
-
-### Async requests
+#### Completion Handlers
 
 ```swift
 try? api.getChatHistory(
@@ -203,12 +155,36 @@ try? api.getChatHistory(
         }
     }
 )
-
 ```
 
 ### Listen for updates
 
-Same as in `AsyncTdClientImpl`
+```swift
+api.client.run {
+    do {
+        let update = try api.decoder.decode(Update.self, from: $0)
+        switch update {
+            case .updateNewMessage(let newMsg):
+                switch newMsg.message.content {
+                    case .messageText(let text):
+                        print("Text Message: \(text.text.text)")
+                    default:
+                        break
+                }
+            case .updateMessageEdited:
+                break
+                
+            // ... etc
+
+            default:
+                print("Unhandled Update \(update)")
+                break
+        }
+    } catch {
+        print("Error in update handler \(error.localizedDescription)")
+    }
+}
+```
 
 ### Logging
 
