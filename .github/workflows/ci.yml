@@ -72,14 +72,19 @@ jobs:
           git add . || true
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
 
-      - name: Tests
-        # requires macos-12 to test on macOS 
-        run: |
-          for platform in "iOS-simulator tvOS-simulator"
-          do
-              ./scripts/test.sh $platform
-          done
+      - name: Tests (iOS)
+        run: ./scripts/test.sh iOS-simulator
       
+      - name: Tests (tvOS)
+        run: ./scripts/test.sh tvOS-simulator
+      
+      # # Requires MacOS 12 
+      # - name: Tests (macOS)
+      #   run: ./scripts/test.sh macOS
+      
+      - name: Tests (watchOS)
+        run: ./scripts/test.sh watchOS-simulator
+
       - name: Push update
         run: git push origin main || true
 
