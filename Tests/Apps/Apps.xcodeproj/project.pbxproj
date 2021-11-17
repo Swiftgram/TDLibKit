@@ -39,7 +39,8 @@
 		A510FA55269DF435000EA28C /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A510FA54269DF435000EA28C /* libc++.1.tbd */; };
 		A510FA57269DF442000EA28C /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A510FA56269DF442000EA28C /* libz.1.tbd */; };
 		A547C45427456D310047282F /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A547C45327456D310047282F /* TDLibKit */; };
-		A547C45627456D390047282F /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A547C45527456D390047282F /* TDLibKit */; };
+		A547C464274575860047282F /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A547C460274575710047282F /* libc++.1.tbd */; };
+		A547C4652745758A0047282F /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A547C462274575750047282F /* libz.1.tbd */; };
 		A57204BF274404F80031CC42 /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A57204BE274404F80031CC42 /* TDLibKit */; };
 		A57204C1274404FD0031CC42 /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A57204C0274404FD0031CC42 /* TDLibKit */; };
 		A57204C3274405060031CC42 /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = A57204C2274405060031CC42 /* TDLibKit */; };
@@ -166,6 +167,8 @@
 		A510FA52269DF42F000EA28C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS14.5.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		A510FA54269DF435000EA28C /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS14.5.sdk/usr/lib/libc++.1.tbd"; sourceTree = DEVELOPER_DIR; };
 		A510FA56269DF442000EA28C /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS14.5.sdk/usr/lib/libz.1.tbd; sourceTree = DEVELOPER_DIR; };
+		A547C460274575710047282F /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/usr/lib/libc++.1.tbd"; sourceTree = DEVELOPER_DIR; };
+		A547C462274575750047282F /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/usr/lib/libz.1.tbd; sourceTree = DEVELOPER_DIR; };
 		A5666E4E274403EE0042E0AB /* TDLibKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TDLibKit; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,8 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A510FA4D269D109E000EA28C /* libz.1.tbd in Frameworks */,
 				A510FA4B269D1093000EA28C /* libc++.1.tbd in Frameworks */,
+				A510FA4D269D109E000EA28C /* libz.1.tbd in Frameworks */,
 				A57204C1274404FD0031CC42 /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,7 +211,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A547C45627456D390047282F /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +218,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A547C464274575860047282F /* libc++.1.tbd in Frameworks */,
+				A547C4652745758A0047282F /* libz.1.tbd in Frameworks */,
 				A547C45427456D310047282F /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,8 +235,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A510FA57269DF442000EA28C /* libz.1.tbd in Frameworks */,
 				A510FA55269DF435000EA28C /* libc++.1.tbd in Frameworks */,
+				A510FA57269DF442000EA28C /* libz.1.tbd in Frameworks */,
 				A57204C3274405060031CC42 /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,6 +384,8 @@
 		A510FA2F269D0C72000EA28C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A547C462274575750047282F /* libz.1.tbd */,
+				A547C460274575710047282F /* libc++.1.tbd */,
 				A510FA56269DF442000EA28C /* libz.1.tbd */,
 				A510FA54269DF435000EA28C /* libc++.1.tbd */,
 				A510FA52269DF42F000EA28C /* libz.tbd */,
@@ -529,7 +535,6 @@
 			);
 			name = "watchOSApp WatchKit Extension";
 			packageProductDependencies = (
-				A547C45527456D390047282F /* TDLibKit */,
 			);
 			productName = "watchOSApp WatchKit Extension";
 			productReference = A510F9BC269D0804000EA28C /* watchOSApp WatchKit Extension.appex */;
@@ -1564,10 +1569,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		A547C45327456D310047282F /* TDLibKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TDLibKit;
-		};
-		A547C45527456D390047282F /* TDLibKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TDLibKit;
 		};
