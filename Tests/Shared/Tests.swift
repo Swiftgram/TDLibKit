@@ -42,7 +42,19 @@ class TDLibKitTests: XCTestCase {
         try super.setUpWithError()
         self.client = TdClientImpl(logger: StdOutLogger())
         self.api = TdApi(client: self.client)
-        self.client.run(updateHandler: { _ in })
+        self.client.run { _ in }
+        
+        let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
+        do {
+            let result = try api.client.execute(query: DTO(query))
+            if let resultDict = result {
+                print("Response: \(resultDict["@type"])")
+            } else {
+                print("Empty result")
+            }
+        } catch {
+            print("Error in SetLogVerbosityLevel request \(error.localizedDescription)")
+        }
         
         guard let cachesUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             XCTFail("Unable to get cache path")
