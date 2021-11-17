@@ -73,6 +73,13 @@ jobs:
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
           git push origin main || true
 
+      - name: Tests
+        run: |
+          for platform in "macOS iOS-simulator tvOS-simulator"
+          do
+              ./scripts/test.sh $platform
+          done
+
       - name: Remove previous release
         uses: dev-drprasad/delete-tag-and-release@85fa8bcea0379a6ada9bbfdcb0a9d24d58e1a0d7
         with:
