@@ -82,8 +82,8 @@ jobs:
       # - name: Tests (macOS)
       #   run: ./scripts/test.sh macOS
       
-      - name: Tests (watchOS)
-        run: ./scripts/test.sh watchOS-simulator
+      # - name: Tests (watchOS)
+      #   run: ./scripts/test.sh watchOS-simulator
 
       - name: Push update
         run: git push origin main || true
