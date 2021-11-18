@@ -7,3 +7,4 @@ DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 tl2swift
 *.tl
+Tests/Apps/Apps.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
