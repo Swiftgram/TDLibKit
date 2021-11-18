@@ -27,7 +27,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>app.swiftgram.TDLibFramework.watchOSApp.watchkitapp</string>
+			<string>app.swiftgram.TDLibKit.watchOSApp.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

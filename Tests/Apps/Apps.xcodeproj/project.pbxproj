@@ -1033,7 +1033,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.iOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.iOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1053,7 +1053,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.iOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.iOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1075,7 +1075,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.iOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.iOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1099,7 +1099,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.iOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.iOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1124,7 +1124,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.macOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.macOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1147,7 +1147,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.macOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.macOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1171,7 +1171,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.macOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.macOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1196,7 +1196,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.macOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.macOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1217,7 +1217,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSApp.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSApp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1240,7 +1240,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSApp.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSApp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1261,7 +1261,7 @@
 				DEVELOPMENT_TEAM = "";
 				IBSC_MODULE = watchOSApp_WatchKit_Extension;
 				INFOPLIST_FILE = "watchOSApp WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSApp.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1282,7 +1282,7 @@
 				DEVELOPMENT_TEAM = "";
 				IBSC_MODULE = watchOSApp_WatchKit_Extension;
 				INFOPLIST_FILE = "watchOSApp WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSApp.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1300,7 +1300,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1315,7 +1315,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1336,7 +1336,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1360,7 +1360,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.watchOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.watchOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1383,7 +1383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.tvOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.tvOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1405,7 +1405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.tvOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.tvOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1428,7 +1428,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.tvOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.tvOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1452,7 +1452,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibFramework.tvOSAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.swiftgram.TDLibKit.tvOSAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
