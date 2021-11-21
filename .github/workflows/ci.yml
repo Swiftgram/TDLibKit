@@ -8,6 +8,7 @@ on:
       - "version" # on version updates
       - "Package.swift"
       - "Package.resolved"
+      - "Tests/**"
       - .github/workflows/ci.yml
   schedule:
     - cron: '0 */12 * * *' # Every 12 hours
