@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a payload of a callback query
-public enum CallbackQueryPayload: Codable {
+public enum CallbackQueryPayload: Codable, Equatable {
 
     /// The payload for a general callback button
     case callbackQueryPayloadData(CallbackQueryPayloadData)
@@ -62,7 +62,7 @@ public enum CallbackQueryPayload: Codable {
 }
 
 /// The payload for a general callback button
-public struct CallbackQueryPayloadData: Codable {
+public struct CallbackQueryPayloadData: Codable, Equatable {
 
     /// Data that was attached to the callback button
     public let data: Data
@@ -74,7 +74,7 @@ public struct CallbackQueryPayloadData: Codable {
 }
 
 /// The payload for a callback button requiring password
-public struct CallbackQueryPayloadDataWithPassword: Codable {
+public struct CallbackQueryPayloadDataWithPassword: Codable, Equatable {
 
     /// Data that was attached to the callback button
     public let data: Data
@@ -93,7 +93,7 @@ public struct CallbackQueryPayloadDataWithPassword: Codable {
 }
 
 /// The payload for a game callback button
-public struct CallbackQueryPayloadGame: Codable {
+public struct CallbackQueryPayloadGame: Codable, Equatable {
 
     /// A short name of the game that was attached to the callback button
     public let gameShortName: String

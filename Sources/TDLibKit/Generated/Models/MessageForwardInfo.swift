@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a forwarded message
-public struct MessageForwardInfo: Codable {
+public struct MessageForwardInfo: Codable, Equatable {
 
     /// Point in time (Unix timestamp) when the message was originally sent
     public let date: Int

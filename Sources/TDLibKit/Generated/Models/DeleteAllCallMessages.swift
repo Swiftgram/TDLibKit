@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes all call messages
-public struct DeleteAllCallMessages: Codable {
+public struct DeleteAllCallMessages: Codable, Equatable {
 
     /// Pass true to delete the messages for all users
     public let revoke: Bool?

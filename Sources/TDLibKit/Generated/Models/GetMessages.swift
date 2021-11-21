@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about messages. If a message is not found, returns null on the corresponding position of the result
-public struct GetMessages: Codable {
+public struct GetMessages: Codable, Equatable {
 
     /// Identifier of the chat the messages belong to
     public let chatId: Int64?

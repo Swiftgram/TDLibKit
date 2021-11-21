@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
-public struct SendChatScreenshotTakenNotification: Codable {
+public struct SendChatScreenshotTakenNotification: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

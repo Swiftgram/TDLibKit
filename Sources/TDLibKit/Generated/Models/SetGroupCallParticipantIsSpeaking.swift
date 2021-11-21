@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that speaking state of a participant of an active group has changed
-public struct SetGroupCallParticipantIsSpeaking: Codable {
+public struct SetGroupCallParticipantIsSpeaking: Codable, Equatable {
 
     /// Group call participant's synchronization audio source identifier, or 0 for the current user
     public let audioSource: Int?

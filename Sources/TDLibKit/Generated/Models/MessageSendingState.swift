@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the sending state of the message
-public enum MessageSendingState: Codable {
+public enum MessageSendingState: Codable, Equatable {
 
     /// The message is being sent now, but has not yet been delivered to the server
     case messageSendingStatePending
@@ -50,7 +50,7 @@ public enum MessageSendingState: Codable {
 }
 
 /// The message failed to be sent
-public struct MessageSendingStateFailed: Codable {
+public struct MessageSendingStateFailed: Codable, Equatable {
 
     /// True, if the message can be re-sent
     public let canRetry: Bool

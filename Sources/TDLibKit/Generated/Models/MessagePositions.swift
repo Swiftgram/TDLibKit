@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of message positions
-public struct MessagePositions: Codable {
+public struct MessagePositions: Codable, Equatable {
 
     /// List of message positions
     public let positions: [MessagePosition]

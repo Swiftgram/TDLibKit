@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a chat event
-public struct ChatEvent: Codable {
+public struct ChatEvent: Codable, Equatable {
 
     /// Action performed by the user
     public let action: ChatEventAction

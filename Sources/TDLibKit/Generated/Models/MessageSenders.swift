@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of message senders
-public struct MessageSenders: Codable {
+public struct MessageSenders: Codable, Equatable {
 
     /// List of message senders
     public let senders: [MessageSender]

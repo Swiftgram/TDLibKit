@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a group call
-public struct GetGroupCall: Codable {
+public struct GetGroupCall: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

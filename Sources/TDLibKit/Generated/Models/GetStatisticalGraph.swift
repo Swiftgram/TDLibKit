@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Loads an asynchronous or a zoomed in statistical graph
-public struct GetStatisticalGraph: Codable {
+public struct GetStatisticalGraph: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

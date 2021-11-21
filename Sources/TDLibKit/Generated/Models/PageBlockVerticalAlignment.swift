@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a Vertical alignment of a table cell content
-public enum PageBlockVerticalAlignment: Codable {
+public enum PageBlockVerticalAlignment: Codable, Equatable {
 
     /// The content must be top-aligned
     case pageBlockVerticalAlignmentTop

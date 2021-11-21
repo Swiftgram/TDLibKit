@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a message thread. Can be used only if message.can_get_message_thread == true
-public struct GetMessageThread: Codable {
+public struct GetMessageThread: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

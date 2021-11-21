@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a color replacement for animated emoji
-public struct ColorReplacement: Codable {
+public struct ColorReplacement: Codable, Equatable {
 
     /// Replacement animated emoji color in the RGB24 format
     public let newColor: Int

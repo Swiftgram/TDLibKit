@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a related article
-public struct PageBlockRelatedArticle: Codable {
+public struct PageBlockRelatedArticle: Codable, Equatable {
 
     /// Article author; may be empty
     public let author: String

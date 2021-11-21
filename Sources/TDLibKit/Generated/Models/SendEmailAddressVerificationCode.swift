@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a code to verify an email address to be added to a user's Telegram Passport
-public struct SendEmailAddressVerificationCode: Codable {
+public struct SendEmailAddressVerificationCode: Codable, Equatable {
 
     /// Email address
     public let emailAddress: String?

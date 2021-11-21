@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a chat located nearby
-public struct ChatNearby: Codable {
+public struct ChatNearby: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets a sticker set thumbnail; for bots only. Returns the sticker set
-public struct SetStickerSetThumbnail: Codable {
+public struct SetStickerSetThumbnail: Codable, Equatable {
 
     /// Sticker set name
     public let name: String?

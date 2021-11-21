@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Provides information about the method by which an authentication code is delivered to the user
-public enum AuthenticationCodeType: Codable {
+public enum AuthenticationCodeType: Codable, Equatable {
 
     /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
     case authenticationCodeTypeTelegramMessage(AuthenticationCodeTypeTelegramMessage)
@@ -72,7 +72,7 @@ public enum AuthenticationCodeType: Codable {
 }
 
 /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
-public struct AuthenticationCodeTypeTelegramMessage: Codable {
+public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable {
 
     /// Length of the code
     public let length: Int
@@ -84,7 +84,7 @@ public struct AuthenticationCodeTypeTelegramMessage: Codable {
 }
 
 /// An authentication code is delivered via an SMS message to the specified phone number
-public struct AuthenticationCodeTypeSms: Codable {
+public struct AuthenticationCodeTypeSms: Codable, Equatable {
 
     /// Length of the code
     public let length: Int
@@ -96,7 +96,7 @@ public struct AuthenticationCodeTypeSms: Codable {
 }
 
 /// An authentication code is delivered via a phone call to the specified phone number
-public struct AuthenticationCodeTypeCall: Codable {
+public struct AuthenticationCodeTypeCall: Codable, Equatable {
 
     /// Length of the code
     public let length: Int
@@ -108,7 +108,7 @@ public struct AuthenticationCodeTypeCall: Codable {
 }
 
 /// An authentication code is delivered by an immediately canceled call to the specified phone number. The number from which the call was made is the code
-public struct AuthenticationCodeTypeFlashCall: Codable {
+public struct AuthenticationCodeTypeFlashCall: Codable, Equatable {
 
     /// Pattern of the phone number from which the call will be made
     public let pattern: String

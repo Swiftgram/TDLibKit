@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the type of a user. The following types are possible: regular users, deleted users and bots
-public enum UserType: Codable {
+public enum UserType: Codable, Equatable {
 
     /// A regular user
     case userTypeRegular
@@ -66,7 +66,7 @@ public enum UserType: Codable {
 }
 
 /// A bot (see https://core.telegram.org/bots)
-public struct UserTypeBot: Codable {
+public struct UserTypeBot: Codable, Equatable {
 
     /// True, if the bot can be invited to basic group and supergroup chats
     public let canJoinGroups: Bool

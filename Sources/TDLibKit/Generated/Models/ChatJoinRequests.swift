@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of chat join requests
-public struct ChatJoinRequests: Codable {
+public struct ChatJoinRequests: Codable, Equatable {
 
     /// List of the requests
     public let requests: [ChatJoinRequest]

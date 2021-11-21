@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains Telegram terms of service
-public struct TermsOfService: Codable {
+public struct TermsOfService: Codable, Equatable {
 
     /// The minimum age of a user to be able to accept the terms; 0 if any
     public let minUserAge: Int

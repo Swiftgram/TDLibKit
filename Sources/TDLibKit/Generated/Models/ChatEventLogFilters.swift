@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a set of filters used to obtain a chat event log
-public struct ChatEventLogFilters: Codable {
+public struct ChatEventLogFilters: Codable, Equatable {
 
     /// True, if changes in chat information need to be returned
     public let infoChanges: Bool

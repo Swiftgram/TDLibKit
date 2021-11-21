@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Uploads a PNG image with a sticker; returns the uploaded file
-public struct UploadStickerFile: Codable {
+public struct UploadStickerFile: Codable, Equatable {
 
     /// Sticker file to upload
     public let sticker: InputSticker?

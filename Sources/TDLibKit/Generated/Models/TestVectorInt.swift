@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A simple object containing a vector of numbers; for testing only
-public struct TestVectorInt: Codable {
+public struct TestVectorInt: Codable, Equatable {
 
     /// Vector of numbers
     public let value: [Int]

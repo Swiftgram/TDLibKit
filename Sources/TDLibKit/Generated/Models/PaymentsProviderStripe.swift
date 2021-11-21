@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Stripe payment provider
-public struct PaymentsProviderStripe: Codable {
+public struct PaymentsProviderStripe: Codable, Equatable {
 
     /// True, if the cardholder name must be provided
     public let needCardholderName: Bool

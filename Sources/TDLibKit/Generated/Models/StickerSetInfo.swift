@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents short information about a sticker set
-public struct StickerSetInfo: Codable {
+public struct StickerSetInfo: Codable, Equatable {
 
     /// Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
     public let covers: [Sticker]

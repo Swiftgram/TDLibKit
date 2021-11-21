@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Declines pending join request in a chat
-public struct DeclineChatJoinRequest: Codable {
+public struct DeclineChatJoinRequest: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

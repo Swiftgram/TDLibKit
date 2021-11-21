@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
-public struct GetFileExtension: Codable {
+public struct GetFileExtension: Codable, Equatable {
 
     /// The MIME type of the file
     public let mimeType: String?

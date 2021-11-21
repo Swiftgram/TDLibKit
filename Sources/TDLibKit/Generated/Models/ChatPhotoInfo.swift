@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains basic information about the photo of a chat
-public struct ChatPhotoInfo: Codable {
+public struct ChatPhotoInfo: Codable, Equatable {
 
     /// A big (640x640) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed
     public let big: File

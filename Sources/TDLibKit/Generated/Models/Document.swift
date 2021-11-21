@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a document of any type
-public struct Document: Codable {
+public struct Document: Codable, Equatable {
 
     /// File containing the document
     public let document: File

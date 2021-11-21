@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains full information about a user
-public struct UserFullInfo: Codable {
+public struct UserFullInfo: Codable, Equatable {
 
     /// A short user bio
     public let bio: String

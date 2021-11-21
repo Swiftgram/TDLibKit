@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains statistics about number of new members invited by a user
-public struct ChatStatisticsInviterInfo: Codable {
+public struct ChatStatisticsInviterInfo: Codable, Equatable {
 
     /// Number of new members invited by the user
     public let addedMemberCount: Int

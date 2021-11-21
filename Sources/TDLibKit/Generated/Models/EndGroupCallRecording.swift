@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
-public struct EndGroupCallRecording: Codable {
+public struct EndGroupCallRecording: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

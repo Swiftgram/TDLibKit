@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about one website the current user is logged in with Telegram
-public struct ConnectedWebsite: Codable {
+public struct ConnectedWebsite: Codable, Equatable {
 
     /// User identifier of a bot linked with the website
     public let botUserId: Int64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of chat events
-public struct ChatEvents: Codable {
+public struct ChatEvents: Codable, Equatable {
 
     /// List of events
     public let events: [ChatEvent]

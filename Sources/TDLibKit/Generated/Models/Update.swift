@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains notifications about data changes
-public enum Update: Codable {
+public enum Update: Codable, Equatable {
 
     /// The user authorization state has changed
     case updateAuthorizationState(UpdateAuthorizationState)
@@ -932,7 +932,7 @@ public enum Update: Codable {
 }
 
 /// The user authorization state has changed
-public struct UpdateAuthorizationState: Codable {
+public struct UpdateAuthorizationState: Codable, Equatable {
 
     /// New authorization state
     public let authorizationState: AuthorizationState
@@ -944,7 +944,7 @@ public struct UpdateAuthorizationState: Codable {
 }
 
 /// A new message was received; can also be an outgoing message
-public struct UpdateNewMessage: Codable {
+public struct UpdateNewMessage: Codable, Equatable {
 
     /// The new message
     public let message: Message
@@ -956,7 +956,7 @@ public struct UpdateNewMessage: Codable {
 }
 
 /// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
-public struct UpdateMessageSendAcknowledged: Codable {
+public struct UpdateMessageSendAcknowledged: Codable, Equatable {
 
     /// The chat identifier of the sent message
     public let chatId: Int64
@@ -975,7 +975,7 @@ public struct UpdateMessageSendAcknowledged: Codable {
 }
 
 /// A message has been successfully sent
-public struct UpdateMessageSendSucceeded: Codable {
+public struct UpdateMessageSendSucceeded: Codable, Equatable {
 
     /// The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
     public let message: Message
@@ -994,7 +994,7 @@ public struct UpdateMessageSendSucceeded: Codable {
 }
 
 /// A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
-public struct UpdateMessageSendFailed: Codable {
+public struct UpdateMessageSendFailed: Codable, Equatable {
 
     /// An error code
     public let errorCode: Int
@@ -1023,7 +1023,7 @@ public struct UpdateMessageSendFailed: Codable {
 }
 
 /// The message content has changed
-public struct UpdateMessageContent: Codable {
+public struct UpdateMessageContent: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1047,7 +1047,7 @@ public struct UpdateMessageContent: Codable {
 }
 
 /// A message was edited. Changes in the message content will come in a separate updateMessageContent
-public struct UpdateMessageEdited: Codable {
+public struct UpdateMessageEdited: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1076,7 +1076,7 @@ public struct UpdateMessageEdited: Codable {
 }
 
 /// The message pinned state was changed
-public struct UpdateMessageIsPinned: Codable {
+public struct UpdateMessageIsPinned: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1100,7 +1100,7 @@ public struct UpdateMessageIsPinned: Codable {
 }
 
 /// The information about interactions with a message has changed
-public struct UpdateMessageInteractionInfo: Codable {
+public struct UpdateMessageInteractionInfo: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1124,7 +1124,7 @@ public struct UpdateMessageInteractionInfo: Codable {
 }
 
 /// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages
-public struct UpdateMessageContentOpened: Codable {
+public struct UpdateMessageContentOpened: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1143,7 +1143,7 @@ public struct UpdateMessageContentOpened: Codable {
 }
 
 /// A message with an unread mention was read
-public struct UpdateMessageMentionRead: Codable {
+public struct UpdateMessageMentionRead: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1167,7 +1167,7 @@ public struct UpdateMessageMentionRead: Codable {
 }
 
 /// A message with a live location was viewed. When the update is received, the application is supposed to update the live location
-public struct UpdateMessageLiveLocationViewed: Codable {
+public struct UpdateMessageLiveLocationViewed: Codable, Equatable {
 
     /// Identifier of the chat with the live location message
     public let chatId: Int64
@@ -1186,7 +1186,7 @@ public struct UpdateMessageLiveLocationViewed: Codable {
 }
 
 /// A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
-public struct UpdateNewChat: Codable {
+public struct UpdateNewChat: Codable, Equatable {
 
     /// The chat
     public let chat: Chat
@@ -1198,7 +1198,7 @@ public struct UpdateNewChat: Codable {
 }
 
 /// The title of a chat was changed
-public struct UpdateChatTitle: Codable {
+public struct UpdateChatTitle: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1217,7 +1217,7 @@ public struct UpdateChatTitle: Codable {
 }
 
 /// A chat photo was changed
-public struct UpdateChatPhoto: Codable {
+public struct UpdateChatPhoto: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1236,7 +1236,7 @@ public struct UpdateChatPhoto: Codable {
 }
 
 /// Chat permissions was changed
-public struct UpdateChatPermissions: Codable {
+public struct UpdateChatPermissions: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1255,7 +1255,7 @@ public struct UpdateChatPermissions: Codable {
 }
 
 /// The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
-public struct UpdateChatLastMessage: Codable {
+public struct UpdateChatLastMessage: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1279,7 +1279,7 @@ public struct UpdateChatLastMessage: Codable {
 }
 
 /// The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
-public struct UpdateChatPosition: Codable {
+public struct UpdateChatPosition: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1298,7 +1298,7 @@ public struct UpdateChatPosition: Codable {
 }
 
 /// A chat was marked as unread or was read
-public struct UpdateChatIsMarkedAsUnread: Codable {
+public struct UpdateChatIsMarkedAsUnread: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1317,7 +1317,7 @@ public struct UpdateChatIsMarkedAsUnread: Codable {
 }
 
 /// A chat was blocked or unblocked
-public struct UpdateChatIsBlocked: Codable {
+public struct UpdateChatIsBlocked: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1336,7 +1336,7 @@ public struct UpdateChatIsBlocked: Codable {
 }
 
 /// A chat's has_scheduled_messages field has changed
-public struct UpdateChatHasScheduledMessages: Codable {
+public struct UpdateChatHasScheduledMessages: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1355,7 +1355,7 @@ public struct UpdateChatHasScheduledMessages: Codable {
 }
 
 /// A chat video chat state has changed
-public struct UpdateChatVideoChat: Codable {
+public struct UpdateChatVideoChat: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1374,7 +1374,7 @@ public struct UpdateChatVideoChat: Codable {
 }
 
 /// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
-public struct UpdateChatDefaultDisableNotification: Codable {
+public struct UpdateChatDefaultDisableNotification: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1393,7 +1393,7 @@ public struct UpdateChatDefaultDisableNotification: Codable {
 }
 
 /// Incoming messages were read or number of unread messages has been changed
-public struct UpdateChatReadInbox: Codable {
+public struct UpdateChatReadInbox: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1417,7 +1417,7 @@ public struct UpdateChatReadInbox: Codable {
 }
 
 /// Outgoing messages were read
-public struct UpdateChatReadOutbox: Codable {
+public struct UpdateChatReadOutbox: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1436,7 +1436,7 @@ public struct UpdateChatReadOutbox: Codable {
 }
 
 /// The chat unread_mention_count has changed
-public struct UpdateChatUnreadMentionCount: Codable {
+public struct UpdateChatUnreadMentionCount: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1455,7 +1455,7 @@ public struct UpdateChatUnreadMentionCount: Codable {
 }
 
 /// Notification settings for a chat were changed
-public struct UpdateChatNotificationSettings: Codable {
+public struct UpdateChatNotificationSettings: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1474,7 +1474,7 @@ public struct UpdateChatNotificationSettings: Codable {
 }
 
 /// Notification settings for some type of chats were updated
-public struct UpdateScopeNotificationSettings: Codable {
+public struct UpdateScopeNotificationSettings: Codable, Equatable {
 
     /// The new notification settings
     public let notificationSettings: ScopeNotificationSettings
@@ -1493,7 +1493,7 @@ public struct UpdateScopeNotificationSettings: Codable {
 }
 
 /// The message Time To Live setting for a chat was changed
-public struct UpdateChatMessageTtlSetting: Codable {
+public struct UpdateChatMessageTtlSetting: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1512,7 +1512,7 @@ public struct UpdateChatMessageTtlSetting: Codable {
 }
 
 /// The chat action bar was changed
-public struct UpdateChatActionBar: Codable {
+public struct UpdateChatActionBar: Codable, Equatable {
 
     /// The new value of the action bar; may be null
     public let actionBar: ChatActionBar?
@@ -1531,7 +1531,7 @@ public struct UpdateChatActionBar: Codable {
 }
 
 /// The chat theme was changed
-public struct UpdateChatTheme: Codable {
+public struct UpdateChatTheme: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1550,7 +1550,7 @@ public struct UpdateChatTheme: Codable {
 }
 
 /// The chat pending join requests were changed
-public struct UpdateChatPendingJoinRequests: Codable {
+public struct UpdateChatPendingJoinRequests: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1569,7 +1569,7 @@ public struct UpdateChatPendingJoinRequests: Codable {
 }
 
 /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
-public struct UpdateChatReplyMarkup: Codable {
+public struct UpdateChatReplyMarkup: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1588,7 +1588,7 @@ public struct UpdateChatReplyMarkup: Codable {
 }
 
 /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
-public struct UpdateChatDraftMessage: Codable {
+public struct UpdateChatDraftMessage: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1612,7 +1612,7 @@ public struct UpdateChatDraftMessage: Codable {
 }
 
 /// The list of chat filters or a chat filter has changed
-public struct UpdateChatFilters: Codable {
+public struct UpdateChatFilters: Codable, Equatable {
 
     /// The new list of chat filters
     public let chatFilters: [ChatFilterInfo]
@@ -1624,7 +1624,7 @@ public struct UpdateChatFilters: Codable {
 }
 
 /// The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed
-public struct UpdateChatOnlineMemberCount: Codable {
+public struct UpdateChatOnlineMemberCount: Codable, Equatable {
 
     /// Identifier of the chat
     public let chatId: Int64
@@ -1643,7 +1643,7 @@ public struct UpdateChatOnlineMemberCount: Codable {
 }
 
 /// A notification was changed
-public struct UpdateNotification: Codable {
+public struct UpdateNotification: Codable, Equatable {
 
     /// Changed notification
     public let notification: Notification
@@ -1662,7 +1662,7 @@ public struct UpdateNotification: Codable {
 }
 
 /// A list of active notifications in a notification group has changed
-public struct UpdateNotificationGroup: Codable {
+public struct UpdateNotificationGroup: Codable, Equatable {
 
     /// List of added group notifications, sorted by notification ID
     public let addedNotifications: [Notification]
@@ -1711,7 +1711,7 @@ public struct UpdateNotificationGroup: Codable {
 }
 
 /// Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
-public struct UpdateActiveNotifications: Codable {
+public struct UpdateActiveNotifications: Codable, Equatable {
 
     /// Lists of active notification groups
     public let groups: [NotificationGroup]
@@ -1723,7 +1723,7 @@ public struct UpdateActiveNotifications: Codable {
 }
 
 /// Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
-public struct UpdateHavePendingNotifications: Codable {
+public struct UpdateHavePendingNotifications: Codable, Equatable {
 
     /// True, if there are some delayed notification updates, which will be sent soon
     public let haveDelayedNotifications: Bool
@@ -1742,7 +1742,7 @@ public struct UpdateHavePendingNotifications: Codable {
 }
 
 /// Some messages were deleted
-public struct UpdateDeleteMessages: Codable {
+public struct UpdateDeleteMessages: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -1771,7 +1771,7 @@ public struct UpdateDeleteMessages: Codable {
 }
 
 /// User activity in the chat has changed
-public struct UpdateUserChatAction: Codable {
+public struct UpdateUserChatAction: Codable, Equatable {
 
     /// The action description
     public let action: ChatAction
@@ -1800,7 +1800,7 @@ public struct UpdateUserChatAction: Codable {
 }
 
 /// The user went online or offline
-public struct UpdateUserStatus: Codable {
+public struct UpdateUserStatus: Codable, Equatable {
 
     /// New status of the user
     public let status: UserStatus
@@ -1819,7 +1819,7 @@ public struct UpdateUserStatus: Codable {
 }
 
 /// Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the application
-public struct UpdateUser: Codable {
+public struct UpdateUser: Codable, Equatable {
 
     /// New data about the user
     public let user: User
@@ -1831,7 +1831,7 @@ public struct UpdateUser: Codable {
 }
 
 /// Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
-public struct UpdateBasicGroup: Codable {
+public struct UpdateBasicGroup: Codable, Equatable {
 
     /// New data about the group
     public let basicGroup: BasicGroup
@@ -1843,7 +1843,7 @@ public struct UpdateBasicGroup: Codable {
 }
 
 /// Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application
-public struct UpdateSupergroup: Codable {
+public struct UpdateSupergroup: Codable, Equatable {
 
     /// New data about the supergroup
     public let supergroup: Supergroup
@@ -1855,7 +1855,7 @@ public struct UpdateSupergroup: Codable {
 }
 
 /// Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
-public struct UpdateSecretChat: Codable {
+public struct UpdateSecretChat: Codable, Equatable {
 
     /// New data about the secret chat
     public let secretChat: SecretChat
@@ -1867,7 +1867,7 @@ public struct UpdateSecretChat: Codable {
 }
 
 /// Some data from userFullInfo has been changed
-public struct UpdateUserFullInfo: Codable {
+public struct UpdateUserFullInfo: Codable, Equatable {
 
     /// New full information about the user
     public let userFullInfo: UserFullInfo
@@ -1886,7 +1886,7 @@ public struct UpdateUserFullInfo: Codable {
 }
 
 /// Some data from basicGroupFullInfo has been changed
-public struct UpdateBasicGroupFullInfo: Codable {
+public struct UpdateBasicGroupFullInfo: Codable, Equatable {
 
     /// New full information about the group
     public let basicGroupFullInfo: BasicGroupFullInfo
@@ -1905,7 +1905,7 @@ public struct UpdateBasicGroupFullInfo: Codable {
 }
 
 /// Some data from supergroupFullInfo has been changed
-public struct UpdateSupergroupFullInfo: Codable {
+public struct UpdateSupergroupFullInfo: Codable, Equatable {
 
     /// New full information about the supergroup
     public let supergroupFullInfo: SupergroupFullInfo
@@ -1924,7 +1924,7 @@ public struct UpdateSupergroupFullInfo: Codable {
 }
 
 /// Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
-public struct UpdateServiceNotification: Codable {
+public struct UpdateServiceNotification: Codable, Equatable {
 
     /// Notification content
     public let content: MessageContent
@@ -1943,7 +1943,7 @@ public struct UpdateServiceNotification: Codable {
 }
 
 /// Information about a file was updated
-public struct UpdateFile: Codable {
+public struct UpdateFile: Codable, Equatable {
 
     /// New data about the file
     public let file: File
@@ -1955,7 +1955,7 @@ public struct UpdateFile: Codable {
 }
 
 /// The file generation process needs to be started by the application
-public struct UpdateFileGenerationStart: Codable {
+public struct UpdateFileGenerationStart: Codable, Equatable {
 
     /// String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application
     public let conversion: String
@@ -1984,7 +1984,7 @@ public struct UpdateFileGenerationStart: Codable {
 }
 
 /// File generation is no longer needed
-public struct UpdateFileGenerationStop: Codable {
+public struct UpdateFileGenerationStop: Codable, Equatable {
 
     /// Unique identifier for the generation process
     public let generationId: TdInt64
@@ -1996,7 +1996,7 @@ public struct UpdateFileGenerationStop: Codable {
 }
 
 /// New call was created or information about a call was updated
-public struct UpdateCall: Codable {
+public struct UpdateCall: Codable, Equatable {
 
     /// New data about a call
     public let call: Call
@@ -2008,7 +2008,7 @@ public struct UpdateCall: Codable {
 }
 
 /// Information about a group call was updated
-public struct UpdateGroupCall: Codable {
+public struct UpdateGroupCall: Codable, Equatable {
 
     /// New data about a group call
     public let groupCall: GroupCall
@@ -2020,7 +2020,7 @@ public struct UpdateGroupCall: Codable {
 }
 
 /// Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
-public struct UpdateGroupCallParticipant: Codable {
+public struct UpdateGroupCallParticipant: Codable, Equatable {
 
     /// Identifier of group call
     public let groupCallId: Int
@@ -2039,7 +2039,7 @@ public struct UpdateGroupCallParticipant: Codable {
 }
 
 /// New call signaling data arrived
-public struct UpdateNewCallSignalingData: Codable {
+public struct UpdateNewCallSignalingData: Codable, Equatable {
 
     /// The call identifier
     public let callId: Int
@@ -2058,7 +2058,7 @@ public struct UpdateNewCallSignalingData: Codable {
 }
 
 /// Some privacy setting rules have been changed
-public struct UpdateUserPrivacySettingRules: Codable {
+public struct UpdateUserPrivacySettingRules: Codable, Equatable {
 
     /// New privacy rules
     public let rules: UserPrivacySettingRules
@@ -2077,7 +2077,7 @@ public struct UpdateUserPrivacySettingRules: Codable {
 }
 
 /// Number of unread messages in a chat list has changed. This update is sent only if the message database is used
-public struct UpdateUnreadMessageCount: Codable {
+public struct UpdateUnreadMessageCount: Codable, Equatable {
 
     /// The chat list with changed number of unread messages
     public let chatList: ChatList
@@ -2101,7 +2101,7 @@ public struct UpdateUnreadMessageCount: Codable {
 }
 
 /// Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
-public struct UpdateUnreadChatCount: Codable {
+public struct UpdateUnreadChatCount: Codable, Equatable {
 
     /// The chat list with changed number of unread messages
     public let chatList: ChatList
@@ -2140,7 +2140,7 @@ public struct UpdateUnreadChatCount: Codable {
 }
 
 /// An option changed its value
-public struct UpdateOption: Codable {
+public struct UpdateOption: Codable, Equatable {
 
     /// The option name
     public let name: String
@@ -2159,7 +2159,7 @@ public struct UpdateOption: Codable {
 }
 
 /// A sticker set has changed
-public struct UpdateStickerSet: Codable {
+public struct UpdateStickerSet: Codable, Equatable {
 
     /// The sticker set
     public let stickerSet: StickerSet
@@ -2171,7 +2171,7 @@ public struct UpdateStickerSet: Codable {
 }
 
 /// The list of installed sticker sets was updated
-public struct UpdateInstalledStickerSets: Codable {
+public struct UpdateInstalledStickerSets: Codable, Equatable {
 
     /// True, if the list of installed mask sticker sets was updated
     public let isMasks: Bool
@@ -2190,7 +2190,7 @@ public struct UpdateInstalledStickerSets: Codable {
 }
 
 /// The list of trending sticker sets was updated or some of them were viewed
-public struct UpdateTrendingStickerSets: Codable {
+public struct UpdateTrendingStickerSets: Codable, Equatable {
 
     /// The prefix of the list of trending sticker sets with the newest trending sticker sets
     public let stickerSets: StickerSets
@@ -2202,7 +2202,7 @@ public struct UpdateTrendingStickerSets: Codable {
 }
 
 /// The list of recently used stickers was updated
-public struct UpdateRecentStickers: Codable {
+public struct UpdateRecentStickers: Codable, Equatable {
 
     /// True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
     public let isAttached: Bool
@@ -2221,7 +2221,7 @@ public struct UpdateRecentStickers: Codable {
 }
 
 /// The list of favorite stickers was updated
-public struct UpdateFavoriteStickers: Codable {
+public struct UpdateFavoriteStickers: Codable, Equatable {
 
     /// The new list of file identifiers of favorite stickers
     public let stickerIds: [Int]
@@ -2233,7 +2233,7 @@ public struct UpdateFavoriteStickers: Codable {
 }
 
 /// The list of saved animations was updated
-public struct UpdateSavedAnimations: Codable {
+public struct UpdateSavedAnimations: Codable, Equatable {
 
     /// The new list of file identifiers of saved animations
     public let animationIds: [Int]
@@ -2245,7 +2245,7 @@ public struct UpdateSavedAnimations: Codable {
 }
 
 /// The selected background has changed
-public struct UpdateSelectedBackground: Codable {
+public struct UpdateSelectedBackground: Codable, Equatable {
 
     /// The new selected background; may be null
     public let background: Background?
@@ -2264,7 +2264,7 @@ public struct UpdateSelectedBackground: Codable {
 }
 
 /// The list of available chat themes has changed
-public struct UpdateChatThemes: Codable {
+public struct UpdateChatThemes: Codable, Equatable {
 
     /// The new list of chat themes
     public let chatThemes: [ChatTheme]
@@ -2276,7 +2276,7 @@ public struct UpdateChatThemes: Codable {
 }
 
 /// Some language pack strings have been updated
-public struct UpdateLanguagePackStrings: Codable {
+public struct UpdateLanguagePackStrings: Codable, Equatable {
 
     /// Identifier of the updated language pack
     public let languagePackId: String
@@ -2300,7 +2300,7 @@ public struct UpdateLanguagePackStrings: Codable {
 }
 
 /// The connection state has changed. This update must be used only to show a human-readable description of the connection state
-public struct UpdateConnectionState: Codable {
+public struct UpdateConnectionState: Codable, Equatable {
 
     /// The new connection state
     public let state: ConnectionState
@@ -2312,7 +2312,7 @@ public struct UpdateConnectionState: Codable {
 }
 
 /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
-public struct UpdateTermsOfService: Codable {
+public struct UpdateTermsOfService: Codable, Equatable {
 
     /// The new terms of service
     public let termsOfService: TermsOfService
@@ -2331,7 +2331,7 @@ public struct UpdateTermsOfService: Codable {
 }
 
 /// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
-public struct UpdateUsersNearby: Codable {
+public struct UpdateUsersNearby: Codable, Equatable {
 
     /// The new list of users nearby
     public let usersNearby: [ChatNearby]
@@ -2343,7 +2343,7 @@ public struct UpdateUsersNearby: Codable {
 }
 
 /// The list of supported dice emojis has changed
-public struct UpdateDiceEmojis: Codable {
+public struct UpdateDiceEmojis: Codable, Equatable {
 
     /// The new list of supported dice emojis
     public let emojis: [String]
@@ -2355,7 +2355,7 @@ public struct UpdateDiceEmojis: Codable {
 }
 
 /// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
-public struct UpdateAnimatedEmojiMessageClicked: Codable {
+public struct UpdateAnimatedEmojiMessageClicked: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -2379,7 +2379,7 @@ public struct UpdateAnimatedEmojiMessageClicked: Codable {
 }
 
 /// The parameters of animation search through GetOption("animation_search_bot_username") bot has changed
-public struct UpdateAnimationSearchParameters: Codable {
+public struct UpdateAnimationSearchParameters: Codable, Equatable {
 
     /// The new list of emojis suggested for searching
     public let emojis: [String]
@@ -2398,7 +2398,7 @@ public struct UpdateAnimationSearchParameters: Codable {
 }
 
 /// The list of suggested to the user actions has changed
-public struct UpdateSuggestedActions: Codable {
+public struct UpdateSuggestedActions: Codable, Equatable {
 
     /// Added suggested actions
     public let addedActions: [SuggestedAction]
@@ -2417,7 +2417,7 @@ public struct UpdateSuggestedActions: Codable {
 }
 
 /// A new incoming inline query; for bots only
-public struct UpdateNewInlineQuery: Codable {
+public struct UpdateNewInlineQuery: Codable, Equatable {
 
     /// The type of the chat, from which the query originated; may be null if unknown
     public let chatType: ChatType?
@@ -2456,7 +2456,7 @@ public struct UpdateNewInlineQuery: Codable {
 }
 
 /// The user has chosen a result of an inline query; for bots only
-public struct UpdateNewChosenInlineResult: Codable {
+public struct UpdateNewChosenInlineResult: Codable, Equatable {
 
     /// Identifier of the sent inline message, if known
     public let inlineMessageId: String
@@ -2490,7 +2490,7 @@ public struct UpdateNewChosenInlineResult: Codable {
 }
 
 /// A new incoming callback query; for bots only
-public struct UpdateNewCallbackQuery: Codable {
+public struct UpdateNewCallbackQuery: Codable, Equatable {
 
     /// Identifier of the chat where the query was sent
     public let chatId: Int64
@@ -2529,7 +2529,7 @@ public struct UpdateNewCallbackQuery: Codable {
 }
 
 /// A new incoming callback query from a message sent via a bot; for bots only
-public struct UpdateNewInlineCallbackQuery: Codable {
+public struct UpdateNewInlineCallbackQuery: Codable, Equatable {
 
     /// An identifier uniquely corresponding to the chat a message was sent to
     public let chatInstance: TdInt64
@@ -2563,7 +2563,7 @@ public struct UpdateNewInlineCallbackQuery: Codable {
 }
 
 /// A new incoming shipping query; for bots only. Only for invoices with flexible price
-public struct UpdateNewShippingQuery: Codable {
+public struct UpdateNewShippingQuery: Codable, Equatable {
 
     /// Unique query identifier
     public let id: TdInt64
@@ -2592,7 +2592,7 @@ public struct UpdateNewShippingQuery: Codable {
 }
 
 /// A new incoming pre-checkout query; for bots only. Contains full information about a checkout
-public struct UpdateNewPreCheckoutQuery: Codable {
+public struct UpdateNewPreCheckoutQuery: Codable, Equatable {
 
     /// Currency for the product price
     public let currency: String
@@ -2636,7 +2636,7 @@ public struct UpdateNewPreCheckoutQuery: Codable {
 }
 
 /// A new incoming event; for bots only
-public struct UpdateNewCustomEvent: Codable {
+public struct UpdateNewCustomEvent: Codable, Equatable {
 
     /// A JSON-serialized event
     public let event: String
@@ -2648,7 +2648,7 @@ public struct UpdateNewCustomEvent: Codable {
 }
 
 /// A new incoming query; for bots only
-public struct UpdateNewCustomQuery: Codable {
+public struct UpdateNewCustomQuery: Codable, Equatable {
 
     /// JSON-serialized query data
     public let data: String
@@ -2672,7 +2672,7 @@ public struct UpdateNewCustomQuery: Codable {
 }
 
 /// A poll was updated; for bots only
-public struct UpdatePoll: Codable {
+public struct UpdatePoll: Codable, Equatable {
 
     /// New data about the poll
     public let poll: Poll
@@ -2684,7 +2684,7 @@ public struct UpdatePoll: Codable {
 }
 
 /// A user changed the answer to a poll; for bots only
-public struct UpdatePollAnswer: Codable {
+public struct UpdatePollAnswer: Codable, Equatable {
 
     /// 0-based identifiers of answer options, chosen by the user
     public let optionIds: [Int]
@@ -2708,7 +2708,7 @@ public struct UpdatePollAnswer: Codable {
 }
 
 /// User rights changed in a chat; for bots only
-public struct UpdateChatMember: Codable {
+public struct UpdateChatMember: Codable, Equatable {
 
     /// Identifier of the user, changing the rights
     public let actorUserId: Int64
@@ -2747,7 +2747,7 @@ public struct UpdateChatMember: Codable {
 }
 
 /// A user sent a join request to a chat; for bots only
-public struct UpdateNewChatJoinRequest: Codable {
+public struct UpdateNewChatJoinRequest: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64

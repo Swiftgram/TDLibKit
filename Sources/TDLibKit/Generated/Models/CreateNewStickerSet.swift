@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new sticker set. Returns the newly created sticker set
-public struct CreateNewStickerSet: Codable {
+public struct CreateNewStickerSet: Codable, Equatable {
 
     /// True, if stickers are masks. Animated stickers can't be masks
     public let isMasks: Bool?

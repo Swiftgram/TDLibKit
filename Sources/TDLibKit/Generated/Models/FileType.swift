@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the type of a file
-public enum FileType: Codable {
+public enum FileType: Codable, Equatable {
 
     /// The data is not a file
     case fileTypeNone

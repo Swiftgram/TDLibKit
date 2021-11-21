@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a user or a chat as a member of another chat
-public struct ChatMember: Codable {
+public struct ChatMember: Codable, Equatable {
 
     /// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
     public let inviterUserId: Int64

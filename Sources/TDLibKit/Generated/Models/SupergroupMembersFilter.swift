@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Specifies the kind of chat members to return in getSupergroupMembers
-public enum SupergroupMembersFilter: Codable {
+public enum SupergroupMembersFilter: Codable, Equatable {
 
     /// Returns recently active users in reverse chronological order
     case supergroupMembersFilterRecent
@@ -106,7 +106,7 @@ public enum SupergroupMembersFilter: Codable {
 }
 
 /// Returns contacts of the user, which are members of the supergroup or channel
-public struct SupergroupMembersFilterContacts: Codable {
+public struct SupergroupMembersFilterContacts: Codable, Equatable {
 
     /// Query to search for
     public let query: String
@@ -118,7 +118,7 @@ public struct SupergroupMembersFilterContacts: Codable {
 }
 
 /// Used to search for supergroup or channel members via a (string) query
-public struct SupergroupMembersFilterSearch: Codable {
+public struct SupergroupMembersFilterSearch: Codable, Equatable {
 
     /// Query to search for
     public let query: String
@@ -130,7 +130,7 @@ public struct SupergroupMembersFilterSearch: Codable {
 }
 
 /// Returns restricted supergroup members; can be used only by administrators
-public struct SupergroupMembersFilterRestricted: Codable {
+public struct SupergroupMembersFilterRestricted: Codable, Equatable {
 
     /// Query to search for
     public let query: String
@@ -142,7 +142,7 @@ public struct SupergroupMembersFilterRestricted: Codable {
 }
 
 /// Returns users banned from the supergroup or channel; can be used only by administrators
-public struct SupergroupMembersFilterBanned: Codable {
+public struct SupergroupMembersFilterBanned: Codable, Equatable {
 
     /// Query to search for
     public let query: String
@@ -154,7 +154,7 @@ public struct SupergroupMembersFilterBanned: Codable {
 }
 
 /// Returns users which can be mentioned in the supergroup
-public struct SupergroupMembersFilterMention: Codable {
+public struct SupergroupMembersFilterMention: Codable, Equatable {
 
     /// If non-zero, the identifier of the current message thread
     public let messageThreadId: Int64

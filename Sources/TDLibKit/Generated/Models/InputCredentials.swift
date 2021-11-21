@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the payment method chosen by the user
-public enum InputCredentials: Codable {
+public enum InputCredentials: Codable, Equatable {
 
     /// Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
     case inputCredentialsSaved(InputCredentialsSaved)
@@ -72,7 +72,7 @@ public enum InputCredentials: Codable {
 }
 
 /// Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
-public struct InputCredentialsSaved: Codable {
+public struct InputCredentialsSaved: Codable, Equatable {
 
     /// Identifier of the saved credentials
     public let savedCredentialsId: String
@@ -84,7 +84,7 @@ public struct InputCredentialsSaved: Codable {
 }
 
 /// Applies if a user enters new credentials on a payment provider website
-public struct InputCredentialsNew: Codable {
+public struct InputCredentialsNew: Codable, Equatable {
 
     /// True, if the credential identifier can be saved on the server side
     public let allowSave: Bool
@@ -103,7 +103,7 @@ public struct InputCredentialsNew: Codable {
 }
 
 /// Applies if a user enters new credentials using Apple Pay
-public struct InputCredentialsApplePay: Codable {
+public struct InputCredentialsApplePay: Codable, Equatable {
 
     /// JSON-encoded data with the credential identifier
     public let data: String
@@ -115,7 +115,7 @@ public struct InputCredentialsApplePay: Codable {
 }
 
 /// Applies if a user enters new credentials using Google Pay
-public struct InputCredentialsGooglePay: Codable {
+public struct InputCredentialsGooglePay: Codable, Equatable {
 
     /// JSON-encoded data with the credential identifier
     public let data: String

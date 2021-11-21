@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
-public struct Session: Codable {
+public struct Session: Codable, Equatable {
 
     /// Telegram API identifier, as provided by the application
     public let apiId: Int

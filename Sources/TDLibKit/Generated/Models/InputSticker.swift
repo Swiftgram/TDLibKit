@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a sticker that needs to be added to a sticker set
-public enum InputSticker: Codable {
+public enum InputSticker: Codable, Equatable {
 
     /// A static sticker in PNG format, which will be converted to WEBP server-side
     case inputStickerStatic(InputStickerStatic)
@@ -52,7 +52,7 @@ public enum InputSticker: Codable {
 }
 
 /// A static sticker in PNG format, which will be converted to WEBP server-side
-public struct InputStickerStatic: Codable {
+public struct InputStickerStatic: Codable, Equatable {
 
     /// Emojis corresponding to the sticker
     public let emojis: String
@@ -76,7 +76,7 @@ public struct InputStickerStatic: Codable {
 }
 
 /// An animated sticker in TGS format
-public struct InputStickerAnimated: Codable {
+public struct InputStickerAnimated: Codable, Equatable {
 
     /// Emojis corresponding to the sticker
     public let emojis: String

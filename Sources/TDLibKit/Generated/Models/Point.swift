@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A point on a Cartesian plane
-public struct Point: Codable {
+public struct Point: Codable, Equatable {
 
     /// The point's first coordinate
     public let x: Double

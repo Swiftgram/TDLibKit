@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Discards a call
-public struct DiscardCall: Codable {
+public struct DiscardCall: Codable, Equatable {
 
     /// Call identifier
     public let callId: Int?

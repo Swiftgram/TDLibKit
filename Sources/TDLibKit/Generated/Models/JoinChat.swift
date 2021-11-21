@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
-public struct JoinChat: Codable {
+public struct JoinChat: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

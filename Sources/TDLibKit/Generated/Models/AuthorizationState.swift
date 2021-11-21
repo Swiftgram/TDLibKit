@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the current authorization state of the TDLib client
-public enum AuthorizationState: Codable {
+public enum AuthorizationState: Codable, Equatable {
 
     /// TDLib needs TdlibParameters for initialization
     case authorizationStateWaitTdlibParameters
@@ -130,7 +130,7 @@ public enum AuthorizationState: Codable {
 }
 
 /// TDLib needs an encryption key to decrypt the local database
-public struct AuthorizationStateWaitEncryptionKey: Codable {
+public struct AuthorizationStateWaitEncryptionKey: Codable, Equatable {
 
     /// True, if the database is currently encrypted
     public let isEncrypted: Bool
@@ -142,7 +142,7 @@ public struct AuthorizationStateWaitEncryptionKey: Codable {
 }
 
 /// TDLib needs the user's authentication code to authorize
-public struct AuthorizationStateWaitCode: Codable {
+public struct AuthorizationStateWaitCode: Codable, Equatable {
 
     /// Information about the authorization code that was sent
     public let codeInfo: AuthenticationCodeInfo
@@ -154,7 +154,7 @@ public struct AuthorizationStateWaitCode: Codable {
 }
 
 /// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
-public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable {
+public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable {
 
     /// A tg:// URL for the QR code. The link will be updated frequently
     public let link: String
@@ -166,7 +166,7 @@ public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable {
 }
 
 /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration
-public struct AuthorizationStateWaitRegistration: Codable {
+public struct AuthorizationStateWaitRegistration: Codable, Equatable {
 
     /// Telegram terms of service
     public let termsOfService: TermsOfService
@@ -178,7 +178,7 @@ public struct AuthorizationStateWaitRegistration: Codable {
 }
 
 /// The user has been authorized, but needs to enter a password to start using the application
-public struct AuthorizationStateWaitPassword: Codable {
+public struct AuthorizationStateWaitPassword: Codable, Equatable {
 
     /// True, if a recovery email address has been set up
     public let hasRecoveryEmailAddress: Bool

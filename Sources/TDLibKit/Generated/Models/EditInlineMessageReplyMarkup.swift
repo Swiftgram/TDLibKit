@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the reply markup of an inline message sent via a bot; for bots only
-public struct EditInlineMessageReplyMarkup: Codable {
+public struct EditInlineMessageReplyMarkup: Codable, Equatable {
 
     /// Inline message identifier
     public let inlineMessageId: String?

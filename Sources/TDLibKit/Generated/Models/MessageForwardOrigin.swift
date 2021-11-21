@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the origin of a forwarded message
-public enum MessageForwardOrigin: Codable {
+public enum MessageForwardOrigin: Codable, Equatable {
 
     /// The message was originally sent by a known user
     case messageForwardOriginUser(MessageForwardOriginUser)
@@ -82,7 +82,7 @@ public enum MessageForwardOrigin: Codable {
 }
 
 /// The message was originally sent by a known user
-public struct MessageForwardOriginUser: Codable {
+public struct MessageForwardOriginUser: Codable, Equatable {
 
     /// Identifier of the user that originally sent the message
     public let senderUserId: Int64
@@ -94,7 +94,7 @@ public struct MessageForwardOriginUser: Codable {
 }
 
 /// The message was originally sent by an anonymous chat administrator on behalf of the chat
-public struct MessageForwardOriginChat: Codable {
+public struct MessageForwardOriginChat: Codable, Equatable {
 
     /// Original message author signature
     public let authorSignature: String
@@ -113,7 +113,7 @@ public struct MessageForwardOriginChat: Codable {
 }
 
 /// The message was originally sent by a user, which is hidden by their privacy settings
-public struct MessageForwardOriginHiddenUser: Codable {
+public struct MessageForwardOriginHiddenUser: Codable, Equatable {
 
     /// Name of the sender
     public let senderName: String
@@ -125,7 +125,7 @@ public struct MessageForwardOriginHiddenUser: Codable {
 }
 
 /// The message was originally a post in a channel
-public struct MessageForwardOriginChannel: Codable {
+public struct MessageForwardOriginChannel: Codable, Equatable {
 
     /// Original post author signature
     public let authorSignature: String
@@ -149,7 +149,7 @@ public struct MessageForwardOriginChannel: Codable {
 }
 
 /// The message was imported from an exported message history
-public struct MessageForwardOriginMessageImport: Codable {
+public struct MessageForwardOriginMessageImport: Codable, Equatable {
 
     /// Name of the sender
     public let senderName: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a sponsored message
-public struct SponsoredMessage: Codable {
+public struct SponsoredMessage: Codable, Equatable {
 
     /// Content of the message
     public let content: MessageContent

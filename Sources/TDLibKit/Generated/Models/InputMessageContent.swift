@@ -11,7 +11,7 @@ import Foundation
 
 
 /// The content of a message to send
-public enum InputMessageContent: Codable {
+public enum InputMessageContent: Codable, Equatable {
 
     /// A text message
     case inputMessageText(InputMessageText)
@@ -202,7 +202,7 @@ public enum InputMessageContent: Codable {
 }
 
 /// A text message
-public struct InputMessageText: Codable {
+public struct InputMessageText: Codable, Equatable {
 
     /// True, if a chat message draft must be deleted
     public let clearDraft: Bool
@@ -226,7 +226,7 @@ public struct InputMessageText: Codable {
 }
 
 /// An animation message (GIF-style).
-public struct InputMessageAnimation: Codable {
+public struct InputMessageAnimation: Codable, Equatable {
 
     /// File identifiers of the stickers added to the animation, if applicable
     public let addedStickerFileIds: [Int]
@@ -270,7 +270,7 @@ public struct InputMessageAnimation: Codable {
 }
 
 /// An audio message
-public struct InputMessageAudio: Codable {
+public struct InputMessageAudio: Codable, Equatable {
 
     /// Thumbnail of the cover for the album; pass null to skip thumbnail uploading
     public let albumCoverThumbnail: InputThumbnail
@@ -309,7 +309,7 @@ public struct InputMessageAudio: Codable {
 }
 
 /// A document message (general file)
-public struct InputMessageDocument: Codable {
+public struct InputMessageDocument: Codable, Equatable {
 
     /// Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
@@ -338,7 +338,7 @@ public struct InputMessageDocument: Codable {
 }
 
 /// A photo message
-public struct InputMessagePhoto: Codable {
+public struct InputMessagePhoto: Codable, Equatable {
 
     /// File identifiers of the stickers added to the photo, if applicable
     public let addedStickerFileIds: [Int]
@@ -382,7 +382,7 @@ public struct InputMessagePhoto: Codable {
 }
 
 /// A sticker message
-public struct InputMessageSticker: Codable {
+public struct InputMessageSticker: Codable, Equatable {
 
     /// Emoji used to choose the sticker
     public let emoji: String
@@ -416,7 +416,7 @@ public struct InputMessageSticker: Codable {
 }
 
 /// A video message
-public struct InputMessageVideo: Codable {
+public struct InputMessageVideo: Codable, Equatable {
 
     /// File identifiers of the stickers added to the video, if applicable
     public let addedStickerFileIds: [Int]
@@ -470,7 +470,7 @@ public struct InputMessageVideo: Codable {
 }
 
 /// A video note message
-public struct InputMessageVideoNote: Codable {
+public struct InputMessageVideoNote: Codable, Equatable {
 
     /// Duration of the video, in seconds
     public let duration: Int
@@ -499,7 +499,7 @@ public struct InputMessageVideoNote: Codable {
 }
 
 /// A voice note message
-public struct InputMessageVoiceNote: Codable {
+public struct InputMessageVoiceNote: Codable, Equatable {
 
     /// Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
@@ -528,7 +528,7 @@ public struct InputMessageVoiceNote: Codable {
 }
 
 /// A message with a location
-public struct InputMessageLocation: Codable {
+public struct InputMessageLocation: Codable, Equatable {
 
     /// For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int
@@ -557,7 +557,7 @@ public struct InputMessageLocation: Codable {
 }
 
 /// A message with information about a venue
-public struct InputMessageVenue: Codable {
+public struct InputMessageVenue: Codable, Equatable {
 
     /// Venue to send
     public let venue: Venue
@@ -569,7 +569,7 @@ public struct InputMessageVenue: Codable {
 }
 
 /// A message containing a user contact
-public struct InputMessageContact: Codable {
+public struct InputMessageContact: Codable, Equatable {
 
     /// Contact to send
     public let contact: Contact
@@ -581,7 +581,7 @@ public struct InputMessageContact: Codable {
 }
 
 /// A dice message
-public struct InputMessageDice: Codable {
+public struct InputMessageDice: Codable, Equatable {
 
     /// True, if the chat message draft must be deleted
     public let clearDraft: Bool
@@ -600,7 +600,7 @@ public struct InputMessageDice: Codable {
 }
 
 /// A message with a game; not supported for channels or secret chats
-public struct InputMessageGame: Codable {
+public struct InputMessageGame: Codable, Equatable {
 
     /// User identifier of the bot that owns the game
     public let botUserId: Int64
@@ -619,7 +619,7 @@ public struct InputMessageGame: Codable {
 }
 
 /// A message with an invoice; can be used only by bots
-public struct InputMessageInvoice: Codable {
+public struct InputMessageInvoice: Codable, Equatable {
 
     public let description: String
 
@@ -682,7 +682,7 @@ public struct InputMessageInvoice: Codable {
 }
 
 /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
-public struct InputMessagePoll: Codable {
+public struct InputMessagePoll: Codable, Equatable {
 
     /// Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
     public let closeDate: Int
@@ -726,7 +726,7 @@ public struct InputMessagePoll: Codable {
 }
 
 /// A forwarded message
-public struct InputMessageForwarded: Codable {
+public struct InputMessageForwarded: Codable, Equatable {
 
     /// Options to be used to copy content of the message without reference to the original sender; pass null to try to forward the message as usual
     public let copyOptions: MessageCopyOptions

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for installed sticker sets by looking for specified query in their title and name
-public struct SearchInstalledStickerSets: Codable {
+public struct SearchInstalledStickerSets: Codable, Equatable {
 
     /// Pass true to return mask sticker sets; pass false to return ordinary sticker sets
     public let isMasks: Bool?

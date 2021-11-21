@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains one row of the game high score table
-public struct GameHighScore: Codable {
+public struct GameHighScore: Codable, Equatable {
 
     /// Position in the high score table
     public let position: Int

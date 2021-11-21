@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Specifies the supported call protocols
-public struct CallProtocol: Codable {
+public struct CallProtocol: Codable, Equatable {
 
     /// List of supported tgcalls versions
     public let libraryVersions: [String]

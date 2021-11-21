@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
-public struct GetLogTags: Codable {
+public struct GetLogTags: Codable, Equatable {
 
 
     public init() {}

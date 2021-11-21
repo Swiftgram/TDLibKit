@@ -11,7 +11,7 @@ import Foundation
 
 
 /// One shipping option
-public struct ShippingOption: Codable {
+public struct ShippingOption: Codable, Equatable {
 
     /// Shipping option identifier
     public let id: String

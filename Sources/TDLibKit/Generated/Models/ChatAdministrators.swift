@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of chat administrators
-public struct ChatAdministrators: Codable {
+public struct ChatAdministrators: Codable, Equatable {
 
     /// A list of chat administrators
     public let administrators: [ChatAdministrator]

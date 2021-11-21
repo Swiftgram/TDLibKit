@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
-public struct ReportChatPhoto: Codable {
+public struct ReportChatPhoto: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

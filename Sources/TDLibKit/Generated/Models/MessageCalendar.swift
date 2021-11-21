@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about found messages, splitted by days according to the option "utc_time_offset"
-public struct MessageCalendar: Codable {
+public struct MessageCalendar: Codable, Equatable {
 
     /// Information about messages sent
     public let days: [MessageCalendarDay]

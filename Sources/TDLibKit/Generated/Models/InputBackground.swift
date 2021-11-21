@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about background to set
-public enum InputBackground: Codable {
+public enum InputBackground: Codable, Equatable {
 
     /// A background from a local file
     case inputBackgroundLocal(InputBackgroundLocal)
@@ -52,7 +52,7 @@ public enum InputBackground: Codable {
 }
 
 /// A background from a local file
-public struct InputBackgroundLocal: Codable {
+public struct InputBackgroundLocal: Codable, Equatable {
 
     /// Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
     public let background: InputFile
@@ -64,7 +64,7 @@ public struct InputBackgroundLocal: Codable {
 }
 
 /// A background from the server
-public struct InputBackgroundRemote: Codable {
+public struct InputBackgroundRemote: Codable, Equatable {
 
     /// The background identifier
     public let backgroundId: TdInt64

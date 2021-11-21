@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the user answer to a poll. A poll in quiz mode can be answered only once
-public struct SetPollAnswer: Codable {
+public struct SetPollAnswer: Codable, Equatable {
 
     /// Identifier of the chat to which the poll belongs
     public let chatId: Int64?

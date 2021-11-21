@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
-public struct GetStickerEmojis: Codable {
+public struct GetStickerEmojis: Codable, Equatable {
 
     /// Sticker file identifier
     public let sticker: InputFile?

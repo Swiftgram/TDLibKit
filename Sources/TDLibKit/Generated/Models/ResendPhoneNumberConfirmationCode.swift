@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Resends phone number confirmation code
-public struct ResendPhoneNumberConfirmationCode: Codable {
+public struct ResendPhoneNumberConfirmationCode: Codable, Equatable {
 
 
     public init() {}

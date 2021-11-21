@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Accepts an incoming call
-public struct AcceptCall: Codable {
+public struct AcceptCall: Codable, Equatable {
 
     /// Call identifier
     public let callId: Int?

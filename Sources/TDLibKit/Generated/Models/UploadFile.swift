@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
-public struct UploadFile: Codable {
+public struct UploadFile: Codable, Equatable {
 
     /// File to upload
     public let file: InputFile?

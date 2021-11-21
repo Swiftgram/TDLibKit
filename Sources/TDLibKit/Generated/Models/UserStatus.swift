@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the last time the user was online
-public enum UserStatus: Codable {
+public enum UserStatus: Codable, Equatable {
 
     /// The user status was never changed
     case userStatusEmpty
@@ -84,7 +84,7 @@ public enum UserStatus: Codable {
 }
 
 /// The user is online
-public struct UserStatusOnline: Codable {
+public struct UserStatusOnline: Codable, Equatable {
 
     /// Point in time (Unix timestamp) when the user's online status will expire
     public let expires: Int
@@ -96,7 +96,7 @@ public struct UserStatusOnline: Codable {
 }
 
 /// The user is offline
-public struct UserStatusOffline: Codable {
+public struct UserStatusOffline: Codable, Equatable {
 
     /// Point in time (Unix timestamp) when the user was last online
     public let wasOnline: Int

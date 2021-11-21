@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns database statistics
-public struct GetDatabaseStatistics: Codable {
+public struct GetDatabaseStatistics: Codable, Equatable {
 
 
     public init() {}

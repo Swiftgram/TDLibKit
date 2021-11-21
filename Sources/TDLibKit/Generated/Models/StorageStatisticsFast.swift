@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains approximate storage usage statistics, excluding files of unknown file type
-public struct StorageStatisticsFast: Codable {
+public struct StorageStatisticsFast: Codable, Equatable {
 
     /// Size of the database
     public let databaseSize: Int64

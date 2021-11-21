@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
-public struct GetJsonString: Codable {
+public struct GetJsonString: Codable, Equatable {
 
     /// The JsonValue object
     public let jsonValue: JsonValue?

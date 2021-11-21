@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the total number of imported contacts
-public struct GetImportedContactCount: Codable {
+public struct GetImportedContactCount: Codable, Equatable {
 
 
     public init() {}

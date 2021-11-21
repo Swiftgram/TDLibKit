@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains animated stickers which must be used for dice animation rendering
-public enum DiceStickers: Codable {
+public enum DiceStickers: Codable, Equatable {
 
     /// A regular animated sticker
     case diceStickersRegular(DiceStickersRegular)
@@ -52,7 +52,7 @@ public enum DiceStickers: Codable {
 }
 
 /// A regular animated sticker
-public struct DiceStickersRegular: Codable {
+public struct DiceStickersRegular: Codable, Equatable {
 
     /// The animated sticker with the dice animation
     public let sticker: Sticker
@@ -64,7 +64,7 @@ public struct DiceStickersRegular: Codable {
 }
 
 /// Animated stickers to be combined into a slot machine
-public struct DiceStickersSlotMachine: Codable {
+public struct DiceStickersSlotMachine: Codable, Equatable {
 
     /// The animated sticker with the slot machine background. The background animation must start playing after all reel animations finish
     public let background: Sticker

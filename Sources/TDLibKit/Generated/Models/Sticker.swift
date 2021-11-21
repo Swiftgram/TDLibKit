@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a sticker
-public struct Sticker: Codable {
+public struct Sticker: Codable, Equatable {
 
     /// Emoji corresponding to the sticker
     public let emoji: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that a sponsored message was viewed by the user
-public struct ViewSponsoredMessage: Codable {
+public struct ViewSponsoredMessage: Codable, Equatable {
 
     /// Identifier of the chat with the sponsored message
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
-public struct TestProxy: Codable {
+public struct TestProxy: Codable, Equatable {
 
     /// Identifier of a datacenter, with which to test connection
     public let dcId: Int?

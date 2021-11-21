@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a secret chat by its identifier. This is an offline request
-public struct GetSecretChat: Codable {
+public struct GetSecretChat: Codable, Equatable {
 
     /// Secret chat identifier
     public let secretChatId: Int?

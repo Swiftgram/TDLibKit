@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
-public struct SetTdlibParameters: Codable {
+public struct SetTdlibParameters: Codable, Equatable {
 
     /// Parameters for TDLib initialization
     public let parameters: TdlibParameters?

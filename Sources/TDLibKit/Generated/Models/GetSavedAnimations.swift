@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns saved animations
-public struct GetSavedAnimations: Codable {
+public struct GetSavedAnimations: Codable, Equatable {
 
 
     public init() {}

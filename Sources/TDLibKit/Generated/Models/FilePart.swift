@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a part of a file
-public struct FilePart: Codable {
+public struct FilePart: Codable, Equatable {
 
     /// File bytes
     public let data: Data

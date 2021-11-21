@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
-public struct ValidateOrderInfo: Codable {
+public struct ValidateOrderInfo: Codable, Equatable {
 
     /// True, if the order information can be saved
     public let allowSave: Bool?

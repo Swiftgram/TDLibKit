@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a photo to be set as a user profile or chat photo
-public enum InputChatPhoto: Codable {
+public enum InputChatPhoto: Codable, Equatable {
 
     /// A previously used profile photo of the current user
     case inputChatPhotoPrevious(InputChatPhotoPrevious)
@@ -62,7 +62,7 @@ public enum InputChatPhoto: Codable {
 }
 
 /// A previously used profile photo of the current user
-public struct InputChatPhotoPrevious: Codable {
+public struct InputChatPhotoPrevious: Codable, Equatable {
 
     /// Identifier of the current user's profile photo to reuse
     public let chatPhotoId: TdInt64
@@ -74,7 +74,7 @@ public struct InputChatPhotoPrevious: Codable {
 }
 
 /// A static photo in JPEG format
-public struct InputChatPhotoStatic: Codable {
+public struct InputChatPhotoStatic: Codable, Equatable {
 
     /// Photo to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
     public let photo: InputFile
@@ -86,7 +86,7 @@ public struct InputChatPhotoStatic: Codable {
 }
 
 /// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 800 and be at most 2MB in size
-public struct InputChatPhotoAnimation: Codable {
+public struct InputChatPhotoAnimation: Codable, Equatable {
 
     /// Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
     public let animation: InputFile

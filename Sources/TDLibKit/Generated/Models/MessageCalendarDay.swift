@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about found messages sent in a specific day
-public struct MessageCalendarDay: Codable {
+public struct MessageCalendarDay: Codable, Equatable {
 
     /// First message sent in the day
     public let message: Message

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Forces an updates.getDifference call to the Telegram servers; for testing only
-public struct TestGetDifference: Codable {
+public struct TestGetDifference: Codable, Equatable {
 
 
     public init() {}

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns chat lists to which the chat can be added. This is an offline request
-public struct GetChatListsToAddChat: Codable {
+public struct GetChatListsToAddChat: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

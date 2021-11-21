@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a cell of a table
-public struct PageBlockTableCell: Codable {
+public struct PageBlockTableCell: Codable, Equatable {
 
     /// Horizontal cell content alignment
     public let align: PageBlockHorizontalAlignment

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of animations
-public struct Animations: Codable {
+public struct Animations: Codable, Equatable {
 
     /// List of animations
     public let animations: [Animation]

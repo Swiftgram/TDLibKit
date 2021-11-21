@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Theme colors for a payment form
-public struct PaymentFormTheme: Codable {
+public struct PaymentFormTheme: Codable, Equatable {
 
     /// A color of the payment form background in the RGB24 format
     public let backgroundColor: Int

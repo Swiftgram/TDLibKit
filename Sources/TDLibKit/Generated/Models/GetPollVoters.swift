@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
-public struct GetPollVoters: Codable {
+public struct GetPollVoters: Codable, Equatable {
 
     /// Identifier of the chat to which the poll belongs
     public let chatId: Int64?

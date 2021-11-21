@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
-public struct GetLanguagePackStrings: Codable {
+public struct GetLanguagePackStrings: Codable, Equatable {
 
     /// Language pack keys of the strings to be returned; leave empty to request all available strings
     public let keys: [String]?

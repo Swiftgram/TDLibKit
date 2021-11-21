@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of chat invite link counts
-public struct ChatInviteLinkCounts: Codable {
+public struct ChatInviteLinkCounts: Codable, Equatable {
 
     /// List of invite linkcounts
     public let inviteLinkCounts: [ChatInviteLinkCount]

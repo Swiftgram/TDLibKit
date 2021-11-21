@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
-public struct GetInlineQueryResults: Codable {
+public struct GetInlineQueryResults: Codable, Equatable {
 
     /// The identifier of the target bot
     public let botUserId: Int64?

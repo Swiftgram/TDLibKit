@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns file downloaded prefix size from a given offset, in bytes
-public struct GetFileDownloadedPrefixSize: Codable {
+public struct GetFileDownloadedPrefixSize: Codable, Equatable {
 
     /// Identifier of the file
     public let fileId: Int?

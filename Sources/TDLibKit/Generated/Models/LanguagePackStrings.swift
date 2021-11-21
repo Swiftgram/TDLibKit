@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of language pack strings
-public struct LanguagePackStrings: Codable {
+public struct LanguagePackStrings: Codable, Equatable {
 
     /// A list of language pack strings
     public let strings: [LanguagePackString]

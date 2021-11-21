@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains statistics about administrator actions done by a user
-public struct ChatStatisticsAdministratorActionsInfo: Codable {
+public struct ChatStatisticsAdministratorActionsInfo: Codable, Equatable {
 
     /// Number of users banned by the administrator
     public let bannedUserCount: Int

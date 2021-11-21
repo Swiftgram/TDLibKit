@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
-public struct SendPhoneNumberConfirmationCode: Codable {
+public struct SendPhoneNumberConfirmationCode: Codable, Equatable {
 
     /// Hash value from the link
     public let hash: String?

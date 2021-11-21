@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
-public struct SendInlineQueryResultMessage: Codable {
+public struct SendInlineQueryResultMessage: Codable, Equatable {
 
     /// Target chat
     public let chatId: Int64?

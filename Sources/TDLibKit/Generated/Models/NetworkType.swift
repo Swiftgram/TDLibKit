@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the type of a network
-public enum NetworkType: Codable {
+public enum NetworkType: Codable, Equatable {
 
     /// The network is not available
     case networkTypeNone

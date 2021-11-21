@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a list of chats
-public enum ChatList: Codable {
+public enum ChatList: Codable, Equatable {
 
     /// A main list of chats
     case chatListMain
@@ -58,7 +58,7 @@ public enum ChatList: Codable {
 }
 
 /// A list of chats belonging to a chat filter
-public struct ChatListFilter: Codable {
+public struct ChatListFilter: Codable, Equatable {
 
     /// Chat filter identifier
     public let chatFilterId: Int

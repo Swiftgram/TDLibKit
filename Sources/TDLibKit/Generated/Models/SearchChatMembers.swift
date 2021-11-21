@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
-public struct SearchChatMembers: Codable {
+public struct SearchChatMembers: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

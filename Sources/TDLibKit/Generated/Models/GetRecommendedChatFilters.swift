@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns recommended chat filters for the current user
-public struct GetRecommendedChatFilters: Codable {
+public struct GetRecommendedChatFilters: Codable, Equatable {
 
 
     public init() {}

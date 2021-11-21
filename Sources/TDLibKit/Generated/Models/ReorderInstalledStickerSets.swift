@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the order of installed sticker sets
-public struct ReorderInstalledStickerSets: Codable {
+public struct ReorderInstalledStickerSets: Codable, Equatable {
 
     /// Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
     public let isMasks: Bool?

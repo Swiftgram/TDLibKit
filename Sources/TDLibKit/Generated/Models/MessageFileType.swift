@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a file with messages exported from another app
-public enum MessageFileType: Codable {
+public enum MessageFileType: Codable, Equatable {
 
     /// The messages was exported from a private chat
     case messageFileTypePrivate(MessageFileTypePrivate)
@@ -60,7 +60,7 @@ public enum MessageFileType: Codable {
 }
 
 /// The messages was exported from a private chat
-public struct MessageFileTypePrivate: Codable {
+public struct MessageFileTypePrivate: Codable, Equatable {
 
     /// Name of the other party; may be empty if unrecognized
     public let name: String
@@ -72,7 +72,7 @@ public struct MessageFileTypePrivate: Codable {
 }
 
 /// The messages was exported from a group chat
-public struct MessageFileTypeGroup: Codable {
+public struct MessageFileTypeGroup: Codable, Equatable {
 
     /// Title of the group chat; may be empty if unrecognized
     public let title: String

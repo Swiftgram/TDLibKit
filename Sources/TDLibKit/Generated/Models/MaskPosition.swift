@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Position on a photo where a mask is placed
-public struct MaskPosition: Codable {
+public struct MaskPosition: Codable, Equatable {
 
     /// Part of the face, relative to which the mask is placed
     public let point: MaskPoint

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an action suggested to the current user
-public enum SuggestedAction: Codable {
+public enum SuggestedAction: Codable, Equatable {
 
     /// Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option
     case suggestedActionEnableArchiveAndMuteNewChats
@@ -74,7 +74,7 @@ public enum SuggestedAction: Codable {
 }
 
 /// Suggests the user to convert specified supergroup to a broadcast group
-public struct SuggestedActionConvertToBroadcastGroup: Codable {
+public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable {
 
     /// Supergroup identifier
     public let supergroupId: Int64

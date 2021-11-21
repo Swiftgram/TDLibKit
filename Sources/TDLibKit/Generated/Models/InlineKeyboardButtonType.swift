@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of an inline keyboard button
-public enum InlineKeyboardButtonType: Codable {
+public enum InlineKeyboardButtonType: Codable, Equatable {
 
     /// A button that opens a specified URL
     case inlineKeyboardButtonTypeUrl(InlineKeyboardButtonTypeUrl)
@@ -98,7 +98,7 @@ public enum InlineKeyboardButtonType: Codable {
 }
 
 /// A button that opens a specified URL
-public struct InlineKeyboardButtonTypeUrl: Codable {
+public struct InlineKeyboardButtonTypeUrl: Codable, Equatable {
 
     /// HTTP or tg:// URL to open
     public let url: String
@@ -110,7 +110,7 @@ public struct InlineKeyboardButtonTypeUrl: Codable {
 }
 
 /// A button that opens a specified URL and automatically authorize the current user if allowed to do so
-public struct InlineKeyboardButtonTypeLoginUrl: Codable {
+public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
 
     /// If non-empty, new text of the button in forwarded messages
     public let forwardText: String
@@ -134,7 +134,7 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable {
 }
 
 /// A button that sends a callback query to a bot
-public struct InlineKeyboardButtonTypeCallback: Codable {
+public struct InlineKeyboardButtonTypeCallback: Codable, Equatable {
 
     /// Data to be sent to the bot via a callback query
     public let data: Data
@@ -146,7 +146,7 @@ public struct InlineKeyboardButtonTypeCallback: Codable {
 }
 
 /// A button that asks for password of the current user and then sends a callback query to a bot
-public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable {
+public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable, Equatable {
 
     /// Data to be sent to the bot via a callback query
     public let data: Data
@@ -158,7 +158,7 @@ public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable {
 }
 
 /// A button that forces an inline query to the bot to be inserted in the input field
-public struct InlineKeyboardButtonTypeSwitchInline: Codable {
+public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable {
 
     /// True, if the inline query must be sent from the current chat
     public let inCurrentChat: Bool

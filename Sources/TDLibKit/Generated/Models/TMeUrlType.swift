@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a URL linking to an internal Telegram entity
-public enum TMeUrlType: Codable {
+public enum TMeUrlType: Codable, Equatable {
 
     /// A URL linking to a user
     case tMeUrlTypeUser(TMeUrlTypeUser)
@@ -72,7 +72,7 @@ public enum TMeUrlType: Codable {
 }
 
 /// A URL linking to a user
-public struct TMeUrlTypeUser: Codable {
+public struct TMeUrlTypeUser: Codable, Equatable {
 
     /// Identifier of the user
     public let userId: Int64
@@ -84,7 +84,7 @@ public struct TMeUrlTypeUser: Codable {
 }
 
 /// A URL linking to a public supergroup or channel
-public struct TMeUrlTypeSupergroup: Codable {
+public struct TMeUrlTypeSupergroup: Codable, Equatable {
 
     /// Identifier of the supergroup or channel
     public let supergroupId: Int64
@@ -96,7 +96,7 @@ public struct TMeUrlTypeSupergroup: Codable {
 }
 
 /// A chat invite link
-public struct TMeUrlTypeChatInvite: Codable {
+public struct TMeUrlTypeChatInvite: Codable, Equatable {
 
     /// Chat invite link info
     public let info: ChatInviteLinkInfo
@@ -108,7 +108,7 @@ public struct TMeUrlTypeChatInvite: Codable {
 }
 
 /// A URL linking to a sticker set
-public struct TMeUrlTypeStickerSet: Codable {
+public struct TMeUrlTypeStickerSet: Codable, Equatable {
 
     /// Identifier of the sticker set
     public let stickerSetId: TdInt64

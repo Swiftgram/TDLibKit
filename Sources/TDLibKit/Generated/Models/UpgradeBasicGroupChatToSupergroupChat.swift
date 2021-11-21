@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
-public struct UpgradeBasicGroupChatToSupergroupChat: Codable {
+public struct UpgradeBasicGroupChatToSupergroupChat: Codable, Equatable {
 
     /// Identifier of the chat to upgrade
     public let chatId: Int64?

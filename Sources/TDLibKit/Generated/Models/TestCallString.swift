@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the received string; for testing only. This is an offline method. Can be called before authorization
-public struct TestCallString: Codable {
+public struct TestCallString: Codable, Equatable {
 
     /// String to return
     public let x: String?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-public struct GetWebPageInstantView: Codable {
+public struct GetWebPageInstantView: Codable, Equatable {
 
     /// If true, the full instant view for the web page will be returned
     public let forceFull: Bool?

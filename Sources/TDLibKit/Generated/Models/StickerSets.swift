@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of sticker sets
-public struct StickerSets: Codable {
+public struct StickerSets: Codable, Equatable {
 
     /// List of sticker sets
     public let sets: [StickerSetInfo]

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a JSON value
-public enum JsonValue: Codable {
+public enum JsonValue: Codable, Equatable {
 
     /// Represents a null JSON value
     case jsonValueNull
@@ -90,7 +90,7 @@ public enum JsonValue: Codable {
 }
 
 /// Represents a boolean JSON value
-public struct JsonValueBoolean: Codable {
+public struct JsonValueBoolean: Codable, Equatable {
 
     /// The value
     public let value: Bool
@@ -102,7 +102,7 @@ public struct JsonValueBoolean: Codable {
 }
 
 /// Represents a numeric JSON value
-public struct JsonValueNumber: Codable {
+public struct JsonValueNumber: Codable, Equatable {
 
     /// The value
     public let value: Double
@@ -114,7 +114,7 @@ public struct JsonValueNumber: Codable {
 }
 
 /// Represents a string JSON value
-public struct JsonValueString: Codable {
+public struct JsonValueString: Codable, Equatable {
 
     /// The value
     public let value: String
@@ -126,7 +126,7 @@ public struct JsonValueString: Codable {
 }
 
 /// Represents a JSON array
-public struct JsonValueArray: Codable {
+public struct JsonValueArray: Codable, Equatable {
 
     /// The list of array elements
     public let values: [JsonValue]
@@ -138,7 +138,7 @@ public struct JsonValueArray: Codable {
 }
 
 /// Represents a JSON object
-public struct JsonValueObject: Codable {
+public struct JsonValueObject: Codable, Equatable {
 
     /// The list of object members
     public let members: [JsonObjectMember]

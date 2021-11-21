@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single rule for managing privacy settings
-public enum UserPrivacySettingRule: Codable {
+public enum UserPrivacySettingRule: Codable, Equatable {
 
     /// A rule to allow all users to do something
     case userPrivacySettingRuleAllowAll
@@ -104,7 +104,7 @@ public enum UserPrivacySettingRule: Codable {
 }
 
 /// A rule to allow certain specified users to do something
-public struct UserPrivacySettingRuleAllowUsers: Codable {
+public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable {
 
     /// The user identifiers, total number of users in all rules must not exceed 1000
     public let userIds: [Int64]
@@ -116,7 +116,7 @@ public struct UserPrivacySettingRuleAllowUsers: Codable {
 }
 
 /// A rule to allow all members of certain specified basic groups and supergroups to doing something
-public struct UserPrivacySettingRuleAllowChatMembers: Codable {
+public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable {
 
     /// The chat identifiers, total number of chats in all rules must not exceed 20
     public let chatIds: [Int64]
@@ -128,7 +128,7 @@ public struct UserPrivacySettingRuleAllowChatMembers: Codable {
 }
 
 /// A rule to restrict all specified users from doing something
-public struct UserPrivacySettingRuleRestrictUsers: Codable {
+public struct UserPrivacySettingRuleRestrictUsers: Codable, Equatable {
 
     /// The user identifiers, total number of users in all rules must not exceed 1000
     public let userIds: [Int64]
@@ -140,7 +140,7 @@ public struct UserPrivacySettingRuleRestrictUsers: Codable {
 }
 
 /// A rule to restrict all members of specified basic groups and supergroups from doing something
-public struct UserPrivacySettingRuleRestrictChatMembers: Codable {
+public struct UserPrivacySettingRuleRestrictChatMembers: Codable, Equatable {
 
     /// The chat identifiers, total number of chats in all rules must not exceed 20
     public let chatIds: [Int64]

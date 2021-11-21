@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
-public struct EditMessageCaption: Codable {
+public struct EditMessageCaption: Codable, Equatable {
 
     /// New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
     public let caption: FormattedText?

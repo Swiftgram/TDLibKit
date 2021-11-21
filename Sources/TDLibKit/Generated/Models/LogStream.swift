@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a stream to which TDLib internal log is written
-public enum LogStream: Codable {
+public enum LogStream: Codable, Equatable {
 
     /// The log is written to stderr or an OS specific log
     case logStreamDefault
@@ -58,7 +58,7 @@ public enum LogStream: Codable {
 }
 
 /// The log is written to a file
-public struct LogStreamFile: Codable {
+public struct LogStreamFile: Codable, Equatable {
 
     /// The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated, in bytes
     public let maxFileSize: Int64

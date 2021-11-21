@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)
-public struct BasicGroup: Codable {
+public struct BasicGroup: Codable, Equatable {
 
     /// Group identifier
     public let id: Int64

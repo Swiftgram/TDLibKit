@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
-public struct CreateNewBasicGroupChat: Codable {
+public struct CreateNewBasicGroupChat: Codable, Equatable {
 
     /// Title of the new basic group; 1-128 characters
     public let title: String?

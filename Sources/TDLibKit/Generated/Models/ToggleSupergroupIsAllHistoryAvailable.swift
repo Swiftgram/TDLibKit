@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
-public struct ToggleSupergroupIsAllHistoryAvailable: Codable {
+public struct ToggleSupergroupIsAllHistoryAvailable: Codable, Equatable {
 
     /// The new value of is_all_history_available
     public let isAllHistoryAvailable: Bool?

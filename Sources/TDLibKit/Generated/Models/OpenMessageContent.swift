@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
-public struct OpenMessageContent: Codable {
+public struct OpenMessageContent: Codable, Equatable {
 
     /// Chat identifier of the message
     public let chatId: Int64?

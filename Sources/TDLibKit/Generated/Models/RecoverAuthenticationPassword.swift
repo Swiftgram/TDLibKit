@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
-public struct RecoverAuthenticationPassword: Codable {
+public struct RecoverAuthenticationPassword: Codable, Equatable {
 
     /// New password hint; may be empty
     public let newHint: String?

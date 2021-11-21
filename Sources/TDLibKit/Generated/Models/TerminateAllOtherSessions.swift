@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Terminates all other sessions of the current user
-public struct TerminateAllOtherSessions: Codable {
+public struct TerminateAllOtherSessions: Codable, Equatable {
 
 
     public init() {}

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Thumbnail image of a very poor quality and low resolution
-public struct Minithumbnail: Codable {
+public struct Minithumbnail: Codable, Equatable {
 
     /// The thumbnail in JPEG format
     public let data: Data

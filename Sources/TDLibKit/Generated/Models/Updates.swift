@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of updates
-public struct Updates: Codable {
+public struct Updates: Codable, Equatable {
 
     /// List of updates
     public let updates: [Update]

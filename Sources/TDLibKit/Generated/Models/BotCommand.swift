@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a command supported by a bot
-public struct BotCommand: Codable {
+public struct BotCommand: Codable, Equatable {
 
     /// Text of the bot command
     public let command: String

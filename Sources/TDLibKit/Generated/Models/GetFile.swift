@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a file; this is an offline request
-public struct GetFile: Codable {
+public struct GetFile: Codable, Equatable {
 
     /// Identifier of the file to get
     public let fileId: Int?

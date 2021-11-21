@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
-public struct TestReturnError: Codable {
+public struct TestReturnError: Codable, Equatable {
 
     /// The error to be returned
     public let error: Error?
