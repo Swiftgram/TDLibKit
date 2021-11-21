@@ -21,15 +21,11 @@ public final class StdOutLogger: Logger {
     
     public func log(_ message: String, type: LoggerMessageType?) {
         queue.async {
-            var fisrtLine = "---------------------------"
+            var fisrtLine = ""
             if let type = type {
-                fisrtLine = ">> \(type.description): ---------------"
+                fisrtLine = ">> \(type.description)"
             }
-            print("""
-                \(fisrtLine)
-                \(message)
-                ---------------------------
-                """)
+            NSLog("\(fisrtLine)\n\(message)\n---------------------------")
         }
     }
 }
@@ -48,12 +44,16 @@ class TDLibKitTests: XCTestCase {
         do {
             let result = try api.client.execute(query: DTO(query))
             if let resultDict = result {
-                print("Response: \(resultDict["@type"])")
+                if let resultTypeString = resultDict["@type"] as? String, resultTypeString == "ok" {
+                    XCTAssertEqual(resultTypeString, "ok")
+                } else {
+                    XCTFail("Wrong response from SetLogVerbosityLevel \(resultDict)")
+                }
             } else {
-                print("Empty result")
+                XCTFail("Empty response for loglevel")
             }
         } catch {
-            print("Error in SetLogVerbosityLevel request \(error.localizedDescription)")
+            XCTFail("Error in SetLogVerbosityLevel request \(error.localizedDescription)")
         }
         
         guard let cachesUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
