@@ -77,15 +77,15 @@ class TDLibKitTests: XCTestCase {
             useMessageDatabase: true,
             useSecretChats: true,
             useTestDc: false)
-    
+        
         let _ = Task {
             let _ = try! await api.setTdlibParameters(parameters: params)
             let authState = try! await api.getAuthorizationState()
             switch (authState) {
-                case .authorizationStateWaitEncryptionKey:
-                    break
-                default:
-                    XCTFail("Auth state is not ready. It's \(authState)")
+            case .authorizationStateWaitEncryptionKey:
+                break
+            default:
+                XCTFail("Auth state is not ready. It's \(authState)")
             }
             let _ = try! await api.checkDatabaseEncryptionKey(encryptionKey: nil)
         }
@@ -112,11 +112,55 @@ class TDLibKitTests: XCTestCase {
         print("Application Configs \(configs)")
     }
     
-    func testEquitableStructs() {
+    func testEquatableStructs() {
         let struct1 = AddContact(contact: Contact(firstName: "John", lastName: "Appleseed", phoneNumber: "+10000000000", userId: 123456789, vcard: "empty"), sharePhoneNumber: true)
         let struct2 = AddContact(contact: Contact(firstName: "Pavel", lastName: "Droider", phoneNumber: "+90000000000", userId: 777777777, vcard: "empty"), sharePhoneNumber: false)
         XCTAssertNotEqual(struct1, struct2)
-
+        
         XCTAssertEqual(struct1, struct1)
+    }
+    
+    func testEquatableStructsWithEnums() {
+        let struct1 = EditMessageLiveLocation(
+            chatId: 1234567, heading: 10, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), messageId: 12345, proximityAlertRadius: 30, replyMarkup: .replyMarkupInlineKeyboard(
+                ReplyMarkupInlineKeyboard(
+                    rows: [
+                        [
+                            InlineKeyboardButton(text: "Buy me!", type: .inlineKeyboardButtonTypeBuy)
+                        ]
+                    ]
+                )
+            )
+        )
+        
+        let struct2 = EditMessageLiveLocation(
+            chatId: 1234567, heading: 10, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), messageId: 12345, proximityAlertRadius: 30, replyMarkup: .replyMarkupInlineKeyboard(
+                ReplyMarkupInlineKeyboard(
+                    rows: [
+                        [
+                            InlineKeyboardButton(
+                                text: "Ate me!",
+                                type: .inlineKeyboardButtonTypeUrl(
+                                    InlineKeyboardButtonTypeUrl(url: "https://telegram.org")
+                                )
+                            )
+                        ]
+                    ]
+                )
+            )
+        )
+        
+        XCTAssertEqual(struct1, struct1)
+        XCTAssertNotEqual(struct1, struct2)
+    }
+    
+    func testEquatableErrors() {
+        let error1 = Error(code: 500, message: "Internal Server Error")
+        let error2 = Error(code: 403, message: "You're not alowed to do this")
+        let error3 = Error(code: 500, message: "Server down")
+        
+        XCTAssertEqual(error1, error1)
+        XCTAssertNotEqual(error1, error2)
+        XCTAssertNotEqual(error1, error3)
     }
 }
