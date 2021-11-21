@@ -111,4 +111,12 @@ class TDLibKitTests: XCTestCase {
         let configs = await [config1, config2, config3, config4, config5, config6, config7, config8, config9, config10]
         print("Application Configs \(configs)")
     }
+    
+    func testEquitableStructs() {
+        let struct1 = AddContact(contact: Contact(firstName: "John", lastName: "Appleseed", phoneNumber: "+10000000000", userId: 123456789, vcard: "empty"), sharePhoneNumber: true)
+        let struct2 = AddContact(contact: Contact(firstName: "Pavel", lastName: "Droider", phoneNumber: "+90000000000", userId: 777777777, vcard: "empty"), sharePhoneNumber: false)
+        XCTAssertNotEqual(struct1, struct2)
+
+        XCTAssertEqual(struct1, struct1)
+    }
 }
