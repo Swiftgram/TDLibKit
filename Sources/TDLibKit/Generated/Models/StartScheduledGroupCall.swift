@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Starts a scheduled group call
-public struct StartScheduledGroupCall: Codable {
+public struct StartScheduledGroupCall: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

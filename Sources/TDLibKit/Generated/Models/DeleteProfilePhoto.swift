@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes a profile photo
-public struct DeleteProfilePhoto: Codable {
+public struct DeleteProfilePhoto: Codable, Equatable {
 
     /// Identifier of the profile photo to delete
     public let profilePhotoId: TdInt64?

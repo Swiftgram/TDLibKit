@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a text object inside an instant-view web page
-public indirect enum RichText: Codable {
+public indirect enum RichText: Codable, Equatable {
 
     /// A plain text
     case richTextPlain(RichTextPlain)
@@ -202,7 +202,7 @@ public indirect enum RichText: Codable {
 }
 
 /// A plain text
-public struct RichTextPlain: Codable {
+public struct RichTextPlain: Codable, Equatable {
 
     /// Text
     public let text: String
@@ -214,7 +214,7 @@ public struct RichTextPlain: Codable {
 }
 
 /// A bold rich text
-public struct RichTextBold: Codable {
+public struct RichTextBold: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -226,7 +226,7 @@ public struct RichTextBold: Codable {
 }
 
 /// An italicized rich text
-public struct RichTextItalic: Codable {
+public struct RichTextItalic: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -238,7 +238,7 @@ public struct RichTextItalic: Codable {
 }
 
 /// An underlined rich text
-public struct RichTextUnderline: Codable {
+public struct RichTextUnderline: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -250,7 +250,7 @@ public struct RichTextUnderline: Codable {
 }
 
 /// A strikethrough rich text
-public struct RichTextStrikethrough: Codable {
+public struct RichTextStrikethrough: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -262,7 +262,7 @@ public struct RichTextStrikethrough: Codable {
 }
 
 /// A fixed-width rich text
-public struct RichTextFixed: Codable {
+public struct RichTextFixed: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -274,7 +274,7 @@ public struct RichTextFixed: Codable {
 }
 
 /// A rich text URL link
-public struct RichTextUrl: Codable {
+public struct RichTextUrl: Codable, Equatable {
 
     /// True, if the URL has cached instant view server-side
     public let isCached: Bool
@@ -298,7 +298,7 @@ public struct RichTextUrl: Codable {
 }
 
 /// A rich text email link
-public struct RichTextEmailAddress: Codable {
+public struct RichTextEmailAddress: Codable, Equatable {
 
     /// Email address
     public let emailAddress: String
@@ -317,7 +317,7 @@ public struct RichTextEmailAddress: Codable {
 }
 
 /// A subscript rich text
-public struct RichTextSubscript: Codable {
+public struct RichTextSubscript: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -329,7 +329,7 @@ public struct RichTextSubscript: Codable {
 }
 
 /// A superscript rich text
-public struct RichTextSuperscript: Codable {
+public struct RichTextSuperscript: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -341,7 +341,7 @@ public struct RichTextSuperscript: Codable {
 }
 
 /// A marked rich text
-public struct RichTextMarked: Codable {
+public struct RichTextMarked: Codable, Equatable {
 
     /// Text
     public let text: RichText
@@ -353,7 +353,7 @@ public struct RichTextMarked: Codable {
 }
 
 /// A rich text phone number
-public struct RichTextPhoneNumber: Codable {
+public struct RichTextPhoneNumber: Codable, Equatable {
 
     /// Phone number
     public let phoneNumber: String
@@ -372,7 +372,7 @@ public struct RichTextPhoneNumber: Codable {
 }
 
 /// A small image inside the text
-public struct RichTextIcon: Codable {
+public struct RichTextIcon: Codable, Equatable {
 
     /// The image represented as a document. The image can be in GIF, JPEG or PNG format
     public let document: Document
@@ -396,7 +396,7 @@ public struct RichTextIcon: Codable {
 }
 
 /// A reference to a richTexts object on the same web page
-public struct RichTextReference: Codable {
+public struct RichTextReference: Codable, Equatable {
 
     /// The name of a richTextAnchor object, which is the first element of the target richTexts object
     public let anchorName: String
@@ -420,7 +420,7 @@ public struct RichTextReference: Codable {
 }
 
 /// An anchor
-public struct RichTextAnchor: Codable {
+public struct RichTextAnchor: Codable, Equatable {
 
     /// Anchor name
     public let name: String
@@ -432,7 +432,7 @@ public struct RichTextAnchor: Codable {
 }
 
 /// A link to an anchor on the same web page
-public struct RichTextAnchorLink: Codable {
+public struct RichTextAnchorLink: Codable, Equatable {
 
     /// The anchor name. If the name is empty, the link must bring back to top
     public let anchorName: String
@@ -456,7 +456,7 @@ public struct RichTextAnchorLink: Codable {
 }
 
 /// A concatenation of rich texts
-public struct RichTexts: Codable {
+public struct RichTexts: Codable, Equatable {
 
     /// Texts
     public let texts: [RichText]

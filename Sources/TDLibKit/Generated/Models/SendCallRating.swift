@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a call rating
-public struct SendCallRating: Codable {
+public struct SendCallRating: Codable, Equatable {
 
     /// Call identifier
     public let callId: Int?

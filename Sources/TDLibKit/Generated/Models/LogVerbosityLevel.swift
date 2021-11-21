@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a TDLib internal log verbosity level
-public struct LogVerbosityLevel: Codable {
+public struct LogVerbosityLevel: Codable, Equatable {
 
     /// Log verbosity level
     public let verbosityLevel: Int

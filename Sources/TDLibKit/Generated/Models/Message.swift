@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a message
-public struct Message: Codable {
+public struct Message: Codable, Equatable {
 
     /// For channel posts and anonymous group messages, optional author signature
     public let authorSignature: String

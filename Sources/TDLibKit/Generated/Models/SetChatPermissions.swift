@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
-public struct SetChatPermissions: Codable {
+public struct SetChatPermissions: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

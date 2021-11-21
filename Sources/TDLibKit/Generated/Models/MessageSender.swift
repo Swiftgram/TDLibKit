@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the sender of a message
-public enum MessageSender: Codable {
+public enum MessageSender: Codable, Equatable {
 
     /// The message was sent by a known user
     case messageSenderUser(MessageSenderUser)
@@ -52,7 +52,7 @@ public enum MessageSender: Codable {
 }
 
 /// The message was sent by a known user
-public struct MessageSenderUser: Codable {
+public struct MessageSenderUser: Codable, Equatable {
 
     /// Identifier of the user that sent the message
     public let userId: Int64
@@ -64,7 +64,7 @@ public struct MessageSenderUser: Codable {
 }
 
 /// The message was sent on behalf of a chat
-public struct MessageSenderChat: Codable {
+public struct MessageSenderChat: Codable, Equatable {
 
     /// Identifier of the chat that sent the message
     public let chatId: Int64

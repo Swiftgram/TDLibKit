@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
-public struct GetBasicGroup: Codable {
+public struct GetBasicGroup: Codable, Equatable {
 
     /// Basic group identifier
     public let basicGroupId: Int64?

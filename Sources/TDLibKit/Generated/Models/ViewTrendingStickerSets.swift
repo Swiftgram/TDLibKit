@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs the server that some trending sticker sets have been viewed by the user
-public struct ViewTrendingStickerSets: Codable {
+public struct ViewTrendingStickerSets: Codable, Equatable {
 
     /// Identifiers of viewed trending sticker sets
     public let stickerSetIds: [TdInt64]?

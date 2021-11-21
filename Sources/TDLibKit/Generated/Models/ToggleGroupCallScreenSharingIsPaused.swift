@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Pauses or unpauses screen sharing in a joined group call
-public struct ToggleGroupCallScreenSharingIsPaused: Codable {
+public struct ToggleGroupCallScreenSharingIsPaused: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a keyboard button type
-public enum KeyboardButtonType: Codable {
+public enum KeyboardButtonType: Codable, Equatable {
 
     /// A simple button, with text that must be sent when the button is pressed
     case keyboardButtonTypeText
@@ -66,7 +66,7 @@ public enum KeyboardButtonType: Codable {
 }
 
 /// A button that allows the user to create and send a poll when pressed; available only in private chats
-public struct KeyboardButtonTypeRequestPoll: Codable {
+public struct KeyboardButtonTypeRequestPoll: Codable, Equatable {
 
     /// If true, only polls in quiz mode must be allowed to create
     public let forceQuiz: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the type of a Telegram Passport element
-public enum PassportElementType: Codable {
+public enum PassportElementType: Codable, Equatable {
 
     /// A Telegram Passport element containing the user's personal details
     case passportElementTypePersonalDetails

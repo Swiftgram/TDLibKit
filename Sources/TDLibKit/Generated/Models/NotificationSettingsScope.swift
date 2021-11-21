@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the types of chats to which notification settings are relevant
-public enum NotificationSettingsScope: Codable {
+public enum NotificationSettingsScope: Codable, Equatable {
 
     /// Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
     case notificationSettingsScopePrivateChats

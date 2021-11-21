@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
-public struct SetSupergroupUsername: Codable {
+public struct SetSupergroupUsername: Codable, Equatable {
 
     /// Identifier of the supergroup or channel
     public let supergroupId: Int64?

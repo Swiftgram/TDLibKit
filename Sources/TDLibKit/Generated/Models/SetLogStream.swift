@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets new log stream for internal logging of TDLib. Can be called synchronously
-public struct SetLogStream: Codable {
+public struct SetLogStream: Codable, Equatable {
 
     /// New log stream
     public let logStream: LogStream?

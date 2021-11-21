@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a chat event
-public enum ChatEventAction: Codable {
+public enum ChatEventAction: Codable, Equatable {
 
     /// A message was edited
     case chatEventMessageEdited(ChatEventMessageEdited)
@@ -358,7 +358,7 @@ public enum ChatEventAction: Codable {
 }
 
 /// A message was edited
-public struct ChatEventMessageEdited: Codable {
+public struct ChatEventMessageEdited: Codable, Equatable {
 
     /// The message after it was edited
     public let newMessage: Message
@@ -377,7 +377,7 @@ public struct ChatEventMessageEdited: Codable {
 }
 
 /// A message was deleted
-public struct ChatEventMessageDeleted: Codable {
+public struct ChatEventMessageDeleted: Codable, Equatable {
 
     /// Deleted message
     public let message: Message
@@ -389,7 +389,7 @@ public struct ChatEventMessageDeleted: Codable {
 }
 
 /// A poll in a message was stopped
-public struct ChatEventPollStopped: Codable {
+public struct ChatEventPollStopped: Codable, Equatable {
 
     /// The message with the poll
     public let message: Message
@@ -401,7 +401,7 @@ public struct ChatEventPollStopped: Codable {
 }
 
 /// A message was pinned
-public struct ChatEventMessagePinned: Codable {
+public struct ChatEventMessagePinned: Codable, Equatable {
 
     /// Pinned message
     public let message: Message
@@ -413,7 +413,7 @@ public struct ChatEventMessagePinned: Codable {
 }
 
 /// A message was unpinned
-public struct ChatEventMessageUnpinned: Codable {
+public struct ChatEventMessageUnpinned: Codable, Equatable {
 
     /// Unpinned message
     public let message: Message
@@ -425,7 +425,7 @@ public struct ChatEventMessageUnpinned: Codable {
 }
 
 /// A new member joined the chat by an invite link
-public struct ChatEventMemberJoinedByInviteLink: Codable {
+public struct ChatEventMemberJoinedByInviteLink: Codable, Equatable {
 
     /// Invite link used to join the chat
     public let inviteLink: ChatInviteLink
@@ -437,7 +437,7 @@ public struct ChatEventMemberJoinedByInviteLink: Codable {
 }
 
 /// A new member was accepted to the chat by an administrator
-public struct ChatEventMemberJoinedByRequest: Codable {
+public struct ChatEventMemberJoinedByRequest: Codable, Equatable {
 
     /// User identifier of the chat administrator, approved user join request
     public let approverUserId: Int64
@@ -456,7 +456,7 @@ public struct ChatEventMemberJoinedByRequest: Codable {
 }
 
 /// A new chat member was invited
-public struct ChatEventMemberInvited: Codable {
+public struct ChatEventMemberInvited: Codable, Equatable {
 
     /// New member status
     public let status: ChatMemberStatus
@@ -475,7 +475,7 @@ public struct ChatEventMemberInvited: Codable {
 }
 
 /// A chat member has gained/lost administrator status, or the list of their administrator privileges has changed
-public struct ChatEventMemberPromoted: Codable {
+public struct ChatEventMemberPromoted: Codable, Equatable {
 
     /// New status of the chat member
     public let newStatus: ChatMemberStatus
@@ -499,7 +499,7 @@ public struct ChatEventMemberPromoted: Codable {
 }
 
 /// A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
-public struct ChatEventMemberRestricted: Codable {
+public struct ChatEventMemberRestricted: Codable, Equatable {
 
     /// Affected chat member identifier
     public let memberId: MessageSender
@@ -523,7 +523,7 @@ public struct ChatEventMemberRestricted: Codable {
 }
 
 /// The chat title was changed
-public struct ChatEventTitleChanged: Codable {
+public struct ChatEventTitleChanged: Codable, Equatable {
 
     /// New chat title
     public let newTitle: String
@@ -542,7 +542,7 @@ public struct ChatEventTitleChanged: Codable {
 }
 
 /// The chat permissions was changed
-public struct ChatEventPermissionsChanged: Codable {
+public struct ChatEventPermissionsChanged: Codable, Equatable {
 
     /// New chat permissions
     public let newPermissions: ChatPermissions
@@ -561,7 +561,7 @@ public struct ChatEventPermissionsChanged: Codable {
 }
 
 /// The chat description was changed
-public struct ChatEventDescriptionChanged: Codable {
+public struct ChatEventDescriptionChanged: Codable, Equatable {
 
     /// New chat description
     public let newDescription: String
@@ -580,7 +580,7 @@ public struct ChatEventDescriptionChanged: Codable {
 }
 
 /// The chat username was changed
-public struct ChatEventUsernameChanged: Codable {
+public struct ChatEventUsernameChanged: Codable, Equatable {
 
     /// New chat username
     public let newUsername: String
@@ -599,7 +599,7 @@ public struct ChatEventUsernameChanged: Codable {
 }
 
 /// The chat photo was changed
-public struct ChatEventPhotoChanged: Codable {
+public struct ChatEventPhotoChanged: Codable, Equatable {
 
     /// New chat photo value; may be null
     public let newPhoto: ChatPhoto?
@@ -618,7 +618,7 @@ public struct ChatEventPhotoChanged: Codable {
 }
 
 /// The can_invite_users permission of a supergroup chat was toggled
-public struct ChatEventInvitesToggled: Codable {
+public struct ChatEventInvitesToggled: Codable, Equatable {
 
     /// New value of can_invite_users permission
     public let canInviteUsers: Bool
@@ -630,7 +630,7 @@ public struct ChatEventInvitesToggled: Codable {
 }
 
 /// The linked chat of a supergroup was changed
-public struct ChatEventLinkedChatChanged: Codable {
+public struct ChatEventLinkedChatChanged: Codable, Equatable {
 
     /// New supergroup linked chat identifier
     public let newLinkedChatId: Int64
@@ -649,7 +649,7 @@ public struct ChatEventLinkedChatChanged: Codable {
 }
 
 /// The slow_mode_delay setting of a supergroup was changed
-public struct ChatEventSlowModeDelayChanged: Codable {
+public struct ChatEventSlowModeDelayChanged: Codable, Equatable {
 
     /// New value of slow_mode_delay, in seconds
     public let newSlowModeDelay: Int
@@ -668,7 +668,7 @@ public struct ChatEventSlowModeDelayChanged: Codable {
 }
 
 /// The message TTL setting was changed
-public struct ChatEventMessageTtlSettingChanged: Codable {
+public struct ChatEventMessageTtlSettingChanged: Codable, Equatable {
 
     /// New value of message_ttl_setting
     public let newMessageTtlSetting: Int
@@ -687,7 +687,7 @@ public struct ChatEventMessageTtlSettingChanged: Codable {
 }
 
 /// The sign_messages setting of a channel was toggled
-public struct ChatEventSignMessagesToggled: Codable {
+public struct ChatEventSignMessagesToggled: Codable, Equatable {
 
     /// New value of sign_messages
     public let signMessages: Bool
@@ -699,7 +699,7 @@ public struct ChatEventSignMessagesToggled: Codable {
 }
 
 /// The supergroup sticker set was changed
-public struct ChatEventStickerSetChanged: Codable {
+public struct ChatEventStickerSetChanged: Codable, Equatable {
 
     /// New identifier of the chat sticker set; 0 if none
     public let newStickerSetId: TdInt64
@@ -718,7 +718,7 @@ public struct ChatEventStickerSetChanged: Codable {
 }
 
 /// The supergroup location was changed
-public struct ChatEventLocationChanged: Codable {
+public struct ChatEventLocationChanged: Codable, Equatable {
 
     /// New location; may be null
     public let newLocation: ChatLocation?
@@ -737,7 +737,7 @@ public struct ChatEventLocationChanged: Codable {
 }
 
 /// The is_all_history_available setting of a supergroup was toggled
-public struct ChatEventIsAllHistoryAvailableToggled: Codable {
+public struct ChatEventIsAllHistoryAvailableToggled: Codable, Equatable {
 
     /// New value of is_all_history_available
     public let isAllHistoryAvailable: Bool
@@ -749,7 +749,7 @@ public struct ChatEventIsAllHistoryAvailableToggled: Codable {
 }
 
 /// A chat invite link was edited
-public struct ChatEventInviteLinkEdited: Codable {
+public struct ChatEventInviteLinkEdited: Codable, Equatable {
 
     /// New information about the invite link
     public let newInviteLink: ChatInviteLink
@@ -768,7 +768,7 @@ public struct ChatEventInviteLinkEdited: Codable {
 }
 
 /// A chat invite link was revoked
-public struct ChatEventInviteLinkRevoked: Codable {
+public struct ChatEventInviteLinkRevoked: Codable, Equatable {
 
     /// The invite link
     public let inviteLink: ChatInviteLink
@@ -780,7 +780,7 @@ public struct ChatEventInviteLinkRevoked: Codable {
 }
 
 /// A revoked chat invite link was deleted
-public struct ChatEventInviteLinkDeleted: Codable {
+public struct ChatEventInviteLinkDeleted: Codable, Equatable {
 
     /// The invite link
     public let inviteLink: ChatInviteLink
@@ -792,7 +792,7 @@ public struct ChatEventInviteLinkDeleted: Codable {
 }
 
 /// A video chat was created
-public struct ChatEventVideoChatCreated: Codable {
+public struct ChatEventVideoChatCreated: Codable, Equatable {
 
     /// Identifier of the video chat. The video chat can be received through the method getGroupCall
     public let groupCallId: Int
@@ -804,7 +804,7 @@ public struct ChatEventVideoChatCreated: Codable {
 }
 
 /// A video chat was discarded
-public struct ChatEventVideoChatDiscarded: Codable {
+public struct ChatEventVideoChatDiscarded: Codable, Equatable {
 
     /// Identifier of the video chat. The video chat can be received through the method getGroupCall
     public let groupCallId: Int
@@ -816,7 +816,7 @@ public struct ChatEventVideoChatDiscarded: Codable {
 }
 
 /// A video chat participant was muted or unmuted
-public struct ChatEventVideoChatParticipantIsMutedToggled: Codable {
+public struct ChatEventVideoChatParticipantIsMutedToggled: Codable, Equatable {
 
     /// New value of is_muted
     public let isMuted: Bool
@@ -835,7 +835,7 @@ public struct ChatEventVideoChatParticipantIsMutedToggled: Codable {
 }
 
 /// A video chat participant volume level was changed
-public struct ChatEventVideoChatParticipantVolumeLevelChanged: Codable {
+public struct ChatEventVideoChatParticipantVolumeLevelChanged: Codable, Equatable {
 
     /// Identifier of the affected group call participant
     public let participantId: MessageSender
@@ -854,7 +854,7 @@ public struct ChatEventVideoChatParticipantVolumeLevelChanged: Codable {
 }
 
 /// The mute_new_participants setting of a video chat was toggled
-public struct ChatEventVideoChatMuteNewParticipantsToggled: Codable {
+public struct ChatEventVideoChatMuteNewParticipantsToggled: Codable, Equatable {
 
     /// New value of the mute_new_participants setting
     public let muteNewParticipants: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
-public struct InviteGroupCallParticipants: Codable {
+public struct InviteGroupCallParticipants: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

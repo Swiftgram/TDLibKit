@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
-public struct SearchCallMessages: Codable {
+public struct SearchCallMessages: Codable, Equatable {
 
     /// Identifier of the message from which to search; use 0 to get results from the last message
     public let fromMessageId: Int64?

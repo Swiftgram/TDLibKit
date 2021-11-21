@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about an invoice payment form
-public struct PaymentForm: Codable {
+public struct PaymentForm: Codable, Equatable {
 
     /// True, if the user can choose to save credentials
     public let canSaveCredentials: Bool

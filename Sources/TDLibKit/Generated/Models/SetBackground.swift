@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the background selected by the user; adds background to the list of installed backgrounds
-public struct SetBackground: Codable {
+public struct SetBackground: Codable, Equatable {
 
     /// The input background to use; pass null to create a new filled backgrounds or to remove the current background
     public let background: InputBackground?

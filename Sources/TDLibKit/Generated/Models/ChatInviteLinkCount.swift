@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a chat administrator with a number of active and revoked chat invite links
-public struct ChatInviteLinkCount: Codable {
+public struct ChatInviteLinkCount: Codable, Equatable {
 
     /// Number of active invite links
     public let inviteLinkCount: Int

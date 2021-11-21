@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of checking whether the current session can be used to transfer a chat ownership to another user
-public enum CanTransferOwnershipResult: Codable {
+public enum CanTransferOwnershipResult: Codable, Equatable {
 
     /// The session can be used
     case canTransferOwnershipResultOk
@@ -68,7 +68,7 @@ public enum CanTransferOwnershipResult: Codable {
 }
 
 /// The 2-step verification was enabled recently, user needs to wait
-public struct CanTransferOwnershipResultPasswordTooFresh: Codable {
+public struct CanTransferOwnershipResultPasswordTooFresh: Codable, Equatable {
 
     /// Time left before the session can be used to transfer ownership of a chat, in seconds
     public let retryAfter: Int
@@ -80,7 +80,7 @@ public struct CanTransferOwnershipResultPasswordTooFresh: Codable {
 }
 
 /// The session was created recently, user needs to wait
-public struct CanTransferOwnershipResultSessionTooFresh: Codable {
+public struct CanTransferOwnershipResultSessionTooFresh: Codable, Equatable {
 
     /// Time left before the session can be used to transfer ownership of a chat, in seconds
     public let retryAfter: Int

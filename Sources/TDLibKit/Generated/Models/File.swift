@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a file
-public struct File: Codable {
+public struct File: Codable, Equatable {
 
     /// Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
     public let expectedSize: Int

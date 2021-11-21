@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a recommended chat filter
-public struct RecommendedChatFilter: Codable {
+public struct RecommendedChatFilter: Codable, Equatable {
 
     public let description: String
 

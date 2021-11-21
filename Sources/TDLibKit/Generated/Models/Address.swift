@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an address
-public struct Address: Codable {
+public struct Address: Codable, Equatable {
 
     /// City
     public let city: String

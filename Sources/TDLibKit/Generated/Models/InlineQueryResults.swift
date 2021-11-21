@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
-public struct InlineQueryResults: Codable {
+public struct InlineQueryResults: Codable, Equatable {
 
     /// Unique identifier of the inline query
     public let inlineQueryId: TdInt64

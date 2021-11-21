@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks whether a name can be used for a new sticker set
-public struct CheckStickerSetName: Codable {
+public struct CheckStickerSetName: Codable, Equatable {
 
     /// Name to be checked
     public let name: String?

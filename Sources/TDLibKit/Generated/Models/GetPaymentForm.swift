@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
-public struct GetPaymentForm: Codable {
+public struct GetPaymentForm: Codable, Equatable {
 
     /// Chat identifier of the Invoice message
     public let chatId: Int64?

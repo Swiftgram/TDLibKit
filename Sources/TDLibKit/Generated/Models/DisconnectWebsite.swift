@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Disconnects website from the current user's Telegram account
-public struct DisconnectWebsite: Codable {
+public struct DisconnectWebsite: Codable, Equatable {
 
     /// Website identifier
     public let websiteId: TdInt64?

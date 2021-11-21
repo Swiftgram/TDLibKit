@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
-public struct SetChatMessageTtlSetting: Codable {
+public struct SetChatMessageTtlSetting: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

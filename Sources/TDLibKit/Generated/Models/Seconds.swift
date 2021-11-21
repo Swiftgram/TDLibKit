@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a value representing a number of seconds
-public struct Seconds: Codable {
+public struct Seconds: Codable, Equatable {
 
     /// Number of seconds
     public let seconds: Double

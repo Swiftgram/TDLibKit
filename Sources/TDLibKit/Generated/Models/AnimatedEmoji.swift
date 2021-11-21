@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an animated representation of an emoji
-public struct AnimatedEmoji: Codable {
+public struct AnimatedEmoji: Codable, Equatable {
 
     /// List of colors to be replaced while the sticker is rendered
     public let colorReplacements: [ColorReplacement]

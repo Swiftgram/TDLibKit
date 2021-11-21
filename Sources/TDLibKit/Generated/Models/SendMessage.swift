@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a message. Returns the sent message
-public struct SendMessage: Codable {
+public struct SendMessage: Codable, Equatable {
 
     /// Target chat
     public let chatId: Int64?

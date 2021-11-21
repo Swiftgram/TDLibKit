@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns default icon name for a filter. Can be called synchronously
-public struct GetChatFilterDefaultIconName: Codable {
+public struct GetChatFilterDefaultIconName: Codable, Equatable {
 
     /// Chat filter
     public let filter: ChatFilter?

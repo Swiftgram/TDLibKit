@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes existing chat filter
-public struct DeleteChatFilter: Codable {
+public struct DeleteChatFilter: Codable, Equatable {
 
     /// Chat filter identifier
     public let chatFilterId: Int?

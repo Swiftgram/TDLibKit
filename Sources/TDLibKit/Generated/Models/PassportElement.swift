@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Telegram Passport element
-public enum PassportElement: Codable {
+public enum PassportElement: Codable, Equatable {
 
     /// A Telegram Passport element containing the user's personal details
     case passportElementPersonalDetails(PassportElementPersonalDetails)
@@ -162,7 +162,7 @@ public enum PassportElement: Codable {
 }
 
 /// A Telegram Passport element containing the user's personal details
-public struct PassportElementPersonalDetails: Codable {
+public struct PassportElementPersonalDetails: Codable, Equatable {
 
     /// Personal details of the user
     public let personalDetails: PersonalDetails
@@ -174,7 +174,7 @@ public struct PassportElementPersonalDetails: Codable {
 }
 
 /// A Telegram Passport element containing the user's passport
-public struct PassportElementPassport: Codable {
+public struct PassportElementPassport: Codable, Equatable {
 
     /// Passport
     public let passport: IdentityDocument
@@ -186,7 +186,7 @@ public struct PassportElementPassport: Codable {
 }
 
 /// A Telegram Passport element containing the user's driver license
-public struct PassportElementDriverLicense: Codable {
+public struct PassportElementDriverLicense: Codable, Equatable {
 
     /// Driver license
     public let driverLicense: IdentityDocument
@@ -198,7 +198,7 @@ public struct PassportElementDriverLicense: Codable {
 }
 
 /// A Telegram Passport element containing the user's identity card
-public struct PassportElementIdentityCard: Codable {
+public struct PassportElementIdentityCard: Codable, Equatable {
 
     /// Identity card
     public let identityCard: IdentityDocument
@@ -210,7 +210,7 @@ public struct PassportElementIdentityCard: Codable {
 }
 
 /// A Telegram Passport element containing the user's internal passport
-public struct PassportElementInternalPassport: Codable {
+public struct PassportElementInternalPassport: Codable, Equatable {
 
     /// Internal passport
     public let internalPassport: IdentityDocument
@@ -222,7 +222,7 @@ public struct PassportElementInternalPassport: Codable {
 }
 
 /// A Telegram Passport element containing the user's address
-public struct PassportElementAddress: Codable {
+public struct PassportElementAddress: Codable, Equatable {
 
     /// Address
     public let address: Address
@@ -234,7 +234,7 @@ public struct PassportElementAddress: Codable {
 }
 
 /// A Telegram Passport element containing the user's utility bill
-public struct PassportElementUtilityBill: Codable {
+public struct PassportElementUtilityBill: Codable, Equatable {
 
     /// Utility bill
     public let utilityBill: PersonalDocument
@@ -246,7 +246,7 @@ public struct PassportElementUtilityBill: Codable {
 }
 
 /// A Telegram Passport element containing the user's bank statement
-public struct PassportElementBankStatement: Codable {
+public struct PassportElementBankStatement: Codable, Equatable {
 
     /// Bank statement
     public let bankStatement: PersonalDocument
@@ -258,7 +258,7 @@ public struct PassportElementBankStatement: Codable {
 }
 
 /// A Telegram Passport element containing the user's rental agreement
-public struct PassportElementRentalAgreement: Codable {
+public struct PassportElementRentalAgreement: Codable, Equatable {
 
     /// Rental agreement
     public let rentalAgreement: PersonalDocument
@@ -270,7 +270,7 @@ public struct PassportElementRentalAgreement: Codable {
 }
 
 /// A Telegram Passport element containing the user's passport registration pages
-public struct PassportElementPassportRegistration: Codable {
+public struct PassportElementPassportRegistration: Codable, Equatable {
 
     /// Passport registration pages
     public let passportRegistration: PersonalDocument
@@ -282,7 +282,7 @@ public struct PassportElementPassportRegistration: Codable {
 }
 
 /// A Telegram Passport element containing the user's temporary registration
-public struct PassportElementTemporaryRegistration: Codable {
+public struct PassportElementTemporaryRegistration: Codable, Equatable {
 
     /// Temporary registration
     public let temporaryRegistration: PersonalDocument
@@ -294,7 +294,7 @@ public struct PassportElementTemporaryRegistration: Codable {
 }
 
 /// A Telegram Passport element containing the user's phone number
-public struct PassportElementPhoneNumber: Codable {
+public struct PassportElementPhoneNumber: Codable, Equatable {
 
     /// Phone number
     public let phoneNumber: String
@@ -306,7 +306,7 @@ public struct PassportElementPhoneNumber: Codable {
 }
 
 /// A Telegram Passport element containing the user's email address
-public struct PassportElementEmailAddress: Codable {
+public struct PassportElementEmailAddress: Codable, Equatable {
 
     /// Email address
     public let emailAddress: String

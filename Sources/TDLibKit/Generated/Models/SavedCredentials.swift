@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about saved card credentials
-public struct SavedCredentials: Codable {
+public struct SavedCredentials: Codable, Equatable {
 
     /// Unique identifier of the saved credentials
     public let id: String

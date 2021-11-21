@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single result of an inline query
-public enum InlineQueryResult: Codable {
+public enum InlineQueryResult: Codable, Equatable {
 
     /// Represents a link to an article or web page
     case inlineQueryResultArticle(InlineQueryResultArticle)
@@ -152,7 +152,7 @@ public enum InlineQueryResult: Codable {
 }
 
 /// Represents a link to an article or web page
-public struct InlineQueryResultArticle: Codable {
+public struct InlineQueryResultArticle: Codable, Equatable {
 
     public let description: String
 
@@ -190,7 +190,7 @@ public struct InlineQueryResultArticle: Codable {
 }
 
 /// Represents a user contact
-public struct InlineQueryResultContact: Codable {
+public struct InlineQueryResultContact: Codable, Equatable {
 
     /// A user contact
     public let contact: Contact
@@ -214,7 +214,7 @@ public struct InlineQueryResultContact: Codable {
 }
 
 /// Represents a point on the map
-public struct InlineQueryResultLocation: Codable {
+public struct InlineQueryResultLocation: Codable, Equatable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -243,7 +243,7 @@ public struct InlineQueryResultLocation: Codable {
 }
 
 /// Represents information about a venue
-public struct InlineQueryResultVenue: Codable {
+public struct InlineQueryResultVenue: Codable, Equatable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -267,7 +267,7 @@ public struct InlineQueryResultVenue: Codable {
 }
 
 /// Represents information about a game
-public struct InlineQueryResultGame: Codable {
+public struct InlineQueryResultGame: Codable, Equatable {
 
     /// Game result
     public let game: Game
@@ -286,7 +286,7 @@ public struct InlineQueryResultGame: Codable {
 }
 
 /// Represents an animation file
-public struct InlineQueryResultAnimation: Codable {
+public struct InlineQueryResultAnimation: Codable, Equatable {
 
     /// Animation file
     public let animation: Animation
@@ -310,7 +310,7 @@ public struct InlineQueryResultAnimation: Codable {
 }
 
 /// Represents an audio file
-public struct InlineQueryResultAudio: Codable {
+public struct InlineQueryResultAudio: Codable, Equatable {
 
     /// Audio file
     public let audio: Audio
@@ -329,7 +329,7 @@ public struct InlineQueryResultAudio: Codable {
 }
 
 /// Represents a document
-public struct InlineQueryResultDocument: Codable {
+public struct InlineQueryResultDocument: Codable, Equatable {
 
     public let description: String
 
@@ -357,7 +357,7 @@ public struct InlineQueryResultDocument: Codable {
 }
 
 /// Represents a photo
-public struct InlineQueryResultPhoto: Codable {
+public struct InlineQueryResultPhoto: Codable, Equatable {
 
     public let description: String
 
@@ -385,7 +385,7 @@ public struct InlineQueryResultPhoto: Codable {
 }
 
 /// Represents a sticker
-public struct InlineQueryResultSticker: Codable {
+public struct InlineQueryResultSticker: Codable, Equatable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -404,7 +404,7 @@ public struct InlineQueryResultSticker: Codable {
 }
 
 /// Represents a video
-public struct InlineQueryResultVideo: Codable {
+public struct InlineQueryResultVideo: Codable, Equatable {
 
     public let description: String
 
@@ -432,7 +432,7 @@ public struct InlineQueryResultVideo: Codable {
 }
 
 /// Represents a voice note
-public struct InlineQueryResultVoiceNote: Codable {
+public struct InlineQueryResultVoiceNote: Codable, Equatable {
 
     /// Unique identifier of the query result
     public let id: String

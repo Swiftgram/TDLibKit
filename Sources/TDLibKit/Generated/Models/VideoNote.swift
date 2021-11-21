@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format
-public struct VideoNote: Codable {
+public struct VideoNote: Codable, Equatable {
 
     /// Duration of the video, in seconds; as defined by the sender
     public let duration: Int

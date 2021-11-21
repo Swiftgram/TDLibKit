@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a proxy server
-public struct Proxy: Codable {
+public struct Proxy: Codable, Equatable {
 
     /// Unique identifier of the proxy
     public let id: Int

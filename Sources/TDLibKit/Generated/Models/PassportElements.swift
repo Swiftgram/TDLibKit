@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about saved Telegram Passport elements
-public struct PassportElements: Codable {
+public struct PassportElements: Codable, Equatable {
 
     /// Telegram Passport elements
     public let elements: [PassportElement]

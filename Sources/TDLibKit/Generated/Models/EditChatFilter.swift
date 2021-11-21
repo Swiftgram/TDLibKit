@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits existing chat filter. Returns information about the edited chat filter
-public struct EditChatFilter: Codable {
+public struct EditChatFilter: Codable, Equatable {
 
     /// Chat filter identifier
     public let chatFilterId: Int?

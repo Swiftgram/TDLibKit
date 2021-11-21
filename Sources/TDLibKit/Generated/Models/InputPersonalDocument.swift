@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A personal document to be saved to Telegram Passport
-public struct InputPersonalDocument: Codable {
+public struct InputPersonalDocument: Codable, Equatable {
 
     /// List of files containing the pages of the document
     public let files: [InputFile]

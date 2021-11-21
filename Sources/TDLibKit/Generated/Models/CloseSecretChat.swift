@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Closes a secret chat, effectively transferring its state to secretChatStateClosed
-public struct CloseSecretChat: Codable {
+public struct CloseSecretChat: Codable, Equatable {
 
     /// Secret chat identifier
     public let secretChatId: Int?

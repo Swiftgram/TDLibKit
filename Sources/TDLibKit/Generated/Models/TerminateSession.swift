@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Terminates a session of the current user
-public struct TerminateSession: Codable {
+public struct TerminateSession: Codable, Equatable {
 
     /// Session identifier
     public let sessionId: TdInt64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
-public struct GetMessageLinkInfo: Codable {
+public struct GetMessageLinkInfo: Codable, Equatable {
 
     /// The message link
     public let url: String?

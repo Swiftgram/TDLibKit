@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Portion of the price of a product (e.g., "delivery cost", "tax amount")
-public struct LabeledPricePart: Codable {
+public struct LabeledPricePart: Codable, Equatable {
 
     /// Currency amount in the smallest units of the currency
     public let amount: Int64

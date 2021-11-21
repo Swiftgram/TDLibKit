@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Uses an invite link to add the current user to the chat if possible
-public struct JoinChatByInviteLink: Codable {
+public struct JoinChatByInviteLink: Codable, Equatable {
 
     /// Invite link to use
     public let inviteLink: String?

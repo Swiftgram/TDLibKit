@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the reason why a call was discarded
-public enum CallDiscardReason: Codable {
+public enum CallDiscardReason: Codable, Equatable {
 
     /// The call wasn't discarded, or the reason is unknown
     case callDiscardReasonEmpty

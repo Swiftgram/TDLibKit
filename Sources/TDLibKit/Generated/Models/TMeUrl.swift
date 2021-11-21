@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a URL linking to an internal Telegram entity
-public struct TMeUrl: Codable {
+public struct TMeUrl: Codable, Equatable {
 
     /// Type of the URL
     public let type: TMeUrlType

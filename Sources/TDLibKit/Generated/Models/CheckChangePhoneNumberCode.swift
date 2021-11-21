@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the authentication code sent to confirm a new phone number of the user
-public struct CheckChangePhoneNumberCode: Codable {
+public struct CheckChangePhoneNumberCode: Codable, Equatable {
 
     /// Verification code received by SMS, phone call or flash call
     public let code: String?

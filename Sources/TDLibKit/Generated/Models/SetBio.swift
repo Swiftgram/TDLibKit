@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the bio of the current user
-public struct SetBio: Codable {
+public struct SetBio: Codable, Equatable {
 
     /// The new value of the user bio; 0-70 characters without line feeds
     public let bio: String?

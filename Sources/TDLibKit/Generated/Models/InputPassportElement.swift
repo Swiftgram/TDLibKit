@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Telegram Passport element to be saved
-public enum InputPassportElement: Codable {
+public enum InputPassportElement: Codable, Equatable {
 
     /// A Telegram Passport element to be saved containing the user's personal details
     case inputPassportElementPersonalDetails(InputPassportElementPersonalDetails)
@@ -162,7 +162,7 @@ public enum InputPassportElement: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's personal details
-public struct InputPassportElementPersonalDetails: Codable {
+public struct InputPassportElementPersonalDetails: Codable, Equatable {
 
     /// Personal details of the user
     public let personalDetails: PersonalDetails
@@ -174,7 +174,7 @@ public struct InputPassportElementPersonalDetails: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's passport
-public struct InputPassportElementPassport: Codable {
+public struct InputPassportElementPassport: Codable, Equatable {
 
     /// The passport to be saved
     public let passport: InputIdentityDocument
@@ -186,7 +186,7 @@ public struct InputPassportElementPassport: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's driver license
-public struct InputPassportElementDriverLicense: Codable {
+public struct InputPassportElementDriverLicense: Codable, Equatable {
 
     /// The driver license to be saved
     public let driverLicense: InputIdentityDocument
@@ -198,7 +198,7 @@ public struct InputPassportElementDriverLicense: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's identity card
-public struct InputPassportElementIdentityCard: Codable {
+public struct InputPassportElementIdentityCard: Codable, Equatable {
 
     /// The identity card to be saved
     public let identityCard: InputIdentityDocument
@@ -210,7 +210,7 @@ public struct InputPassportElementIdentityCard: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's internal passport
-public struct InputPassportElementInternalPassport: Codable {
+public struct InputPassportElementInternalPassport: Codable, Equatable {
 
     /// The internal passport to be saved
     public let internalPassport: InputIdentityDocument
@@ -222,7 +222,7 @@ public struct InputPassportElementInternalPassport: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's address
-public struct InputPassportElementAddress: Codable {
+public struct InputPassportElementAddress: Codable, Equatable {
 
     /// The address to be saved
     public let address: Address
@@ -234,7 +234,7 @@ public struct InputPassportElementAddress: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's utility bill
-public struct InputPassportElementUtilityBill: Codable {
+public struct InputPassportElementUtilityBill: Codable, Equatable {
 
     /// The utility bill to be saved
     public let utilityBill: InputPersonalDocument
@@ -246,7 +246,7 @@ public struct InputPassportElementUtilityBill: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's bank statement
-public struct InputPassportElementBankStatement: Codable {
+public struct InputPassportElementBankStatement: Codable, Equatable {
 
     /// The bank statement to be saved
     public let bankStatement: InputPersonalDocument
@@ -258,7 +258,7 @@ public struct InputPassportElementBankStatement: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's rental agreement
-public struct InputPassportElementRentalAgreement: Codable {
+public struct InputPassportElementRentalAgreement: Codable, Equatable {
 
     /// The rental agreement to be saved
     public let rentalAgreement: InputPersonalDocument
@@ -270,7 +270,7 @@ public struct InputPassportElementRentalAgreement: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's passport registration
-public struct InputPassportElementPassportRegistration: Codable {
+public struct InputPassportElementPassportRegistration: Codable, Equatable {
 
     /// The passport registration page to be saved
     public let passportRegistration: InputPersonalDocument
@@ -282,7 +282,7 @@ public struct InputPassportElementPassportRegistration: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's temporary registration
-public struct InputPassportElementTemporaryRegistration: Codable {
+public struct InputPassportElementTemporaryRegistration: Codable, Equatable {
 
     /// The temporary registration document to be saved
     public let temporaryRegistration: InputPersonalDocument
@@ -294,7 +294,7 @@ public struct InputPassportElementTemporaryRegistration: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's phone number
-public struct InputPassportElementPhoneNumber: Codable {
+public struct InputPassportElementPhoneNumber: Codable, Equatable {
 
     /// The phone number to be saved
     public let phoneNumber: String
@@ -306,7 +306,7 @@ public struct InputPassportElementPhoneNumber: Codable {
 }
 
 /// A Telegram Passport element to be saved containing the user's email address
-public struct InputPassportElementEmailAddress: Codable {
+public struct InputPassportElementEmailAddress: Codable, Equatable {
 
     /// The email address to be saved
     public let emailAddress: String

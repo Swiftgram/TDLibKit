@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains statistics about network usage
-public enum NetworkStatisticsEntry: Codable {
+public enum NetworkStatisticsEntry: Codable, Equatable {
 
     /// Contains information about the total amount of data that was used to send and receive files
     case networkStatisticsEntryFile(NetworkStatisticsEntryFile)
@@ -52,7 +52,7 @@ public enum NetworkStatisticsEntry: Codable {
 }
 
 /// Contains information about the total amount of data that was used to send and receive files
-public struct NetworkStatisticsEntryFile: Codable {
+public struct NetworkStatisticsEntryFile: Codable, Equatable {
 
     /// Type of the file the data is part of; pass null if the data isn't related to files
     public let fileType: FileType
@@ -81,7 +81,7 @@ public struct NetworkStatisticsEntryFile: Codable {
 }
 
 /// Contains information about the total amount of data that was used for calls
-public struct NetworkStatisticsEntryCall: Codable {
+public struct NetworkStatisticsEntryCall: Codable, Equatable {
 
     /// Total call duration, in seconds
     public let duration: Double

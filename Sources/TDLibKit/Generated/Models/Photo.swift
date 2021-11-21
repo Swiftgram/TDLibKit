@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a photo
-public struct Photo: Codable {
+public struct Photo: Codable, Equatable {
 
     /// True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
     public let hasStickers: Bool

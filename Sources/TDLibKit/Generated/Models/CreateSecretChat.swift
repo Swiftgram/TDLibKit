@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an existing chat corresponding to a known secret chat
-public struct CreateSecretChat: Codable {
+public struct CreateSecretChat: Codable, Equatable {
 
     /// Secret chat identifier
     public let secretChatId: Int?

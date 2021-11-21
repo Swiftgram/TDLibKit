@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options
-public struct ValidatedOrderInfo: Codable {
+public struct ValidatedOrderInfo: Codable, Equatable {
 
     /// Temporary identifier of the order information
     public let orderInfoId: String

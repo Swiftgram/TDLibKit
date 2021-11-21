@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the group call identifier
-public struct GroupCallId: Codable {
+public struct GroupCallId: Codable, Equatable {
 
     /// Group call identifier
     public let id: Int

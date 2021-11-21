@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
-public struct WriteGeneratedFilePart: Codable {
+public struct WriteGeneratedFilePart: Codable, Equatable {
 
     /// The data to write
     public let data: Data?

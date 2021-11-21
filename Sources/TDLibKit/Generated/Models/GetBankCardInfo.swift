@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a bank card
-public struct GetBankCardInfo: Codable {
+public struct GetBankCardInfo: Codable, Equatable {
 
     /// The bank card number
     public let bankCardNumber: String?

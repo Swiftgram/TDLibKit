@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A detailed statistics about a message
-public struct MessageStatistics: Codable {
+public struct MessageStatistics: Codable, Equatable {
 
     /// A graph containing number of message views and shares
     public let messageInteractionGraph: StatisticalGraph

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a filled-out payment form to the bot for final verification
-public struct SendPaymentForm: Codable {
+public struct SendPaymentForm: Codable, Equatable {
 
     /// Chat identifier of the Invoice message
     public let chatId: Int64?

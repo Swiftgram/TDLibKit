@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends call signaling data
-public struct SendCallSignalingData: Codable {
+public struct SendCallSignalingData: Codable, Equatable {
 
     /// Call identifier
     public let callId: Int?

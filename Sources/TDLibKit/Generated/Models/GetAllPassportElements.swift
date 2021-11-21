@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns all available Telegram Passport elements
-public struct GetAllPassportElements: Codable {
+public struct GetAllPassportElements: Codable, Equatable {
 
     /// Password of the current user
     public let password: String?

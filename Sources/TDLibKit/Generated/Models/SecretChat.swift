@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a secret chat
-public struct SecretChat: Codable {
+public struct SecretChat: Codable, Equatable {
 
     /// Secret chat identifier
     public let id: Int

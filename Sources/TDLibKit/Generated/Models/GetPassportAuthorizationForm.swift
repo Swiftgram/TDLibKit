@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a Telegram Passport authorization form for sharing data with a service
-public struct GetPassportAuthorizationForm: Codable {
+public struct GetPassportAuthorizationForm: Codable, Equatable {
 
     /// User identifier of the service's bot
     public let botUserId: Int64?

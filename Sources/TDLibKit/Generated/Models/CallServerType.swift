@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a call server
-public enum CallServerType: Codable {
+public enum CallServerType: Codable, Equatable {
 
     /// A Telegram call reflector
     case callServerTypeTelegramReflector(CallServerTypeTelegramReflector)
@@ -52,7 +52,7 @@ public enum CallServerType: Codable {
 }
 
 /// A Telegram call reflector
-public struct CallServerTypeTelegramReflector: Codable {
+public struct CallServerTypeTelegramReflector: Codable, Equatable {
 
     /// A peer tag to be used with the reflector
     public let peerTag: Data
@@ -64,7 +64,7 @@ public struct CallServerTypeTelegramReflector: Codable {
 }
 
 /// A WebRTC server
-public struct CallServerTypeWebrtc: Codable {
+public struct CallServerTypeWebrtc: Codable, Equatable {
 
     /// Authentication password
     public let password: String

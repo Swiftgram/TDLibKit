@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Saves application log event on the server. Can be called before authorization
-public struct SaveApplicationLogEvent: Codable {
+public struct SaveApplicationLogEvent: Codable, Equatable {
 
     /// Optional chat identifier, associated with the event
     public let chatId: Int64?

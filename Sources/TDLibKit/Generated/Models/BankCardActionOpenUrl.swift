@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an action associated with a bank card number
-public struct BankCardActionOpenUrl: Codable {
+public struct BankCardActionOpenUrl: Codable, Equatable {
 
     /// Action text
     public let text: String

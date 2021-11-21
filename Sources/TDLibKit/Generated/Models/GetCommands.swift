@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
-public struct GetCommands: Codable {
+public struct GetCommands: Codable, Equatable {
 
     /// A two-letter ISO 639-1 country code or an empty string
     public let languageCode: String?

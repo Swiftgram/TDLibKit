@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether a group call participant hand is rased
-public struct ToggleGroupCallParticipantIsHandRaised: Codable {
+public struct ToggleGroupCallParticipantIsHandRaised: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

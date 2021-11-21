@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-public struct GetApplicationDownloadLink: Codable {
+public struct GetApplicationDownloadLink: Codable, Equatable {
 
 
     public init() {}

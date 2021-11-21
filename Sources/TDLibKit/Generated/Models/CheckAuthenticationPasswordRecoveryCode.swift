@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
-public struct CheckAuthenticationPasswordRecoveryCode: Codable {
+public struct CheckAuthenticationPasswordRecoveryCode: Codable, Equatable {
 
     /// Recovery code to check
     public let recoveryCode: String?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the result of a payment request
-public struct PaymentResult: Codable {
+public struct PaymentResult: Codable, Equatable {
 
     /// True, if the payment request was successful; otherwise the verification_url will be non-empty
     public let success: Bool

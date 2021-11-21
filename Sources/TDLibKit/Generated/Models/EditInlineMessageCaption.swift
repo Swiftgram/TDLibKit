@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the caption of an inline message sent via a bot; for bots only
-public struct EditInlineMessageCaption: Codable {
+public struct EditInlineMessageCaption: Codable, Equatable {
 
     /// New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Disconnects all websites from the current user's Telegram account
-public struct DisconnectAllWebsites: Codable {
+public struct DisconnectAllWebsites: Codable, Equatable {
 
 
     public init() {}

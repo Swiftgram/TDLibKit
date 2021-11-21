@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about the availability of a temporary password, which can be used for payments
-public struct TemporaryPasswordState: Codable {
+public struct TemporaryPasswordState: Codable, Equatable {
 
     /// True, if a temporary password is available
     public let hasPassword: Bool

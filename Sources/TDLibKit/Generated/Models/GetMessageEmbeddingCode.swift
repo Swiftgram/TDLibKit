@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
-public struct GetMessageEmbeddingCode: Codable {
+public struct GetMessageEmbeddingCode: Codable, Equatable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a venue
-public struct Venue: Codable {
+public struct Venue: Codable, Equatable {
 
     /// Venue address; as defined by the sender
     public let address: String

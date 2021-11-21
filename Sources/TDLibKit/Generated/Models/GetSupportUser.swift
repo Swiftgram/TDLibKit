@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a user that can be contacted to get support
-public struct GetSupportUser: Codable {
+public struct GetSupportUser: Codable, Equatable {
 
 
     public init() {}

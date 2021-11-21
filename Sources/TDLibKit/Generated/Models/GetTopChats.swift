@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of frequently used chats. Supported only if the chat info database is enabled
-public struct GetTopChats: Codable {
+public struct GetTopChats: Codable, Equatable {
 
     /// Category of chats to be returned
     public let category: TopChatCategory?

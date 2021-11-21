@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a new sticker to a set; for bots only. Returns the sticker set
-public struct AddStickerToSet: Codable {
+public struct AddStickerToSet: Codable, Equatable {
 
     /// Sticker set name
     public let name: String?

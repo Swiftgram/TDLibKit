@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a thumbnail
-public struct Thumbnail: Codable {
+public struct Thumbnail: Codable, Equatable {
 
     /// The thumbnail
     public let file: File

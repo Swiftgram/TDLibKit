@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes actions that a user is allowed to take in a chat
-public struct ChatPermissions: Codable {
+public struct ChatPermissions: Codable, Equatable {
 
     /// True, if the user may add a web page preview to their messages. Implies can_send_messages permissions
     public let canAddWebPagePreviews: Bool

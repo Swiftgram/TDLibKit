@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the different types of activity in a chat
-public enum ChatAction: Codable {
+public enum ChatAction: Codable, Equatable {
 
     /// The user is typing a message
     case chatActionTyping
@@ -164,7 +164,7 @@ public enum ChatAction: Codable {
 }
 
 /// The user is uploading a video
-public struct ChatActionUploadingVideo: Codable {
+public struct ChatActionUploadingVideo: Codable, Equatable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -176,7 +176,7 @@ public struct ChatActionUploadingVideo: Codable {
 }
 
 /// The user is uploading a voice note
-public struct ChatActionUploadingVoiceNote: Codable {
+public struct ChatActionUploadingVoiceNote: Codable, Equatable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -188,7 +188,7 @@ public struct ChatActionUploadingVoiceNote: Codable {
 }
 
 /// The user is uploading a photo
-public struct ChatActionUploadingPhoto: Codable {
+public struct ChatActionUploadingPhoto: Codable, Equatable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -200,7 +200,7 @@ public struct ChatActionUploadingPhoto: Codable {
 }
 
 /// The user is uploading a document
-public struct ChatActionUploadingDocument: Codable {
+public struct ChatActionUploadingDocument: Codable, Equatable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -212,7 +212,7 @@ public struct ChatActionUploadingDocument: Codable {
 }
 
 /// The user is uploading a video note
-public struct ChatActionUploadingVideoNote: Codable {
+public struct ChatActionUploadingVideoNote: Codable, Equatable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -224,7 +224,7 @@ public struct ChatActionUploadingVideoNote: Codable {
 }
 
 /// The user is watching animations sent by the other party by clicking on an animated emoji
-public struct ChatActionWatchingAnimations: Codable {
+public struct ChatActionWatchingAnimations: Codable, Equatable {
 
     /// The animated emoji
     public let emoji: String

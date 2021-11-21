@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
-public struct TestCallBytes: Codable {
+public struct TestCallBytes: Codable, Equatable {
 
     /// Bytes to return
     public let x: Data?

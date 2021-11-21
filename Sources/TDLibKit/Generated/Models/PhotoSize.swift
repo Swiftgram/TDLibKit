@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an image in JPEG format
-public struct PhotoSize: Codable {
+public struct PhotoSize: Codable, Equatable {
 
     /// Image height
     public let height: Int

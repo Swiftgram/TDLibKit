@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
-public struct GetChatScheduledMessages: Codable {
+public struct GetChatScheduledMessages: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

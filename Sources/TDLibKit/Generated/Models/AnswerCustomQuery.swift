@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Answers a custom query; for bots only
-public struct AnswerCustomQuery: Codable {
+public struct AnswerCustomQuery: Codable, Equatable {
 
     /// Identifier of a custom query
     public let customQueryId: TdInt64?

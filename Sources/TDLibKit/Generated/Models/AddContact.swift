@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a user to the contact list or edits an existing contact by their user identifier
-public struct AddContact: Codable {
+public struct AddContact: Codable, Equatable {
 
     /// The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
     public let contact: Contact?

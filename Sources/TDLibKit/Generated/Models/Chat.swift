@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
-public struct Chat: Codable {
+public struct Chat: Codable, Equatable {
 
     /// Information about actions which must be possible to do through the chat action bar; may be null
     public let actionBar: ChatActionBar?

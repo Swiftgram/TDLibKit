@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined
-public struct CancelUploadFile: Codable {
+public struct CancelUploadFile: Codable, Equatable {
 
     /// Identifier of the file to stop uploading
     public let fileId: Int?

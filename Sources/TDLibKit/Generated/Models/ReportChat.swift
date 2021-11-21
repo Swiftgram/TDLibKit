@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
-public struct ReportChat: Codable {
+public struct ReportChat: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

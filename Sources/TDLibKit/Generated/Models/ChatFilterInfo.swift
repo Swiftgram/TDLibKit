@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains basic information about a chat filter
-public struct ChatFilterInfo: Codable {
+public struct ChatFilterInfo: Codable, Equatable {
 
     /// The icon name for short filter representation. One of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work"
     public let iconName: String

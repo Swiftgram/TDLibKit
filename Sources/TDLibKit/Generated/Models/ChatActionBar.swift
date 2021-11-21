@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes actions which must be possible to do through a chat action bar
-public enum ChatActionBar: Codable {
+public enum ChatActionBar: Codable, Equatable {
 
     /// The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam
     case chatActionBarReportSpam(ChatActionBarReportSpam)
@@ -84,7 +84,7 @@ public enum ChatActionBar: Codable {
 }
 
 /// The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam
-public struct ChatActionBarReportSpam: Codable {
+public struct ChatActionBarReportSpam: Codable, Equatable {
 
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool
@@ -96,7 +96,7 @@ public struct ChatActionBarReportSpam: Codable {
 }
 
 /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact
-public struct ChatActionBarReportAddBlock: Codable {
+public struct ChatActionBarReportAddBlock: Codable, Equatable {
 
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool

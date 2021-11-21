@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of sessions
-public struct Sessions: Codable {
+public struct Sessions: Codable, Equatable {
 
     /// List of sessions
     public let sessions: [Session]

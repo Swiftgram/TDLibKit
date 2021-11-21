@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
-public struct ToggleSupergroupSignMessages: Codable {
+public struct ToggleSupergroupSignMessages: Codable, Equatable {
 
     /// New value of sign_messages
     public let signMessages: Bool?

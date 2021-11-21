@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Part of the face, relative to which a mask is placed
-public enum MaskPoint: Codable {
+public enum MaskPoint: Codable, Equatable {
 
     /// The mask is placed relatively to the forehead
     case maskPointForehead

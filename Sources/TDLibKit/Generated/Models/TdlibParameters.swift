@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains parameters for TDLib initialization
-public struct TdlibParameters: Codable {
+public struct TdlibParameters: Codable, Equatable {
 
     /// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
     public let apiHash: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns saved order info, if any
-public struct GetSavedOrderInfo: Codable {
+public struct GetSavedOrderInfo: Codable, Equatable {
 
 
     public init() {}

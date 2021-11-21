@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the way the text needs to be parsed for TextEntities
-public enum TextParseMode: Codable {
+public enum TextParseMode: Codable, Equatable {
 
     /// The text uses Markdown-style formatting
     case textParseModeMarkdown(TextParseModeMarkdown)
@@ -50,7 +50,7 @@ public enum TextParseMode: Codable {
 }
 
 /// The text uses Markdown-style formatting
-public struct TextParseModeMarkdown: Codable {
+public struct TextParseModeMarkdown: Codable, Equatable {
 
     /// Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
     public let version: Int

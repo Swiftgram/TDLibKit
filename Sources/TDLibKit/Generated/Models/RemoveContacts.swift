@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes users from the contact list
-public struct RemoveContacts: Codable {
+public struct RemoveContacts: Codable, Equatable {
 
     /// Identifiers of users to be deleted
     public let userIds: [Int64]?

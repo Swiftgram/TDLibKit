@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the result of a shipping query; for bots only
-public struct AnswerShippingQuery: Codable {
+public struct AnswerShippingQuery: Codable, Equatable {
 
     /// An error message, empty on success
     public let errorMessage: String?

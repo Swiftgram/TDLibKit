@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a hashtag from the list of recently used hashtags
-public struct RemoveRecentHashtag: Codable {
+public struct RemoveRecentHashtag: Codable, Equatable {
 
     /// Hashtag to delete
     public let hashtag: String?

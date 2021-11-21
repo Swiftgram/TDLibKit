@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Discards a group call. Requires groupCall.can_be_managed
-public struct DiscardGroupCall: Codable {
+public struct DiscardGroupCall: Codable, Equatable {
 
     /// Group call identifier
     public let groupCallId: Int?

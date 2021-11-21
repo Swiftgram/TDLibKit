@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a message, if it is available locally without sending network request. This is an offline request
-public struct GetMessageLocally: Codable {
+public struct GetMessageLocally: Codable, Equatable {
 
     /// Identifier of the chat the message belongs to
     public let chatId: Int64?

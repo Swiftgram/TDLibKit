@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits an existing proxy server for network requests. Can be called before authorization
-public struct EditProxy: Codable {
+public struct EditProxy: Codable, Equatable {
 
     /// True, if the proxy needs to be enabled
     public let enable: Bool?

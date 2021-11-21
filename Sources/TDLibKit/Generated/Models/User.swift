@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a user
-public struct User: Codable {
+public struct User: Codable, Equatable {
 
     /// First name of the user
     public let firstName: String

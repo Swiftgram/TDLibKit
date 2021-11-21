@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a chat administrator
-public struct ChatAdministrator: Codable {
+public struct ChatAdministrator: Codable, Equatable {
 
     /// Custom title of the administrator
     public let customTitle: String

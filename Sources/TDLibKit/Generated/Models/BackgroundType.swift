@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a background
-public enum BackgroundType: Codable {
+public enum BackgroundType: Codable, Equatable {
 
     /// A wallpaper in JPEG format
     case backgroundTypeWallpaper(BackgroundTypeWallpaper)
@@ -62,7 +62,7 @@ public enum BackgroundType: Codable {
 }
 
 /// A wallpaper in JPEG format
-public struct BackgroundTypeWallpaper: Codable {
+public struct BackgroundTypeWallpaper: Codable, Equatable {
 
     /// True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
     public let isBlurred: Bool
@@ -81,7 +81,7 @@ public struct BackgroundTypeWallpaper: Codable {
 }
 
 /// A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
-public struct BackgroundTypePattern: Codable {
+public struct BackgroundTypePattern: Codable, Equatable {
 
     /// Fill of the background
     public let fill: BackgroundFill
@@ -110,7 +110,7 @@ public struct BackgroundTypePattern: Codable {
 }
 
 /// A filled background
-public struct BackgroundTypeFill: Codable {
+public struct BackgroundTypeFill: Codable, Equatable {
 
     /// The background fill
     public let fill: BackgroundFill

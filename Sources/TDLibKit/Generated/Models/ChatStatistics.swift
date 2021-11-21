@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a detailed statistics about a chat
-public enum ChatStatistics: Codable {
+public enum ChatStatistics: Codable, Equatable {
 
     /// A detailed statistics about a supergroup chat
     case chatStatisticsSupergroup(ChatStatisticsSupergroup)
@@ -52,7 +52,7 @@ public enum ChatStatistics: Codable {
 }
 
 /// A detailed statistics about a supergroup chat
-public struct ChatStatisticsSupergroup: Codable {
+public struct ChatStatisticsSupergroup: Codable, Equatable {
 
     /// A graph containing number of different actions in the chat
     public let actionGraph: StatisticalGraph
@@ -141,7 +141,7 @@ public struct ChatStatisticsSupergroup: Codable {
 }
 
 /// A detailed statistics about a channel chat
-public struct ChatStatisticsChannel: Codable {
+public struct ChatStatisticsChannel: Codable, Equatable {
 
     /// A percentage of users with enabled notifications for the chat
     public let enabledNotificationsPercentage: Double

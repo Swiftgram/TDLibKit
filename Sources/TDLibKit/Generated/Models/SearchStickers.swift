@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for stickers from public sticker sets that correspond to a given emoji
-public struct SearchStickers: Codable {
+public struct SearchStickers: Codable, Equatable {
 
     /// String representation of emoji; must be non-empty
     public let emoji: String?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends debug information for a call
-public struct SendCallDebugInformation: Codable {
+public struct SendCallDebugInformation: Codable, Equatable {
 
     /// Call identifier
     public let callId: Int?

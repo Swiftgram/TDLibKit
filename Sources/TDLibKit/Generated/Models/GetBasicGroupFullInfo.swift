@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns full information about a basic group by its identifier
-public struct GetBasicGroupFullInfo: Codable {
+public struct GetBasicGroupFullInfo: Codable, Equatable {
 
     /// Basic group identifier
     public let basicGroupId: Int64?

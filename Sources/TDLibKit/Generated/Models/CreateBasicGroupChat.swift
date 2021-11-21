@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an existing chat corresponding to a known basic group
-public struct CreateBasicGroupChat: Codable {
+public struct CreateBasicGroupChat: Codable, Equatable {
 
     /// Basic group identifier
     public let basicGroupId: Int64?

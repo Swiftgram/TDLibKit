@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for a background by its name
-public struct SearchBackground: Codable {
+public struct SearchBackground: Codable, Equatable {
 
     /// The name of the background
     public let name: String?

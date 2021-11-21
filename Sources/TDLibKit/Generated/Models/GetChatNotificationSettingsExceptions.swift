@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns list of chats with non-default notification settings
-public struct GetChatNotificationSettingsExceptions: Codable {
+public struct GetChatNotificationSettingsExceptions: Codable, Equatable {
 
     /// If true, also chats with non-default sound will be returned
     public let compareSound: Bool?

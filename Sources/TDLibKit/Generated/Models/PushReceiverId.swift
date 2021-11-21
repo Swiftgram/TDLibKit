@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification
-public struct PushReceiverId: Codable {
+public struct PushReceiverId: Codable, Equatable {
 
     /// The globally unique identifier of push notification subscription
     public let id: TdInt64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the user's personal details
-public struct PersonalDetails: Codable {
+public struct PersonalDetails: Codable, Equatable {
 
     /// Birthdate of the user
     public let birthdate: Date

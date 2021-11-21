@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a video file
-public struct Video: Codable {
+public struct Video: Codable, Equatable {
 
     /// Duration of the video, in seconds; as defined by the sender
     public let duration: Int

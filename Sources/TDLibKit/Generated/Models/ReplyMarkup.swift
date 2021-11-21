@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
-public enum ReplyMarkup: Codable {
+public enum ReplyMarkup: Codable, Equatable {
 
     /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
     case replyMarkupRemoveKeyboard(ReplyMarkupRemoveKeyboard)
@@ -72,7 +72,7 @@ public enum ReplyMarkup: Codable {
 }
 
 /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
-public struct ReplyMarkupRemoveKeyboard: Codable {
+public struct ReplyMarkupRemoveKeyboard: Codable, Equatable {
 
     /// True, if the keyboard is removed only for the mentioned users or the target user of a reply
     public let isPersonal: Bool
@@ -84,7 +84,7 @@ public struct ReplyMarkupRemoveKeyboard: Codable {
 }
 
 /// Instructs application to force a reply to this message
-public struct ReplyMarkupForceReply: Codable {
+public struct ReplyMarkupForceReply: Codable, Equatable {
 
     /// If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters
     public let inputFieldPlaceholder: String
@@ -103,7 +103,7 @@ public struct ReplyMarkupForceReply: Codable {
 }
 
 /// Contains a custom keyboard layout to quickly reply to bots
-public struct ReplyMarkupShowKeyboard: Codable {
+public struct ReplyMarkupShowKeyboard: Codable, Equatable {
 
     /// If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
     public let inputFieldPlaceholder: String
@@ -137,7 +137,7 @@ public struct ReplyMarkupShowKeyboard: Codable {
 }
 
 /// Contains an inline keyboard layout
-public struct ReplyMarkupInlineKeyboard: Codable {
+public struct ReplyMarkupInlineKeyboard: Codable, Equatable {
 
     /// A list of rows of inline keyboard buttons
     public let rows: [[InlineKeyboardButton]]

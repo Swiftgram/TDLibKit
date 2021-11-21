@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of public chats of the specified type, owned by the user
-public struct GetCreatedPublicChats: Codable {
+public struct GetCreatedPublicChats: Codable, Equatable {
 
     /// Type of the public chats to return
     public let type: PublicChatType?

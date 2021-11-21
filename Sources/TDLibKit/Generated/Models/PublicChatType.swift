@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a type of public chats
-public enum PublicChatType: Codable {
+public enum PublicChatType: Codable, Equatable {
 
     /// The chat is public, because it has username
     case publicChatTypeHasUsername

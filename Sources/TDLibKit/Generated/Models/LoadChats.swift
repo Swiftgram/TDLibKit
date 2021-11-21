@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
-public struct LoadChats: Codable {
+public struct LoadChats: Codable, Equatable {
 
     /// The chat list in which to load chats; pass null to load chats from the main chat list
     public let chatList: ChatList?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of game high scores
-public struct GameHighScores: Codable {
+public struct GameHighScores: Codable, Equatable {
 
     /// A list of game high scores
     public let scores: [GameHighScore]

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a group of notifications
-public struct NotificationGroup: Codable {
+public struct NotificationGroup: Codable, Equatable {
 
     /// Identifier of a chat to which all notifications in the group belong
     public let chatId: Int64

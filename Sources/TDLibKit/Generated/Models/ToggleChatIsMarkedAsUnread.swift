@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the marked as unread state of a chat
-public struct ToggleChatIsMarkedAsUnread: Codable {
+public struct ToggleChatIsMarkedAsUnread: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?

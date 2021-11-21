@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a country
-public struct CountryInfo: Codable {
+public struct CountryInfo: Codable, Equatable {
 
     /// List of country calling codes
     public let callingCodes: [String]

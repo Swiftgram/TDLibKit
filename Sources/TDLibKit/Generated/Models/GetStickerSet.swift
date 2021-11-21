@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a sticker set by its identifier
-public struct GetStickerSet: Codable {
+public struct GetStickerSet: Codable, Equatable {
 
     /// Identifier of the sticker set
     public let setId: TdInt64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about existing countries. Can be called before authorization
-public struct GetCountries: Codable {
+public struct GetCountries: Codable, Equatable {
 
 
     public init() {}
