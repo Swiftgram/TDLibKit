@@ -76,8 +76,8 @@ jobs:
       - name: Tests (iOS)
         run: ./scripts/test.sh iOS-simulator
       
-      - name: Tests (tvOS)
-        run: ./scripts/test.sh tvOS-simulator
+      - name: Tests (tvOS) # Dirty hack to retry step. tvOS sim can stuck for some reason
+        run: ./scripts/test.sh tvOS-simulator || ./scripts/test.sh tvOS-simulator
       
       # # Requires MacOS 12 
       # - name: Tests (macOS)
