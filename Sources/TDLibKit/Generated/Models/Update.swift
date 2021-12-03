@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-1d3cf2c2
-//  https://github.com/tdlib/td/tree/1d3cf2c2
+//  Based on TDLib 1.7.9-8d7bda00
+//  https://github.com/tdlib/td/tree/8d7bda00
 //
 
 import Foundation
@@ -82,7 +82,7 @@ public enum Update: Codable, Equatable {
     /// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
     case updateChatDefaultDisableNotification(UpdateChatDefaultDisableNotification)
 
-    /// Incoming messages were read or number of unread messages has been changed
+    /// Incoming messages were read or the number of unread messages has been changed
     case updateChatReadInbox(UpdateChatReadInbox)
 
     /// Outgoing messages were read
@@ -1392,7 +1392,7 @@ public struct UpdateChatDefaultDisableNotification: Codable, Equatable {
     }
 }
 
-/// Incoming messages were read or number of unread messages has been changed
+/// Incoming messages were read or the number of unread messages has been changed
 public struct UpdateChatReadInbox: Codable, Equatable {
 
     /// Chat identifier
