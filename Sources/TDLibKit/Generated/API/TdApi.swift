@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-2725f7c5
-//  https://github.com/tdlib/td/tree/2725f7c5
+//  Based on TDLib 1.7.9-8d7bda00
+//  https://github.com/tdlib/td/tree/8d7bda00
 //
 
 import Foundation
@@ -1175,7 +1175,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+    /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
     /// - Parameter chatList: The chat list in which to load chats; pass null to load chats from the main chat list
     /// - Parameter limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
     public func loadChats(
@@ -1190,7 +1190,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+    /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
     /// - Parameter chatList: The chat list in which to load chats; pass null to load chats from the main chat list
     /// - Parameter limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
@@ -7968,7 +7968,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
+    /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
     /// - Parameter groupCallId: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     /// - Parameter limit: The maximum number of participants to load; up to 100
     public func loadGroupCallParticipants(
@@ -7983,7 +7983,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
+    /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
     /// - Parameter groupCallId: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     /// - Parameter limit: The maximum number of participants to load; up to 100
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
