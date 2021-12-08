@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Checks the phone number verification code for Telegram Passport
 public struct CheckPhoneNumberVerificationCode: Codable, Equatable {
 
-    /// Verification code
+    /// Verification code to check
     public let code: String?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -1272,21 +1272,21 @@ public struct MessageProximityAlertTriggered: Codable, Equatable {
     /// The distance between the users
     public let distance: Int
 
-    /// The user or chat, which triggered the proximity alert
-    public let traveler: MessageSender
+    /// The identifier of a user or chat that triggered the proximity alert
+    public let travelerId: MessageSender
 
-    /// The user or chat, which subscribed for the proximity alert
-    public let watcher: MessageSender
+    /// The identifier of a user or chat that subscribed for the proximity alert
+    public let watcherId: MessageSender
 
 
     public init(
         distance: Int,
-        traveler: MessageSender,
-        watcher: MessageSender
+        travelerId: MessageSender,
+        watcherId: MessageSender
     ) {
         self.distance = distance
-        self.traveler = traveler
-        self.watcher = watcher
+        self.travelerId = travelerId
+        self.watcherId = watcherId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -66,6 +66,12 @@ public enum Update: Codable, Equatable {
 
     /// The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
     case updateChatPosition(UpdateChatPosition)
+
+    /// The default message sender that is chosen to send messages in a chat has changed
+    case updateChatDefaultMessageSenderId(UpdateChatDefaultMessageSenderId)
+
+    /// A chat content was allowed or restricted for saving
+    case updateChatHasProtectedContent(UpdateChatHasProtectedContent)
 
     /// A chat was marked as unread or was read
     case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
@@ -136,8 +142,8 @@ public enum Update: Codable, Equatable {
     /// Some messages were deleted
     case updateDeleteMessages(UpdateDeleteMessages)
 
-    /// User activity in the chat has changed
-    case updateUserChatAction(UpdateUserChatAction)
+    /// A message sender activity in the chat has changed
+    case updateChatAction(UpdateChatAction)
 
     /// The user went online or offline
     case updateUserStatus(UpdateUserStatus)
@@ -154,16 +160,16 @@ public enum Update: Codable, Equatable {
     /// Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
     case updateSecretChat(UpdateSecretChat)
 
-    /// Some data from userFullInfo has been changed
+    /// Some data in userFullInfo has been changed
     case updateUserFullInfo(UpdateUserFullInfo)
 
-    /// Some data from basicGroupFullInfo has been changed
+    /// Some data in basicGroupFullInfo has been changed
     case updateBasicGroupFullInfo(UpdateBasicGroupFullInfo)
 
-    /// Some data from supergroupFullInfo has been changed
+    /// Some data in supergroupFullInfo has been changed
     case updateSupergroupFullInfo(UpdateSupergroupFullInfo)
 
-    /// Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
+    /// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
     case updateServiceNotification(UpdateServiceNotification)
 
     /// Information about a file was updated
@@ -303,6 +309,8 @@ public enum Update: Codable, Equatable {
         case updateChatPermissions
         case updateChatLastMessage
         case updateChatPosition
+        case updateChatDefaultMessageSenderId
+        case updateChatHasProtectedContent
         case updateChatIsMarkedAsUnread
         case updateChatIsBlocked
         case updateChatHasScheduledMessages
@@ -326,7 +334,7 @@ public enum Update: Codable, Equatable {
         case updateActiveNotifications
         case updateHavePendingNotifications
         case updateDeleteMessages
-        case updateUserChatAction
+        case updateChatAction
         case updateUserStatus
         case updateUser
         case updateBasicGroup
@@ -435,6 +443,12 @@ public enum Update: Codable, Equatable {
         case .updateChatPosition:
             let value = try UpdateChatPosition(from: decoder)
             self = .updateChatPosition(value)
+        case .updateChatDefaultMessageSenderId:
+            let value = try UpdateChatDefaultMessageSenderId(from: decoder)
+            self = .updateChatDefaultMessageSenderId(value)
+        case .updateChatHasProtectedContent:
+            let value = try UpdateChatHasProtectedContent(from: decoder)
+            self = .updateChatHasProtectedContent(value)
         case .updateChatIsMarkedAsUnread:
             let value = try UpdateChatIsMarkedAsUnread(from: decoder)
             self = .updateChatIsMarkedAsUnread(value)
@@ -504,9 +518,9 @@ public enum Update: Codable, Equatable {
         case .updateDeleteMessages:
             let value = try UpdateDeleteMessages(from: decoder)
             self = .updateDeleteMessages(value)
-        case .updateUserChatAction:
-            let value = try UpdateUserChatAction(from: decoder)
-            self = .updateUserChatAction(value)
+        case .updateChatAction:
+            let value = try UpdateChatAction(from: decoder)
+            self = .updateChatAction(value)
         case .updateUserStatus:
             let value = try UpdateUserStatus(from: decoder)
             self = .updateUserStatus(value)
@@ -711,6 +725,12 @@ public enum Update: Codable, Equatable {
         case .updateChatPosition(let value):
             try container.encode(Kind.updateChatPosition, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatDefaultMessageSenderId(let value):
+            try container.encode(Kind.updateChatDefaultMessageSenderId, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatHasProtectedContent(let value):
+            try container.encode(Kind.updateChatHasProtectedContent, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatIsMarkedAsUnread(let value):
             try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
             try value.encode(to: encoder)
@@ -780,8 +800,8 @@ public enum Update: Codable, Equatable {
         case .updateDeleteMessages(let value):
             try container.encode(Kind.updateDeleteMessages, forKey: .type)
             try value.encode(to: encoder)
-        case .updateUserChatAction(let value):
-            try container.encode(Kind.updateUserChatAction, forKey: .type)
+        case .updateChatAction(let value):
+            try container.encode(Kind.updateChatAction, forKey: .type)
             try value.encode(to: encoder)
         case .updateUserStatus(let value):
             try container.encode(Kind.updateUserStatus, forKey: .type)
@@ -1297,6 +1317,44 @@ public struct UpdateChatPosition: Codable, Equatable {
     }
 }
 
+/// The default message sender that is chosen to send messages in a chat has changed
+public struct UpdateChatDefaultMessageSenderId: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of default_message_sender_id; may be null if the user can't change message sender
+    public let defaultMessageSenderId: MessageSender?
+
+
+    public init(
+        chatId: Int64,
+        defaultMessageSenderId: MessageSender?
+    ) {
+        self.chatId = chatId
+        self.defaultMessageSenderId = defaultMessageSenderId
+    }
+}
+
+/// A chat content was allowed or restricted for saving
+public struct UpdateChatHasProtectedContent: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of has_protected_content
+    public let hasProtectedContent: Bool
+
+
+    public init(
+        chatId: Int64,
+        hasProtectedContent: Bool
+    ) {
+        self.chatId = chatId
+        self.hasProtectedContent = hasProtectedContent
+    }
+}
+
 /// A chat was marked as unread or was read
 public struct UpdateChatIsMarkedAsUnread: Codable, Equatable {
 
@@ -1770,10 +1828,10 @@ public struct UpdateDeleteMessages: Codable, Equatable {
     }
 }
 
-/// User activity in the chat has changed
-public struct UpdateUserChatAction: Codable, Equatable {
+/// A message sender activity in the chat has changed
+public struct UpdateChatAction: Codable, Equatable {
 
-    /// The action description
+    /// The action
     public let action: ChatAction
 
     /// Chat identifier
@@ -1782,20 +1840,20 @@ public struct UpdateUserChatAction: Codable, Equatable {
     /// If not 0, a message thread identifier in which the action was performed
     public let messageThreadId: Int64
 
-    /// Identifier of a user performing an action
-    public let userId: Int64
+    /// Identifier of a message sender performing the action
+    public let senderId: MessageSender
 
 
     public init(
         action: ChatAction,
         chatId: Int64,
         messageThreadId: Int64,
-        userId: Int64
+        senderId: MessageSender
     ) {
         self.action = action
         self.chatId = chatId
         self.messageThreadId = messageThreadId
-        self.userId = userId
+        self.senderId = senderId
     }
 }
 
@@ -1866,7 +1924,7 @@ public struct UpdateSecretChat: Codable, Equatable {
     }
 }
 
-/// Some data from userFullInfo has been changed
+/// Some data in userFullInfo has been changed
 public struct UpdateUserFullInfo: Codable, Equatable {
 
     /// New full information about the user
@@ -1885,7 +1943,7 @@ public struct UpdateUserFullInfo: Codable, Equatable {
     }
 }
 
-/// Some data from basicGroupFullInfo has been changed
+/// Some data in basicGroupFullInfo has been changed
 public struct UpdateBasicGroupFullInfo: Codable, Equatable {
 
     /// New full information about the group
@@ -1904,7 +1962,7 @@ public struct UpdateBasicGroupFullInfo: Codable, Equatable {
     }
 }
 
-/// Some data from supergroupFullInfo has been changed
+/// Some data in supergroupFullInfo has been changed
 public struct UpdateSupergroupFullInfo: Codable, Equatable {
 
     /// New full information about the supergroup
@@ -1923,7 +1981,7 @@ public struct UpdateSupergroupFullInfo: Codable, Equatable {
     }
 }
 
-/// Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
+/// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
 public struct UpdateServiceNotification: Codable, Equatable {
 
     /// Notification content

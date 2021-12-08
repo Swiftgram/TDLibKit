@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public enum SuggestedAction: Codable, Equatable {
     /// Suggests the user to convert specified supergroup to a broadcast group
     case suggestedActionConvertToBroadcastGroup(SuggestedActionConvertToBroadcastGroup)
 
+    /// Suggests the user to set a 2-step verification password to be able to log in again
+    case suggestedActionSetPassword(SuggestedActionSetPassword)
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -35,6 +38,7 @@ public enum SuggestedAction: Codable, Equatable {
         case suggestedActionCheckPhoneNumber
         case suggestedActionSeeTicksHint
         case suggestedActionConvertToBroadcastGroup
+        case suggestedActionSetPassword
     }
 
     public init(from decoder: Decoder) throws {
@@ -52,6 +56,9 @@ public enum SuggestedAction: Codable, Equatable {
         case .suggestedActionConvertToBroadcastGroup:
             let value = try SuggestedActionConvertToBroadcastGroup(from: decoder)
             self = .suggestedActionConvertToBroadcastGroup(value)
+        case .suggestedActionSetPassword:
+            let value = try SuggestedActionSetPassword(from: decoder)
+            self = .suggestedActionSetPassword(value)
         }
     }
 
@@ -69,6 +76,9 @@ public enum SuggestedAction: Codable, Equatable {
         case .suggestedActionConvertToBroadcastGroup(let value):
             try container.encode(Kind.suggestedActionConvertToBroadcastGroup, forKey: .type)
             try value.encode(to: encoder)
+        case .suggestedActionSetPassword(let value):
+            try container.encode(Kind.suggestedActionSetPassword, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -82,6 +92,18 @@ public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable {
 
     public init(supergroupId: Int64) {
         self.supergroupId = supergroupId
+    }
+}
+
+/// Suggests the user to set a 2-step verification password to be able to log in again
+public struct SuggestedActionSetPassword: Codable, Equatable {
+
+    /// The number of days to pass between consecutive authorizations if the user declines to set password
+    public let authorizationDelay: Int
+
+
+    public init(authorizationDelay: Int) {
+        self.authorizationDelay = authorizationDelay
     }
 }
 

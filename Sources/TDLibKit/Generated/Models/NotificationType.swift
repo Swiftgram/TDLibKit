@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -105,8 +105,8 @@ public struct NotificationTypeNewPushMessage: Codable, Equatable {
     /// The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as reply_to_message_id
     public let messageId: Int64
 
-    /// The sender of the message. Corresponding user or chat may be inaccessible
-    public let sender: MessageSender
+    /// Identifier of the sender of the message. Corresponding user or chat may be inaccessible
+    public let senderId: MessageSender
 
     /// Name of the sender
     public let senderName: String
@@ -116,13 +116,13 @@ public struct NotificationTypeNewPushMessage: Codable, Equatable {
         content: PushMessageContent,
         isOutgoing: Bool,
         messageId: Int64,
-        sender: MessageSender,
+        senderId: MessageSender,
         senderName: String
     ) {
         self.content = content
         self.isOutgoing = isOutgoing
         self.messageId = messageId
-        self.sender = sender
+        self.senderId = senderId
         self.senderName = senderName
     }
 }

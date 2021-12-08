@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -16,16 +16,16 @@ public struct ToggleMessageSenderIsBlocked: Codable, Equatable {
     /// New value of is_blocked
     public let isBlocked: Bool?
 
-    /// Message Sender
-    public let sender: MessageSender?
+    /// Identifier of a message sender to block/unblock
+    public let senderId: MessageSender?
 
 
     public init(
         isBlocked: Bool?,
-        sender: MessageSender?
+        senderId: MessageSender?
     ) {
         self.isBlocked = isBlocked
-        self.sender = sender
+        self.senderId = senderId
     }
 }
 

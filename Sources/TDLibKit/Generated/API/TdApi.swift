@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -124,7 +124,7 @@ public final class TdApi {
     }
 
     /// Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
-    /// - Parameter code: The verification code received via SMS, Telegram message, phone call, or flash call
+    /// - Parameter code: Authentication code to check
     public func checkAuthenticationCode(
         code: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -136,7 +136,7 @@ public final class TdApi {
     }
 
     /// Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
-    /// - Parameter code: The verification code received via SMS, Telegram message, phone call, or flash call
+    /// - Parameter code: Authentication code to check
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func checkAuthenticationCode(code: String?) async throws -> Ok {
         let query = CheckAuthenticationCode(
@@ -522,7 +522,7 @@ public final class TdApi {
     }
 
     /// Checks the 2-step verification recovery email address verification code
-    /// - Parameter code: Verification code
+    /// - Parameter code: Verification code to check
     public func checkRecoveryEmailAddressCode(
         code: String?,
         completion: @escaping (Result<PasswordState, Swift.Error>) -> Void
@@ -534,7 +534,7 @@ public final class TdApi {
     }
 
     /// Checks the 2-step verification recovery email address verification code
-    /// - Parameter code: Verification code
+    /// - Parameter code: Verification code to check
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func checkRecoveryEmailAddressCode(code: String?) async throws -> PasswordState {
         let query = CheckRecoveryEmailAddressCode(
@@ -1798,7 +1798,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
-    /// - Parameter sender: Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     public func searchChatMessages(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -1807,7 +1807,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        sender: MessageSender?,
+        senderId: MessageSender?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatMessages(
@@ -1818,7 +1818,7 @@ public final class TdApi {
             messageThreadId: messageThreadId,
             offset: offset,
             query: query,
-            sender: sender
+            senderId: senderId
         )
         execute(query: query, completion: completion)
     }
@@ -1831,7 +1831,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
-    /// - Parameter sender: Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func searchChatMessages(
         chatId: Int64?,
@@ -1841,7 +1841,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        sender: MessageSender?
+        senderId: MessageSender?
     ) async throws -> Messages {
         let query = SearchChatMessages(
             chatId: chatId,
@@ -1851,7 +1851,7 @@ public final class TdApi {
             messageThreadId: messageThreadId,
             offset: offset,
             query: query,
-            sender: sender
+            senderId: senderId
         )
         return try await execute(query: query)
     }
@@ -2503,6 +2503,58 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns list of message sender identifiers, which can be used to send messages in a chat
+    /// - Parameter chatId: Chat identifier
+    public func getChatAvailableMessageSenders(
+        chatId: Int64?,
+        completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatAvailableMessageSenders(
+            chatId: chatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns list of message sender identifiers, which can be used to send messages in a chat
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func getChatAvailableMessageSenders(chatId: Int64?) async throws -> MessageSenders {
+        let query = GetChatAvailableMessageSenders(
+            chatId: chatId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes default message sender that is chosen in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter defaultMessageSenderId: New default message sender in the chat
+    public func setChatDefaultMessageSender(
+        chatId: Int64?,
+        defaultMessageSenderId: MessageSender?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatDefaultMessageSender(
+            chatId: chatId,
+            defaultMessageSenderId: defaultMessageSenderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes default message sender that is chosen in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter defaultMessageSenderId: New default message sender in the chat
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func setChatDefaultMessageSender(
+        chatId: Int64?,
+        defaultMessageSenderId: MessageSender?
+    ) async throws -> Ok {
+        let query = SetChatDefaultMessageSender(
+            chatId: chatId,
+            defaultMessageSenderId: defaultMessageSenderId
+        )
+        return try await execute(query: query)
+    }
+
     /// Sends a message. Returns the sent message
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContent: The content of the message to be sent
@@ -2818,13 +2870,13 @@ public final class TdApi {
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
     /// - Parameter replyToMessageId: Identifier of the message to reply to or 0
-    /// - Parameter sender: The sender of the message
+    /// - Parameter senderId: Identifier of the sender of the message
     public func addLocalMessage(
         chatId: Int64?,
         disableNotification: Bool?,
         inputMessageContent: InputMessageContent?,
         replyToMessageId: Int64?,
-        sender: MessageSender?,
+        senderId: MessageSender?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = AddLocalMessage(
@@ -2832,7 +2884,7 @@ public final class TdApi {
             disableNotification: disableNotification,
             inputMessageContent: inputMessageContent,
             replyToMessageId: replyToMessageId,
-            sender: sender
+            senderId: senderId
         )
         execute(query: query, completion: completion)
     }
@@ -2842,21 +2894,21 @@ public final class TdApi {
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
     /// - Parameter replyToMessageId: Identifier of the message to reply to or 0
-    /// - Parameter sender: The sender of the message
+    /// - Parameter senderId: Identifier of the sender of the message
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func addLocalMessage(
         chatId: Int64?,
         disableNotification: Bool?,
         inputMessageContent: InputMessageContent?,
         replyToMessageId: Int64?,
-        sender: MessageSender?
+        senderId: MessageSender?
     ) async throws -> Message {
         let query = AddLocalMessage(
             chatId: chatId,
             disableNotification: disableNotification,
             inputMessageContent: inputMessageContent,
             replyToMessageId: replyToMessageId,
-            sender: sender
+            senderId: senderId
         )
         return try await execute(query: query)
     }
@@ -2897,32 +2949,32 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+    /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: User identifier
-    public func deleteChatMessagesFromUser(
+    /// - Parameter senderId: Identifier of the sender of messages to delete
+    public func deleteChatMessagesBySender(
         chatId: Int64?,
-        userId: Int64?,
+        senderId: MessageSender?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = DeleteChatMessagesFromUser(
+        let query = DeleteChatMessagesBySender(
             chatId: chatId,
-            userId: userId
+            senderId: senderId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+    /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: User identifier
+    /// - Parameter senderId: Identifier of the sender of messages to delete
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func deleteChatMessagesFromUser(
+    public func deleteChatMessagesBySender(
         chatId: Int64?,
-        userId: Int64?
+        senderId: MessageSender?
     ) async throws -> Ok {
-        let query = DeleteChatMessagesFromUser(
+        let query = DeleteChatMessagesBySender(
             chatId: chatId,
-            userId: userId
+            senderId: senderId
         )
         return try await execute(query: query)
     }
@@ -5264,6 +5316,36 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter hasProtectedContent: True, if chat content can't be saved locally, forwarded, or copied
+    public func toggleChatHasProtectedContent(
+        chatId: Int64?,
+        hasProtectedContent: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleChatHasProtectedContent(
+            chatId: chatId,
+            hasProtectedContent: hasProtectedContent
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter hasProtectedContent: True, if chat content can't be saved locally, forwarded, or copied
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func toggleChatHasProtectedContent(
+        chatId: Int64?,
+        hasProtectedContent: Bool?
+    ) async throws -> Ok {
+        let query = ToggleChatHasProtectedContent(
+            chatId: chatId,
+            hasProtectedContent: hasProtectedContent
+        )
+        return try await execute(query: query)
+    }
+
     /// Changes the marked as unread state of a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter isMarkedAsUnread: New value of is_marked_as_unread
@@ -6084,7 +6166,7 @@ public final class TdApi {
 
     /// Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
     /// - Parameter fileId: Identifier of the file to download
-    /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
+    /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
     /// - Parameter offset: The starting position from which the file needs to be downloaded
     /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
     /// - Parameter synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after//-the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
@@ -6108,7 +6190,7 @@ public final class TdApi {
 
     /// Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
     /// - Parameter fileId: Identifier of the file to download
-    /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
+    /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
     /// - Parameter offset: The starting position from which the file needs to be downloaded
     /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
     /// - Parameter synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after//-the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
@@ -6972,62 +7054,74 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Approves pending join request in a chat
+    /// Handles a pending join request in a chat
+    /// - Parameter approve: True, if the request is approved. Otherwise the request is declived
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: Identifier of the user, which request will be approved
-    public func approveChatJoinRequest(
+    /// - Parameter userId: Identifier of the user that sent the request
+    public func processChatJoinRequest(
+        approve: Bool?,
         chatId: Int64?,
         userId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ApproveChatJoinRequest(
+        let query = ProcessChatJoinRequest(
+            approve: approve,
             chatId: chatId,
             userId: userId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Approves pending join request in a chat
+    /// Handles a pending join request in a chat
+    /// - Parameter approve: True, if the request is approved. Otherwise the request is declived
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: Identifier of the user, which request will be approved
+    /// - Parameter userId: Identifier of the user that sent the request
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func approveChatJoinRequest(
+    public func processChatJoinRequest(
+        approve: Bool?,
         chatId: Int64?,
         userId: Int64?
     ) async throws -> Ok {
-        let query = ApproveChatJoinRequest(
+        let query = ProcessChatJoinRequest(
+            approve: approve,
             chatId: chatId,
             userId: userId
         )
         return try await execute(query: query)
     }
 
-    /// Declines pending join request in a chat
+    /// Handles all pending join requests for a given link in a chat
+    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declived
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: Identifier of the user, which request will be declined
-    public func declineChatJoinRequest(
+    /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    public func processChatJoinRequests(
+        approve: Bool?,
         chatId: Int64?,
-        userId: Int64?,
+        inviteLink: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = DeclineChatJoinRequest(
+        let query = ProcessChatJoinRequests(
+            approve: approve,
             chatId: chatId,
-            userId: userId
+            inviteLink: inviteLink
         )
         execute(query: query, completion: completion)
     }
 
-    /// Declines pending join request in a chat
+    /// Handles all pending join requests for a given link in a chat
+    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declived
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: Identifier of the user, which request will be declined
+    /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func declineChatJoinRequest(
+    public func processChatJoinRequests(
+        approve: Bool?,
         chatId: Int64?,
-        userId: Int64?
+        inviteLink: String?
     ) async throws -> Ok {
-        let query = DeclineChatJoinRequest(
+        let query = ProcessChatJoinRequests(
+            approve: approve,
             chatId: chatId,
-            userId: userId
+            inviteLink: inviteLink
         )
         return try await execute(query: query)
     }
@@ -8092,30 +8186,30 @@ public final class TdApi {
 
     /// Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
     /// - Parameter isBlocked: New value of is_blocked
-    /// - Parameter sender: Message Sender
+    /// - Parameter senderId: Identifier of a message sender to block/unblock
     public func toggleMessageSenderIsBlocked(
         isBlocked: Bool?,
-        sender: MessageSender?,
+        senderId: MessageSender?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleMessageSenderIsBlocked(
             isBlocked: isBlocked,
-            sender: sender
+            senderId: senderId
         )
         execute(query: query, completion: completion)
     }
 
     /// Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
     /// - Parameter isBlocked: New value of is_blocked
-    /// - Parameter sender: Message Sender
+    /// - Parameter senderId: Identifier of a message sender to block/unblock
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func toggleMessageSenderIsBlocked(
         isBlocked: Bool?,
-        sender: MessageSender?
+        senderId: MessageSender?
     ) async throws -> Ok {
         let query = ToggleMessageSenderIsBlocked(
             isBlocked: isBlocked,
-            sender: sender
+            senderId: senderId
         )
         return try await execute(query: query)
     }
@@ -9396,7 +9490,7 @@ public final class TdApi {
     }
 
     /// Checks the authentication code sent to confirm a new phone number of the user
-    /// - Parameter code: Verification code received by SMS, phone call or flash call
+    /// - Parameter code: Authentication code to check
     public func checkChangePhoneNumberCode(
         code: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -9408,7 +9502,7 @@ public final class TdApi {
     }
 
     /// Checks the authentication code sent to confirm a new phone number of the user
-    /// - Parameter code: Verification code received by SMS, phone call or flash call
+    /// - Parameter code: Authentication code to check
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func checkChangePhoneNumberCode(code: String?) async throws -> Ok {
         let query = CheckChangePhoneNumberCode(
@@ -9561,6 +9655,88 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Toggles whether a session can accept incoming calls
+    /// - Parameter canAcceptCalls: True, if incoming calls can be accepted by the session
+    /// - Parameter sessionId: Session identifier
+    public func toggleSessionCanAcceptCalls(
+        canAcceptCalls: Bool?,
+        sessionId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSessionCanAcceptCalls(
+            canAcceptCalls: canAcceptCalls,
+            sessionId: sessionId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether a session can accept incoming calls
+    /// - Parameter canAcceptCalls: True, if incoming calls can be accepted by the session
+    /// - Parameter sessionId: Session identifier
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func toggleSessionCanAcceptCalls(
+        canAcceptCalls: Bool?,
+        sessionId: TdInt64?
+    ) async throws -> Ok {
+        let query = ToggleSessionCanAcceptCalls(
+            canAcceptCalls: canAcceptCalls,
+            sessionId: sessionId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Toggles whether a session can accept incoming secret chats
+    /// - Parameter canAcceptSecretChats: True, if incoming secret chats can be accepted by the session
+    /// - Parameter sessionId: Session identifier
+    public func toggleSessionCanAcceptSecretChats(
+        canAcceptSecretChats: Bool?,
+        sessionId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSessionCanAcceptSecretChats(
+            canAcceptSecretChats: canAcceptSecretChats,
+            sessionId: sessionId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether a session can accept incoming secret chats
+    /// - Parameter canAcceptSecretChats: True, if incoming secret chats can be accepted by the session
+    /// - Parameter sessionId: Session identifier
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func toggleSessionCanAcceptSecretChats(
+        canAcceptSecretChats: Bool?,
+        sessionId: TdInt64?
+    ) async throws -> Ok {
+        let query = ToggleSessionCanAcceptSecretChats(
+            canAcceptSecretChats: canAcceptSecretChats,
+            sessionId: sessionId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the period of inactivity after which sessions will automatically be terminated
+    /// - Parameter inactiveSessionTtlDays: New number of days of inactivity before sessions will be automatically terminated; 1-366 days
+    public func setInactiveSessionTtl(
+        inactiveSessionTtlDays: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetInactiveSessionTtl(
+            inactiveSessionTtlDays: inactiveSessionTtlDays
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the period of inactivity after which sessions will automatically be terminated
+    /// - Parameter inactiveSessionTtlDays: New number of days of inactivity before sessions will be automatically terminated; 1-366 days
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func setInactiveSessionTtl(inactiveSessionTtlDays: Int?) async throws -> Ok {
+        let query = SetInactiveSessionTtl(
+            inactiveSessionTtlDays: inactiveSessionTtlDays
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns all website where the current user used Telegram to log in
     public func getConnectedWebsites(completion: @escaping (Result<ConnectedWebsites, Swift.Error>) -> Void) throws {
         let query = GetConnectedWebsites()
@@ -9669,7 +9845,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
+    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     public func toggleSupergroupSignMessages(
@@ -9684,7 +9860,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
+    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
@@ -9751,38 +9927,32 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages sent in the supergroup by the user. This list must be non-empty
+    /// Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
+    /// - Parameter messageIds: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
     /// - Parameter supergroupId: Supergroup identifier
-    /// - Parameter userId: User identifier
     public func reportSupergroupSpam(
         messageIds: [Int64]?,
         supergroupId: Int64?,
-        userId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReportSupergroupSpam(
             messageIds: messageIds,
-            supergroupId: supergroupId,
-            userId: userId
+            supergroupId: supergroupId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages sent in the supergroup by the user. This list must be non-empty
+    /// Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
+    /// - Parameter messageIds: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
     /// - Parameter supergroupId: Supergroup identifier
-    /// - Parameter userId: User identifier
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func reportSupergroupSpam(
         messageIds: [Int64]?,
-        supergroupId: Int64?,
-        userId: Int64?
+        supergroupId: Int64?
     ) async throws -> Ok {
         let query = ReportSupergroupSpam(
             messageIds: messageIds,
-            supergroupId: supergroupId,
-            userId: userId
+            supergroupId: supergroupId
         )
         return try await execute(query: query)
     }
@@ -11421,7 +11591,7 @@ public final class TdApi {
     }
 
     /// Checks the phone number verification code for Telegram Passport
-    /// - Parameter code: Verification code
+    /// - Parameter code: Verification code to check
     public func checkPhoneNumberVerificationCode(
         code: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -11433,7 +11603,7 @@ public final class TdApi {
     }
 
     /// Checks the phone number verification code for Telegram Passport
-    /// - Parameter code: Verification code
+    /// - Parameter code: Verification code to check
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func checkPhoneNumberVerificationCode(code: String?) async throws -> Ok {
         let query = CheckPhoneNumberVerificationCode(
@@ -11478,7 +11648,7 @@ public final class TdApi {
     }
 
     /// Checks the email address verification code for Telegram Passport
-    /// - Parameter code: Verification code
+    /// - Parameter code: Verification code to check
     public func checkEmailAddressVerificationCode(
         code: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -11490,7 +11660,7 @@ public final class TdApi {
     }
 
     /// Checks the email address verification code for Telegram Passport
-    /// - Parameter code: Verification code
+    /// - Parameter code: Verification code to check
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func checkEmailAddressVerificationCode(code: String?) async throws -> Ok {
         let query = CheckEmailAddressVerificationCode(
@@ -11651,7 +11821,7 @@ public final class TdApi {
     }
 
     /// Checks phone number confirmation code
-    /// - Parameter code: The phone number confirmation code
+    /// - Parameter code: Confirmation code to check
     public func checkPhoneNumberConfirmationCode(
         code: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -11663,7 +11833,7 @@ public final class TdApi {
     }
 
     /// Checks phone number confirmation code
-    /// - Parameter code: The phone number confirmation code
+    /// - Parameter code: Confirmation code to check
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func checkPhoneNumberConfirmationCode(code: String?) async throws -> Ok {
         let query = CheckPhoneNumberConfirmationCode(

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public struct MessageSendingStateFailed: Codable, Equatable {
     /// Error message
     public let errorMessage: String
 
+    /// True, if the message can be re-sent only on behalf of a different sender
+    public let needAnotherSender: Bool
+
     /// Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     public let retryAfter: Double
 
@@ -69,11 +72,13 @@ public struct MessageSendingStateFailed: Codable, Equatable {
         canRetry: Bool,
         errorCode: Int,
         errorMessage: String,
+        needAnotherSender: Bool,
         retryAfter: Double
     ) {
         self.canRetry = canRetry
         self.errorCode = errorCode
         self.errorMessage = errorMessage
+        self.needAnotherSender = needAnotherSender
         self.retryAfter = retryAfter
     }
 }

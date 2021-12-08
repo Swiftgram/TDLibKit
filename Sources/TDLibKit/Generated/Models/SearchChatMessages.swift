@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -34,8 +34,8 @@ public struct SearchChatMessages: Codable, Equatable {
     /// Query to search for
     public let query: String?
 
-    /// Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
-    public let sender: MessageSender?
+    /// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    public let senderId: MessageSender?
 
 
     public init(
@@ -46,7 +46,7 @@ public struct SearchChatMessages: Codable, Equatable {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        sender: MessageSender?
+        senderId: MessageSender?
     ) {
         self.chatId = chatId
         self.filter = filter
@@ -55,7 +55,7 @@ public struct SearchChatMessages: Codable, Equatable {
         self.messageThreadId = messageThreadId
         self.offset = offset
         self.query = query
-        self.sender = sender
+        self.senderId = senderId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public enum ChatActionBar: Codable, Equatable {
     /// The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason chatReportReasonUnrelatedLocation
     case chatActionBarReportUnrelatedLocation
 
-    /// The chat is a recently created group chat, to which new members can be invited
+    /// The chat is a recently created group chat to which new members can be invited
     case chatActionBarInviteMembers
 
     /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact
@@ -31,6 +31,9 @@ public enum ChatActionBar: Codable, Equatable {
     /// The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
     case chatActionBarSharePhoneNumber
 
+    /// The chat is a private chat with an administrator of a chat to which the user sent join request
+    case chatActionBarJoinRequest(ChatActionBarJoinRequest)
+
 
     private enum Kind: String, Codable {
         case chatActionBarReportSpam
@@ -39,6 +42,7 @@ public enum ChatActionBar: Codable, Equatable {
         case chatActionBarReportAddBlock
         case chatActionBarAddContact
         case chatActionBarSharePhoneNumber
+        case chatActionBarJoinRequest
     }
 
     public init(from decoder: Decoder) throws {
@@ -59,6 +63,9 @@ public enum ChatActionBar: Codable, Equatable {
             self = .chatActionBarAddContact
         case .chatActionBarSharePhoneNumber:
             self = .chatActionBarSharePhoneNumber
+        case .chatActionBarJoinRequest:
+            let value = try ChatActionBarJoinRequest(from: decoder)
+            self = .chatActionBarJoinRequest(value)
         }
     }
 
@@ -79,6 +86,9 @@ public enum ChatActionBar: Codable, Equatable {
             try container.encode(Kind.chatActionBarAddContact, forKey: .type)
         case .chatActionBarSharePhoneNumber:
             try container.encode(Kind.chatActionBarSharePhoneNumber, forKey: .type)
+        case .chatActionBarJoinRequest(let value):
+            try container.encode(Kind.chatActionBarJoinRequest, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -111,6 +121,30 @@ public struct ChatActionBarReportAddBlock: Codable, Equatable {
     ) {
         self.canUnarchive = canUnarchive
         self.distance = distance
+    }
+}
+
+/// The chat is a private chat with an administrator of a chat to which the user sent join request
+public struct ChatActionBarJoinRequest: Codable, Equatable {
+
+    /// True, if the join request was sent to a channel chat
+    public let isChannel: Bool
+
+    /// Point in time (Unix timestamp) when the join request was sent
+    public let requestDate: Int
+
+    /// Title of the chat to which the join request was sent
+    public let title: String
+
+
+    public init(
+        isChannel: Bool,
+        requestDate: Int,
+        title: String
+    ) {
+        self.isChannel = isChannel
+        self.requestDate = requestDate
+        self.title = title
     }
 }
 

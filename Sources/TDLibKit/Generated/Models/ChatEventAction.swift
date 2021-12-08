@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -79,6 +79,9 @@ public enum ChatEventAction: Codable, Equatable {
     /// The sign_messages setting of a channel was toggled
     case chatEventSignMessagesToggled(ChatEventSignMessagesToggled)
 
+    /// The has_protected_content setting of a channel was toggled
+    case chatEventHasProtectedContentToggled(ChatEventHasProtectedContentToggled)
+
     /// The supergroup sticker set was changed
     case chatEventStickerSetChanged(ChatEventStickerSetChanged)
 
@@ -136,6 +139,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventSlowModeDelayChanged
         case chatEventMessageTtlSettingChanged
         case chatEventSignMessagesToggled
+        case chatEventHasProtectedContentToggled
         case chatEventStickerSetChanged
         case chatEventLocationChanged
         case chatEventIsAllHistoryAvailableToggled
@@ -217,6 +221,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventSignMessagesToggled:
             let value = try ChatEventSignMessagesToggled(from: decoder)
             self = .chatEventSignMessagesToggled(value)
+        case .chatEventHasProtectedContentToggled:
+            let value = try ChatEventHasProtectedContentToggled(from: decoder)
+            self = .chatEventHasProtectedContentToggled(value)
         case .chatEventStickerSetChanged:
             let value = try ChatEventStickerSetChanged(from: decoder)
             self = .chatEventStickerSetChanged(value)
@@ -319,6 +326,9 @@ public enum ChatEventAction: Codable, Equatable {
             try value.encode(to: encoder)
         case .chatEventSignMessagesToggled(let value):
             try container.encode(Kind.chatEventSignMessagesToggled, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventHasProtectedContentToggled(let value):
+            try container.encode(Kind.chatEventHasProtectedContentToggled, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventStickerSetChanged(let value):
             try container.encode(Kind.chatEventStickerSetChanged, forKey: .type)
@@ -695,6 +705,18 @@ public struct ChatEventSignMessagesToggled: Codable, Equatable {
 
     public init(signMessages: Bool) {
         self.signMessages = signMessages
+    }
+}
+
+/// The has_protected_content setting of a channel was toggled
+public struct ChatEventHasProtectedContentToggled: Codable, Equatable {
+
+    /// New value of has_protected_content
+    public let hasProtectedContent: Bool
+
+
+    public init(hasProtectedContent: Bool) {
+        self.hasProtectedContent = hasProtectedContent
     }
 }
 

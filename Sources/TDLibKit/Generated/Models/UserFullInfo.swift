@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct UserFullInfo: Codable, Equatable {
     /// True, if the user can't be called due to their privacy settings
     public let hasPrivateCalls: Bool
 
+    /// True, if the user can't be linked in forwarded messages due to their privacy settings
+    public let hasPrivateForwards: Bool
+
     /// True, if the user is blocked by the current user
     public let isBlocked: Bool
 
@@ -53,6 +56,7 @@ public struct UserFullInfo: Codable, Equatable {
         description: String,
         groupInCommonCount: Int,
         hasPrivateCalls: Bool,
+        hasPrivateForwards: Bool,
         isBlocked: Bool,
         needPhoneNumberPrivacyException: Bool,
         photo: ChatPhoto?,
@@ -65,6 +69,7 @@ public struct UserFullInfo: Codable, Equatable {
         self.description = description
         self.groupInCommonCount = groupInCommonCount
         self.hasPrivateCalls = hasPrivateCalls
+        self.hasPrivateForwards = hasPrivateForwards
         self.isBlocked = isBlocked
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
         self.photo = photo

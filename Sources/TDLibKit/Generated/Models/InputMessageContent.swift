@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -684,7 +684,7 @@ public struct InputMessageInvoice: Codable, Equatable {
 /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
 public struct InputMessagePoll: Codable, Equatable {
 
-    /// Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
+    /// Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
     public let closeDate: Int
 
     /// True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels

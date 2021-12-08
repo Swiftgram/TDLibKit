@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -22,8 +22,8 @@ public struct MessageReplyInfo: Codable, Equatable {
     /// Identifier of the last read outgoing reply to the message
     public let lastReadOutboxMessageId: Int64
 
-    /// Recent repliers to the message; available in channels with a discussion supergroup
-    public let recentRepliers: [MessageSender]
+    /// Identifiers of recent repliers to the message; available in channels with a discussion supergroup
+    public let recentReplierIds: [MessageSender]
 
     /// Number of times the message was directly or indirectly replied
     public let replyCount: Int
@@ -33,13 +33,13 @@ public struct MessageReplyInfo: Codable, Equatable {
         lastMessageId: Int64,
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
-        recentRepliers: [MessageSender],
+        recentReplierIds: [MessageSender],
         replyCount: Int
     ) {
         self.lastMessageId = lastMessageId
         self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
-        self.recentRepliers = recentRepliers
+        self.recentReplierIds = recentReplierIds
         self.replyCount = replyCount
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct Message: Codable, Equatable {
 
     /// True, if the message can be forwarded
     public let canBeForwarded: Bool
+
+    /// True, if content of the message can be saved locally or copied
+    public let canBeSaved: Bool
 
     /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
     public let canGetMediaTimestampLinks: Bool
@@ -97,8 +100,8 @@ public struct Message: Codable, Equatable {
     /// The scheduling state of the message; may be null
     public let schedulingState: MessageSchedulingState?
 
-    /// The sender of the message
-    public let sender: MessageSender
+    /// Identifier of the sender of the message
+    public let senderId: MessageSender
 
     /// The sending state of the message; may be null
     public let sendingState: MessageSendingState?
@@ -119,6 +122,7 @@ public struct Message: Codable, Equatable {
         canBeDeletedOnlyForSelf: Bool,
         canBeEdited: Bool,
         canBeForwarded: Bool,
+        canBeSaved: Bool,
         canGetMediaTimestampLinks: Bool,
         canGetMessageThread: Bool,
         canGetStatistics: Bool,
@@ -142,7 +146,7 @@ public struct Message: Codable, Equatable {
         replyToMessageId: Int64,
         restrictionReason: String,
         schedulingState: MessageSchedulingState?,
-        sender: MessageSender,
+        senderId: MessageSender,
         sendingState: MessageSendingState?,
         ttl: Int,
         ttlExpiresIn: Double,
@@ -153,6 +157,7 @@ public struct Message: Codable, Equatable {
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
+        self.canBeSaved = canBeSaved
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
         self.canGetMessageThread = canGetMessageThread
         self.canGetStatistics = canGetStatistics
@@ -176,7 +181,7 @@ public struct Message: Codable, Equatable {
         self.replyToMessageId = replyToMessageId
         self.restrictionReason = restrictionReason
         self.schedulingState = schedulingState
-        self.sender = sender
+        self.senderId = senderId
         self.sendingState = sendingState
         self.ttl = ttl
         self.ttlExpiresIn = ttlExpiresIn

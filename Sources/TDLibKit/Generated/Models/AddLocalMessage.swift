@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public struct AddLocalMessage: Codable, Equatable {
     /// Identifier of the message to reply to or 0
     public let replyToMessageId: Int64?
 
-    /// The sender of the message
-    public let sender: MessageSender?
+    /// Identifier of the sender of the message
+    public let senderId: MessageSender?
 
 
     public init(
@@ -34,13 +34,13 @@ public struct AddLocalMessage: Codable, Equatable {
         disableNotification: Bool?,
         inputMessageContent: InputMessageContent?,
         replyToMessageId: Int64?,
-        sender: MessageSender?
+        senderId: MessageSender?
     ) {
         self.chatId = chatId
         self.disableNotification = disableNotification
         self.inputMessageContent = inputMessageContent
         self.replyToMessageId = replyToMessageId
-        self.sender = sender
+        self.senderId = senderId
     }
 }
 

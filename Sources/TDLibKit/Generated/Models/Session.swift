@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -21,6 +21,12 @@ public struct Session: Codable, Equatable {
 
     /// The version of the application, as provided by the application
     public let applicationVersion: String
+
+    /// True, if incoming calls can be accepted by the session
+    public let canAcceptCalls: Bool
+
+    /// True, if incoming secret chats can be accepted by the session
+    public let canAcceptSecretChats: Bool
 
     /// A two-letter country code for the country from which the session was created, based on the IP address
     public let country: String
@@ -63,6 +69,8 @@ public struct Session: Codable, Equatable {
         apiId: Int,
         applicationName: String,
         applicationVersion: String,
+        canAcceptCalls: Bool,
+        canAcceptSecretChats: Bool,
         country: String,
         deviceModel: String,
         id: TdInt64,
@@ -79,6 +87,8 @@ public struct Session: Codable, Equatable {
         self.apiId = apiId
         self.applicationName = applicationName
         self.applicationVersion = applicationVersion
+        self.canAcceptCalls = canAcceptCalls
+        self.canAcceptSecretChats = canAcceptSecretChats
         self.country = country
         self.deviceModel = deviceModel
         self.id = id

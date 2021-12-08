@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -31,8 +31,14 @@ public struct Chat: Codable, Equatable {
     /// Default value of the disable_notification parameter, used when a message is sent to the chat
     public let defaultDisableNotification: Bool
 
+    /// Default identifier of a user or chat that is chosen to send messages in the chat; may be null if the user can't change message sender
+    public let defaultMessageSenderId: MessageSender?
+
     /// A draft of a message in the chat; may be null
     public let draftMessage: DraftMessage?
+
+    /// True, if chat content can't be saved locally, forwarded, or copied
+    public let hasProtectedContent: Bool
 
     /// True, if the chat has scheduled messages
     public let hasScheduledMessages: Bool
@@ -102,7 +108,9 @@ public struct Chat: Codable, Equatable {
         canBeReported: Bool,
         clientData: String,
         defaultDisableNotification: Bool,
+        defaultMessageSenderId: MessageSender?,
         draftMessage: DraftMessage?,
+        hasProtectedContent: Bool,
         hasScheduledMessages: Bool,
         id: Int64,
         isBlocked: Bool,
@@ -130,7 +138,9 @@ public struct Chat: Codable, Equatable {
         self.canBeReported = canBeReported
         self.clientData = clientData
         self.defaultDisableNotification = defaultDisableNotification
+        self.defaultMessageSenderId = defaultMessageSenderId
         self.draftMessage = draftMessage
+        self.hasProtectedContent = hasProtectedContent
         self.hasScheduledMessages = hasScheduledMessages
         self.id = id
         self.isBlocked = isBlocked

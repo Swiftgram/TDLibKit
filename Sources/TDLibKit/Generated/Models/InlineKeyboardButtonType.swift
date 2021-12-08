@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.9-858078d8
-//  https://github.com/tdlib/td/tree/858078d8
+//  Based on TDLib 1.7.10-a53cb30e
+//  https://github.com/tdlib/td/tree/a53cb30e
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
     /// A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
     case inlineKeyboardButtonTypeBuy
 
+    /// A button to open a chat with a user
+    case inlineKeyboardButtonTypeUser(InlineKeyboardButtonTypeUser)
+
 
     private enum Kind: String, Codable {
         case inlineKeyboardButtonTypeUrl
@@ -43,6 +46,7 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
         case inlineKeyboardButtonTypeCallbackGame
         case inlineKeyboardButtonTypeSwitchInline
         case inlineKeyboardButtonTypeBuy
+        case inlineKeyboardButtonTypeUser
     }
 
     public init(from decoder: Decoder) throws {
@@ -68,6 +72,9 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
             self = .inlineKeyboardButtonTypeSwitchInline(value)
         case .inlineKeyboardButtonTypeBuy:
             self = .inlineKeyboardButtonTypeBuy
+        case .inlineKeyboardButtonTypeUser:
+            let value = try InlineKeyboardButtonTypeUser(from: decoder)
+            self = .inlineKeyboardButtonTypeUser(value)
         }
     }
 
@@ -93,6 +100,9 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
             try value.encode(to: encoder)
         case .inlineKeyboardButtonTypeBuy:
             try container.encode(Kind.inlineKeyboardButtonTypeBuy, forKey: .type)
+        case .inlineKeyboardButtonTypeUser(let value):
+            try container.encode(Kind.inlineKeyboardButtonTypeUser, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -173,6 +183,18 @@ public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable {
     ) {
         self.inCurrentChat = inCurrentChat
         self.query = query
+    }
+}
+
+/// A button to open a chat with a user
+public struct InlineKeyboardButtonTypeUser: Codable, Equatable {
+
+    /// User identifier
+    public let userId: Int64
+
+
+    public init(userId: Int64) {
+        self.userId = userId
     }
 }
 
