@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-a53cb30e
-//  https://github.com/tdlib/td/tree/a53cb30e
+//  Based on TDLib 1.7.10-85d6ef98
+//  https://github.com/tdlib/td/tree/85d6ef98
 //
 
 import Foundation
@@ -5797,7 +5797,7 @@ public final class TdApi {
     }
 
     /// Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
-    /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
+    /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
     /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
@@ -5818,7 +5818,7 @@ public final class TdApi {
     }
 
     /// Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
-    /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
+    /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
     /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
