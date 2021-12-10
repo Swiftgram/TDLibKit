@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-85d6ef98
-//  https://github.com/tdlib/td/tree/85d6ef98
+//  Based on TDLib 1.7.10-5a764139
+//  https://github.com/tdlib/td/tree/5a764139
 //
 
 import Foundation
@@ -43,12 +43,6 @@ public enum SearchMessagesFilter: Codable, Equatable {
     /// Returns only messages containing chat photos
     case searchMessagesFilterChatPhoto
 
-    /// Returns only call messages
-    case searchMessagesFilterCall
-
-    /// Returns only incoming call messages with missed/declined discard reasons
-    case searchMessagesFilterMissedCall
-
     /// Returns only video note messages
     case searchMessagesFilterVideoNote
 
@@ -79,8 +73,6 @@ public enum SearchMessagesFilter: Codable, Equatable {
         case searchMessagesFilterPhotoAndVideo
         case searchMessagesFilterUrl
         case searchMessagesFilterChatPhoto
-        case searchMessagesFilterCall
-        case searchMessagesFilterMissedCall
         case searchMessagesFilterVideoNote
         case searchMessagesFilterVoiceAndVideoNote
         case searchMessagesFilterMention
@@ -113,10 +105,6 @@ public enum SearchMessagesFilter: Codable, Equatable {
             self = .searchMessagesFilterUrl
         case .searchMessagesFilterChatPhoto:
             self = .searchMessagesFilterChatPhoto
-        case .searchMessagesFilterCall:
-            self = .searchMessagesFilterCall
-        case .searchMessagesFilterMissedCall:
-            self = .searchMessagesFilterMissedCall
         case .searchMessagesFilterVideoNote:
             self = .searchMessagesFilterVideoNote
         case .searchMessagesFilterVoiceAndVideoNote:
@@ -155,10 +143,6 @@ public enum SearchMessagesFilter: Codable, Equatable {
             try container.encode(Kind.searchMessagesFilterUrl, forKey: .type)
         case .searchMessagesFilterChatPhoto:
             try container.encode(Kind.searchMessagesFilterChatPhoto, forKey: .type)
-        case .searchMessagesFilterCall:
-            try container.encode(Kind.searchMessagesFilterCall, forKey: .type)
-        case .searchMessagesFilterMissedCall:
-            try container.encode(Kind.searchMessagesFilterMissedCall, forKey: .type)
         case .searchMessagesFilterVideoNote:
             try container.encode(Kind.searchMessagesFilterVideoNote, forKey: .type)
         case .searchMessagesFilterVoiceAndVideoNote:

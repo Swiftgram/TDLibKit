@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-85d6ef98
-//  https://github.com/tdlib/td/tree/85d6ef98
+//  Based on TDLib 1.7.10-5a764139
+//  https://github.com/tdlib/td/tree/5a764139
 //
 
 import Foundation
@@ -1858,7 +1858,7 @@ public final class TdApi {
 
     /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
-    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
@@ -1894,7 +1894,7 @@ public final class TdApi {
 
     /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
-    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
@@ -1979,7 +1979,7 @@ public final class TdApi {
     /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter onlyMissed: If true, returns only messages with missed calls
+    /// - Parameter onlyMissed: If true, returns only messages with missed/declined calls
     public func searchCallMessages(
         fromMessageId: Int64?,
         limit: Int?,
@@ -1997,7 +1997,7 @@ public final class TdApi {
     /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter onlyMissed: If true, returns only messages with missed calls
+    /// - Parameter onlyMissed: If true, returns only messages with missed/declined calls
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func searchCallMessages(
         fromMessageId: Int64?,
@@ -2109,7 +2109,7 @@ public final class TdApi {
 
     /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     public func getChatSparseMessagePositions(
@@ -2130,7 +2130,7 @@ public final class TdApi {
 
     /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
@@ -2151,7 +2151,7 @@ public final class TdApi {
 
     /// Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
     public func getChatMessageCalendar(
         chatId: Int64?,
@@ -2169,7 +2169,7 @@ public final class TdApi {
 
     /// Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func getChatMessageCalendar(

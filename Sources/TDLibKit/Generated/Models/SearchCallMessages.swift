@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-85d6ef98
-//  https://github.com/tdlib/td/tree/85d6ef98
+//  Based on TDLib 1.7.10-5a764139
+//  https://github.com/tdlib/td/tree/5a764139
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SearchCallMessages: Codable, Equatable {
     /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public let limit: Int?
 
-    /// If true, returns only messages with missed calls
+    /// If true, returns only messages with missed/declined calls
     public let onlyMissed: Bool?
 
 

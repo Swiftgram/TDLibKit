@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-85d6ef98
-//  https://github.com/tdlib/td/tree/85d6ef98
+//  Based on TDLib 1.7.10-5a764139
+//  https://github.com/tdlib/td/tree/5a764139
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetChatSparseMessagePositions: Codable, Equatable {
     /// Identifier of the chat in which to return information about message positions
     public let chatId: Int64?
 
-    /// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     public let filter: SearchMessagesFilter?
 
     /// The message identifier from which to return information about message positions
