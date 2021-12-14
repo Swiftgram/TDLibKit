@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-aa8a4979
-//  https://github.com/tdlib/td/tree/aa8a4979
+//  Based on TDLib 1.7.10-d437ad27
+//  https://github.com/tdlib/td/tree/d437ad27
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
     /// A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
     case inlineKeyboardButtonTypeBuy
 
-    /// A button to open a chat with a user
+    /// A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
     case inlineKeyboardButtonTypeUser(InlineKeyboardButtonTypeUser)
 
 
@@ -186,7 +186,7 @@ public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable {
     }
 }
 
-/// A button to open a chat with a user
+/// A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
 public struct InlineKeyboardButtonTypeUser: Codable, Equatable {
 
     /// User identifier

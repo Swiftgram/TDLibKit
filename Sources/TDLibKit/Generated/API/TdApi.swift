@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-aa8a4979
-//  https://github.com/tdlib/td/tree/aa8a4979
+//  Based on TDLib 1.7.10-d437ad27
+//  https://github.com/tdlib/td/tree/d437ad27
 //
 
 import Foundation
@@ -1235,7 +1235,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches a public chat by its username. Currently only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
+    /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
     /// - Parameter username: Username to be resolved
     public func searchPublicChat(
         username: String?,
@@ -1247,7 +1247,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches a public chat by its username. Currently only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
+    /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
     /// - Parameter username: Username to be resolved
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func searchPublicChat(username: String?) async throws -> Chat {
@@ -1257,7 +1257,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
+    /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
     /// - Parameter query: Query to search for
     public func searchPublicChats(
         query: String?,
@@ -1269,7 +1269,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
+    /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
     /// - Parameter query: Query to search for
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func searchPublicChats(query: String?) async throws -> Chats {
@@ -2609,7 +2609,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sends 2-10 messages grouped together into an album. Currently only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
@@ -2633,7 +2633,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sends 2-10 messages grouped together into an album. Currently only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
@@ -5730,7 +5730,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Adds multiple new members to a chat. Currently this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    /// Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     public func addChatMembers(
@@ -5745,7 +5745,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Adds multiple new members to a chat. Currently this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    /// Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
@@ -8657,7 +8657,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
+    /// Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
     /// - Parameter fileId: File identifier
     public func getAttachedStickerSets(
         fileId: Int?,
@@ -8669,7 +8669,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
+    /// Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
     /// - Parameter fileId: File identifier
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func getAttachedStickerSets(fileId: Int?) async throws -> StickerSets {
@@ -10941,7 +10941,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageIds: Identifiers of reported messages, if any
     /// - Parameter reason: The reason for reporting the chat
@@ -10962,7 +10962,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageIds: Identifiers of reported messages, if any
     /// - Parameter reason: The reason for reporting the chat
@@ -10983,7 +10983,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+    /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
     /// - Parameter fileId: Identifier of the photo to report. Only full photos from chatPhoto can be reported
     /// - Parameter reason: The reason for reporting the chat photo
@@ -11004,7 +11004,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+    /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
     /// - Parameter fileId: Identifier of the photo to report. Only full photos from chatPhoto can be reported
     /// - Parameter reason: The reason for reporting the chat photo
@@ -11025,7 +11025,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+    /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     public func getChatStatistics(
@@ -11040,7 +11040,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+    /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)

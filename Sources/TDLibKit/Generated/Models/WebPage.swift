@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-aa8a4979
-//  https://github.com/tdlib/td/tree/aa8a4979
+//  Based on TDLib 1.7.10-d437ad27
+//  https://github.com/tdlib/td/tree/d437ad27
 //
 
 import Foundation
@@ -27,7 +27,7 @@ public struct WebPage: Codable, Equatable {
     /// URL to display
     public let displayUrl: String
 
-    /// Preview of the content as a document, if available (currently only available for small PDF files and ZIP archives); may be null
+    /// Preview of the content as a document, if available; may be null
     public let document: Document?
 
     /// Duration of the content, in seconds
@@ -45,7 +45,7 @@ public struct WebPage: Codable, Equatable {
     /// Width of the embedded preview
     public let embedWidth: Int
 
-    /// Version of instant view, available for the web page (currently can be 1 or 2), 0 if none
+    /// Version of instant view, available for the web page (currently, can be 1 or 2), 0 if none
     public let instantViewVersion: Int
 
     /// Image representing the content; may be null

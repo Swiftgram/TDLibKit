@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-aa8a4979
-//  https://github.com/tdlib/td/tree/aa8a4979
+//  Based on TDLib 1.7.10-d437ad27
+//  https://github.com/tdlib/td/tree/d437ad27
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct WebPageInstantView: Codable, Equatable {
     /// Content of the web page
     public let pageBlocks: [PageBlock]
 
-    /// Version of the instant view, currently can be 1 or 2
+    /// Version of the instant view; currently, can be 1 or 2
     public let version: Int
 
     /// Number of the instant view views; 0 if unknown

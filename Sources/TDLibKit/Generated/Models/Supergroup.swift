@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-aa8a4979
-//  https://github.com/tdlib/td/tree/aa8a4979
+//  Based on TDLib 1.7.10-d437ad27
+//  https://github.com/tdlib/td/tree/d437ad27
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public struct Supergroup: Codable, Equatable {
     /// True, if the supergroup or channel is verified
     public let isVerified: Bool
 
-    /// Number of members in the supergroup or channel; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
+    /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
     public let memberCount: Int
 
     /// If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-aa8a4979
-//  https://github.com/tdlib/td/tree/aa8a4979
+//  Based on TDLib 1.7.10-d437ad27
+//  https://github.com/tdlib/td/tree/d437ad27
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a sponsored message
 public struct SponsoredMessage: Codable, Equatable {
 
-    /// Content of the message
+    /// Content of the message. Currently, can be only of the type messageText
     public let content: MessageContent
 
     /// Unique sponsored message identifier
