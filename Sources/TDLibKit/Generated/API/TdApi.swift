@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-fdcb1098
-//  https://github.com/tdlib/td/tree/fdcb1098
+//  Based on TDLib 1.7.10-83bd3e33
+//  https://github.com/tdlib/td/tree/83bd3e33
 //
 
 import Foundation
@@ -7712,28 +7712,6 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
-    /// - Parameter groupCallId: Group call identifier
-    public func revokeGroupCallInviteLink(
-        groupCallId: Int?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = RevokeGroupCallInviteLink(
-            groupCallId: groupCallId
-        )
-        execute(query: query, completion: completion)
-    }
-
-    /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
-    /// - Parameter groupCallId: Group call identifier
-    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func revokeGroupCallInviteLink(groupCallId: Int?) async throws -> Ok {
-        let query = RevokeGroupCallInviteLink(
-            groupCallId: groupCallId
-        )
-        return try await execute(query: query)
-    }
-
     /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
@@ -7789,6 +7767,28 @@ public final class TdApi {
     ) async throws -> HttpUrl {
         let query = GetGroupCallInviteLink(
             canSelfUnmute: canSelfUnmute,
+            groupCallId: groupCallId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+    /// - Parameter groupCallId: Group call identifier
+    public func revokeGroupCallInviteLink(
+        groupCallId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RevokeGroupCallInviteLink(
+            groupCallId: groupCallId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+    /// - Parameter groupCallId: Group call identifier
+    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
+    public func revokeGroupCallInviteLink(groupCallId: Int?) async throws -> Ok {
+        let query = RevokeGroupCallInviteLink(
             groupCallId: groupCallId
         )
         return try await execute(query: query)
@@ -9927,8 +9927,8 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
+    /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+    /// - Parameter messageIds: Identifiers of messages to report
     /// - Parameter supergroupId: Supergroup identifier
     public func reportSupergroupSpam(
         messageIds: [Int64]?,
@@ -9942,8 +9942,8 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
+    /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+    /// - Parameter messageIds: Identifiers of messages to report
     /// - Parameter supergroupId: Supergroup identifier
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func reportSupergroupSpam(
@@ -11872,7 +11872,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Uploads a PNG image with a sticker; returns the uploaded file
+    /// Uploads a file with a sticker; returns the uploaded file
     /// - Parameter sticker: Sticker file to upload
     /// - Parameter userId: Sticker file owner; ignored for regular users
     public func uploadStickerFile(
@@ -11887,7 +11887,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Uploads a PNG image with a sticker; returns the uploaded file
+    /// Uploads a file with a sticker; returns the uploaded file
     /// - Parameter sticker: Sticker file to upload
     /// - Parameter userId: Sticker file owner; ignored for regular users
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)

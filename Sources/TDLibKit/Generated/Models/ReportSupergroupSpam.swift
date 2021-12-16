@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-fdcb1098
-//  https://github.com/tdlib/td/tree/fdcb1098
+//  Based on TDLib 1.7.10-83bd3e33
+//  https://github.com/tdlib/td/tree/83bd3e33
 //
 
 import Foundation
 
 
-/// Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
+/// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
 public struct ReportSupergroupSpam: Codable, Equatable {
 
-    /// Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
+    /// Identifiers of messages to report
     public let messageIds: [Int64]?
 
     /// Supergroup identifier
