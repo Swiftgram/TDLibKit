@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-eec1953c
-//  https://github.com/tdlib/td/tree/eec1953c
+//  Based on TDLib 1.7.10-4eaae330
+//  https://github.com/tdlib/td/tree/4eaae330
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct ChatInviteLink: Codable, Equatable {
     /// Chat invite link
     public let inviteLink: String
 
-    /// True, if the link is primary. Primary invite link can't have name, expire date or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
+    /// True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
     public let isPrimary: Bool
 
     /// True, if the link was revoked
