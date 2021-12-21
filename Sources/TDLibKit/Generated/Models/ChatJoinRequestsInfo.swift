@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-4eaae330
-//  https://github.com/tdlib/td/tree/4eaae330
+//  Based on TDLib 1.7.10-7334b262
+//  https://github.com/tdlib/td/tree/7334b262
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ChatJoinRequestsInfo: Codable, Equatable {
     /// Total number of pending join requests
     public let totalCount: Int
 
-    /// Identifiers of users sent the newest pending join requests
+    /// Identifiers of at most 3 users sent the newest pending join requests
     public let userIds: [Int64]
 
 

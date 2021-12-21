@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-4eaae330
-//  https://github.com/tdlib/td/tree/4eaae330
+//  Based on TDLib 1.7.10-7334b262
+//  https://github.com/tdlib/td/tree/7334b262
 //
 
 import Foundation
@@ -58,7 +58,7 @@ public struct GroupCall: Codable, Equatable {
     /// Number of participants in the group call
     public let participantCount: Int
 
-    /// Recently speaking users in the group call
+    /// At most 3 recently speaking users in the group call
     public let recentSpeakers: [GroupCallRecentSpeaker]
 
     /// Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
