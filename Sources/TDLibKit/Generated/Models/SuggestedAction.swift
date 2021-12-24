@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -16,14 +16,14 @@ public enum SuggestedAction: Codable, Equatable {
     /// Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option
     case suggestedActionEnableArchiveAndMuteNewChats
 
-    /// Suggests the user to check whether 2-step verification password is still remembered
+    /// Suggests the user to check whether they still remember their 2-step verification password
     case suggestedActionCheckPassword
 
     /// Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
     case suggestedActionCheckPhoneNumber
 
-    /// Suggests the user to see a hint about meaning of one and two ticks on sent messages
-    case suggestedActionSeeTicksHint
+    /// Suggests the user to view a hint about the meaning of one and two check marks on sent messages
+    case suggestedActionViewChecksHint
 
     /// Suggests the user to convert specified supergroup to a broadcast group
     case suggestedActionConvertToBroadcastGroup(SuggestedActionConvertToBroadcastGroup)
@@ -36,7 +36,7 @@ public enum SuggestedAction: Codable, Equatable {
         case suggestedActionEnableArchiveAndMuteNewChats
         case suggestedActionCheckPassword
         case suggestedActionCheckPhoneNumber
-        case suggestedActionSeeTicksHint
+        case suggestedActionViewChecksHint
         case suggestedActionConvertToBroadcastGroup
         case suggestedActionSetPassword
     }
@@ -51,8 +51,8 @@ public enum SuggestedAction: Codable, Equatable {
             self = .suggestedActionCheckPassword
         case .suggestedActionCheckPhoneNumber:
             self = .suggestedActionCheckPhoneNumber
-        case .suggestedActionSeeTicksHint:
-            self = .suggestedActionSeeTicksHint
+        case .suggestedActionViewChecksHint:
+            self = .suggestedActionViewChecksHint
         case .suggestedActionConvertToBroadcastGroup:
             let value = try SuggestedActionConvertToBroadcastGroup(from: decoder)
             self = .suggestedActionConvertToBroadcastGroup(value)
@@ -71,8 +71,8 @@ public enum SuggestedAction: Codable, Equatable {
             try container.encode(Kind.suggestedActionCheckPassword, forKey: .type)
         case .suggestedActionCheckPhoneNumber:
             try container.encode(Kind.suggestedActionCheckPhoneNumber, forKey: .type)
-        case .suggestedActionSeeTicksHint:
-            try container.encode(Kind.suggestedActionSeeTicksHint, forKey: .type)
+        case .suggestedActionViewChecksHint:
+            try container.encode(Kind.suggestedActionViewChecksHint, forKey: .type)
         case .suggestedActionConvertToBroadcastGroup(let value):
             try container.encode(Kind.suggestedActionConvertToBroadcastGroup, forKey: .type)
             try value.encode(to: encoder)

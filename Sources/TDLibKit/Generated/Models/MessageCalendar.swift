@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
 
 
-/// Contains information about found messages, splitted by days according to the option "utc_time_offset"
+/// Contains information about found messages, split by days according to the option "utc_time_offset"
 public struct MessageCalendar: Codable, Equatable {
 
     /// Information about messages sent

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -67,50 +67,26 @@ public enum Update: Codable, Equatable {
     /// The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
     case updateChatPosition(UpdateChatPosition)
 
-    /// The default message sender that is chosen to send messages in a chat has changed
-    case updateChatDefaultMessageSenderId(UpdateChatDefaultMessageSenderId)
-
-    /// A chat content was allowed or restricted for saving
-    case updateChatHasProtectedContent(UpdateChatHasProtectedContent)
-
-    /// A chat was marked as unread or was read
-    case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
-
-    /// A chat was blocked or unblocked
-    case updateChatIsBlocked(UpdateChatIsBlocked)
-
-    /// A chat's has_scheduled_messages field has changed
-    case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
-
-    /// A chat video chat state has changed
-    case updateChatVideoChat(UpdateChatVideoChat)
-
-    /// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
-    case updateChatDefaultDisableNotification(UpdateChatDefaultDisableNotification)
-
     /// Incoming messages were read or the number of unread messages has been changed
     case updateChatReadInbox(UpdateChatReadInbox)
 
     /// Outgoing messages were read
     case updateChatReadOutbox(UpdateChatReadOutbox)
 
-    /// The chat unread_mention_count has changed
-    case updateChatUnreadMentionCount(UpdateChatUnreadMentionCount)
-
-    /// Notification settings for a chat were changed
-    case updateChatNotificationSettings(UpdateChatNotificationSettings)
-
-    /// Notification settings for some type of chats were updated
-    case updateScopeNotificationSettings(UpdateScopeNotificationSettings)
-
-    /// The message Time To Live setting for a chat was changed
-    case updateChatMessageTtlSetting(UpdateChatMessageTtlSetting)
-
     /// The chat action bar was changed
     case updateChatActionBar(UpdateChatActionBar)
 
-    /// The chat theme was changed
-    case updateChatTheme(UpdateChatTheme)
+    /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
+    case updateChatDraftMessage(UpdateChatDraftMessage)
+
+    /// The message sender that is selected to send messages in a chat has changed
+    case updateChatMessageSender(UpdateChatMessageSender)
+
+    /// The message Time To Live setting for a chat was changed
+    case updateChatMessageTtl(UpdateChatMessageTtl)
+
+    /// Notification settings for a chat were changed
+    case updateChatNotificationSettings(UpdateChatNotificationSettings)
 
     /// The chat pending join requests were changed
     case updateChatPendingJoinRequests(UpdateChatPendingJoinRequests)
@@ -118,14 +94,38 @@ public enum Update: Codable, Equatable {
     /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     case updateChatReplyMarkup(UpdateChatReplyMarkup)
 
-    /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
-    case updateChatDraftMessage(UpdateChatDraftMessage)
+    /// The chat theme was changed
+    case updateChatTheme(UpdateChatTheme)
+
+    /// The chat unread_mention_count has changed
+    case updateChatUnreadMentionCount(UpdateChatUnreadMentionCount)
+
+    /// A chat video chat state has changed
+    case updateChatVideoChat(UpdateChatVideoChat)
+
+    /// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
+    case updateChatDefaultDisableNotification(UpdateChatDefaultDisableNotification)
+
+    /// A chat content was allowed or restricted for saving
+    case updateChatHasProtectedContent(UpdateChatHasProtectedContent)
+
+    /// A chat's has_scheduled_messages field has changed
+    case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
+
+    /// A chat was blocked or unblocked
+    case updateChatIsBlocked(UpdateChatIsBlocked)
+
+    /// A chat was marked as unread or was read
+    case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
 
     /// The list of chat filters or a chat filter has changed
     case updateChatFilters(UpdateChatFilters)
 
     /// The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
+
+    /// Notification settings for some type of chats were updated
+    case updateScopeNotificationSettings(UpdateScopeNotificationSettings)
 
     /// A notification was changed
     case updateNotification(UpdateNotification)
@@ -309,26 +309,26 @@ public enum Update: Codable, Equatable {
         case updateChatPermissions
         case updateChatLastMessage
         case updateChatPosition
-        case updateChatDefaultMessageSenderId
-        case updateChatHasProtectedContent
-        case updateChatIsMarkedAsUnread
-        case updateChatIsBlocked
-        case updateChatHasScheduledMessages
-        case updateChatVideoChat
-        case updateChatDefaultDisableNotification
         case updateChatReadInbox
         case updateChatReadOutbox
-        case updateChatUnreadMentionCount
-        case updateChatNotificationSettings
-        case updateScopeNotificationSettings
-        case updateChatMessageTtlSetting
         case updateChatActionBar
-        case updateChatTheme
+        case updateChatDraftMessage
+        case updateChatMessageSender
+        case updateChatMessageTtl
+        case updateChatNotificationSettings
         case updateChatPendingJoinRequests
         case updateChatReplyMarkup
-        case updateChatDraftMessage
+        case updateChatTheme
+        case updateChatUnreadMentionCount
+        case updateChatVideoChat
+        case updateChatDefaultDisableNotification
+        case updateChatHasProtectedContent
+        case updateChatHasScheduledMessages
+        case updateChatIsBlocked
+        case updateChatIsMarkedAsUnread
         case updateChatFilters
         case updateChatOnlineMemberCount
+        case updateScopeNotificationSettings
         case updateNotification
         case updateNotificationGroup
         case updateActiveNotifications
@@ -443,66 +443,66 @@ public enum Update: Codable, Equatable {
         case .updateChatPosition:
             let value = try UpdateChatPosition(from: decoder)
             self = .updateChatPosition(value)
-        case .updateChatDefaultMessageSenderId:
-            let value = try UpdateChatDefaultMessageSenderId(from: decoder)
-            self = .updateChatDefaultMessageSenderId(value)
-        case .updateChatHasProtectedContent:
-            let value = try UpdateChatHasProtectedContent(from: decoder)
-            self = .updateChatHasProtectedContent(value)
-        case .updateChatIsMarkedAsUnread:
-            let value = try UpdateChatIsMarkedAsUnread(from: decoder)
-            self = .updateChatIsMarkedAsUnread(value)
-        case .updateChatIsBlocked:
-            let value = try UpdateChatIsBlocked(from: decoder)
-            self = .updateChatIsBlocked(value)
-        case .updateChatHasScheduledMessages:
-            let value = try UpdateChatHasScheduledMessages(from: decoder)
-            self = .updateChatHasScheduledMessages(value)
-        case .updateChatVideoChat:
-            let value = try UpdateChatVideoChat(from: decoder)
-            self = .updateChatVideoChat(value)
-        case .updateChatDefaultDisableNotification:
-            let value = try UpdateChatDefaultDisableNotification(from: decoder)
-            self = .updateChatDefaultDisableNotification(value)
         case .updateChatReadInbox:
             let value = try UpdateChatReadInbox(from: decoder)
             self = .updateChatReadInbox(value)
         case .updateChatReadOutbox:
             let value = try UpdateChatReadOutbox(from: decoder)
             self = .updateChatReadOutbox(value)
-        case .updateChatUnreadMentionCount:
-            let value = try UpdateChatUnreadMentionCount(from: decoder)
-            self = .updateChatUnreadMentionCount(value)
-        case .updateChatNotificationSettings:
-            let value = try UpdateChatNotificationSettings(from: decoder)
-            self = .updateChatNotificationSettings(value)
-        case .updateScopeNotificationSettings:
-            let value = try UpdateScopeNotificationSettings(from: decoder)
-            self = .updateScopeNotificationSettings(value)
-        case .updateChatMessageTtlSetting:
-            let value = try UpdateChatMessageTtlSetting(from: decoder)
-            self = .updateChatMessageTtlSetting(value)
         case .updateChatActionBar:
             let value = try UpdateChatActionBar(from: decoder)
             self = .updateChatActionBar(value)
-        case .updateChatTheme:
-            let value = try UpdateChatTheme(from: decoder)
-            self = .updateChatTheme(value)
+        case .updateChatDraftMessage:
+            let value = try UpdateChatDraftMessage(from: decoder)
+            self = .updateChatDraftMessage(value)
+        case .updateChatMessageSender:
+            let value = try UpdateChatMessageSender(from: decoder)
+            self = .updateChatMessageSender(value)
+        case .updateChatMessageTtl:
+            let value = try UpdateChatMessageTtl(from: decoder)
+            self = .updateChatMessageTtl(value)
+        case .updateChatNotificationSettings:
+            let value = try UpdateChatNotificationSettings(from: decoder)
+            self = .updateChatNotificationSettings(value)
         case .updateChatPendingJoinRequests:
             let value = try UpdateChatPendingJoinRequests(from: decoder)
             self = .updateChatPendingJoinRequests(value)
         case .updateChatReplyMarkup:
             let value = try UpdateChatReplyMarkup(from: decoder)
             self = .updateChatReplyMarkup(value)
-        case .updateChatDraftMessage:
-            let value = try UpdateChatDraftMessage(from: decoder)
-            self = .updateChatDraftMessage(value)
+        case .updateChatTheme:
+            let value = try UpdateChatTheme(from: decoder)
+            self = .updateChatTheme(value)
+        case .updateChatUnreadMentionCount:
+            let value = try UpdateChatUnreadMentionCount(from: decoder)
+            self = .updateChatUnreadMentionCount(value)
+        case .updateChatVideoChat:
+            let value = try UpdateChatVideoChat(from: decoder)
+            self = .updateChatVideoChat(value)
+        case .updateChatDefaultDisableNotification:
+            let value = try UpdateChatDefaultDisableNotification(from: decoder)
+            self = .updateChatDefaultDisableNotification(value)
+        case .updateChatHasProtectedContent:
+            let value = try UpdateChatHasProtectedContent(from: decoder)
+            self = .updateChatHasProtectedContent(value)
+        case .updateChatHasScheduledMessages:
+            let value = try UpdateChatHasScheduledMessages(from: decoder)
+            self = .updateChatHasScheduledMessages(value)
+        case .updateChatIsBlocked:
+            let value = try UpdateChatIsBlocked(from: decoder)
+            self = .updateChatIsBlocked(value)
+        case .updateChatIsMarkedAsUnread:
+            let value = try UpdateChatIsMarkedAsUnread(from: decoder)
+            self = .updateChatIsMarkedAsUnread(value)
         case .updateChatFilters:
             let value = try UpdateChatFilters(from: decoder)
             self = .updateChatFilters(value)
         case .updateChatOnlineMemberCount:
             let value = try UpdateChatOnlineMemberCount(from: decoder)
             self = .updateChatOnlineMemberCount(value)
+        case .updateScopeNotificationSettings:
+            let value = try UpdateScopeNotificationSettings(from: decoder)
+            self = .updateScopeNotificationSettings(value)
         case .updateNotification:
             let value = try UpdateNotification(from: decoder)
             self = .updateNotification(value)
@@ -725,50 +725,26 @@ public enum Update: Codable, Equatable {
         case .updateChatPosition(let value):
             try container.encode(Kind.updateChatPosition, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatDefaultMessageSenderId(let value):
-            try container.encode(Kind.updateChatDefaultMessageSenderId, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatHasProtectedContent(let value):
-            try container.encode(Kind.updateChatHasProtectedContent, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatIsMarkedAsUnread(let value):
-            try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatIsBlocked(let value):
-            try container.encode(Kind.updateChatIsBlocked, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatHasScheduledMessages(let value):
-            try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatVideoChat(let value):
-            try container.encode(Kind.updateChatVideoChat, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatDefaultDisableNotification(let value):
-            try container.encode(Kind.updateChatDefaultDisableNotification, forKey: .type)
-            try value.encode(to: encoder)
         case .updateChatReadInbox(let value):
             try container.encode(Kind.updateChatReadInbox, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatReadOutbox(let value):
             try container.encode(Kind.updateChatReadOutbox, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatUnreadMentionCount(let value):
-            try container.encode(Kind.updateChatUnreadMentionCount, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatNotificationSettings(let value):
-            try container.encode(Kind.updateChatNotificationSettings, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateScopeNotificationSettings(let value):
-            try container.encode(Kind.updateScopeNotificationSettings, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatMessageTtlSetting(let value):
-            try container.encode(Kind.updateChatMessageTtlSetting, forKey: .type)
-            try value.encode(to: encoder)
         case .updateChatActionBar(let value):
             try container.encode(Kind.updateChatActionBar, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatTheme(let value):
-            try container.encode(Kind.updateChatTheme, forKey: .type)
+        case .updateChatDraftMessage(let value):
+            try container.encode(Kind.updateChatDraftMessage, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatMessageSender(let value):
+            try container.encode(Kind.updateChatMessageSender, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatMessageTtl(let value):
+            try container.encode(Kind.updateChatMessageTtl, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatNotificationSettings(let value):
+            try container.encode(Kind.updateChatNotificationSettings, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatPendingJoinRequests(let value):
             try container.encode(Kind.updateChatPendingJoinRequests, forKey: .type)
@@ -776,14 +752,38 @@ public enum Update: Codable, Equatable {
         case .updateChatReplyMarkup(let value):
             try container.encode(Kind.updateChatReplyMarkup, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatDraftMessage(let value):
-            try container.encode(Kind.updateChatDraftMessage, forKey: .type)
+        case .updateChatTheme(let value):
+            try container.encode(Kind.updateChatTheme, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatUnreadMentionCount(let value):
+            try container.encode(Kind.updateChatUnreadMentionCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatVideoChat(let value):
+            try container.encode(Kind.updateChatVideoChat, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatDefaultDisableNotification(let value):
+            try container.encode(Kind.updateChatDefaultDisableNotification, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatHasProtectedContent(let value):
+            try container.encode(Kind.updateChatHasProtectedContent, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatHasScheduledMessages(let value):
+            try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatIsBlocked(let value):
+            try container.encode(Kind.updateChatIsBlocked, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatIsMarkedAsUnread(let value):
+            try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatFilters(let value):
             try container.encode(Kind.updateChatFilters, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatOnlineMemberCount(let value):
             try container.encode(Kind.updateChatOnlineMemberCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateScopeNotificationSettings(let value):
+            try container.encode(Kind.updateScopeNotificationSettings, forKey: .type)
             try value.encode(to: encoder)
         case .updateNotification(let value):
             try container.encode(Kind.updateNotification, forKey: .type)
@@ -1317,139 +1317,6 @@ public struct UpdateChatPosition: Codable, Equatable {
     }
 }
 
-/// The default message sender that is chosen to send messages in a chat has changed
-public struct UpdateChatDefaultMessageSenderId: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of default_message_sender_id; may be null if the user can't change message sender
-    public let defaultMessageSenderId: MessageSender?
-
-
-    public init(
-        chatId: Int64,
-        defaultMessageSenderId: MessageSender?
-    ) {
-        self.chatId = chatId
-        self.defaultMessageSenderId = defaultMessageSenderId
-    }
-}
-
-/// A chat content was allowed or restricted for saving
-public struct UpdateChatHasProtectedContent: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of has_protected_content
-    public let hasProtectedContent: Bool
-
-
-    public init(
-        chatId: Int64,
-        hasProtectedContent: Bool
-    ) {
-        self.chatId = chatId
-        self.hasProtectedContent = hasProtectedContent
-    }
-}
-
-/// A chat was marked as unread or was read
-public struct UpdateChatIsMarkedAsUnread: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of is_marked_as_unread
-    public let isMarkedAsUnread: Bool
-
-
-    public init(
-        chatId: Int64,
-        isMarkedAsUnread: Bool
-    ) {
-        self.chatId = chatId
-        self.isMarkedAsUnread = isMarkedAsUnread
-    }
-}
-
-/// A chat was blocked or unblocked
-public struct UpdateChatIsBlocked: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of is_blocked
-    public let isBlocked: Bool
-
-
-    public init(
-        chatId: Int64,
-        isBlocked: Bool
-    ) {
-        self.chatId = chatId
-        self.isBlocked = isBlocked
-    }
-}
-
-/// A chat's has_scheduled_messages field has changed
-public struct UpdateChatHasScheduledMessages: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of has_scheduled_messages
-    public let hasScheduledMessages: Bool
-
-
-    public init(
-        chatId: Int64,
-        hasScheduledMessages: Bool
-    ) {
-        self.chatId = chatId
-        self.hasScheduledMessages = hasScheduledMessages
-    }
-}
-
-/// A chat video chat state has changed
-public struct UpdateChatVideoChat: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of video_chat
-    public let videoChat: VideoChat
-
-
-    public init(
-        chatId: Int64,
-        videoChat: VideoChat
-    ) {
-        self.chatId = chatId
-        self.videoChat = videoChat
-    }
-}
-
-/// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
-public struct UpdateChatDefaultDisableNotification: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// The new default_disable_notification value
-    public let defaultDisableNotification: Bool
-
-
-    public init(
-        chatId: Int64,
-        defaultDisableNotification: Bool
-    ) {
-        self.chatId = chatId
-        self.defaultDisableNotification = defaultDisableNotification
-    }
-}
-
 /// Incoming messages were read or the number of unread messages has been changed
 public struct UpdateChatReadInbox: Codable, Equatable {
 
@@ -1493,82 +1360,6 @@ public struct UpdateChatReadOutbox: Codable, Equatable {
     }
 }
 
-/// The chat unread_mention_count has changed
-public struct UpdateChatUnreadMentionCount: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// The number of unread mention messages left in the chat
-    public let unreadMentionCount: Int
-
-
-    public init(
-        chatId: Int64,
-        unreadMentionCount: Int
-    ) {
-        self.chatId = chatId
-        self.unreadMentionCount = unreadMentionCount
-    }
-}
-
-/// Notification settings for a chat were changed
-public struct UpdateChatNotificationSettings: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// The new notification settings
-    public let notificationSettings: ChatNotificationSettings
-
-
-    public init(
-        chatId: Int64,
-        notificationSettings: ChatNotificationSettings
-    ) {
-        self.chatId = chatId
-        self.notificationSettings = notificationSettings
-    }
-}
-
-/// Notification settings for some type of chats were updated
-public struct UpdateScopeNotificationSettings: Codable, Equatable {
-
-    /// The new notification settings
-    public let notificationSettings: ScopeNotificationSettings
-
-    /// Types of chats for which notification settings were updated
-    public let scope: NotificationSettingsScope
-
-
-    public init(
-        notificationSettings: ScopeNotificationSettings,
-        scope: NotificationSettingsScope
-    ) {
-        self.notificationSettings = notificationSettings
-        self.scope = scope
-    }
-}
-
-/// The message Time To Live setting for a chat was changed
-public struct UpdateChatMessageTtlSetting: Codable, Equatable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// New value of message_ttl_setting
-    public let messageTtlSetting: Int
-
-
-    public init(
-        chatId: Int64,
-        messageTtlSetting: Int
-    ) {
-        self.chatId = chatId
-        self.messageTtlSetting = messageTtlSetting
-    }
-}
-
 /// The chat action bar was changed
 public struct UpdateChatActionBar: Codable, Equatable {
 
@@ -1588,22 +1379,84 @@ public struct UpdateChatActionBar: Codable, Equatable {
     }
 }
 
-/// The chat theme was changed
-public struct UpdateChatTheme: Codable, Equatable {
+/// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
+public struct UpdateChatDraftMessage: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new name of the chat theme; may be empty if theme was reset to default
-    public let themeName: String
+    /// The new draft message; may be null
+    public let draftMessage: DraftMessage?
+
+    /// The new chat positions in the chat lists
+    public let positions: [ChatPosition]
 
 
     public init(
         chatId: Int64,
-        themeName: String
+        draftMessage: DraftMessage?,
+        positions: [ChatPosition]
     ) {
         self.chatId = chatId
-        self.themeName = themeName
+        self.draftMessage = draftMessage
+        self.positions = positions
+    }
+}
+
+/// The message sender that is selected to send messages in a chat has changed
+public struct UpdateChatMessageSender: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of message_sender_id; may be null if the user can't change message sender
+    public let messageSenderId: MessageSender?
+
+
+    public init(
+        chatId: Int64,
+        messageSenderId: MessageSender?
+    ) {
+        self.chatId = chatId
+        self.messageSenderId = messageSenderId
+    }
+}
+
+/// The message Time To Live setting for a chat was changed
+public struct UpdateChatMessageTtl: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of message_ttl
+    public let messageTtl: Int
+
+
+    public init(
+        chatId: Int64,
+        messageTtl: Int
+    ) {
+        self.chatId = chatId
+        self.messageTtl = messageTtl
+    }
+}
+
+/// Notification settings for a chat were changed
+public struct UpdateChatNotificationSettings: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new notification settings
+    public let notificationSettings: ChatNotificationSettings
+
+
+    public init(
+        chatId: Int64,
+        notificationSettings: ChatNotificationSettings
+    ) {
+        self.chatId = chatId
+        self.notificationSettings = notificationSettings
     }
 }
 
@@ -1645,27 +1498,155 @@ public struct UpdateChatReplyMarkup: Codable, Equatable {
     }
 }
 
-/// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
-public struct UpdateChatDraftMessage: Codable, Equatable {
+/// The chat theme was changed
+public struct UpdateChatTheme: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new draft message; may be null
-    public let draftMessage: DraftMessage?
-
-    /// The new chat positions in the chat lists
-    public let positions: [ChatPosition]
+    /// The new name of the chat theme; may be empty if theme was reset to default
+    public let themeName: String
 
 
     public init(
         chatId: Int64,
-        draftMessage: DraftMessage?,
-        positions: [ChatPosition]
+        themeName: String
     ) {
         self.chatId = chatId
-        self.draftMessage = draftMessage
-        self.positions = positions
+        self.themeName = themeName
+    }
+}
+
+/// The chat unread_mention_count has changed
+public struct UpdateChatUnreadMentionCount: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The number of unread mention messages left in the chat
+    public let unreadMentionCount: Int
+
+
+    public init(
+        chatId: Int64,
+        unreadMentionCount: Int
+    ) {
+        self.chatId = chatId
+        self.unreadMentionCount = unreadMentionCount
+    }
+}
+
+/// A chat video chat state has changed
+public struct UpdateChatVideoChat: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of video_chat
+    public let videoChat: VideoChat
+
+
+    public init(
+        chatId: Int64,
+        videoChat: VideoChat
+    ) {
+        self.chatId = chatId
+        self.videoChat = videoChat
+    }
+}
+
+/// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
+public struct UpdateChatDefaultDisableNotification: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new default_disable_notification value
+    public let defaultDisableNotification: Bool
+
+
+    public init(
+        chatId: Int64,
+        defaultDisableNotification: Bool
+    ) {
+        self.chatId = chatId
+        self.defaultDisableNotification = defaultDisableNotification
+    }
+}
+
+/// A chat content was allowed or restricted for saving
+public struct UpdateChatHasProtectedContent: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of has_protected_content
+    public let hasProtectedContent: Bool
+
+
+    public init(
+        chatId: Int64,
+        hasProtectedContent: Bool
+    ) {
+        self.chatId = chatId
+        self.hasProtectedContent = hasProtectedContent
+    }
+}
+
+/// A chat's has_scheduled_messages field has changed
+public struct UpdateChatHasScheduledMessages: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of has_scheduled_messages
+    public let hasScheduledMessages: Bool
+
+
+    public init(
+        chatId: Int64,
+        hasScheduledMessages: Bool
+    ) {
+        self.chatId = chatId
+        self.hasScheduledMessages = hasScheduledMessages
+    }
+}
+
+/// A chat was blocked or unblocked
+public struct UpdateChatIsBlocked: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of is_blocked
+    public let isBlocked: Bool
+
+
+    public init(
+        chatId: Int64,
+        isBlocked: Bool
+    ) {
+        self.chatId = chatId
+        self.isBlocked = isBlocked
+    }
+}
+
+/// A chat was marked as unread or was read
+public struct UpdateChatIsMarkedAsUnread: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of is_marked_as_unread
+    public let isMarkedAsUnread: Bool
+
+
+    public init(
+        chatId: Int64,
+        isMarkedAsUnread: Bool
+    ) {
+        self.chatId = chatId
+        self.isMarkedAsUnread = isMarkedAsUnread
     }
 }
 
@@ -1697,6 +1678,25 @@ public struct UpdateChatOnlineMemberCount: Codable, Equatable {
     ) {
         self.chatId = chatId
         self.onlineMemberCount = onlineMemberCount
+    }
+}
+
+/// Notification settings for some type of chats were updated
+public struct UpdateScopeNotificationSettings: Codable, Equatable {
+
+    /// The new notification settings
+    public let notificationSettings: ScopeNotificationSettings
+
+    /// Types of chats for which notification settings were updated
+    public let scope: NotificationSettingsScope
+
+
+    public init(
+        notificationSettings: ScopeNotificationSettings,
+        scope: NotificationSettingsScope
+    ) {
+        self.notificationSettings = notificationSettings
+        self.scope = scope
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetChatJoinRequests: Codable, Equatable {
     /// Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     public let inviteLink: String?
 
-    /// The maximum number of chat join requests to return
+    /// The maximum number of requests to join the chat to return
     public let limit: Int?
 
     /// A chat join request from which to return next requests; pass null to get results from the beginning

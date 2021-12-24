@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
 
 
-/// Contains information about pending chat join requests
+/// Contains information about pending join requests for a chat
 public struct ChatJoinRequestsInfo: Codable, Equatable {
 
     /// Total number of pending join requests

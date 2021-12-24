@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
 
 
-/// Changes default participant identifier, which can be used to join video chats in a chat
+/// Changes default participant identifier, on whose behalf a video chat in the chat will be joined
 public struct SetVideoChatDefaultParticipant: Codable, Equatable {
 
     /// Chat identifier

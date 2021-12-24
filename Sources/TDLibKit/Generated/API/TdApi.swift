@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -2149,7 +2149,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+    /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
@@ -2167,7 +2167,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+    /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
@@ -2285,23 +2285,23 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns sponsored messages to be shown in a chat; for channel chats only
+    /// Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
     /// - Parameter chatId: Identifier of the chat
-    public func getChatSponsoredMessages(
+    public func getChatSponsoredMessage(
         chatId: Int64?,
-        completion: @escaping (Result<SponsoredMessages, Swift.Error>) -> Void
+        completion: @escaping (Result<SponsoredMessage, Swift.Error>) -> Void
     ) throws {
-        let query = GetChatSponsoredMessages(
+        let query = GetChatSponsoredMessage(
             chatId: chatId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns sponsored messages to be shown in a chat; for channel chats only
+    /// Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func getChatSponsoredMessages(chatId: Int64?) async throws -> SponsoredMessages {
-        let query = GetChatSponsoredMessages(
+    public func getChatSponsoredMessage(chatId: Int64?) async throws -> SponsoredMessage {
+        let query = GetChatSponsoredMessage(
             chatId: chatId
         )
         return try await execute(query: query)
@@ -2525,32 +2525,32 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes default message sender that is chosen in a chat
+    /// Selects a message sender to send messages in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter defaultMessageSenderId: New default message sender in the chat
-    public func setChatDefaultMessageSender(
+    /// - Parameter messageSenderId: New message sender for the chat
+    public func setChatMessageSender(
         chatId: Int64?,
-        defaultMessageSenderId: MessageSender?,
+        messageSenderId: MessageSender?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetChatDefaultMessageSender(
+        let query = SetChatMessageSender(
             chatId: chatId,
-            defaultMessageSenderId: defaultMessageSenderId
+            messageSenderId: messageSenderId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes default message sender that is chosen in a chat
+    /// Selects a message sender to send messages in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter defaultMessageSenderId: New default message sender in the chat
+    /// - Parameter messageSenderId: New message sender for the chat
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func setChatDefaultMessageSender(
+    public func setChatMessageSender(
         chatId: Int64?,
-        defaultMessageSenderId: MessageSender?
+        messageSenderId: MessageSender?
     ) async throws -> Ok {
-        let query = SetChatDefaultMessageSender(
+        let query = SetChatMessageSender(
             chatId: chatId,
-            defaultMessageSenderId: defaultMessageSenderId
+            messageSenderId: messageSenderId
         )
         return try await execute(query: query)
     }
@@ -5160,30 +5160,30 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
+    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
     /// - Parameter chatId: Chat identifier
     /// - Parameter ttl: New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
-    public func setChatMessageTtlSetting(
+    public func setChatMessageTtl(
         chatId: Int64?,
         ttl: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetChatMessageTtlSetting(
+        let query = SetChatMessageTtl(
             chatId: chatId,
             ttl: ttl
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
+    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
     /// - Parameter chatId: Chat identifier
     /// - Parameter ttl: New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func setChatMessageTtlSetting(
+    public func setChatMessageTtl(
         chatId: Int64?,
         ttl: Int?
     ) async throws -> Ok {
-        let query = SetChatMessageTtlSetting(
+        let query = SetChatMessageTtl(
             chatId: chatId,
             ttl: ttl
         )
@@ -6625,13 +6625,13 @@ public final class TdApi {
     /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
-    /// - Parameter expireDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
-    /// - Parameter memberLimit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+    /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     /// - Parameter name: Invite link name; 0-32 characters
     public func createChatInviteLink(
         chatId: Int64?,
         createsJoinRequest: Bool?,
-        expireDate: Int?,
+        expirationDate: Int?,
         memberLimit: Int?,
         name: String?,
         completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
@@ -6639,7 +6639,7 @@ public final class TdApi {
         let query = CreateChatInviteLink(
             chatId: chatId,
             createsJoinRequest: createsJoinRequest,
-            expireDate: expireDate,
+            expirationDate: expirationDate,
             memberLimit: memberLimit,
             name: name
         )
@@ -6649,21 +6649,21 @@ public final class TdApi {
     /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
-    /// - Parameter expireDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
-    /// - Parameter memberLimit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+    /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     /// - Parameter name: Invite link name; 0-32 characters
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func createChatInviteLink(
         chatId: Int64?,
         createsJoinRequest: Bool?,
-        expireDate: Int?,
+        expirationDate: Int?,
         memberLimit: Int?,
         name: String?
     ) async throws -> ChatInviteLink {
         let query = CreateChatInviteLink(
             chatId: chatId,
             createsJoinRequest: createsJoinRequest,
-            expireDate: expireDate,
+            expirationDate: expirationDate,
             memberLimit: memberLimit,
             name: name
         )
@@ -6673,14 +6673,14 @@ public final class TdApi {
     /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
-    /// - Parameter expireDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+    /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter inviteLink: Invite link to be edited
-    /// - Parameter memberLimit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     /// - Parameter name: Invite link name; 0-32 characters
     public func editChatInviteLink(
         chatId: Int64?,
         createsJoinRequest: Bool?,
-        expireDate: Int?,
+        expirationDate: Int?,
         inviteLink: String?,
         memberLimit: Int?,
         name: String?,
@@ -6689,7 +6689,7 @@ public final class TdApi {
         let query = EditChatInviteLink(
             chatId: chatId,
             createsJoinRequest: createsJoinRequest,
-            expireDate: expireDate,
+            expirationDate: expirationDate,
             inviteLink: inviteLink,
             memberLimit: memberLimit,
             name: name
@@ -6700,15 +6700,15 @@ public final class TdApi {
     /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
-    /// - Parameter expireDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+    /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter inviteLink: Invite link to be edited
-    /// - Parameter memberLimit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     /// - Parameter name: Invite link name; 0-32 characters
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func editChatInviteLink(
         chatId: Int64?,
         createsJoinRequest: Bool?,
-        expireDate: Int?,
+        expirationDate: Int?,
         inviteLink: String?,
         memberLimit: Int?,
         name: String?
@@ -6716,7 +6716,7 @@ public final class TdApi {
         let query = EditChatInviteLink(
             chatId: chatId,
             createsJoinRequest: createsJoinRequest,
-            expireDate: expireDate,
+            expirationDate: expirationDate,
             inviteLink: inviteLink,
             memberLimit: memberLimit,
             name: name
@@ -6830,7 +6830,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to return chat members
     /// - Parameter limit: The maximum number of chat members to return; up to 100
@@ -6851,7 +6851,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to return chat members
     /// - Parameter limit: The maximum number of chat members to return; up to 100
@@ -7009,7 +7009,7 @@ public final class TdApi {
     /// Returns pending join requests in a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-    /// - Parameter limit: The maximum number of chat join requests to return
+    /// - Parameter limit: The maximum number of requests to join the chat to return
     /// - Parameter offsetRequest: A chat join request from which to return next requests; pass null to get results from the beginning
     /// - Parameter query: A query to search for in the first names, last names and usernames of the users to return
     public func getChatJoinRequests(
@@ -7033,7 +7033,7 @@ public final class TdApi {
     /// Returns pending join requests in a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-    /// - Parameter limit: The maximum number of chat join requests to return
+    /// - Parameter limit: The maximum number of requests to join the chat to return
     /// - Parameter offsetRequest: A chat join request from which to return next requests; pass null to get results from the beginning
     /// - Parameter query: A query to search for in the first names, last names and usernames of the users to return
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
@@ -7342,7 +7342,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns list of participant identifiers, which can be used to join video chats in a chat
+    /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
     /// - Parameter chatId: Chat identifier
     public func getVideoChatAvailableParticipants(
         chatId: Int64?,
@@ -7354,7 +7354,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns list of participant identifiers, which can be used to join video chats in a chat
+    /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
     /// - Parameter chatId: Chat identifier
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func getVideoChatAvailableParticipants(chatId: Int64?) async throws -> MessageSenders {
@@ -7364,7 +7364,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes default participant identifier, which can be used to join video chats in a chat
+    /// Changes default participant identifier, on whose behalf a video chat in the chat will be joined
     /// - Parameter chatId: Chat identifier
     /// - Parameter defaultParticipantId: Default group call participant identifier to join the video chats
     public func setVideoChatDefaultParticipant(
@@ -7379,7 +7379,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes default participant identifier, which can be used to join video chats in a chat
+    /// Changes default participant identifier, on whose behalf a video chat in the chat will be joined
     /// - Parameter chatId: Chat identifier
     /// - Parameter defaultParticipantId: Default group call participant identifier to join the video chats
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
@@ -8114,23 +8114,23 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Discards a group call. Requires groupCall.can_be_managed
+    /// Ends a group call. Requires groupCall.can_be_managed
     /// - Parameter groupCallId: Group call identifier
-    public func discardGroupCall(
+    public func endGroupCall(
         groupCallId: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = DiscardGroupCall(
+        let query = EndGroupCall(
             groupCallId: groupCallId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Discards a group call. Requires groupCall.can_be_managed
+    /// Ends a group call. Requires groupCall.can_be_managed
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func discardGroupCall(groupCallId: Int?) async throws -> Ok {
-        let query = DiscardGroupCall(
+    public func endGroupCall(groupCallId: Int?) async throws -> Ok {
+        let query = EndGroupCall(
             groupCallId: groupCallId
         )
         return try await execute(query: query)

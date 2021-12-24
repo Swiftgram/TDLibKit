@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public struct ChatInviteLink: Codable, Equatable {
     public let editDate: Int
 
     /// Point in time (Unix timestamp) when the link will expire; 0 if never
-    public let expireDate: Int
+    public let expirationDate: Int
 
     /// Chat invite link
     public let inviteLink: String
@@ -55,7 +55,7 @@ public struct ChatInviteLink: Codable, Equatable {
         creatorUserId: Int64,
         date: Int,
         editDate: Int,
-        expireDate: Int,
+        expirationDate: Int,
         inviteLink: String,
         isPrimary: Bool,
         isRevoked: Bool,
@@ -68,7 +68,7 @@ public struct ChatInviteLink: Codable, Equatable {
         self.creatorUserId = creatorUserId
         self.date = date
         self.editDate = editDate
-        self.expireDate = expireDate
+        self.expirationDate = expirationDate
         self.inviteLink = inviteLink
         self.isPrimary = isPrimary
         self.isRevoked = isRevoked

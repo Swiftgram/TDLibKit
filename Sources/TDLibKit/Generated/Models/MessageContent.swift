@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -103,7 +103,7 @@ public enum MessageContent: Codable, Equatable {
     /// New chat members were added
     case messageChatAddMembers(MessageChatAddMembers)
 
-    /// A new member joined the chat by invite link
+    /// A new member joined the chat via an invite link
     case messageChatJoinByLink
 
     /// A new member was accepted to the chat by an administrator
@@ -1105,7 +1105,7 @@ public struct MessageChatSetTheme: Codable, Equatable {
 /// The TTL (Time To Live) setting for messages in the chat has been changed
 public struct MessageChatSetTtl: Codable, Equatable {
 
-    /// New message TTL setting
+    /// New message TTL
     public let ttl: Int
 
 

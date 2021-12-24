@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -22,10 +22,10 @@ public enum AuthenticationCodeType: Codable, Equatable {
     /// An authentication code is delivered via a phone call to the specified phone number
     case authenticationCodeTypeCall(AuthenticationCodeTypeCall)
 
-    /// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number, from which the call was made, is the code that must be entered automatically
+    /// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
     case authenticationCodeTypeFlashCall(AuthenticationCodeTypeFlashCall)
 
-    /// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number, from which the call was made, is the code that is supposed to be entered manually by the user
+    /// An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
     case authenticationCodeTypeMissedCall(AuthenticationCodeTypeMissedCall)
 
 
@@ -117,7 +117,7 @@ public struct AuthenticationCodeTypeCall: Codable, Equatable {
     }
 }
 
-/// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number, from which the call was made, is the code that must be entered automatically
+/// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
 public struct AuthenticationCodeTypeFlashCall: Codable, Equatable {
 
     /// Pattern of the phone number from which the call will be made
@@ -129,7 +129,7 @@ public struct AuthenticationCodeTypeFlashCall: Codable, Equatable {
     }
 }
 
-/// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number, from which the call was made, is the code that is supposed to be entered manually by the user
+/// An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
 public struct AuthenticationCodeTypeMissedCall: Codable, Equatable {
 
     /// Number of digits in the code, excluding the prefix

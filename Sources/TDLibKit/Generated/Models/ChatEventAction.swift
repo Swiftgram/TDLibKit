@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public enum ChatEventAction: Codable, Equatable {
     /// A new member joined the chat
     case chatEventMemberJoined
 
-    /// A new member joined the chat by an invite link
+    /// A new member joined the chat via an invite link
     case chatEventMemberJoinedByInviteLink(ChatEventMemberJoinedByInviteLink)
 
     /// A new member was accepted to the chat by an administrator
@@ -73,8 +73,8 @@ public enum ChatEventAction: Codable, Equatable {
     /// The slow_mode_delay setting of a supergroup was changed
     case chatEventSlowModeDelayChanged(ChatEventSlowModeDelayChanged)
 
-    /// The message TTL setting was changed
-    case chatEventMessageTtlSettingChanged(ChatEventMessageTtlSettingChanged)
+    /// The message TTL was changed
+    case chatEventMessageTtlChanged(ChatEventMessageTtlChanged)
 
     /// The sign_messages setting of a channel was toggled
     case chatEventSignMessagesToggled(ChatEventSignMessagesToggled)
@@ -103,8 +103,8 @@ public enum ChatEventAction: Codable, Equatable {
     /// A video chat was created
     case chatEventVideoChatCreated(ChatEventVideoChatCreated)
 
-    /// A video chat was discarded
-    case chatEventVideoChatDiscarded(ChatEventVideoChatDiscarded)
+    /// A video chat was ended
+    case chatEventVideoChatEnded(ChatEventVideoChatEnded)
 
     /// A video chat participant was muted or unmuted
     case chatEventVideoChatParticipantIsMutedToggled(ChatEventVideoChatParticipantIsMutedToggled)
@@ -137,7 +137,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventInvitesToggled
         case chatEventLinkedChatChanged
         case chatEventSlowModeDelayChanged
-        case chatEventMessageTtlSettingChanged
+        case chatEventMessageTtlChanged
         case chatEventSignMessagesToggled
         case chatEventHasProtectedContentToggled
         case chatEventStickerSetChanged
@@ -147,7 +147,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventInviteLinkRevoked
         case chatEventInviteLinkDeleted
         case chatEventVideoChatCreated
-        case chatEventVideoChatDiscarded
+        case chatEventVideoChatEnded
         case chatEventVideoChatParticipantIsMutedToggled
         case chatEventVideoChatParticipantVolumeLevelChanged
         case chatEventVideoChatMuteNewParticipantsToggled
@@ -215,9 +215,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventSlowModeDelayChanged:
             let value = try ChatEventSlowModeDelayChanged(from: decoder)
             self = .chatEventSlowModeDelayChanged(value)
-        case .chatEventMessageTtlSettingChanged:
-            let value = try ChatEventMessageTtlSettingChanged(from: decoder)
-            self = .chatEventMessageTtlSettingChanged(value)
+        case .chatEventMessageTtlChanged:
+            let value = try ChatEventMessageTtlChanged(from: decoder)
+            self = .chatEventMessageTtlChanged(value)
         case .chatEventSignMessagesToggled:
             let value = try ChatEventSignMessagesToggled(from: decoder)
             self = .chatEventSignMessagesToggled(value)
@@ -245,9 +245,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventVideoChatCreated:
             let value = try ChatEventVideoChatCreated(from: decoder)
             self = .chatEventVideoChatCreated(value)
-        case .chatEventVideoChatDiscarded:
-            let value = try ChatEventVideoChatDiscarded(from: decoder)
-            self = .chatEventVideoChatDiscarded(value)
+        case .chatEventVideoChatEnded:
+            let value = try ChatEventVideoChatEnded(from: decoder)
+            self = .chatEventVideoChatEnded(value)
         case .chatEventVideoChatParticipantIsMutedToggled:
             let value = try ChatEventVideoChatParticipantIsMutedToggled(from: decoder)
             self = .chatEventVideoChatParticipantIsMutedToggled(value)
@@ -321,8 +321,8 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventSlowModeDelayChanged(let value):
             try container.encode(Kind.chatEventSlowModeDelayChanged, forKey: .type)
             try value.encode(to: encoder)
-        case .chatEventMessageTtlSettingChanged(let value):
-            try container.encode(Kind.chatEventMessageTtlSettingChanged, forKey: .type)
+        case .chatEventMessageTtlChanged(let value):
+            try container.encode(Kind.chatEventMessageTtlChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventSignMessagesToggled(let value):
             try container.encode(Kind.chatEventSignMessagesToggled, forKey: .type)
@@ -351,8 +351,8 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventVideoChatCreated(let value):
             try container.encode(Kind.chatEventVideoChatCreated, forKey: .type)
             try value.encode(to: encoder)
-        case .chatEventVideoChatDiscarded(let value):
-            try container.encode(Kind.chatEventVideoChatDiscarded, forKey: .type)
+        case .chatEventVideoChatEnded(let value):
+            try container.encode(Kind.chatEventVideoChatEnded, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventVideoChatParticipantIsMutedToggled(let value):
             try container.encode(Kind.chatEventVideoChatParticipantIsMutedToggled, forKey: .type)
@@ -434,7 +434,7 @@ public struct ChatEventMessageUnpinned: Codable, Equatable {
     }
 }
 
-/// A new member joined the chat by an invite link
+/// A new member joined the chat via an invite link
 public struct ChatEventMemberJoinedByInviteLink: Codable, Equatable {
 
     /// Invite link used to join the chat
@@ -677,22 +677,22 @@ public struct ChatEventSlowModeDelayChanged: Codable, Equatable {
     }
 }
 
-/// The message TTL setting was changed
-public struct ChatEventMessageTtlSettingChanged: Codable, Equatable {
+/// The message TTL was changed
+public struct ChatEventMessageTtlChanged: Codable, Equatable {
 
-    /// New value of message_ttl_setting
-    public let newMessageTtlSetting: Int
+    /// New value of message_ttl
+    public let newMessageTtl: Int
 
-    /// Previous value of message_ttl_setting
-    public let oldMessageTtlSetting: Int
+    /// Previous value of message_ttl
+    public let oldMessageTtl: Int
 
 
     public init(
-        newMessageTtlSetting: Int,
-        oldMessageTtlSetting: Int
+        newMessageTtl: Int,
+        oldMessageTtl: Int
     ) {
-        self.newMessageTtlSetting = newMessageTtlSetting
-        self.oldMessageTtlSetting = oldMessageTtlSetting
+        self.newMessageTtl = newMessageTtl
+        self.oldMessageTtl = oldMessageTtl
     }
 }
 
@@ -825,8 +825,8 @@ public struct ChatEventVideoChatCreated: Codable, Equatable {
     }
 }
 
-/// A video chat was discarded
-public struct ChatEventVideoChatDiscarded: Codable, Equatable {
+/// A video chat was ended
+public struct ChatEventVideoChatEnded: Codable, Equatable {
 
     /// Identifier of the video chat. The video chat can be received through the method getGroupCall
     public let groupCallId: Int

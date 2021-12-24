@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct MessageReplyInfo: Codable, Equatable {
     /// Identifier of the last read outgoing reply to the message
     public let lastReadOutboxMessageId: Int64
 
-    /// Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup
+    /// Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup. The users and chats are expected to be inaccessible: only their photo and name will be available
     public let recentReplierIds: [MessageSender]
 
     /// Number of times the message was directly or indirectly replied

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -30,9 +30,6 @@ public struct Chat: Codable, Equatable {
 
     /// Default value of the disable_notification parameter, used when a message is sent to the chat
     public let defaultDisableNotification: Bool
-
-    /// Default identifier of a user or chat that is chosen to send messages in the chat; may be null if the user can't change message sender
-    public let defaultMessageSenderId: MessageSender?
 
     /// A draft of a message in the chat; may be null
     public let draftMessage: DraftMessage?
@@ -61,8 +58,11 @@ public struct Chat: Codable, Equatable {
     /// Identifier of the last read outgoing message
     public let lastReadOutboxMessageId: Int64
 
+    /// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
+    public let messageSenderId: MessageSender?
+
     /// Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
-    public let messageTtlSetting: Int
+    public let messageTtl: Int
 
     /// Notification settings for this chat
     public let notificationSettings: ChatNotificationSettings
@@ -108,7 +108,6 @@ public struct Chat: Codable, Equatable {
         canBeReported: Bool,
         clientData: String,
         defaultDisableNotification: Bool,
-        defaultMessageSenderId: MessageSender?,
         draftMessage: DraftMessage?,
         hasProtectedContent: Bool,
         hasScheduledMessages: Bool,
@@ -118,7 +117,8 @@ public struct Chat: Codable, Equatable {
         lastMessage: Message?,
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
-        messageTtlSetting: Int,
+        messageSenderId: MessageSender?,
+        messageTtl: Int,
         notificationSettings: ChatNotificationSettings,
         pendingJoinRequests: ChatJoinRequestsInfo?,
         permissions: ChatPermissions,
@@ -138,7 +138,6 @@ public struct Chat: Codable, Equatable {
         self.canBeReported = canBeReported
         self.clientData = clientData
         self.defaultDisableNotification = defaultDisableNotification
-        self.defaultMessageSenderId = defaultMessageSenderId
         self.draftMessage = draftMessage
         self.hasProtectedContent = hasProtectedContent
         self.hasScheduledMessages = hasScheduledMessages
@@ -148,7 +147,8 @@ public struct Chat: Codable, Equatable {
         self.lastMessage = lastMessage
         self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
-        self.messageTtlSetting = messageTtlSetting
+        self.messageSenderId = messageSenderId
+        self.messageTtl = messageTtl
         self.notificationSettings = notificationSettings
         self.pendingJoinRequests = pendingJoinRequests
         self.permissions = permissions

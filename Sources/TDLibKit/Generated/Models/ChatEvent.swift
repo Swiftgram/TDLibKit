@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a chat event
 public struct ChatEvent: Codable, Equatable {
 
-    /// Action performed by the user
+    /// The action
     public let action: ChatEventAction
 
     /// Point in time (Unix timestamp) when the event happened
@@ -22,20 +22,20 @@ public struct ChatEvent: Codable, Equatable {
     /// Chat event identifier
     public let id: TdInt64
 
-    /// Identifier of the user who performed the action that triggered the event
-    public let userId: Int64
+    /// Identifier of the user or chat who performed the action
+    public let memberId: MessageSender
 
 
     public init(
         action: ChatEventAction,
         date: Int,
         id: TdInt64,
-        userId: Int64
+        memberId: MessageSender
     ) {
         self.action = action
         self.date = date
         self.id = id
-        self.userId = userId
+        self.memberId = memberId
     }
 }
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
 
 
-/// Contains a list of chat join requests
+/// Contains a list of requests to join a chat
 public struct ChatJoinRequests: Codable, Equatable {
 
     /// List of the requests

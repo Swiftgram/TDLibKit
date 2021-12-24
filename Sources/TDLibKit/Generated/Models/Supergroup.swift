@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct Supergroup: Codable, Equatable {
     /// Supergroup or channel identifier
     public let id: Int64
 
-    /// True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on number of members
+    /// True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     public let isBroadcastGroup: Bool
 
     /// True, if the supergroup is a channel

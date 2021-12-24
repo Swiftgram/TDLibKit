@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.7.11-d4f5e672
+//  https://github.com/tdlib/td/tree/d4f5e672
 //
 
 import Foundation
@@ -20,12 +20,12 @@ public struct EditChatInviteLink: Codable, Equatable {
     public let createsJoinRequest: Bool?
 
     /// Point in time (Unix timestamp) when the link will expire; pass 0 if never
-    public let expireDate: Int?
+    public let expirationDate: Int?
 
     /// Invite link to be edited
     public let inviteLink: String?
 
-    /// The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    /// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     public let memberLimit: Int?
 
     /// Invite link name; 0-32 characters
@@ -35,14 +35,14 @@ public struct EditChatInviteLink: Codable, Equatable {
     public init(
         chatId: Int64?,
         createsJoinRequest: Bool?,
-        expireDate: Int?,
+        expirationDate: Int?,
         inviteLink: String?,
         memberLimit: Int?,
         name: String?
     ) {
         self.chatId = chatId
         self.createsJoinRequest = createsJoinRequest
-        self.expireDate = expireDate
+        self.expirationDate = expirationDate
         self.inviteLink = inviteLink
         self.memberLimit = memberLimit
         self.name = name
