@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.11-d4f5e672
-//  https://github.com/tdlib/td/tree/d4f5e672
+//  Based on TDLib 1.7.11-b4925dc4
+//  https://github.com/tdlib/td/tree/b4925dc4
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct ChatFilter: Codable, Equatable {
     /// The chat identifiers of always excluded chats in the filtered chat list
     public let excludedChatIds: [Int64]
 
-    /// The icon name for short filter representation. If non-empty, must be one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work".//-If empty, use getChatFilterDefaultIconName to get default icon name for the filter
+    /// The chosen icon name for short filter representation. If non-empty, must be one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work".//-If empty, use getChatFilterDefaultIconName to get default icon name for the filter
     public let iconName: String
 
     /// True, if bots need to be included
