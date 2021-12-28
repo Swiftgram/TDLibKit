@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.11-b4925dc4
-//  https://github.com/tdlib/td/tree/b4925dc4
+//  Based on TDLib 1.7.12-a6903023
+//  https://github.com/tdlib/td/tree/a6903023
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public enum MessageForwardOrigin: Codable, Equatable {
     /// The message was originally sent by a known user
     case messageForwardOriginUser(MessageForwardOriginUser)
 
-    /// The message was originally sent by an anonymous chat administrator on behalf of the chat
+    /// The message was originally sent on behalf of a chat
     case messageForwardOriginChat(MessageForwardOriginChat)
 
     /// The message was originally sent by a user, which is hidden by their privacy settings
@@ -93,10 +93,10 @@ public struct MessageForwardOriginUser: Codable, Equatable {
     }
 }
 
-/// The message was originally sent by an anonymous chat administrator on behalf of the chat
+/// The message was originally sent on behalf of a chat
 public struct MessageForwardOriginChat: Codable, Equatable {
 
-    /// Original message author signature
+    /// For messages originally sent by an anonymous chat administrator, original message author signature
     public let authorSignature: String
 
     /// Identifier of the chat that originally sent the message

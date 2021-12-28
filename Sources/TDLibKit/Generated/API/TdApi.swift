@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.11-b4925dc4
-//  https://github.com/tdlib/td/tree/b4925dc4
+//  Based on TDLib 1.7.12-a6903023
+//  https://github.com/tdlib/td/tree/a6903023
 //
 
 import Foundation
@@ -2307,36 +2307,6 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Informs TDLib that a sponsored message was viewed by the user
-    /// - Parameter chatId: Identifier of the chat with the sponsored message
-    /// - Parameter sponsoredMessageId: The identifier of the sponsored message being viewed
-    public func viewSponsoredMessage(
-        chatId: Int64?,
-        sponsoredMessageId: Int?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = ViewSponsoredMessage(
-            chatId: chatId,
-            sponsoredMessageId: sponsoredMessageId
-        )
-        execute(query: query, completion: completion)
-    }
-
-    /// Informs TDLib that a sponsored message was viewed by the user
-    /// - Parameter chatId: Identifier of the chat with the sponsored message
-    /// - Parameter sponsoredMessageId: The identifier of the sponsored message being viewed
-    @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
-    public func viewSponsoredMessage(
-        chatId: Int64?,
-        sponsoredMessageId: Int?
-    ) async throws -> Ok {
-        let query = ViewSponsoredMessage(
-            chatId: chatId,
-            sponsoredMessageId: sponsoredMessageId
-        )
-        return try await execute(query: query)
-    }
-
     /// Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
     /// - Parameter notificationGroupId: Identifier of notification group to which the notification belongs
     /// - Parameter notificationId: Identifier of removed notification
@@ -4463,7 +4433,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
+    /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
     /// - Parameter chatId: Chat identifier
     /// - Parameter forceRead: True, if messages in closed chats must be marked as read by the request
     /// - Parameter messageIds: The identifiers of the messages being viewed
@@ -4484,7 +4454,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
+    /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
     /// - Parameter chatId: Chat identifier
     /// - Parameter forceRead: True, if messages in closed chats must be marked as read by the request
     /// - Parameter messageIds: The identifiers of the messages being viewed
