@@ -19,7 +19,7 @@ let package = Package(
             targets: ["TDLibKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.7.12-a6903023")),
+        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.7.12-29e8df51")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

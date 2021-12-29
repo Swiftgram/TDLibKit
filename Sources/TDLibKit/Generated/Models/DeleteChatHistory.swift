@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.12-a6903023
-//  https://github.com/tdlib/td/tree/a6903023
+//  Based on TDLib 1.7.12-29e8df51
+//  https://github.com/tdlib/td/tree/29e8df51
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct DeleteChatHistory: Codable, Equatable {
     /// Pass true if the chat needs to be removed from the chat list
     public let removeFromChatList: Bool?
 
-    /// Pass true to try to delete chat history for all users
+    /// Pass true to delete chat history for all users
     public let revoke: Bool?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.12-a6903023
-//  https://github.com/tdlib/td/tree/a6903023
+//  Based on TDLib 1.7.12-29e8df51
+//  https://github.com/tdlib/td/tree/29e8df51
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct DeleteMessages: Codable, Equatable {
     /// Identifiers of the messages to be deleted
     public let messageIds: [Int64]?
 
-    /// Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+    /// Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     public let revoke: Bool?
 
 

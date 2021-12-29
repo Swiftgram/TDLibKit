@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.12-a6903023
-//  https://github.com/tdlib/td/tree/a6903023
+//  Based on TDLib 1.7.12-29e8df51
+//  https://github.com/tdlib/td/tree/29e8df51
 //
 
 import Foundation
@@ -1735,7 +1735,7 @@ public final class TdApi {
     /// Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter removeFromChatList: Pass true if the chat needs to be removed from the chat list
-    /// - Parameter revoke: Pass true to try to delete chat history for all users
+    /// - Parameter revoke: Pass true to delete chat history for all users
     public func deleteChatHistory(
         chatId: Int64?,
         removeFromChatList: Bool?,
@@ -1753,7 +1753,7 @@ public final class TdApi {
     /// Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter removeFromChatList: Pass true if the chat needs to be removed from the chat list
-    /// - Parameter revoke: Pass true to try to delete chat history for all users
+    /// - Parameter revoke: Pass true to delete chat history for all users
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func deleteChatHistory(
         chatId: Int64?,
@@ -2886,7 +2886,7 @@ public final class TdApi {
     /// Deletes messages
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageIds: Identifiers of the messages to be deleted
-    /// - Parameter revoke: Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+    /// - Parameter revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     public func deleteMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
@@ -2904,7 +2904,7 @@ public final class TdApi {
     /// Deletes messages
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageIds: Identifiers of the messages to be deleted
-    /// - Parameter revoke: Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+    /// - Parameter revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func deleteMessages(
         chatId: Int64?,
@@ -2953,7 +2953,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter maxDate: The maximum date of the messages to delete
     /// - Parameter minDate: The minimum date of the messages to delete
-    /// - Parameter revoke: Pass true to try to delete chat messages for all users; private chats only
+    /// - Parameter revoke: Pass true to delete chat messages for all users; private chats only
     public func deleteChatMessagesByDate(
         chatId: Int64?,
         maxDate: Int?,
@@ -2974,7 +2974,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter maxDate: The maximum date of the messages to delete
     /// - Parameter minDate: The minimum date of the messages to delete
-    /// - Parameter revoke: Pass true to try to delete chat messages for all users; private chats only
+    /// - Parameter revoke: Pass true to delete chat messages for all users; private chats only
     @available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15.0, *)
     public func deleteChatMessagesByDate(
         chatId: Int64?,

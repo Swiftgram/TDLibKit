@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.12-a6903023
-//  https://github.com/tdlib/td/tree/a6903023
+//  Based on TDLib 1.7.12-29e8df51
+//  https://github.com/tdlib/td/tree/29e8df51
 //
 
 import Foundation
@@ -728,7 +728,7 @@ public struct InputMessagePoll: Codable, Equatable {
 /// A forwarded message
 public struct InputMessageForwarded: Codable, Equatable {
 
-    /// Options to be used to copy content of the message without reference to the original sender; pass null to try to forward the message as usual
+    /// Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     public let copyOptions: MessageCopyOptions
 
     /// Identifier for the chat this forwarded message came from

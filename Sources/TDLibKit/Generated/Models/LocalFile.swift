@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.12-a6903023
-//  https://github.com/tdlib/td/tree/a6903023
+//  Based on TDLib 1.7.12-29e8df51
+//  https://github.com/tdlib/td/tree/29e8df51
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct LocalFile: Codable, Equatable {
     /// True, if the file can be deleted
     public let canBeDeleted: Bool
 
-    /// True, if it is possible to try to download or generate the file
+    /// True, if it is possible to download or generate the file
     public let canBeDownloaded: Bool
 
     /// Download will be started from this offset. downloaded_prefix_size is calculated from this offset

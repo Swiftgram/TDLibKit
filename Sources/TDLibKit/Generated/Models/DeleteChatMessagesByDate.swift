@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.12-a6903023
-//  https://github.com/tdlib/td/tree/a6903023
+//  Based on TDLib 1.7.12-29e8df51
+//  https://github.com/tdlib/td/tree/29e8df51
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct DeleteChatMessagesByDate: Codable, Equatable {
     /// The minimum date of the messages to delete
     public let minDate: Int?
 
-    /// Pass true to try to delete chat messages for all users; private chats only
+    /// Pass true to delete chat messages for all users; private chats only
     public let revoke: Bool?
 
 
