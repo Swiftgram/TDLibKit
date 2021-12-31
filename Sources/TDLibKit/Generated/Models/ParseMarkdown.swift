@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-ca14dfe7
-//  https://github.com/tdlib/td/tree/ca14dfe7
+//  Based on TDLib 1.8.0-c0385078
+//  https://github.com/tdlib/td/tree/c0385078
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
 public struct ParseMarkdown: Codable, Equatable {
 
-    /// The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+    /// The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
     public let text: FormattedText?
 
 

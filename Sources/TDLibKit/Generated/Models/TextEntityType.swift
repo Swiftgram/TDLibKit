@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-ca14dfe7
-//  https://github.com/tdlib/td/tree/ca14dfe7
+//  Based on TDLib 1.8.0-c0385078
+//  https://github.com/tdlib/td/tree/c0385078
 //
 
 import Foundation
@@ -49,6 +49,9 @@ public enum TextEntityType: Codable, Equatable {
     /// A strikethrough text
     case textEntityTypeStrikethrough
 
+    /// A spoiler text. Not supported in secret chats
+    case textEntityTypeSpoiler
+
     /// Text that must be formatted as if inside a code HTML tag
     case textEntityTypeCode
 
@@ -81,6 +84,7 @@ public enum TextEntityType: Codable, Equatable {
         case textEntityTypeItalic
         case textEntityTypeUnderline
         case textEntityTypeStrikethrough
+        case textEntityTypeSpoiler
         case textEntityTypeCode
         case textEntityTypePre
         case textEntityTypePreCode
@@ -117,6 +121,8 @@ public enum TextEntityType: Codable, Equatable {
             self = .textEntityTypeUnderline
         case .textEntityTypeStrikethrough:
             self = .textEntityTypeStrikethrough
+        case .textEntityTypeSpoiler:
+            self = .textEntityTypeSpoiler
         case .textEntityTypeCode:
             self = .textEntityTypeCode
         case .textEntityTypePre:
@@ -163,6 +169,8 @@ public enum TextEntityType: Codable, Equatable {
             try container.encode(Kind.textEntityTypeUnderline, forKey: .type)
         case .textEntityTypeStrikethrough:
             try container.encode(Kind.textEntityTypeStrikethrough, forKey: .type)
+        case .textEntityTypeSpoiler:
+            try container.encode(Kind.textEntityTypeSpoiler, forKey: .type)
         case .textEntityTypeCode:
             try container.encode(Kind.textEntityTypeCode, forKey: .type)
         case .textEntityTypePre:

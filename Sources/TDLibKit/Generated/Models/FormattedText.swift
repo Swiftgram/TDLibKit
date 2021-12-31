@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-ca14dfe7
-//  https://github.com/tdlib/td/tree/ca14dfe7
+//  Based on TDLib 1.8.0-c0385078
+//  https://github.com/tdlib/td/tree/c0385078
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// A text with some entities
 public struct FormattedText: Codable, Equatable {
 
-    /// Entities contained in the text. Entities can be nested, but must not mutually intersect with each other.//-Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline and Strikethrough entities can contain and to be contained in all other entities. All other entities can't contain each other
+    /// Entities contained in the text. Entities can be nested, but must not mutually intersect with each other.//-Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline, Strikethrough, and Spoiler entities can contain and to be contained in all other entities. All other entities can't contain each other
     public let entities: [TextEntity]
 
     /// The text

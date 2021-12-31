@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-ca14dfe7
-//  https://github.com/tdlib/td/tree/ca14dfe7
+//  Based on TDLib 1.8.0-c0385078
+//  https://github.com/tdlib/td/tree/c0385078
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct MessageSendOptions: Codable, Equatable {
     /// Pass true if the message is sent from the background
     public let fromBackground: Bool
 
+    /// Pass true if the content of the message must be protected from forwarding and saving; for bots only
+    public let protectContent: Bool
+
     /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
     public let schedulingState: MessageSchedulingState
 
@@ -26,10 +29,12 @@ public struct MessageSendOptions: Codable, Equatable {
     public init(
         disableNotification: Bool,
         fromBackground: Bool,
+        protectContent: Bool,
         schedulingState: MessageSchedulingState
     ) {
         self.disableNotification = disableNotification
         self.fromBackground = fromBackground
+        self.protectContent = protectContent
         self.schedulingState = schedulingState
     }
 }
