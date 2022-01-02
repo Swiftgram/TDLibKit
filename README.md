@@ -12,7 +12,7 @@ of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](ht
 
 ### Xcode
 
-1. Install Xcode 12.5+ (or Xcode 13.2+ for async/await support)
+1. Install Latest Xcode
 2. Add `https://github.com/Swiftgram/TDLibKit` as SPM dependency in `Project > Swift Packages`. This could take a while
    cause it downloads ~300mb zip file with binary
    from [TDLibFramework dependency](https://github.com/Swiftgram/TDLibFramework)
