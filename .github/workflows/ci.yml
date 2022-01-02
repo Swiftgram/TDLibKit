@@ -19,6 +19,7 @@ on:
 env:
   TL_PARSER_REPO: https://github.com/Swiftgram/tl2swift
   TDLIB_REPO: https://github.com/tdlib/td
+  DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
 
 jobs:
   Build:
