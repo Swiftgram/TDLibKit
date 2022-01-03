@@ -17,7 +17,7 @@ public protocol TdClient {
     func run(updateHandler: @escaping (Data) -> Void)
 
     /// Sends request to the TDLib client.
-    func send(query: TdQuery, completion: ((Data) -> Void)?)
+    func send(query: TdQuery, completion: ((Data) -> Void)?) throws
 
     /// Synchronously executes TDLib request. Only a few requests can be executed synchronously.
     func execute(query: TdQuery) throws -> [String:Any]?

@@ -13066,7 +13066,7 @@ public final class TdApi {
         where Q: Codable, R: Codable {
 
         let dto = DTO(query, encoder: self.encoder)
-        client.send(query: dto) { [weak self] result in
+        try! client.send(query: dto) { [weak self] result in
             guard let strongSelf = self else { return }
             if let error = try? strongSelf.decoder.decode(DTO<Error>.self, from: result) {
                 completion(.failure(error.payload))
@@ -13082,7 +13082,7 @@ public final class TdApi {
     private func execute<Q, R>(query: Q) async throws -> R where Q: Codable, R: Codable {
         let dto = DTO(query, encoder: self.encoder)
         return try await withCheckedThrowingContinuation { continuation in
-            client.send(query: dto) { result in
+            try! client.send(query: dto) { result in
                 if let error = try? self.decoder.decode(DTO<Error>.self, from: result) {
                     continuation.resume(with: .failure(error.payload))
                 } else {
