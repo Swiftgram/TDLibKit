@@ -13070,9 +13070,10 @@ public final class TdApi {
             guard let strongSelf = self else { return }
             if let error = try? strongSelf.decoder.decode(DTO<Error>.self, from: result) {
                 completion(.failure(error.payload))
+            } else {
+                let response = strongSelf.decoder.tryDecode(DTO<R>.self, from: result)
+                completion(response.map { $0.payload })
             }
-            let response = strongSelf.decoder.tryDecode(DTO<R>.self, from: result)
-            completion(response.map { $0.payload })
         }
     }
 
@@ -13084,9 +13085,10 @@ public final class TdApi {
             client.send(query: dto) { result in
                 if let error = try? self.decoder.decode(DTO<Error>.self, from: result) {
                     continuation.resume(with: .failure(error.payload))
+                } else {
+                    let response = self.decoder.tryDecode(DTO<R>.self, from: result)
+                    continuation.resume(with: response.map { $0.payload })
                 }
-                let response = self.decoder.tryDecode(DTO<R>.self, from: result)
-                continuation.resume(with: response.map { $0.payload })
             }
         }
     }
