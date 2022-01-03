@@ -39,7 +39,7 @@ open class TdClientImpl: TdClient {
     public func close() {
         guard !isClientDestroyed else { return }
         if !stopFlag {
-            send(query: DTO(Close()), completion: { _ in })
+            try! send(query: DTO(Close()), completion: { _ in })
         }
         isClientDestroyed = true
         td_json_client_destroy(client)
@@ -65,10 +65,10 @@ open class TdClientImpl: TdClient {
             }
         }
     }
-
+    
     /// Sends request to the TDLib client.
-    public func send(query: TdQuery, completion: (CompletionHandler)? = nil) {
-        guard !self.isClientDestroyed else { return }
+    public func send(query: TdQuery, completion: (CompletionHandler)? = nil) throws {
+        guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
         
         tdlibQueryQueue.async { [weak self] in
             guard let `self` = self else { return }
@@ -77,10 +77,17 @@ open class TdClientImpl: TdClient {
                 extra = UUID().uuidString
                 self.awaitingCompletions[extra!] = completion
             }
-            if let data = try? query.make(with: extra),
-               let str = String(data: data, encoding: .utf8) {
+            let data = try! query.make(with: extra)
+            if let str = String(data: data, encoding: .utf8) {
                 self.logger?.log(str, type: .send)
                 td_json_client_send(self.client, str)
+            } else {
+                let errorText: String = "ERROR! Unable to encode query data, conversion returns nil"
+                if let strongLogger = self.logger {
+                    strongLogger.log(errorText, type: .send)
+                } else {
+                    print(errorText)
+                }
             }
         }
     }
