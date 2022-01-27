@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-fa8feefe
-//  https://github.com/tdlib/td/tree/fa8feefe
+//  Based on TDLib 1.8.0-789b9c0a
+//  https://github.com/tdlib/td/tree/789b9c0a
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public enum CheckChatUsernameResult: Codable, Equatable {
     /// The username is occupied
     case checkChatUsernameResultUsernameOccupied
 
-    /// The user has too much chats with username, one of them must be made private first
+    /// The user has too many chats with username, one of them must be made private first
     case checkChatUsernameResultPublicChatsTooMuch
 
     /// The user can't be a member of a public supergroup
