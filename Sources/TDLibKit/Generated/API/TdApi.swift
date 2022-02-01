@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -1858,7 +1858,7 @@ public final class TdApi {
 
     /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
-    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
@@ -1894,7 +1894,7 @@ public final class TdApi {
 
     /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
-    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
@@ -1932,7 +1932,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to search. Specify 0 to search in all secret chats
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for. If empty, searchChatMessages must be used instead
     public func searchSecretMessages(
         chatId: Int64?,
@@ -1956,7 +1956,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to search. Specify 0 to search in all secret chats
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for. If empty, searchChatMessages must be used instead
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchSecretMessages(
@@ -2109,7 +2109,7 @@ public final class TdApi {
 
     /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     public func getChatSparseMessagePositions(
@@ -2130,7 +2130,7 @@ public final class TdApi {
 
     /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2151,7 +2151,7 @@ public final class TdApi {
 
     /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
     public func getChatMessageCalendar(
         chatId: Int64?,
@@ -2169,7 +2169,7 @@ public final class TdApi {
 
     /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCalendar(
@@ -2247,7 +2247,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     public func getMessagePublicForwards(
         chatId: Int64?,
         limit: Int?,
@@ -2268,7 +2268,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessagePublicForwards(
         chatId: Int64?,
@@ -2469,6 +2469,42 @@ public final class TdApi {
     public func getMessageLinkInfo(url: String?) async throws -> MessageLinkInfo {
         let query = GetMessageLinkInfo(
             url: url
+        )
+        return try await execute(query: query)
+    }
+
+    /// Translates a text to the given language. Returns a 404 error if the translation can't be performed
+    /// - Parameter fromLanguageCode: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
+    /// - Parameter text: Text to translate
+    /// - Parameter toLanguageCode: A two-letter ISO 639-1 language code of the language to which the message is translated
+    public func translateText(
+        fromLanguageCode: String?,
+        text: String?,
+        toLanguageCode: String?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = TranslateText(
+            fromLanguageCode: fromLanguageCode,
+            text: text,
+            toLanguageCode: toLanguageCode
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Translates a text to the given language. Returns a 404 error if the translation can't be performed
+    /// - Parameter fromLanguageCode: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
+    /// - Parameter text: Text to translate
+    /// - Parameter toLanguageCode: A two-letter ISO 639-1 language code of the language to which the message is translated
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func translateText(
+        fromLanguageCode: String?,
+        text: String?,
+        toLanguageCode: String?
+    ) async throws -> Text {
+        let query = TranslateText(
+            fromLanguageCode: fromLanguageCode,
+            text: text,
+            toLanguageCode: toLanguageCode
         )
         return try await execute(query: query)
     }
@@ -3425,6 +3461,126 @@ public final class TdApi {
             chatId: chatId,
             messageId: messageId,
             schedulingState: schedulingState
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    public func getMessageAvailableReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<AvailableReactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageAvailableReactions(
+            chatId: chatId,
+            messageId: messageId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getMessageAvailableReactions(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> AvailableReactions {
+        let query = GetMessageAvailableReactions(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes chosen reaction for a message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isBig: True, if the reaction is added with a big animation
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    public func setMessageReaction(
+        chatId: Int64?,
+        isBig: Bool?,
+        messageId: Int64?,
+        reaction: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetMessageReaction(
+            chatId: chatId,
+            isBig: isBig,
+            messageId: messageId,
+            reaction: reaction
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes chosen reaction for a message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isBig: True, if the reaction is added with a big animation
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setMessageReaction(
+        chatId: Int64?,
+        isBig: Bool?,
+        messageId: Int64?,
+        reaction: String?
+    ) async throws -> Ok {
+        let query = SetMessageReaction(
+            chatId: chatId,
+            isBig: isBig,
+            messageId: messageId,
+            reaction: reaction
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns reactions added for a message, along with their sender
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter reaction: If non-empty, only added reactions with the specified text representation will be returned
+    public func getMessageAddedReactions(
+        chatId: Int64?,
+        limit: Int?,
+        messageId: Int64?,
+        offset: String?,
+        reaction: String?,
+        completion: @escaping (Result<AddedReactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageAddedReactions(
+            chatId: chatId,
+            limit: limit,
+            messageId: messageId,
+            offset: offset,
+            reaction: reaction
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns reactions added for a message, along with their sender
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter reaction: If non-empty, only added reactions with the specified text representation will be returned
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getMessageAddedReactions(
+        chatId: Int64?,
+        limit: Int?,
+        messageId: Int64?,
+        offset: String?,
+        reaction: String?
+    ) async throws -> AddedReactions {
+        let query = GetMessageAddedReactions(
+            chatId: chatId,
+            limit: limit,
+            messageId: messageId,
+            offset: offset,
+            reaction: reaction
         )
         return try await execute(query: query)
     }
@@ -4631,6 +4787,28 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Marks all reactions in a chat as read
+    /// - Parameter chatId: Chat identifier
+    public func readAllChatReactions(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadAllChatReactions(
+            chatId: chatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Marks all reactions in a chat as read
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func readAllChatReactions(chatId: Int64?) async throws -> Ok {
+        let query = ReadAllChatReactions(
+            chatId: chatId
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns an existing chat corresponding to a given user
     /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter userId: User identifier
@@ -5372,6 +5550,36 @@ public final class TdApi {
         let query = ToggleChatDefaultDisableNotification(
             chatId: chatId,
             defaultDisableNotification: defaultDisableNotification
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+    /// - Parameter chatId: Identifier of the chat
+    public func setChatAvailableReactions(
+        availableReactions: [String]?,
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatAvailableReactions(
+            availableReactions: availableReactions,
+            chatId: chatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+    /// - Parameter chatId: Identifier of the chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setChatAvailableReactions(
+        availableReactions: [String]?,
+        chatId: Int64?
+    ) async throws -> Ok {
+        let query = SetChatAvailableReactions(
+            availableReactions: availableReactions,
+            chatId: chatId
         )
         return try await execute(query: query)
     }
@@ -9483,7 +9691,7 @@ public final class TdApi {
 
     /// Sets the list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter commands: List of the bot's commands
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
     /// - Parameter scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope
     public func setCommands(
         commands: [BotCommand]?,
@@ -9501,7 +9709,7 @@ public final class TdApi {
 
     /// Sets the list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter commands: List of the bot's commands
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
     /// - Parameter scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setCommands(
@@ -9518,7 +9726,7 @@ public final class TdApi {
     }
 
     /// Deletes commands supported by the bot for the given user scope and language; for bots only
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code or an empty string
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
     public func deleteCommands(
         languageCode: String?,
@@ -9533,7 +9741,7 @@ public final class TdApi {
     }
 
     /// Deletes commands supported by the bot for the given user scope and language; for bots only
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code or an empty string
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func deleteCommands(
@@ -9548,7 +9756,7 @@ public final class TdApi {
     }
 
     /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code or an empty string
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
     public func getCommands(
         languageCode: String?,
@@ -9563,7 +9771,7 @@ public final class TdApi {
     }
 
     /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code or an empty string
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCommands(
@@ -11917,14 +12125,12 @@ public final class TdApi {
     }
 
     /// Creates a new sticker set. Returns the newly created sticker set
-    /// - Parameter isMasks: True, if stickers are masks. Animated stickers can't be masks
     /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     /// - Parameter source: Source of the sticker set; may be empty if unknown
-    /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+    /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
     public func createNewStickerSet(
-        isMasks: Bool?,
         name: String?,
         source: String?,
         stickers: [InputSticker]?,
@@ -11933,7 +12139,6 @@ public final class TdApi {
         completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewStickerSet(
-            isMasks: isMasks,
             name: name,
             source: source,
             stickers: stickers,
@@ -11944,15 +12149,13 @@ public final class TdApi {
     }
 
     /// Creates a new sticker set. Returns the newly created sticker set
-    /// - Parameter isMasks: True, if stickers are masks. Animated stickers can't be masks
     /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     /// - Parameter source: Source of the sticker set; may be empty if unknown
-    /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+    /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewStickerSet(
-        isMasks: Bool?,
         name: String?,
         source: String?,
         stickers: [InputSticker]?,
@@ -11960,7 +12163,6 @@ public final class TdApi {
         userId: Int64?
     ) async throws -> StickerSet {
         let query = CreateNewStickerSet(
-            isMasks: isMasks,
             name: name,
             source: source,
             stickers: stickers,
@@ -12008,7 +12210,7 @@ public final class TdApi {
 
     /// Sets a sticker set thumbnail; for bots only. Returns the sticker set
     /// - Parameter name: Sticker set name
-    /// - Parameter thumbnail: Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
+    /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
     public func setStickerSetThumbnail(
         name: String?,
@@ -12026,7 +12228,7 @@ public final class TdApi {
 
     /// Sets a sticker set thumbnail; for bots only. Returns the sticker set
     /// - Parameter name: Sticker set name
-    /// - Parameter thumbnail: Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
+    /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setStickerSetThumbnail(
@@ -12301,7 +12503,7 @@ public final class TdApi {
     }
 
     /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code for country information localization
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code for country information localization
     /// - Parameter phoneNumberPrefix: The phone number prefix
     public func getPhoneNumberInfoSync(
         languageCode: String?,
@@ -12316,7 +12518,7 @@ public final class TdApi {
     }
 
     /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
-    /// - Parameter languageCode: A two-letter ISO 639-1 country code for country information localization
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code for country information localization
     /// - Parameter phoneNumberPrefix: The phone number prefix
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPhoneNumberInfoSync(

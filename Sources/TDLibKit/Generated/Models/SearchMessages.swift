@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SearchMessages: Codable, Equatable {
     /// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     public let chatList: ChatList?
 
-    /// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    /// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
     public let filter: SearchMessagesFilter?
 
     /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit

@@ -1,0 +1,41 @@
+//
+//  SetMessageReaction.swift
+//  tl2swift
+//
+//  Generated automatically. Any changes will be lost!
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
+//
+
+import Foundation
+
+
+/// Changes chosen reaction for a message
+public struct SetMessageReaction: Codable, Equatable {
+
+    /// Identifier of the chat to which the message belongs
+    public let chatId: Int64?
+
+    /// True, if the reaction is added with a big animation
+    public let isBig: Bool?
+
+    /// Identifier of the message
+    public let messageId: Int64?
+
+    /// Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    public let reaction: String?
+
+
+    public init(
+        chatId: Int64?,
+        isBig: Bool?,
+        messageId: Int64?,
+        reaction: String?
+    ) {
+        self.chatId = chatId
+        self.isBig = isBig
+        self.messageId = messageId
+        self.reaction = reaction
+    }
+}
+

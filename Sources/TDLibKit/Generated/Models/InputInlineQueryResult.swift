@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public enum InputInlineQueryResult: Codable, Equatable {
     /// Represents link to a JPEG image
     case inputInlineQueryResultPhoto(InputInlineQueryResultPhoto)
 
-    /// Represents a link to a WEBP or TGS sticker
+    /// Represents a link to a WEBP, TGS, or WEBM sticker
     case inputInlineQueryResultSticker(InputInlineQueryResultSticker)
 
     /// Represents information about a venue
@@ -550,7 +550,7 @@ public struct InputInlineQueryResultPhoto: Codable, Equatable {
     }
 }
 
-/// Represents a link to a WEBP or TGS sticker
+/// Represents a link to a WEBP, TGS, or WEBM sticker
 public struct InputInlineQueryResultSticker: Codable, Equatable {
 
     /// Unique identifier of the query result
@@ -565,7 +565,7 @@ public struct InputInlineQueryResultSticker: Codable, Equatable {
     /// Height of the sticker
     public let stickerHeight: Int
 
-    /// The URL of the WEBP or TGS sticker (sticker file size must not exceed 5MB)
+    /// The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB)
     public let stickerUrl: String
 
     /// Width of the sticker

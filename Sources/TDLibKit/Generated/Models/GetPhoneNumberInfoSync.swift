@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
 public struct GetPhoneNumberInfoSync: Codable, Equatable {
 
-    /// A two-letter ISO 639-1 country code for country information localization
+    /// A two-letter ISO 639-1 language code for country information localization
     public let languageCode: String?
 
     /// The phone number prefix

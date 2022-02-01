@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -19,15 +19,6 @@ public struct Sticker: Codable, Equatable {
     /// Sticker height; as defined by the sender
     public let height: Int
 
-    /// True, if the sticker is an animated sticker in TGS format
-    public let isAnimated: Bool
-
-    /// True, if the sticker is a mask
-    public let isMask: Bool
-
-    /// Position where the mask is placed; may be null
-    public let maskPosition: MaskPosition?
-
     /// Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
     public let outline: [ClosedVectorPath]
 
@@ -40,6 +31,9 @@ public struct Sticker: Codable, Equatable {
     /// Sticker thumbnail in WEBP or JPEG format; may be null
     public let thumbnail: Thumbnail?
 
+    /// Sticker type
+    public let type: StickerType
+
     /// Sticker width; as defined by the sender
     public let width: Int
 
@@ -47,24 +41,20 @@ public struct Sticker: Codable, Equatable {
     public init(
         emoji: String,
         height: Int,
-        isAnimated: Bool,
-        isMask: Bool,
-        maskPosition: MaskPosition?,
         outline: [ClosedVectorPath],
         setId: TdInt64,
         sticker: File,
         thumbnail: Thumbnail?,
+        type: StickerType,
         width: Int
     ) {
         self.emoji = emoji
         self.height = height
-        self.isAnimated = isAnimated
-        self.isMask = isMask
-        self.maskPosition = maskPosition
         self.outline = outline
         self.setId = setId
         self.sticker = sticker
         self.thumbnail = thumbnail
+        self.type = type
         self.width = width
     }
 }

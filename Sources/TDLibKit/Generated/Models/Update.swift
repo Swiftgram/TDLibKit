@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public enum Update: Codable, Equatable {
     /// A message with an unread mention was read
     case updateMessageMentionRead(UpdateMessageMentionRead)
 
+    /// The list of unread reactions added to a message was changed
+    case updateMessageUnreadReactions(UpdateMessageUnreadReactions)
+
     /// A message with a live location was viewed. When the update is received, the application is supposed to update the live location
     case updateMessageLiveLocationViewed(UpdateMessageLiveLocationViewed)
 
@@ -76,6 +79,9 @@ public enum Update: Codable, Equatable {
     /// The chat action bar was changed
     case updateChatActionBar(UpdateChatActionBar)
 
+    /// The chat available reactions were changed
+    case updateChatAvailableReactions(UpdateChatAvailableReactions)
+
     /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     case updateChatDraftMessage(UpdateChatDraftMessage)
 
@@ -99,6 +105,9 @@ public enum Update: Codable, Equatable {
 
     /// The chat unread_mention_count has changed
     case updateChatUnreadMentionCount(UpdateChatUnreadMentionCount)
+
+    /// The chat unread_reaction_count has changed
+    case updateChatUnreadReactionCount(UpdateChatUnreadReactionCount)
 
     /// A chat video chat state has changed
     case updateChatVideoChat(UpdateChatVideoChat)
@@ -241,6 +250,9 @@ public enum Update: Codable, Equatable {
     /// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
     case updateUsersNearby(UpdateUsersNearby)
 
+    /// The list of supported reactions has changed
+    case updateReactions(UpdateReactions)
+
     /// The list of supported dice emojis has changed
     case updateDiceEmojis(UpdateDiceEmojis)
 
@@ -302,6 +314,7 @@ public enum Update: Codable, Equatable {
         case updateMessageInteractionInfo
         case updateMessageContentOpened
         case updateMessageMentionRead
+        case updateMessageUnreadReactions
         case updateMessageLiveLocationViewed
         case updateNewChat
         case updateChatTitle
@@ -312,6 +325,7 @@ public enum Update: Codable, Equatable {
         case updateChatReadInbox
         case updateChatReadOutbox
         case updateChatActionBar
+        case updateChatAvailableReactions
         case updateChatDraftMessage
         case updateChatMessageSender
         case updateChatMessageTtl
@@ -320,6 +334,7 @@ public enum Update: Codable, Equatable {
         case updateChatReplyMarkup
         case updateChatTheme
         case updateChatUnreadMentionCount
+        case updateChatUnreadReactionCount
         case updateChatVideoChat
         case updateChatDefaultDisableNotification
         case updateChatHasProtectedContent
@@ -367,6 +382,7 @@ public enum Update: Codable, Equatable {
         case updateConnectionState
         case updateTermsOfService
         case updateUsersNearby
+        case updateReactions
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
@@ -422,6 +438,9 @@ public enum Update: Codable, Equatable {
         case .updateMessageMentionRead:
             let value = try UpdateMessageMentionRead(from: decoder)
             self = .updateMessageMentionRead(value)
+        case .updateMessageUnreadReactions:
+            let value = try UpdateMessageUnreadReactions(from: decoder)
+            self = .updateMessageUnreadReactions(value)
         case .updateMessageLiveLocationViewed:
             let value = try UpdateMessageLiveLocationViewed(from: decoder)
             self = .updateMessageLiveLocationViewed(value)
@@ -452,6 +471,9 @@ public enum Update: Codable, Equatable {
         case .updateChatActionBar:
             let value = try UpdateChatActionBar(from: decoder)
             self = .updateChatActionBar(value)
+        case .updateChatAvailableReactions:
+            let value = try UpdateChatAvailableReactions(from: decoder)
+            self = .updateChatAvailableReactions(value)
         case .updateChatDraftMessage:
             let value = try UpdateChatDraftMessage(from: decoder)
             self = .updateChatDraftMessage(value)
@@ -476,6 +498,9 @@ public enum Update: Codable, Equatable {
         case .updateChatUnreadMentionCount:
             let value = try UpdateChatUnreadMentionCount(from: decoder)
             self = .updateChatUnreadMentionCount(value)
+        case .updateChatUnreadReactionCount:
+            let value = try UpdateChatUnreadReactionCount(from: decoder)
+            self = .updateChatUnreadReactionCount(value)
         case .updateChatVideoChat:
             let value = try UpdateChatVideoChat(from: decoder)
             self = .updateChatVideoChat(value)
@@ -617,6 +642,9 @@ public enum Update: Codable, Equatable {
         case .updateUsersNearby:
             let value = try UpdateUsersNearby(from: decoder)
             self = .updateUsersNearby(value)
+        case .updateReactions:
+            let value = try UpdateReactions(from: decoder)
+            self = .updateReactions(value)
         case .updateDiceEmojis:
             let value = try UpdateDiceEmojis(from: decoder)
             self = .updateDiceEmojis(value)
@@ -704,6 +732,9 @@ public enum Update: Codable, Equatable {
         case .updateMessageMentionRead(let value):
             try container.encode(Kind.updateMessageMentionRead, forKey: .type)
             try value.encode(to: encoder)
+        case .updateMessageUnreadReactions(let value):
+            try container.encode(Kind.updateMessageUnreadReactions, forKey: .type)
+            try value.encode(to: encoder)
         case .updateMessageLiveLocationViewed(let value):
             try container.encode(Kind.updateMessageLiveLocationViewed, forKey: .type)
             try value.encode(to: encoder)
@@ -734,6 +765,9 @@ public enum Update: Codable, Equatable {
         case .updateChatActionBar(let value):
             try container.encode(Kind.updateChatActionBar, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatAvailableReactions(let value):
+            try container.encode(Kind.updateChatAvailableReactions, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatDraftMessage(let value):
             try container.encode(Kind.updateChatDraftMessage, forKey: .type)
             try value.encode(to: encoder)
@@ -757,6 +791,9 @@ public enum Update: Codable, Equatable {
             try value.encode(to: encoder)
         case .updateChatUnreadMentionCount(let value):
             try container.encode(Kind.updateChatUnreadMentionCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatUnreadReactionCount(let value):
+            try container.encode(Kind.updateChatUnreadReactionCount, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatVideoChat(let value):
             try container.encode(Kind.updateChatVideoChat, forKey: .type)
@@ -898,6 +935,9 @@ public enum Update: Codable, Equatable {
             try value.encode(to: encoder)
         case .updateUsersNearby(let value):
             try container.encode(Kind.updateUsersNearby, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateReactions(let value):
+            try container.encode(Kind.updateReactions, forKey: .type)
             try value.encode(to: encoder)
         case .updateDiceEmojis(let value):
             try container.encode(Kind.updateDiceEmojis, forKey: .type)
@@ -1186,6 +1226,35 @@ public struct UpdateMessageMentionRead: Codable, Equatable {
     }
 }
 
+/// The list of unread reactions added to a message was changed
+public struct UpdateMessageUnreadReactions: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Message identifier
+    public let messageId: Int64
+
+    /// The new number of messages with unread reactions left in the chat
+    public let unreadReactionCount: Int
+
+    /// The new list of unread reactions
+    public let unreadReactions: [UnreadReaction]
+
+
+    public init(
+        chatId: Int64,
+        messageId: Int64,
+        unreadReactionCount: Int,
+        unreadReactions: [UnreadReaction]
+    ) {
+        self.chatId = chatId
+        self.messageId = messageId
+        self.unreadReactionCount = unreadReactionCount
+        self.unreadReactions = unreadReactions
+    }
+}
+
 /// A message with a live location was viewed. When the update is received, the application is supposed to update the live location
 public struct UpdateMessageLiveLocationViewed: Codable, Equatable {
 
@@ -1379,6 +1448,25 @@ public struct UpdateChatActionBar: Codable, Equatable {
     }
 }
 
+/// The chat available reactions were changed
+public struct UpdateChatAvailableReactions: Codable, Equatable {
+
+    /// The new list of reactions, available in the chat
+    public let availableReactions: [String]
+
+    /// Chat identifier
+    public let chatId: Int64
+
+
+    public init(
+        availableReactions: [String],
+        chatId: Int64
+    ) {
+        self.availableReactions = availableReactions
+        self.chatId = chatId
+    }
+}
+
 /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
 public struct UpdateChatDraftMessage: Codable, Equatable {
 
@@ -1533,6 +1621,25 @@ public struct UpdateChatUnreadMentionCount: Codable, Equatable {
     ) {
         self.chatId = chatId
         self.unreadMentionCount = unreadMentionCount
+    }
+}
+
+/// The chat unread_reaction_count has changed
+public struct UpdateChatUnreadReactionCount: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The number of messages with unread reactions left in the chat
+    public let unreadReactionCount: Int
+
+
+    public init(
+        chatId: Int64,
+        unreadReactionCount: Int
+    ) {
+        self.chatId = chatId
+        self.unreadReactionCount = unreadReactionCount
     }
 }
 
@@ -2397,6 +2504,18 @@ public struct UpdateUsersNearby: Codable, Equatable {
 
     public init(usersNearby: [ChatNearby]) {
         self.usersNearby = usersNearby
+    }
+}
+
+/// The list of supported reactions has changed
+public struct UpdateReactions: Codable, Equatable {
+
+    /// The new list of supported reactions
+    public let reactions: [Reaction]
+
+
+    public init(reactions: [Reaction]) {
+        self.reactions = reactions
     }
 }
 

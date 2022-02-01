@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -19,17 +19,11 @@ public struct StickerSetInfo: Codable, Equatable {
     /// Identifier of the sticker set
     public let id: TdInt64
 
-    /// True, is the stickers in the set are animated
-    public let isAnimated: Bool
-
     /// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
     public let isArchived: Bool
 
     /// True, if the sticker set has been installed by the current user
     public let isInstalled: Bool
-
-    /// True, if the stickers in the set are masks
-    public let isMasks: Bool
 
     /// True, if the sticker set is official
     public let isOfficial: Bool
@@ -43,7 +37,10 @@ public struct StickerSetInfo: Codable, Equatable {
     /// Total number of stickers in the set
     public let size: Int
 
-    /// Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null
+    /// Type of the stickers in the set
+    public let stickerType: StickerType
+
+    /// Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null
     public let thumbnail: Thumbnail?
 
     /// Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
@@ -56,28 +53,26 @@ public struct StickerSetInfo: Codable, Equatable {
     public init(
         covers: [Sticker],
         id: TdInt64,
-        isAnimated: Bool,
         isArchived: Bool,
         isInstalled: Bool,
-        isMasks: Bool,
         isOfficial: Bool,
         isViewed: Bool,
         name: String,
         size: Int,
+        stickerType: StickerType,
         thumbnail: Thumbnail?,
         thumbnailOutline: [ClosedVectorPath],
         title: String
     ) {
         self.covers = covers
         self.id = id
-        self.isAnimated = isAnimated
         self.isArchived = isArchived
         self.isInstalled = isInstalled
-        self.isMasks = isMasks
         self.isOfficial = isOfficial
         self.isViewed = isViewed
         self.name = name
         self.size = size
+        self.stickerType = stickerType
         self.thumbnail = thumbnail
         self.thumbnailOutline = thumbnailOutline
         self.title = title

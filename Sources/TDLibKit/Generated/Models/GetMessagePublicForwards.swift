@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetMessagePublicForwards: Codable, Equatable {
     /// Message identifier
     public let messageId: Int64?
 
-    /// Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     public let offset: String?
 
 

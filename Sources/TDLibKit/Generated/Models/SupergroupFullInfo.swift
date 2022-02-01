@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -39,7 +39,7 @@ public struct SupergroupFullInfo: Codable, Equatable {
 
     public let description: String
 
-    /// Primary invite link for this chat; may be null. For chat administrators with can_invite_users right only
+    /// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     public let inviteLink: ChatInviteLink?
 
     /// True, if new chat members will have access to old messages. In public or discussion groups and both public and private channels, old messages are always available, so this option affects only private supergroups without a linked chat. The value of this field is only available for chat administrators

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -13,16 +13,13 @@ import Foundation
 /// Creates a new sticker set. Returns the newly created sticker set
 public struct CreateNewStickerSet: Codable, Equatable {
 
-    /// True, if stickers are masks. Animated stickers can't be masks
-    public let isMasks: Bool?
-
     /// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     public let name: String?
 
     /// Source of the sticker set; may be empty if unknown
     public let source: String?
 
-    /// List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+    /// List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     public let stickers: [InputSticker]?
 
     /// Sticker set title; 1-64 characters
@@ -33,14 +30,12 @@ public struct CreateNewStickerSet: Codable, Equatable {
 
 
     public init(
-        isMasks: Bool?,
         name: String?,
         source: String?,
         stickers: [InputSticker]?,
         title: String?,
         userId: Int64?
     ) {
-        self.isMasks = isMasks
         self.name = name
         self.source = source
         self.stickers = stickers

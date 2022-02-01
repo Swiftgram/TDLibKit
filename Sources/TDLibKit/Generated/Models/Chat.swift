@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct Chat: Codable, Equatable {
 
     /// Information about actions which must be possible to do through the chat action bar; may be null
     public let actionBar: ChatActionBar?
+
+    /// List of reactions, available in the chat
+    public let availableReactions: [String]
 
     /// True, if the chat messages can be deleted for all users
     public let canBeDeletedForAllUsers: Bool
@@ -64,7 +67,7 @@ public struct Chat: Codable, Equatable {
     /// Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
     public let messageTtl: Int
 
-    /// Notification settings for this chat
+    /// Notification settings for the chat
     public let notificationSettings: ChatNotificationSettings
 
     /// Information about pending join requests; may be null
@@ -97,12 +100,16 @@ public struct Chat: Codable, Equatable {
     /// Number of unread messages with a mention/reply in the chat
     public let unreadMentionCount: Int
 
+    /// Number of messages with unread reactions in the chat
+    public let unreadReactionCount: Int
+
     /// Information about video chat of the chat
     public let videoChat: VideoChat
 
 
     public init(
         actionBar: ChatActionBar?,
+        availableReactions: [String],
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeReported: Bool,
@@ -130,9 +137,11 @@ public struct Chat: Codable, Equatable {
         type: ChatType,
         unreadCount: Int,
         unreadMentionCount: Int,
+        unreadReactionCount: Int,
         videoChat: VideoChat
     ) {
         self.actionBar = actionBar
+        self.availableReactions = availableReactions
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeReported = canBeReported
@@ -160,6 +169,7 @@ public struct Chat: Codable, Equatable {
         self.type = type
         self.unreadCount = unreadCount
         self.unreadMentionCount = unreadMentionCount
+        self.unreadReactionCount = unreadReactionCount
         self.videoChat = videoChat
     }
 }

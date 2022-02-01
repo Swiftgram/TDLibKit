@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -55,6 +55,9 @@ public enum SearchMessagesFilter: Codable, Equatable {
     /// Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
     case searchMessagesFilterUnreadMention
 
+    /// Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+    case searchMessagesFilterUnreadReaction
+
     /// Returns only failed to send messages. This filter can be used only if the message database is used
     case searchMessagesFilterFailedToSend
 
@@ -77,6 +80,7 @@ public enum SearchMessagesFilter: Codable, Equatable {
         case searchMessagesFilterVoiceAndVideoNote
         case searchMessagesFilterMention
         case searchMessagesFilterUnreadMention
+        case searchMessagesFilterUnreadReaction
         case searchMessagesFilterFailedToSend
         case searchMessagesFilterPinned
     }
@@ -113,6 +117,8 @@ public enum SearchMessagesFilter: Codable, Equatable {
             self = .searchMessagesFilterMention
         case .searchMessagesFilterUnreadMention:
             self = .searchMessagesFilterUnreadMention
+        case .searchMessagesFilterUnreadReaction:
+            self = .searchMessagesFilterUnreadReaction
         case .searchMessagesFilterFailedToSend:
             self = .searchMessagesFilterFailedToSend
         case .searchMessagesFilterPinned:
@@ -151,6 +157,8 @@ public enum SearchMessagesFilter: Codable, Equatable {
             try container.encode(Kind.searchMessagesFilterMention, forKey: .type)
         case .searchMessagesFilterUnreadMention:
             try container.encode(Kind.searchMessagesFilterUnreadMention, forKey: .type)
+        case .searchMessagesFilterUnreadReaction:
+            try container.encode(Kind.searchMessagesFilterUnreadReaction, forKey: .type)
         case .searchMessagesFilterFailedToSend:
             try container.encode(Kind.searchMessagesFilterFailedToSend, forKey: .type)
         case .searchMessagesFilterPinned:

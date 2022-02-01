@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.0-789b9c0a
-//  https://github.com/tdlib/td/tree/789b9c0a
+//  Based on TDLib 1.8.1-92c2a9c4
+//  https://github.com/tdlib/td/tree/92c2a9c4
 //
 
 import Foundation
@@ -31,13 +31,16 @@ public struct Message: Codable, Equatable {
     /// True, if content of the message can be saved locally or copied
     public let canBeSaved: Bool
 
-    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
+    /// True, if the list of added reactions is available through getMessageAddedReactions
+    public let canGetAddedReactions: Bool
+
+    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
     public let canGetMediaTimestampLinks: Bool
 
-    /// True, if the message thread info is available
+    /// True, if the message thread info is available through getMessageThread
     public let canGetMessageThread: Bool
 
-    /// True, if the message statistics are available
+    /// True, if the message statistics are available through getMessageStatistics
     public let canGetStatistics: Bool
 
     /// True, if chat members already viewed the message can be received through getMessageViewers
@@ -112,6 +115,9 @@ public struct Message: Codable, Equatable {
     /// Time left before the message expires, in seconds. If the TTL timer isn't started yet, equals to the value of the ttl field
     public let ttlExpiresIn: Double
 
+    /// Information about unread reactions added to the message
+    public let unreadReactions: [UnreadReaction]
+
     /// If non-zero, the user identifier of the bot through which this message was sent
     public let viaBotUserId: Int64
 
@@ -123,6 +129,7 @@ public struct Message: Codable, Equatable {
         canBeEdited: Bool,
         canBeForwarded: Bool,
         canBeSaved: Bool,
+        canGetAddedReactions: Bool,
         canGetMediaTimestampLinks: Bool,
         canGetMessageThread: Bool,
         canGetStatistics: Bool,
@@ -150,6 +157,7 @@ public struct Message: Codable, Equatable {
         sendingState: MessageSendingState?,
         ttl: Int,
         ttlExpiresIn: Double,
+        unreadReactions: [UnreadReaction],
         viaBotUserId: Int64
     ) {
         self.authorSignature = authorSignature
@@ -158,6 +166,7 @@ public struct Message: Codable, Equatable {
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
         self.canBeSaved = canBeSaved
+        self.canGetAddedReactions = canGetAddedReactions
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
         self.canGetMessageThread = canGetMessageThread
         self.canGetStatistics = canGetStatistics
@@ -185,6 +194,7 @@ public struct Message: Codable, Equatable {
         self.sendingState = sendingState
         self.ttl = ttl
         self.ttlExpiresIn = ttlExpiresIn
+        self.unreadReactions = unreadReactions
         self.viaBotUserId = viaBotUserId
     }
 }
