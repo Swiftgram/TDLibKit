@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-92c2a9c4
-//  https://github.com/tdlib/td/tree/92c2a9c4
+//  Based on TDLib 1.8.1-1e1ab5d1
+//  https://github.com/tdlib/td/tree/1e1ab5d1
 //
 
 import Foundation
 
 
-/// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
+/// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
 public struct ToggleChatIsPinned: Codable, Equatable {
 
     /// Chat identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-92c2a9c4
-//  https://github.com/tdlib/td/tree/92c2a9c4
+//  Based on TDLib 1.8.1-1e1ab5d1
+//  https://github.com/tdlib/td/tree/1e1ab5d1
 //
 
 import Foundation
@@ -82,7 +82,7 @@ public enum InternalLinkType: Codable, Equatable {
     /// The link is a link to an unsupported proxy. An alert can be shown to the user
     case internalLinkTypeUnsupportedProxy
 
-    /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+    /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
 
@@ -518,7 +518,7 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable {
     }
 }
 
-/// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+/// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
 public struct InternalLinkTypeVideoChat: Codable, Equatable {
 
     /// Username of the chat with the video chat

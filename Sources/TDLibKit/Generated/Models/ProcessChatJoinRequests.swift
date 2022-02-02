@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-92c2a9c4
-//  https://github.com/tdlib/td/tree/92c2a9c4
+//  Based on TDLib 1.8.1-1e1ab5d1
+//  https://github.com/tdlib/td/tree/1e1ab5d1
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Handles all pending join requests for a given link in a chat
 public struct ProcessChatJoinRequests: Codable, Equatable {
 
-    /// True, if the requests are approved. Otherwise the requests are declived
+    /// True, if the requests are approved. Otherwise the requests are declined
     public let approve: Bool?
 
     /// Chat identifier

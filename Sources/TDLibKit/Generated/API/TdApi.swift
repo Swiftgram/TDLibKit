@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-92c2a9c4
-//  https://github.com/tdlib/td/tree/92c2a9c4
+//  Based on TDLib 1.8.1-1e1ab5d1
+//  https://github.com/tdlib/td/tree/1e1ab5d1
 //
 
 import Foundation
@@ -6276,7 +6276,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
+    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: True, if the chat is pinned
@@ -6294,7 +6294,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
+    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: True, if the chat is pinned
@@ -7233,7 +7233,7 @@ public final class TdApi {
     }
 
     /// Handles a pending join request in a chat
-    /// - Parameter approve: True, if the request is approved. Otherwise the request is declived
+    /// - Parameter approve: True, if the request is approved. Otherwise the request is declined
     /// - Parameter chatId: Chat identifier
     /// - Parameter userId: Identifier of the user that sent the request
     public func processChatJoinRequest(
@@ -7251,7 +7251,7 @@ public final class TdApi {
     }
 
     /// Handles a pending join request in a chat
-    /// - Parameter approve: True, if the request is approved. Otherwise the request is declived
+    /// - Parameter approve: True, if the request is approved. Otherwise the request is declined
     /// - Parameter chatId: Chat identifier
     /// - Parameter userId: Identifier of the user that sent the request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7269,7 +7269,7 @@ public final class TdApi {
     }
 
     /// Handles all pending join requests for a given link in a chat
-    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declived
+    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declined
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     public func processChatJoinRequests(
@@ -7287,7 +7287,7 @@ public final class TdApi {
     }
 
     /// Handles all pending join requests for a given link in a chat
-    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declived
+    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declined
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
