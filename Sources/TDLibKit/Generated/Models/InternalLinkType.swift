@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-057b2d1e
-//  https://github.com/tdlib/td/tree/057b2d1e
+//  Based on TDLib 1.8.1-a78245ee
+//  https://github.com/tdlib/td/tree/a78245ee
 //
 
 import Foundation
@@ -43,6 +43,9 @@ public enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
+    /// The link is a link to the language settings section of the app
+    case internalLinkTypeLanguageSettings
+
     /// The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
     case internalLinkTypeMessage(InternalLinkTypeMessage)
 
@@ -54,6 +57,9 @@ public enum InternalLinkType: Codable, Equatable {
 
     /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
+
+    /// The link is a link to the privacy and security settings section of the app
+    case internalLinkTypePrivacyAndSecuritySettings
 
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
@@ -100,10 +106,12 @@ public enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeFilterSettings
         case internalLinkTypeGame
         case internalLinkTypeLanguagePack
+        case internalLinkTypeLanguageSettings
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
+        case internalLinkTypePrivacyAndSecuritySettings
         case internalLinkTypeProxy
         case internalLinkTypePublicChat
         case internalLinkTypeQrCodeAuthentication
@@ -148,6 +156,8 @@ public enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeLanguagePack:
             let value = try InternalLinkTypeLanguagePack(from: decoder)
             self = .internalLinkTypeLanguagePack(value)
+        case .internalLinkTypeLanguageSettings:
+            self = .internalLinkTypeLanguageSettings
         case .internalLinkTypeMessage:
             let value = try InternalLinkTypeMessage(from: decoder)
             self = .internalLinkTypeMessage(value)
@@ -160,6 +170,8 @@ public enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypePhoneNumberConfirmation:
             let value = try InternalLinkTypePhoneNumberConfirmation(from: decoder)
             self = .internalLinkTypePhoneNumberConfirmation(value)
+        case .internalLinkTypePrivacyAndSecuritySettings:
+            self = .internalLinkTypePrivacyAndSecuritySettings
         case .internalLinkTypeProxy:
             let value = try InternalLinkTypeProxy(from: decoder)
             self = .internalLinkTypeProxy(value)
@@ -222,6 +234,8 @@ public enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeLanguagePack(let value):
             try container.encode(Kind.internalLinkTypeLanguagePack, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeLanguageSettings:
+            try container.encode(Kind.internalLinkTypeLanguageSettings, forKey: .type)
         case .internalLinkTypeMessage(let value):
             try container.encode(Kind.internalLinkTypeMessage, forKey: .type)
             try value.encode(to: encoder)
@@ -234,6 +248,8 @@ public enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypePhoneNumberConfirmation(let value):
             try container.encode(Kind.internalLinkTypePhoneNumberConfirmation, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypePrivacyAndSecuritySettings:
+            try container.encode(Kind.internalLinkTypePrivacyAndSecuritySettings, forKey: .type)
         case .internalLinkTypeProxy(let value):
             try container.encode(Kind.internalLinkTypeProxy, forKey: .type)
             try value.encode(to: encoder)
