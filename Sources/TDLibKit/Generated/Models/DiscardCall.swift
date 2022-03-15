@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -22,10 +22,10 @@ public struct DiscardCall: Codable, Equatable {
     /// The call duration, in seconds
     public let duration: Int?
 
-    /// True, if the user was disconnected
+    /// Pass true if the user was disconnected
     public let isDisconnected: Bool?
 
-    /// True, if the call was a video call
+    /// Pass true if the call was a video call
     public let isVideo: Bool?
 
 

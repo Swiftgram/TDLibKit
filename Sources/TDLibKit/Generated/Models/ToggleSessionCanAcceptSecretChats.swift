@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Toggles whether a session can accept incoming secret chats
 public struct ToggleSessionCanAcceptSecretChats: Codable, Equatable {
 
-    /// True, if incoming secret chats can be accepted by the session
+    /// Pass true to allow accepring secret chats by the session; pass false otherwise
     public let canAcceptSecretChats: Bool?
 
     /// Session identifier

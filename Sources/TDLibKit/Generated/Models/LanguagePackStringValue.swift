@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public enum LanguagePackStringValue: Codable, Equatable {
     /// An ordinary language pack string
     case languagePackStringValueOrdinary(LanguagePackStringValueOrdinary)
 
-    /// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+    /// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
     case languagePackStringValuePluralized(LanguagePackStringValuePluralized)
 
     /// A deleted language pack string, the value must be taken from the built-in English language pack
@@ -71,7 +71,7 @@ public struct LanguagePackStringValueOrdinary: Codable, Equatable {
     }
 }
 
-/// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+/// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
 public struct LanguagePackStringValuePluralized: Codable, Equatable {
 
     /// Value for few objects

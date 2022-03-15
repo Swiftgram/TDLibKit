@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns network data usage statistics. Can be called before authorization
 public struct GetNetworkStatistics: Codable, Equatable {
 
-    /// If true, returns only data for the current library launch
+    /// Pass true to get statistics only for the current library launch
     public let onlyCurrent: Bool?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ViewMessages: Codable, Equatable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// True, if messages in closed chats must be marked as read by the request
+    /// Pass true to mark as read the specified messages even the chat is closed
     public let forceRead: Bool?
 
     /// The identifiers of the messages being viewed

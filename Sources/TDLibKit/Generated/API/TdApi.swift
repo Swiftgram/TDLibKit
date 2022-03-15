@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -426,7 +426,7 @@ public final class TdApi {
     /// - Parameter newPassword: New password of the user; may be empty to remove the password
     /// - Parameter newRecoveryEmailAddress: New recovery email address; may be empty
     /// - Parameter oldPassword: Previous password of the user
-    /// - Parameter setRecoveryEmailAddress: Pass true if the recovery email address must be changed
+    /// - Parameter setRecoveryEmailAddress: Pass true to change also the recovery email address
     public func setPassword(
         newHint: String?,
         newPassword: String?,
@@ -450,7 +450,7 @@ public final class TdApi {
     /// - Parameter newPassword: New password of the user; may be empty to remove the password
     /// - Parameter newRecoveryEmailAddress: New recovery email address; may be empty
     /// - Parameter oldPassword: Previous password of the user
-    /// - Parameter setRecoveryEmailAddress: Pass true if the recovery email address must be changed
+    /// - Parameter setRecoveryEmailAddress: Pass true to change also the recovery email address
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setPassword(
         newHint: String?,
@@ -915,7 +915,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about a message, if it is available locally without sending network request. This is an offline request
+    /// Returns information about a message, if it is available without sending network request. This is an offline request
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
     public func getMessageLocally(
@@ -930,7 +930,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a message, if it is available locally without sending network request. This is an offline request
+    /// Returns information about a message, if it is available without sending network request. This is an offline request
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -1641,7 +1641,7 @@ public final class TdApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
-    /// - Parameter onlyLocal: If true, returns only messages that are available locally without sending network requests
+    /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     public func getChatHistory(
         chatId: Int64?,
         fromMessageId: Int64?,
@@ -1665,7 +1665,7 @@ public final class TdApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
-    /// - Parameter onlyLocal: If true, returns only messages that are available locally without sending network requests
+    /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatHistory(
         chatId: Int64?,
@@ -1734,7 +1734,7 @@ public final class TdApi {
 
     /// Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter removeFromChatList: Pass true if the chat needs to be removed from the chat list
+    /// - Parameter removeFromChatList: Pass true to remove the chat from all chat lists
     /// - Parameter revoke: Pass true to delete chat history for all users
     public func deleteChatHistory(
         chatId: Int64?,
@@ -1752,7 +1752,7 @@ public final class TdApi {
 
     /// Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter removeFromChatList: Pass true if the chat needs to be removed from the chat list
+    /// - Parameter removeFromChatList: Pass true to remove the chat from all chat lists
     /// - Parameter revoke: Pass true to delete chat history for all users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func deleteChatHistory(
@@ -1979,7 +1979,7 @@ public final class TdApi {
     /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter onlyMissed: If true, returns only messages with missed/declined calls
+    /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
     public func searchCallMessages(
         fromMessageId: Int64?,
         limit: Int?,
@@ -1997,7 +1997,7 @@ public final class TdApi {
     /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter onlyMissed: If true, returns only messages with missed/declined calls
+    /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchCallMessages(
         fromMessageId: Int64?,
@@ -2008,6 +2008,36 @@ public final class TdApi {
             fromMessageId: fromMessageId,
             limit: limit,
             onlyMissed: onlyMissed
+        )
+        return try await execute(query: query)
+    }
+
+    /// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100
+    /// - Parameter query: Query to search for in document file name and message caption
+    public func searchOutgoingDocumentMessages(
+        limit: Int?,
+        query: String?,
+        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchOutgoingDocumentMessages(
+            limit: limit,
+            query: query
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100
+    /// - Parameter query: Query to search for in document file name and message caption
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchOutgoingDocumentMessages(
+        limit: Int?,
+        query: String?
+    ) async throws -> FoundMessages {
+        let query = SearchOutgoingDocumentMessages(
+            limit: limit,
+            query: query
         )
         return try await execute(query: query)
     }
@@ -2188,7 +2218,7 @@ public final class TdApi {
     /// Returns approximate number of messages of the specified type in the chat
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
-    /// - Parameter returnLocal: If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+    /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     public func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -2206,7 +2236,7 @@ public final class TdApi {
     /// Returns approximate number of messages of the specified type in the chat
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
-    /// - Parameter returnLocal: If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+    /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCount(
         chatId: Int64?,
@@ -2619,12 +2649,14 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
+    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyToMessageId: Identifier of a message to reply to or 0
     public func sendMessageAlbum(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
         messageThreadId: Int64?,
+        onlyPreview: Bool?,
         options: MessageSendOptions?,
         replyToMessageId: Int64?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
@@ -2633,6 +2665,7 @@ public final class TdApi {
             chatId: chatId,
             inputMessageContents: inputMessageContents,
             messageThreadId: messageThreadId,
+            onlyPreview: onlyPreview,
             options: options,
             replyToMessageId: replyToMessageId
         )
@@ -2643,6 +2676,7 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
+    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyToMessageId: Identifier of a message to reply to or 0
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2650,6 +2684,7 @@ public final class TdApi {
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
         messageThreadId: Int64?,
+        onlyPreview: Bool?,
         options: MessageSendOptions?,
         replyToMessageId: Int64?
     ) async throws -> Messages {
@@ -2657,6 +2692,7 @@ public final class TdApi {
             chatId: chatId,
             inputMessageContents: inputMessageContents,
             messageThreadId: messageThreadId,
+            onlyPreview: onlyPreview,
             options: options,
             replyToMessageId: replyToMessageId
         )
@@ -2701,7 +2737,7 @@ public final class TdApi {
 
     /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
     /// - Parameter chatId: Target chat
-    /// - Parameter hideViaBot: If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
@@ -2731,7 +2767,7 @@ public final class TdApi {
 
     /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
     /// - Parameter chatId: Target chat
-    /// - Parameter hideViaBot: If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
@@ -2763,10 +2799,10 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
-    /// - Parameter onlyPreview: If true, messages will not be forwarded and instead fake messages will be returned
+    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually forwarding them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
-    /// - Parameter removeCaption: If true, media caption of message copies will be removed. Ignored if send_copy is false
-    /// - Parameter sendCopy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
+    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
     public func forwardMessages(
         chatId: Int64?,
         fromChatId: Int64?,
@@ -2793,10 +2829,10 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
-    /// - Parameter onlyPreview: If true, messages will not be forwarded and instead fake messages will be returned
+    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually forwarding them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
-    /// - Parameter removeCaption: If true, media caption of message copies will be removed. Ignored if send_copy is false
-    /// - Parameter sendCopy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
+    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func forwardMessages(
         chatId: Int64?,
@@ -3497,9 +3533,9 @@ public final class TdApi {
 
     /// Changes chosen reaction for a message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isBig: True, if the reaction is added with a big animation
+    /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen non-big reaction to remove the reaction
     public func setMessageReaction(
         chatId: Int64?,
         isBig: Bool?,
@@ -3518,9 +3554,9 @@ public final class TdApi {
 
     /// Changes chosen reaction for a message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isBig: True, if the reaction is added with a big animation
+    /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen non-big reaction to remove the reaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setMessageReaction(
         chatId: Int64?,
@@ -4012,7 +4048,7 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
-    /// - Parameter allowWriteAccess: True, if the user allowed the bot to send them messages
+    /// - Parameter allowWriteAccess: Pass true to allow the bot to send messages to the current user
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
@@ -4033,7 +4069,7 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
-    /// - Parameter allowWriteAccess: True, if the user allowed the bot to send them messages
+    /// - Parameter allowWriteAccess: Pass true to allow the bot to send messages to the current user
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
@@ -4104,7 +4140,7 @@ public final class TdApi {
     /// Sets the result of an inline query; for bots only
     /// - Parameter cacheTime: Allowed time to cache the results of the query, in seconds
     /// - Parameter inlineQueryId: Identifier of the inline query
-    /// - Parameter isPersonal: True, if the result of the query can be cached for the specified user
+    /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
     /// - Parameter switchPmParameter: The parameter for the bot start message
@@ -4134,7 +4170,7 @@ public final class TdApi {
     /// Sets the result of an inline query; for bots only
     /// - Parameter cacheTime: Allowed time to cache the results of the query, in seconds
     /// - Parameter inlineQueryId: Identifier of the inline query
-    /// - Parameter isPersonal: True, if the result of the query can be cached for the specified user
+    /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
     /// - Parameter switchPmParameter: The parameter for the bot start message
@@ -4200,7 +4236,7 @@ public final class TdApi {
     /// Sets the result of a callback query; for bots only
     /// - Parameter cacheTime: Time during which the result of the query can be cached, in seconds
     /// - Parameter callbackQueryId: Identifier of the callback query
-    /// - Parameter showAlert: If true, an alert must be shown to the user instead of a toast notification
+    /// - Parameter showAlert: Pass true to show an alert to the user instead of a toast notification
     /// - Parameter text: Text of the answer
     /// - Parameter url: URL to be opened
     public func answerCallbackQuery(
@@ -4224,7 +4260,7 @@ public final class TdApi {
     /// Sets the result of a callback query; for bots only
     /// - Parameter cacheTime: Time during which the result of the query can be cached, in seconds
     /// - Parameter callbackQueryId: Identifier of the callback query
-    /// - Parameter showAlert: If true, an alert must be shown to the user instead of a toast notification
+    /// - Parameter showAlert: Pass true to show an alert to the user instead of a toast notification
     /// - Parameter text: Text of the answer
     /// - Parameter url: URL to be opened
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4313,7 +4349,7 @@ public final class TdApi {
 
     /// Updates the game score of the specified user in the game; for bots only
     /// - Parameter chatId: The chat to which the message with the game belongs
-    /// - Parameter editMessage: True, if the message needs to be edited
+    /// - Parameter editMessage: Pass true to edit the game message to include the current scoreboard
     /// - Parameter force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
     /// - Parameter messageId: Identifier of the message
     /// - Parameter score: The new score
@@ -4340,7 +4376,7 @@ public final class TdApi {
 
     /// Updates the game score of the specified user in the game; for bots only
     /// - Parameter chatId: The chat to which the message with the game belongs
-    /// - Parameter editMessage: True, if the message needs to be edited
+    /// - Parameter editMessage: Pass true to edit the game message to include the current scoreboard
     /// - Parameter force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
     /// - Parameter messageId: Identifier of the message
     /// - Parameter score: The new score
@@ -4366,7 +4402,7 @@ public final class TdApi {
     }
 
     /// Updates the game score of the specified user in a game; for bots only
-    /// - Parameter editMessage: True, if the message needs to be edited
+    /// - Parameter editMessage: Pass true to edit the game message to include the current scoreboard
     /// - Parameter force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter score: The new score
@@ -4390,7 +4426,7 @@ public final class TdApi {
     }
 
     /// Updates the game score of the specified user in a game; for bots only
-    /// - Parameter editMessage: True, if the message needs to be edited
+    /// - Parameter editMessage: Pass true to edit the game message to include the current scoreboard
     /// - Parameter force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter score: The new score
@@ -4591,7 +4627,7 @@ public final class TdApi {
 
     /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
     /// - Parameter chatId: Chat identifier
-    /// - Parameter forceRead: True, if messages in closed chats must be marked as read by the request
+    /// - Parameter forceRead: Pass true to mark as read the specified messages even the chat is closed
     /// - Parameter messageIds: The identifiers of the messages being viewed
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages are being viewed
     public func viewMessages(
@@ -4612,7 +4648,7 @@ public final class TdApi {
 
     /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
     /// - Parameter chatId: Chat identifier
-    /// - Parameter forceRead: True, if messages in closed chats must be marked as read by the request
+    /// - Parameter forceRead: Pass true to mark as read the specified messages even the chat is closed
     /// - Parameter messageIds: The identifiers of the messages being viewed
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages are being viewed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4736,7 +4772,7 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
-    /// - Parameter allowWriteAccess: True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
     public func getExternalLink(
         allowWriteAccess: Bool?,
@@ -4751,7 +4787,7 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
-    /// - Parameter allowWriteAccess: True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getExternalLink(
@@ -4810,7 +4846,7 @@ public final class TdApi {
     }
 
     /// Returns an existing chat corresponding to a given user
-    /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter userId: User identifier
     public func createPrivateChat(
         force: Bool?,
@@ -4825,7 +4861,7 @@ public final class TdApi {
     }
 
     /// Returns an existing chat corresponding to a given user
-    /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createPrivateChat(
@@ -4841,7 +4877,7 @@ public final class TdApi {
 
     /// Returns an existing chat corresponding to a known basic group
     /// - Parameter basicGroupId: Basic group identifier
-    /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     public func createBasicGroupChat(
         basicGroupId: Int64?,
         force: Bool?,
@@ -4856,7 +4892,7 @@ public final class TdApi {
 
     /// Returns an existing chat corresponding to a known basic group
     /// - Parameter basicGroupId: Basic group identifier
-    /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createBasicGroupChat(
         basicGroupId: Int64?,
@@ -4870,7 +4906,7 @@ public final class TdApi {
     }
 
     /// Returns an existing chat corresponding to a known supergroup or channel
-    /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter supergroupId: Supergroup or channel identifier
     public func createSupergroupChat(
         force: Bool?,
@@ -4885,7 +4921,7 @@ public final class TdApi {
     }
 
     /// Returns an existing chat corresponding to a known supergroup or channel
-    /// - Parameter force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter supergroupId: Supergroup or channel identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createSupergroupChat(
@@ -4953,8 +4989,8 @@ public final class TdApi {
 
     /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
     /// - Parameter description: 
-    /// - Parameter forImport: True, if the supergroup is created for importing messages using importMessage
-    /// - Parameter isChannel: True, if a channel chat needs to be created
+    /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
+    /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     /// - Parameter title: Title of the new chat; 1-128 characters
     public func createNewSupergroupChat(
@@ -4977,8 +5013,8 @@ public final class TdApi {
 
     /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
     /// - Parameter description: 
-    /// - Parameter forImport: True, if the supergroup is created for importing messages using importMessage
-    /// - Parameter isChannel: True, if a channel chat needs to be created
+    /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
+    /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     /// - Parameter title: Title of the new chat; 1-128 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -5466,7 +5502,7 @@ public final class TdApi {
 
     /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
     /// - Parameter chatId: Chat identifier
-    /// - Parameter hasProtectedContent: True, if chat content can't be saved locally, forwarded, or copied
+    /// - Parameter hasProtectedContent: New value of has_protected_content
     public func toggleChatHasProtectedContent(
         chatId: Int64?,
         hasProtectedContent: Bool?,
@@ -5481,7 +5517,7 @@ public final class TdApi {
 
     /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
     /// - Parameter chatId: Chat identifier
-    /// - Parameter hasProtectedContent: True, if chat content can't be saved locally, forwarded, or copied
+    /// - Parameter hasProtectedContent: New value of has_protected_content
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleChatHasProtectedContent(
         chatId: Int64?,
@@ -5555,7 +5591,7 @@ public final class TdApi {
     }
 
     /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active
     /// - Parameter chatId: Identifier of the chat
     public func setChatAvailableReactions(
         availableReactions: [String]?,
@@ -5570,7 +5606,7 @@ public final class TdApi {
     }
 
     /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setChatAvailableReactions(
@@ -5736,9 +5772,9 @@ public final class TdApi {
 
     /// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
     /// - Parameter chatId: Identifier of the chat
-    /// - Parameter disableNotification: True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
+    /// - Parameter disableNotification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     /// - Parameter messageId: Identifier of the new pinned message
-    /// - Parameter onlyForSelf: True, if the message needs to be pinned for one side only; private chats only
+    /// - Parameter onlyForSelf: Pass true to pin the message only for self; private chats only
     public func pinChatMessage(
         chatId: Int64?,
         disableNotification: Bool?,
@@ -5757,9 +5793,9 @@ public final class TdApi {
 
     /// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
     /// - Parameter chatId: Identifier of the chat
-    /// - Parameter disableNotification: True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
+    /// - Parameter disableNotification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     /// - Parameter messageId: Identifier of the new pinned message
-    /// - Parameter onlyForSelf: True, if the message needs to be pinned for one side only; private chats only
+    /// - Parameter onlyForSelf: Pass true to pin the message only for self; private chats only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func pinChatMessage(
         chatId: Int64?,
@@ -6159,8 +6195,8 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Clears draft messages in all chats
-    /// - Parameter excludeSecretChats: If true, local draft messages in secret chats will not be cleared
+    /// Clears message drafts in all chats
+    /// - Parameter excludeSecretChats: Pass true to keep local message drafts in secret chats
     public func clearAllDraftMessages(
         excludeSecretChats: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -6171,8 +6207,8 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Clears draft messages in all chats
-    /// - Parameter excludeSecretChats: If true, local draft messages in secret chats will not be cleared
+    /// Clears message drafts in all chats
+    /// - Parameter excludeSecretChats: Pass true to keep local message drafts in secret chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func clearAllDraftMessages(excludeSecretChats: Bool?) async throws -> Ok {
         let query = ClearAllDraftMessages(
@@ -6182,7 +6218,7 @@ public final class TdApi {
     }
 
     /// Returns list of chats with non-default notification settings
-    /// - Parameter compareSound: If true, also chats with non-default sound will be returned
+    /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
     public func getChatNotificationSettingsExceptions(
         compareSound: Bool?,
@@ -6197,7 +6233,7 @@ public final class TdApi {
     }
 
     /// Returns list of chats with non-default notification settings
-    /// - Parameter compareSound: If true, also chats with non-default sound will be returned
+    /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatNotificationSettingsExceptions(
@@ -6279,7 +6315,7 @@ public final class TdApi {
     /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
-    /// - Parameter isPinned: True, if the chat is pinned
+    /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
     public func toggleChatIsPinned(
         chatId: Int64?,
         chatList: ChatList?,
@@ -6297,7 +6333,7 @@ public final class TdApi {
     /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
-    /// - Parameter isPinned: True, if the chat is pinned
+    /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleChatIsPinned(
         chatId: Int64?,
@@ -6346,8 +6382,8 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the file to download
     /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
     /// - Parameter offset: The starting position from which the file needs to be downloaded
-    /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
-    /// - Parameter synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after//-the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
+    /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+    /// - Parameter synchronous: Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
     public func downloadFile(
         fileId: Int?,
         limit: Int?,
@@ -6370,8 +6406,8 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the file to download
     /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
     /// - Parameter offset: The starting position from which the file needs to be downloaded
-    /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
-    /// - Parameter synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after//-the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
+    /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+    /// - Parameter synchronous: Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func downloadFile(
         fileId: Int?,
@@ -6698,6 +6734,214 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
+    /// - Parameter chatId: Chat identifier of the message with the file
+    /// - Parameter fileId: Identifier of the file to download
+    /// - Parameter messageId: Message identifier
+    /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+    public func addFileToDownloads(
+        chatId: Int64?,
+        fileId: Int?,
+        messageId: Int64?,
+        priority: Int?,
+        completion: @escaping (Result<File, Swift.Error>) -> Void
+    ) throws {
+        let query = AddFileToDownloads(
+            chatId: chatId,
+            fileId: fileId,
+            messageId: messageId,
+            priority: priority
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
+    /// - Parameter chatId: Chat identifier of the message with the file
+    /// - Parameter fileId: Identifier of the file to download
+    /// - Parameter messageId: Message identifier
+    /// - Parameter priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addFileToDownloads(
+        chatId: Int64?,
+        fileId: Int?,
+        messageId: Int64?,
+        priority: Int?
+    ) async throws -> File {
+        let query = AddFileToDownloads(
+            chatId: chatId,
+            fileId: fileId,
+            messageId: messageId,
+            priority: priority
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes pause state of a file in the file download list
+    /// - Parameter fileId: Identifier of the downloaded file
+    /// - Parameter isPaused: Pass true if the download is paused
+    public func toggleDownloadIsPaused(
+        fileId: Int?,
+        isPaused: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleDownloadIsPaused(
+            fileId: fileId,
+            isPaused: isPaused
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes pause state of a file in the file download list
+    /// - Parameter fileId: Identifier of the downloaded file
+    /// - Parameter isPaused: Pass true if the download is paused
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleDownloadIsPaused(
+        fileId: Int?,
+        isPaused: Bool?
+    ) async throws -> Ok {
+        let query = ToggleDownloadIsPaused(
+            fileId: fileId,
+            isPaused: isPaused
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes pause state of all files in the file download list
+    /// - Parameter arePaused: Pass true to pause all downloads; pass false to unpause them
+    public func toggleAllDownloadsArePaused(
+        arePaused: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleAllDownloadsArePaused(
+            arePaused: arePaused
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes pause state of all files in the file download list
+    /// - Parameter arePaused: Pass true to pause all downloads; pass false to unpause them
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleAllDownloadsArePaused(arePaused: Bool?) async throws -> Ok {
+        let query = ToggleAllDownloadsArePaused(
+            arePaused: arePaused
+        )
+        return try await execute(query: query)
+    }
+
+    /// Removes a file from the file download list
+    /// - Parameter deleteFromCache: Pass true to delete the file from the TDLib file cache
+    /// - Parameter fileId: Identifier of the downloaded file
+    public func removeFileFromDownloads(
+        deleteFromCache: Bool?,
+        fileId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveFileFromDownloads(
+            deleteFromCache: deleteFromCache,
+            fileId: fileId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Removes a file from the file download list
+    /// - Parameter deleteFromCache: Pass true to delete the file from the TDLib file cache
+    /// - Parameter fileId: Identifier of the downloaded file
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func removeFileFromDownloads(
+        deleteFromCache: Bool?,
+        fileId: Int?
+    ) async throws -> Ok {
+        let query = RemoveFileFromDownloads(
+            deleteFromCache: deleteFromCache,
+            fileId: fileId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Removes all files from the file download list
+    /// - Parameter deleteFromCache: Pass true to delete the file from the TDLib file cache
+    /// - Parameter onlyActive: Pass true to remove only active downloads, including paused
+    /// - Parameter onlyCompleted: Pass true to remove only completed downloads
+    public func removeAllFilesFromDownloads(
+        deleteFromCache: Bool?,
+        onlyActive: Bool?,
+        onlyCompleted: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveAllFilesFromDownloads(
+            deleteFromCache: deleteFromCache,
+            onlyActive: onlyActive,
+            onlyCompleted: onlyCompleted
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Removes all files from the file download list
+    /// - Parameter deleteFromCache: Pass true to delete the file from the TDLib file cache
+    /// - Parameter onlyActive: Pass true to remove only active downloads, including paused
+    /// - Parameter onlyCompleted: Pass true to remove only completed downloads
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func removeAllFilesFromDownloads(
+        deleteFromCache: Bool?,
+        onlyActive: Bool?,
+        onlyCompleted: Bool?
+    ) async throws -> Ok {
+        let query = RemoveAllFilesFromDownloads(
+            deleteFromCache: deleteFromCache,
+            onlyActive: onlyActive,
+            onlyCompleted: onlyCompleted
+        )
+        return try await execute(query: query)
+    }
+
+    /// Searches for files in the file download list or recently downloaded files from the list
+    /// - Parameter limit: The maximum number of files to be returned
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyActive: Pass true to search only for active downloads, including paused
+    /// - Parameter onlyCompleted: Pass true to search only for completed downloads
+    /// - Parameter query: Query to search for; may be empty to return all downloaded files
+    public func searchFileDownloads(
+        limit: Int?,
+        offset: String?,
+        onlyActive: Bool?,
+        onlyCompleted: Bool?,
+        query: String?,
+        completion: @escaping (Result<FoundFileDownloads, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchFileDownloads(
+            limit: limit,
+            offset: offset,
+            onlyActive: onlyActive,
+            onlyCompleted: onlyCompleted,
+            query: query
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Searches for files in the file download list or recently downloaded files from the list
+    /// - Parameter limit: The maximum number of files to be returned
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyActive: Pass true to search only for active downloads, including paused
+    /// - Parameter onlyCompleted: Pass true to search only for completed downloads
+    /// - Parameter query: Query to search for; may be empty to return all downloaded files
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchFileDownloads(
+        limit: Int?,
+        offset: String?,
+        onlyActive: Bool?,
+        onlyCompleted: Bool?,
+        query: String?
+    ) async throws -> FoundFileDownloads {
+        let query = SearchFileDownloads(
+            limit: limit,
+            offset: offset,
+            onlyActive: onlyActive,
+            onlyCompleted: onlyCompleted,
+            query: query
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns information about a file with messages exported from another app
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
     public func getMessageFileType(
@@ -6802,7 +7046,7 @@ public final class TdApi {
 
     /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
+    /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     /// - Parameter name: Invite link name; 0-32 characters
@@ -6826,7 +7070,7 @@ public final class TdApi {
 
     /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
+    /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     /// - Parameter name: Invite link name; 0-32 characters
@@ -6850,7 +7094,7 @@ public final class TdApi {
 
     /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
-    /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
+    /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter inviteLink: Invite link to be edited
     /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
@@ -6877,7 +7121,7 @@ public final class TdApi {
 
     /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
-    /// - Parameter createsJoinRequest: True, if the link only creates join request. If true, member_limit must not be specified
+    /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
     /// - Parameter inviteLink: Invite link to be edited
     /// - Parameter memberLimit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
@@ -7233,7 +7477,7 @@ public final class TdApi {
     }
 
     /// Handles a pending join request in a chat
-    /// - Parameter approve: True, if the request is approved. Otherwise the request is declined
+    /// - Parameter approve: Pass true to approve the request; pass false to decline it
     /// - Parameter chatId: Chat identifier
     /// - Parameter userId: Identifier of the user that sent the request
     public func processChatJoinRequest(
@@ -7251,7 +7495,7 @@ public final class TdApi {
     }
 
     /// Handles a pending join request in a chat
-    /// - Parameter approve: True, if the request is approved. Otherwise the request is declined
+    /// - Parameter approve: Pass true to approve the request; pass false to decline it
     /// - Parameter chatId: Chat identifier
     /// - Parameter userId: Identifier of the user that sent the request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7269,7 +7513,7 @@ public final class TdApi {
     }
 
     /// Handles all pending join requests for a given link in a chat
-    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declined
+    /// - Parameter approve: Pass true to approve all requests; pass false to decline them
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     public func processChatJoinRequests(
@@ -7287,7 +7531,7 @@ public final class TdApi {
     }
 
     /// Handles all pending join requests for a given link in a chat
-    /// - Parameter approve: True, if the requests are approved. Otherwise the requests are declined
+    /// - Parameter approve: Pass true to approve all requests; pass false to decline them
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7305,7 +7549,7 @@ public final class TdApi {
     }
 
     /// Creates a new call
-    /// - Parameter isVideo: True, if a video call needs to be created
+    /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
     public func createCall(
@@ -7323,7 +7567,7 @@ public final class TdApi {
     }
 
     /// Creates a new call
-    /// - Parameter isVideo: True, if a video call needs to be created
+    /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7404,8 +7648,8 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter connectionId: Identifier of the connection used during the call
     /// - Parameter duration: The call duration, in seconds
-    /// - Parameter isDisconnected: True, if the user was disconnected
-    /// - Parameter isVideo: True, if the call was a video call
+    /// - Parameter isDisconnected: Pass true if the user was disconnected
+    /// - Parameter isVideo: Pass true if the call was a video call
     public func discardCall(
         callId: Int?,
         connectionId: TdInt64?,
@@ -7428,8 +7672,8 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter connectionId: Identifier of the connection used during the call
     /// - Parameter duration: The call duration, in seconds
-    /// - Parameter isDisconnected: True, if the user was disconnected
-    /// - Parameter isVideo: True, if the call was a video call
+    /// - Parameter isDisconnected: Pass true if the user was disconnected
+    /// - Parameter isVideo: Pass true if the call was a video call
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func discardCall(
         callId: Int?,
@@ -7574,16 +7818,19 @@ public final class TdApi {
 
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
     /// - Parameter chatId: Chat identifier, in which the video chat will be created
+    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     public func createVideoChat(
         chatId: Int64?,
+        isRtmpStream: Bool?,
         startDate: Int?,
         title: String?,
         completion: @escaping (Result<GroupCallId, Swift.Error>) -> Void
     ) throws {
         let query = CreateVideoChat(
             chatId: chatId,
+            isRtmpStream: isRtmpStream,
             startDate: startDate,
             title: title
         )
@@ -7592,18 +7839,65 @@ public final class TdApi {
 
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
     /// - Parameter chatId: Chat identifier, in which the video chat will be created
+    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createVideoChat(
         chatId: Int64?,
+        isRtmpStream: Bool?,
         startDate: Int?,
         title: String?
     ) async throws -> GroupCallId {
         let query = CreateVideoChat(
             chatId: chatId,
+            isRtmpStream: isRtmpStream,
             startDate: startDate,
             title: title
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns RTMP URL for streaming to the chat; requires creator privileges
+    /// - Parameter chatId: Chat identifier
+    public func getVideoChatRtmpUrl(
+        chatId: Int64?,
+        completion: @escaping (Result<RtmpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetVideoChatRtmpUrl(
+            chatId: chatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns RTMP URL for streaming to the chat; requires creator privileges
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getVideoChatRtmpUrl(chatId: Int64?) async throws -> RtmpUrl {
+        let query = GetVideoChatRtmpUrl(
+            chatId: chatId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+    /// - Parameter chatId: Chat identifier
+    public func replaceVideoChatRtmpUrl(
+        chatId: Int64?,
+        completion: @escaping (Result<RtmpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = ReplaceVideoChatRtmpUrl(
+            chatId: chatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func replaceVideoChatRtmpUrl(chatId: Int64?) async throws -> RtmpUrl {
+        let query = ReplaceVideoChatRtmpUrl(
+            chatId: chatId
         )
         return try await execute(query: query)
     }
@@ -7686,8 +7980,8 @@ public final class TdApi {
     /// - Parameter audioSourceId: Caller audio channel synchronization source identifier; received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
-    /// - Parameter isMuted: True, if the user's microphone is muted
-    /// - Parameter isMyVideoEnabled: True, if the user's video is enabled
+    /// - Parameter isMuted: Pass true to join the call with muted microphone
+    /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
     /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
     public func joinGroupCall(
@@ -7716,8 +8010,8 @@ public final class TdApi {
     /// - Parameter audioSourceId: Caller audio channel synchronization source identifier; received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
-    /// - Parameter isMuted: True, if the user's microphone is muted
-    /// - Parameter isMyVideoEnabled: True, if the user's video is enabled
+    /// - Parameter isMuted: Pass true to join the call with muted microphone
+    /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
     /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8099,7 +8393,7 @@ public final class TdApi {
     /// Informs TDLib that speaking state of a participant of an active group has changed
     /// - Parameter audioSource: Group call participant's synchronization audio source identifier, or 0 for the current user
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isSpeaking: True, if the user is speaking
+    /// - Parameter isSpeaking: Pass true if the user is speaking
     public func setGroupCallParticipantIsSpeaking(
         audioSource: Int?,
         groupCallId: Int?,
@@ -8117,7 +8411,7 @@ public final class TdApi {
     /// Informs TDLib that speaking state of a participant of an active group has changed
     /// - Parameter audioSource: Group call participant's synchronization audio source identifier, or 0 for the current user
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isSpeaking: True, if the user is speaking
+    /// - Parameter isSpeaking: Pass true if the user is speaking
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setGroupCallParticipantIsSpeaking(
         audioSource: Int?,
@@ -8134,7 +8428,7 @@ public final class TdApi {
 
     /// Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isMuted: Pass true if the user must be muted and false otherwise
+    /// - Parameter isMuted: Pass true to mute the user; pass false to unmute the them
     /// - Parameter participantId: Participant identifier
     public func toggleGroupCallParticipantIsMuted(
         groupCallId: Int?,
@@ -8152,7 +8446,7 @@ public final class TdApi {
 
     /// Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isMuted: Pass true if the user must be muted and false otherwise
+    /// - Parameter isMuted: Pass true to mute the user; pass false to unmute the them
     /// - Parameter participantId: Participant identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleGroupCallParticipantIsMuted(
@@ -8314,6 +8608,28 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns information about available group call streams
+    /// - Parameter groupCallId: Group call identifier
+    public func getGroupCallStreams(
+        groupCallId: Int?,
+        completion: @escaping (Result<GroupCallStreams, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGroupCallStreams(
+            groupCallId: groupCallId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about available group call streams
+    /// - Parameter groupCallId: Group call identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGroupCallStreams(groupCallId: Int?) async throws -> GroupCallStreams {
+        let query = GetGroupCallStreams(
+            groupCallId: groupCallId
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
     /// - Parameter channelId: Identifier of an audio/video channel to get as received from tgcalls
     /// - Parameter groupCallId: Group call identifier
@@ -8393,10 +8709,10 @@ public final class TdApi {
     }
 
     /// Blocks an original sender of a message in the Replies chat
-    /// - Parameter deleteAllMessages: Pass true if all messages from the same sender must be deleted
-    /// - Parameter deleteMessage: Pass true if the message must be deleted
+    /// - Parameter deleteAllMessages: Pass true to delete all messages from the same sender
+    /// - Parameter deleteMessage: Pass true to delete the message
     /// - Parameter messageId: The identifier of an incoming message in the Replies chat
-    /// - Parameter reportSpam: Pass true if the sender must be reported to the Telegram moderators
+    /// - Parameter reportSpam: Pass true to report the sender to the Telegram moderators
     public func blockMessageSenderFromReplies(
         deleteAllMessages: Bool?,
         deleteMessage: Bool?,
@@ -8414,10 +8730,10 @@ public final class TdApi {
     }
 
     /// Blocks an original sender of a message in the Replies chat
-    /// - Parameter deleteAllMessages: Pass true if all messages from the same sender must be deleted
-    /// - Parameter deleteMessage: Pass true if the message must be deleted
+    /// - Parameter deleteAllMessages: Pass true to delete all messages from the same sender
+    /// - Parameter deleteMessage: Pass true to delete the message
     /// - Parameter messageId: The identifier of an incoming message in the Replies chat
-    /// - Parameter reportSpam: Pass true if the sender must be reported to the Telegram moderators
+    /// - Parameter reportSpam: Pass true to report the sender to the Telegram moderators
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func blockMessageSenderFromReplies(
         deleteAllMessages: Bool?,
@@ -8465,8 +8781,8 @@ public final class TdApi {
     }
 
     /// Adds a user to the contact list or edits an existing contact by their user identifier
-    /// - Parameter contact: The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
-    /// - Parameter sharePhoneNumber: True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+    /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
+    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     public func addContact(
         contact: Contact?,
         sharePhoneNumber: Bool?,
@@ -8480,8 +8796,8 @@ public final class TdApi {
     }
 
     /// Adds a user to the contact list or edits an existing contact by their user identifier
-    /// - Parameter contact: The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
-    /// - Parameter sharePhoneNumber: True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+    /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
+    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addContact(
         contact: Contact?,
@@ -8626,6 +8942,28 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func clearImportedContacts() async throws -> Ok {
         let query = ClearImportedContacts()
+        return try await execute(query: query)
+    }
+
+    /// Searches a user by their phone number
+    /// - Parameter phoneNumber: Phone number to search for
+    public func searchUserByPhoneNumber(
+        phoneNumber: String?,
+        completion: @escaping (Result<User, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchUserByPhoneNumber(
+            phoneNumber: phoneNumber
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Searches a user by their phone number
+    /// - Parameter phoneNumber: Phone number to search for
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchUserByPhoneNumber(phoneNumber: String?) async throws -> User {
+        let query = SearchUserByPhoneNumber(
+            phoneNumber: phoneNumber
+        )
         return try await execute(query: query)
     }
 
@@ -9231,7 +9569,7 @@ public final class TdApi {
     }
 
     /// Searches for emojis by keywords. Supported only if the file database is enabled
-    /// - Parameter exactMatch: True, if only emojis, which exactly match text needs to be returned
+    /// - Parameter exactMatch: Pass true if only emojis, which exactly match the text, needs to be returned
     /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter text: Text to search for
     public func searchEmojis(
@@ -9249,7 +9587,7 @@ public final class TdApi {
     }
 
     /// Searches for emojis by keywords. Supported only if the file database is enabled
-    /// - Parameter exactMatch: True, if only emojis, which exactly match text needs to be returned
+    /// - Parameter exactMatch: Pass true if only emojis, which exactly match the text, needs to be returned
     /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter text: Text to search for
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -9455,7 +9793,7 @@ public final class TdApi {
     }
 
     /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-    /// - Parameter forceFull: If true, the full instant view for the web page will be returned
+    /// - Parameter forceFull: Pass true to get full instant view for the web page
     /// - Parameter url: The web page URL
     public func getWebPageInstantView(
         forceFull: Bool?,
@@ -9470,7 +9808,7 @@ public final class TdApi {
     }
 
     /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-    /// - Parameter forceFull: If true, the full instant view for the web page will be returned
+    /// - Parameter forceFull: Pass true to get full instant view for the web page
     /// - Parameter url: The web page URL
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebPageInstantView(
@@ -9834,7 +10172,7 @@ public final class TdApi {
     }
 
     /// Toggles whether a session can accept incoming calls
-    /// - Parameter canAcceptCalls: True, if incoming calls can be accepted by the session
+    /// - Parameter canAcceptCalls: Pass true to allow accepting incoming calls by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     public func toggleSessionCanAcceptCalls(
         canAcceptCalls: Bool?,
@@ -9849,7 +10187,7 @@ public final class TdApi {
     }
 
     /// Toggles whether a session can accept incoming calls
-    /// - Parameter canAcceptCalls: True, if incoming calls can be accepted by the session
+    /// - Parameter canAcceptCalls: Pass true to allow accepting incoming calls by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleSessionCanAcceptCalls(
@@ -9864,7 +10202,7 @@ public final class TdApi {
     }
 
     /// Toggles whether a session can accept incoming secret chats
-    /// - Parameter canAcceptSecretChats: True, if incoming secret chats can be accepted by the session
+    /// - Parameter canAcceptSecretChats: Pass true to allow accepring secret chats by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     public func toggleSessionCanAcceptSecretChats(
         canAcceptSecretChats: Bool?,
@@ -9879,7 +10217,7 @@ public final class TdApi {
     }
 
     /// Toggles whether a session can accept incoming secret chats
-    /// - Parameter canAcceptSecretChats: True, if incoming secret chats can be accepted by the session
+    /// - Parameter canAcceptSecretChats: Pass true to allow accepring secret chats by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleSessionCanAcceptSecretChats(
@@ -10290,7 +10628,7 @@ public final class TdApi {
     }
 
     /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
-    /// - Parameter allowSave: True, if the order information can be saved
+    /// - Parameter allowSave: Pass true to save the order information
     /// - Parameter chatId: Chat identifier of the Invoice message
     /// - Parameter messageId: Message identifier
     /// - Parameter orderInfo: The order information, provided by the user; pass null if empty
@@ -10311,7 +10649,7 @@ public final class TdApi {
     }
 
     /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
-    /// - Parameter allowSave: True, if the order information can be saved
+    /// - Parameter allowSave: Pass true to save the order information
     /// - Parameter chatId: Chat identifier of the Invoice message
     /// - Parameter messageId: Message identifier
     /// - Parameter orderInfo: The order information, provided by the user; pass null if empty
@@ -10421,26 +10759,26 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns saved order info, if any
+    /// Returns saved order information. Returns a 404 error if there is no saved order information
     public func getSavedOrderInfo(completion: @escaping (Result<OrderInfo, Swift.Error>) -> Void) throws {
         let query = GetSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
-    /// Returns saved order info, if any
+    /// Returns saved order information. Returns a 404 error if there is no saved order information
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedOrderInfo() async throws -> OrderInfo {
         let query = GetSavedOrderInfo()
         return try await execute(query: query)
     }
 
-    /// Deletes saved order info
+    /// Deletes saved order information
     public func deleteSavedOrderInfo(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = DeleteSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
-    /// Deletes saved order info
+    /// Deletes saved order information
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func deleteSavedOrderInfo() async throws -> Ok {
         let query = DeleteSavedOrderInfo()
@@ -10474,7 +10812,7 @@ public final class TdApi {
     }
 
     /// Returns backgrounds installed by the user
-    /// - Parameter forDarkTheme: True, if the backgrounds must be ordered for dark theme
+    /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
     public func getBackgrounds(
         forDarkTheme: Bool?,
         completion: @escaping (Result<Backgrounds, Swift.Error>) -> Void
@@ -10486,7 +10824,7 @@ public final class TdApi {
     }
 
     /// Returns backgrounds installed by the user
-    /// - Parameter forDarkTheme: True, if the backgrounds must be ordered for dark theme
+    /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBackgrounds(forDarkTheme: Bool?) async throws -> Backgrounds {
         let query = GetBackgrounds(
@@ -10549,7 +10887,7 @@ public final class TdApi {
 
     /// Changes the background selected by the user; adds background to the list of installed backgrounds
     /// - Parameter background: The input background to use; pass null to create a new filled backgrounds or to remove the current background
-    /// - Parameter forDarkTheme: True, if the background is chosen for dark theme
+    /// - Parameter forDarkTheme: Pass true if the background is changed for a dark theme
     /// - Parameter type: Background type; pass null to use the default type of the remote background or to remove the current background
     public func setBackground(
         background: InputBackground?,
@@ -10567,7 +10905,7 @@ public final class TdApi {
 
     /// Changes the background selected by the user; adds background to the list of installed backgrounds
     /// - Parameter background: The input background to use; pass null to create a new filled backgrounds or to remove the current background
-    /// - Parameter forDarkTheme: True, if the background is chosen for dark theme
+    /// - Parameter forDarkTheme: Pass true if the background is changed for a dark theme
     /// - Parameter type: Background type; pass null to use the default type of the remote background or to remove the current background
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBackground(
@@ -10619,7 +10957,7 @@ public final class TdApi {
     }
 
     /// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
-    /// - Parameter onlyLocal: If true, returns only locally available information without sending network requests
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     public func getLocalizationTargetInfo(
         onlyLocal: Bool?,
         completion: @escaping (Result<LocalizationTargetInfo, Swift.Error>) -> Void
@@ -10631,7 +10969,7 @@ public final class TdApi {
     }
 
     /// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
-    /// - Parameter onlyLocal: If true, returns only locally available information without sending network requests
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLocalizationTargetInfo(onlyLocal: Bool?) async throws -> LocalizationTargetInfo {
         let query = GetLocalizationTargetInfo(
@@ -11121,7 +11459,7 @@ public final class TdApi {
 
     /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of reported messages, if any
+    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat
     /// - Parameter reason: The reason for reporting the chat
     /// - Parameter text: Additional report details; 0-1024 characters
     public func reportChat(
@@ -11142,7 +11480,7 @@ public final class TdApi {
 
     /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of reported messages, if any
+    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat
     /// - Parameter reason: The reason for reporting the chat
     /// - Parameter text: Additional report details; 0-1024 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -11356,7 +11694,7 @@ public final class TdApi {
     /// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
     /// - Parameter chatIds: If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
     /// - Parameter chatLimit: Same as in getStorageStatistics. Affects only returned statistics
-    /// - Parameter count: Limit on the total count of files after deletion. Pass -1 to use the default limit
+    /// - Parameter count: Limit on the total number of files after deletion. Pass -1 to use the default limit
     /// - Parameter excludeChatIds: If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
     /// - Parameter fileTypes: If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
     /// - Parameter immunityDelay: The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
@@ -11392,7 +11730,7 @@ public final class TdApi {
     /// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
     /// - Parameter chatIds: If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
     /// - Parameter chatLimit: Same as in getStorageStatistics. Affects only returned statistics
-    /// - Parameter count: Limit on the total count of files after deletion. Pass -1 to use the default limit
+    /// - Parameter count: Limit on the total number of files after deletion. Pass -1 to use the default limit
     /// - Parameter excludeChatIds: If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
     /// - Parameter fileTypes: If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
     /// - Parameter immunityDelay: The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
@@ -11448,7 +11786,7 @@ public final class TdApi {
     }
 
     /// Returns network data usage statistics. Can be called before authorization
-    /// - Parameter onlyCurrent: If true, returns only data for the current library launch
+    /// - Parameter onlyCurrent: Pass true to get statistics only for the current library launch
     public func getNetworkStatistics(
         onlyCurrent: Bool?,
         completion: @escaping (Result<NetworkStatistics, Swift.Error>) -> Void
@@ -11460,7 +11798,7 @@ public final class TdApi {
     }
 
     /// Returns network data usage statistics. Can be called before authorization
-    /// - Parameter onlyCurrent: If true, returns only data for the current library launch
+    /// - Parameter onlyCurrent: Pass true to get statistics only for the current library launch
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getNetworkStatistics(onlyCurrent: Bool?) async throws -> NetworkStatistics {
         let query = GetNetworkStatistics(
@@ -12617,7 +12955,7 @@ public final class TdApi {
     }
 
     /// Adds a proxy server for network requests. Can be called before authorization
-    /// - Parameter enable: True, if the proxy needs to be enabled
+    /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
     /// - Parameter server: Proxy server IP address
     /// - Parameter type: Proxy type
@@ -12638,7 +12976,7 @@ public final class TdApi {
     }
 
     /// Adds a proxy server for network requests. Can be called before authorization
-    /// - Parameter enable: True, if the proxy needs to be enabled
+    /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
     /// - Parameter server: Proxy server IP address
     /// - Parameter type: Proxy type
@@ -12659,7 +12997,7 @@ public final class TdApi {
     }
 
     /// Edits an existing proxy server for network requests. Can be called before authorization
-    /// - Parameter enable: True, if the proxy needs to be enabled
+    /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
     /// - Parameter proxyId: Proxy identifier
     /// - Parameter server: Proxy server IP address
@@ -12683,7 +13021,7 @@ public final class TdApi {
     }
 
     /// Edits an existing proxy server for network requests. Can be called before authorization
-    /// - Parameter enable: True, if the proxy needs to be enabled
+    /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
     /// - Parameter proxyId: Proxy identifier
     /// - Parameter server: Proxy server IP address

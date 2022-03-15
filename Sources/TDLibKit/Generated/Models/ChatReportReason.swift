@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -34,6 +34,12 @@ public enum ChatReportReason: Codable, Equatable {
     /// The chat represents a fake account
     case chatReportReasonFake
 
+    /// The chat has illegal drugs related content
+    case chatReportReasonIllegalDrugs
+
+    /// The chat contains messages with personal details
+    case chatReportReasonPersonalDetails
+
     /// A custom reason provided by the user
     case chatReportReasonCustom
 
@@ -46,6 +52,8 @@ public enum ChatReportReason: Codable, Equatable {
         case chatReportReasonCopyright
         case chatReportReasonUnrelatedLocation
         case chatReportReasonFake
+        case chatReportReasonIllegalDrugs
+        case chatReportReasonPersonalDetails
         case chatReportReasonCustom
     }
 
@@ -67,6 +75,10 @@ public enum ChatReportReason: Codable, Equatable {
             self = .chatReportReasonUnrelatedLocation
         case .chatReportReasonFake:
             self = .chatReportReasonFake
+        case .chatReportReasonIllegalDrugs:
+            self = .chatReportReasonIllegalDrugs
+        case .chatReportReasonPersonalDetails:
+            self = .chatReportReasonPersonalDetails
         case .chatReportReasonCustom:
             self = .chatReportReasonCustom
         }
@@ -89,6 +101,10 @@ public enum ChatReportReason: Codable, Equatable {
             try container.encode(Kind.chatReportReasonUnrelatedLocation, forKey: .type)
         case .chatReportReasonFake:
             try container.encode(Kind.chatReportReasonFake, forKey: .type)
+        case .chatReportReasonIllegalDrugs:
+            try container.encode(Kind.chatReportReasonIllegalDrugs, forKey: .type)
+        case .chatReportReasonPersonalDetails:
+            try container.encode(Kind.chatReportReasonPersonalDetails, forKey: .type)
         case .chatReportReasonCustom:
             try container.encode(Kind.chatReportReasonCustom, forKey: .type)
         }

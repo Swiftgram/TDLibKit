@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public struct Message: Codable, Equatable {
     /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
     public let canGetMediaTimestampLinks: Bool
 
-    /// True, if the message thread info is available through getMessageThread
+    /// True, if information about the message thread is available through getMessageThread
     public let canGetMessageThread: Bool
 
     /// True, if the message statistics are available through getMessageStatistics

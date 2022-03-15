@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
 
 
-/// Clears draft messages in all chats
+/// Clears message drafts in all chats
 public struct ClearAllDraftMessages: Codable, Equatable {
 
-    /// If true, local draft messages in secret chats will not be cleared
+    /// Pass true to keep local message drafts in secret chats
     public let excludeSecretChats: Bool?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public enum InternalLinkType: Codable, Equatable {
     /// The link is a link to an unsupported proxy. An alert can be shown to the user
     case internalLinkTypeUnsupportedProxy
 
+    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
+    case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
+
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
@@ -110,6 +113,7 @@ public enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeThemeSettings
         case internalLinkTypeUnknownDeepLink
         case internalLinkTypeUnsupportedProxy
+        case internalLinkTypeUserPhoneNumber
         case internalLinkTypeVideoChat
     }
 
@@ -179,6 +183,9 @@ public enum InternalLinkType: Codable, Equatable {
             self = .internalLinkTypeUnknownDeepLink(value)
         case .internalLinkTypeUnsupportedProxy:
             self = .internalLinkTypeUnsupportedProxy
+        case .internalLinkTypeUserPhoneNumber:
+            let value = try InternalLinkTypeUserPhoneNumber(from: decoder)
+            self = .internalLinkTypeUserPhoneNumber(value)
         case .internalLinkTypeVideoChat:
             let value = try InternalLinkTypeVideoChat(from: decoder)
             self = .internalLinkTypeVideoChat(value)
@@ -250,6 +257,9 @@ public enum InternalLinkType: Codable, Equatable {
             try value.encode(to: encoder)
         case .internalLinkTypeUnsupportedProxy:
             try container.encode(Kind.internalLinkTypeUnsupportedProxy, forKey: .type)
+        case .internalLinkTypeUserPhoneNumber(let value):
+            try container.encode(Kind.internalLinkTypeUserPhoneNumber, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeVideoChat(let value):
             try container.encode(Kind.internalLinkTypeVideoChat, forKey: .type)
             try value.encode(to: encoder)
@@ -515,6 +525,18 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable {
 
     public init(link: String) {
         self.link = link
+    }
+}
+
+/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
+public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable {
+
+    /// Phone number of the user
+    public let phoneNumber: String
+
+
+    public init(phoneNumber: String) {
+        self.phoneNumber = phoneNumber
     }
 }
 

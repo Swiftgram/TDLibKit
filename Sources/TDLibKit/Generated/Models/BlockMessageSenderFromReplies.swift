@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Blocks an original sender of a message in the Replies chat
 public struct BlockMessageSenderFromReplies: Codable, Equatable {
 
-    /// Pass true if all messages from the same sender must be deleted
+    /// Pass true to delete all messages from the same sender
     public let deleteAllMessages: Bool?
 
-    /// Pass true if the message must be deleted
+    /// Pass true to delete the message
     public let deleteMessage: Bool?
 
     /// The identifier of an incoming message in the Replies chat
     public let messageId: Int64?
 
-    /// Pass true if the sender must be reported to the Telegram moderators
+    /// Pass true to report the sender to the Telegram moderators
     public let reportSpam: Bool?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct Chats: Codable, Equatable {
     /// List of chat identifiers
     public let chatIds: [Int64]
 
-    /// Approximate total count of chats found
+    /// Approximate total number of chats found
     public let totalCount: Int
 
 

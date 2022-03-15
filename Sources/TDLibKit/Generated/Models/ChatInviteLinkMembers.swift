@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ChatInviteLinkMembers: Codable, Equatable {
     /// List of chat members, joined a chat via an invite link
     public let members: [ChatInviteLinkMember]
 
-    /// Approximate total count of chat members found
+    /// Approximate total number of chat members found
     public let totalCount: Int
 
 

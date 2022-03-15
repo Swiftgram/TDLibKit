@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
 public struct GetWebPageInstantView: Codable, Equatable {
 
-    /// If true, the full instant view for the web page will be returned
+    /// Pass true to get full instant view for the web page
     public let forceFull: Bool?
 
     /// The web page URL

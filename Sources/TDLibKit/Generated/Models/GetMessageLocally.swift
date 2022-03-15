@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
 
 
-/// Returns information about a message, if it is available locally without sending network request. This is an offline request
+/// Returns information about a message, if it is available without sending network request. This is an offline request
 public struct GetMessageLocally: Codable, Equatable {
 
     /// Identifier of the chat the message belongs to

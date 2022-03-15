@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -130,7 +130,7 @@ public enum Update: Codable, Equatable {
     /// The list of chat filters or a chat filter has changed
     case updateChatFilters(UpdateChatFilters)
 
-    /// The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed
+    /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
 
     /// Notification settings for some type of chats were updated
@@ -189,6 +189,18 @@ public enum Update: Codable, Equatable {
 
     /// File generation is no longer needed
     case updateFileGenerationStop(UpdateFileGenerationStop)
+
+    /// The state of the file download list has changed
+    case updateFileDownloads(UpdateFileDownloads)
+
+    /// A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+    case updateFileAddedToDownloads(UpdateFileAddedToDownloads)
+
+    /// A file download was changed. This update is sent only after file download list is loaded for the first time
+    case updateFileDownload(UpdateFileDownload)
+
+    /// A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+    case updateFileRemovedFromDownloads(UpdateFileRemovedFromDownloads)
 
     /// New call was created or information about a call was updated
     case updateCall(UpdateCall)
@@ -362,6 +374,10 @@ public enum Update: Codable, Equatable {
         case updateFile
         case updateFileGenerationStart
         case updateFileGenerationStop
+        case updateFileDownloads
+        case updateFileAddedToDownloads
+        case updateFileDownload
+        case updateFileRemovedFromDownloads
         case updateCall
         case updateGroupCall
         case updateGroupCallParticipant
@@ -582,6 +598,18 @@ public enum Update: Codable, Equatable {
         case .updateFileGenerationStop:
             let value = try UpdateFileGenerationStop(from: decoder)
             self = .updateFileGenerationStop(value)
+        case .updateFileDownloads:
+            let value = try UpdateFileDownloads(from: decoder)
+            self = .updateFileDownloads(value)
+        case .updateFileAddedToDownloads:
+            let value = try UpdateFileAddedToDownloads(from: decoder)
+            self = .updateFileAddedToDownloads(value)
+        case .updateFileDownload:
+            let value = try UpdateFileDownload(from: decoder)
+            self = .updateFileDownload(value)
+        case .updateFileRemovedFromDownloads:
+            let value = try UpdateFileRemovedFromDownloads(from: decoder)
+            self = .updateFileRemovedFromDownloads(value)
         case .updateCall:
             let value = try UpdateCall(from: decoder)
             self = .updateCall(value)
@@ -875,6 +903,18 @@ public enum Update: Codable, Equatable {
             try value.encode(to: encoder)
         case .updateFileGenerationStop(let value):
             try container.encode(Kind.updateFileGenerationStop, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateFileDownloads(let value):
+            try container.encode(Kind.updateFileDownloads, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateFileAddedToDownloads(let value):
+            try container.encode(Kind.updateFileAddedToDownloads, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateFileDownload(let value):
+            try container.encode(Kind.updateFileDownload, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateFileRemovedFromDownloads(let value):
+            try container.encode(Kind.updateFileRemovedFromDownloads, forKey: .type)
             try value.encode(to: encoder)
         case .updateCall(let value):
             try container.encode(Kind.updateCall, forKey: .type)
@@ -1769,7 +1809,7 @@ public struct UpdateChatFilters: Codable, Equatable {
     }
 }
 
-/// The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed
+/// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
 public struct UpdateChatOnlineMemberCount: Codable, Equatable {
 
     /// Identifier of the chat
@@ -2157,6 +2197,97 @@ public struct UpdateFileGenerationStop: Codable, Equatable {
 
     public init(generationId: TdInt64) {
         self.generationId = generationId
+    }
+}
+
+/// The state of the file download list has changed
+public struct UpdateFileDownloads: Codable, Equatable {
+
+    /// Total downloaded size of files in the file download list, in bytes
+    public let downloadedSize: Int64
+
+    /// Total number of files in the file download list
+    public let totalCount: Int
+
+    /// Total size of files in the file download list, in bytes
+    public let totalSize: Int64
+
+
+    public init(
+        downloadedSize: Int64,
+        totalCount: Int,
+        totalSize: Int64
+    ) {
+        self.downloadedSize = downloadedSize
+        self.totalCount = totalCount
+        self.totalSize = totalSize
+    }
+}
+
+/// A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+public struct UpdateFileAddedToDownloads: Codable, Equatable {
+
+    /// New number of being downloaded and recently downloaded files found
+    public let counts: DownloadedFileCounts
+
+    /// The added file download
+    public let fileDownload: FileDownload
+
+
+    public init(
+        counts: DownloadedFileCounts,
+        fileDownload: FileDownload
+    ) {
+        self.counts = counts
+        self.fileDownload = fileDownload
+    }
+}
+
+/// A file download was changed. This update is sent only after file download list is loaded for the first time
+public struct UpdateFileDownload: Codable, Equatable {
+
+    /// Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
+    public let completeDate: Int
+
+    /// New number of being downloaded and recently downloaded files found
+    public let counts: DownloadedFileCounts
+
+    /// File identifier
+    public let fileId: Int
+
+    /// True, if downloading of the file is paused
+    public let isPaused: Bool
+
+
+    public init(
+        completeDate: Int,
+        counts: DownloadedFileCounts,
+        fileId: Int,
+        isPaused: Bool
+    ) {
+        self.completeDate = completeDate
+        self.counts = counts
+        self.fileId = fileId
+        self.isPaused = isPaused
+    }
+}
+
+/// A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+public struct UpdateFileRemovedFromDownloads: Codable, Equatable {
+
+    /// New number of being downloaded and recently downloaded files found
+    public let counts: DownloadedFileCounts
+
+    /// File identifier
+    public let fileId: Int
+
+
+    public init(
+        counts: DownloadedFileCounts,
+        fileId: Int
+    ) {
+        self.counts = counts
+        self.fileId = fileId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Updates the game score of the specified user in a game; for bots only
 public struct SetInlineGameScore: Codable, Equatable {
 
-    /// True, if the message needs to be edited
+    /// Pass true to edit the game message to include the current scoreboard
     public let editMessage: Bool?
 
     /// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table

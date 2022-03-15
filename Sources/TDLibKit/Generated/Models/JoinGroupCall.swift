@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -22,10 +22,10 @@ public struct JoinGroupCall: Codable, Equatable {
     /// If non-empty, invite hash to be used to join the group call without being muted by administrators
     public let inviteHash: String?
 
-    /// True, if the user's microphone is muted
+    /// Pass true to join the call with muted microphone
     public let isMuted: Bool?
 
-    /// True, if the user's video is enabled
+    /// Pass true if the user's video is enabled
     public let isMyVideoEnabled: Bool?
 
     /// Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only

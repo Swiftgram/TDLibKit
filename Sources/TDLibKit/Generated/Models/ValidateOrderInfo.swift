@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
 public struct ValidateOrderInfo: Codable, Equatable {
 
-    /// True, if the order information can be saved
+    /// Pass true to save the order information
     public let allowSave: Bool?
 
     /// Chat identifier of the Invoice message

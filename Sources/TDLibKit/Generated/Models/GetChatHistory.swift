@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct GetChatHistory: Codable, Equatable {
     /// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     public let offset: Int?
 
-    /// If true, returns only messages that are available locally without sending network requests
+    /// Pass true to get only messages that are available without sending network requests
     public let onlyLocal: Bool?
 
 

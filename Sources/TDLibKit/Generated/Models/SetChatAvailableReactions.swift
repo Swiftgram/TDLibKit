@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
 public struct SetChatAvailableReactions: Codable, Equatable {
 
-    /// New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+    /// New list of reactions, available in the chat. All reactions must be active
     public let availableReactions: [String]?
 
     /// Identifier of the chat

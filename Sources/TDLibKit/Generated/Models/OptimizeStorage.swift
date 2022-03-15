@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct OptimizeStorage: Codable, Equatable {
     /// Same as in getStorageStatistics. Affects only returned statistics
     public let chatLimit: Int?
 
-    /// Limit on the total count of files after deletion. Pass -1 to use the default limit
+    /// Limit on the total number of files after deletion. Pass -1 to use the default limit
     public let count: Int?
 
     /// If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns list of chats with non-default notification settings
 public struct GetChatNotificationSettingsExceptions: Codable, Equatable {
 
-    /// If true, also chats with non-default sound will be returned
+    /// Pass true to include in the response chats with only non-default sound
     public let compareSound: Bool?
 
     /// If specified, only chats from the scope will be returned; pass null to return chats from all scopes

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,6 +16,9 @@ public struct CreateVideoChat: Codable, Equatable {
     /// Chat identifier, in which the video chat will be created
     public let chatId: Int64?
 
+    /// Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
+    public let isRtmpStream: Bool?
+
     /// Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     public let startDate: Int?
 
@@ -25,10 +28,12 @@ public struct CreateVideoChat: Codable, Equatable {
 
     public init(
         chatId: Int64?,
+        isRtmpStream: Bool?,
         startDate: Int?,
         title: String?
     ) {
         self.chatId = chatId
+        self.isRtmpStream = isRtmpStream
         self.startDate = startDate
         self.title = title
     }

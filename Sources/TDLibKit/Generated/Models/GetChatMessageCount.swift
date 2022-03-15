@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetChatMessageCount: Codable, Equatable {
     /// Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     public let filter: SearchMessagesFilter?
 
-    /// If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+    /// Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     public let returnLocal: Bool?
 
 

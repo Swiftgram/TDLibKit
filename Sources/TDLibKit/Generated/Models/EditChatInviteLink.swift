@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct EditChatInviteLink: Codable, Equatable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// True, if the link only creates join request. If true, member_limit must not be specified
+    /// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     public let createsJoinRequest: Bool?
 
     /// Point in time (Unix timestamp) when the link will expire; pass 0 if never

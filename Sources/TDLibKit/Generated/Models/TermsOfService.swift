@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains Telegram terms of service
 public struct TermsOfService: Codable, Equatable {
 
-    /// The minimum age of a user to be able to accept the terms; 0 if any
+    /// The minimum age of a user to be able to accept the terms; 0 if age isn't restricted
     public let minUserAge: Int
 
     /// True, if a blocking popup with terms of service must be shown to the user

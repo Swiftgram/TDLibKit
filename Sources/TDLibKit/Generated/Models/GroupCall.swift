@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct GroupCall: Codable, Equatable {
     /// True, if the group call is scheduled and the current user will receive a notification when the group call will start
     public let enabledStartNotification: Bool
 
+    /// True, if group call participants, which are muted, aren't returned in participant list
+    public let hasHiddenListeners: Bool
+
     /// Group call identifier
     public let id: Int
 
@@ -42,6 +45,9 @@ public struct GroupCall: Codable, Equatable {
 
     /// True, if the current user's video is paused
     public let isMyVideoPaused: Bool
+
+    /// True, if the chat is an RTMP stream instead of an ordinary video chat
+    public let isRtmpStream: Bool
 
     /// True, if a video file is being recorded for the call
     public let isVideoRecorded: Bool
@@ -77,11 +83,13 @@ public struct GroupCall: Codable, Equatable {
         canToggleMuteNewParticipants: Bool,
         duration: Int,
         enabledStartNotification: Bool,
+        hasHiddenListeners: Bool,
         id: Int,
         isActive: Bool,
         isJoined: Bool,
         isMyVideoEnabled: Bool,
         isMyVideoPaused: Bool,
+        isRtmpStream: Bool,
         isVideoRecorded: Bool,
         loadedAllParticipants: Bool,
         muteNewParticipants: Bool,
@@ -97,11 +105,13 @@ public struct GroupCall: Codable, Equatable {
         self.canToggleMuteNewParticipants = canToggleMuteNewParticipants
         self.duration = duration
         self.enabledStartNotification = enabledStartNotification
+        self.hasHiddenListeners = hasHiddenListeners
         self.id = id
         self.isActive = isActive
         self.isJoined = isJoined
         self.isMyVideoEnabled = isMyVideoEnabled
         self.isMyVideoPaused = isMyVideoPaused
+        self.isRtmpStream = isRtmpStream
         self.isVideoRecorded = isVideoRecorded
         self.loadedAllParticipants = loadedAllParticipants
         self.muteNewParticipants = muteNewParticipants

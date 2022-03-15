@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.1-1e1ab5d1
-//  https://github.com/tdlib/td/tree/1e1ab5d1
+//  Based on TDLib 1.8.1-057b2d1e
+//  https://github.com/tdlib/td/tree/057b2d1e
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public struct SetMessageReaction: Codable, Equatable {
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?
 
-    /// True, if the reaction is added with a big animation
+    /// Pass true if the reaction is added with a big animation
     public let isBig: Bool?
 
     /// Identifier of the message
     public let messageId: Int64?
 
-    /// Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    /// Text representation of the new chosen reaction. Can be an empty string or the currently chosen non-big reaction to remove the reaction
     public let reaction: String?
 
 
