@@ -19,11 +19,11 @@ on:
 env:
   TL_PARSER_REPO: https://github.com/Swiftgram/tl2swift
   TDLIB_REPO: https://github.com/tdlib/td
-  DEVELOPER_DIR: /Applications/Xcode_13.3.1.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
 
 jobs:
   Build:
-    runs-on: macos-12
+    runs-on: macos-11
     steps:
       - name: Checkout
         uses: actions/checkout@v2
