@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public enum NotificationSettingsScope: Codable, Equatable {
     /// Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
     case notificationSettingsScopePrivateChats
 
-    /// Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value
+    /// Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
     case notificationSettingsScopeGroupChats
 
-    /// Notification settings applied to all channels when the corresponding chat setting has a default value
+    /// Notification settings applied to all channel chats when the corresponding chat setting has a default value
     case notificationSettingsScopeChannelChats
 
 

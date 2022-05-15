@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
 
 
-/// Deletes a chat along with all messages in the corresponding chat for all chat members; requires owner privileges. For group chats this will release the username and remove all members. Chats with more than 1000 members can't be deleted using this method
+/// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the username and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
 public struct DeleteChat: Codable, Equatable {
 
     /// Chat identifier

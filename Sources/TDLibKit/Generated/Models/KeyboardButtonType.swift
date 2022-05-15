@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -25,12 +25,16 @@ public enum KeyboardButtonType: Codable, Equatable {
     /// A button that allows the user to create and send a poll when pressed; available only in private chats
     case keyboardButtonTypeRequestPoll(KeyboardButtonTypeRequestPoll)
 
+    /// A button that opens a web app by calling getWebAppUrl
+    case keyboardButtonTypeWebApp(KeyboardButtonTypeWebApp)
+
 
     private enum Kind: String, Codable {
         case keyboardButtonTypeText
         case keyboardButtonTypeRequestPhoneNumber
         case keyboardButtonTypeRequestLocation
         case keyboardButtonTypeRequestPoll
+        case keyboardButtonTypeWebApp
     }
 
     public init(from decoder: Decoder) throws {
@@ -46,6 +50,9 @@ public enum KeyboardButtonType: Codable, Equatable {
         case .keyboardButtonTypeRequestPoll:
             let value = try KeyboardButtonTypeRequestPoll(from: decoder)
             self = .keyboardButtonTypeRequestPoll(value)
+        case .keyboardButtonTypeWebApp:
+            let value = try KeyboardButtonTypeWebApp(from: decoder)
+            self = .keyboardButtonTypeWebApp(value)
         }
     }
 
@@ -60,6 +67,9 @@ public enum KeyboardButtonType: Codable, Equatable {
             try container.encode(Kind.keyboardButtonTypeRequestLocation, forKey: .type)
         case .keyboardButtonTypeRequestPoll(let value):
             try container.encode(Kind.keyboardButtonTypeRequestPoll, forKey: .type)
+            try value.encode(to: encoder)
+        case .keyboardButtonTypeWebApp(let value):
+            try container.encode(Kind.keyboardButtonTypeWebApp, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -81,6 +91,18 @@ public struct KeyboardButtonTypeRequestPoll: Codable, Equatable {
     ) {
         self.forceQuiz = forceQuiz
         self.forceRegular = forceRegular
+    }
+}
+
+/// A button that opens a web app by calling getWebAppUrl
+public struct KeyboardButtonTypeWebApp: Codable, Equatable {
+
+    /// An HTTP URL to pass to getWebAppUrl
+    public let url: String
+
+
+    public init(url: String) {
+        self.url = url
     }
 }
 

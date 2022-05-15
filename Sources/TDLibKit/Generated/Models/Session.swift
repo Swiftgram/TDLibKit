@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -64,6 +64,9 @@ public struct Session: Codable, Equatable {
     /// Version of the operating system the application has been run or is running on, as provided by the application
     public let systemVersion: String
 
+    /// Session type based on the system and application version, which can be used to display a corresponding icon
+    public let type: SessionType
+
 
     public init(
         apiId: Int,
@@ -82,7 +85,8 @@ public struct Session: Codable, Equatable {
         logInDate: Int,
         platform: String,
         region: String,
-        systemVersion: String
+        systemVersion: String,
+        type: SessionType
     ) {
         self.apiId = apiId
         self.applicationName = applicationName
@@ -101,6 +105,7 @@ public struct Session: Codable, Equatable {
         self.platform = platform
         self.region = region
         self.systemVersion = systemVersion
+        self.type = type
     }
 }
 

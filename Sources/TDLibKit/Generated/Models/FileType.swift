@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public enum FileType: Codable, Equatable {
 
     /// The file is a document
     case fileTypeDocument
+
+    /// The file is a notification sound
+    case fileTypeNotificationSound
 
     /// The file is a photo
     case fileTypePhoto
@@ -67,6 +70,7 @@ public enum FileType: Codable, Equatable {
         case fileTypeAnimation
         case fileTypeAudio
         case fileTypeDocument
+        case fileTypeNotificationSound
         case fileTypePhoto
         case fileTypeProfilePhoto
         case fileTypeSecret
@@ -93,6 +97,8 @@ public enum FileType: Codable, Equatable {
             self = .fileTypeAudio
         case .fileTypeDocument:
             self = .fileTypeDocument
+        case .fileTypeNotificationSound:
+            self = .fileTypeNotificationSound
         case .fileTypePhoto:
             self = .fileTypePhoto
         case .fileTypeProfilePhoto:
@@ -131,6 +137,8 @@ public enum FileType: Codable, Equatable {
             try container.encode(Kind.fileTypeAudio, forKey: .type)
         case .fileTypeDocument:
             try container.encode(Kind.fileTypeDocument, forKey: .type)
+        case .fileTypeNotificationSound:
+            try container.encode(Kind.fileTypeNotificationSound, forKey: .type)
         case .fileTypePhoto:
             try container.encode(Kind.fileTypePhoto, forKey: .type)
         case .fileTypeProfilePhoto:

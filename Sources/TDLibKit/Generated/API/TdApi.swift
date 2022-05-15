@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -1768,7 +1768,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Deletes a chat along with all messages in the corresponding chat for all chat members; requires owner privileges. For group chats this will release the username and remove all members. Chats with more than 1000 members can't be deleted using this method
+    /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the username and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     public func deleteChat(
         chatId: Int64?,
@@ -1780,7 +1780,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Deletes a chat along with all messages in the corresponding chat for all chat members; requires owner privileges. For group chats this will release the username and remove all members. Chats with more than 1000 members can't be deleted using this method
+    /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the username and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func deleteChat(chatId: Int64?) async throws -> Ok {
@@ -2597,7 +2597,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
-    /// - Parameter replyToMessageId: Identifier of the message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
     public func sendMessage(
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
@@ -2624,7 +2624,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
-    /// - Parameter replyToMessageId: Identifier of the message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendMessage(
         chatId: Int64?,
@@ -2651,7 +2651,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
     /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
-    /// - Parameter replyToMessageId: Identifier of a message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
     public func sendMessageAlbum(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
@@ -2678,7 +2678,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
     /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
-    /// - Parameter replyToMessageId: Identifier of a message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendMessageAlbum(
         chatId: Int64?,
@@ -2741,7 +2741,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
-    /// - Parameter replyToMessageId: Identifier of a message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
     /// - Parameter resultId: Identifier of the inline result
     public func sendInlineQueryResultMessage(
         chatId: Int64?,
@@ -2771,7 +2771,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
-    /// - Parameter replyToMessageId: Identifier of a message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
     /// - Parameter resultId: Identifier of the inline result
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendInlineQueryResultMessage(
@@ -2911,7 +2911,7 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
-    /// - Parameter replyToMessageId: Identifier of the message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
     /// - Parameter senderId: Identifier of the sender of the message
     public func addLocalMessage(
         chatId: Int64?,
@@ -2935,7 +2935,7 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
-    /// - Parameter replyToMessageId: Identifier of the message to reply to or 0
+    /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
     /// - Parameter senderId: Identifier of the sender of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addLocalMessage(
@@ -3869,6 +3869,28 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
+    /// - Parameter theme: Theme parameters to convert to JSON
+    public func getThemeParametersJsonString(
+        theme: ThemeParameters?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetThemeParametersJsonString(
+            theme: theme
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
+    /// - Parameter theme: Theme parameters to convert to JSON
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getThemeParametersJsonString(theme: ThemeParameters?) async throws -> Text {
+        let query = GetThemeParametersJsonString(
+            theme: theme
+        )
+        return try await execute(query: query)
+    }
+
     /// Changes the user answer to a poll. A poll in quiz mode can be answered only once
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
@@ -4193,6 +4215,178 @@ public final class TdApi {
             results: results,
             switchPmParameter: switchPmParameter,
             switchPmText: switchPmText
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
+    public func getWebAppUrl(
+        botUserId: Int64?,
+        theme: ThemeParameters?,
+        url: String?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetWebAppUrl(
+            botUserId: botUserId,
+            theme: theme,
+            url: url
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getWebAppUrl(
+        botUserId: Int64?,
+        theme: ThemeParameters?,
+        url: String?
+    ) async throws -> HttpUrl {
+        let query = GetWebAppUrl(
+            botUserId: botUserId,
+            theme: theme,
+            url: url
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sends data received from a keyboardButtonTypeWebApp web app to a bot
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// - Parameter data: Received data
+    public func sendWebAppData(
+        botUserId: Int64?,
+        buttonText: String?,
+        data: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendWebAppData(
+            botUserId: botUserId,
+            buttonText: buttonText,
+            data: data
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sends data received from a keyboardButtonTypeWebApp web app to a bot
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// - Parameter data: Received data
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendWebAppData(
+        botUserId: Int64?,
+        buttonText: String?,
+        data: String?
+    ) async throws -> Ok {
+        let query = SendWebAppData(
+            botUserId: botUserId,
+            buttonText: buttonText,
+            data: data
+        )
+        return try await execute(query: query)
+    }
+
+    /// Informs TDLib that a web app is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// - Parameter botUserId: Identifier of the bot, providing the web app
+    /// - Parameter chatId: Identifier of the chat in which the web app is opened. Web apps can be opened only in private chats for now
+    /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the web app; 0 if none
+    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    public func openWebApp(
+        botUserId: Int64?,
+        chatId: Int64?,
+        replyToMessageId: Int64?,
+        theme: ThemeParameters?,
+        url: String?,
+        completion: @escaping (Result<WebAppInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = OpenWebApp(
+            botUserId: botUserId,
+            chatId: chatId,
+            replyToMessageId: replyToMessageId,
+            theme: theme,
+            url: url
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a web app is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// - Parameter botUserId: Identifier of the bot, providing the web app
+    /// - Parameter chatId: Identifier of the chat in which the web app is opened. Web apps can be opened only in private chats for now
+    /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the web app; 0 if none
+    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func openWebApp(
+        botUserId: Int64?,
+        chatId: Int64?,
+        replyToMessageId: Int64?,
+        theme: ThemeParameters?,
+        url: String?
+    ) async throws -> WebAppInfo {
+        let query = OpenWebApp(
+            botUserId: botUserId,
+            chatId: chatId,
+            replyToMessageId: replyToMessageId,
+            theme: theme,
+            url: url
+        )
+        return try await execute(query: query)
+    }
+
+    /// Informs TDLib that a previously opened web app was closed
+    /// - Parameter webAppLaunchId: Identifier of web app launch, received from openWebApp
+    public func closeWebApp(
+        webAppLaunchId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CloseWebApp(
+            webAppLaunchId: webAppLaunchId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a previously opened web app was closed
+    /// - Parameter webAppLaunchId: Identifier of web app launch, received from openWebApp
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func closeWebApp(webAppLaunchId: TdInt64?) async throws -> Ok {
+        let query = CloseWebApp(
+            webAppLaunchId: webAppLaunchId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets the result of interaction with a web app and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+    /// - Parameter result: The result of the query
+    /// - Parameter webAppQueryId: Identifier of the web app query
+    public func answerWebAppQuery(
+        result: InputInlineQueryResult?,
+        webAppQueryId: String?,
+        completion: @escaping (Result<SentWebAppMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = AnswerWebAppQuery(
+            result: result,
+            webAppQueryId: webAppQueryId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets the result of interaction with a web app and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+    /// - Parameter result: The result of the query
+    /// - Parameter webAppQueryId: Identifier of the web app query
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func answerWebAppQuery(
+        result: InputInlineQueryResult?,
+        webAppQueryId: String?
+    ) async throws -> SentWebAppMessage {
+        let query = AnswerWebAppQuery(
+            result: result,
+            webAppQueryId: webAppQueryId
         )
         return try await execute(query: query)
     }
@@ -5344,9 +5538,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
+    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
+    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400
     public func setChatMessageTtl(
         chatId: Int64?,
         ttl: Int?,
@@ -5359,9 +5553,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
+    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
+    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setChatMessageTtl(
         chatId: Int64?,
@@ -6217,6 +6411,85 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
+    /// - Parameter notificationSoundId: Identifier of the notification sound
+    public func getSavedNotificationSound(
+        notificationSoundId: TdInt64?,
+        completion: @escaping (Result<NotificationSounds, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSavedNotificationSound(
+            notificationSoundId: notificationSoundId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
+    /// - Parameter notificationSoundId: Identifier of the notification sound
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getSavedNotificationSound(notificationSoundId: TdInt64?) async throws -> NotificationSounds {
+        let query = GetSavedNotificationSound(
+            notificationSoundId: notificationSoundId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    public func getSavedNotificationSounds(completion: @escaping (Result<NotificationSounds, Swift.Error>) -> Void) throws {
+        let query = GetSavedNotificationSounds()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getSavedNotificationSounds() async throws -> NotificationSounds {
+        let query = GetSavedNotificationSounds()
+        return try await execute(query: query)
+    }
+
+    /// Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
+    /// - Parameter sound: Notification sound file to add
+    public func addSavedNotificationSound(
+        sound: InputFile?,
+        completion: @escaping (Result<NotificationSound, Swift.Error>) -> Void
+    ) throws {
+        let query = AddSavedNotificationSound(
+            sound: sound
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
+    /// - Parameter sound: Notification sound file to add
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addSavedNotificationSound(sound: InputFile?) async throws -> NotificationSound {
+        let query = AddSavedNotificationSound(
+            sound: sound
+        )
+        return try await execute(query: query)
+    }
+
+    /// Removes a notification sound from the list of saved notification sounds
+    /// - Parameter notificationSoundId: Identifier of the notification sound
+    public func removeSavedNotificationSound(
+        notificationSoundId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveSavedNotificationSound(
+            notificationSoundId: notificationSoundId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Removes a notification sound from the list of saved notification sounds
+    /// - Parameter notificationSoundId: Identifier of the notification sound
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func removeSavedNotificationSound(notificationSoundId: TdInt64?) async throws -> Ok {
+        let query = RemoveSavedNotificationSound(
+            notificationSoundId: notificationSoundId
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns list of chats with non-default notification settings
     /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
@@ -6299,13 +6572,13 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
+    /// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
     public func resetAllNotificationSettings(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetAllNotificationSettings()
         execute(query: query, completion: completion)
     }
 
-    /// Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
+    /// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resetAllNotificationSettings() async throws -> Ok {
         let query = ResetAllNotificationSettings()
@@ -6374,6 +6647,58 @@ public final class TdApi {
         let query = SetPinnedChats(
             chatIds: chatIds,
             chatList: chatList
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns information about a bot that can be added to attachment menu
+    /// - Parameter botUserId: Bot's user identifier
+    public func getAttachmentMenuBot(
+        botUserId: Int64?,
+        completion: @escaping (Result<AttachmentMenuBot, Swift.Error>) -> Void
+    ) throws {
+        let query = GetAttachmentMenuBot(
+            botUserId: botUserId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a bot that can be added to attachment menu
+    /// - Parameter botUserId: Bot's user identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getAttachmentMenuBot(botUserId: Int64?) async throws -> AttachmentMenuBot {
+        let query = GetAttachmentMenuBot(
+            botUserId: botUserId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    /// - Parameter botUserId: Bot's user identifier
+    /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
+    public func toggleBotIsAddedToAttachmentMenu(
+        botUserId: Int64?,
+        isAdded: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleBotIsAddedToAttachmentMenu(
+            botUserId: botUserId,
+            isAdded: isAdded
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    /// - Parameter botUserId: Bot's user identifier
+    /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleBotIsAddedToAttachmentMenu(
+        botUserId: Int64?,
+        isAdded: Bool?
+    ) async throws -> Ok {
+        let query = ToggleBotIsAddedToAttachmentMenu(
+            botUserId: botUserId,
+            isAdded: isAdded
         )
         return try await execute(query: query)
     }
@@ -7734,7 +8059,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sends debug information for a call
+    /// Sends debug information for a call to Telegram servers
     /// - Parameter callId: Call identifier
     /// - Parameter debugInformation: Debug information in application-specific format
     public func sendCallDebugInformation(
@@ -7749,7 +8074,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sends debug information for a call
+    /// Sends debug information for a call to Telegram servers
     /// - Parameter callId: Call identifier
     /// - Parameter debugInformation: Debug information in application-specific format
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7760,6 +8085,36 @@ public final class TdApi {
         let query = SendCallDebugInformation(
             callId: callId,
             debugInformation: debugInformation
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sends log file for a call to Telegram servers
+    /// - Parameter callId: Call identifier
+    /// - Parameter logFile: Call log file. Only inputFileLocal and inputFileGenerated are supported
+    public func sendCallLog(
+        callId: Int?,
+        logFile: InputFile?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendCallLog(
+            callId: callId,
+            logFile: logFile
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sends log file for a call to Telegram servers
+    /// - Parameter callId: Call identifier
+    /// - Parameter logFile: Call log file. Only inputFileLocal and inputFileGenerated are supported
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendCallLog(
+        callId: Int?,
+        logFile: InputFile?
+    ) async throws -> Ok {
+        let query = SendCallLog(
+            callId: callId,
+            logFile: logFile
         )
         return try await execute(query: query)
     }
@@ -7817,7 +8172,7 @@ public final class TdApi {
     }
 
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
-    /// - Parameter chatId: Chat identifier, in which the video chat will be created
+    /// - Parameter chatId: Identifier of a chat in which the video chat will be created
     /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
@@ -7838,7 +8193,7 @@ public final class TdApi {
     }
 
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
-    /// - Parameter chatId: Chat identifier, in which the video chat will be created
+    /// - Parameter chatId: Identifier of a chat in which the video chat will be created
     /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
@@ -8945,7 +9300,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches a user by their phone number
+    /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter phoneNumber: Phone number to search for
     public func searchUserByPhoneNumber(
         phoneNumber: String?,
@@ -8957,7 +9312,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches a user by their phone number
+    /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter phoneNumber: Phone number to search for
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchUserByPhoneNumber(phoneNumber: String?) async throws -> User {
@@ -10123,6 +10478,102 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Sets menu button for the given user or for all users; for bots only
+    /// - Parameter menuButton: New menu button
+    /// - Parameter userId: Identifier of the user or 0 to set menu button for all users
+    public func setMenuButton(
+        menuButton: BotMenuButton?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetMenuButton(
+            menuButton: menuButton,
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets menu button for the given user or for all users; for bots only
+    /// - Parameter menuButton: New menu button
+    /// - Parameter userId: Identifier of the user or 0 to set menu button for all users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setMenuButton(
+        menuButton: BotMenuButton?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = SetMenuButton(
+            menuButton: menuButton,
+            userId: userId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns menu button set by the bot for the given user; for bots only
+    /// - Parameter userId: Identifier of the user or 0 to get the default menu button
+    public func getMenuButton(
+        userId: Int64?,
+        completion: @escaping (Result<BotMenuButton, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMenuButton(
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns menu button set by the bot for the given user; for bots only
+    /// - Parameter userId: Identifier of the user or 0 to get the default menu button
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getMenuButton(userId: Int64?) async throws -> BotMenuButton {
+        let query = GetMenuButton(
+            userId: userId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+    /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+    public func setDefaultGroupAdministratorRights(
+        defaultGroupAdministratorRights: ChatAdministratorRights?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetDefaultGroupAdministratorRights(
+            defaultGroupAdministratorRights: defaultGroupAdministratorRights
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+    /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setDefaultGroupAdministratorRights(defaultGroupAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
+        let query = SetDefaultGroupAdministratorRights(
+            defaultGroupAdministratorRights: defaultGroupAdministratorRights
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets default administrator rights for adding the bot to channel chats; for bots only
+    /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; may be null
+    public func setDefaultChannelAdministratorRights(
+        defaultChannelAdministratorRights: ChatAdministratorRights?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetDefaultChannelAdministratorRights(
+            defaultChannelAdministratorRights: defaultChannelAdministratorRights
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets default administrator rights for adding the bot to channel chats; for bots only
+    /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; may be null
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setDefaultChannelAdministratorRights(defaultChannelAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
+        let query = SetDefaultChannelAdministratorRights(
+            defaultChannelAdministratorRights: defaultChannelAdministratorRights
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns all active sessions of the current user
     public func getActiveSessions(completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
         let query = GetActiveSessions()
@@ -10598,7 +11049,7 @@ public final class TdApi {
     public func getPaymentForm(
         chatId: Int64?,
         messageId: Int64?,
-        theme: PaymentFormTheme?,
+        theme: ThemeParameters?,
         completion: @escaping (Result<PaymentForm, Swift.Error>) -> Void
     ) throws {
         let query = GetPaymentForm(
@@ -10617,7 +11068,7 @@ public final class TdApi {
     public func getPaymentForm(
         chatId: Int64?,
         messageId: Int64?,
-        theme: PaymentFormTheme?
+        theme: ThemeParameters?
     ) async throws -> PaymentForm {
         let query = GetPaymentForm(
             chatId: chatId,
@@ -12635,7 +13086,7 @@ public final class TdApi {
     }
 
     /// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
-    /// - Parameter chatId: Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+    /// - Parameter chatId: Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
     /// - Parameter height: Map height in pixels before applying scale; 16-1024
     /// - Parameter location: Location of the map center
     /// - Parameter scale: Map scale; 1-3
@@ -12662,7 +13113,7 @@ public final class TdApi {
     }
 
     /// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
-    /// - Parameter chatId: Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+    /// - Parameter chatId: Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
     /// - Parameter height: Map height in pixels before applying scale; 16-1024
     /// - Parameter location: Location of the map center
     /// - Parameter scale: Map scale; 1-3
@@ -13504,7 +13955,7 @@ public final class TdApi {
     }
 
     /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
-    /// - Parameter dcId: Identifier of a datacenter, with which to test connection
+    /// - Parameter dcId: Identifier of a datacenter with which to test connection
     /// - Parameter port: Proxy server port
     /// - Parameter server: Proxy server IP address
     /// - Parameter timeout: The maximum overall timeout for the request
@@ -13528,7 +13979,7 @@ public final class TdApi {
     }
 
     /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
-    /// - Parameter dcId: Identifier of a datacenter, with which to test connection
+    /// - Parameter dcId: Identifier of a datacenter with which to test connection
     /// - Parameter port: Proxy server port
     /// - Parameter server: Proxy server IP address
     /// - Parameter timeout: The maximum overall timeout for the request

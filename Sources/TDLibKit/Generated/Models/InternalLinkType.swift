@@ -3,18 +3,21 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
 
 
 /// Describes an internal https://t.me or tg: link, which must be processed by the app in a special way
-public enum InternalLinkType: Codable, Equatable {
+public indirect enum InternalLinkType: Codable, Equatable {
 
     /// The link is a link to the active sessions section of the app. Use getActiveSessions to handle the link
     case internalLinkTypeActiveSessions
+
+    /// The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+    case internalLinkTypeAttachmentMenuBot(InternalLinkTypeAttachmentMenuBot)
 
     /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
     case internalLinkTypeAuthenticationCode(InternalLinkTypeAuthenticationCode)
@@ -25,8 +28,11 @@ public enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
     case internalLinkTypeBotStart(InternalLinkTypeBotStart)
 
-    /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a group to add the bot to, and then call sendBotStartMessage with the given start parameter and the chosen group chat. Bots can be added to a public group only by administrators of the group
+    /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat, otherwise just send /start message with bot's username added to the chat.
     case internalLinkTypeBotStartInGroup(InternalLinkTypeBotStartInGroup)
+
+    /// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+    case internalLinkTypeBotAddToChannel(InternalLinkTypeBotAddToChannel)
 
     /// The link is a link to the change phone number section of the app
     case internalLinkTypeChangePhoneNumber
@@ -97,10 +103,12 @@ public enum InternalLinkType: Codable, Equatable {
 
     private enum Kind: String, Codable {
         case internalLinkTypeActiveSessions
+        case internalLinkTypeAttachmentMenuBot
         case internalLinkTypeAuthenticationCode
         case internalLinkTypeBackground
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
+        case internalLinkTypeBotAddToChannel
         case internalLinkTypeChangePhoneNumber
         case internalLinkTypeChatInvite
         case internalLinkTypeFilterSettings
@@ -131,6 +139,9 @@ public enum InternalLinkType: Codable, Equatable {
         switch type {
         case .internalLinkTypeActiveSessions:
             self = .internalLinkTypeActiveSessions
+        case .internalLinkTypeAttachmentMenuBot:
+            let value = try InternalLinkTypeAttachmentMenuBot(from: decoder)
+            self = .internalLinkTypeAttachmentMenuBot(value)
         case .internalLinkTypeAuthenticationCode:
             let value = try InternalLinkTypeAuthenticationCode(from: decoder)
             self = .internalLinkTypeAuthenticationCode(value)
@@ -143,6 +154,9 @@ public enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeBotStartInGroup:
             let value = try InternalLinkTypeBotStartInGroup(from: decoder)
             self = .internalLinkTypeBotStartInGroup(value)
+        case .internalLinkTypeBotAddToChannel:
+            let value = try InternalLinkTypeBotAddToChannel(from: decoder)
+            self = .internalLinkTypeBotAddToChannel(value)
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
         case .internalLinkTypeChatInvite:
@@ -209,6 +223,9 @@ public enum InternalLinkType: Codable, Equatable {
         switch self {
         case .internalLinkTypeActiveSessions:
             try container.encode(Kind.internalLinkTypeActiveSessions, forKey: .type)
+        case .internalLinkTypeAttachmentMenuBot(let value):
+            try container.encode(Kind.internalLinkTypeAttachmentMenuBot, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeAuthenticationCode(let value):
             try container.encode(Kind.internalLinkTypeAuthenticationCode, forKey: .type)
             try value.encode(to: encoder)
@@ -220,6 +237,9 @@ public enum InternalLinkType: Codable, Equatable {
             try value.encode(to: encoder)
         case .internalLinkTypeBotStartInGroup(let value):
             try container.encode(Kind.internalLinkTypeBotStartInGroup, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeBotAddToChannel(let value):
+            try container.encode(Kind.internalLinkTypeBotAddToChannel, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
@@ -283,6 +303,30 @@ public enum InternalLinkType: Codable, Equatable {
     }
 }
 
+/// The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable {
+
+    /// Username of the bot
+    public let botUsername: String
+
+    /// An internal link pointing to a chat; may be null if the current chat needs to be kept
+    public let chatLink: InternalLinkType?
+
+    /// URL to be passed to openWebApp
+    public let url: String
+
+
+    public init(
+        botUsername: String,
+        chatLink: InternalLinkType?,
+        url: String
+    ) {
+        self.botUsername = botUsername
+        self.chatLink = chatLink
+        self.url = url
+    }
+}
+
 /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
 public struct InternalLinkTypeAuthenticationCode: Codable, Equatable {
 
@@ -326,8 +370,11 @@ public struct InternalLinkTypeBotStart: Codable, Equatable {
     }
 }
 
-/// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a group to add the bot to, and then call sendBotStartMessage with the given start parameter and the chosen group chat. Bots can be added to a public group only by administrators of the group
+/// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat, otherwise just send /start message with bot's username added to the chat.
 public struct InternalLinkTypeBotStartInGroup: Codable, Equatable {
+
+    /// Expected administrator rights for the bot; may be null
+    public let administratorRights: ChatAdministratorRights?
 
     /// Username of the bot
     public let botUsername: String
@@ -337,11 +384,32 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable {
 
 
     public init(
+        administratorRights: ChatAdministratorRights?,
         botUsername: String,
         startParameter: String
     ) {
+        self.administratorRights = administratorRights
         self.botUsername = botUsername
         self.startParameter = startParameter
+    }
+}
+
+/// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+public struct InternalLinkTypeBotAddToChannel: Codable, Equatable {
+
+    /// Expected administrator rights for the bot
+    public let administratorRights: ChatAdministratorRights
+
+    /// Username of the bot
+    public let botUsername: String
+
+
+    public init(
+        administratorRights: ChatAdministratorRights,
+        botUsername: String
+    ) {
+        self.administratorRights = administratorRights
+        self.botUsername = botUsername
     }
 }
 

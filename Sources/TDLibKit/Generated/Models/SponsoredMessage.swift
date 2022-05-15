@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SponsoredMessage: Codable, Equatable {
     /// Content of the message. Currently, can be only of the type messageText
     public let content: MessageContent
 
-    /// An internal link to be opened when the sponsored message is clicked; may be null. If null, the sponsor chat needs to be opened instead
+    /// An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
     public let link: InternalLinkType?
 
     /// Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages

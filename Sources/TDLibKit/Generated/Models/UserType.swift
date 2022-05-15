@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -68,6 +68,9 @@ public enum UserType: Codable, Equatable {
 /// A bot (see https://core.telegram.org/bots)
 public struct UserTypeBot: Codable, Equatable {
 
+    /// True, if the bot can be added to attachment menu
+    public let canBeAddedToAttachmentMenu: Bool
+
     /// True, if the bot can be invited to basic group and supergroup chats
     public let canJoinGroups: Bool
 
@@ -85,12 +88,14 @@ public struct UserTypeBot: Codable, Equatable {
 
 
     public init(
+        canBeAddedToAttachmentMenu: Bool,
         canJoinGroups: Bool,
         canReadAllGroupMessages: Bool,
         inlineQueryPlaceholder: String,
         isInline: Bool,
         needLocation: Bool
     ) {
+        self.canBeAddedToAttachmentMenu = canBeAddedToAttachmentMenu
         self.canJoinGroups = canJoinGroups
         self.canReadAllGroupMessages = canReadAllGroupMessages
         self.inlineQueryPlaceholder = inlineQueryPlaceholder

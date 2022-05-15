@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Notification: Codable, Equatable {
     /// Unique persistent identifier of this notification
     public let id: Int
 
-    /// True, if the notification was initially silent
+    /// True, if the notification was explicitly sent without sound
     public let isSilent: Bool
 
     /// Notification type

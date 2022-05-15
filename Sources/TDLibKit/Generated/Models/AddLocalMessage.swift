@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct AddLocalMessage: Codable, Equatable {
     /// The content of the message to be added
     public let inputMessageContent: InputMessageContent?
 
-    /// Identifier of the message to reply to or 0
+    /// Identifier of the replied message; 0 if none
     public let replyToMessageId: Int64?
 
     /// Identifier of the sender of the message

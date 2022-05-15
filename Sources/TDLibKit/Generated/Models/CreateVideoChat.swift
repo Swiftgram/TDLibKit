@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
 public struct CreateVideoChat: Codable, Equatable {
 
-    /// Chat identifier, in which the video chat will be created
+    /// Identifier of a chat in which the video chat will be created
     public let chatId: Int64?
 
     /// Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges

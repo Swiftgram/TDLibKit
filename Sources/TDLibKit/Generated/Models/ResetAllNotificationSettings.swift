@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
 
 
-/// Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
+/// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
 public struct ResetAllNotificationSettings: Codable, Equatable {
 
 

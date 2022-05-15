@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -765,7 +765,7 @@ public struct PageBlockChatLink: Codable, Equatable {
     /// Chat title
     public let title: String
 
-    /// Chat username, by which all other information about the chat can be resolved
+    /// Chat username by which all other information about the chat can be resolved
     public let username: String
 
 

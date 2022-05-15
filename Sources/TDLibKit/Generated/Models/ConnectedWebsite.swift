@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct ConnectedWebsite: Codable, Equatable {
     /// Point in time (Unix timestamp) when obtained authorization was last used
     public let lastActiveDate: Int
 
-    /// Human-readable description of a country and a region, from which the user was logged in, based on the IP address
+    /// Human-readable description of a country and a region from which the user was logged in, based on the IP address
     public let location: String
 
     /// Point in time (Unix timestamp) when the user was logged in

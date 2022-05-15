@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -244,6 +244,9 @@ public enum Update: Codable, Equatable {
     /// The list of saved animations was updated
     case updateSavedAnimations(UpdateSavedAnimations)
 
+    /// The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+    case updateSavedNotificationSounds(UpdateSavedNotificationSounds)
+
     /// The selected background has changed
     case updateSelectedBackground(UpdateSelectedBackground)
 
@@ -261,6 +264,12 @@ public enum Update: Codable, Equatable {
 
     /// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
     case updateUsersNearby(UpdateUsersNearby)
+
+    /// The list of bots added to attachment menu has changed
+    case updateAttachmentMenuBots(UpdateAttachmentMenuBots)
+
+    /// A message was sent by an opened web app, so the web app needs to be closed
+    case updateWebAppMessageSent(UpdateWebAppMessageSent)
 
     /// The list of supported reactions has changed
     case updateReactions(UpdateReactions)
@@ -392,12 +401,15 @@ public enum Update: Codable, Equatable {
         case updateRecentStickers
         case updateFavoriteStickers
         case updateSavedAnimations
+        case updateSavedNotificationSounds
         case updateSelectedBackground
         case updateChatThemes
         case updateLanguagePackStrings
         case updateConnectionState
         case updateTermsOfService
         case updateUsersNearby
+        case updateAttachmentMenuBots
+        case updateWebAppMessageSent
         case updateReactions
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
@@ -652,6 +664,9 @@ public enum Update: Codable, Equatable {
         case .updateSavedAnimations:
             let value = try UpdateSavedAnimations(from: decoder)
             self = .updateSavedAnimations(value)
+        case .updateSavedNotificationSounds:
+            let value = try UpdateSavedNotificationSounds(from: decoder)
+            self = .updateSavedNotificationSounds(value)
         case .updateSelectedBackground:
             let value = try UpdateSelectedBackground(from: decoder)
             self = .updateSelectedBackground(value)
@@ -670,6 +685,12 @@ public enum Update: Codable, Equatable {
         case .updateUsersNearby:
             let value = try UpdateUsersNearby(from: decoder)
             self = .updateUsersNearby(value)
+        case .updateAttachmentMenuBots:
+            let value = try UpdateAttachmentMenuBots(from: decoder)
+            self = .updateAttachmentMenuBots(value)
+        case .updateWebAppMessageSent:
+            let value = try UpdateWebAppMessageSent(from: decoder)
+            self = .updateWebAppMessageSent(value)
         case .updateReactions:
             let value = try UpdateReactions(from: decoder)
             self = .updateReactions(value)
@@ -958,6 +979,9 @@ public enum Update: Codable, Equatable {
         case .updateSavedAnimations(let value):
             try container.encode(Kind.updateSavedAnimations, forKey: .type)
             try value.encode(to: encoder)
+        case .updateSavedNotificationSounds(let value):
+            try container.encode(Kind.updateSavedNotificationSounds, forKey: .type)
+            try value.encode(to: encoder)
         case .updateSelectedBackground(let value):
             try container.encode(Kind.updateSelectedBackground, forKey: .type)
             try value.encode(to: encoder)
@@ -975,6 +999,12 @@ public enum Update: Codable, Equatable {
             try value.encode(to: encoder)
         case .updateUsersNearby(let value):
             try container.encode(Kind.updateUsersNearby, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateAttachmentMenuBots(let value):
+            try container.encode(Kind.updateAttachmentMenuBots, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateWebAppMessageSent(let value):
+            try container.encode(Kind.updateWebAppMessageSent, forKey: .type)
             try value.encode(to: encoder)
         case .updateReactions(let value):
             try container.encode(Kind.updateReactions, forKey: .type)
@@ -1875,14 +1905,14 @@ public struct UpdateNotificationGroup: Codable, Equatable {
     /// Identifier of a chat to which all notifications in the group belong
     public let chatId: Int64
 
-    /// True, if the notifications must be shown without sound
-    public let isSilent: Bool
-
     /// Unique notification group identifier
     public let notificationGroupId: Int
 
     /// Chat identifier, which notification settings must be applied to the added notifications
     public let notificationSettingsChatId: Int64
+
+    /// Identifier of the notification sound to be played; 0 if sound is disabled
+    public let notificationSoundId: TdInt64
 
     /// Identifiers of removed group notifications, sorted by notification ID
     public let removedNotificationIds: [Int]
@@ -1897,18 +1927,18 @@ public struct UpdateNotificationGroup: Codable, Equatable {
     public init(
         addedNotifications: [Notification],
         chatId: Int64,
-        isSilent: Bool,
         notificationGroupId: Int,
         notificationSettingsChatId: Int64,
+        notificationSoundId: TdInt64,
         removedNotificationIds: [Int],
         totalCount: Int,
         type: NotificationGroupType
     ) {
         self.addedNotifications = addedNotifications
         self.chatId = chatId
-        self.isSilent = isSilent
         self.notificationGroupId = notificationGroupId
         self.notificationSettingsChatId = notificationSettingsChatId
+        self.notificationSoundId = notificationSoundId
         self.removedNotificationIds = removedNotificationIds
         self.totalCount = totalCount
         self.type = type
@@ -2540,6 +2570,18 @@ public struct UpdateSavedAnimations: Codable, Equatable {
     }
 }
 
+/// The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+public struct UpdateSavedNotificationSounds: Codable, Equatable {
+
+    /// The new list of identifiers of saved notification sounds
+    public let notificationSoundIds: [TdInt64]
+
+
+    public init(notificationSoundIds: [TdInt64]) {
+        self.notificationSoundIds = notificationSoundIds
+    }
+}
+
 /// The selected background has changed
 public struct UpdateSelectedBackground: Codable, Equatable {
 
@@ -2638,6 +2680,30 @@ public struct UpdateUsersNearby: Codable, Equatable {
     }
 }
 
+/// The list of bots added to attachment menu has changed
+public struct UpdateAttachmentMenuBots: Codable, Equatable {
+
+    /// The new list of bots added to attachment menu. The bots must be shown in attachment menu only in private chats. The bots must not be shown on scheduled messages screen
+    public let bots: [AttachmentMenuBot]
+
+
+    public init(bots: [AttachmentMenuBot]) {
+        self.bots = bots
+    }
+}
+
+/// A message was sent by an opened web app, so the web app needs to be closed
+public struct UpdateWebAppMessageSent: Codable, Equatable {
+
+    /// Identifier of web app launch
+    public let webAppLaunchId: TdInt64
+
+
+    public init(webAppLaunchId: TdInt64) {
+        self.webAppLaunchId = webAppLaunchId
+    }
+}
+
 /// The list of supported reactions has changed
 public struct UpdateReactions: Codable, Equatable {
 
@@ -2727,7 +2793,7 @@ public struct UpdateSuggestedActions: Codable, Equatable {
 /// A new incoming inline query; for bots only
 public struct UpdateNewInlineQuery: Codable, Equatable {
 
-    /// The type of the chat, from which the query originated; may be null if unknown
+    /// The type of the chat from which the query originated; may be null if unknown
     public let chatType: ChatType?
 
     /// Unique query identifier
@@ -2809,7 +2875,7 @@ public struct UpdateNewCallbackQuery: Codable, Equatable {
     /// Unique query identifier
     public let id: TdInt64
 
-    /// Identifier of the message, from which the query originated
+    /// Identifier of the message from which the query originated
     public let messageId: Int64
 
     /// Query payload
@@ -2845,7 +2911,7 @@ public struct UpdateNewInlineCallbackQuery: Codable, Equatable {
     /// Unique query identifier
     public let id: TdInt64
 
-    /// Identifier of the inline message, from which the query originated
+    /// Identifier of the inline message from which the query originated
     public let inlineMessageId: String
 
     /// Query payload

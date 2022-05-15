@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -148,7 +148,13 @@ public enum MessageContent: Codable, Equatable {
     /// The current user has connected a website by logging in using Telegram Login Widget on it
     case messageWebsiteConnected(MessageWebsiteConnected)
 
-    /// Telegram Passport data has been sent
+    /// Data from a web app has been sent to a bot
+    case messageWebAppDataSent(MessageWebAppDataSent)
+
+    /// Data from a web app has been received; for bots only
+    case messageWebAppDataReceived(MessageWebAppDataReceived)
+
+    /// Telegram Passport data has been sent to a bot
     case messagePassportDataSent(MessagePassportDataSent)
 
     /// Telegram Passport data has been received; for bots only
@@ -207,6 +213,8 @@ public enum MessageContent: Codable, Equatable {
         case messagePaymentSuccessfulBot
         case messageContactRegistered
         case messageWebsiteConnected
+        case messageWebAppDataSent
+        case messageWebAppDataReceived
         case messagePassportDataSent
         case messagePassportDataReceived
         case messageProximityAlertTriggered
@@ -345,6 +353,12 @@ public enum MessageContent: Codable, Equatable {
         case .messageWebsiteConnected:
             let value = try MessageWebsiteConnected(from: decoder)
             self = .messageWebsiteConnected(value)
+        case .messageWebAppDataSent:
+            let value = try MessageWebAppDataSent(from: decoder)
+            self = .messageWebAppDataSent(value)
+        case .messageWebAppDataReceived:
+            let value = try MessageWebAppDataReceived(from: decoder)
+            self = .messageWebAppDataReceived(value)
         case .messagePassportDataSent:
             let value = try MessagePassportDataSent(from: decoder)
             self = .messagePassportDataSent(value)
@@ -489,6 +503,12 @@ public enum MessageContent: Codable, Equatable {
             try container.encode(Kind.messageContactRegistered, forKey: .type)
         case .messageWebsiteConnected(let value):
             try container.encode(Kind.messageWebsiteConnected, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageWebAppDataSent(let value):
+            try container.encode(Kind.messageWebAppDataSent, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageWebAppDataReceived(let value):
+            try container.encode(Kind.messageWebAppDataReceived, forKey: .type)
             try value.encode(to: encoder)
         case .messagePassportDataSent(let value):
             try container.encode(Kind.messagePassportDataSent, forKey: .type)
@@ -1235,7 +1255,38 @@ public struct MessageWebsiteConnected: Codable, Equatable {
     }
 }
 
-/// Telegram Passport data has been sent
+/// Data from a web app has been sent to a bot
+public struct MessageWebAppDataSent: Codable, Equatable {
+
+    /// Text of the keyboardButtonTypeWebApp button, which opened the web app
+    public let buttonText: String
+
+
+    public init(buttonText: String) {
+        self.buttonText = buttonText
+    }
+}
+
+/// Data from a web app has been received; for bots only
+public struct MessageWebAppDataReceived: Codable, Equatable {
+
+    /// Text of the keyboardButtonTypeWebApp button, which opened the web app
+    public let buttonText: String
+
+    /// Received data
+    public let data: String
+
+
+    public init(
+        buttonText: String,
+        data: String
+    ) {
+        self.buttonText = buttonText
+        self.data = data
+    }
+}
+
+/// Telegram Passport data has been sent to a bot
 public struct MessagePassportDataSent: Codable, Equatable {
 
     /// List of Telegram Passport element types sent

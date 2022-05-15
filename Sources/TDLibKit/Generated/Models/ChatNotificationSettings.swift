@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public struct ChatNotificationSettings: Codable, Equatable {
     /// True, if message content must be displayed in notifications
     public let showPreview: Bool
 
-    /// The name of an audio file to be used for notification sounds; only applies to iOS applications
-    public let sound: String
+    /// Identifier of the notification sound to be played; 0 if sound is disabled
+    public let soundId: TdInt64
 
     /// If true, disable_mention_notifications is ignored and the value for the relevant type of chat is used instead
     public let useDefaultDisableMentionNotifications: Bool
@@ -40,7 +40,7 @@ public struct ChatNotificationSettings: Codable, Equatable {
     /// If true, show_preview is ignored and the value for the relevant type of chat is used instead
     public let useDefaultShowPreview: Bool
 
-    /// If true, sound is ignored and the value for the relevant type of chat is used instead
+    /// If true, the value for the relevant type of chat is used instead of sound_id
     public let useDefaultSound: Bool
 
 
@@ -49,7 +49,7 @@ public struct ChatNotificationSettings: Codable, Equatable {
         disablePinnedMessageNotifications: Bool,
         muteFor: Int,
         showPreview: Bool,
-        sound: String,
+        soundId: TdInt64,
         useDefaultDisableMentionNotifications: Bool,
         useDefaultDisablePinnedMessageNotifications: Bool,
         useDefaultMuteFor: Bool,
@@ -60,7 +60,7 @@ public struct ChatNotificationSettings: Codable, Equatable {
         self.disablePinnedMessageNotifications = disablePinnedMessageNotifications
         self.muteFor = muteFor
         self.showPreview = showPreview
-        self.sound = sound
+        self.soundId = soundId
         self.useDefaultDisableMentionNotifications = useDefaultDisableMentionNotifications
         self.useDefaultDisablePinnedMessageNotifications = useDefaultDisablePinnedMessageNotifications
         self.useDefaultMuteFor = useDefaultMuteFor

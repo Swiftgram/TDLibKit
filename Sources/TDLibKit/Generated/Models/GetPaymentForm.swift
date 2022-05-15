@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -20,13 +20,13 @@ public struct GetPaymentForm: Codable, Equatable {
     public let messageId: Int64?
 
     /// Preferred payment form theme; pass null to use the default theme
-    public let theme: PaymentFormTheme?
+    public let theme: ThemeParameters?
 
 
     public init(
         chatId: Int64?,
         messageId: Int64?,
-        theme: PaymentFormTheme?
+        theme: ThemeParameters?
     ) {
         self.chatId = chatId
         self.messageId = messageId

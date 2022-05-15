@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -16,8 +16,11 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
     /// A button that opens a specified URL
     case inlineKeyboardButtonTypeUrl(InlineKeyboardButtonTypeUrl)
 
-    /// A button that opens a specified URL and automatically authorize the current user if allowed to do so
+    /// A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
     case inlineKeyboardButtonTypeLoginUrl(InlineKeyboardButtonTypeLoginUrl)
+
+    /// A button that opens a web app by calling openWebApp
+    case inlineKeyboardButtonTypeWebApp(InlineKeyboardButtonTypeWebApp)
 
     /// A button that sends a callback query to a bot
     case inlineKeyboardButtonTypeCallback(InlineKeyboardButtonTypeCallback)
@@ -41,6 +44,7 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
     private enum Kind: String, Codable {
         case inlineKeyboardButtonTypeUrl
         case inlineKeyboardButtonTypeLoginUrl
+        case inlineKeyboardButtonTypeWebApp
         case inlineKeyboardButtonTypeCallback
         case inlineKeyboardButtonTypeCallbackWithPassword
         case inlineKeyboardButtonTypeCallbackGame
@@ -59,6 +63,9 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
         case .inlineKeyboardButtonTypeLoginUrl:
             let value = try InlineKeyboardButtonTypeLoginUrl(from: decoder)
             self = .inlineKeyboardButtonTypeLoginUrl(value)
+        case .inlineKeyboardButtonTypeWebApp:
+            let value = try InlineKeyboardButtonTypeWebApp(from: decoder)
+            self = .inlineKeyboardButtonTypeWebApp(value)
         case .inlineKeyboardButtonTypeCallback:
             let value = try InlineKeyboardButtonTypeCallback(from: decoder)
             self = .inlineKeyboardButtonTypeCallback(value)
@@ -86,6 +93,9 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
             try value.encode(to: encoder)
         case .inlineKeyboardButtonTypeLoginUrl(let value):
             try container.encode(Kind.inlineKeyboardButtonTypeLoginUrl, forKey: .type)
+            try value.encode(to: encoder)
+        case .inlineKeyboardButtonTypeWebApp(let value):
+            try container.encode(Kind.inlineKeyboardButtonTypeWebApp, forKey: .type)
             try value.encode(to: encoder)
         case .inlineKeyboardButtonTypeCallback(let value):
             try container.encode(Kind.inlineKeyboardButtonTypeCallback, forKey: .type)
@@ -119,7 +129,7 @@ public struct InlineKeyboardButtonTypeUrl: Codable, Equatable {
     }
 }
 
-/// A button that opens a specified URL and automatically authorize the current user if allowed to do so
+/// A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
 public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
 
     /// If non-empty, new text of the button in forwarded messages
@@ -128,7 +138,7 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
     /// Unique button identifier
     public let id: Int64
 
-    /// An HTTP URL to open
+    /// An HTTP URL to pass to getLoginUrlInfo
     public let url: String
 
 
@@ -139,6 +149,18 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
     ) {
         self.forwardText = forwardText
         self.id = id
+        self.url = url
+    }
+}
+
+/// A button that opens a web app by calling openWebApp
+public struct InlineKeyboardButtonTypeWebApp: Codable, Equatable {
+
+    /// An HTTP URL to pass to openWebApp
+    public let url: String
+
+
+    public init(url: String) {
         self.url = url
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
 public struct GetMapThumbnailFile: Codable, Equatable {
 
-    /// Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+    /// Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
     public let chatId: Int64?
 
     /// Map height in pixels before applying scale; 16-1024

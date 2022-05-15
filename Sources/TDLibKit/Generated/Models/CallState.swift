@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.2-461b7409
-//  https://github.com/tdlib/td/tree/461b7409
+//  Based on TDLib 1.8.3-995b06b3
+//  https://github.com/tdlib/td/tree/995b06b3
 //
 
 import Foundation
@@ -151,6 +151,9 @@ public struct CallStateDiscarded: Codable, Equatable {
     /// True, if the call debug information must be sent to the server
     public let needDebugInformation: Bool
 
+    /// True, if the call log must be sent to the server
+    public let needLog: Bool
+
     /// True, if the call rating must be sent to the server
     public let needRating: Bool
 
@@ -160,10 +163,12 @@ public struct CallStateDiscarded: Codable, Equatable {
 
     public init(
         needDebugInformation: Bool,
+        needLog: Bool,
         needRating: Bool,
         reason: CallDiscardReason
     ) {
         self.needDebugInformation = needDebugInformation
+        self.needLog = needLog
         self.needRating = needRating
         self.reason = reason
     }
