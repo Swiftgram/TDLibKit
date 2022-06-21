@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
 
 
-/// Sends data received from a keyboardButtonTypeWebApp web app to a bot
+/// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
 public struct SendWebAppData: Codable, Equatable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?
 
-    /// Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// Text of the keyboardButtonTypeWebApp button, which opened the Web App
     public let buttonText: String?
 
     /// Received data

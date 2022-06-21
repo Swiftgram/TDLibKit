@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents a user
 public struct User: Codable, Equatable {
+
+    /// True, if the user added the current bot to attachment menu; only available to bots
+    public let addedToAttachmentMenu: Bool
 
     /// First name of the user
     public let firstName: String
@@ -30,6 +33,9 @@ public struct User: Codable, Equatable {
 
     /// The user is a contact of the current user and the current user is a contact of the user
     public let isMutualContact: Bool
+
+    /// True, if the user is a Telegram Premium user
+    public let isPremium: Bool
 
     /// True, if many users reported this user as a scam
     public let isScam: Bool
@@ -66,12 +72,14 @@ public struct User: Codable, Equatable {
 
 
     public init(
+        addedToAttachmentMenu: Bool,
         firstName: String,
         haveAccess: Bool,
         id: Int64,
         isContact: Bool,
         isFake: Bool,
         isMutualContact: Bool,
+        isPremium: Bool,
         isScam: Bool,
         isSupport: Bool,
         isVerified: Bool,
@@ -84,12 +92,14 @@ public struct User: Codable, Equatable {
         type: UserType,
         username: String
     ) {
+        self.addedToAttachmentMenu = addedToAttachmentMenu
         self.firstName = firstName
         self.haveAccess = haveAccess
         self.id = id
         self.isContact = isContact
         self.isFake = isFake
         self.isMutualContact = isMutualContact
+        self.isPremium = isPremium
         self.isScam = isScam
         self.isSupport = isSupport
         self.isVerified = isVerified

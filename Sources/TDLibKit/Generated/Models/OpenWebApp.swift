@@ -3,26 +3,26 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
 
 
-/// Informs TDLib that a web app is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+/// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
 public struct OpenWebApp: Codable, Equatable {
 
-    /// Identifier of the bot, providing the web app
+    /// Identifier of the bot, providing the Web App
     public let botUserId: Int64?
 
-    /// Identifier of the chat in which the web app is opened. Web apps can be opened only in private chats for now
+    /// Identifier of the chat in which the Web App is opened
     public let chatId: Int64?
 
-    /// Identifier of the replied message for the message sent by the web app; 0 if none
+    /// Identifier of the replied message for the message sent by the Web App; 0 if none
     public let replyToMessageId: Int64?
 
-    /// Preferred web app theme; pass null to use the default theme
+    /// Preferred Web App theme; pass null to use the default theme
     public let theme: ThemeParameters?
 
     /// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise

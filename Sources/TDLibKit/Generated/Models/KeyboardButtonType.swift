@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public enum KeyboardButtonType: Codable, Equatable {
     /// A button that allows the user to create and send a poll when pressed; available only in private chats
     case keyboardButtonTypeRequestPoll(KeyboardButtonTypeRequestPoll)
 
-    /// A button that opens a web app by calling getWebAppUrl
+    /// A button that opens a Web App by calling getWebAppUrl
     case keyboardButtonTypeWebApp(KeyboardButtonTypeWebApp)
 
 
@@ -94,7 +94,7 @@ public struct KeyboardButtonTypeRequestPoll: Codable, Equatable {
     }
 }
 
-/// A button that opens a web app by calling getWebAppUrl
+/// A button that opens a Web App by calling getWebAppUrl
 public struct KeyboardButtonTypeWebApp: Codable, Equatable {
 
     /// An HTTP URL to pass to getWebAppUrl

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
     /// A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
     case inlineKeyboardButtonTypeLoginUrl(InlineKeyboardButtonTypeLoginUrl)
 
-    /// A button that opens a web app by calling openWebApp
+    /// A button that opens a Web App by calling openWebApp
     case inlineKeyboardButtonTypeWebApp(InlineKeyboardButtonTypeWebApp)
 
     /// A button that sends a callback query to a bot
@@ -153,7 +153,7 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
     }
 }
 
-/// A button that opens a web app by calling openWebApp
+/// A button that opens a Web App by calling openWebApp
 public struct InlineKeyboardButtonTypeWebApp: Codable, Equatable {
 
     /// An HTTP URL to pass to openWebApp

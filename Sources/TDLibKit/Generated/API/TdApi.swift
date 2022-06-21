@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -1552,7 +1552,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached
+    /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
     /// - Parameter type: Type of the public chats, for which to check the limit
     public func checkCreatedPublicChatsLimit(
         type: PublicChatType?,
@@ -1564,7 +1564,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached
+    /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
     /// - Parameter type: Type of the public chats, for which to check the limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func checkCreatedPublicChatsLimit(type: PublicChatType?) async throws -> Ok {
@@ -1587,13 +1587,13 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
+    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
     public func getInactiveSupergroupChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetInactiveSupergroupChats()
         execute(query: query, completion: completion)
     }
 
-    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
+    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInactiveSupergroupChats() async throws -> Chats {
         let query = GetInactiveSupergroupChats()
@@ -2535,6 +2535,72 @@ public final class TdApi {
             fromLanguageCode: fromLanguageCode,
             text: text,
             toLanguageCode: toLanguageCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    public func recognizeSpeech(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RecognizeSpeech(
+            chatId: chatId,
+            messageId: messageId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func recognizeSpeech(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = RecognizeSpeech(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Rates recognized speech in a voice note message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isGood: Pass true if the speech recognition is good
+    /// - Parameter messageId: Identifier of the message
+    public func rateSpeechRecognition(
+        chatId: Int64?,
+        isGood: Bool?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RateSpeechRecognition(
+            chatId: chatId,
+            isGood: isGood,
+            messageId: messageId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Rates recognized speech in a voice note message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isGood: Pass true if the speech recognition is good
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func rateSpeechRecognition(
+        chatId: Int64?,
+        isGood: Bool?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = RateSpeechRecognition(
+            chatId: chatId,
+            isGood: isGood,
+            messageId: messageId
         )
         return try await execute(query: query)
     }
@@ -3501,7 +3567,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
     public func getMessageAvailableReactions(
@@ -3516,7 +3582,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4219,9 +4285,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
     public func getWebAppUrl(
         botUserId: Int64?,
@@ -4237,9 +4303,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppUrl(
@@ -4255,9 +4321,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sends data received from a keyboardButtonTypeWebApp web app to a bot
+    /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the Web App
     /// - Parameter data: Received data
     public func sendWebAppData(
         botUserId: Int64?,
@@ -4273,9 +4339,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sends data received from a keyboardButtonTypeWebApp web app to a bot
+    /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the Web App
     /// - Parameter data: Received data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendWebAppData(
@@ -4291,11 +4357,11 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Informs TDLib that a web app is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter botUserId: Identifier of the bot, providing the web app
-    /// - Parameter chatId: Identifier of the chat in which the web app is opened. Web apps can be opened only in private chats for now
-    /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the web app; 0 if none
-    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// - Parameter botUserId: Identifier of the bot, providing the Web App
+    /// - Parameter chatId: Identifier of the chat in which the Web App is opened
+    /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the Web App; 0 if none
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     public func openWebApp(
         botUserId: Int64?,
@@ -4315,11 +4381,11 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that a web app is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter botUserId: Identifier of the bot, providing the web app
-    /// - Parameter chatId: Identifier of the chat in which the web app is opened. Web apps can be opened only in private chats for now
-    /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the web app; 0 if none
-    /// - Parameter theme: Preferred web app theme; pass null to use the default theme
+    /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// - Parameter botUserId: Identifier of the bot, providing the Web App
+    /// - Parameter chatId: Identifier of the chat in which the Web App is opened
+    /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the Web App; 0 if none
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func openWebApp(
@@ -4339,8 +4405,8 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Informs TDLib that a previously opened web app was closed
-    /// - Parameter webAppLaunchId: Identifier of web app launch, received from openWebApp
+    /// Informs TDLib that a previously opened Web App was closed
+    /// - Parameter webAppLaunchId: Identifier of Web App launch, received from openWebApp
     public func closeWebApp(
         webAppLaunchId: TdInt64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -4351,8 +4417,8 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that a previously opened web app was closed
-    /// - Parameter webAppLaunchId: Identifier of web app launch, received from openWebApp
+    /// Informs TDLib that a previously opened Web App was closed
+    /// - Parameter webAppLaunchId: Identifier of Web App launch, received from openWebApp
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func closeWebApp(webAppLaunchId: TdInt64?) async throws -> Ok {
         let query = CloseWebApp(
@@ -4361,9 +4427,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sets the result of interaction with a web app and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+    /// Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
     /// - Parameter result: The result of the query
-    /// - Parameter webAppQueryId: Identifier of the web app query
+    /// - Parameter webAppQueryId: Identifier of the Web App query
     public func answerWebAppQuery(
         result: InputInlineQueryResult?,
         webAppQueryId: String?,
@@ -4376,9 +4442,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sets the result of interaction with a web app and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+    /// Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
     /// - Parameter result: The result of the query
-    /// - Parameter webAppQueryId: Identifier of the web app query
+    /// - Parameter webAppQueryId: Identifier of the Web App query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func answerWebAppQuery(
         result: InputInlineQueryResult?,
@@ -5347,7 +5413,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Creates new chat filter. Returns information about the created chat filter
+    /// Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
     /// - Parameter filter: Chat filter
     public func createChatFilter(
         filter: ChatFilter?,
@@ -5359,7 +5425,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Creates new chat filter. Returns information about the created chat filter
+    /// Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
     /// - Parameter filter: Chat filter
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createChatFilter(filter: ChatFilter?) async throws -> ChatFilterInfo {
@@ -5423,22 +5489,30 @@ public final class TdApi {
 
     /// Changes the order of chat filters
     /// - Parameter chatFilterIds: Identifiers of chat filters in the new correct order
+    /// - Parameter mainChatListPosition: Position of the main chat list among chat filters, 0-based. Can be non-zero only for Premium users
     public func reorderChatFilters(
         chatFilterIds: [Int]?,
+        mainChatListPosition: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReorderChatFilters(
-            chatFilterIds: chatFilterIds
+            chatFilterIds: chatFilterIds,
+            mainChatListPosition: mainChatListPosition
         )
         execute(query: query, completion: completion)
     }
 
     /// Changes the order of chat filters
     /// - Parameter chatFilterIds: Identifiers of chat filters in the new correct order
+    /// - Parameter mainChatListPosition: Position of the main chat list among chat filters, 0-based. Can be non-zero only for Premium users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func reorderChatFilters(chatFilterIds: [Int]?) async throws -> Ok {
+    public func reorderChatFilters(
+        chatFilterIds: [Int]?,
+        mainChatListPosition: Int?
+    ) async throws -> Ok {
         let query = ReorderChatFilters(
-            chatFilterIds: chatFilterIds
+            chatFilterIds: chatFilterIds,
+            mainChatListPosition: mainChatListPosition
         )
         return try await execute(query: query)
     }
@@ -6058,7 +6132,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
+    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter chatId: Chat identifier
     public func joinChat(
         chatId: Int64?,
@@ -6070,7 +6144,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
+    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func joinChat(chatId: Int64?) async throws -> Ok {
@@ -6585,7 +6659,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
+    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
@@ -6603,7 +6677,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
+    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
@@ -6711,8 +6785,8 @@ public final class TdApi {
     /// - Parameter synchronous: Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
     public func downloadFile(
         fileId: Int?,
-        limit: Int?,
-        offset: Int?,
+        limit: Int64?,
+        offset: Int64?,
         priority: Int?,
         synchronous: Bool?,
         completion: @escaping (Result<File, Swift.Error>) -> Void
@@ -6736,8 +6810,8 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func downloadFile(
         fileId: Int?,
-        limit: Int?,
-        offset: Int?,
+        limit: Int64?,
+        offset: Int64?,
         priority: Int?,
         synchronous: Bool?
     ) async throws -> File {
@@ -6756,8 +6830,8 @@ public final class TdApi {
     /// - Parameter offset: Offset from which downloaded prefix size needs to be calculated
     public func getFileDownloadedPrefixSize(
         fileId: Int?,
-        offset: Int?,
-        completion: @escaping (Result<Count, Swift.Error>) -> Void
+        offset: Int64?,
+        completion: @escaping (Result<FileDownloadedPrefixSize, Swift.Error>) -> Void
     ) throws {
         let query = GetFileDownloadedPrefixSize(
             fileId: fileId,
@@ -6772,8 +6846,8 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getFileDownloadedPrefixSize(
         fileId: Int?,
-        offset: Int?
-    ) async throws -> Count {
+        offset: Int64?
+    ) async throws -> FileDownloadedPrefixSize {
         let query = GetFileDownloadedPrefixSize(
             fileId: fileId,
             offset: offset
@@ -6906,7 +6980,7 @@ public final class TdApi {
     public func writeGeneratedFilePart(
         data: Data?,
         generationId: TdInt64?,
-        offset: Int?,
+        offset: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = WriteGeneratedFilePart(
@@ -6925,7 +6999,7 @@ public final class TdApi {
     public func writeGeneratedFilePart(
         data: Data?,
         generationId: TdInt64?,
-        offset: Int?
+        offset: Int64?
     ) async throws -> Ok {
         let query = WriteGeneratedFilePart(
             data: data,
@@ -6940,9 +7014,9 @@ public final class TdApi {
     /// - Parameter generationId: The identifier of the generation process
     /// - Parameter localPrefixSize: The number of bytes already generated
     public func setFileGenerationProgress(
-        expectedSize: Int?,
+        expectedSize: Int64?,
         generationId: TdInt64?,
-        localPrefixSize: Int?,
+        localPrefixSize: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetFileGenerationProgress(
@@ -6959,9 +7033,9 @@ public final class TdApi {
     /// - Parameter localPrefixSize: The number of bytes already generated
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setFileGenerationProgress(
-        expectedSize: Int?,
+        expectedSize: Int64?,
         generationId: TdInt64?,
-        localPrefixSize: Int?
+        localPrefixSize: Int64?
     ) async throws -> Ok {
         let query = SetFileGenerationProgress(
             expectedSize: expectedSize,
@@ -7006,9 +7080,9 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the file. The file must be located in the TDLib file cache
     /// - Parameter offset: The offset from which to read the file
     public func readFilePart(
-        count: Int?,
+        count: Int64?,
         fileId: Int?,
-        offset: Int?,
+        offset: Int64?,
         completion: @escaping (Result<FilePart, Swift.Error>) -> Void
     ) throws {
         let query = ReadFilePart(
@@ -7025,9 +7099,9 @@ public final class TdApi {
     /// - Parameter offset: The offset from which to read the file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func readFilePart(
-        count: Int?,
+        count: Int64?,
         fileId: Int?,
-        offset: Int?
+        offset: Int64?
     ) async throws -> FilePart {
         let query = ReadFilePart(
             count: count,
@@ -7267,7 +7341,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about a file with messages exported from another app
+    /// Returns information about a file with messages exported from another application
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
     public func getMessageFileType(
         messageFileHead: String?,
@@ -7279,7 +7353,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a file with messages exported from another app
+    /// Returns information about a file with messages exported from another application
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageFileType(messageFileHead: String?) async throws -> MessageFileType {
@@ -7731,7 +7805,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Uses an invite link to add the current user to the chat if possible
+    /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter inviteLink: Invite link to use
     public func joinChatByInviteLink(
         inviteLink: String?,
@@ -7743,7 +7817,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Uses an invite link to add the current user to the chat if possible
+    /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter inviteLink: Invite link to use
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func joinChatByInviteLink(inviteLink: String?) async throws -> Chat {
@@ -9504,7 +9578,7 @@ public final class TdApi {
     public func getTrendingStickerSets(
         limit: Int?,
         offset: Int?,
-        completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
+        completion: @escaping (Result<TrendingStickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetTrendingStickerSets(
             limit: limit,
@@ -9520,7 +9594,7 @@ public final class TdApi {
     public func getTrendingStickerSets(
         limit: Int?,
         offset: Int?
-    ) async throws -> StickerSets {
+    ) async throws -> TrendingStickerSets {
         let query = GetTrendingStickerSets(
             limit: limit,
             offset: offset
@@ -9981,6 +10055,19 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns all emojis, which has a corresponding animated emoji
+    public func getAllAnimatedEmojis(completion: @escaping (Result<Emojis, Swift.Error>) -> Void) throws {
+        let query = GetAllAnimatedEmojis()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns all emojis, which has a corresponding animated emoji
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getAllAnimatedEmojis() async throws -> Emojis {
+        let query = GetAllAnimatedEmojis()
+        return try await execute(query: query)
+    }
+
     /// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
     /// - Parameter languageCode: Language code for which the emoji replacements will be suggested
     public func getEmojiSuggestionsUrl(
@@ -10252,7 +10339,7 @@ public final class TdApi {
     }
 
     /// Changes the bio of the current user
-    /// - Parameter bio: The new value of the user bio; 0-70 characters without line feeds
+    /// - Parameter bio: The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
     public func setBio(
         bio: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -10264,7 +10351,7 @@ public final class TdApi {
     }
 
     /// Changes the bio of the current user
-    /// - Parameter bio: The new value of the user bio; 0-70 characters without line feeds
+    /// - Parameter bio: The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBio(bio: String?) async throws -> Ok {
         let query = SetBio(
@@ -10842,6 +10929,66 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+    /// - Parameter joinToSendMessages: New value of join_to_send_messages
+    /// - Parameter supergroupId: Identifier of the supergroup
+    public func toggleSupergroupJoinToSendMessages(
+        joinToSendMessages: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupJoinToSendMessages(
+            joinToSendMessages: joinToSendMessages,
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+    /// - Parameter joinToSendMessages: New value of join_to_send_messages
+    /// - Parameter supergroupId: Identifier of the supergroup
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleSupergroupJoinToSendMessages(
+        joinToSendMessages: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupJoinToSendMessages(
+            joinToSendMessages: joinToSendMessages,
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+    /// - Parameter joinByRequest: New value of join_by_request
+    /// - Parameter supergroupId: Identifier of the channel
+    public func toggleSupergroupJoinByRequest(
+        joinByRequest: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupJoinByRequest(
+            joinByRequest: joinByRequest,
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+    /// - Parameter joinByRequest: New value of join_by_request
+    /// - Parameter supergroupId: Identifier of the channel
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleSupergroupJoinByRequest(
+        joinByRequest: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupJoinByRequest(
+            joinByRequest: joinByRequest,
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
     /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
     /// - Parameter isAllHistoryAvailable: The new value of is_all_history_available
     /// - Parameter supergroupId: The identifier of the supergroup
@@ -11043,36 +11190,30 @@ public final class TdApi {
     }
 
     /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
-    /// - Parameter chatId: Chat identifier of the Invoice message
-    /// - Parameter messageId: Message identifier
+    /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
     public func getPaymentForm(
-        chatId: Int64?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         theme: ThemeParameters?,
         completion: @escaping (Result<PaymentForm, Swift.Error>) -> Void
     ) throws {
         let query = GetPaymentForm(
-            chatId: chatId,
-            messageId: messageId,
+            inputInvoice: inputInvoice,
             theme: theme
         )
         execute(query: query, completion: completion)
     }
 
     /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
-    /// - Parameter chatId: Chat identifier of the Invoice message
-    /// - Parameter messageId: Message identifier
+    /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPaymentForm(
-        chatId: Int64?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         theme: ThemeParameters?
     ) async throws -> PaymentForm {
         let query = GetPaymentForm(
-            chatId: chatId,
-            messageId: messageId,
+            inputInvoice: inputInvoice,
             theme: theme
         )
         return try await execute(query: query)
@@ -11080,20 +11221,17 @@ public final class TdApi {
 
     /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
     /// - Parameter allowSave: Pass true to save the order information
-    /// - Parameter chatId: Chat identifier of the Invoice message
-    /// - Parameter messageId: Message identifier
+    /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfo: The order information, provided by the user; pass null if empty
     public func validateOrderInfo(
         allowSave: Bool?,
-        chatId: Int64?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         orderInfo: OrderInfo?,
         completion: @escaping (Result<ValidatedOrderInfo, Swift.Error>) -> Void
     ) throws {
         let query = ValidateOrderInfo(
             allowSave: allowSave,
-            chatId: chatId,
-            messageId: messageId,
+            inputInvoice: inputInvoice,
             orderInfo: orderInfo
         )
         execute(query: query, completion: completion)
@@ -11101,37 +11239,32 @@ public final class TdApi {
 
     /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
     /// - Parameter allowSave: Pass true to save the order information
-    /// - Parameter chatId: Chat identifier of the Invoice message
-    /// - Parameter messageId: Message identifier
+    /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfo: The order information, provided by the user; pass null if empty
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func validateOrderInfo(
         allowSave: Bool?,
-        chatId: Int64?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         orderInfo: OrderInfo?
     ) async throws -> ValidatedOrderInfo {
         let query = ValidateOrderInfo(
             allowSave: allowSave,
-            chatId: chatId,
-            messageId: messageId,
+            inputInvoice: inputInvoice,
             orderInfo: orderInfo
         )
         return try await execute(query: query)
     }
 
     /// Sends a filled-out payment form to the bot for final verification
-    /// - Parameter chatId: Chat identifier of the Invoice message
     /// - Parameter credentials: The credentials chosen by user for payment
-    /// - Parameter messageId: Message identifier
+    /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfoId: Identifier returned by validateOrderInfo, or an empty string
     /// - Parameter paymentFormId: Payment form identifier returned by getPaymentForm
     /// - Parameter shippingOptionId: Identifier of a chosen shipping option, if applicable
     /// - Parameter tipAmount: Chosen by the user amount of tip in the smallest units of the currency
     public func sendPaymentForm(
-        chatId: Int64?,
         credentials: InputCredentials?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         orderInfoId: String?,
         paymentFormId: TdInt64?,
         shippingOptionId: String?,
@@ -11139,9 +11272,8 @@ public final class TdApi {
         completion: @escaping (Result<PaymentResult, Swift.Error>) -> Void
     ) throws {
         let query = SendPaymentForm(
-            chatId: chatId,
             credentials: credentials,
-            messageId: messageId,
+            inputInvoice: inputInvoice,
             orderInfoId: orderInfoId,
             paymentFormId: paymentFormId,
             shippingOptionId: shippingOptionId,
@@ -11151,27 +11283,24 @@ public final class TdApi {
     }
 
     /// Sends a filled-out payment form to the bot for final verification
-    /// - Parameter chatId: Chat identifier of the Invoice message
     /// - Parameter credentials: The credentials chosen by user for payment
-    /// - Parameter messageId: Message identifier
+    /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfoId: Identifier returned by validateOrderInfo, or an empty string
     /// - Parameter paymentFormId: Payment form identifier returned by getPaymentForm
     /// - Parameter shippingOptionId: Identifier of a chosen shipping option, if applicable
     /// - Parameter tipAmount: Chosen by the user amount of tip in the smallest units of the currency
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendPaymentForm(
-        chatId: Int64?,
         credentials: InputCredentials?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         orderInfoId: String?,
         paymentFormId: TdInt64?,
         shippingOptionId: String?,
         tipAmount: Int64?
     ) async throws -> PaymentResult {
         let query = SendPaymentForm(
-            chatId: chatId,
             credentials: credentials,
-            messageId: messageId,
+            inputInvoice: inputInvoice,
             orderInfoId: orderInfoId,
             paymentFormId: paymentFormId,
             shippingOptionId: shippingOptionId,
@@ -11246,6 +11375,28 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func deleteSavedCredentials() async throws -> Ok {
         let query = DeleteSavedCredentials()
+        return try await execute(query: query)
+    }
+
+    /// Creates a link for the given invoice; for bots only
+    /// - Parameter invoice: Information about the invoice of the type inputMessageInvoice
+    public func createInvoiceLink(
+        invoice: InputMessageContent?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateInvoiceLink(
+            invoice: invoice
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Creates a link for the given invoice; for bots only
+    /// - Parameter invoice: Information about the invoice of the type inputMessageInvoice
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createInvoiceLink(invoice: InputMessageContent?) async throws -> HttpUrl {
+        let query = CreateInvoiceLink(
+            invoice: invoice
+        )
         return try await execute(query: query)
     }
 
@@ -13034,7 +13185,7 @@ public final class TdApi {
     }
 
     /// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
-    /// - Parameter position: New position of the sticker in the set, zero-based
+    /// - Parameter position: New position of the sticker in the set, 0-based
     /// - Parameter sticker: Sticker
     public func setStickerPositionInSet(
         position: Int?,
@@ -13049,7 +13200,7 @@ public final class TdApi {
     }
 
     /// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
-    /// - Parameter position: New position of the sticker in the set, zero-based
+    /// - Parameter position: New position of the sticker in the set, 0-based
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setStickerPositionInSet(
@@ -13136,6 +13287,111 @@ public final class TdApi {
             width: width,
             zoom: zoom
         )
+        return try await execute(query: query)
+    }
+
+    /// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+    /// - Parameter limitType: Type of the limit
+    public func getPremiumLimit(
+        limitType: PremiumLimitType?,
+        completion: @escaping (Result<PremiumLimit, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPremiumLimit(
+            limitType: limitType
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+    /// - Parameter limitType: Type of the limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumLimit(limitType: PremiumLimitType?) async throws -> PremiumLimit {
+        let query = GetPremiumLimit(
+            limitType: limitType
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns information about features, available to Premium users
+    /// - Parameter source: Source of the request; pass null if the method is called from some non-standard source
+    public func getPremiumFeatures(
+        source: PremiumSource?,
+        completion: @escaping (Result<PremiumFeatures, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPremiumFeatures(
+            source: source
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about features, available to Premium users
+    /// - Parameter source: Source of the request; pass null if the method is called from some non-standard source
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumFeatures(source: PremiumSource?) async throws -> PremiumFeatures {
+        let query = GetPremiumFeatures(
+            source: source
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns examples of premium stickers for demonstration purposes
+    public func getPremiumStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetPremiumStickers()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns examples of premium stickers for demonstration purposes
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumStickers() async throws -> Stickers {
+        let query = GetPremiumStickers()
+        return try await execute(query: query)
+    }
+
+    /// Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
+    /// - Parameter feature: The viewed premium feature
+    public func viewPremiumFeature(
+        feature: PremiumFeature?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ViewPremiumFeature(
+            feature: feature
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
+    /// - Parameter feature: The viewed premium feature
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func viewPremiumFeature(feature: PremiumFeature?) async throws -> Ok {
+        let query = ViewPremiumFeature(
+            feature: feature
+        )
+        return try await execute(query: query)
+    }
+
+    /// Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+    public func clickPremiumSubscriptionButton(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ClickPremiumSubscriptionButton()
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func clickPremiumSubscriptionButton() async throws -> Ok {
+        let query = ClickPremiumSubscriptionButton()
+        return try await execute(query: query)
+    }
+
+    /// Returns state of Telegram Premium subscription and promotion videos for Premium features
+    public func getPremiumState(completion: @escaping (Result<PremiumState, Swift.Error>) -> Void) throws {
+        let query = GetPremiumState()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns state of Telegram Premium subscription and promotion videos for Premium features
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumState() async throws -> PremiumState {
+        let query = GetPremiumState()
         return try await execute(query: query)
     }
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
 
 
-/// Contains parameters of the app theme
+/// Contains parameters of the application theme
 public struct ThemeParameters: Codable, Equatable {
 
     /// A color of the background in the RGB24 format
@@ -28,6 +28,9 @@ public struct ThemeParameters: Codable, Equatable {
     /// A color of links in the RGB24 format
     public let linkColor: Int
 
+    /// A secondary color for the background in the RGB24 format
+    public let secondaryBackgroundColor: Int
+
     /// A color of text in the RGB24 format
     public let textColor: Int
 
@@ -38,6 +41,7 @@ public struct ThemeParameters: Codable, Equatable {
         buttonTextColor: Int,
         hintColor: Int,
         linkColor: Int,
+        secondaryBackgroundColor: Int,
         textColor: Int
     ) {
         self.backgroundColor = backgroundColor
@@ -45,6 +49,7 @@ public struct ThemeParameters: Codable, Equatable {
         self.buttonTextColor = buttonTextColor
         self.hintColor = hintColor
         self.linkColor = linkColor
+        self.secondaryBackgroundColor = secondaryBackgroundColor
         self.textColor = textColor
     }
 }

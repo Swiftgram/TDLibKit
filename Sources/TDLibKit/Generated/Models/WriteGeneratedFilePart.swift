@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -20,13 +20,13 @@ public struct WriteGeneratedFilePart: Codable, Equatable {
     public let generationId: TdInt64?
 
     /// The offset from which to write the data to the file
-    public let offset: Int?
+    public let offset: Int64?
 
 
     public init(
         data: Data?,
         generationId: TdInt64?,
-        offset: Int?
+        offset: Int64?
     ) {
         self.data = data
         self.generationId = generationId

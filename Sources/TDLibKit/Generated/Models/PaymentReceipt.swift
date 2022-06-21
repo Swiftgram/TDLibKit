@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PaymentReceipt: Codable, Equatable {
     /// Point in time (Unix timestamp) when the payment was made
     public let date: Int
 
-    public let description: String
+    public let description: FormattedText
 
     /// Information about the invoice
     public let invoice: Invoice
@@ -28,7 +28,7 @@ public struct PaymentReceipt: Codable, Equatable {
     public let orderInfo: OrderInfo?
 
     /// User identifier of the payment provider bot
-    public let paymentsProviderUserId: Int64
+    public let paymentProviderUserId: Int64
 
     /// Product photo; may be null
     public let photo: Photo?
@@ -49,10 +49,10 @@ public struct PaymentReceipt: Codable, Equatable {
     public init(
         credentialsTitle: String,
         date: Int,
-        description: String,
+        description: FormattedText,
         invoice: Invoice,
         orderInfo: OrderInfo?,
-        paymentsProviderUserId: Int64,
+        paymentProviderUserId: Int64,
         photo: Photo?,
         sellerBotUserId: Int64,
         shippingOption: ShippingOption?,
@@ -64,7 +64,7 @@ public struct PaymentReceipt: Codable, Equatable {
         self.description = description
         self.invoice = invoice
         self.orderInfo = orderInfo
-        self.paymentsProviderUserId = paymentsProviderUserId
+        self.paymentProviderUserId = paymentProviderUserId
         self.photo = photo
         self.sellerBotUserId = sellerBotUserId
         self.shippingOption = shippingOption

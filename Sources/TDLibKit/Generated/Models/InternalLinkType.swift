@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
 
 
-/// Describes an internal https://t.me or tg: link, which must be processed by the app in a special way
+/// Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 public indirect enum InternalLinkType: Codable, Equatable {
 
-    /// The link is a link to the active sessions section of the app. Use getActiveSessions to handle the link
+    /// The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
     case internalLinkTypeActiveSessions
 
-    /// The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     case internalLinkTypeAttachmentMenuBot(InternalLinkTypeAttachmentMenuBot)
 
     /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
@@ -46,6 +46,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
+    /// The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
+    case internalLinkTypeInvoice(InternalLinkTypeInvoice)
+
     /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
@@ -58,11 +61,14 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
     case internalLinkTypeMessageDraft(InternalLinkTypeMessageDraft)
 
-    /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
+    /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application, otherwise ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
     /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
+
+    /// The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+    case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
 
     /// The link is a link to the privacy and security settings section of the app
     case internalLinkTypePrivacyAndSecuritySettings
@@ -76,7 +82,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     case internalLinkTypeQrCodeAuthentication
 
-    /// The link is a link to app settings
+    /// The link is a link to application settings
     case internalLinkTypeSettings
 
     /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
@@ -113,12 +119,14 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeChatInvite
         case internalLinkTypeFilterSettings
         case internalLinkTypeGame
+        case internalLinkTypeInvoice
         case internalLinkTypeLanguagePack
         case internalLinkTypeLanguageSettings
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
+        case internalLinkTypePremiumFeatures
         case internalLinkTypePrivacyAndSecuritySettings
         case internalLinkTypeProxy
         case internalLinkTypePublicChat
@@ -167,6 +175,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
+        case .internalLinkTypeInvoice:
+            let value = try InternalLinkTypeInvoice(from: decoder)
+            self = .internalLinkTypeInvoice(value)
         case .internalLinkTypeLanguagePack:
             let value = try InternalLinkTypeLanguagePack(from: decoder)
             self = .internalLinkTypeLanguagePack(value)
@@ -184,6 +195,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypePhoneNumberConfirmation:
             let value = try InternalLinkTypePhoneNumberConfirmation(from: decoder)
             self = .internalLinkTypePhoneNumberConfirmation(value)
+        case .internalLinkTypePremiumFeatures:
+            let value = try InternalLinkTypePremiumFeatures(from: decoder)
+            self = .internalLinkTypePremiumFeatures(value)
         case .internalLinkTypePrivacyAndSecuritySettings:
             self = .internalLinkTypePrivacyAndSecuritySettings
         case .internalLinkTypeProxy:
@@ -251,6 +265,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeInvoice(let value):
+            try container.encode(Kind.internalLinkTypeInvoice, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeLanguagePack(let value):
             try container.encode(Kind.internalLinkTypeLanguagePack, forKey: .type)
             try value.encode(to: encoder)
@@ -267,6 +284,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
             try value.encode(to: encoder)
         case .internalLinkTypePhoneNumberConfirmation(let value):
             try container.encode(Kind.internalLinkTypePhoneNumberConfirmation, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypePremiumFeatures(let value):
+            try container.encode(Kind.internalLinkTypePremiumFeatures, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypePrivacyAndSecuritySettings:
             try container.encode(Kind.internalLinkTypePrivacyAndSecuritySettings, forKey: .type)
@@ -303,14 +323,14 @@ public indirect enum InternalLinkType: Codable, Equatable {
     }
 }
 
-/// The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
 public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable {
 
     /// Username of the bot
     public let botUsername: String
 
-    /// An internal link pointing to a chat; may be null if the current chat needs to be kept
-    public let chatLink: InternalLinkType?
+    /// Target chat to be opened
+    public let targetChat: TargetChat
 
     /// URL to be passed to openWebApp
     public let url: String
@@ -318,11 +338,11 @@ public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable {
 
     public init(
         botUsername: String,
-        chatLink: InternalLinkType?,
+        targetChat: TargetChat,
         url: String
     ) {
         self.botUsername = botUsername
-        self.chatLink = chatLink
+        self.targetChat = targetChat
         self.url = url
     }
 }
@@ -444,6 +464,18 @@ public struct InternalLinkTypeGame: Codable, Equatable {
     }
 }
 
+/// The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
+public struct InternalLinkTypeInvoice: Codable, Equatable {
+
+    /// Name of the invoice
+    public let invoiceName: String
+
+
+    public init(invoiceName: String) {
+        self.invoiceName = invoiceName
+    }
+}
+
 /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
 public struct InternalLinkTypeLanguagePack: Codable, Equatable {
 
@@ -487,7 +519,7 @@ public struct InternalLinkTypeMessageDraft: Codable, Equatable {
     }
 }
 
-/// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
+/// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application, otherwise ignore it
 public struct InternalLinkTypePassportDataRequest: Codable, Equatable {
 
     /// User identifier of the service's bot
@@ -537,6 +569,18 @@ public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable {
     ) {
         self.hash = hash
         self.phoneNumber = phoneNumber
+    }
+}
+
+/// The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+public struct InternalLinkTypePremiumFeatures: Codable, Equatable {
+
+    /// Referrer specified in the link
+    public let referrer: String
+
+
+    public init(referrer: String) {
+        self.referrer = referrer
     }
 }
 

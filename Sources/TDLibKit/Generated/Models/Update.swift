@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -268,7 +268,7 @@ public enum Update: Codable, Equatable {
     /// The list of bots added to attachment menu has changed
     case updateAttachmentMenuBots(UpdateAttachmentMenuBots)
 
-    /// A message was sent by an opened web app, so the web app needs to be closed
+    /// A message was sent by an opened Web App, so the Web App needs to be closed
     case updateWebAppMessageSent(UpdateWebAppMessageSent)
 
     /// The list of supported reactions has changed
@@ -1833,9 +1833,16 @@ public struct UpdateChatFilters: Codable, Equatable {
     /// The new list of chat filters
     public let chatFilters: [ChatFilterInfo]
 
+    /// Position of the main chat list among chat filters, 0-based
+    public let mainChatListPosition: Int
 
-    public init(chatFilters: [ChatFilterInfo]) {
+
+    public init(
+        chatFilters: [ChatFilterInfo],
+        mainChatListPosition: Int
+    ) {
         self.chatFilters = chatFilters
+        self.mainChatListPosition = mainChatListPosition
     }
 }
 
@@ -2519,10 +2526,10 @@ public struct UpdateInstalledStickerSets: Codable, Equatable {
 public struct UpdateTrendingStickerSets: Codable, Equatable {
 
     /// The prefix of the list of trending sticker sets with the newest trending sticker sets
-    public let stickerSets: StickerSets
+    public let stickerSets: TrendingStickerSets
 
 
-    public init(stickerSets: StickerSets) {
+    public init(stickerSets: TrendingStickerSets) {
         self.stickerSets = stickerSets
     }
 }
@@ -2683,7 +2690,7 @@ public struct UpdateUsersNearby: Codable, Equatable {
 /// The list of bots added to attachment menu has changed
 public struct UpdateAttachmentMenuBots: Codable, Equatable {
 
-    /// The new list of bots added to attachment menu. The bots must be shown in attachment menu only in private chats. The bots must not be shown on scheduled messages screen
+    /// The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
     public let bots: [AttachmentMenuBot]
 
 
@@ -2692,10 +2699,10 @@ public struct UpdateAttachmentMenuBots: Codable, Equatable {
     }
 }
 
-/// A message was sent by an opened web app, so the web app needs to be closed
+/// A message was sent by an opened Web App, so the Web App needs to be closed
 public struct UpdateWebAppMessageSent: Codable, Equatable {
 
-    /// Identifier of web app launch
+    /// Identifier of Web App launch
     public let webAppLaunchId: TdInt64
 
 

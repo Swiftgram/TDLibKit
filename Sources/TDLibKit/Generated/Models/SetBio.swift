@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Changes the bio of the current user
 public struct SetBio: Codable, Equatable {
 
-    /// The new value of the user bio; 0-70 characters without line feeds
+    /// The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
     public let bio: String?
 
 

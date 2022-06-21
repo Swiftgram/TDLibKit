@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -17,10 +17,10 @@ public struct DownloadFile: Codable, Equatable {
     public let fileId: Int?
 
     /// Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
-    public let limit: Int?
+    public let limit: Int64?
 
     /// The starting position from which the file needs to be downloaded
-    public let offset: Int?
+    public let offset: Int64?
 
     /// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
     public let priority: Int?
@@ -31,8 +31,8 @@ public struct DownloadFile: Codable, Equatable {
 
     public init(
         fileId: Int?,
-        limit: Int?,
-        offset: Int?,
+        limit: Int64?,
+        offset: Int64?,
         priority: Int?,
         synchronous: Bool?
     ) {

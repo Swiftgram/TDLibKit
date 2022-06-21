@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public struct RemoteFile: Codable, Equatable {
     public let uniqueId: String
 
     /// Size of the remote available part of the file, in bytes; 0 if unknown
-    public let uploadedSize: Int
+    public let uploadedSize: Int64
 
 
     public init(
@@ -34,7 +34,7 @@ public struct RemoteFile: Codable, Equatable {
         isUploadingActive: Bool,
         isUploadingCompleted: Bool,
         uniqueId: String,
-        uploadedSize: Int
+        uploadedSize: Int64
     ) {
         self.id = id
         self.isUploadingActive = isUploadingActive

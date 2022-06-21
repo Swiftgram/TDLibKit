@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -75,9 +75,16 @@ public struct NotificationTypeNewMessage: Codable, Equatable {
     /// The message
     public let message: Message
 
+    /// True, if message content must be displayed in notifications
+    public let showPreview: Bool
 
-    public init(message: Message) {
+
+    public init(
+        message: Message,
+        showPreview: Bool
+    ) {
         self.message = message
+        self.showPreview = showPreview
     }
 }
 

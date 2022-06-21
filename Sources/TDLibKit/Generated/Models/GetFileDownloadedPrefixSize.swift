@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -17,12 +17,12 @@ public struct GetFileDownloadedPrefixSize: Codable, Equatable {
     public let fileId: Int?
 
     /// Offset from which downloaded prefix size needs to be calculated
-    public let offset: Int?
+    public let offset: Int64?
 
 
     public init(
         fileId: Int?,
-        offset: Int?
+        offset: Int64?
     ) {
         self.fileId = fileId
         self.offset = offset

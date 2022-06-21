@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -14,10 +14,10 @@ import Foundation
 public struct AvailableReactions: Codable, Equatable {
 
     /// List of reactions
-    public let reactions: [String]
+    public let reactions: [AvailableReaction]
 
 
-    public init(reactions: [String]) {
+    public init(reactions: [AvailableReaction]) {
         self.reactions = reactions
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -40,6 +40,27 @@ public struct AttachmentMenuBot: Codable, Equatable {
     /// Color to highlight selected name of the bot if appropriate; may be null
     public let nameColor: AttachmentMenuBotColor?
 
+    /// True, if the bot supports opening from attachment menu in private chats with other bots
+    public let supportsBotChats: Bool
+
+    /// True, if the bot supports opening from attachment menu in channel chats
+    public let supportsChannelChats: Bool
+
+    /// True, if the bot supports opening from attachment menu in basic group and supergroup chats
+    public let supportsGroupChats: Bool
+
+    /// True, if the bot supports opening from attachment menu in the chat with the bot
+    public let supportsSelfChat: Bool
+
+    /// True, if the bot supports "settings_button_pressed" event
+    public let supportsSettings: Bool
+
+    /// True, if the bot supports opening from attachment menu in private chats with ordinary users
+    public let supportsUserChats: Bool
+
+    /// Default placeholder for opened Web Apps in SVG format; may be null
+    public let webAppPlaceholder: File?
+
 
     public init(
         androidIcon: File?,
@@ -50,7 +71,14 @@ public struct AttachmentMenuBot: Codable, Equatable {
         iosStaticIcon: File?,
         macosIcon: File?,
         name: String,
-        nameColor: AttachmentMenuBotColor?
+        nameColor: AttachmentMenuBotColor?,
+        supportsBotChats: Bool,
+        supportsChannelChats: Bool,
+        supportsGroupChats: Bool,
+        supportsSelfChat: Bool,
+        supportsSettings: Bool,
+        supportsUserChats: Bool,
+        webAppPlaceholder: File?
     ) {
         self.androidIcon = androidIcon
         self.botUserId = botUserId
@@ -61,6 +89,13 @@ public struct AttachmentMenuBot: Codable, Equatable {
         self.macosIcon = macosIcon
         self.name = name
         self.nameColor = nameColor
+        self.supportsBotChats = supportsBotChats
+        self.supportsChannelChats = supportsChannelChats
+        self.supportsGroupChats = supportsGroupChats
+        self.supportsSelfChat = supportsSelfChat
+        self.supportsSettings = supportsSettings
+        self.supportsUserChats = supportsUserChats
+        self.webAppPlaceholder = webAppPlaceholder
     }
 }
 

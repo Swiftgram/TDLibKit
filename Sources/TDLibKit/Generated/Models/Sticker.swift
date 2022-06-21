@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct Sticker: Codable, Equatable {
 
     /// Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
     public let outline: [ClosedVectorPath]
+
+    /// Premium animation of the sticker; may be null. If present, only Premium users can send the sticker
+    public let premiumAnimation: File?
 
     /// The identifier of the sticker set to which the sticker belongs; 0 if none
     public let setId: TdInt64
@@ -42,6 +45,7 @@ public struct Sticker: Codable, Equatable {
         emoji: String,
         height: Int,
         outline: [ClosedVectorPath],
+        premiumAnimation: File?,
         setId: TdInt64,
         sticker: File,
         thumbnail: Thumbnail?,
@@ -51,6 +55,7 @@ public struct Sticker: Codable, Equatable {
         self.emoji = emoji
         self.height = height
         self.outline = outline
+        self.premiumAnimation = premiumAnimation
         self.setId = setId
         self.sticker = sticker
         self.thumbnail = thumbnail

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct File: Codable, Equatable {
 
     /// Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
-    public let expectedSize: Int
+    public let expectedSize: Int64
 
     /// Unique file identifier
     public let id: Int
@@ -26,15 +26,15 @@ public struct File: Codable, Equatable {
     public let remote: RemoteFile
 
     /// File size, in bytes; 0 if unknown
-    public let size: Int
+    public let size: Int64
 
 
     public init(
-        expectedSize: Int,
+        expectedSize: Int64,
         id: Int,
         local: LocalFile,
         remote: RemoteFile,
-        size: Int
+        size: Int64
     ) {
         self.expectedSize = expectedSize
         self.id = id

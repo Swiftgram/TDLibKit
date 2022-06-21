@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
 
 
-/// Informs TDLib that a previously opened web app was closed
+/// Informs TDLib that a previously opened Web App was closed
 public struct CloseWebApp: Codable, Equatable {
 
-    /// Identifier of web app launch, received from openWebApp
+    /// Identifier of Web App launch, received from openWebApp
     public let webAppLaunchId: TdInt64?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct SponsoredMessage: Codable, Equatable {
 
     /// Content of the message. Currently, can be only of the type messageText
     public let content: MessageContent
+
+    /// True, if the message needs to be labeled as "recommended" instead of "sponsored"
+    public let isRecommended: Bool
 
     /// An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
     public let link: InternalLinkType?
@@ -31,12 +34,14 @@ public struct SponsoredMessage: Codable, Equatable {
 
     public init(
         content: MessageContent,
+        isRecommended: Bool,
         link: InternalLinkType?,
         messageId: Int64,
         sponsorChatId: Int64,
         sponsorChatInfo: ChatInviteLinkInfo?
     ) {
         self.content = content
+        self.isRecommended = isRecommended
         self.link = link
         self.messageId = messageId
         self.sponsorChatId = sponsorChatId

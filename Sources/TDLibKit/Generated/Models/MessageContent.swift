@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -148,10 +148,10 @@ public enum MessageContent: Codable, Equatable {
     /// The current user has connected a website by logging in using Telegram Login Widget on it
     case messageWebsiteConnected(MessageWebsiteConnected)
 
-    /// Data from a web app has been sent to a bot
+    /// Data from a Web App has been sent to a bot
     case messageWebAppDataSent(MessageWebAppDataSent)
 
-    /// Data from a web app has been received; for bots only
+    /// Data from a Web App has been received; for bots only
     case messageWebAppDataReceived(MessageWebAppDataReceived)
 
     /// Telegram Passport data has been sent to a bot
@@ -633,11 +633,18 @@ public struct MessagePhoto: Codable, Equatable {
 /// A sticker message
 public struct MessageSticker: Codable, Equatable {
 
+    /// True, if premium animation of the sticker must be played
+    public let isPremium: Bool
+
     /// The sticker description
     public let sticker: Sticker
 
 
-    public init(sticker: Sticker) {
+    public init(
+        isPremium: Bool,
+        sticker: Sticker
+    ) {
+        self.isPremium = isPremium
         self.sticker = sticker
     }
 }
@@ -855,7 +862,7 @@ public struct MessageInvoice: Codable, Equatable {
     /// Currency for the product price
     public let currency: String
 
-    public let description: String
+    public let description: FormattedText
 
     /// True, if the invoice is a test invoice
     public let isTest: Bool
@@ -881,7 +888,7 @@ public struct MessageInvoice: Codable, Equatable {
 
     public init(
         currency: String,
-        description: String,
+        description: FormattedText,
         isTest: Bool,
         needShippingAddress: Bool,
         photo: Photo?,
@@ -1179,8 +1186,17 @@ public struct MessagePaymentSuccessful: Codable, Equatable {
     /// Identifier of the chat, containing the corresponding invoice message; 0 if unknown
     public let invoiceChatId: Int64
 
-    /// Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+    /// Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
     public let invoiceMessageId: Int64
+
+    /// Name of the invoice; may be empty if unknown
+    public let invoiceName: String
+
+    /// True, if this is the first recurring payment
+    public let isFirstRecurring: Bool
+
+    /// True, if this is a recurring payment
+    public let isRecurring: Bool
 
     /// Total price for the product, in the smallest units of the currency
     public let totalAmount: Int64
@@ -1190,11 +1206,17 @@ public struct MessagePaymentSuccessful: Codable, Equatable {
         currency: String,
         invoiceChatId: Int64,
         invoiceMessageId: Int64,
+        invoiceName: String,
+        isFirstRecurring: Bool,
+        isRecurring: Bool,
         totalAmount: Int64
     ) {
         self.currency = currency
         self.invoiceChatId = invoiceChatId
         self.invoiceMessageId = invoiceMessageId
+        self.invoiceName = invoiceName
+        self.isFirstRecurring = isFirstRecurring
+        self.isRecurring = isRecurring
         self.totalAmount = totalAmount
     }
 }
@@ -1207,6 +1229,12 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable {
 
     /// Invoice payload
     public let invoicePayload: Data
+
+    /// True, if this is the first recurring payment
+    public let isFirstRecurring: Bool
+
+    /// True, if this is a recurring payment
+    public let isRecurring: Bool
 
     /// Information about the order; may be null
     public let orderInfo: OrderInfo?
@@ -1227,6 +1255,8 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable {
     public init(
         currency: String,
         invoicePayload: Data,
+        isFirstRecurring: Bool,
+        isRecurring: Bool,
         orderInfo: OrderInfo?,
         providerPaymentChargeId: String,
         shippingOptionId: String,
@@ -1235,6 +1265,8 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable {
     ) {
         self.currency = currency
         self.invoicePayload = invoicePayload
+        self.isFirstRecurring = isFirstRecurring
+        self.isRecurring = isRecurring
         self.orderInfo = orderInfo
         self.providerPaymentChargeId = providerPaymentChargeId
         self.shippingOptionId = shippingOptionId
@@ -1255,10 +1287,10 @@ public struct MessageWebsiteConnected: Codable, Equatable {
     }
 }
 
-/// Data from a web app has been sent to a bot
+/// Data from a Web App has been sent to a bot
 public struct MessageWebAppDataSent: Codable, Equatable {
 
-    /// Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// Text of the keyboardButtonTypeWebApp button, which opened the Web App
     public let buttonText: String
 
 
@@ -1267,10 +1299,10 @@ public struct MessageWebAppDataSent: Codable, Equatable {
     }
 }
 
-/// Data from a web app has been received; for bots only
+/// Data from a Web App has been received; for bots only
 public struct MessageWebAppDataReceived: Codable, Equatable {
 
-    /// Text of the keyboardButtonTypeWebApp button, which opened the web app
+    /// Text of the keyboardButtonTypeWebApp button, which opened the Web App
     public let buttonText: String
 
     /// Received data

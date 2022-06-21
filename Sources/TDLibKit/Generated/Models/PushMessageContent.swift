@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -91,6 +91,9 @@ public enum PushMessageContent: Codable, Equatable {
     /// A new member was accepted to the chat by an administrator
     case pushMessageContentChatJoinByRequest
 
+    /// A new recurrent payment was made by the current user
+    case pushMessageContentRecurringPayment(PushMessageContentRecurringPayment)
+
     /// A forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
 
@@ -125,6 +128,7 @@ public enum PushMessageContent: Codable, Equatable {
         case pushMessageContentChatDeleteMember
         case pushMessageContentChatJoinByLink
         case pushMessageContentChatJoinByRequest
+        case pushMessageContentRecurringPayment
         case pushMessageContentMessageForwards
         case pushMessageContentMediaAlbum
     }
@@ -205,6 +209,9 @@ public enum PushMessageContent: Codable, Equatable {
             self = .pushMessageContentChatJoinByLink
         case .pushMessageContentChatJoinByRequest:
             self = .pushMessageContentChatJoinByRequest
+        case .pushMessageContentRecurringPayment:
+            let value = try PushMessageContentRecurringPayment(from: decoder)
+            self = .pushMessageContentRecurringPayment(value)
         case .pushMessageContentMessageForwards:
             let value = try PushMessageContentMessageForwards(from: decoder)
             self = .pushMessageContentMessageForwards(value)
@@ -289,6 +296,9 @@ public enum PushMessageContent: Codable, Equatable {
             try container.encode(Kind.pushMessageContentChatJoinByLink, forKey: .type)
         case .pushMessageContentChatJoinByRequest:
             try container.encode(Kind.pushMessageContentChatJoinByRequest, forKey: .type)
+        case .pushMessageContentRecurringPayment(let value):
+            try container.encode(Kind.pushMessageContentRecurringPayment, forKey: .type)
+            try value.encode(to: encoder)
         case .pushMessageContentMessageForwards(let value):
             try container.encode(Kind.pushMessageContentMessageForwards, forKey: .type)
             try value.encode(to: encoder)
@@ -705,6 +715,18 @@ public struct PushMessageContentChatDeleteMember: Codable, Equatable {
         self.isCurrentUser = isCurrentUser
         self.isLeft = isLeft
         self.memberName = memberName
+    }
+}
+
+/// A new recurrent payment was made by the current user
+public struct PushMessageContentRecurringPayment: Codable, Equatable {
+
+    /// The paid amount
+    public let amount: String
+
+
+    public init(amount: String) {
+        self.amount = amount
     }
 }
 

@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
 
 
-/// Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+/// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
 public struct GetWebAppUrl: Codable, Equatable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?
 
-    /// Preferred web app theme; pass null to use the default theme
+    /// Preferred Web App theme; pass null to use the default theme
     public let theme: ThemeParameters?
 
     /// The URL from the keyboardButtonTypeWebApp button

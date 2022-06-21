@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -16,11 +16,8 @@ public struct ValidateOrderInfo: Codable, Equatable {
     /// Pass true to save the order information
     public let allowSave: Bool?
 
-    /// Chat identifier of the Invoice message
-    public let chatId: Int64?
-
-    /// Message identifier
-    public let messageId: Int64?
+    /// The invoice
+    public let inputInvoice: InputInvoice?
 
     /// The order information, provided by the user; pass null if empty
     public let orderInfo: OrderInfo?
@@ -28,13 +25,11 @@ public struct ValidateOrderInfo: Codable, Equatable {
 
     public init(
         allowSave: Bool?,
-        chatId: Int64?,
-        messageId: Int64?,
+        inputInvoice: InputInvoice?,
         orderInfo: OrderInfo?
     ) {
         self.allowSave = allowSave
-        self.chatId = chatId
-        self.messageId = messageId
+        self.inputInvoice = inputInvoice
         self.orderInfo = orderInfo
     }
 }

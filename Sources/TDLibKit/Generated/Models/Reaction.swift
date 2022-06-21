@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public struct Reaction: Codable, Equatable {
     /// True, if the reaction can be added to new messages and enabled in chats
     public let isActive: Bool
 
+    /// True, if the reaction is available only for Premium users
+    public let isPremium: Bool
+
     /// Text representation of the reaction
     public let reaction: String
 
@@ -51,6 +54,7 @@ public struct Reaction: Codable, Equatable {
         centerAnimation: Sticker?,
         effectAnimation: Sticker,
         isActive: Bool,
+        isPremium: Bool,
         reaction: String,
         selectAnimation: Sticker,
         staticIcon: Sticker,
@@ -62,6 +66,7 @@ public struct Reaction: Codable, Equatable {
         self.centerAnimation = centerAnimation
         self.effectAnimation = effectAnimation
         self.isActive = isActive
+        self.isPremium = isPremium
         self.reaction = reaction
         self.selectAnimation = selectAnimation
         self.staticIcon = staticIcon

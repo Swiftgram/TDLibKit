@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -14,19 +14,19 @@ import Foundation
 public struct ReadFilePart: Codable, Equatable {
 
     /// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
-    public let count: Int?
+    public let count: Int64?
 
     /// Identifier of the file. The file must be located in the TDLib file cache
     public let fileId: Int?
 
     /// The offset from which to read the file
-    public let offset: Int?
+    public let offset: Int64?
 
 
     public init(
-        count: Int?,
+        count: Int64?,
         fileId: Int?,
-        offset: Int?
+        offset: Int64?
     ) {
         self.count = count
         self.fileId = fileId

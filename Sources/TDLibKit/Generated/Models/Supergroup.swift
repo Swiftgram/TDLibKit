@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.3-047246f3
-//  https://github.com/tdlib/td/tree/047246f3
+//  Based on TDLib 1.8.4-b393215d
+//  https://github.com/tdlib/td/tree/b393215d
 //
 
 import Foundation
@@ -43,6 +43,12 @@ public struct Supergroup: Codable, Equatable {
     /// True, if the supergroup or channel is verified
     public let isVerified: Bool
 
+    /// True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
+    public let joinByRequest: Bool
+
+    /// True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
+    public let joinToSendMessages: Bool
+
     /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
     public let memberCount: Int
 
@@ -70,6 +76,8 @@ public struct Supergroup: Codable, Equatable {
         isScam: Bool,
         isSlowModeEnabled: Bool,
         isVerified: Bool,
+        joinByRequest: Bool,
+        joinToSendMessages: Bool,
         memberCount: Int,
         restrictionReason: String,
         signMessages: Bool,
@@ -86,6 +94,8 @@ public struct Supergroup: Codable, Equatable {
         self.isScam = isScam
         self.isSlowModeEnabled = isSlowModeEnabled
         self.isVerified = isVerified
+        self.joinByRequest = joinByRequest
+        self.joinToSendMessages = joinToSendMessages
         self.memberCount = memberCount
         self.restrictionReason = restrictionReason
         self.signMessages = signMessages
