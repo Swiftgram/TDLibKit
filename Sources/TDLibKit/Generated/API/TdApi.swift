@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-638b4346
-//  https://github.com/tdlib/td/tree/638b4346
+//  Based on TDLib 1.8.4-3dcafdc8
+//  https://github.com/tdlib/td/tree/3dcafdc8
 //
 
 import Foundation
@@ -13392,6 +13392,71 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumState() async throws -> PremiumState {
         let query = GetPremiumState()
+        return try await execute(query: query)
+    }
+
+    /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+    public func canPurchasePremium(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = CanPurchasePremium()
+        execute(query: query, completion: completion)
+    }
+
+    /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func canPurchasePremium() async throws -> Ok {
+        let query = CanPurchasePremium()
+        return try await execute(query: query)
+    }
+
+    /// Informs server about a Telegram Premium purchase through App Store. For official applications only
+    /// - Parameter isRestore: True, if this is restore of Premium purchase
+    /// - Parameter receipt: App Store receipt
+    public func assignAppStoreTransaction(
+        isRestore: Bool?,
+        receipt: Data?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AssignAppStoreTransaction(
+            isRestore: isRestore,
+            receipt: receipt
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs server about a Telegram Premium purchase through App Store. For official applications only
+    /// - Parameter isRestore: True, if this is restore of Premium purchase
+    /// - Parameter receipt: App Store receipt
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func assignAppStoreTransaction(
+        isRestore: Bool?,
+        receipt: Data?
+    ) async throws -> Ok {
+        let query = AssignAppStoreTransaction(
+            isRestore: isRestore,
+            receipt: receipt
+        )
+        return try await execute(query: query)
+    }
+
+    /// Informs server about a Telegram Premium purchase through Google Play. For official applications only
+    /// - Parameter purchaseToken: Google Play purchase token
+    public func assignGooglePlayTransaction(
+        purchaseToken: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AssignGooglePlayTransaction(
+            purchaseToken: purchaseToken
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Informs server about a Telegram Premium purchase through Google Play. For official applications only
+    /// - Parameter purchaseToken: Google Play purchase token
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func assignGooglePlayTransaction(purchaseToken: String?) async throws -> Ok {
+        let query = AssignGooglePlayTransaction(
+            purchaseToken: purchaseToken
+        )
         return try await execute(query: query)
     }
 
