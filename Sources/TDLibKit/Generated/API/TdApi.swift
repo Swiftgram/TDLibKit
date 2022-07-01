@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-3dcafdc8
-//  https://github.com/tdlib/td/tree/3dcafdc8
+//  Based on TDLib 1.8.4-906d773d
+//  https://github.com/tdlib/td/tree/906d773d
 //
 
 import Foundation
@@ -13409,7 +13409,7 @@ public final class TdApi {
     }
 
     /// Informs server about a Telegram Premium purchase through App Store. For official applications only
-    /// - Parameter isRestore: True, if this is restore of Premium purchase
+    /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase
     /// - Parameter receipt: App Store receipt
     public func assignAppStoreTransaction(
         isRestore: Bool?,
@@ -13424,7 +13424,7 @@ public final class TdApi {
     }
 
     /// Informs server about a Telegram Premium purchase through App Store. For official applications only
-    /// - Parameter isRestore: True, if this is restore of Premium purchase
+    /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase
     /// - Parameter receipt: App Store receipt
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func assignAppStoreTransaction(
