@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 // DO NOT EDIT! Generated automatically. See scripts/swift_package_generator.py
 
@@ -7,10 +7,10 @@ import PackageDescription
 let package = Package(
     name: "TDLibKit",
     platforms: [
-        .iOS(.v9),
-        .macOS(.v10_12),
-        .watchOS(.v2), // Based on iOS 9 version
-        .tvOS(.v9) // Based on iOS 9 version
+        .iOS(.v13),
+        .macOS(.v10_15),
+        .watchOS(.v6), // Based on iOS 13 version
+        .tvOS(.v13) // Based on iOS 13 version
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
