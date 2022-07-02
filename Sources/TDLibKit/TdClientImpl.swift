@@ -12,10 +12,10 @@ open class TdClientImpl: TdClient {
     
     public typealias CompletionHandler = (Data) -> Void
     
-    private var client: UnsafeMutableRawPointer!
+    private var client: UnsafeMutableRawPointer? = nil
     private let tdlibMainQueue = DispatchQueue(label: "TDLib", qos: .utility)
     private let tdlibQueryQueue = DispatchQueue(label: "TDLibQuery", qos: .userInitiated)
-    private let completionQueue: DispatchQueue
+    private var completionQueue: DispatchQueue = .main
     private var awaitingCompletions = [String: CompletionHandler]()
     private var updateHandler: ((Data) -> Void)?
     private let logger: Logger?
@@ -23,17 +23,8 @@ open class TdClientImpl: TdClient {
     private var stopFlag = false
     
     /// An AsyncStream that deliveres TDLib updates.
-    public let updateStream: AsyncStream<Update>
-    
-    /// Instantiate a TDLib Client
-    ///
-    /// - Parameter completionQueue: The serial operation queue used to dispatch all completion handlers. `.main` by default.
-    /// - Parameter logger: The logger object for debug print all queries and responses
-    public init(completionQueue: DispatchQueue = .main, logger: Logger? = nil) {
-        self.completionQueue = completionQueue
-        self.logger = logger
-        
-        self.updateStream = AsyncStream { continuation in
+    public var updateStream: AsyncStream<Update> {
+        AsyncStream { continuation in
             func handler(data: Data) {
                 do {
                     let update = try TdApi.decoder.decode(Update.self, from: data)
@@ -45,8 +36,17 @@ open class TdClientImpl: TdClient {
             continuation.onTermination = { @Sendable _ in
                 self.updateHandler = nil
             }
-            self.run(updateHandler: handler(data:))
+            run(updateHandler: handler(data:))
         }
+    }
+    
+    /// Instantiate a TDLib Client
+    ///
+    /// - Parameter completionQueue: The serial operation queue used to dispatch all completion handlers. `.main` by default.
+    /// - Parameter logger: The logger object for debug print all queries and responses
+    public init(completionQueue: DispatchQueue = .main, logger: Logger? = nil) {
+        self.completionQueue = completionQueue
+        self.logger = logger
     }
     
     deinit {
@@ -112,7 +112,7 @@ open class TdClientImpl: TdClient {
     }
     
     /// Synchronously executes TDLib request.
-    public func execute(query: TdQuery) throws -> [String:Any]? {
+    public func execute(query: TdQuery) throws -> [String: Any]? {
         guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
         
         do {
