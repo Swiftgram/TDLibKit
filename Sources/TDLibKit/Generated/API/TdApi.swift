@@ -13,13 +13,18 @@ import Foundation
 public final class TdApi {
 
     public let client: TdClient
-    public let encoder = JSONEncoder()
-    public let decoder = JSONDecoder()
+    
+    public static let encoder: JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.keyDecodingStrategy = .convertToSnakeCase
+    }
+    public static let decoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
 
     public init(client: TdClient) {
         self.client = client
-        self.encoder.keyEncodingStrategy = .convertToSnakeCase
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
 
 

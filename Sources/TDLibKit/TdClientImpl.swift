@@ -22,14 +22,31 @@ open class TdClientImpl: TdClient {
     private var isClientDestroyed = true
     private var stopFlag = false
     
+    /// An AsyncStream that deliveres TDLib updates.
+    public let updateStream: AsyncStream<Update>
     
-    /// Instantiate a Tdlib Client
+    /// Instantiate a TDLib Client
     ///
     /// - Parameter completionQueue: The serial operation queue used to dispatch all completion handlers. `.main` by default.
     /// - Parameter logger: The logger object for debug print all queries and responses
     public init(completionQueue: DispatchQueue = .main, logger: Logger? = nil) {
         self.completionQueue = completionQueue
         self.logger = logger
+        
+        self.updateStream = AsyncStream { continuation in
+            func handler(data: Data) {
+                do {
+                    let update = try TdApi.decoder.decode(Update.self, from: data)
+                    continuation.yield(update)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            continuation.onTermination = { @Sendable _ in
+                self.updateHandler = nil
+            }
+            self.run(updateHandler: handler(data:))
+        }
     }
     
     deinit {
@@ -45,7 +62,9 @@ open class TdClientImpl: TdClient {
         td_json_client_destroy(client)
     }
     
-    /// Receives incoming updates and request responses from the TDLib client
+    /// Receives incoming updates and request responses from the TDLib client.
+    ///
+    /// **WARNING:** If you run this method, you will stop ``updateStream`` from working..
     public func run(updateHandler: @escaping CompletionHandler) {
         self.updateHandler = updateHandler
         createClientIfNeeded()
