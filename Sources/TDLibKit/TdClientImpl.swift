@@ -45,6 +45,27 @@ open class TdClientImpl: TdClient {
         td_json_client_destroy(client)
     }
     
+    /// Receives incoming updates and request responses from the TDLib client
+    public func run(updateHandler: @escaping CompletionHandler) {
+        self.updateHandler = updateHandler
+        createClientIfNeeded()
+        
+        tdlibMainQueue.async { [unowned self] in
+            guard !self.isClientDestroyed else { return }
+            
+            while (!self.stopFlag) {
+                guard
+                    let res = td_json_client_receive(self.client, 10),
+                    let data = String(cString: res).data(using: .utf8)
+                else {
+                    continue
+                }
+                self.logger?.log(String(cString: res), type: .receive)
+                self.queryResultAsync(data)
+            }
+        }
+    }
+    
     /// Sends request to the TDLib client.
     public func send(query: TdQuery, completion: (CompletionHandler)? = nil) throws {
         guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
@@ -95,27 +116,6 @@ open class TdClientImpl: TdClient {
     }
     
     // MARK: - Private methods
-    
-    /// Receives incoming updates and request responses from the TDLib client
-    private func run(updateHandler: @escaping CompletionHandler) {
-        self.updateHandler = updateHandler
-        createClientIfNeeded()
-        
-        tdlibMainQueue.async { [unowned self] in
-            guard !self.isClientDestroyed else { return }
-            
-            while (!self.stopFlag) {
-                guard
-                    let res = td_json_client_receive(self.client, 10),
-                    let data = String(cString: res).data(using: .utf8)
-                else {
-                    continue
-                }
-                self.logger?.log(String(cString: res), type: .receive)
-                self.queryResultAsync(data)
-            }
-        }
-    }
     
     private func createClientIfNeeded() {
         if isClientDestroyed {
