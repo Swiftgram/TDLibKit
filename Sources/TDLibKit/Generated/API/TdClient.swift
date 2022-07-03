@@ -12,6 +12,9 @@ import Foundation
 
 /// Basic protocol for communicate with TdLib.
 public protocol TdClient {
+    /// An AsyncStream that deliveres TDLib updates.
+    @available(macOS 10.15, iOS 9, watchOS 2, tvOS 9, *)
+    var updateStream: AsyncStream<Update> { get }
 
     /// Receives incoming updates and request responses from the TDLib client
     func run(updateHandler: @escaping (Data) -> Void)

@@ -22,7 +22,7 @@ open class TdClientImpl: TdClient {
     private var isClientDestroyed = true
     private var stopFlag = false
     
-    /// An AsyncStream that deliveres TDLib updates.
+    @available(macOS 10.15, iOS 9, watchOS 2, tvOS 9, *)
     public var updateStream: AsyncStream<Update> {
         AsyncStream { continuation in
             func handler(data: Data) {
