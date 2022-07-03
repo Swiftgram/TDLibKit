@@ -12,18 +12,35 @@ open class TdClientImpl: TdClient {
     
     public typealias CompletionHandler = (Data) -> Void
     
-    private var client: UnsafeMutableRawPointer!
+    private var client: UnsafeMutableRawPointer? = nil
     private let tdlibMainQueue = DispatchQueue(label: "TDLib", qos: .utility)
     private let tdlibQueryQueue = DispatchQueue(label: "TDLibQuery", qos: .userInitiated)
-    private let completionQueue: DispatchQueue
+    private var completionQueue: DispatchQueue = .main
     private var awaitingCompletions = [String: CompletionHandler]()
     private var updateHandler: ((Data) -> Void)?
     private let logger: Logger?
     private var isClientDestroyed = true
     private var stopFlag = false
     
+    @available(macOS 10.15, iOS 9, watchOS 2, tvOS 9, *)
+    public var updateStream: AsyncStream<Update> {
+        AsyncStream { continuation in
+            func handler(data: Data) {
+                do {
+                    let update = try TdApi.decoder.decode(Update.self, from: data)
+                    continuation.yield(update)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            continuation.onTermination = { @Sendable _ in
+                self.updateHandler = nil
+            }
+            run(updateHandler: handler(data:))
+        }
+    }
     
-    /// Instantiate a Tdlib Client
+    /// Instantiate a TDLib Client
     ///
     /// - Parameter completionQueue: The serial operation queue used to dispatch all completion handlers. `.main` by default.
     /// - Parameter logger: The logger object for debug print all queries and responses
@@ -45,7 +62,9 @@ open class TdClientImpl: TdClient {
         td_json_client_destroy(client)
     }
     
-    /// Receives incoming updates and request responses from the TDLib client
+    /// Receives incoming updates and request responses from the TDLib client.
+    ///
+    /// **WARNING:** If you run this method, you will stop ``updateStream`` from working..
     public func run(updateHandler: @escaping CompletionHandler) {
         self.updateHandler = updateHandler
         createClientIfNeeded()
@@ -93,7 +112,7 @@ open class TdClientImpl: TdClient {
     }
     
     /// Synchronously executes TDLib request.
-    public func execute(query: TdQuery) throws -> [String:Any]? {
+    public func execute(query: TdQuery) throws -> [String: Any]? {
         guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
         
         do {

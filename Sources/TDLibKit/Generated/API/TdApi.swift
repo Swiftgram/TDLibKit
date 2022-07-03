@@ -13,13 +13,20 @@ import Foundation
 public final class TdApi {
 
     public let client: TdClient
-    public let encoder = JSONEncoder()
-    public let decoder = JSONDecoder()
+    
+    public static var encoder: JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }
+    public static var decoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }
 
     public init(client: TdClient) {
         self.client = client
-        self.encoder.keyEncodingStrategy = .convertToSnakeCase
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
 
 
@@ -14377,13 +14384,12 @@ public final class TdApi {
         completion: @escaping (Result<R, Swift.Error>) -> Void)
         where Q: Codable, R: Codable {
 
-        let dto = DTO(query, encoder: self.encoder)
-        try! client.send(query: dto) { [weak self] result in
-            guard let strongSelf = self else { return }
-            if let error = try? strongSelf.decoder.decode(DTO<Error>.self, from: result) {
+        let dto = DTO(query, encoder: TdApi.encoder)
+        try! client.send(query: dto) { result in
+            if let error = try? TdApi.decoder.decode(DTO<Error>.self, from: result) {
                 completion(.failure(error.payload))
             } else {
-                let response = strongSelf.decoder.tryDecode(DTO<R>.self, from: result)
+                let response = TdApi.decoder.tryDecode(DTO<R>.self, from: result)
                 completion(response.map { $0.payload })
             }
         }
@@ -14392,13 +14398,13 @@ public final class TdApi {
 
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     private func execute<Q, R>(query: Q) async throws -> R where Q: Codable, R: Codable {
-        let dto = DTO(query, encoder: self.encoder)
+        let dto = DTO(query, encoder: TdApi.encoder)
         return try await withCheckedThrowingContinuation { continuation in
             try! client.send(query: dto) { result in
-                if let error = try? self.decoder.decode(DTO<Error>.self, from: result) {
+                if let error = try? TdApi.decoder.decode(DTO<Error>.self, from: result) {
                     continuation.resume(with: .failure(error.payload))
                 } else {
-                    let response = self.decoder.tryDecode(DTO<R>.self, from: result)
+                    let response = TdApi.decoder.tryDecode(DTO<R>.self, from: result)
                     continuation.resume(with: response.map { $0.payload })
                 }
             }
