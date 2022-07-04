@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-906d773d
-//  https://github.com/tdlib/td/tree/906d773d
+//  Based on TDLib 1.8.4-d4890143
+//  https://github.com/tdlib/td/tree/d4890143
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PremiumFeatures: Codable, Equatable {
     /// The list of limits, increased for Premium users
     public let limits: [PremiumLimit]
 
-    /// An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available. If the link has type internalLinkTypeBotStart, then sendBotStartMessage must be called automatically
+    /// An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available
     public let paymentLink: InternalLinkType?
 
 

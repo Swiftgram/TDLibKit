@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-906d773d
-//  https://github.com/tdlib/td/tree/906d773d
+//  Based on TDLib 1.8.4-d4890143
+//  https://github.com/tdlib/td/tree/d4890143
 //
 
 import Foundation
@@ -374,6 +374,9 @@ public struct InternalLinkTypeBackground: Codable, Equatable {
 /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
 public struct InternalLinkTypeBotStart: Codable, Equatable {
 
+    /// True, if sendBotStartMessage must be called automatically without showing the START button
+    public let autostart: Bool
+
     /// Username of the bot
     public let botUsername: String
 
@@ -382,9 +385,11 @@ public struct InternalLinkTypeBotStart: Codable, Equatable {
 
 
     public init(
+        autostart: Bool,
         botUsername: String,
         startParameter: String
     ) {
+        self.autostart = autostart
         self.botUsername = botUsername
         self.startParameter = startParameter
     }
