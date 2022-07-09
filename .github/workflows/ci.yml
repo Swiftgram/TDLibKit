@@ -10,6 +10,9 @@ on:
       - "Package.resolved"
       - "Tests/**"
       - .github/workflows/ci.yml
+      - "scripts/**"
+  pull_request:
+    branches: [main]
   schedule:
     - cron: '0 */12 * * *' # Every 12 hours
 
@@ -66,6 +69,7 @@ jobs:
         run: swift run tl2swift ../../td_api.tl ../../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
 
       - name: Update Files
+        if: github.ref == 'refs/heads/master'
         run: |
           git add . || true
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
@@ -76,17 +80,19 @@ jobs:
       - name: Tests (tvOS) # Dirty hack to retry step. tvOS sim can stuck for some reason
         run: ./scripts/test.sh tvOS-simulator || ./scripts/test.sh tvOS-simulator
       
-      # # Requires MacOS 12 
-      # - name: Tests (macOS)
-      #   run: ./scripts/test.sh macOS
+      # Requires MacOS 12 
+      - name: Tests (macOS)
+        run: ./scripts/test.sh macOS
       
       # - name: Tests (watchOS)
       #   run: ./scripts/test.sh watchOS-simulator
 
       - name: Push update
+        if: github.ref == 'refs/heads/master'
         run: git push origin main || true
 
       - name: Remove previous release
+        if: github.ref == 'refs/heads/master'
         uses: dev-drprasad/delete-tag-and-release@85fa8bcea0379a6ada9bbfdcb0a9d24d58e1a0d7
         with:
           delete_release: true
@@ -95,6 +101,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
+        if: github.ref == 'refs/heads/master'
         uses: softprops/action-gh-release@9729932bfb75c05ad1f6e3a729294e05abaa7001
         with:
           target_commitish: main
