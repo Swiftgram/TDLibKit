@@ -19,6 +19,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 env:
   TDLIB_REPO: https://github.com/tdlib/td
   DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
