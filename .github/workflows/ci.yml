@@ -72,7 +72,7 @@ jobs:
         working-directory: scripts/tl2swift
         run: swift run tl2swift ../../td_api.tl ../../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
 
-      - name: Update Files
+      - name: Commit Files
         if: github.ref == 'refs/heads/master'
         run: |
           git add . || true
