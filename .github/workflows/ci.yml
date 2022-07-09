@@ -17,7 +17,6 @@ on:
   workflow_dispatch:
 
 env:
-  TL_PARSER_REPO: https://github.com/Swiftgram/tl2swift
   TDLIB_REPO: https://github.com/tdlib/td
   DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
 
@@ -62,12 +61,9 @@ jobs:
       - name: Download td_api.tl
         run: wget https://raw.githubusercontent.com/tdlib/td/$TDLIB_COMMIT/td/generate/scheme/td_api.tl
 
-      - name: Download Generator
-        run: git clone https://github.com/Swiftgram/tl2swift
-
       - name: Run Generator
-        working-directory: tl2swift
-        run: swift run tl2swift ../td_api.tl ../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
+        working-directory: scripts/tl2swift
+        run: swift run tl2swift ../../td_api.tl ../../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
 
       - name: Update Files
         run: |
