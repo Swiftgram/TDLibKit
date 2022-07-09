@@ -6,7 +6,7 @@ TDLibKit is a native Swift wrapper for [TDLib](https://github.com/tdlib/td) with
 even tvOS.
 
 Powered by pre-built multi-platform [TDLibFramework](https://github.com/Swiftgram/TDLibFramework) implementation
-of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](https://github.com/Swiftgram/tl2swift)
+of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](scripts/tl2swift)
 
 ## Installation
 
