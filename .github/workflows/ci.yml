@@ -100,12 +100,15 @@ jobs:
         run: |
           git clean -nfdx
           git clean -fdx
+          rm -rf .git
+          rm -rf .github
+          rm -rf .build
 
       - name: Upload artifact
         if: github.ref != 'refs/heads/main'
         uses: actions/upload-artifact@v2
         with:
-          name: TDLibKit-${{ github.sha }}.zip
+          name: TDLibKit-${{ github.sha }}
           path: .
 
       - name: Remove previous release
