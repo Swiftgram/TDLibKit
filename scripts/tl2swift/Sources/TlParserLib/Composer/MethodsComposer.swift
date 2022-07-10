@@ -116,10 +116,52 @@ final class MethodsComposer: Composer {
     
     private func composeComment(_ info: ClassInfo) -> String {
         var result = "/// \(info.description)\n"
+        var returnsSentences: [String] = []
+        
+        
+        func sanitizeDescription(_ string: String) -> String {
+            // Sanitize description for per-sentence split
+            return string.replacingOccurrences(of: "i.e.", with: "tl2swift_id_est").replacingOccurrences(of: "i. e.", with: "tl2swift_ws_id_est").replacingOccurrences(of: ";", with: ".")
+        }
+        
+        func deSanitizeDescription(_ string: String) -> String {
+            // Desanitize description
+            return string.replacingOccurrences(of: "tl2swift_id_est", with: "i.e.").replacingOccurrences(of: "tl2swift_ws_id_est", with: "i. e.")
+        }
+
+        let sentences = sanitizeDescription(info.description).split(separator: ".")
+        for sentence in sentences {
+            // Looking for sentences with "return*"
+            if sentence.lowercased().contains("return") {
+                var returnSentence: String?
+                
+                // Remove first "return" word
+                if returnsSentences.isEmpty {
+                    let firstWord = sentence.trimmingCharacters(in: .whitespaces).components(separatedBy: " ").first
+                    if let firstWord = firstWord, firstWord.lowercased().contains("return") {
+                        returnSentence = String(sentence.trimmingCharacters(in: .whitespaces).dropFirst(firstWord.count))
+                    } else {
+                        returnSentence = String(sentence.trimmingCharacters(in: .whitespaces))
+                    }
+                } else {
+                    returnSentence = String(sentence.trimmingCharacters(in: .whitespaces))
+                }
+                
+                // Append to the list of sentences that describes a return
+                if let strongReturnSentence = returnSentence {
+                    returnsSentences.append(strongReturnSentence.trimmingCharacters(in: .whitespaces))
+                }
+            }
+        }
+
         for param in info.properties {
             let paramName = TypesHelper.maskSwiftKeyword(param.name.underscoreToCamelCase())
             result = result.addLine("/// - Parameter \(paramName): \(param.description ?? "")")
         }
+        if !returnsSentences.isEmpty {
+            result = result.addLine("/// - Returns: \(deSanitizeDescription(returnsSentences.joined(separator: ". ").trimmingCharacters(in: .whitespaces)).capitalizedFirstLetter)")
+        }
+
         return result
     }
     
