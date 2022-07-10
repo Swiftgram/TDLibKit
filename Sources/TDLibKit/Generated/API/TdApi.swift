@@ -24,12 +24,14 @@ public final class TdApi {
 
 
     /// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+    /// - Returns: The current authorization state
     public func getAuthorizationState(completion: @escaping (Result<AuthorizationState, Swift.Error>) -> Void) throws {
         let query = GetAuthorizationState()
         execute(query: query, completion: completion)
     }
 
     /// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+    /// - Returns: The current authorization state
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAuthorizationState() async throws -> AuthorizationState {
         let query = GetAuthorizationState()
@@ -353,6 +355,7 @@ public final class TdApi {
 
     /// Confirms QR code authentication on another device. Returns created session on success
     /// - Parameter link: A link from a QR code. The link must be scanned by the in-app camera
+    /// - Returns: Created session on success
     public func confirmQrCodeAuthentication(
         link: String?,
         completion: @escaping (Result<Session, Swift.Error>) -> Void
@@ -365,6 +368,7 @@ public final class TdApi {
 
     /// Confirms QR code authentication on another device. Returns created session on success
     /// - Parameter link: A link from a QR code. The link must be scanned by the in-app camera
+    /// - Returns: Created session on success
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func confirmQrCodeAuthentication(link: String?) async throws -> Session {
         let query = ConfirmQrCodeAuthentication(
@@ -374,12 +378,14 @@ public final class TdApi {
     }
 
     /// Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
+    /// - Returns: All updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others
     public func getCurrentState(completion: @escaping (Result<Updates, Swift.Error>) -> Void) throws {
         let query = GetCurrentState()
         execute(query: query, completion: completion)
     }
 
     /// Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
+    /// - Returns: All updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCurrentState() async throws -> Updates {
         let query = GetCurrentState()
@@ -409,12 +415,14 @@ public final class TdApi {
     }
 
     /// Returns the current state of 2-step verification
+    /// - Returns: The current state of 2-step verification
     public func getPasswordState(completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
         let query = GetPasswordState()
         execute(query: query, completion: completion)
     }
 
     /// Returns the current state of 2-step verification
+    /// - Returns: The current state of 2-step verification
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPasswordState() async throws -> PasswordState {
         let query = GetPasswordState()
@@ -471,6 +479,7 @@ public final class TdApi {
 
     /// Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
     /// - Parameter password: The password for the current user
+    /// - Returns: A 2-step verification recovery email address that was previously set up
     public func getRecoveryEmailAddress(
         password: String?,
         completion: @escaping (Result<RecoveryEmailAddress, Swift.Error>) -> Void
@@ -483,6 +492,7 @@ public final class TdApi {
 
     /// Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
     /// - Parameter password: The password for the current user
+    /// - Returns: A 2-step verification recovery email address that was previously set up
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecoveryEmailAddress(password: String?) async throws -> RecoveryEmailAddress {
         let query = GetRecoveryEmailAddress(
@@ -684,12 +694,14 @@ public final class TdApi {
     }
 
     /// Returns information about the current temporary password
+    /// - Returns: Information about the current temporary password
     public func getTemporaryPasswordState(completion: @escaping (Result<TemporaryPasswordState, Swift.Error>) -> Void) throws {
         let query = GetTemporaryPasswordState()
         execute(query: query, completion: completion)
     }
 
     /// Returns information about the current temporary password
+    /// - Returns: Information about the current temporary password
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTemporaryPasswordState() async throws -> TemporaryPasswordState {
         let query = GetTemporaryPasswordState()
@@ -697,12 +709,14 @@ public final class TdApi {
     }
 
     /// Returns the current user
+    /// - Returns: The current user
     public func getMe(completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetMe()
         execute(query: query, completion: completion)
     }
 
     /// Returns the current user
+    /// - Returns: The current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMe() async throws -> User {
         let query = GetMe()
@@ -711,6 +725,7 @@ public final class TdApi {
 
     /// Returns information about a user by their identifier. This is an offline request if the current user is not a bot
     /// - Parameter userId: User identifier
+    /// - Returns: Information about a user by their identifier
     public func getUser(
         userId: Int64?,
         completion: @escaping (Result<User, Swift.Error>) -> Void
@@ -723,6 +738,7 @@ public final class TdApi {
 
     /// Returns information about a user by their identifier. This is an offline request if the current user is not a bot
     /// - Parameter userId: User identifier
+    /// - Returns: Information about a user by their identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUser(userId: Int64?) async throws -> User {
         let query = GetUser(
@@ -733,6 +749,7 @@ public final class TdApi {
 
     /// Returns full information about a user by their identifier
     /// - Parameter userId: User identifier
+    /// - Returns: Full information about a user by their identifier
     public func getUserFullInfo(
         userId: Int64?,
         completion: @escaping (Result<UserFullInfo, Swift.Error>) -> Void
@@ -745,6 +762,7 @@ public final class TdApi {
 
     /// Returns full information about a user by their identifier
     /// - Parameter userId: User identifier
+    /// - Returns: Full information about a user by their identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUserFullInfo(userId: Int64?) async throws -> UserFullInfo {
         let query = GetUserFullInfo(
@@ -755,6 +773,7 @@ public final class TdApi {
 
     /// Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
     /// - Parameter basicGroupId: Basic group identifier
+    /// - Returns: Information about a basic group by its identifier
     public func getBasicGroup(
         basicGroupId: Int64?,
         completion: @escaping (Result<BasicGroup, Swift.Error>) -> Void
@@ -767,6 +786,7 @@ public final class TdApi {
 
     /// Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
     /// - Parameter basicGroupId: Basic group identifier
+    /// - Returns: Information about a basic group by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBasicGroup(basicGroupId: Int64?) async throws -> BasicGroup {
         let query = GetBasicGroup(
@@ -777,6 +797,7 @@ public final class TdApi {
 
     /// Returns full information about a basic group by its identifier
     /// - Parameter basicGroupId: Basic group identifier
+    /// - Returns: Full information about a basic group by its identifier
     public func getBasicGroupFullInfo(
         basicGroupId: Int64?,
         completion: @escaping (Result<BasicGroupFullInfo, Swift.Error>) -> Void
@@ -789,6 +810,7 @@ public final class TdApi {
 
     /// Returns full information about a basic group by its identifier
     /// - Parameter basicGroupId: Basic group identifier
+    /// - Returns: Full information about a basic group by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBasicGroupFullInfo(basicGroupId: Int64?) async throws -> BasicGroupFullInfo {
         let query = GetBasicGroupFullInfo(
@@ -799,6 +821,7 @@ public final class TdApi {
 
     /// Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
     /// - Parameter supergroupId: Supergroup or channel identifier
+    /// - Returns: Information about a supergroup or a channel by its identifier
     public func getSupergroup(
         supergroupId: Int64?,
         completion: @escaping (Result<Supergroup, Swift.Error>) -> Void
@@ -811,6 +834,7 @@ public final class TdApi {
 
     /// Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
     /// - Parameter supergroupId: Supergroup or channel identifier
+    /// - Returns: Information about a supergroup or a channel by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSupergroup(supergroupId: Int64?) async throws -> Supergroup {
         let query = GetSupergroup(
@@ -821,6 +845,7 @@ public final class TdApi {
 
     /// Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
     /// - Parameter supergroupId: Supergroup or channel identifier
+    /// - Returns: Full information about a supergroup or a channel by its identifier, cached for up to 1 minute
     public func getSupergroupFullInfo(
         supergroupId: Int64?,
         completion: @escaping (Result<SupergroupFullInfo, Swift.Error>) -> Void
@@ -833,6 +858,7 @@ public final class TdApi {
 
     /// Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
     /// - Parameter supergroupId: Supergroup or channel identifier
+    /// - Returns: Full information about a supergroup or a channel by its identifier, cached for up to 1 minute
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSupergroupFullInfo(supergroupId: Int64?) async throws -> SupergroupFullInfo {
         let query = GetSupergroupFullInfo(
@@ -843,6 +869,7 @@ public final class TdApi {
 
     /// Returns information about a secret chat by its identifier. This is an offline request
     /// - Parameter secretChatId: Secret chat identifier
+    /// - Returns: Information about a secret chat by its identifier
     public func getSecretChat(
         secretChatId: Int?,
         completion: @escaping (Result<SecretChat, Swift.Error>) -> Void
@@ -855,6 +882,7 @@ public final class TdApi {
 
     /// Returns information about a secret chat by its identifier. This is an offline request
     /// - Parameter secretChatId: Secret chat identifier
+    /// - Returns: Information about a secret chat by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSecretChat(secretChatId: Int?) async throws -> SecretChat {
         let query = GetSecretChat(
@@ -865,6 +893,7 @@ public final class TdApi {
 
     /// Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
     /// - Parameter chatId: Chat identifier
+    /// - Returns: Information about a chat by its identifier, this is an offline request if the current user is not a bot
     public func getChat(
         chatId: Int64?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
@@ -877,6 +906,7 @@ public final class TdApi {
 
     /// Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
     /// - Parameter chatId: Chat identifier
+    /// - Returns: Information about a chat by its identifier, this is an offline request if the current user is not a bot
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChat(chatId: Int64?) async throws -> Chat {
         let query = GetChat(
@@ -888,6 +918,7 @@ public final class TdApi {
     /// Returns information about a message
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
+    /// - Returns: Information about a message
     public func getMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -903,6 +934,7 @@ public final class TdApi {
     /// Returns information about a message
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
+    /// - Returns: Information about a message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessage(
         chatId: Int64?,
@@ -918,6 +950,7 @@ public final class TdApi {
     /// Returns information about a message, if it is available without sending network request. This is an offline request
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
+    /// - Returns: Information about a message, if it is available without sending network request
     public func getMessageLocally(
         chatId: Int64?,
         messageId: Int64?,
@@ -933,6 +966,7 @@ public final class TdApi {
     /// Returns information about a message, if it is available without sending network request. This is an offline request
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
+    /// - Returns: Information about a message, if it is available without sending network request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageLocally(
         chatId: Int64?,
@@ -948,6 +982,7 @@ public final class TdApi {
     /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
+    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -963,6 +998,7 @@ public final class TdApi {
     /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
+    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -977,6 +1013,7 @@ public final class TdApi {
 
     /// Returns information about a newest pinned message in the chat
     /// - Parameter chatId: Identifier of the chat the message belongs to
+    /// - Returns: Information about a newest pinned message in the chat
     public func getChatPinnedMessage(
         chatId: Int64?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
@@ -989,6 +1026,7 @@ public final class TdApi {
 
     /// Returns information about a newest pinned message in the chat
     /// - Parameter chatId: Identifier of the chat the message belongs to
+    /// - Returns: Information about a newest pinned message in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatPinnedMessage(chatId: Int64?) async throws -> Message {
         let query = GetChatPinnedMessage(
@@ -1001,6 +1039,7 @@ public final class TdApi {
     /// - Parameter callbackQueryId: Identifier of the callback query
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Message identifier
+    /// - Returns: Information about a message with the callback button that originated a callback query
     public func getCallbackQueryMessage(
         callbackQueryId: TdInt64?,
         chatId: Int64?,
@@ -1019,6 +1058,7 @@ public final class TdApi {
     /// - Parameter callbackQueryId: Identifier of the callback query
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Message identifier
+    /// - Returns: Information about a message with the callback button that originated a callback query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCallbackQueryMessage(
         callbackQueryId: TdInt64?,
@@ -1036,6 +1076,7 @@ public final class TdApi {
     /// Returns information about messages. If a message is not found, returns null on the corresponding position of the result
     /// - Parameter chatId: Identifier of the chat the messages belong to
     /// - Parameter messageIds: Identifiers of the messages to get
+    /// - Returns: Information about messages. If a message is not found, returns null on the corresponding position of the result
     public func getMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
@@ -1051,6 +1092,7 @@ public final class TdApi {
     /// Returns information about messages. If a message is not found, returns null on the corresponding position of the result
     /// - Parameter chatId: Identifier of the chat the messages belong to
     /// - Parameter messageIds: Identifiers of the messages to get
+    /// - Returns: Information about messages. If a message is not found, returns null on the corresponding position of the result
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessages(
         chatId: Int64?,
@@ -1066,6 +1108,7 @@ public final class TdApi {
     /// Returns information about a message thread. Can be used only if message.can_get_message_thread == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: Information about a message thread
     public func getMessageThread(
         chatId: Int64?,
         messageId: Int64?,
@@ -1081,6 +1124,7 @@ public final class TdApi {
     /// Returns information about a message thread. Can be used only if message.can_get_message_thread == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: Information about a message thread
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageThread(
         chatId: Int64?,
@@ -1096,6 +1140,7 @@ public final class TdApi {
     /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: Viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned
     public func getMessageViewers(
         chatId: Int64?,
         messageId: Int64?,
@@ -1111,6 +1156,7 @@ public final class TdApi {
     /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: Viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageViewers(
         chatId: Int64?,
@@ -1125,6 +1171,7 @@ public final class TdApi {
 
     /// Returns information about a file; this is an offline request
     /// - Parameter fileId: Identifier of the file to get
+    /// - Returns: Information about a file
     public func getFile(
         fileId: Int?,
         completion: @escaping (Result<File, Swift.Error>) -> Void
@@ -1137,6 +1184,7 @@ public final class TdApi {
 
     /// Returns information about a file; this is an offline request
     /// - Parameter fileId: Identifier of the file to get
+    /// - Returns: Information about a file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getFile(fileId: Int?) async throws -> File {
         let query = GetFile(
@@ -1148,6 +1196,7 @@ public final class TdApi {
     /// Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter remoteFileId: Remote identifier of the file to get
+    /// - Returns: Information about a file by its remote ID
     public func getRemoteFile(
         fileType: FileType?,
         remoteFileId: String?,
@@ -1163,6 +1212,7 @@ public final class TdApi {
     /// Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter remoteFileId: Remote identifier of the file to get
+    /// - Returns: Information about a file by its remote ID
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRemoteFile(
         fileType: FileType?,
@@ -1178,6 +1228,7 @@ public final class TdApi {
     /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
     /// - Parameter chatList: The chat list in which to load chats; pass null to load chats from the main chat list
     /// - Parameter limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    /// - Returns: A 404 error if all chats have been loaded
     public func loadChats(
         chatList: ChatList?,
         limit: Int?,
@@ -1193,6 +1244,7 @@ public final class TdApi {
     /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
     /// - Parameter chatList: The chat list in which to load chats; pass null to load chats from the main chat list
     /// - Parameter limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    /// - Returns: A 404 error if all chats have been loaded
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func loadChats(
         chatList: ChatList?,
@@ -1208,6 +1260,7 @@ public final class TdApi {
     /// Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
     /// - Parameter chatList: The chat list in which to return chats; pass null to get chats from the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
+    /// - Returns: An ordered list of chats from the beginning of a chat list
     public func getChats(
         chatList: ChatList?,
         limit: Int?,
@@ -1223,6 +1276,7 @@ public final class TdApi {
     /// Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
     /// - Parameter chatList: The chat list in which to return chats; pass null to get chats from the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
+    /// - Returns: An ordered list of chats from the beginning of a chat list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChats(
         chatList: ChatList?,
@@ -1237,6 +1291,7 @@ public final class TdApi {
 
     /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
     /// - Parameter username: Username to be resolved
+    /// - Returns: The chat if found. otherwise an error is returned
     public func searchPublicChat(
         username: String?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
@@ -1249,6 +1304,7 @@ public final class TdApi {
 
     /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
     /// - Parameter username: Username to be resolved
+    /// - Returns: The chat if found. otherwise an error is returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchPublicChat(username: String?) async throws -> Chat {
         let query = SearchPublicChat(
@@ -1259,6 +1315,7 @@ public final class TdApi {
 
     /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
     /// - Parameter query: Query to search for
+    /// - Returns: A meaningful number of results
     public func searchPublicChats(
         query: String?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
@@ -1271,6 +1328,7 @@ public final class TdApi {
 
     /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
     /// - Parameter query: Query to search for
+    /// - Returns: A meaningful number of results
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchPublicChats(query: String?) async throws -> Chats {
         let query = SearchPublicChats(
@@ -1282,6 +1340,7 @@ public final class TdApi {
     /// Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for. If the query is empty, returns up to 50 recently found chats
+    /// - Returns: Chats in the order seen in the main chat list
     public func searchChats(
         limit: Int?,
         query: String?,
@@ -1297,6 +1356,7 @@ public final class TdApi {
     /// Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for. If the query is empty, returns up to 50 recently found chats
+    /// - Returns: Chats in the order seen in the main chat list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChats(
         limit: Int?,
@@ -1312,6 +1372,7 @@ public final class TdApi {
     /// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for
+    /// - Returns: Chats in the order seen in the main chat list
     public func searchChatsOnServer(
         limit: Int?,
         query: String?,
@@ -1327,6 +1388,7 @@ public final class TdApi {
     /// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for
+    /// - Returns: Chats in the order seen in the main chat list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChatsOnServer(
         limit: Int?,
@@ -1341,6 +1403,7 @@ public final class TdApi {
 
     /// Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
     /// - Parameter location: Current user location
+    /// - Returns: A list of users and location-based supergroups nearby
     public func searchChatsNearby(
         location: Location?,
         completion: @escaping (Result<ChatsNearby, Swift.Error>) -> Void
@@ -1353,6 +1416,7 @@ public final class TdApi {
 
     /// Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
     /// - Parameter location: Current user location
+    /// - Returns: A list of users and location-based supergroups nearby
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChatsNearby(location: Location?) async throws -> ChatsNearby {
         let query = SearchChatsNearby(
@@ -1364,6 +1428,7 @@ public final class TdApi {
     /// Returns a list of frequently used chats. Supported only if the chat info database is enabled
     /// - Parameter category: Category of chats to be returned
     /// - Parameter limit: The maximum number of chats to be returned; up to 30
+    /// - Returns: A list of frequently used chats
     public func getTopChats(
         category: TopChatCategory?,
         limit: Int?,
@@ -1379,6 +1444,7 @@ public final class TdApi {
     /// Returns a list of frequently used chats. Supported only if the chat info database is enabled
     /// - Parameter category: Category of chats to be returned
     /// - Parameter limit: The maximum number of chats to be returned; up to 30
+    /// - Returns: A list of frequently used chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTopChats(
         category: TopChatCategory?,
@@ -1480,6 +1546,7 @@ public final class TdApi {
 
     /// Returns recently opened chats, this is an offline request. Returns chats in the order of last opening
     /// - Parameter limit: The maximum number of chats to be returned
+    /// - Returns: Recently opened chats, this is an offline request. Returns chats in the order of last opening
     public func getRecentlyOpenedChats(
         limit: Int?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
@@ -1492,6 +1559,7 @@ public final class TdApi {
 
     /// Returns recently opened chats, this is an offline request. Returns chats in the order of last opening
     /// - Parameter limit: The maximum number of chats to be returned
+    /// - Returns: Recently opened chats, this is an offline request. Returns chats in the order of last opening
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecentlyOpenedChats(limit: Int?) async throws -> Chats {
         let query = GetRecentlyOpenedChats(
@@ -1532,6 +1600,7 @@ public final class TdApi {
 
     /// Returns a list of public chats of the specified type, owned by the user
     /// - Parameter type: Type of the public chats to return
+    /// - Returns: A list of public chats of the specified type, owned by the user
     public func getCreatedPublicChats(
         type: PublicChatType?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
@@ -1544,6 +1613,7 @@ public final class TdApi {
 
     /// Returns a list of public chats of the specified type, owned by the user
     /// - Parameter type: Type of the public chats to return
+    /// - Returns: A list of public chats of the specified type, owned by the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCreatedPublicChats(type: PublicChatType?) async throws -> Chats {
         let query = GetCreatedPublicChats(
@@ -1554,6 +1624,7 @@ public final class TdApi {
 
     /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
     /// - Parameter type: Type of the public chats, for which to check the limit
+    /// - Returns: Corresponding error if the limit was reached
     public func checkCreatedPublicChatsLimit(
         type: PublicChatType?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -1566,6 +1637,7 @@ public final class TdApi {
 
     /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
     /// - Parameter type: Type of the public chats, for which to check the limit
+    /// - Returns: Corresponding error if the limit was reached
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func checkCreatedPublicChatsLimit(type: PublicChatType?) async throws -> Ok {
         let query = CheckCreatedPublicChatsLimit(
@@ -1575,12 +1647,14 @@ public final class TdApi {
     }
 
     /// Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
+    /// - Returns: A list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
     public func getSuitableDiscussionChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetSuitableDiscussionChats()
         execute(query: query, completion: completion)
     }
 
     /// Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
+    /// - Returns: A list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSuitableDiscussionChats() async throws -> Chats {
         let query = GetSuitableDiscussionChats()
@@ -1588,12 +1662,14 @@ public final class TdApi {
     }
 
     /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
+    /// - Returns: A list of recently inactive supergroups and channels
     public func getInactiveSupergroupChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetInactiveSupergroupChats()
         execute(query: query, completion: completion)
     }
 
     /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
+    /// - Returns: A list of recently inactive supergroups and channels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInactiveSupergroupChats() async throws -> Chats {
         let query = GetInactiveSupergroupChats()
@@ -1604,6 +1680,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of chats to be returned; up to 100
     /// - Parameter offsetChatId: Chat identifier starting from which to return chats; use 0 for the first request
     /// - Parameter userId: User identifier
+    /// - Returns: A list of common group chats with a given user
     public func getGroupsInCommon(
         limit: Int?,
         offsetChatId: Int64?,
@@ -1622,6 +1699,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of chats to be returned; up to 100
     /// - Parameter offsetChatId: Chat identifier starting from which to return chats; use 0 for the first request
     /// - Parameter userId: User identifier
+    /// - Returns: A list of common group chats with a given user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getGroupsInCommon(
         limit: Int?,
@@ -1642,6 +1720,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
+    /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public func getChatHistory(
         chatId: Int64?,
         fromMessageId: Int64?,
@@ -1666,6 +1745,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
+    /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatHistory(
         chatId: Int64?,
@@ -1690,6 +1770,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public func getMessageThreadHistory(
         chatId: Int64?,
         fromMessageId: Int64?,
@@ -1714,6 +1795,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageThreadHistory(
         chatId: Int64?,
@@ -1799,6 +1881,7 @@ public final class TdApi {
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchChatMessages(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -1832,6 +1915,7 @@ public final class TdApi {
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChatMessages(
         chatId: Int64?,
@@ -1866,6 +1950,7 @@ public final class TdApi {
     /// - Parameter offsetDate: The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
     /// - Parameter offsetMessageId: The message identifier of the last found message, or 0 for the first request
     /// - Parameter query: Query to search for
+    /// - Returns: The results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchMessages(
         chatList: ChatList?,
         filter: SearchMessagesFilter?,
@@ -1902,6 +1987,7 @@ public final class TdApi {
     /// - Parameter offsetDate: The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
     /// - Parameter offsetMessageId: The message identifier of the last found message, or 0 for the first request
     /// - Parameter query: Query to search for
+    /// - Returns: The results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchMessages(
         chatList: ChatList?,
@@ -1934,6 +2020,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for. If empty, searchChatMessages must be used instead
+    /// - Returns: The results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
     public func searchSecretMessages(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -1958,6 +2045,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for. If empty, searchChatMessages must be used instead
+    /// - Returns: The results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchSecretMessages(
         chatId: Int64?,
@@ -1980,6 +2068,7 @@ public final class TdApi {
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
+    /// - Returns: The results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public func searchCallMessages(
         fromMessageId: Int64?,
         limit: Int?,
@@ -1998,6 +2087,7 @@ public final class TdApi {
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
+    /// - Returns: The results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchCallMessages(
         fromMessageId: Int64?,
@@ -2015,6 +2105,7 @@ public final class TdApi {
     /// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
     /// - Parameter limit: The maximum number of messages to be returned; up to 100
     /// - Parameter query: Query to search for in document file name and message caption
+    /// - Returns: The results in reverse chronological order
     public func searchOutgoingDocumentMessages(
         limit: Int?,
         query: String?,
@@ -2030,6 +2121,7 @@ public final class TdApi {
     /// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
     /// - Parameter limit: The maximum number of messages to be returned; up to 100
     /// - Parameter query: Query to search for in document file name and message caption
+    /// - Returns: The results in reverse chronological order
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchOutgoingDocumentMessages(
         limit: Int?,
@@ -2067,6 +2159,7 @@ public final class TdApi {
     /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of messages to be returned
+    /// - Returns: Information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
     public func searchChatRecentLocationMessages(
         chatId: Int64?,
         limit: Int?,
@@ -2082,6 +2175,7 @@ public final class TdApi {
     /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of messages to be returned
+    /// - Returns: Information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChatRecentLocationMessages(
         chatId: Int64?,
@@ -2095,12 +2189,14 @@ public final class TdApi {
     }
 
     /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
+    /// - Returns: All active live locations that need to be updated by the application
     public func getActiveLiveLocationMessages(completion: @escaping (Result<Messages, Swift.Error>) -> Void) throws {
         let query = GetActiveLiveLocationMessages()
         execute(query: query, completion: completion)
     }
 
     /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
+    /// - Returns: All active live locations that need to be updated by the application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getActiveLiveLocationMessages() async throws -> Messages {
         let query = GetActiveLiveLocationMessages()
@@ -2110,6 +2206,7 @@ public final class TdApi {
     /// Returns the last message sent in a chat no later than the specified date
     /// - Parameter chatId: Chat identifier
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
+    /// - Returns: The last message sent in a chat no later than the specified date
     public func getChatMessageByDate(
         chatId: Int64?,
         date: Int?,
@@ -2125,6 +2222,7 @@ public final class TdApi {
     /// Returns the last message sent in a chat no later than the specified date
     /// - Parameter chatId: Chat identifier
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
+    /// - Returns: The last message sent in a chat no later than the specified date
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageByDate(
         chatId: Int64?,
@@ -2142,6 +2240,7 @@ public final class TdApi {
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     public func getChatSparseMessagePositions(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -2163,6 +2262,7 @@ public final class TdApi {
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatSparseMessagePositions(
         chatId: Int64?,
@@ -2183,6 +2283,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
+    /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     public func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -2201,6 +2302,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
+    /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCalendar(
         chatId: Int64?,
@@ -2219,6 +2321,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+    /// - Returns: Approximate number of messages of the specified type in the chat
     public func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -2237,6 +2340,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+    /// - Returns: Approximate number of messages of the specified type in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCount(
         chatId: Int64?,
@@ -2253,6 +2357,7 @@ public final class TdApi {
 
     /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter chatId: Chat identifier
+    /// - Returns: All scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     public func getChatScheduledMessages(
         chatId: Int64?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
@@ -2265,6 +2370,7 @@ public final class TdApi {
 
     /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter chatId: Chat identifier
+    /// - Returns: All scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatScheduledMessages(chatId: Int64?) async throws -> Messages {
         let query = GetChatScheduledMessages(
@@ -2278,6 +2384,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
     public func getMessagePublicForwards(
         chatId: Int64?,
         limit: Int?,
@@ -2299,6 +2406,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessagePublicForwards(
         chatId: Int64?,
@@ -2317,6 +2425,7 @@ public final class TdApi {
 
     /// Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
     /// - Parameter chatId: Identifier of the chat
+    /// - Returns: Sponsored message to be shown in a chat. Returns a 404 error if there is no sponsored message in the chat
     public func getChatSponsoredMessage(
         chatId: Int64?,
         completion: @escaping (Result<SponsoredMessage, Swift.Error>) -> Void
@@ -2329,6 +2438,7 @@ public final class TdApi {
 
     /// Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
     /// - Parameter chatId: Identifier of the chat
+    /// - Returns: Sponsored message to be shown in a chat. Returns a 404 error if there is no sponsored message in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatSponsoredMessage(chatId: Int64?) async throws -> SponsoredMessage {
         let query = GetChatSponsoredMessage(
@@ -2403,6 +2513,7 @@ public final class TdApi {
     /// - Parameter forComment: Pass true to create a link to the message as a channel post comment, or from a message thread
     /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: An HTTPS link to a message in a chat
     public func getMessageLink(
         chatId: Int64?,
         forAlbum: Bool?,
@@ -2427,6 +2538,7 @@ public final class TdApi {
     /// - Parameter forComment: Pass true to create a link to the message as a channel post comment, or from a message thread
     /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: An HTTPS link to a message in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageLink(
         chatId: Int64?,
@@ -2449,6 +2561,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to return an HTML code for embedding of the whole media album
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: An HTML code for embedding the message
     public func getMessageEmbeddingCode(
         chatId: Int64?,
         forAlbum: Bool?,
@@ -2467,6 +2580,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to return an HTML code for embedding of the whole media album
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: An HTML code for embedding the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageEmbeddingCode(
         chatId: Int64?,
@@ -2483,6 +2597,7 @@ public final class TdApi {
 
     /// Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
     /// - Parameter url: The message link
+    /// - Returns: Information about a public or private message link
     public func getMessageLinkInfo(
         url: String?,
         completion: @escaping (Result<MessageLinkInfo, Swift.Error>) -> Void
@@ -2495,6 +2610,7 @@ public final class TdApi {
 
     /// Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
     /// - Parameter url: The message link
+    /// - Returns: Information about a public or private message link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageLinkInfo(url: String?) async throws -> MessageLinkInfo {
         let query = GetMessageLinkInfo(
@@ -2507,6 +2623,7 @@ public final class TdApi {
     /// - Parameter fromLanguageCode: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
     /// - Parameter text: Text to translate
     /// - Parameter toLanguageCode: A two-letter ISO 639-1 language code of the language to which the message is translated
+    /// - Returns: A 404 error if the translation can't be performed
     public func translateText(
         fromLanguageCode: String?,
         text: String?,
@@ -2525,6 +2642,7 @@ public final class TdApi {
     /// - Parameter fromLanguageCode: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
     /// - Parameter text: Text to translate
     /// - Parameter toLanguageCode: A two-letter ISO 639-1 language code of the language to which the message is translated
+    /// - Returns: A 404 error if the translation can't be performed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func translateText(
         fromLanguageCode: String?,
@@ -2542,6 +2660,7 @@ public final class TdApi {
     /// Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
     public func recognizeSpeech(
         chatId: Int64?,
         messageId: Int64?,
@@ -2557,6 +2676,7 @@ public final class TdApi {
     /// Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func recognizeSpeech(
         chatId: Int64?,
@@ -2607,6 +2727,7 @@ public final class TdApi {
 
     /// Returns list of message sender identifiers, which can be used to send messages in a chat
     /// - Parameter chatId: Chat identifier
+    /// - Returns: List of message sender identifiers, which can be used to send messages in a chat
     public func getChatAvailableMessageSenders(
         chatId: Int64?,
         completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
@@ -2619,6 +2740,7 @@ public final class TdApi {
 
     /// Returns list of message sender identifiers, which can be used to send messages in a chat
     /// - Parameter chatId: Chat identifier
+    /// - Returns: List of message sender identifiers, which can be used to send messages in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatAvailableMessageSenders(chatId: Int64?) async throws -> MessageSenders {
         let query = GetChatAvailableMessageSenders(
@@ -2664,6 +2786,7 @@ public final class TdApi {
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
     /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
+    /// - Returns: The sent message
     public func sendMessage(
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
@@ -2691,6 +2814,7 @@ public final class TdApi {
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
     /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
+    /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendMessage(
         chatId: Int64?,
@@ -2718,6 +2842,7 @@ public final class TdApi {
     /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
+    /// - Returns: Sent messages
     public func sendMessageAlbum(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
@@ -2745,6 +2870,7 @@ public final class TdApi {
     /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
+    /// - Returns: Sent messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendMessageAlbum(
         chatId: Int64?,
@@ -2769,6 +2895,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the bot
     /// - Parameter chatId: Identifier of the target chat
     /// - Parameter parameter: A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+    /// - Returns: The sent message
     public func sendBotStartMessage(
         botUserId: Int64?,
         chatId: Int64?,
@@ -2787,6 +2914,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the bot
     /// - Parameter chatId: Identifier of the target chat
     /// - Parameter parameter: A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+    /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendBotStartMessage(
         botUserId: Int64?,
@@ -2809,6 +2937,7 @@ public final class TdApi {
     /// - Parameter queryId: Identifier of the inline query
     /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
     /// - Parameter resultId: Identifier of the inline result
+    /// - Returns: The sent message
     public func sendInlineQueryResultMessage(
         chatId: Int64?,
         hideViaBot: Bool?,
@@ -2839,6 +2968,7 @@ public final class TdApi {
     /// - Parameter queryId: Identifier of the inline query
     /// - Parameter replyToMessageId: Identifier of a replied message; 0 if none
     /// - Parameter resultId: Identifier of the inline result
+    /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendInlineQueryResultMessage(
         chatId: Int64?,
@@ -2869,6 +2999,7 @@ public final class TdApi {
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    /// - Returns: The forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     public func forwardMessages(
         chatId: Int64?,
         fromChatId: Int64?,
@@ -2899,6 +3030,7 @@ public final class TdApi {
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    /// - Returns: The forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func forwardMessages(
         chatId: Int64?,
@@ -2924,6 +3056,7 @@ public final class TdApi {
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     public func resendMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
@@ -2939,6 +3072,7 @@ public final class TdApi {
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendMessages(
         chatId: Int64?,
@@ -2979,6 +3113,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: The content of the message to be added
     /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
     /// - Parameter senderId: Identifier of the sender of the message
+    /// - Returns: The added message
     public func addLocalMessage(
         chatId: Int64?,
         disableNotification: Bool?,
@@ -3003,6 +3138,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: The content of the message to be added
     /// - Parameter replyToMessageId: Identifier of the replied message; 0 if none
     /// - Parameter senderId: Identifier of the sender of the message
+    /// - Returns: The added message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addLocalMessage(
         chatId: Int64?,
@@ -3134,6 +3270,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     public func editMessageText(
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
@@ -3155,6 +3292,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editMessageText(
         chatId: Int64?,
@@ -3178,6 +3316,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     public func editMessageLiveLocation(
         chatId: Int64?,
         heading: Int?,
@@ -3205,6 +3344,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editMessageLiveLocation(
         chatId: Int64?,
@@ -3230,6 +3370,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     public func editMessageMedia(
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
@@ -3251,6 +3392,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editMessageMedia(
         chatId: Int64?,
@@ -3272,6 +3414,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     public func editMessageCaption(
         caption: FormattedText?,
         chatId: Int64?,
@@ -3293,6 +3436,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editMessageCaption(
         caption: FormattedText?,
@@ -3313,6 +3457,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Returns: The edited message after the edit is completed on the server side
     public func editMessageReplyMarkup(
         chatId: Int64?,
         messageId: Int64?,
@@ -3331,6 +3476,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editMessageReplyMarkup(
         chatId: Int64?,
@@ -3570,6 +3716,7 @@ public final class TdApi {
     /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: Reactions, which can be added to a message. The method will return Premium reactions, even the current user has no Premium subscription
     public func getMessageAvailableReactions(
         chatId: Int64?,
         messageId: Int64?,
@@ -3585,6 +3732,7 @@ public final class TdApi {
     /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
+    /// - Returns: Reactions, which can be added to a message. The method will return Premium reactions, even the current user has no Premium subscription
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageAvailableReactions(
         chatId: Int64?,
@@ -3645,6 +3793,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter reaction: If non-empty, only added reactions with the specified text representation will be returned
+    /// - Returns: Reactions added for a message, along with their sender
     public func getMessageAddedReactions(
         chatId: Int64?,
         limit: Int?,
@@ -3669,6 +3818,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter reaction: If non-empty, only added reactions with the specified text representation will be returned
+    /// - Returns: Reactions added for a message, along with their sender
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageAddedReactions(
         chatId: Int64?,
@@ -3689,6 +3839,7 @@ public final class TdApi {
 
     /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entites
+    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text
     public func getTextEntities(
         text: String?,
         completion: @escaping (Result<TextEntities, Swift.Error>) -> Void
@@ -3701,6 +3852,7 @@ public final class TdApi {
 
     /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entites
+    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTextEntities(text: String?) async throws -> TextEntities {
         let query = GetTextEntities(
@@ -3785,6 +3937,7 @@ public final class TdApi {
 
     /// Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
     /// - Parameter fileName: The name of the file or path to the file
+    /// - Returns: The MIME type of a file, guessed by its extension. Returns an empty string on failure
     public func getFileMimeType(
         fileName: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -3797,6 +3950,7 @@ public final class TdApi {
 
     /// Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
     /// - Parameter fileName: The name of the file or path to the file
+    /// - Returns: The MIME type of a file, guessed by its extension. Returns an empty string on failure
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getFileMimeType(fileName: String?) async throws -> Text {
         let query = GetFileMimeType(
@@ -3807,6 +3961,7 @@ public final class TdApi {
 
     /// Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
     /// - Parameter mimeType: The MIME type of the file
+    /// - Returns: The extension of a file, guessed by its MIME type. Returns an empty string on failure
     public func getFileExtension(
         mimeType: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -3819,6 +3974,7 @@ public final class TdApi {
 
     /// Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
     /// - Parameter mimeType: The MIME type of the file
+    /// - Returns: The extension of a file, guessed by its MIME type. Returns an empty string on failure
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getFileExtension(mimeType: String?) async throws -> Text {
         let query = GetFileExtension(
@@ -3829,6 +3985,7 @@ public final class TdApi {
 
     /// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
     /// - Parameter fileName: File name or path to the file
+    /// - Returns: An empty string on failure
     public func cleanFileName(
         fileName: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -3841,6 +3998,7 @@ public final class TdApi {
 
     /// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
     /// - Parameter fileName: File name or path to the file
+    /// - Returns: An empty string on failure
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func cleanFileName(fileName: String?) async throws -> Text {
         let query = CleanFileName(
@@ -3854,6 +4012,7 @@ public final class TdApi {
     /// - Parameter languagePackDatabasePath: Path to the language pack database in which strings are stored
     /// - Parameter languagePackId: Language pack identifier
     /// - Parameter localizationTarget: Localization target to which the language pack belongs
+    /// - Returns: A string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found
     public func getLanguagePackString(
         key: String?,
         languagePackDatabasePath: String?,
@@ -3875,6 +4034,7 @@ public final class TdApi {
     /// - Parameter languagePackDatabasePath: Path to the language pack database in which strings are stored
     /// - Parameter languagePackId: Language pack identifier
     /// - Parameter localizationTarget: Localization target to which the language pack belongs
+    /// - Returns: A string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLanguagePackString(
         key: String?,
@@ -3999,6 +4159,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter offset: Number of users to skip in the result; must be non-negative
     /// - Parameter optionId: 0-based identifier of the answer option
+    /// - Returns: Users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
     public func getPollVoters(
         chatId: Int64?,
         limit: Int?,
@@ -4023,6 +4184,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter offset: Number of users to skip in the result; must be non-negative
     /// - Parameter optionId: 0-based identifier of the answer option
+    /// - Returns: Users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPollVoters(
         chatId: Int64?,
@@ -4103,6 +4265,7 @@ public final class TdApi {
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
+    /// - Returns: Information about a button of type inlineKeyboardButtonTypeLoginUrl
     public func getLoginUrlInfo(
         buttonId: Int64?,
         chatId: Int64?,
@@ -4121,6 +4284,7 @@ public final class TdApi {
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
+    /// - Returns: Information about a button of type inlineKeyboardButtonTypeLoginUrl
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLoginUrlInfo(
         buttonId: Int64?,
@@ -4140,6 +4304,7 @@ public final class TdApi {
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
+    /// - Returns: An HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. If an error is returned, then the button must be handled as an ordinary URL button
     public func getLoginUrl(
         allowWriteAccess: Bool?,
         buttonId: Int64?,
@@ -4161,6 +4326,7 @@ public final class TdApi {
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
+    /// - Returns: An HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. If an error is returned, then the button must be handled as an ordinary URL button
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLoginUrl(
         allowWriteAccess: Bool?,
@@ -4183,6 +4349,7 @@ public final class TdApi {
     /// - Parameter offset: Offset of the first entry to return
     /// - Parameter query: Text of the query
     /// - Parameter userLocation: Location of the user; pass null if unknown or the bot doesn't need user's location
+    /// - Returns: Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     public func getInlineQueryResults(
         botUserId: Int64?,
         chatId: Int64?,
@@ -4207,6 +4374,7 @@ public final class TdApi {
     /// - Parameter offset: Offset of the first entry to return
     /// - Parameter query: Text of the query
     /// - Parameter userLocation: Location of the user; pass null if unknown or the bot doesn't need user's location
+    /// - Returns: Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInlineQueryResults(
         botUserId: Int64?,
@@ -4289,6 +4457,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
+    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
     public func getWebAppUrl(
         botUserId: Int64?,
         theme: ThemeParameters?,
@@ -4307,6 +4476,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
+    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppUrl(
         botUserId: Int64?,
@@ -4461,6 +4631,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat with the message
     /// - Parameter messageId: Identifier of the message from which the query originated
     /// - Parameter payload: Query payload
+    /// - Returns: Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     public func getCallbackQueryAnswer(
         chatId: Int64?,
         messageId: Int64?,
@@ -4479,6 +4650,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat with the message
     /// - Parameter messageId: Identifier of the message from which the query originated
     /// - Parameter payload: Query payload
+    /// - Returns: Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCallbackQueryAnswer(
         chatId: Int64?,
@@ -4713,6 +4885,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat that contains the message with the game
     /// - Parameter messageId: Identifier of the message
     /// - Parameter userId: User identifier
+    /// - Returns: The high scores for a game and some part of the high score table in the range of the specified user
     public func getGameHighScores(
         chatId: Int64?,
         messageId: Int64?,
@@ -4731,6 +4904,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat that contains the message with the game
     /// - Parameter messageId: Identifier of the message
     /// - Parameter userId: User identifier
+    /// - Returns: The high scores for a game and some part of the high score table in the range of the specified user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getGameHighScores(
         chatId: Int64?,
@@ -4748,6 +4922,7 @@ public final class TdApi {
     /// Returns game high scores and some part of the high score table in the range of the specified user; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter userId: User identifier
+    /// - Returns: Game high scores and some part of the high score table in the range of the specified user
     public func getInlineGameHighScores(
         inlineMessageId: String?,
         userId: Int64?,
@@ -4763,6 +4938,7 @@ public final class TdApi {
     /// Returns game high scores and some part of the high score table in the range of the specified user; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter userId: User identifier
+    /// - Returns: Game high scores and some part of the high score table in the range of the specified user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInlineGameHighScores(
         inlineMessageId: String?,
@@ -4960,6 +5136,7 @@ public final class TdApi {
     /// Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter messageId: Identifier of the clicked message
+    /// - Returns: A big animated sticker to be played or a 404 error if usual animation needs to be played
     public func clickAnimatedEmojiMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -4975,6 +5152,7 @@ public final class TdApi {
     /// Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter messageId: Identifier of the clicked message
+    /// - Returns: A big animated sticker to be played or a 404 error if usual animation needs to be played
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func clickAnimatedEmojiMessage(
         chatId: Int64?,
@@ -4989,6 +5167,7 @@ public final class TdApi {
 
     /// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
     /// - Parameter link: The link
+    /// - Returns: Information about the type of an internal link. Returns a 404 error if the link is not internal
     public func getInternalLinkType(
         link: String?,
         completion: @escaping (Result<InternalLinkType, Swift.Error>) -> Void
@@ -5001,6 +5180,7 @@ public final class TdApi {
 
     /// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
     /// - Parameter link: The link
+    /// - Returns: Information about the type of an internal link. Returns a 404 error if the link is not internal
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInternalLinkType(link: String?) async throws -> InternalLinkType {
         let query = GetInternalLinkType(
@@ -5011,6 +5191,7 @@ public final class TdApi {
 
     /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
     /// - Parameter link: The link
+    /// - Returns: Information about an action to be done when the current user clicks an external link
     public func getExternalLinkInfo(
         link: String?,
         completion: @escaping (Result<LoginUrlInfo, Swift.Error>) -> Void
@@ -5023,6 +5204,7 @@ public final class TdApi {
 
     /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
     /// - Parameter link: The link
+    /// - Returns: Information about an action to be done when the current user clicks an external link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getExternalLinkInfo(link: String?) async throws -> LoginUrlInfo {
         let query = GetExternalLinkInfo(
@@ -5034,6 +5216,7 @@ public final class TdApi {
     /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
+    /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link
     public func getExternalLink(
         allowWriteAccess: Bool?,
         link: String?,
@@ -5049,6 +5232,7 @@ public final class TdApi {
     /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
+    /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getExternalLink(
         allowWriteAccess: Bool?,
@@ -5108,6 +5292,7 @@ public final class TdApi {
     /// Returns an existing chat corresponding to a given user
     /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter userId: User identifier
+    /// - Returns: An existing chat corresponding to a given user
     public func createPrivateChat(
         force: Bool?,
         userId: Int64?,
@@ -5123,6 +5308,7 @@ public final class TdApi {
     /// Returns an existing chat corresponding to a given user
     /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter userId: User identifier
+    /// - Returns: An existing chat corresponding to a given user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createPrivateChat(
         force: Bool?,
@@ -5138,6 +5324,7 @@ public final class TdApi {
     /// Returns an existing chat corresponding to a known basic group
     /// - Parameter basicGroupId: Basic group identifier
     /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Returns: An existing chat corresponding to a known basic group
     public func createBasicGroupChat(
         basicGroupId: Int64?,
         force: Bool?,
@@ -5153,6 +5340,7 @@ public final class TdApi {
     /// Returns an existing chat corresponding to a known basic group
     /// - Parameter basicGroupId: Basic group identifier
     /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+    /// - Returns: An existing chat corresponding to a known basic group
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createBasicGroupChat(
         basicGroupId: Int64?,
@@ -5168,6 +5356,7 @@ public final class TdApi {
     /// Returns an existing chat corresponding to a known supergroup or channel
     /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter supergroupId: Supergroup or channel identifier
+    /// - Returns: An existing chat corresponding to a known supergroup or channel
     public func createSupergroupChat(
         force: Bool?,
         supergroupId: Int64?,
@@ -5183,6 +5372,7 @@ public final class TdApi {
     /// Returns an existing chat corresponding to a known supergroup or channel
     /// - Parameter force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     /// - Parameter supergroupId: Supergroup or channel identifier
+    /// - Returns: An existing chat corresponding to a known supergroup or channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createSupergroupChat(
         force: Bool?,
@@ -5197,6 +5387,7 @@ public final class TdApi {
 
     /// Returns an existing chat corresponding to a known secret chat
     /// - Parameter secretChatId: Secret chat identifier
+    /// - Returns: An existing chat corresponding to a known secret chat
     public func createSecretChat(
         secretChatId: Int?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
@@ -5209,6 +5400,7 @@ public final class TdApi {
 
     /// Returns an existing chat corresponding to a known secret chat
     /// - Parameter secretChatId: Secret chat identifier
+    /// - Returns: An existing chat corresponding to a known secret chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createSecretChat(secretChatId: Int?) async throws -> Chat {
         let query = CreateSecretChat(
@@ -5220,6 +5412,7 @@ public final class TdApi {
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group
+    /// - Returns: The newly created chat
     public func createNewBasicGroupChat(
         title: String?,
         userIds: [Int64]?,
@@ -5235,6 +5428,7 @@ public final class TdApi {
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group
+    /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewBasicGroupChat(
         title: String?,
@@ -5253,6 +5447,7 @@ public final class TdApi {
     /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     /// - Parameter title: Title of the new chat; 1-128 characters
+    /// - Returns: The newly created chat
     public func createNewSupergroupChat(
         description: String?,
         forImport: Bool?,
@@ -5277,6 +5472,7 @@ public final class TdApi {
     /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     /// - Parameter title: Title of the new chat; 1-128 characters
+    /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewSupergroupChat(
         description: String?,
@@ -5297,6 +5493,7 @@ public final class TdApi {
 
     /// Creates a new secret chat. Returns the newly created chat
     /// - Parameter userId: Identifier of the target user
+    /// - Returns: The newly created chat
     public func createNewSecretChat(
         userId: Int64?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
@@ -5309,6 +5506,7 @@ public final class TdApi {
 
     /// Creates a new secret chat. Returns the newly created chat
     /// - Parameter userId: Identifier of the target user
+    /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewSecretChat(userId: Int64?) async throws -> Chat {
         let query = CreateNewSecretChat(
@@ -5341,6 +5539,7 @@ public final class TdApi {
 
     /// Returns chat lists to which the chat can be added. This is an offline request
     /// - Parameter chatId: Chat identifier
+    /// - Returns: Chat lists to which the chat can be added
     public func getChatListsToAddChat(
         chatId: Int64?,
         completion: @escaping (Result<ChatLists, Swift.Error>) -> Void
@@ -5353,6 +5552,7 @@ public final class TdApi {
 
     /// Returns chat lists to which the chat can be added. This is an offline request
     /// - Parameter chatId: Chat identifier
+    /// - Returns: Chat lists to which the chat can be added
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatListsToAddChat(chatId: Int64?) async throws -> ChatLists {
         let query = GetChatListsToAddChat(
@@ -5393,6 +5593,7 @@ public final class TdApi {
 
     /// Returns information about a chat filter by its identifier
     /// - Parameter chatFilterId: Chat filter identifier
+    /// - Returns: Information about a chat filter by its identifier
     public func getChatFilter(
         chatFilterId: Int?,
         completion: @escaping (Result<ChatFilter, Swift.Error>) -> Void
@@ -5405,6 +5606,7 @@ public final class TdApi {
 
     /// Returns information about a chat filter by its identifier
     /// - Parameter chatFilterId: Chat filter identifier
+    /// - Returns: Information about a chat filter by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatFilter(chatFilterId: Int?) async throws -> ChatFilter {
         let query = GetChatFilter(
@@ -5415,6 +5617,7 @@ public final class TdApi {
 
     /// Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
     /// - Parameter filter: Chat filter
+    /// - Returns: Information about the created chat filter
     public func createChatFilter(
         filter: ChatFilter?,
         completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> Void
@@ -5427,6 +5630,7 @@ public final class TdApi {
 
     /// Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
     /// - Parameter filter: Chat filter
+    /// - Returns: Information about the created chat filter
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createChatFilter(filter: ChatFilter?) async throws -> ChatFilterInfo {
         let query = CreateChatFilter(
@@ -5438,6 +5642,7 @@ public final class TdApi {
     /// Edits existing chat filter. Returns information about the edited chat filter
     /// - Parameter chatFilterId: Chat filter identifier
     /// - Parameter filter: The edited chat filter
+    /// - Returns: Information about the edited chat filter
     public func editChatFilter(
         chatFilterId: Int?,
         filter: ChatFilter?,
@@ -5453,6 +5658,7 @@ public final class TdApi {
     /// Edits existing chat filter. Returns information about the edited chat filter
     /// - Parameter chatFilterId: Chat filter identifier
     /// - Parameter filter: The edited chat filter
+    /// - Returns: Information about the edited chat filter
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editChatFilter(
         chatFilterId: Int?,
@@ -5518,12 +5724,14 @@ public final class TdApi {
     }
 
     /// Returns recommended chat filters for the current user
+    /// - Returns: Recommended chat filters for the current user
     public func getRecommendedChatFilters(completion: @escaping (Result<RecommendedChatFilters, Swift.Error>) -> Void) throws {
         let query = GetRecommendedChatFilters()
         execute(query: query, completion: completion)
     }
 
     /// Returns recommended chat filters for the current user
+    /// - Returns: Recommended chat filters for the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecommendedChatFilters() async throws -> RecommendedChatFilters {
         let query = GetRecommendedChatFilters()
@@ -5532,6 +5740,7 @@ public final class TdApi {
 
     /// Returns default icon name for a filter. Can be called synchronously
     /// - Parameter filter: Chat filter
+    /// - Returns: Default icon name for a filter
     public func getChatFilterDefaultIconName(
         filter: ChatFilter?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -5544,6 +5753,7 @@ public final class TdApi {
 
     /// Returns default icon name for a filter. Can be called synchronously
     /// - Parameter filter: Chat filter
+    /// - Returns: Default icon name for a filter
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatFilterDefaultIconName(filter: ChatFilter?) async throws -> Text {
         let query = GetChatFilterDefaultIconName(
@@ -6134,6 +6344,7 @@ public final class TdApi {
 
     /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter chatId: Chat identifier
+    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     public func joinChat(
         chatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -6146,6 +6357,7 @@ public final class TdApi {
 
     /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter chatId: Chat identifier
+    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func joinChat(chatId: Int64?) async throws -> Ok {
         let query = JoinChat(
@@ -6283,6 +6495,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
     /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+    /// - Returns: In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc
     public func banChatMember(
         bannedUntilDate: Int?,
         chatId: Int64?,
@@ -6304,6 +6517,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
     /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+    /// - Returns: In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func banChatMember(
         bannedUntilDate: Int?,
@@ -6372,6 +6586,7 @@ public final class TdApi {
     /// Returns information about a single member of a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
+    /// - Returns: Information about a single member of a chat
     public func getChatMember(
         chatId: Int64?,
         memberId: MessageSender?,
@@ -6387,6 +6602,7 @@ public final class TdApi {
     /// Returns information about a single member of a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
+    /// - Returns: Information about a single member of a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMember(
         chatId: Int64?,
@@ -6443,6 +6659,7 @@ public final class TdApi {
 
     /// Returns a list of administrators of the chat with their custom titles
     /// - Parameter chatId: Chat identifier
+    /// - Returns: A list of administrators of the chat with their custom titles
     public func getChatAdministrators(
         chatId: Int64?,
         completion: @escaping (Result<ChatAdministrators, Swift.Error>) -> Void
@@ -6455,6 +6672,7 @@ public final class TdApi {
 
     /// Returns a list of administrators of the chat with their custom titles
     /// - Parameter chatId: Chat identifier
+    /// - Returns: A list of administrators of the chat with their custom titles
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatAdministrators(chatId: Int64?) async throws -> ChatAdministrators {
         let query = GetChatAdministrators(
@@ -6487,6 +6705,7 @@ public final class TdApi {
 
     /// Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
     /// - Parameter notificationSoundId: Identifier of the notification sound
+    /// - Returns: Saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
     public func getSavedNotificationSound(
         notificationSoundId: TdInt64?,
         completion: @escaping (Result<NotificationSounds, Swift.Error>) -> Void
@@ -6499,6 +6718,7 @@ public final class TdApi {
 
     /// Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
     /// - Parameter notificationSoundId: Identifier of the notification sound
+    /// - Returns: Saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedNotificationSound(notificationSoundId: TdInt64?) async throws -> NotificationSounds {
         let query = GetSavedNotificationSound(
@@ -6508,12 +6728,14 @@ public final class TdApi {
     }
 
     /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    /// - Returns: List of saved notification sounds
     public func getSavedNotificationSounds(completion: @escaping (Result<NotificationSounds, Swift.Error>) -> Void) throws {
         let query = GetSavedNotificationSounds()
         execute(query: query, completion: completion)
     }
 
     /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    /// - Returns: List of saved notification sounds
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedNotificationSounds() async throws -> NotificationSounds {
         let query = GetSavedNotificationSounds()
@@ -6567,6 +6789,7 @@ public final class TdApi {
     /// Returns list of chats with non-default notification settings
     /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
+    /// - Returns: List of chats with non-default notification settings
     public func getChatNotificationSettingsExceptions(
         compareSound: Bool?,
         scope: NotificationSettingsScope?,
@@ -6582,6 +6805,7 @@ public final class TdApi {
     /// Returns list of chats with non-default notification settings
     /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
+    /// - Returns: List of chats with non-default notification settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatNotificationSettingsExceptions(
         compareSound: Bool?,
@@ -6596,6 +6820,7 @@ public final class TdApi {
 
     /// Returns the notification settings for chats of a given type
     /// - Parameter scope: Types of chats for which to return the notification settings information
+    /// - Returns: The notification settings for chats of a given type
     public func getScopeNotificationSettings(
         scope: NotificationSettingsScope?,
         completion: @escaping (Result<ScopeNotificationSettings, Swift.Error>) -> Void
@@ -6608,6 +6833,7 @@ public final class TdApi {
 
     /// Returns the notification settings for chats of a given type
     /// - Parameter scope: Types of chats for which to return the notification settings information
+    /// - Returns: The notification settings for chats of a given type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getScopeNotificationSettings(scope: NotificationSettingsScope?) async throws -> ScopeNotificationSettings {
         let query = GetScopeNotificationSettings(
@@ -6727,6 +6953,7 @@ public final class TdApi {
 
     /// Returns information about a bot that can be added to attachment menu
     /// - Parameter botUserId: Bot's user identifier
+    /// - Returns: Information about a bot that can be added to attachment menu
     public func getAttachmentMenuBot(
         botUserId: Int64?,
         completion: @escaping (Result<AttachmentMenuBot, Swift.Error>) -> Void
@@ -6739,6 +6966,7 @@ public final class TdApi {
 
     /// Returns information about a bot that can be added to attachment menu
     /// - Parameter botUserId: Bot's user identifier
+    /// - Returns: Information about a bot that can be added to attachment menu
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAttachmentMenuBot(botUserId: Int64?) async throws -> AttachmentMenuBot {
         let query = GetAttachmentMenuBot(
@@ -6828,6 +7056,7 @@ public final class TdApi {
     /// Returns file downloaded prefix size from a given offset, in bytes
     /// - Parameter fileId: Identifier of the file
     /// - Parameter offset: Offset from which downloaded prefix size needs to be calculated
+    /// - Returns: File downloaded prefix size from a given offset, in bytes
     public func getFileDownloadedPrefixSize(
         fileId: Int?,
         offset: Int64?,
@@ -6843,6 +7072,7 @@ public final class TdApi {
     /// Returns file downloaded prefix size from a given offset, in bytes
     /// - Parameter fileId: Identifier of the file
     /// - Parameter offset: Offset from which downloaded prefix size needs to be calculated
+    /// - Returns: File downloaded prefix size from a given offset, in bytes
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getFileDownloadedPrefixSize(
         fileId: Int?,
@@ -6888,6 +7118,7 @@ public final class TdApi {
     /// Returns suggested name for saving a file in a given directory
     /// - Parameter directory: Directory in which the file is supposed to be saved
     /// - Parameter fileId: Identifier of the file
+    /// - Returns: Suggested name for saving a file in a given directory
     public func getSuggestedFileName(
         directory: String?,
         fileId: Int?,
@@ -6903,6 +7134,7 @@ public final class TdApi {
     /// Returns suggested name for saving a file in a given directory
     /// - Parameter directory: Directory in which the file is supposed to be saved
     /// - Parameter fileId: Identifier of the file
+    /// - Returns: Suggested name for saving a file in a given directory
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSuggestedFileName(
         directory: String?,
@@ -7079,6 +7311,7 @@ public final class TdApi {
     /// - Parameter count: Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
     /// - Parameter fileId: Identifier of the file. The file must be located in the TDLib file cache
     /// - Parameter offset: The offset from which to read the file
+    /// - Returns: Reads a part of a file from the TDLib file cache and returns read bytes
     public func readFilePart(
         count: Int64?,
         fileId: Int?,
@@ -7097,6 +7330,7 @@ public final class TdApi {
     /// - Parameter count: Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
     /// - Parameter fileId: Identifier of the file. The file must be located in the TDLib file cache
     /// - Parameter offset: The offset from which to read the file
+    /// - Returns: Reads a part of a file from the TDLib file cache and returns read bytes
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func readFilePart(
         count: Int64?,
@@ -7343,6 +7577,7 @@ public final class TdApi {
 
     /// Returns information about a file with messages exported from another application
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
+    /// - Returns: Information about a file with messages exported from another application
     public func getMessageFileType(
         messageFileHead: String?,
         completion: @escaping (Result<MessageFileType, Swift.Error>) -> Void
@@ -7355,6 +7590,7 @@ public final class TdApi {
 
     /// Returns information about a file with messages exported from another application
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
+    /// - Returns: Information about a file with messages exported from another application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageFileType(messageFileHead: String?) async throws -> MessageFileType {
         let query = GetMessageFileType(
@@ -7365,6 +7601,7 @@ public final class TdApi {
 
     /// Returns a confirmation text to be shown to the user before starting message import
     /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    /// - Returns: A confirmation text to be shown to the user before starting message import
     public func getMessageImportConfirmationText(
         chatId: Int64?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -7377,6 +7614,7 @@ public final class TdApi {
 
     /// Returns a confirmation text to be shown to the user before starting message import
     /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    /// - Returns: A confirmation text to be shown to the user before starting message import
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageImportConfirmationText(chatId: Int64?) async throws -> Text {
         let query = GetMessageImportConfirmationText(
@@ -7548,6 +7786,7 @@ public final class TdApi {
     /// Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to get
+    /// - Returns: Information about an invite link
     public func getChatInviteLink(
         chatId: Int64?,
         inviteLink: String?,
@@ -7563,6 +7802,7 @@ public final class TdApi {
     /// Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to get
+    /// - Returns: Information about an invite link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatInviteLink(
         chatId: Int64?,
@@ -7577,6 +7817,7 @@ public final class TdApi {
 
     /// Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
     /// - Parameter chatId: Chat identifier
+    /// - Returns: List of chat administrators with number of their invite links
     public func getChatInviteLinkCounts(
         chatId: Int64?,
         completion: @escaping (Result<ChatInviteLinkCounts, Swift.Error>) -> Void
@@ -7589,6 +7830,7 @@ public final class TdApi {
 
     /// Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
     /// - Parameter chatId: Chat identifier
+    /// - Returns: List of chat administrators with number of their invite links
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatInviteLinkCounts(chatId: Int64?) async throws -> ChatInviteLinkCounts {
         let query = GetChatInviteLinkCounts(
@@ -7604,6 +7846,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of invite links to return; up to 100
     /// - Parameter offsetDate: Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     /// - Parameter offsetInviteLink: Invite link starting after which to return invite links; use empty string to get results from the beginning
+    /// - Returns: Invite links for a chat created by specified administrator
     public func getChatInviteLinks(
         chatId: Int64?,
         creatorUserId: Int64?,
@@ -7631,6 +7874,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of invite links to return; up to 100
     /// - Parameter offsetDate: Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     /// - Parameter offsetInviteLink: Invite link starting after which to return invite links; use empty string to get results from the beginning
+    /// - Returns: Invite links for a chat created by specified administrator
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatInviteLinks(
         chatId: Int64?,
@@ -7656,6 +7900,7 @@ public final class TdApi {
     /// - Parameter inviteLink: Invite link for which to return chat members
     /// - Parameter limit: The maximum number of chat members to return; up to 100
     /// - Parameter offsetMember: A chat member from which to return next chat members; pass null to get results from the beginning
+    /// - Returns: Chat members joined a chat via an invite link
     public func getChatInviteLinkMembers(
         chatId: Int64?,
         inviteLink: String?,
@@ -7677,6 +7922,7 @@ public final class TdApi {
     /// - Parameter inviteLink: Invite link for which to return chat members
     /// - Parameter limit: The maximum number of chat members to return; up to 100
     /// - Parameter offsetMember: A chat member from which to return next chat members; pass null to get results from the beginning
+    /// - Returns: Chat members joined a chat via an invite link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatInviteLinkMembers(
         chatId: Int64?,
@@ -7696,6 +7942,7 @@ public final class TdApi {
     /// Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to be revoked
+    /// - Returns: If a primary link is revoked, then additionally to the revoked link returns new primary link
     public func revokeChatInviteLink(
         chatId: Int64?,
         inviteLink: String?,
@@ -7711,6 +7958,7 @@ public final class TdApi {
     /// Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to be revoked
+    /// - Returns: If a primary link is revoked, then additionally to the revoked link returns new primary link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func revokeChatInviteLink(
         chatId: Int64?,
@@ -7785,6 +8033,7 @@ public final class TdApi {
 
     /// Checks the validity of an invite link for a chat and returns information about the corresponding chat
     /// - Parameter inviteLink: Invite link to be checked
+    /// - Returns: Checks the validity of an invite link for a chat and returns information about the corresponding chat
     public func checkChatInviteLink(
         inviteLink: String?,
         completion: @escaping (Result<ChatInviteLinkInfo, Swift.Error>) -> Void
@@ -7797,6 +8046,7 @@ public final class TdApi {
 
     /// Checks the validity of an invite link for a chat and returns information about the corresponding chat
     /// - Parameter inviteLink: Invite link to be checked
+    /// - Returns: Checks the validity of an invite link for a chat and returns information about the corresponding chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func checkChatInviteLink(inviteLink: String?) async throws -> ChatInviteLinkInfo {
         let query = CheckChatInviteLink(
@@ -7807,6 +8057,7 @@ public final class TdApi {
 
     /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter inviteLink: Invite link to use
+    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     public func joinChatByInviteLink(
         inviteLink: String?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
@@ -7819,6 +8070,7 @@ public final class TdApi {
 
     /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter inviteLink: Invite link to use
+    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func joinChatByInviteLink(inviteLink: String?) async throws -> Chat {
         let query = JoinChatByInviteLink(
@@ -7833,6 +8085,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of requests to join the chat to return
     /// - Parameter offsetRequest: A chat join request from which to return next requests; pass null to get results from the beginning
     /// - Parameter query: A query to search for in the first names, last names and usernames of the users to return
+    /// - Returns: Pending join requests in a chat
     public func getChatJoinRequests(
         chatId: Int64?,
         inviteLink: String?,
@@ -7857,6 +8110,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of requests to join the chat to return
     /// - Parameter offsetRequest: A chat join request from which to return next requests; pass null to get results from the beginning
     /// - Parameter query: A query to search for in the first names, last names and usernames of the users to return
+    /// - Returns: Pending join requests in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatJoinRequests(
         chatId: Int64?,
@@ -8195,6 +8449,7 @@ public final class TdApi {
 
     /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
     /// - Parameter chatId: Chat identifier
+    /// - Returns: List of participant identifiers, on whose behalf a video chat in the chat can be joined
     public func getVideoChatAvailableParticipants(
         chatId: Int64?,
         completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
@@ -8207,6 +8462,7 @@ public final class TdApi {
 
     /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
     /// - Parameter chatId: Chat identifier
+    /// - Returns: List of participant identifiers, on whose behalf a video chat in the chat can be joined
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getVideoChatAvailableParticipants(chatId: Int64?) async throws -> MessageSenders {
         let query = GetVideoChatAvailableParticipants(
@@ -8289,6 +8545,7 @@ public final class TdApi {
 
     /// Returns RTMP URL for streaming to the chat; requires creator privileges
     /// - Parameter chatId: Chat identifier
+    /// - Returns: RTMP URL for streaming to the chat
     public func getVideoChatRtmpUrl(
         chatId: Int64?,
         completion: @escaping (Result<RtmpUrl, Swift.Error>) -> Void
@@ -8301,6 +8558,7 @@ public final class TdApi {
 
     /// Returns RTMP URL for streaming to the chat; requires creator privileges
     /// - Parameter chatId: Chat identifier
+    /// - Returns: RTMP URL for streaming to the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getVideoChatRtmpUrl(chatId: Int64?) async throws -> RtmpUrl {
         let query = GetVideoChatRtmpUrl(
@@ -8333,6 +8591,7 @@ public final class TdApi {
 
     /// Returns information about a group call
     /// - Parameter groupCallId: Group call identifier
+    /// - Returns: Information about a group call
     public func getGroupCall(
         groupCallId: Int?,
         completion: @escaping (Result<GroupCall, Swift.Error>) -> Void
@@ -8345,6 +8604,7 @@ public final class TdApi {
 
     /// Returns information about a group call
     /// - Parameter groupCallId: Group call identifier
+    /// - Returns: Information about a group call
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getGroupCall(groupCallId: Int?) async throws -> GroupCall {
         let query = GetGroupCall(
@@ -8413,6 +8673,7 @@ public final class TdApi {
     /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
     /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
+    /// - Returns: Join response payload for tgcalls
     public func joinGroupCall(
         audioSourceId: Int?,
         groupCallId: Int?,
@@ -8443,6 +8704,7 @@ public final class TdApi {
     /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
     /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
+    /// - Returns: Join response payload for tgcalls
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func joinGroupCall(
         audioSourceId: Int?,
@@ -8469,6 +8731,7 @@ public final class TdApi {
     /// - Parameter audioSourceId: Screen sharing audio channel synchronization source identifier; received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter payload: Group call join payload; received from tgcalls
+    /// - Returns: Join response payload for tgcalls
     public func startGroupCallScreenSharing(
         audioSourceId: Int?,
         groupCallId: Int?,
@@ -8487,6 +8750,7 @@ public final class TdApi {
     /// - Parameter audioSourceId: Screen sharing audio channel synchronization source identifier; received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter payload: Group call join payload; received from tgcalls
+    /// - Returns: Join response payload for tgcalls
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func startGroupCallScreenSharing(
         audioSourceId: Int?,
@@ -8646,6 +8910,7 @@ public final class TdApi {
     /// Returns invite link to a video chat in a public chat
     /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
     /// - Parameter groupCallId: Group call identifier
+    /// - Returns: Invite link to a video chat in a public chat
     public func getGroupCallInviteLink(
         canSelfUnmute: Bool?,
         groupCallId: Int?,
@@ -8661,6 +8926,7 @@ public final class TdApi {
     /// Returns invite link to a video chat in a public chat
     /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
     /// - Parameter groupCallId: Group call identifier
+    /// - Returns: Invite link to a video chat in a public chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getGroupCallInviteLink(
         canSelfUnmute: Bool?,
@@ -9039,6 +9305,7 @@ public final class TdApi {
 
     /// Returns information about available group call streams
     /// - Parameter groupCallId: Group call identifier
+    /// - Returns: Information about available group call streams
     public func getGroupCallStreams(
         groupCallId: Int?,
         completion: @escaping (Result<GroupCallStreams, Swift.Error>) -> Void
@@ -9051,6 +9318,7 @@ public final class TdApi {
 
     /// Returns information about available group call streams
     /// - Parameter groupCallId: Group call identifier
+    /// - Returns: Information about available group call streams
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getGroupCallStreams(groupCallId: Int?) async throws -> GroupCallStreams {
         let query = GetGroupCallStreams(
@@ -9065,6 +9333,7 @@ public final class TdApi {
     /// - Parameter scale: Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
     /// - Parameter timeOffset: Point in time when the stream segment begins; Unix timestamp in milliseconds
     /// - Parameter videoQuality: Video quality as received from tgcalls; pass null to get the worst available quality
+    /// - Returns: A file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
     public func getGroupCallStreamSegment(
         channelId: Int?,
         groupCallId: Int?,
@@ -9089,6 +9358,7 @@ public final class TdApi {
     /// - Parameter scale: Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
     /// - Parameter timeOffset: Point in time when the stream segment begins; Unix timestamp in milliseconds
     /// - Parameter videoQuality: Video quality as received from tgcalls; pass null to get the worst available quality
+    /// - Returns: A file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getGroupCallStreamSegment(
         channelId: Int?,
@@ -9182,6 +9452,7 @@ public final class TdApi {
     /// Returns users and chats that were blocked by the current user
     /// - Parameter limit: The maximum number of users and chats to return; up to 100
     /// - Parameter offset: Number of users and chats to skip in the result; must be non-negative
+    /// - Returns: Users and chats that were blocked by the current user
     public func getBlockedMessageSenders(
         limit: Int?,
         offset: Int?,
@@ -9197,6 +9468,7 @@ public final class TdApi {
     /// Returns users and chats that were blocked by the current user
     /// - Parameter limit: The maximum number of users and chats to return; up to 100
     /// - Parameter offset: Number of users and chats to skip in the result; must be non-negative
+    /// - Returns: Users and chats that were blocked by the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBlockedMessageSenders(
         limit: Int?,
@@ -9262,12 +9534,14 @@ public final class TdApi {
     }
 
     /// Returns all user contacts
+    /// - Returns: All user contacts
     public func getContacts(completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetContacts()
         execute(query: query, completion: completion)
     }
 
     /// Returns all user contacts
+    /// - Returns: All user contacts
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getContacts() async throws -> Users {
         let query = GetContacts()
@@ -9327,12 +9601,14 @@ public final class TdApi {
     }
 
     /// Returns the total number of imported contacts
+    /// - Returns: The total number of imported contacts
     public func getImportedContactCount(completion: @escaping (Result<Count, Swift.Error>) -> Void) throws {
         let query = GetImportedContactCount()
         execute(query: query, completion: completion)
     }
 
     /// Returns the total number of imported contacts
+    /// - Returns: The total number of imported contacts
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getImportedContactCount() async throws -> Count {
         let query = GetImportedContactCount()
@@ -9376,6 +9652,7 @@ public final class TdApi {
 
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter phoneNumber: Phone number to search for
+    /// - Returns: A 404 error if the user can't be found
     public func searchUserByPhoneNumber(
         phoneNumber: String?,
         completion: @escaping (Result<User, Swift.Error>) -> Void
@@ -9388,6 +9665,7 @@ public final class TdApi {
 
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter phoneNumber: Phone number to search for
+    /// - Returns: A 404 error if the user can't be found
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchUserByPhoneNumber(phoneNumber: String?) async throws -> User {
         let query = SearchUserByPhoneNumber(
@@ -9422,6 +9700,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of photos to be returned; up to 100
     /// - Parameter offset: The number of photos to skip; must be non-negative
     /// - Parameter userId: User identifier
+    /// - Returns: The profile photos of a user
     public func getUserProfilePhotos(
         limit: Int?,
         offset: Int?,
@@ -9440,6 +9719,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of photos to be returned; up to 100
     /// - Parameter offset: The number of photos to skip; must be non-negative
     /// - Parameter userId: User identifier
+    /// - Returns: The profile photos of a user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUserProfilePhotos(
         limit: Int?,
@@ -9457,6 +9737,7 @@ public final class TdApi {
     /// Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
     /// - Parameter emoji: String representation of emoji. If empty, returns all known installed stickers
     /// - Parameter limit: The maximum number of stickers to be returned
+    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
     public func getStickers(
         emoji: String?,
         limit: Int?,
@@ -9472,6 +9753,7 @@ public final class TdApi {
     /// Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
     /// - Parameter emoji: String representation of emoji. If empty, returns all known installed stickers
     /// - Parameter limit: The maximum number of stickers to be returned
+    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStickers(
         emoji: String?,
@@ -9516,6 +9798,7 @@ public final class TdApi {
 
     /// Returns a list of installed sticker sets
     /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+    /// - Returns: A list of installed sticker sets
     public func getInstalledStickerSets(
         isMasks: Bool?,
         completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
@@ -9528,6 +9811,7 @@ public final class TdApi {
 
     /// Returns a list of installed sticker sets
     /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+    /// - Returns: A list of installed sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInstalledStickerSets(isMasks: Bool?) async throws -> StickerSets {
         let query = GetInstalledStickerSets(
@@ -9540,6 +9824,7 @@ public final class TdApi {
     /// - Parameter isMasks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return; up to 100
     /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
+    /// - Returns: A list of archived sticker sets
     public func getArchivedStickerSets(
         isMasks: Bool?,
         limit: Int?,
@@ -9558,6 +9843,7 @@ public final class TdApi {
     /// - Parameter isMasks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return; up to 100
     /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
+    /// - Returns: A list of archived sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getArchivedStickerSets(
         isMasks: Bool?,
@@ -9575,6 +9861,7 @@ public final class TdApi {
     /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     /// - Parameter limit: The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     /// - Parameter offset: The offset from which to return the sticker sets; must be non-negative
+    /// - Returns: A list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     public func getTrendingStickerSets(
         limit: Int?,
         offset: Int?,
@@ -9590,6 +9877,7 @@ public final class TdApi {
     /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     /// - Parameter limit: The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     /// - Parameter offset: The offset from which to return the sticker sets; must be non-negative
+    /// - Returns: A list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTrendingStickerSets(
         limit: Int?,
@@ -9604,6 +9892,7 @@ public final class TdApi {
 
     /// Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
     /// - Parameter fileId: File identifier
+    /// - Returns: A list of sticker sets attached to a file
     public func getAttachedStickerSets(
         fileId: Int?,
         completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
@@ -9616,6 +9905,7 @@ public final class TdApi {
 
     /// Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
     /// - Parameter fileId: File identifier
+    /// - Returns: A list of sticker sets attached to a file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAttachedStickerSets(fileId: Int?) async throws -> StickerSets {
         let query = GetAttachedStickerSets(
@@ -9626,6 +9916,7 @@ public final class TdApi {
 
     /// Returns information about a sticker set by its identifier
     /// - Parameter setId: Identifier of the sticker set
+    /// - Returns: Information about a sticker set by its identifier
     public func getStickerSet(
         setId: TdInt64?,
         completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
@@ -9638,6 +9929,7 @@ public final class TdApi {
 
     /// Returns information about a sticker set by its identifier
     /// - Parameter setId: Identifier of the sticker set
+    /// - Returns: Information about a sticker set by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStickerSet(setId: TdInt64?) async throws -> StickerSet {
         let query = GetStickerSet(
@@ -9816,6 +10108,7 @@ public final class TdApi {
 
     /// Returns a list of recently used stickers
     /// - Parameter isAttached: Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+    /// - Returns: A list of recently used stickers
     public func getRecentStickers(
         isAttached: Bool?,
         completion: @escaping (Result<Stickers, Swift.Error>) -> Void
@@ -9828,6 +10121,7 @@ public final class TdApi {
 
     /// Returns a list of recently used stickers
     /// - Parameter isAttached: Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+    /// - Returns: A list of recently used stickers
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecentStickers(isAttached: Bool?) async throws -> Stickers {
         let query = GetRecentStickers(
@@ -9919,12 +10213,14 @@ public final class TdApi {
     }
 
     /// Returns favorite stickers
+    /// - Returns: Favorite stickers
     public func getFavoriteStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
         let query = GetFavoriteStickers()
         execute(query: query, completion: completion)
     }
 
     /// Returns favorite stickers
+    /// - Returns: Favorite stickers
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getFavoriteStickers() async throws -> Stickers {
         let query = GetFavoriteStickers()
@@ -9977,6 +10273,7 @@ public final class TdApi {
 
     /// Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     /// - Parameter sticker: Sticker file identifier
+    /// - Returns: Emoji corresponding to a sticker
     public func getStickerEmojis(
         sticker: InputFile?,
         completion: @escaping (Result<Emojis, Swift.Error>) -> Void
@@ -9989,6 +10286,7 @@ public final class TdApi {
 
     /// Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     /// - Parameter sticker: Sticker file identifier
+    /// - Returns: Emoji corresponding to a sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStickerEmojis(sticker: InputFile?) async throws -> Emojis {
         let query = GetStickerEmojis(
@@ -10035,6 +10333,7 @@ public final class TdApi {
 
     /// Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
     /// - Parameter emoji: The emoji
+    /// - Returns: An animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
     public func getAnimatedEmoji(
         emoji: String?,
         completion: @escaping (Result<AnimatedEmoji, Swift.Error>) -> Void
@@ -10047,6 +10346,7 @@ public final class TdApi {
 
     /// Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
     /// - Parameter emoji: The emoji
+    /// - Returns: An animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAnimatedEmoji(emoji: String?) async throws -> AnimatedEmoji {
         let query = GetAnimatedEmoji(
@@ -10056,12 +10356,14 @@ public final class TdApi {
     }
 
     /// Returns all emojis, which has a corresponding animated emoji
+    /// - Returns: All emojis, which has a corresponding animated emoji
     public func getAllAnimatedEmojis(completion: @escaping (Result<Emojis, Swift.Error>) -> Void) throws {
         let query = GetAllAnimatedEmojis()
         execute(query: query, completion: completion)
     }
 
     /// Returns all emojis, which has a corresponding animated emoji
+    /// - Returns: All emojis, which has a corresponding animated emoji
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAllAnimatedEmojis() async throws -> Emojis {
         let query = GetAllAnimatedEmojis()
@@ -10070,6 +10372,7 @@ public final class TdApi {
 
     /// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
     /// - Parameter languageCode: Language code for which the emoji replacements will be suggested
+    /// - Returns: An HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements
     public func getEmojiSuggestionsUrl(
         languageCode: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
@@ -10082,6 +10385,7 @@ public final class TdApi {
 
     /// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
     /// - Parameter languageCode: Language code for which the emoji replacements will be suggested
+    /// - Returns: An HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getEmojiSuggestionsUrl(languageCode: String?) async throws -> HttpUrl {
         let query = GetEmojiSuggestionsUrl(
@@ -10091,12 +10395,14 @@ public final class TdApi {
     }
 
     /// Returns saved animations
+    /// - Returns: Saved animations
     public func getSavedAnimations(completion: @escaping (Result<Animations, Swift.Error>) -> Void) throws {
         let query = GetSavedAnimations()
         execute(query: query, completion: completion)
     }
 
     /// Returns saved animations
+    /// - Returns: Saved animations
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedAnimations() async throws -> Animations {
         let query = GetSavedAnimations()
@@ -10148,12 +10454,14 @@ public final class TdApi {
     }
 
     /// Returns up to 20 recently used inline bots in the order of their last usage
+    /// - Returns: Up to 20 recently used inline bots in the order of their last usage
     public func getRecentInlineBots(completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetRecentInlineBots()
         execute(query: query, completion: completion)
     }
 
     /// Returns up to 20 recently used inline bots in the order of their last usage
+    /// - Returns: Up to 20 recently used inline bots in the order of their last usage
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecentInlineBots() async throws -> Users {
         let query = GetRecentInlineBots()
@@ -10214,6 +10522,7 @@ public final class TdApi {
 
     /// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
     /// - Parameter text: Message text with formatting
+    /// - Returns: A web page preview by the text of the message. Returns a 404 error if the web page has no preview
     public func getWebPagePreview(
         text: FormattedText?,
         completion: @escaping (Result<WebPage, Swift.Error>) -> Void
@@ -10226,6 +10535,7 @@ public final class TdApi {
 
     /// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
     /// - Parameter text: Message text with formatting
+    /// - Returns: A web page preview by the text of the message. Returns a 404 error if the web page has no preview
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebPagePreview(text: FormattedText?) async throws -> WebPage {
         let query = GetWebPagePreview(
@@ -10237,6 +10547,7 @@ public final class TdApi {
     /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
     /// - Parameter forceFull: Pass true to get full instant view for the web page
     /// - Parameter url: The web page URL
+    /// - Returns: An instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
     public func getWebPageInstantView(
         forceFull: Bool?,
         url: String?,
@@ -10252,6 +10563,7 @@ public final class TdApi {
     /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
     /// - Parameter forceFull: Pass true to get full instant view for the web page
     /// - Parameter url: The web page URL
+    /// - Returns: An instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebPageInstantView(
         forceFull: Bool?,
@@ -10407,6 +10719,7 @@ public final class TdApi {
     /// Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
     /// - Parameter phoneNumber: The new phone number of the user in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
+    /// - Returns: On success, returns information about the sent code
     public func changePhoneNumber(
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?,
@@ -10422,6 +10735,7 @@ public final class TdApi {
     /// Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
     /// - Parameter phoneNumber: The new phone number of the user in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
+    /// - Returns: On success, returns information about the sent code
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func changePhoneNumber(
         phoneNumber: String?,
@@ -10538,6 +10852,7 @@ public final class TdApi {
     /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
+    /// - Returns: The list of commands supported by the bot for the given user scope and language
     public func getCommands(
         languageCode: String?,
         scope: BotCommandScope?,
@@ -10553,6 +10868,7 @@ public final class TdApi {
     /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
+    /// - Returns: The list of commands supported by the bot for the given user scope and language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCommands(
         languageCode: String?,
@@ -10597,6 +10913,7 @@ public final class TdApi {
 
     /// Returns menu button set by the bot for the given user; for bots only
     /// - Parameter userId: Identifier of the user or 0 to get the default menu button
+    /// - Returns: Menu button set by the bot for the given user
     public func getMenuButton(
         userId: Int64?,
         completion: @escaping (Result<BotMenuButton, Swift.Error>) -> Void
@@ -10609,6 +10926,7 @@ public final class TdApi {
 
     /// Returns menu button set by the bot for the given user; for bots only
     /// - Parameter userId: Identifier of the user or 0 to get the default menu button
+    /// - Returns: Menu button set by the bot for the given user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMenuButton(userId: Int64?) async throws -> BotMenuButton {
         let query = GetMenuButton(
@@ -10662,12 +10980,14 @@ public final class TdApi {
     }
 
     /// Returns all active sessions of the current user
+    /// - Returns: All active sessions of the current user
     public func getActiveSessions(completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
         let query = GetActiveSessions()
         execute(query: query, completion: completion)
     }
 
     /// Returns all active sessions of the current user
+    /// - Returns: All active sessions of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getActiveSessions() async throws -> Sessions {
         let query = GetActiveSessions()
@@ -10792,12 +11112,14 @@ public final class TdApi {
     }
 
     /// Returns all website where the current user used Telegram to log in
+    /// - Returns: All website where the current user used Telegram to log in
     public func getConnectedWebsites(completion: @escaping (Result<ConnectedWebsites, Swift.Error>) -> Void) throws {
         let query = GetConnectedWebsites()
         execute(query: query, completion: completion)
     }
 
     /// Returns all website where the current user used Telegram to log in
+    /// - Returns: All website where the current user used Telegram to log in
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getConnectedWebsites() async throws -> ConnectedWebsites {
         let query = GetConnectedWebsites()
@@ -11076,6 +11398,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of users be returned; up to 200
     /// - Parameter offset: Number of users to skip
     /// - Parameter supergroupId: Identifier of the supergroup or channel
+    /// - Returns: Information about members or banned users in a supergroup or channel
     public func getSupergroupMembers(
         filter: SupergroupMembersFilter?,
         limit: Int?,
@@ -11097,6 +11420,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of users be returned; up to 200
     /// - Parameter offset: Number of users to skip
     /// - Parameter supergroupId: Identifier of the supergroup or channel
+    /// - Returns: Information about members or banned users in a supergroup or channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSupergroupMembers(
         filter: SupergroupMembersFilter?,
@@ -11142,6 +11466,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of events to return; up to 100
     /// - Parameter query: Search query by which to filter events
     /// - Parameter userIds: User identifiers by which to filter events. By default, events relating to all users will be returned
+    /// - Returns: A list of service actions taken by chat members and administrators in the last 48 hours. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
     public func getChatEventLog(
         chatId: Int64?,
         filters: ChatEventLogFilters?,
@@ -11169,6 +11494,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of events to return; up to 100
     /// - Parameter query: Search query by which to filter events
     /// - Parameter userIds: User identifiers by which to filter events. By default, events relating to all users will be returned
+    /// - Returns: A list of service actions taken by chat members and administrators in the last 48 hours. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatEventLog(
         chatId: Int64?,
@@ -11192,6 +11518,7 @@ public final class TdApi {
     /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
     /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
+    /// - Returns: An invoice payment form
     public func getPaymentForm(
         inputInvoice: InputInvoice?,
         theme: ThemeParameters?,
@@ -11207,6 +11534,7 @@ public final class TdApi {
     /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
     /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
+    /// - Returns: An invoice payment form
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPaymentForm(
         inputInvoice: InputInvoice?,
@@ -11223,6 +11551,7 @@ public final class TdApi {
     /// - Parameter allowSave: Pass true to save the order information
     /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfo: The order information, provided by the user; pass null if empty
+    /// - Returns: Validates the order information provided by a user and returns the available shipping options for a flexible invoice
     public func validateOrderInfo(
         allowSave: Bool?,
         inputInvoice: InputInvoice?,
@@ -11241,6 +11570,7 @@ public final class TdApi {
     /// - Parameter allowSave: Pass true to save the order information
     /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfo: The order information, provided by the user; pass null if empty
+    /// - Returns: Validates the order information provided by a user and returns the available shipping options for a flexible invoice
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func validateOrderInfo(
         allowSave: Bool?,
@@ -11312,6 +11642,7 @@ public final class TdApi {
     /// Returns information about a successful payment
     /// - Parameter chatId: Chat identifier of the PaymentSuccessful message
     /// - Parameter messageId: Message identifier
+    /// - Returns: Information about a successful payment
     public func getPaymentReceipt(
         chatId: Int64?,
         messageId: Int64?,
@@ -11327,6 +11658,7 @@ public final class TdApi {
     /// Returns information about a successful payment
     /// - Parameter chatId: Chat identifier of the PaymentSuccessful message
     /// - Parameter messageId: Message identifier
+    /// - Returns: Information about a successful payment
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPaymentReceipt(
         chatId: Int64?,
@@ -11340,12 +11672,14 @@ public final class TdApi {
     }
 
     /// Returns saved order information. Returns a 404 error if there is no saved order information
+    /// - Returns: Saved order information. Returns a 404 error if there is no saved order information
     public func getSavedOrderInfo(completion: @escaping (Result<OrderInfo, Swift.Error>) -> Void) throws {
         let query = GetSavedOrderInfo()
         execute(query: query, completion: completion)
     }
 
     /// Returns saved order information. Returns a 404 error if there is no saved order information
+    /// - Returns: Saved order information. Returns a 404 error if there is no saved order information
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedOrderInfo() async throws -> OrderInfo {
         let query = GetSavedOrderInfo()
@@ -11401,12 +11735,14 @@ public final class TdApi {
     }
 
     /// Returns a user that can be contacted to get support
+    /// - Returns: A user that can be contacted to get support
     public func getSupportUser(completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetSupportUser()
         execute(query: query, completion: completion)
     }
 
     /// Returns a user that can be contacted to get support
+    /// - Returns: A user that can be contacted to get support
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSupportUser() async throws -> User {
         let query = GetSupportUser()
@@ -11415,6 +11751,7 @@ public final class TdApi {
 
     /// Returns backgrounds installed by the user
     /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
+    /// - Returns: Backgrounds installed by the user
     public func getBackgrounds(
         forDarkTheme: Bool?,
         completion: @escaping (Result<Backgrounds, Swift.Error>) -> Void
@@ -11427,6 +11764,7 @@ public final class TdApi {
 
     /// Returns backgrounds installed by the user
     /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
+    /// - Returns: Backgrounds installed by the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBackgrounds(forDarkTheme: Bool?) async throws -> Backgrounds {
         let query = GetBackgrounds(
@@ -11560,6 +11898,7 @@ public final class TdApi {
 
     /// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
+    /// - Returns: Information about the current localization target
     public func getLocalizationTargetInfo(
         onlyLocal: Bool?,
         completion: @escaping (Result<LocalizationTargetInfo, Swift.Error>) -> Void
@@ -11572,6 +11911,7 @@ public final class TdApi {
 
     /// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
+    /// - Returns: Information about the current localization target
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLocalizationTargetInfo(onlyLocal: Bool?) async throws -> LocalizationTargetInfo {
         let query = GetLocalizationTargetInfo(
@@ -11582,6 +11922,7 @@ public final class TdApi {
 
     /// Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
     /// - Parameter languagePackId: Language pack identifier
+    /// - Returns: Information about a language pack. Returned language pack identifier may be different from a provided one
     public func getLanguagePackInfo(
         languagePackId: String?,
         completion: @escaping (Result<LanguagePackInfo, Swift.Error>) -> Void
@@ -11594,6 +11935,7 @@ public final class TdApi {
 
     /// Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
     /// - Parameter languagePackId: Language pack identifier
+    /// - Returns: Information about a language pack. Returned language pack identifier may be different from a provided one
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLanguagePackInfo(languagePackId: String?) async throws -> LanguagePackInfo {
         let query = GetLanguagePackInfo(
@@ -11605,6 +11947,7 @@ public final class TdApi {
     /// Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
     /// - Parameter keys: Language pack keys of the strings to be returned; leave empty to request all available strings
     /// - Parameter languagePackId: Language pack identifier of the strings to be returned
+    /// - Returns: Strings from a language pack in the current localization target by their keys
     public func getLanguagePackStrings(
         keys: [String]?,
         languagePackId: String?,
@@ -11620,6 +11963,7 @@ public final class TdApi {
     /// Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
     /// - Parameter keys: Language pack keys of the strings to be returned; leave empty to request all available strings
     /// - Parameter languagePackId: Language pack identifier of the strings to be returned
+    /// - Returns: Strings from a language pack in the current localization target by their keys
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLanguagePackStrings(
         keys: [String]?,
@@ -11783,6 +12127,7 @@ public final class TdApi {
     /// Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
     /// - Parameter deviceToken: Device token
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
+    /// - Returns: A globally unique identifier of the push notification subscription
     public func registerDevice(
         deviceToken: DeviceToken?,
         otherUserIds: [Int64]?,
@@ -11798,6 +12143,7 @@ public final class TdApi {
     /// Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
     /// - Parameter deviceToken: Device token
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
+    /// - Returns: A globally unique identifier of the push notification subscription
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func registerDevice(
         deviceToken: DeviceToken?,
@@ -11812,6 +12158,7 @@ public final class TdApi {
 
     /// Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
     /// - Parameter payload: JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
+    /// - Returns: Error with code 406 if the push notification is not supported and connection to the server is required to fetch new data
     public func processPushNotification(
         payload: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -11824,6 +12171,7 @@ public final class TdApi {
 
     /// Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
     /// - Parameter payload: JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
+    /// - Returns: Error with code 406 if the push notification is not supported and connection to the server is required to fetch new data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func processPushNotification(payload: String?) async throws -> Ok {
         let query = ProcessPushNotification(
@@ -11834,6 +12182,7 @@ public final class TdApi {
 
     /// Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
     /// - Parameter payload: JSON-encoded push notification payload
+    /// - Returns: A globally unique push notification subscription identifier for identification of an account, which has received a push notification
     public func getPushReceiverId(
         payload: String?,
         completion: @escaping (Result<PushReceiverId, Swift.Error>) -> Void
@@ -11846,6 +12195,7 @@ public final class TdApi {
 
     /// Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
     /// - Parameter payload: JSON-encoded push notification payload
+    /// - Returns: A globally unique push notification subscription identifier for identification of an account, which has received a push notification
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPushReceiverId(payload: String?) async throws -> PushReceiverId {
         let query = GetPushReceiverId(
@@ -11856,6 +12206,7 @@ public final class TdApi {
 
     /// Returns t.me URLs recently visited by a newly registered user
     /// - Parameter referrer: Google Play referrer to identify the user
+    /// - Returns: T
     public func getRecentlyVisitedTMeUrls(
         referrer: String?,
         completion: @escaping (Result<TMeUrls, Swift.Error>) -> Void
@@ -11868,6 +12219,7 @@ public final class TdApi {
 
     /// Returns t.me URLs recently visited by a newly registered user
     /// - Parameter referrer: Google Play referrer to identify the user
+    /// - Returns: T
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecentlyVisitedTMeUrls(referrer: String?) async throws -> TMeUrls {
         let query = GetRecentlyVisitedTMeUrls(
@@ -11908,6 +12260,7 @@ public final class TdApi {
 
     /// Returns the current privacy settings
     /// - Parameter setting: The privacy setting
+    /// - Returns: The current privacy settings
     public func getUserPrivacySettingRules(
         setting: UserPrivacySetting?,
         completion: @escaping (Result<UserPrivacySettingRules, Swift.Error>) -> Void
@@ -11920,6 +12273,7 @@ public final class TdApi {
 
     /// Returns the current privacy settings
     /// - Parameter setting: The privacy setting
+    /// - Returns: The current privacy settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUserPrivacySettingRules(setting: UserPrivacySetting?) async throws -> UserPrivacySettingRules {
         let query = GetUserPrivacySettingRules(
@@ -11930,6 +12284,7 @@ public final class TdApi {
 
     /// Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization
     /// - Parameter name: The name of the option
+    /// - Returns: The value of an option by its name
     public func getOption(
         name: String?,
         completion: @escaping (Result<OptionValue, Swift.Error>) -> Void
@@ -11942,6 +12297,7 @@ public final class TdApi {
 
     /// Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization
     /// - Parameter name: The name of the option
+    /// - Returns: The value of an option by its name
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getOption(name: String?) async throws -> OptionValue {
         let query = GetOption(
@@ -12003,12 +12359,14 @@ public final class TdApi {
     }
 
     /// Returns the period of inactivity after which the account of the current user will automatically be deleted
+    /// - Returns: The period of inactivity after which the account of the current user will automatically be deleted
     public func getAccountTtl(completion: @escaping (Result<AccountTtl, Swift.Error>) -> Void) throws {
         let query = GetAccountTtl()
         execute(query: query, completion: completion)
     }
 
     /// Returns the period of inactivity after which the account of the current user will automatically be deleted
+    /// - Returns: The period of inactivity after which the account of the current user will automatically be deleted
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAccountTtl() async throws -> AccountTtl {
         let query = GetAccountTtl()
@@ -12146,6 +12504,7 @@ public final class TdApi {
     /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Returns: Detailed statistics about a chat
     public func getChatStatistics(
         chatId: Int64?,
         isDark: Bool?,
@@ -12161,6 +12520,7 @@ public final class TdApi {
     /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Returns: Detailed statistics about a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatStatistics(
         chatId: Int64?,
@@ -12177,6 +12537,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     /// - Parameter messageId: Message identifier
+    /// - Returns: Detailed statistics about a message
     public func getMessageStatistics(
         chatId: Int64?,
         isDark: Bool?,
@@ -12195,6 +12556,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     /// - Parameter messageId: Message identifier
+    /// - Returns: Detailed statistics about a message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageStatistics(
         chatId: Int64?,
@@ -12247,6 +12609,7 @@ public final class TdApi {
 
     /// Returns storage usage statistics. Can be called before authorization
     /// - Parameter chatLimit: The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
+    /// - Returns: Storage usage statistics
     public func getStorageStatistics(
         chatLimit: Int?,
         completion: @escaping (Result<StorageStatistics, Swift.Error>) -> Void
@@ -12259,6 +12622,7 @@ public final class TdApi {
 
     /// Returns storage usage statistics. Can be called before authorization
     /// - Parameter chatLimit: The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
+    /// - Returns: Storage usage statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStorageStatistics(chatLimit: Int?) async throws -> StorageStatistics {
         let query = GetStorageStatistics(
@@ -12268,12 +12632,14 @@ public final class TdApi {
     }
 
     /// Quickly returns approximate storage usage statistics. Can be called before authorization
+    /// - Returns: Quickly returns approximate storage usage statistics
     public func getStorageStatisticsFast(completion: @escaping (Result<StorageStatisticsFast, Swift.Error>) -> Void) throws {
         let query = GetStorageStatisticsFast()
         execute(query: query, completion: completion)
     }
 
     /// Quickly returns approximate storage usage statistics. Can be called before authorization
+    /// - Returns: Quickly returns approximate storage usage statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStorageStatisticsFast() async throws -> StorageStatisticsFast {
         let query = GetStorageStatisticsFast()
@@ -12281,12 +12647,14 @@ public final class TdApi {
     }
 
     /// Returns database statistics
+    /// - Returns: Database statistics
     public func getDatabaseStatistics(completion: @escaping (Result<DatabaseStatistics, Swift.Error>) -> Void) throws {
         let query = GetDatabaseStatistics()
         execute(query: query, completion: completion)
     }
 
     /// Returns database statistics
+    /// - Returns: Database statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getDatabaseStatistics() async throws -> DatabaseStatistics {
         let query = GetDatabaseStatistics()
@@ -12303,6 +12671,7 @@ public final class TdApi {
     /// - Parameter returnDeletedFileStatistics: Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
     /// - Parameter size: Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
     /// - Parameter ttl: Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
+    /// - Returns: Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics
     public func optimizeStorage(
         chatIds: [Int64]?,
         chatLimit: Int?,
@@ -12339,6 +12708,7 @@ public final class TdApi {
     /// - Parameter returnDeletedFileStatistics: Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
     /// - Parameter size: Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
     /// - Parameter ttl: Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
+    /// - Returns: Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func optimizeStorage(
         chatIds: [Int64]?,
@@ -12389,6 +12759,7 @@ public final class TdApi {
 
     /// Returns network data usage statistics. Can be called before authorization
     /// - Parameter onlyCurrent: Pass true to get statistics only for the current library launch
+    /// - Returns: Network data usage statistics
     public func getNetworkStatistics(
         onlyCurrent: Bool?,
         completion: @escaping (Result<NetworkStatistics, Swift.Error>) -> Void
@@ -12401,6 +12772,7 @@ public final class TdApi {
 
     /// Returns network data usage statistics. Can be called before authorization
     /// - Parameter onlyCurrent: Pass true to get statistics only for the current library launch
+    /// - Returns: Network data usage statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getNetworkStatistics(onlyCurrent: Bool?) async throws -> NetworkStatistics {
         let query = GetNetworkStatistics(
@@ -12445,12 +12817,14 @@ public final class TdApi {
     }
 
     /// Returns auto-download settings presets for the current user
+    /// - Returns: Auto-download settings presets for the current user
     public func getAutoDownloadSettingsPresets(completion: @escaping (Result<AutoDownloadSettingsPresets, Swift.Error>) -> Void) throws {
         let query = GetAutoDownloadSettingsPresets()
         execute(query: query, completion: completion)
     }
 
     /// Returns auto-download settings presets for the current user
+    /// - Returns: Auto-download settings presets for the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAutoDownloadSettingsPresets() async throws -> AutoDownloadSettingsPresets {
         let query = GetAutoDownloadSettingsPresets()
@@ -12489,6 +12863,7 @@ public final class TdApi {
 
     /// Returns information about a bank card
     /// - Parameter bankCardNumber: The bank card number
+    /// - Returns: Information about a bank card
     public func getBankCardInfo(
         bankCardNumber: String?,
         completion: @escaping (Result<BankCardInfo, Swift.Error>) -> Void
@@ -12501,6 +12876,7 @@ public final class TdApi {
 
     /// Returns information about a bank card
     /// - Parameter bankCardNumber: The bank card number
+    /// - Returns: Information about a bank card
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBankCardInfo(bankCardNumber: String?) async throws -> BankCardInfo {
         let query = GetBankCardInfo(
@@ -12512,6 +12888,7 @@ public final class TdApi {
     /// Returns one of the available Telegram Passport elements
     /// - Parameter password: Password of the current user
     /// - Parameter type: Telegram Passport element type
+    /// - Returns: One of the available Telegram Passport elements
     public func getPassportElement(
         password: String?,
         type: PassportElementType?,
@@ -12527,6 +12904,7 @@ public final class TdApi {
     /// Returns one of the available Telegram Passport elements
     /// - Parameter password: Password of the current user
     /// - Parameter type: Telegram Passport element type
+    /// - Returns: One of the available Telegram Passport elements
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPassportElement(
         password: String?,
@@ -12541,6 +12919,7 @@ public final class TdApi {
 
     /// Returns all available Telegram Passport elements
     /// - Parameter password: Password of the current user
+    /// - Returns: All available Telegram Passport elements
     public func getAllPassportElements(
         password: String?,
         completion: @escaping (Result<PassportElements, Swift.Error>) -> Void
@@ -12553,6 +12932,7 @@ public final class TdApi {
 
     /// Returns all available Telegram Passport elements
     /// - Parameter password: Password of the current user
+    /// - Returns: All available Telegram Passport elements
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAllPassportElements(password: String?) async throws -> PassportElements {
         let query = GetAllPassportElements(
@@ -12564,6 +12944,7 @@ public final class TdApi {
     /// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     /// - Parameter element: Input Telegram Passport element
     /// - Parameter password: Password of the current user
+    /// - Returns: May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     public func setPassportElement(
         element: InputPassportElement?,
         password: String?,
@@ -12579,6 +12960,7 @@ public final class TdApi {
     /// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     /// - Parameter element: Input Telegram Passport element
     /// - Parameter password: Password of the current user
+    /// - Returns: May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setPassportElement(
         element: InputPassportElement?,
@@ -12645,6 +13027,7 @@ public final class TdApi {
 
     /// Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
     /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code
+    /// - Returns: An IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
     public func getPreferredCountryLanguage(
         countryCode: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -12657,6 +13040,7 @@ public final class TdApi {
 
     /// Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
     /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code
+    /// - Returns: An IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPreferredCountryLanguage(countryCode: String?) async throws -> Text {
         let query = GetPreferredCountryLanguage(
@@ -12792,6 +13176,7 @@ public final class TdApi {
     /// - Parameter nonce: Unique request identifier provided by the service
     /// - Parameter publicKey: Service's public key
     /// - Parameter scope: Telegram Passport element types requested by the service
+    /// - Returns: A Telegram Passport authorization form for sharing data with a service
     public func getPassportAuthorizationForm(
         botUserId: Int64?,
         nonce: String?,
@@ -12813,6 +13198,7 @@ public final class TdApi {
     /// - Parameter nonce: Unique request identifier provided by the service
     /// - Parameter publicKey: Service's public key
     /// - Parameter scope: Telegram Passport element types requested by the service
+    /// - Returns: A Telegram Passport authorization form for sharing data with a service
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPassportAuthorizationForm(
         botUserId: Int64?,
@@ -12832,6 +13218,7 @@ public final class TdApi {
     /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
     /// - Parameter autorizationFormId: Authorization form identifier
     /// - Parameter password: Password of the current user
+    /// - Returns: Already available Telegram Passport elements suitable for completing a Telegram Passport authorization form
     public func getPassportAuthorizationFormAvailableElements(
         autorizationFormId: Int?,
         password: String?,
@@ -12847,6 +13234,7 @@ public final class TdApi {
     /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
     /// - Parameter autorizationFormId: Authorization form identifier
     /// - Parameter password: Password of the current user
+    /// - Returns: Already available Telegram Passport elements suitable for completing a Telegram Passport authorization form
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPassportAuthorizationFormAvailableElements(
         autorizationFormId: Int?,
@@ -12993,6 +13381,7 @@ public final class TdApi {
     /// Uploads a file with a sticker; returns the uploaded file
     /// - Parameter sticker: Sticker file to upload
     /// - Parameter userId: Sticker file owner; ignored for regular users
+    /// - Returns: The uploaded file
     public func uploadStickerFile(
         sticker: InputSticker?,
         userId: Int64?,
@@ -13008,6 +13397,7 @@ public final class TdApi {
     /// Uploads a file with a sticker; returns the uploaded file
     /// - Parameter sticker: Sticker file to upload
     /// - Parameter userId: Sticker file owner; ignored for regular users
+    /// - Returns: The uploaded file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func uploadStickerFile(
         sticker: InputSticker?,
@@ -13022,6 +13412,7 @@ public final class TdApi {
 
     /// Returns a suggested name for a new sticker set with a given title
     /// - Parameter title: Sticker set title; 1-64 characters
+    /// - Returns: A suggested name for a new sticker set with a given title
     public func getSuggestedStickerSetName(
         title: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -13034,6 +13425,7 @@ public final class TdApi {
 
     /// Returns a suggested name for a new sticker set with a given title
     /// - Parameter title: Sticker set title; 1-64 characters
+    /// - Returns: A suggested name for a new sticker set with a given title
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSuggestedStickerSetName(title: String?) async throws -> Text {
         let query = GetSuggestedStickerSetName(
@@ -13070,6 +13462,7 @@ public final class TdApi {
     /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
+    /// - Returns: The newly created sticker set
     public func createNewStickerSet(
         name: String?,
         source: String?,
@@ -13094,6 +13487,7 @@ public final class TdApi {
     /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
+    /// - Returns: The newly created sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewStickerSet(
         name: String?,
@@ -13116,6 +13510,7 @@ public final class TdApi {
     /// - Parameter name: Sticker set name
     /// - Parameter sticker: Sticker to add to the set
     /// - Parameter userId: Sticker set owner
+    /// - Returns: The sticker set
     public func addStickerToSet(
         name: String?,
         sticker: InputSticker?,
@@ -13134,6 +13529,7 @@ public final class TdApi {
     /// - Parameter name: Sticker set name
     /// - Parameter sticker: Sticker to add to the set
     /// - Parameter userId: Sticker set owner
+    /// - Returns: The sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addStickerToSet(
         name: String?,
@@ -13152,6 +13548,7 @@ public final class TdApi {
     /// - Parameter name: Sticker set name
     /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
+    /// - Returns: The sticker set
     public func setStickerSetThumbnail(
         name: String?,
         thumbnail: InputFile?,
@@ -13170,6 +13567,7 @@ public final class TdApi {
     /// - Parameter name: Sticker set name
     /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
+    /// - Returns: The sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setStickerSetThumbnail(
         name: String?,
@@ -13243,6 +13641,7 @@ public final class TdApi {
     /// - Parameter scale: Map scale; 1-3
     /// - Parameter width: Map width in pixels before applying scale; 16-1024
     /// - Parameter zoom: Map zoom level; 13-20
+    /// - Returns: Information about a file with a map thumbnail in PNG format
     public func getMapThumbnailFile(
         chatId: Int64?,
         height: Int?,
@@ -13270,6 +13669,7 @@ public final class TdApi {
     /// - Parameter scale: Map scale; 1-3
     /// - Parameter width: Map width in pixels before applying scale; 16-1024
     /// - Parameter zoom: Map zoom level; 13-20
+    /// - Returns: Information about a file with a map thumbnail in PNG format
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMapThumbnailFile(
         chatId: Int64?,
@@ -13292,6 +13692,7 @@ public final class TdApi {
 
     /// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
     /// - Parameter limitType: Type of the limit
+    /// - Returns: Information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
     public func getPremiumLimit(
         limitType: PremiumLimitType?,
         completion: @escaping (Result<PremiumLimit, Swift.Error>) -> Void
@@ -13304,6 +13705,7 @@ public final class TdApi {
 
     /// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
     /// - Parameter limitType: Type of the limit
+    /// - Returns: Information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumLimit(limitType: PremiumLimitType?) async throws -> PremiumLimit {
         let query = GetPremiumLimit(
@@ -13314,6 +13716,7 @@ public final class TdApi {
 
     /// Returns information about features, available to Premium users
     /// - Parameter source: Source of the request; pass null if the method is called from some non-standard source
+    /// - Returns: Information about features, available to Premium users
     public func getPremiumFeatures(
         source: PremiumSource?,
         completion: @escaping (Result<PremiumFeatures, Swift.Error>) -> Void
@@ -13326,6 +13729,7 @@ public final class TdApi {
 
     /// Returns information about features, available to Premium users
     /// - Parameter source: Source of the request; pass null if the method is called from some non-standard source
+    /// - Returns: Information about features, available to Premium users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumFeatures(source: PremiumSource?) async throws -> PremiumFeatures {
         let query = GetPremiumFeatures(
@@ -13335,12 +13739,14 @@ public final class TdApi {
     }
 
     /// Returns examples of premium stickers for demonstration purposes
+    /// - Returns: Examples of premium stickers for demonstration purposes
     public func getPremiumStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
         let query = GetPremiumStickers()
         execute(query: query, completion: completion)
     }
 
     /// Returns examples of premium stickers for demonstration purposes
+    /// - Returns: Examples of premium stickers for demonstration purposes
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumStickers() async throws -> Stickers {
         let query = GetPremiumStickers()
@@ -13383,12 +13789,14 @@ public final class TdApi {
     }
 
     /// Returns state of Telegram Premium subscription and promotion videos for Premium features
+    /// - Returns: State of Telegram Premium subscription and promotion videos for Premium features
     public func getPremiumState(completion: @escaping (Result<PremiumState, Swift.Error>) -> Void) throws {
         let query = GetPremiumState()
         execute(query: query, completion: completion)
     }
 
     /// Returns state of Telegram Premium subscription and promotion videos for Premium features
+    /// - Returns: State of Telegram Premium subscription and promotion videos for Premium features
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumState() async throws -> PremiumState {
         let query = GetPremiumState()
@@ -13565,12 +13973,14 @@ public final class TdApi {
     }
 
     /// Returns information about existing countries. Can be called before authorization
+    /// - Returns: Information about existing countries
     public func getCountries(completion: @escaping (Result<Countries, Swift.Error>) -> Void) throws {
         let query = GetCountries()
         execute(query: query, completion: completion)
     }
 
     /// Returns information about existing countries. Can be called before authorization
+    /// - Returns: Information about existing countries
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCountries() async throws -> Countries {
         let query = GetCountries()
@@ -13578,12 +13988,14 @@ public final class TdApi {
     }
 
     /// Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+    /// - Returns: Two-letter ISO 3166-1 alpha-2 country code
     public func getCountryCode(completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
         let query = GetCountryCode()
         execute(query: query, completion: completion)
     }
 
     /// Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+    /// - Returns: Two-letter ISO 3166-1 alpha-2 country code
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCountryCode() async throws -> Text {
         let query = GetCountryCode()
@@ -13592,6 +14004,7 @@ public final class TdApi {
 
     /// Returns information about a phone number by its prefix. Can be called before authorization
     /// - Parameter phoneNumberPrefix: The phone number prefix
+    /// - Returns: Information about a phone number by its prefix
     public func getPhoneNumberInfo(
         phoneNumberPrefix: String?,
         completion: @escaping (Result<PhoneNumberInfo, Swift.Error>) -> Void
@@ -13604,6 +14017,7 @@ public final class TdApi {
 
     /// Returns information about a phone number by its prefix. Can be called before authorization
     /// - Parameter phoneNumberPrefix: The phone number prefix
+    /// - Returns: Information about a phone number by its prefix
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPhoneNumberInfo(phoneNumberPrefix: String?) async throws -> PhoneNumberInfo {
         let query = GetPhoneNumberInfo(
@@ -13615,6 +14029,7 @@ public final class TdApi {
     /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
     /// - Parameter languageCode: A two-letter ISO 639-1 language code for country information localization
     /// - Parameter phoneNumberPrefix: The phone number prefix
+    /// - Returns: Information about a phone number by its prefix synchronously
     public func getPhoneNumberInfoSync(
         languageCode: String?,
         phoneNumberPrefix: String?,
@@ -13630,6 +14045,7 @@ public final class TdApi {
     /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
     /// - Parameter languageCode: A two-letter ISO 639-1 language code for country information localization
     /// - Parameter phoneNumberPrefix: The phone number prefix
+    /// - Returns: Information about a phone number by its prefix synchronously
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPhoneNumberInfoSync(
         languageCode: String?,
@@ -13643,12 +14059,14 @@ public final class TdApi {
     }
 
     /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+    /// - Returns: The link for downloading official Telegram application to be used when the current user invites friends to Telegram
     public func getApplicationDownloadLink(completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void) throws {
         let query = GetApplicationDownloadLink()
         execute(query: query, completion: completion)
     }
 
     /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+    /// - Returns: The link for downloading official Telegram application to be used when the current user invites friends to Telegram
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getApplicationDownloadLink() async throws -> HttpUrl {
         let query = GetApplicationDownloadLink()
@@ -13657,6 +14075,7 @@ public final class TdApi {
 
     /// Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
     /// - Parameter link: The link
+    /// - Returns: Information about a tg:// deep link. Returns a 404 error for unknown links
     public func getDeepLinkInfo(
         link: String?,
         completion: @escaping (Result<DeepLinkInfo, Swift.Error>) -> Void
@@ -13669,6 +14088,7 @@ public final class TdApi {
 
     /// Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
     /// - Parameter link: The link
+    /// - Returns: Information about a tg:// deep link. Returns a 404 error for unknown links
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getDeepLinkInfo(link: String?) async throws -> DeepLinkInfo {
         let query = GetDeepLinkInfo(
@@ -13678,12 +14098,14 @@ public final class TdApi {
     }
 
     /// Returns application config, provided by the server. Can be called before authorization
+    /// - Returns: Application config, provided by the server
     public func getApplicationConfig(completion: @escaping (Result<JsonValue, Swift.Error>) -> Void) throws {
         let query = GetApplicationConfig()
         execute(query: query, completion: completion)
     }
 
     /// Returns application config, provided by the server. Can be called before authorization
+    /// - Returns: Application config, provided by the server
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getApplicationConfig() async throws -> JsonValue {
         let query = GetApplicationConfig()
@@ -13874,12 +14296,14 @@ public final class TdApi {
     }
 
     /// Returns list of proxies that are currently set up. Can be called before authorization
+    /// - Returns: List of proxies that are currently set up
     public func getProxies(completion: @escaping (Result<Proxies, Swift.Error>) -> Void) throws {
         let query = GetProxies()
         execute(query: query, completion: completion)
     }
 
     /// Returns list of proxies that are currently set up. Can be called before authorization
+    /// - Returns: List of proxies that are currently set up
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getProxies() async throws -> Proxies {
         let query = GetProxies()
@@ -13888,6 +14312,7 @@ public final class TdApi {
 
     /// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
     /// - Parameter proxyId: Proxy identifier
+    /// - Returns: An HTTPS link, which can be used to add a proxy
     public func getProxyLink(
         proxyId: Int?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
@@ -13900,6 +14325,7 @@ public final class TdApi {
 
     /// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
     /// - Parameter proxyId: Proxy identifier
+    /// - Returns: An HTTPS link, which can be used to add a proxy
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getProxyLink(proxyId: Int?) async throws -> HttpUrl {
         let query = GetProxyLink(
@@ -13953,12 +14379,14 @@ public final class TdApi {
     }
 
     /// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+    /// - Returns: Information about currently used log stream for internal logging of TDLib
     public func getLogStream(completion: @escaping (Result<LogStream, Swift.Error>) -> Void) throws {
         let query = GetLogStream()
         execute(query: query, completion: completion)
     }
 
     /// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+    /// - Returns: Information about currently used log stream for internal logging of TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLogStream() async throws -> LogStream {
         let query = GetLogStream()
@@ -13988,12 +14416,14 @@ public final class TdApi {
     }
 
     /// Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+    /// - Returns: Current verbosity level of the internal logging of TDLib
     public func getLogVerbosityLevel(completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> Void) throws {
         let query = GetLogVerbosityLevel()
         execute(query: query, completion: completion)
     }
 
     /// Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+    /// - Returns: Current verbosity level of the internal logging of TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLogVerbosityLevel() async throws -> LogVerbosityLevel {
         let query = GetLogVerbosityLevel()
@@ -14001,12 +14431,14 @@ public final class TdApi {
     }
 
     /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+    /// - Returns: List of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]
     public func getLogTags(completion: @escaping (Result<LogTags, Swift.Error>) -> Void) throws {
         let query = GetLogTags()
         execute(query: query, completion: completion)
     }
 
     /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+    /// - Returns: List of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLogTags() async throws -> LogTags {
         let query = GetLogTags()
@@ -14045,6 +14477,7 @@ public final class TdApi {
 
     /// Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
     /// - Parameter tag: Logging tag to change verbosity level
+    /// - Returns: Current verbosity level for a specified TDLib internal log tag
     public func getLogTagVerbosityLevel(
         tag: String?,
         completion: @escaping (Result<LogVerbosityLevel, Swift.Error>) -> Void
@@ -14057,6 +14490,7 @@ public final class TdApi {
 
     /// Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
     /// - Parameter tag: Logging tag to change verbosity level
+    /// - Returns: Current verbosity level for a specified TDLib internal log tag
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getLogTagVerbosityLevel(tag: String?) async throws -> LogVerbosityLevel {
         let query = GetLogTagVerbosityLevel(
@@ -14110,6 +14544,7 @@ public final class TdApi {
 
     /// Returns the received string; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: String to return
+    /// - Returns: The received string
     public func testCallString(
         x: String?,
         completion: @escaping (Result<TestString, Swift.Error>) -> Void
@@ -14122,6 +14557,7 @@ public final class TdApi {
 
     /// Returns the received string; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: String to return
+    /// - Returns: The received string
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testCallString(x: String?) async throws -> TestString {
         let query = TestCallString(
@@ -14132,6 +14568,7 @@ public final class TdApi {
 
     /// Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Bytes to return
+    /// - Returns: The received bytes
     public func testCallBytes(
         x: Data?,
         completion: @escaping (Result<TestBytes, Swift.Error>) -> Void
@@ -14144,6 +14581,7 @@ public final class TdApi {
 
     /// Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Bytes to return
+    /// - Returns: The received bytes
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testCallBytes(x: Data?) async throws -> TestBytes {
         let query = TestCallBytes(
@@ -14154,6 +14592,7 @@ public final class TdApi {
 
     /// Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of numbers to return
+    /// - Returns: The received vector of numbers
     public func testCallVectorInt(
         x: [Int]?,
         completion: @escaping (Result<TestVectorInt, Swift.Error>) -> Void
@@ -14166,6 +14605,7 @@ public final class TdApi {
 
     /// Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of numbers to return
+    /// - Returns: The received vector of numbers
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testCallVectorInt(x: [Int]?) async throws -> TestVectorInt {
         let query = TestCallVectorInt(
@@ -14176,6 +14616,7 @@ public final class TdApi {
 
     /// Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of objects to return
+    /// - Returns: The received vector of objects containing a number
     public func testCallVectorIntObject(
         x: [TestInt]?,
         completion: @escaping (Result<TestVectorIntObject, Swift.Error>) -> Void
@@ -14188,6 +14629,7 @@ public final class TdApi {
 
     /// Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of objects to return
+    /// - Returns: The received vector of objects containing a number
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testCallVectorIntObject(x: [TestInt]?) async throws -> TestVectorIntObject {
         let query = TestCallVectorIntObject(
@@ -14198,6 +14640,7 @@ public final class TdApi {
 
     /// Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of strings to return
+    /// - Returns: The received vector of strings
     public func testCallVectorString(
         x: [String]?,
         completion: @escaping (Result<TestVectorString, Swift.Error>) -> Void
@@ -14210,6 +14653,7 @@ public final class TdApi {
 
     /// Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of strings to return
+    /// - Returns: The received vector of strings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testCallVectorString(x: [String]?) async throws -> TestVectorString {
         let query = TestCallVectorString(
@@ -14220,6 +14664,7 @@ public final class TdApi {
 
     /// Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of objects to return
+    /// - Returns: The received vector of objects containing a string
     public func testCallVectorStringObject(
         x: [TestString]?,
         completion: @escaping (Result<TestVectorStringObject, Swift.Error>) -> Void
@@ -14232,6 +14677,7 @@ public final class TdApi {
 
     /// Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Vector of objects to return
+    /// - Returns: The received vector of objects containing a string
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testCallVectorStringObject(x: [TestString]?) async throws -> TestVectorStringObject {
         let query = TestCallVectorStringObject(
@@ -14242,6 +14688,7 @@ public final class TdApi {
 
     /// Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Number to square
+    /// - Returns: The squared received number
     public func testSquareInt(
         x: Int?,
         completion: @escaping (Result<TestInt, Swift.Error>) -> Void
@@ -14254,6 +14701,7 @@ public final class TdApi {
 
     /// Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
     /// - Parameter x: Number to square
+    /// - Returns: The squared received number
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testSquareInt(x: Int?) async throws -> TestInt {
         let query = TestSquareInt(
@@ -14351,6 +14799,7 @@ public final class TdApi {
 
     /// Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
     /// - Parameter error: The error to be returned
+    /// - Returns: The specified error and ensures that the Error object is used
     public func testReturnError(
         error: Error?,
         completion: @escaping (Result<Error, Swift.Error>) -> Void
@@ -14363,6 +14812,7 @@ public final class TdApi {
 
     /// Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
     /// - Parameter error: The error to be returned
+    /// - Returns: The specified error and ensures that the Error object is used
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func testReturnError(error: Error?) async throws -> Error {
         let query = TestReturnError(
