@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-b8bd39dc
-//  https://github.com/tdlib/td/tree/b8bd39dc
+//  Based on TDLib 1.8.4-0bdd15fe
+//  https://github.com/tdlib/td/tree/0bdd15fe
 //
 
 import Foundation
@@ -2064,11 +2064,11 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
-    /// - Returns: The results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: The results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public func searchCallMessages(
         fromMessageId: Int64?,
         limit: Int?,
@@ -2083,11 +2083,11 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
-    /// - Returns: The results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: The results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchCallMessages(
         fromMessageId: Int64?,
@@ -11459,14 +11459,14 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
+    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
     /// - Parameter chatId: Chat identifier
     /// - Parameter filters: The types of events to return; pass null to get chat events of all types
     /// - Parameter fromEventId: Identifier of an event from which to return results. Use 0 to get results from the latest events
     /// - Parameter limit: The maximum number of events to return; up to 100
     /// - Parameter query: Search query by which to filter events
     /// - Parameter userIds: User identifiers by which to filter events. By default, events relating to all users will be returned
-    /// - Returns: A list of service actions taken by chat members and administrators in the last 48 hours. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
+    /// - Returns: A list of service actions taken by chat members and administrators in the last 48 hours. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
     public func getChatEventLog(
         chatId: Int64?,
         filters: ChatEventLogFilters?,
@@ -11487,14 +11487,14 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
+    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
     /// - Parameter chatId: Chat identifier
     /// - Parameter filters: The types of events to return; pass null to get chat events of all types
     /// - Parameter fromEventId: Identifier of an event from which to return results. Use 0 to get results from the latest events
     /// - Parameter limit: The maximum number of events to return; up to 100
     /// - Parameter query: Search query by which to filter events
     /// - Parameter userIds: User identifiers by which to filter events. By default, events relating to all users will be returned
-    /// - Returns: A list of service actions taken by chat members and administrators in the last 48 hours. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
+    /// - Returns: A list of service actions taken by chat members and administrators in the last 48 hours. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatEventLog(
         chatId: Int64?,

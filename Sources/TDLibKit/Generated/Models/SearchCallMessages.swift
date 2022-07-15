@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-b8bd39dc
-//  https://github.com/tdlib/td/tree/b8bd39dc
+//  Based on TDLib 1.8.4-0bdd15fe
+//  https://github.com/tdlib/td/tree/0bdd15fe
 //
 
 import Foundation
 
 
-/// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+/// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 public struct SearchCallMessages: Codable, Equatable {
 
     /// Identifier of the message from which to search; use 0 to get results from the last message

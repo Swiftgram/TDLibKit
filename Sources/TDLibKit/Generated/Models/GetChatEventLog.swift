@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-b8bd39dc
-//  https://github.com/tdlib/td/tree/b8bd39dc
+//  Based on TDLib 1.8.4-0bdd15fe
+//  https://github.com/tdlib/td/tree/0bdd15fe
 //
 
 import Foundation
 
 
-/// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
+/// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
 public struct GetChatEventLog: Codable, Equatable {
 
     /// Chat identifier
