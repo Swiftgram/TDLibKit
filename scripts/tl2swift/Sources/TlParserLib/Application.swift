@@ -106,8 +106,12 @@ public final class Application {
     
     private func enumsImplementation(output: URL) throws -> [Implementation] {
         var impls = [Implementation]()
+        let indirectEvaluator = IndirectEnumsEvaluator(schema: schema)
+        indirectEvaluator.evaluate()
         for enumInfo in schema.enumInfoes {
-            let composer = EnumComposer(enumInfo: enumInfo, schema: schema)
+            let composer = EnumComposer(enumInfo: enumInfo,
+                                        schema: schema,
+                                        indirectEvaluator: indirectEvaluator)
             let impl = try composer.composeEntityUtilityImplementation(
                 forEntityName: enumInfo.enumType,
                 projectName: Constants.project,

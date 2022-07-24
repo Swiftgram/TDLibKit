@@ -13,20 +13,23 @@ final class EnumComposer: Composer {
     
     private let enumInfo: EnumInfo
     private let schema: Schema
-    
+    private let indirectEvaluator: IndirectEnumsEvaluator
     
     // MARK: - Init
     
-    init(enumInfo: EnumInfo, schema: Schema) {
+    init(enumInfo: EnumInfo,
+         schema: Schema,
+         indirectEvaluator: IndirectEnumsEvaluator) {
         self.enumInfo = enumInfo
         self.schema = schema
+        self.indirectEvaluator = indirectEvaluator
     }
     
     
     // MARK: - Override
     
     override public func composeUtilitySourceCode() throws -> String {
-        let indirect = isIndirect(enumInfo.enumType) ? "indirect " : ""
+        let indirect = indirectEvaluator.isIndirect(enumInfo) ? "indirect " : ""
         let cases = composeCaseItems(enumInfo.items)
         let kinds = composeKindItems(enumInfo.items)
         let decoder = composeDecoder(enumInfo.items)
