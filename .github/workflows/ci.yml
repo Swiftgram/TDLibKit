@@ -70,7 +70,7 @@ jobs:
 
       - name: Run Generator
         working-directory: scripts/tl2swift
-        run: swift run tl2swift ../../td_api.tl ../../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
+        run: rm -rf ../../Sources/TDLibKit/Generated && swift run tl2swift ../../td_api.tl ../../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
 
       - name: Commit Files
         if: github.ref == 'refs/heads/main'
