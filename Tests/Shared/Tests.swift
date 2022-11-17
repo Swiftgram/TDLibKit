@@ -61,33 +61,32 @@ class TDLibKitTests: XCTestCase {
             return
         }
         let tdlibPath = cachesUrl.appendingPathComponent("tdlib", isDirectory: true).path
-        let params = TdlibParameters(
-            apiHash: "5e6d7b36f0e363cf0c07baf2deb26076", // https://core.telegram.org/api/obtaining_api_id
-            apiId: 287311,
-            applicationVersion: "1.0",
-            databaseDirectory: tdlibPath,
-            deviceModel: "iOS",
-            enableStorageOptimizer: true,
-            filesDirectory: "",
-            ignoreFileNames: true,
-            systemLanguageCode: "en",
-            systemVersion: "Unknown",
-            useChatInfoDatabase: true,
-            useFileDatabase: true,
-            useMessageDatabase: true,
-            useSecretChats: true,
-            useTestDc: false)
         
         let _ = Task {
-            let _ = try! await api.setTdlibParameters(parameters: params)
+            let _ = try! await api.setTdlibParameters(
+                apiHash: "5e6d7b36f0e363cf0c07baf2deb26076", // https://core.telegram.org/api/obtaining_api_id
+                apiId: 287311,
+                applicationVersion: "1.0",
+                databaseDirectory: tdlibPath,
+                databaseEncryptionKey: nil,
+                deviceModel: "iOS",
+                enableStorageOptimizer: true,
+                filesDirectory: "",
+                ignoreFileNames: true,
+                systemLanguageCode: "en",
+                systemVersion: "Unknown",
+                useChatInfoDatabase: true,
+                useFileDatabase: true,
+                useMessageDatabase: true,
+                useSecretChats: true,
+                useTestDc: false)
             let authState = try! await api.getAuthorizationState()
             switch (authState) {
-            case .authorizationStateWaitEncryptionKey:
+            case .authorizationStateWaitPhoneNumber:
                 break
             default:
                 XCTFail("Auth state is not ready. It's \(authState)")
             }
-            let _ = try! await api.checkDatabaseEncryptionKey(encryptionKey: nil)
         }
     }
     
