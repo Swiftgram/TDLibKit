@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetPassportAuthorizationFormAvailableElements: Codable, Equatable 
     /// Authorization form identifier
     public let autorizationFormId: Int?
 
-    /// Password of the current user
+    /// The 2-step verification password of the current user
     public let password: String?
 
 

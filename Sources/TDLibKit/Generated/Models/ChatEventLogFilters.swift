@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents a set of filters used to obtain a chat event log
 public struct ChatEventLogFilters: Codable, Equatable {
+
+    /// True, if forum-related actions need to be returned
+    public let forumChanges: Bool
 
     /// True, if changes in chat information need to be returned
     public let infoChanges: Bool
@@ -51,6 +54,7 @@ public struct ChatEventLogFilters: Codable, Equatable {
 
 
     public init(
+        forumChanges: Bool,
         infoChanges: Bool,
         inviteLinkChanges: Bool,
         memberInvites: Bool,
@@ -64,6 +68,7 @@ public struct ChatEventLogFilters: Codable, Equatable {
         settingChanges: Bool,
         videoChatChanges: Bool
     ) {
+        self.forumChanges = forumChanges
         self.infoChanges = infoChanges
         self.inviteLinkChanges = inviteLinkChanges
         self.memberInvites = memberInvites

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -39,45 +39,115 @@ public final class TdApi {
     }
 
     /// Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
-    /// - Parameter parameters: Parameters for TDLib initialization
+    /// - Parameter apiHash: Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+    /// - Parameter apiId: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+    /// - Parameter applicationVersion: Application version; must be non-empty
+    /// - Parameter databaseDirectory: The path to the directory for the persistent database; if empty, the current working directory will be used
+    /// - Parameter databaseEncryptionKey: Encryption key for the database
+    /// - Parameter deviceModel: Model of the device the application is being run on; must be non-empty
+    /// - Parameter enableStorageOptimizer: Pass true to automatically delete old files in background
+    /// - Parameter filesDirectory: The path to the directory for storing files; if empty, database_directory will be used
+    /// - Parameter ignoreFileNames: Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
+    /// - Parameter systemLanguageCode: IETF language tag of the user's operating system language; must be non-empty
+    /// - Parameter systemVersion: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+    /// - Parameter useChatInfoDatabase: Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
+    /// - Parameter useFileDatabase: Pass true to keep information about downloaded and uploaded files between application restarts
+    /// - Parameter useMessageDatabase: Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database
+    /// - Parameter useSecretChats: Pass true to enable support for secret chats
+    /// - Parameter useTestDc: Pass true to use Telegram test environment instead of the production environment
     public func setTdlibParameters(
-        parameters: TdlibParameters?,
+        apiHash: String?,
+        apiId: Int?,
+        applicationVersion: String?,
+        databaseDirectory: String?,
+        databaseEncryptionKey: Data?,
+        deviceModel: String?,
+        enableStorageOptimizer: Bool?,
+        filesDirectory: String?,
+        ignoreFileNames: Bool?,
+        systemLanguageCode: String?,
+        systemVersion: String?,
+        useChatInfoDatabase: Bool?,
+        useFileDatabase: Bool?,
+        useMessageDatabase: Bool?,
+        useSecretChats: Bool?,
+        useTestDc: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetTdlibParameters(
-            parameters: parameters
+            apiHash: apiHash,
+            apiId: apiId,
+            applicationVersion: applicationVersion,
+            databaseDirectory: databaseDirectory,
+            databaseEncryptionKey: databaseEncryptionKey,
+            deviceModel: deviceModel,
+            enableStorageOptimizer: enableStorageOptimizer,
+            filesDirectory: filesDirectory,
+            ignoreFileNames: ignoreFileNames,
+            systemLanguageCode: systemLanguageCode,
+            systemVersion: systemVersion,
+            useChatInfoDatabase: useChatInfoDatabase,
+            useFileDatabase: useFileDatabase,
+            useMessageDatabase: useMessageDatabase,
+            useSecretChats: useSecretChats,
+            useTestDc: useTestDc
         )
         execute(query: query, completion: completion)
     }
 
     /// Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
-    /// - Parameter parameters: Parameters for TDLib initialization
+    /// - Parameter apiHash: Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+    /// - Parameter apiId: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+    /// - Parameter applicationVersion: Application version; must be non-empty
+    /// - Parameter databaseDirectory: The path to the directory for the persistent database; if empty, the current working directory will be used
+    /// - Parameter databaseEncryptionKey: Encryption key for the database
+    /// - Parameter deviceModel: Model of the device the application is being run on; must be non-empty
+    /// - Parameter enableStorageOptimizer: Pass true to automatically delete old files in background
+    /// - Parameter filesDirectory: The path to the directory for storing files; if empty, database_directory will be used
+    /// - Parameter ignoreFileNames: Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
+    /// - Parameter systemLanguageCode: IETF language tag of the user's operating system language; must be non-empty
+    /// - Parameter systemVersion: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+    /// - Parameter useChatInfoDatabase: Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
+    /// - Parameter useFileDatabase: Pass true to keep information about downloaded and uploaded files between application restarts
+    /// - Parameter useMessageDatabase: Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database
+    /// - Parameter useSecretChats: Pass true to enable support for secret chats
+    /// - Parameter useTestDc: Pass true to use Telegram test environment instead of the production environment
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func setTdlibParameters(parameters: TdlibParameters?) async throws -> Ok {
+    public func setTdlibParameters(
+        apiHash: String?,
+        apiId: Int?,
+        applicationVersion: String?,
+        databaseDirectory: String?,
+        databaseEncryptionKey: Data?,
+        deviceModel: String?,
+        enableStorageOptimizer: Bool?,
+        filesDirectory: String?,
+        ignoreFileNames: Bool?,
+        systemLanguageCode: String?,
+        systemVersion: String?,
+        useChatInfoDatabase: Bool?,
+        useFileDatabase: Bool?,
+        useMessageDatabase: Bool?,
+        useSecretChats: Bool?,
+        useTestDc: Bool?
+    ) async throws -> Ok {
         let query = SetTdlibParameters(
-            parameters: parameters
-        )
-        return try await execute(query: query)
-    }
-
-    /// Checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey
-    /// - Parameter encryptionKey: Encryption key to check or set up
-    public func checkDatabaseEncryptionKey(
-        encryptionKey: Data?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = CheckDatabaseEncryptionKey(
-            encryptionKey: encryptionKey
-        )
-        execute(query: query, completion: completion)
-    }
-
-    /// Checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey
-    /// - Parameter encryptionKey: Encryption key to check or set up
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func checkDatabaseEncryptionKey(encryptionKey: Data?) async throws -> Ok {
-        let query = CheckDatabaseEncryptionKey(
-            encryptionKey: encryptionKey
+            apiHash: apiHash,
+            apiId: apiId,
+            applicationVersion: applicationVersion,
+            databaseDirectory: databaseDirectory,
+            databaseEncryptionKey: databaseEncryptionKey,
+            deviceModel: deviceModel,
+            enableStorageOptimizer: enableStorageOptimizer,
+            filesDirectory: filesDirectory,
+            ignoreFileNames: ignoreFileNames,
+            systemLanguageCode: systemLanguageCode,
+            systemVersion: systemVersion,
+            useChatInfoDatabase: useChatInfoDatabase,
+            useFileDatabase: useFileDatabase,
+            useMessageDatabase: useMessageDatabase,
+            useSecretChats: useSecretChats,
+            useTestDc: useTestDc
         )
         return try await execute(query: query)
     }
@@ -112,16 +182,60 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed
+    /// Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
+    /// - Parameter emailAddress: The email address of the user
+    public func setAuthenticationEmailAddress(
+        emailAddress: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetAuthenticationEmailAddress(
+            emailAddress: emailAddress
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
+    /// - Parameter emailAddress: The email address of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setAuthenticationEmailAddress(emailAddress: String?) async throws -> Ok {
+        let query = SetAuthenticationEmailAddress(
+            emailAddress: emailAddress
+        )
+        return try await execute(query: query)
+    }
+
+    /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
     public func resendAuthenticationCode(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResendAuthenticationCode()
         execute(query: query, completion: completion)
     }
 
-    /// Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed
+    /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendAuthenticationCode() async throws -> Ok {
         let query = ResendAuthenticationCode()
+        return try await execute(query: query)
+    }
+
+    /// Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+    /// - Parameter code: Email address authentication to check
+    public func checkAuthenticationEmailCode(
+        code: EmailAddressAuthentication?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckAuthenticationEmailCode(
+            code: code
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+    /// - Parameter code: Email address authentication to check
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func checkAuthenticationEmailCode(code: EmailAddressAuthentication?) async throws -> Ok {
+        let query = CheckAuthenticationEmailCode(
+            code: code
+        )
         return try await execute(query: query)
     }
 
@@ -199,8 +313,8 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
-    /// - Parameter password: The password to check
+    /// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
+    /// - Parameter password: The 2-step verification password to check
     public func checkAuthenticationPassword(
         password: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -211,8 +325,8 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
-    /// - Parameter password: The password to check
+    /// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
+    /// - Parameter password: The 2-step verification password to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func checkAuthenticationPassword(password: String?) async throws -> Ok {
         let query = CheckAuthenticationPassword(
@@ -221,20 +335,20 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+    /// Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
     public func requestAuthenticationPasswordRecovery(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = RequestAuthenticationPasswordRecovery()
         execute(query: query, completion: completion)
     }
 
-    /// Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+    /// Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func requestAuthenticationPasswordRecovery() async throws -> Ok {
         let query = RequestAuthenticationPasswordRecovery()
         return try await execute(query: query)
     }
 
-    /// Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
+    /// Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter recoveryCode: Recovery code to check
     public func checkAuthenticationPasswordRecoveryCode(
         recoveryCode: String?,
@@ -246,7 +360,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
+    /// Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter recoveryCode: Recovery code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func checkAuthenticationPasswordRecoveryCode(recoveryCode: String?) async throws -> Ok {
@@ -256,9 +370,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+    /// Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter newHint: New password hint; may be empty
-    /// - Parameter newPassword: New password of the user; may be empty to remove the password
+    /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter recoveryCode: Recovery code to check
     public func recoverAuthenticationPassword(
         newHint: String?,
@@ -274,9 +388,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+    /// Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter newHint: New password hint; may be empty
-    /// - Parameter newPassword: New password of the user; may be empty to remove the password
+    /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter recoveryCode: Recovery code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func recoverAuthenticationPassword(
@@ -429,11 +543,11 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+    /// Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
     /// - Parameter newHint: New password hint; may be empty
-    /// - Parameter newPassword: New password of the user; may be empty to remove the password
+    /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter newRecoveryEmailAddress: New recovery email address; may be empty
-    /// - Parameter oldPassword: Previous password of the user
+    /// - Parameter oldPassword: Previous 2-step verification password of the user
     /// - Parameter setRecoveryEmailAddress: Pass true to change also the recovery email address
     public func setPassword(
         newHint: String?,
@@ -453,11 +567,11 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+    /// Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
     /// - Parameter newHint: New password hint; may be empty
-    /// - Parameter newPassword: New password of the user; may be empty to remove the password
+    /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter newRecoveryEmailAddress: New recovery email address; may be empty
-    /// - Parameter oldPassword: Previous password of the user
+    /// - Parameter oldPassword: Previous 2-step verification password of the user
     /// - Parameter setRecoveryEmailAddress: Pass true to change also the recovery email address
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setPassword(
@@ -477,8 +591,65 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Changes the login email address of the user. The change will not be applied until the new login email address is confirmed with `checkLoginEmailAddressCode`. To use Apple ID/Google ID instead of a email address, call `checkLoginEmailAddressCode` directly
+    /// - Parameter newLoginEmailAddress: New login email address
+    public func setLoginEmailAddress(
+        newLoginEmailAddress: String?,
+        completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = SetLoginEmailAddress(
+            newLoginEmailAddress: newLoginEmailAddress
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the login email address of the user. The change will not be applied until the new login email address is confirmed with `checkLoginEmailAddressCode`. To use Apple ID/Google ID instead of a email address, call `checkLoginEmailAddressCode` directly
+    /// - Parameter newLoginEmailAddress: New login email address
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setLoginEmailAddress(newLoginEmailAddress: String?) async throws -> EmailAddressAuthenticationCodeInfo {
+        let query = SetLoginEmailAddress(
+            newLoginEmailAddress: newLoginEmailAddress
+        )
+        return try await execute(query: query)
+    }
+
+    /// Resends the login email address verification code
+    public func resendLoginEmailAddressCode(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+        let query = ResendLoginEmailAddressCode()
+        execute(query: query, completion: completion)
+    }
+
+    /// Resends the login email address verification code
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func resendLoginEmailAddressCode() async throws -> EmailAddressAuthenticationCodeInfo {
+        let query = ResendLoginEmailAddressCode()
+        return try await execute(query: query)
+    }
+
+    /// Checks the login email address authentication
+    /// - Parameter code: Email address authentication to check
+    public func checkLoginEmailAddressCode(
+        code: EmailAddressAuthentication?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckLoginEmailAddressCode(
+            code: code
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Checks the login email address authentication
+    /// - Parameter code: Email address authentication to check
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func checkLoginEmailAddressCode(code: EmailAddressAuthentication?) async throws -> Ok {
+        let query = CheckLoginEmailAddressCode(
+            code: code
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
-    /// - Parameter password: The password for the current user
+    /// - Parameter password: The 2-step verification password for the current user
     /// - Returns: A 2-step verification recovery email address that was previously set up
     public func getRecoveryEmailAddress(
         password: String?,
@@ -491,7 +662,7 @@ public final class TdApi {
     }
 
     /// Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
-    /// - Parameter password: The password for the current user
+    /// - Parameter password: The 2-step verification password for the current user
     /// - Returns: A 2-step verification recovery email address that was previously set up
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecoveryEmailAddress(password: String?) async throws -> RecoveryEmailAddress {
@@ -503,7 +674,7 @@ public final class TdApi {
 
     /// Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
     /// - Parameter newRecoveryEmailAddress: New recovery email address
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     public func setRecoveryEmailAddress(
         newRecoveryEmailAddress: String?,
         password: String?,
@@ -518,7 +689,7 @@ public final class TdApi {
 
     /// Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
     /// - Parameter newRecoveryEmailAddress: New recovery email address
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setRecoveryEmailAddress(
         newRecoveryEmailAddress: String?,
@@ -603,7 +774,7 @@ public final class TdApi {
 
     /// Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
     /// - Parameter newHint: New password hint; may be empty
-    /// - Parameter newPassword: New password of the user; may be empty to remove the password
+    /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter recoveryCode: Recovery code to check
     public func recoverPassword(
         newHint: String?,
@@ -621,7 +792,7 @@ public final class TdApi {
 
     /// Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
     /// - Parameter newHint: New password hint; may be empty
-    /// - Parameter newPassword: New password of the user; may be empty to remove the password
+    /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter recoveryCode: Recovery code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func recoverPassword(
@@ -664,7 +835,7 @@ public final class TdApi {
     }
 
     /// Creates a new temporary password for processing payments
-    /// - Parameter password: Persistent user password
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter validFor: Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
     public func createTemporaryPassword(
         password: String?,
@@ -679,7 +850,7 @@ public final class TdApi {
     }
 
     /// Creates a new temporary password for processing payments
-    /// - Parameter password: Persistent user password
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter validFor: Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createTemporaryPassword(
@@ -979,10 +1150,10 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
+    /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
+    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -995,10 +1166,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
+    /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
+    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -1850,7 +2021,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the username and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
+    /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     public func deleteChat(
         chatId: Int64?,
@@ -1862,7 +2033,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the username and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
+    /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func deleteChat(chatId: Int64?) async throws -> Ok {
@@ -1872,7 +2043,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
@@ -1906,7 +2077,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
@@ -2355,6 +2526,50 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+    /// - Parameter chatId: Identifier of the chat in which to find message position
+    /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+    /// - Parameter messageId: Message identifier
+    /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
+    /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
+    public func getChatMessagePosition(
+        chatId: Int64?,
+        filter: SearchMessagesFilter?,
+        messageId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Count, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatMessagePosition(
+            chatId: chatId,
+            filter: filter,
+            messageId: messageId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+    /// - Parameter chatId: Identifier of the chat in which to find message position
+    /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+    /// - Parameter messageId: Message identifier
+    /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
+    /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatMessagePosition(
+        chatId: Int64?,
+        filter: SearchMessagesFilter?,
+        messageId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> Count {
+        let query = GetChatMessagePosition(
+            chatId: chatId,
+            filter: filter,
+            messageId: messageId,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter chatId: Chat identifier
     /// - Returns: All scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -2423,25 +2638,25 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
+    /// Returns sponsored messages to be shown in a chat; for channel chats only
     /// - Parameter chatId: Identifier of the chat
-    /// - Returns: Sponsored message to be shown in a chat. Returns a 404 error if there is no sponsored message in the chat
-    public func getChatSponsoredMessage(
+    /// - Returns: Sponsored messages to be shown in a chat
+    public func getChatSponsoredMessages(
         chatId: Int64?,
-        completion: @escaping (Result<SponsoredMessage, Swift.Error>) -> Void
+        completion: @escaping (Result<SponsoredMessages, Swift.Error>) -> Void
     ) throws {
-        let query = GetChatSponsoredMessage(
+        let query = GetChatSponsoredMessages(
             chatId: chatId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
+    /// Returns sponsored messages to be shown in a chat; for channel chats only
     /// - Parameter chatId: Identifier of the chat
-    /// - Returns: Sponsored message to be shown in a chat. Returns a 404 error if there is no sponsored message in the chat
+    /// - Returns: Sponsored messages to be shown in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatSponsoredMessage(chatId: Int64?) async throws -> SponsoredMessage {
-        let query = GetChatSponsoredMessage(
+    public func getChatSponsoredMessages(chatId: Int64?) async throws -> SponsoredMessages {
+        let query = GetChatSponsoredMessages(
             chatId: chatId
         )
         return try await execute(query: query)
@@ -2510,14 +2725,14 @@ public final class TdApi {
     /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
-    /// - Parameter forComment: Pass true to create a link to the message as a channel post comment, or from a message thread
+    /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
     /// - Returns: An HTTPS link to a message in a chat
     public func getMessageLink(
         chatId: Int64?,
         forAlbum: Bool?,
-        forComment: Bool?,
+        inMessageThread: Bool?,
         mediaTimestamp: Int?,
         messageId: Int64?,
         completion: @escaping (Result<MessageLink, Swift.Error>) -> Void
@@ -2525,7 +2740,7 @@ public final class TdApi {
         let query = GetMessageLink(
             chatId: chatId,
             forAlbum: forAlbum,
-            forComment: forComment,
+            inMessageThread: inMessageThread,
             mediaTimestamp: mediaTimestamp,
             messageId: messageId
         )
@@ -2535,7 +2750,7 @@ public final class TdApi {
     /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
-    /// - Parameter forComment: Pass true to create a link to the message as a channel post comment, or from a message thread
+    /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
     /// - Returns: An HTTPS link to a message in a chat
@@ -2543,14 +2758,14 @@ public final class TdApi {
     public func getMessageLink(
         chatId: Int64?,
         forAlbum: Bool?,
-        forComment: Bool?,
+        inMessageThread: Bool?,
         mediaTimestamp: Int?,
         messageId: Int64?
     ) async throws -> MessageLink {
         let query = GetMessageLink(
             chatId: chatId,
             forAlbum: forAlbum,
-            forComment: forComment,
+            inMessageThread: inMessageThread,
             mediaTimestamp: mediaTimestamp,
             messageId: messageId
         )
@@ -2657,10 +2872,10 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     public func recognizeSpeech(
         chatId: Int64?,
         messageId: Int64?,
@@ -2673,10 +2888,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func recognizeSpeech(
         chatId: Int64?,
@@ -2689,7 +2904,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Rates recognized speech in a voice note message
+    /// Rates recognized speech in a video note or a voice note message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isGood: Pass true if the speech recognition is good
     /// - Parameter messageId: Identifier of the message
@@ -2707,7 +2922,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Rates recognized speech in a voice note message
+    /// Rates recognized speech in a video note or a voice note message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isGood: Pass true if the speech recognition is good
     /// - Parameter messageId: Identifier of the message
@@ -2730,7 +2945,7 @@ public final class TdApi {
     /// - Returns: List of message sender identifiers, which can be used to send messages in a chat
     public func getChatAvailableMessageSenders(
         chatId: Int64?,
-        completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
+        completion: @escaping (Result<ChatMessageSenders, Swift.Error>) -> Void
     ) throws {
         let query = GetChatAvailableMessageSenders(
             chatId: chatId
@@ -2742,7 +2957,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Returns: List of message sender identifiers, which can be used to send messages in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatAvailableMessageSenders(chatId: Int64?) async throws -> MessageSenders {
+    public func getChatAvailableMessageSenders(chatId: Int64?) async throws -> ChatMessageSenders {
         let query = GetChatAvailableMessageSenders(
             chatId: chatId
         )
@@ -2995,6 +3210,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter onlyPreview: Pass true to get fake messages instead of actually forwarding them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
@@ -3004,6 +3220,7 @@ public final class TdApi {
         chatId: Int64?,
         fromChatId: Int64?,
         messageIds: [Int64]?,
+        messageThreadId: Int64?,
         onlyPreview: Bool?,
         options: MessageSendOptions?,
         removeCaption: Bool?,
@@ -3014,6 +3231,7 @@ public final class TdApi {
             chatId: chatId,
             fromChatId: fromChatId,
             messageIds: messageIds,
+            messageThreadId: messageThreadId,
             onlyPreview: onlyPreview,
             options: options,
             removeCaption: removeCaption,
@@ -3026,6 +3244,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter onlyPreview: Pass true to get fake messages instead of actually forwarding them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
@@ -3036,6 +3255,7 @@ public final class TdApi {
         chatId: Int64?,
         fromChatId: Int64?,
         messageIds: [Int64]?,
+        messageThreadId: Int64?,
         onlyPreview: Bool?,
         options: MessageSendOptions?,
         removeCaption: Bool?,
@@ -3045,6 +3265,7 @@ public final class TdApi {
             chatId: chatId,
             fromChatId: fromChatId,
             messageIds: messageIds,
+            messageThreadId: messageThreadId,
             onlyPreview: onlyPreview,
             options: options,
             removeCaption: removeCaption,
@@ -3713,76 +3934,335 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
-    /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter messageId: Identifier of the message
-    /// - Returns: Reactions, which can be added to a message. The method will return Premium reactions, even the current user has no Premium subscription
-    public func getMessageAvailableReactions(
+    /// Returns list of custom emojis, which can be used as forum topic icon by all users
+    /// - Returns: List of custom emojis, which can be used as forum topic icon by all users
+    public func getForumTopicDefaultIcons(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetForumTopicDefaultIcons()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns list of custom emojis, which can be used as forum topic icon by all users
+    /// - Returns: List of custom emojis, which can be used as forum topic icon by all users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getForumTopicDefaultIcons() async throws -> Stickers {
+        let query = GetForumTopicDefaultIcons()
+        return try await execute(query: query)
+    }
+
+    /// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter icon: Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// - Parameter name: Name of the topic; 1-128 characters
+    public func createForumTopic(
         chatId: Int64?,
-        messageId: Int64?,
-        completion: @escaping (Result<AvailableReactions, Swift.Error>) -> Void
+        icon: ForumTopicIcon?,
+        name: String?,
+        completion: @escaping (Result<ForumTopicInfo, Swift.Error>) -> Void
     ) throws {
-        let query = GetMessageAvailableReactions(
+        let query = CreateForumTopic(
             chatId: chatId,
-            messageId: messageId
+            icon: icon,
+            name: name
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
-    /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter messageId: Identifier of the message
-    /// - Returns: Reactions, which can be added to a message. The method will return Premium reactions, even the current user has no Premium subscription
+    /// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter icon: Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// - Parameter name: Name of the topic; 1-128 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getMessageAvailableReactions(
+    public func createForumTopic(
         chatId: Int64?,
-        messageId: Int64?
-    ) async throws -> AvailableReactions {
-        let query = GetMessageAvailableReactions(
+        icon: ForumTopicIcon?,
+        name: String?
+    ) async throws -> ForumTopicInfo {
+        let query = CreateForumTopic(
             chatId: chatId,
-            messageId: messageId
+            icon: icon,
+            name: name
         )
         return try await execute(query: query)
     }
 
-    /// Changes chosen reaction for a message
-    /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isBig: Pass true if the reaction is added with a big animation
-    /// - Parameter messageId: Identifier of the message
-    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen non-big reaction to remove the reaction
-    public func setMessageReaction(
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Parameter name: New name of the topic; 1-128 characters
+    public func editForumTopic(
         chatId: Int64?,
-        isBig: Bool?,
-        messageId: Int64?,
-        reaction: String?,
+        iconCustomEmojiId: TdInt64?,
+        messageThreadId: Int64?,
+        name: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetMessageReaction(
+        let query = EditForumTopic(
             chatId: chatId,
-            isBig: isBig,
-            messageId: messageId,
-            reaction: reaction
+            iconCustomEmojiId: iconCustomEmojiId,
+            messageThreadId: messageThreadId,
+            name: name
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes chosen reaction for a message
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Parameter name: New name of the topic; 1-128 characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editForumTopic(
+        chatId: Int64?,
+        iconCustomEmojiId: TdInt64?,
+        messageThreadId: Int64?,
+        name: String?
+    ) async throws -> Ok {
+        let query = EditForumTopic(
+            chatId: chatId,
+            iconCustomEmojiId: iconCustomEmojiId,
+            messageThreadId: messageThreadId,
+            name: name
+        )
+        return try await execute(query: query)
+    }
+
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    public func toggleForumTopicIsClosed(
+        chatId: Int64?,
+        isClosed: Bool?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleForumTopicIsClosed(
+            chatId: chatId,
+            isClosed: isClosed,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleForumTopicIsClosed(
+        chatId: Int64?,
+        isClosed: Bool?,
+        messageThreadId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleForumTopicIsClosed(
+            chatId: chatId,
+            isClosed: isClosed,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Deletes all messages in a forum topic; requires can_delete_messages administrator rights in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    public func deleteForumTopic(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteForumTopic(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Deletes all messages in a forum topic; requires can_delete_messages administrator rights in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func deleteForumTopic(
+        chatId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> Ok {
+        let query = DeleteForumTopic(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+    /// - Parameter emoji: Text representation of the reaction
+    /// - Returns: Information about a emoji reaction. Returns a 404 error if the reaction is not found
+    public func getEmojiReaction(
+        emoji: String?,
+        completion: @escaping (Result<EmojiReaction, Swift.Error>) -> Void
+    ) throws {
+        let query = GetEmojiReaction(
+            emoji: emoji
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+    /// - Parameter emoji: Text representation of the reaction
+    /// - Returns: Information about a emoji reaction. Returns a 404 error if the reaction is not found
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getEmojiReaction(emoji: String?) async throws -> EmojiReaction {
+        let query = GetEmojiReaction(
+            emoji: emoji
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns TGS stickers with generic animations for custom emoji reactions
+    /// - Returns: TGS stickers with generic animations for custom emoji reactions
+    public func getCustomEmojiReactionAnimations(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetCustomEmojiReactionAnimations()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns TGS stickers with generic animations for custom emoji reactions
+    /// - Returns: TGS stickers with generic animations for custom emoji reactions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getCustomEmojiReactionAnimations() async throws -> Stickers {
+        let query = GetCustomEmojiReactionAnimations()
+        return try await execute(query: query)
+    }
+
+    /// Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter rowSize: Number of reaction per row, 5-25
+    /// - Returns: Reactions, which can be added to a message
+    public func getMessageAvailableReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        rowSize: Int?,
+        completion: @escaping (Result<AvailableReactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageAvailableReactions(
+            chatId: chatId,
+            messageId: messageId,
+            rowSize: rowSize
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter rowSize: Number of reaction per row, 5-25
+    /// - Returns: Reactions, which can be added to a message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getMessageAvailableReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        rowSize: Int?
+    ) async throws -> AvailableReactions {
+        let query = GetMessageAvailableReactions(
+            chatId: chatId,
+            messageId: messageId,
+            rowSize: rowSize
+        )
+        return try await execute(query: query)
+    }
+
+    /// Clears the list of recently used reactions
+    public func clearRecentReactions(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ClearRecentReactions()
+        execute(query: query, completion: completion)
+    }
+
+    /// Clears the list of recently used reactions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func clearRecentReactions() async throws -> Ok {
+        let query = ClearRecentReactions()
+        return try await execute(query: query)
+    }
+
+    /// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen non-big reaction to remove the reaction
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func setMessageReaction(
+    /// - Parameter reactionType: Type of the reaction to add
+    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
+    public func addMessageReaction(
         chatId: Int64?,
         isBig: Bool?,
         messageId: Int64?,
-        reaction: String?
-    ) async throws -> Ok {
-        let query = SetMessageReaction(
+        reactionType: ReactionType?,
+        updateRecentReactions: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddMessageReaction(
             chatId: chatId,
             isBig: isBig,
             messageId: messageId,
-            reaction: reaction
+            reactionType: reactionType,
+            updateRecentReactions: updateRecentReactions
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isBig: Pass true if the reaction is added with a big animation
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reactionType: Type of the reaction to add
+    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addMessageReaction(
+        chatId: Int64?,
+        isBig: Bool?,
+        messageId: Int64?,
+        reactionType: ReactionType?,
+        updateRecentReactions: Bool?
+    ) async throws -> Ok {
+        let query = AddMessageReaction(
+            chatId: chatId,
+            isBig: isBig,
+            messageId: messageId,
+            reactionType: reactionType,
+            updateRecentReactions: updateRecentReactions
+        )
+        return try await execute(query: query)
+    }
+
+    /// Removes a reaction from a message. A chosen reaction can always be removed
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reactionType: Type of the reaction to remove
+    public func removeMessageReaction(
+        chatId: Int64?,
+        messageId: Int64?,
+        reactionType: ReactionType?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveMessageReaction(
+            chatId: chatId,
+            messageId: messageId,
+            reactionType: reactionType
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Removes a reaction from a message. A chosen reaction can always be removed
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reactionType: Type of the reaction to remove
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func removeMessageReaction(
+        chatId: Int64?,
+        messageId: Int64?,
+        reactionType: ReactionType?
+    ) async throws -> Ok {
+        let query = RemoveMessageReaction(
+            chatId: chatId,
+            messageId: messageId,
+            reactionType: reactionType
         )
         return try await execute(query: query)
     }
@@ -3792,14 +4272,14 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
     /// - Parameter messageId: Identifier of the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter reaction: If non-empty, only added reactions with the specified text representation will be returned
+    /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions
     /// - Returns: Reactions added for a message, along with their sender
     public func getMessageAddedReactions(
         chatId: Int64?,
         limit: Int?,
         messageId: Int64?,
         offset: String?,
-        reaction: String?,
+        reactionType: ReactionType?,
         completion: @escaping (Result<AddedReactions, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageAddedReactions(
@@ -3807,7 +4287,7 @@ public final class TdApi {
             limit: limit,
             messageId: messageId,
             offset: offset,
-            reaction: reaction
+            reactionType: reactionType
         )
         execute(query: query, completion: completion)
     }
@@ -3817,7 +4297,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
     /// - Parameter messageId: Identifier of the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter reaction: If non-empty, only added reactions with the specified text representation will be returned
+    /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions
     /// - Returns: Reactions added for a message, along with their sender
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageAddedReactions(
@@ -3825,21 +4305,43 @@ public final class TdApi {
         limit: Int?,
         messageId: Int64?,
         offset: String?,
-        reaction: String?
+        reactionType: ReactionType?
     ) async throws -> AddedReactions {
         let query = GetMessageAddedReactions(
             chatId: chatId,
             limit: limit,
             messageId: messageId,
             offset: offset,
-            reaction: reaction
+            reactionType: reactionType
         )
         return try await execute(query: query)
     }
 
-    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text. Can be called synchronously
+    /// Changes type of default reaction for the current user
+    /// - Parameter reactionType: New type of the default reaction
+    public func setDefaultReactionType(
+        reactionType: ReactionType?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetDefaultReactionType(
+            reactionType: reactionType
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes type of default reaction for the current user
+    /// - Parameter reactionType: New type of the default reaction
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setDefaultReactionType(reactionType: ReactionType?) async throws -> Ok {
+        let query = SetDefaultReactionType(
+            reactionType: reactionType
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entites
-    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text
+    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
     public func getTextEntities(
         text: String?,
         completion: @escaping (Result<TextEntities, Swift.Error>) -> Void
@@ -3850,9 +4352,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text. Can be called synchronously
+    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entites
-    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text
+    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTextEntities(text: String?) async throws -> TextEntities {
         let query = GetTextEntities(
@@ -3861,7 +4363,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     public func parseTextEntities(
@@ -3876,7 +4378,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4454,17 +4956,20 @@ public final class TdApi {
     }
 
     /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
     /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
     public func getWebAppUrl(
+        applicationName: String?,
         botUserId: Int64?,
         theme: ThemeParameters?,
         url: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetWebAppUrl(
+            applicationName: applicationName,
             botUserId: botUserId,
             theme: theme,
             url: url
@@ -4473,17 +4978,20 @@ public final class TdApi {
     }
 
     /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
     /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppUrl(
+        applicationName: String?,
         botUserId: Int64?,
         theme: ThemeParameters?,
         url: String?
     ) async throws -> HttpUrl {
         let query = GetWebAppUrl(
+            applicationName: applicationName,
             botUserId: botUserId,
             theme: theme,
             url: url
@@ -4528,22 +5036,28 @@ public final class TdApi {
     }
 
     /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened
+    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the Web App; 0 if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     public func openWebApp(
+        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
+        messageThreadId: Int64?,
         replyToMessageId: Int64?,
         theme: ThemeParameters?,
         url: String?,
         completion: @escaping (Result<WebAppInfo, Swift.Error>) -> Void
     ) throws {
         let query = OpenWebApp(
+            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
+            messageThreadId: messageThreadId,
             replyToMessageId: replyToMessageId,
             theme: theme,
             url: url
@@ -4552,22 +5066,28 @@ public final class TdApi {
     }
 
     /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened
+    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the Web App; 0 if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func openWebApp(
+        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
+        messageThreadId: Int64?,
         replyToMessageId: Int64?,
         theme: ThemeParameters?,
         url: String?
     ) async throws -> WebAppInfo {
         let query = OpenWebApp(
+            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
+            messageThreadId: messageThreadId,
             replyToMessageId: replyToMessageId,
             theme: theme,
             url: url
@@ -5267,7 +5787,37 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Marks all reactions in a chat as read
+    /// Marks all mentions in a forum topic as read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadId: Message thread identifier in which mentions are marked as read
+    public func readAllMessageThreadMentions(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadAllMessageThreadMentions(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Marks all mentions in a forum topic as read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadId: Message thread identifier in which mentions are marked as read
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func readAllMessageThreadMentions(
+        chatId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> Ok {
+        let query = ReadAllMessageThreadMentions(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Marks all reactions in a chat or a forum topic as read
     /// - Parameter chatId: Chat identifier
     public func readAllChatReactions(
         chatId: Int64?,
@@ -5279,12 +5829,42 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Marks all reactions in a chat as read
+    /// Marks all reactions in a chat or a forum topic as read
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func readAllChatReactions(chatId: Int64?) async throws -> Ok {
         let query = ReadAllChatReactions(
             chatId: chatId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Marks all reactions in a forum topic as read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadId: Message thread identifier in which reactions are marked as read
+    public func readAllMessageThreadReactions(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadAllMessageThreadReactions(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Marks all reactions in a forum topic as read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadId: Message thread identifier in which reactions are marked as read
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func readAllMessageThreadReactions(
+        chatId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> Ok {
+        let query = ReadAllMessageThreadReactions(
+            chatId: chatId,
+            messageThreadId: messageThreadId
         )
         return try await execute(query: query)
     }
@@ -5950,7 +6530,7 @@ public final class TdApi {
 
     /// Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
     /// - Parameter chatId: Chat identifier
-    /// - Parameter notificationSettings: New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
+    /// - Parameter notificationSettings: New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
     public func setChatNotificationSettings(
         chatId: Int64?,
         notificationSettings: ChatNotificationSettings?,
@@ -5965,7 +6545,7 @@ public final class TdApi {
 
     /// Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
     /// - Parameter chatId: Chat identifier
-    /// - Parameter notificationSettings: New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
+    /// - Parameter notificationSettings: New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setChatNotificationSettings(
         chatId: Int64?,
@@ -6069,10 +6649,10 @@ public final class TdApi {
     }
 
     /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active
+    /// - Parameter availableReactions: Reactions available in the chat. All emoji reactions must be active
     /// - Parameter chatId: Identifier of the chat
     public func setChatAvailableReactions(
-        availableReactions: [String]?,
+        availableReactions: ChatAvailableReactions?,
         chatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
@@ -6084,11 +6664,11 @@ public final class TdApi {
     }
 
     /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    /// - Parameter availableReactions: New list of reactions, available in the chat. All reactions must be active
+    /// - Parameter availableReactions: Reactions available in the chat. All emoji reactions must be active
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setChatAvailableReactions(
-        availableReactions: [String]?,
+        availableReactions: ChatAvailableReactions?,
         chatId: Int64?
     ) async throws -> Ok {
         let query = SetChatAvailableReactions(
@@ -6342,6 +6922,36 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier in which messages will be unpinned
+    public func unpinAllMessageThreadMessages(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = UnpinAllMessageThreadMessages(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier in which messages will be unpinned
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func unpinAllMessageThreadMessages(
+        chatId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> Ok {
+        let query = UnpinAllMessageThreadMessages(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
     /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     /// - Parameter chatId: Chat identifier
     /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
@@ -6549,7 +7159,7 @@ public final class TdApi {
 
     /// Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
     /// - Parameter chatId: Chat identifier
-    /// - Parameter password: The password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
     public func transferChatOwnership(
         chatId: Int64?,
@@ -6567,7 +7177,7 @@ public final class TdApi {
 
     /// Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
     /// - Parameter chatId: Chat identifier
-    /// - Parameter password: The password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func transferChatOwnership(
@@ -6615,7 +7225,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
+    /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
     /// - Parameter chatId: Chat identifier
     /// - Parameter filter: The type of users to search for; pass null to search among all chat members
     /// - Parameter limit: The maximum number of users to be returned; up to 200
@@ -6636,7 +7246,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
+    /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
     /// - Parameter chatId: Chat identifier
     /// - Parameter filter: The type of users to search for; pass null to search among all chat members
     /// - Parameter limit: The maximum number of users to be returned; up to 200
@@ -7005,6 +7615,64 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
+    /// - Returns: Up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
+    public func getThemedEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetThemedEmojiStatuses()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
+    /// - Returns: Up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getThemedEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetThemedEmojiStatuses()
+        return try await execute(query: query)
+    }
+
+    /// Returns recent emoji statuses
+    /// - Returns: Recent emoji statuses
+    public func getRecentEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetRecentEmojiStatuses()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns recent emoji statuses
+    /// - Returns: Recent emoji statuses
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getRecentEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetRecentEmojiStatuses()
+        return try await execute(query: query)
+    }
+
+    /// Returns default emoji statuses
+    /// - Returns: Default emoji statuses
+    public func getDefaultEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetDefaultEmojiStatuses()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns default emoji statuses
+    /// - Returns: Default emoji statuses
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDefaultEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetDefaultEmojiStatuses()
+        return try await execute(query: query)
+    }
+
+    /// Clears the list of recently used emoji statuses
+    public func clearRecentEmojiStatuses(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ClearRecentEmojiStatuses()
+        execute(query: query, completion: completion)
+    }
+
+    /// Clears the list of recently used emoji statuses
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func clearRecentEmojiStatuses() async throws -> Ok {
+        let query = ClearRecentEmojiStatuses()
+        return try await execute(query: query)
+    }
+
     /// Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
     /// - Parameter fileId: Identifier of the file to download
     /// - Parameter limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
@@ -7147,17 +7815,17 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
-    /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
-    public func uploadFile(
+    /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
+    public func preliminaryUploadFile(
         file: InputFile?,
         fileType: FileType?,
         priority: Int?,
         completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
-        let query = UploadFile(
+        let query = PreliminaryUploadFile(
             file: file,
             fileType: fileType,
             priority: priority
@@ -7165,17 +7833,17 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
-    /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
+    /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func uploadFile(
+    public func preliminaryUploadFile(
         file: InputFile?,
         fileType: FileType?,
         priority: Int?
     ) async throws -> File {
-        let query = UploadFile(
+        let query = PreliminaryUploadFile(
             file: file,
             fileType: fileType,
             priority: priority
@@ -7183,23 +7851,23 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined
+    /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
     /// - Parameter fileId: Identifier of the file to stop uploading
-    public func cancelUploadFile(
+    public func cancelPreliminaryUploadFile(
         fileId: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = CancelUploadFile(
+        let query = CancelPreliminaryUploadFile(
             fileId: fileId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined
+    /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
     /// - Parameter fileId: Identifier of the file to stop uploading
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func cancelUploadFile(fileId: Int?) async throws -> Ok {
-        let query = CancelUploadFile(
+    public func cancelPreliminaryUploadFile(fileId: Int?) async throws -> Ok {
+        let query = CancelPreliminaryUploadFile(
             fileId: fileId
         )
         return try await execute(query: query)
@@ -9734,41 +10402,53 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
-    /// - Parameter emoji: String representation of emoji. If empty, returns all known installed stickers
+    /// Returns stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+    /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
-    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
+    /// - Parameter query: Search query; an emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// - Parameter stickerType: Type of the stickers to return
+    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     public func getStickers(
-        emoji: String?,
+        chatId: Int64?,
         limit: Int?,
+        query: String?,
+        stickerType: StickerType?,
         completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = GetStickers(
-            emoji: emoji,
-            limit: limit
+            chatId: chatId,
+            limit: limit,
+            query: query,
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
-    /// - Parameter emoji: String representation of emoji. If empty, returns all known installed stickers
+    /// Returns stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+    /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
-    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
+    /// - Parameter query: Search query; an emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// - Parameter stickerType: Type of the stickers to return
+    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStickers(
-        emoji: String?,
-        limit: Int?
+        chatId: Int64?,
+        limit: Int?,
+        query: String?,
+        stickerType: StickerType?
     ) async throws -> Stickers {
         let query = GetStickers(
-            emoji: emoji,
-            limit: limit
+            chatId: chatId,
+            limit: limit,
+            query: query,
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
 
     /// Searches for stickers from public sticker sets that correspond to a given emoji
     /// - Parameter emoji: String representation of emoji; must be non-empty
-    /// - Parameter limit: The maximum number of stickers to be returned
+    /// - Parameter limit: The maximum number of stickers to be returned; 0-100
     public func searchStickers(
         emoji: String?,
         limit: Int?,
@@ -9783,7 +10463,7 @@ public final class TdApi {
 
     /// Searches for stickers from public sticker sets that correspond to a given emoji
     /// - Parameter emoji: String representation of emoji; must be non-empty
-    /// - Parameter limit: The maximum number of stickers to be returned
+    /// - Parameter limit: The maximum number of stickers to be returned; 0-100
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchStickers(
         emoji: String?,
@@ -9791,69 +10471,93 @@ public final class TdApi {
     ) async throws -> Stickers {
         let query = SearchStickers(
             emoji: emoji,
+            limit: limit
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns premium stickers from regular sticker sets
+    /// - Parameter limit: The maximum number of stickers to be returned; 0-100
+    /// - Returns: Premium stickers from regular sticker sets
+    public func getPremiumStickers(
+        limit: Int?,
+        completion: @escaping (Result<Stickers, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPremiumStickers(
+            limit: limit
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns premium stickers from regular sticker sets
+    /// - Parameter limit: The maximum number of stickers to be returned; 0-100
+    /// - Returns: Premium stickers from regular sticker sets
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumStickers(limit: Int?) async throws -> Stickers {
+        let query = GetPremiumStickers(
             limit: limit
         )
         return try await execute(query: query)
     }
 
     /// Returns a list of installed sticker sets
-    /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+    /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of installed sticker sets
     public func getInstalledStickerSets(
-        isMasks: Bool?,
+        stickerType: StickerType?,
         completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetInstalledStickerSets(
-            isMasks: isMasks
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
 
     /// Returns a list of installed sticker sets
-    /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+    /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of installed sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getInstalledStickerSets(isMasks: Bool?) async throws -> StickerSets {
+    public func getInstalledStickerSets(stickerType: StickerType?) async throws -> StickerSets {
         let query = GetInstalledStickerSets(
-            isMasks: isMasks
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
 
     /// Returns a list of archived sticker sets
-    /// - Parameter isMasks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return; up to 100
     /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
+    /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of archived sticker sets
     public func getArchivedStickerSets(
-        isMasks: Bool?,
         limit: Int?,
         offsetStickerSetId: TdInt64?,
+        stickerType: StickerType?,
         completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetArchivedStickerSets(
-            isMasks: isMasks,
             limit: limit,
-            offsetStickerSetId: offsetStickerSetId
+            offsetStickerSetId: offsetStickerSetId,
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
 
     /// Returns a list of archived sticker sets
-    /// - Parameter isMasks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return; up to 100
     /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
+    /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of archived sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getArchivedStickerSets(
-        isMasks: Bool?,
         limit: Int?,
-        offsetStickerSetId: TdInt64?
+        offsetStickerSetId: TdInt64?,
+        stickerType: StickerType?
     ) async throws -> StickerSets {
         let query = GetArchivedStickerSets(
-            isMasks: isMasks,
             limit: limit,
-            offsetStickerSetId: offsetStickerSetId
+            offsetStickerSetId: offsetStickerSetId,
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
@@ -9861,15 +10565,18 @@ public final class TdApi {
     /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     /// - Parameter limit: The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     /// - Parameter offset: The offset from which to return the sticker sets; must be non-negative
+    /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     public func getTrendingStickerSets(
         limit: Int?,
         offset: Int?,
+        stickerType: StickerType?,
         completion: @escaping (Result<TrendingStickerSets, Swift.Error>) -> Void
     ) throws {
         let query = GetTrendingStickerSets(
             limit: limit,
-            offset: offset
+            offset: offset,
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
@@ -9877,15 +10584,18 @@ public final class TdApi {
     /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     /// - Parameter limit: The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     /// - Parameter offset: The offset from which to return the sticker sets; must be non-negative
+    /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTrendingStickerSets(
         limit: Int?,
-        offset: Int?
+        offset: Int?,
+        stickerType: StickerType?
     ) async throws -> TrendingStickerSets {
         let query = GetTrendingStickerSets(
             limit: limit,
-            offset: offset
+            offset: offset,
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
@@ -9961,37 +10671,37 @@ public final class TdApi {
     }
 
     /// Searches for installed sticker sets by looking for specified query in their title and name
-    /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return
     /// - Parameter query: Query to search for
+    /// - Parameter stickerType: Type of the sticker sets to search for
     public func searchInstalledStickerSets(
-        isMasks: Bool?,
         limit: Int?,
         query: String?,
+        stickerType: StickerType?,
         completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
     ) throws {
         let query = SearchInstalledStickerSets(
-            isMasks: isMasks,
             limit: limit,
-            query: query
+            query: query,
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
 
     /// Searches for installed sticker sets by looking for specified query in their title and name
-    /// - Parameter isMasks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return
     /// - Parameter query: Query to search for
+    /// - Parameter stickerType: Type of the sticker sets to search for
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchInstalledStickerSets(
-        isMasks: Bool?,
         limit: Int?,
-        query: String?
+        query: String?,
+        stickerType: StickerType?
     ) async throws -> StickerSets {
         let query = SearchInstalledStickerSets(
-            isMasks: isMasks,
             limit: limit,
-            query: query
+            query: query,
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
@@ -10077,31 +10787,31 @@ public final class TdApi {
     }
 
     /// Changes the order of installed sticker sets
-    /// - Parameter isMasks: Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
     /// - Parameter stickerSetIds: Identifiers of installed sticker sets in the new correct order
+    /// - Parameter stickerType: Type of the sticker sets to reorder
     public func reorderInstalledStickerSets(
-        isMasks: Bool?,
         stickerSetIds: [TdInt64]?,
+        stickerType: StickerType?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ReorderInstalledStickerSets(
-            isMasks: isMasks,
-            stickerSetIds: stickerSetIds
+            stickerSetIds: stickerSetIds,
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
 
     /// Changes the order of installed sticker sets
-    /// - Parameter isMasks: Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
     /// - Parameter stickerSetIds: Identifiers of installed sticker sets in the new correct order
+    /// - Parameter stickerType: Type of the sticker sets to reorder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func reorderInstalledStickerSets(
-        isMasks: Bool?,
-        stickerSetIds: [TdInt64]?
+        stickerSetIds: [TdInt64]?,
+        stickerType: StickerType?
     ) async throws -> Ok {
         let query = ReorderInstalledStickerSets(
-            isMasks: isMasks,
-            stickerSetIds: stickerSetIds
+            stickerSetIds: stickerSetIds,
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
@@ -10130,7 +10840,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
+    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
     /// - Parameter isAttached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     /// - Parameter sticker: Sticker file to add
     public func addRecentSticker(
@@ -10145,7 +10855,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
+    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
     /// - Parameter isAttached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -10227,7 +10937,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
+    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     public func addFavoriteSticker(
         sticker: InputFile?,
@@ -10239,7 +10949,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
+    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addFavoriteSticker(sticker: InputFile?) async throws -> Ok {
@@ -10355,21 +11065,6 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns all emojis, which has a corresponding animated emoji
-    /// - Returns: All emojis, which has a corresponding animated emoji
-    public func getAllAnimatedEmojis(completion: @escaping (Result<Emojis, Swift.Error>) -> Void) throws {
-        let query = GetAllAnimatedEmojis()
-        execute(query: query, completion: completion)
-    }
-
-    /// Returns all emojis, which has a corresponding animated emoji
-    /// - Returns: All emojis, which has a corresponding animated emoji
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getAllAnimatedEmojis() async throws -> Emojis {
-        let query = GetAllAnimatedEmojis()
-        return try await execute(query: query)
-    }
-
     /// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
     /// - Parameter languageCode: Language code for which the emoji replacements will be suggested
     /// - Returns: An HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements
@@ -10390,6 +11085,30 @@ public final class TdApi {
     public func getEmojiSuggestionsUrl(languageCode: String?) async throws -> HttpUrl {
         let query = GetEmojiSuggestionsUrl(
             languageCode: languageCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    /// - Parameter customEmojiIds: Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
+    /// - Returns: List of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    public func getCustomEmojiStickers(
+        customEmojiIds: [TdInt64]?,
+        completion: @escaping (Result<Stickers, Swift.Error>) -> Void
+    ) throws {
+        let query = GetCustomEmojiStickers(
+            customEmojiIds: customEmojiIds
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    /// - Parameter customEmojiIds: Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
+    /// - Returns: List of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getCustomEmojiStickers(customEmojiIds: [TdInt64]?) async throws -> Stickers {
+        let query = GetCustomEmojiStickers(
+            customEmojiIds: customEmojiIds
         )
         return try await execute(query: query)
     }
@@ -10672,8 +11391,8 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the username of the current user
-    /// - Parameter username: The new value of the username. Use an empty string to remove the username
+    /// Changes the editable username of the current user
+    /// - Parameter username: The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     public func setUsername(
         username: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -10684,12 +11403,96 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the username of the current user
-    /// - Parameter username: The new value of the username. Use an empty string to remove the username
+    /// Changes the editable username of the current user
+    /// - Parameter username: The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setUsername(username: String?) async throws -> Ok {
         let query = SetUsername(
             username: username
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    /// - Parameter isActive: Pass true to activate the username; pass false to disable it
+    /// - Parameter username: The username to change
+    /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    public func toggleUsernameIsActive(
+        isActive: Bool?,
+        username: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleUsernameIsActive(
+            isActive: isActive,
+            username: username
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    /// - Parameter isActive: Pass true to activate the username; pass false to disable it
+    /// - Parameter username: The username to change
+    /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleUsernameIsActive(
+        isActive: Bool?,
+        username: String?
+    ) async throws -> Ok {
+        let query = ToggleUsernameIsActive(
+            isActive: isActive,
+            username: username
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes order of active usernames of the current user
+    /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
+    public func reorderActiveUsernames(
+        usernames: [String]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderActiveUsernames(
+            usernames: usernames
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes order of active usernames of the current user
+    /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reorderActiveUsernames(usernames: [String]?) async throws -> Ok {
+        let query = ReorderActiveUsernames(
+            usernames: usernames
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the emoji status of the current user; for Telegram Premium users only
+    /// - Parameter duration: Duration of the status, in seconds; pass 0 to keep the status active until it will be changed manually
+    /// - Parameter emojiStatus: New emoji status; pass null to switch to the default badge
+    public func setEmojiStatus(
+        duration: Int?,
+        emojiStatus: EmojiStatus?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetEmojiStatus(
+            duration: duration,
+            emojiStatus: emojiStatus
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the emoji status of the current user; for Telegram Premium users only
+    /// - Parameter duration: Duration of the status, in seconds; pass 0 to keep the status active until it will be changed manually
+    /// - Parameter emojiStatus: New emoji status; pass null to switch to the default badge
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setEmojiStatus(
+        duration: Int?,
+        emojiStatus: EmojiStatus?
+    ) async throws -> Ok {
+        let query = SetEmojiStatus(
+            duration: duration,
+            emojiStatus: emojiStatus
         )
         return try await execute(query: query)
     }
@@ -10748,13 +11551,13 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    /// Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
     public func resendChangePhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendChangePhoneNumberCode()
         execute(query: query, completion: completion)
     }
 
-    /// Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    /// Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendChangePhoneNumberCode() async throws -> AuthenticationCodeInfo {
         let query = ResendChangePhoneNumberCode()
@@ -11161,9 +11964,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
+    /// Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
     /// - Parameter supergroupId: Identifier of the supergroup or channel
-    /// - Parameter username: New value of the username. Use an empty string to remove the username
+    /// - Parameter username: New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     public func setSupergroupUsername(
         supergroupId: Int64?,
         username: String?,
@@ -11176,9 +11979,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
+    /// Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
     /// - Parameter supergroupId: Identifier of the supergroup or channel
-    /// - Parameter username: New value of the username. Use an empty string to remove the username
+    /// - Parameter username: New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setSupergroupUsername(
         supergroupId: Int64?,
@@ -11191,6 +11994,96 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    /// - Parameter isActive: Pass true to activate the username; pass false to disable it
+    /// - Parameter supergroupId: Identifier of the supergroup or channel
+    /// - Parameter username: The username to change
+    /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    public func toggleSupergroupUsernameIsActive(
+        isActive: Bool?,
+        supergroupId: Int64?,
+        username: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupUsernameIsActive(
+            isActive: isActive,
+            supergroupId: supergroupId,
+            username: username
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    /// - Parameter isActive: Pass true to activate the username; pass false to disable it
+    /// - Parameter supergroupId: Identifier of the supergroup or channel
+    /// - Parameter username: The username to change
+    /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleSupergroupUsernameIsActive(
+        isActive: Bool?,
+        supergroupId: Int64?,
+        username: String?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupUsernameIsActive(
+            isActive: isActive,
+            supergroupId: supergroupId,
+            username: username
+        )
+        return try await execute(query: query)
+    }
+
+    /// Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+    /// - Parameter supergroupId: Identifier of the supergroup or channel
+    public func disableAllSupergroupUsernames(
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DisableAllSupergroupUsernames(
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+    /// - Parameter supergroupId: Identifier of the supergroup or channel
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func disableAllSupergroupUsernames(supergroupId: Int64?) async throws -> Ok {
+        let query = DisableAllSupergroupUsernames(
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+    /// - Parameter supergroupId: Identifier of the supergroup or channel
+    /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
+    public func reorderSupergroupActiveUsernames(
+        supergroupId: Int64?,
+        usernames: [String]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderSupergroupActiveUsernames(
+            supergroupId: supergroupId,
+            usernames: usernames
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+    /// - Parameter supergroupId: Identifier of the supergroup or channel
+    /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reorderSupergroupActiveUsernames(
+        supergroupId: Int64?,
+        usernames: [String]?
+    ) async throws -> Ok {
+        let query = ReorderSupergroupActiveUsernames(
+            supergroupId: supergroupId,
+            usernames: usernames
+        )
+        return try await execute(query: query)
+    }
+
     /// Changes the sticker set of a supergroup; requires can_change_info administrator right
     /// - Parameter stickerSetId: New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
     /// - Parameter supergroupId: Identifier of the supergroup
@@ -11336,6 +12229,36 @@ public final class TdApi {
     ) async throws -> Ok {
         let query = ToggleSupergroupIsAllHistoryAvailable(
             isAllHistoryAvailable: isAllHistoryAvailable,
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
+    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least GetOption("forum_member_count_min") members
+    /// - Parameter supergroupId: Identifier of the supergroup
+    public func toggleSupergroupIsForum(
+        isForum: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupIsForum(
+            isForum: isForum,
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
+    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least GetOption("forum_member_count_min") members
+    /// - Parameter supergroupId: Identifier of the supergroup
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleSupergroupIsForum(
+        isForum: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupIsForum(
+            isForum: isForum,
             supergroupId: supergroupId
         )
         return try await execute(query: query)
@@ -12374,22 +13297,30 @@ public final class TdApi {
     }
 
     /// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
+    /// - Parameter password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
     /// - Parameter reason: The reason why the account was deleted; optional
     public func deleteAccount(
+        password: String?,
         reason: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteAccount(
+            password: password,
             reason: reason
         )
         execute(query: query, completion: completion)
     }
 
     /// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
+    /// - Parameter password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
     /// - Parameter reason: The reason why the account was deleted; optional
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func deleteAccount(reason: String?) async throws -> Ok {
+    public func deleteAccount(
+        password: String?,
+        reason: String?
+    ) async throws -> Ok {
         let query = DeleteAccount(
+            password: password,
             reason: reason
         )
         return try await execute(query: query)
@@ -12497,6 +13428,42 @@ public final class TdApi {
             fileId: fileId,
             reason: reason,
             text: text
+        )
+        return try await execute(query: query)
+    }
+
+    /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Message identifier
+    /// - Parameter senderId: Identifier of the sender, which added the reaction
+    public func reportMessageReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        senderId: MessageSender?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportMessageReactions(
+            chatId: chatId,
+            messageId: messageId,
+            senderId: senderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Message identifier
+    /// - Parameter senderId: Identifier of the sender, which added the reaction
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reportMessageReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        senderId: MessageSender?
+    ) async throws -> Ok {
+        let query = ReportMessageReactions(
+            chatId: chatId,
+            messageId: messageId,
+            senderId: senderId
         )
         return try await execute(query: query)
     }
@@ -12886,7 +13853,7 @@ public final class TdApi {
     }
 
     /// Returns one of the available Telegram Passport elements
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter type: Telegram Passport element type
     /// - Returns: One of the available Telegram Passport elements
     public func getPassportElement(
@@ -12902,7 +13869,7 @@ public final class TdApi {
     }
 
     /// Returns one of the available Telegram Passport elements
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter type: Telegram Passport element type
     /// - Returns: One of the available Telegram Passport elements
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12918,7 +13885,7 @@ public final class TdApi {
     }
 
     /// Returns all available Telegram Passport elements
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: All available Telegram Passport elements
     public func getAllPassportElements(
         password: String?,
@@ -12931,7 +13898,7 @@ public final class TdApi {
     }
 
     /// Returns all available Telegram Passport elements
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: All available Telegram Passport elements
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAllPassportElements(password: String?) async throws -> PassportElements {
@@ -12943,7 +13910,7 @@ public final class TdApi {
 
     /// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     /// - Parameter element: Input Telegram Passport element
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     public func setPassportElement(
         element: InputPassportElement?,
@@ -12959,7 +13926,7 @@ public final class TdApi {
 
     /// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     /// - Parameter element: Input Telegram Passport element
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setPassportElement(
@@ -13079,13 +14046,13 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Re-sends the code to verify a phone number to be added to a user's Telegram Passport
+    /// Resends the code to verify a phone number to be added to a user's Telegram Passport
     public func resendPhoneNumberVerificationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendPhoneNumberVerificationCode()
         execute(query: query, completion: completion)
     }
 
-    /// Re-sends the code to verify a phone number to be added to a user's Telegram Passport
+    /// Resends the code to verify a phone number to be added to a user's Telegram Passport
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendPhoneNumberVerificationCode() async throws -> AuthenticationCodeInfo {
         let query = ResendPhoneNumberVerificationCode()
@@ -13136,13 +14103,13 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Re-sends the code to verify an email address to be added to a user's Telegram Passport
+    /// Resends the code to verify an email address to be added to a user's Telegram Passport
     public func resendEmailAddressVerificationCode(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = ResendEmailAddressVerificationCode()
         execute(query: query, completion: completion)
     }
 
-    /// Re-sends the code to verify an email address to be added to a user's Telegram Passport
+    /// Resends the code to verify an email address to be added to a user's Telegram Passport
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendEmailAddressVerificationCode() async throws -> EmailAddressAuthenticationCodeInfo {
         let query = ResendEmailAddressVerificationCode()
@@ -13217,7 +14184,7 @@ public final class TdApi {
 
     /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
     /// - Parameter autorizationFormId: Authorization form identifier
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: Already available Telegram Passport elements suitable for completing a Telegram Passport authorization form
     public func getPassportAuthorizationFormAvailableElements(
         autorizationFormId: Int?,
@@ -13233,7 +14200,7 @@ public final class TdApi {
 
     /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
     /// - Parameter autorizationFormId: Authorization form identifier
-    /// - Parameter password: Password of the current user
+    /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: Already available Telegram Passport elements suitable for completing a Telegram Passport authorization form
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPassportAuthorizationFormAvailableElements(
@@ -13459,6 +14426,7 @@ public final class TdApi {
     /// Creates a new sticker set. Returns the newly created sticker set
     /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     /// - Parameter source: Source of the sticker set; may be empty if unknown
+    /// - Parameter stickerType: Type of the stickers in the set
     /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
@@ -13466,6 +14434,7 @@ public final class TdApi {
     public func createNewStickerSet(
         name: String?,
         source: String?,
+        stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
         userId: Int64?,
@@ -13474,6 +14443,7 @@ public final class TdApi {
         let query = CreateNewStickerSet(
             name: name,
             source: source,
+            stickerType: stickerType,
             stickers: stickers,
             title: title,
             userId: userId
@@ -13484,6 +14454,7 @@ public final class TdApi {
     /// Creates a new sticker set. Returns the newly created sticker set
     /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     /// - Parameter source: Source of the sticker set; may be empty if unknown
+    /// - Parameter stickerType: Type of the stickers in the set
     /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
@@ -13492,6 +14463,7 @@ public final class TdApi {
     public func createNewStickerSet(
         name: String?,
         source: String?,
+        stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
         userId: Int64?
@@ -13499,6 +14471,7 @@ public final class TdApi {
         let query = CreateNewStickerSet(
             name: name,
             source: source,
+            stickerType: stickerType,
             stickers: stickers,
             title: title,
             userId: userId
@@ -13740,16 +14713,16 @@ public final class TdApi {
 
     /// Returns examples of premium stickers for demonstration purposes
     /// - Returns: Examples of premium stickers for demonstration purposes
-    public func getPremiumStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
-        let query = GetPremiumStickers()
+    public func getPremiumStickerExamples(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetPremiumStickerExamples()
         execute(query: query, completion: completion)
     }
 
     /// Returns examples of premium stickers for demonstration purposes
     /// - Returns: Examples of premium stickers for demonstration purposes
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getPremiumStickers() async throws -> Stickers {
-        let query = GetPremiumStickers()
+    public func getPremiumStickerExamples() async throws -> Stickers {
+        let query = GetPremiumStickerExamples()
         return try await execute(query: query)
     }
 
@@ -13804,66 +14777,95 @@ public final class TdApi {
     }
 
     /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
-    public func canPurchasePremium(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
-        let query = CanPurchasePremium()
+    /// - Parameter purpose: Transaction purpose
+    public func canPurchasePremium(
+        purpose: StorePaymentPurpose?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CanPurchasePremium(
+            purpose: purpose
+        )
         execute(query: query, completion: completion)
     }
 
     /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+    /// - Parameter purpose: Transaction purpose
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func canPurchasePremium() async throws -> Ok {
-        let query = CanPurchasePremium()
+    public func canPurchasePremium(purpose: StorePaymentPurpose?) async throws -> Ok {
+        let query = CanPurchasePremium(
+            purpose: purpose
+        )
         return try await execute(query: query)
     }
 
-    /// Informs server about a Telegram Premium purchase through App Store. For official applications only
-    /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase
+    /// Informs server about a purchase through App Store. For official applications only
+    /// - Parameter purpose: Transaction purpose
     /// - Parameter receipt: App Store receipt
     public func assignAppStoreTransaction(
-        isRestore: Bool?,
+        purpose: StorePaymentPurpose?,
         receipt: Data?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AssignAppStoreTransaction(
-            isRestore: isRestore,
+            purpose: purpose,
             receipt: receipt
         )
         execute(query: query, completion: completion)
     }
 
-    /// Informs server about a Telegram Premium purchase through App Store. For official applications only
-    /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase
+    /// Informs server about a purchase through App Store. For official applications only
+    /// - Parameter purpose: Transaction purpose
     /// - Parameter receipt: App Store receipt
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func assignAppStoreTransaction(
-        isRestore: Bool?,
+        purpose: StorePaymentPurpose?,
         receipt: Data?
     ) async throws -> Ok {
         let query = AssignAppStoreTransaction(
-            isRestore: isRestore,
+            purpose: purpose,
             receipt: receipt
         )
         return try await execute(query: query)
     }
 
-    /// Informs server about a Telegram Premium purchase through Google Play. For official applications only
+    /// Informs server about a purchase through Google Play. For official applications only
+    /// - Parameter packageName: Application package name
     /// - Parameter purchaseToken: Google Play purchase token
+    /// - Parameter purpose: Transaction purpose
+    /// - Parameter storeProductId: Identifier of the purchased store product
     public func assignGooglePlayTransaction(
+        packageName: String?,
         purchaseToken: String?,
+        purpose: StorePaymentPurpose?,
+        storeProductId: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AssignGooglePlayTransaction(
-            purchaseToken: purchaseToken
+            packageName: packageName,
+            purchaseToken: purchaseToken,
+            purpose: purpose,
+            storeProductId: storeProductId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Informs server about a Telegram Premium purchase through Google Play. For official applications only
+    /// Informs server about a purchase through Google Play. For official applications only
+    /// - Parameter packageName: Application package name
     /// - Parameter purchaseToken: Google Play purchase token
+    /// - Parameter purpose: Transaction purpose
+    /// - Parameter storeProductId: Identifier of the purchased store product
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func assignGooglePlayTransaction(purchaseToken: String?) async throws -> Ok {
+    public func assignGooglePlayTransaction(
+        packageName: String?,
+        purchaseToken: String?,
+        purpose: StorePaymentPurpose?,
+        storeProductId: String?
+    ) async throws -> Ok {
         let query = AssignGooglePlayTransaction(
-            purchaseToken: purchaseToken
+            packageName: packageName,
+            purchaseToken: purchaseToken,
+            purpose: purpose,
+            storeProductId: storeProductId
         )
         return try await execute(query: query)
     }
@@ -14525,6 +15527,60 @@ public final class TdApi {
         let query = AddLogMessage(
             text: text,
             verbosityLevel: verbosityLevel
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns support information for the given user; for Telegram support only
+    /// - Parameter userId: User identifier
+    /// - Returns: Support information for the given user
+    public func getUserSupportInfo(
+        userId: Int64?,
+        completion: @escaping (Result<UserSupportInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUserSupportInfo(
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns support information for the given user; for Telegram support only
+    /// - Parameter userId: User identifier
+    /// - Returns: Support information for the given user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getUserSupportInfo(userId: Int64?) async throws -> UserSupportInfo {
+        let query = GetUserSupportInfo(
+            userId: userId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets support information for the given user; for Telegram support only
+    /// - Parameter message: New information message
+    /// - Parameter userId: User identifier
+    public func setUserSupportInfo(
+        message: FormattedText?,
+        userId: Int64?,
+        completion: @escaping (Result<UserSupportInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = SetUserSupportInfo(
+            message: message,
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets support information for the given user; for Telegram support only
+    /// - Parameter message: New information message
+    /// - Parameter userId: User identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setUserSupportInfo(
+        message: FormattedText?,
+        userId: Int64?
+    ) async throws -> UserSupportInfo {
+        let query = SetUserSupportInfo(
+            message: message,
+            userId: userId
         )
         return try await execute(query: query)
     }

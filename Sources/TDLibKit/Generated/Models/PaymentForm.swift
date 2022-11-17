@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about an invoice payment form
 public struct PaymentForm: Codable, Equatable {
+
+    /// The list of additional payment options
+    public let additionalPaymentOptions: [PaymentOption]
 
     /// True, if the user can choose to save credentials
     public let canSaveCredentials: Bool
@@ -22,7 +25,7 @@ public struct PaymentForm: Codable, Equatable {
     /// Full information about the invoice
     public let invoice: Invoice
 
-    /// True, if the user will be able to save credentials protected by a password they set up
+    /// True, if the user will be able to save credentials, if sets up a 2-step verification password
     public let needPassword: Bool
 
     /// Information about the payment provider
@@ -40,8 +43,8 @@ public struct PaymentForm: Codable, Equatable {
     /// Product title
     public let productTitle: String
 
-    /// Information about saved card credentials; may be null
-    public let savedCredentials: SavedCredentials?
+    /// The list of saved payment credentials
+    public let savedCredentials: [SavedCredentials]
 
     /// Saved server-side order information; may be null
     public let savedOrderInfo: OrderInfo?
@@ -51,6 +54,7 @@ public struct PaymentForm: Codable, Equatable {
 
 
     public init(
+        additionalPaymentOptions: [PaymentOption],
         canSaveCredentials: Bool,
         id: TdInt64,
         invoice: Invoice,
@@ -60,10 +64,11 @@ public struct PaymentForm: Codable, Equatable {
         productDescription: FormattedText,
         productPhoto: Photo?,
         productTitle: String,
-        savedCredentials: SavedCredentials?,
+        savedCredentials: [SavedCredentials],
         savedOrderInfo: OrderInfo?,
         sellerBotUserId: Int64
     ) {
+        self.additionalPaymentOptions = additionalPaymentOptions
         self.canSaveCredentials = canSaveCredentials
         self.id = id
         self.invoice = invoice

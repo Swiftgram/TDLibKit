@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
+/// Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
 public struct SetSupergroupUsername: Codable, Equatable {
 
     /// Identifier of the supergroup or channel
     public let supergroupId: Int64?
 
-    /// New value of the username. Use an empty string to remove the username
+    /// New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     public let username: String?
 
 

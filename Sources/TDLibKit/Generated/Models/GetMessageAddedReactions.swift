@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public struct GetMessageAddedReactions: Codable, Equatable {
     /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     public let offset: String?
 
-    /// If non-empty, only added reactions with the specified text representation will be returned
-    public let reaction: String?
+    /// Type of the reactions to return; pass null to return all added reactions
+    public let reactionType: ReactionType?
 
 
     public init(
@@ -34,13 +34,13 @@ public struct GetMessageAddedReactions: Codable, Equatable {
         limit: Int?,
         messageId: Int64?,
         offset: String?,
-        reaction: String?
+        reactionType: ReactionType?
     ) {
         self.chatId = chatId
         self.limit = limit
         self.messageId = messageId
         self.offset = offset
-        self.reaction = reaction
+        self.reactionType = reactionType
     }
 }
 

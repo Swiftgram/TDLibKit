@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -79,8 +79,11 @@ public enum ChatEventAction: Codable, Equatable {
     /// The chat title was changed
     case chatEventTitleChanged(ChatEventTitleChanged)
 
-    /// The chat username was changed
+    /// The chat editable username was changed
     case chatEventUsernameChanged(ChatEventUsernameChanged)
+
+    /// The chat active usernames were changed
+    case chatEventActiveUsernamesChanged(ChatEventActiveUsernamesChanged)
 
     /// The has_protected_content setting of a channel was toggled
     case chatEventHasProtectedContentToggled(ChatEventHasProtectedContentToggled)
@@ -118,6 +121,24 @@ public enum ChatEventAction: Codable, Equatable {
     /// A video chat participant volume level was changed
     case chatEventVideoChatParticipantVolumeLevelChanged(ChatEventVideoChatParticipantVolumeLevelChanged)
 
+    /// The is_forum setting of a channel was toggled
+    case chatEventIsForumToggled(ChatEventIsForumToggled)
+
+    /// A new forum topic was created
+    case chatEventForumTopicCreated(ChatEventForumTopicCreated)
+
+    /// A forum topic was edited
+    case chatEventForumTopicEdited(ChatEventForumTopicEdited)
+
+    /// A forum topic was closed or reopened
+    case chatEventForumTopicToggleIsClosed(ChatEventForumTopicToggleIsClosed)
+
+    /// A forum topic was deleted
+    case chatEventForumTopicDeleted(ChatEventForumTopicDeleted)
+
+    /// A pinned forum topic was changed
+    case chatEventForumTopicPinned(ChatEventForumTopicPinned)
+
 
     private enum Kind: String, Codable {
         case chatEventMessageEdited
@@ -143,6 +164,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventStickerSetChanged
         case chatEventTitleChanged
         case chatEventUsernameChanged
+        case chatEventActiveUsernamesChanged
         case chatEventHasProtectedContentToggled
         case chatEventInvitesToggled
         case chatEventIsAllHistoryAvailableToggled
@@ -155,6 +177,12 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventVideoChatMuteNewParticipantsToggled
         case chatEventVideoChatParticipantIsMutedToggled
         case chatEventVideoChatParticipantVolumeLevelChanged
+        case chatEventIsForumToggled
+        case chatEventForumTopicCreated
+        case chatEventForumTopicEdited
+        case chatEventForumTopicToggleIsClosed
+        case chatEventForumTopicDeleted
+        case chatEventForumTopicPinned
     }
 
     public init(from decoder: Decoder) throws {
@@ -228,6 +256,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventUsernameChanged:
             let value = try ChatEventUsernameChanged(from: decoder)
             self = .chatEventUsernameChanged(value)
+        case .chatEventActiveUsernamesChanged:
+            let value = try ChatEventActiveUsernamesChanged(from: decoder)
+            self = .chatEventActiveUsernamesChanged(value)
         case .chatEventHasProtectedContentToggled:
             let value = try ChatEventHasProtectedContentToggled(from: decoder)
             self = .chatEventHasProtectedContentToggled(value)
@@ -264,6 +295,24 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventVideoChatParticipantVolumeLevelChanged:
             let value = try ChatEventVideoChatParticipantVolumeLevelChanged(from: decoder)
             self = .chatEventVideoChatParticipantVolumeLevelChanged(value)
+        case .chatEventIsForumToggled:
+            let value = try ChatEventIsForumToggled(from: decoder)
+            self = .chatEventIsForumToggled(value)
+        case .chatEventForumTopicCreated:
+            let value = try ChatEventForumTopicCreated(from: decoder)
+            self = .chatEventForumTopicCreated(value)
+        case .chatEventForumTopicEdited:
+            let value = try ChatEventForumTopicEdited(from: decoder)
+            self = .chatEventForumTopicEdited(value)
+        case .chatEventForumTopicToggleIsClosed:
+            let value = try ChatEventForumTopicToggleIsClosed(from: decoder)
+            self = .chatEventForumTopicToggleIsClosed(value)
+        case .chatEventForumTopicDeleted:
+            let value = try ChatEventForumTopicDeleted(from: decoder)
+            self = .chatEventForumTopicDeleted(value)
+        case .chatEventForumTopicPinned:
+            let value = try ChatEventForumTopicPinned(from: decoder)
+            self = .chatEventForumTopicPinned(value)
         }
     }
 
@@ -337,6 +386,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventUsernameChanged(let value):
             try container.encode(Kind.chatEventUsernameChanged, forKey: .type)
             try value.encode(to: encoder)
+        case .chatEventActiveUsernamesChanged(let value):
+            try container.encode(Kind.chatEventActiveUsernamesChanged, forKey: .type)
+            try value.encode(to: encoder)
         case .chatEventHasProtectedContentToggled(let value):
             try container.encode(Kind.chatEventHasProtectedContentToggled, forKey: .type)
             try value.encode(to: encoder)
@@ -372,6 +424,24 @@ public enum ChatEventAction: Codable, Equatable {
             try value.encode(to: encoder)
         case .chatEventVideoChatParticipantVolumeLevelChanged(let value):
             try container.encode(Kind.chatEventVideoChatParticipantVolumeLevelChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventIsForumToggled(let value):
+            try container.encode(Kind.chatEventIsForumToggled, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventForumTopicCreated(let value):
+            try container.encode(Kind.chatEventForumTopicCreated, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventForumTopicEdited(let value):
+            try container.encode(Kind.chatEventForumTopicEdited, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventForumTopicToggleIsClosed(let value):
+            try container.encode(Kind.chatEventForumTopicToggleIsClosed, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventForumTopicDeleted(let value):
+            try container.encode(Kind.chatEventForumTopicDeleted, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventForumTopicPinned(let value):
+            try container.encode(Kind.chatEventForumTopicPinned, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -546,15 +616,15 @@ public struct ChatEventMemberRestricted: Codable, Equatable {
 public struct ChatEventAvailableReactionsChanged: Codable, Equatable {
 
     /// New chat available reactions
-    public let newAvailableReactions: [String]
+    public let newAvailableReactions: ChatAvailableReactions
 
     /// Previous chat available reactions
-    public let oldAvailableReactions: [String]
+    public let oldAvailableReactions: ChatAvailableReactions
 
 
     public init(
-        newAvailableReactions: [String],
-        oldAvailableReactions: [String]
+        newAvailableReactions: ChatAvailableReactions,
+        oldAvailableReactions: ChatAvailableReactions
     ) {
         self.newAvailableReactions = newAvailableReactions
         self.oldAvailableReactions = oldAvailableReactions
@@ -732,7 +802,7 @@ public struct ChatEventTitleChanged: Codable, Equatable {
     }
 }
 
-/// The chat username was changed
+/// The chat editable username was changed
 public struct ChatEventUsernameChanged: Codable, Equatable {
 
     /// New chat username
@@ -748,6 +818,25 @@ public struct ChatEventUsernameChanged: Codable, Equatable {
     ) {
         self.newUsername = newUsername
         self.oldUsername = oldUsername
+    }
+}
+
+/// The chat active usernames were changed
+public struct ChatEventActiveUsernamesChanged: Codable, Equatable {
+
+    /// New list of active usernames
+    public let newUsernames: [String]
+
+    /// Previous list of active usernames
+    public let oldUsernames: [String]
+
+
+    public init(
+        newUsernames: [String],
+        oldUsernames: [String]
+    ) {
+        self.newUsernames = newUsernames
+        self.oldUsernames = oldUsernames
     }
 }
 
@@ -913,6 +1002,92 @@ public struct ChatEventVideoChatParticipantVolumeLevelChanged: Codable, Equatabl
     ) {
         self.participantId = participantId
         self.volumeLevel = volumeLevel
+    }
+}
+
+/// The is_forum setting of a channel was toggled
+public struct ChatEventIsForumToggled: Codable, Equatable {
+
+    /// New value of is_forum
+    public let isForum: Bool
+
+
+    public init(isForum: Bool) {
+        self.isForum = isForum
+    }
+}
+
+/// A new forum topic was created
+public struct ChatEventForumTopicCreated: Codable, Equatable {
+
+    /// Information about the topic
+    public let topicInfo: ForumTopicInfo
+
+
+    public init(topicInfo: ForumTopicInfo) {
+        self.topicInfo = topicInfo
+    }
+}
+
+/// A forum topic was edited
+public struct ChatEventForumTopicEdited: Codable, Equatable {
+
+    /// New information about the topic
+    public let newTopicInfo: ForumTopicInfo
+
+    /// Old information about the topic
+    public let oldTopicInfo: ForumTopicInfo
+
+
+    public init(
+        newTopicInfo: ForumTopicInfo,
+        oldTopicInfo: ForumTopicInfo
+    ) {
+        self.newTopicInfo = newTopicInfo
+        self.oldTopicInfo = oldTopicInfo
+    }
+}
+
+/// A forum topic was closed or reopened
+public struct ChatEventForumTopicToggleIsClosed: Codable, Equatable {
+
+    /// New information about the topic
+    public let topicInfo: ForumTopicInfo
+
+
+    public init(topicInfo: ForumTopicInfo) {
+        self.topicInfo = topicInfo
+    }
+}
+
+/// A forum topic was deleted
+public struct ChatEventForumTopicDeleted: Codable, Equatable {
+
+    /// Information about the topic
+    public let topicInfo: ForumTopicInfo
+
+
+    public init(topicInfo: ForumTopicInfo) {
+        self.topicInfo = topicInfo
+    }
+}
+
+/// A pinned forum topic was changed
+public struct ChatEventForumTopicPinned: Codable, Equatable {
+
+    /// Information about the new pinned topic; may be null
+    public let newTopicInfo: ForumTopicInfo?
+
+    /// Information about the old pinned topic; may be null
+    public let oldTopicInfo: ForumTopicInfo?
+
+
+    public init(
+        newTopicInfo: ForumTopicInfo?,
+        oldTopicInfo: ForumTopicInfo?
+    ) {
+        self.newTopicInfo = newTopicInfo
+        self.oldTopicInfo = oldTopicInfo
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -27,7 +27,7 @@ public struct BasicGroupFullInfo: Codable, Equatable {
     /// Group members
     public let members: [ChatMember]
 
-    /// Chat photo; may be null
+    /// Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
     public let photo: ChatPhoto?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -22,25 +22,35 @@ public struct VideoNote: Codable, Equatable {
     /// Video minithumbnail; may be null
     public let minithumbnail: Minithumbnail?
 
+    /// Result of speech recognition in the video note; may be null
+    public let speechRecognitionResult: SpeechRecognitionResult?
+
     /// Video thumbnail in JPEG format; as defined by the sender; may be null
     public let thumbnail: Thumbnail?
 
     /// File containing the video
     public let video: File
 
+    /// A waveform representation of the video note's audio in 5-bit format; may be empty if unknown
+    public let waveform: Data
+
 
     public init(
         duration: Int,
         length: Int,
         minithumbnail: Minithumbnail?,
+        speechRecognitionResult: SpeechRecognitionResult?,
         thumbnail: Thumbnail?,
-        video: File
+        video: File,
+        waveform: Data
     ) {
         self.duration = duration
         self.length = length
         self.minithumbnail = minithumbnail
+        self.speechRecognitionResult = speechRecognitionResult
         self.thumbnail = thumbnail
         self.video = video
+        self.waveform = waveform
     }
 }
 

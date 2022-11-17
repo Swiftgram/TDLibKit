@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -25,6 +25,9 @@ public struct SponsoredMessage: Codable, Equatable {
     /// Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     public let messageId: Int64
 
+    /// True, if the sponsor's chat photo must be shown
+    public let showChatPhoto: Bool
+
     /// Sponsor chat identifier; 0 if the sponsor chat is accessible through an invite link
     public let sponsorChatId: Int64
 
@@ -37,6 +40,7 @@ public struct SponsoredMessage: Codable, Equatable {
         isRecommended: Bool,
         link: InternalLinkType?,
         messageId: Int64,
+        showChatPhoto: Bool,
         sponsorChatId: Int64,
         sponsorChatInfo: ChatInviteLinkInfo?
     ) {
@@ -44,6 +48,7 @@ public struct SponsoredMessage: Codable, Equatable {
         self.isRecommended = isRecommended
         self.link = link
         self.messageId = messageId
+        self.showChatPhoto = showChatPhoto
         self.sponsorChatId = sponsorChatId
         self.sponsorChatInfo = sponsorChatInfo
     }

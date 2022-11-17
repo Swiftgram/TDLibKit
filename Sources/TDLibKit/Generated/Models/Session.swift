@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public struct Session: Codable, Equatable {
     /// True, if the application is an official application or uses the api_id of an official application
     public let isOfficialApplication: Bool
 
-    /// True, if a password is needed to complete authorization of the session
+    /// True, if a 2-step verification password is needed to complete authorization of the session
     public let isPasswordPending: Bool
 
     /// Point in time (Unix timestamp) when the session was last used

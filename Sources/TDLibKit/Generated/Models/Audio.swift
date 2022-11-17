@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct Audio: Codable, Equatable {
     /// The minithumbnail of the album cover; may be null
     public let albumCoverMinithumbnail: Minithumbnail?
 
-    /// The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded file; may be null
+    /// The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
     public let albumCoverThumbnail: Thumbnail?
 
     /// File containing the audio
@@ -24,6 +24,9 @@ public struct Audio: Codable, Equatable {
 
     /// Duration of the audio, in seconds; as defined by the sender
     public let duration: Int
+
+    /// Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
+    public let externalAlbumCovers: [Thumbnail]
 
     /// Original name of the file; as defined by the sender
     public let fileName: String
@@ -43,6 +46,7 @@ public struct Audio: Codable, Equatable {
         albumCoverThumbnail: Thumbnail?,
         audio: File,
         duration: Int,
+        externalAlbumCovers: [Thumbnail],
         fileName: String,
         mimeType: String,
         performer: String,
@@ -52,6 +56,7 @@ public struct Audio: Codable, Equatable {
         self.albumCoverThumbnail = albumCoverThumbnail
         self.audio = audio
         self.duration = duration
+        self.externalAlbumCovers = externalAlbumCovers
         self.fileName = fileName
         self.mimeType = mimeType
         self.performer = performer

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -130,6 +130,15 @@ public enum MessageContent: Codable, Equatable {
     /// The TTL (Time To Live) setting for messages in the chat has been changed
     case messageChatSetTtl(MessageChatSetTtl)
 
+    /// A forum topic has been created
+    case messageForumTopicCreated(MessageForumTopicCreated)
+
+    /// A forum topic has been edited
+    case messageForumTopicEdited(MessageForumTopicEdited)
+
+    /// A forum topic has been closed or opened
+    case messageForumTopicIsClosedToggled(MessageForumTopicIsClosedToggled)
+
     /// A non-standard action has happened in the chat
     case messageCustomServiceAction(MessageCustomServiceAction)
 
@@ -141,6 +150,9 @@ public enum MessageContent: Codable, Equatable {
 
     /// A payment has been completed; for bots only
     case messagePaymentSuccessfulBot(MessagePaymentSuccessfulBot)
+
+    /// Telegram Premium was gifted to the user
+    case messageGiftedPremium(MessageGiftedPremium)
 
     /// A contact has registered with Telegram
     case messageContactRegistered
@@ -207,10 +219,14 @@ public enum MessageContent: Codable, Equatable {
         case messageScreenshotTaken
         case messageChatSetTheme
         case messageChatSetTtl
+        case messageForumTopicCreated
+        case messageForumTopicEdited
+        case messageForumTopicIsClosedToggled
         case messageCustomServiceAction
         case messageGameScore
         case messagePaymentSuccessful
         case messagePaymentSuccessfulBot
+        case messageGiftedPremium
         case messageContactRegistered
         case messageWebsiteConnected
         case messageWebAppDataSent
@@ -336,6 +352,15 @@ public enum MessageContent: Codable, Equatable {
         case .messageChatSetTtl:
             let value = try MessageChatSetTtl(from: decoder)
             self = .messageChatSetTtl(value)
+        case .messageForumTopicCreated:
+            let value = try MessageForumTopicCreated(from: decoder)
+            self = .messageForumTopicCreated(value)
+        case .messageForumTopicEdited:
+            let value = try MessageForumTopicEdited(from: decoder)
+            self = .messageForumTopicEdited(value)
+        case .messageForumTopicIsClosedToggled:
+            let value = try MessageForumTopicIsClosedToggled(from: decoder)
+            self = .messageForumTopicIsClosedToggled(value)
         case .messageCustomServiceAction:
             let value = try MessageCustomServiceAction(from: decoder)
             self = .messageCustomServiceAction(value)
@@ -348,6 +373,9 @@ public enum MessageContent: Codable, Equatable {
         case .messagePaymentSuccessfulBot:
             let value = try MessagePaymentSuccessfulBot(from: decoder)
             self = .messagePaymentSuccessfulBot(value)
+        case .messageGiftedPremium:
+            let value = try MessageGiftedPremium(from: decoder)
+            self = .messageGiftedPremium(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageWebsiteConnected:
@@ -487,6 +515,15 @@ public enum MessageContent: Codable, Equatable {
         case .messageChatSetTtl(let value):
             try container.encode(Kind.messageChatSetTtl, forKey: .type)
             try value.encode(to: encoder)
+        case .messageForumTopicCreated(let value):
+            try container.encode(Kind.messageForumTopicCreated, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageForumTopicEdited(let value):
+            try container.encode(Kind.messageForumTopicEdited, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageForumTopicIsClosedToggled(let value):
+            try container.encode(Kind.messageForumTopicIsClosedToggled, forKey: .type)
+            try value.encode(to: encoder)
         case .messageCustomServiceAction(let value):
             try container.encode(Kind.messageCustomServiceAction, forKey: .type)
             try value.encode(to: encoder)
@@ -498,6 +535,9 @@ public enum MessageContent: Codable, Equatable {
             try value.encode(to: encoder)
         case .messagePaymentSuccessfulBot(let value):
             try container.encode(Kind.messagePaymentSuccessfulBot, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageGiftedPremium(let value):
+            try container.encode(Kind.messageGiftedPremium, forKey: .type)
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
@@ -864,6 +904,9 @@ public struct MessageInvoice: Codable, Equatable {
 
     public let description: FormattedText
 
+    /// Extended media attached to the invoice; may be null
+    public let extendedMedia: MessageExtendedMedia?
+
     /// True, if the invoice is a test invoice
     public let isTest: Bool
 
@@ -889,6 +932,7 @@ public struct MessageInvoice: Codable, Equatable {
     public init(
         currency: String,
         description: FormattedText,
+        extendedMedia: MessageExtendedMedia?,
         isTest: Bool,
         needShippingAddress: Bool,
         photo: Photo?,
@@ -899,6 +943,7 @@ public struct MessageInvoice: Codable, Equatable {
     ) {
         self.currency = currency
         self.description = description
+        self.extendedMedia = extendedMedia
         self.isTest = isTest
         self.needShippingAddress = needShippingAddress
         self.photo = photo
@@ -1141,6 +1186,61 @@ public struct MessageChatSetTtl: Codable, Equatable {
     }
 }
 
+/// A forum topic has been created
+public struct MessageForumTopicCreated: Codable, Equatable {
+
+    /// Icon of the topic
+    public let icon: ForumTopicIcon
+
+    /// Name of the topic
+    public let name: String
+
+
+    public init(
+        icon: ForumTopicIcon,
+        name: String
+    ) {
+        self.icon = icon
+        self.name = name
+    }
+}
+
+/// A forum topic has been edited
+public struct MessageForumTopicEdited: Codable, Equatable {
+
+    /// True, if icon's custom_emoji_id is changed
+    public let editIconCustomEmojiId: Bool
+
+    /// New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false
+    public let iconCustomEmojiId: TdInt64
+
+    /// If non-empty, the new name of the topic
+    public let name: String
+
+
+    public init(
+        editIconCustomEmojiId: Bool,
+        iconCustomEmojiId: TdInt64,
+        name: String
+    ) {
+        self.editIconCustomEmojiId = editIconCustomEmojiId
+        self.iconCustomEmojiId = iconCustomEmojiId
+        self.name = name
+    }
+}
+
+/// A forum topic has been closed or opened
+public struct MessageForumTopicIsClosedToggled: Codable, Equatable {
+
+    /// True if the topic was closed or reopened
+    public let isClosed: Bool
+
+
+    public init(isClosed: Bool) {
+        self.isClosed = isClosed
+    }
+}
+
 /// A non-standard action has happened in the chat
 public struct MessageCustomServiceAction: Codable, Equatable {
 
@@ -1183,7 +1283,7 @@ public struct MessagePaymentSuccessful: Codable, Equatable {
     /// Currency for the price of the product
     public let currency: String
 
-    /// Identifier of the chat, containing the corresponding invoice message; 0 if unknown
+    /// Identifier of the chat, containing the corresponding invoice message
     public let invoiceChatId: Int64
 
     /// Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
@@ -1272,6 +1372,35 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable {
         self.shippingOptionId = shippingOptionId
         self.telegramPaymentChargeId = telegramPaymentChargeId
         self.totalAmount = totalAmount
+    }
+}
+
+/// Telegram Premium was gifted to the user
+public struct MessageGiftedPremium: Codable, Equatable {
+
+    /// The paid amount, in the smallest units of the currency
+    public let amount: Int64
+
+    /// Currency for the paid amount
+    public let currency: String
+
+    /// Number of month the Telegram Premium subscription will be active
+    public let monthCount: Int
+
+    /// A sticker to be shown in the message; may be null if unknown
+    public let sticker: Sticker?
+
+
+    public init(
+        amount: Int64,
+        currency: String,
+        monthCount: Int,
+        sticker: Sticker?
+    ) {
+        self.amount = amount
+        self.currency = currency
+        self.monthCount = monthCount
+        self.sticker = sticker
     }
 }
 

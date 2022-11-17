@@ -3,22 +3,39 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Represents a list of available reactions
+/// Represents a list of reactions that can be added to a message
 public struct AvailableReactions: Codable, Equatable {
 
-    /// List of reactions
-    public let reactions: [AvailableReaction]
+    /// True, if custom emoji reactions could be added by Telegram Premium subscribers
+    public let allowCustomEmoji: Bool
+
+    /// List of popular reactions
+    public let popularReactions: [AvailableReaction]
+
+    /// List of recently used reactions
+    public let recentReactions: [AvailableReaction]
+
+    /// List of reactions to be shown at the top
+    public let topReactions: [AvailableReaction]
 
 
-    public init(reactions: [AvailableReaction]) {
-        self.reactions = reactions
+    public init(
+        allowCustomEmoji: Bool,
+        popularReactions: [AvailableReaction],
+        recentReactions: [AvailableReaction],
+        topReactions: [AvailableReaction]
+    ) {
+        self.allowCustomEmoji = allowCustomEmoji
+        self.popularReactions = popularReactions
+        self.recentReactions = recentReactions
+        self.topReactions = topReactions
     }
 }
 

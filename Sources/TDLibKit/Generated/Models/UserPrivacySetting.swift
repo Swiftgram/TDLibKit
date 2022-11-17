@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public enum UserPrivacySetting: Codable, Equatable {
     /// A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
     case userPrivacySettingAllowFindingByPhoneNumber
 
+    /// A privacy setting for managing whether the user can receive voice and video messages in private chats
+    case userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+
 
     private enum Kind: String, Codable {
         case userPrivacySettingShowStatus
@@ -47,6 +50,7 @@ public enum UserPrivacySetting: Codable, Equatable {
         case userPrivacySettingAllowCalls
         case userPrivacySettingAllowPeerToPeerCalls
         case userPrivacySettingAllowFindingByPhoneNumber
+        case userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
     }
 
     public init(from decoder: Decoder) throws {
@@ -69,6 +73,8 @@ public enum UserPrivacySetting: Codable, Equatable {
             self = .userPrivacySettingAllowPeerToPeerCalls
         case .userPrivacySettingAllowFindingByPhoneNumber:
             self = .userPrivacySettingAllowFindingByPhoneNumber
+        case .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages:
+            self = .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
         }
     }
 
@@ -91,6 +97,8 @@ public enum UserPrivacySetting: Codable, Equatable {
             try container.encode(Kind.userPrivacySettingAllowPeerToPeerCalls, forKey: .type)
         case .userPrivacySettingAllowFindingByPhoneNumber:
             try container.encode(Kind.userPrivacySettingAllowFindingByPhoneNumber, forKey: .type)
+        case .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages:
+            try container.encode(Kind.userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages, forKey: .type)
         }
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -16,11 +16,8 @@ public struct PremiumState: Codable, Equatable {
     /// The list of available promotion animations for Premium features
     public let animations: [PremiumFeaturePromotionAnimation]
 
-    /// ISO 4217 currency code for Telegram Premium subscription payment
-    public let currency: String
-
-    /// Monthly subscription payment for Telegram Premium subscription, in the smallest units of the currency
-    public let monthlyAmount: Int64
+    /// The list of available options for buying Telegram Premium
+    public let paymentOptions: [PremiumPaymentOption]
 
     /// Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
     public let state: FormattedText
@@ -28,13 +25,11 @@ public struct PremiumState: Codable, Equatable {
 
     public init(
         animations: [PremiumFeaturePromotionAnimation],
-        currency: String,
-        monthlyAmount: Int64,
+        paymentOptions: [PremiumPaymentOption],
         state: FormattedText
     ) {
         self.animations = animations
-        self.currency = currency
-        self.monthlyAmount = monthlyAmount
+        self.paymentOptions = paymentOptions
         self.state = state
     }
 }

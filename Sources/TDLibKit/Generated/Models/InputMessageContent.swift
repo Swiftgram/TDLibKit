@@ -3,15 +3,15 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
 /// The content of a message to send
-public enum InputMessageContent: Codable, Equatable {
+public indirect enum InputMessageContent: Codable, Equatable {
 
     /// A text message
     case inputMessageText(InputMessageText)
@@ -210,7 +210,7 @@ public struct InputMessageText: Codable, Equatable {
     /// True, if rich web page previews for URLs in the message text must be disabled
     public let disableWebPagePreview: Bool
 
-    /// Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    /// Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     public let text: FormattedText
 
 
@@ -314,7 +314,7 @@ public struct InputMessageDocument: Codable, Equatable {
     /// Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     public let caption: FormattedText
 
-    /// If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats
+    /// If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
     public let disableContentTypeDetection: Bool
 
     /// Document to be sent
@@ -510,7 +510,7 @@ public struct InputMessageVoiceNote: Codable, Equatable {
     /// Voice note to be sent
     public let voiceNote: InputFile
 
-    /// Waveform representation of the voice note, in 5-bit format
+    /// Waveform representation of the voice note in 5-bit format
     public let waveform: Data
 
 
@@ -623,6 +623,9 @@ public struct InputMessageInvoice: Codable, Equatable {
 
     public let description: String
 
+    /// The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
+    public let extendedMediaContent: InputMessageContent
+
     /// Invoice
     public let invoice: Invoice
 
@@ -656,6 +659,7 @@ public struct InputMessageInvoice: Codable, Equatable {
 
     public init(
         description: String,
+        extendedMediaContent: InputMessageContent,
         invoice: Invoice,
         payload: Data,
         photoHeight: Int,
@@ -668,6 +672,7 @@ public struct InputMessageInvoice: Codable, Equatable {
         title: String
     ) {
         self.description = description
+        self.extendedMediaContent = extendedMediaContent
         self.invoice = invoice
         self.payload = payload
         self.photoHeight = photoHeight

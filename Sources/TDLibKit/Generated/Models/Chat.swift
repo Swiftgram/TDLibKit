@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -16,8 +16,8 @@ public struct Chat: Codable, Equatable {
     /// Information about actions which must be possible to do through the chat action bar; may be null
     public let actionBar: ChatActionBar?
 
-    /// List of reactions, available in the chat
-    public let availableReactions: [String]
+    /// Types of reaction, available in the chat
+    public let availableReactions: ChatAvailableReactions
 
     /// True, if the chat messages can be deleted for all users
     public let canBeDeletedForAllUsers: Bool
@@ -109,7 +109,7 @@ public struct Chat: Codable, Equatable {
 
     public init(
         actionBar: ChatActionBar?,
-        availableReactions: [String],
+        availableReactions: ChatAvailableReactions,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeReported: Bool,

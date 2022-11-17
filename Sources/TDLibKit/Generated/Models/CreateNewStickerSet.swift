@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct CreateNewStickerSet: Codable, Equatable {
     /// Source of the sticker set; may be empty if unknown
     public let source: String?
 
+    /// Type of the stickers in the set
+    public let stickerType: StickerType?
+
     /// List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     public let stickers: [InputSticker]?
 
@@ -32,12 +35,14 @@ public struct CreateNewStickerSet: Codable, Equatable {
     public init(
         name: String?,
         source: String?,
+        stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
         userId: Int64?
     ) {
         self.name = name
         self.source = source
+        self.stickerType = stickerType
         self.stickers = stickers
         self.title = title
         self.userId = userId

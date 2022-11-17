@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -19,8 +19,8 @@ public struct GetMessageLink: Codable, Equatable {
     /// Pass true to create a link for the whole media album
     public let forAlbum: Bool?
 
-    /// Pass true to create a link to the message as a channel post comment, or from a message thread
-    public let forComment: Bool?
+    /// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
+    public let inMessageThread: Bool?
 
     /// If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
     public let mediaTimestamp: Int?
@@ -32,13 +32,13 @@ public struct GetMessageLink: Codable, Equatable {
     public init(
         chatId: Int64?,
         forAlbum: Bool?,
-        forComment: Bool?,
+        inMessageThread: Bool?,
         mediaTimestamp: Int?,
         messageId: Int64?
     ) {
         self.chatId = chatId
         self.forAlbum = forAlbum
-        self.forComment = forComment
+        self.inMessageThread = inMessageThread
         self.mediaTimestamp = mediaTimestamp
         self.messageId = messageId
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct ChatAdministratorRights: Codable, Equatable {
 
     /// True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
+
+    /// True, if the administrator can manage topics; applicable to forum supergroups only
+    public let canManageTopics: Bool
 
     /// True, if the administrator can manage video chats
     public let canManageVideoChats: Bool
@@ -53,6 +56,7 @@ public struct ChatAdministratorRights: Codable, Equatable {
         canEditMessages: Bool,
         canInviteUsers: Bool,
         canManageChat: Bool,
+        canManageTopics: Bool,
         canManageVideoChats: Bool,
         canPinMessages: Bool,
         canPostMessages: Bool,
@@ -65,6 +69,7 @@ public struct ChatAdministratorRights: Codable, Equatable {
         self.canEditMessages = canEditMessages
         self.canInviteUsers = canInviteUsers
         self.canManageChat = canManageChat
+        self.canManageTopics = canManageTopics
         self.canManageVideoChats = canManageVideoChats
         self.canPinMessages = canPinMessages
         self.canPostMessages = canPostMessages

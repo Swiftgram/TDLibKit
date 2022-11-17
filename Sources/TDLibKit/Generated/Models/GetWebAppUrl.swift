@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
 public struct GetWebAppUrl: Codable, Equatable {
+
+    /// Short name of the application; 0-64 English letters, digits, and underscores
+    public let applicationName: String?
 
     /// Identifier of the target bot
     public let botUserId: Int64?
@@ -24,10 +27,12 @@ public struct GetWebAppUrl: Codable, Equatable {
 
 
     public init(
+        applicationName: String?,
         botUserId: Int64?,
         theme: ThemeParameters?,
         url: String?
     ) {
+        self.applicationName = applicationName
         self.botUserId = botUserId
         self.theme = theme
         self.url = url

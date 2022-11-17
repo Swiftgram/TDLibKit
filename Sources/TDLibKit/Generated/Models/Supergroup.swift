@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct Supergroup: Codable, Equatable {
     /// True, if many users reported this supergroup or channel as a fake account
     public let isFake: Bool
 
+    /// True, if the supergroup must be shown as a forum by default
+    public let isForum: Bool
+
     /// True, if many users reported this supergroup or channel as a scam
     public let isScam: Bool
 
@@ -58,11 +61,11 @@ public struct Supergroup: Codable, Equatable {
     /// True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
     public let signMessages: Bool
 
-    /// Status of the current user in the supergroup or channel; custom title will be always empty
+    /// Status of the current user in the supergroup or channel; custom title will always be empty
     public let status: ChatMemberStatus
 
-    /// Username of the supergroup or channel; empty for private supergroups or channels
-    public let username: String
+    /// Usernames of the supergroup or channel; may be null
+    public let usernames: Usernames?
 
 
     public init(
@@ -73,6 +76,7 @@ public struct Supergroup: Codable, Equatable {
         isBroadcastGroup: Bool,
         isChannel: Bool,
         isFake: Bool,
+        isForum: Bool,
         isScam: Bool,
         isSlowModeEnabled: Bool,
         isVerified: Bool,
@@ -82,7 +86,7 @@ public struct Supergroup: Codable, Equatable {
         restrictionReason: String,
         signMessages: Bool,
         status: ChatMemberStatus,
-        username: String
+        usernames: Usernames?
     ) {
         self.date = date
         self.hasLinkedChat = hasLinkedChat
@@ -91,6 +95,7 @@ public struct Supergroup: Codable, Equatable {
         self.isBroadcastGroup = isBroadcastGroup
         self.isChannel = isChannel
         self.isFake = isFake
+        self.isForum = isForum
         self.isScam = isScam
         self.isSlowModeEnabled = isSlowModeEnabled
         self.isVerified = isVerified
@@ -100,7 +105,7 @@ public struct Supergroup: Codable, Equatable {
         self.restrictionReason = restrictionReason
         self.signMessages = signMessages
         self.status = status
-        self.username = username
+        self.usernames = usernames
     }
 }
 

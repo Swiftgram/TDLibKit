@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct MessageSendOptions: Codable, Equatable {
     /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
     public let schedulingState: MessageSchedulingState
 
+    /// Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
+    public let updateOrderOfInstalledStickerSets: Bool
+
 
     public init(
         disableNotification: Bool,
         fromBackground: Bool,
         protectContent: Bool,
-        schedulingState: MessageSchedulingState
+        schedulingState: MessageSchedulingState,
+        updateOrderOfInstalledStickerSets: Bool
     ) {
         self.disableNotification = disableNotification
         self.fromBackground = fromBackground
         self.protectContent = protectContent
         self.schedulingState = schedulingState
+        self.updateOrderOfInstalledStickerSets = updateOrderOfInstalledStickerSets
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -19,13 +19,18 @@ public struct GetTrendingStickerSets: Codable, Equatable {
     /// The offset from which to return the sticker sets; must be non-negative
     public let offset: Int?
 
+    /// Type of the sticker sets to return
+    public let stickerType: StickerType?
+
 
     public init(
         limit: Int?,
-        offset: Int?
+        offset: Int?,
+        stickerType: StickerType?
     ) {
         self.limit = limit
         self.offset = offset
+        self.stickerType = stickerType
     }
 }
 

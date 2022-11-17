@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -22,10 +22,13 @@ public struct PasswordState: Codable, Equatable {
     /// True, if a recovery email is set
     public let hasRecoveryEmailAddress: Bool
 
+    /// Pattern of the email address set up for logging in
+    public let loginEmailAddressPattern: String
+
     /// Hint for the password; may be empty
     public let passwordHint: String
 
-    /// If not 0, point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
+    /// If not 0, point in time (Unix timestamp) after which the 2-step verification password can be reset immediately using resetPassword
     public let pendingResetDate: Int
 
     /// Information about the recovery email address to which the confirmation email was sent; may be null
@@ -36,6 +39,7 @@ public struct PasswordState: Codable, Equatable {
         hasPassportData: Bool,
         hasPassword: Bool,
         hasRecoveryEmailAddress: Bool,
+        loginEmailAddressPattern: String,
         passwordHint: String,
         pendingResetDate: Int,
         recoveryEmailAddressCodeInfo: EmailAddressAuthenticationCodeInfo?
@@ -43,6 +47,7 @@ public struct PasswordState: Codable, Equatable {
         self.hasPassportData = hasPassportData
         self.hasPassword = hasPassword
         self.hasRecoveryEmailAddress = hasRecoveryEmailAddress
+        self.loginEmailAddressPattern = loginEmailAddressPattern
         self.passwordHint = passwordHint
         self.pendingResetDate = pendingResetDate
         self.recoveryEmailAddressCodeInfo = recoveryEmailAddressCodeInfo

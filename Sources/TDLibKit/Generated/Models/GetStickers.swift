@@ -3,29 +3,39 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
+/// Returns stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
 public struct GetStickers: Codable, Equatable {
 
-    /// String representation of emoji. If empty, returns all known installed stickers
-    public let emoji: String?
+    /// Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
+    public let chatId: Int64?
 
     /// The maximum number of stickers to be returned
     public let limit: Int?
 
+    /// Search query; an emoji or a keyword prefix. If empty, returns all known installed stickers
+    public let query: String?
+
+    /// Type of the stickers to return
+    public let stickerType: StickerType?
+
 
     public init(
-        emoji: String?,
-        limit: Int?
+        chatId: Int64?,
+        limit: Int?,
+        query: String?,
+        stickerType: StickerType?
     ) {
-        self.emoji = emoji
+        self.chatId = chatId
         self.limit = limit
+        self.query = query
+        self.stickerType = stickerType
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
+    /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
+    case internalLinkTypeInstantView(InternalLinkTypeInstantView)
+
     /// The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
     case internalLinkTypeInvoice(InternalLinkTypeInvoice)
 
@@ -81,6 +84,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
 
     /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     case internalLinkTypeQrCodeAuthentication
+
+    /// The link forces restore of App Store purchases when opened. For official iOS application only
+    case internalLinkTypeRestorePurchases
 
     /// The link is a link to application settings
     case internalLinkTypeSettings
@@ -119,6 +125,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeChatInvite
         case internalLinkTypeFilterSettings
         case internalLinkTypeGame
+        case internalLinkTypeInstantView
         case internalLinkTypeInvoice
         case internalLinkTypeLanguagePack
         case internalLinkTypeLanguageSettings
@@ -131,6 +138,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeProxy
         case internalLinkTypePublicChat
         case internalLinkTypeQrCodeAuthentication
+        case internalLinkTypeRestorePurchases
         case internalLinkTypeSettings
         case internalLinkTypeStickerSet
         case internalLinkTypeTheme
@@ -175,6 +183,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
+        case .internalLinkTypeInstantView:
+            let value = try InternalLinkTypeInstantView(from: decoder)
+            self = .internalLinkTypeInstantView(value)
         case .internalLinkTypeInvoice:
             let value = try InternalLinkTypeInvoice(from: decoder)
             self = .internalLinkTypeInvoice(value)
@@ -208,6 +219,8 @@ public indirect enum InternalLinkType: Codable, Equatable {
             self = .internalLinkTypePublicChat(value)
         case .internalLinkTypeQrCodeAuthentication:
             self = .internalLinkTypeQrCodeAuthentication
+        case .internalLinkTypeRestorePurchases:
+            self = .internalLinkTypeRestorePurchases
         case .internalLinkTypeSettings:
             self = .internalLinkTypeSettings
         case .internalLinkTypeStickerSet:
@@ -265,6 +278,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeInstantView(let value):
+            try container.encode(Kind.internalLinkTypeInstantView, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeInvoice(let value):
             try container.encode(Kind.internalLinkTypeInvoice, forKey: .type)
             try value.encode(to: encoder)
@@ -298,6 +314,8 @@ public indirect enum InternalLinkType: Codable, Equatable {
             try value.encode(to: encoder)
         case .internalLinkTypeQrCodeAuthentication:
             try container.encode(Kind.internalLinkTypeQrCodeAuthentication, forKey: .type)
+        case .internalLinkTypeRestorePurchases:
+            try container.encode(Kind.internalLinkTypeRestorePurchases, forKey: .type)
         case .internalLinkTypeSettings:
             try container.encode(Kind.internalLinkTypeSettings, forKey: .type)
         case .internalLinkTypeStickerSet(let value):
@@ -466,6 +484,25 @@ public struct InternalLinkTypeGame: Codable, Equatable {
     ) {
         self.botUsername = botUsername
         self.gameShortName = gameShortName
+    }
+}
+
+/// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
+public struct InternalLinkTypeInstantView: Codable, Equatable {
+
+    /// An URL to open if getWebPageInstantView fails
+    public let fallbackUrl: String
+
+    /// URL to be passed to getWebPageInstantView
+    public let url: String
+
+
+    public init(
+        fallbackUrl: String,
+        url: String
+    ) {
+        self.fallbackUrl = fallbackUrl
+        self.url = url
     }
 }
 

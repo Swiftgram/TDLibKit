@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Rates recognized speech in a voice note message
+/// Rates recognized speech in a video note or a voice note message
 public struct RateSpeechRecognition: Codable, Equatable {
 
     /// Identifier of the chat to which the message belongs

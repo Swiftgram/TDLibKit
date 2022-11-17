@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public struct Message: Codable, Equatable {
     /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
     public let canGetMediaTimestampLinks: Bool
 
-    /// True, if information about the message thread is available through getMessageThread
+    /// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     public let canGetMessageThread: Bool
 
     /// True, if the message statistics are available through getMessageStatistics
@@ -45,6 +45,9 @@ public struct Message: Codable, Equatable {
 
     /// True, if chat members already viewed the message can be received through getMessageViewers
     public let canGetViewers: Bool
+
+    /// True, if reactions on the message can be reported through reportMessageReactions
+    public let canReportReactions: Bool
 
     /// Chat identifier
     public let chatId: Int64
@@ -81,6 +84,9 @@ public struct Message: Codable, Equatable {
 
     /// True, if the message is pinned
     public let isPinned: Bool
+
+    /// True, if the message is a forum topic message
+    public let isTopicMessage: Bool
 
     /// Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
     public let mediaAlbumId: TdInt64
@@ -134,6 +140,7 @@ public struct Message: Codable, Equatable {
         canGetMessageThread: Bool,
         canGetStatistics: Bool,
         canGetViewers: Bool,
+        canReportReactions: Bool,
         chatId: Int64,
         containsUnreadMention: Bool,
         content: MessageContent,
@@ -146,6 +153,7 @@ public struct Message: Codable, Equatable {
         isChannelPost: Bool,
         isOutgoing: Bool,
         isPinned: Bool,
+        isTopicMessage: Bool,
         mediaAlbumId: TdInt64,
         messageThreadId: Int64,
         replyInChatId: Int64,
@@ -171,6 +179,7 @@ public struct Message: Codable, Equatable {
         self.canGetMessageThread = canGetMessageThread
         self.canGetStatistics = canGetStatistics
         self.canGetViewers = canGetViewers
+        self.canReportReactions = canReportReactions
         self.chatId = chatId
         self.containsUnreadMention = containsUnreadMention
         self.content = content
@@ -183,6 +192,7 @@ public struct Message: Codable, Equatable {
         self.isChannelPost = isChannelPost
         self.isOutgoing = isOutgoing
         self.isPinned = isPinned
+        self.isTopicMessage = isTopicMessage
         self.mediaAlbumId = mediaAlbumId
         self.messageThreadId = messageThreadId
         self.replyInChatId = replyInChatId

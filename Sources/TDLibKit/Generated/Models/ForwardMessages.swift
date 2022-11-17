@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct ForwardMessages: Codable, Equatable {
 
     /// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
     public let messageIds: [Int64]?
+
+    /// If not 0, a message thread identifier in which the message will be sent; for forum threads only
+    public let messageThreadId: Int64?
 
     /// Pass true to get fake messages instead of actually forwarding them
     public let onlyPreview: Bool?
@@ -39,6 +42,7 @@ public struct ForwardMessages: Codable, Equatable {
         chatId: Int64?,
         fromChatId: Int64?,
         messageIds: [Int64]?,
+        messageThreadId: Int64?,
         onlyPreview: Bool?,
         options: MessageSendOptions?,
         removeCaption: Bool?,
@@ -47,6 +51,7 @@ public struct ForwardMessages: Codable, Equatable {
         self.chatId = chatId
         self.fromChatId = fromChatId
         self.messageIds = messageIds
+        self.messageThreadId = messageThreadId
         self.onlyPreview = onlyPreview
         self.options = options
         self.removeCaption = removeCaption

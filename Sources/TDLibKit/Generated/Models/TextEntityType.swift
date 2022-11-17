@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a part of the text which must be formatted differently
 public enum TextEntityType: Codable, Equatable {
 
-    /// A mention of a user by their username
+    /// A mention of a user, a supergroup, or a channel by their username
     case textEntityTypeMention
 
     /// A hashtag text, beginning with "#"
@@ -49,7 +49,7 @@ public enum TextEntityType: Codable, Equatable {
     /// A strikethrough text
     case textEntityTypeStrikethrough
 
-    /// A spoiler text. Not supported in secret chats
+    /// A spoiler text
     case textEntityTypeSpoiler
 
     /// Text that must be formatted as if inside a code HTML tag
@@ -66,6 +66,9 @@ public enum TextEntityType: Codable, Equatable {
 
     /// A text shows instead of a raw mention of the user (e.g., when the user has no username)
     case textEntityTypeMentionName(TextEntityTypeMentionName)
+
+    /// A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
+    case textEntityTypeCustomEmoji(TextEntityTypeCustomEmoji)
 
     /// A media timestamp
     case textEntityTypeMediaTimestamp(TextEntityTypeMediaTimestamp)
@@ -90,6 +93,7 @@ public enum TextEntityType: Codable, Equatable {
         case textEntityTypePreCode
         case textEntityTypeTextUrl
         case textEntityTypeMentionName
+        case textEntityTypeCustomEmoji
         case textEntityTypeMediaTimestamp
     }
 
@@ -136,6 +140,9 @@ public enum TextEntityType: Codable, Equatable {
         case .textEntityTypeMentionName:
             let value = try TextEntityTypeMentionName(from: decoder)
             self = .textEntityTypeMentionName(value)
+        case .textEntityTypeCustomEmoji:
+            let value = try TextEntityTypeCustomEmoji(from: decoder)
+            self = .textEntityTypeCustomEmoji(value)
         case .textEntityTypeMediaTimestamp:
             let value = try TextEntityTypeMediaTimestamp(from: decoder)
             self = .textEntityTypeMediaTimestamp(value)
@@ -184,6 +191,9 @@ public enum TextEntityType: Codable, Equatable {
         case .textEntityTypeMentionName(let value):
             try container.encode(Kind.textEntityTypeMentionName, forKey: .type)
             try value.encode(to: encoder)
+        case .textEntityTypeCustomEmoji(let value):
+            try container.encode(Kind.textEntityTypeCustomEmoji, forKey: .type)
+            try value.encode(to: encoder)
         case .textEntityTypeMediaTimestamp(let value):
             try container.encode(Kind.textEntityTypeMediaTimestamp, forKey: .type)
             try value.encode(to: encoder)
@@ -224,6 +234,18 @@ public struct TextEntityTypeMentionName: Codable, Equatable {
 
     public init(userId: Int64) {
         self.userId = userId
+    }
+}
+
+/// A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
+public struct TextEntityTypeCustomEmoji: Codable, Equatable {
+
+    /// Unique identifier of the custom emoji
+    public let customEmojiId: TdInt64
+
+
+    public init(customEmojiId: TdInt64) {
+        self.customEmojiId = customEmojiId
     }
 }
 

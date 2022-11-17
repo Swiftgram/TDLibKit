@@ -3,28 +3,28 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Informs server about a Telegram Premium purchase through App Store. For official applications only
+/// Informs server about a purchase through App Store. For official applications only
 public struct AssignAppStoreTransaction: Codable, Equatable {
 
-    /// Pass true if this is a restore of a Telegram Premium purchase
-    public let isRestore: Bool?
+    /// Transaction purpose
+    public let purpose: StorePaymentPurpose?
 
     /// App Store receipt
     public let receipt: Data?
 
 
     public init(
-        isRestore: Bool?,
+        purpose: StorePaymentPurpose?,
         receipt: Data?
     ) {
-        self.isRestore = isRestore
+        self.purpose = purpose
         self.receipt = receipt
     }
 }

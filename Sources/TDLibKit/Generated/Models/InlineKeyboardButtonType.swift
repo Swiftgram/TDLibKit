@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
     /// A button that sends a callback query to a bot
     case inlineKeyboardButtonTypeCallback(InlineKeyboardButtonTypeCallback)
 
-    /// A button that asks for password of the current user and then sends a callback query to a bot
+    /// A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot
     case inlineKeyboardButtonTypeCallbackWithPassword(InlineKeyboardButtonTypeCallbackWithPassword)
 
     /// A button with a game that sends a callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
@@ -177,7 +177,7 @@ public struct InlineKeyboardButtonTypeCallback: Codable, Equatable {
     }
 }
 
-/// A button that asks for password of the current user and then sends a callback query to a bot
+/// A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot
 public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable, Equatable {
 
     /// Data to be sent to the bot via a callback query

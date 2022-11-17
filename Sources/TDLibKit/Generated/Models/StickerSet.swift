@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct StickerSet: Codable, Equatable {
     /// Name of the sticker set
     public let name: String
 
+    /// Format of the stickers in the set
+    public let stickerFormat: StickerFormat
+
     /// Type of the stickers in the set
     public let stickerType: StickerType
 
@@ -58,6 +61,7 @@ public struct StickerSet: Codable, Equatable {
         isOfficial: Bool,
         isViewed: Bool,
         name: String,
+        stickerFormat: StickerFormat,
         stickerType: StickerType,
         stickers: [Sticker],
         thumbnail: Thumbnail?,
@@ -71,6 +75,7 @@ public struct StickerSet: Codable, Equatable {
         self.isOfficial = isOfficial
         self.isViewed = isViewed
         self.name = name
+        self.stickerFormat = stickerFormat
         self.stickerType = stickerType
         self.stickers = stickers
         self.thumbnail = thumbnail

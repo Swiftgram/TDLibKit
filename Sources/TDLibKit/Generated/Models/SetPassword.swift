@@ -3,26 +3,26 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+/// Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
 public struct SetPassword: Codable, Equatable {
 
     /// New password hint; may be empty
     public let newHint: String?
 
-    /// New password of the user; may be empty to remove the password
+    /// New 2-step verification password of the user; may be empty to remove the password
     public let newPassword: String?
 
     /// New recovery email address; may be empty
     public let newRecoveryEmailAddress: String?
 
-    /// Previous password of the user
+    /// Previous 2-step verification password of the user
     public let oldPassword: String?
 
     /// Pass true to change also the recovery email address

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -16,16 +16,16 @@ public struct AvailableReaction: Codable, Equatable {
     /// True, if Telegram Premium is needed to send the reaction
     public let needsPremium: Bool
 
-    /// Text representation of the reaction
-    public let reaction: String
+    /// Type of the reaction
+    public let type: ReactionType
 
 
     public init(
         needsPremium: Bool,
-        reaction: String
+        type: ReactionType
     ) {
         self.needsPremium = needsPremium
-        self.reaction = reaction
+        self.type = type
     }
 }
 

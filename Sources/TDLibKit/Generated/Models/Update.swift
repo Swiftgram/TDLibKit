@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -132,6 +132,9 @@ public enum Update: Codable, Equatable {
 
     /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
+
+    /// Basic information about a topic in a forum chat was changed
+    case updateForumTopicInfo(UpdateForumTopicInfo)
 
     /// Notification settings for some type of chats were updated
     case updateScopeNotificationSettings(UpdateScopeNotificationSettings)
@@ -271,8 +274,11 @@ public enum Update: Codable, Equatable {
     /// A message was sent by an opened Web App, so the Web App needs to be closed
     case updateWebAppMessageSent(UpdateWebAppMessageSent)
 
-    /// The list of supported reactions has changed
-    case updateReactions(UpdateReactions)
+    /// The list of active emoji reactions has changed
+    case updateActiveEmojiReactions(UpdateActiveEmojiReactions)
+
+    /// The type of default reaction has changed
+    case updateDefaultReactionType(UpdateDefaultReactionType)
 
     /// The list of supported dice emojis has changed
     case updateDiceEmojis(UpdateDiceEmojis)
@@ -364,6 +370,7 @@ public enum Update: Codable, Equatable {
         case updateChatIsMarkedAsUnread
         case updateChatFilters
         case updateChatOnlineMemberCount
+        case updateForumTopicInfo
         case updateScopeNotificationSettings
         case updateNotification
         case updateNotificationGroup
@@ -410,7 +417,8 @@ public enum Update: Codable, Equatable {
         case updateUsersNearby
         case updateAttachmentMenuBots
         case updateWebAppMessageSent
-        case updateReactions
+        case updateActiveEmojiReactions
+        case updateDefaultReactionType
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
@@ -553,6 +561,9 @@ public enum Update: Codable, Equatable {
         case .updateChatOnlineMemberCount:
             let value = try UpdateChatOnlineMemberCount(from: decoder)
             self = .updateChatOnlineMemberCount(value)
+        case .updateForumTopicInfo:
+            let value = try UpdateForumTopicInfo(from: decoder)
+            self = .updateForumTopicInfo(value)
         case .updateScopeNotificationSettings:
             let value = try UpdateScopeNotificationSettings(from: decoder)
             self = .updateScopeNotificationSettings(value)
@@ -691,9 +702,12 @@ public enum Update: Codable, Equatable {
         case .updateWebAppMessageSent:
             let value = try UpdateWebAppMessageSent(from: decoder)
             self = .updateWebAppMessageSent(value)
-        case .updateReactions:
-            let value = try UpdateReactions(from: decoder)
-            self = .updateReactions(value)
+        case .updateActiveEmojiReactions:
+            let value = try UpdateActiveEmojiReactions(from: decoder)
+            self = .updateActiveEmojiReactions(value)
+        case .updateDefaultReactionType:
+            let value = try UpdateDefaultReactionType(from: decoder)
+            self = .updateDefaultReactionType(value)
         case .updateDiceEmojis:
             let value = try UpdateDiceEmojis(from: decoder)
             self = .updateDiceEmojis(value)
@@ -868,6 +882,9 @@ public enum Update: Codable, Equatable {
         case .updateChatOnlineMemberCount(let value):
             try container.encode(Kind.updateChatOnlineMemberCount, forKey: .type)
             try value.encode(to: encoder)
+        case .updateForumTopicInfo(let value):
+            try container.encode(Kind.updateForumTopicInfo, forKey: .type)
+            try value.encode(to: encoder)
         case .updateScopeNotificationSettings(let value):
             try container.encode(Kind.updateScopeNotificationSettings, forKey: .type)
             try value.encode(to: encoder)
@@ -1006,8 +1023,11 @@ public enum Update: Codable, Equatable {
         case .updateWebAppMessageSent(let value):
             try container.encode(Kind.updateWebAppMessageSent, forKey: .type)
             try value.encode(to: encoder)
-        case .updateReactions(let value):
-            try container.encode(Kind.updateReactions, forKey: .type)
+        case .updateActiveEmojiReactions(let value):
+            try container.encode(Kind.updateActiveEmojiReactions, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateDefaultReactionType(let value):
+            try container.encode(Kind.updateDefaultReactionType, forKey: .type)
             try value.encode(to: encoder)
         case .updateDiceEmojis(let value):
             try container.encode(Kind.updateDiceEmojis, forKey: .type)
@@ -1521,15 +1541,15 @@ public struct UpdateChatActionBar: Codable, Equatable {
 /// The chat available reactions were changed
 public struct UpdateChatAvailableReactions: Codable, Equatable {
 
-    /// The new list of reactions, available in the chat
-    public let availableReactions: [String]
+    /// The new reactions, available in the chat
+    public let availableReactions: ChatAvailableReactions
 
     /// Chat identifier
     public let chatId: Int64
 
 
     public init(
-        availableReactions: [String],
+        availableReactions: ChatAvailableReactions,
         chatId: Int64
     ) {
         self.availableReactions = availableReactions
@@ -1862,6 +1882,25 @@ public struct UpdateChatOnlineMemberCount: Codable, Equatable {
     ) {
         self.chatId = chatId
         self.onlineMemberCount = onlineMemberCount
+    }
+}
+
+/// Basic information about a topic in a forum chat was changed
+public struct UpdateForumTopicInfo: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New information about the topic
+    public let info: ForumTopicInfo
+
+
+    public init(
+        chatId: Int64,
+        info: ForumTopicInfo
+    ) {
+        self.chatId = chatId
+        self.info = info
     }
 }
 
@@ -2506,19 +2545,19 @@ public struct UpdateStickerSet: Codable, Equatable {
 /// The list of installed sticker sets was updated
 public struct UpdateInstalledStickerSets: Codable, Equatable {
 
-    /// True, if the list of installed mask sticker sets was updated
-    public let isMasks: Bool
-
     /// The new list of installed ordinary sticker sets
     public let stickerSetIds: [TdInt64]
 
+    /// Type of the affected stickers
+    public let stickerType: StickerType
+
 
     public init(
-        isMasks: Bool,
-        stickerSetIds: [TdInt64]
+        stickerSetIds: [TdInt64],
+        stickerType: StickerType
     ) {
-        self.isMasks = isMasks
         self.stickerSetIds = stickerSetIds
+        self.stickerType = stickerType
     }
 }
 
@@ -2528,9 +2567,16 @@ public struct UpdateTrendingStickerSets: Codable, Equatable {
     /// The prefix of the list of trending sticker sets with the newest trending sticker sets
     public let stickerSets: TrendingStickerSets
 
+    /// Type of the affected stickers
+    public let stickerType: StickerType
 
-    public init(stickerSets: TrendingStickerSets) {
+
+    public init(
+        stickerSets: TrendingStickerSets,
+        stickerType: StickerType
+    ) {
         self.stickerSets = stickerSets
+        self.stickerType = stickerType
     }
 }
 
@@ -2711,15 +2757,27 @@ public struct UpdateWebAppMessageSent: Codable, Equatable {
     }
 }
 
-/// The list of supported reactions has changed
-public struct UpdateReactions: Codable, Equatable {
+/// The list of active emoji reactions has changed
+public struct UpdateActiveEmojiReactions: Codable, Equatable {
 
-    /// The new list of supported reactions
-    public let reactions: [Reaction]
+    /// The new list of active emoji reactions
+    public let emojis: [String]
 
 
-    public init(reactions: [Reaction]) {
-        self.reactions = reactions
+    public init(emojis: [String]) {
+        self.emojis = emojis
+    }
+}
+
+/// The type of default reaction has changed
+public struct UpdateDefaultReactionType: Codable, Equatable {
+
+    /// The new type of the default reaction
+    public let reactionType: ReactionType
+
+
+    public init(reactionType: ReactionType) {
+        self.reactionType = reactionType
     }
 }
 

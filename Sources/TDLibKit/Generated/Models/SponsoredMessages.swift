@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.7.10-3ff97237
-//  https://github.com/tdlib/td/tree/3ff97237
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -16,9 +16,16 @@ public struct SponsoredMessages: Codable, Equatable {
     /// List of sponsored messages
     public let messages: [SponsoredMessage]
 
+    /// The minimum number of messages between shown sponsored messages, or 0 if only one sponsored message must be shown after all ordinary messages
+    public let messagesBetween: Int
 
-    public init(messages: [SponsoredMessage]) {
+
+    public init(
+        messages: [SponsoredMessage],
+        messagesBetween: Int
+    ) {
         self.messages = messages
+        self.messagesBetween = messagesBetween
     }
 }
 

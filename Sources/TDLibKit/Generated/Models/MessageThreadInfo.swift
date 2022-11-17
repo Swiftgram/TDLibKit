@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public struct MessageThreadInfo: Codable, Equatable {
     /// The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     public let messages: [Message]
 
-    /// Information about the message thread
-    public let replyInfo: MessageReplyInfo
+    /// Information about the message thread; may be null for forum topic threads
+    public let replyInfo: MessageReplyInfo?
 
     /// Approximate number of unread messages in the message thread
     public let unreadMessageCount: Int
@@ -37,7 +37,7 @@ public struct MessageThreadInfo: Codable, Equatable {
         draftMessage: DraftMessage?,
         messageThreadId: Int64,
         messages: [Message],
-        replyInfo: MessageReplyInfo,
+        replyInfo: MessageReplyInfo?,
         unreadMessageCount: Int
     ) {
         self.chatId = chatId

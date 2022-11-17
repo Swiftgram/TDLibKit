@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -13,14 +13,17 @@ import Foundation
 /// Represents the current authorization state of the TDLib client
 public enum AuthorizationState: Codable, Equatable {
 
-    /// TDLib needs TdlibParameters for initialization
+    /// Initializetion parameters are needed. Call `setTdlibParameters` to provide them
     case authorizationStateWaitTdlibParameters
-
-    /// TDLib needs an encryption key to decrypt the local database
-    case authorizationStateWaitEncryptionKey(AuthorizationStateWaitEncryptionKey)
 
     /// TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber` to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken` for other authentication options
     case authorizationStateWaitPhoneNumber
+
+    /// TDLib needs the user's email address to authorize. Call `setAuthenticationEmailAddress` to provide the email address, or directly call `checkAuthenticationEmailCode` with Apple ID/Google ID token if allowed
+    case authorizationStateWaitEmailAddress(AuthorizationStateWaitEmailAddress)
+
+    /// TDLib needs the user's authentication code sent to an email address to authorize. Call `checkAuthenticationEmailCode` to provide the code
+    case authorizationStateWaitEmailCode(AuthorizationStateWaitEmailCode)
 
     /// TDLib needs the user's authentication code to authorize
     case authorizationStateWaitCode(AuthorizationStateWaitCode)
@@ -31,7 +34,7 @@ public enum AuthorizationState: Codable, Equatable {
     /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration
     case authorizationStateWaitRegistration(AuthorizationStateWaitRegistration)
 
-    /// The user has been authorized, but needs to enter a password to start using the application
+    /// The user has been authorized, but needs to enter a 2-step verification password to start using the application
     case authorizationStateWaitPassword(AuthorizationStateWaitPassword)
 
     /// The user has been successfully authorized. TDLib is now ready to answer queries
@@ -49,8 +52,9 @@ public enum AuthorizationState: Codable, Equatable {
 
     private enum Kind: String, Codable {
         case authorizationStateWaitTdlibParameters
-        case authorizationStateWaitEncryptionKey
         case authorizationStateWaitPhoneNumber
+        case authorizationStateWaitEmailAddress
+        case authorizationStateWaitEmailCode
         case authorizationStateWaitCode
         case authorizationStateWaitOtherDeviceConfirmation
         case authorizationStateWaitRegistration
@@ -67,11 +71,14 @@ public enum AuthorizationState: Codable, Equatable {
         switch type {
         case .authorizationStateWaitTdlibParameters:
             self = .authorizationStateWaitTdlibParameters
-        case .authorizationStateWaitEncryptionKey:
-            let value = try AuthorizationStateWaitEncryptionKey(from: decoder)
-            self = .authorizationStateWaitEncryptionKey(value)
         case .authorizationStateWaitPhoneNumber:
             self = .authorizationStateWaitPhoneNumber
+        case .authorizationStateWaitEmailAddress:
+            let value = try AuthorizationStateWaitEmailAddress(from: decoder)
+            self = .authorizationStateWaitEmailAddress(value)
+        case .authorizationStateWaitEmailCode:
+            let value = try AuthorizationStateWaitEmailCode(from: decoder)
+            self = .authorizationStateWaitEmailCode(value)
         case .authorizationStateWaitCode:
             let value = try AuthorizationStateWaitCode(from: decoder)
             self = .authorizationStateWaitCode(value)
@@ -100,11 +107,14 @@ public enum AuthorizationState: Codable, Equatable {
         switch self {
         case .authorizationStateWaitTdlibParameters:
             try container.encode(Kind.authorizationStateWaitTdlibParameters, forKey: .type)
-        case .authorizationStateWaitEncryptionKey(let value):
-            try container.encode(Kind.authorizationStateWaitEncryptionKey, forKey: .type)
-            try value.encode(to: encoder)
         case .authorizationStateWaitPhoneNumber:
             try container.encode(Kind.authorizationStateWaitPhoneNumber, forKey: .type)
+        case .authorizationStateWaitEmailAddress(let value):
+            try container.encode(Kind.authorizationStateWaitEmailAddress, forKey: .type)
+            try value.encode(to: encoder)
+        case .authorizationStateWaitEmailCode(let value):
+            try container.encode(Kind.authorizationStateWaitEmailCode, forKey: .type)
+            try value.encode(to: encoder)
         case .authorizationStateWaitCode(let value):
             try container.encode(Kind.authorizationStateWaitCode, forKey: .type)
             try value.encode(to: encoder)
@@ -129,15 +139,51 @@ public enum AuthorizationState: Codable, Equatable {
     }
 }
 
-/// TDLib needs an encryption key to decrypt the local database
-public struct AuthorizationStateWaitEncryptionKey: Codable, Equatable {
+/// TDLib needs the user's email address to authorize. Call `setAuthenticationEmailAddress` to provide the email address, or directly call `checkAuthenticationEmailCode` with Apple ID/Google ID token if allowed
+public struct AuthorizationStateWaitEmailAddress: Codable, Equatable {
 
-    /// True, if the database is currently encrypted
-    public let isEncrypted: Bool
+    /// True, if authorization through Apple ID is allowed
+    public let allowAppleId: Bool
+
+    /// True, if authorization through Google ID is allowed
+    public let allowGoogleId: Bool
 
 
-    public init(isEncrypted: Bool) {
-        self.isEncrypted = isEncrypted
+    public init(
+        allowAppleId: Bool,
+        allowGoogleId: Bool
+    ) {
+        self.allowAppleId = allowAppleId
+        self.allowGoogleId = allowGoogleId
+    }
+}
+
+/// TDLib needs the user's authentication code sent to an email address to authorize. Call `checkAuthenticationEmailCode` to provide the code
+public struct AuthorizationStateWaitEmailCode: Codable, Equatable {
+
+    /// True, if authorization through Apple ID is allowed
+    public let allowAppleId: Bool
+
+    /// True, if authorization through Google ID is allowed
+    public let allowGoogleId: Bool
+
+    /// Information about the sent authentication code
+    public let codeInfo: EmailAddressAuthenticationCodeInfo
+
+    /// Point in time (Unix timestamp) when the user will be able to authorize with a code sent to the user's phone number; 0 if unknown
+    public let nextPhoneNumberAuthorizationDate: Int
+
+
+    public init(
+        allowAppleId: Bool,
+        allowGoogleId: Bool,
+        codeInfo: EmailAddressAuthenticationCodeInfo,
+        nextPhoneNumberAuthorizationDate: Int
+    ) {
+        self.allowAppleId = allowAppleId
+        self.allowGoogleId = allowGoogleId
+        self.codeInfo = codeInfo
+        self.nextPhoneNumberAuthorizationDate = nextPhoneNumberAuthorizationDate
     }
 }
 
@@ -177,7 +223,7 @@ public struct AuthorizationStateWaitRegistration: Codable, Equatable {
     }
 }
 
-/// The user has been authorized, but needs to enter a password to start using the application
+/// The user has been authorized, but needs to enter a 2-step verification password to start using the application
 public struct AuthorizationStateWaitPassword: Codable, Equatable {
 
     /// True, if a recovery email address has been set up

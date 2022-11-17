@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -34,14 +34,23 @@ public enum PremiumFeature: Codable, Equatable {
     /// Allowed to use premium stickers with unique effects
     case premiumFeatureUniqueStickers
 
+    /// Allowed to use custom emoji stickers in message texts and captions
+    case premiumFeatureCustomEmoji
+
     /// Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
     case premiumFeatureAdvancedChatManagement
 
     /// A badge in the user's profile
     case premiumFeatureProfileBadge
 
+    /// A emoji status shown along with the user's name
+    case premiumFeatureEmojiStatus
+
     /// Profile photo animation on message and chat screens
     case premiumFeatureAnimatedProfilePhoto
+
+    /// The ability to set a custom emoji as a forum topic icon
+    case premiumFeatureForumTopicIcon
 
     /// Allowed to set a premium appllication icons
     case premiumFeatureAppIcons
@@ -55,9 +64,12 @@ public enum PremiumFeature: Codable, Equatable {
         case premiumFeatureDisabledAds
         case premiumFeatureUniqueReactions
         case premiumFeatureUniqueStickers
+        case premiumFeatureCustomEmoji
         case premiumFeatureAdvancedChatManagement
         case premiumFeatureProfileBadge
+        case premiumFeatureEmojiStatus
         case premiumFeatureAnimatedProfilePhoto
+        case premiumFeatureForumTopicIcon
         case premiumFeatureAppIcons
     }
 
@@ -79,12 +91,18 @@ public enum PremiumFeature: Codable, Equatable {
             self = .premiumFeatureUniqueReactions
         case .premiumFeatureUniqueStickers:
             self = .premiumFeatureUniqueStickers
+        case .premiumFeatureCustomEmoji:
+            self = .premiumFeatureCustomEmoji
         case .premiumFeatureAdvancedChatManagement:
             self = .premiumFeatureAdvancedChatManagement
         case .premiumFeatureProfileBadge:
             self = .premiumFeatureProfileBadge
+        case .premiumFeatureEmojiStatus:
+            self = .premiumFeatureEmojiStatus
         case .premiumFeatureAnimatedProfilePhoto:
             self = .premiumFeatureAnimatedProfilePhoto
+        case .premiumFeatureForumTopicIcon:
+            self = .premiumFeatureForumTopicIcon
         case .premiumFeatureAppIcons:
             self = .premiumFeatureAppIcons
         }
@@ -107,12 +125,18 @@ public enum PremiumFeature: Codable, Equatable {
             try container.encode(Kind.premiumFeatureUniqueReactions, forKey: .type)
         case .premiumFeatureUniqueStickers:
             try container.encode(Kind.premiumFeatureUniqueStickers, forKey: .type)
+        case .premiumFeatureCustomEmoji:
+            try container.encode(Kind.premiumFeatureCustomEmoji, forKey: .type)
         case .premiumFeatureAdvancedChatManagement:
             try container.encode(Kind.premiumFeatureAdvancedChatManagement, forKey: .type)
         case .premiumFeatureProfileBadge:
             try container.encode(Kind.premiumFeatureProfileBadge, forKey: .type)
+        case .premiumFeatureEmojiStatus:
+            try container.encode(Kind.premiumFeatureEmojiStatus, forKey: .type)
         case .premiumFeatureAnimatedProfilePhoto:
             try container.encode(Kind.premiumFeatureAnimatedProfilePhoto, forKey: .type)
+        case .premiumFeatureForumTopicIcon:
+            try container.encode(Kind.premiumFeatureForumTopicIcon, forKey: .type)
         case .premiumFeatureAppIcons:
             try container.encode(Kind.premiumFeatureAppIcons, forKey: .type)
         }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -19,9 +19,6 @@ public struct MessageLinkInfo: Codable, Equatable {
     /// True, if the whole media album to which the message belongs is linked
     public let forAlbum: Bool
 
-    /// True, if the message is linked as a channel post comment or from a message thread
-    public let forComment: Bool
-
     /// True, if the link is a public link for a message in a chat
     public let isPublic: Bool
 
@@ -31,21 +28,24 @@ public struct MessageLinkInfo: Codable, Equatable {
     /// If found, the linked message; may be null
     public let message: Message?
 
+    /// If found, identifier of the message thread in which to open the message, or which to open in case of a missing message
+    public let messageThreadId: Int64
+
 
     public init(
         chatId: Int64,
         forAlbum: Bool,
-        forComment: Bool,
         isPublic: Bool,
         mediaTimestamp: Int,
-        message: Message?
+        message: Message?,
+        messageThreadId: Int64
     ) {
         self.chatId = chatId
         self.forAlbum = forAlbum
-        self.forComment = forComment
         self.isPublic = isPublic
         self.mediaTimestamp = mediaTimestamp
         self.message = message
+        self.messageThreadId = messageThreadId
     }
 }
 

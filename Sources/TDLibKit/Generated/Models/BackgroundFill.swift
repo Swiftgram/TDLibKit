@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -79,7 +79,7 @@ public struct BackgroundFillGradient: Codable, Equatable {
     /// A bottom color of the background in the RGB24 format
     public let bottomColor: Int
 
-    /// Clockwise rotation angle of the gradient, in degrees; 0-359. Must be always divisible by 45
+    /// Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
     public let rotationAngle: Int
 
     /// A top color of the background in the RGB24 format

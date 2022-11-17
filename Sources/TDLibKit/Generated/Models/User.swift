@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct User: Codable, Equatable {
 
     /// True, if the user added the current bot to attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool
+
+    /// Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only
+    public let emojiStatus: EmojiStatus?
 
     /// First name of the user
     public let firstName: String
@@ -67,12 +70,13 @@ public struct User: Codable, Equatable {
     /// Type of the user
     public let type: UserType
 
-    /// Username of the user
-    public let username: String
+    /// Usernames of the user; may be null
+    public let usernames: Usernames?
 
 
     public init(
         addedToAttachmentMenu: Bool,
+        emojiStatus: EmojiStatus?,
         firstName: String,
         haveAccess: Bool,
         id: Int64,
@@ -90,9 +94,10 @@ public struct User: Codable, Equatable {
         restrictionReason: String,
         status: UserStatus,
         type: UserType,
-        username: String
+        usernames: Usernames?
     ) {
         self.addedToAttachmentMenu = addedToAttachmentMenu
+        self.emojiStatus = emojiStatus
         self.firstName = firstName
         self.haveAccess = haveAccess
         self.id = id
@@ -110,7 +115,7 @@ public struct User: Codable, Equatable {
         self.restrictionReason = restrictionReason
         self.status = status
         self.type = type
-        self.username = username
+        self.usernames = usernames
     }
 }
 

@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.4-07b7faf6
-//  https://github.com/tdlib/td/tree/07b7faf6
+//  Based on TDLib 1.8.8-2e6ac1f2
+//  https://github.com/tdlib/td/tree/2e6ac1f2
 //
 
 import Foundation
 
 
-/// Changes the username of the current user
+/// Changes the editable username of the current user
 public struct SetUsername: Codable, Equatable {
 
-    /// The new value of the username. Use an empty string to remove the username
+    /// The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     public let username: String?
 
 
