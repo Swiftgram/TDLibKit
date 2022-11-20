@@ -17,11 +17,7 @@ of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](sc
    cause it downloads ~300mb zip file with binary
    from [TDLibFramework dependency](https://github.com/Swiftgram/TDLibFramework)
 3. Add `TDLibKit` as your target dependency.
-4. Add `libz.1.tbd` and `libc++.1.tbd` as your target dependencies.
-5. If something is not accesible from TDLibFramework, make sure to add `libSystem.B.tbd` for all platforms
-   and `libc++abi.tbd` if you're building non-macOS
-   app. [Source](https://github.com/modestman/tdlib-swift/blob/master/td-xcframework/td.xcodeproj/project.pbxproj#L301)
-6. Code!
+4. Code!
 
 ### Cocoapods
 
