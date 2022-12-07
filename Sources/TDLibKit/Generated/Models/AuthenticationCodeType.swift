@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public enum AuthenticationCodeType: Codable, Equatable {
     /// An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
     case authenticationCodeTypeMissedCall(AuthenticationCodeTypeMissedCall)
 
+    /// An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
+    case authenticationCodeTypeFragment(AuthenticationCodeTypeFragment)
+
 
     private enum Kind: String, Codable {
         case authenticationCodeTypeTelegramMessage
@@ -35,6 +38,7 @@ public enum AuthenticationCodeType: Codable, Equatable {
         case authenticationCodeTypeCall
         case authenticationCodeTypeFlashCall
         case authenticationCodeTypeMissedCall
+        case authenticationCodeTypeFragment
     }
 
     public init(from decoder: Decoder) throws {
@@ -56,6 +60,9 @@ public enum AuthenticationCodeType: Codable, Equatable {
         case .authenticationCodeTypeMissedCall:
             let value = try AuthenticationCodeTypeMissedCall(from: decoder)
             self = .authenticationCodeTypeMissedCall(value)
+        case .authenticationCodeTypeFragment:
+            let value = try AuthenticationCodeTypeFragment(from: decoder)
+            self = .authenticationCodeTypeFragment(value)
         }
     }
 
@@ -76,6 +83,9 @@ public enum AuthenticationCodeType: Codable, Equatable {
             try value.encode(to: encoder)
         case .authenticationCodeTypeMissedCall(let value):
             try container.encode(Kind.authenticationCodeTypeMissedCall, forKey: .type)
+            try value.encode(to: encoder)
+        case .authenticationCodeTypeFragment(let value):
+            try container.encode(Kind.authenticationCodeTypeFragment, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -145,6 +155,25 @@ public struct AuthenticationCodeTypeMissedCall: Codable, Equatable {
     ) {
         self.length = length
         self.phoneNumberPrefix = phoneNumberPrefix
+    }
+}
+
+/// An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
+public struct AuthenticationCodeTypeFragment: Codable, Equatable {
+
+    /// Length of the code
+    public let length: Int
+
+    /// URL to open to receive the code
+    public let url: String
+
+
+    public init(
+        length: Int,
+        url: String
+    ) {
+        self.length = length
+        self.url = url
     }
 }
 

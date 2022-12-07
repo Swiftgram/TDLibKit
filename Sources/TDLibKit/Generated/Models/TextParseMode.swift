@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
 
 
-/// Describes the way the text needs to be parsed for TextEntities
+/// Describes the way the text needs to be parsed for text entities
 public enum TextParseMode: Codable, Equatable {
 
     /// The text uses Markdown-style formatting

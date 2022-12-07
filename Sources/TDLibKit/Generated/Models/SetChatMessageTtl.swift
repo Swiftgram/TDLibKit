@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
 
 
-/// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+/// Changes the message TTL in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
 public struct SetChatMessageTtl: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64?
 
-    /// New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400
+    /// New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     public let ttl: Int?
 
 

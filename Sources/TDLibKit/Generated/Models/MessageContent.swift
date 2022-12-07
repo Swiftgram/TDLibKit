@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -139,6 +139,9 @@ public enum MessageContent: Codable, Equatable {
     /// A forum topic has been closed or opened
     case messageForumTopicIsClosedToggled(MessageForumTopicIsClosedToggled)
 
+    /// A General forum topic has been hidden or unhidden
+    case messageForumTopicIsHiddenToggled(MessageForumTopicIsHiddenToggled)
+
     /// A non-standard action has happened in the chat
     case messageCustomServiceAction(MessageCustomServiceAction)
 
@@ -222,6 +225,7 @@ public enum MessageContent: Codable, Equatable {
         case messageForumTopicCreated
         case messageForumTopicEdited
         case messageForumTopicIsClosedToggled
+        case messageForumTopicIsHiddenToggled
         case messageCustomServiceAction
         case messageGameScore
         case messagePaymentSuccessful
@@ -361,6 +365,9 @@ public enum MessageContent: Codable, Equatable {
         case .messageForumTopicIsClosedToggled:
             let value = try MessageForumTopicIsClosedToggled(from: decoder)
             self = .messageForumTopicIsClosedToggled(value)
+        case .messageForumTopicIsHiddenToggled:
+            let value = try MessageForumTopicIsHiddenToggled(from: decoder)
+            self = .messageForumTopicIsHiddenToggled(value)
         case .messageCustomServiceAction:
             let value = try MessageCustomServiceAction(from: decoder)
             self = .messageCustomServiceAction(value)
@@ -523,6 +530,9 @@ public enum MessageContent: Codable, Equatable {
             try value.encode(to: encoder)
         case .messageForumTopicIsClosedToggled(let value):
             try container.encode(Kind.messageForumTopicIsClosedToggled, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageForumTopicIsHiddenToggled(let value):
+            try container.encode(Kind.messageForumTopicIsHiddenToggled, forKey: .type)
             try value.encode(to: encoder)
         case .messageCustomServiceAction(let value):
             try container.encode(Kind.messageCustomServiceAction, forKey: .type)
@@ -1177,11 +1187,18 @@ public struct MessageChatSetTheme: Codable, Equatable {
 /// The TTL (Time To Live) setting for messages in the chat has been changed
 public struct MessageChatSetTtl: Codable, Equatable {
 
+    /// If not 0, a user identifier, which default setting was automatically applied
+    public let fromUserId: Int64
+
     /// New message TTL
     public let ttl: Int
 
 
-    public init(ttl: Int) {
+    public init(
+        fromUserId: Int64,
+        ttl: Int
+    ) {
+        self.fromUserId = fromUserId
         self.ttl = ttl
     }
 }
@@ -1232,12 +1249,24 @@ public struct MessageForumTopicEdited: Codable, Equatable {
 /// A forum topic has been closed or opened
 public struct MessageForumTopicIsClosedToggled: Codable, Equatable {
 
-    /// True if the topic was closed or reopened
+    /// True, if the topic was closed, otherwise the topic was reopened
     public let isClosed: Bool
 
 
     public init(isClosed: Bool) {
         self.isClosed = isClosed
+    }
+}
+
+/// A General forum topic has been hidden or unhidden
+public struct MessageForumTopicIsHiddenToggled: Codable, Equatable {
+
+    /// True, if the topic was hidden, otherwise the topic was unhidden
+    public let isHidden: Bool
+
+
+    public init(isHidden: Bool) {
+        self.isHidden = isHidden
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -491,15 +491,15 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
-    /// - Returns: All updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others
+    /// Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
+    /// - Returns: All updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others
     public func getCurrentState(completion: @escaping (Result<Updates, Swift.Error>) -> Void) throws {
         let query = GetCurrentState()
         execute(query: query, completion: completion)
     }
 
-    /// Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
-    /// - Returns: All updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others
+    /// Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
+    /// - Returns: All updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCurrentState() async throws -> Updates {
         let query = GetCurrentState()
@@ -3146,7 +3146,7 @@ public final class TdApi {
 
     /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
     /// - Parameter chatId: Target chat
-    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
+    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
@@ -3177,7 +3177,7 @@ public final class TdApi {
 
     /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
     /// - Parameter chatId: Target chat
-    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
+    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
@@ -3631,7 +3631,7 @@ public final class TdApi {
     }
 
     /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
-    /// - Parameter caption: New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
+    /// - Parameter caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
@@ -3653,7 +3653,7 @@ public final class TdApi {
     }
 
     /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
-    /// - Parameter caption: New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
+    /// - Parameter caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
@@ -3833,7 +3833,7 @@ public final class TdApi {
     }
 
     /// Edits the caption of an inline message sent via a bot; for bots only
-    /// - Parameter caption: New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
+    /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public func editInlineMessageCaption(
@@ -3851,7 +3851,7 @@ public final class TdApi {
     }
 
     /// Edits the caption of an inline message sent via a bot; for bots only
-    /// - Parameter caption: New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
+    /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -3987,11 +3987,13 @@ public final class TdApi {
 
     /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
-    /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+    /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
-    /// - Parameter name: New name of the topic; 1-128 characters
+    /// - Parameter name: New name of the topic; 0-128 characters. If empty, the previous topic name is kept
     public func editForumTopic(
         chatId: Int64?,
+        editIconCustomEmoji: Bool?,
         iconCustomEmojiId: TdInt64?,
         messageThreadId: Int64?,
         name: String?,
@@ -3999,6 +4001,7 @@ public final class TdApi {
     ) throws {
         let query = EditForumTopic(
             chatId: chatId,
+            editIconCustomEmoji: editIconCustomEmoji,
             iconCustomEmojiId: iconCustomEmojiId,
             messageThreadId: messageThreadId,
             name: name
@@ -4008,21 +4011,180 @@ public final class TdApi {
 
     /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
-    /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+    /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
-    /// - Parameter name: New name of the topic; 1-128 characters
+    /// - Parameter name: New name of the topic; 0-128 characters. If empty, the previous topic name is kept
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editForumTopic(
         chatId: Int64?,
+        editIconCustomEmoji: Bool?,
         iconCustomEmojiId: TdInt64?,
         messageThreadId: Int64?,
         name: String?
     ) async throws -> Ok {
         let query = EditForumTopic(
             chatId: chatId,
+            editIconCustomEmoji: editIconCustomEmoji,
             iconCustomEmojiId: iconCustomEmojiId,
             messageThreadId: messageThreadId,
             name: name
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns information about a forum topic
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Returns: Information about a forum topic
+    public func getForumTopic(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<ForumTopic, Swift.Error>) -> Void
+    ) throws {
+        let query = GetForumTopic(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a forum topic
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Returns: Information about a forum topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getForumTopic(
+        chatId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> ForumTopic {
+        let query = GetForumTopic(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns an HTTPS link to a topic in a forum chat. This is an offline request
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Returns: An HTTPS link to a topic in a forum chat
+    public func getForumTopicLink(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetForumTopicLink(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS link to a topic in a forum chat. This is an offline request
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Returns: An HTTPS link to a topic in a forum chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getForumTopicLink(
+        chatId: Int64?,
+        messageThreadId: Int64?
+    ) async throws -> HttpUrl {
+        let query = GetForumTopicLink(
+            chatId: chatId,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
+    /// - Parameter chatId: Identifier of the forum chat
+    /// - Parameter limit: The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offsetDate: The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
+    /// - Parameter offsetMessageId: The message identifier of the last message in the last found topic, or 0 for the first request
+    /// - Parameter offsetMessageThreadId: The message thread identifier of the last found topic, or 0 for the first request
+    /// - Parameter query: Query to search for in the forum topic's name
+    /// - Returns: Found forum topics in a forum chat
+    public func getForumTopics(
+        chatId: Int64?,
+        limit: Int?,
+        offsetDate: Int?,
+        offsetMessageId: Int64?,
+        offsetMessageThreadId: Int64?,
+        query: String?,
+        completion: @escaping (Result<ForumTopics, Swift.Error>) -> Void
+    ) throws {
+        let query = GetForumTopics(
+            chatId: chatId,
+            limit: limit,
+            offsetDate: offsetDate,
+            offsetMessageId: offsetMessageId,
+            offsetMessageThreadId: offsetMessageThreadId,
+            query: query
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
+    /// - Parameter chatId: Identifier of the forum chat
+    /// - Parameter limit: The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offsetDate: The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
+    /// - Parameter offsetMessageId: The message identifier of the last message in the last found topic, or 0 for the first request
+    /// - Parameter offsetMessageThreadId: The message thread identifier of the last found topic, or 0 for the first request
+    /// - Parameter query: Query to search for in the forum topic's name
+    /// - Returns: Found forum topics in a forum chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getForumTopics(
+        chatId: Int64?,
+        limit: Int?,
+        offsetDate: Int?,
+        offsetMessageId: Int64?,
+        offsetMessageThreadId: Int64?,
+        query: String?
+    ) async throws -> ForumTopics {
+        let query = GetForumTopics(
+            chatId: chatId,
+            limit: limit,
+            offsetDate: offsetDate,
+            offsetMessageId: offsetMessageId,
+            offsetMessageThreadId: offsetMessageThreadId,
+            query: query
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the notification settings of a forum topic
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Parameter notificationSettings: New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
+    public func setForumTopicNotificationSettings(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        notificationSettings: ChatNotificationSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetForumTopicNotificationSettings(
+            chatId: chatId,
+            messageThreadId: messageThreadId,
+            notificationSettings: notificationSettings
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the notification settings of a forum topic
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    /// - Parameter notificationSettings: New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setForumTopicNotificationSettings(
+        chatId: Int64?,
+        messageThreadId: Int64?,
+        notificationSettings: ChatNotificationSettings?
+    ) async throws -> Ok {
+        let query = SetForumTopicNotificationSettings(
+            chatId: chatId,
+            messageThreadId: messageThreadId,
+            notificationSettings: notificationSettings
         )
         return try await execute(query: query)
     }
@@ -4059,6 +4221,36 @@ public final class TdApi {
             chatId: chatId,
             isClosed: isClosed,
             messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
+    public func toggleGeneralForumTopicIsHidden(
+        chatId: Int64?,
+        isHidden: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleGeneralForumTopicIsHidden(
+            chatId: chatId,
+            isHidden: isHidden
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleGeneralForumTopicIsHidden(
+        chatId: Int64?,
+        isHidden: Bool?
+    ) async throws -> Ok {
+        let query = ToggleGeneralForumTopicIsHidden(
+            chatId: chatId,
+            isHidden: isHidden
         )
         return try await execute(query: query)
     }
@@ -5471,7 +5663,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup is changed
+    /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: The message identifier of the used keyboard
     public func deleteChatReplyMarkup(
@@ -5486,7 +5678,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup is changed
+    /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: The message identifier of the used keyboard
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -5990,15 +6182,18 @@ public final class TdApi {
     }
 
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group
     /// - Returns: The newly created chat
     public func createNewBasicGroupChat(
+        messageTtl: Int?,
         title: String?,
         userIds: [Int64]?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewBasicGroupChat(
+            messageTtl: messageTtl,
             title: title,
             userIds: userIds
         )
@@ -6006,15 +6201,18 @@ public final class TdApi {
     }
 
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group
     /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewBasicGroupChat(
+        messageTtl: Int?,
         title: String?,
         userIds: [Int64]?
     ) async throws -> Chat {
         let query = CreateNewBasicGroupChat(
+            messageTtl: messageTtl,
             title: title,
             userIds: userIds
         )
@@ -6026,6 +6224,7 @@ public final class TdApi {
     /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
     /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
+    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new chat; 1-128 characters
     /// - Returns: The newly created chat
     public func createNewSupergroupChat(
@@ -6033,6 +6232,7 @@ public final class TdApi {
         forImport: Bool?,
         isChannel: Bool?,
         location: ChatLocation?,
+        messageTtl: Int?,
         title: String?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
@@ -6041,6 +6241,7 @@ public final class TdApi {
             forImport: forImport,
             isChannel: isChannel,
             location: location,
+            messageTtl: messageTtl,
             title: title
         )
         execute(query: query, completion: completion)
@@ -6051,6 +6252,7 @@ public final class TdApi {
     /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
     /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
+    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new chat; 1-128 characters
     /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -6059,6 +6261,7 @@ public final class TdApi {
         forImport: Bool?,
         isChannel: Bool?,
         location: ChatLocation?,
+        messageTtl: Int?,
         title: String?
     ) async throws -> Chat {
         let query = CreateNewSupergroupChat(
@@ -6066,6 +6269,7 @@ public final class TdApi {
             forImport: forImport,
             isChannel: isChannel,
             location: location,
+            messageTtl: messageTtl,
             title: title
         )
         return try await execute(query: query)
@@ -6195,7 +6399,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
+    /// Creates new chat filter. Returns information about the created chat filter. There can be up to getOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
     /// - Parameter filter: Chat filter
     /// - Returns: Information about the created chat filter
     public func createChatFilter(
@@ -6208,7 +6412,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
+    /// Creates new chat filter. Returns information about the created chat filter. There can be up to getOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
     /// - Parameter filter: Chat filter
     /// - Returns: Information about the created chat filter
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -6402,9 +6606,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+    /// Changes the message TTL in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400
+    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     public func setChatMessageTtl(
         chatId: Int64?,
         ttl: Int?,
@@ -6417,9 +6621,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+    /// Changes the message TTL in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400
+    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setChatMessageTtl(
         chatId: Int64?,
@@ -7495,7 +7699,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+    /// Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
@@ -7513,7 +7717,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+    /// Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
@@ -9435,7 +9639,7 @@ public final class TdApi {
 
     /// Pauses or unpauses screen sharing in a joined group call
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isPaused: True if screen sharing is paused
+    /// - Parameter isPaused: True, if screen sharing is paused
     public func toggleGroupCallScreenSharingIsPaused(
         groupCallId: Int?,
         isPaused: Bool?,
@@ -9450,7 +9654,7 @@ public final class TdApi {
 
     /// Pauses or unpauses screen sharing in a joined group call
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isPaused: True if screen sharing is paused
+    /// - Parameter isPaused: True, if screen sharing is paused
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleGroupCallScreenSharingIsPaused(
         groupCallId: Int?,
@@ -11370,7 +11574,7 @@ public final class TdApi {
     }
 
     /// Changes the bio of the current user
-    /// - Parameter bio: The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
+    /// - Parameter bio: The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
     public func setBio(
         bio: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -11382,7 +11586,7 @@ public final class TdApi {
     }
 
     /// Changes the bio of the current user
-    /// - Parameter bio: The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
+    /// - Parameter bio: The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBio(bio: String?) async throws -> Ok {
         let query = SetBio(
@@ -11497,7 +11701,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the location of the current user. Needs to be called if GetOption("is_location_visible") is true and location changes for more than 1 kilometer
+    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
     /// - Parameter location: The new location of the user
     public func setLocation(
         location: Location?,
@@ -11509,7 +11713,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the location of the current user. Needs to be called if GetOption("is_location_visible") is true and location changes for more than 1 kilometer
+    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
     /// - Parameter location: The new location of the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setLocation(location: Location?) async throws -> Ok {
@@ -11582,6 +11786,43 @@ public final class TdApi {
     public func checkChangePhoneNumberCode(code: String?) async throws -> Ok {
         let query = CheckChangePhoneNumberCode(
             code: code
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns an HTTPS link, which can be used to get information about the current user
+    /// - Returns: An HTTPS link, which can be used to get information about the current user
+    public func getUserLink(completion: @escaping (Result<UserLink, Swift.Error>) -> Void) throws {
+        let query = GetUserLink()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS link, which can be used to get information about the current user
+    /// - Returns: An HTTPS link, which can be used to get information about the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getUserLink() async throws -> UserLink {
+        let query = GetUserLink()
+        return try await execute(query: query)
+    }
+
+    /// Searches a user by a token from the user's link
+    /// - Parameter token: Token to search for
+    public func searchUserByToken(
+        token: String?,
+        completion: @escaping (Result<User, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchUserByToken(
+            token: token
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Searches a user by a token from the user's link
+    /// - Parameter token: Token to search for
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchUserByToken(token: String?) async throws -> User {
+        let query = SearchUserByToken(
+            token: token
         )
         return try await execute(query: query)
     }
@@ -12234,8 +12475,38 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Toggles whether aggressive anti-spam checks are enabled in the supergroup; requires can_delete_messages administrator right. Can be called only if the supergroup has at least getOption("aggressive_anti_spam_supergroup_member_count_min") members
+    /// - Parameter isAggressiveAntiSpamEnabled: The new value of is_aggressive_anti_spam_enabled
+    /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
+    public func toggleSupergroupIsAggressiveAntiSpamEnabled(
+        isAggressiveAntiSpamEnabled: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupIsAggressiveAntiSpamEnabled(
+            isAggressiveAntiSpamEnabled: isAggressiveAntiSpamEnabled,
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether aggressive anti-spam checks are enabled in the supergroup; requires can_delete_messages administrator right. Can be called only if the supergroup has at least getOption("aggressive_anti_spam_supergroup_member_count_min") members
+    /// - Parameter isAggressiveAntiSpamEnabled: The new value of is_aggressive_anti_spam_enabled
+    /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleSupergroupIsAggressiveAntiSpamEnabled(
+        isAggressiveAntiSpamEnabled: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupIsAggressiveAntiSpamEnabled(
+            isAggressiveAntiSpamEnabled: isAggressiveAntiSpamEnabled,
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
     /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
-    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least GetOption("forum_member_count_min") members
+    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
     /// - Parameter supergroupId: Identifier of the supergroup
     public func toggleSupergroupIsForum(
         isForum: Bool?,
@@ -12250,7 +12521,7 @@ public final class TdApi {
     }
 
     /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
-    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least GetOption("forum_member_count_min") members
+    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleSupergroupIsForum(
@@ -12311,6 +12582,36 @@ public final class TdApi {
     ) async throws -> Ok {
         let query = ReportSupergroupSpam(
             messageIds: messageIds,
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+    /// - Parameter messageId: Identifier of the erroneously deleted message
+    /// - Parameter supergroupId: Supergroup identifier
+    public func reportSupergroupAntiSpamFalsePositive(
+        messageId: Int64?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportSupergroupAntiSpamFalsePositive(
+            messageId: messageId,
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+    /// - Parameter messageId: Identifier of the erroneously deleted message
+    /// - Parameter supergroupId: Supergroup identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reportSupergroupAntiSpamFalsePositive(
+        messageId: Int64?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ReportSupergroupAntiSpamFalsePositive(
+            messageId: messageId,
             supergroupId: supergroupId
         )
         return try await execute(query: query)
@@ -12563,7 +12864,7 @@ public final class TdApi {
     }
 
     /// Returns information about a successful payment
-    /// - Parameter chatId: Chat identifier of the PaymentSuccessful message
+    /// - Parameter chatId: Chat identifier of the messagePaymentSuccessful message
     /// - Parameter messageId: Message identifier
     /// - Returns: Information about a successful payment
     public func getPaymentReceipt(
@@ -12579,7 +12880,7 @@ public final class TdApi {
     }
 
     /// Returns information about a successful payment
-    /// - Parameter chatId: Chat identifier of the PaymentSuccessful message
+    /// - Parameter chatId: Chat identifier of the messagePaymentSuccessful message
     /// - Parameter messageId: Message identifier
     /// - Returns: Information about a successful payment
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -13323,6 +13624,43 @@ public final class TdApi {
             password: password,
             reason: reason
         )
+        return try await execute(query: query)
+    }
+
+    /// Changes the default message Time To Live setting (self-destruct timer) for new chats
+    /// - Parameter ttl: New message TTL; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    public func setDefaultMessageTtl(
+        ttl: MessageTtl?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetDefaultMessageTtl(
+            ttl: ttl
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the default message Time To Live setting (self-destruct timer) for new chats
+    /// - Parameter ttl: New message TTL; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setDefaultMessageTtl(ttl: MessageTtl?) async throws -> Ok {
+        let query = SetDefaultMessageTtl(
+            ttl: ttl
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns default message Time To Live setting (self-destruct timer) for new chats
+    /// - Returns: Default message Time To Live setting (self-destruct timer) for new chats
+    public func getDefaultMessageTtl(completion: @escaping (Result<MessageTtl, Swift.Error>) -> Void) throws {
+        let query = GetDefaultMessageTtl()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns default message Time To Live setting (self-destruct timer) for new chats
+    /// - Returns: Default message Time To Live setting (self-destruct timer) for new chats
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDefaultMessageTtl() async throws -> MessageTtl {
+        let query = GetDefaultMessageTtl()
         return try await execute(query: query)
     }
 

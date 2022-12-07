@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns information about a successful payment
 public struct GetPaymentReceipt: Codable, Equatable {
 
-    /// Chat identifier of the PaymentSuccessful message
+    /// Chat identifier of the messagePaymentSuccessful message
     public let chatId: Int64?
 
     /// Message identifier

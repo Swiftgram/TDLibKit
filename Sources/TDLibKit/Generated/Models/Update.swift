@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -286,7 +286,7 @@ public enum Update: Codable, Equatable {
     /// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     case updateAnimatedEmojiMessageClicked(UpdateAnimatedEmojiMessageClicked)
 
-    /// The parameters of animation search through GetOption("animation_search_bot_username") bot has changed
+    /// The parameters of animation search through getOption("animation_search_bot_username") bot has changed
     case updateAnimationSearchParameters(UpdateAnimationSearchParameters)
 
     /// The list of suggested to the user actions has changed
@@ -2817,7 +2817,7 @@ public struct UpdateAnimatedEmojiMessageClicked: Codable, Equatable {
     }
 }
 
-/// The parameters of animation search through GetOption("animation_search_bot_username") bot has changed
+/// The parameters of animation search through getOption("animation_search_bot_username") bot has changed
 public struct UpdateAnimationSearchParameters: Codable, Equatable {
 
     /// The new list of emojis suggested for searching

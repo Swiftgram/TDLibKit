@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
 public struct CreateNewBasicGroupChat: Codable, Equatable {
+
+    /// Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    public let messageTtl: Int?
 
     /// Title of the new basic group; 1-128 characters
     public let title: String?
@@ -21,9 +24,11 @@ public struct CreateNewBasicGroupChat: Codable, Equatable {
 
 
     public init(
+        messageTtl: Int?,
         title: String?,
         userIds: [Int64]?
     ) {
+        self.messageTtl = messageTtl
         self.title = title
         self.userIds = userIds
     }

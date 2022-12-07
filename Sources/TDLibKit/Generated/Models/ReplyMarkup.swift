@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 public enum ReplyMarkup: Codable, Equatable {
 
-    /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
+    /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
     case replyMarkupRemoveKeyboard(ReplyMarkupRemoveKeyboard)
 
     /// Instructs application to force a reply to this message
@@ -71,7 +71,7 @@ public enum ReplyMarkup: Codable, Equatable {
     }
 }
 
-/// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
+/// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
 public struct ReplyMarkupRemoveKeyboard: Codable, Equatable {
 
     /// True, if the keyboard is removed only for the mentioned users or the target user of a reply

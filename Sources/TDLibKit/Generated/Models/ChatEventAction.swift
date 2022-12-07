@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -94,6 +94,9 @@ public enum ChatEventAction: Codable, Equatable {
     /// The is_all_history_available setting of a supergroup was toggled
     case chatEventIsAllHistoryAvailableToggled(ChatEventIsAllHistoryAvailableToggled)
 
+    /// The is_aggressive_anti_spam_enabled setting of a supergroup was toggled
+    case chatEventIsAggressiveAntiSpamEnabledToggled(ChatEventIsAggressiveAntiSpamEnabledToggled)
+
     /// The sign_messages setting of a channel was toggled
     case chatEventSignMessagesToggled(ChatEventSignMessagesToggled)
 
@@ -133,6 +136,9 @@ public enum ChatEventAction: Codable, Equatable {
     /// A forum topic was closed or reopened
     case chatEventForumTopicToggleIsClosed(ChatEventForumTopicToggleIsClosed)
 
+    /// The General forum topic was hidden or unhidden
+    case chatEventForumTopicToggleIsHidden(ChatEventForumTopicToggleIsHidden)
+
     /// A forum topic was deleted
     case chatEventForumTopicDeleted(ChatEventForumTopicDeleted)
 
@@ -168,6 +174,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventHasProtectedContentToggled
         case chatEventInvitesToggled
         case chatEventIsAllHistoryAvailableToggled
+        case chatEventIsAggressiveAntiSpamEnabledToggled
         case chatEventSignMessagesToggled
         case chatEventInviteLinkEdited
         case chatEventInviteLinkRevoked
@@ -181,6 +188,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventForumTopicCreated
         case chatEventForumTopicEdited
         case chatEventForumTopicToggleIsClosed
+        case chatEventForumTopicToggleIsHidden
         case chatEventForumTopicDeleted
         case chatEventForumTopicPinned
     }
@@ -268,6 +276,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventIsAllHistoryAvailableToggled:
             let value = try ChatEventIsAllHistoryAvailableToggled(from: decoder)
             self = .chatEventIsAllHistoryAvailableToggled(value)
+        case .chatEventIsAggressiveAntiSpamEnabledToggled:
+            let value = try ChatEventIsAggressiveAntiSpamEnabledToggled(from: decoder)
+            self = .chatEventIsAggressiveAntiSpamEnabledToggled(value)
         case .chatEventSignMessagesToggled:
             let value = try ChatEventSignMessagesToggled(from: decoder)
             self = .chatEventSignMessagesToggled(value)
@@ -307,6 +318,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventForumTopicToggleIsClosed:
             let value = try ChatEventForumTopicToggleIsClosed(from: decoder)
             self = .chatEventForumTopicToggleIsClosed(value)
+        case .chatEventForumTopicToggleIsHidden:
+            let value = try ChatEventForumTopicToggleIsHidden(from: decoder)
+            self = .chatEventForumTopicToggleIsHidden(value)
         case .chatEventForumTopicDeleted:
             let value = try ChatEventForumTopicDeleted(from: decoder)
             self = .chatEventForumTopicDeleted(value)
@@ -398,6 +412,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventIsAllHistoryAvailableToggled(let value):
             try container.encode(Kind.chatEventIsAllHistoryAvailableToggled, forKey: .type)
             try value.encode(to: encoder)
+        case .chatEventIsAggressiveAntiSpamEnabledToggled(let value):
+            try container.encode(Kind.chatEventIsAggressiveAntiSpamEnabledToggled, forKey: .type)
+            try value.encode(to: encoder)
         case .chatEventSignMessagesToggled(let value):
             try container.encode(Kind.chatEventSignMessagesToggled, forKey: .type)
             try value.encode(to: encoder)
@@ -437,6 +454,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventForumTopicToggleIsClosed(let value):
             try container.encode(Kind.chatEventForumTopicToggleIsClosed, forKey: .type)
             try value.encode(to: encoder)
+        case .chatEventForumTopicToggleIsHidden(let value):
+            try container.encode(Kind.chatEventForumTopicToggleIsHidden, forKey: .type)
+            try value.encode(to: encoder)
         case .chatEventForumTopicDeleted(let value):
             try container.encode(Kind.chatEventForumTopicDeleted, forKey: .type)
             try value.encode(to: encoder)
@@ -469,11 +489,18 @@ public struct ChatEventMessageEdited: Codable, Equatable {
 /// A message was deleted
 public struct ChatEventMessageDeleted: Codable, Equatable {
 
+    /// True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive
+    public let canReportAntiSpamFalsePositive: Bool
+
     /// Deleted message
     public let message: Message
 
 
-    public init(message: Message) {
+    public init(
+        canReportAntiSpamFalsePositive: Bool,
+        message: Message
+    ) {
+        self.canReportAntiSpamFalsePositive = canReportAntiSpamFalsePositive
         self.message = message
     }
 }
@@ -876,6 +903,18 @@ public struct ChatEventIsAllHistoryAvailableToggled: Codable, Equatable {
     }
 }
 
+/// The is_aggressive_anti_spam_enabled setting of a supergroup was toggled
+public struct ChatEventIsAggressiveAntiSpamEnabledToggled: Codable, Equatable {
+
+    /// New value of is_aggressive_anti_spam_enabled
+    public let isAggressiveAntiSpamEnabled: Bool
+
+
+    public init(isAggressiveAntiSpamEnabled: Bool) {
+        self.isAggressiveAntiSpamEnabled = isAggressiveAntiSpamEnabled
+    }
+}
+
 /// The sign_messages setting of a channel was toggled
 public struct ChatEventSignMessagesToggled: Codable, Equatable {
 
@@ -1050,6 +1089,18 @@ public struct ChatEventForumTopicEdited: Codable, Equatable {
 
 /// A forum topic was closed or reopened
 public struct ChatEventForumTopicToggleIsClosed: Codable, Equatable {
+
+    /// New information about the topic
+    public let topicInfo: ForumTopicInfo
+
+
+    public init(topicInfo: ForumTopicInfo) {
+        self.topicInfo = topicInfo
+    }
+}
+
+/// The General forum topic was hidden or unhidden
+public struct ChatEventForumTopicToggleIsHidden: Codable, Equatable {
 
     /// New information about the topic
     public let topicInfo: ForumTopicInfo

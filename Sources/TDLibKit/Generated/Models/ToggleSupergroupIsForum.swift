@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
 public struct ToggleSupergroupIsForum: Codable, Equatable {
 
-    /// New value of is_forum. A supergroup can be converted to a forum, only if it has at least GetOption("forum_member_count_min") members
+    /// New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
     public let isForum: Bool?
 
     /// Identifier of the supergroup

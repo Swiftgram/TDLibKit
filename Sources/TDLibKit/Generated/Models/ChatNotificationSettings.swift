@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
 
 
-/// Contains information about notification settings for a chat
+/// Contains information about notification settings for a chat or a froum topic
 public struct ChatNotificationSettings: Codable, Equatable {
 
     /// If true, notifications for messages with mentions will be created as for an ordinary unread message
@@ -28,19 +28,19 @@ public struct ChatNotificationSettings: Codable, Equatable {
     /// Identifier of the notification sound to be played; 0 if sound is disabled
     public let soundId: TdInt64
 
-    /// If true, disable_mention_notifications is ignored and the value for the relevant type of chat is used instead
+    /// If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
     public let useDefaultDisableMentionNotifications: Bool
 
-    /// If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat is used instead
+    /// If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
     public let useDefaultDisablePinnedMessageNotifications: Bool
 
-    /// If true, mute_for is ignored and the value for the relevant type of chat is used instead
+    /// If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead
     public let useDefaultMuteFor: Bool
 
-    /// If true, show_preview is ignored and the value for the relevant type of chat is used instead
+    /// If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
     public let useDefaultShowPreview: Bool
 
-    /// If true, the value for the relevant type of chat is used instead of sound_id
+    /// If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
     public let useDefaultSound: Bool
 
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
 
 
-/// Contains information about a link to a message in a chat
+/// Contains information about a link to a message or a forum topic in a chat
 public struct MessageLinkInfo: Codable, Equatable {
 
     /// If found, identifier of the chat to which the message belongs, 0 otherwise
@@ -28,7 +28,7 @@ public struct MessageLinkInfo: Codable, Equatable {
     /// If found, the linked message; may be null
     public let message: Message?
 
-    /// If found, identifier of the message thread in which to open the message, or which to open in case of a missing message
+    /// If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
     public let messageThreadId: Int64
 
 

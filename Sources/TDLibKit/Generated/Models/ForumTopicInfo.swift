@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -25,6 +25,12 @@ public struct ForumTopicInfo: Codable, Equatable {
     /// True, if the topic is closed
     public let isClosed: Bool
 
+    /// True, if the topic is the General topic list
+    public let isGeneral: Bool
+
+    /// True, if the topic is hidden above the topic list and closed; for General topic only
+    public let isHidden: Bool
+
     /// True, if the topic was created by the current user
     public let isOutgoing: Bool
 
@@ -40,6 +46,8 @@ public struct ForumTopicInfo: Codable, Equatable {
         creatorId: MessageSender,
         icon: ForumTopicIcon,
         isClosed: Bool,
+        isGeneral: Bool,
+        isHidden: Bool,
         isOutgoing: Bool,
         messageThreadId: Int64,
         name: String
@@ -48,6 +56,8 @@ public struct ForumTopicInfo: Codable, Equatable {
         self.creatorId = creatorId
         self.icon = icon
         self.isClosed = isClosed
+        self.isGeneral = isGeneral
+        self.isHidden = isHidden
         self.isOutgoing = isOutgoing
         self.messageThreadId = messageThreadId
         self.name = name

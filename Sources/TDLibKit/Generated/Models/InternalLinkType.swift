@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -58,7 +58,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to the language settings section of the app
     case internalLinkTypeLanguageSettings
 
-    /// The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
+    /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
     case internalLinkTypeMessage(InternalLinkTypeMessage)
 
     /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
@@ -109,6 +109,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
     case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
 
+    /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+    case internalLinkTypeUserToken(InternalLinkTypeUserToken)
+
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
@@ -146,6 +149,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeUnknownDeepLink
         case internalLinkTypeUnsupportedProxy
         case internalLinkTypeUserPhoneNumber
+        case internalLinkTypeUserToken
         case internalLinkTypeVideoChat
     }
 
@@ -239,6 +243,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeUserPhoneNumber:
             let value = try InternalLinkTypeUserPhoneNumber(from: decoder)
             self = .internalLinkTypeUserPhoneNumber(value)
+        case .internalLinkTypeUserToken:
+            let value = try InternalLinkTypeUserToken(from: decoder)
+            self = .internalLinkTypeUserToken(value)
         case .internalLinkTypeVideoChat:
             let value = try InternalLinkTypeVideoChat(from: decoder)
             self = .internalLinkTypeVideoChat(value)
@@ -333,6 +340,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
             try container.encode(Kind.internalLinkTypeUnsupportedProxy, forKey: .type)
         case .internalLinkTypeUserPhoneNumber(let value):
             try container.encode(Kind.internalLinkTypeUserPhoneNumber, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeUserToken(let value):
+            try container.encode(Kind.internalLinkTypeUserToken, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeVideoChat(let value):
             try container.encode(Kind.internalLinkTypeVideoChat, forKey: .type)
@@ -530,7 +540,7 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable {
     }
 }
 
-/// The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
+/// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
 public struct InternalLinkTypeMessage: Codable, Equatable {
 
     /// URL to be passed to getMessageLinkInfo
@@ -707,6 +717,18 @@ public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable {
 
     public init(phoneNumber: String) {
         self.phoneNumber = phoneNumber
+    }
+}
+
+/// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+public struct InternalLinkTypeUserToken: Codable, Equatable {
+
+    /// The token
+    public let token: String
+
+
+    public init(token: String) {
+        self.token = token
     }
 }
 

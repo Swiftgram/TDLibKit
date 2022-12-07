@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -16,23 +16,28 @@ public struct EditForumTopic: Codable, Equatable {
     /// Identifier of the chat
     public let chatId: Int64?
 
-    /// Identifier of the new custom emoji for topic icon. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+    public let editIconCustomEmoji: Bool?
+
+    /// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     public let iconCustomEmojiId: TdInt64?
 
     /// Message thread identifier of the forum topic
     public let messageThreadId: Int64?
 
-    /// New name of the topic; 1-128 characters
+    /// New name of the topic; 0-128 characters. If empty, the previous topic name is kept
     public let name: String?
 
 
     public init(
         chatId: Int64?,
+        editIconCustomEmoji: Bool?,
         iconCustomEmojiId: TdInt64?,
         messageThreadId: Int64?,
         name: String?
     ) {
         self.chatId = chatId
+        self.editIconCustomEmoji = editIconCustomEmoji
         self.iconCustomEmojiId = iconCustomEmojiId
         self.messageThreadId = messageThreadId
         self.name = name

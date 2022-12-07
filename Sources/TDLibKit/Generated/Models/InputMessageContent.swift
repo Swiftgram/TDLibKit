@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -210,7 +210,7 @@ public struct InputMessageText: Codable, Equatable {
     /// True, if rich web page previews for URLs in the message text must be disabled
     public let disableWebPagePreview: Bool
 
-    /// Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    /// Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     public let text: FormattedText
 
 
@@ -234,7 +234,7 @@ public struct InputMessageAnimation: Codable, Equatable {
     /// Animation file to be sent
     public let animation: InputFile
 
-    /// Animation caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+    /// Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the animation, in seconds
@@ -278,7 +278,7 @@ public struct InputMessageAudio: Codable, Equatable {
     /// Audio file to be sent
     public let audio: InputFile
 
-    /// Audio caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+    /// Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the audio, in seconds; may be replaced by the server
@@ -311,7 +311,7 @@ public struct InputMessageAudio: Codable, Equatable {
 /// A document message (general file)
 public struct InputMessageDocument: Codable, Equatable {
 
-    /// Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+    /// Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
@@ -343,7 +343,7 @@ public struct InputMessagePhoto: Codable, Equatable {
     /// File identifiers of the stickers added to the photo, if applicable
     public let addedStickerFileIds: [Int]
 
-    /// Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+    /// Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Photo height
@@ -421,7 +421,7 @@ public struct InputMessageVideo: Codable, Equatable {
     /// File identifiers of the stickers added to the video, if applicable
     public let addedStickerFileIds: [Int]
 
-    /// Video caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+    /// Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the video, in seconds
@@ -501,7 +501,7 @@ public struct InputMessageVideoNote: Codable, Equatable {
 /// A voice note message
 public struct InputMessageVoiceNote: Codable, Equatable {
 
-    /// Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+    /// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
     /// Duration of the voice note, in seconds

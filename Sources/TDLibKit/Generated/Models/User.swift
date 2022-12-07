@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -22,7 +22,10 @@ public struct User: Codable, Equatable {
     /// First name of the user
     public let firstName: String
 
-    /// If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method except GetUser
+    /// True, if the user's phone number was bought on Fragment and isn't tied to a SIM card
+    public let hasAnonymousPhoneNumber: Bool
+
+    /// If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
     public let haveAccess: Bool
 
     /// User identifier
@@ -78,6 +81,7 @@ public struct User: Codable, Equatable {
         addedToAttachmentMenu: Bool,
         emojiStatus: EmojiStatus?,
         firstName: String,
+        hasAnonymousPhoneNumber: Bool,
         haveAccess: Bool,
         id: Int64,
         isContact: Bool,
@@ -99,6 +103,7 @@ public struct User: Codable, Equatable {
         self.addedToAttachmentMenu = addedToAttachmentMenu
         self.emojiStatus = emojiStatus
         self.firstName = firstName
+        self.hasAnonymousPhoneNumber = hasAnonymousPhoneNumber
         self.haveAccess = haveAccess
         self.id = id
         self.isContact = isContact

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.8-d581e049
-//  https://github.com/tdlib/td/tree/d581e049
+//  Based on TDLib 1.8.9-a7952f38
+//  https://github.com/tdlib/td/tree/a7952f38
 //
 
 import Foundation
@@ -41,6 +41,9 @@ public struct SupergroupFullInfo: Codable, Equatable {
 
     /// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     public let inviteLink: ChatInviteLink?
+
+    /// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available for chat administrators
+    public let isAggressiveAntiSpamEnabled: Bool
 
     /// True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available for chat administrators
     public let isAllHistoryAvailable: Bool
@@ -87,6 +90,7 @@ public struct SupergroupFullInfo: Codable, Equatable {
         canSetUsername: Bool,
         description: String,
         inviteLink: ChatInviteLink?,
+        isAggressiveAntiSpamEnabled: Bool,
         isAllHistoryAvailable: Bool,
         linkedChatId: Int64,
         location: ChatLocation?,
@@ -109,6 +113,7 @@ public struct SupergroupFullInfo: Codable, Equatable {
         self.canSetUsername = canSetUsername
         self.description = description
         self.inviteLink = inviteLink
+        self.isAggressiveAntiSpamEnabled = isAggressiveAntiSpamEnabled
         self.isAllHistoryAvailable = isAllHistoryAvailable
         self.linkedChatId = linkedChatId
         self.location = location
