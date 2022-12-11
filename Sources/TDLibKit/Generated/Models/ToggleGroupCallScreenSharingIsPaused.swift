@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-29752073
-//  https://github.com/tdlib/td/tree/29752073
+//  Based on TDLib 1.8.9-8ee04b37
+//  https://github.com/tdlib/td/tree/8ee04b37
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ToggleGroupCallScreenSharingIsPaused: Codable, Equatable {
     /// Group call identifier
     public let groupCallId: Int?
 
-    /// True, if screen sharing is paused
+    /// Pass true to pause screen sharing; pass false to unpause it
     public let isPaused: Bool?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-29752073
-//  https://github.com/tdlib/td/tree/29752073
+//  Based on TDLib 1.8.9-8ee04b37
+//  https://github.com/tdlib/td/tree/8ee04b37
 //
 
 import Foundation
@@ -9639,7 +9639,7 @@ public final class TdApi {
 
     /// Pauses or unpauses screen sharing in a joined group call
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isPaused: True, if screen sharing is paused
+    /// - Parameter isPaused: Pass true to pause screen sharing; pass false to unpause it
     public func toggleGroupCallScreenSharingIsPaused(
         groupCallId: Int?,
         isPaused: Bool?,
@@ -9654,7 +9654,7 @@ public final class TdApi {
 
     /// Pauses or unpauses screen sharing in a joined group call
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isPaused: True, if screen sharing is paused
+    /// - Parameter isPaused: Pass true to pause screen sharing; pass false to unpause it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleGroupCallScreenSharingIsPaused(
         groupCallId: Int?,
