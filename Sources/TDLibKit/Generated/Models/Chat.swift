@@ -47,10 +47,10 @@ public struct Chat: Codable, Equatable {
     public let id: Int64
 
     /// True, if the chat is blocked by the current user and private messages from the chat can't be received
-    public let isBlocked: Bool
+    public var isBlocked: Bool
 
     /// True, if the chat is marked as unread
-    public let isMarkedAsUnread: Bool
+    public var isMarkedAsUnread: Bool
 
     /// Last message in the chat; may be null
     public var lastMessage: Message?
@@ -65,7 +65,7 @@ public struct Chat: Codable, Equatable {
     public var messageSenderId: MessageSender?
 
     /// Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
-    public let messageTtl: Int
+    public var messageTtl: Int
 
     /// Notification settings for the chat
     public var notificationSettings: ChatNotificationSettings
@@ -80,10 +80,10 @@ public struct Chat: Codable, Equatable {
     public var photo: ChatPhotoInfo?
 
     /// Positions of the chat in chat lists
-    public let positions: [ChatPosition]
+    public var positions: [ChatPosition]
 
     /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-    public var replyMarkupMessageId: Int64
+    public let replyMarkupMessageId: Int64
 
     /// If non-empty, name of a theme, set for the chat
     public var themeName: String
