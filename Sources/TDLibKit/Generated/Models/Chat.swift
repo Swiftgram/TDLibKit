@@ -14,34 +14,34 @@ import Foundation
 public struct Chat: Codable, Equatable {
 
     /// Information about actions which must be possible to do through the chat action bar; may be null
-    public let actionBar: ChatActionBar?
+    public var actionBar: ChatActionBar?
 
     /// Types of reaction, available in the chat
-    public let availableReactions: ChatAvailableReactions
+    public var availableReactions: ChatAvailableReactions
 
     /// True, if the chat messages can be deleted for all users
-    public let canBeDeletedForAllUsers: Bool
+    public var canBeDeletedForAllUsers: Bool
 
     /// True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
-    public let canBeDeletedOnlyForSelf: Bool
+    public var canBeDeletedOnlyForSelf: Bool
 
     /// True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
-    public let canBeReported: Bool
+    public var canBeReported: Bool
 
     /// Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
-    public let clientData: String
+    public var clientData: String
 
     /// Default value of the disable_notification parameter, used when a message is sent to the chat
-    public let defaultDisableNotification: Bool
+    public var defaultDisableNotification: Bool
 
     /// A draft of a message in the chat; may be null
-    public let draftMessage: DraftMessage?
+    public var draftMessage: DraftMessage?
 
     /// True, if chat content can't be saved locally, forwarded, or copied
-    public let hasProtectedContent: Bool
+    public var hasProtectedContent: Bool
 
     /// True, if the chat has scheduled messages
-    public let hasScheduledMessages: Bool
+    public var hasScheduledMessages: Bool
 
     /// Chat unique identifier
     public let id: Int64
@@ -53,7 +53,7 @@ public struct Chat: Codable, Equatable {
     public let isMarkedAsUnread: Bool
 
     /// Last message in the chat; may be null
-    public let lastMessage: Message?
+    public var lastMessage: Message?
 
     /// Identifier of the last read incoming message
     public let lastReadInboxMessageId: Int64
@@ -62,34 +62,34 @@ public struct Chat: Codable, Equatable {
     public let lastReadOutboxMessageId: Int64
 
     /// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
-    public let messageSenderId: MessageSender?
+    public var messageSenderId: MessageSender?
 
     /// Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
     public let messageTtl: Int
 
     /// Notification settings for the chat
-    public let notificationSettings: ChatNotificationSettings
+    public var notificationSettings: ChatNotificationSettings
 
     /// Information about pending join requests; may be null
-    public let pendingJoinRequests: ChatJoinRequestsInfo?
+    public var pendingJoinRequests: ChatJoinRequestsInfo?
 
     /// Actions that non-administrator chat members are allowed to take in the chat
-    public let permissions: ChatPermissions
+    public var permissions: ChatPermissions
 
     /// Chat photo; may be null
-    public let photo: ChatPhotoInfo?
+    public var photo: ChatPhotoInfo?
 
     /// Positions of the chat in chat lists
     public let positions: [ChatPosition]
 
     /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-    public let replyMarkupMessageId: Int64
+    public var replyMarkupMessageId: Int64
 
     /// If non-empty, name of a theme, set for the chat
-    public let themeName: String
+    public var themeName: String
 
     /// Chat title
-    public let title: String
+    public var title: String
 
     /// Type of the chat
     public let type: ChatType
