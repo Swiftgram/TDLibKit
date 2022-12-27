@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-e531ae2e
-//  https://github.com/tdlib/td/tree/e531ae2e
+//  Based on TDLib 1.8.9-86d5f12e
+//  https://github.com/tdlib/td/tree/86d5f12e
 //
 
 import Foundation
@@ -13,31 +13,31 @@ import Foundation
 /// Represents the current authorization state of the TDLib client
 public enum AuthorizationState: Codable, Equatable {
 
-    /// Initializetion parameters are needed. Call `setTdlibParameters` to provide them
+    /// Initializetion parameters are needed. Call setTdlibParameters to provide them
     case authorizationStateWaitTdlibParameters
 
-    /// TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber` to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken` for other authentication options
+    /// TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
     case authorizationStateWaitPhoneNumber
 
-    /// TDLib needs the user's email address to authorize. Call `setAuthenticationEmailAddress` to provide the email address, or directly call `checkAuthenticationEmailCode` with Apple ID/Google ID token if allowed
+    /// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
     case authorizationStateWaitEmailAddress(AuthorizationStateWaitEmailAddress)
 
-    /// TDLib needs the user's authentication code sent to an email address to authorize. Call `checkAuthenticationEmailCode` to provide the code
+    /// TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
     case authorizationStateWaitEmailCode(AuthorizationStateWaitEmailCode)
 
-    /// TDLib needs the user's authentication code to authorize
+    /// TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code
     case authorizationStateWaitCode(AuthorizationStateWaitCode)
 
     /// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
     case authorizationStateWaitOtherDeviceConfirmation(AuthorizationStateWaitOtherDeviceConfirmation)
 
-    /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration
+    /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
     case authorizationStateWaitRegistration(AuthorizationStateWaitRegistration)
 
-    /// The user has been authorized, but needs to enter a 2-step verification password to start using the application
+    /// The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
     case authorizationStateWaitPassword(AuthorizationStateWaitPassword)
 
-    /// The user has been successfully authorized. TDLib is now ready to answer queries
+    /// The user has been successfully authorized. TDLib is now ready to answer general requests
     case authorizationStateReady
 
     /// The user is currently logging out
@@ -139,7 +139,7 @@ public enum AuthorizationState: Codable, Equatable {
     }
 }
 
-/// TDLib needs the user's email address to authorize. Call `setAuthenticationEmailAddress` to provide the email address, or directly call `checkAuthenticationEmailCode` with Apple ID/Google ID token if allowed
+/// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
 public struct AuthorizationStateWaitEmailAddress: Codable, Equatable {
 
     /// True, if authorization through Apple ID is allowed
@@ -158,7 +158,7 @@ public struct AuthorizationStateWaitEmailAddress: Codable, Equatable {
     }
 }
 
-/// TDLib needs the user's authentication code sent to an email address to authorize. Call `checkAuthenticationEmailCode` to provide the code
+/// TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
 public struct AuthorizationStateWaitEmailCode: Codable, Equatable {
 
     /// True, if authorization through Apple ID is allowed
@@ -187,7 +187,7 @@ public struct AuthorizationStateWaitEmailCode: Codable, Equatable {
     }
 }
 
-/// TDLib needs the user's authentication code to authorize
+/// TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code
 public struct AuthorizationStateWaitCode: Codable, Equatable {
 
     /// Information about the authorization code that was sent
@@ -211,7 +211,7 @@ public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable 
     }
 }
 
-/// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration
+/// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
 public struct AuthorizationStateWaitRegistration: Codable, Equatable {
 
     /// Telegram terms of service
@@ -223,7 +223,7 @@ public struct AuthorizationStateWaitRegistration: Codable, Equatable {
     }
 }
 
-/// The user has been authorized, but needs to enter a 2-step verification password to start using the application
+/// The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
 public struct AuthorizationStateWaitPassword: Codable, Equatable {
 
     /// True, if a recovery email address has been set up
