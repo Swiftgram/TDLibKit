@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct SetTdlibParameters: Codable, Equatable {
     /// The path to the directory for the persistent database; if empty, the current working directory will be used
     public let databaseDirectory: String?
 
-    /// Encryption key for the database
+    /// Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
     public let databaseEncryptionKey: Data?
 
     /// Model of the device the application is being run on; must be non-empty

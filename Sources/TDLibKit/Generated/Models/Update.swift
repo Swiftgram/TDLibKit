@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public enum Update: Codable, Equatable {
     /// The information about interactions with a message has changed
     case updateMessageInteractionInfo(UpdateMessageInteractionInfo)
 
-    /// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages
+    /// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
     case updateMessageContentOpened(UpdateMessageContentOpened)
 
     /// A message with an unread mention was read
@@ -88,8 +88,8 @@ public enum Update: Codable, Equatable {
     /// The message sender that is selected to send messages in a chat has changed
     case updateChatMessageSender(UpdateChatMessageSender)
 
-    /// The message Time To Live setting for a chat was changed
-    case updateChatMessageTtl(UpdateChatMessageTtl)
+    /// The message auto-delete or self-destruct timer setting for a chat was changed
+    case updateChatMessageAutoDeleteTime(UpdateChatMessageAutoDeleteTime)
 
     /// Notification settings for a chat were changed
     case updateChatNotificationSettings(UpdateChatNotificationSettings)
@@ -355,7 +355,7 @@ public enum Update: Codable, Equatable {
         case updateChatAvailableReactions
         case updateChatDraftMessage
         case updateChatMessageSender
-        case updateChatMessageTtl
+        case updateChatMessageAutoDeleteTime
         case updateChatNotificationSettings
         case updateChatPendingJoinRequests
         case updateChatReplyMarkup
@@ -516,9 +516,9 @@ public enum Update: Codable, Equatable {
         case .updateChatMessageSender:
             let value = try UpdateChatMessageSender(from: decoder)
             self = .updateChatMessageSender(value)
-        case .updateChatMessageTtl:
-            let value = try UpdateChatMessageTtl(from: decoder)
-            self = .updateChatMessageTtl(value)
+        case .updateChatMessageAutoDeleteTime:
+            let value = try UpdateChatMessageAutoDeleteTime(from: decoder)
+            self = .updateChatMessageAutoDeleteTime(value)
         case .updateChatNotificationSettings:
             let value = try UpdateChatNotificationSettings(from: decoder)
             self = .updateChatNotificationSettings(value)
@@ -837,8 +837,8 @@ public enum Update: Codable, Equatable {
         case .updateChatMessageSender(let value):
             try container.encode(Kind.updateChatMessageSender, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatMessageTtl(let value):
-            try container.encode(Kind.updateChatMessageTtl, forKey: .type)
+        case .updateChatMessageAutoDeleteTime(let value):
+            try container.encode(Kind.updateChatMessageAutoDeleteTime, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatNotificationSettings(let value):
             try container.encode(Kind.updateChatNotificationSettings, forKey: .type)
@@ -1273,7 +1273,7 @@ public struct UpdateMessageInteractionInfo: Codable, Equatable {
     }
 }
 
-/// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages
+/// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
 public struct UpdateMessageContentOpened: Codable, Equatable {
 
     /// Chat identifier
@@ -1600,22 +1600,22 @@ public struct UpdateChatMessageSender: Codable, Equatable {
     }
 }
 
-/// The message Time To Live setting for a chat was changed
-public struct UpdateChatMessageTtl: Codable, Equatable {
+/// The message auto-delete or self-destruct timer setting for a chat was changed
+public struct UpdateChatMessageAutoDeleteTime: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// New value of message_ttl
-    public let messageTtl: Int
+    /// New value of message_auto_delete_time
+    public let messageAutoDeleteTime: Int
 
 
     public init(
         chatId: Int64,
-        messageTtl: Int
+        messageAutoDeleteTime: Int
     ) {
         self.chatId = chatId
-        self.messageTtl = messageTtl
+        self.messageAutoDeleteTime = messageAutoDeleteTime
     }
 }
 

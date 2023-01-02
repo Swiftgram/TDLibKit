@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -61,8 +61,8 @@ public enum ChatEventAction: Codable, Equatable {
     /// The supergroup location was changed
     case chatEventLocationChanged(ChatEventLocationChanged)
 
-    /// The message TTL was changed
-    case chatEventMessageTtlChanged(ChatEventMessageTtlChanged)
+    /// The message auto-delete timer was changed
+    case chatEventMessageAutoDeleteTimeChanged(ChatEventMessageAutoDeleteTimeChanged)
 
     /// The chat permissions was changed
     case chatEventPermissionsChanged(ChatEventPermissionsChanged)
@@ -94,8 +94,8 @@ public enum ChatEventAction: Codable, Equatable {
     /// The is_all_history_available setting of a supergroup was toggled
     case chatEventIsAllHistoryAvailableToggled(ChatEventIsAllHistoryAvailableToggled)
 
-    /// The is_aggressive_anti_spam_enabled setting of a supergroup was toggled
-    case chatEventIsAggressiveAntiSpamEnabledToggled(ChatEventIsAggressiveAntiSpamEnabledToggled)
+    /// The has_aggressive_anti_spam_enabled setting of a supergroup was toggled
+    case chatEventHasAggressiveAntiSpamEnabledToggled(ChatEventHasAggressiveAntiSpamEnabledToggled)
 
     /// The sign_messages setting of a channel was toggled
     case chatEventSignMessagesToggled(ChatEventSignMessagesToggled)
@@ -163,7 +163,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventDescriptionChanged
         case chatEventLinkedChatChanged
         case chatEventLocationChanged
-        case chatEventMessageTtlChanged
+        case chatEventMessageAutoDeleteTimeChanged
         case chatEventPermissionsChanged
         case chatEventPhotoChanged
         case chatEventSlowModeDelayChanged
@@ -174,7 +174,7 @@ public enum ChatEventAction: Codable, Equatable {
         case chatEventHasProtectedContentToggled
         case chatEventInvitesToggled
         case chatEventIsAllHistoryAvailableToggled
-        case chatEventIsAggressiveAntiSpamEnabledToggled
+        case chatEventHasAggressiveAntiSpamEnabledToggled
         case chatEventSignMessagesToggled
         case chatEventInviteLinkEdited
         case chatEventInviteLinkRevoked
@@ -243,9 +243,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventLocationChanged:
             let value = try ChatEventLocationChanged(from: decoder)
             self = .chatEventLocationChanged(value)
-        case .chatEventMessageTtlChanged:
-            let value = try ChatEventMessageTtlChanged(from: decoder)
-            self = .chatEventMessageTtlChanged(value)
+        case .chatEventMessageAutoDeleteTimeChanged:
+            let value = try ChatEventMessageAutoDeleteTimeChanged(from: decoder)
+            self = .chatEventMessageAutoDeleteTimeChanged(value)
         case .chatEventPermissionsChanged:
             let value = try ChatEventPermissionsChanged(from: decoder)
             self = .chatEventPermissionsChanged(value)
@@ -276,9 +276,9 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventIsAllHistoryAvailableToggled:
             let value = try ChatEventIsAllHistoryAvailableToggled(from: decoder)
             self = .chatEventIsAllHistoryAvailableToggled(value)
-        case .chatEventIsAggressiveAntiSpamEnabledToggled:
-            let value = try ChatEventIsAggressiveAntiSpamEnabledToggled(from: decoder)
-            self = .chatEventIsAggressiveAntiSpamEnabledToggled(value)
+        case .chatEventHasAggressiveAntiSpamEnabledToggled:
+            let value = try ChatEventHasAggressiveAntiSpamEnabledToggled(from: decoder)
+            self = .chatEventHasAggressiveAntiSpamEnabledToggled(value)
         case .chatEventSignMessagesToggled:
             let value = try ChatEventSignMessagesToggled(from: decoder)
             self = .chatEventSignMessagesToggled(value)
@@ -379,8 +379,8 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventLocationChanged(let value):
             try container.encode(Kind.chatEventLocationChanged, forKey: .type)
             try value.encode(to: encoder)
-        case .chatEventMessageTtlChanged(let value):
-            try container.encode(Kind.chatEventMessageTtlChanged, forKey: .type)
+        case .chatEventMessageAutoDeleteTimeChanged(let value):
+            try container.encode(Kind.chatEventMessageAutoDeleteTimeChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventPermissionsChanged(let value):
             try container.encode(Kind.chatEventPermissionsChanged, forKey: .type)
@@ -412,8 +412,8 @@ public enum ChatEventAction: Codable, Equatable {
         case .chatEventIsAllHistoryAvailableToggled(let value):
             try container.encode(Kind.chatEventIsAllHistoryAvailableToggled, forKey: .type)
             try value.encode(to: encoder)
-        case .chatEventIsAggressiveAntiSpamEnabledToggled(let value):
-            try container.encode(Kind.chatEventIsAggressiveAntiSpamEnabledToggled, forKey: .type)
+        case .chatEventHasAggressiveAntiSpamEnabledToggled(let value):
+            try container.encode(Kind.chatEventHasAggressiveAntiSpamEnabledToggled, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventSignMessagesToggled(let value):
             try container.encode(Kind.chatEventSignMessagesToggled, forKey: .type)
@@ -715,22 +715,22 @@ public struct ChatEventLocationChanged: Codable, Equatable {
     }
 }
 
-/// The message TTL was changed
-public struct ChatEventMessageTtlChanged: Codable, Equatable {
+/// The message auto-delete timer was changed
+public struct ChatEventMessageAutoDeleteTimeChanged: Codable, Equatable {
 
-    /// New value of message_ttl
-    public let newMessageTtl: Int
+    /// New value of message_auto_delete_time
+    public let newMessageAutoDeleteTime: Int
 
-    /// Previous value of message_ttl
-    public let oldMessageTtl: Int
+    /// Previous value of message_auto_delete_time
+    public let oldMessageAutoDeleteTime: Int
 
 
     public init(
-        newMessageTtl: Int,
-        oldMessageTtl: Int
+        newMessageAutoDeleteTime: Int,
+        oldMessageAutoDeleteTime: Int
     ) {
-        self.newMessageTtl = newMessageTtl
-        self.oldMessageTtl = oldMessageTtl
+        self.newMessageAutoDeleteTime = newMessageAutoDeleteTime
+        self.oldMessageAutoDeleteTime = oldMessageAutoDeleteTime
     }
 }
 
@@ -903,15 +903,15 @@ public struct ChatEventIsAllHistoryAvailableToggled: Codable, Equatable {
     }
 }
 
-/// The is_aggressive_anti_spam_enabled setting of a supergroup was toggled
-public struct ChatEventIsAggressiveAntiSpamEnabledToggled: Codable, Equatable {
+/// The has_aggressive_anti_spam_enabled setting of a supergroup was toggled
+public struct ChatEventHasAggressiveAntiSpamEnabledToggled: Codable, Equatable {
 
-    /// New value of is_aggressive_anti_spam_enabled
-    public let isAggressiveAntiSpamEnabled: Bool
+    /// New value of has_aggressive_anti_spam_enabled
+    public let hasAggressiveAntiSpamEnabled: Bool
 
 
-    public init(isAggressiveAntiSpamEnabled: Bool) {
-        self.isAggressiveAntiSpamEnabled = isAggressiveAntiSpamEnabled
+    public init(hasAggressiveAntiSpamEnabled: Bool) {
+        self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -18,7 +18,7 @@ public struct Game: Codable, Equatable {
 
     public let description: String
 
-    /// Game ID
+    /// Unique game identifier
     public let id: TdInt64
 
     /// Game photo

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -15,6 +15,12 @@ public struct BasicGroupFullInfo: Codable, Equatable {
 
     /// List of commands of bots in the group
     public let botCommands: [BotCommands]
+
+    /// True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading the basic group to a supergroup
+    public let canHideMembers: Bool
+
+    /// True, if aggressive anti-spam checks can be enabled or disabled in the supergroup after upgrading the basic group to a supergroup
+    public let canToggleAggressiveAntiSpam: Bool
 
     /// User identifier of the creator of the group; 0 if unknown
     public let creatorUserId: Int64
@@ -33,6 +39,8 @@ public struct BasicGroupFullInfo: Codable, Equatable {
 
     public init(
         botCommands: [BotCommands],
+        canHideMembers: Bool,
+        canToggleAggressiveAntiSpam: Bool,
         creatorUserId: Int64,
         description: String,
         inviteLink: ChatInviteLink?,
@@ -40,6 +48,8 @@ public struct BasicGroupFullInfo: Codable, Equatable {
         photo: ChatPhoto?
     ) {
         self.botCommands = botCommands
+        self.canHideMembers = canHideMembers
+        self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
         self.creatorUserId = creatorUserId
         self.description = description
         self.inviteLink = inviteLink

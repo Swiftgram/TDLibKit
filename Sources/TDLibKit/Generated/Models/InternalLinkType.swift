@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -40,7 +40,13 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
     case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
-    /// The link is a link to the filter settings section of the app
+    /// The link is a link to the default message auto-delete timer settings section of the app settings
+    case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+
+    /// The link is a link to the edit profile section of the app settings
+    case internalLinkTypeEditProfileSettings
+
+    /// The link is a link to the filter section of the app settings
     case internalLinkTypeFilterSettings
 
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
@@ -55,7 +61,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
-    /// The link is a link to the language settings section of the app
+    /// The link is a link to the language section of the app settings
     case internalLinkTypeLanguageSettings
 
     /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
@@ -73,7 +79,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
 
-    /// The link is a link to the privacy and security settings section of the app
+    /// The link is a link to the privacy and security section of the app settings
     case internalLinkTypePrivacyAndSecuritySettings
 
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
@@ -97,7 +103,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
-    /// The link is a link to the theme settings section of the app
+    /// The link is a link to the theme section of the app settings
     case internalLinkTypeThemeSettings
 
     /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
@@ -126,6 +132,8 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeBotAddToChannel
         case internalLinkTypeChangePhoneNumber
         case internalLinkTypeChatInvite
+        case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+        case internalLinkTypeEditProfileSettings
         case internalLinkTypeFilterSettings
         case internalLinkTypeGame
         case internalLinkTypeInstantView
@@ -182,6 +190,10 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeChatInvite:
             let value = try InternalLinkTypeChatInvite(from: decoder)
             self = .internalLinkTypeChatInvite(value)
+        case .internalLinkTypeDefaultMessageAutoDeleteTimerSettings:
+            self = .internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+        case .internalLinkTypeEditProfileSettings:
+            self = .internalLinkTypeEditProfileSettings
         case .internalLinkTypeFilterSettings:
             self = .internalLinkTypeFilterSettings
         case .internalLinkTypeGame:
@@ -280,6 +292,10 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeChatInvite(let value):
             try container.encode(Kind.internalLinkTypeChatInvite, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeDefaultMessageAutoDeleteTimerSettings:
+            try container.encode(Kind.internalLinkTypeDefaultMessageAutoDeleteTimerSettings, forKey: .type)
+        case .internalLinkTypeEditProfileSettings:
+            try container.encode(Kind.internalLinkTypeEditProfileSettings, forKey: .type)
         case .internalLinkTypeFilterSettings:
             try container.encode(Kind.internalLinkTypeFilterSettings, forKey: .type)
         case .internalLinkTypeGame(let value):
@@ -675,11 +691,18 @@ public struct InternalLinkTypePublicChat: Codable, Equatable {
 /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
 public struct InternalLinkTypeStickerSet: Codable, Equatable {
 
+    /// True, if the sticker set is expected to contain custom emoji
+    public let expectCustomEmoji: Bool
+
     /// Name of the sticker set
     public let stickerSetName: String
 
 
-    public init(stickerSetName: String) {
+    public init(
+        expectCustomEmoji: Bool,
+        stickerSetName: String
+    ) {
+        self.expectCustomEmoji = expectCustomEmoji
         self.stickerSetName = stickerSetName
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct ChatPhotoInfo: Codable, Equatable {
     /// True, if the photo has animated variant
     public let hasAnimation: Bool
 
+    /// True, if the photo is visible only for the current user
+    public let isPersonal: Bool
+
     /// Chat photo minithumbnail; may be null
     public let minithumbnail: Minithumbnail?
 
@@ -29,11 +32,13 @@ public struct ChatPhotoInfo: Codable, Equatable {
     public init(
         big: File,
         hasAnimation: Bool,
+        isPersonal: Bool,
         minithumbnail: Minithumbnail?,
         small: File
     ) {
         self.big = big
         self.hasAnimation = hasAnimation
+        self.isPersonal = isPersonal
         self.minithumbnail = minithumbnail
         self.small = small
     }

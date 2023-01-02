@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -61,11 +61,11 @@ public struct Chat: Codable, Equatable {
     /// Identifier of the last read outgoing message
     public let lastReadOutboxMessageId: Int64
 
+    /// Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
+    public let messageAutoDeleteTime: Int
+
     /// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
     public let messageSenderId: MessageSender?
-
-    /// Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
-    public let messageTtl: Int
 
     /// Notification settings for the chat
     public let notificationSettings: ChatNotificationSettings
@@ -124,8 +124,8 @@ public struct Chat: Codable, Equatable {
         lastMessage: Message?,
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
+        messageAutoDeleteTime: Int,
         messageSenderId: MessageSender?,
-        messageTtl: Int,
         notificationSettings: ChatNotificationSettings,
         pendingJoinRequests: ChatJoinRequestsInfo?,
         permissions: ChatPermissions,
@@ -156,8 +156,8 @@ public struct Chat: Codable, Equatable {
         self.lastMessage = lastMessage
         self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
+        self.messageAutoDeleteTime = messageAutoDeleteTime
         self.messageSenderId = messageSenderId
-        self.messageTtl = messageTtl
         self.notificationSettings = notificationSettings
         self.pendingJoinRequests = pendingJoinRequests
         self.permissions = permissions

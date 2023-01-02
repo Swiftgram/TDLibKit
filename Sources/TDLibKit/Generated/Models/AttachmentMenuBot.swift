@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
 
 
-/// Represents a bot added to attachment menu
+/// Represents a bot, which can be added to attachment menu
 public struct AttachmentMenuBot: Codable, Equatable {
 
     /// Attachment menu icon for the bot in TGS format for the official Android app; may be null
@@ -39,6 +39,9 @@ public struct AttachmentMenuBot: Codable, Equatable {
 
     /// Color to highlight selected name of the bot if appropriate; may be null
     public let nameColor: AttachmentMenuBotColor?
+
+    /// True, if the user needs to be requested to give the permission to the bot to send them messages
+    public let requestWriteAccess: Bool
 
     /// True, if the bot supports opening from attachment menu in private chats with other bots
     public let supportsBotChats: Bool
@@ -72,6 +75,7 @@ public struct AttachmentMenuBot: Codable, Equatable {
         macosIcon: File?,
         name: String,
         nameColor: AttachmentMenuBotColor?,
+        requestWriteAccess: Bool,
         supportsBotChats: Bool,
         supportsChannelChats: Bool,
         supportsGroupChats: Bool,
@@ -89,6 +93,7 @@ public struct AttachmentMenuBot: Codable, Equatable {
         self.macosIcon = macosIcon
         self.name = name
         self.nameColor = nameColor
+        self.requestWriteAccess = requestWriteAccess
         self.supportsBotChats = supportsBotChats
         self.supportsChannelChats = supportsChannelChats
         self.supportsGroupChats = supportsGroupChats

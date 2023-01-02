@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -45,7 +45,7 @@ public struct WebPage: Codable, Equatable {
     /// Width of the embedded preview
     public let embedWidth: Int
 
-    /// Version of instant view, available for the web page (currently, can be 1 or 2), 0 if none
+    /// Version of web page instant view (currently, can be 1 or 2); 0 if none
     public let instantViewVersion: Int
 
     /// Image representing the content; may be null

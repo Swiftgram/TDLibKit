@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -22,15 +22,20 @@ public struct PhoneNumberInfo: Codable, Equatable {
     /// The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
     public let formattedPhoneNumber: String
 
+    /// True, if the phone number was bought on Fragment and isn't tied to a SIM card
+    public let isAnonymous: Bool
+
 
     public init(
         country: CountryInfo?,
         countryCallingCode: String,
-        formattedPhoneNumber: String
+        formattedPhoneNumber: String,
+        isAnonymous: Bool
     ) {
         self.country = country
         self.countryCallingCode = countryCallingCode
         self.formattedPhoneNumber = formattedPhoneNumber
+        self.isAnonymous = isAnonymous
     }
 }
 

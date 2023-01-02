@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -94,6 +94,9 @@ public enum PushMessageContent: Codable, Equatable {
     /// A new recurrent payment was made by the current user
     case pushMessageContentRecurringPayment(PushMessageContentRecurringPayment)
 
+    /// A profile photo was suggested to the user
+    case pushMessageContentSuggestProfilePhoto
+
     /// A forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
 
@@ -129,6 +132,7 @@ public enum PushMessageContent: Codable, Equatable {
         case pushMessageContentChatJoinByLink
         case pushMessageContentChatJoinByRequest
         case pushMessageContentRecurringPayment
+        case pushMessageContentSuggestProfilePhoto
         case pushMessageContentMessageForwards
         case pushMessageContentMediaAlbum
     }
@@ -212,6 +216,8 @@ public enum PushMessageContent: Codable, Equatable {
         case .pushMessageContentRecurringPayment:
             let value = try PushMessageContentRecurringPayment(from: decoder)
             self = .pushMessageContentRecurringPayment(value)
+        case .pushMessageContentSuggestProfilePhoto:
+            self = .pushMessageContentSuggestProfilePhoto
         case .pushMessageContentMessageForwards:
             let value = try PushMessageContentMessageForwards(from: decoder)
             self = .pushMessageContentMessageForwards(value)
@@ -299,6 +305,8 @@ public enum PushMessageContent: Codable, Equatable {
         case .pushMessageContentRecurringPayment(let value):
             try container.encode(Kind.pushMessageContentRecurringPayment, forKey: .type)
             try value.encode(to: encoder)
+        case .pushMessageContentSuggestProfilePhoto:
+            try container.encode(Kind.pushMessageContentSuggestProfilePhoto, forKey: .type)
         case .pushMessageContentMessageForwards(let value):
             try container.encode(Kind.pushMessageContentMessageForwards, forKey: .type)
             try value.encode(to: encoder)
@@ -754,7 +762,7 @@ public struct PushMessageContentMediaAlbum: Codable, Equatable {
     /// True, if the album has at least one photo
     public let hasPhotos: Bool
 
-    /// True, if the album has at least one video
+    /// True, if the album has at least one video file
     public let hasVideos: Bool
 
     /// Number of messages in the album

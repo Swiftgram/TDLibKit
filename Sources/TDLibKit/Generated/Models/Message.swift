@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct Message: Codable, Equatable {
 
     /// For channel posts and anonymous group messages, optional author signature
     public let authorSignature: String
+
+    /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
+    public let autoDeleteIn: Double
 
     /// True, if the message can be deleted for all users
     public let canBeDeletedForAllUsers: Bool
@@ -109,17 +112,17 @@ public struct Message: Codable, Equatable {
     /// The scheduling state of the message; may be null
     public let schedulingState: MessageSchedulingState?
 
+    /// Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field
+    public let selfDestructIn: Double
+
+    /// The message's self-destruct time, in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
+    public let selfDestructTime: Int
+
     /// Identifier of the sender of the message
     public let senderId: MessageSender
 
     /// The sending state of the message; may be null
     public let sendingState: MessageSendingState?
-
-    /// For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
-    public let ttl: Int
-
-    /// Time left before the message expires, in seconds. If the TTL timer isn't started yet, equals to the value of the ttl field
-    public let ttlExpiresIn: Double
 
     /// Information about unread reactions added to the message
     public let unreadReactions: [UnreadReaction]
@@ -130,6 +133,7 @@ public struct Message: Codable, Equatable {
 
     public init(
         authorSignature: String,
+        autoDeleteIn: Double,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeEdited: Bool,
@@ -161,14 +165,15 @@ public struct Message: Codable, Equatable {
         replyToMessageId: Int64,
         restrictionReason: String,
         schedulingState: MessageSchedulingState?,
+        selfDestructIn: Double,
+        selfDestructTime: Int,
         senderId: MessageSender,
         sendingState: MessageSendingState?,
-        ttl: Int,
-        ttlExpiresIn: Double,
         unreadReactions: [UnreadReaction],
         viaBotUserId: Int64
     ) {
         self.authorSignature = authorSignature
+        self.autoDeleteIn = autoDeleteIn
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeEdited = canBeEdited
@@ -200,10 +205,10 @@ public struct Message: Codable, Equatable {
         self.replyToMessageId = replyToMessageId
         self.restrictionReason = restrictionReason
         self.schedulingState = schedulingState
+        self.selfDestructIn = selfDestructIn
+        self.selfDestructTime = selfDestructTime
         self.senderId = senderId
         self.sendingState = sendingState
-        self.ttl = ttl
-        self.ttlExpiresIn = ttlExpiresIn
         self.unreadReactions = unreadReactions
         self.viaBotUserId = viaBotUserId
     }

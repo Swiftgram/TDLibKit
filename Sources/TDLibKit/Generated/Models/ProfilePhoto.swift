@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public struct ProfilePhoto: Codable, Equatable {
     /// Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
     public let id: TdInt64
 
+    /// True, if the photo is visible only for the current user
+    public let isPersonal: Bool
+
     /// User profile photo minithumbnail; may be null
     public let minithumbnail: Minithumbnail?
 
@@ -33,12 +36,14 @@ public struct ProfilePhoto: Codable, Equatable {
         big: File,
         hasAnimation: Bool,
         id: TdInt64,
+        isPersonal: Bool,
         minithumbnail: Minithumbnail?,
         small: File
     ) {
         self.big = big
         self.hasAnimation = hasAnimation
         self.id = id
+        self.isPersonal = isPersonal
         self.minithumbnail = minithumbnail
         self.small = small
     }

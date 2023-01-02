@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public enum MessageContent: Codable, Equatable {
     /// A photo message
     case messagePhoto(MessagePhoto)
 
-    /// An expired photo message (self-destructed after TTL has elapsed)
+    /// A self-destructed photo message
     case messageExpiredPhoto
 
     /// A sticker message
@@ -37,7 +37,7 @@ public enum MessageContent: Codable, Equatable {
     /// A video message
     case messageVideo(MessageVideo)
 
-    /// An expired video message (self-destructed after TTL has elapsed)
+    /// A self-destructed video message
     case messageExpiredVideo
 
     /// A video note message
@@ -127,8 +127,8 @@ public enum MessageContent: Codable, Equatable {
     /// A theme in the chat has been changed
     case messageChatSetTheme(MessageChatSetTheme)
 
-    /// The TTL (Time To Live) setting for messages in the chat has been changed
-    case messageChatSetTtl(MessageChatSetTtl)
+    /// The auto-delete or self-destruct timer for messages in the chat has been changed
+    case messageChatSetMessageAutoDeleteTime(MessageChatSetMessageAutoDeleteTime)
 
     /// A forum topic has been created
     case messageForumTopicCreated(MessageForumTopicCreated)
@@ -141,6 +141,9 @@ public enum MessageContent: Codable, Equatable {
 
     /// A General forum topic has been hidden or unhidden
     case messageForumTopicIsHiddenToggled(MessageForumTopicIsHiddenToggled)
+
+    /// A profile photo was suggested to a user in a private chat
+    case messageSuggestProfilePhoto(MessageSuggestProfilePhoto)
 
     /// A non-standard action has happened in the chat
     case messageCustomServiceAction(MessageCustomServiceAction)
@@ -162,6 +165,9 @@ public enum MessageContent: Codable, Equatable {
 
     /// The current user has connected a website by logging in using Telegram Login Widget on it
     case messageWebsiteConnected(MessageWebsiteConnected)
+
+    /// The user allowed the bot to send messages
+    case messageBotWriteAccessAllowed
 
     /// Data from a Web App has been sent to a bot
     case messageWebAppDataSent(MessageWebAppDataSent)
@@ -221,11 +227,12 @@ public enum MessageContent: Codable, Equatable {
         case messagePinMessage
         case messageScreenshotTaken
         case messageChatSetTheme
-        case messageChatSetTtl
+        case messageChatSetMessageAutoDeleteTime
         case messageForumTopicCreated
         case messageForumTopicEdited
         case messageForumTopicIsClosedToggled
         case messageForumTopicIsHiddenToggled
+        case messageSuggestProfilePhoto
         case messageCustomServiceAction
         case messageGameScore
         case messagePaymentSuccessful
@@ -233,6 +240,7 @@ public enum MessageContent: Codable, Equatable {
         case messageGiftedPremium
         case messageContactRegistered
         case messageWebsiteConnected
+        case messageBotWriteAccessAllowed
         case messageWebAppDataSent
         case messageWebAppDataReceived
         case messagePassportDataSent
@@ -353,9 +361,9 @@ public enum MessageContent: Codable, Equatable {
         case .messageChatSetTheme:
             let value = try MessageChatSetTheme(from: decoder)
             self = .messageChatSetTheme(value)
-        case .messageChatSetTtl:
-            let value = try MessageChatSetTtl(from: decoder)
-            self = .messageChatSetTtl(value)
+        case .messageChatSetMessageAutoDeleteTime:
+            let value = try MessageChatSetMessageAutoDeleteTime(from: decoder)
+            self = .messageChatSetMessageAutoDeleteTime(value)
         case .messageForumTopicCreated:
             let value = try MessageForumTopicCreated(from: decoder)
             self = .messageForumTopicCreated(value)
@@ -368,6 +376,9 @@ public enum MessageContent: Codable, Equatable {
         case .messageForumTopicIsHiddenToggled:
             let value = try MessageForumTopicIsHiddenToggled(from: decoder)
             self = .messageForumTopicIsHiddenToggled(value)
+        case .messageSuggestProfilePhoto:
+            let value = try MessageSuggestProfilePhoto(from: decoder)
+            self = .messageSuggestProfilePhoto(value)
         case .messageCustomServiceAction:
             let value = try MessageCustomServiceAction(from: decoder)
             self = .messageCustomServiceAction(value)
@@ -388,6 +399,8 @@ public enum MessageContent: Codable, Equatable {
         case .messageWebsiteConnected:
             let value = try MessageWebsiteConnected(from: decoder)
             self = .messageWebsiteConnected(value)
+        case .messageBotWriteAccessAllowed:
+            self = .messageBotWriteAccessAllowed
         case .messageWebAppDataSent:
             let value = try MessageWebAppDataSent(from: decoder)
             self = .messageWebAppDataSent(value)
@@ -519,8 +532,8 @@ public enum MessageContent: Codable, Equatable {
         case .messageChatSetTheme(let value):
             try container.encode(Kind.messageChatSetTheme, forKey: .type)
             try value.encode(to: encoder)
-        case .messageChatSetTtl(let value):
-            try container.encode(Kind.messageChatSetTtl, forKey: .type)
+        case .messageChatSetMessageAutoDeleteTime(let value):
+            try container.encode(Kind.messageChatSetMessageAutoDeleteTime, forKey: .type)
             try value.encode(to: encoder)
         case .messageForumTopicCreated(let value):
             try container.encode(Kind.messageForumTopicCreated, forKey: .type)
@@ -533,6 +546,9 @@ public enum MessageContent: Codable, Equatable {
             try value.encode(to: encoder)
         case .messageForumTopicIsHiddenToggled(let value):
             try container.encode(Kind.messageForumTopicIsHiddenToggled, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestProfilePhoto(let value):
+            try container.encode(Kind.messageSuggestProfilePhoto, forKey: .type)
             try value.encode(to: encoder)
         case .messageCustomServiceAction(let value):
             try container.encode(Kind.messageCustomServiceAction, forKey: .type)
@@ -554,6 +570,8 @@ public enum MessageContent: Codable, Equatable {
         case .messageWebsiteConnected(let value):
             try container.encode(Kind.messageWebsiteConnected, forKey: .type)
             try value.encode(to: encoder)
+        case .messageBotWriteAccessAllowed:
+            try container.encode(Kind.messageBotWriteAccessAllowed, forKey: .type)
         case .messageWebAppDataSent(let value):
             try container.encode(Kind.messageWebAppDataSent, forKey: .type)
             try value.encode(to: encoder)
@@ -603,6 +621,9 @@ public struct MessageAnimation: Codable, Equatable {
     /// Animation caption
     public let caption: FormattedText
 
+    /// True, if the animation preview must be covered by a spoiler animation
+    public let hasSpoiler: Bool
+
     /// True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
     public let isSecret: Bool
 
@@ -610,10 +631,12 @@ public struct MessageAnimation: Codable, Equatable {
     public init(
         animation: Animation,
         caption: FormattedText,
+        hasSpoiler: Bool,
         isSecret: Bool
     ) {
         self.animation = animation
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
     }
 }
@@ -662,19 +685,24 @@ public struct MessagePhoto: Codable, Equatable {
     /// Photo caption
     public let caption: FormattedText
 
+    /// True, if the photo preview must be covered by a spoiler animation
+    public let hasSpoiler: Bool
+
     /// True, if the photo must be blurred and must be shown only while tapped
     public let isSecret: Bool
 
-    /// The photo description
+    /// The photo
     public let photo: Photo
 
 
     public init(
         caption: FormattedText,
+        hasSpoiler: Bool,
         isSecret: Bool,
         photo: Photo
     ) {
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
         self.photo = photo
     }
@@ -705,6 +733,9 @@ public struct MessageVideo: Codable, Equatable {
     /// Video caption
     public let caption: FormattedText
 
+    /// True, if the video preview must be covered by a spoiler animation
+    public let hasSpoiler: Bool
+
     /// True, if the video thumbnail must be blurred and the video must be shown only while tapped
     public let isSecret: Bool
 
@@ -714,10 +745,12 @@ public struct MessageVideo: Codable, Equatable {
 
     public init(
         caption: FormattedText,
+        hasSpoiler: Bool,
         isSecret: Bool,
         video: Video
     ) {
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
         self.video = video
     }
@@ -786,7 +819,7 @@ public struct MessageLocation: Codable, Equatable {
     /// The location description
     public let location: Location
 
-    /// For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only for the message sender
+    /// For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
     public let proximityAlertRadius: Int
 
 
@@ -1184,22 +1217,22 @@ public struct MessageChatSetTheme: Codable, Equatable {
     }
 }
 
-/// The TTL (Time To Live) setting for messages in the chat has been changed
-public struct MessageChatSetTtl: Codable, Equatable {
+/// The auto-delete or self-destruct timer for messages in the chat has been changed
+public struct MessageChatSetMessageAutoDeleteTime: Codable, Equatable {
 
     /// If not 0, a user identifier, which default setting was automatically applied
     public let fromUserId: Int64
 
-    /// New message TTL
-    public let ttl: Int
+    /// New value auto-delete or self-destruct time, in seconds; 0 if disabled
+    public let messageAutoDeleteTime: Int
 
 
     public init(
         fromUserId: Int64,
-        ttl: Int
+        messageAutoDeleteTime: Int
     ) {
         self.fromUserId = fromUserId
-        self.ttl = ttl
+        self.messageAutoDeleteTime = messageAutoDeleteTime
     }
 }
 
@@ -1267,6 +1300,18 @@ public struct MessageForumTopicIsHiddenToggled: Codable, Equatable {
 
     public init(isHidden: Bool) {
         self.isHidden = isHidden
+    }
+}
+
+/// A profile photo was suggested to a user in a private chat
+public struct MessageSuggestProfilePhoto: Codable, Equatable {
+
+    /// The suggested chat photo. Use the method setProfilePhoto with inputChatPhotoPrevious to apply the photo
+    public let photo: ChatPhoto
+
+
+    public init(photo: ChatPhoto) {
+        self.photo = photo
     }
 }
 

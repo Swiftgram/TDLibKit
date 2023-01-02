@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -22,11 +22,14 @@ public struct SupergroupFullInfo: Codable, Equatable {
     /// List of commands of bots in the group
     public let botCommands: [BotCommands]
 
-    /// True, if members of the chat can be retrieved
+    /// True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
     public let canGetMembers: Bool
 
     /// True, if the supergroup or channel statistics are available
     public let canGetStatistics: Bool
+
+    /// True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
+    public let canHideMembers: Bool
 
     /// True, if the supergroup location can be changed
     public let canSetLocation: Bool
@@ -37,15 +40,21 @@ public struct SupergroupFullInfo: Codable, Equatable {
     /// True, if the chat username can be changed
     public let canSetUsername: Bool
 
+    /// True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
+    public let canToggleAggressiveAntiSpam: Bool
+
     public let description: String
+
+    /// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
+    public let hasAggressiveAntiSpamEnabled: Bool
+
+    /// True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
+    public let hasHiddenMembers: Bool
 
     /// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     public let inviteLink: ChatInviteLink?
 
-    /// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available for chat administrators
-    public let isAggressiveAntiSpamEnabled: Bool
-
-    /// True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available for chat administrators
+    /// True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available,//-so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
     public let isAllHistoryAvailable: Bool
 
     /// Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
@@ -85,12 +94,15 @@ public struct SupergroupFullInfo: Codable, Equatable {
         botCommands: [BotCommands],
         canGetMembers: Bool,
         canGetStatistics: Bool,
+        canHideMembers: Bool,
         canSetLocation: Bool,
         canSetStickerSet: Bool,
         canSetUsername: Bool,
+        canToggleAggressiveAntiSpam: Bool,
         description: String,
+        hasAggressiveAntiSpamEnabled: Bool,
+        hasHiddenMembers: Bool,
         inviteLink: ChatInviteLink?,
-        isAggressiveAntiSpamEnabled: Bool,
         isAllHistoryAvailable: Bool,
         linkedChatId: Int64,
         location: ChatLocation?,
@@ -108,12 +120,15 @@ public struct SupergroupFullInfo: Codable, Equatable {
         self.botCommands = botCommands
         self.canGetMembers = canGetMembers
         self.canGetStatistics = canGetStatistics
+        self.canHideMembers = canHideMembers
         self.canSetLocation = canSetLocation
         self.canSetStickerSet = canSetStickerSet
         self.canSetUsername = canSetUsername
+        self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
         self.description = description
+        self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
+        self.hasHiddenMembers = hasHiddenMembers
         self.inviteLink = inviteLink
-        self.isAggressiveAntiSpamEnabled = isAggressiveAntiSpamEnabled
         self.isAllHistoryAvailable = isAllHistoryAvailable
         self.linkedChatId = linkedChatId
         self.location = location

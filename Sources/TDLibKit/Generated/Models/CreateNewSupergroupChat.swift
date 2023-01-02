@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -24,8 +24,8 @@ public struct CreateNewSupergroupChat: Codable, Equatable {
     /// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     public let location: ChatLocation?
 
-    /// Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-    public let messageTtl: Int?
+    /// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    public let messageAutoDeleteTime: Int?
 
     /// Title of the new chat; 1-128 characters
     public let title: String?
@@ -36,14 +36,14 @@ public struct CreateNewSupergroupChat: Codable, Equatable {
         forImport: Bool?,
         isChannel: Bool?,
         location: ChatLocation?,
-        messageTtl: Int?,
+        messageAutoDeleteTime: Int?,
         title: String?
     ) {
         self.description = description
         self.forImport = forImport
         self.isChannel = isChannel
         self.location = location
-        self.messageTtl = messageTtl
+        self.messageAutoDeleteTime = messageAutoDeleteTime
         self.title = title
     }
 }

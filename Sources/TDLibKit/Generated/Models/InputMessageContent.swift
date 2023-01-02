@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -240,6 +240,9 @@ public struct InputMessageAnimation: Codable, Equatable {
     /// Duration of the animation, in seconds
     public let duration: Int
 
+    /// True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
+    public let hasSpoiler: Bool
+
     /// Height of the animation; may be replaced by the server
     public let height: Int
 
@@ -255,6 +258,7 @@ public struct InputMessageAnimation: Codable, Equatable {
         animation: InputFile,
         caption: FormattedText,
         duration: Int,
+        hasSpoiler: Bool,
         height: Int,
         thumbnail: InputThumbnail,
         width: Int
@@ -263,6 +267,7 @@ public struct InputMessageAnimation: Codable, Equatable {
         self.animation = animation
         self.caption = caption
         self.duration = duration
+        self.hasSpoiler = hasSpoiler
         self.height = height
         self.thumbnail = thumbnail
         self.width = width
@@ -346,17 +351,20 @@ public struct InputMessagePhoto: Codable, Equatable {
     /// Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
 
+    /// True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
+    public let hasSpoiler: Bool
+
     /// Photo height
     public let height: Int
 
     /// Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
     public let photo: InputFile
 
+    /// Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
+    public let selfDestructTime: Int
+
     /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
     public let thumbnail: InputThumbnail
-
-    /// Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-    public let ttl: Int
 
     /// Photo width
     public let width: Int
@@ -365,18 +373,20 @@ public struct InputMessagePhoto: Codable, Equatable {
     public init(
         addedStickerFileIds: [Int],
         caption: FormattedText,
+        hasSpoiler: Bool,
         height: Int,
         photo: InputFile,
+        selfDestructTime: Int,
         thumbnail: InputThumbnail,
-        ttl: Int,
         width: Int
     ) {
         self.addedStickerFileIds = addedStickerFileIds
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.height = height
         self.photo = photo
+        self.selfDestructTime = selfDestructTime
         self.thumbnail = thumbnail
-        self.ttl = ttl
         self.width = width
     }
 }
@@ -427,17 +437,20 @@ public struct InputMessageVideo: Codable, Equatable {
     /// Duration of the video, in seconds
     public let duration: Int
 
+    /// True, if the video preview must be covered by a spoiler animation; not supported in secret chats
+    public let hasSpoiler: Bool
+
     /// Video height
     public let height: Int
+
+    /// Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
+    public let selfDestructTime: Int
 
     /// True, if the video is supposed to be streamed
     public let supportsStreaming: Bool
 
     /// Video thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail
-
-    /// Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-    public let ttl: Int
 
     /// Video to be sent
     public let video: InputFile
@@ -450,20 +463,22 @@ public struct InputMessageVideo: Codable, Equatable {
         addedStickerFileIds: [Int],
         caption: FormattedText,
         duration: Int,
+        hasSpoiler: Bool,
         height: Int,
+        selfDestructTime: Int,
         supportsStreaming: Bool,
         thumbnail: InputThumbnail,
-        ttl: Int,
         video: InputFile,
         width: Int
     ) {
         self.addedStickerFileIds = addedStickerFileIds
         self.caption = caption
         self.duration = duration
+        self.hasSpoiler = hasSpoiler
         self.height = height
+        self.selfDestructTime = selfDestructTime
         self.supportsStreaming = supportsStreaming
         self.thumbnail = thumbnail
-        self.ttl = ttl
         self.video = video
         self.width = width
     }

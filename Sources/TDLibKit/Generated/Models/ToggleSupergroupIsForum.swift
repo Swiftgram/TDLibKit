@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
 
 
-/// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
+/// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
 public struct ToggleSupergroupIsForum: Codable, Equatable {
 
-    /// New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
+    /// New value of is_forum
     public let isForum: Bool?
 
     /// Identifier of the supergroup

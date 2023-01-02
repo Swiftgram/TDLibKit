@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public final class TdApi {
     /// - Parameter apiId: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
     /// - Parameter applicationVersion: Application version; must be non-empty
     /// - Parameter databaseDirectory: The path to the directory for the persistent database; if empty, the current working directory will be used
-    /// - Parameter databaseEncryptionKey: Encryption key for the database
+    /// - Parameter databaseEncryptionKey: Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
     /// - Parameter deviceModel: Model of the device the application is being run on; must be non-empty
     /// - Parameter enableStorageOptimizer: Pass true to automatically delete old files in background
     /// - Parameter filesDirectory: The path to the directory for storing files; if empty, database_directory will be used
@@ -100,7 +100,7 @@ public final class TdApi {
     /// - Parameter apiId: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
     /// - Parameter applicationVersion: Application version; must be non-empty
     /// - Parameter databaseDirectory: The path to the directory for the persistent database; if empty, the current working directory will be used
-    /// - Parameter databaseEncryptionKey: Encryption key for the database
+    /// - Parameter databaseEncryptionKey: Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
     /// - Parameter deviceModel: Model of the device the application is being run on; must be non-empty
     /// - Parameter enableStorageOptimizer: Pass true to automatically delete old files in background
     /// - Parameter filesDirectory: The path to the directory for storing files; if empty, database_directory will be used
@@ -1888,7 +1888,7 @@ public final class TdApi {
     /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -1913,7 +1913,7 @@ public final class TdApi {
     /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -1938,7 +1938,7 @@ public final class TdApi {
     /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -1963,7 +1963,7 @@ public final class TdApi {
     /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -2047,7 +2047,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
@@ -2062,7 +2062,7 @@ public final class TdApi {
         offset: Int?,
         query: String?,
         senderId: MessageSender?,
-        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+        completion: @escaping (Result<FoundChatMessages, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatMessages(
             chatId: chatId,
@@ -2081,7 +2081,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
@@ -2097,7 +2097,7 @@ public final class TdApi {
         offset: Int?,
         query: String?,
         senderId: MessageSender?
-    ) async throws -> Messages {
+    ) async throws -> FoundChatMessages {
         let query = SearchChatMessages(
             chatId: chatId,
             filter: filter,
@@ -2117,9 +2117,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
-    /// - Parameter offsetChatId: The chat identifier of the last found message, or 0 for the first request
-    /// - Parameter offsetDate: The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
-    /// - Parameter offsetMessageId: The message identifier of the last found message, or 0 for the first request
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for
     /// - Returns: The results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchMessages(
@@ -2128,11 +2126,9 @@ public final class TdApi {
         limit: Int?,
         maxDate: Int?,
         minDate: Int?,
-        offsetChatId: Int64?,
-        offsetDate: Int?,
-        offsetMessageId: Int64?,
+        offset: String?,
         query: String?,
-        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
     ) throws {
         let query = SearchMessages(
             chatList: chatList,
@@ -2140,9 +2136,7 @@ public final class TdApi {
             limit: limit,
             maxDate: maxDate,
             minDate: minDate,
-            offsetChatId: offsetChatId,
-            offsetDate: offsetDate,
-            offsetMessageId: offsetMessageId,
+            offset: offset,
             query: query
         )
         execute(query: query, completion: completion)
@@ -2154,9 +2148,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
-    /// - Parameter offsetChatId: The chat identifier of the last found message, or 0 for the first request
-    /// - Parameter offsetDate: The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
-    /// - Parameter offsetMessageId: The message identifier of the last found message, or 0 for the first request
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for
     /// - Returns: The results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2166,20 +2158,16 @@ public final class TdApi {
         limit: Int?,
         maxDate: Int?,
         minDate: Int?,
-        offsetChatId: Int64?,
-        offsetDate: Int?,
-        offsetMessageId: Int64?,
+        offset: String?,
         query: String?
-    ) async throws -> Messages {
+    ) async throws -> FoundMessages {
         let query = SearchMessages(
             chatList: chatList,
             filter: filter,
             limit: limit,
             maxDate: maxDate,
             minDate: minDate,
-            offsetChatId: offsetChatId,
-            offsetDate: offsetDate,
-            offsetMessageId: offsetMessageId,
+            offset: offset,
             query: query
         )
         return try await execute(query: query)
@@ -2236,38 +2224,38 @@ public final class TdApi {
     }
 
     /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
-    /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
     /// - Returns: The results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public func searchCallMessages(
-        fromMessageId: Int64?,
         limit: Int?,
+        offset: String?,
         onlyMissed: Bool?,
-        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
     ) throws {
         let query = SearchCallMessages(
-            fromMessageId: fromMessageId,
             limit: limit,
+            offset: offset,
             onlyMissed: onlyMissed
         )
         execute(query: query, completion: completion)
     }
 
     /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
-    /// - Parameter fromMessageId: Identifier of the message from which to search; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
     /// - Returns: The results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchCallMessages(
-        fromMessageId: Int64?,
         limit: Int?,
+        offset: String?,
         onlyMissed: Bool?
-    ) async throws -> Messages {
+    ) async throws -> FoundMessages {
         let query = SearchCallMessages(
-            fromMessageId: fromMessageId,
             limit: limit,
+            offset: offset,
             onlyMissed: onlyMissed
         )
         return try await execute(query: query)
@@ -3985,7 +3973,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
@@ -4009,7 +3997,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
@@ -4072,7 +4060,7 @@ public final class TdApi {
     public func getForumTopicLink(
         chatId: Int64?,
         messageThreadId: Int64?,
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+        completion: @escaping (Result<MessageLink, Swift.Error>) -> Void
     ) throws {
         let query = GetForumTopicLink(
             chatId: chatId,
@@ -4089,7 +4077,7 @@ public final class TdApi {
     public func getForumTopicLink(
         chatId: Int64?,
         messageThreadId: Int64?
-    ) async throws -> HttpUrl {
+    ) async throws -> MessageLink {
         let query = GetForumTopicLink(
             chatId: chatId,
             messageThreadId: messageThreadId
@@ -4189,7 +4177,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -4207,7 +4195,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -4225,7 +4213,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     public func toggleGeneralForumTopicIsHidden(
@@ -4240,7 +4228,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4255,7 +4243,73 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Deletes all messages in a forum topic; requires can_delete_messages administrator rights in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+    /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    public func toggleForumTopicIsPinned(
+        chatId: Int64?,
+        isPinned: Bool?,
+        messageThreadId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleForumTopicIsPinned(
+            chatId: chatId,
+            isPinned: isPinned,
+            messageThreadId: messageThreadId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
+    /// - Parameter messageThreadId: Message thread identifier of the forum topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleForumTopicIsPinned(
+        chatId: Int64?,
+        isPinned: Bool?,
+        messageThreadId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleForumTopicIsPinned(
+            chatId: chatId,
+            isPinned: isPinned,
+            messageThreadId: messageThreadId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the order of pinned forum topics
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadIds: The new list of pinned forum topics
+    public func setPinnedForumTopics(
+        chatId: Int64?,
+        messageThreadIds: [Int64]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetPinnedForumTopics(
+            chatId: chatId,
+            messageThreadIds: messageThreadIds
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the order of pinned forum topics
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageThreadIds: The new list of pinned forum topics
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setPinnedForumTopics(
+        chatId: Int64?,
+        messageThreadIds: [Int64]?
+    ) async throws -> Ok {
+        let query = SetPinnedForumTopics(
+            chatId: chatId,
+            messageThreadIds: messageThreadIds
+        )
+        return try await execute(query: query)
+    }
+
+    /// Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     public func deleteForumTopic(
@@ -4270,7 +4324,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Deletes all messages in a forum topic; requires can_delete_messages administrator rights in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+    /// Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -6182,18 +6236,18 @@ public final class TdApi {
     }
 
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
-    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group
     /// - Returns: The newly created chat
     public func createNewBasicGroupChat(
-        messageTtl: Int?,
+        messageAutoDeleteTime: Int?,
         title: String?,
         userIds: [Int64]?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewBasicGroupChat(
-            messageTtl: messageTtl,
+            messageAutoDeleteTime: messageAutoDeleteTime,
             title: title,
             userIds: userIds
         )
@@ -6201,18 +6255,18 @@ public final class TdApi {
     }
 
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
-    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group
     /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewBasicGroupChat(
-        messageTtl: Int?,
+        messageAutoDeleteTime: Int?,
         title: String?,
         userIds: [Int64]?
     ) async throws -> Chat {
         let query = CreateNewBasicGroupChat(
-            messageTtl: messageTtl,
+            messageAutoDeleteTime: messageAutoDeleteTime,
             title: title,
             userIds: userIds
         )
@@ -6224,7 +6278,7 @@ public final class TdApi {
     /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
     /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
-    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new chat; 1-128 characters
     /// - Returns: The newly created chat
     public func createNewSupergroupChat(
@@ -6232,7 +6286,7 @@ public final class TdApi {
         forImport: Bool?,
         isChannel: Bool?,
         location: ChatLocation?,
-        messageTtl: Int?,
+        messageAutoDeleteTime: Int?,
         title: String?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
     ) throws {
@@ -6241,7 +6295,7 @@ public final class TdApi {
             forImport: forImport,
             isChannel: isChannel,
             location: location,
-            messageTtl: messageTtl,
+            messageAutoDeleteTime: messageAutoDeleteTime,
             title: title
         )
         execute(query: query, completion: completion)
@@ -6252,7 +6306,7 @@ public final class TdApi {
     /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
     /// - Parameter isChannel: Pass true to create a channel chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
-    /// - Parameter messageTtl: Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new chat; 1-128 characters
     /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -6261,7 +6315,7 @@ public final class TdApi {
         forImport: Bool?,
         isChannel: Bool?,
         location: ChatLocation?,
-        messageTtl: Int?,
+        messageAutoDeleteTime: Int?,
         title: String?
     ) async throws -> Chat {
         let query = CreateNewSupergroupChat(
@@ -6269,7 +6323,7 @@ public final class TdApi {
             forImport: forImport,
             isChannel: isChannel,
             location: location,
-            messageTtl: messageTtl,
+            messageAutoDeleteTime: messageAutoDeleteTime,
             title: title
         )
         return try await execute(query: query)
@@ -6606,32 +6660,32 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the message TTL in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+    /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-    public func setChatMessageTtl(
+    /// - Parameter messageAutoDeleteTime: New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    public func setChatMessageAutoDeleteTime(
         chatId: Int64?,
-        ttl: Int?,
+        messageAutoDeleteTime: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetChatMessageTtl(
+        let query = SetChatMessageAutoDeleteTime(
             chatId: chatId,
-            ttl: ttl
+            messageAutoDeleteTime: messageAutoDeleteTime
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes the message TTL in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+    /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ttl: New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    /// - Parameter messageAutoDeleteTime: New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func setChatMessageTtl(
+    public func setChatMessageAutoDeleteTime(
         chatId: Int64?,
-        ttl: Int?
+        messageAutoDeleteTime: Int?
     ) async throws -> Ok {
-        let query = SetChatMessageTtl(
+        let query = SetChatMessageAutoDeleteTime(
             chatId: chatId,
-            ttl: ttl
+            messageAutoDeleteTime: messageAutoDeleteTime
         )
         return try await execute(query: query)
     }
@@ -6944,7 +6998,7 @@ public final class TdApi {
 
     /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
     /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
-    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group.//-Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
+    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     public func setChatDiscussionGroup(
         chatId: Int64?,
         discussionChatId: Int64?,
@@ -6959,7 +7013,7 @@ public final class TdApi {
 
     /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
     /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
-    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group.//-Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
+    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setChatDiscussionGroup(
         chatId: Int64?,
@@ -7790,14 +7844,17 @@ public final class TdApi {
     }
 
     /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     /// - Parameter botUserId: Bot's user identifier
     /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
     public func toggleBotIsAddedToAttachmentMenu(
+        allowWriteAccess: Bool?,
         botUserId: Int64?,
         isAdded: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleBotIsAddedToAttachmentMenu(
+            allowWriteAccess: allowWriteAccess,
             botUserId: botUserId,
             isAdded: isAdded
         )
@@ -7805,29 +7862,32 @@ public final class TdApi {
     }
 
     /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     /// - Parameter botUserId: Bot's user identifier
     /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleBotIsAddedToAttachmentMenu(
+        allowWriteAccess: Bool?,
         botUserId: Int64?,
         isAdded: Bool?
     ) async throws -> Ok {
         let query = ToggleBotIsAddedToAttachmentMenu(
+            allowWriteAccess: allowWriteAccess,
             botUserId: botUserId,
             isAdded: isAdded
         )
         return try await execute(query: query)
     }
 
-    /// Returns up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
-    /// - Returns: Up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
+    /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+    /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
     public func getThemedEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
         let query = GetThemedEmojiStatuses()
         execute(query: query, completion: completion)
     }
 
-    /// Returns up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
-    /// - Returns: Up to 8 themed emoji statuses, which color must be changed to the color of the Telegram Premium badge
+    /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+    /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getThemedEmojiStatuses() async throws -> EmojiStatuses {
         let query = GetThemedEmojiStatuses()
@@ -10355,7 +10415,7 @@ public final class TdApi {
 
     /// Adds a user to the contact list or edits an existing contact by their user identifier
     /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
-    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.//-Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     public func addContact(
         contact: Contact?,
         sharePhoneNumber: Bool?,
@@ -10370,7 +10430,7 @@ public final class TdApi {
 
     /// Adds a user to the contact list or edits an existing contact by their user identifier
     /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
-    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.//-Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addContact(
         contact: Contact?,
@@ -10522,6 +10582,66 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Changes a personal profile photo of a contact user
+    /// - Parameter photo: Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
+    /// - Parameter userId: User identifier
+    public func setUserPersonalProfilePhoto(
+        photo: InputChatPhoto?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetUserPersonalProfilePhoto(
+            photo: photo,
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes a personal profile photo of a contact user
+    /// - Parameter photo: Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
+    /// - Parameter userId: User identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setUserPersonalProfilePhoto(
+        photo: InputChatPhoto?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = SetUserPersonalProfilePhoto(
+            photo: photo,
+            userId: userId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Suggests a profile photo to another regular user with common messages
+    /// - Parameter photo: Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
+    /// - Parameter userId: User identifier
+    public func suggestUserProfilePhoto(
+        photo: InputChatPhoto?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SuggestUserProfilePhoto(
+            photo: photo,
+            userId: userId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Suggests a profile photo to another regular user with common messages
+    /// - Parameter photo: Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
+    /// - Parameter userId: User identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func suggestUserProfilePhoto(
+        photo: InputChatPhoto?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = SuggestUserProfilePhoto(
+            photo: photo,
+            userId: userId
+        )
+        return try await execute(query: query)
+    }
+
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter phoneNumber: Phone number to search for
     /// - Returns: A 404 error if the user can't be found
@@ -10568,11 +10688,11 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already
+    /// Returns the profile photos of a user. Personal and public photo aren't returned
     /// - Parameter limit: The maximum number of photos to be returned; up to 100
     /// - Parameter offset: The number of photos to skip; must be non-negative
     /// - Parameter userId: User identifier
-    /// - Returns: The profile photos of a user
+    /// - Returns: The profile photos of a user. Personal and public photo aren't returned
     public func getUserProfilePhotos(
         limit: Int?,
         offset: Int?,
@@ -10587,11 +10707,11 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already
+    /// Returns the profile photos of a user. Personal and public photo aren't returned
     /// - Parameter limit: The maximum number of photos to be returned; up to 100
     /// - Parameter offset: The number of photos to skip; must be non-negative
     /// - Parameter userId: User identifier
-    /// - Returns: The profile photos of a user
+    /// - Returns: The profile photos of a user. Personal and public photo aren't returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUserProfilePhotos(
         limit: Int?,
@@ -10804,9 +10924,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
+    /// Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
     /// - Parameter fileId: File identifier
-    /// - Returns: A list of sticker sets attached to a file
+    /// - Returns: A list of sticker sets attached to a file, including regular, mask, and emoji sticker sets
     public func getAttachedStickerSets(
         fileId: Int?,
         completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
@@ -10817,9 +10937,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
+    /// Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
     /// - Parameter fileId: File identifier
-    /// - Returns: A list of sticker sets attached to a file
+    /// - Returns: A list of sticker sets attached to a file, including regular, mask, and emoji sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAttachedStickerSets(fileId: Int?) async throws -> StickerSets {
         let query = GetAttachedStickerSets(
@@ -11500,22 +11620,30 @@ public final class TdApi {
     }
 
     /// Changes a profile photo for the current user
+    /// - Parameter isPublic: Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     public func setProfilePhoto(
+        isPublic: Bool?,
         photo: InputChatPhoto?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetProfilePhoto(
+            isPublic: isPublic,
             photo: photo
         )
         execute(query: query, completion: completion)
     }
 
     /// Changes a profile photo for the current user
+    /// - Parameter isPublic: Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func setProfilePhoto(photo: InputChatPhoto?) async throws -> Ok {
+    public func setProfilePhoto(
+        isPublic: Bool?,
+        photo: InputChatPhoto?
+    ) async throws -> Ok {
         let query = SetProfilePhoto(
+            isPublic: isPublic,
             photo: photo
         )
         return try await execute(query: query)
@@ -12475,38 +12603,68 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Toggles whether aggressive anti-spam checks are enabled in the supergroup; requires can_delete_messages administrator right. Can be called only if the supergroup has at least getOption("aggressive_anti_spam_supergroup_member_count_min") members
-    /// - Parameter isAggressiveAntiSpamEnabled: The new value of is_aggressive_anti_spam_enabled
-    /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
-    public func toggleSupergroupIsAggressiveAntiSpamEnabled(
-        isAggressiveAntiSpamEnabled: Bool?,
+    /// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+    /// - Parameter hasHiddenMembers: New value of has_hidden_members
+    /// - Parameter supergroupId: Identifier of the supergroup
+    public func toggleSupergroupHasHiddenMembers(
+        hasHiddenMembers: Bool?,
         supergroupId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ToggleSupergroupIsAggressiveAntiSpamEnabled(
-            isAggressiveAntiSpamEnabled: isAggressiveAntiSpamEnabled,
+        let query = ToggleSupergroupHasHiddenMembers(
+            hasHiddenMembers: hasHiddenMembers,
             supergroupId: supergroupId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Toggles whether aggressive anti-spam checks are enabled in the supergroup; requires can_delete_messages administrator right. Can be called only if the supergroup has at least getOption("aggressive_anti_spam_supergroup_member_count_min") members
-    /// - Parameter isAggressiveAntiSpamEnabled: The new value of is_aggressive_anti_spam_enabled
-    /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
+    /// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+    /// - Parameter hasHiddenMembers: New value of has_hidden_members
+    /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func toggleSupergroupIsAggressiveAntiSpamEnabled(
-        isAggressiveAntiSpamEnabled: Bool?,
+    public func toggleSupergroupHasHiddenMembers(
+        hasHiddenMembers: Bool?,
         supergroupId: Int64?
     ) async throws -> Ok {
-        let query = ToggleSupergroupIsAggressiveAntiSpamEnabled(
-            isAggressiveAntiSpamEnabled: isAggressiveAntiSpamEnabled,
+        let query = ToggleSupergroupHasHiddenMembers(
+            hasHiddenMembers: hasHiddenMembers,
             supergroupId: supergroupId
         )
         return try await execute(query: query)
     }
 
-    /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
-    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
+    /// Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
+    /// - Parameter hasAggressiveAntiSpamEnabled: The new value of has_aggressive_anti_spam_enabled
+    /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
+    public func toggleSupergroupHasAggressiveAntiSpamEnabled(
+        hasAggressiveAntiSpamEnabled: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupHasAggressiveAntiSpamEnabled(
+            hasAggressiveAntiSpamEnabled: hasAggressiveAntiSpamEnabled,
+            supergroupId: supergroupId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
+    /// - Parameter hasAggressiveAntiSpamEnabled: The new value of has_aggressive_anti_spam_enabled
+    /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleSupergroupHasAggressiveAntiSpamEnabled(
+        hasAggressiveAntiSpamEnabled: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupHasAggressiveAntiSpamEnabled(
+            hasAggressiveAntiSpamEnabled: hasAggressiveAntiSpamEnabled,
+            supergroupId: supergroupId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+    /// - Parameter isForum: New value of is_forum
     /// - Parameter supergroupId: Identifier of the supergroup
     public func toggleSupergroupIsForum(
         isForum: Bool?,
@@ -12520,8 +12678,8 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup
-    /// - Parameter isForum: New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
+    /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+    /// - Parameter isForum: New value of is_forum
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleSupergroupIsForum(
@@ -13627,40 +13785,40 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the default message Time To Live setting (self-destruct timer) for new chats
-    /// - Parameter ttl: New message TTL; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-    public func setDefaultMessageTtl(
-        ttl: MessageTtl?,
+    /// Changes the default message auto-delete time for new chats
+    /// - Parameter messageAutoDeleteTime: New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    public func setDefaultMessageAutoDeleteTime(
+        messageAutoDeleteTime: MessageAutoDeleteTime?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetDefaultMessageTtl(
-            ttl: ttl
+        let query = SetDefaultMessageAutoDeleteTime(
+            messageAutoDeleteTime: messageAutoDeleteTime
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes the default message Time To Live setting (self-destruct timer) for new chats
-    /// - Parameter ttl: New message TTL; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    /// Changes the default message auto-delete time for new chats
+    /// - Parameter messageAutoDeleteTime: New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func setDefaultMessageTtl(ttl: MessageTtl?) async throws -> Ok {
-        let query = SetDefaultMessageTtl(
-            ttl: ttl
+    public func setDefaultMessageAutoDeleteTime(messageAutoDeleteTime: MessageAutoDeleteTime?) async throws -> Ok {
+        let query = SetDefaultMessageAutoDeleteTime(
+            messageAutoDeleteTime: messageAutoDeleteTime
         )
         return try await execute(query: query)
     }
 
-    /// Returns default message Time To Live setting (self-destruct timer) for new chats
-    /// - Returns: Default message Time To Live setting (self-destruct timer) for new chats
-    public func getDefaultMessageTtl(completion: @escaping (Result<MessageTtl, Swift.Error>) -> Void) throws {
-        let query = GetDefaultMessageTtl()
+    /// Returns default message auto-delete time setting for new chats
+    /// - Returns: Default message auto-delete time setting for new chats
+    public func getDefaultMessageAutoDeleteTime(completion: @escaping (Result<MessageAutoDeleteTime, Swift.Error>) -> Void) throws {
+        let query = GetDefaultMessageAutoDeleteTime()
         execute(query: query, completion: completion)
     }
 
-    /// Returns default message Time To Live setting (self-destruct timer) for new chats
-    /// - Returns: Default message Time To Live setting (self-destruct timer) for new chats
+    /// Returns default message auto-delete time setting for new chats
+    /// - Returns: Default message auto-delete time setting for new chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getDefaultMessageTtl() async throws -> MessageTtl {
-        let query = GetDefaultMessageTtl()
+    public func getDefaultMessageAutoDeleteTime() async throws -> MessageAutoDeleteTime {
+        let query = GetDefaultMessageAutoDeleteTime()
         return try await execute(query: query)
     }
 
@@ -14521,62 +14679,62 @@ public final class TdApi {
     }
 
     /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
-    /// - Parameter autorizationFormId: Authorization form identifier
+    /// - Parameter authorizationFormId: Authorization form identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: Already available Telegram Passport elements suitable for completing a Telegram Passport authorization form
     public func getPassportAuthorizationFormAvailableElements(
-        autorizationFormId: Int?,
+        authorizationFormId: Int?,
         password: String?,
         completion: @escaping (Result<PassportElementsWithErrors, Swift.Error>) -> Void
     ) throws {
         let query = GetPassportAuthorizationFormAvailableElements(
-            autorizationFormId: autorizationFormId,
+            authorizationFormId: authorizationFormId,
             password: password
         )
         execute(query: query, completion: completion)
     }
 
     /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
-    /// - Parameter autorizationFormId: Authorization form identifier
+    /// - Parameter authorizationFormId: Authorization form identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: Already available Telegram Passport elements suitable for completing a Telegram Passport authorization form
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPassportAuthorizationFormAvailableElements(
-        autorizationFormId: Int?,
+        authorizationFormId: Int?,
         password: String?
     ) async throws -> PassportElementsWithErrors {
         let query = GetPassportAuthorizationFormAvailableElements(
-            autorizationFormId: autorizationFormId,
+            authorizationFormId: authorizationFormId,
             password: password
         )
         return try await execute(query: query)
     }
 
     /// Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
-    /// - Parameter autorizationFormId: Authorization form identifier
+    /// - Parameter authorizationFormId: Authorization form identifier
     /// - Parameter types: Types of Telegram Passport elements chosen by user to complete the authorization form
     public func sendPassportAuthorizationForm(
-        autorizationFormId: Int?,
+        authorizationFormId: Int?,
         types: [PassportElementType]?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendPassportAuthorizationForm(
-            autorizationFormId: autorizationFormId,
+            authorizationFormId: authorizationFormId,
             types: types
         )
         execute(query: query, completion: completion)
     }
 
     /// Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
-    /// - Parameter autorizationFormId: Authorization form identifier
+    /// - Parameter authorizationFormId: Authorization form identifier
     /// - Parameter types: Types of Telegram Passport elements chosen by user to complete the authorization form
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendPassportAuthorizationForm(
-        autorizationFormId: Int?,
+        authorizationFormId: Int?,
         types: [PassportElementType]?
     ) async throws -> Ok {
         let query = SendPassportAuthorizationForm(
-            autorizationFormId: autorizationFormId,
+            authorizationFormId: authorizationFormId,
             types: types
         )
         return try await execute(query: query)
@@ -15734,7 +15892,7 @@ public final class TdApi {
     }
 
     /// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
-    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
+    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,//-value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
     public func setLogVerbosityLevel(
         newVerbosityLevel: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -15746,7 +15904,7 @@ public final class TdApi {
     }
 
     /// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
-    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
+    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,//-value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setLogVerbosityLevel(newVerbosityLevel: Int?) async throws -> Ok {
         let query = SetLogVerbosityLevel(

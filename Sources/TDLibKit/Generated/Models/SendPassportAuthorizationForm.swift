@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -14,17 +14,17 @@ import Foundation
 public struct SendPassportAuthorizationForm: Codable, Equatable {
 
     /// Authorization form identifier
-    public let autorizationFormId: Int?
+    public let authorizationFormId: Int?
 
     /// Types of Telegram Passport elements chosen by user to complete the authorization form
     public let types: [PassportElementType]?
 
 
     public init(
-        autorizationFormId: Int?,
+        authorizationFormId: Int?,
         types: [PassportElementType]?
     ) {
-        self.autorizationFormId = autorizationFormId
+        self.authorizationFormId = authorizationFormId
         self.types = types
     }
 }

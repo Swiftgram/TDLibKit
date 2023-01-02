@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
 
 
-/// Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already
+/// Returns the profile photos of a user. Personal and public photo aren't returned
 public struct GetUserProfilePhotos: Codable, Equatable {
 
     /// The maximum number of photos to be returned; up to 100

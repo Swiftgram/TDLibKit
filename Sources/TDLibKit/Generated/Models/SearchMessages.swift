@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -28,14 +28,8 @@ public struct SearchMessages: Codable, Equatable {
     /// If not 0, the minimum date of the messages to return
     public let minDate: Int?
 
-    /// The chat identifier of the last found message, or 0 for the first request
-    public let offsetChatId: Int64?
-
-    /// The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
-    public let offsetDate: Int?
-
-    /// The message identifier of the last found message, or 0 for the first request
-    public let offsetMessageId: Int64?
+    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    public let offset: String?
 
     /// Query to search for
     public let query: String?
@@ -47,9 +41,7 @@ public struct SearchMessages: Codable, Equatable {
         limit: Int?,
         maxDate: Int?,
         minDate: Int?,
-        offsetChatId: Int64?,
-        offsetDate: Int?,
-        offsetMessageId: Int64?,
+        offset: String?,
         query: String?
     ) {
         self.chatList = chatList
@@ -57,9 +49,7 @@ public struct SearchMessages: Codable, Equatable {
         self.limit = limit
         self.maxDate = maxDate
         self.minDate = minDate
-        self.offsetChatId = offsetChatId
-        self.offsetDate = offsetDate
-        self.offsetMessageId = offsetMessageId
+        self.offset = offset
         self.query = query
     }
 }

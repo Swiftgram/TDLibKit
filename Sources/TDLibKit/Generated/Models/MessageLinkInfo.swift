@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Contains information about a link to a message or a forum topic in a chat
 public struct MessageLinkInfo: Codable, Equatable {
 
-    /// If found, identifier of the chat to which the message belongs, 0 otherwise
+    /// If found, identifier of the chat to which the link points, 0 otherwise
     public let chatId: Int64
 
     /// True, if the whole media album to which the message belongs is linked
     public let forAlbum: Bool
 
-    /// True, if the link is a public link for a message in a chat
+    /// True, if the link is a public link for a message or a forum topic in a chat
     public let isPublic: Bool
 
     /// Timestamp from which the video/audio/video note/voice note playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.9-86d5f12e
-//  https://github.com/tdlib/td/tree/86d5f12e
+//  Based on TDLib 1.8.10-cf198484
+//  https://github.com/tdlib/td/tree/cf198484
 //
 
 import Foundation
@@ -13,23 +13,23 @@ import Foundation
 /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 public struct SearchCallMessages: Codable, Equatable {
 
-    /// Identifier of the message from which to search; use 0 to get results from the last message
-    public let fromMessageId: Int64?
-
     /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public let limit: Int?
+
+    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    public let offset: String?
 
     /// Pass true to search only for messages with missed/declined calls
     public let onlyMissed: Bool?
 
 
     public init(
-        fromMessageId: Int64?,
         limit: Int?,
+        offset: String?,
         onlyMissed: Bool?
     ) {
-        self.fromMessageId = fromMessageId
         self.limit = limit
+        self.offset = offset
         self.onlyMissed = onlyMissed
     }
 }
