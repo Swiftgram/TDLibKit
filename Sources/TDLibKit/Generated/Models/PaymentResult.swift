@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains the result of a payment request
 public struct PaymentResult: Codable, Equatable {
 
-    /// True, if the payment request was successful; otherwise the verification_url will be non-empty
+    /// True, if the payment request was successful; otherwise, the verification_url will be non-empty
     public let success: Bool
 
     /// URL for additional payment credentials verification

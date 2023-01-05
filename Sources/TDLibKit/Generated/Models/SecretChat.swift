@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SecretChat: Codable, Equatable {
     /// Secret chat identifier
     public let id: Int
 
-    /// True, if the chat was created by the current user; otherwise false
+    /// True, if the chat was created by the current user; false otherwise
     public let isOutbound: Bool
 
     /// Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9.//-The pixels must be used to make a 12x12 square image filled from left to right, top to bottom. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers

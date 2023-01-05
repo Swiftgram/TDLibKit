@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -108,7 +108,7 @@ public struct ReplyMarkupShowKeyboard: Codable, Equatable {
     /// If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
     public let inputFieldPlaceholder: String
 
-    /// True, if the keyboard is supposed to be always shown when the ordinary keyboard is hidden
+    /// True, if the keyboard is supposed to always be shown when the ordinary keyboard is hidden
     public let isPersistent: Bool
 
     /// True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply

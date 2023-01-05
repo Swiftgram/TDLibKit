@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
 
 
-/// Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, the correct application platform must be specified and a valid server authentication data must be uploaded at https://my.telegram.org
+/// Represents a data needed to subscribe for push notifications through registerDevice method.
 public enum DeviceToken: Codable, Equatable {
 
     /// A token for Firebase Cloud Messaging

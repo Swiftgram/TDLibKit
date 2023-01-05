@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -1208,7 +1208,7 @@ public struct MessagePinMessage: Codable, Equatable {
 /// A theme in the chat has been changed
 public struct MessageChatSetTheme: Codable, Equatable {
 
-    /// If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+    /// If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
     public let themeName: String
 
 
@@ -1282,7 +1282,7 @@ public struct MessageForumTopicEdited: Codable, Equatable {
 /// A forum topic has been closed or opened
 public struct MessageForumTopicIsClosedToggled: Codable, Equatable {
 
-    /// True, if the topic was closed, otherwise the topic was reopened
+    /// True, if the topic was closed; otherwise, the topic was reopened
     public let isClosed: Bool
 
 
@@ -1294,7 +1294,7 @@ public struct MessageForumTopicIsClosedToggled: Codable, Equatable {
 /// A General forum topic has been hidden or unhidden
 public struct MessageForumTopicIsHiddenToggled: Codable, Equatable {
 
-    /// True, if the topic was hidden, otherwise the topic was unhidden
+    /// True, if the topic was hidden; otherwise, the topic was unhidden
     public let isHidden: Bool
 
 

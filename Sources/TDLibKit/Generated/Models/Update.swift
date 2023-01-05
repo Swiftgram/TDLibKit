@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -67,7 +67,7 @@ public enum Update: Codable, Equatable {
     /// The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
     case updateChatLastMessage(UpdateChatLastMessage)
 
-    /// The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
+    /// The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
     case updateChatPosition(UpdateChatPosition)
 
     /// Incoming messages were read or the number of unread messages has been changed
@@ -1457,7 +1457,7 @@ public struct UpdateChatLastMessage: Codable, Equatable {
     }
 }
 
-/// The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
+/// The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
 public struct UpdateChatPosition: Codable, Equatable {
 
     /// Chat identifier
@@ -2583,7 +2583,7 @@ public struct UpdateTrendingStickerSets: Codable, Equatable {
 /// The list of recently used stickers was updated
 public struct UpdateRecentStickers: Codable, Equatable {
 
-    /// True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
+    /// True, if the list of stickers attached to photo or video files was updated; otherwise, the list of sent stickers is updated
     public let isAttached: Bool
 
     /// The new list of file identifiers of recently used stickers

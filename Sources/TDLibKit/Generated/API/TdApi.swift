@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -1150,10 +1150,10 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// - Returns: Information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1166,10 +1166,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// - Returns: Information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -1460,9 +1460,9 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
+    /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
     /// - Parameter username: Username to be resolved
-    /// - Returns: The chat if found. otherwise an error is returned
+    /// - Returns: The chat if found. otherwise, an error is returned
     public func searchPublicChat(
         username: String?,
         completion: @escaping (Result<Chat, Swift.Error>) -> Void
@@ -1473,9 +1473,9 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
+    /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
     /// - Parameter username: Username to be resolved
-    /// - Returns: The chat if found. otherwise an error is returned
+    /// - Returns: The chat if found. otherwise, an error is returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchPublicChat(username: String?) async throws -> Chat {
         let query = SearchPublicChat(

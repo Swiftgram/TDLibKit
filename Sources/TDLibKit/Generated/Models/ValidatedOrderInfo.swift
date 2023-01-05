@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
 
 
-/// Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options
+/// Contains a temporary identifier of validated order information, which is stored for one hour, and the available shipping options
 public struct ValidatedOrderInfo: Codable, Equatable {
 
     /// Temporary identifier of the order information

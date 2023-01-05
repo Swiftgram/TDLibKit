@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -693,7 +693,7 @@ public struct PushMessageContentChatChangeTitle: Codable, Equatable {
 /// A chat theme was edited
 public struct PushMessageContentChatSetTheme: Codable, Equatable {
 
-    /// If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+    /// If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one
     public let themeName: String
 
 

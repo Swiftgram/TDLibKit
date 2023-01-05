@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-cf198484
-//  https://github.com/tdlib/td/tree/cf198484
+//  Based on TDLib 1.8.10-bc7734a2
+//  https://github.com/tdlib/td/tree/bc7734a2
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct Contact: Codable, Equatable {
     /// Phone number of the user
     public let phoneNumber: String
 
-    /// Identifier of the user, if known; otherwise 0
+    /// Identifier of the user, if known; 0 otherwise
     public let userId: Int64
 
     /// Additional data about the user in a form of vCard; 0-2048 bytes in length
