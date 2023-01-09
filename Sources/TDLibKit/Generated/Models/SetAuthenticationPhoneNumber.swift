@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-19cde80f
-//  https://github.com/tdlib/td/tree/19cde80f
+//  Based on TDLib 1.8.10-4dc554bd
+//  https://github.com/tdlib/td/tree/4dc554bd
 //
 
 import Foundation
 
 
-/// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+/// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
 public struct SetAuthenticationPhoneNumber: Codable, Equatable {
 
     /// The phone number of the user, in international format

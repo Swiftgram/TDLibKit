@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-19cde80f
-//  https://github.com/tdlib/td/tree/19cde80f
+//  Based on TDLib 1.8.10-4dc554bd
+//  https://github.com/tdlib/td/tree/4dc554bd
 //
 
 import Foundation
@@ -152,7 +152,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter phoneNumber: The phone number of the user, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     public func setAuthenticationPhoneNumber(
@@ -167,7 +167,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter phoneNumber: The phone number of the user, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -261,7 +261,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
     public func requestQrCodeAuthentication(
         otherUserIds: [Int64]?,
@@ -273,7 +273,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func requestQrCodeAuthentication(otherUserIds: [Int64]?) async throws -> Ok {
