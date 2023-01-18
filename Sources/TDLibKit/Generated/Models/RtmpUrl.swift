@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-64406035
-//  https://github.com/tdlib/td/tree/64406035
+//  Based on TDLib 1.8.10-d912fd14
+//  https://github.com/tdlib/td/tree/d912fd14
 //
 
 import Foundation
 
 
-/// Represents an RTMP url
+/// Represents an RTMP URL
 public struct RtmpUrl: Codable, Equatable {
 
     /// Stream key

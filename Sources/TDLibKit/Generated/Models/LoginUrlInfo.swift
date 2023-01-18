@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-64406035
-//  https://github.com/tdlib/td/tree/64406035
+//  Based on TDLib 1.8.10-d912fd14
+//  https://github.com/tdlib/td/tree/d912fd14
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 public enum LoginUrlInfo: Codable, Equatable {
 
-    /// An HTTP url needs to be open
+    /// An HTTP URL needs to be open
     case loginUrlInfoOpen(LoginUrlInfoOpen)
 
     /// An authorization confirmation dialog needs to be shown to the user
@@ -51,7 +51,7 @@ public enum LoginUrlInfo: Codable, Equatable {
     }
 }
 
-/// An HTTP url needs to be open
+/// An HTTP URL needs to be open
 public struct LoginUrlInfoOpen: Codable, Equatable {
 
     /// True, if there is no need to show an ordinary open URL confirm
