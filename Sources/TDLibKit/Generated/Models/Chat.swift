@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -51,6 +51,9 @@ public struct Chat: Codable, Equatable {
 
     /// True, if the chat is marked as unread
     public let isMarkedAsUnread: Bool
+
+    /// True, if translation of all messages in the chat must be suggested to the user
+    public let isTranslatable: Bool
 
     /// Last message in the chat; may be null
     public let lastMessage: Message?
@@ -121,6 +124,7 @@ public struct Chat: Codable, Equatable {
         id: Int64,
         isBlocked: Bool,
         isMarkedAsUnread: Bool,
+        isTranslatable: Bool,
         lastMessage: Message?,
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
@@ -153,6 +157,7 @@ public struct Chat: Codable, Equatable {
         self.id = id
         self.isBlocked = isBlocked
         self.isMarkedAsUnread = isMarkedAsUnread
+        self.isTranslatable = isTranslatable
         self.lastMessage = lastMessage
         self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId

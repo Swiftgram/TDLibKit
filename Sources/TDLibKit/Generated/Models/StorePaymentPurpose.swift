@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -57,9 +57,16 @@ public struct StorePaymentPurposePremiumSubscription: Codable, Equatable {
     /// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
     public let isRestore: Bool
 
+    /// Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
+    public let isUpgrade: Bool
 
-    public init(isRestore: Bool) {
+
+    public init(
+        isRestore: Bool,
+        isUpgrade: Bool
+    ) {
         self.isRestore = isRestore
+        self.isUpgrade = isUpgrade
     }
 }
 

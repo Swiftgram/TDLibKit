@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ChatPhoto: Codable, Equatable {
     /// Point in time (Unix timestamp) when the photo has been added
     public let addedDate: Int
 
-    /// A big (640x640) animated variant of the photo in MPEG4 format; may be null
+    /// A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
     public let animation: AnimatedChatPhoto?
 
     /// Unique photo identifier
@@ -31,6 +31,9 @@ public struct ChatPhoto: Codable, Equatable {
     /// A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available
     public let smallAnimation: AnimatedChatPhoto?
 
+    /// Sticker-based version of the chat photo; may be null
+    public let sticker: ChatPhotoSticker?
+
 
     public init(
         addedDate: Int,
@@ -38,7 +41,8 @@ public struct ChatPhoto: Codable, Equatable {
         id: TdInt64,
         minithumbnail: Minithumbnail?,
         sizes: [PhotoSize],
-        smallAnimation: AnimatedChatPhoto?
+        smallAnimation: AnimatedChatPhoto?,
+        sticker: ChatPhotoSticker?
     ) {
         self.addedDate = addedDate
         self.animation = animation
@@ -46,6 +50,7 @@ public struct ChatPhoto: Codable, Equatable {
         self.minithumbnail = minithumbnail
         self.sizes = sizes
         self.smallAnimation = smallAnimation
+        self.sticker = sticker
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -55,6 +55,9 @@ public enum PremiumFeature: Codable, Equatable {
     /// Allowed to set a premium appllication icons
     case premiumFeatureAppIcons
 
+    /// Allowed to translate chat messages real-time
+    case premiumFeatureRealTimeChatTranslation
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -71,6 +74,7 @@ public enum PremiumFeature: Codable, Equatable {
         case premiumFeatureAnimatedProfilePhoto
         case premiumFeatureForumTopicIcon
         case premiumFeatureAppIcons
+        case premiumFeatureRealTimeChatTranslation
     }
 
     public init(from decoder: Decoder) throws {
@@ -105,6 +109,8 @@ public enum PremiumFeature: Codable, Equatable {
             self = .premiumFeatureForumTopicIcon
         case .premiumFeatureAppIcons:
             self = .premiumFeatureAppIcons
+        case .premiumFeatureRealTimeChatTranslation:
+            self = .premiumFeatureRealTimeChatTranslation
         }
     }
 
@@ -139,6 +145,8 @@ public enum PremiumFeature: Codable, Equatable {
             try container.encode(Kind.premiumFeatureForumTopicIcon, forKey: .type)
         case .premiumFeatureAppIcons:
             try container.encode(Kind.premiumFeatureAppIcons, forKey: .type)
+        case .premiumFeatureRealTimeChatTranslation:
+            try container.encode(Kind.premiumFeatureRealTimeChatTranslation, forKey: .type)
         }
     }
 }

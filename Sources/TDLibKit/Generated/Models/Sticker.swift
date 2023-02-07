@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public struct Sticker: Codable, Equatable {
 
     /// Sticker height; as defined by the sender
     public let height: Int
+
+    /// Unique sticker identifier within the set; 0 if none
+    public let id: TdInt64
 
     /// Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
     public let outline: [ClosedVectorPath]
@@ -46,6 +49,7 @@ public struct Sticker: Codable, Equatable {
         format: StickerFormat,
         fullType: StickerFullType,
         height: Int,
+        id: TdInt64,
         outline: [ClosedVectorPath],
         setId: TdInt64,
         sticker: File,
@@ -56,6 +60,7 @@ public struct Sticker: Codable, Equatable {
         self.format = format
         self.fullType = fullType
         self.height = height
+        self.id = id
         self.outline = outline
         self.setId = setId
         self.sticker = sticker

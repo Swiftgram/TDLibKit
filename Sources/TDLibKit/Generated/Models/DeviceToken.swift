@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public enum DeviceToken: Codable, Equatable {
     /// A token for Tizen Push Service
     case deviceTokenTizenPush(DeviceTokenTizenPush)
 
+    /// A token for HUAWEI Push Service
+    case deviceTokenHuaweiPush(DeviceTokenHuaweiPush)
+
 
     private enum Kind: String, Codable {
         case deviceTokenFirebaseCloudMessaging
@@ -59,6 +62,7 @@ public enum DeviceToken: Codable, Equatable {
         case deviceTokenUbuntuPush
         case deviceTokenBlackBerryPush
         case deviceTokenTizenPush
+        case deviceTokenHuaweiPush
     }
 
     public init(from decoder: Decoder) throws {
@@ -98,6 +102,9 @@ public enum DeviceToken: Codable, Equatable {
         case .deviceTokenTizenPush:
             let value = try DeviceTokenTizenPush(from: decoder)
             self = .deviceTokenTizenPush(value)
+        case .deviceTokenHuaweiPush:
+            let value = try DeviceTokenHuaweiPush(from: decoder)
+            self = .deviceTokenHuaweiPush(value)
         }
     }
 
@@ -136,6 +143,9 @@ public enum DeviceToken: Codable, Equatable {
             try value.encode(to: encoder)
         case .deviceTokenTizenPush(let value):
             try container.encode(Kind.deviceTokenTizenPush, forKey: .type)
+            try value.encode(to: encoder)
+        case .deviceTokenHuaweiPush(let value):
+            try container.encode(Kind.deviceTokenHuaweiPush, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -308,6 +318,25 @@ public struct DeviceTokenTizenPush: Codable, Equatable {
 
     public init(regId: String) {
         self.regId = regId
+    }
+}
+
+/// A token for HUAWEI Push Service
+public struct DeviceTokenHuaweiPush: Codable, Equatable {
+
+    /// True, if push notifications must be additionally encrypted
+    public let encrypt: Bool
+
+    /// Device registration token; may be empty to deregister a device
+    public let token: String
+
+
+    public init(
+        encrypt: Bool,
+        token: String
+    ) {
+        self.encrypt = encrypt
+        self.token = token
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -163,6 +163,12 @@ public enum MessageContent: Codable, Equatable {
     /// A contact has registered with Telegram
     case messageContactRegistered
 
+    /// The current user shared a user, which was requested by the bot
+    case messageUserShared(MessageUserShared)
+
+    /// The current user shared a chat, which was requested by the bot
+    case messageChatShared(MessageChatShared)
+
     /// The current user has connected a website by logging in using Telegram Login Widget on it
     case messageWebsiteConnected(MessageWebsiteConnected)
 
@@ -239,6 +245,8 @@ public enum MessageContent: Codable, Equatable {
         case messagePaymentSuccessfulBot
         case messageGiftedPremium
         case messageContactRegistered
+        case messageUserShared
+        case messageChatShared
         case messageWebsiteConnected
         case messageBotWriteAccessAllowed
         case messageWebAppDataSent
@@ -396,6 +404,12 @@ public enum MessageContent: Codable, Equatable {
             self = .messageGiftedPremium(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
+        case .messageUserShared:
+            let value = try MessageUserShared(from: decoder)
+            self = .messageUserShared(value)
+        case .messageChatShared:
+            let value = try MessageChatShared(from: decoder)
+            self = .messageChatShared(value)
         case .messageWebsiteConnected:
             let value = try MessageWebsiteConnected(from: decoder)
             self = .messageWebsiteConnected(value)
@@ -567,6 +581,12 @@ public enum MessageContent: Codable, Equatable {
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
+        case .messageUserShared(let value):
+            try container.encode(Kind.messageUserShared, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChatShared(let value):
+            try container.encode(Kind.messageChatShared, forKey: .type)
+            try value.encode(to: encoder)
         case .messageWebsiteConnected(let value):
             try container.encode(Kind.messageWebsiteConnected, forKey: .type)
             try value.encode(to: encoder)
@@ -1475,6 +1495,44 @@ public struct MessageGiftedPremium: Codable, Equatable {
         self.currency = currency
         self.monthCount = monthCount
         self.sticker = sticker
+    }
+}
+
+/// The current user shared a user, which was requested by the bot
+public struct MessageUserShared: Codable, Equatable {
+
+    /// Identifier of the keyboard button with the request
+    public let buttonId: Int
+
+    /// Identifier of the shared user
+    public let userId: Int64
+
+
+    public init(
+        buttonId: Int,
+        userId: Int64
+    ) {
+        self.buttonId = buttonId
+        self.userId = userId
+    }
+}
+
+/// The current user shared a chat, which was requested by the bot
+public struct MessageChatShared: Codable, Equatable {
+
+    /// Identifier of the keyboard button with the request
+    public let buttonId: Int
+
+    /// Identifier of the shared chat
+    public let chatId: Int64
+
+
+    public init(
+        buttonId: Int,
+        chatId: Int64
+    ) {
+        self.buttonId = buttonId
+        self.chatId = chatId
     }
 }
 

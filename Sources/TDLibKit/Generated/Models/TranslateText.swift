@@ -3,32 +3,27 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
 
 
-/// Translates a text to the given language. Returns a 404 error if the translation can't be performed
+/// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
 public struct TranslateText: Codable, Equatable {
 
-    /// A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
-    public let fromLanguageCode: String?
-
     /// Text to translate
-    public let text: String?
+    public let text: FormattedText?
 
-    /// A two-letter ISO 639-1 language code of the language to which the message is translated
+    /// ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     public let toLanguageCode: String?
 
 
     public init(
-        fromLanguageCode: String?,
-        text: String?,
+        text: FormattedText?,
         toLanguageCode: String?
     ) {
-        self.fromLanguageCode = fromLanguageCode
         self.text = text
         self.toLanguageCode = toLanguageCode
     }

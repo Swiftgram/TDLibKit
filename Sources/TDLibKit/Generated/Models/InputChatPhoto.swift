@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -19,14 +19,18 @@ public enum InputChatPhoto: Codable, Equatable {
     /// A static photo in JPEG format
     case inputChatPhotoStatic(InputChatPhotoStatic)
 
-    /// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 800 and be at most 2MB in size
+    /// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
     case inputChatPhotoAnimation(InputChatPhotoAnimation)
+
+    /// A sticker on a custom background
+    case inputChatPhotoSticker(InputChatPhotoSticker)
 
 
     private enum Kind: String, Codable {
         case inputChatPhotoPrevious
         case inputChatPhotoStatic
         case inputChatPhotoAnimation
+        case inputChatPhotoSticker
     }
 
     public init(from decoder: Decoder) throws {
@@ -42,6 +46,9 @@ public enum InputChatPhoto: Codable, Equatable {
         case .inputChatPhotoAnimation:
             let value = try InputChatPhotoAnimation(from: decoder)
             self = .inputChatPhotoAnimation(value)
+        case .inputChatPhotoSticker:
+            let value = try InputChatPhotoSticker(from: decoder)
+            self = .inputChatPhotoSticker(value)
         }
     }
 
@@ -56,6 +63,9 @@ public enum InputChatPhoto: Codable, Equatable {
             try value.encode(to: encoder)
         case .inputChatPhotoAnimation(let value):
             try container.encode(Kind.inputChatPhotoAnimation, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputChatPhotoSticker(let value):
+            try container.encode(Kind.inputChatPhotoSticker, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -85,7 +95,7 @@ public struct InputChatPhotoStatic: Codable, Equatable {
     }
 }
 
-/// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 800 and be at most 2MB in size
+/// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
 public struct InputChatPhotoAnimation: Codable, Equatable {
 
     /// Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
@@ -101,6 +111,18 @@ public struct InputChatPhotoAnimation: Codable, Equatable {
     ) {
         self.animation = animation
         self.mainFrameTimestamp = mainFrameTimestamp
+    }
+}
+
+/// A sticker on a custom background
+public struct InputChatPhotoSticker: Codable, Equatable {
+
+    /// Information about the sticker
+    public let sticker: ChatPhotoSticker
+
+
+    public init(sticker: ChatPhotoSticker) {
+        self.sticker = sticker
     }
 }
 

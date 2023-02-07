@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -31,6 +31,12 @@ public enum SuggestedAction: Codable, Equatable {
     /// Suggests the user to set a 2-step verification password to be able to log in again
     case suggestedActionSetPassword(SuggestedActionSetPassword)
 
+    /// Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
+    case suggestedActionUpgradePremium
+
+    /// Suggests the user to subscribe to the Premium subscription with annual payments
+    case suggestedActionSubscribeToAnnualPremium
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -39,6 +45,8 @@ public enum SuggestedAction: Codable, Equatable {
         case suggestedActionViewChecksHint
         case suggestedActionConvertToBroadcastGroup
         case suggestedActionSetPassword
+        case suggestedActionUpgradePremium
+        case suggestedActionSubscribeToAnnualPremium
     }
 
     public init(from decoder: Decoder) throws {
@@ -59,6 +67,10 @@ public enum SuggestedAction: Codable, Equatable {
         case .suggestedActionSetPassword:
             let value = try SuggestedActionSetPassword(from: decoder)
             self = .suggestedActionSetPassword(value)
+        case .suggestedActionUpgradePremium:
+            self = .suggestedActionUpgradePremium
+        case .suggestedActionSubscribeToAnnualPremium:
+            self = .suggestedActionSubscribeToAnnualPremium
         }
     }
 
@@ -79,6 +91,10 @@ public enum SuggestedAction: Codable, Equatable {
         case .suggestedActionSetPassword(let value):
             try container.encode(Kind.suggestedActionSetPassword, forKey: .type)
             try value.encode(to: encoder)
+        case .suggestedActionUpgradePremium:
+            try container.encode(Kind.suggestedActionUpgradePremium, forKey: .type)
+        case .suggestedActionSubscribeToAnnualPremium:
+            try container.encode(Kind.suggestedActionSubscribeToAnnualPremium, forKey: .type)
         }
     }
 }
@@ -98,7 +114,7 @@ public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable {
 /// Suggests the user to set a 2-step verification password to be able to log in again
 public struct SuggestedActionSetPassword: Codable, Equatable {
 
-    /// The number of days to pass between consecutive authorizations if the user declines to set password
+    /// The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
     public let authorizationDelay: Int
 
 

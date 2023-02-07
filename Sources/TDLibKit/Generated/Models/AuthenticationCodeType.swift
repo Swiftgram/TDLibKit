@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -31,6 +31,12 @@ public enum AuthenticationCodeType: Codable, Equatable {
     /// An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
     case authenticationCodeTypeFragment(AuthenticationCodeTypeFragment)
 
+    /// An authentication code is delivered via Firebase Authentication to the official Android application
+    case authenticationCodeTypeFirebaseAndroid(AuthenticationCodeTypeFirebaseAndroid)
+
+    /// An authentication code is delivered via Firebase Authentication to the official iOS application
+    case authenticationCodeTypeFirebaseIos(AuthenticationCodeTypeFirebaseIos)
+
 
     private enum Kind: String, Codable {
         case authenticationCodeTypeTelegramMessage
@@ -39,6 +45,8 @@ public enum AuthenticationCodeType: Codable, Equatable {
         case authenticationCodeTypeFlashCall
         case authenticationCodeTypeMissedCall
         case authenticationCodeTypeFragment
+        case authenticationCodeTypeFirebaseAndroid
+        case authenticationCodeTypeFirebaseIos
     }
 
     public init(from decoder: Decoder) throws {
@@ -63,6 +71,12 @@ public enum AuthenticationCodeType: Codable, Equatable {
         case .authenticationCodeTypeFragment:
             let value = try AuthenticationCodeTypeFragment(from: decoder)
             self = .authenticationCodeTypeFragment(value)
+        case .authenticationCodeTypeFirebaseAndroid:
+            let value = try AuthenticationCodeTypeFirebaseAndroid(from: decoder)
+            self = .authenticationCodeTypeFirebaseAndroid(value)
+        case .authenticationCodeTypeFirebaseIos:
+            let value = try AuthenticationCodeTypeFirebaseIos(from: decoder)
+            self = .authenticationCodeTypeFirebaseIos(value)
         }
     }
 
@@ -86,6 +100,12 @@ public enum AuthenticationCodeType: Codable, Equatable {
             try value.encode(to: encoder)
         case .authenticationCodeTypeFragment(let value):
             try container.encode(Kind.authenticationCodeTypeFragment, forKey: .type)
+            try value.encode(to: encoder)
+        case .authenticationCodeTypeFirebaseAndroid(let value):
+            try container.encode(Kind.authenticationCodeTypeFirebaseAndroid, forKey: .type)
+            try value.encode(to: encoder)
+        case .authenticationCodeTypeFirebaseIos(let value):
+            try container.encode(Kind.authenticationCodeTypeFirebaseIos, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -174,6 +194,49 @@ public struct AuthenticationCodeTypeFragment: Codable, Equatable {
     ) {
         self.length = length
         self.url = url
+    }
+}
+
+/// An authentication code is delivered via Firebase Authentication to the official Android application
+public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable {
+
+    /// Length of the code
+    public let length: Int
+
+    /// Nonce to pass to the SafetyNet Attestation API
+    public let nonce: Data
+
+
+    public init(
+        length: Int,
+        nonce: Data
+    ) {
+        self.length = length
+        self.nonce = nonce
+    }
+}
+
+/// An authentication code is delivered via Firebase Authentication to the official iOS application
+public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable {
+
+    /// Length of the code
+    public let length: Int
+
+    /// Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
+    public let pushTimeout: Int
+
+    /// Receipt of successful applikation token validation to compare with receipt from push notification
+    public let receipt: String
+
+
+    public init(
+        length: Int,
+        pushTimeout: Int,
+        receipt: String
+    ) {
+        self.length = length
+        self.pushTimeout = pushTimeout
+        self.receipt = receipt
     }
 }
 

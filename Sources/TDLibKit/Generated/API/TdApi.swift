@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -402,6 +402,30 @@ public final class TdApi {
             newHint: newHint,
             newPassword: newPassword,
             recoveryCode: recoveryCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    /// - Returns: Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+    public func sendAuthenticationFirebaseSms(
+        token: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendAuthenticationFirebaseSms(
+            token: token
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    /// - Returns: Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendAuthenticationFirebaseSms(token: String?) async throws -> Ok {
+        let query = SendAuthenticationFirebaseSms(
+            token: token
         )
         return try await execute(query: query)
     }
@@ -2822,39 +2846,67 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Translates a text to the given language. Returns a 404 error if the translation can't be performed
-    /// - Parameter fromLanguageCode: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
+    /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
-    /// - Parameter toLanguageCode: A two-letter ISO 639-1 language code of the language to which the message is translated
-    /// - Returns: A 404 error if the translation can't be performed
+    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     public func translateText(
-        fromLanguageCode: String?,
-        text: String?,
+        text: FormattedText?,
         toLanguageCode: String?,
-        completion: @escaping (Result<Text, Swift.Error>) -> Void
+        completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = TranslateText(
-            fromLanguageCode: fromLanguageCode,
             text: text,
             toLanguageCode: toLanguageCode
         )
         execute(query: query, completion: completion)
     }
 
-    /// Translates a text to the given language. Returns a 404 error if the translation can't be performed
-    /// - Parameter fromLanguageCode: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
+    /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
-    /// - Parameter toLanguageCode: A two-letter ISO 639-1 language code of the language to which the message is translated
-    /// - Returns: A 404 error if the translation can't be performed
+    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func translateText(
-        fromLanguageCode: String?,
-        text: String?,
+        text: FormattedText?,
         toLanguageCode: String?
-    ) async throws -> Text {
+    ) async throws -> FormattedText {
         let query = TranslateText(
-            fromLanguageCode: fromLanguageCode,
             text: text,
+            toLanguageCode: toLanguageCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    public func translateMessageText(
+        chatId: Int64?,
+        messageId: Int64?,
+        toLanguageCode: String?,
+        completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
+    ) throws {
+        let query = TranslateMessageText(
+            chatId: chatId,
+            messageId: messageId,
+            toLanguageCode: toLanguageCode
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func translateMessageText(
+        chatId: Int64?,
+        messageId: Int64?,
+        toLanguageCode: String?
+    ) async throws -> FormattedText {
+        let query = TranslateMessageText(
+            chatId: chatId,
+            messageId: messageId,
             toLanguageCode: toLanguageCode
         )
         return try await execute(query: query)
@@ -5091,6 +5143,102 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+    /// - Parameter buttonId: Identifier of the button
+    /// - Parameter chatId: Identifier of the chat with the bot
+    /// - Parameter messageId: Identifier of the message with the button
+    /// - Parameter onlyCheck: Pass true to check that the user can be shared by the button instead of actually sharing them
+    /// - Parameter sharedUserId: Identifier of the shared user
+    public func shareUserWithBot(
+        buttonId: Int?,
+        chatId: Int64?,
+        messageId: Int64?,
+        onlyCheck: Bool?,
+        sharedUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ShareUserWithBot(
+            buttonId: buttonId,
+            chatId: chatId,
+            messageId: messageId,
+            onlyCheck: onlyCheck,
+            sharedUserId: sharedUserId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+    /// - Parameter buttonId: Identifier of the button
+    /// - Parameter chatId: Identifier of the chat with the bot
+    /// - Parameter messageId: Identifier of the message with the button
+    /// - Parameter onlyCheck: Pass true to check that the user can be shared by the button instead of actually sharing them
+    /// - Parameter sharedUserId: Identifier of the shared user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func shareUserWithBot(
+        buttonId: Int?,
+        chatId: Int64?,
+        messageId: Int64?,
+        onlyCheck: Bool?,
+        sharedUserId: Int64?
+    ) async throws -> Ok {
+        let query = ShareUserWithBot(
+            buttonId: buttonId,
+            chatId: chatId,
+            messageId: messageId,
+            onlyCheck: onlyCheck,
+            sharedUserId: sharedUserId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
+    /// - Parameter buttonId: Identifier of the button
+    /// - Parameter chatId: Identifier of the chat with the bot
+    /// - Parameter messageId: Identifier of the message with the button
+    /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.//-If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat.//-If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
+    /// - Parameter sharedChatId: Identifier of the shared chat
+    public func shareChatWithBot(
+        buttonId: Int?,
+        chatId: Int64?,
+        messageId: Int64?,
+        onlyCheck: Bool?,
+        sharedChatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ShareChatWithBot(
+            buttonId: buttonId,
+            chatId: chatId,
+            messageId: messageId,
+            onlyCheck: onlyCheck,
+            sharedChatId: sharedChatId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
+    /// - Parameter buttonId: Identifier of the button
+    /// - Parameter chatId: Identifier of the chat with the bot
+    /// - Parameter messageId: Identifier of the message with the button
+    /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.//-If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat.//-If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
+    /// - Parameter sharedChatId: Identifier of the shared chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func shareChatWithBot(
+        buttonId: Int?,
+        chatId: Int64?,
+        messageId: Int64?,
+        onlyCheck: Bool?,
+        sharedChatId: Int64?
+    ) async throws -> Ok {
+        let query = ShareChatWithBot(
+            buttonId: buttonId,
+            chatId: chatId,
+            messageId: messageId,
+            onlyCheck: onlyCheck,
+            sharedChatId: sharedChatId
+        )
+        return try await execute(query: query)
+    }
+
     /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     /// - Parameter botUserId: The identifier of the target bot
     /// - Parameter chatId: Identifier of the chat where the query was sent
@@ -6276,7 +6424,8 @@ public final class TdApi {
     /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
     /// - Parameter description: 
     /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
-    /// - Parameter isChannel: Pass true to create a channel chat
+    /// - Parameter isChannel: Pass true to create a channel chat; ignored if a forum is created
+    /// - Parameter isForum: Pass true to create a forum supergroup chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new chat; 1-128 characters
@@ -6285,6 +6434,7 @@ public final class TdApi {
         description: String?,
         forImport: Bool?,
         isChannel: Bool?,
+        isForum: Bool?,
         location: ChatLocation?,
         messageAutoDeleteTime: Int?,
         title: String?,
@@ -6294,6 +6444,7 @@ public final class TdApi {
             description: description,
             forImport: forImport,
             isChannel: isChannel,
+            isForum: isForum,
             location: location,
             messageAutoDeleteTime: messageAutoDeleteTime,
             title: title
@@ -6304,7 +6455,8 @@ public final class TdApi {
     /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
     /// - Parameter description: 
     /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
-    /// - Parameter isChannel: Pass true to create a channel chat
+    /// - Parameter isChannel: Pass true to create a channel chat; ignored if a forum is created
+    /// - Parameter isForum: Pass true to create a forum supergroup chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new chat; 1-128 characters
@@ -6314,6 +6466,7 @@ public final class TdApi {
         description: String?,
         forImport: Bool?,
         isChannel: Bool?,
+        isForum: Bool?,
         location: ChatLocation?,
         messageAutoDeleteTime: Int?,
         title: String?
@@ -6322,6 +6475,7 @@ public final class TdApi {
             description: description,
             forImport: forImport,
             isChannel: isChannel,
+            isForum: isForum,
             location: location,
             messageAutoDeleteTime: messageAutoDeleteTime,
             title: title
@@ -6842,6 +6996,36 @@ public final class TdApi {
         let query = ToggleChatHasProtectedContent(
             chatId: chatId,
             hasProtectedContent: hasProtectedContent
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the tranlatable state of a chat; for Telegram Premium users only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isTranslatable: New value of is_translatable
+    public func toggleChatIsTranslatable(
+        chatId: Int64?,
+        isTranslatable: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleChatIsTranslatable(
+            chatId: chatId,
+            isTranslatable: isTranslatable
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the tranlatable state of a chat; for Telegram Premium users only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isTranslatable: New value of is_translatable
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleChatIsTranslatable(
+        chatId: Int64?,
+        isTranslatable: Bool?
+    ) async throws -> Ok {
+        let query = ToggleChatIsTranslatable(
+            chatId: chatId,
+            isTranslatable: isTranslatable
         )
         return try await execute(query: query)
     }
@@ -10726,12 +10910,12 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+    /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
-    /// - Parameter query: Search query; an emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// - Parameter query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
     /// - Parameter stickerType: Type of the stickers to return
-    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+    /// - Returns: Stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     public func getStickers(
         chatId: Int64?,
         limit: Int?,
@@ -10748,12 +10932,12 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+    /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
-    /// - Parameter query: Search query; an emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// - Parameter query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
     /// - Parameter stickerType: Type of the stickers to return
-    /// - Returns: Stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+    /// - Returns: Stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStickers(
         chatId: Int64?,
@@ -10770,32 +10954,38 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Searches for stickers from public sticker sets that correspond to a given emoji
-    /// - Parameter emoji: String representation of emoji; must be non-empty
+    /// Searches for stickers from public sticker sets that correspond to any of the given emoji
+    /// - Parameter emojis: Space-separated list of emoji to search for; must be non-empty
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
+    /// - Parameter stickerType: Type of the stickers to return
     public func searchStickers(
-        emoji: String?,
+        emojis: String?,
         limit: Int?,
+        stickerType: StickerType?,
         completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = SearchStickers(
-            emoji: emoji,
-            limit: limit
+            emojis: emojis,
+            limit: limit,
+            stickerType: stickerType
         )
         execute(query: query, completion: completion)
     }
 
-    /// Searches for stickers from public sticker sets that correspond to a given emoji
-    /// - Parameter emoji: String representation of emoji; must be non-empty
+    /// Searches for stickers from public sticker sets that correspond to any of the given emoji
+    /// - Parameter emojis: Space-separated list of emoji to search for; must be non-empty
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
+    /// - Parameter stickerType: Type of the stickers to return
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchStickers(
-        emoji: String?,
-        limit: Int?
+        emojis: String?,
+        limit: Int?,
+        stickerType: StickerType?
     ) async throws -> Stickers {
         let query = SearchStickers(
-            emoji: emoji,
-            limit: limit
+            emojis: emojis,
+            limit: limit,
+            stickerType: stickerType
         )
         return try await execute(query: query)
     }
@@ -11365,6 +11555,30 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Returns available emojis categories
+    /// - Parameter type: Type of emoji categories to return; pass null to get default emoji categories
+    /// - Returns: Available emojis categories
+    public func getEmojiCategories(
+        type: EmojiCategoryType?,
+        completion: @escaping (Result<EmojiCategories, Swift.Error>) -> Void
+    ) throws {
+        let query = GetEmojiCategories(
+            type: type
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns available emojis categories
+    /// - Parameter type: Type of emoji categories to return; pass null to get default emoji categories
+    /// - Returns: Available emojis categories
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getEmojiCategories(type: EmojiCategoryType?) async throws -> EmojiCategories {
+        let query = GetEmojiCategories(
+            type: type
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
     /// - Parameter emoji: The emoji
     /// - Returns: An animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
@@ -11434,6 +11648,36 @@ public final class TdApi {
         let query = GetCustomEmojiStickers(
             customEmojiIds: customEmojiIds
         )
+        return try await execute(query: query)
+    }
+
+    /// Returns default list of custom emoji stickers for placing on a chat photo
+    /// - Returns: Default list of custom emoji stickers for placing on a chat photo
+    public func getDefaultChatPhotoCustomEmojiStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetDefaultChatPhotoCustomEmojiStickers()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns default list of custom emoji stickers for placing on a chat photo
+    /// - Returns: Default list of custom emoji stickers for placing on a chat photo
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDefaultChatPhotoCustomEmojiStickers() async throws -> Stickers {
+        let query = GetDefaultChatPhotoCustomEmojiStickers()
+        return try await execute(query: query)
+    }
+
+    /// Returns default list of custom emoji stickers for placing on a profile photo
+    /// - Returns: Default list of custom emoji stickers for placing on a profile photo
+    public func getDefaultProfilePhotoCustomEmojiStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetDefaultProfilePhotoCustomEmojiStickers()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns default list of custom emoji stickers for placing on a profile photo
+    /// - Returns: Default list of custom emoji stickers for placing on a profile photo
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDefaultProfilePhotoCustomEmojiStickers() async throws -> Stickers {
+        let query = GetDefaultProfilePhotoCustomEmojiStickers()
         return try await execute(query: query)
     }
 
@@ -12021,10 +12265,10 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
+    /// Returns list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-    /// - Returns: The list of commands supported by the bot for the given user scope and language
+    /// - Returns: List of commands supported by the bot for the given user scope and language
     public func getCommands(
         languageCode: String?,
         scope: BotCommandScope?,
@@ -12037,10 +12281,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
+    /// Returns list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-    /// - Returns: The list of commands supported by the bot for the given user scope and language
+    /// - Returns: List of commands supported by the bot for the given user scope and language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCommands(
         languageCode: String?,
@@ -14321,6 +14565,64 @@ public final class TdApi {
             settings: settings,
             type: type
         )
+        return try await execute(query: query)
+    }
+
+    /// Returns autosave settings for the current user
+    /// - Returns: Autosave settings for the current user
+    public func getAutosaveSettings(completion: @escaping (Result<AutosaveSettings, Swift.Error>) -> Void) throws {
+        let query = GetAutosaveSettings()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns autosave settings for the current user
+    /// - Returns: Autosave settings for the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getAutosaveSettings() async throws -> AutosaveSettings {
+        let query = GetAutosaveSettings()
+        return try await execute(query: query)
+    }
+
+    /// Sets autosave settings for the given scope
+    /// - Parameter scope: Autosave settings scope
+    /// - Parameter settings: New autosave settings for the scope; pass null to set autosave settings to default
+    public func setAutosaveSettings(
+        scope: AutosaveSettingsScope?,
+        settings: ScopeAutosaveSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetAutosaveSettings(
+            scope: scope,
+            settings: settings
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets autosave settings for the given scope
+    /// - Parameter scope: Autosave settings scope
+    /// - Parameter settings: New autosave settings for the scope; pass null to set autosave settings to default
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setAutosaveSettings(
+        scope: AutosaveSettingsScope?,
+        settings: ScopeAutosaveSettings?
+    ) async throws -> Ok {
+        let query = SetAutosaveSettings(
+            scope: scope,
+            settings: settings
+        )
+        return try await execute(query: query)
+    }
+
+    /// Clears the list of all autosave settings exceptions
+    public func clearAutosaveSettingsExceptions(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ClearAutosaveSettingsExceptions()
+        execute(query: query, completion: completion)
+    }
+
+    /// Clears the list of all autosave settings exceptions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func clearAutosaveSettingsExceptions() async throws -> Ok {
+        let query = ClearAutosaveSettingsExceptions()
         return try await execute(query: query)
     }
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
 
 
-/// Returns the list of commands supported by the bot for the given user scope and language; for bots only
+/// Returns list of commands supported by the bot for the given user scope and language; for bots only
 public struct GetCommands: Codable, Equatable {
 
     /// A two-letter ISO 639-1 language code or an empty string

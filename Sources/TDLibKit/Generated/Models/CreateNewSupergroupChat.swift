@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -18,8 +18,11 @@ public struct CreateNewSupergroupChat: Codable, Equatable {
     /// Pass true to create a supergroup for importing messages using importMessage
     public let forImport: Bool?
 
-    /// Pass true to create a channel chat
+    /// Pass true to create a channel chat; ignored if a forum is created
     public let isChannel: Bool?
+
+    /// Pass true to create a forum supergroup chat
+    public let isForum: Bool?
 
     /// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     public let location: ChatLocation?
@@ -35,6 +38,7 @@ public struct CreateNewSupergroupChat: Codable, Equatable {
         description: String?,
         forImport: Bool?,
         isChannel: Bool?,
+        isForum: Bool?,
         location: ChatLocation?,
         messageAutoDeleteTime: Int?,
         title: String?
@@ -42,6 +46,7 @@ public struct CreateNewSupergroupChat: Codable, Equatable {
         self.description = description
         self.forImport = forImport
         self.isChannel = isChannel
+        self.isForum = isForum
         self.location = location
         self.messageAutoDeleteTime = messageAutoDeleteTime
         self.title = title

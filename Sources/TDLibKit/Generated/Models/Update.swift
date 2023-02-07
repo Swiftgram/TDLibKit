@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -118,14 +118,17 @@ public enum Update: Codable, Equatable {
     /// A chat content was allowed or restricted for saving
     case updateChatHasProtectedContent(UpdateChatHasProtectedContent)
 
-    /// A chat's has_scheduled_messages field has changed
-    case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
+    /// Translation of chat messages was enabled or disabled
+    case updateChatIsTranslatable(UpdateChatIsTranslatable)
+
+    /// A chat was marked as unread or was read
+    case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
 
     /// A chat was blocked or unblocked
     case updateChatIsBlocked(UpdateChatIsBlocked)
 
-    /// A chat was marked as unread or was read
-    case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
+    /// A chat's has_scheduled_messages field has changed
+    case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
 
     /// The list of chat filters or a chat filter has changed
     case updateChatFilters(UpdateChatFilters)
@@ -292,6 +295,9 @@ public enum Update: Codable, Equatable {
     /// The list of suggested to the user actions has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
+    /// Autosave settings for some type of chats were updated
+    case updateAutosaveSettings(UpdateAutosaveSettings)
+
     /// A new incoming inline query; for bots only
     case updateNewInlineQuery(UpdateNewInlineQuery)
 
@@ -365,9 +371,10 @@ public enum Update: Codable, Equatable {
         case updateChatVideoChat
         case updateChatDefaultDisableNotification
         case updateChatHasProtectedContent
-        case updateChatHasScheduledMessages
-        case updateChatIsBlocked
+        case updateChatIsTranslatable
         case updateChatIsMarkedAsUnread
+        case updateChatIsBlocked
+        case updateChatHasScheduledMessages
         case updateChatFilters
         case updateChatOnlineMemberCount
         case updateForumTopicInfo
@@ -423,6 +430,7 @@ public enum Update: Codable, Equatable {
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
         case updateSuggestedActions
+        case updateAutosaveSettings
         case updateNewInlineQuery
         case updateNewChosenInlineResult
         case updateNewCallbackQuery
@@ -546,15 +554,18 @@ public enum Update: Codable, Equatable {
         case .updateChatHasProtectedContent:
             let value = try UpdateChatHasProtectedContent(from: decoder)
             self = .updateChatHasProtectedContent(value)
-        case .updateChatHasScheduledMessages:
-            let value = try UpdateChatHasScheduledMessages(from: decoder)
-            self = .updateChatHasScheduledMessages(value)
-        case .updateChatIsBlocked:
-            let value = try UpdateChatIsBlocked(from: decoder)
-            self = .updateChatIsBlocked(value)
+        case .updateChatIsTranslatable:
+            let value = try UpdateChatIsTranslatable(from: decoder)
+            self = .updateChatIsTranslatable(value)
         case .updateChatIsMarkedAsUnread:
             let value = try UpdateChatIsMarkedAsUnread(from: decoder)
             self = .updateChatIsMarkedAsUnread(value)
+        case .updateChatIsBlocked:
+            let value = try UpdateChatIsBlocked(from: decoder)
+            self = .updateChatIsBlocked(value)
+        case .updateChatHasScheduledMessages:
+            let value = try UpdateChatHasScheduledMessages(from: decoder)
+            self = .updateChatHasScheduledMessages(value)
         case .updateChatFilters:
             let value = try UpdateChatFilters(from: decoder)
             self = .updateChatFilters(value)
@@ -720,6 +731,9 @@ public enum Update: Codable, Equatable {
         case .updateSuggestedActions:
             let value = try UpdateSuggestedActions(from: decoder)
             self = .updateSuggestedActions(value)
+        case .updateAutosaveSettings:
+            let value = try UpdateAutosaveSettings(from: decoder)
+            self = .updateAutosaveSettings(value)
         case .updateNewInlineQuery:
             let value = try UpdateNewInlineQuery(from: decoder)
             self = .updateNewInlineQuery(value)
@@ -867,14 +881,17 @@ public enum Update: Codable, Equatable {
         case .updateChatHasProtectedContent(let value):
             try container.encode(Kind.updateChatHasProtectedContent, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatHasScheduledMessages(let value):
-            try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
+        case .updateChatIsTranslatable(let value):
+            try container.encode(Kind.updateChatIsTranslatable, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatIsMarkedAsUnread(let value):
+            try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatIsBlocked(let value):
             try container.encode(Kind.updateChatIsBlocked, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatIsMarkedAsUnread(let value):
-            try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
+        case .updateChatHasScheduledMessages(let value):
+            try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatFilters(let value):
             try container.encode(Kind.updateChatFilters, forKey: .type)
@@ -1040,6 +1057,9 @@ public enum Update: Codable, Equatable {
             try value.encode(to: encoder)
         case .updateSuggestedActions(let value):
             try container.encode(Kind.updateSuggestedActions, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateAutosaveSettings(let value):
+            try container.encode(Kind.updateAutosaveSettings, forKey: .type)
             try value.encode(to: encoder)
         case .updateNewInlineQuery(let value):
             try container.encode(Kind.updateNewInlineQuery, forKey: .type)
@@ -1790,22 +1810,41 @@ public struct UpdateChatHasProtectedContent: Codable, Equatable {
     }
 }
 
-/// A chat's has_scheduled_messages field has changed
-public struct UpdateChatHasScheduledMessages: Codable, Equatable {
+/// Translation of chat messages was enabled or disabled
+public struct UpdateChatIsTranslatable: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// New value of has_scheduled_messages
-    public let hasScheduledMessages: Bool
+    /// New value of is_translatable
+    public let isTranslatable: Bool
 
 
     public init(
         chatId: Int64,
-        hasScheduledMessages: Bool
+        isTranslatable: Bool
     ) {
         self.chatId = chatId
-        self.hasScheduledMessages = hasScheduledMessages
+        self.isTranslatable = isTranslatable
+    }
+}
+
+/// A chat was marked as unread or was read
+public struct UpdateChatIsMarkedAsUnread: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of is_marked_as_unread
+    public let isMarkedAsUnread: Bool
+
+
+    public init(
+        chatId: Int64,
+        isMarkedAsUnread: Bool
+    ) {
+        self.chatId = chatId
+        self.isMarkedAsUnread = isMarkedAsUnread
     }
 }
 
@@ -1828,22 +1867,22 @@ public struct UpdateChatIsBlocked: Codable, Equatable {
     }
 }
 
-/// A chat was marked as unread or was read
-public struct UpdateChatIsMarkedAsUnread: Codable, Equatable {
+/// A chat's has_scheduled_messages field has changed
+public struct UpdateChatHasScheduledMessages: Codable, Equatable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// New value of is_marked_as_unread
-    public let isMarkedAsUnread: Bool
+    /// New value of has_scheduled_messages
+    public let hasScheduledMessages: Bool
 
 
     public init(
         chatId: Int64,
-        isMarkedAsUnread: Bool
+        hasScheduledMessages: Bool
     ) {
         self.chatId = chatId
-        self.isMarkedAsUnread = isMarkedAsUnread
+        self.hasScheduledMessages = hasScheduledMessages
     }
 }
 
@@ -2855,6 +2894,25 @@ public struct UpdateSuggestedActions: Codable, Equatable {
     }
 }
 
+/// Autosave settings for some type of chats were updated
+public struct UpdateAutosaveSettings: Codable, Equatable {
+
+    /// Type of chats for which autosave settings were updated
+    public let scope: AutosaveSettingsScope
+
+    /// The new autosave settings; may be null if the settings are reset to default
+    public let settings: ScopeAutosaveSettings?
+
+
+    public init(
+        scope: AutosaveSettingsScope,
+        settings: ScopeAutosaveSettings?
+    ) {
+        self.scope = scope
+        self.settings = settings
+    }
+}
+
 /// A new incoming inline query; for bots only
 public struct UpdateNewInlineQuery: Codable, Equatable {
 
@@ -3197,15 +3255,20 @@ public struct UpdateNewChatJoinRequest: Codable, Equatable {
     /// Join request
     public let request: ChatJoinRequest
 
+    /// Chat identifier of the private chat with the user
+    public let userChatId: Int64
+
 
     public init(
         chatId: Int64,
         inviteLink: ChatInviteLink?,
-        request: ChatJoinRequest
+        request: ChatJoinRequest,
+        userChatId: Int64
     ) {
         self.chatId = chatId
         self.inviteLink = inviteLink
         self.request = request
+        self.userChatId = userChatId
     }
 }
 

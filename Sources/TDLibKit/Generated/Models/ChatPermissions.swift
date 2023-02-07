@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.10-758ced94
-//  https://github.com/tdlib/td/tree/758ced94
+//  Based on TDLib 1.8.11-5ed1d22d
+//  https://github.com/tdlib/td/tree/5ed1d22d
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes actions that a user is allowed to take in a chat
 public struct ChatPermissions: Codable, Equatable {
 
-    /// True, if the user may add a web page preview to their messages. Implies can_send_messages permissions
+    /// True, if the user may add a web page preview to their messages
     public let canAddWebPagePreviews: Bool
 
     /// True, if the user can change the chat title, photo, and other settings
@@ -28,17 +28,32 @@ public struct ChatPermissions: Codable, Equatable {
     /// True, if the user can pin messages
     public let canPinMessages: Bool
 
-    /// True, if the user can send audio files, documents, photos, videos, video notes, and voice notes. Implies can_send_messages permissions
-    public let canSendMediaMessages: Bool
+    /// True, if the user can send music files
+    public let canSendAudios: Bool
+
+    /// True, if the user can send documents
+    public let canSendDocuments: Bool
 
     /// True, if the user can send text messages, contacts, invoices, locations, and venues
     public let canSendMessages: Bool
 
-    /// True, if the user can send animations, games, stickers, and dice and use inline bots. Implies can_send_messages permissions
+    /// True, if the user can send animations, games, stickers, and dice and use inline bots
     public let canSendOtherMessages: Bool
 
-    /// True, if the user can send polls. Implies can_send_messages permissions
+    /// True, if the user can send audio photos
+    public let canSendPhotos: Bool
+
+    /// True, if the user can send polls
     public let canSendPolls: Bool
+
+    /// True, if the user can send video notes
+    public let canSendVideoNotes: Bool
+
+    /// True, if the user can send audio videos
+    public let canSendVideos: Bool
+
+    /// True, if the user can send voice notes
+    public let canSendVoiceNotes: Bool
 
 
     public init(
@@ -47,20 +62,30 @@ public struct ChatPermissions: Codable, Equatable {
         canInviteUsers: Bool,
         canManageTopics: Bool,
         canPinMessages: Bool,
-        canSendMediaMessages: Bool,
+        canSendAudios: Bool,
+        canSendDocuments: Bool,
         canSendMessages: Bool,
         canSendOtherMessages: Bool,
-        canSendPolls: Bool
+        canSendPhotos: Bool,
+        canSendPolls: Bool,
+        canSendVideoNotes: Bool,
+        canSendVideos: Bool,
+        canSendVoiceNotes: Bool
     ) {
         self.canAddWebPagePreviews = canAddWebPagePreviews
         self.canChangeInfo = canChangeInfo
         self.canInviteUsers = canInviteUsers
         self.canManageTopics = canManageTopics
         self.canPinMessages = canPinMessages
-        self.canSendMediaMessages = canSendMediaMessages
+        self.canSendAudios = canSendAudios
+        self.canSendDocuments = canSendDocuments
         self.canSendMessages = canSendMessages
         self.canSendOtherMessages = canSendOtherMessages
+        self.canSendPhotos = canSendPhotos
         self.canSendPolls = canSendPolls
+        self.canSendVideoNotes = canSendVideoNotes
+        self.canSendVideos = canSendVideos
+        self.canSendVoiceNotes = canSendVoiceNotes
     }
 }
 
