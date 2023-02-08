@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-3d0140b3
-//  https://github.com/tdlib/td/tree/3d0140b3
+//  Based on TDLib 1.8.11-a08b1f91
+//  https://github.com/tdlib/td/tree/a08b1f91
 //
 
 import Foundation
@@ -14583,7 +14583,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sets autosave settings for the given scope
+    /// Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
     /// - Parameter scope: Autosave settings scope
     /// - Parameter settings: New autosave settings for the scope; pass null to set autosave settings to default
     public func setAutosaveSettings(
@@ -14598,7 +14598,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sets autosave settings for the given scope
+    /// Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
     /// - Parameter scope: Autosave settings scope
     /// - Parameter settings: New autosave settings for the scope; pass null to set autosave settings to default
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14613,13 +14613,13 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Clears the list of all autosave settings exceptions
+    /// Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
     public func clearAutosaveSettingsExceptions(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ClearAutosaveSettingsExceptions()
         execute(query: query, completion: completion)
     }
 
-    /// Clears the list of all autosave settings exceptions
+    /// Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func clearAutosaveSettingsExceptions() async throws -> Ok {
         let query = ClearAutosaveSettingsExceptions()

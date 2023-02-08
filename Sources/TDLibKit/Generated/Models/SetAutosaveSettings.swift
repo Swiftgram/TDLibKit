@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-3d0140b3
-//  https://github.com/tdlib/td/tree/3d0140b3
+//  Based on TDLib 1.8.11-a08b1f91
+//  https://github.com/tdlib/td/tree/a08b1f91
 //
 
 import Foundation
 
 
-/// Sets autosave settings for the given scope
+/// Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
 public struct SetAutosaveSettings: Codable, Equatable {
 
     /// Autosave settings scope
