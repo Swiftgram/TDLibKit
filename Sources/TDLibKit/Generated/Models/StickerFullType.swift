@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-58c4a12c
-//  https://github.com/tdlib/td/tree/58c4a12c
+//  Based on TDLib 1.8.11-6ba394fc
+//  https://github.com/tdlib/td/tree/6ba394fc
 //
 
 import Foundation
@@ -91,7 +91,7 @@ public struct StickerFullTypeCustomEmoji: Codable, Equatable {
     /// Identifier of the custom emoji
     public let customEmojiId: TdInt64
 
-    /// True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, or another appropriate color in other places.//-The sticker must not be repainted on chat photos
+    /// True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
     public let needsRepainting: Bool
 
 
