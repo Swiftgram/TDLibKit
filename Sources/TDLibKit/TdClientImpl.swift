@@ -50,7 +50,8 @@ open class TdClientImpl: TdClient {
         self.updateHandler = updateHandler
         createClientIfNeeded()
         
-        tdlibMainQueue.async { [unowned self] in
+        tdlibMainQueue.async { [weak self] in
+            guard let self else { return }
             guard !self.isClientDestroyed else { return }
             
             while (!self.stopFlag) {
