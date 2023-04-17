@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
 
 
-/// Describes a game
+/// Describes a game. Use getInternalLink with internalLinkTypeGame to share the game
 public struct Game: Codable, Equatable {
 
     /// Game animation; may be null
@@ -24,7 +24,7 @@ public struct Game: Codable, Equatable {
     /// Game photo
     public let photo: Photo
 
-    /// Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name}
+    /// Game short name
     public let shortName: String
 
     /// Game text, usually containing scoreboards for a game

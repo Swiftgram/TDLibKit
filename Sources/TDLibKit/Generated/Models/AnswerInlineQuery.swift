@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Sets the result of an inline query; for bots only
 public struct AnswerInlineQuery: Codable, Equatable {
+
+    /// Button to be shown above inline query results; pass null if none
+    public let button: InlineQueryResultsButton?
 
     /// Allowed time to cache the results of the query, in seconds
     public let cacheTime: Int?
@@ -28,29 +31,21 @@ public struct AnswerInlineQuery: Codable, Equatable {
     /// The results of the query
     public let results: [InputInlineQueryResult]?
 
-    /// The parameter for the bot start message
-    public let switchPmParameter: String?
-
-    /// If non-empty, this text must be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
-    public let switchPmText: String?
-
 
     public init(
+        button: InlineQueryResultsButton?,
         cacheTime: Int?,
         inlineQueryId: TdInt64?,
         isPersonal: Bool?,
         nextOffset: String?,
-        results: [InputInlineQueryResult]?,
-        switchPmParameter: String?,
-        switchPmText: String?
+        results: [InputInlineQueryResult]?
     ) {
+        self.button = button
         self.cacheTime = cacheTime
         self.inlineQueryId = inlineQueryId
         self.isPersonal = isPersonal
         self.nextOffset = nextOffset
         self.results = results
-        self.switchPmParameter = switchPmParameter
-        self.switchPmText = switchPmText
     }
 }
 

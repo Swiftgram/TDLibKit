@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct CreateNewBasicGroupChat: Codable, Equatable {
     /// Title of the new basic group; 1-128 characters
     public let title: String?
 
-    /// Identifiers of users to be added to the basic group
+    /// Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
     public let userIds: [Int64]?
 
 

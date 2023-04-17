@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
 public struct GetTextEntities: Codable, Equatable {
 
-    /// The text in which to look for entites
+    /// The text in which to look for entities
     public let text: String?
 
 

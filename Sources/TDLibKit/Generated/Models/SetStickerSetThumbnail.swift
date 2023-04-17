@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
 
 
-/// Sets a sticker set thumbnail; for bots only. Returns the sticker set
+/// Sets a sticker set thumbnail; for bots only
 public struct SetStickerSetThumbnail: Codable, Equatable {
 
     /// Sticker set name

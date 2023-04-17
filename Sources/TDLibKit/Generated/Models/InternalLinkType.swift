@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -25,14 +25,14 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a background. Call searchBackground with the given background name to process the link
     case internalLinkTypeBackground(InternalLinkTypeBackground)
 
+    /// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+    case internalLinkTypeBotAddToChannel(InternalLinkTypeBotAddToChannel)
+
     /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
     case internalLinkTypeBotStart(InternalLinkTypeBotStart)
 
     /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
     case internalLinkTypeBotStartInGroup(InternalLinkTypeBotStartInGroup)
-
-    /// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
-    case internalLinkTypeBotAddToChannel(InternalLinkTypeBotAddToChannel)
 
     /// The link is a link to the change phone number section of the app
     case internalLinkTypeChangePhoneNumber
@@ -76,7 +76,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
 
-    /// The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+    /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
 
     /// The link is a link to the privacy and security section of the app settings
@@ -121,15 +121,18 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
+    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+    case internalLinkTypeWebApp(InternalLinkTypeWebApp)
+
 
     private enum Kind: String, Codable {
         case internalLinkTypeActiveSessions
         case internalLinkTypeAttachmentMenuBot
         case internalLinkTypeAuthenticationCode
         case internalLinkTypeBackground
+        case internalLinkTypeBotAddToChannel
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
-        case internalLinkTypeBotAddToChannel
         case internalLinkTypeChangePhoneNumber
         case internalLinkTypeChatInvite
         case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
@@ -159,6 +162,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeUserPhoneNumber
         case internalLinkTypeUserToken
         case internalLinkTypeVideoChat
+        case internalLinkTypeWebApp
     }
 
     public init(from decoder: Decoder) throws {
@@ -176,15 +180,15 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeBackground:
             let value = try InternalLinkTypeBackground(from: decoder)
             self = .internalLinkTypeBackground(value)
+        case .internalLinkTypeBotAddToChannel:
+            let value = try InternalLinkTypeBotAddToChannel(from: decoder)
+            self = .internalLinkTypeBotAddToChannel(value)
         case .internalLinkTypeBotStart:
             let value = try InternalLinkTypeBotStart(from: decoder)
             self = .internalLinkTypeBotStart(value)
         case .internalLinkTypeBotStartInGroup:
             let value = try InternalLinkTypeBotStartInGroup(from: decoder)
             self = .internalLinkTypeBotStartInGroup(value)
-        case .internalLinkTypeBotAddToChannel:
-            let value = try InternalLinkTypeBotAddToChannel(from: decoder)
-            self = .internalLinkTypeBotAddToChannel(value)
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
         case .internalLinkTypeChatInvite:
@@ -261,6 +265,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeVideoChat:
             let value = try InternalLinkTypeVideoChat(from: decoder)
             self = .internalLinkTypeVideoChat(value)
+        case .internalLinkTypeWebApp:
+            let value = try InternalLinkTypeWebApp(from: decoder)
+            self = .internalLinkTypeWebApp(value)
         }
     }
 
@@ -278,14 +285,14 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeBackground(let value):
             try container.encode(Kind.internalLinkTypeBackground, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeBotAddToChannel(let value):
+            try container.encode(Kind.internalLinkTypeBotAddToChannel, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeBotStart(let value):
             try container.encode(Kind.internalLinkTypeBotStart, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeBotStartInGroup(let value):
             try container.encode(Kind.internalLinkTypeBotStartInGroup, forKey: .type)
-            try value.encode(to: encoder)
-        case .internalLinkTypeBotAddToChannel(let value):
-            try container.encode(Kind.internalLinkTypeBotAddToChannel, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
@@ -363,6 +370,9 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case .internalLinkTypeVideoChat(let value):
             try container.encode(Kind.internalLinkTypeVideoChat, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeWebApp(let value):
+            try container.encode(Kind.internalLinkTypeWebApp, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -415,6 +425,25 @@ public struct InternalLinkTypeBackground: Codable, Equatable {
     }
 }
 
+/// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+public struct InternalLinkTypeBotAddToChannel: Codable, Equatable {
+
+    /// Expected administrator rights for the bot
+    public let administratorRights: ChatAdministratorRights
+
+    /// Username of the bot
+    public let botUsername: String
+
+
+    public init(
+        administratorRights: ChatAdministratorRights,
+        botUsername: String
+    ) {
+        self.administratorRights = administratorRights
+        self.botUsername = botUsername
+    }
+}
+
 /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
 public struct InternalLinkTypeBotStart: Codable, Equatable {
 
@@ -460,25 +489,6 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable {
         self.administratorRights = administratorRights
         self.botUsername = botUsername
         self.startParameter = startParameter
-    }
-}
-
-/// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
-public struct InternalLinkTypeBotAddToChannel: Codable, Equatable {
-
-    /// Expected administrator rights for the bot
-    public let administratorRights: ChatAdministratorRights
-
-    /// Username of the bot
-    public let botUsername: String
-
-
-    public init(
-        administratorRights: ChatAdministratorRights,
-        botUsername: String
-    ) {
-        self.administratorRights = administratorRights
-        self.botUsername = botUsername
     }
 }
 
@@ -640,7 +650,7 @@ public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable {
     }
 }
 
-/// The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+/// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
 public struct InternalLinkTypePremiumFeatures: Codable, Equatable {
 
     /// Referrer specified in the link
@@ -776,6 +786,30 @@ public struct InternalLinkTypeVideoChat: Codable, Equatable {
         self.chatUsername = chatUsername
         self.inviteHash = inviteHash
         self.isLiveStream = isLiveStream
+    }
+}
+
+/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+public struct InternalLinkTypeWebApp: Codable, Equatable {
+
+    /// Username of the bot that owns the Web App
+    public let botUsername: String
+
+    /// Start parameter to be passed to getWebAppLinkUrl
+    public let startParameter: String
+
+    /// Short name of the Web App
+    public let webAppShortName: String
+
+
+    public init(
+        botUsername: String,
+        startParameter: String,
+        webAppShortName: String
+    ) {
+        self.botUsername = botUsername
+        self.startParameter = startParameter
+        self.webAppShortName = webAppShortName
     }
 }
 

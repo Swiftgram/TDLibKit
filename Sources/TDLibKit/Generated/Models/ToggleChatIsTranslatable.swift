@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
 
 
-/// Changes the tranlatable state of a chat; for Telegram Premium users only
+/// Changes the translatable state of a chat; for Telegram Premium users only
 public struct ToggleChatIsTranslatable: Codable, Equatable {
 
     /// Chat identifier

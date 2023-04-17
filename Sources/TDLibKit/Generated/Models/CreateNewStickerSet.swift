@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -16,8 +16,14 @@ public struct CreateNewStickerSet: Codable, Equatable {
     /// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     public let name: String?
 
+    /// Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
+    public let needsRepainting: Bool?
+
     /// Source of the sticker set; may be empty if unknown
     public let source: String?
+
+    /// Format of the stickers in the set
+    public let stickerFormat: StickerFormat?
 
     /// Type of the stickers in the set
     public let stickerType: StickerType?
@@ -34,14 +40,18 @@ public struct CreateNewStickerSet: Codable, Equatable {
 
     public init(
         name: String?,
+        needsRepainting: Bool?,
         source: String?,
+        stickerFormat: StickerFormat?,
         stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
         userId: Int64?
     ) {
         self.name = name
+        self.needsRepainting = needsRepainting
         self.source = source
+        self.stickerFormat = stickerFormat
         self.stickerType = stickerType
         self.stickers = stickers
         self.title = title

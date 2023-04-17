@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct ViewMessages: Codable, Equatable {
     /// The identifiers of the messages being viewed
     public let messageIds: [Int64]?
 
-    /// If not 0, a message thread identifier in which the messages are being viewed
-    public let messageThreadId: Int64?
+    /// Source of the message view; pass null to guess the source based on chat open state
+    public let source: MessageSource?
 
 
     public init(
         chatId: Int64?,
         forceRead: Bool?,
         messageIds: [Int64]?,
-        messageThreadId: Int64?
+        source: MessageSource?
     ) {
         self.chatId = chatId
         self.forceRead = forceRead
         self.messageIds = messageIds
-        self.messageThreadId = messageThreadId
+        self.source = source
     }
 }
 

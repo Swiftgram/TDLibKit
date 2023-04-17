@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -13,18 +13,23 @@ import Foundation
 /// Uploads a file with a sticker; returns the uploaded file
 public struct UploadStickerFile: Codable, Equatable {
 
-    /// Sticker file to upload
-    public let sticker: InputSticker?
+    /// File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.//-See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    public let sticker: InputFile?
+
+    /// Sticker format
+    public let stickerFormat: StickerFormat?
 
     /// Sticker file owner; ignored for regular users
     public let userId: Int64?
 
 
     public init(
-        sticker: InputSticker?,
+        sticker: InputFile?,
+        stickerFormat: StickerFormat?,
         userId: Int64?
     ) {
         self.sticker = sticker
+        self.stickerFormat = stickerFormat
         self.userId = userId
     }
 }

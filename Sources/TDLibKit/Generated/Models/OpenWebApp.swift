@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct OpenWebApp: Codable, Equatable {
     /// Identifier of the bot, providing the Web App
     public let botUserId: Int64?
 
-    /// Identifier of the chat in which the Web App is opened
+    /// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     public let chatId: Int64?
 
     /// If not 0, a message thread identifier in which the message will be sent

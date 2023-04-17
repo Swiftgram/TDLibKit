@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Describes a sponsored message
 public struct SponsoredMessage: Codable, Equatable {
+
+    /// If non-empty, additional information about the sponsored message to be shown along with the message
+    public let additionalInfo: String
 
     /// Content of the message. Currently, can be only of the type messageText
     public let content: MessageContent
@@ -34,16 +37,22 @@ public struct SponsoredMessage: Codable, Equatable {
     /// Information about the sponsor chat; may be null unless sponsor_chat_id == 0
     public let sponsorChatInfo: ChatInviteLinkInfo?
 
+    /// If non-empty, information about the sponsor to be shown along with the message
+    public let sponsorInfo: String
+
 
     public init(
+        additionalInfo: String,
         content: MessageContent,
         isRecommended: Bool,
         link: InternalLinkType?,
         messageId: Int64,
         showChatPhoto: Bool,
         sponsorChatId: Int64,
-        sponsorChatInfo: ChatInviteLinkInfo?
+        sponsorChatInfo: ChatInviteLinkInfo?,
+        sponsorInfo: String
     ) {
+        self.additionalInfo = additionalInfo
         self.content = content
         self.isRecommended = isRecommended
         self.link = link
@@ -51,6 +60,7 @@ public struct SponsoredMessage: Codable, Equatable {
         self.showChatPhoto = showChatPhoto
         self.sponsorChatId = sponsorChatId
         self.sponsorChatInfo = sponsorChatInfo
+        self.sponsorInfo = sponsorInfo
     }
 }
 

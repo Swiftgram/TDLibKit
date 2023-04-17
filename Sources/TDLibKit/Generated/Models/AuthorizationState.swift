@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents the current authorization state of the TDLib client
 public enum AuthorizationState: Codable, Equatable {
 
-    /// Initializetion parameters are needed. Call setTdlibParameters to provide them
+    /// Initialization parameters are needed. Call setTdlibParameters to provide them
     case authorizationStateWaitTdlibParameters
 
     /// TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
@@ -170,20 +170,20 @@ public struct AuthorizationStateWaitEmailCode: Codable, Equatable {
     /// Information about the sent authentication code
     public let codeInfo: EmailAddressAuthenticationCodeInfo
 
-    /// Point in time (Unix timestamp) when the user will be able to authorize with a code sent to the user's phone number; 0 if unknown
-    public let nextPhoneNumberAuthorizationDate: Int
+    /// Reset state of the email address; may be null if the email address can't be reset
+    public let emailAddressResetState: EmailAddressResetState?
 
 
     public init(
         allowAppleId: Bool,
         allowGoogleId: Bool,
         codeInfo: EmailAddressAuthenticationCodeInfo,
-        nextPhoneNumberAuthorizationDate: Int
+        emailAddressResetState: EmailAddressResetState?
     ) {
         self.allowAppleId = allowAppleId
         self.allowGoogleId = allowGoogleId
         self.codeInfo = codeInfo
-        self.nextPhoneNumberAuthorizationDate = nextPhoneNumberAuthorizationDate
+        self.emailAddressResetState = emailAddressResetState
     }
 }
 
@@ -226,6 +226,9 @@ public struct AuthorizationStateWaitRegistration: Codable, Equatable {
 /// The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
 public struct AuthorizationStateWaitPassword: Codable, Equatable {
 
+    /// True, if some Telegram Passport elements were saved
+    public let hasPassportData: Bool
+
     /// True, if a recovery email address has been set up
     public let hasRecoveryEmailAddress: Bool
 
@@ -237,10 +240,12 @@ public struct AuthorizationStateWaitPassword: Codable, Equatable {
 
 
     public init(
+        hasPassportData: Bool,
         hasRecoveryEmailAddress: Bool,
         passwordHint: String,
         recoveryEmailAddressPattern: String
     ) {
+        self.hasPassportData = hasPassportData
         self.hasRecoveryEmailAddress = hasRecoveryEmailAddress
         self.passwordHint = passwordHint
         self.recoveryEmailAddressPattern = recoveryEmailAddressPattern

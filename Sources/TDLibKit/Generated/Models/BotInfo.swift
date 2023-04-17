@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct BotInfo: Codable, Equatable {
     public let photo: Photo?
 
     /// The text that is shown on the bot's profile page and is sent together with the link when users share the bot
-    public let shareText: String
+    public let shortDescription: String
 
 
     public init(
@@ -45,7 +45,7 @@ public struct BotInfo: Codable, Equatable {
         description: String,
         menuButton: BotMenuButton?,
         photo: Photo?,
-        shareText: String
+        shortDescription: String
     ) {
         self.animation = animation
         self.commands = commands
@@ -54,7 +54,7 @@ public struct BotInfo: Codable, Equatable {
         self.description = description
         self.menuButton = menuButton
         self.photo = photo
-        self.shareText = shareText
+        self.shortDescription = shortDescription
     }
 }
 

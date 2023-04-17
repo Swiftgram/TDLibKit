@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -16,8 +16,8 @@ public struct EmojiCategory: Codable, Equatable {
     /// List of emojis in the category
     public let emojis: [String]
 
-    /// Unique identifier of the custom emoji, which represents icon of the category
-    public let iconCustomEmojiId: TdInt64
+    /// Custom emoji sticker, which represents icon of the category
+    public let icon: Sticker
 
     /// Name of the category
     public let name: String
@@ -25,11 +25,11 @@ public struct EmojiCategory: Codable, Equatable {
 
     public init(
         emojis: [String],
-        iconCustomEmojiId: TdInt64,
+        icon: Sticker,
         name: String
     ) {
         self.emojis = emojis
-        self.iconCustomEmojiId = iconCustomEmojiId
+        self.icon = icon
         self.name = name
     }
 }

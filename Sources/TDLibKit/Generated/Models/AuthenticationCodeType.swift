@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public enum AuthenticationCodeType: Codable, Equatable {
     /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
     case authenticationCodeTypeTelegramMessage(AuthenticationCodeTypeTelegramMessage)
 
-    /// An authentication code is delivered via an SMS message to the specified phone number
+    /// An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
     case authenticationCodeTypeSms(AuthenticationCodeTypeSms)
 
     /// An authentication code is delivered via a phone call to the specified phone number
@@ -123,7 +123,7 @@ public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable {
     }
 }
 
-/// An authentication code is delivered via an SMS message to the specified phone number
+/// An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
 public struct AuthenticationCodeTypeSms: Codable, Equatable {
 
     /// Length of the code
@@ -225,7 +225,7 @@ public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable {
     /// Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
     public let pushTimeout: Int
 
-    /// Receipt of successful applikation token validation to compare with receipt from push notification
+    /// Receipt of successful application token validation to compare with receipt from push notification
     public let receipt: String
 
 

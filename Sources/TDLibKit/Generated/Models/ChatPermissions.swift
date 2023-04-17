@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -31,11 +31,11 @@ public struct ChatPermissions: Codable, Equatable {
     /// True, if the user can send music files
     public let canSendAudios: Bool
 
+    /// True, if the user can send text messages, contacts, invoices, locations, and venues
+    public let canSendBasicMessages: Bool
+
     /// True, if the user can send documents
     public let canSendDocuments: Bool
-
-    /// True, if the user can send text messages, contacts, invoices, locations, and venues
-    public let canSendMessages: Bool
 
     /// True, if the user can send animations, games, stickers, and dice and use inline bots
     public let canSendOtherMessages: Bool
@@ -63,8 +63,8 @@ public struct ChatPermissions: Codable, Equatable {
         canManageTopics: Bool,
         canPinMessages: Bool,
         canSendAudios: Bool,
+        canSendBasicMessages: Bool,
         canSendDocuments: Bool,
-        canSendMessages: Bool,
         canSendOtherMessages: Bool,
         canSendPhotos: Bool,
         canSendPolls: Bool,
@@ -78,8 +78,8 @@ public struct ChatPermissions: Codable, Equatable {
         self.canManageTopics = canManageTopics
         self.canPinMessages = canPinMessages
         self.canSendAudios = canSendAudios
+        self.canSendBasicMessages = canSendBasicMessages
         self.canSendDocuments = canSendDocuments
-        self.canSendMessages = canSendMessages
         self.canSendOtherMessages = canSendOtherMessages
         self.canSendPhotos = canSendPhotos
         self.canSendPolls = canSendPolls

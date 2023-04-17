@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
 
 
-/// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+/// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
 public struct GetWebAppUrl: Codable, Equatable {
 
     /// Short name of the application; 0-64 English letters, digits, and underscores
@@ -22,7 +22,7 @@ public struct GetWebAppUrl: Codable, Equatable {
     /// Preferred Web App theme; pass null to use the default theme
     public let theme: ThemeParameters?
 
-    /// The URL from the keyboardButtonTypeWebApp button
+    /// The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
     public let url: String?
 
 

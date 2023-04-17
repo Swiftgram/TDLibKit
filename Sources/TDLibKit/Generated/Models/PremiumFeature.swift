@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -52,7 +52,7 @@ public enum PremiumFeature: Codable, Equatable {
     /// The ability to set a custom emoji as a forum topic icon
     case premiumFeatureForumTopicIcon
 
-    /// Allowed to set a premium appllication icons
+    /// Allowed to set a premium application icons
     case premiumFeatureAppIcons
 
     /// Allowed to translate chat messages real-time

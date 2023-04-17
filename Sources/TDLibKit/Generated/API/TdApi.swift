@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -313,6 +313,21 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending. Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.can_reset_email_address == true
+    /// - Returns: May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending
+    public func resetAuthenticationEmailAddress(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ResetAuthenticationEmailAddress()
+        execute(query: query, completion: completion)
+    }
+
+    /// Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending. Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.can_reset_email_address == true
+    /// - Returns: May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func resetAuthenticationEmailAddress() async throws -> Ok {
+        let query = ResetAuthenticationEmailAddress()
+        return try await execute(query: query)
+    }
+
     /// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter password: The 2-step verification password to check
     public func checkAuthenticationPassword(
@@ -615,7 +630,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the login email address of the user. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of a email address, call checkLoginEmailAddressCode directly
+    /// Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of a email address, call checkLoginEmailAddressCode directly
     /// - Parameter newLoginEmailAddress: New login email address
     public func setLoginEmailAddress(
         newLoginEmailAddress: String?,
@@ -627,7 +642,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the login email address of the user. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of a email address, call checkLoginEmailAddressCode directly
+    /// Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of a email address, call checkLoginEmailAddressCode directly
     /// - Parameter newLoginEmailAddress: New login email address
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setLoginEmailAddress(newLoginEmailAddress: String?) async throws -> EmailAddressAuthenticationCodeInfo {
@@ -1339,7 +1354,7 @@ public final class TdApi {
     public func getMessageViewers(
         chatId: Int64?,
         messageId: Int64?,
-        completion: @escaping (Result<Users, Swift.Error>) -> Void
+        completion: @escaping (Result<MessageViewers, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageViewers(
             chatId: chatId,
@@ -1356,7 +1371,7 @@ public final class TdApi {
     public func getMessageViewers(
         chatId: Int64?,
         messageId: Int64?
-    ) async throws -> Users {
+    ) async throws -> MessageViewers {
         let query = GetMessageViewers(
             chatId: chatId,
             messageId: messageId
@@ -2848,7 +2863,7 @@ public final class TdApi {
 
     /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
-    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     public func translateText(
         text: FormattedText?,
         toLanguageCode: String?,
@@ -2863,7 +2878,7 @@ public final class TdApi {
 
     /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
-    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func translateText(
         text: FormattedText?,
@@ -2879,7 +2894,7 @@ public final class TdApi {
     /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     public func translateMessageText(
         chatId: Int64?,
         messageId: Int64?,
@@ -2897,7 +2912,7 @@ public final class TdApi {
     /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter toLanguageCode: ISO language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func translateMessageText(
         chatId: Int64?,
@@ -4638,7 +4653,7 @@ public final class TdApi {
     }
 
     /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
-    /// - Parameter text: The text in which to look for entites
+    /// - Parameter text: The text in which to look for entities
     /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
     public func getTextEntities(
         text: String?,
@@ -4651,7 +4666,7 @@ public final class TdApi {
     }
 
     /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
-    /// - Parameter text: The text in which to look for entites
+    /// - Parameter text: The text in which to look for entities
     /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTextEntities(text: String?) async throws -> TextEntities {
@@ -5290,71 +5305,159 @@ public final class TdApi {
     }
 
     /// Sets the result of an inline query; for bots only
+    /// - Parameter button: Button to be shown above inline query results; pass null if none
     /// - Parameter cacheTime: Allowed time to cache the results of the query, in seconds
     /// - Parameter inlineQueryId: Identifier of the inline query
     /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
-    /// - Parameter switchPmParameter: The parameter for the bot start message
-    /// - Parameter switchPmText: If non-empty, this text must be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
     public func answerInlineQuery(
+        button: InlineQueryResultsButton?,
         cacheTime: Int?,
         inlineQueryId: TdInt64?,
         isPersonal: Bool?,
         nextOffset: String?,
         results: [InputInlineQueryResult]?,
-        switchPmParameter: String?,
-        switchPmText: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AnswerInlineQuery(
+            button: button,
             cacheTime: cacheTime,
             inlineQueryId: inlineQueryId,
             isPersonal: isPersonal,
             nextOffset: nextOffset,
-            results: results,
-            switchPmParameter: switchPmParameter,
-            switchPmText: switchPmText
+            results: results
         )
         execute(query: query, completion: completion)
     }
 
     /// Sets the result of an inline query; for bots only
+    /// - Parameter button: Button to be shown above inline query results; pass null if none
     /// - Parameter cacheTime: Allowed time to cache the results of the query, in seconds
     /// - Parameter inlineQueryId: Identifier of the inline query
     /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
-    /// - Parameter switchPmParameter: The parameter for the bot start message
-    /// - Parameter switchPmText: If non-empty, this text must be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func answerInlineQuery(
+        button: InlineQueryResultsButton?,
         cacheTime: Int?,
         inlineQueryId: TdInt64?,
         isPersonal: Bool?,
         nextOffset: String?,
-        results: [InputInlineQueryResult]?,
-        switchPmParameter: String?,
-        switchPmText: String?
+        results: [InputInlineQueryResult]?
     ) async throws -> Ok {
         let query = AnswerInlineQuery(
+            button: button,
             cacheTime: cacheTime,
             inlineQueryId: inlineQueryId,
             isPersonal: isPersonal,
             nextOffset: nextOffset,
-            results: results,
-            switchPmParameter: switchPmParameter,
-            switchPmText: switchPmText
+            results: results
         )
         return try await execute(query: query)
     }
 
-    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+    /// Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter webAppShortName: Short name of the Web App
+    /// - Returns: Information about a Web App by its short name. Returns a 404 error if the Web App is not found
+    public func searchWebApp(
+        botUserId: Int64?,
+        webAppShortName: String?,
+        completion: @escaping (Result<FoundWebApp, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchWebApp(
+            botUserId: botUserId,
+            webAppShortName: webAppShortName
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter webAppShortName: Short name of the Web App
+    /// - Returns: Information about a Web App by its short name. Returns a 404 error if the Web App is not found
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchWebApp(
+        botUserId: Int64?,
+        webAppShortName: String?
+    ) async throws -> FoundWebApp {
+        let query = SearchWebApp(
+            botUserId: botUserId,
+            webAppShortName: webAppShortName
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages
+    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter chatId: Identifier of the chat in which the link was clicked; pass 0 if none
+    /// - Parameter startParameter: Start parameter from internalLinkTypeWebApp
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
+    /// - Parameter webAppShortName: Short name of the Web App
+    /// - Returns: An HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+    public func getWebAppLinkUrl(
+        allowWriteAccess: Bool?,
+        applicationName: String?,
+        botUserId: Int64?,
+        chatId: Int64?,
+        startParameter: String?,
+        theme: ThemeParameters?,
+        webAppShortName: String?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetWebAppLinkUrl(
+            allowWriteAccess: allowWriteAccess,
+            applicationName: applicationName,
+            botUserId: botUserId,
+            chatId: chatId,
+            startParameter: startParameter,
+            theme: theme,
+            webAppShortName: webAppShortName
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages
+    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter chatId: Identifier of the chat in which the link was clicked; pass 0 if none
+    /// - Parameter startParameter: Start parameter from internalLinkTypeWebApp
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
+    /// - Parameter webAppShortName: Short name of the Web App
+    /// - Returns: An HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getWebAppLinkUrl(
+        allowWriteAccess: Bool?,
+        applicationName: String?,
+        botUserId: Int64?,
+        chatId: Int64?,
+        startParameter: String?,
+        theme: ThemeParameters?,
+        webAppShortName: String?
+    ) async throws -> HttpUrl {
+        let query = GetWebAppLinkUrl(
+            allowWriteAccess: allowWriteAccess,
+            applicationName: applicationName,
+            botUserId: botUserId,
+            chatId: chatId,
+            startParameter: startParameter,
+            theme: theme,
+            webAppShortName: webAppShortName
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
-    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+    /// - Parameter url: The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
     public func getWebAppUrl(
         applicationName: String?,
         botUserId: Int64?,
@@ -5371,12 +5474,12 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from the keyboardButtonTypeWebApp button
-    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
+    /// - Parameter url: The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppUrl(
         applicationName: String?,
@@ -5432,7 +5535,7 @@ public final class TdApi {
     /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
-    /// - Parameter chatId: Identifier of the chat in which the Web App is opened
+    /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the Web App; 0 if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
@@ -5462,7 +5565,7 @@ public final class TdApi {
     /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
-    /// - Parameter chatId: Identifier of the chat in which the Web App is opened
+    /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter replyToMessageId: Identifier of the replied message for the message sent by the Web App; 0 if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
@@ -5979,19 +6082,19 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter forceRead: Pass true to mark as read the specified messages even the chat is closed
     /// - Parameter messageIds: The identifiers of the messages being viewed
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages are being viewed
+    /// - Parameter source: Source of the message view; pass null to guess the source based on chat open state
     public func viewMessages(
         chatId: Int64?,
         forceRead: Bool?,
         messageIds: [Int64]?,
-        messageThreadId: Int64?,
+        source: MessageSource?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ViewMessages(
             chatId: chatId,
             forceRead: forceRead,
             messageIds: messageIds,
-            messageThreadId: messageThreadId
+            source: source
         )
         execute(query: query, completion: completion)
     }
@@ -6000,19 +6103,19 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter forceRead: Pass true to mark as read the specified messages even the chat is closed
     /// - Parameter messageIds: The identifiers of the messages being viewed
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages are being viewed
+    /// - Parameter source: Source of the message view; pass null to guess the source based on chat open state
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func viewMessages(
         chatId: Int64?,
         forceRead: Bool?,
         messageIds: [Int64]?,
-        messageThreadId: Int64?
+        source: MessageSource?
     ) async throws -> Ok {
         let query = ViewMessages(
             chatId: chatId,
             forceRead: forceRead,
             messageIds: messageIds,
-            messageThreadId: messageThreadId
+            source: source
         )
         return try await execute(query: query)
     }
@@ -6075,6 +6178,38 @@ public final class TdApi {
         let query = ClickAnimatedEmojiMessage(
             chatId: chatId,
             messageId: messageId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns an HTTPS or a tg: link with the given type. Can be called before authorization
+    /// - Parameter isHttp: Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
+    /// - Parameter type: Expected type of the link
+    /// - Returns: An HTTPS or a tg: link with the given type
+    public func getInternalLink(
+        isHttp: Bool?,
+        type: InternalLinkType?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetInternalLink(
+            isHttp: isHttp,
+            type: type
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS or a tg: link with the given type. Can be called before authorization
+    /// - Parameter isHttp: Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
+    /// - Parameter type: Expected type of the link
+    /// - Returns: An HTTPS or a tg: link with the given type
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getInternalLink(
+        isHttp: Bool?,
+        type: InternalLinkType?
+    ) async throws -> HttpUrl {
+        let query = GetInternalLink(
+            isHttp: isHttp,
+            type: type
         )
         return try await execute(query: query)
     }
@@ -6386,7 +6521,7 @@ public final class TdApi {
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
     /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
-    /// - Parameter userIds: Identifiers of users to be added to the basic group
+    /// - Parameter userIds: Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
     /// - Returns: The newly created chat
     public func createNewBasicGroupChat(
         messageAutoDeleteTime: Int?,
@@ -6405,7 +6540,7 @@ public final class TdApi {
     /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
     /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
-    /// - Parameter userIds: Identifiers of users to be added to the basic group
+    /// - Parameter userIds: Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
     /// - Returns: The newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewBasicGroupChat(
@@ -7000,7 +7135,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the tranlatable state of a chat; for Telegram Premium users only
+    /// Changes the translatable state of a chat; for Telegram Premium users only
     /// - Parameter chatId: Chat identifier
     /// - Parameter isTranslatable: New value of is_translatable
     public func toggleChatIsTranslatable(
@@ -7015,7 +7150,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the tranlatable state of a chat; for Telegram Premium users only
+    /// Changes the translatable state of a chat; for Telegram Premium users only
     /// - Parameter chatId: Chat identifier
     /// - Parameter isTranslatable: New value of is_translatable
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12395,6 +12530,114 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Sets the text shown in the chat with the bot if the chat is empty; bots only
+    /// - Parameter description: 
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    public func setBotInfoDescription(
+        description: String?,
+        languageCode: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBotInfoDescription(
+            description: description,
+            languageCode: languageCode
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets the text shown in the chat with the bot if the chat is empty; bots only
+    /// - Parameter description: 
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setBotInfoDescription(
+        description: String?,
+        languageCode: String?
+    ) async throws -> Ok {
+        let query = SetBotInfoDescription(
+            description: description,
+            languageCode: languageCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns the text shown in the chat with the bot if the chat is empty in the given language; bots only
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
+    /// - Returns: The text shown in the chat with the bot if the chat is empty in the given language
+    public func getBotInfoDescription(
+        languageCode: String?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotInfoDescription(
+            languageCode: languageCode
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns the text shown in the chat with the bot if the chat is empty in the given language; bots only
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
+    /// - Returns: The text shown in the chat with the bot if the chat is empty in the given language
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getBotInfoDescription(languageCode: String?) async throws -> Text {
+        let query = GetBotInfoDescription(
+            languageCode: languageCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets the text shown on the bot's profile page and sent together with the link when users share the bot; bots only
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter shortDescription: New bot's short description on the specified language
+    public func setBotInfoShortDescription(
+        languageCode: String?,
+        shortDescription: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBotInfoShortDescription(
+            languageCode: languageCode,
+            shortDescription: shortDescription
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets the text shown on the bot's profile page and sent together with the link when users share the bot; bots only
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter shortDescription: New bot's short description on the specified language
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setBotInfoShortDescription(
+        languageCode: String?,
+        shortDescription: String?
+    ) async throws -> Ok {
+        let query = SetBotInfoShortDescription(
+            languageCode: languageCode,
+            shortDescription: shortDescription
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns the text shown on the bot's profile page and sent together with the link when users share the bot in the given language; bots only
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
+    /// - Returns: The text shown on the bot's profile page and sent together with the link when users share the bot in the given language
+    public func getBotInfoShortDescription(
+        languageCode: String?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotInfoShortDescription(
+            languageCode: languageCode
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns the text shown on the bot's profile page and sent together with the link when users share the bot in the given language; bots only
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
+    /// - Returns: The text shown on the bot's profile page and sent together with the link when users share the bot in the given language
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getBotInfoShortDescription(languageCode: String?) async throws -> Text {
+        let query = GetBotInfoShortDescription(
+            languageCode: languageCode
+        )
+        return try await execute(query: query)
+    }
+
     /// Returns all active sessions of the current user
     /// - Returns: All active sessions of the current user
     public func getActiveSessions(completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
@@ -12476,7 +12719,7 @@ public final class TdApi {
     }
 
     /// Toggles whether a session can accept incoming secret chats
-    /// - Parameter canAcceptSecretChats: Pass true to allow accepring secret chats by the session; pass false otherwise
+    /// - Parameter canAcceptSecretChats: Pass true to allow accepting secret chats by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     public func toggleSessionCanAcceptSecretChats(
         canAcceptSecretChats: Bool?,
@@ -12491,7 +12734,7 @@ public final class TdApi {
     }
 
     /// Toggles whether a session can accept incoming secret chats
-    /// - Parameter canAcceptSecretChats: Pass true to allow accepring secret chats by the session; pass false otherwise
+    /// - Parameter canAcceptSecretChats: Pass true to allow accepting secret chats by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func toggleSessionCanAcceptSecretChats(
@@ -13625,7 +13868,7 @@ public final class TdApi {
     }
 
     /// Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
-    /// - Parameter languagePackId: Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
+    /// - Parameter languagePackId: Identifier of a language pack to be added
     public func addCustomServerLanguagePack(
         languagePackId: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -13637,7 +13880,7 @@ public final class TdApi {
     }
 
     /// Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
-    /// - Parameter languagePackId: Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
+    /// - Parameter languagePackId: Identifier of a language pack to be added
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addCustomServerLanguagePack(languagePackId: String?) async throws -> Ok {
         let query = AddCustomServerLanguagePack(
@@ -15144,32 +15387,38 @@ public final class TdApi {
     }
 
     /// Uploads a file with a sticker; returns the uploaded file
-    /// - Parameter sticker: Sticker file to upload
+    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.//-See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// - Parameter stickerFormat: Sticker format
     /// - Parameter userId: Sticker file owner; ignored for regular users
     /// - Returns: The uploaded file
     public func uploadStickerFile(
-        sticker: InputSticker?,
+        sticker: InputFile?,
+        stickerFormat: StickerFormat?,
         userId: Int64?,
         completion: @escaping (Result<File, Swift.Error>) -> Void
     ) throws {
         let query = UploadStickerFile(
             sticker: sticker,
+            stickerFormat: stickerFormat,
             userId: userId
         )
         execute(query: query, completion: completion)
     }
 
     /// Uploads a file with a sticker; returns the uploaded file
-    /// - Parameter sticker: Sticker file to upload
+    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.//-See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// - Parameter stickerFormat: Sticker format
     /// - Parameter userId: Sticker file owner; ignored for regular users
     /// - Returns: The uploaded file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func uploadStickerFile(
-        sticker: InputSticker?,
+        sticker: InputFile?,
+        stickerFormat: StickerFormat?,
         userId: Int64?
     ) async throws -> File {
         let query = UploadStickerFile(
             sticker: sticker,
+            stickerFormat: stickerFormat,
             userId: userId
         )
         return try await execute(query: query)
@@ -15223,7 +15472,9 @@ public final class TdApi {
 
     /// Creates a new sticker set. Returns the newly created sticker set
     /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+    /// - Parameter needsRepainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
     /// - Parameter source: Source of the sticker set; may be empty if unknown
+    /// - Parameter stickerFormat: Format of the stickers in the set
     /// - Parameter stickerType: Type of the stickers in the set
     /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
@@ -15231,7 +15482,9 @@ public final class TdApi {
     /// - Returns: The newly created sticker set
     public func createNewStickerSet(
         name: String?,
+        needsRepainting: Bool?,
         source: String?,
+        stickerFormat: StickerFormat?,
         stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
@@ -15240,7 +15493,9 @@ public final class TdApi {
     ) throws {
         let query = CreateNewStickerSet(
             name: name,
+            needsRepainting: needsRepainting,
             source: source,
+            stickerFormat: stickerFormat,
             stickerType: stickerType,
             stickers: stickers,
             title: title,
@@ -15251,7 +15506,9 @@ public final class TdApi {
 
     /// Creates a new sticker set. Returns the newly created sticker set
     /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+    /// - Parameter needsRepainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
     /// - Parameter source: Source of the sticker set; may be empty if unknown
+    /// - Parameter stickerFormat: Format of the stickers in the set
     /// - Parameter stickerType: Type of the stickers in the set
     /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
@@ -15260,7 +15517,9 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createNewStickerSet(
         name: String?,
+        needsRepainting: Bool?,
         source: String?,
+        stickerFormat: StickerFormat?,
         stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
@@ -15268,7 +15527,9 @@ public final class TdApi {
     ) async throws -> StickerSet {
         let query = CreateNewStickerSet(
             name: name,
+            needsRepainting: needsRepainting,
             source: source,
+            stickerFormat: stickerFormat,
             stickerType: stickerType,
             stickers: stickers,
             title: title,
@@ -15277,16 +15538,15 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Adds a new sticker to a set; for bots only. Returns the sticker set
+    /// Adds a new sticker to a set; for bots only
     /// - Parameter name: Sticker set name
     /// - Parameter sticker: Sticker to add to the set
     /// - Parameter userId: Sticker set owner
-    /// - Returns: The sticker set
     public func addStickerToSet(
         name: String?,
         sticker: InputSticker?,
         userId: Int64?,
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddStickerToSet(
             name: name,
@@ -15296,17 +15556,16 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Adds a new sticker to a set; for bots only. Returns the sticker set
+    /// Adds a new sticker to a set; for bots only
     /// - Parameter name: Sticker set name
     /// - Parameter sticker: Sticker to add to the set
     /// - Parameter userId: Sticker set owner
-    /// - Returns: The sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addStickerToSet(
         name: String?,
         sticker: InputSticker?,
         userId: Int64?
-    ) async throws -> StickerSet {
+    ) async throws -> Ok {
         let query = AddStickerToSet(
             name: name,
             sticker: sticker,
@@ -15315,16 +15574,15 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sets a sticker set thumbnail; for bots only. Returns the sticker set
+    /// Sets a sticker set thumbnail; for bots only
     /// - Parameter name: Sticker set name
     /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
-    /// - Returns: The sticker set
     public func setStickerSetThumbnail(
         name: String?,
         thumbnail: InputFile?,
         userId: Int64?,
-        completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetStickerSetThumbnail(
             name: name,
@@ -15334,21 +15592,102 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Sets a sticker set thumbnail; for bots only. Returns the sticker set
+    /// Sets a sticker set thumbnail; for bots only
     /// - Parameter name: Sticker set name
     /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
-    /// - Returns: The sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setStickerSetThumbnail(
         name: String?,
         thumbnail: InputFile?,
         userId: Int64?
-    ) async throws -> StickerSet {
+    ) async throws -> Ok {
         let query = SetStickerSetThumbnail(
             name: name,
             thumbnail: thumbnail,
             userId: userId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets a custom emoji sticker set thumbnail; for bots only
+    /// - Parameter customEmojiId: Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
+    /// - Parameter name: Sticker set name
+    public func setCustomEmojiStickerSetThumbnail(
+        customEmojiId: TdInt64?,
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetCustomEmojiStickerSetThumbnail(
+            customEmojiId: customEmojiId,
+            name: name
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets a custom emoji sticker set thumbnail; for bots only
+    /// - Parameter customEmojiId: Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
+    /// - Parameter name: Sticker set name
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setCustomEmojiStickerSetThumbnail(
+        customEmojiId: TdInt64?,
+        name: String?
+    ) async throws -> Ok {
+        let query = SetCustomEmojiStickerSetThumbnail(
+            customEmojiId: customEmojiId,
+            name: name
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets a sticker set title; for bots only
+    /// - Parameter name: Sticker set name
+    /// - Parameter title: New sticker set title
+    public func setStickerSetTitle(
+        name: String?,
+        title: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetStickerSetTitle(
+            name: name,
+            title: title
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets a sticker set title; for bots only
+    /// - Parameter name: Sticker set name
+    /// - Parameter title: New sticker set title
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setStickerSetTitle(
+        name: String?,
+        title: String?
+    ) async throws -> Ok {
+        let query = SetStickerSetTitle(
+            name: name,
+            title: title
+        )
+        return try await execute(query: query)
+    }
+
+    /// Deleted a sticker set; for bots only
+    /// - Parameter name: Sticker set name
+    public func deleteStickerSet(
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteStickerSet(
+            name: name
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Deleted a sticker set; for bots only
+    /// - Parameter name: Sticker set name
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func deleteStickerSet(name: String?) async throws -> Ok {
+        let query = DeleteStickerSet(
+            name: name
         )
         return try await execute(query: query)
     }
@@ -15400,6 +15739,96 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func removeStickerFromSet(sticker: InputFile?) async throws -> Ok {
         let query = RemoveStickerFromSet(
+            sticker: sticker
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
+    /// - Parameter sticker: Sticker
+    public func setStickerEmojis(
+        emojis: String?,
+        sticker: InputFile?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetStickerEmojis(
+            emojis: emojis,
+            sticker: sticker
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
+    /// - Parameter sticker: Sticker
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setStickerEmojis(
+        emojis: String?,
+        sticker: InputFile?
+    ) async throws -> Ok {
+        let query = SetStickerEmojis(
+            emojis: emojis,
+            sticker: sticker
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// - Parameter keywords: List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+    /// - Parameter sticker: Sticker
+    public func setStickerKeywords(
+        keywords: [String]?,
+        sticker: InputFile?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetStickerKeywords(
+            keywords: keywords,
+            sticker: sticker
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// - Parameter keywords: List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+    /// - Parameter sticker: Sticker
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setStickerKeywords(
+        keywords: [String]?,
+        sticker: InputFile?
+    ) async throws -> Ok {
+        let query = SetStickerKeywords(
+            keywords: keywords,
+            sticker: sticker
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+    /// - Parameter maskPosition: Position where the mask is placed; pass null to remove mask position
+    /// - Parameter sticker: Sticker
+    public func setStickerMaskPosition(
+        maskPosition: MaskPosition?,
+        sticker: InputFile?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetStickerMaskPosition(
+            maskPosition: maskPosition,
+            sticker: sticker
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+    /// - Parameter maskPosition: Position where the mask is placed; pass null to remove mask position
+    /// - Parameter sticker: Sticker
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setStickerMaskPosition(
+        maskPosition: MaskPosition?,
+        sticker: InputFile?
+    ) async throws -> Ok {
+        let query = SetStickerMaskPosition(
+            maskPosition: maskPosition,
             sticker: sticker
         )
         return try await execute(query: query)
@@ -15858,21 +16287,6 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    /// - Returns: The link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    public func getApplicationDownloadLink(completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void) throws {
-        let query = GetApplicationDownloadLink()
-        execute(query: query, completion: completion)
-    }
-
-    /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    /// - Returns: The link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getApplicationDownloadLink() async throws -> HttpUrl {
-        let query = GetApplicationDownloadLink()
-        return try await execute(query: query)
-    }
-
     /// Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
     /// - Parameter link: The link
     /// - Returns: Information about a tg:// deep link. Returns a 404 error for unknown links
@@ -15912,6 +16326,30 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
+    /// Adds server-provided application changelog as messages to the chat 777000 (Telegram); for official applications only. Returns a 404 error if nothing changed
+    /// - Parameter previousApplicationVersion: The previous application version
+    /// - Returns: A 404 error if nothing changed
+    public func addApplicationChangelog(
+        previousApplicationVersion: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddApplicationChangelog(
+            previousApplicationVersion: previousApplicationVersion
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Adds server-provided application changelog as messages to the chat 777000 (Telegram); for official applications only. Returns a 404 error if nothing changed
+    /// - Parameter previousApplicationVersion: The previous application version
+    /// - Returns: A 404 error if nothing changed
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addApplicationChangelog(previousApplicationVersion: String?) async throws -> Ok {
+        let query = AddApplicationChangelog(
+            previousApplicationVersion: previousApplicationVersion
+        )
+        return try await execute(query: query)
+    }
+
     /// Saves application log event on the server. Can be called before authorization
     /// - Parameter chatId: Optional chat identifier, associated with the event
     /// - Parameter data: The log event data
@@ -15945,6 +16383,21 @@ public final class TdApi {
             data: data,
             type: type
         )
+        return try await execute(query: query)
+    }
+
+    /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+    /// - Returns: The link for downloading official Telegram application to be used when the current user invites friends to Telegram
+    public func getApplicationDownloadLink(completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void) throws {
+        let query = GetApplicationDownloadLink()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+    /// - Returns: The link for downloading official Telegram application to be used when the current user invites friends to Telegram
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getApplicationDownloadLink() async throws -> HttpUrl {
+        let query = GetApplicationDownloadLink()
         return try await execute(query: query)
     }
 
@@ -16380,6 +16833,21 @@ public final class TdApi {
             message: message,
             userId: userId
         )
+        return try await execute(query: query)
+    }
+
+    /// Returns localized name of the Telegram support user; for Telegram support only
+    /// - Returns: Localized name of the Telegram support user
+    public func getSupportName(completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
+        let query = GetSupportName()
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns localized name of the Telegram support user; for Telegram support only
+    /// - Returns: Localized name of the Telegram support user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getSupportName() async throws -> Text {
+        let query = GetSupportName()
         return try await execute(query: query)
     }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public struct AttachmentMenuBot: Codable, Equatable {
     /// Color to highlight selected name of the bot if appropriate; may be null
     public let nameColor: AttachmentMenuBotColor?
 
-    /// True, if the user needs to be requested to give the permission to the bot to send them messages
+    /// True, if the user must be asked for the permission to the bot to send them messages
     public let requestWriteAccess: Bool
 
     /// True, if the bot supports opening from attachment menu in private chats with other bots

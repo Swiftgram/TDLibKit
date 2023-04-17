@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public enum MessageExtendedMedia: Codable, Equatable {
     /// The media is a video
     case messageExtendedMediaVideo(MessageExtendedMediaVideo)
 
-    /// The media is unuspported
+    /// The media is unsupported
     case messageExtendedMediaUnsupported(MessageExtendedMediaUnsupported)
 
 
@@ -143,7 +143,7 @@ public struct MessageExtendedMediaVideo: Codable, Equatable {
     }
 }
 
-/// The media is unuspported
+/// The media is unsupported
 public struct MessageExtendedMediaUnsupported: Codable, Equatable {
 
     /// Media caption

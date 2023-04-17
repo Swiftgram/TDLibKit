@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -54,18 +54,18 @@ public enum LoginUrlInfo: Codable, Equatable {
 /// An HTTP URL needs to be open
 public struct LoginUrlInfoOpen: Codable, Equatable {
 
-    /// True, if there is no need to show an ordinary open URL confirm
-    public let skipConfirm: Bool
+    /// True, if there is no need to show an ordinary open URL confirmation
+    public let skipConfirmation: Bool
 
     /// The URL to open
     public let url: String
 
 
     public init(
-        skipConfirm: Bool,
+        skipConfirmation: Bool,
         url: String
     ) {
-        self.skipConfirm = skipConfirm
+        self.skipConfirmation = skipConfirmation
         self.url = url
     }
 }
@@ -79,7 +79,7 @@ public struct LoginUrlInfoRequestConfirmation: Codable, Equatable {
     /// A domain of the URL
     public let domain: String
 
-    /// True, if the user needs to be requested to give the permission to the bot to send them messages
+    /// True, if the user must be asked for the permission to the bot to send them messages
     public let requestWriteAccess: Bool
 
     /// An HTTP URL to be opened

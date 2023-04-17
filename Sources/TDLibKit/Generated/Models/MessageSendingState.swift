@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public enum MessageSendingState: Codable, Equatable {
 
     /// The message is being sent now, but has not yet been delivered to the server
-    case messageSendingStatePending
+    case messageSendingStatePending(MessageSendingStatePending)
 
     /// The message failed to be sent
     case messageSendingStateFailed(MessageSendingStateFailed)
@@ -30,7 +30,8 @@ public enum MessageSendingState: Codable, Equatable {
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
         case .messageSendingStatePending:
-            self = .messageSendingStatePending
+            let value = try MessageSendingStatePending(from: decoder)
+            self = .messageSendingStatePending(value)
         case .messageSendingStateFailed:
             let value = try MessageSendingStateFailed(from: decoder)
             self = .messageSendingStateFailed(value)
@@ -40,12 +41,25 @@ public enum MessageSendingState: Codable, Equatable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .messageSendingStatePending:
+        case .messageSendingStatePending(let value):
             try container.encode(Kind.messageSendingStatePending, forKey: .type)
+            try value.encode(to: encoder)
         case .messageSendingStateFailed(let value):
             try container.encode(Kind.messageSendingStateFailed, forKey: .type)
             try value.encode(to: encoder)
         }
+    }
+}
+
+/// The message is being sent now, but has not yet been delivered to the server
+public struct MessageSendingStatePending: Codable, Equatable {
+
+    /// Non-persistent message sending identifier, specified by the application
+    public let sendingId: Int
+
+
+    public init(sendingId: Int) {
+        self.sendingId = sendingId
     }
 }
 

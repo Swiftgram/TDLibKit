@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -295,6 +295,9 @@ public enum Update: Codable, Equatable {
     /// The list of suggested to the user actions has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
+    /// Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
+    case updateAddChatMembersPrivacyForbidden(UpdateAddChatMembersPrivacyForbidden)
+
     /// Autosave settings for some type of chats were updated
     case updateAutosaveSettings(UpdateAutosaveSettings)
 
@@ -430,6 +433,7 @@ public enum Update: Codable, Equatable {
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
         case updateSuggestedActions
+        case updateAddChatMembersPrivacyForbidden
         case updateAutosaveSettings
         case updateNewInlineQuery
         case updateNewChosenInlineResult
@@ -731,6 +735,9 @@ public enum Update: Codable, Equatable {
         case .updateSuggestedActions:
             let value = try UpdateSuggestedActions(from: decoder)
             self = .updateSuggestedActions(value)
+        case .updateAddChatMembersPrivacyForbidden:
+            let value = try UpdateAddChatMembersPrivacyForbidden(from: decoder)
+            self = .updateAddChatMembersPrivacyForbidden(value)
         case .updateAutosaveSettings:
             let value = try UpdateAutosaveSettings(from: decoder)
             self = .updateAutosaveSettings(value)
@@ -1057,6 +1064,9 @@ public enum Update: Codable, Equatable {
             try value.encode(to: encoder)
         case .updateSuggestedActions(let value):
             try container.encode(Kind.updateSuggestedActions, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateAddChatMembersPrivacyForbidden(let value):
+            try container.encode(Kind.updateAddChatMembersPrivacyForbidden, forKey: .type)
             try value.encode(to: encoder)
         case .updateAutosaveSettings(let value):
             try container.encode(Kind.updateAutosaveSettings, forKey: .type)
@@ -2714,7 +2724,7 @@ public struct UpdateLanguagePackStrings: Codable, Equatable {
     /// Localization target to which the language pack belongs
     public let localizationTarget: String
 
-    /// List of changed language pack strings
+    /// List of changed language pack strings; empty if all strings have changed
     public let strings: [LanguagePackString]
 
 
@@ -2891,6 +2901,25 @@ public struct UpdateSuggestedActions: Codable, Equatable {
     ) {
         self.addedActions = addedActions
         self.removedActions = removedActions
+    }
+}
+
+/// Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
+public struct UpdateAddChatMembersPrivacyForbidden: Codable, Equatable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Identifiers of users, which weren't added because of their privacy settings
+    public let userIds: [Int64]
+
+
+    public init(
+        chatId: Int64,
+        userIds: [Int64]
+    ) {
+        self.chatId = chatId
+        self.userIds = userIds
     }
 }
 

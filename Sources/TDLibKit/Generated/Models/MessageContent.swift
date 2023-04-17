@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -67,7 +67,7 @@ public enum MessageContent: Codable, Equatable {
     /// A message with a poll
     case messagePoll(MessagePoll)
 
-    /// A message with an invoice from a bot
+    /// A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
     case messageInvoice(MessageInvoice)
 
     /// A message with information about an ended call
@@ -173,7 +173,7 @@ public enum MessageContent: Codable, Equatable {
     case messageWebsiteConnected(MessageWebsiteConnected)
 
     /// The user allowed the bot to send messages
-    case messageBotWriteAccessAllowed
+    case messageBotWriteAccessAllowed(MessageBotWriteAccessAllowed)
 
     /// Data from a Web App has been sent to a bot
     case messageWebAppDataSent(MessageWebAppDataSent)
@@ -414,7 +414,8 @@ public enum MessageContent: Codable, Equatable {
             let value = try MessageWebsiteConnected(from: decoder)
             self = .messageWebsiteConnected(value)
         case .messageBotWriteAccessAllowed:
-            self = .messageBotWriteAccessAllowed
+            let value = try MessageBotWriteAccessAllowed(from: decoder)
+            self = .messageBotWriteAccessAllowed(value)
         case .messageWebAppDataSent:
             let value = try MessageWebAppDataSent(from: decoder)
             self = .messageWebAppDataSent(value)
@@ -590,8 +591,9 @@ public enum MessageContent: Codable, Equatable {
         case .messageWebsiteConnected(let value):
             try container.encode(Kind.messageWebsiteConnected, forKey: .type)
             try value.encode(to: encoder)
-        case .messageBotWriteAccessAllowed:
+        case .messageBotWriteAccessAllowed(let value):
             try container.encode(Kind.messageBotWriteAccessAllowed, forKey: .type)
+            try value.encode(to: encoder)
         case .messageWebAppDataSent(let value):
             try container.encode(Kind.messageWebAppDataSent, forKey: .type)
             try value.encode(to: encoder)
@@ -959,7 +961,7 @@ public struct MessagePoll: Codable, Equatable {
     }
 }
 
-/// A message with an invoice from a bot
+/// A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
 public struct MessageInvoice: Codable, Equatable {
 
     /// Currency for the product price
@@ -982,7 +984,7 @@ public struct MessageInvoice: Codable, Equatable {
     /// The identifier of the message with the receipt, after the product has been purchased
     public let receiptMessageId: Int64
 
-    /// Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
+    /// Unique invoice bot start_parameter to be passed to getInternalLink
     public let startParameter: String
 
     /// Product title
@@ -1545,6 +1547,18 @@ public struct MessageWebsiteConnected: Codable, Equatable {
 
     public init(domainName: String) {
         self.domainName = domainName
+    }
+}
+
+/// The user allowed the bot to send messages
+public struct MessageBotWriteAccessAllowed: Codable, Equatable {
+
+    /// Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
+    public let webApp: WebApp?
+
+
+    public init(webApp: WebApp?) {
+        self.webApp = webApp
     }
 }
 

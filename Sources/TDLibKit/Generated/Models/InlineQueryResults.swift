@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.11-1543c41f
-//  https://github.com/tdlib/td/tree/1543c41f
+//  Based on TDLib 1.8.13-c95598e5
+//  https://github.com/tdlib/td/tree/c95598e5
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
 public struct InlineQueryResults: Codable, Equatable {
+
+    /// Button to be shown above inline query results; may be null
+    public let button: InlineQueryResultsButton?
 
     /// Unique identifier of the inline query
     public let inlineQueryId: TdInt64
@@ -22,25 +25,17 @@ public struct InlineQueryResults: Codable, Equatable {
     /// Results of the query
     public let results: [InlineQueryResult]
 
-    /// Parameter for the bot start message
-    public let switchPmParameter: String
-
-    /// If non-empty, this text must be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
-    public let switchPmText: String
-
 
     public init(
+        button: InlineQueryResultsButton?,
         inlineQueryId: TdInt64,
         nextOffset: String,
-        results: [InlineQueryResult],
-        switchPmParameter: String,
-        switchPmText: String
+        results: [InlineQueryResult]
     ) {
+        self.button = button
         self.inlineQueryId = inlineQueryId
         self.nextOffset = nextOffset
         self.results = results
-        self.switchPmParameter = switchPmParameter
-        self.switchPmText = switchPmText
     }
 }
 
