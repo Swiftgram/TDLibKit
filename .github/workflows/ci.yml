@@ -81,17 +81,16 @@ jobs:
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
 
       - name: Tests (iOS)
-        run: ./scripts/test.sh iOS-simulator
+        run: ./scripts/test.sh iOS-simulator "16.2" "iPhone 14"
       
       - name: Tests (tvOS) # Dirty hack to retry step. tvOS sim can stuck for some reason
-        run: ./scripts/test.sh tvOS-simulator || ./scripts/test.sh tvOS-simulator
-      
-      # Requires MacOS 12 
+        run: ./scripts/test.sh tvOS-simulator "16.1" "Apple TV 4K (3rd generation) (at 1080p)" || ./scripts/test.sh tvOS-simulator "16.1" "Apple TV 4K (3rd generation) (at 1080p)"
+
       - name: Tests (macOS)
         run: ./scripts/test.sh macOS
       
-      # - name: Tests (watchOS)
-      #   run: ./scripts/test.sh watchOS-simulator
+      - name: Tests (watchOS)
+        run: ./scripts/test.sh watchOS-simulator "9.1" "Apple Watch Series 8 (45mm)"
 
       - name: Push update
         if: github.ref == 'refs/heads/main'

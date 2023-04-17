@@ -18,7 +18,6 @@ let package = Package(
         .tvOS(.v11)
     ],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "TDLibKit",
             targets: ["TDLibKit"]),
@@ -27,11 +26,14 @@ let package = Package(
         .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("{tdlibframework_version}")),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "TDLibKit",
-            dependencies: ["TDLibFramework"]),
+            dependencies: ["TDLibFramework"]
+        ),
+        .testTarget(
+            name: "TDLibKitTests",
+            dependencies: ["TDLibKit"]
+        ),
     ]
 )
 

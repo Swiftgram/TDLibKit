@@ -1,15 +1,6 @@
-import TDLibKit
 import XCTest
+@testable import TDLibKit
 
-#if os(iOS)
-@testable import iOSApp
-#elseif os(macOS)
-@testable import macOSApp
-#elseif os(watchOS)
-@testable import watchOSApp_WatchKit_Extension
-#elseif os(tvOS)
-@testable import tvOSApp
-#endif
 
 public final class StdOutLogger: Logger {
     
@@ -30,6 +21,8 @@ public final class StdOutLogger: Logger {
     }
 }
 
+
+@available(iOS 13.0, *)
 class TDLibKitTests: XCTestCase {
     var client: TdClientImpl!
     var api: TdApi!
@@ -110,6 +103,10 @@ class TDLibKitTests: XCTestCase {
         let configs = await [config1, config2, config3, config4, config5, config6, config7, config8, config9, config10]
         print("Application Configs \(configs)")
     }
+    
+}
+
+class TDLibKitUnitTests: XCTestCase {
     
     func testEquatableStructs() {
         let struct1 = AddContact(contact: Contact(firstName: "John", lastName: "Appleseed", phoneNumber: "+10000000000", userId: 123456789, vcard: "empty"), sharePhoneNumber: true)
