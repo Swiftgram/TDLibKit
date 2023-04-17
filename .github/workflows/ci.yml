@@ -114,7 +114,7 @@ jobs:
 
       - name: Remove previous release
         if: github.ref == 'refs/heads/main'
-        uses: dev-drprasad/delete-tag-and-release@85fa8bcea0379a6ada9bbfdcb0a9d24d58e1a0d7
+        uses: dev-drprasad/delete-tag-and-release@7550ea180f81ca0a875ee3c135b1f72ef66ff4b1
         with:
           delete_release: true
           tag_name: ${{ env.RELEASE_TAG }}
@@ -123,7 +123,7 @@ jobs:
 
       - name: Release
         if: github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@9729932bfb75c05ad1f6e3a729294e05abaa7001
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
         with:
           target_commitish: main
           tag_name: ${{ env.RELEASE_TAG }}
