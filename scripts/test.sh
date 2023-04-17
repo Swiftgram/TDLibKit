@@ -25,8 +25,8 @@ fi
 if [[ $OS_LIST != "" ]]; then
     for OS in $OS_LIST;
     do
-    xcodebuild -scheme TDLibFramework -sdk ${SDK} -destination "${DESTINATION},OS=${OS}" clean test
+    xcodebuild -scheme TDLibKit -sdk ${SDK} -destination "${DESTINATION},OS=${OS}" clean test
     done
 else
-    xcodebuild -scheme TDLibFramework -sdk ${SDK} -destination "${DESTINATION}" clean test
+    xcodebuild -scheme TDLibKit -sdk ${SDK} -destination "${DESTINATION}" clean test
 fi
