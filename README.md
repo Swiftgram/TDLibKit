@@ -22,7 +22,7 @@ of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](sc
 ### Cocoapods
 
 Integration requires similar
-to [TDLibFramework Cocoapods & Flutter guide](https://github.com/Swiftgram/TDLibFramework/wiki/CocoaPods-&-Flutter)
+to [TDLibFramework Cocoapods & Flutter guide](https://github.com/Swiftgram/TDLibFramework/blob/main/docs/COCOAPODS-and-FLUTTER.md)
 adaptation.
 
 ## Usage
