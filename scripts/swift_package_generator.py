@@ -1,5 +1,6 @@
 import argparse
 
+
 def get_file_content(tdlibframework_version):
     return f"""// swift-tools-version:5.3
 // The swift-tools-version declares the minimum version of Swift required to build this package.
@@ -10,10 +11,11 @@ import PackageDescription
 let package = Package(
     name: "TDLibKit",
     platforms: [
-        .iOS(.v9),
-        .macOS(.v10_12),
-        .watchOS(.v2), // Based on iOS 9 version
-        .tvOS(.v9) // Based on iOS 9 version
+        // Minimum versions as of Xcode 14.2
+        .iOS(.v11),
+        .macOS(.v10_13),
+        .watchOS(.v4),
+        .tvOS(.v11)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -35,10 +37,13 @@ let package = Package(
 
 """
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("tdlibframework_version", help="Swiftgram/TDLibFramework version")
-    
+    parser.add_argument(
+        "tdlibframework_version", help="Swiftgram/TDLibFramework version"
+    )
+
     args = parser.parse_args()
-    with open('Package.swift', 'w') as f:
+    with open("Package.swift", "w") as f:
         f.write(get_file_content(args.tdlibframework_version))
