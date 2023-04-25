@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -192,19 +192,19 @@ public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable, Equatable {
 /// A button that forces an inline query to the bot to be inserted in the input field
 public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable {
 
-    /// True, if the inline query must be sent from the current chat
-    public let inCurrentChat: Bool
-
     /// Inline query to be sent to the bot
     public let query: String
 
+    /// Target chat from which to send the inline query
+    public let targetChat: TargetChat
+
 
     public init(
-        inCurrentChat: Bool,
-        query: String
+        query: String,
+        targetChat: TargetChat
     ) {
-        self.inCurrentChat = inCurrentChat
         self.query = query
+        self.targetChat = targetChat
     }
 }
 

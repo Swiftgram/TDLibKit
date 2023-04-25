@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -22,15 +22,20 @@ public struct ChatInviteLinkMember: Codable, Equatable {
     /// User identifier
     public let userId: Int64
 
+    /// True, if the user has joined the chat using an invite link for a chat folder
+    public let viaChatFolderInviteLink: Bool
+
 
     public init(
         approverUserId: Int64,
         joinedChatDate: Int,
-        userId: Int64
+        userId: Int64,
+        viaChatFolderInviteLink: Bool
     ) {
         self.approverUserId = approverUserId
         self.joinedChatDate = joinedChatDate
         self.userId = userId
+        self.viaChatFolderInviteLink = viaChatFolderInviteLink
     }
 }
 

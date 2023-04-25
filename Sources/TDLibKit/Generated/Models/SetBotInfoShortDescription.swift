@@ -3,15 +3,18 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
 
 
-/// Sets the text shown on the bot's profile page and sent together with the link when users share the bot; bots only
+/// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
 public struct SetBotInfoShortDescription: Codable, Equatable {
+
+    /// Identifier of the target bot
+    public let botUserId: Int64?
 
     /// A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
     public let languageCode: String?
@@ -21,9 +24,11 @@ public struct SetBotInfoShortDescription: Codable, Equatable {
 
 
     public init(
+        botUserId: Int64?,
         languageCode: String?,
         shortDescription: String?
     ) {
+        self.botUserId = botUserId
         self.languageCode = languageCode
         self.shortDescription = shortDescription
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
 public struct GetInlineQueryResults: Codable, Equatable {
 
-    /// The identifier of the target bot
+    /// Identifier of the target bot
     public let botUserId: Int64?
 
     /// Identifier of the chat where the query was sent

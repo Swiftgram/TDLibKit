@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -71,6 +71,9 @@ public struct UserTypeBot: Codable, Equatable {
     /// True, if the bot can be added to attachment menu
     public let canBeAddedToAttachmentMenu: Bool
 
+    /// True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription
+    public let canBeEdited: Bool
+
     /// True, if the bot can be invited to basic group and supergroup chats
     public let canJoinGroups: Bool
 
@@ -89,6 +92,7 @@ public struct UserTypeBot: Codable, Equatable {
 
     public init(
         canBeAddedToAttachmentMenu: Bool,
+        canBeEdited: Bool,
         canJoinGroups: Bool,
         canReadAllGroupMessages: Bool,
         inlineQueryPlaceholder: String,
@@ -96,6 +100,7 @@ public struct UserTypeBot: Codable, Equatable {
         needLocation: Bool
     ) {
         self.canBeAddedToAttachmentMenu = canBeAddedToAttachmentMenu
+        self.canBeEdited = canBeEdited
         self.canJoinGroups = canJoinGroups
         self.canReadAllGroupMessages = canReadAllGroupMessages
         self.inlineQueryPlaceholder = inlineQueryPlaceholder

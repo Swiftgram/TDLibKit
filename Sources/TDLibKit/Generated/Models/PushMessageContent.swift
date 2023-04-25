@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -79,6 +79,9 @@ public enum PushMessageContent: Codable, Equatable {
     /// A chat title was edited
     case pushMessageContentChatChangeTitle(PushMessageContentChatChangeTitle)
 
+    /// A chat background was edited
+    case pushMessageContentChatSetBackground(PushMessageContentChatSetBackground)
+
     /// A chat theme was edited
     case pushMessageContentChatSetTheme(PushMessageContentChatSetTheme)
 
@@ -127,6 +130,7 @@ public enum PushMessageContent: Codable, Equatable {
         case pushMessageContentChatAddMembers
         case pushMessageContentChatChangePhoto
         case pushMessageContentChatChangeTitle
+        case pushMessageContentChatSetBackground
         case pushMessageContentChatSetTheme
         case pushMessageContentChatDeleteMember
         case pushMessageContentChatJoinByLink
@@ -203,6 +207,9 @@ public enum PushMessageContent: Codable, Equatable {
         case .pushMessageContentChatChangeTitle:
             let value = try PushMessageContentChatChangeTitle(from: decoder)
             self = .pushMessageContentChatChangeTitle(value)
+        case .pushMessageContentChatSetBackground:
+            let value = try PushMessageContentChatSetBackground(from: decoder)
+            self = .pushMessageContentChatSetBackground(value)
         case .pushMessageContentChatSetTheme:
             let value = try PushMessageContentChatSetTheme(from: decoder)
             self = .pushMessageContentChatSetTheme(value)
@@ -291,6 +298,9 @@ public enum PushMessageContent: Codable, Equatable {
             try container.encode(Kind.pushMessageContentChatChangePhoto, forKey: .type)
         case .pushMessageContentChatChangeTitle(let value):
             try container.encode(Kind.pushMessageContentChatChangeTitle, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentChatSetBackground(let value):
+            try container.encode(Kind.pushMessageContentChatSetBackground, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentChatSetTheme(let value):
             try container.encode(Kind.pushMessageContentChatSetTheme, forKey: .type)
@@ -687,6 +697,18 @@ public struct PushMessageContentChatChangeTitle: Codable, Equatable {
 
     public init(title: String) {
         self.title = title
+    }
+}
+
+/// A chat background was edited
+public struct PushMessageContentChatSetBackground: Codable, Equatable {
+
+    /// True, if the set background is the same as the background of the current user
+    public let isSame: Bool
+
+
+    public init(isSame: Bool) {
+        self.isSame = isSame
     }
 }
 

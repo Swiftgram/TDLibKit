@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -547,9 +547,16 @@ public struct ChatEventMemberJoinedByInviteLink: Codable, Equatable {
     /// Invite link used to join the chat
     public let inviteLink: ChatInviteLink
 
+    /// True, if the user has joined the chat using an invite link for a chat folder
+    public let viaChatFolderInviteLink: Bool
 
-    public init(inviteLink: ChatInviteLink) {
+
+    public init(
+        inviteLink: ChatInviteLink,
+        viaChatFolderInviteLink: Bool
+    ) {
         self.inviteLink = inviteLink
+        self.viaChatFolderInviteLink = viaChatFolderInviteLink
     }
 }
 

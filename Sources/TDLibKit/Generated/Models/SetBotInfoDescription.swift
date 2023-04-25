@@ -3,15 +3,18 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
 
 
-/// Sets the text shown in the chat with the bot if the chat is empty; bots only
+/// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
 public struct SetBotInfoDescription: Codable, Equatable {
+
+    /// Identifier of the target bot
+    public let botUserId: Int64?
 
     public let description: String?
 
@@ -20,9 +23,11 @@ public struct SetBotInfoDescription: Codable, Equatable {
 
 
     public init(
+        botUserId: Int64?,
         description: String?,
         languageCode: String?
     ) {
+        self.botUserId = botUserId
         self.description = description
         self.languageCode = languageCode
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -37,6 +37,12 @@ public indirect enum InternalLinkType: Codable, Equatable {
     /// The link is a link to the change phone number section of the app
     case internalLinkTypeChangePhoneNumber
 
+    /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
+    case internalLinkTypeChatFolderInvite(InternalLinkTypeChatFolderInvite)
+
+    /// The link is a link to the folder section of the app settings
+    case internalLinkTypeChatFolderSettings
+
     /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
     case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
@@ -45,9 +51,6 @@ public indirect enum InternalLinkType: Codable, Equatable {
 
     /// The link is a link to the edit profile section of the app settings
     case internalLinkTypeEditProfileSettings
-
-    /// The link is a link to the filter section of the app settings
-    case internalLinkTypeFilterSettings
 
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
@@ -134,10 +137,11 @@ public indirect enum InternalLinkType: Codable, Equatable {
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
         case internalLinkTypeChangePhoneNumber
+        case internalLinkTypeChatFolderInvite
+        case internalLinkTypeChatFolderSettings
         case internalLinkTypeChatInvite
         case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
         case internalLinkTypeEditProfileSettings
-        case internalLinkTypeFilterSettings
         case internalLinkTypeGame
         case internalLinkTypeInstantView
         case internalLinkTypeInvoice
@@ -191,6 +195,11 @@ public indirect enum InternalLinkType: Codable, Equatable {
             self = .internalLinkTypeBotStartInGroup(value)
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
+        case .internalLinkTypeChatFolderInvite:
+            let value = try InternalLinkTypeChatFolderInvite(from: decoder)
+            self = .internalLinkTypeChatFolderInvite(value)
+        case .internalLinkTypeChatFolderSettings:
+            self = .internalLinkTypeChatFolderSettings
         case .internalLinkTypeChatInvite:
             let value = try InternalLinkTypeChatInvite(from: decoder)
             self = .internalLinkTypeChatInvite(value)
@@ -198,8 +207,6 @@ public indirect enum InternalLinkType: Codable, Equatable {
             self = .internalLinkTypeDefaultMessageAutoDeleteTimerSettings
         case .internalLinkTypeEditProfileSettings:
             self = .internalLinkTypeEditProfileSettings
-        case .internalLinkTypeFilterSettings:
-            self = .internalLinkTypeFilterSettings
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
@@ -296,6 +303,11 @@ public indirect enum InternalLinkType: Codable, Equatable {
             try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
+        case .internalLinkTypeChatFolderInvite(let value):
+            try container.encode(Kind.internalLinkTypeChatFolderInvite, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeChatFolderSettings:
+            try container.encode(Kind.internalLinkTypeChatFolderSettings, forKey: .type)
         case .internalLinkTypeChatInvite(let value):
             try container.encode(Kind.internalLinkTypeChatInvite, forKey: .type)
             try value.encode(to: encoder)
@@ -303,8 +315,6 @@ public indirect enum InternalLinkType: Codable, Equatable {
             try container.encode(Kind.internalLinkTypeDefaultMessageAutoDeleteTimerSettings, forKey: .type)
         case .internalLinkTypeEditProfileSettings:
             try container.encode(Kind.internalLinkTypeEditProfileSettings, forKey: .type)
-        case .internalLinkTypeFilterSettings:
-            try container.encode(Kind.internalLinkTypeFilterSettings, forKey: .type)
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
             try value.encode(to: encoder)
@@ -489,6 +499,18 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable {
         self.administratorRights = administratorRights
         self.botUsername = botUsername
         self.startParameter = startParameter
+    }
+}
+
+/// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
+public struct InternalLinkTypeChatFolderInvite: Codable, Equatable {
+
+    /// Internal representation of the invite link
+    public let inviteLink: String
+
+
+    public init(inviteLink: String) {
+        self.inviteLink = inviteLink
     }
 }
 

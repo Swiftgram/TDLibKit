@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -100,6 +100,9 @@ public enum Update: Codable, Equatable {
     /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     case updateChatReplyMarkup(UpdateChatReplyMarkup)
 
+    /// The chat background was changed
+    case updateChatBackground(UpdateChatBackground)
+
     /// The chat theme was changed
     case updateChatTheme(UpdateChatTheme)
 
@@ -130,8 +133,8 @@ public enum Update: Codable, Equatable {
     /// A chat's has_scheduled_messages field has changed
     case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
 
-    /// The list of chat filters or a chat filter has changed
-    case updateChatFilters(UpdateChatFilters)
+    /// The list of chat folders or a chat folder has changed
+    case updateChatFolders(UpdateChatFolders)
 
     /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
@@ -368,6 +371,7 @@ public enum Update: Codable, Equatable {
         case updateChatNotificationSettings
         case updateChatPendingJoinRequests
         case updateChatReplyMarkup
+        case updateChatBackground
         case updateChatTheme
         case updateChatUnreadMentionCount
         case updateChatUnreadReactionCount
@@ -378,7 +382,7 @@ public enum Update: Codable, Equatable {
         case updateChatIsMarkedAsUnread
         case updateChatIsBlocked
         case updateChatHasScheduledMessages
-        case updateChatFilters
+        case updateChatFolders
         case updateChatOnlineMemberCount
         case updateForumTopicInfo
         case updateScopeNotificationSettings
@@ -540,6 +544,9 @@ public enum Update: Codable, Equatable {
         case .updateChatReplyMarkup:
             let value = try UpdateChatReplyMarkup(from: decoder)
             self = .updateChatReplyMarkup(value)
+        case .updateChatBackground:
+            let value = try UpdateChatBackground(from: decoder)
+            self = .updateChatBackground(value)
         case .updateChatTheme:
             let value = try UpdateChatTheme(from: decoder)
             self = .updateChatTheme(value)
@@ -570,9 +577,9 @@ public enum Update: Codable, Equatable {
         case .updateChatHasScheduledMessages:
             let value = try UpdateChatHasScheduledMessages(from: decoder)
             self = .updateChatHasScheduledMessages(value)
-        case .updateChatFilters:
-            let value = try UpdateChatFilters(from: decoder)
-            self = .updateChatFilters(value)
+        case .updateChatFolders:
+            let value = try UpdateChatFolders(from: decoder)
+            self = .updateChatFolders(value)
         case .updateChatOnlineMemberCount:
             let value = try UpdateChatOnlineMemberCount(from: decoder)
             self = .updateChatOnlineMemberCount(value)
@@ -870,6 +877,9 @@ public enum Update: Codable, Equatable {
         case .updateChatReplyMarkup(let value):
             try container.encode(Kind.updateChatReplyMarkup, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatBackground(let value):
+            try container.encode(Kind.updateChatBackground, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatTheme(let value):
             try container.encode(Kind.updateChatTheme, forKey: .type)
             try value.encode(to: encoder)
@@ -900,8 +910,8 @@ public enum Update: Codable, Equatable {
         case .updateChatHasScheduledMessages(let value):
             try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatFilters(let value):
-            try container.encode(Kind.updateChatFilters, forKey: .type)
+        case .updateChatFolders(let value):
+            try container.encode(Kind.updateChatFolders, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatOnlineMemberCount(let value):
             try container.encode(Kind.updateChatOnlineMemberCount, forKey: .type)
@@ -1706,6 +1716,25 @@ public struct UpdateChatReplyMarkup: Codable, Equatable {
     }
 }
 
+/// The chat background was changed
+public struct UpdateChatBackground: Codable, Equatable {
+
+    /// The new chat background; may be null if background was reset to default
+    public let background: ChatBackground?
+
+    /// Chat identifier
+    public let chatId: Int64
+
+
+    public init(
+        background: ChatBackground?,
+        chatId: Int64
+    ) {
+        self.background = background
+        self.chatId = chatId
+    }
+}
+
 /// The chat theme was changed
 public struct UpdateChatTheme: Codable, Equatable {
 
@@ -1896,21 +1925,21 @@ public struct UpdateChatHasScheduledMessages: Codable, Equatable {
     }
 }
 
-/// The list of chat filters or a chat filter has changed
-public struct UpdateChatFilters: Codable, Equatable {
+/// The list of chat folders or a chat folder has changed
+public struct UpdateChatFolders: Codable, Equatable {
 
-    /// The new list of chat filters
-    public let chatFilters: [ChatFilterInfo]
+    /// The new list of chat folders
+    public let chatFolders: [ChatFolderInfo]
 
-    /// Position of the main chat list among chat filters, 0-based
+    /// Position of the main chat list among chat folders, 0-based
     public let mainChatListPosition: Int
 
 
     public init(
-        chatFilters: [ChatFilterInfo],
+        chatFolders: [ChatFolderInfo],
         mainChatListPosition: Int
     ) {
-        self.chatFilters = chatFilters
+        self.chatFolders = chatFolders
         self.mainChatListPosition = mainChatListPosition
     }
 }
@@ -3254,6 +3283,9 @@ public struct UpdateChatMember: Codable, Equatable {
     /// Previous chat member
     public let oldChatMember: ChatMember
 
+    /// True, if the user has joined the chat using an invite link for a chat folder
+    public let viaChatFolderInviteLink: Bool
+
 
     public init(
         actorUserId: Int64,
@@ -3261,7 +3293,8 @@ public struct UpdateChatMember: Codable, Equatable {
         date: Int,
         inviteLink: ChatInviteLink?,
         newChatMember: ChatMember,
-        oldChatMember: ChatMember
+        oldChatMember: ChatMember,
+        viaChatFolderInviteLink: Bool
     ) {
         self.actorUserId = actorUserId
         self.chatId = chatId
@@ -3269,6 +3302,7 @@ public struct UpdateChatMember: Codable, Equatable {
         self.inviteLink = inviteLink
         self.newChatMember = newChatMember
         self.oldChatMember = oldChatMember
+        self.viaChatFolderInviteLink = viaChatFolderInviteLink
     }
 }
 

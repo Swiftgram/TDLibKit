@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -1189,10 +1189,10 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// - Returns: Information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1205,10 +1205,10 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+    /// - Returns: Information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -5255,7 +5255,7 @@ public final class TdApi {
     }
 
     /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
-    /// - Parameter botUserId: The identifier of the target bot
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat where the query was sent
     /// - Parameter offset: Offset of the first entry to return
     /// - Parameter query: Text of the query
@@ -5280,7 +5280,7 @@ public final class TdApi {
     }
 
     /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
-    /// - Parameter botUserId: The identifier of the target bot
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat where the query was sent
     /// - Parameter offset: Offset of the first entry to return
     /// - Parameter query: Text of the query
@@ -5499,7 +5499,7 @@ public final class TdApi {
     /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the Web App
-    /// - Parameter data: Received data
+    /// - Parameter data: The data
     public func sendWebAppData(
         botUserId: Int64?,
         buttonText: String?,
@@ -5517,7 +5517,7 @@ public final class TdApi {
     /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the Web App
-    /// - Parameter data: Received data
+    /// - Parameter data: The data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendWebAppData(
         botUserId: Int64?,
@@ -6718,173 +6718,469 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Returns information about a chat filter by its identifier
-    /// - Parameter chatFilterId: Chat filter identifier
-    /// - Returns: Information about a chat filter by its identifier
-    public func getChatFilter(
-        chatFilterId: Int?,
-        completion: @escaping (Result<ChatFilter, Swift.Error>) -> Void
+    /// Returns information about a chat folder by its identifier
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Information about a chat folder by its identifier
+    public func getChatFolder(
+        chatFolderId: Int?,
+        completion: @escaping (Result<ChatFolder, Swift.Error>) -> Void
     ) throws {
-        let query = GetChatFilter(
-            chatFilterId: chatFilterId
+        let query = GetChatFolder(
+            chatFolderId: chatFolderId
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns information about a chat filter by its identifier
-    /// - Parameter chatFilterId: Chat filter identifier
-    /// - Returns: Information about a chat filter by its identifier
+    /// Returns information about a chat folder by its identifier
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Information about a chat folder by its identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatFilter(chatFilterId: Int?) async throws -> ChatFilter {
-        let query = GetChatFilter(
-            chatFilterId: chatFilterId
+    public func getChatFolder(chatFolderId: Int?) async throws -> ChatFolder {
+        let query = GetChatFolder(
+            chatFolderId: chatFolderId
         )
         return try await execute(query: query)
     }
 
-    /// Creates new chat filter. Returns information about the created chat filter. There can be up to getOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
-    /// - Parameter filter: Chat filter
-    /// - Returns: Information about the created chat filter
-    public func createChatFilter(
-        filter: ChatFilter?,
-        completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> Void
+    /// Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
+    /// - Parameter folder: The new chat folder
+    /// - Returns: Information about the created chat folder
+    public func createChatFolder(
+        folder: ChatFolder?,
+        completion: @escaping (Result<ChatFolderInfo, Swift.Error>) -> Void
     ) throws {
-        let query = CreateChatFilter(
-            filter: filter
+        let query = CreateChatFolder(
+            folder: folder
         )
         execute(query: query, completion: completion)
     }
 
-    /// Creates new chat filter. Returns information about the created chat filter. There can be up to getOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
-    /// - Parameter filter: Chat filter
-    /// - Returns: Information about the created chat filter
+    /// Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
+    /// - Parameter folder: The new chat folder
+    /// - Returns: Information about the created chat folder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func createChatFilter(filter: ChatFilter?) async throws -> ChatFilterInfo {
-        let query = CreateChatFilter(
-            filter: filter
+    public func createChatFolder(folder: ChatFolder?) async throws -> ChatFolderInfo {
+        let query = CreateChatFolder(
+            folder: folder
         )
         return try await execute(query: query)
     }
 
-    /// Edits existing chat filter. Returns information about the edited chat filter
-    /// - Parameter chatFilterId: Chat filter identifier
-    /// - Parameter filter: The edited chat filter
-    /// - Returns: Information about the edited chat filter
-    public func editChatFilter(
-        chatFilterId: Int?,
-        filter: ChatFilter?,
-        completion: @escaping (Result<ChatFilterInfo, Swift.Error>) -> Void
+    /// Edits existing chat folder. Returns information about the edited chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter folder: The edited chat folder
+    /// - Returns: Information about the edited chat folder
+    public func editChatFolder(
+        chatFolderId: Int?,
+        folder: ChatFolder?,
+        completion: @escaping (Result<ChatFolderInfo, Swift.Error>) -> Void
     ) throws {
-        let query = EditChatFilter(
-            chatFilterId: chatFilterId,
-            filter: filter
+        let query = EditChatFolder(
+            chatFolderId: chatFolderId,
+            folder: folder
         )
         execute(query: query, completion: completion)
     }
 
-    /// Edits existing chat filter. Returns information about the edited chat filter
-    /// - Parameter chatFilterId: Chat filter identifier
-    /// - Parameter filter: The edited chat filter
-    /// - Returns: Information about the edited chat filter
+    /// Edits existing chat folder. Returns information about the edited chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter folder: The edited chat folder
+    /// - Returns: Information about the edited chat folder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func editChatFilter(
-        chatFilterId: Int?,
-        filter: ChatFilter?
-    ) async throws -> ChatFilterInfo {
-        let query = EditChatFilter(
-            chatFilterId: chatFilterId,
-            filter: filter
+    public func editChatFolder(
+        chatFolderId: Int?,
+        folder: ChatFolder?
+    ) async throws -> ChatFolderInfo {
+        let query = EditChatFolder(
+            chatFolderId: chatFolderId,
+            folder: folder
         )
         return try await execute(query: query)
     }
 
-    /// Deletes existing chat filter
-    /// - Parameter chatFilterId: Chat filter identifier
-    public func deleteChatFilter(
-        chatFilterId: Int?,
+    /// Deletes existing chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter leaveChatIds: Identifiers of the chats to leave. The chats must be pinned or always included in the folder
+    public func deleteChatFolder(
+        chatFolderId: Int?,
+        leaveChatIds: [Int64]?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = DeleteChatFilter(
-            chatFilterId: chatFilterId
+        let query = DeleteChatFolder(
+            chatFolderId: chatFolderId,
+            leaveChatIds: leaveChatIds
         )
         execute(query: query, completion: completion)
     }
 
-    /// Deletes existing chat filter
-    /// - Parameter chatFilterId: Chat filter identifier
+    /// Deletes existing chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter leaveChatIds: Identifiers of the chats to leave. The chats must be pinned or always included in the folder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func deleteChatFilter(chatFilterId: Int?) async throws -> Ok {
-        let query = DeleteChatFilter(
-            chatFilterId: chatFilterId
+    public func deleteChatFolder(
+        chatFolderId: Int?,
+        leaveChatIds: [Int64]?
+    ) async throws -> Ok {
+        let query = DeleteChatFolder(
+            chatFolderId: chatFolderId,
+            leaveChatIds: leaveChatIds
         )
         return try await execute(query: query)
     }
 
-    /// Changes the order of chat filters
-    /// - Parameter chatFilterIds: Identifiers of chat filters in the new correct order
-    /// - Parameter mainChatListPosition: Position of the main chat list among chat filters, 0-based. Can be non-zero only for Premium users
-    public func reorderChatFilters(
-        chatFilterIds: [Int]?,
+    /// Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+    public func getChatFolderChatsToLeave(
+        chatFolderId: Int?,
+        completion: @escaping (Result<Chats, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatFolderChatsToLeave(
+            chatFolderId: chatFolderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatFolderChatsToLeave(chatFolderId: Int?) async throws -> Chats {
+        let query = GetChatFolderChatsToLeave(
+            chatFolderId: chatFolderId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the order of chat folders
+    /// - Parameter chatFolderIds: Identifiers of chat folders in the new correct order
+    /// - Parameter mainChatListPosition: Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
+    public func reorderChatFolders(
+        chatFolderIds: [Int]?,
         mainChatListPosition: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ReorderChatFilters(
-            chatFilterIds: chatFilterIds,
+        let query = ReorderChatFolders(
+            chatFolderIds: chatFolderIds,
             mainChatListPosition: mainChatListPosition
         )
         execute(query: query, completion: completion)
     }
 
-    /// Changes the order of chat filters
-    /// - Parameter chatFilterIds: Identifiers of chat filters in the new correct order
-    /// - Parameter mainChatListPosition: Position of the main chat list among chat filters, 0-based. Can be non-zero only for Premium users
+    /// Changes the order of chat folders
+    /// - Parameter chatFolderIds: Identifiers of chat folders in the new correct order
+    /// - Parameter mainChatListPosition: Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func reorderChatFilters(
-        chatFilterIds: [Int]?,
+    public func reorderChatFolders(
+        chatFolderIds: [Int]?,
         mainChatListPosition: Int?
     ) async throws -> Ok {
-        let query = ReorderChatFilters(
-            chatFilterIds: chatFilterIds,
+        let query = ReorderChatFolders(
+            chatFolderIds: chatFolderIds,
             mainChatListPosition: mainChatListPosition
         )
         return try await execute(query: query)
     }
 
-    /// Returns recommended chat filters for the current user
-    /// - Returns: Recommended chat filters for the current user
-    public func getRecommendedChatFilters(completion: @escaping (Result<RecommendedChatFilters, Swift.Error>) -> Void) throws {
-        let query = GetRecommendedChatFilters()
+    /// Returns recommended chat folders for the current user
+    /// - Returns: Recommended chat folders for the current user
+    public func getRecommendedChatFolders(completion: @escaping (Result<RecommendedChatFolders, Swift.Error>) -> Void) throws {
+        let query = GetRecommendedChatFolders()
         execute(query: query, completion: completion)
     }
 
-    /// Returns recommended chat filters for the current user
-    /// - Returns: Recommended chat filters for the current user
+    /// Returns recommended chat folders for the current user
+    /// - Returns: Recommended chat folders for the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getRecommendedChatFilters() async throws -> RecommendedChatFilters {
-        let query = GetRecommendedChatFilters()
+    public func getRecommendedChatFolders() async throws -> RecommendedChatFolders {
+        let query = GetRecommendedChatFolders()
         return try await execute(query: query)
     }
 
-    /// Returns default icon name for a filter. Can be called synchronously
-    /// - Parameter filter: Chat filter
-    /// - Returns: Default icon name for a filter
-    public func getChatFilterDefaultIconName(
-        filter: ChatFilter?,
-        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    /// Returns default icon name for a folder. Can be called synchronously
+    /// - Parameter folder: Chat folder
+    /// - Returns: Default icon name for a folder
+    public func getChatFolderDefaultIconName(
+        folder: ChatFolder?,
+        completion: @escaping (Result<ChatFolderIcon, Swift.Error>) -> Void
     ) throws {
-        let query = GetChatFilterDefaultIconName(
-            filter: filter
+        let query = GetChatFolderDefaultIconName(
+            folder: folder
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns default icon name for a filter. Can be called synchronously
-    /// - Parameter filter: Chat filter
-    /// - Returns: Default icon name for a filter
+    /// Returns default icon name for a folder. Can be called synchronously
+    /// - Parameter folder: Chat folder
+    /// - Returns: Default icon name for a folder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatFilterDefaultIconName(filter: ChatFilter?) async throws -> Text {
-        let query = GetChatFilterDefaultIconName(
-            filter: filter
+    public func getChatFolderDefaultIconName(folder: ChatFolder?) async throws -> ChatFolderIcon {
+        let query = GetChatFolderDefaultIconName(
+            folder: folder
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+    public func getChatsForChatFolderInviteLink(
+        chatFolderId: Int?,
+        completion: @escaping (Result<Chats, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatsForChatFolderInviteLink(
+            chatFolderId: chatFolderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatsForChatFolderInviteLink(chatFolderId: Int?) async throws -> Chats {
+        let query = GetChatsForChatFolderInviteLink(
+            chatFolderId: chatFolderId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter chatIds: Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
+    /// - Parameter name: Name of the link; 0-32 characters
+    public func createChatFolderInviteLink(
+        chatFolderId: Int?,
+        chatIds: [Int64]?,
+        name: String?,
+        completion: @escaping (Result<ChatFolderInviteLink, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateChatFolderInviteLink(
+            chatFolderId: chatFolderId,
+            chatIds: chatIds,
+            name: name
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter chatIds: Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
+    /// - Parameter name: Name of the link; 0-32 characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createChatFolderInviteLink(
+        chatFolderId: Int?,
+        chatIds: [Int64]?,
+        name: String?
+    ) async throws -> ChatFolderInviteLink {
+        let query = CreateChatFolderInviteLink(
+            chatFolderId: chatFolderId,
+            chatIds: chatIds,
+            name: name
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns invite links created by the current user for a shareable chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Invite links created by the current user for a shareable chat folder
+    public func getChatFolderInviteLinks(
+        chatFolderId: Int?,
+        completion: @escaping (Result<ChatFolderInviteLinks, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatFolderInviteLinks(
+            chatFolderId: chatFolderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns invite links created by the current user for a shareable chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: Invite links created by the current user for a shareable chat folder
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatFolderInviteLinks(chatFolderId: Int?) async throws -> ChatFolderInviteLinks {
+        let query = GetChatFolderInviteLinks(
+            chatFolderId: chatFolderId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Edits an invite link for a chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter chatIds: New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
+    /// - Parameter inviteLink: Invite link to be edited
+    /// - Parameter name: New name of the link; 0-32 characters
+    public func editChatFolderInviteLink(
+        chatFolderId: Int?,
+        chatIds: [Int64]?,
+        inviteLink: String?,
+        name: String?,
+        completion: @escaping (Result<ChatFolderInviteLink, Swift.Error>) -> Void
+    ) throws {
+        let query = EditChatFolderInviteLink(
+            chatFolderId: chatFolderId,
+            chatIds: chatIds,
+            inviteLink: inviteLink,
+            name: name
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Edits an invite link for a chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter chatIds: New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
+    /// - Parameter inviteLink: Invite link to be edited
+    /// - Parameter name: New name of the link; 0-32 characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editChatFolderInviteLink(
+        chatFolderId: Int?,
+        chatIds: [Int64]?,
+        inviteLink: String?,
+        name: String?
+    ) async throws -> ChatFolderInviteLink {
+        let query = EditChatFolderInviteLink(
+            chatFolderId: chatFolderId,
+            chatIds: chatIds,
+            inviteLink: inviteLink,
+            name: name
+        )
+        return try await execute(query: query)
+    }
+
+    /// Deletes an invite link for a chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter inviteLink: Invite link to be deleted
+    public func deleteChatFolderInviteLink(
+        chatFolderId: Int?,
+        inviteLink: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteChatFolderInviteLink(
+            chatFolderId: chatFolderId,
+            inviteLink: inviteLink
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Deletes an invite link for a chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Parameter inviteLink: Invite link to be deleted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func deleteChatFolderInviteLink(
+        chatFolderId: Int?,
+        inviteLink: String?
+    ) async throws -> Ok {
+        let query = DeleteChatFolderInviteLink(
+            chatFolderId: chatFolderId,
+            inviteLink: inviteLink
+        )
+        return try await execute(query: query)
+    }
+
+    /// Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
+    /// - Parameter inviteLink: Invite link to be checked
+    /// - Returns: Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
+    public func checkChatFolderInviteLink(
+        inviteLink: String?,
+        completion: @escaping (Result<ChatFolderInviteLinkInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckChatFolderInviteLink(
+            inviteLink: inviteLink
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
+    /// - Parameter inviteLink: Invite link to be checked
+    /// - Returns: Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func checkChatFolderInviteLink(inviteLink: String?) async throws -> ChatFolderInviteLinkInfo {
+        let query = CheckChatFolderInviteLink(
+            inviteLink: inviteLink
+        )
+        return try await execute(query: query)
+    }
+
+    /// Adds a chat folder by an invite link
+    /// - Parameter chatIds: Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
+    /// - Parameter inviteLink: Invite link for the chat folder
+    public func addChatFolderByInviteLink(
+        chatIds: [Int64]?,
+        inviteLink: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddChatFolderByInviteLink(
+            chatIds: chatIds,
+            inviteLink: inviteLink
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Adds a chat folder by an invite link
+    /// - Parameter chatIds: Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
+    /// - Parameter inviteLink: Invite link for the chat folder
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addChatFolderByInviteLink(
+        chatIds: [Int64]?,
+        inviteLink: String?
+    ) async throws -> Ok {
+        let query = AddChatFolderByInviteLink(
+            chatIds: chatIds,
+            inviteLink: inviteLink
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: New chats added to a shareable chat folder by its owner
+    public func getChatFolderNewChats(
+        chatFolderId: Int?,
+        completion: @escaping (Result<Chats, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatFolderNewChats(
+            chatFolderId: chatFolderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
+    /// - Parameter chatFolderId: Chat folder identifier
+    /// - Returns: New chats added to a shareable chat folder by its owner
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatFolderNewChats(chatFolderId: Int?) async throws -> Chats {
+        let query = GetChatFolderNewChats(
+            chatFolderId: chatFolderId
+        )
+        return try await execute(query: query)
+    }
+
+    /// Process new chats added to a shareable chat folder by its owner
+    /// - Parameter addedChatIds: Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
+    /// - Parameter chatFolderId: Chat folder identifier
+    public func processChatFolderNewChats(
+        addedChatIds: [Int64]?,
+        chatFolderId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ProcessChatFolderNewChats(
+            addedChatIds: addedChatIds,
+            chatFolderId: chatFolderId
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Process new chats added to a shareable chat folder by its owner
+    /// - Parameter addedChatIds: Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
+    /// - Parameter chatFolderId: Chat folder identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func processChatFolderNewChats(
+        addedChatIds: [Int64]?,
+        chatFolderId: Int?
+    ) async throws -> Ok {
+        let query = ProcessChatFolderNewChats(
+            addedChatIds: addedChatIds,
+            chatFolderId: chatFolderId
         )
         return try await execute(query: query)
     }
@@ -7005,6 +7301,48 @@ public final class TdApi {
         let query = SetChatPermissions(
             chatId: chatId,
             permissions: permissions
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
+    /// - Parameter background: The input background to use; pass null to create a new filled background or to remove the current background
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100
+    /// - Parameter type: Background type; pass null to remove the current background
+    public func setChatBackground(
+        background: InputBackground?,
+        chatId: Int64?,
+        darkThemeDimming: Int?,
+        type: BackgroundType?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatBackground(
+            background: background,
+            chatId: chatId,
+            darkThemeDimming: darkThemeDimming,
+            type: type
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
+    /// - Parameter background: The input background to use; pass null to create a new filled background or to remove the current background
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100
+    /// - Parameter type: Background type; pass null to remove the current background
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setChatBackground(
+        background: InputBackground?,
+        chatId: Int64?,
+        darkThemeDimming: Int?,
+        type: BackgroundType?
+    ) async throws -> Ok {
+        let query = SetChatBackground(
+            background: background,
+            chatId: chatId,
+            darkThemeDimming: darkThemeDimming,
+            type: type
         )
         return try await execute(query: query)
     }
@@ -8133,6 +8471,28 @@ public final class TdApi {
     ) async throws -> Ok {
         let query = SetPinnedChats(
             chatIds: chatIds,
+            chatList: chatList
+        )
+        return try await execute(query: query)
+    }
+
+    /// Traverse all chats in a chat list and marks all messages in the chats as read
+    /// - Parameter chatList: Chat list in which to mark all chats as read
+    public func readChatList(
+        chatList: ChatList?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadChatList(
+            chatList: chatList
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Traverse all chats in a chat list and marks all messages in the chats as read
+    /// - Parameter chatList: Chat list in which to mark all chats as read
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func readChatList(chatList: ChatList?) async throws -> Ok {
+        let query = ReadChatList(
             chatList: chatList
         )
         return try await execute(query: query)
@@ -12530,109 +12890,303 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Sets the text shown in the chat with the bot if the chat is empty; bots only
+    /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter name: New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
+    public func setBotName(
+        botUserId: Int64?,
+        languageCode: String?,
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBotName(
+            botUserId: botUserId,
+            languageCode: languageCode,
+            name: name
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter name: New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setBotName(
+        botUserId: Int64?,
+        languageCode: String?,
+        name: String?
+    ) async throws -> Ok {
+        let query = SetBotName(
+            botUserId: botUserId,
+            languageCode: languageCode,
+            name: name
+        )
+        return try await execute(query: query)
+    }
+
+    /// Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
+    /// - Returns: The name of a bot in the given language
+    public func getBotName(
+        botUserId: Int64?,
+        languageCode: String?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotName(
+            botUserId: botUserId,
+            languageCode: languageCode
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
+    /// - Returns: The name of a bot in the given language
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getBotName(
+        botUserId: Int64?,
+        languageCode: String?
+    ) async throws -> Text {
+        let query = GetBotName(
+            botUserId: botUserId,
+            languageCode: languageCode
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes a profile photo for a bot
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter photo: Profile photo to set; pass null to delete the chat photo
+    public func setBotProfilePhoto(
+        botUserId: Int64?,
+        photo: InputChatPhoto?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBotProfilePhoto(
+            botUserId: botUserId,
+            photo: photo
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes a profile photo for a bot
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter photo: Profile photo to set; pass null to delete the chat photo
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setBotProfilePhoto(
+        botUserId: Int64?,
+        photo: InputChatPhoto?
+    ) async throws -> Ok {
+        let query = SetBotProfilePhoto(
+            botUserId: botUserId,
+            photo: photo
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter isActive: Pass true to activate the username; pass false to disable it
+    /// - Parameter username: The username to change
+    /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    public func toggleBotUsernameIsActive(
+        botUserId: Int64?,
+        isActive: Bool?,
+        username: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleBotUsernameIsActive(
+            botUserId: botUserId,
+            isActive: isActive,
+            username: username
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter isActive: Pass true to activate the username; pass false to disable it
+    /// - Parameter username: The username to change
+    /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func toggleBotUsernameIsActive(
+        botUserId: Int64?,
+        isActive: Bool?,
+        username: String?
+    ) async throws -> Ok {
+        let query = ToggleBotUsernameIsActive(
+            botUserId: botUserId,
+            isActive: isActive,
+            username: username
+        )
+        return try await execute(query: query)
+    }
+
+    /// Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
+    public func reorderActiveBotUsernames(
+        botUserId: Int64?,
+        usernames: [String]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderActiveBotUsernames(
+            botUserId: botUserId,
+            usernames: usernames
+        )
+        execute(query: query, completion: completion)
+    }
+
+    /// Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reorderActiveBotUsernames(
+        botUserId: Int64?,
+        usernames: [String]?
+    ) async throws -> Ok {
+        let query = ReorderActiveBotUsernames(
+            botUserId: botUserId,
+            usernames: usernames
+        )
+        return try await execute(query: query)
+    }
+
+    /// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter description: 
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
     public func setBotInfoDescription(
+        botUserId: Int64?,
         description: String?,
         languageCode: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetBotInfoDescription(
+            botUserId: botUserId,
             description: description,
             languageCode: languageCode
         )
         execute(query: query, completion: completion)
     }
 
-    /// Sets the text shown in the chat with the bot if the chat is empty; bots only
+    /// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter description: 
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBotInfoDescription(
+        botUserId: Int64?,
         description: String?,
         languageCode: String?
     ) async throws -> Ok {
         let query = SetBotInfoDescription(
+            botUserId: botUserId,
             description: description,
             languageCode: languageCode
         )
         return try await execute(query: query)
     }
 
-    /// Returns the text shown in the chat with the bot if the chat is empty in the given language; bots only
+    /// Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
-    /// - Returns: The text shown in the chat with the bot if the chat is empty in the given language
+    /// - Returns: The text shown in the chat with a bot if the chat is empty in the given language
     public func getBotInfoDescription(
+        botUserId: Int64?,
         languageCode: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetBotInfoDescription(
+            botUserId: botUserId,
             languageCode: languageCode
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns the text shown in the chat with the bot if the chat is empty in the given language; bots only
+    /// Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
-    /// - Returns: The text shown in the chat with the bot if the chat is empty in the given language
+    /// - Returns: The text shown in the chat with a bot if the chat is empty in the given language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getBotInfoDescription(languageCode: String?) async throws -> Text {
+    public func getBotInfoDescription(
+        botUserId: Int64?,
+        languageCode: String?
+    ) async throws -> Text {
         let query = GetBotInfoDescription(
+            botUserId: botUserId,
             languageCode: languageCode
         )
         return try await execute(query: query)
     }
 
-    /// Sets the text shown on the bot's profile page and sent together with the link when users share the bot; bots only
+    /// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
     /// - Parameter shortDescription: New bot's short description on the specified language
     public func setBotInfoShortDescription(
+        botUserId: Int64?,
         languageCode: String?,
         shortDescription: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetBotInfoShortDescription(
+            botUserId: botUserId,
             languageCode: languageCode,
             shortDescription: shortDescription
         )
         execute(query: query, completion: completion)
     }
 
-    /// Sets the text shown on the bot's profile page and sent together with the link when users share the bot; bots only
+    /// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
     /// - Parameter shortDescription: New bot's short description on the specified language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBotInfoShortDescription(
+        botUserId: Int64?,
         languageCode: String?,
         shortDescription: String?
     ) async throws -> Ok {
         let query = SetBotInfoShortDescription(
+            botUserId: botUserId,
             languageCode: languageCode,
             shortDescription: shortDescription
         )
         return try await execute(query: query)
     }
 
-    /// Returns the text shown on the bot's profile page and sent together with the link when users share the bot in the given language; bots only
+    /// Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
-    /// - Returns: The text shown on the bot's profile page and sent together with the link when users share the bot in the given language
+    /// - Returns: The text shown on a bot's profile page and sent together with the link when users share the bot in the given language
     public func getBotInfoShortDescription(
+        botUserId: Int64?,
         languageCode: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
         let query = GetBotInfoShortDescription(
+            botUserId: botUserId,
             languageCode: languageCode
         )
         execute(query: query, completion: completion)
     }
 
-    /// Returns the text shown on the bot's profile page and sent together with the link when users share the bot in the given language; bots only
+    /// Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
-    /// - Returns: The text shown on the bot's profile page and sent together with the link when users share the bot in the given language
+    /// - Returns: The text shown on a bot's profile page and sent together with the link when users share the bot in the given language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getBotInfoShortDescription(languageCode: String?) async throws -> Text {
+    public func getBotInfoShortDescription(
+        botUserId: Int64?,
+        languageCode: String?
+    ) async throws -> Text {
         let query = GetBotInfoShortDescription(
+            botUserId: botUserId,
             languageCode: languageCode
         )
         return try await execute(query: query)
@@ -13695,7 +14249,7 @@ public final class TdApi {
     }
 
     /// Changes the background selected by the user; adds background to the list of installed backgrounds
-    /// - Parameter background: The input background to use; pass null to create a new filled backgrounds or to remove the current background
+    /// - Parameter background: The input background to use; pass null to create a new filled background or to remove the current background
     /// - Parameter forDarkTheme: Pass true if the background is changed for a dark theme
     /// - Parameter type: Background type; pass null to use the default type of the remote background or to remove the current background
     public func setBackground(
@@ -13713,7 +14267,7 @@ public final class TdApi {
     }
 
     /// Changes the background selected by the user; adds background to the list of installed backgrounds
-    /// - Parameter background: The input background to use; pass null to create a new filled backgrounds or to remove the current background
+    /// - Parameter background: The input background to use; pass null to create a new filled background or to remove the current background
     /// - Parameter forDarkTheme: Pass true if the background is changed for a dark theme
     /// - Parameter type: Background type; pass null to use the default type of the remote background or to remove the current background
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

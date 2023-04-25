@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -19,14 +19,14 @@ public enum ChatList: Codable, Equatable {
     /// A list of chats usually located at the top of the main chat list. Unmuted chats are automatically moved from the Archive to the Main chat list when a new message arrives
     case chatListArchive
 
-    /// A list of chats belonging to a chat filter
-    case chatListFilter(ChatListFilter)
+    /// A list of chats added to a chat folder
+    case chatListFolder(ChatListFolder)
 
 
     private enum Kind: String, Codable {
         case chatListMain
         case chatListArchive
-        case chatListFilter
+        case chatListFolder
     }
 
     public init(from decoder: Decoder) throws {
@@ -37,9 +37,9 @@ public enum ChatList: Codable, Equatable {
             self = .chatListMain
         case .chatListArchive:
             self = .chatListArchive
-        case .chatListFilter:
-            let value = try ChatListFilter(from: decoder)
-            self = .chatListFilter(value)
+        case .chatListFolder:
+            let value = try ChatListFolder(from: decoder)
+            self = .chatListFolder(value)
         }
     }
 
@@ -50,22 +50,22 @@ public enum ChatList: Codable, Equatable {
             try container.encode(Kind.chatListMain, forKey: .type)
         case .chatListArchive:
             try container.encode(Kind.chatListArchive, forKey: .type)
-        case .chatListFilter(let value):
-            try container.encode(Kind.chatListFilter, forKey: .type)
+        case .chatListFolder(let value):
+            try container.encode(Kind.chatListFolder, forKey: .type)
             try value.encode(to: encoder)
         }
     }
 }
 
-/// A list of chats belonging to a chat filter
-public struct ChatListFilter: Codable, Equatable {
+/// A list of chats added to a chat folder
+public struct ChatListFolder: Codable, Equatable {
 
-    /// Chat filter identifier
-    public let chatFilterId: Int
+    /// Chat folder identifier
+    public let chatFolderId: Int
 
 
-    public init(chatFilterId: Int) {
-        self.chatFilterId = chatFilterId
+    public init(chatFolderId: Int) {
+        self.chatFolderId = chatFolderId
     }
 }
 

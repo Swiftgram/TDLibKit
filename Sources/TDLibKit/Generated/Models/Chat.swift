@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct Chat: Codable, Equatable {
 
     /// Types of reaction, available in the chat
     public let availableReactions: ChatAvailableReactions
+
+    /// Background set for the chat; may be null if none
+    public let background: ChatBackground?
 
     /// True, if the chat messages can be deleted for all users
     public let canBeDeletedForAllUsers: Bool
@@ -113,6 +116,7 @@ public struct Chat: Codable, Equatable {
     public init(
         actionBar: ChatActionBar?,
         availableReactions: ChatAvailableReactions,
+        background: ChatBackground?,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeReported: Bool,
@@ -146,6 +150,7 @@ public struct Chat: Codable, Equatable {
     ) {
         self.actionBar = actionBar
         self.availableReactions = availableReactions
+        self.background = background
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeReported = canBeReported

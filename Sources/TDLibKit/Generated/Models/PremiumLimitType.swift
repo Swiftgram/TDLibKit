@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -28,11 +28,11 @@ public enum PremiumLimitType: Codable, Equatable {
     /// The maximum number of favorite stickers
     case premiumLimitTypeFavoriteStickerCount
 
-    /// The maximum number of chat filters
-    case premiumLimitTypeChatFilterCount
+    /// The maximum number of chat folders
+    case premiumLimitTypeChatFolderCount
 
-    /// The maximum number of pinned and always included, or always excluded chats in a chat filter
-    case premiumLimitTypeChatFilterChosenChatCount
+    /// The maximum number of pinned and always included, or always excluded chats in a chat folder
+    case premiumLimitTypeChatFolderChosenChatCount
 
     /// The maximum number of pinned chats in the archive chat list
     case premiumLimitTypePinnedArchivedChatCount
@@ -43,6 +43,12 @@ public enum PremiumLimitType: Codable, Equatable {
     /// The maximum length of the user's bio
     case premiumLimitTypeBioLength
 
+    /// The maximum number of invite links for a chat folder
+    case premiumLimitTypeChatFolderInviteLinkCount
+
+    /// The maximum number of added shareable chat folders
+    case premiumLimitTypeShareableChatFolderCount
+
 
     private enum Kind: String, Codable {
         case premiumLimitTypeSupergroupCount
@@ -50,11 +56,13 @@ public enum PremiumLimitType: Codable, Equatable {
         case premiumLimitTypeCreatedPublicChatCount
         case premiumLimitTypeSavedAnimationCount
         case premiumLimitTypeFavoriteStickerCount
-        case premiumLimitTypeChatFilterCount
-        case premiumLimitTypeChatFilterChosenChatCount
+        case premiumLimitTypeChatFolderCount
+        case premiumLimitTypeChatFolderChosenChatCount
         case premiumLimitTypePinnedArchivedChatCount
         case premiumLimitTypeCaptionLength
         case premiumLimitTypeBioLength
+        case premiumLimitTypeChatFolderInviteLinkCount
+        case premiumLimitTypeShareableChatFolderCount
     }
 
     public init(from decoder: Decoder) throws {
@@ -71,16 +79,20 @@ public enum PremiumLimitType: Codable, Equatable {
             self = .premiumLimitTypeSavedAnimationCount
         case .premiumLimitTypeFavoriteStickerCount:
             self = .premiumLimitTypeFavoriteStickerCount
-        case .premiumLimitTypeChatFilterCount:
-            self = .premiumLimitTypeChatFilterCount
-        case .premiumLimitTypeChatFilterChosenChatCount:
-            self = .premiumLimitTypeChatFilterChosenChatCount
+        case .premiumLimitTypeChatFolderCount:
+            self = .premiumLimitTypeChatFolderCount
+        case .premiumLimitTypeChatFolderChosenChatCount:
+            self = .premiumLimitTypeChatFolderChosenChatCount
         case .premiumLimitTypePinnedArchivedChatCount:
             self = .premiumLimitTypePinnedArchivedChatCount
         case .premiumLimitTypeCaptionLength:
             self = .premiumLimitTypeCaptionLength
         case .premiumLimitTypeBioLength:
             self = .premiumLimitTypeBioLength
+        case .premiumLimitTypeChatFolderInviteLinkCount:
+            self = .premiumLimitTypeChatFolderInviteLinkCount
+        case .premiumLimitTypeShareableChatFolderCount:
+            self = .premiumLimitTypeShareableChatFolderCount
         }
     }
 
@@ -97,16 +109,20 @@ public enum PremiumLimitType: Codable, Equatable {
             try container.encode(Kind.premiumLimitTypeSavedAnimationCount, forKey: .type)
         case .premiumLimitTypeFavoriteStickerCount:
             try container.encode(Kind.premiumLimitTypeFavoriteStickerCount, forKey: .type)
-        case .premiumLimitTypeChatFilterCount:
-            try container.encode(Kind.premiumLimitTypeChatFilterCount, forKey: .type)
-        case .premiumLimitTypeChatFilterChosenChatCount:
-            try container.encode(Kind.premiumLimitTypeChatFilterChosenChatCount, forKey: .type)
+        case .premiumLimitTypeChatFolderCount:
+            try container.encode(Kind.premiumLimitTypeChatFolderCount, forKey: .type)
+        case .premiumLimitTypeChatFolderChosenChatCount:
+            try container.encode(Kind.premiumLimitTypeChatFolderChosenChatCount, forKey: .type)
         case .premiumLimitTypePinnedArchivedChatCount:
             try container.encode(Kind.premiumLimitTypePinnedArchivedChatCount, forKey: .type)
         case .premiumLimitTypeCaptionLength:
             try container.encode(Kind.premiumLimitTypeCaptionLength, forKey: .type)
         case .premiumLimitTypeBioLength:
             try container.encode(Kind.premiumLimitTypeBioLength, forKey: .type)
+        case .premiumLimitTypeChatFolderInviteLinkCount:
+            try container.encode(Kind.premiumLimitTypeChatFolderInviteLinkCount, forKey: .type)
+        case .premiumLimitTypeShareableChatFolderCount:
+            try container.encode(Kind.premiumLimitTypeShareableChatFolderCount, forKey: .type)
         }
     }
 }

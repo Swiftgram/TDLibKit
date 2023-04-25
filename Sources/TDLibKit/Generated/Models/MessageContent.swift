@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -124,6 +124,9 @@ public enum MessageContent: Codable, Equatable {
     /// A screenshot of a message in the chat has been taken
     case messageScreenshotTaken
 
+    /// A new background was set in the chat
+    case messageChatSetBackground(MessageChatSetBackground)
+
     /// A theme in the chat has been changed
     case messageChatSetTheme(MessageChatSetTheme)
 
@@ -232,6 +235,7 @@ public enum MessageContent: Codable, Equatable {
         case messageChatUpgradeFrom
         case messagePinMessage
         case messageScreenshotTaken
+        case messageChatSetBackground
         case messageChatSetTheme
         case messageChatSetMessageAutoDeleteTime
         case messageForumTopicCreated
@@ -366,6 +370,9 @@ public enum MessageContent: Codable, Equatable {
             self = .messagePinMessage(value)
         case .messageScreenshotTaken:
             self = .messageScreenshotTaken
+        case .messageChatSetBackground:
+            let value = try MessageChatSetBackground(from: decoder)
+            self = .messageChatSetBackground(value)
         case .messageChatSetTheme:
             let value = try MessageChatSetTheme(from: decoder)
             self = .messageChatSetTheme(value)
@@ -544,6 +551,9 @@ public enum MessageContent: Codable, Equatable {
             try value.encode(to: encoder)
         case .messageScreenshotTaken:
             try container.encode(Kind.messageScreenshotTaken, forKey: .type)
+        case .messageChatSetBackground(let value):
+            try container.encode(Kind.messageChatSetBackground, forKey: .type)
+            try value.encode(to: encoder)
         case .messageChatSetTheme(let value):
             try container.encode(Kind.messageChatSetTheme, forKey: .type)
             try value.encode(to: encoder)
@@ -1227,6 +1237,25 @@ public struct MessagePinMessage: Codable, Equatable {
     }
 }
 
+/// A new background was set in the chat
+public struct MessageChatSetBackground: Codable, Equatable {
+
+    /// The new background
+    public let background: ChatBackground
+
+    /// Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
+    public let oldBackgroundMessageId: Int64
+
+
+    public init(
+        background: ChatBackground,
+        oldBackgroundMessageId: Int64
+    ) {
+        self.background = background
+        self.oldBackgroundMessageId = oldBackgroundMessageId
+    }
+}
+
 /// A theme in the chat has been changed
 public struct MessageChatSetTheme: Codable, Equatable {
 
@@ -1477,8 +1506,17 @@ public struct MessageGiftedPremium: Codable, Equatable {
     /// The paid amount, in the smallest units of the currency
     public let amount: Int64
 
+    /// Cryptocurrency used to pay for the gift; may be empty if none
+    public let cryptocurrency: String
+
+    /// The paid amount, in the smallest units of the cryptocurrency
+    public let cryptocurrencyAmount: TdInt64
+
     /// Currency for the paid amount
     public let currency: String
+
+    /// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+    public let gifterUserId: Int64
 
     /// Number of month the Telegram Premium subscription will be active
     public let monthCount: Int
@@ -1489,12 +1527,18 @@ public struct MessageGiftedPremium: Codable, Equatable {
 
     public init(
         amount: Int64,
+        cryptocurrency: String,
+        cryptocurrencyAmount: TdInt64,
         currency: String,
+        gifterUserId: Int64,
         monthCount: Int,
         sticker: Sticker?
     ) {
         self.amount = amount
+        self.cryptocurrency = cryptocurrency
+        self.cryptocurrencyAmount = cryptocurrencyAmount
         self.currency = currency
+        self.gifterUserId = gifterUserId
         self.monthCount = monthCount
         self.sticker = sticker
     }
@@ -1580,7 +1624,7 @@ public struct MessageWebAppDataReceived: Codable, Equatable {
     /// Text of the keyboardButtonTypeWebApp button, which opened the Web App
     public let buttonText: String
 
-    /// Received data
+    /// The data
     public let data: String
 
 

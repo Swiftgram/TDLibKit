@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.13-c95598e5
-//  https://github.com/tdlib/td/tree/c95598e5
+//  Based on TDLib 1.8.14-328b8649
+//  https://github.com/tdlib/td/tree/328b8649
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public enum InputBackground: Codable, Equatable {
     /// A background from the server
     case inputBackgroundRemote(InputBackgroundRemote)
 
+    /// A background previously set in the chat; for chat backgrounds only
+    case inputBackgroundPrevious(InputBackgroundPrevious)
+
 
     private enum Kind: String, Codable {
         case inputBackgroundLocal
         case inputBackgroundRemote
+        case inputBackgroundPrevious
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,9 @@ public enum InputBackground: Codable, Equatable {
         case .inputBackgroundRemote:
             let value = try InputBackgroundRemote(from: decoder)
             self = .inputBackgroundRemote(value)
+        case .inputBackgroundPrevious:
+            let value = try InputBackgroundPrevious(from: decoder)
+            self = .inputBackgroundPrevious(value)
         }
     }
 
@@ -46,6 +53,9 @@ public enum InputBackground: Codable, Equatable {
             try value.encode(to: encoder)
         case .inputBackgroundRemote(let value):
             try container.encode(Kind.inputBackgroundRemote, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputBackgroundPrevious(let value):
+            try container.encode(Kind.inputBackgroundPrevious, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -72,6 +82,18 @@ public struct InputBackgroundRemote: Codable, Equatable {
 
     public init(backgroundId: TdInt64) {
         self.backgroundId = backgroundId
+    }
+}
+
+/// A background previously set in the chat; for chat backgrounds only
+public struct InputBackgroundPrevious: Codable, Equatable {
+
+    /// Identifier of the message with the background
+    public let messageId: Int64
+
+
+    public init(messageId: Int64) {
+        self.messageId = messageId
     }
 }
 
