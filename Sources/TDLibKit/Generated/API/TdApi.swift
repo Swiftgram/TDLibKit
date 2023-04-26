@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-328b8649
-//  https://github.com/tdlib/td/tree/328b8649
+//  Based on TDLib 1.8.14-4041ecb5
+//  https://github.com/tdlib/td/tree/4041ecb5
 //
 
 import Foundation
@@ -12892,7 +12892,7 @@ public final class TdApi {
 
     /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
     /// - Parameter name: New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
     public func setBotName(
         botUserId: Int64?,
@@ -12910,7 +12910,7 @@ public final class TdApi {
 
     /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
     /// - Parameter name: New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBotName(
@@ -13059,7 +13059,7 @@ public final class TdApi {
     /// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter description: 
-    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
     public func setBotInfoDescription(
         botUserId: Int64?,
         description: String?,
@@ -13077,7 +13077,7 @@ public final class TdApi {
     /// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter description: 
-    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBotInfoDescription(
         botUserId: Int64?,
@@ -13126,7 +13126,7 @@ public final class TdApi {
 
     /// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
     /// - Parameter shortDescription: New bot's short description on the specified language
     public func setBotInfoShortDescription(
         botUserId: Int64?,
@@ -13144,7 +13144,7 @@ public final class TdApi {
 
     /// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
     /// - Parameter shortDescription: New bot's short description on the specified language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func setBotInfoShortDescription(

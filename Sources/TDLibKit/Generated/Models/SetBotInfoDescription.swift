@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-328b8649
-//  https://github.com/tdlib/td/tree/328b8649
+//  Based on TDLib 1.8.14-4041ecb5
+//  https://github.com/tdlib/td/tree/4041ecb5
 //
 
 import Foundation
@@ -18,7 +18,7 @@ public struct SetBotInfoDescription: Codable, Equatable {
 
     public let description: String?
 
-    /// A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description
+    /// A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
     public let languageCode: String?
 
 
