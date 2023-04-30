@@ -32,7 +32,7 @@ final class StructComposer: Composer {
     
     private func composeStruct(classInfo: ClassInfo) -> String {
         let structName = classInfo.name.capitalizedFirstLetter
-        let protocols = protocolConformance(for: structName)
+        let protocols = protocolConformance(for: structName, using: classInfo.properties)
         let props = composeStructProperties(classInfo.properties)
         let structInit = composeInit(classInfo.properties)
         return ""
@@ -92,8 +92,11 @@ final class StructComposer: Composer {
         return result.addLine("}")
     }
     
-    private func protocolConformance(for structName: String) -> String {
+    private func protocolConformance(for structName: String, using properties: [ClassProperty]) -> String {
         var protocols = ["Codable", "Equatable", "Hashable"]
+        if properties.map(\.name).contains("id") {
+            protocols.append("Identifiable")
+        }
         if structName == "Error" {
             protocols.append("Swift.Error")
         }
