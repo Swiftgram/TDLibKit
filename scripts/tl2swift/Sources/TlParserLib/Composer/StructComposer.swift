@@ -93,7 +93,7 @@ final class StructComposer: Composer {
     }
     
     private func protocolConformance(for structName: String) -> String {
-        var protocols = ["Codable", "Equatable"]
+        var protocols = ["Codable", "Equatable", "Hashable"]
         if structName == "Error" {
             protocols.append("Swift.Error")
         }
