@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-4041ecb5
-//  https://github.com/tdlib/td/tree/4041ecb5
+//  Based on TDLib 1.8.14-1da39552
+//  https://github.com/tdlib/td/tree/1da39552
 //
 
 import Foundation
 
 
-/// Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
+/// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
 public struct ChangePhoneNumber: Codable, Equatable {
 
     /// The new phone number of the user in international format
