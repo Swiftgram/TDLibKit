@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Process new chats added to a shareable chat folder by its owner
-public struct ProcessChatFolderNewChats: Codable, Equatable {
+public struct ProcessChatFolderNewChats: Codable, Equatable, Hashable {
 
     /// Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
     public let addedChatIds: [Int64]?

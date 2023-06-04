@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
-public struct UnpinAllMessageThreadMessages: Codable, Equatable {
+public struct UnpinAllMessageThreadMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

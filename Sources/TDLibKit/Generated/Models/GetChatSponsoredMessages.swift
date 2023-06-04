@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns sponsored messages to be shown in a chat; for channel chats only
-public struct GetChatSponsoredMessages: Codable, Equatable {
+public struct GetChatSponsoredMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

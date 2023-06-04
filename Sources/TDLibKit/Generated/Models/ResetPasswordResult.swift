@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of 2-step verification password reset
-public enum ResetPasswordResult: Codable, Equatable {
+public enum ResetPasswordResult: Codable, Equatable, Hashable {
 
     /// The password was reset
     case resetPasswordResultOk
@@ -60,7 +60,7 @@ public enum ResetPasswordResult: Codable, Equatable {
 }
 
 /// The password reset request is pending
-public struct ResetPasswordResultPending: Codable, Equatable {
+public struct ResetPasswordResultPending: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
     public let pendingResetDate: Int
@@ -72,7 +72,7 @@ public struct ResetPasswordResultPending: Codable, Equatable {
 }
 
 /// The password reset request was declined
-public struct ResetPasswordResultDeclined: Codable, Equatable {
+public struct ResetPasswordResultDeclined: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the password reset can be retried
     public let retryDate: Int

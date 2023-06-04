@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the result of a custom request
-public struct CustomRequestResult: Codable, Equatable {
+public struct CustomRequestResult: Codable, Equatable, Hashable {
 
     /// A JSON-serialized result
     public let result: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
-public struct ToggleBotIsAddedToAttachmentMenu: Codable, Equatable {
+public struct ToggleBotIsAddedToAttachmentMenu: Codable, Equatable, Hashable {
 
     /// Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     public let allowWriteAccess: Bool?

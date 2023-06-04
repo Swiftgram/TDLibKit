@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes pause state of a file in the file download list
-public struct ToggleDownloadIsPaused: Codable, Equatable {
+public struct ToggleDownloadIsPaused: Codable, Equatable, Hashable {
 
     /// Identifier of the downloaded file
     public let fileId: Int?

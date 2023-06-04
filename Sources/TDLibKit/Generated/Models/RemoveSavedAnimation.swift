@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes an animation from the list of saved animations
-public struct RemoveSavedAnimation: Codable, Equatable {
+public struct RemoveSavedAnimation: Codable, Equatable, Hashable {
 
     /// Animation file to be removed
     public let animation: InputFile?

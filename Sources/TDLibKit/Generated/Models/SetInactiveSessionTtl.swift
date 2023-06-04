@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the period of inactivity after which sessions will automatically be terminated
-public struct SetInactiveSessionTtl: Codable, Equatable {
+public struct SetInactiveSessionTtl: Codable, Equatable, Hashable {
 
     /// New number of days of inactivity before sessions will be automatically terminated; 1-366 days
     public let inactiveSessionTtlDays: Int?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about available group call streams
-public struct GetGroupCallStreams: Codable, Equatable {
+public struct GetGroupCallStreams: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

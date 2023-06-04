@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits an invite link for a chat folder
-public struct EditChatFolderInviteLink: Codable, Equatable {
+public struct EditChatFolderInviteLink: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

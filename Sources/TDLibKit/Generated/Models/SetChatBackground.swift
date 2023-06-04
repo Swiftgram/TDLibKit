@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
-public struct SetChatBackground: Codable, Equatable {
+public struct SetChatBackground: Codable, Equatable, Hashable {
 
     /// The input background to use; pass null to create a new filled background or to remove the current background
     public let background: InputBackground?

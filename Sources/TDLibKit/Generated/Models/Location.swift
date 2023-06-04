@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a location on planet Earth
-public struct Location: Codable, Equatable {
+public struct Location: Codable, Equatable, Hashable {
 
     /// The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
     public let horizontalAccuracy: Double

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
-public struct GetLoginUrlInfo: Codable, Equatable {
+public struct GetLoginUrlInfo: Codable, Equatable, Hashable {
 
     /// Button identifier
     public let buttonId: Int64?

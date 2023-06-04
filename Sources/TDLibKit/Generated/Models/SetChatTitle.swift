@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
-public struct SetChatTitle: Codable, Equatable {
+public struct SetChatTitle: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

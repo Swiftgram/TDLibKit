@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns users and chats that were blocked by the current user
-public struct GetBlockedMessageSenders: Codable, Equatable {
+public struct GetBlockedMessageSenders: Codable, Equatable, Hashable {
 
     /// The maximum number of users and chats to return; up to 100
     public let limit: Int?

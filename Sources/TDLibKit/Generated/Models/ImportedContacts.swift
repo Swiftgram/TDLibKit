@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the result of an importContacts request
-public struct ImportedContacts: Codable, Equatable {
+public struct ImportedContacts: Codable, Equatable, Hashable {
 
     /// The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
     public let importerCount: [Int]

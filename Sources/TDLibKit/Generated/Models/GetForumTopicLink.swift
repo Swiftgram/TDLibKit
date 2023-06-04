@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTTPS link to a topic in a forum chat. This is an offline request
-public struct GetForumTopicLink: Codable, Equatable {
+public struct GetForumTopicLink: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

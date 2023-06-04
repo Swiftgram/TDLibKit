@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of chat folder invite links
-public struct ChatFolderInviteLinks: Codable, Equatable {
+public struct ChatFolderInviteLinks: Codable, Equatable, Hashable {
 
     /// List of the invite links
     public let inviteLinks: [ChatFolderInviteLink]

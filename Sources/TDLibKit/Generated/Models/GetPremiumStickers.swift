@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns premium stickers from regular sticker sets
-public struct GetPremiumStickers: Codable, Equatable {
+public struct GetPremiumStickers: Codable, Equatable, Hashable {
 
     /// The maximum number of stickers to be returned; 0-100
     public let limit: Int?

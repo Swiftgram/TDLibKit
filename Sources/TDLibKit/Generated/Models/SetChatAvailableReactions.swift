@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-public struct SetChatAvailableReactions: Codable, Equatable {
+public struct SetChatAvailableReactions: Codable, Equatable, Hashable {
 
     /// Reactions available in the chat. All emoji reactions must be active
     public let availableReactions: ChatAvailableReactions?

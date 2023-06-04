@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about features, available to Premium users
-public struct GetPremiumFeatures: Codable, Equatable {
+public struct GetPremiumFeatures: Codable, Equatable, Hashable {
 
     /// Source of the request; pass null if the method is called from some non-standard source
     public let source: PremiumSource?

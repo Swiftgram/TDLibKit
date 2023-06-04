@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
-public struct EditMessageSchedulingState: Codable, Equatable {
+public struct EditMessageSchedulingState: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
     public let chatId: Int64?

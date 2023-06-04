@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
-public struct ToggleSupergroupJoinToSendMessages: Codable, Equatable {
+public struct ToggleSupergroupJoinToSendMessages: Codable, Equatable, Hashable {
 
     /// New value of join_to_send_messages
     public let joinToSendMessages: Bool?

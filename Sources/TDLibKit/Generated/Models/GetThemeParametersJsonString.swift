@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
-public struct GetThemeParametersJsonString: Codable, Equatable {
+public struct GetThemeParametersJsonString: Codable, Equatable, Hashable {
 
     /// Theme parameters to convert to JSON
     public let theme: ThemeParameters?

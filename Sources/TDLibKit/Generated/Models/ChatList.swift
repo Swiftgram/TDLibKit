@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a list of chats
-public enum ChatList: Codable, Equatable {
+public enum ChatList: Codable, Equatable, Hashable {
 
     /// A main list of chats
     case chatListMain
@@ -58,7 +58,7 @@ public enum ChatList: Codable, Equatable {
 }
 
 /// A list of chats added to a chat folder
-public struct ChatListFolder: Codable, Equatable {
+public struct ChatListFolder: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int

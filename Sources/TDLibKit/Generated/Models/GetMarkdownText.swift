@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
-public struct GetMarkdownText: Codable, Equatable {
+public struct GetMarkdownText: Codable, Equatable, Hashable {
 
     /// The text
     public let text: FormattedText?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of bot commands
-public struct BotCommands: Codable, Equatable {
+public struct BotCommands: Codable, Equatable, Hashable {
 
     /// Bot's user identifier
     public let botUserId: Int64

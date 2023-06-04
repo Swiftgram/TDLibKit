@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
-public struct ChangePhoneNumber: Codable, Equatable {
+public struct ChangePhoneNumber: Codable, Equatable, Hashable {
 
     /// The new phone number of the user in international format
     public let phoneNumber: String?

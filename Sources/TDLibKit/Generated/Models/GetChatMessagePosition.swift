@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
-public struct GetChatMessagePosition: Codable, Equatable {
+public struct GetChatMessagePosition: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to find message position
     public let chatId: Int64?

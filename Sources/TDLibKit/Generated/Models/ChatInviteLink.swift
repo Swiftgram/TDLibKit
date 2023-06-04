@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a chat invite link
-public struct ChatInviteLink: Codable, Equatable {
+public struct ChatInviteLink: Codable, Equatable, Hashable {
 
     /// True, if the link only creates join request. If true, total number of joining members will be unlimited
     public let createsJoinRequest: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about background to set
-public enum InputBackground: Codable, Equatable {
+public enum InputBackground: Codable, Equatable, Hashable {
 
     /// A background from a local file
     case inputBackgroundLocal(InputBackgroundLocal)
@@ -62,7 +62,7 @@ public enum InputBackground: Codable, Equatable {
 }
 
 /// A background from a local file
-public struct InputBackgroundLocal: Codable, Equatable {
+public struct InputBackgroundLocal: Codable, Equatable, Hashable {
 
     /// Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
     public let background: InputFile
@@ -74,7 +74,7 @@ public struct InputBackgroundLocal: Codable, Equatable {
 }
 
 /// A background from the server
-public struct InputBackgroundRemote: Codable, Equatable {
+public struct InputBackgroundRemote: Codable, Equatable, Hashable {
 
     /// The background identifier
     public let backgroundId: TdInt64
@@ -86,7 +86,7 @@ public struct InputBackgroundRemote: Codable, Equatable {
 }
 
 /// A background previously set in the chat; for chat backgrounds only
-public struct InputBackgroundPrevious: Codable, Equatable {
+public struct InputBackgroundPrevious: Codable, Equatable, Hashable {
 
     /// Identifier of the message with the background
     public let messageId: Int64

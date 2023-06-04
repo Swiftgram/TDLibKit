@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about interactions with a message
-public struct MessageInteractionInfo: Codable, Equatable {
+public struct MessageInteractionInfo: Codable, Equatable, Hashable {
 
     /// Number of times the message was forwarded
     public let forwardCount: Int

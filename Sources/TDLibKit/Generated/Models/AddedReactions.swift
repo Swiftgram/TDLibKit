@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of reactions added to a message
-public struct AddedReactions: Codable, Equatable {
+public struct AddedReactions: Codable, Equatable, Hashable {
 
     /// The offset for the next request. If empty, there are no more results
     public let nextOffset: String

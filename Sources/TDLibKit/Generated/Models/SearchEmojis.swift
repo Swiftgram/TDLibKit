@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for emojis by keywords. Supported only if the file database is enabled
-public struct SearchEmojis: Codable, Equatable {
+public struct SearchEmojis: Codable, Equatable, Hashable {
 
     /// Pass true if only emojis, which exactly match the text, needs to be returned
     public let exactMatch: Bool?

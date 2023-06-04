@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
-public struct ShareUserWithBot: Codable, Equatable {
+public struct ShareUserWithBot: Codable, Equatable, Hashable {
 
     /// Identifier of the button
     public let buttonId: Int?

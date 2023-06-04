@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of proxy servers
-public struct Proxies: Codable, Equatable {
+public struct Proxies: Codable, Equatable, Hashable {
 
     /// List of proxy servers
     public let proxies: [Proxy]

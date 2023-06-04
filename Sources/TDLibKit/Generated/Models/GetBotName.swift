@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
-public struct GetBotName: Codable, Equatable {
+public struct GetBotName: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the current privacy settings
-public struct GetUserPrivacySettingRules: Codable, Equatable {
+public struct GetUserPrivacySettingRules: Codable, Equatable, Hashable {
 
     /// The privacy setting
     public let setting: UserPrivacySetting?

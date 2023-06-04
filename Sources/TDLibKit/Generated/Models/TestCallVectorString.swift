@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
-public struct TestCallVectorString: Codable, Equatable {
+public struct TestCallVectorString: Codable, Equatable, Hashable {
 
     /// Vector of strings to return
     public let x: [String]?

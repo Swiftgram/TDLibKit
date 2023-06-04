@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes a file from the TDLib file cache
-public struct DeleteFile: Codable, Equatable {
+public struct DeleteFile: Codable, Equatable, Hashable {
 
     /// Identifier of the file to delete
     public let fileId: Int?

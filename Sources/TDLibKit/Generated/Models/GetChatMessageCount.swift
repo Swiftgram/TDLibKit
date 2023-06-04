@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns approximate number of messages of the specified type in the chat
-public struct GetChatMessageCount: Codable, Equatable {
+public struct GetChatMessageCount: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to count messages
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Product invoice
-public struct Invoice: Codable, Equatable {
+public struct Invoice: Codable, Equatable, Hashable {
 
     /// ISO 4217 currency code
     public let currency: String

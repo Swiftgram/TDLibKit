@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
-public struct SetAutosaveSettings: Codable, Equatable {
+public struct SetAutosaveSettings: Codable, Equatable, Hashable {
 
     /// Autosave settings scope
     public let scope: AutosaveSettingsScope?

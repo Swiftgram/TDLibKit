@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains an HTTPS URL, which can be used to get information about a user
-public struct UserLink: Codable, Equatable {
+public struct UserLink: Codable, Equatable, Hashable {
 
     /// Left time for which the link is valid, in seconds; 0 if the link is a public username link
     public let expiresIn: Int

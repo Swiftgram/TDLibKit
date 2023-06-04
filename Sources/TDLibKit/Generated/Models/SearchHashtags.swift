@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for recently used hashtags by their prefix
-public struct SearchHashtags: Codable, Equatable {
+public struct SearchHashtags: Codable, Equatable, Hashable {
 
     /// The maximum number of hashtags to be returned
     public let limit: Int?

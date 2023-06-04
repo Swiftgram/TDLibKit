@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns favorite stickers
-public struct GetFavoriteStickers: Codable, Equatable {
+public struct GetFavoriteStickers: Codable, Equatable, Hashable {
 
 
     public init() {}

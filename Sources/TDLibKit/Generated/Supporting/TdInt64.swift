@@ -10,7 +10,7 @@
 import Foundation
 
 
-public struct TdInt64: RawRepresentable, ExpressibleByIntegerLiteral {
+public struct TdInt64: RawRepresentable, ExpressibleByIntegerLiteral, Hashable {
 
     public typealias RawValue = Int64
 

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a group call participant's video channel
-public struct GroupCallParticipantVideoInfo: Codable, Equatable {
+public struct GroupCallParticipantVideoInfo: Codable, Equatable, Hashable {
 
     /// Video channel endpoint identifier
     public let endpointId: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a counter
-public struct Count: Codable, Equatable {
+public struct Count: Codable, Equatable, Hashable {
 
     /// Count
     public let count: Int

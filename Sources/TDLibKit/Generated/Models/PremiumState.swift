@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains state of Telegram Premium subscription and promotion videos for Premium features
-public struct PremiumState: Codable, Equatable {
+public struct PremiumState: Codable, Equatable, Hashable {
 
     /// The list of available promotion animations for Premium features
     public let animations: [PremiumFeaturePromotionAnimation]

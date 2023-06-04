@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of message senders, which can be used to send messages in a chat
-public struct ChatMessageSenders: Codable, Equatable {
+public struct ChatMessageSenders: Codable, Equatable, Hashable {
 
     /// List of available message senders
     public let senders: [ChatMessageSender]

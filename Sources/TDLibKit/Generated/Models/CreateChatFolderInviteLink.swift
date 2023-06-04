@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
-public struct CreateChatFolderInviteLink: Codable, Equatable {
+public struct CreateChatFolderInviteLink: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

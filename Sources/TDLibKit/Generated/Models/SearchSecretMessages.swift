@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
-public struct SearchSecretMessages: Codable, Equatable {
+public struct SearchSecretMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to search. Specify 0 to search in all secret chats
     public let chatId: Int64?

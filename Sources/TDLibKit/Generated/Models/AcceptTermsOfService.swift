@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Accepts Telegram terms of services
-public struct AcceptTermsOfService: Codable, Equatable {
+public struct AcceptTermsOfService: Codable, Equatable, Hashable {
 
     /// Terms of service identifier
     public let termsOfServiceId: String?

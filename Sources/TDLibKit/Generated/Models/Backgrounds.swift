@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of backgrounds
-public struct Backgrounds: Codable, Equatable {
+public struct Backgrounds: Codable, Equatable, Hashable {
 
     /// A list of backgrounds
     public let backgrounds: [Background]

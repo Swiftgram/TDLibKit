@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
-public struct UnpinChatMessage: Codable, Equatable {
+public struct UnpinChatMessage: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// The content of a message to send
-public indirect enum InputMessageContent: Codable, Equatable {
+public indirect enum InputMessageContent: Codable, Equatable, Hashable {
 
     /// A text message
     case inputMessageText(InputMessageText)
@@ -202,7 +202,7 @@ public indirect enum InputMessageContent: Codable, Equatable {
 }
 
 /// A text message
-public struct InputMessageText: Codable, Equatable {
+public struct InputMessageText: Codable, Equatable, Hashable {
 
     /// True, if a chat message draft must be deleted
     public let clearDraft: Bool
@@ -226,7 +226,7 @@ public struct InputMessageText: Codable, Equatable {
 }
 
 /// An animation message (GIF-style).
-public struct InputMessageAnimation: Codable, Equatable {
+public struct InputMessageAnimation: Codable, Equatable, Hashable {
 
     /// File identifiers of the stickers added to the animation, if applicable
     public let addedStickerFileIds: [Int]
@@ -275,7 +275,7 @@ public struct InputMessageAnimation: Codable, Equatable {
 }
 
 /// An audio message
-public struct InputMessageAudio: Codable, Equatable {
+public struct InputMessageAudio: Codable, Equatable, Hashable {
 
     /// Thumbnail of the cover for the album; pass null to skip thumbnail uploading
     public let albumCoverThumbnail: InputThumbnail
@@ -314,7 +314,7 @@ public struct InputMessageAudio: Codable, Equatable {
 }
 
 /// A document message (general file)
-public struct InputMessageDocument: Codable, Equatable {
+public struct InputMessageDocument: Codable, Equatable, Hashable {
 
     /// Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
@@ -343,7 +343,7 @@ public struct InputMessageDocument: Codable, Equatable {
 }
 
 /// A photo message
-public struct InputMessagePhoto: Codable, Equatable {
+public struct InputMessagePhoto: Codable, Equatable, Hashable {
 
     /// File identifiers of the stickers added to the photo, if applicable
     public let addedStickerFileIds: [Int]
@@ -392,7 +392,7 @@ public struct InputMessagePhoto: Codable, Equatable {
 }
 
 /// A sticker message
-public struct InputMessageSticker: Codable, Equatable {
+public struct InputMessageSticker: Codable, Equatable, Hashable {
 
     /// Emoji used to choose the sticker
     public let emoji: String
@@ -426,7 +426,7 @@ public struct InputMessageSticker: Codable, Equatable {
 }
 
 /// A video message
-public struct InputMessageVideo: Codable, Equatable {
+public struct InputMessageVideo: Codable, Equatable, Hashable {
 
     /// File identifiers of the stickers added to the video, if applicable
     public let addedStickerFileIds: [Int]
@@ -485,7 +485,7 @@ public struct InputMessageVideo: Codable, Equatable {
 }
 
 /// A video note message
-public struct InputMessageVideoNote: Codable, Equatable {
+public struct InputMessageVideoNote: Codable, Equatable, Hashable {
 
     /// Duration of the video, in seconds
     public let duration: Int
@@ -514,7 +514,7 @@ public struct InputMessageVideoNote: Codable, Equatable {
 }
 
 /// A voice note message
-public struct InputMessageVoiceNote: Codable, Equatable {
+public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
 
     /// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText
@@ -543,7 +543,7 @@ public struct InputMessageVoiceNote: Codable, Equatable {
 }
 
 /// A message with a location
-public struct InputMessageLocation: Codable, Equatable {
+public struct InputMessageLocation: Codable, Equatable, Hashable {
 
     /// For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int
@@ -572,7 +572,7 @@ public struct InputMessageLocation: Codable, Equatable {
 }
 
 /// A message with information about a venue
-public struct InputMessageVenue: Codable, Equatable {
+public struct InputMessageVenue: Codable, Equatable, Hashable {
 
     /// Venue to send
     public let venue: Venue
@@ -584,7 +584,7 @@ public struct InputMessageVenue: Codable, Equatable {
 }
 
 /// A message containing a user contact
-public struct InputMessageContact: Codable, Equatable {
+public struct InputMessageContact: Codable, Equatable, Hashable {
 
     /// Contact to send
     public let contact: Contact
@@ -596,7 +596,7 @@ public struct InputMessageContact: Codable, Equatable {
 }
 
 /// A dice message
-public struct InputMessageDice: Codable, Equatable {
+public struct InputMessageDice: Codable, Equatable, Hashable {
 
     /// True, if the chat message draft must be deleted
     public let clearDraft: Bool
@@ -615,7 +615,7 @@ public struct InputMessageDice: Codable, Equatable {
 }
 
 /// A message with a game; not supported for channels or secret chats
-public struct InputMessageGame: Codable, Equatable {
+public struct InputMessageGame: Codable, Equatable, Hashable {
 
     /// User identifier of the bot that owns the game
     public let botUserId: Int64
@@ -634,7 +634,7 @@ public struct InputMessageGame: Codable, Equatable {
 }
 
 /// A message with an invoice; can be used only by bots
-public struct InputMessageInvoice: Codable, Equatable {
+public struct InputMessageInvoice: Codable, Equatable, Hashable {
 
     public let description: String
 
@@ -702,7 +702,7 @@ public struct InputMessageInvoice: Codable, Equatable {
 }
 
 /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
-public struct InputMessagePoll: Codable, Equatable {
+public struct InputMessagePoll: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
     public let closeDate: Int
@@ -746,7 +746,7 @@ public struct InputMessagePoll: Codable, Equatable {
 }
 
 /// A forwarded message
-public struct InputMessageForwarded: Codable, Equatable {
+public struct InputMessageForwarded: Codable, Equatable, Hashable {
 
     /// Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     public let copyOptions: MessageCopyOptions

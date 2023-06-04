@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Resends the login email address verification code
-public struct ResendLoginEmailAddressCode: Codable, Equatable {
+public struct ResendLoginEmailAddressCode: Codable, Equatable, Hashable {
 
 
     public init() {}

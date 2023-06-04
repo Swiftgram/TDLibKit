@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a recommended chat folder
-public struct RecommendedChatFolder: Codable, Equatable {
+public struct RecommendedChatFolder: Codable, Equatable, Hashable {
 
     public let description: String
 

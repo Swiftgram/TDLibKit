@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
-public struct GetPhoneNumberInfoSync: Codable, Equatable {
+public struct GetPhoneNumberInfoSync: Codable, Equatable, Hashable {
 
     /// A two-letter ISO 639-1 language code for country information localization
     public let languageCode: String?

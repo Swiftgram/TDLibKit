@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
-public struct ToggleGroupCallParticipantIsMuted: Codable, Equatable {
+public struct ToggleGroupCallParticipantIsMuted: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

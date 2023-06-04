@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single rule for managing privacy settings
-public enum UserPrivacySettingRule: Codable, Equatable {
+public enum UserPrivacySettingRule: Codable, Equatable, Hashable {
 
     /// A rule to allow all users to do something
     case userPrivacySettingRuleAllowAll
@@ -104,7 +104,7 @@ public enum UserPrivacySettingRule: Codable, Equatable {
 }
 
 /// A rule to allow certain specified users to do something
-public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable {
+public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable, Hashable {
 
     /// The user identifiers, total number of users in all rules must not exceed 1000
     public let userIds: [Int64]
@@ -116,7 +116,7 @@ public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable {
 }
 
 /// A rule to allow all members of certain specified basic groups and supergroups to doing something
-public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable {
+public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable, Hashable {
 
     /// The chat identifiers, total number of chats in all rules must not exceed 20
     public let chatIds: [Int64]
@@ -128,7 +128,7 @@ public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable {
 }
 
 /// A rule to restrict all specified users from doing something
-public struct UserPrivacySettingRuleRestrictUsers: Codable, Equatable {
+public struct UserPrivacySettingRuleRestrictUsers: Codable, Equatable, Hashable {
 
     /// The user identifiers, total number of users in all rules must not exceed 1000
     public let userIds: [Int64]
@@ -140,7 +140,7 @@ public struct UserPrivacySettingRuleRestrictUsers: Codable, Equatable {
 }
 
 /// A rule to restrict all members of specified basic groups and supergroups from doing something
-public struct UserPrivacySettingRuleRestrictChatMembers: Codable, Equatable {
+public struct UserPrivacySettingRuleRestrictChatMembers: Codable, Equatable, Hashable {
 
     /// The chat identifiers, total number of chats in all rules must not exceed 20
     public let chatIds: [Int64]

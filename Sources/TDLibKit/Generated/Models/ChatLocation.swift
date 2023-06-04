@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a location to which a chat is connected
-public struct ChatLocation: Codable, Equatable {
+public struct ChatLocation: Codable, Equatable, Hashable {
 
     /// Location address; 1-64 characters, as defined by the chat owner
     public let address: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a JSON value
-public enum JsonValue: Codable, Equatable {
+public enum JsonValue: Codable, Equatable, Hashable {
 
     /// Represents a null JSON value
     case jsonValueNull
@@ -90,7 +90,7 @@ public enum JsonValue: Codable, Equatable {
 }
 
 /// Represents a boolean JSON value
-public struct JsonValueBoolean: Codable, Equatable {
+public struct JsonValueBoolean: Codable, Equatable, Hashable {
 
     /// The value
     public let value: Bool
@@ -102,7 +102,7 @@ public struct JsonValueBoolean: Codable, Equatable {
 }
 
 /// Represents a numeric JSON value
-public struct JsonValueNumber: Codable, Equatable {
+public struct JsonValueNumber: Codable, Equatable, Hashable {
 
     /// The value
     public let value: Double
@@ -114,7 +114,7 @@ public struct JsonValueNumber: Codable, Equatable {
 }
 
 /// Represents a string JSON value
-public struct JsonValueString: Codable, Equatable {
+public struct JsonValueString: Codable, Equatable, Hashable {
 
     /// The value
     public let value: String
@@ -126,7 +126,7 @@ public struct JsonValueString: Codable, Equatable {
 }
 
 /// Represents a JSON array
-public struct JsonValueArray: Codable, Equatable {
+public struct JsonValueArray: Codable, Equatable, Hashable {
 
     /// The list of array elements
     public let values: [JsonValue]
@@ -138,7 +138,7 @@ public struct JsonValueArray: Codable, Equatable {
 }
 
 /// Represents a JSON object
-public struct JsonValueObject: Codable, Equatable {
+public struct JsonValueObject: Codable, Equatable, Hashable {
 
     /// The list of object members
     public let members: [JsonObjectMember]

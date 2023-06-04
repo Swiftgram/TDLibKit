@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A value with information about its recent changes
-public struct StatisticalValue: Codable, Equatable {
+public struct StatisticalValue: Codable, Equatable, Hashable {
 
     /// The growth rate of the value, as a percentage
     public let growthRatePercentage: Double

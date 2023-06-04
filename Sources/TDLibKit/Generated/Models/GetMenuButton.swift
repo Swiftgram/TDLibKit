@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns menu button set by the bot for the given user; for bots only
-public struct GetMenuButton: Codable, Equatable {
+public struct GetMenuButton: Codable, Equatable, Hashable {
 
     /// Identifier of the user or 0 to get the default menu button
     public let userId: Int64?

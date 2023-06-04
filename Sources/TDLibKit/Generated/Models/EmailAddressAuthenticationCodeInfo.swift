@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Information about the email address authentication code that was sent
-public struct EmailAddressAuthenticationCodeInfo: Codable, Equatable {
+public struct EmailAddressAuthenticationCodeInfo: Codable, Equatable, Hashable {
 
     /// Pattern of the email address to which an authentication code was sent
     public let emailAddressPattern: String

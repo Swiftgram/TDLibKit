@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a web page preview
-public struct WebPage: Codable, Equatable {
+public struct WebPage: Codable, Equatable, Hashable {
 
     /// Preview of the content as an animation, if available; may be null
     public let animation: Animation?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains settings for Firebase Authentication in the official applications
-public enum FirebaseAuthenticationSettings: Codable, Equatable {
+public enum FirebaseAuthenticationSettings: Codable, Equatable, Hashable {
 
     /// Settings for Firebase Authentication in the official Android application
     case firebaseAuthenticationSettingsAndroid
@@ -50,7 +50,7 @@ public enum FirebaseAuthenticationSettings: Codable, Equatable {
 }
 
 /// Settings for Firebase Authentication in the official iOS application
-public struct FirebaseAuthenticationSettingsIos: Codable, Equatable {
+public struct FirebaseAuthenticationSettingsIos: Codable, Equatable, Hashable {
 
     /// Device token from Apple Push Notification service
     public let deviceToken: String

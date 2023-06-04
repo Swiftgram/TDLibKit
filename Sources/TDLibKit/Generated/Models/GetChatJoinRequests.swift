@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns pending join requests in a chat
-public struct GetChatJoinRequests: Codable, Equatable {
+public struct GetChatJoinRequests: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

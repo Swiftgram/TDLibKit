@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new temporary password for processing payments
-public struct CreateTemporaryPassword: Codable, Equatable {
+public struct CreateTemporaryPassword: Codable, Equatable, Hashable {
 
     /// The 2-step verification password of the current user
     public let password: String?

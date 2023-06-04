@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
-public struct SetOption: Codable, Equatable {
+public struct SetOption: Codable, Equatable, Hashable {
 
     /// The name of the option
     public let name: String?

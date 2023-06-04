@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs server about a purchase through App Store. For official applications only
-public struct AssignAppStoreTransaction: Codable, Equatable {
+public struct AssignAppStoreTransaction: Codable, Equatable, Hashable {
 
     /// Transaction purpose
     public let purpose: StorePaymentPurpose?

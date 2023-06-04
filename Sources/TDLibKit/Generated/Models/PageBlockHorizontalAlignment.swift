@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a horizontal alignment of a table cell content
-public enum PageBlockHorizontalAlignment: Codable, Equatable {
+public enum PageBlockHorizontalAlignment: Codable, Equatable, Hashable {
 
     /// The content must be left-aligned
     case pageBlockHorizontalAlignmentLeft

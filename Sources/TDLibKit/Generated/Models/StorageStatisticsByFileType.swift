@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the storage usage statistics for a specific file type
-public struct StorageStatisticsByFileType: Codable, Equatable {
+public struct StorageStatisticsByFileType: Codable, Equatable, Hashable {
 
     /// Total number of files
     public let count: Int

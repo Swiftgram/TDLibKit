@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a message with the callback button that originated a callback query; for bots only
-public struct GetCallbackQueryMessage: Codable, Equatable {
+public struct GetCallbackQueryMessage: Codable, Equatable, Hashable {
 
     /// Identifier of the callback query
     public let callbackQueryId: TdInt64?

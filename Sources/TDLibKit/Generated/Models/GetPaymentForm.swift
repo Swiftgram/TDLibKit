@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
-public struct GetPaymentForm: Codable, Equatable {
+public struct GetPaymentForm: Codable, Equatable, Hashable {
 
     /// The invoice
     public let inputInvoice: InputInvoice?

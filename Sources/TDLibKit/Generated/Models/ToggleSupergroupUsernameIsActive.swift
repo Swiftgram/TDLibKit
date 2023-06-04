@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
-public struct ToggleSupergroupUsernameIsActive: Codable, Equatable {
+public struct ToggleSupergroupUsernameIsActive: Codable, Equatable, Hashable {
 
     /// Pass true to activate the username; pass false to disable it
     public let isActive: Bool?

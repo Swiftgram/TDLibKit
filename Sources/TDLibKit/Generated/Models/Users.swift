@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of users
-public struct Users: Codable, Equatable {
+public struct Users: Codable, Equatable, Hashable {
 
     /// Approximate total number of users found
     public let totalCount: Int

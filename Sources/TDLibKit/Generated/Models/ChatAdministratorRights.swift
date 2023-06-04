@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes rights of the administrator
-public struct ChatAdministratorRights: Codable, Equatable {
+public struct ChatAdministratorRights: Codable, Equatable, Hashable {
 
     /// True, if the administrator can change the chat title, photo, and other settings
     public let canChangeInfo: Bool

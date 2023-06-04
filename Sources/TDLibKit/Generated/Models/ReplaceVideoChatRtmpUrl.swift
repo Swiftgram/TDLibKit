@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
-public struct ReplaceVideoChatRtmpUrl: Codable, Equatable {
+public struct ReplaceVideoChatRtmpUrl: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

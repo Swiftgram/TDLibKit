@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
-public struct ReportChatPhoto: Codable, Equatable {
+public struct ReportChatPhoto: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

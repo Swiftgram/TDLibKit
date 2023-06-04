@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new sticker set. Returns the newly created sticker set
-public struct CreateNewStickerSet: Codable, Equatable {
+public struct CreateNewStickerSet: Codable, Equatable, Hashable {
 
     /// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     public let name: String?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about an invoice payment form
-public struct PaymentForm: Codable, Equatable {
+public struct PaymentForm: Codable, Equatable, Hashable, Identifiable {
 
     /// The list of additional payment options
     public let additionalPaymentOptions: [PaymentOption]

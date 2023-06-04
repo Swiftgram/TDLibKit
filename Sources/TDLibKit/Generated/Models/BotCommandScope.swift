@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the scope to which bot commands are relevant
-public enum BotCommandScope: Codable, Equatable {
+public enum BotCommandScope: Codable, Equatable, Hashable {
 
     /// A scope covering all users
     case botCommandScopeDefault
@@ -94,7 +94,7 @@ public enum BotCommandScope: Codable, Equatable {
 }
 
 /// A scope covering all members of a chat
-public struct BotCommandScopeChat: Codable, Equatable {
+public struct BotCommandScopeChat: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -106,7 +106,7 @@ public struct BotCommandScopeChat: Codable, Equatable {
 }
 
 /// A scope covering all administrators of a chat
-public struct BotCommandScopeChatAdministrators: Codable, Equatable {
+public struct BotCommandScopeChatAdministrators: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64
@@ -118,7 +118,7 @@ public struct BotCommandScopeChatAdministrators: Codable, Equatable {
 }
 
 /// A scope covering a member of a chat
-public struct BotCommandScopeChatMember: Codable, Equatable {
+public struct BotCommandScopeChatMember: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64

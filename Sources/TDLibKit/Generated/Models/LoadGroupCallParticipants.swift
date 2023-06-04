@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
-public struct LoadGroupCallParticipants: Codable, Equatable {
+public struct LoadGroupCallParticipants: Codable, Equatable, Hashable {
 
     /// Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     public let groupCallId: Int?

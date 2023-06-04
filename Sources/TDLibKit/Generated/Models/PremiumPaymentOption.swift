@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an option for buying Telegram Premium to a user
-public struct PremiumPaymentOption: Codable, Equatable {
+public struct PremiumPaymentOption: Codable, Equatable, Hashable {
 
     /// The amount to pay, in the smallest units of the currency
     public let amount: Int64

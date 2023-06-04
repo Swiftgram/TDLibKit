@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a feature available to Premium users
-public enum PremiumFeature: Codable, Equatable {
+public enum PremiumFeature: Codable, Equatable, Hashable {
 
     /// Increased limits
     case premiumFeatureIncreasedLimits

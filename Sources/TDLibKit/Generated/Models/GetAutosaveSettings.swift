@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns autosave settings for the current user
-public struct GetAutosaveSettings: Codable, Equatable {
+public struct GetAutosaveSettings: Codable, Equatable, Hashable {
 
 
     public init() {}

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Finishes the file generation
-public struct FinishFileGeneration: Codable, Equatable {
+public struct FinishFileGeneration: Codable, Equatable, Hashable {
 
     /// If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
     public let error: Error?

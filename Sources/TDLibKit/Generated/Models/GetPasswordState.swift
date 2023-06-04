@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the current state of 2-step verification
-public struct GetPasswordState: Codable, Equatable {
+public struct GetPasswordState: Codable, Equatable, Hashable {
 
 
     public init() {}

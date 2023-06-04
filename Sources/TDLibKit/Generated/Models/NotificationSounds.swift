@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of notification sounds
-public struct NotificationSounds: Codable, Equatable {
+public struct NotificationSounds: Codable, Equatable, Hashable {
 
     /// A list of notification sounds
     public let notificationSounds: [NotificationSound]

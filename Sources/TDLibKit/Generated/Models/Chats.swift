@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of chats
-public struct Chats: Codable, Equatable {
+public struct Chats: Codable, Equatable, Hashable {
 
     /// List of chat identifiers
     public let chatIds: [Int64]

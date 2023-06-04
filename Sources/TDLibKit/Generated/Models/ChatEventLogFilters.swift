@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a set of filters used to obtain a chat event log
-public struct ChatEventLogFilters: Codable, Equatable {
+public struct ChatEventLogFilters: Codable, Equatable, Hashable {
 
     /// True, if forum-related actions need to be returned
     public let forumChanges: Bool

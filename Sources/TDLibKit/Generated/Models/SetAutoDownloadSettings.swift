@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets auto-download settings
-public struct SetAutoDownloadSettings: Codable, Equatable {
+public struct SetAutoDownloadSettings: Codable, Equatable, Hashable {
 
     /// New user auto-download settings
     public let settings: AutoDownloadSettings?

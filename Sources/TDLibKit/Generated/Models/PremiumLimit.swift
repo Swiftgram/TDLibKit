@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a limit, increased for Premium users
-public struct PremiumLimit: Codable, Equatable {
+public struct PremiumLimit: Codable, Equatable, Hashable {
 
     /// Default value of the limit
     public let defaultValue: Int

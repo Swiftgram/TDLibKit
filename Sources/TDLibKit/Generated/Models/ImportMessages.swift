@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Imports messages exported from another app
-public struct ImportMessages: Codable, Equatable {
+public struct ImportMessages: Codable, Equatable, Hashable {
 
     /// Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
     public let attachedFiles: [InputFile]?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets menu button for the given user or for all users; for bots only
-public struct SetMenuButton: Codable, Equatable {
+public struct SetMenuButton: Codable, Equatable, Hashable {
 
     /// New menu button
     public let menuButton: BotMenuButton?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// File with the date it was uploaded
-public struct DatedFile: Codable, Equatable {
+public struct DatedFile: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the file was uploaded
     public let date: Int

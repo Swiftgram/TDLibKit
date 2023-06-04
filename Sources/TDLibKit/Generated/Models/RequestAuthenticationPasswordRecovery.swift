@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
-public struct RequestAuthenticationPasswordRecovery: Codable, Equatable {
+public struct RequestAuthenticationPasswordRecovery: Codable, Equatable, Hashable {
 
 
     public init() {}

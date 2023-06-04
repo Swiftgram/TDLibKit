@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
-public struct ShareChatWithBot: Codable, Equatable {
+public struct ShareChatWithBot: Codable, Equatable, Hashable {
 
     /// Identifier of the button
     public let buttonId: Int?

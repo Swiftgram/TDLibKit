@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents an RTMP URL
-public struct RtmpUrl: Codable, Equatable {
+public struct RtmpUrl: Codable, Equatable, Hashable {
 
     /// Stream key
     public let streamKey: String

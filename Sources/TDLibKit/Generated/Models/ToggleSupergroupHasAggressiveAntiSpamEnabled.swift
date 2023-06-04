@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
-public struct ToggleSupergroupHasAggressiveAntiSpamEnabled: Codable, Equatable {
+public struct ToggleSupergroupHasAggressiveAntiSpamEnabled: Codable, Equatable, Hashable {
 
     /// The new value of has_aggressive_anti_spam_enabled
     public let hasAggressiveAntiSpamEnabled: Bool?

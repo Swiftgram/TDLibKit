@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a phone number
-public struct PhoneNumberInfo: Codable, Equatable {
+public struct PhoneNumberInfo: Codable, Equatable, Hashable {
 
     /// Information about the country to which the phone number belongs; may be null
     public let country: CountryInfo?

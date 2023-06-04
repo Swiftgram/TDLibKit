@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of sponsored messages
-public struct SponsoredMessages: Codable, Equatable {
+public struct SponsoredMessages: Codable, Equatable, Hashable {
 
     /// List of sponsored messages
     public let messages: [SponsoredMessage]

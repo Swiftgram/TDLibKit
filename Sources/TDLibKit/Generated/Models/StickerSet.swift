@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a sticker set
-public struct StickerSet: Codable, Equatable {
+public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
 
     /// A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     public let emojis: [Emojis]

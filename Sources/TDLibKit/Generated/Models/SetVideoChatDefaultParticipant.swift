@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes default participant identifier, on whose behalf a video chat in the chat will be joined
-public struct SetVideoChatDefaultParticipant: Codable, Equatable {
+public struct SetVideoChatDefaultParticipant: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

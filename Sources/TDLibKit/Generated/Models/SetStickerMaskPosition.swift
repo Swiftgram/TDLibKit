@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
-public struct SetStickerMaskPosition: Codable, Equatable {
+public struct SetStickerMaskPosition: Codable, Equatable, Hashable {
 
     /// Position where the mask is placed; pass null to remove mask position
     public let maskPosition: MaskPosition?

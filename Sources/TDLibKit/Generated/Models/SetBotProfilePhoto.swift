@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes a profile photo for a bot
-public struct SetBotProfilePhoto: Codable, Equatable {
+public struct SetBotProfilePhoto: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

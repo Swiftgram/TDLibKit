@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that a previously opened Web App was closed
-public struct CloseWebApp: Codable, Equatable {
+public struct CloseWebApp: Codable, Equatable, Hashable {
 
     /// Identifier of Web App launch, received from openWebApp
     public let webAppLaunchId: TdInt64?

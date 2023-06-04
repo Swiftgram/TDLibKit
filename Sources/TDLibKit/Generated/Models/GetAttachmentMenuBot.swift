@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a bot that can be added to attachment menu
-public struct GetAttachmentMenuBot: Codable, Equatable {
+public struct GetAttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Bot's user identifier
     public let botUserId: Int64?

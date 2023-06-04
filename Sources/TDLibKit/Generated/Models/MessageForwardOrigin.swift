@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the origin of a forwarded message
-public enum MessageForwardOrigin: Codable, Equatable {
+public enum MessageForwardOrigin: Codable, Equatable, Hashable {
 
     /// The message was originally sent by a known user
     case messageForwardOriginUser(MessageForwardOriginUser)
@@ -82,7 +82,7 @@ public enum MessageForwardOrigin: Codable, Equatable {
 }
 
 /// The message was originally sent by a known user
-public struct MessageForwardOriginUser: Codable, Equatable {
+public struct MessageForwardOriginUser: Codable, Equatable, Hashable {
 
     /// Identifier of the user that originally sent the message
     public let senderUserId: Int64
@@ -94,7 +94,7 @@ public struct MessageForwardOriginUser: Codable, Equatable {
 }
 
 /// The message was originally sent on behalf of a chat
-public struct MessageForwardOriginChat: Codable, Equatable {
+public struct MessageForwardOriginChat: Codable, Equatable, Hashable {
 
     /// For messages originally sent by an anonymous chat administrator, original message author signature
     public let authorSignature: String
@@ -113,7 +113,7 @@ public struct MessageForwardOriginChat: Codable, Equatable {
 }
 
 /// The message was originally sent by a user, which is hidden by their privacy settings
-public struct MessageForwardOriginHiddenUser: Codable, Equatable {
+public struct MessageForwardOriginHiddenUser: Codable, Equatable, Hashable {
 
     /// Name of the sender
     public let senderName: String
@@ -125,7 +125,7 @@ public struct MessageForwardOriginHiddenUser: Codable, Equatable {
 }
 
 /// The message was originally a post in a channel
-public struct MessageForwardOriginChannel: Codable, Equatable {
+public struct MessageForwardOriginChannel: Codable, Equatable, Hashable {
 
     /// Original post author signature
     public let authorSignature: String
@@ -149,7 +149,7 @@ public struct MessageForwardOriginChannel: Codable, Equatable {
 }
 
 /// The message was imported from an exported message history
-public struct MessageForwardOriginMessageImport: Codable, Equatable {
+public struct MessageForwardOriginMessageImport: Codable, Equatable, Hashable {
 
     /// Name of the sender
     public let senderName: String

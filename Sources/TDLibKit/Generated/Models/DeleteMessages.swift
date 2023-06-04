@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes messages
-public struct DeleteMessages: Codable, Equatable {
+public struct DeleteMessages: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

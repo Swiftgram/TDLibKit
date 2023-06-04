@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
-public struct ReportSupergroupAntiSpamFalsePositive: Codable, Equatable {
+public struct ReportSupergroupAntiSpamFalsePositive: Codable, Equatable, Hashable {
 
     /// Identifier of the erroneously deleted message
     public let messageId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of similar emoji to search for in getStickers and searchStickers
-public struct EmojiCategory: Codable, Equatable {
+public struct EmojiCategory: Codable, Equatable, Hashable {
 
     /// List of emojis in the category
     public let emojis: [String]

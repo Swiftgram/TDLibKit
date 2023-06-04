@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
-public struct GetMessageStatistics: Codable, Equatable {
+public struct GetMessageStatistics: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

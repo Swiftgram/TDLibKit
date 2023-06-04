@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains full information about a basic group
-public struct BasicGroupFullInfo: Codable, Equatable {
+public struct BasicGroupFullInfo: Codable, Equatable, Hashable {
 
     /// List of commands of bots in the group
     public let botCommands: [BotCommands]

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Selects a message sender to send messages in a chat
-public struct SetChatMessageSender: Codable, Equatable {
+public struct SetChatMessageSender: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

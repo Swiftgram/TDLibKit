@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes autosave settings
-public struct AutosaveSettings: Codable, Equatable {
+public struct AutosaveSettings: Codable, Equatable, Hashable {
 
     /// Default autosave settings for channel chats
     public let channelSettings: ScopeAutosaveSettings

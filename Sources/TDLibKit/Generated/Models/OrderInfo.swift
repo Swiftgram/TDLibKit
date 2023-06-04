@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Order information
-public struct OrderInfo: Codable, Equatable {
+public struct OrderInfo: Codable, Equatable, Hashable {
 
     /// Email address of the user
     public let emailAddress: String

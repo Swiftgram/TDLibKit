@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets a sticker set thumbnail; for bots only
-public struct SetStickerSetThumbnail: Codable, Equatable {
+public struct SetStickerSetThumbnail: Codable, Equatable, Hashable {
 
     /// Sticker set name
     public let name: String?

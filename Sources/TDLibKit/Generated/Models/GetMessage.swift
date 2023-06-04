@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a message
-public struct GetMessage: Codable, Equatable {
+public struct GetMessage: Codable, Equatable, Hashable {
 
     /// Identifier of the chat the message belongs to
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of administrators of the chat with their custom titles
-public struct GetChatAdministrators: Codable, Equatable {
+public struct GetChatAdministrators: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

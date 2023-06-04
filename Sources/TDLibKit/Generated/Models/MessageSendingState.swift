@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the sending state of the message
-public enum MessageSendingState: Codable, Equatable {
+public enum MessageSendingState: Codable, Equatable, Hashable {
 
     /// The message is being sent now, but has not yet been delivered to the server
     case messageSendingStatePending(MessageSendingStatePending)
@@ -52,7 +52,7 @@ public enum MessageSendingState: Codable, Equatable {
 }
 
 /// The message is being sent now, but has not yet been delivered to the server
-public struct MessageSendingStatePending: Codable, Equatable {
+public struct MessageSendingStatePending: Codable, Equatable, Hashable {
 
     /// Non-persistent message sending identifier, specified by the application
     public let sendingId: Int
@@ -64,7 +64,7 @@ public struct MessageSendingStatePending: Codable, Equatable {
 }
 
 /// The message failed to be sent
-public struct MessageSendingStateFailed: Codable, Equatable {
+public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
 
     /// True, if the message can be re-sent
     public let canRetry: Bool

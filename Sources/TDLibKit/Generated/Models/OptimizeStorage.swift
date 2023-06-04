@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
-public struct OptimizeStorage: Codable, Equatable {
+public struct OptimizeStorage: Codable, Equatable, Hashable {
 
     /// If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
     public let chatIds: [Int64]?

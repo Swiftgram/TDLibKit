@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Installs/uninstalls or activates/archives a sticker set
-public struct ChangeStickerSet: Codable, Equatable {
+public struct ChangeStickerSet: Codable, Equatable, Hashable {
 
     /// The new value of is_archived. A sticker set can't be installed and archived simultaneously
     public let isArchived: Bool?

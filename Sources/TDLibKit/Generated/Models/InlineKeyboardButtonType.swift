@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of an inline keyboard button
-public enum InlineKeyboardButtonType: Codable, Equatable {
+public enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
 
     /// A button that opens a specified URL
     case inlineKeyboardButtonTypeUrl(InlineKeyboardButtonTypeUrl)
@@ -118,7 +118,7 @@ public enum InlineKeyboardButtonType: Codable, Equatable {
 }
 
 /// A button that opens a specified URL
-public struct InlineKeyboardButtonTypeUrl: Codable, Equatable {
+public struct InlineKeyboardButtonTypeUrl: Codable, Equatable, Hashable {
 
     /// HTTP or tg:// URL to open
     public let url: String
@@ -130,7 +130,7 @@ public struct InlineKeyboardButtonTypeUrl: Codable, Equatable {
 }
 
 /// A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
-public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
+public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable, Hashable, Identifiable {
 
     /// If non-empty, new text of the button in forwarded messages
     public let forwardText: String
@@ -154,7 +154,7 @@ public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable {
 }
 
 /// A button that opens a Web App by calling openWebApp
-public struct InlineKeyboardButtonTypeWebApp: Codable, Equatable {
+public struct InlineKeyboardButtonTypeWebApp: Codable, Equatable, Hashable {
 
     /// An HTTP URL to pass to openWebApp
     public let url: String
@@ -166,7 +166,7 @@ public struct InlineKeyboardButtonTypeWebApp: Codable, Equatable {
 }
 
 /// A button that sends a callback query to a bot
-public struct InlineKeyboardButtonTypeCallback: Codable, Equatable {
+public struct InlineKeyboardButtonTypeCallback: Codable, Equatable, Hashable {
 
     /// Data to be sent to the bot via a callback query
     public let data: Data
@@ -178,7 +178,7 @@ public struct InlineKeyboardButtonTypeCallback: Codable, Equatable {
 }
 
 /// A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot
-public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable, Equatable {
+public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable, Equatable, Hashable {
 
     /// Data to be sent to the bot via a callback query
     public let data: Data
@@ -190,7 +190,7 @@ public struct InlineKeyboardButtonTypeCallbackWithPassword: Codable, Equatable {
 }
 
 /// A button that forces an inline query to the bot to be inserted in the input field
-public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable {
+public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable, Hashable {
 
     /// Inline query to be sent to the bot
     public let query: String
@@ -209,7 +209,7 @@ public struct InlineKeyboardButtonTypeSwitchInline: Codable, Equatable {
 }
 
 /// A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
-public struct InlineKeyboardButtonTypeUser: Codable, Equatable {
+public struct InlineKeyboardButtonTypeUser: Codable, Equatable, Hashable {
 
     /// User identifier
     public let userId: Int64

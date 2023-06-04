@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-public struct GetChatInviteLinkMembers: Codable, Equatable {
+public struct GetChatInviteLinkMembers: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

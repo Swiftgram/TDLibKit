@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns all website where the current user used Telegram to log in
-public struct GetConnectedWebsites: Codable, Equatable {
+public struct GetConnectedWebsites: Codable, Equatable, Hashable {
 
 
     public init() {}

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
-public struct DeleteLanguagePack: Codable, Equatable {
+public struct DeleteLanguagePack: Codable, Equatable, Hashable {
 
     /// Identifier of the language pack to delete
     public let languagePackId: String?

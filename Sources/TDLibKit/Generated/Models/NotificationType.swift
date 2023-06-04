@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains detailed information about a notification
-public enum NotificationType: Codable, Equatable {
+public enum NotificationType: Codable, Equatable, Hashable {
 
     /// New message was received
     case notificationTypeNewMessage(NotificationTypeNewMessage)
@@ -70,7 +70,7 @@ public enum NotificationType: Codable, Equatable {
 }
 
 /// New message was received
-public struct NotificationTypeNewMessage: Codable, Equatable {
+public struct NotificationTypeNewMessage: Codable, Equatable, Hashable {
 
     /// The message
     public let message: Message
@@ -89,7 +89,7 @@ public struct NotificationTypeNewMessage: Codable, Equatable {
 }
 
 /// New call was received
-public struct NotificationTypeNewCall: Codable, Equatable {
+public struct NotificationTypeNewCall: Codable, Equatable, Hashable {
 
     /// Call identifier
     public let callId: Int
@@ -101,7 +101,7 @@ public struct NotificationTypeNewCall: Codable, Equatable {
 }
 
 /// New message was received through a push notification
-public struct NotificationTypeNewPushMessage: Codable, Equatable {
+public struct NotificationTypeNewPushMessage: Codable, Equatable, Hashable {
 
     /// Push message content
     public let content: PushMessageContent

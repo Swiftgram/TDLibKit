@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
-public struct GetLoginUrl: Codable, Equatable {
+public struct GetLoginUrl: Codable, Equatable, Hashable {
 
     /// Pass true to allow the bot to send messages to the current user
     public let allowWriteAccess: Bool?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
-public struct CheckAuthenticationPassword: Codable, Equatable {
+public struct CheckAuthenticationPassword: Codable, Equatable, Hashable {
 
     /// The 2-step verification password to check
     public let password: String?

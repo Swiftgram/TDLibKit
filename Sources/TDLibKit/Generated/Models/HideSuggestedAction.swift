@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Hides a suggested action
-public struct HideSuggestedAction: Codable, Equatable {
+public struct HideSuggestedAction: Codable, Equatable, Hashable {
 
     /// Suggested action to hide
     public let action: SuggestedAction?

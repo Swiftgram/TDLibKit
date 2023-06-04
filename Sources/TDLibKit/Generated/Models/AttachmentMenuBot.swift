@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a bot, which can be added to attachment menu
-public struct AttachmentMenuBot: Codable, Equatable {
+public struct AttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Attachment menu icon for the bot in TGS format for the official Android app; may be null
     public let androidIcon: File?

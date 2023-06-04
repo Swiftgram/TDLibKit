@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes saved credentials for all payment provider bots
-public struct DeleteSavedCredentials: Codable, Equatable {
+public struct DeleteSavedCredentials: Codable, Equatable, Hashable {
 
 
     public init() {}

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Quickly returns approximate storage usage statistics. Can be called before authorization
-public struct GetStorageStatisticsFast: Codable, Equatable {
+public struct GetStorageStatisticsFast: Codable, Equatable, Hashable {
 
 
     public init() {}

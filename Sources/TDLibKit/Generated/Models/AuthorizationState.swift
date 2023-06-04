@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the current authorization state of the TDLib client
-public enum AuthorizationState: Codable, Equatable {
+public enum AuthorizationState: Codable, Equatable, Hashable {
 
     /// Initialization parameters are needed. Call setTdlibParameters to provide them
     case authorizationStateWaitTdlibParameters
@@ -140,7 +140,7 @@ public enum AuthorizationState: Codable, Equatable {
 }
 
 /// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
-public struct AuthorizationStateWaitEmailAddress: Codable, Equatable {
+public struct AuthorizationStateWaitEmailAddress: Codable, Equatable, Hashable {
 
     /// True, if authorization through Apple ID is allowed
     public let allowAppleId: Bool
@@ -159,7 +159,7 @@ public struct AuthorizationStateWaitEmailAddress: Codable, Equatable {
 }
 
 /// TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
-public struct AuthorizationStateWaitEmailCode: Codable, Equatable {
+public struct AuthorizationStateWaitEmailCode: Codable, Equatable, Hashable {
 
     /// True, if authorization through Apple ID is allowed
     public let allowAppleId: Bool
@@ -188,7 +188,7 @@ public struct AuthorizationStateWaitEmailCode: Codable, Equatable {
 }
 
 /// TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code
-public struct AuthorizationStateWaitCode: Codable, Equatable {
+public struct AuthorizationStateWaitCode: Codable, Equatable, Hashable {
 
     /// Information about the authorization code that was sent
     public let codeInfo: AuthenticationCodeInfo
@@ -200,7 +200,7 @@ public struct AuthorizationStateWaitCode: Codable, Equatable {
 }
 
 /// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
-public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable {
+public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable, Hashable {
 
     /// A tg:// URL for the QR code. The link will be updated frequently
     public let link: String
@@ -212,7 +212,7 @@ public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable 
 }
 
 /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
-public struct AuthorizationStateWaitRegistration: Codable, Equatable {
+public struct AuthorizationStateWaitRegistration: Codable, Equatable, Hashable {
 
     /// Telegram terms of service
     public let termsOfService: TermsOfService
@@ -224,7 +224,7 @@ public struct AuthorizationStateWaitRegistration: Codable, Equatable {
 }
 
 /// The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
-public struct AuthorizationStateWaitPassword: Codable, Equatable {
+public struct AuthorizationStateWaitPassword: Codable, Equatable, Hashable {
 
     /// True, if some Telegram Passport elements were saved
     public let hasPassportData: Bool

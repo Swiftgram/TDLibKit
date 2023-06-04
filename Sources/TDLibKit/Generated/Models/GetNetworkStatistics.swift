@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns network data usage statistics. Can be called before authorization
-public struct GetNetworkStatistics: Codable, Equatable {
+public struct GetNetworkStatistics: Codable, Equatable, Hashable {
 
     /// Pass true to get statistics only for the current library launch
     public let onlyCurrent: Bool?

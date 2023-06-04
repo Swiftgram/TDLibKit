@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
-public struct ReportChat: Codable, Equatable {
+public struct ReportChat: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

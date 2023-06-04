@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a promotion animation for a Premium feature
-public struct PremiumFeaturePromotionAnimation: Codable, Equatable {
+public struct PremiumFeaturePromotionAnimation: Codable, Equatable, Hashable {
 
     /// Promotion animation for the feature
     public let animation: Animation

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a vector path command
-public enum VectorPathCommand: Codable, Equatable {
+public enum VectorPathCommand: Codable, Equatable, Hashable {
 
     /// A straight line to a given point
     case vectorPathCommandLine(VectorPathCommandLine)
@@ -52,7 +52,7 @@ public enum VectorPathCommand: Codable, Equatable {
 }
 
 /// A straight line to a given point
-public struct VectorPathCommandLine: Codable, Equatable {
+public struct VectorPathCommandLine: Codable, Equatable, Hashable {
 
     /// The end point of the straight line
     public let endPoint: Point
@@ -64,7 +64,7 @@ public struct VectorPathCommandLine: Codable, Equatable {
 }
 
 /// A cubic Bézier curve to a given point
-public struct VectorPathCommandCubicBezierCurve: Codable, Equatable {
+public struct VectorPathCommandCubicBezierCurve: Codable, Equatable, Hashable {
 
     /// The end control point of the curve
     public let endControlPoint: Point

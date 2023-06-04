@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
-public enum ReplyMarkup: Codable, Equatable {
+public enum ReplyMarkup: Codable, Equatable, Hashable {
 
     /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
     case replyMarkupRemoveKeyboard(ReplyMarkupRemoveKeyboard)
@@ -72,7 +72,7 @@ public enum ReplyMarkup: Codable, Equatable {
 }
 
 /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
-public struct ReplyMarkupRemoveKeyboard: Codable, Equatable {
+public struct ReplyMarkupRemoveKeyboard: Codable, Equatable, Hashable {
 
     /// True, if the keyboard is removed only for the mentioned users or the target user of a reply
     public let isPersonal: Bool
@@ -84,7 +84,7 @@ public struct ReplyMarkupRemoveKeyboard: Codable, Equatable {
 }
 
 /// Instructs application to force a reply to this message
-public struct ReplyMarkupForceReply: Codable, Equatable {
+public struct ReplyMarkupForceReply: Codable, Equatable, Hashable {
 
     /// If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters
     public let inputFieldPlaceholder: String
@@ -103,7 +103,7 @@ public struct ReplyMarkupForceReply: Codable, Equatable {
 }
 
 /// Contains a custom keyboard layout to quickly reply to bots
-public struct ReplyMarkupShowKeyboard: Codable, Equatable {
+public struct ReplyMarkupShowKeyboard: Codable, Equatable, Hashable {
 
     /// If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
     public let inputFieldPlaceholder: String
@@ -142,7 +142,7 @@ public struct ReplyMarkupShowKeyboard: Codable, Equatable {
 }
 
 /// Contains an inline keyboard layout
-public struct ReplyMarkupInlineKeyboard: Codable, Equatable {
+public struct ReplyMarkupInlineKeyboard: Codable, Equatable, Hashable {
 
     /// A list of rows of inline keyboard buttons
     public let rows: [[InlineKeyboardButton]]

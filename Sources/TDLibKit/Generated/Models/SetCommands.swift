@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the list of commands supported by the bot for the given user scope and language; for bots only
-public struct SetCommands: Codable, Equatable {
+public struct SetCommands: Codable, Equatable, Hashable {
 
     /// List of the bot's commands
     public let commands: [BotCommand]?

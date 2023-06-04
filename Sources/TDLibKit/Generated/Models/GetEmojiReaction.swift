@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
-public struct GetEmojiReaction: Codable, Equatable {
+public struct GetEmojiReaction: Codable, Equatable, Hashable {
 
     /// Text representation of the reaction
     public let emoji: String?

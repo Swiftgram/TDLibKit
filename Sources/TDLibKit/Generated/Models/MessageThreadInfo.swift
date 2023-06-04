@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a message thread
-public struct MessageThreadInfo: Codable, Equatable {
+public struct MessageThreadInfo: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message thread belongs
     public let chatId: Int64

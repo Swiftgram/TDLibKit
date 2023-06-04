@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single button in an inline keyboard
-public struct InlineKeyboardButton: Codable, Equatable {
+public struct InlineKeyboardButton: Codable, Equatable, Hashable {
 
     /// Text of the button
     public let text: String

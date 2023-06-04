@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about an unread reaction to a message
-public struct UnreadReaction: Codable, Equatable {
+public struct UnreadReaction: Codable, Equatable, Hashable {
 
     /// True, if the reaction was added with a big animation
     public let isBig: Bool

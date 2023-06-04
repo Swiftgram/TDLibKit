@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
-public struct ToggleUsernameIsActive: Codable, Equatable {
+public struct ToggleUsernameIsActive: Codable, Equatable, Hashable {
 
     /// Pass true to activate the username; pass false to disable it
     public let isActive: Bool?

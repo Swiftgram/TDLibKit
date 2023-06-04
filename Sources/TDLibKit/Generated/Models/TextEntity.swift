@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a part of the text that needs to be formatted in some unusual way
-public struct TextEntity: Codable, Equatable {
+public struct TextEntity: Codable, Equatable, Hashable {
 
     /// Length of the entity, in UTF-16 code units
     public let length: Int

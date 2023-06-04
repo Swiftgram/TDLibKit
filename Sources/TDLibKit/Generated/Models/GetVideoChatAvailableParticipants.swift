@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
-public struct GetVideoChatAvailableParticipants: Codable, Equatable {
+public struct GetVideoChatAvailableParticipants: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

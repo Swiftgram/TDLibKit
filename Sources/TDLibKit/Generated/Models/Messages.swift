@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of messages
-public struct Messages: Codable, Equatable {
+public struct Messages: Codable, Equatable, Hashable {
 
     /// List of messages; messages may be null
     public let messages: [Message]?

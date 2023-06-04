@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns RTMP URL for streaming to the chat; requires creator privileges
-public struct GetVideoChatRtmpUrl: Codable, Equatable {
+public struct GetVideoChatRtmpUrl: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

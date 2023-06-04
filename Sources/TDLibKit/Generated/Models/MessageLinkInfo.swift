@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a link to a message or a forum topic in a chat
-public struct MessageLinkInfo: Codable, Equatable {
+public struct MessageLinkInfo: Codable, Equatable, Hashable {
 
     /// If found, identifier of the chat to which the link points, 0 otherwise
     public let chatId: Int64

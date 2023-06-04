@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Clears the list of recently found chats
-public struct ClearRecentlyFoundChats: Codable, Equatable {
+public struct ClearRecentlyFoundChats: Codable, Equatable, Hashable {
 
 
     public init() {}

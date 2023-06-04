@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A simple object containing a vector of strings; for testing only
-public struct TestVectorString: Codable, Equatable {
+public struct TestVectorString: Codable, Equatable, Hashable {
 
     /// Vector of strings
     public let value: [String]

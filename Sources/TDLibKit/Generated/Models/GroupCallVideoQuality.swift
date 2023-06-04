@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the quality of a group call video
-public enum GroupCallVideoQuality: Codable, Equatable {
+public enum GroupCallVideoQuality: Codable, Equatable, Hashable {
 
     /// The worst available video quality
     case groupCallVideoQualityThumbnail

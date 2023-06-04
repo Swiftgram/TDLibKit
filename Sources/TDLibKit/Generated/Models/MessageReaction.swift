@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a reaction to a message
-public struct MessageReaction: Codable, Equatable {
+public struct MessageReaction: Codable, Equatable, Hashable {
 
     /// True, if the reaction is chosen by the current user
     public let isChosen: Bool

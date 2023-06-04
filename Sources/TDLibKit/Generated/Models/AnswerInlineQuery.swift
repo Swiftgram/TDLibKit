@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the result of an inline query; for bots only
-public struct AnswerInlineQuery: Codable, Equatable {
+public struct AnswerInlineQuery: Codable, Equatable, Hashable {
 
     /// Button to be shown above inline query results; pass null if none
     public let button: InlineQueryResultsButton?

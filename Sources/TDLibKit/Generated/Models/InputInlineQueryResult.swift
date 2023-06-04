@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single result of an inline query; for bots only
-public enum InputInlineQueryResult: Codable, Equatable {
+public enum InputInlineQueryResult: Codable, Equatable, Hashable {
 
     /// Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video
     case inputInlineQueryResultAnimation(InputInlineQueryResultAnimation)
@@ -152,7 +152,7 @@ public enum InputInlineQueryResult: Codable, Equatable {
 }
 
 /// Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video
-public struct InputInlineQueryResultAnimation: Codable, Equatable {
+public struct InputInlineQueryResultAnimation: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -216,7 +216,7 @@ public struct InputInlineQueryResultAnimation: Codable, Equatable {
 }
 
 /// Represents a link to an article or web page
-public struct InputInlineQueryResultArticle: Codable, Equatable {
+public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -274,7 +274,7 @@ public struct InputInlineQueryResultArticle: Codable, Equatable {
 }
 
 /// Represents a link to an MP3 audio file
-public struct InputInlineQueryResultAudio: Codable, Equatable {
+public struct InputInlineQueryResultAudio: Codable, Equatable, Hashable, Identifiable {
 
     /// Audio file duration, in seconds
     public let audioDuration: Int
@@ -318,7 +318,7 @@ public struct InputInlineQueryResultAudio: Codable, Equatable {
 }
 
 /// Represents a user contact
-public struct InputInlineQueryResultContact: Codable, Equatable {
+public struct InputInlineQueryResultContact: Codable, Equatable, Hashable, Identifiable {
 
     /// User contact
     public let contact: Contact
@@ -362,7 +362,7 @@ public struct InputInlineQueryResultContact: Codable, Equatable {
 }
 
 /// Represents a link to a file
-public struct InputInlineQueryResultDocument: Codable, Equatable {
+public struct InputInlineQueryResultDocument: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -420,7 +420,7 @@ public struct InputInlineQueryResultDocument: Codable, Equatable {
 }
 
 /// Represents a game
-public struct InputInlineQueryResultGame: Codable, Equatable {
+public struct InputInlineQueryResultGame: Codable, Equatable, Hashable, Identifiable {
 
     /// Short name of the game
     public let gameShortName: String
@@ -444,7 +444,7 @@ public struct InputInlineQueryResultGame: Codable, Equatable {
 }
 
 /// Represents a point on the map
-public struct InputInlineQueryResultLocation: Codable, Equatable {
+public struct InputInlineQueryResultLocation: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -498,7 +498,7 @@ public struct InputInlineQueryResultLocation: Codable, Equatable {
 }
 
 /// Represents link to a JPEG image
-public struct InputInlineQueryResultPhoto: Codable, Equatable {
+public struct InputInlineQueryResultPhoto: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -551,7 +551,7 @@ public struct InputInlineQueryResultPhoto: Codable, Equatable {
 }
 
 /// Represents a link to a WEBP, TGS, or WEBM sticker
-public struct InputInlineQueryResultSticker: Codable, Equatable {
+public struct InputInlineQueryResultSticker: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -595,7 +595,7 @@ public struct InputInlineQueryResultSticker: Codable, Equatable {
 }
 
 /// Represents information about a venue
-public struct InputInlineQueryResultVenue: Codable, Equatable {
+public struct InputInlineQueryResultVenue: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -639,7 +639,7 @@ public struct InputInlineQueryResultVenue: Codable, Equatable {
 }
 
 /// Represents a link to a page containing an embedded video player or a video file
-public struct InputInlineQueryResultVideo: Codable, Equatable {
+public struct InputInlineQueryResultVideo: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -702,7 +702,7 @@ public struct InputInlineQueryResultVideo: Codable, Equatable {
 }
 
 /// Represents a link to an opus-encoded audio file within an OGG container, single channel audio
-public struct InputInlineQueryResultVoiceNote: Codable, Equatable {
+public struct InputInlineQueryResultVoiceNote: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String

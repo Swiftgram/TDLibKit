@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a message in a specific position
-public struct MessagePosition: Codable, Equatable {
+public struct MessagePosition: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the message was sent
     public let date: Int

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of downloaded files, found by a search
-public struct FoundFileDownloads: Codable, Equatable {
+public struct FoundFileDownloads: Codable, Equatable, Hashable {
 
     /// The list of files
     public let files: [FileDownload]

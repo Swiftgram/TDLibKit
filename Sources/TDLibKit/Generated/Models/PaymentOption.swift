@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an additional payment option
-public struct PaymentOption: Codable, Equatable {
+public struct PaymentOption: Codable, Equatable, Hashable {
 
     /// Title for the payment option
     public let title: String

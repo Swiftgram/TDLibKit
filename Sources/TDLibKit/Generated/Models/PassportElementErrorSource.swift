@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the description of an error in a Telegram Passport element
-public enum PassportElementErrorSource: Codable, Equatable {
+public enum PassportElementErrorSource: Codable, Equatable, Hashable {
 
     /// The element contains an error in an unspecified place. The error will be considered resolved when new data is added
     case passportElementErrorSourceUnspecified
@@ -110,7 +110,7 @@ public enum PassportElementErrorSource: Codable, Equatable {
 }
 
 /// One of the data fields contains an error. The error will be considered resolved when the value of the field changes
-public struct PassportElementErrorSourceDataField: Codable, Equatable {
+public struct PassportElementErrorSourceDataField: Codable, Equatable, Hashable {
 
     /// Field name
     public let fieldName: String
@@ -122,7 +122,7 @@ public struct PassportElementErrorSourceDataField: Codable, Equatable {
 }
 
 /// One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
-public struct PassportElementErrorSourceTranslationFile: Codable, Equatable {
+public struct PassportElementErrorSourceTranslationFile: Codable, Equatable, Hashable {
 
     /// Index of a file with the error
     public let fileIndex: Int
@@ -134,7 +134,7 @@ public struct PassportElementErrorSourceTranslationFile: Codable, Equatable {
 }
 
 /// The file contains an error. The error will be considered resolved when the file changes
-public struct PassportElementErrorSourceFile: Codable, Equatable {
+public struct PassportElementErrorSourceFile: Codable, Equatable, Hashable {
 
     /// Index of a file with the error
     public let fileIndex: Int

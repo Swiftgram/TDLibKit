@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a chat folder by its identifier
-public struct GetChatFolder: Codable, Equatable {
+public struct GetChatFolder: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

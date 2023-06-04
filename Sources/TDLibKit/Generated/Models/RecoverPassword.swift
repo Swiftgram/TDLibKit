@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
-public struct RecoverPassword: Codable, Equatable {
+public struct RecoverPassword: Codable, Equatable, Hashable {
 
     /// New password hint; may be empty
     public let newHint: String?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains content of a push message notification
-public enum PushMessageContent: Codable, Equatable {
+public enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A general message with hidden content
     case pushMessageContentHidden(PushMessageContentHidden)
@@ -328,7 +328,7 @@ public enum PushMessageContent: Codable, Equatable {
 }
 
 /// A general message with hidden content
-public struct PushMessageContentHidden: Codable, Equatable {
+public struct PushMessageContentHidden: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -340,7 +340,7 @@ public struct PushMessageContentHidden: Codable, Equatable {
 }
 
 /// An animation message (GIF-style).
-public struct PushMessageContentAnimation: Codable, Equatable {
+public struct PushMessageContentAnimation: Codable, Equatable, Hashable {
 
     /// Message content; may be null
     public let animation: Animation?
@@ -364,7 +364,7 @@ public struct PushMessageContentAnimation: Codable, Equatable {
 }
 
 /// An audio message
-public struct PushMessageContentAudio: Codable, Equatable {
+public struct PushMessageContentAudio: Codable, Equatable, Hashable {
 
     /// Message content; may be null
     public let audio: Audio?
@@ -383,7 +383,7 @@ public struct PushMessageContentAudio: Codable, Equatable {
 }
 
 /// A message with a user contact
-public struct PushMessageContentContact: Codable, Equatable {
+public struct PushMessageContentContact: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -402,7 +402,7 @@ public struct PushMessageContentContact: Codable, Equatable {
 }
 
 /// A document message (a general file)
-public struct PushMessageContentDocument: Codable, Equatable {
+public struct PushMessageContentDocument: Codable, Equatable, Hashable {
 
     /// Message content; may be null
     public let document: Document?
@@ -421,7 +421,7 @@ public struct PushMessageContentDocument: Codable, Equatable {
 }
 
 /// A message with a game
-public struct PushMessageContentGame: Codable, Equatable {
+public struct PushMessageContentGame: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -440,7 +440,7 @@ public struct PushMessageContentGame: Codable, Equatable {
 }
 
 /// A new high score was achieved in a game
-public struct PushMessageContentGameScore: Codable, Equatable {
+public struct PushMessageContentGameScore: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -464,7 +464,7 @@ public struct PushMessageContentGameScore: Codable, Equatable {
 }
 
 /// A message with an invoice from a bot
-public struct PushMessageContentInvoice: Codable, Equatable {
+public struct PushMessageContentInvoice: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -483,7 +483,7 @@ public struct PushMessageContentInvoice: Codable, Equatable {
 }
 
 /// A message with a location
-public struct PushMessageContentLocation: Codable, Equatable {
+public struct PushMessageContentLocation: Codable, Equatable, Hashable {
 
     /// True, if the location is live
     public let isLive: Bool
@@ -502,7 +502,7 @@ public struct PushMessageContentLocation: Codable, Equatable {
 }
 
 /// A photo message
-public struct PushMessageContentPhoto: Codable, Equatable {
+public struct PushMessageContentPhoto: Codable, Equatable, Hashable {
 
     /// Photo caption
     public let caption: String
@@ -531,7 +531,7 @@ public struct PushMessageContentPhoto: Codable, Equatable {
 }
 
 /// A message with a poll
-public struct PushMessageContentPoll: Codable, Equatable {
+public struct PushMessageContentPoll: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -555,7 +555,7 @@ public struct PushMessageContentPoll: Codable, Equatable {
 }
 
 /// A message with a sticker
-public struct PushMessageContentSticker: Codable, Equatable {
+public struct PushMessageContentSticker: Codable, Equatable, Hashable {
 
     /// Emoji corresponding to the sticker; may be empty
     public let emoji: String
@@ -579,7 +579,7 @@ public struct PushMessageContentSticker: Codable, Equatable {
 }
 
 /// A text message
-public struct PushMessageContentText: Codable, Equatable {
+public struct PushMessageContentText: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -598,7 +598,7 @@ public struct PushMessageContentText: Codable, Equatable {
 }
 
 /// A video message
-public struct PushMessageContentVideo: Codable, Equatable {
+public struct PushMessageContentVideo: Codable, Equatable, Hashable {
 
     /// Video caption
     public let caption: String
@@ -627,7 +627,7 @@ public struct PushMessageContentVideo: Codable, Equatable {
 }
 
 /// A video note message
-public struct PushMessageContentVideoNote: Codable, Equatable {
+public struct PushMessageContentVideoNote: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -646,7 +646,7 @@ public struct PushMessageContentVideoNote: Codable, Equatable {
 }
 
 /// A voice note message
-public struct PushMessageContentVoiceNote: Codable, Equatable {
+public struct PushMessageContentVoiceNote: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
@@ -665,7 +665,7 @@ public struct PushMessageContentVoiceNote: Codable, Equatable {
 }
 
 /// New chat members were invited to a group
-public struct PushMessageContentChatAddMembers: Codable, Equatable {
+public struct PushMessageContentChatAddMembers: Codable, Equatable, Hashable {
 
     /// True, if the current user was added to the group
     public let isCurrentUser: Bool
@@ -689,7 +689,7 @@ public struct PushMessageContentChatAddMembers: Codable, Equatable {
 }
 
 /// A chat title was edited
-public struct PushMessageContentChatChangeTitle: Codable, Equatable {
+public struct PushMessageContentChatChangeTitle: Codable, Equatable, Hashable {
 
     /// New chat title
     public let title: String
@@ -701,7 +701,7 @@ public struct PushMessageContentChatChangeTitle: Codable, Equatable {
 }
 
 /// A chat background was edited
-public struct PushMessageContentChatSetBackground: Codable, Equatable {
+public struct PushMessageContentChatSetBackground: Codable, Equatable, Hashable {
 
     /// True, if the set background is the same as the background of the current user
     public let isSame: Bool
@@ -713,7 +713,7 @@ public struct PushMessageContentChatSetBackground: Codable, Equatable {
 }
 
 /// A chat theme was edited
-public struct PushMessageContentChatSetTheme: Codable, Equatable {
+public struct PushMessageContentChatSetTheme: Codable, Equatable, Hashable {
 
     /// If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one
     public let themeName: String
@@ -725,7 +725,7 @@ public struct PushMessageContentChatSetTheme: Codable, Equatable {
 }
 
 /// A chat member was deleted
-public struct PushMessageContentChatDeleteMember: Codable, Equatable {
+public struct PushMessageContentChatDeleteMember: Codable, Equatable, Hashable {
 
     /// True, if the current user was deleted from the group
     public let isCurrentUser: Bool
@@ -749,7 +749,7 @@ public struct PushMessageContentChatDeleteMember: Codable, Equatable {
 }
 
 /// A new recurrent payment was made by the current user
-public struct PushMessageContentRecurringPayment: Codable, Equatable {
+public struct PushMessageContentRecurringPayment: Codable, Equatable, Hashable {
 
     /// The paid amount
     public let amount: String
@@ -761,7 +761,7 @@ public struct PushMessageContentRecurringPayment: Codable, Equatable {
 }
 
 /// A forwarded messages
-public struct PushMessageContentMessageForwards: Codable, Equatable {
+public struct PushMessageContentMessageForwards: Codable, Equatable, Hashable {
 
     /// Number of forwarded messages
     public let totalCount: Int
@@ -773,7 +773,7 @@ public struct PushMessageContentMessageForwards: Codable, Equatable {
 }
 
 /// A media album
-public struct PushMessageContentMediaAlbum: Codable, Equatable {
+public struct PushMessageContentMediaAlbum: Codable, Equatable, Hashable {
 
     /// True, if the album has at least one audio file
     public let hasAudios: Bool

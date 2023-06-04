@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the current state of 2-step verification
-public struct PasswordState: Codable, Equatable {
+public struct PasswordState: Codable, Equatable, Hashable {
 
     /// True, if some Telegram Passport elements were saved
     public let hasPassportData: Bool

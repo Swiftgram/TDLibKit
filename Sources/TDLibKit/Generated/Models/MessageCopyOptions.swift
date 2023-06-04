@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Options to be used when a message content is copied without reference to the original sender. Service messages and messageInvoice can't be copied
-public struct MessageCopyOptions: Codable, Equatable {
+public struct MessageCopyOptions: Codable, Equatable, Hashable {
 
     /// New message caption; pass null to copy message without caption. Ignored if replace_caption is false
     public let newCaption: FormattedText

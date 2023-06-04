@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a forum topic
-public struct GetForumTopic: Codable, Equatable {
+public struct GetForumTopic: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

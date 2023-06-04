@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a button to be shown above inline query results
-public struct InlineQueryResultsButton: Codable, Equatable {
+public struct InlineQueryResultsButton: Codable, Equatable, Hashable {
 
     /// The text of the button
     public let text: String

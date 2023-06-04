@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes one answer option of a poll
-public struct PollOption: Codable, Equatable {
+public struct PollOption: Codable, Equatable, Hashable {
 
     /// True, if the option is being chosen by a pending setPollAnswer request
     public let isBeingChosen: Bool

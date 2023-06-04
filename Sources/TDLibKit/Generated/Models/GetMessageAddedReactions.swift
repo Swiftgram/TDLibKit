@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns reactions added for a message, along with their sender
-public struct GetMessageAddedReactions: Codable, Equatable {
+public struct GetMessageAddedReactions: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a game. Use getInternalLink with internalLinkTypeGame to share the game
-public struct Game: Codable, Equatable {
+public struct Game: Codable, Equatable, Hashable, Identifiable {
 
     /// Game animation; may be null
     public let animation: Animation?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes result of speech recognition in a voice note
-public enum SpeechRecognitionResult: Codable, Equatable {
+public enum SpeechRecognitionResult: Codable, Equatable, Hashable {
 
     /// The speech recognition is ongoing
     case speechRecognitionResultPending(SpeechRecognitionResultPending)
@@ -62,7 +62,7 @@ public enum SpeechRecognitionResult: Codable, Equatable {
 }
 
 /// The speech recognition is ongoing
-public struct SpeechRecognitionResultPending: Codable, Equatable {
+public struct SpeechRecognitionResultPending: Codable, Equatable, Hashable {
 
     /// Partially recognized text
     public let partialText: String
@@ -74,7 +74,7 @@ public struct SpeechRecognitionResultPending: Codable, Equatable {
 }
 
 /// The speech recognition successfully finished
-public struct SpeechRecognitionResultText: Codable, Equatable {
+public struct SpeechRecognitionResultText: Codable, Equatable, Hashable {
 
     /// Recognized text
     public let text: String
@@ -86,7 +86,7 @@ public struct SpeechRecognitionResultText: Codable, Equatable {
 }
 
 /// The speech recognition failed
-public struct SpeechRecognitionResultError: Codable, Equatable {
+public struct SpeechRecognitionResultError: Codable, Equatable, Hashable {
 
     /// Recognition error
     public let error: Error

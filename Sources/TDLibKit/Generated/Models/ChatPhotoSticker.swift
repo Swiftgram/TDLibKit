@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Information about the sticker, which was used to create the chat photo. The sticker is shown at the center of the photo and occupies at most 67% of it
-public struct ChatPhotoSticker: Codable, Equatable {
+public struct ChatPhotoSticker: Codable, Equatable, Hashable {
 
     /// The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported
     public let backgroundFill: BackgroundFill

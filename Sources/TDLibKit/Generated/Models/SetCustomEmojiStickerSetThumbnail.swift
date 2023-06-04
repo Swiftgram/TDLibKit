@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets a custom emoji sticker set thumbnail; for bots only
-public struct SetCustomEmojiStickerSetThumbnail: Codable, Equatable {
+public struct SetCustomEmojiStickerSetThumbnail: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
     public let customEmojiId: TdInt64?

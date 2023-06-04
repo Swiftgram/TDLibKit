@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the value of an option
-public enum OptionValue: Codable, Equatable {
+public enum OptionValue: Codable, Equatable, Hashable {
 
     /// Represents a boolean option
     case optionValueBoolean(OptionValueBoolean)
@@ -70,7 +70,7 @@ public enum OptionValue: Codable, Equatable {
 }
 
 /// Represents a boolean option
-public struct OptionValueBoolean: Codable, Equatable {
+public struct OptionValueBoolean: Codable, Equatable, Hashable {
 
     /// The value of the option
     public let value: Bool
@@ -82,7 +82,7 @@ public struct OptionValueBoolean: Codable, Equatable {
 }
 
 /// Represents an integer option
-public struct OptionValueInteger: Codable, Equatable {
+public struct OptionValueInteger: Codable, Equatable, Hashable {
 
     /// The value of the option
     public let value: TdInt64
@@ -94,7 +94,7 @@ public struct OptionValueInteger: Codable, Equatable {
 }
 
 /// Represents a string option
-public struct OptionValueString: Codable, Equatable {
+public struct OptionValueString: Codable, Equatable, Hashable {
 
     /// The value of the option
     public let value: String

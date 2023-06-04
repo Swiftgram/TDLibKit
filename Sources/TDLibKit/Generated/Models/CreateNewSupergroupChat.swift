@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
-public struct CreateNewSupergroupChat: Codable, Equatable {
+public struct CreateNewSupergroupChat: Codable, Equatable, Hashable {
 
     public let description: String?
 

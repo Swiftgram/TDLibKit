@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains some text
-public struct Text: Codable, Equatable {
+public struct Text: Codable, Equatable, Hashable {
 
     /// Text
     public let text: String

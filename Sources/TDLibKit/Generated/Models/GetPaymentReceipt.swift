@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a successful payment
-public struct GetPaymentReceipt: Codable, Equatable {
+public struct GetPaymentReceipt: Codable, Equatable, Hashable {
 
     /// Chat identifier of the messagePaymentSuccessful message
     public let chatId: Int64?

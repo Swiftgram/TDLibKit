@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes reactions available in the chat
-public enum ChatAvailableReactions: Codable, Equatable {
+public enum ChatAvailableReactions: Codable, Equatable, Hashable {
 
     /// All reactions are available in the chat
     case chatAvailableReactionsAll
@@ -50,7 +50,7 @@ public enum ChatAvailableReactions: Codable, Equatable {
 }
 
 /// Only specific reactions are available in the chat
-public struct ChatAvailableReactionsSome: Codable, Equatable {
+public struct ChatAvailableReactionsSome: Codable, Equatable, Hashable {
 
     /// The list of reactions
     public let reactions: [ReactionType]

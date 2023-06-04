@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a chat or user profile photo
-public struct ChatPhoto: Codable, Equatable {
+public struct ChatPhoto: Codable, Equatable, Hashable, Identifiable {
 
     /// Point in time (Unix timestamp) when the photo has been added
     public let addedDate: Int

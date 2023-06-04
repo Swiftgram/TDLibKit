@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Leaves a group call
-public struct LeaveGroupCall: Codable, Equatable {
+public struct LeaveGroupCall: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Updates the game score of the specified user in the game; for bots only
-public struct SetGameScore: Codable, Equatable {
+public struct SetGameScore: Codable, Equatable, Hashable {
 
     /// The chat to which the message with the game belongs
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Marks all reactions in a chat or a forum topic as read
-public struct ReadAllChatReactions: Codable, Equatable {
+public struct ReadAllChatReactions: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

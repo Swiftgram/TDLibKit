@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Telegram Passport element that was requested by a service
-public struct PassportSuitableElement: Codable, Equatable {
+public struct PassportSuitableElement: Codable, Equatable, Hashable {
 
     /// True, if personal details must include the user's name in the language of their country of residence
     public let isNativeNameRequired: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Information about the message sent by answerWebAppQuery
-public struct SentWebAppMessage: Codable, Equatable {
+public struct SentWebAppMessage: Codable, Equatable, Hashable {
 
     /// Identifier of the sent inline message, if known
     public let inlineMessageId: String

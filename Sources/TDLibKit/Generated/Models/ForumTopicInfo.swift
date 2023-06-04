@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains basic information about a forum topic
-public struct ForumTopicInfo: Codable, Equatable {
+public struct ForumTopicInfo: Codable, Equatable, Hashable {
 
     /// Date the topic was created
     public let creationDate: Int

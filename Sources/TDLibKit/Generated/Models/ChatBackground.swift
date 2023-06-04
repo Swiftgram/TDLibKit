@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a background set for a specific chat
-public struct ChatBackground: Codable, Equatable {
+public struct ChatBackground: Codable, Equatable, Hashable {
 
     /// The background
     public let background: Background

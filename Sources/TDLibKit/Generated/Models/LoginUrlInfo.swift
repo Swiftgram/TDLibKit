@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
-public enum LoginUrlInfo: Codable, Equatable {
+public enum LoginUrlInfo: Codable, Equatable, Hashable {
 
     /// An HTTP URL needs to be open
     case loginUrlInfoOpen(LoginUrlInfoOpen)
@@ -52,7 +52,7 @@ public enum LoginUrlInfo: Codable, Equatable {
 }
 
 /// An HTTP URL needs to be open
-public struct LoginUrlInfoOpen: Codable, Equatable {
+public struct LoginUrlInfoOpen: Codable, Equatable, Hashable {
 
     /// True, if there is no need to show an ordinary open URL confirmation
     public let skipConfirmation: Bool
@@ -71,7 +71,7 @@ public struct LoginUrlInfoOpen: Codable, Equatable {
 }
 
 /// An authorization confirmation dialog needs to be shown to the user
-public struct LoginUrlInfoRequestConfirmation: Codable, Equatable {
+public struct LoginUrlInfoRequestConfirmation: Codable, Equatable, Hashable {
 
     /// User identifier of a bot linked with the website
     public let botUserId: Int64

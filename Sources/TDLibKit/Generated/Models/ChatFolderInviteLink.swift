@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a chat folder invite link
-public struct ChatFolderInviteLink: Codable, Equatable {
+public struct ChatFolderInviteLink: Codable, Equatable, Hashable {
 
     /// Identifiers of chats, included in the link
     public let chatIds: [Int64]

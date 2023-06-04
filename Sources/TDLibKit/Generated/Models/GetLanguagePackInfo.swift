@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
-public struct GetLanguagePackInfo: Codable, Equatable {
+public struct GetLanguagePackInfo: Codable, Equatable, Hashable {
 
     /// Language pack identifier
     public let languagePackId: String?

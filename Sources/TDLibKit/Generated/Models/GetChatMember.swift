@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a single member of a chat
-public struct GetChatMember: Codable, Equatable {
+public struct GetChatMember: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

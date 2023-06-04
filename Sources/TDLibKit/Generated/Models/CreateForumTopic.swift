@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
-public struct CreateForumTopic: Codable, Equatable {
+public struct CreateForumTopic: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

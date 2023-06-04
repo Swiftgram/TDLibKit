@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a block of an instant view web page
-public indirect enum PageBlock: Codable, Equatable {
+public indirect enum PageBlock: Codable, Equatable, Hashable {
 
     /// The title of a page
     case pageBlockTitle(PageBlockTitle)
@@ -320,7 +320,7 @@ public indirect enum PageBlock: Codable, Equatable {
 }
 
 /// The title of a page
-public struct PageBlockTitle: Codable, Equatable {
+public struct PageBlockTitle: Codable, Equatable, Hashable {
 
     /// Title
     public let title: RichText
@@ -332,7 +332,7 @@ public struct PageBlockTitle: Codable, Equatable {
 }
 
 /// The subtitle of a page
-public struct PageBlockSubtitle: Codable, Equatable {
+public struct PageBlockSubtitle: Codable, Equatable, Hashable {
 
     /// Subtitle
     public let subtitle: RichText
@@ -344,7 +344,7 @@ public struct PageBlockSubtitle: Codable, Equatable {
 }
 
 /// The author and publishing date of a page
-public struct PageBlockAuthorDate: Codable, Equatable {
+public struct PageBlockAuthorDate: Codable, Equatable, Hashable {
 
     /// Author
     public let author: RichText
@@ -363,7 +363,7 @@ public struct PageBlockAuthorDate: Codable, Equatable {
 }
 
 /// A header
-public struct PageBlockHeader: Codable, Equatable {
+public struct PageBlockHeader: Codable, Equatable, Hashable {
 
     /// Header
     public let header: RichText
@@ -375,7 +375,7 @@ public struct PageBlockHeader: Codable, Equatable {
 }
 
 /// A subheader
-public struct PageBlockSubheader: Codable, Equatable {
+public struct PageBlockSubheader: Codable, Equatable, Hashable {
 
     /// Subheader
     public let subheader: RichText
@@ -387,7 +387,7 @@ public struct PageBlockSubheader: Codable, Equatable {
 }
 
 /// A kicker
-public struct PageBlockKicker: Codable, Equatable {
+public struct PageBlockKicker: Codable, Equatable, Hashable {
 
     /// Kicker
     public let kicker: RichText
@@ -399,7 +399,7 @@ public struct PageBlockKicker: Codable, Equatable {
 }
 
 /// A text paragraph
-public struct PageBlockParagraph: Codable, Equatable {
+public struct PageBlockParagraph: Codable, Equatable, Hashable {
 
     /// Paragraph text
     public let text: RichText
@@ -411,7 +411,7 @@ public struct PageBlockParagraph: Codable, Equatable {
 }
 
 /// A preformatted text paragraph
-public struct PageBlockPreformatted: Codable, Equatable {
+public struct PageBlockPreformatted: Codable, Equatable, Hashable {
 
     /// Programming language for which the text needs to be formatted
     public let language: String
@@ -430,7 +430,7 @@ public struct PageBlockPreformatted: Codable, Equatable {
 }
 
 /// The footer of a page
-public struct PageBlockFooter: Codable, Equatable {
+public struct PageBlockFooter: Codable, Equatable, Hashable {
 
     /// Footer
     public let footer: RichText
@@ -442,7 +442,7 @@ public struct PageBlockFooter: Codable, Equatable {
 }
 
 /// An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
-public struct PageBlockAnchor: Codable, Equatable {
+public struct PageBlockAnchor: Codable, Equatable, Hashable {
 
     /// Name of the anchor
     public let name: String
@@ -454,7 +454,7 @@ public struct PageBlockAnchor: Codable, Equatable {
 }
 
 /// A list of data blocks
-public struct PageBlockList: Codable, Equatable {
+public struct PageBlockList: Codable, Equatable, Hashable {
 
     /// The items of the list
     public let items: [PageBlockListItem]
@@ -466,7 +466,7 @@ public struct PageBlockList: Codable, Equatable {
 }
 
 /// A block quote
-public struct PageBlockBlockQuote: Codable, Equatable {
+public struct PageBlockBlockQuote: Codable, Equatable, Hashable {
 
     /// Quote credit
     public let credit: RichText
@@ -485,7 +485,7 @@ public struct PageBlockBlockQuote: Codable, Equatable {
 }
 
 /// A pull quote
-public struct PageBlockPullQuote: Codable, Equatable {
+public struct PageBlockPullQuote: Codable, Equatable, Hashable {
 
     /// Quote credit
     public let credit: RichText
@@ -504,7 +504,7 @@ public struct PageBlockPullQuote: Codable, Equatable {
 }
 
 /// An animation
-public struct PageBlockAnimation: Codable, Equatable {
+public struct PageBlockAnimation: Codable, Equatable, Hashable {
 
     /// Animation file; may be null
     public let animation: Animation?
@@ -528,7 +528,7 @@ public struct PageBlockAnimation: Codable, Equatable {
 }
 
 /// An audio file
-public struct PageBlockAudio: Codable, Equatable {
+public struct PageBlockAudio: Codable, Equatable, Hashable {
 
     /// Audio file; may be null
     public let audio: Audio?
@@ -547,7 +547,7 @@ public struct PageBlockAudio: Codable, Equatable {
 }
 
 /// A photo
-public struct PageBlockPhoto: Codable, Equatable {
+public struct PageBlockPhoto: Codable, Equatable, Hashable {
 
     /// Photo caption
     public let caption: PageBlockCaption
@@ -571,7 +571,7 @@ public struct PageBlockPhoto: Codable, Equatable {
 }
 
 /// A video
-public struct PageBlockVideo: Codable, Equatable {
+public struct PageBlockVideo: Codable, Equatable, Hashable {
 
     /// Video caption
     public let caption: PageBlockCaption
@@ -600,7 +600,7 @@ public struct PageBlockVideo: Codable, Equatable {
 }
 
 /// A voice note
-public struct PageBlockVoiceNote: Codable, Equatable {
+public struct PageBlockVoiceNote: Codable, Equatable, Hashable {
 
     /// Voice note caption
     public let caption: PageBlockCaption
@@ -619,7 +619,7 @@ public struct PageBlockVoiceNote: Codable, Equatable {
 }
 
 /// A page cover
-public struct PageBlockCover: Codable, Equatable {
+public struct PageBlockCover: Codable, Equatable, Hashable {
 
     /// Cover
     public let cover: PageBlock
@@ -631,7 +631,7 @@ public struct PageBlockCover: Codable, Equatable {
 }
 
 /// An embedded web page
-public struct PageBlockEmbedded: Codable, Equatable {
+public struct PageBlockEmbedded: Codable, Equatable, Hashable {
 
     /// True, if scrolling needs to be allowed
     public let allowScrolling: Bool
@@ -680,7 +680,7 @@ public struct PageBlockEmbedded: Codable, Equatable {
 }
 
 /// An embedded post
-public struct PageBlockEmbeddedPost: Codable, Equatable {
+public struct PageBlockEmbeddedPost: Codable, Equatable, Hashable {
 
     /// Post author
     public let author: String
@@ -719,7 +719,7 @@ public struct PageBlockEmbeddedPost: Codable, Equatable {
 }
 
 /// A collage
-public struct PageBlockCollage: Codable, Equatable {
+public struct PageBlockCollage: Codable, Equatable, Hashable {
 
     /// Block caption
     public let caption: PageBlockCaption
@@ -738,7 +738,7 @@ public struct PageBlockCollage: Codable, Equatable {
 }
 
 /// A slideshow
-public struct PageBlockSlideshow: Codable, Equatable {
+public struct PageBlockSlideshow: Codable, Equatable, Hashable {
 
     /// Block caption
     public let caption: PageBlockCaption
@@ -757,7 +757,7 @@ public struct PageBlockSlideshow: Codable, Equatable {
 }
 
 /// A link to a chat
-public struct PageBlockChatLink: Codable, Equatable {
+public struct PageBlockChatLink: Codable, Equatable, Hashable {
 
     /// Chat photo; may be null
     public let photo: ChatPhotoInfo?
@@ -781,7 +781,7 @@ public struct PageBlockChatLink: Codable, Equatable {
 }
 
 /// A table
-public struct PageBlockTable: Codable, Equatable {
+public struct PageBlockTable: Codable, Equatable, Hashable {
 
     /// Table caption
     public let caption: RichText
@@ -810,7 +810,7 @@ public struct PageBlockTable: Codable, Equatable {
 }
 
 /// A collapsible block
-public struct PageBlockDetails: Codable, Equatable {
+public struct PageBlockDetails: Codable, Equatable, Hashable {
 
     /// Always visible heading for the block
     public let header: RichText
@@ -834,7 +834,7 @@ public struct PageBlockDetails: Codable, Equatable {
 }
 
 /// Related articles
-public struct PageBlockRelatedArticles: Codable, Equatable {
+public struct PageBlockRelatedArticles: Codable, Equatable, Hashable {
 
     /// List of related articles
     public let articles: [PageBlockRelatedArticle]
@@ -853,7 +853,7 @@ public struct PageBlockRelatedArticles: Codable, Equatable {
 }
 
 /// A map
-public struct PageBlockMap: Codable, Equatable {
+public struct PageBlockMap: Codable, Equatable, Hashable {
 
     /// Block caption
     public let caption: PageBlockCaption

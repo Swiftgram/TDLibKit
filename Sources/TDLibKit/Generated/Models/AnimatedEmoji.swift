@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an animated or custom representation of an emoji
-public struct AnimatedEmoji: Codable, Equatable {
+public struct AnimatedEmoji: Codable, Equatable, Hashable {
 
     /// Emoji modifier fitzpatrick type; 0-6; 0 if none
     public let fitzpatrickType: Int

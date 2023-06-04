@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
-public struct TranslateMessageText: Codable, Equatable {
+public struct TranslateMessageText: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

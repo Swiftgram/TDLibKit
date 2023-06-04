@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a notification about user activity in a chat
-public struct SendChatAction: Codable, Equatable {
+public struct SendChatAction: Codable, Equatable, Hashable {
 
     /// The action description; pass null to cancel the currently active action
     public let action: ChatAction?

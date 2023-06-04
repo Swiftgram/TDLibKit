@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns all user contacts
-public struct GetContacts: Codable, Equatable {
+public struct GetContacts: Codable, Equatable, Hashable {
 
 
     public init() {}

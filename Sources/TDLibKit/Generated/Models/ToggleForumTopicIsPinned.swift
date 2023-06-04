@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
-public struct ToggleForumTopicIsPinned: Codable, Equatable {
+public struct ToggleForumTopicIsPinned: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

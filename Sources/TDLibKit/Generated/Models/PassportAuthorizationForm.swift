@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Telegram Passport authorization form that was requested
-public struct PassportAuthorizationForm: Codable, Equatable {
+public struct PassportAuthorizationForm: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the authorization form
     public let id: Int

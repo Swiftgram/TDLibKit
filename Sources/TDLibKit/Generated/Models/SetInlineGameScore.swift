@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Updates the game score of the specified user in a game; for bots only
-public struct SetInlineGameScore: Codable, Equatable {
+public struct SetInlineGameScore: Codable, Equatable, Hashable {
 
     /// Pass true to edit the game message to include the current scoreboard
     public let editMessage: Bool?

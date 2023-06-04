@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a message sender, which can be used to send messages in a chat
-public struct ChatMessageSender: Codable, Equatable {
+public struct ChatMessageSender: Codable, Equatable, Hashable {
 
     /// True, if Telegram Premium is needed to use the message sender
     public let needsPremium: Bool

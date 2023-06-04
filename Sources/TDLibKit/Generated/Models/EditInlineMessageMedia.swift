@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
-public struct EditInlineMessageMedia: Codable, Equatable {
+public struct EditInlineMessageMedia: Codable, Equatable, Hashable {
 
     /// Inline message identifier
     public let inlineMessageId: String?

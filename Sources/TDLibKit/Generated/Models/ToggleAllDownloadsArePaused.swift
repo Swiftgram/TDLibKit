@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes pause state of all files in the file download list
-public struct ToggleAllDownloadsArePaused: Codable, Equatable {
+public struct ToggleAllDownloadsArePaused: Codable, Equatable, Hashable {
 
     /// Pass true to pause all downloads; pass false to unpause them
     public let arePaused: Bool?

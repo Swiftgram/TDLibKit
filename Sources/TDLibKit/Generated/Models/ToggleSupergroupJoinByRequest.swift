@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
-public struct ToggleSupergroupJoinByRequest: Codable, Equatable {
+public struct ToggleSupergroupJoinByRequest: Codable, Equatable, Hashable {
 
     /// New value of join_by_request
     public let joinByRequest: Bool?

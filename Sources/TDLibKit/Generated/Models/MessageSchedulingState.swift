@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the time when a scheduled message will be sent
-public enum MessageSchedulingState: Codable, Equatable {
+public enum MessageSchedulingState: Codable, Equatable, Hashable {
 
     /// The message will be sent at the specified date
     case messageSchedulingStateSendAtDate(MessageSchedulingStateSendAtDate)
@@ -50,7 +50,7 @@ public enum MessageSchedulingState: Codable, Equatable {
 }
 
 /// The message will be sent at the specified date
-public struct MessageSchedulingStateSendAtDate: Codable, Equatable {
+public struct MessageSchedulingStateSendAtDate: Codable, Equatable, Hashable {
 
     /// Date the message will be sent. The date must be within 367 days in the future
     public let sendDate: Int

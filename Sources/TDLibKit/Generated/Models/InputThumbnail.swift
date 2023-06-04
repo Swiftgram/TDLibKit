@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size
-public struct InputThumbnail: Codable, Equatable {
+public struct InputThumbnail: Codable, Equatable, Hashable {
 
     /// Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
     public let height: Int

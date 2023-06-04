@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the order of pinned forum topics
-public struct SetPinnedForumTopics: Codable, Equatable {
+public struct SetPinnedForumTopics: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a reaction from a message. A chosen reaction can always be removed
-public struct RemoveMessageReaction: Codable, Equatable {
+public struct RemoveMessageReaction: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

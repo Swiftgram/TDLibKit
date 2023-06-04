@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a new member to a chat. Members can't be added to private or secret chats
-public struct AddChatMember: Codable, Equatable {
+public struct AddChatMember: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

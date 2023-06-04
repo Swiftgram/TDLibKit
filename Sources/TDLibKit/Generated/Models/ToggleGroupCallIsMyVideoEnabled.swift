@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether current user's video is enabled
-public struct ToggleGroupCallIsMyVideoEnabled: Codable, Equatable {
+public struct ToggleGroupCallIsMyVideoEnabled: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

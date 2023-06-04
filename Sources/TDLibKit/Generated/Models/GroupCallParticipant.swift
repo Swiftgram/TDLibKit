@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a group call participant
-public struct GroupCallParticipant: Codable, Equatable {
+public struct GroupCallParticipant: Codable, Equatable, Hashable {
 
     /// User's audio channel synchronization source identifier
     public let audioSourceId: Int

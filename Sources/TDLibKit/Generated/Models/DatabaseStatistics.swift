@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains database statistics
-public struct DatabaseStatistics: Codable, Equatable {
+public struct DatabaseStatistics: Codable, Equatable, Hashable {
 
     /// Database statistics in an unspecified human-readable format
     public let statistics: String

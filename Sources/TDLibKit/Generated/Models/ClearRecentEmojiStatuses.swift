@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Clears the list of recently used emoji statuses
-public struct ClearRecentEmojiStatuses: Codable, Equatable {
+public struct ClearRecentEmojiStatuses: Codable, Equatable, Hashable {
 
 
     public init() {}

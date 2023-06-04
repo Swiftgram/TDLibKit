@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-public struct EditChatInviteLink: Codable, Equatable {
+public struct EditChatInviteLink: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
-public struct AddFileToDownloads: Codable, Equatable {
+public struct AddFileToDownloads: Codable, Equatable, Hashable {
 
     /// Chat identifier of the message with the file
     public let chatId: Int64?

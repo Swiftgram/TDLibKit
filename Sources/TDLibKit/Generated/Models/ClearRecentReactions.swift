@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Clears the list of recently used reactions
-public struct ClearRecentReactions: Codable, Equatable {
+public struct ClearRecentReactions: Codable, Equatable, Hashable {
 
 
     public init() {}

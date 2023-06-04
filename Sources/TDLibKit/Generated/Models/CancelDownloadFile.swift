@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Stops the downloading of a file. If a file has already been downloaded, does nothing
-public struct CancelDownloadFile: Codable, Equatable {
+public struct CancelDownloadFile: Codable, Equatable, Hashable {
 
     /// Identifier of a file to stop downloading
     public let fileId: Int?

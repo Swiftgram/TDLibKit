@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes application-specific data associated with a chat
-public struct SetChatClientData: Codable, Equatable {
+public struct SetChatClientData: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

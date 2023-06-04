@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a chat invite link
-public struct ChatInviteLinkInfo: Codable, Equatable {
+public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
 
     /// If non-zero, the amount of time for which read access to the chat will remain available, in seconds
     public let accessibleFor: Int

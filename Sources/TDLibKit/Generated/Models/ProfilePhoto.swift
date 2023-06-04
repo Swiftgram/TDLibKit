@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a user profile photo
-public struct ProfilePhoto: Codable, Equatable {
+public struct ProfilePhoto: Codable, Equatable, Hashable, Identifiable {
 
     /// A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
     public let big: File

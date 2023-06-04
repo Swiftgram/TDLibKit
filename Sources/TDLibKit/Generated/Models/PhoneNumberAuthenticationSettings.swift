@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains settings for the authentication of the user's phone number
-public struct PhoneNumberAuthenticationSettings: Codable, Equatable {
+public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
 
     /// Pass true if the authentication code may be sent via a flash call to the specified phone number
     public let allowFlashCall: Bool

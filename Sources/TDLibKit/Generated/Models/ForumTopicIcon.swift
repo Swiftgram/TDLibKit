@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a forum topic icon
-public struct ForumTopicIcon: Codable, Equatable {
+public struct ForumTopicIcon: Codable, Equatable, Hashable {
 
     /// Color of the topic icon in RGB format
     public let color: Int

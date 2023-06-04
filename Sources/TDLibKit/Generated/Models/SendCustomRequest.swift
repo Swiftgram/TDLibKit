@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a custom request; for bots only
-public struct SendCustomRequest: Codable, Equatable {
+public struct SendCustomRequest: Codable, Equatable, Hashable {
 
     /// The method name
     public let method: String?

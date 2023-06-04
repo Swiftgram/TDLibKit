@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Web App found by its short name
-public struct FoundWebApp: Codable, Equatable {
+public struct FoundWebApp: Codable, Equatable, Hashable {
 
     /// True, if the user must be asked for the permission to the bot to send them messages
     public let requestWriteAccess: Bool

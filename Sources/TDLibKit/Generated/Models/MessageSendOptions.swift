@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Options to be used when a message is sent
-public struct MessageSendOptions: Codable, Equatable {
+public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     /// Pass true to disable notification for the message
     public let disableNotification: Bool

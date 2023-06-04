@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a file from the file download list
-public struct RemoveFileFromDownloads: Codable, Equatable {
+public struct RemoveFileFromDownloads: Codable, Equatable, Hashable {
 
     /// Pass true to delete the file from the TDLib file cache
     public let deleteFromCache: Bool?

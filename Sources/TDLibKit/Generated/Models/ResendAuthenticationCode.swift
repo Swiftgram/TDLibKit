@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
-public struct ResendAuthenticationCode: Codable, Equatable {
+public struct ResendAuthenticationCode: Codable, Equatable, Hashable {
 
 
     public init() {}

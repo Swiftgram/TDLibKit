@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
-public struct GetForumTopics: Codable, Equatable {
+public struct GetForumTopics: Codable, Equatable, Hashable {
 
     /// Identifier of the forum chat
     public let chatId: Int64?

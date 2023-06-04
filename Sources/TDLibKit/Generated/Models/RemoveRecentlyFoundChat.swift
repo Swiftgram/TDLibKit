@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a chat from the list of recently found chats
-public struct RemoveRecentlyFoundChat: Codable, Equatable {
+public struct RemoveRecentlyFoundChat: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to be removed
     public let chatId: Int64?

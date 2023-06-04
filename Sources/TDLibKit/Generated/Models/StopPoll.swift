@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
-public struct StopPoll: Codable, Equatable {
+public struct StopPoll: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the poll belongs
     public let chatId: Int64?

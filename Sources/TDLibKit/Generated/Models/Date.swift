@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a date according to the Gregorian calendar
-public struct Date: Codable, Equatable {
+public struct Date: Codable, Equatable, Hashable {
 
     /// Day of the month; 1-31
     public let day: Int

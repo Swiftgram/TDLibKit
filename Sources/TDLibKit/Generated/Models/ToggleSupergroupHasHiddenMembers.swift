@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
-public struct ToggleSupergroupHasHiddenMembers: Codable, Equatable {
+public struct ToggleSupergroupHasHiddenMembers: Codable, Equatable, Hashable {
 
     /// New value of has_hidden_members
     public let hasHiddenMembers: Bool?

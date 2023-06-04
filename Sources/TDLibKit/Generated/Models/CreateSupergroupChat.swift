@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an existing chat corresponding to a known supergroup or channel
-public struct CreateSupergroupChat: Codable, Equatable {
+public struct CreateSupergroupChat: Codable, Equatable, Hashable {
 
     /// Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     public let force: Bool?

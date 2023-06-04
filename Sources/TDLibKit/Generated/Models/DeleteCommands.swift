@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes commands supported by the bot for the given user scope and language; for bots only
-public struct DeleteCommands: Codable, Equatable {
+public struct DeleteCommands: Codable, Equatable, Hashable {
 
     /// A two-letter ISO 639-1 language code or an empty string
     public let languageCode: String?

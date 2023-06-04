@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Rates recognized speech in a video note or a voice note message
-public struct RateSpeechRecognition: Codable, Equatable {
+public struct RateSpeechRecognition: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

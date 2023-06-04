@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
-public indirect enum InternalLinkType: Codable, Equatable {
+public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
     case internalLinkTypeActiveSessions
@@ -388,7 +388,7 @@ public indirect enum InternalLinkType: Codable, Equatable {
 }
 
 /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
-public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable {
+public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Username of the bot
     public let botUsername: String
@@ -412,7 +412,7 @@ public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable {
 }
 
 /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
-public struct InternalLinkTypeAuthenticationCode: Codable, Equatable {
+public struct InternalLinkTypeAuthenticationCode: Codable, Equatable, Hashable {
 
     /// The authentication code
     public let code: String
@@ -424,7 +424,7 @@ public struct InternalLinkTypeAuthenticationCode: Codable, Equatable {
 }
 
 /// The link is a link to a background. Call searchBackground with the given background name to process the link
-public struct InternalLinkTypeBackground: Codable, Equatable {
+public struct InternalLinkTypeBackground: Codable, Equatable, Hashable {
 
     /// Name of the background
     public let backgroundName: String
@@ -436,7 +436,7 @@ public struct InternalLinkTypeBackground: Codable, Equatable {
 }
 
 /// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
-public struct InternalLinkTypeBotAddToChannel: Codable, Equatable {
+public struct InternalLinkTypeBotAddToChannel: Codable, Equatable, Hashable {
 
     /// Expected administrator rights for the bot
     public let administratorRights: ChatAdministratorRights
@@ -455,7 +455,7 @@ public struct InternalLinkTypeBotAddToChannel: Codable, Equatable {
 }
 
 /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
-public struct InternalLinkTypeBotStart: Codable, Equatable {
+public struct InternalLinkTypeBotStart: Codable, Equatable, Hashable {
 
     /// True, if sendBotStartMessage must be called automatically without showing the START button
     public let autostart: Bool
@@ -479,7 +479,7 @@ public struct InternalLinkTypeBotStart: Codable, Equatable {
 }
 
 /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
-public struct InternalLinkTypeBotStartInGroup: Codable, Equatable {
+public struct InternalLinkTypeBotStartInGroup: Codable, Equatable, Hashable {
 
     /// Expected administrator rights for the bot; may be null
     public let administratorRights: ChatAdministratorRights?
@@ -503,7 +503,7 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable {
 }
 
 /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
-public struct InternalLinkTypeChatFolderInvite: Codable, Equatable {
+public struct InternalLinkTypeChatFolderInvite: Codable, Equatable, Hashable {
 
     /// Internal representation of the invite link
     public let inviteLink: String
@@ -515,7 +515,7 @@ public struct InternalLinkTypeChatFolderInvite: Codable, Equatable {
 }
 
 /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
-public struct InternalLinkTypeChatInvite: Codable, Equatable {
+public struct InternalLinkTypeChatInvite: Codable, Equatable, Hashable {
 
     /// Internal representation of the invite link
     public let inviteLink: String
@@ -527,7 +527,7 @@ public struct InternalLinkTypeChatInvite: Codable, Equatable {
 }
 
 /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
-public struct InternalLinkTypeGame: Codable, Equatable {
+public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the game
     public let botUsername: String
@@ -546,7 +546,7 @@ public struct InternalLinkTypeGame: Codable, Equatable {
 }
 
 /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
-public struct InternalLinkTypeInstantView: Codable, Equatable {
+public struct InternalLinkTypeInstantView: Codable, Equatable, Hashable {
 
     /// An URL to open if getWebPageInstantView fails
     public let fallbackUrl: String
@@ -565,7 +565,7 @@ public struct InternalLinkTypeInstantView: Codable, Equatable {
 }
 
 /// The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
-public struct InternalLinkTypeInvoice: Codable, Equatable {
+public struct InternalLinkTypeInvoice: Codable, Equatable, Hashable {
 
     /// Name of the invoice
     public let invoiceName: String
@@ -577,7 +577,7 @@ public struct InternalLinkTypeInvoice: Codable, Equatable {
 }
 
 /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
-public struct InternalLinkTypeLanguagePack: Codable, Equatable {
+public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
 
     /// Language pack identifier
     public let languagePackId: String
@@ -589,7 +589,7 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable {
 }
 
 /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
-public struct InternalLinkTypeMessage: Codable, Equatable {
+public struct InternalLinkTypeMessage: Codable, Equatable, Hashable {
 
     /// URL to be passed to getMessageLinkInfo
     public let url: String
@@ -601,7 +601,7 @@ public struct InternalLinkTypeMessage: Codable, Equatable {
 }
 
 /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
-public struct InternalLinkTypeMessageDraft: Codable, Equatable {
+public struct InternalLinkTypeMessageDraft: Codable, Equatable, Hashable {
 
     /// True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
     public let containsLink: Bool
@@ -620,7 +620,7 @@ public struct InternalLinkTypeMessageDraft: Codable, Equatable {
 }
 
 /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
-public struct InternalLinkTypePassportDataRequest: Codable, Equatable {
+public struct InternalLinkTypePassportDataRequest: Codable, Equatable, Hashable {
 
     /// User identifier of the service's bot
     public let botUserId: Int64
@@ -654,7 +654,7 @@ public struct InternalLinkTypePassportDataRequest: Codable, Equatable {
 }
 
 /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
-public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable {
+public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable, Hashable {
 
     /// Hash value from the link
     public let hash: String
@@ -673,7 +673,7 @@ public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable {
 }
 
 /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
-public struct InternalLinkTypePremiumFeatures: Codable, Equatable {
+public struct InternalLinkTypePremiumFeatures: Codable, Equatable, Hashable {
 
     /// Referrer specified in the link
     public let referrer: String
@@ -685,7 +685,7 @@ public struct InternalLinkTypePremiumFeatures: Codable, Equatable {
 }
 
 /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
-public struct InternalLinkTypeProxy: Codable, Equatable {
+public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
 
     /// Proxy server port
     public let port: Int
@@ -709,7 +709,7 @@ public struct InternalLinkTypeProxy: Codable, Equatable {
 }
 
 /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
-public struct InternalLinkTypePublicChat: Codable, Equatable {
+public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
 
     /// Username of the chat
     public let chatUsername: String
@@ -721,7 +721,7 @@ public struct InternalLinkTypePublicChat: Codable, Equatable {
 }
 
 /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
-public struct InternalLinkTypeStickerSet: Codable, Equatable {
+public struct InternalLinkTypeStickerSet: Codable, Equatable, Hashable {
 
     /// True, if the sticker set is expected to contain custom emoji
     public let expectCustomEmoji: Bool
@@ -740,7 +740,7 @@ public struct InternalLinkTypeStickerSet: Codable, Equatable {
 }
 
 /// The link is a link to a theme. TDLib has no theme support yet
-public struct InternalLinkTypeTheme: Codable, Equatable {
+public struct InternalLinkTypeTheme: Codable, Equatable, Hashable {
 
     /// Name of the theme
     public let themeName: String
@@ -752,7 +752,7 @@ public struct InternalLinkTypeTheme: Codable, Equatable {
 }
 
 /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
-public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable {
+public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable, Hashable {
 
     /// Link to be passed to getDeepLinkInfo
     public let link: String
@@ -764,7 +764,7 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable {
 }
 
 /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
-public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable {
+public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
 
     /// Phone number of the user
     public let phoneNumber: String
@@ -776,7 +776,7 @@ public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable {
 }
 
 /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
-public struct InternalLinkTypeUserToken: Codable, Equatable {
+public struct InternalLinkTypeUserToken: Codable, Equatable, Hashable {
 
     /// The token
     public let token: String
@@ -788,7 +788,7 @@ public struct InternalLinkTypeUserToken: Codable, Equatable {
 }
 
 /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
-public struct InternalLinkTypeVideoChat: Codable, Equatable {
+public struct InternalLinkTypeVideoChat: Codable, Equatable, Hashable {
 
     /// Username of the chat with the video chat
     public let chatUsername: String
@@ -812,7 +812,7 @@ public struct InternalLinkTypeVideoChat: Codable, Equatable {
 }
 
 /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
-public struct InternalLinkTypeWebApp: Codable, Equatable {
+public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the Web App
     public let botUsername: String

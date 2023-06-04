@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
-public struct GetChatStatistics: Codable, Equatable {
+public struct GetChatStatistics: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

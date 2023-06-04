@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
-public struct GetMessageAvailableReactions: Codable, Equatable {
+public struct GetMessageAvailableReactions: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

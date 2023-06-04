@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks whether a 2-step verification password recovery code sent to an email address is valid
-public struct CheckPasswordRecoveryCode: Codable, Equatable {
+public struct CheckPasswordRecoveryCode: Codable, Equatable, Hashable {
 
     /// Recovery code to check
     public let recoveryCode: String?

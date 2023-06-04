@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a payment provider
-public enum PaymentProvider: Codable, Equatable {
+public enum PaymentProvider: Codable, Equatable, Hashable {
 
     /// Smart Glocal payment provider
     case paymentProviderSmartGlocal(PaymentProviderSmartGlocal)
@@ -62,7 +62,7 @@ public enum PaymentProvider: Codable, Equatable {
 }
 
 /// Smart Glocal payment provider
-public struct PaymentProviderSmartGlocal: Codable, Equatable {
+public struct PaymentProviderSmartGlocal: Codable, Equatable, Hashable {
 
     /// Public payment token
     public let publicToken: String
@@ -74,7 +74,7 @@ public struct PaymentProviderSmartGlocal: Codable, Equatable {
 }
 
 /// Stripe payment provider
-public struct PaymentProviderStripe: Codable, Equatable {
+public struct PaymentProviderStripe: Codable, Equatable, Hashable {
 
     /// True, if the cardholder name must be provided
     public let needCardholderName: Bool
@@ -103,7 +103,7 @@ public struct PaymentProviderStripe: Codable, Equatable {
 }
 
 /// Some other payment provider, for which a web payment form must be shown
-public struct PaymentProviderOther: Codable, Equatable {
+public struct PaymentProviderOther: Codable, Equatable, Hashable {
 
     /// Payment form URL
     public let url: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
-public struct SearchWebApp: Codable, Equatable {
+public struct SearchWebApp: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

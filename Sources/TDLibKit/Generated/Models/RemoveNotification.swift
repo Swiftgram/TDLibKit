@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
-public struct RemoveNotification: Codable, Equatable {
+public struct RemoveNotification: Codable, Equatable, Hashable {
 
     /// Identifier of notification group to which the notification belongs
     public let notificationGroupId: Int?

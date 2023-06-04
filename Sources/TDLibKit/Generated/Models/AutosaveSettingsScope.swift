@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes scope of autosave settings
-public enum AutosaveSettingsScope: Codable, Equatable {
+public enum AutosaveSettingsScope: Codable, Equatable, Hashable {
 
     /// Autosave settings applied to all private chats without chat-specific settings
     case autosaveSettingsScopePrivateChats
@@ -66,7 +66,7 @@ public enum AutosaveSettingsScope: Codable, Equatable {
 }
 
 /// Autosave settings applied to a chat
-public struct AutosaveSettingsScopeChat: Codable, Equatable {
+public struct AutosaveSettingsScopeChat: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64

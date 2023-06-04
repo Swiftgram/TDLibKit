@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
-public struct TestSquareInt: Codable, Equatable {
+public struct TestSquareInt: Codable, Equatable, Hashable {
 
     /// Number to square
     public let x: Int?

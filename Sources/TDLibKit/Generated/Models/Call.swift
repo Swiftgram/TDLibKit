@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a call
-public struct Call: Codable, Equatable {
+public struct Call: Codable, Equatable, Hashable, Identifiable {
 
     /// Call identifier, not persistent
     public let id: Int

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
-public struct DeleteChatMessagesBySender: Codable, Equatable {
+public struct DeleteChatMessagesBySender: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

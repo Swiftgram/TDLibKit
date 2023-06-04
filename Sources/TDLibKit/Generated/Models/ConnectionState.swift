@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the current state of the connection to Telegram servers
-public enum ConnectionState: Codable, Equatable {
+public enum ConnectionState: Codable, Equatable, Hashable {
 
     /// Currently waiting for the network to become available. Use setNetworkType to change the available network type
     case connectionStateWaitingForNetwork

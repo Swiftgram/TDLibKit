@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes user privacy settings
-public struct SetUserPrivacySettingRules: Codable, Equatable {
+public struct SetUserPrivacySettingRules: Codable, Equatable, Hashable {
 
     /// The new privacy rules
     public let rules: UserPrivacySettingRules?

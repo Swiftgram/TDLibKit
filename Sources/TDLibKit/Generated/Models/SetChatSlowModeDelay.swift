@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
-public struct SetChatSlowModeDelay: Codable, Equatable {
+public struct SetChatSlowModeDelay: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

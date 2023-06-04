@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about notification settings for a chat or a forum topic
-public struct ChatNotificationSettings: Codable, Equatable {
+public struct ChatNotificationSettings: Codable, Equatable, Hashable {
 
     /// If true, notifications for messages with mentions will be created as for an ordinary unread message
     public let disableMentionNotifications: Bool

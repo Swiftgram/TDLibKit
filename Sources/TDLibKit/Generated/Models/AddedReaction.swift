@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a reaction applied to a message
-public struct AddedReaction: Codable, Equatable {
+public struct AddedReaction: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the reaction was added
     public let date: Int

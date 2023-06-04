@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains number of being downloaded and recently downloaded files found
-public struct DownloadedFileCounts: Codable, Equatable {
+public struct DownloadedFileCounts: Codable, Equatable, Hashable {
 
     /// Number of active file downloads found, including paused
     public let activeCount: Int

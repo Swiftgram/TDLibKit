@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
-public struct GetAttachedStickerSets: Codable, Equatable {
+public struct GetAttachedStickerSets: Codable, Equatable, Hashable {
 
     /// File identifier
     public let fileId: Int?

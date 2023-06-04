@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains auto-download settings
-public struct AutoDownloadSettings: Codable, Equatable {
+public struct AutoDownloadSettings: Codable, Equatable, Hashable {
 
     /// True, if the auto-download is enabled
     public let isAutoDownloadEnabled: Bool

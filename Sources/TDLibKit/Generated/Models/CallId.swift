@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the call identifier
-public struct CallId: Codable, Equatable {
+public struct CallId: Codable, Equatable, Hashable, Identifiable {
 
     /// Call identifier
     public let id: Int

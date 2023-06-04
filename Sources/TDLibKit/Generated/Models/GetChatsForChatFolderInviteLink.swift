@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
-public struct GetChatsForChatFolderInviteLink: Codable, Equatable {
+public struct GetChatsForChatFolderInviteLink: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

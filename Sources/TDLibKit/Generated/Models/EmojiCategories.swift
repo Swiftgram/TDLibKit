@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of emoji categories
-public struct EmojiCategories: Codable, Equatable {
+public struct EmojiCategories: Codable, Equatable, Hashable {
 
     /// List of categories
     public let categories: [EmojiCategory]

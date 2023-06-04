@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the login email address authentication
-public struct CheckLoginEmailAddressCode: Codable, Equatable {
+public struct CheckLoginEmailAddressCode: Codable, Equatable, Hashable {
 
     /// Email address authentication to check
     public let code: EmailAddressAuthentication?

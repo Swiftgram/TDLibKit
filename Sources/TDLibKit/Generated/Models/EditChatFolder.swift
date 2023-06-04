@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits existing chat folder. Returns information about the edited chat folder
-public struct EditChatFolder: Codable, Equatable {
+public struct EditChatFolder: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

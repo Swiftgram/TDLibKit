@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns suggested name for saving a file in a given directory
-public struct GetSuggestedFileName: Codable, Equatable {
+public struct GetSuggestedFileName: Codable, Equatable, Hashable {
 
     /// Directory in which the file is supposed to be saved
     public let directory: String?

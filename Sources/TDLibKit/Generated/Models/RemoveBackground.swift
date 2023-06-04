@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes background from the list of installed backgrounds
-public struct RemoveBackground: Codable, Equatable {
+public struct RemoveBackground: Codable, Equatable, Hashable {
 
     /// The background identifier
     public let backgroundId: TdInt64?

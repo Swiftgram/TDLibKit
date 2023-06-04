@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
-public struct SetTdlibParameters: Codable, Equatable {
+public struct SetTdlibParameters: Codable, Equatable, Hashable {
 
     /// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
     public let apiHash: String?

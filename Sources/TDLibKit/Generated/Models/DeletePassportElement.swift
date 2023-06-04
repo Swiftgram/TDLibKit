@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes a Telegram Passport element
-public struct DeletePassportElement: Codable, Equatable {
+public struct DeletePassportElement: Codable, Equatable, Hashable {
 
     /// Element type
     public let type: PassportElementType?

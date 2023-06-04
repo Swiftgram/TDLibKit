@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the order of chat folders
-public struct ReorderChatFolders: Codable, Equatable {
+public struct ReorderChatFolders: Codable, Equatable, Hashable {
 
     /// Identifiers of chat folders in the new correct order
     public let chatFolderIds: [Int]?

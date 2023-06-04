@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes format of a sticker
-public enum StickerFormat: Codable, Equatable {
+public enum StickerFormat: Codable, Equatable, Hashable {
 
     /// The sticker is an image in WEBP format
     case stickerFormatWebp

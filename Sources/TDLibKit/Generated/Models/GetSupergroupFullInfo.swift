@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
-public struct GetSupergroupFullInfo: Codable, Equatable {
+public struct GetSupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// Supergroup or channel identifier
     public let supergroupId: Int64?
