@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-4041ecb5
-//  https://github.com/tdlib/td/tree/4041ecb5
+//  Based on TDLib 1.8.14-4580cfc2
+//  https://github.com/tdlib/td/tree/4580cfc2
 //
 
 import Foundation
@@ -94,7 +94,7 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
     /// A new member was accepted to the chat by an administrator
     case pushMessageContentChatJoinByRequest
 
-    /// A new recurrent payment was made by the current user
+    /// A new recurring payment was made by the current user
     case pushMessageContentRecurringPayment(PushMessageContentRecurringPayment)
 
     /// A profile photo was suggested to the user
@@ -748,7 +748,7 @@ public struct PushMessageContentChatDeleteMember: Codable, Equatable, Hashable {
     }
 }
 
-/// A new recurrent payment was made by the current user
+/// A new recurring payment was made by the current user
 public struct PushMessageContentRecurringPayment: Codable, Equatable, Hashable {
 
     /// The paid amount

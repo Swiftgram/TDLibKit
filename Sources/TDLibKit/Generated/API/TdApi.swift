@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-4041ecb5
-//  https://github.com/tdlib/td/tree/4041ecb5
+//  Based on TDLib 1.8.14-4580cfc2
+//  https://github.com/tdlib/td/tree/4580cfc2
 //
 
 import Foundation
@@ -12590,7 +12590,7 @@ public final class TdApi {
         return try await execute(query: query)
     }
 
-    /// Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
+    /// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
     /// - Parameter phoneNumber: The new phone number of the user in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     /// - Returns: On success, returns information about the sent code
@@ -12606,7 +12606,7 @@ public final class TdApi {
         execute(query: query, completion: completion)
     }
 
-    /// Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
+    /// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
     /// - Parameter phoneNumber: The new phone number of the user in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     /// - Returns: On success, returns information about the sent code
