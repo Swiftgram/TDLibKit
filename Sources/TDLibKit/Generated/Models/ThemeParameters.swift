@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains parameters of the application theme
-public struct ThemeParameters: Codable, Equatable {
+public struct ThemeParameters: Codable, Equatable, Hashable {
 
     /// A color of the background in the RGB24 format
     public let backgroundColor: Int

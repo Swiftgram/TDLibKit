@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about countries
-public struct Countries: Codable, Equatable {
+public struct Countries: Codable, Equatable, Hashable {
 
     /// The list of countries
     public let countries: [CountryInfo]

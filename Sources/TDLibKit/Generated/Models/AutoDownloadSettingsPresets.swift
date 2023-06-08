@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains auto-download settings presets for the current user
-public struct AutoDownloadSettingsPresets: Codable, Equatable {
+public struct AutoDownloadSettingsPresets: Codable, Equatable, Hashable {
 
     /// Preset with highest settings; supposed to be used by default when connected on Wi-Fi
     public let high: AutoDownloadSettings

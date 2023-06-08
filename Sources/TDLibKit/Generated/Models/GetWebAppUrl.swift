@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
-public struct GetWebAppUrl: Codable, Equatable {
+public struct GetWebAppUrl: Codable, Equatable, Hashable {
 
     /// Short name of the application; 0-64 English letters, digits, and underscores
     public let applicationName: String?

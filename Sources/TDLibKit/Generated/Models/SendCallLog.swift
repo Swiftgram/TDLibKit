@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends log file for a call to Telegram servers
-public struct SendCallLog: Codable, Equatable {
+public struct SendCallLog: Codable, Equatable, Hashable {
 
     /// Call identifier
     public let callId: Int?

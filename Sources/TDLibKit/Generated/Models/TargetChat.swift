@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the target chat to be opened
-public enum TargetChat: Codable, Equatable {
+public enum TargetChat: Codable, Equatable, Hashable {
 
     /// The currently opened chat needs to be kept
     case targetChatCurrent
@@ -60,7 +60,7 @@ public enum TargetChat: Codable, Equatable {
 }
 
 /// The chat needs to be chosen by the user among chats of the specified types
-public struct TargetChatChosen: Codable, Equatable {
+public struct TargetChatChosen: Codable, Equatable, Hashable {
 
     /// True, if private chats with other bots are allowed
     public let allowBotChats: Bool
@@ -89,7 +89,7 @@ public struct TargetChatChosen: Codable, Equatable {
 }
 
 /// The chat needs to be open with the provided internal link
-public struct TargetChatInternalLink: Codable, Equatable {
+public struct TargetChatInternalLink: Codable, Equatable, Hashable {
 
     /// An internal link pointing to the chat
     public let link: InternalLinkType

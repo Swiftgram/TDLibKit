@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for a sticker set by its name
-public struct SearchStickerSet: Codable, Equatable {
+public struct SearchStickerSet: Codable, Equatable, Hashable {
 
     /// Name of the sticker set
     public let name: String?

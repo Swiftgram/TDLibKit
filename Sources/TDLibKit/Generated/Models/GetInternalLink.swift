@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTTPS or a tg: link with the given type. Can be called before authorization
-public struct GetInternalLink: Codable, Equatable {
+public struct GetInternalLink: Codable, Equatable, Hashable {
 
     /// Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
     public let isHttp: Bool?

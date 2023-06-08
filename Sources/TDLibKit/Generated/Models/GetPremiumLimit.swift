@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
-public struct GetPremiumLimit: Codable, Equatable {
+public struct GetPremiumLimit: Codable, Equatable, Hashable {
 
     /// Type of the limit
     public let limitType: PremiumLimitType?

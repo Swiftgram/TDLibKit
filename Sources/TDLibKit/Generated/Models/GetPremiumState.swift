@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns state of Telegram Premium subscription and promotion videos for Premium features
-public struct GetPremiumState: Codable, Equatable {
+public struct GetPremiumState: Codable, Equatable, Hashable {
 
 
     public init() {}

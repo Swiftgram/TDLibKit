@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
-public struct ToggleSupergroupIsForum: Codable, Equatable {
+public struct ToggleSupergroupIsForum: Codable, Equatable, Hashable {
 
     /// New value of is_forum
     public let isForum: Bool?

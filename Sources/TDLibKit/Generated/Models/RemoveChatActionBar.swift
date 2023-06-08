@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a chat action bar without any other action
-public struct RemoveChatActionBar: Codable, Equatable {
+public struct RemoveChatActionBar: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Resends the 2-step verification recovery email address verification code
-public struct ResendRecoveryEmailAddressCode: Codable, Equatable {
+public struct ResendRecoveryEmailAddressCode: Codable, Equatable, Hashable {
 
 
     public init() {}

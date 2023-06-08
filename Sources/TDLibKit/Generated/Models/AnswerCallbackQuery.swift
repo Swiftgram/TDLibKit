@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the result of a callback query; for bots only
-public struct AnswerCallbackQuery: Codable, Equatable {
+public struct AnswerCallbackQuery: Codable, Equatable, Hashable {
 
     /// Time during which the result of the query can be cached, in seconds
     public let cacheTime: Int?

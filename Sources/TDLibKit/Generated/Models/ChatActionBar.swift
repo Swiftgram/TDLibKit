@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes actions which must be possible to do through a chat action bar
-public enum ChatActionBar: Codable, Equatable {
+public enum ChatActionBar: Codable, Equatable, Hashable {
 
     /// The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     case chatActionBarReportSpam(ChatActionBarReportSpam)
@@ -94,7 +94,7 @@ public enum ChatActionBar: Codable, Equatable {
 }
 
 /// The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
-public struct ChatActionBarReportSpam: Codable, Equatable {
+public struct ChatActionBarReportSpam: Codable, Equatable, Hashable {
 
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool
@@ -106,7 +106,7 @@ public struct ChatActionBarReportSpam: Codable, Equatable {
 }
 
 /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
-public struct ChatActionBarReportAddBlock: Codable, Equatable {
+public struct ChatActionBarReportAddBlock: Codable, Equatable, Hashable {
 
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool
@@ -125,7 +125,7 @@ public struct ChatActionBarReportAddBlock: Codable, Equatable {
 }
 
 /// The chat is a private chat with an administrator of a chat to which the user sent join request
-public struct ChatActionBarJoinRequest: Codable, Equatable {
+public struct ChatActionBarJoinRequest: Codable, Equatable, Hashable {
 
     /// True, if the join request was sent to a channel chat
     public let isChannel: Bool

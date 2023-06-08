@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
-public struct SetBotName: Codable, Equatable {
+public struct SetBotName: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

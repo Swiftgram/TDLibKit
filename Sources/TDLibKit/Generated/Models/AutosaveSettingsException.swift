@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains autosave settings for a chat, which overrides default settings for the corresponding scope
-public struct AutosaveSettingsException: Codable, Equatable {
+public struct AutosaveSettingsException: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64

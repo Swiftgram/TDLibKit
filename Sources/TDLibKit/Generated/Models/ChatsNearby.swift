@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of chats located nearby
-public struct ChatsNearby: Codable, Equatable {
+public struct ChatsNearby: Codable, Equatable, Hashable {
 
     /// List of location-based supergroups nearby
     public let supergroupsNearby: [ChatNearby]

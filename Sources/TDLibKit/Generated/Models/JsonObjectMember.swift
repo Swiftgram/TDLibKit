@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents one member of a JSON object
-public struct JsonObjectMember: Codable, Equatable {
+public struct JsonObjectMember: Codable, Equatable, Hashable {
 
     /// Member's key
     public let key: String

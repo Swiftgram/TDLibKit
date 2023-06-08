@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a chat member joined a chat via an invite link
-public struct ChatInviteLinkMember: Codable, Equatable {
+public struct ChatInviteLinkMember: Codable, Equatable, Hashable {
 
     /// User identifier of the chat administrator, approved user join request
     public let approverUserId: Int64

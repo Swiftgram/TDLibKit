@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Constructs a persistent HTTP URL for a background
-public struct GetBackgroundUrl: Codable, Equatable {
+public struct GetBackgroundUrl: Codable, Equatable, Hashable {
 
     /// Background name
     public let name: String?

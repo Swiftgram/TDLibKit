@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about a file with messages exported from another application
-public struct GetMessageFileType: Codable, Equatable {
+public struct GetMessageFileType: Codable, Equatable, Hashable {
 
     /// Beginning of the message file; up to 100 first lines
     public let messageFileHead: String?

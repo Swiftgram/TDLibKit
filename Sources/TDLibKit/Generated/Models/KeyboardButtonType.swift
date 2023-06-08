@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a keyboard button type
-public enum KeyboardButtonType: Codable, Equatable {
+public enum KeyboardButtonType: Codable, Equatable, Hashable {
 
     /// A simple button, with text that must be sent when the button is pressed
     case keyboardButtonTypeText
@@ -96,7 +96,7 @@ public enum KeyboardButtonType: Codable, Equatable {
 }
 
 /// A button that allows the user to create and send a poll when pressed; available only in private chats
-public struct KeyboardButtonTypeRequestPoll: Codable, Equatable {
+public struct KeyboardButtonTypeRequestPoll: Codable, Equatable, Hashable {
 
     /// If true, only polls in quiz mode must be allowed to create
     public let forceQuiz: Bool
@@ -115,7 +115,7 @@ public struct KeyboardButtonTypeRequestPoll: Codable, Equatable {
 }
 
 /// A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request
-public struct KeyboardButtonTypeRequestUser: Codable, Equatable {
+public struct KeyboardButtonTypeRequestUser: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique button identifier
     public let id: Int
@@ -149,7 +149,7 @@ public struct KeyboardButtonTypeRequestUser: Codable, Equatable {
 }
 
 /// A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
-public struct KeyboardButtonTypeRequestChat: Codable, Equatable {
+public struct KeyboardButtonTypeRequestChat: Codable, Equatable, Hashable, Identifiable {
 
     /// Expected bot administrator rights in the chat; may be null if they aren't restricted
     public let botAdministratorRights: ChatAdministratorRights?
@@ -208,7 +208,7 @@ public struct KeyboardButtonTypeRequestChat: Codable, Equatable {
 }
 
 /// A button that opens a Web App by calling getWebAppUrl
-public struct KeyboardButtonTypeWebApp: Codable, Equatable {
+public struct KeyboardButtonTypeWebApp: Codable, Equatable, Hashable {
 
     /// An HTTP URL to pass to getWebAppUrl
     public let url: String

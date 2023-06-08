@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
-public struct GetMessagePublicForwards: Codable, Equatable {
+public struct GetMessagePublicForwards: Codable, Equatable, Hashable {
 
     /// Chat identifier of the message
     public let chatId: Int64?

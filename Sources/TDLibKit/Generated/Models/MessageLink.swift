@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains an HTTPS link to a message in a supergroup or channel, or a forum topic
-public struct MessageLink: Codable, Equatable {
+public struct MessageLink: Codable, Equatable, Hashable {
 
     /// True, if the link will work for non-members of the chat
     public let isPublic: Bool

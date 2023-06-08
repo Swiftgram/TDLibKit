@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a reason why an external chat is shown in a chat list
-public enum ChatSource: Codable, Equatable {
+public enum ChatSource: Codable, Equatable, Hashable {
 
     /// The chat is sponsored by the user's MTProxy server
     case chatSourceMtprotoProxy
@@ -50,7 +50,7 @@ public enum ChatSource: Codable, Equatable {
 }
 
 /// The chat contains a public service announcement
-public struct ChatSourcePublicServiceAnnouncement: Codable, Equatable {
+public struct ChatSourcePublicServiceAnnouncement: Codable, Equatable, Hashable {
 
     /// The text of the announcement
     public let text: String

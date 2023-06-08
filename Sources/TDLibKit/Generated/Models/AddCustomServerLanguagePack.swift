@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
-public struct AddCustomServerLanguagePack: Codable, Equatable {
+public struct AddCustomServerLanguagePack: Codable, Equatable, Hashable {
 
     /// Identifier of a language pack to be added
     public let languagePackId: String?

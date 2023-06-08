@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
-public struct RegisterUser: Codable, Equatable {
+public struct RegisterUser: Codable, Equatable, Hashable {
 
     /// The first name of the user; 1-64 characters
     public let firstName: String?

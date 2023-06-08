@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a proxy server
-public enum ProxyType: Codable, Equatable {
+public enum ProxyType: Codable, Equatable, Hashable {
 
     /// A SOCKS5 proxy server
     case proxyTypeSocks5(ProxyTypeSocks5)
@@ -62,7 +62,7 @@ public enum ProxyType: Codable, Equatable {
 }
 
 /// A SOCKS5 proxy server
-public struct ProxyTypeSocks5: Codable, Equatable {
+public struct ProxyTypeSocks5: Codable, Equatable, Hashable {
 
     /// Password for logging in; may be empty
     public let password: String
@@ -81,7 +81,7 @@ public struct ProxyTypeSocks5: Codable, Equatable {
 }
 
 /// A HTTP transparent proxy server
-public struct ProxyTypeHttp: Codable, Equatable {
+public struct ProxyTypeHttp: Codable, Equatable, Hashable {
 
     /// Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
     public let httpOnly: Bool
@@ -105,7 +105,7 @@ public struct ProxyTypeHttp: Codable, Equatable {
 }
 
 /// An MTProto proxy server
-public struct ProxyTypeMtproto: Codable, Equatable {
+public struct ProxyTypeMtproto: Codable, Equatable, Hashable {
 
     /// The proxy's secret in hexadecimal encoding
     public let secret: String

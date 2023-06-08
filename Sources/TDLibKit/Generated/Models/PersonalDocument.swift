@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A personal document, containing some information about a user
-public struct PersonalDocument: Codable, Equatable {
+public struct PersonalDocument: Codable, Equatable, Hashable {
 
     /// List of files containing the pages of the document
     public let files: [DatedFile]

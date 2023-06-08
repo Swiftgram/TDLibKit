@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of installed sticker sets
-public struct GetInstalledStickerSets: Codable, Equatable {
+public struct GetInstalledStickerSets: Codable, Equatable, Hashable {
 
     /// Type of the sticker sets to return
     public let stickerType: StickerType?

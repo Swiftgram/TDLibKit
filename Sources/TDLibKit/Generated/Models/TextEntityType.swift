@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a part of the text which must be formatted differently
-public enum TextEntityType: Codable, Equatable {
+public enum TextEntityType: Codable, Equatable, Hashable {
 
     /// A mention of a user, a supergroup, or a channel by their username
     case textEntityTypeMention
@@ -202,7 +202,7 @@ public enum TextEntityType: Codable, Equatable {
 }
 
 /// Text that must be formatted as if inside pre, and code HTML tags
-public struct TextEntityTypePreCode: Codable, Equatable {
+public struct TextEntityTypePreCode: Codable, Equatable, Hashable {
 
     /// Programming language of the code; as defined by the sender
     public let language: String
@@ -214,7 +214,7 @@ public struct TextEntityTypePreCode: Codable, Equatable {
 }
 
 /// A text description shown instead of a raw URL
-public struct TextEntityTypeTextUrl: Codable, Equatable {
+public struct TextEntityTypeTextUrl: Codable, Equatable, Hashable {
 
     /// HTTP or tg:// URL to be opened when the link is clicked
     public let url: String
@@ -226,7 +226,7 @@ public struct TextEntityTypeTextUrl: Codable, Equatable {
 }
 
 /// A text shows instead of a raw mention of the user (e.g., when the user has no username)
-public struct TextEntityTypeMentionName: Codable, Equatable {
+public struct TextEntityTypeMentionName: Codable, Equatable, Hashable {
 
     /// Identifier of the mentioned user
     public let userId: Int64
@@ -238,7 +238,7 @@ public struct TextEntityTypeMentionName: Codable, Equatable {
 }
 
 /// A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
-public struct TextEntityTypeCustomEmoji: Codable, Equatable {
+public struct TextEntityTypeCustomEmoji: Codable, Equatable, Hashable {
 
     /// Unique identifier of the custom emoji
     public let customEmojiId: TdInt64
@@ -250,7 +250,7 @@ public struct TextEntityTypeCustomEmoji: Codable, Equatable {
 }
 
 /// A media timestamp
-public struct TextEntityTypeMediaTimestamp: Codable, Equatable {
+public struct TextEntityTypeMediaTimestamp: Codable, Equatable, Hashable {
 
     /// Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
     public let mediaTimestamp: Int

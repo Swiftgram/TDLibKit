@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
-public struct ReportSupergroupSpam: Codable, Equatable {
+public struct ReportSupergroupSpam: Codable, Equatable, Hashable {
 
     /// Identifiers of messages to report
     public let messageIds: [Int64]?

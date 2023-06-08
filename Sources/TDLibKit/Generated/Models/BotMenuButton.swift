@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a button to be shown instead of bot commands menu button
-public struct BotMenuButton: Codable, Equatable {
+public struct BotMenuButton: Codable, Equatable, Hashable {
 
     /// Text of the button
     public let text: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains statistics about messages sent by a user
-public struct ChatStatisticsMessageSenderInfo: Codable, Equatable {
+public struct ChatStatisticsMessageSenderInfo: Codable, Equatable, Hashable {
 
     /// Average number of characters in sent messages; 0 if unknown
     public let averageCharacterCount: Int

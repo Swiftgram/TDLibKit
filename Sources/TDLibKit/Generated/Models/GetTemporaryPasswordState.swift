@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about the current temporary password
-public struct GetTemporaryPasswordState: Codable, Equatable {
+public struct GetTemporaryPasswordState: Codable, Equatable, Hashable {
 
 
     public init() {}

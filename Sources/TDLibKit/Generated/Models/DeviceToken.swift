@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a data needed to subscribe for push notifications through registerDevice method.
-public enum DeviceToken: Codable, Equatable {
+public enum DeviceToken: Codable, Equatable, Hashable {
 
     /// A token for Firebase Cloud Messaging
     case deviceTokenFirebaseCloudMessaging(DeviceTokenFirebaseCloudMessaging)
@@ -152,7 +152,7 @@ public enum DeviceToken: Codable, Equatable {
 }
 
 /// A token for Firebase Cloud Messaging
-public struct DeviceTokenFirebaseCloudMessaging: Codable, Equatable {
+public struct DeviceTokenFirebaseCloudMessaging: Codable, Equatable, Hashable {
 
     /// True, if push notifications must be additionally encrypted
     public let encrypt: Bool
@@ -171,7 +171,7 @@ public struct DeviceTokenFirebaseCloudMessaging: Codable, Equatable {
 }
 
 /// A token for Apple Push Notification service
-public struct DeviceTokenApplePush: Codable, Equatable {
+public struct DeviceTokenApplePush: Codable, Equatable, Hashable {
 
     /// Device token; may be empty to deregister a device
     public let deviceToken: String
@@ -190,7 +190,7 @@ public struct DeviceTokenApplePush: Codable, Equatable {
 }
 
 /// A token for Apple Push Notification service VoIP notifications
-public struct DeviceTokenApplePushVoIP: Codable, Equatable {
+public struct DeviceTokenApplePushVoIP: Codable, Equatable, Hashable {
 
     /// Device token; may be empty to deregister a device
     public let deviceToken: String
@@ -214,7 +214,7 @@ public struct DeviceTokenApplePushVoIP: Codable, Equatable {
 }
 
 /// A token for Windows Push Notification Services
-public struct DeviceTokenWindowsPush: Codable, Equatable {
+public struct DeviceTokenWindowsPush: Codable, Equatable, Hashable {
 
     /// The access token that will be used to send notifications; may be empty to deregister a device
     public let accessToken: String
@@ -226,7 +226,7 @@ public struct DeviceTokenWindowsPush: Codable, Equatable {
 }
 
 /// A token for Microsoft Push Notification Service
-public struct DeviceTokenMicrosoftPush: Codable, Equatable {
+public struct DeviceTokenMicrosoftPush: Codable, Equatable, Hashable {
 
     /// Push notification channel URI; may be empty to deregister a device
     public let channelUri: String
@@ -238,7 +238,7 @@ public struct DeviceTokenMicrosoftPush: Codable, Equatable {
 }
 
 /// A token for Microsoft Push Notification Service VoIP channel
-public struct DeviceTokenMicrosoftPushVoIP: Codable, Equatable {
+public struct DeviceTokenMicrosoftPushVoIP: Codable, Equatable, Hashable {
 
     /// Push notification channel URI; may be empty to deregister a device
     public let channelUri: String
@@ -250,7 +250,7 @@ public struct DeviceTokenMicrosoftPushVoIP: Codable, Equatable {
 }
 
 /// A token for web Push API
-public struct DeviceTokenWebPush: Codable, Equatable {
+public struct DeviceTokenWebPush: Codable, Equatable, Hashable {
 
     /// Base64url-encoded authentication secret
     public let authBase64url: String
@@ -274,7 +274,7 @@ public struct DeviceTokenWebPush: Codable, Equatable {
 }
 
 /// A token for Simple Push API for Firefox OS
-public struct DeviceTokenSimplePush: Codable, Equatable {
+public struct DeviceTokenSimplePush: Codable, Equatable, Hashable {
 
     /// Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
     public let endpoint: String
@@ -286,7 +286,7 @@ public struct DeviceTokenSimplePush: Codable, Equatable {
 }
 
 /// A token for Ubuntu Push Client service
-public struct DeviceTokenUbuntuPush: Codable, Equatable {
+public struct DeviceTokenUbuntuPush: Codable, Equatable, Hashable {
 
     /// Token; may be empty to deregister a device
     public let token: String
@@ -298,7 +298,7 @@ public struct DeviceTokenUbuntuPush: Codable, Equatable {
 }
 
 /// A token for BlackBerry Push Service
-public struct DeviceTokenBlackBerryPush: Codable, Equatable {
+public struct DeviceTokenBlackBerryPush: Codable, Equatable, Hashable {
 
     /// Token; may be empty to deregister a device
     public let token: String
@@ -310,7 +310,7 @@ public struct DeviceTokenBlackBerryPush: Codable, Equatable {
 }
 
 /// A token for Tizen Push Service
-public struct DeviceTokenTizenPush: Codable, Equatable {
+public struct DeviceTokenTizenPush: Codable, Equatable, Hashable {
 
     /// Push service registration identifier; may be empty to deregister a device
     public let regId: String
@@ -322,7 +322,7 @@ public struct DeviceTokenTizenPush: Codable, Equatable {
 }
 
 /// A token for HUAWEI Push Service
-public struct DeviceTokenHuaweiPush: Codable, Equatable {
+public struct DeviceTokenHuaweiPush: Codable, Equatable, Hashable {
 
     /// True, if push notifications must be additionally encrypted
     public let encrypt: Bool

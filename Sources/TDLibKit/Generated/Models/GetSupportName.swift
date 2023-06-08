@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns localized name of the Telegram support user; for Telegram support only
-public struct GetSupportName: Codable, Equatable {
+public struct GetSupportName: Codable, Equatable, Hashable {
 
 
     public init() {}

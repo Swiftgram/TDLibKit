@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of messages found by a search
-public struct FoundMessages: Codable, Equatable {
+public struct FoundMessages: Codable, Equatable, Hashable {
 
     /// List of messages
     public let messages: [Message]

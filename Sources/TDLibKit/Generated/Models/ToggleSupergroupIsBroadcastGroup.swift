@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
-public struct ToggleSupergroupIsBroadcastGroup: Codable, Equatable {
+public struct ToggleSupergroupIsBroadcastGroup: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup
     public let supergroupId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs server about a purchase through Google Play. For official applications only
-public struct AssignGooglePlayTransaction: Codable, Equatable {
+public struct AssignGooglePlayTransaction: Codable, Equatable, Hashable {
 
     /// Application package name
     public let packageName: String?

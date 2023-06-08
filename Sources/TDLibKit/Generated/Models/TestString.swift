@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A simple object containing a string; for testing only
-public struct TestString: Codable, Equatable {
+public struct TestString: Codable, Equatable, Hashable {
 
     /// String
     public let value: String

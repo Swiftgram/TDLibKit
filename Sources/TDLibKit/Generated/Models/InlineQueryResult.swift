@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single result of an inline query
-public enum InlineQueryResult: Codable, Equatable {
+public enum InlineQueryResult: Codable, Equatable, Hashable {
 
     /// Represents a link to an article or web page
     case inlineQueryResultArticle(InlineQueryResultArticle)
@@ -152,7 +152,7 @@ public enum InlineQueryResult: Codable, Equatable {
 }
 
 /// Represents a link to an article or web page
-public struct InlineQueryResultArticle: Codable, Equatable {
+public struct InlineQueryResultArticle: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -190,7 +190,7 @@ public struct InlineQueryResultArticle: Codable, Equatable {
 }
 
 /// Represents a user contact
-public struct InlineQueryResultContact: Codable, Equatable {
+public struct InlineQueryResultContact: Codable, Equatable, Hashable, Identifiable {
 
     /// A user contact
     public let contact: Contact
@@ -214,7 +214,7 @@ public struct InlineQueryResultContact: Codable, Equatable {
 }
 
 /// Represents a point on the map
-public struct InlineQueryResultLocation: Codable, Equatable {
+public struct InlineQueryResultLocation: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -243,7 +243,7 @@ public struct InlineQueryResultLocation: Codable, Equatable {
 }
 
 /// Represents information about a venue
-public struct InlineQueryResultVenue: Codable, Equatable {
+public struct InlineQueryResultVenue: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -267,7 +267,7 @@ public struct InlineQueryResultVenue: Codable, Equatable {
 }
 
 /// Represents information about a game
-public struct InlineQueryResultGame: Codable, Equatable {
+public struct InlineQueryResultGame: Codable, Equatable, Hashable, Identifiable {
 
     /// Game result
     public let game: Game
@@ -286,7 +286,7 @@ public struct InlineQueryResultGame: Codable, Equatable {
 }
 
 /// Represents an animation file
-public struct InlineQueryResultAnimation: Codable, Equatable {
+public struct InlineQueryResultAnimation: Codable, Equatable, Hashable, Identifiable {
 
     /// Animation file
     public let animation: Animation
@@ -310,7 +310,7 @@ public struct InlineQueryResultAnimation: Codable, Equatable {
 }
 
 /// Represents an audio file
-public struct InlineQueryResultAudio: Codable, Equatable {
+public struct InlineQueryResultAudio: Codable, Equatable, Hashable, Identifiable {
 
     /// Audio file
     public let audio: Audio
@@ -329,7 +329,7 @@ public struct InlineQueryResultAudio: Codable, Equatable {
 }
 
 /// Represents a document
-public struct InlineQueryResultDocument: Codable, Equatable {
+public struct InlineQueryResultDocument: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -357,7 +357,7 @@ public struct InlineQueryResultDocument: Codable, Equatable {
 }
 
 /// Represents a photo
-public struct InlineQueryResultPhoto: Codable, Equatable {
+public struct InlineQueryResultPhoto: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -385,7 +385,7 @@ public struct InlineQueryResultPhoto: Codable, Equatable {
 }
 
 /// Represents a sticker
-public struct InlineQueryResultSticker: Codable, Equatable {
+public struct InlineQueryResultSticker: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String
@@ -404,7 +404,7 @@ public struct InlineQueryResultSticker: Codable, Equatable {
 }
 
 /// Represents a video
-public struct InlineQueryResultVideo: Codable, Equatable {
+public struct InlineQueryResultVideo: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
 
@@ -432,7 +432,7 @@ public struct InlineQueryResultVideo: Codable, Equatable {
 }
 
 /// Represents a voice note
-public struct InlineQueryResultVoiceNote: Codable, Equatable {
+public struct InlineQueryResultVoiceNote: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
     public let id: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a forum topic
-public struct ForumTopic: Codable, Equatable {
+public struct ForumTopic: Codable, Equatable, Hashable {
 
     /// A draft of a message in the topic; may be null
     public let draftMessage: DraftMessage?

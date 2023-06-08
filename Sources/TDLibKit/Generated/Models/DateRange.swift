@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a date range
-public struct DateRange: Codable, Equatable {
+public struct DateRange: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) at which the date range ends
     public let endDate: Int

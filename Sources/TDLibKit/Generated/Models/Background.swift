@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a chat background
-public struct Background: Codable, Equatable {
+public struct Background: Codable, Equatable, Hashable, Identifiable {
 
     /// Document with the background; may be null. Null only for filled backgrounds
     public let document: Document?

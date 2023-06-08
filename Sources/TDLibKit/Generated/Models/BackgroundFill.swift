@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a fill of a background
-public enum BackgroundFill: Codable, Equatable {
+public enum BackgroundFill: Codable, Equatable, Hashable {
 
     /// Describes a solid fill of a background
     case backgroundFillSolid(BackgroundFillSolid)
@@ -62,7 +62,7 @@ public enum BackgroundFill: Codable, Equatable {
 }
 
 /// Describes a solid fill of a background
-public struct BackgroundFillSolid: Codable, Equatable {
+public struct BackgroundFillSolid: Codable, Equatable, Hashable {
 
     /// A color of the background in the RGB24 format
     public let color: Int
@@ -74,7 +74,7 @@ public struct BackgroundFillSolid: Codable, Equatable {
 }
 
 /// Describes a gradient fill of a background
-public struct BackgroundFillGradient: Codable, Equatable {
+public struct BackgroundFillGradient: Codable, Equatable, Hashable {
 
     /// A bottom color of the background in the RGB24 format
     public let bottomColor: Int
@@ -98,7 +98,7 @@ public struct BackgroundFillGradient: Codable, Equatable {
 }
 
 /// Describes a freeform gradient fill of a background
-public struct BackgroundFillFreeformGradient: Codable, Equatable {
+public struct BackgroundFillFreeformGradient: Codable, Equatable, Hashable {
 
     /// A list of 3 or 4 colors of the freeform gradients in the RGB24 format
     public let colors: [Int]

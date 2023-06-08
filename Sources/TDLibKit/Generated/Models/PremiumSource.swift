@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a source from which the Premium features screen is opened
-public enum PremiumSource: Codable, Equatable {
+public enum PremiumSource: Codable, Equatable, Hashable {
 
     /// A limit was exceeded
     case premiumSourceLimitExceeded(PremiumSourceLimitExceeded)
@@ -70,7 +70,7 @@ public enum PremiumSource: Codable, Equatable {
 }
 
 /// A limit was exceeded
-public struct PremiumSourceLimitExceeded: Codable, Equatable {
+public struct PremiumSourceLimitExceeded: Codable, Equatable, Hashable {
 
     /// Type of the exceeded limit
     public let limitType: PremiumLimitType
@@ -82,7 +82,7 @@ public struct PremiumSourceLimitExceeded: Codable, Equatable {
 }
 
 /// A user tried to use a Premium feature
-public struct PremiumSourceFeature: Codable, Equatable {
+public struct PremiumSourceFeature: Codable, Equatable, Hashable {
 
     /// The used feature
     public let feature: PremiumFeature
@@ -94,7 +94,7 @@ public struct PremiumSourceFeature: Codable, Equatable {
 }
 
 /// A user opened an internal link of the type internalLinkTypePremiumFeatures
-public struct PremiumSourceLink: Codable, Equatable {
+public struct PremiumSourceLink: Codable, Equatable, Hashable {
 
     /// The referrer from the link
     public let referrer: String

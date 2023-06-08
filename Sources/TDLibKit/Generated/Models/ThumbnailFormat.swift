@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes format of a thumbnail
-public enum ThumbnailFormat: Codable, Equatable {
+public enum ThumbnailFormat: Codable, Equatable, Hashable {
 
     /// The thumbnail is in JPEG format
     case thumbnailFormatJpeg

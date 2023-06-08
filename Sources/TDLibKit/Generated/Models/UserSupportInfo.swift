@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains custom information about the user
-public struct UserSupportInfo: Codable, Equatable {
+public struct UserSupportInfo: Codable, Equatable, Hashable {
 
     /// Information author
     public let author: String

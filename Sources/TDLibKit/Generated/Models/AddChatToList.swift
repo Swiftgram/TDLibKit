@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
-public struct AddChatToList: Codable, Equatable {
+public struct AddChatToList: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

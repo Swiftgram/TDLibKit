@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for installed sticker sets by looking for specified query in their title and name
-public struct SearchInstalledStickerSets: Codable, Equatable {
+public struct SearchInstalledStickerSets: Codable, Equatable, Hashable {
 
     /// The maximum number of sticker sets to return
     public let limit: Int?

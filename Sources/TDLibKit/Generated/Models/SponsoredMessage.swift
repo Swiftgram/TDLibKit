@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a sponsored message
-public struct SponsoredMessage: Codable, Equatable {
+public struct SponsoredMessage: Codable, Equatable, Hashable {
 
     /// If non-empty, additional information about the sponsored message to be shown along with the message
     public let additionalInfo: String

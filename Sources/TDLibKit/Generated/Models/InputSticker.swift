@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A sticker to be added to a sticker set
-public struct InputSticker: Codable, Equatable {
+public struct InputSticker: Codable, Equatable, Hashable {
 
     /// String with 1-20 emoji corresponding to the sticker
     public let emojis: String

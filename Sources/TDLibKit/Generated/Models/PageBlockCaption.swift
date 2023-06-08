@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a caption of an instant view web page block, consisting of a text and a trailing credit
-public struct PageBlockCaption: Codable, Equatable {
+public struct PageBlockCaption: Codable, Equatable, Hashable {
 
     /// Block credit (like HTML tag <cite>)
     public let credit: RichText

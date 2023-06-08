@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
-public struct GetBotInfoDescription: Codable, Equatable {
+public struct GetBotInfoDescription: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

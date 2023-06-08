@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of t.me URLs
-public struct TMeUrls: Codable, Equatable {
+public struct TMeUrls: Codable, Equatable, Hashable {
 
     /// List of URLs
     public let urls: [TMeUrl]

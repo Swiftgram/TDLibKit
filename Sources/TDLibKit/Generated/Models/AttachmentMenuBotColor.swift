@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a color to highlight a bot added to attachment menu
-public struct AttachmentMenuBotColor: Codable, Equatable {
+public struct AttachmentMenuBotColor: Codable, Equatable, Hashable {
 
     /// Color in the RGB24 format for dark themes
     public let darkColor: Int

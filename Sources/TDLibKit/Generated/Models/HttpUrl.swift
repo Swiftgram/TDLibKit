@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains an HTTP URL
-public struct HttpUrl: Codable, Equatable {
+public struct HttpUrl: Codable, Equatable, Hashable {
 
     /// The URL
     public let url: String

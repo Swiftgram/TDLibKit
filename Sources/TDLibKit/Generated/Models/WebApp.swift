@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App
-public struct WebApp: Codable, Equatable {
+public struct WebApp: Codable, Equatable, Hashable {
 
     /// Web App animation; may be null
     public let animation: Animation?

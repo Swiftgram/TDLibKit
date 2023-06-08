@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the draft message in a chat
-public struct SetChatDraftMessage: Codable, Equatable {
+public struct SetChatDraftMessage: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

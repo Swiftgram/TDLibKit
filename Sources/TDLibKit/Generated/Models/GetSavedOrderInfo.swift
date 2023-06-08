@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns saved order information. Returns a 404 error if there is no saved order information
-public struct GetSavedOrderInfo: Codable, Equatable {
+public struct GetSavedOrderInfo: Codable, Equatable, Hashable {
 
 
     public init() {}

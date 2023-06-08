@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
-public struct DisableAllSupergroupUsernames: Codable, Equatable {
+public struct DisableAllSupergroupUsernames: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup or channel
     public let supergroupId: Int64?

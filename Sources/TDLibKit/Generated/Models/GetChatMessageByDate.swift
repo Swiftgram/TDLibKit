@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the last message sent in a chat no later than the specified date
-public struct GetChatMessageByDate: Codable, Equatable {
+public struct GetChatMessageByDate: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

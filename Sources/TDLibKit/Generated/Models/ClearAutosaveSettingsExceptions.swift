@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
-public struct ClearAutosaveSettingsExceptions: Codable, Equatable {
+public struct ClearAutosaveSettingsExceptions: Codable, Equatable, Hashable {
 
 
     public init() {}

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns default list of custom emoji stickers for placing on a chat photo
-public struct GetDefaultChatPhotoCustomEmojiStickers: Codable, Equatable {
+public struct GetDefaultChatPhotoCustomEmojiStickers: Codable, Equatable, Hashable {
 
 
     public init() {}

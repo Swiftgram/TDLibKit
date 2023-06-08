@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Specifies the kind of chat members to return in getSupergroupMembers
-public enum SupergroupMembersFilter: Codable, Equatable {
+public enum SupergroupMembersFilter: Codable, Equatable, Hashable {
 
     /// Returns recently active users in reverse chronological order
     case supergroupMembersFilterRecent
@@ -106,7 +106,7 @@ public enum SupergroupMembersFilter: Codable, Equatable {
 }
 
 /// Returns contacts of the user, which are members of the supergroup or channel
-public struct SupergroupMembersFilterContacts: Codable, Equatable {
+public struct SupergroupMembersFilterContacts: Codable, Equatable, Hashable {
 
     /// Query to search for
     public let query: String
@@ -118,7 +118,7 @@ public struct SupergroupMembersFilterContacts: Codable, Equatable {
 }
 
 /// Used to search for supergroup or channel members via a (string) query
-public struct SupergroupMembersFilterSearch: Codable, Equatable {
+public struct SupergroupMembersFilterSearch: Codable, Equatable, Hashable {
 
     /// Query to search for
     public let query: String
@@ -130,7 +130,7 @@ public struct SupergroupMembersFilterSearch: Codable, Equatable {
 }
 
 /// Returns restricted supergroup members; can be used only by administrators
-public struct SupergroupMembersFilterRestricted: Codable, Equatable {
+public struct SupergroupMembersFilterRestricted: Codable, Equatable, Hashable {
 
     /// Query to search for
     public let query: String
@@ -142,7 +142,7 @@ public struct SupergroupMembersFilterRestricted: Codable, Equatable {
 }
 
 /// Returns users banned from the supergroup or channel; can be used only by administrators
-public struct SupergroupMembersFilterBanned: Codable, Equatable {
+public struct SupergroupMembersFilterBanned: Codable, Equatable, Hashable {
 
     /// Query to search for
     public let query: String
@@ -154,7 +154,7 @@ public struct SupergroupMembersFilterBanned: Codable, Equatable {
 }
 
 /// Returns users which can be mentioned in the supergroup
-public struct SupergroupMembersFilterMention: Codable, Equatable {
+public struct SupergroupMembersFilterMention: Codable, Equatable, Hashable {
 
     /// If non-zero, the identifier of the current message thread
     public let messageThreadId: Int64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an audio file. Audio is usually in MP3 or M4A format
-public struct Audio: Codable, Equatable {
+public struct Audio: Codable, Equatable, Hashable {
 
     /// The minithumbnail of the album cover; may be null
     public let albumCoverMinithumbnail: Minithumbnail?

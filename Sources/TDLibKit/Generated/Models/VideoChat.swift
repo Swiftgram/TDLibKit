@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a video chat
-public struct VideoChat: Codable, Equatable {
+public struct VideoChat: Codable, Equatable, Hashable {
 
     /// Default group call participant identifier to join the video chat; may be null
     public let defaultParticipantId: MessageSender?

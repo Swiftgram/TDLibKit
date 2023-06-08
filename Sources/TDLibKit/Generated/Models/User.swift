@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a user
-public struct User: Codable, Equatable {
+public struct User: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the user added the current bot to attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool

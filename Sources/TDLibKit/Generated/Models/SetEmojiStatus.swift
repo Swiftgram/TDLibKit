@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the emoji status of the current user; for Telegram Premium users only
-public struct SetEmojiStatus: Codable, Equatable {
+public struct SetEmojiStatus: Codable, Equatable, Hashable {
 
     /// Duration of the status, in seconds; pass 0 to keep the status active until it will be changed manually
     public let duration: Int?

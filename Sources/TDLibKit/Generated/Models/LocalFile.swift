@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a local file
-public struct LocalFile: Codable, Equatable {
+public struct LocalFile: Codable, Equatable, Hashable {
 
     /// True, if the file can be deleted
     public let canBeDeleted: Bool

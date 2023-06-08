@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the content of a live location in an inline message sent via a bot; for bots only
-public struct EditInlineMessageLiveLocation: Codable, Equatable {
+public struct EditInlineMessageLiveLocation: Codable, Equatable, Hashable {
 
     /// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int?

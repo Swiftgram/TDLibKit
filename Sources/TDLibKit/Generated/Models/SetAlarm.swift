@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Succeeds after a specified amount of time has passed. Can be called before initialization
-public struct SetAlarm: Codable, Equatable {
+public struct SetAlarm: Codable, Equatable, Hashable {
 
     /// Number of seconds before the function returns
     public let seconds: Double?

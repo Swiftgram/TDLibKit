@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes the current user from chat members. Private and secret chats can't be left using this method
-public struct LeaveChat: Codable, Equatable {
+public struct LeaveChat: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

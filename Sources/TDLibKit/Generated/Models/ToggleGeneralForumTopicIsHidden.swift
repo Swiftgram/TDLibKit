@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
-public struct ToggleGeneralForumTopicIsHidden: Codable, Equatable {
+public struct ToggleGeneralForumTopicIsHidden: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?

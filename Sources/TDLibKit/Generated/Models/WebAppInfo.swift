@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Web App
-public struct WebAppInfo: Codable, Equatable {
+public struct WebAppInfo: Codable, Equatable, Hashable {
 
     /// Unique identifier for the Web App launch
     public let launchId: TdInt64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a user contact
-public struct Contact: Codable, Equatable {
+public struct Contact: Codable, Equatable, Hashable {
 
     /// First name of the user; 1-255 characters in length
     public let firstName: String

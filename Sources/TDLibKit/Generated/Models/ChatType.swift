@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a chat
-public enum ChatType: Codable, Equatable {
+public enum ChatType: Codable, Equatable, Hashable {
 
     /// An ordinary chat with a user
     case chatTypePrivate(ChatTypePrivate)
@@ -72,7 +72,7 @@ public enum ChatType: Codable, Equatable {
 }
 
 /// An ordinary chat with a user
-public struct ChatTypePrivate: Codable, Equatable {
+public struct ChatTypePrivate: Codable, Equatable, Hashable {
 
     /// User identifier
     public let userId: Int64
@@ -84,7 +84,7 @@ public struct ChatTypePrivate: Codable, Equatable {
 }
 
 /// A basic group (a chat with 0-200 other users)
-public struct ChatTypeBasicGroup: Codable, Equatable {
+public struct ChatTypeBasicGroup: Codable, Equatable, Hashable {
 
     /// Basic group identifier
     public let basicGroupId: Int64
@@ -96,7 +96,7 @@ public struct ChatTypeBasicGroup: Codable, Equatable {
 }
 
 /// A supergroup or channel (with unlimited members)
-public struct ChatTypeSupergroup: Codable, Equatable {
+public struct ChatTypeSupergroup: Codable, Equatable, Hashable {
 
     /// True, if the supergroup is a channel
     public let isChannel: Bool
@@ -115,7 +115,7 @@ public struct ChatTypeSupergroup: Codable, Equatable {
 }
 
 /// A secret chat with a user
-public struct ChatTypeSecret: Codable, Equatable {
+public struct ChatTypeSecret: Codable, Equatable, Hashable {
 
     /// Secret chat identifier
     public let secretChatId: Int

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
-public struct SetPassword: Codable, Equatable {
+public struct SetPassword: Codable, Equatable, Hashable {
 
     /// New password hint; may be empty
     public let newHint: String?

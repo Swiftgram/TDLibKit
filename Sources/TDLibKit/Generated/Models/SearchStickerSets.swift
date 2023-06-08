@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
-public struct SearchStickerSets: Codable, Equatable {
+public struct SearchStickerSets: Codable, Equatable, Hashable {
 
     /// Query to search for
     public let query: String?

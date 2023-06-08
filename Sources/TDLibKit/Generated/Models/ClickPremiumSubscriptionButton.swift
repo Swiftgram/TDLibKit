@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that the user clicked Premium subscription button on the Premium features screen
-public struct ClickPremiumSubscriptionButton: Codable, Equatable {
+public struct ClickPremiumSubscriptionButton: Codable, Equatable, Hashable {
 
 
     public init() {}

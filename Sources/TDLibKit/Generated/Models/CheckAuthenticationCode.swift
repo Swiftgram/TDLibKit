@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
-public struct CheckAuthenticationCode: Codable, Equatable {
+public struct CheckAuthenticationCode: Codable, Equatable, Hashable {
 
     /// Authentication code to check
     public let code: String?

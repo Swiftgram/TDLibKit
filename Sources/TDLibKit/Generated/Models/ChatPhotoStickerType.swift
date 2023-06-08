@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a sticker, which was used to create a chat photo
-public enum ChatPhotoStickerType: Codable, Equatable {
+public enum ChatPhotoStickerType: Codable, Equatable, Hashable {
 
     /// Information about the sticker, which was used to create the chat photo
     case chatPhotoStickerTypeRegularOrMask(ChatPhotoStickerTypeRegularOrMask)
@@ -52,7 +52,7 @@ public enum ChatPhotoStickerType: Codable, Equatable {
 }
 
 /// Information about the sticker, which was used to create the chat photo
-public struct ChatPhotoStickerTypeRegularOrMask: Codable, Equatable {
+public struct ChatPhotoStickerTypeRegularOrMask: Codable, Equatable, Hashable {
 
     /// Identifier of the sticker in the set
     public let stickerId: TdInt64
@@ -71,7 +71,7 @@ public struct ChatPhotoStickerTypeRegularOrMask: Codable, Equatable {
 }
 
 /// Information about the custom emoji, which was used to create the chat photo
-public struct ChatPhotoStickerTypeCustomEmoji: Codable, Equatable {
+public struct ChatPhotoStickerTypeCustomEmoji: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji
     public let customEmojiId: TdInt64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
-public struct SendWebAppData: Codable, Equatable {
+public struct SendWebAppData: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
-public struct StartGroupCallRecording: Codable, Equatable {
+public struct StartGroupCallRecording: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

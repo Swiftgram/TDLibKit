@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a type of a button in results of inline query
-public enum InlineQueryResultsButtonType: Codable, Equatable {
+public enum InlineQueryResultsButtonType: Codable, Equatable, Hashable {
 
     /// Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
     case inlineQueryResultsButtonTypeStartBot(InlineQueryResultsButtonTypeStartBot)
@@ -52,7 +52,7 @@ public enum InlineQueryResultsButtonType: Codable, Equatable {
 }
 
 /// Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
-public struct InlineQueryResultsButtonTypeStartBot: Codable, Equatable {
+public struct InlineQueryResultsButtonTypeStartBot: Codable, Equatable, Hashable {
 
     /// The parameter for the bot start message
     public let parameter: String
@@ -64,7 +64,7 @@ public struct InlineQueryResultsButtonTypeStartBot: Codable, Equatable {
 }
 
 /// Describes the button that opens a Web App by calling getWebAppUrl
-public struct InlineQueryResultsButtonTypeWebApp: Codable, Equatable {
+public struct InlineQueryResultsButtonTypeWebApp: Codable, Equatable, Hashable {
 
     /// An HTTP URL to pass to getWebAppUrl
     public let url: String

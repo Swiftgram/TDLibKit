@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
-public struct GetChatMessageCalendar: Codable, Equatable {
+public struct GetChatMessageCalendar: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to return information about messages
     public let chatId: Int64?

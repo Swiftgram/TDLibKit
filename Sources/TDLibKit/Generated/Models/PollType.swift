@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a poll
-public enum PollType: Codable, Equatable {
+public enum PollType: Codable, Equatable, Hashable {
 
     /// A regular poll
     case pollTypeRegular(PollTypeRegular)
@@ -52,7 +52,7 @@ public enum PollType: Codable, Equatable {
 }
 
 /// A regular poll
-public struct PollTypeRegular: Codable, Equatable {
+public struct PollTypeRegular: Codable, Equatable, Hashable {
 
     /// True, if multiple answer options can be chosen simultaneously
     public let allowMultipleAnswers: Bool
@@ -64,7 +64,7 @@ public struct PollTypeRegular: Codable, Equatable {
 }
 
 /// A poll in quiz mode, which has exactly one correct answer option and can be answered only once
-public struct PollTypeQuiz: Codable, Equatable {
+public struct PollTypeQuiz: Codable, Equatable, Hashable {
 
     /// 0-based identifier of the correct answer option; -1 for a yet unanswered poll
     public let correctOptionId: Int

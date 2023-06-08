@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the order of installed sticker sets
-public struct ReorderInstalledStickerSets: Codable, Equatable {
+public struct ReorderInstalledStickerSets: Codable, Equatable, Hashable {
 
     /// Identifiers of installed sticker sets in the new correct order
     public let stickerSetIds: [TdInt64]?

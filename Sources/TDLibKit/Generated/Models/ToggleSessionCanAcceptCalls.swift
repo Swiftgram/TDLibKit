@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether a session can accept incoming calls
-public struct ToggleSessionCanAcceptCalls: Codable, Equatable {
+public struct ToggleSessionCanAcceptCalls: Codable, Equatable, Hashable {
 
     /// Pass true to allow accepting incoming calls by the session; pass false otherwise
     public let canAcceptCalls: Bool?

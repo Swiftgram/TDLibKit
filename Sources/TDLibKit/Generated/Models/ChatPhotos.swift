@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of chat or user profile photos
-public struct ChatPhotos: Codable, Equatable {
+public struct ChatPhotos: Codable, Equatable, Hashable {
 
     /// List of photos
     public let photos: [ChatPhoto]

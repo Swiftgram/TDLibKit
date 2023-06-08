@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a poll
-public struct Poll: Codable, Equatable {
+public struct Poll: Codable, Equatable, Hashable, Identifiable {
 
     /// Point in time (Unix timestamp) when the poll will automatically be closed
     public let closeDate: Int

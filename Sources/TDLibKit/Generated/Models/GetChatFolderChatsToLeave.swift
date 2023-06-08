@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
-public struct GetChatFolderChatsToLeave: Codable, Equatable {
+public struct GetChatFolderChatsToLeave: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

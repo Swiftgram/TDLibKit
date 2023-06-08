@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a folder for user chats
-public struct ChatFolder: Codable, Equatable {
+public struct ChatFolder: Codable, Equatable, Hashable {
 
     /// True, if archived chats need to be excluded
     public let excludeArchived: Bool

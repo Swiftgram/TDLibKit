@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains full information about sticker type
-public enum StickerFullType: Codable, Equatable {
+public enum StickerFullType: Codable, Equatable, Hashable {
 
     /// The sticker is a regular sticker
     case stickerFullTypeRegular(StickerFullTypeRegular)
@@ -62,7 +62,7 @@ public enum StickerFullType: Codable, Equatable {
 }
 
 /// The sticker is a regular sticker
-public struct StickerFullTypeRegular: Codable, Equatable {
+public struct StickerFullTypeRegular: Codable, Equatable, Hashable {
 
     /// Premium animation of the sticker; may be null. If present, only Telegram Premium users can use the sticker
     public let premiumAnimation: File?
@@ -74,7 +74,7 @@ public struct StickerFullTypeRegular: Codable, Equatable {
 }
 
 /// The sticker is a mask in WEBP format to be placed on photos or videos
-public struct StickerFullTypeMask: Codable, Equatable {
+public struct StickerFullTypeMask: Codable, Equatable, Hashable {
 
     /// Position where the mask is placed; may be null
     public let maskPosition: MaskPosition?
@@ -86,7 +86,7 @@ public struct StickerFullTypeMask: Codable, Equatable {
 }
 
 /// The sticker is a custom emoji to be used inside message text and caption. Currently, only Telegram Premium users can use custom emoji
-public struct StickerFullTypeCustomEmoji: Codable, Equatable {
+public struct StickerFullTypeCustomEmoji: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji
     public let customEmojiId: TdInt64

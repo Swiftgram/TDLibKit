@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents one language pack string
-public struct LanguagePackString: Codable, Equatable {
+public struct LanguagePackString: Codable, Equatable, Hashable {
 
     /// String key
     public let key: String

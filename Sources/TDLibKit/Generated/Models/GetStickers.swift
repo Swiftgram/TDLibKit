@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
-public struct GetStickers: Codable, Equatable {
+public struct GetStickers: Codable, Equatable, Hashable {
 
     /// Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     public let chatId: Int64?

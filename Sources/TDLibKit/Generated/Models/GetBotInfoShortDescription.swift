@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
-public struct GetBotInfoShortDescription: Codable, Equatable {
+public struct GetBotInfoShortDescription: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

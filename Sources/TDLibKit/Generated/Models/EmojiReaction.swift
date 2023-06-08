@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a emoji reaction
-public struct EmojiReaction: Codable, Equatable {
+public struct EmojiReaction: Codable, Equatable, Hashable {
 
     /// Activate animation for the reaction
     public let activateAnimation: Sticker

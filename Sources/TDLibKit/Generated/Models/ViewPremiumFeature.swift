@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
-public struct ViewPremiumFeature: Codable, Equatable {
+public struct ViewPremiumFeature: Codable, Equatable, Hashable {
 
     /// The viewed premium feature
     public let feature: PremiumFeature?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
-public struct CreateVideoChat: Codable, Equatable {
+public struct CreateVideoChat: Codable, Equatable, Hashable {
 
     /// Identifier of a chat in which the video chat will be created
     public let chatId: Int64?

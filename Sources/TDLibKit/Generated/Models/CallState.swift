@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the current call state
-public enum CallState: Codable, Equatable {
+public enum CallState: Codable, Equatable, Hashable {
 
     /// The call is pending, waiting to be accepted by a user
     case callStatePending(CallStatePending)
@@ -88,7 +88,7 @@ public enum CallState: Codable, Equatable {
 }
 
 /// The call is pending, waiting to be accepted by a user
-public struct CallStatePending: Codable, Equatable {
+public struct CallStatePending: Codable, Equatable, Hashable {
 
     /// True, if the call has already been created by the server
     public let isCreated: Bool
@@ -107,7 +107,7 @@ public struct CallStatePending: Codable, Equatable {
 }
 
 /// The call is ready to use
-public struct CallStateReady: Codable, Equatable {
+public struct CallStateReady: Codable, Equatable, Hashable {
 
     /// True, if peer-to-peer connection is allowed by users privacy settings
     public let allowP2p: Bool
@@ -146,7 +146,7 @@ public struct CallStateReady: Codable, Equatable {
 }
 
 /// The call has ended successfully
-public struct CallStateDiscarded: Codable, Equatable {
+public struct CallStateDiscarded: Codable, Equatable, Hashable {
 
     /// True, if the call debug information must be sent to the server
     public let needDebugInformation: Bool
@@ -175,7 +175,7 @@ public struct CallStateDiscarded: Codable, Equatable {
 }
 
 /// The call has ended with an error
-public struct CallStateError: Codable, Equatable {
+public struct CallStateError: Codable, Equatable, Hashable {
 
     /// Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
     public let error: Error

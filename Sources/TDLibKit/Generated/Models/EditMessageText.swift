@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
-public struct EditMessageText: Codable, Equatable {
+public struct EditMessageText: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
     public let chatId: Int64?

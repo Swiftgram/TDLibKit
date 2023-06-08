@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets support information for the given user; for Telegram support only
-public struct SetUserSupportInfo: Codable, Equatable {
+public struct SetUserSupportInfo: Codable, Equatable, Hashable {
 
     /// New information message
     public let message: FormattedText?

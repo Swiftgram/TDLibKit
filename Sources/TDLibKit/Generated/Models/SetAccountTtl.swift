@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the period of inactivity after which the account of the current user will automatically be deleted
-public struct SetAccountTtl: Codable, Equatable {
+public struct SetAccountTtl: Codable, Equatable, Hashable {
 
     /// New account TTL
     public let ttl: AccountTtl?

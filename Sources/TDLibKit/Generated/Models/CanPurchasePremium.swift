@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
-public struct CanPurchasePremium: Codable, Equatable {
+public struct CanPurchasePremium: Codable, Equatable, Hashable {
 
     /// Transaction purpose
     public let purpose: StorePaymentPurpose?

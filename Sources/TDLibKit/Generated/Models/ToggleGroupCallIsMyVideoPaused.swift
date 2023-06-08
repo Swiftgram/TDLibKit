@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether current user's video is paused
-public struct ToggleGroupCallIsMyVideoPaused: Codable, Equatable {
+public struct ToggleGroupCallIsMyVideoPaused: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

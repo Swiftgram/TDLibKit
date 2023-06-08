@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
-public struct SetDatabaseEncryptionKey: Codable, Equatable {
+public struct SetDatabaseEncryptionKey: Codable, Equatable, Hashable {
 
     /// New encryption key
     public let newEncryptionKey: Data?

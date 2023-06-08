@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
-public struct SetChatLocation: Codable, Equatable {
+public struct SetChatLocation: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

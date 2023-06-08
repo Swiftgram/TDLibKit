@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains full information about a user
-public struct UserFullInfo: Codable, Equatable {
+public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// A short user bio; may be null for bots
     public let bio: FormattedText?

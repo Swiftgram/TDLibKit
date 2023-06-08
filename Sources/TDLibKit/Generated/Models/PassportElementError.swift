@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the description of an error in a Telegram Passport element
-public struct PassportElementError: Codable, Equatable {
+public struct PassportElementError: Codable, Equatable, Hashable {
 
     /// Error message
     public let message: String

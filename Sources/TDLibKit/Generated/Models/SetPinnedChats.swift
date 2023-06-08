@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the order of pinned chats
-public struct SetPinnedChats: Codable, Equatable {
+public struct SetPinnedChats: Codable, Equatable, Hashable {
 
     /// The new list of pinned chats
     public let chatIds: [Int64]?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A simple object containing a sequence of bytes; for testing only
-public struct TestBytes: Codable, Equatable {
+public struct TestBytes: Codable, Equatable, Hashable {
 
     /// Bytes
     public let value: Data

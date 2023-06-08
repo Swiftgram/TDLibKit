@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
-public struct EditMessageLiveLocation: Codable, Equatable {
+public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
     public let chatId: Int64?

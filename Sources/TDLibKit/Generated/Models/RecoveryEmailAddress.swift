@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the current recovery email address
-public struct RecoveryEmailAddress: Codable, Equatable {
+public struct RecoveryEmailAddress: Codable, Equatable, Hashable {
 
     /// Recovery email address
     public let recoveryEmailAddress: String

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
-public struct CloseChat: Codable, Equatable {
+public struct CloseChat: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

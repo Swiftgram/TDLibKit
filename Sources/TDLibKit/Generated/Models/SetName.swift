@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the first and last name of the current user
-public struct SetName: Codable, Equatable {
+public struct SetName: Codable, Equatable, Hashable {
 
     /// The new value of the first name for the current user; 1-64 characters
     public let firstName: String?

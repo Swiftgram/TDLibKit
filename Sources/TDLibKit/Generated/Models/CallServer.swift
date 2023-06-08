@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a server for relaying call data
-public struct CallServer: Codable, Equatable {
+public struct CallServer: Codable, Equatable, Hashable, Identifiable {
 
     /// Server identifier
     public let id: TdInt64

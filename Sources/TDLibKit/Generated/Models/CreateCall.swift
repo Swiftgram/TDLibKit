@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new call
-public struct CreateCall: Codable, Equatable {
+public struct CreateCall: Codable, Equatable, Hashable {
 
     /// Pass true to create a video call
     public let isVideo: Bool?

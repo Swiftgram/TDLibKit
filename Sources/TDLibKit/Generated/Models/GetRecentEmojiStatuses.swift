@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns recent emoji statuses
-public struct GetRecentEmojiStatuses: Codable, Equatable {
+public struct GetRecentEmojiStatuses: Codable, Equatable, Hashable {
 
 
     public init() {}

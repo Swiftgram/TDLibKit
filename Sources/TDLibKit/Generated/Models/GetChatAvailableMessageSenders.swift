@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns list of message sender identifiers, which can be used to send messages in a chat
-public struct GetChatAvailableMessageSenders: Codable, Equatable {
+public struct GetChatAvailableMessageSenders: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

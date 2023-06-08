@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
-public struct SetStickerPositionInSet: Codable, Equatable {
+public struct SetStickerPositionInSet: Codable, Equatable, Hashable {
 
     /// New position of the sticker in the set, 0-based
     public let position: Int?

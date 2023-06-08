@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
-public struct DownloadFile: Codable, Equatable {
+public struct DownloadFile: Codable, Equatable, Hashable {
 
     /// Identifier of the file to download
     public let fileId: Int?

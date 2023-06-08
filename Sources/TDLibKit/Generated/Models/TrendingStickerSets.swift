@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of trending sticker sets
-public struct TrendingStickerSets: Codable, Equatable {
+public struct TrendingStickerSets: Codable, Equatable, Hashable {
 
     /// True, if the list contains sticker sets with premium stickers
     public let isPremium: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about an encrypted Telegram Passport element; for bots only
-public struct EncryptedPassportElement: Codable, Equatable {
+public struct EncryptedPassportElement: Codable, Equatable, Hashable {
 
     /// Encrypted JSON-encoded data about the user
     public let data: Data

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches a user by a token from the user's link
-public struct SearchUserByToken: Codable, Equatable {
+public struct SearchUserByToken: Codable, Equatable, Hashable {
 
     /// Token to search for
     public let token: String?

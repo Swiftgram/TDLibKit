@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends a filled-out payment form to the bot for final verification
-public struct SendPaymentForm: Codable, Equatable {
+public struct SendPaymentForm: Codable, Equatable, Hashable {
 
     /// The credentials chosen by user for payment
     public let credentials: InputCredentials?

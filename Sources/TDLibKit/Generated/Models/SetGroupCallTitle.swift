@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets group call title. Requires groupCall.can_be_managed group call flag
-public struct SetGroupCallTitle: Codable, Equatable {
+public struct SetGroupCallTitle: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

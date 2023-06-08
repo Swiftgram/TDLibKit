@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes notification settings for chats of a given type
-public struct SetScopeNotificationSettings: Codable, Equatable {
+public struct SetScopeNotificationSettings: Codable, Equatable, Hashable {
 
     /// The new notification settings for the given scope
     public let notificationSettings: ScopeNotificationSettings?

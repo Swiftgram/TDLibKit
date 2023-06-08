@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns invite links created by the current user for a shareable chat folder
-public struct GetChatFolderInviteLinks: Codable, Equatable {
+public struct GetChatFolderInviteLinks: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

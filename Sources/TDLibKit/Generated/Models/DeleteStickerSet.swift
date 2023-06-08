@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deleted a sticker set; for bots only
-public struct DeleteStickerSet: Codable, Equatable {
+public struct DeleteStickerSet: Codable, Equatable, Hashable {
 
     /// Sticker set name
     public let name: String?

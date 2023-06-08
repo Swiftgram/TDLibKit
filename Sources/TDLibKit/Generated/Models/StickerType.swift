@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a sticker
-public enum StickerType: Codable, Equatable {
+public enum StickerType: Codable, Equatable, Hashable {
 
     /// The sticker is a regular sticker
     case stickerTypeRegular

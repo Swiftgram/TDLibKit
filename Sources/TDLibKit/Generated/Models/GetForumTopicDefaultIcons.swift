@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns list of custom emojis, which can be used as forum topic icon by all users
-public struct GetForumTopicDefaultIcons: Codable, Equatable {
+public struct GetForumTopicDefaultIcons: Codable, Equatable, Hashable {
 
 
     public init() {}

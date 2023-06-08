@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the different types of activity in a chat
-public enum ChatAction: Codable, Equatable {
+public enum ChatAction: Codable, Equatable, Hashable {
 
     /// The user is typing a message
     case chatActionTyping
@@ -164,7 +164,7 @@ public enum ChatAction: Codable, Equatable {
 }
 
 /// The user is uploading a video
-public struct ChatActionUploadingVideo: Codable, Equatable {
+public struct ChatActionUploadingVideo: Codable, Equatable, Hashable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -176,7 +176,7 @@ public struct ChatActionUploadingVideo: Codable, Equatable {
 }
 
 /// The user is uploading a voice note
-public struct ChatActionUploadingVoiceNote: Codable, Equatable {
+public struct ChatActionUploadingVoiceNote: Codable, Equatable, Hashable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -188,7 +188,7 @@ public struct ChatActionUploadingVoiceNote: Codable, Equatable {
 }
 
 /// The user is uploading a photo
-public struct ChatActionUploadingPhoto: Codable, Equatable {
+public struct ChatActionUploadingPhoto: Codable, Equatable, Hashable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -200,7 +200,7 @@ public struct ChatActionUploadingPhoto: Codable, Equatable {
 }
 
 /// The user is uploading a document
-public struct ChatActionUploadingDocument: Codable, Equatable {
+public struct ChatActionUploadingDocument: Codable, Equatable, Hashable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -212,7 +212,7 @@ public struct ChatActionUploadingDocument: Codable, Equatable {
 }
 
 /// The user is uploading a video note
-public struct ChatActionUploadingVideoNote: Codable, Equatable {
+public struct ChatActionUploadingVideoNote: Codable, Equatable, Hashable {
 
     /// Upload progress, as a percentage
     public let progress: Int
@@ -224,7 +224,7 @@ public struct ChatActionUploadingVideoNote: Codable, Equatable {
 }
 
 /// The user is watching animations sent by the other party by clicking on an animated emoji
-public struct ChatActionWatchingAnimations: Codable, Equatable {
+public struct ChatActionWatchingAnimations: Codable, Equatable, Hashable {
 
     /// The animated emoji
     public let emoji: String

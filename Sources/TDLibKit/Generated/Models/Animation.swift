@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an animation file. The animation must be encoded in GIF or MPEG4 format
-public struct Animation: Codable, Equatable {
+public struct Animation: Codable, Equatable, Hashable {
 
     /// File containing the animation
     public let animation: File

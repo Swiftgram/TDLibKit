@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
-public struct ParseTextEntities: Codable, Equatable {
+public struct ParseTextEntities: Codable, Equatable, Hashable {
 
     /// Text parse mode
     public let parseMode: TextParseMode?

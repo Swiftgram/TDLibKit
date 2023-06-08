@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of message reaction
-public enum ReactionType: Codable, Equatable {
+public enum ReactionType: Codable, Equatable, Hashable {
 
     /// A reaction with an emoji
     case reactionTypeEmoji(ReactionTypeEmoji)
@@ -52,7 +52,7 @@ public enum ReactionType: Codable, Equatable {
 }
 
 /// A reaction with an emoji
-public struct ReactionTypeEmoji: Codable, Equatable {
+public struct ReactionTypeEmoji: Codable, Equatable, Hashable {
 
     /// Text representation of the reaction
     public let emoji: String
@@ -64,7 +64,7 @@ public struct ReactionTypeEmoji: Codable, Equatable {
 }
 
 /// A reaction with a custom emoji
-public struct ReactionTypeCustomEmoji: Codable, Equatable {
+public struct ReactionTypeCustomEmoji: Codable, Equatable, Hashable {
 
     /// Unique identifier of the custom emoji
     public let customEmojiId: TdInt64

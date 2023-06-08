@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the translatable state of a chat; for Telegram Premium users only
-public struct ToggleChatIsTranslatable: Codable, Equatable {
+public struct ToggleChatIsTranslatable: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Ends screen sharing in a joined group call
-public struct EndGroupCallScreenSharing: Codable, Equatable {
+public struct EndGroupCallScreenSharing: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

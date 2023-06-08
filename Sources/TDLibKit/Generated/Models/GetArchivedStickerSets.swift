@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of archived sticker sets
-public struct GetArchivedStickerSets: Codable, Equatable {
+public struct GetArchivedStickerSets: Codable, Equatable, Hashable {
 
     /// The maximum number of sticker sets to return; up to 100
     public let limit: Int?

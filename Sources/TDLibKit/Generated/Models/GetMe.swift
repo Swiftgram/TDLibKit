@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the current user
-public struct GetMe: Codable, Equatable {
+public struct GetMe: Codable, Equatable, Hashable {
 
 
     public init() {}

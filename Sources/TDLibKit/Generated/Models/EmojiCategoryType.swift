@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of an emoji category
-public enum EmojiCategoryType: Codable, Equatable {
+public enum EmojiCategoryType: Codable, Equatable, Hashable {
 
     /// The category must be used by default
     case emojiCategoryTypeDefault

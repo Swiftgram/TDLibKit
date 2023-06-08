@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns default emoji statuses
-public struct GetDefaultEmojiStatuses: Codable, Equatable {
+public struct GetDefaultEmojiStatuses: Codable, Equatable, Hashable {
 
 
     public init() {}

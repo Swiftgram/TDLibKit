@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a limit, increased for Premium users
-public enum PremiumLimitType: Codable, Equatable {
+public enum PremiumLimitType: Codable, Equatable, Hashable {
 
     /// The maximum number of joined supergroups and channels
     case premiumLimitTypeSupergroupCount

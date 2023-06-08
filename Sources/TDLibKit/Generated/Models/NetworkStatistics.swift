@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A full list of available network statistic entries
-public struct NetworkStatistics: Codable, Equatable {
+public struct NetworkStatistics: Codable, Equatable, Hashable {
 
     /// Network statistics entries
     public let entries: [NetworkStatisticsEntry]

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
-public struct AddMessageReaction: Codable, Equatable {
+public struct AddMessageReaction: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a message draft
-public struct DraftMessage: Codable, Equatable {
+public struct DraftMessage: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the draft was created
     public let date: Int

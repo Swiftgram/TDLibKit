@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Starts screen sharing in a joined group call. Returns join response payload for tgcalls
-public struct StartGroupCallScreenSharing: Codable, Equatable {
+public struct StartGroupCallScreenSharing: Codable, Equatable, Hashable {
 
     /// Screen sharing audio channel synchronization source identifier; received from tgcalls
     public let audioSourceId: Int?

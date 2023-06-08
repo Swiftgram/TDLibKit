@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the sticker set of a supergroup; requires can_change_info administrator right
-public struct SetSupergroupStickerSet: Codable, Equatable {
+public struct SetSupergroupStickerSet: Codable, Equatable, Hashable {
 
     /// New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
     public let stickerSetId: TdInt64?

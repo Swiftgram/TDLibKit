@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
-public struct PreliminaryUploadFile: Codable, Equatable {
+public struct PreliminaryUploadFile: Codable, Equatable, Hashable {
 
     /// File to upload
     public let file: InputFile?

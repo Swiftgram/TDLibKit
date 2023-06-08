@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an instant view page for a web page
-public struct WebPageInstantView: Codable, Equatable {
+public struct WebPageInstantView: Codable, Equatable, Hashable {
 
     /// An internal link to be opened to leave feedback about the instant view
     public let feedbackLink: InternalLinkType

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// An identity document
-public struct IdentityDocument: Codable, Equatable {
+public struct IdentityDocument: Codable, Equatable, Hashable {
 
     /// Document expiry date; may be null if not applicable
     public let expiryDate: Date?

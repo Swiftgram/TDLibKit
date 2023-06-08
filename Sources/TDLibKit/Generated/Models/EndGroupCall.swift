@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Ends a group call. Requires groupCall.can_be_managed
-public struct EndGroupCall: Codable, Equatable {
+public struct EndGroupCall: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?

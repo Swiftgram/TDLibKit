@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a statistical graph
-public enum StatisticalGraph: Codable, Equatable {
+public enum StatisticalGraph: Codable, Equatable, Hashable {
 
     /// A graph data
     case statisticalGraphData(StatisticalGraphData)
@@ -62,7 +62,7 @@ public enum StatisticalGraph: Codable, Equatable {
 }
 
 /// A graph data
-public struct StatisticalGraphData: Codable, Equatable {
+public struct StatisticalGraphData: Codable, Equatable, Hashable {
 
     /// Graph data in JSON format
     public let jsonData: String
@@ -81,7 +81,7 @@ public struct StatisticalGraphData: Codable, Equatable {
 }
 
 /// The graph data to be asynchronously loaded through getStatisticalGraph
-public struct StatisticalGraphAsync: Codable, Equatable {
+public struct StatisticalGraphAsync: Codable, Equatable, Hashable {
 
     /// The token to use for data loading
     public let token: String
@@ -93,7 +93,7 @@ public struct StatisticalGraphAsync: Codable, Equatable {
 }
 
 /// An error message to be shown to the user instead of the graph
-public struct StatisticalGraphError: Codable, Equatable {
+public struct StatisticalGraphError: Codable, Equatable, Hashable {
 
     /// The error message
     public let errorMessage: String

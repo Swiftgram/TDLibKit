@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the chat theme. Supported only in private and secret chats
-public struct SetChatTheme: Codable, Equatable {
+public struct SetChatTheme: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

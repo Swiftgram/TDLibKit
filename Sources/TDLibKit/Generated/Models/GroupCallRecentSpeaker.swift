@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a recently speaking participant in a group call
-public struct GroupCallRecentSpeaker: Codable, Equatable {
+public struct GroupCallRecentSpeaker: Codable, Equatable, Hashable {
 
     /// True, is the user has spoken recently
     public let isSpeaking: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of group call streams
-public struct GroupCallStreams: Codable, Equatable {
+public struct GroupCallStreams: Codable, Equatable, Hashable {
 
     /// A list of group call streams
     public let streams: [GroupCallStream]

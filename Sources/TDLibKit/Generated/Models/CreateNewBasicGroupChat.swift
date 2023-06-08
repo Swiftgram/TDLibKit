@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
-public struct CreateNewBasicGroupChat: Codable, Equatable {
+public struct CreateNewBasicGroupChat: Codable, Equatable, Hashable {
 
     /// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     public let messageAutoDeleteTime: Int?

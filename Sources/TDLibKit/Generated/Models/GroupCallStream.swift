@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an available stream in a group call
-public struct GroupCallStream: Codable, Equatable {
+public struct GroupCallStream: Codable, Equatable, Hashable {
 
     /// Identifier of an audio/video channel
     public let channelId: Int

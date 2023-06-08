@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
-public struct SetBotUpdatesStatus: Codable, Equatable {
+public struct SetBotUpdatesStatus: Codable, Equatable, Hashable {
 
     /// The last error message
     public let errorMessage: String?

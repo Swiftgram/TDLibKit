@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns recommended chat folders for the current user
-public struct GetRecommendedChatFolders: Codable, Equatable {
+public struct GetRecommendedChatFolders: Codable, Equatable, Hashable {
 
 
     public init() {}

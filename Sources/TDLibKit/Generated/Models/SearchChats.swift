@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
-public struct SearchChats: Codable, Equatable {
+public struct SearchChats: Codable, Equatable, Hashable {
 
     /// The maximum number of chats to be returned
     public let limit: Int?

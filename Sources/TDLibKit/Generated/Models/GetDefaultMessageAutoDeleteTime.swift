@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns default message auto-delete time setting for new chats
-public struct GetDefaultMessageAutoDeleteTime: Codable, Equatable {
+public struct GetDefaultMessageAutoDeleteTime: Codable, Equatable, Hashable {
 
 
     public init() {}

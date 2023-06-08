@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
-public struct ReorderActiveBotUsernames: Codable, Equatable {
+public struct ReorderActiveBotUsernames: Codable, Equatable, Hashable {
 
     /// Identifier of the target bot
     public let botUserId: Int64?

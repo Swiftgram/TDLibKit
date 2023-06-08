@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the current localization target
-public struct LocalizationTargetInfo: Codable, Equatable {
+public struct LocalizationTargetInfo: Codable, Equatable, Hashable {
 
     /// List of available language packs for this application
     public let languagePacks: [LanguagePackInfo]

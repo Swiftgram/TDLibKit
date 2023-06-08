@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
-public struct SetChatDiscussionGroup: Codable, Equatable {
+public struct SetChatDiscussionGroup: Codable, Equatable, Hashable {
 
     /// Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
     public let chatId: Int64?

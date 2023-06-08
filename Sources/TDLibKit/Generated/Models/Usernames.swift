@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes usernames assigned to a user, a supergroup, or a channel
-public struct Usernames: Codable, Equatable {
+public struct Usernames: Codable, Equatable, Hashable {
 
     /// List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames, reorderBotActiveUsernames or reorderSupergroupActiveUsernames
     public let activeUsernames: [String]

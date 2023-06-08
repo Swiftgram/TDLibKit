@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Information about the authentication code that was sent
-public struct AuthenticationCodeInfo: Codable, Equatable {
+public struct AuthenticationCodeInfo: Codable, Equatable, Hashable {
 
     /// The way the next code will be sent to the user; may be null
     public let nextType: AuthenticationCodeType?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about replies to a message
-public struct MessageReplyInfo: Codable, Equatable {
+public struct MessageReplyInfo: Codable, Equatable, Hashable {
 
     /// Identifier of the last reply to the message
     public let lastMessageId: Int64

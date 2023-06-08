@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether a session can accept incoming secret chats
-public struct ToggleSessionCanAcceptSecretChats: Codable, Equatable {
+public struct ToggleSessionCanAcceptSecretChats: Codable, Equatable, Hashable {
 
     /// Pass true to allow accepting secret chats by the session; pass false otherwise
     public let canAcceptSecretChats: Bool?

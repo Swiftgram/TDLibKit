@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a list of reactions that can be added to a message
-public struct AvailableReactions: Codable, Equatable {
+public struct AvailableReactions: Codable, Equatable, Hashable {
 
     /// True, if custom emoji reactions could be added by Telegram Premium subscribers
     public let allowCustomEmoji: Bool

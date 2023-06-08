@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the authentication code sent to confirm a new phone number of the user
-public struct CheckChangePhoneNumberCode: Codable, Equatable {
+public struct CheckChangePhoneNumberCode: Codable, Equatable, Hashable {
 
     /// Authentication code to check
     public let code: String?

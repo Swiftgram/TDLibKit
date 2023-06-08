@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a tg: deep link
-public struct DeepLinkInfo: Codable, Equatable {
+public struct DeepLinkInfo: Codable, Equatable, Hashable {
 
     /// True, if the user must be asked to update the application
     public let needUpdateApplication: Bool

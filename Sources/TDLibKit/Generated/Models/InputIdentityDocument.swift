@@ -11,7 +11,7 @@ import Foundation
 
 
 /// An identity document to be saved to Telegram Passport
-public struct InputIdentityDocument: Codable, Equatable {
+public struct InputIdentityDocument: Codable, Equatable, Hashable {
 
     /// Document expiry date; pass null if not applicable
     public let expiryDate: Date

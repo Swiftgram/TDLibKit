@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a successful payment
-public struct PaymentReceipt: Codable, Equatable {
+public struct PaymentReceipt: Codable, Equatable, Hashable {
 
     /// Title of the saved credentials chosen by the buyer
     public let credentialsTitle: String

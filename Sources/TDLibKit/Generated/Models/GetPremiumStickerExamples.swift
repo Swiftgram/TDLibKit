@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns examples of premium stickers for demonstration purposes
-public struct GetPremiumStickerExamples: Codable, Equatable {
+public struct GetPremiumStickerExamples: Codable, Equatable, Hashable {
 
 
     public init() {}

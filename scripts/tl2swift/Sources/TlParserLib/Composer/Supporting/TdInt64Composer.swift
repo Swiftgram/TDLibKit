@@ -12,7 +12,7 @@ final class TdInt64Composer: Composer {
     
     override func composeUtilitySourceCode() throws -> String {
         return ""
-            .addLine("public struct TdInt64: RawRepresentable, ExpressibleByIntegerLiteral {")
+            .addLine("public struct TdInt64: RawRepresentable, ExpressibleByIntegerLiteral, Hashable {")
             .addBlankLine()
             .addLine("    public typealias RawValue = Int64")
             .addBlankLine()

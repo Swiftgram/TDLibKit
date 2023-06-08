@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns full information about a user by their identifier
-public struct GetUserFullInfo: Codable, Equatable {
+public struct GetUserFullInfo: Codable, Equatable, Hashable {
 
     /// User identifier
     public let userId: Int64?

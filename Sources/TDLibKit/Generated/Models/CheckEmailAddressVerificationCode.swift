@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the email address verification code for Telegram Passport
-public struct CheckEmailAddressVerificationCode: Codable, Equatable {
+public struct CheckEmailAddressVerificationCode: Codable, Equatable, Hashable {
 
     /// Verification code to check
     public let code: String?

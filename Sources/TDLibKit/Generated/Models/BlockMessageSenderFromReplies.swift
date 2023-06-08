@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Blocks an original sender of a message in the Replies chat
-public struct BlockMessageSenderFromReplies: Codable, Equatable {
+public struct BlockMessageSenderFromReplies: Codable, Equatable, Hashable {
 
     /// Pass true to delete all messages from the same sender
     public let deleteAllMessages: Bool?

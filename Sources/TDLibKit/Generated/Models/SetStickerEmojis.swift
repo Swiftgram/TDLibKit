@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
-public struct SetStickerEmojis: Codable, Equatable {
+public struct SetStickerEmojis: Codable, Equatable, Hashable {
 
     /// New string with 1-20 emoji corresponding to the sticker
     public let emojis: String?

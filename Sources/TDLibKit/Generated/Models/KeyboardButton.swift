@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single button in a bot keyboard
-public struct KeyboardButton: Codable, Equatable {
+public struct KeyboardButton: Codable, Equatable, Hashable {
 
     /// Text of the button
     public let text: String

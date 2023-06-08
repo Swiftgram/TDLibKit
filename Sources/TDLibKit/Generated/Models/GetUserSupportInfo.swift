@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns support information for the given user; for Telegram support only
-public struct GetUserSupportInfo: Codable, Equatable {
+public struct GetUserSupportInfo: Codable, Equatable, Hashable {
 
     /// User identifier
     public let userId: Int64?

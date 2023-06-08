@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds a message to TDLib internal log. Can be called synchronously
-public struct AddLogMessage: Codable, Equatable {
+public struct AddLogMessage: Codable, Equatable, Hashable {
 
     /// Text of a message to log
     public let text: String?

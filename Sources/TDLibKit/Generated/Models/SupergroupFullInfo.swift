@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains full information about a supergroup or channel
-public struct SupergroupFullInfo: Codable, Equatable {
+public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// Number of privileged users in the supergroup or channel; 0 if unknown
     public let administratorCount: Int

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds server-provided application changelog as messages to the chat 777000 (Telegram); for official applications only. Returns a 404 error if nothing changed
-public struct AddApplicationChangelog: Codable, Equatable {
+public struct AddApplicationChangelog: Codable, Equatable, Hashable {
 
     /// The previous application version
     public let previousApplicationVersion: String?

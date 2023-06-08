@@ -35,7 +35,7 @@ final class EnumComposer: Composer {
         
         return ""
             .addLine("/// \(enumInfo.description)")
-            .addLine("public \(indirect)enum \(enumInfo.enumType): Codable, Equatable {")
+            .addLine("public \(indirect)enum \(enumInfo.enumType): Codable, Equatable, Hashable {")
             .addBlankLine()
             .append(cases.indent())
             .addBlankLine()

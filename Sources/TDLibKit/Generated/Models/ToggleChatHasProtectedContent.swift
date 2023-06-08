@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
-public struct ToggleChatHasProtectedContent: Codable, Equatable {
+public struct ToggleChatHasProtectedContent: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

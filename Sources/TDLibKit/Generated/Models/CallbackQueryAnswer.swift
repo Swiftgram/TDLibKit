@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a bot's answer to a callback query
-public struct CallbackQueryAnswer: Codable, Equatable {
+public struct CallbackQueryAnswer: Codable, Equatable, Hashable {
 
     /// True, if an alert must be shown to the user instead of a toast notification
     public let showAlert: Bool

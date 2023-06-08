@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
-public struct SearchChatRecentLocationMessages: Codable, Equatable {
+public struct SearchChatRecentLocationMessages: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns game high scores and some part of the high score table in the range of the specified user; for bots only
-public struct GetInlineGameHighScores: Codable, Equatable {
+public struct GetInlineGameHighScores: Codable, Equatable, Hashable {
 
     /// Inline message identifier
     public let inlineMessageId: String?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the reason why a chat is reported
-public enum ChatReportReason: Codable, Equatable {
+public enum ChatReportReason: Codable, Equatable, Hashable {
 
     /// The chat contains spam messages
     case chatReportReasonSpam

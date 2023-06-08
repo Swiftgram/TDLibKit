@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains autosave settings for an autosave settings scope
-public struct ScopeAutosaveSettings: Codable, Equatable {
+public struct ScopeAutosaveSettings: Codable, Equatable, Hashable {
 
     /// True, if photo autosave is enabled
     public let autosavePhotos: Bool

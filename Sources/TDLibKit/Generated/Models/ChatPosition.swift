@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a position of a chat in a chat list
-public struct ChatPosition: Codable, Equatable {
+public struct ChatPosition: Codable, Equatable, Hashable {
 
     /// True, if the chat is pinned in the chat list
     public let isPinned: Bool

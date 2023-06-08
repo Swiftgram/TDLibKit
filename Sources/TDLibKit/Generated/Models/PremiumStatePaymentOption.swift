@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an option for buying or upgrading Telegram Premium for self
-public struct PremiumStatePaymentOption: Codable, Equatable {
+public struct PremiumStatePaymentOption: Codable, Equatable, Hashable {
 
     /// True, if this is the currently used Telegram Premium subscription option
     public let isCurrent: Bool

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Handles all pending join requests for a given link in a chat
-public struct ProcessChatJoinRequests: Codable, Equatable {
+public struct ProcessChatJoinRequests: Codable, Equatable, Hashable {
 
     /// Pass true to approve all requests; pass false to decline them
     public let approve: Bool?

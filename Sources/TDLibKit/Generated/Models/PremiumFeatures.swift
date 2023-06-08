@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about features, available to Premium users
-public struct PremiumFeatures: Codable, Equatable {
+public struct PremiumFeatures: Codable, Equatable, Hashable {
 
     /// The list of available features
     public let features: [PremiumFeature]

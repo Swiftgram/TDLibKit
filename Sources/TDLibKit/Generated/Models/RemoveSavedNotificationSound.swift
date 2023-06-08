@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a notification sound from the list of saved notification sounds
-public struct RemoveSavedNotificationSound: Codable, Equatable {
+public struct RemoveSavedNotificationSound: Codable, Equatable, Hashable {
 
     /// Identifier of the notification sound
     public let notificationSoundId: TdInt64?

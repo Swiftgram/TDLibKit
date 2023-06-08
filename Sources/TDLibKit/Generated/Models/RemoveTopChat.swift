@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
-public struct RemoveTopChat: Codable, Equatable {
+public struct RemoveTopChat: Codable, Equatable, Hashable {
 
     /// Category of frequently used chats
     public let category: TopChatCategory?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
-public struct SetLogTagVerbosityLevel: Codable, Equatable {
+public struct SetLogTagVerbosityLevel: Codable, Equatable, Hashable {
 
     /// New verbosity level; 1-1024
     public let newVerbosityLevel: Int?

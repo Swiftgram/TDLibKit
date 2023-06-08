@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes an invite link for a chat folder
-public struct DeleteChatFolderInviteLink: Codable, Equatable {
+public struct DeleteChatFolderInviteLink: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

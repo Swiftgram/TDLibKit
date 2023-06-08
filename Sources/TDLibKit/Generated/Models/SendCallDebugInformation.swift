@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sends debug information for a call to Telegram servers
-public struct SendCallDebugInformation: Codable, Equatable {
+public struct SendCallDebugInformation: Codable, Equatable, Hashable {
 
     /// Call identifier
     public let callId: Int?

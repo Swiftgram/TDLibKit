@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the exact storage usage statistics split by chats and file type
-public struct StorageStatistics: Codable, Equatable {
+public struct StorageStatistics: Codable, Equatable, Hashable {
 
     /// Statistics split by chats
     public let byChat: [StorageStatisticsByChat]

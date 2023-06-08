@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a media, which is attached to an invoice
-public enum MessageExtendedMedia: Codable, Equatable {
+public enum MessageExtendedMedia: Codable, Equatable, Hashable {
 
     /// The media is hidden until the invoice is paid
     case messageExtendedMediaPreview(MessageExtendedMediaPreview)
@@ -72,7 +72,7 @@ public enum MessageExtendedMedia: Codable, Equatable {
 }
 
 /// The media is hidden until the invoice is paid
-public struct MessageExtendedMediaPreview: Codable, Equatable {
+public struct MessageExtendedMediaPreview: Codable, Equatable, Hashable {
 
     /// Media caption
     public let caption: FormattedText
@@ -106,7 +106,7 @@ public struct MessageExtendedMediaPreview: Codable, Equatable {
 }
 
 /// The media is a photo
-public struct MessageExtendedMediaPhoto: Codable, Equatable {
+public struct MessageExtendedMediaPhoto: Codable, Equatable, Hashable {
 
     /// Photo caption
     public let caption: FormattedText
@@ -125,7 +125,7 @@ public struct MessageExtendedMediaPhoto: Codable, Equatable {
 }
 
 /// The media is a video
-public struct MessageExtendedMediaVideo: Codable, Equatable {
+public struct MessageExtendedMediaVideo: Codable, Equatable, Hashable {
 
     /// Photo caption
     public let caption: FormattedText
@@ -144,7 +144,7 @@ public struct MessageExtendedMediaVideo: Codable, Equatable {
 }
 
 /// The media is unsupported
-public struct MessageExtendedMediaUnsupported: Codable, Equatable {
+public struct MessageExtendedMediaUnsupported: Codable, Equatable, Hashable {
 
     /// Media caption
     public let caption: FormattedText

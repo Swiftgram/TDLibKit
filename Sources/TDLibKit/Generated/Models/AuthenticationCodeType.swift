@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Provides information about the method by which an authentication code is delivered to the user
-public enum AuthenticationCodeType: Codable, Equatable {
+public enum AuthenticationCodeType: Codable, Equatable, Hashable {
 
     /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
     case authenticationCodeTypeTelegramMessage(AuthenticationCodeTypeTelegramMessage)
@@ -112,7 +112,7 @@ public enum AuthenticationCodeType: Codable, Equatable {
 }
 
 /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
-public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable {
+public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable, Hashable {
 
     /// Length of the code
     public let length: Int
@@ -124,7 +124,7 @@ public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable {
 }
 
 /// An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
-public struct AuthenticationCodeTypeSms: Codable, Equatable {
+public struct AuthenticationCodeTypeSms: Codable, Equatable, Hashable {
 
     /// Length of the code
     public let length: Int
@@ -136,7 +136,7 @@ public struct AuthenticationCodeTypeSms: Codable, Equatable {
 }
 
 /// An authentication code is delivered via a phone call to the specified phone number
-public struct AuthenticationCodeTypeCall: Codable, Equatable {
+public struct AuthenticationCodeTypeCall: Codable, Equatable, Hashable {
 
     /// Length of the code
     public let length: Int
@@ -148,7 +148,7 @@ public struct AuthenticationCodeTypeCall: Codable, Equatable {
 }
 
 /// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
-public struct AuthenticationCodeTypeFlashCall: Codable, Equatable {
+public struct AuthenticationCodeTypeFlashCall: Codable, Equatable, Hashable {
 
     /// Pattern of the phone number from which the call will be made
     public let pattern: String
@@ -160,7 +160,7 @@ public struct AuthenticationCodeTypeFlashCall: Codable, Equatable {
 }
 
 /// An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
-public struct AuthenticationCodeTypeMissedCall: Codable, Equatable {
+public struct AuthenticationCodeTypeMissedCall: Codable, Equatable, Hashable {
 
     /// Number of digits in the code, excluding the prefix
     public let length: Int
@@ -179,7 +179,7 @@ public struct AuthenticationCodeTypeMissedCall: Codable, Equatable {
 }
 
 /// An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
-public struct AuthenticationCodeTypeFragment: Codable, Equatable {
+public struct AuthenticationCodeTypeFragment: Codable, Equatable, Hashable {
 
     /// Length of the code
     public let length: Int
@@ -198,7 +198,7 @@ public struct AuthenticationCodeTypeFragment: Codable, Equatable {
 }
 
 /// An authentication code is delivered via Firebase Authentication to the official Android application
-public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable {
+public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable, Hashable {
 
     /// Length of the code
     public let length: Int
@@ -217,7 +217,7 @@ public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable {
 }
 
 /// An authentication code is delivered via Firebase Authentication to the official iOS application
-public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable {
+public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable, Hashable {
 
     /// Length of the code
     public let length: Int

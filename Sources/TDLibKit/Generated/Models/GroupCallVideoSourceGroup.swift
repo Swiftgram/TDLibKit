@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a group of video synchronization source identifiers
-public struct GroupCallVideoSourceGroup: Codable, Equatable {
+public struct GroupCallVideoSourceGroup: Codable, Equatable, Hashable {
 
     /// The semantics of sources, one of "SIM" or "FID"
     public let semantics: String

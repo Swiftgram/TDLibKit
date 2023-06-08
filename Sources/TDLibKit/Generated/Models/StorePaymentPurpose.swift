@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a purpose of an in-store payment
-public enum StorePaymentPurpose: Codable, Equatable {
+public enum StorePaymentPurpose: Codable, Equatable, Hashable {
 
     /// The user subscribed to Telegram Premium
     case storePaymentPurposePremiumSubscription(StorePaymentPurposePremiumSubscription)
@@ -52,7 +52,7 @@ public enum StorePaymentPurpose: Codable, Equatable {
 }
 
 /// The user subscribed to Telegram Premium
-public struct StorePaymentPurposePremiumSubscription: Codable, Equatable {
+public struct StorePaymentPurposePremiumSubscription: Codable, Equatable, Hashable {
 
     /// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
     public let isRestore: Bool
@@ -71,7 +71,7 @@ public struct StorePaymentPurposePremiumSubscription: Codable, Equatable {
 }
 
 /// The user gifted Telegram Premium to another user
-public struct StorePaymentPurposeGiftedPremium: Codable, Equatable {
+public struct StorePaymentPurposeGiftedPremium: Codable, Equatable, Hashable {
 
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64

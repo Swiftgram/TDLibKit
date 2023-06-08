@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of chat lists
-public struct ChatLists: Codable, Equatable {
+public struct ChatLists: Codable, Equatable, Hashable {
 
     /// List of chat lists
     public let chatLists: [ChatList]

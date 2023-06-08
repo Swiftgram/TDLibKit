@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Joins an active group call. Returns join response payload for tgcalls
-public struct JoinGroupCall: Codable, Equatable {
+public struct JoinGroupCall: Codable, Equatable, Hashable {
 
     /// Caller audio channel synchronization source identifier; received from tgcalls
     public let audioSourceId: Int?

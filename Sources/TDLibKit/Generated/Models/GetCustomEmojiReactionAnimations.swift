@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns TGS stickers with generic animations for custom emoji reactions
-public struct GetCustomEmojiReactionAnimations: Codable, Equatable {
+public struct GetCustomEmojiReactionAnimations: Codable, Equatable, Hashable {
 
 
     public init() {}

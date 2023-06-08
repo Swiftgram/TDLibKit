@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTTPS link, which can be used to get information about the current user
-public struct GetUserLink: Codable, Equatable {
+public struct GetUserLink: Codable, Equatable, Hashable {
 
 
     public init() {}

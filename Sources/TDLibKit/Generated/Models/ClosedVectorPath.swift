@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a closed vector path. The path begins at the end point of the last command
-public struct ClosedVectorPath: Codable, Equatable {
+public struct ClosedVectorPath: Codable, Equatable, Hashable {
 
     /// List of vector path commands
     public let commands: [VectorPathCommand]

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Suggests a profile photo to another regular user with common messages
-public struct SuggestUserProfilePhoto: Codable, Equatable {
+public struct SuggestUserProfilePhoto: Codable, Equatable, Hashable {
 
     /// Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
     public let photo: InputChatPhoto?

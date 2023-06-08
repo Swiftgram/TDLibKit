@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-public struct DeleteAllRevokedChatInviteLinks: Codable, Equatable {
+public struct DeleteAllRevokedChatInviteLinks: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

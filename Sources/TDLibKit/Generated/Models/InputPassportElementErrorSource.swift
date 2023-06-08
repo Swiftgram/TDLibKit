@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the description of an error in a Telegram Passport element; for bots only
-public enum InputPassportElementErrorSource: Codable, Equatable {
+public enum InputPassportElementErrorSource: Codable, Equatable, Hashable {
 
     /// The element contains an error in an unspecified place. The error will be considered resolved when new data is added
     case inputPassportElementErrorSourceUnspecified(InputPassportElementErrorSourceUnspecified)
@@ -122,7 +122,7 @@ public enum InputPassportElementErrorSource: Codable, Equatable {
 }
 
 /// The element contains an error in an unspecified place. The error will be considered resolved when new data is added
-public struct InputPassportElementErrorSourceUnspecified: Codable, Equatable {
+public struct InputPassportElementErrorSourceUnspecified: Codable, Equatable, Hashable {
 
     /// Current hash of the entire element
     public let elementHash: Data
@@ -134,7 +134,7 @@ public struct InputPassportElementErrorSourceUnspecified: Codable, Equatable {
 }
 
 /// A data field contains an error. The error is considered resolved when the field's value changes
-public struct InputPassportElementErrorSourceDataField: Codable, Equatable {
+public struct InputPassportElementErrorSourceDataField: Codable, Equatable, Hashable {
 
     /// Current data hash
     public let dataHash: Data
@@ -153,7 +153,7 @@ public struct InputPassportElementErrorSourceDataField: Codable, Equatable {
 }
 
 /// The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes
-public struct InputPassportElementErrorSourceFrontSide: Codable, Equatable {
+public struct InputPassportElementErrorSourceFrontSide: Codable, Equatable, Hashable {
 
     /// Current hash of the file containing the front side
     public let fileHash: Data
@@ -165,7 +165,7 @@ public struct InputPassportElementErrorSourceFrontSide: Codable, Equatable {
 }
 
 /// The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes
-public struct InputPassportElementErrorSourceReverseSide: Codable, Equatable {
+public struct InputPassportElementErrorSourceReverseSide: Codable, Equatable, Hashable {
 
     /// Current hash of the file containing the reverse side
     public let fileHash: Data
@@ -177,7 +177,7 @@ public struct InputPassportElementErrorSourceReverseSide: Codable, Equatable {
 }
 
 /// The selfie contains an error. The error is considered resolved when the file with the selfie changes
-public struct InputPassportElementErrorSourceSelfie: Codable, Equatable {
+public struct InputPassportElementErrorSourceSelfie: Codable, Equatable, Hashable {
 
     /// Current hash of the file containing the selfie
     public let fileHash: Data
@@ -189,7 +189,7 @@ public struct InputPassportElementErrorSourceSelfie: Codable, Equatable {
 }
 
 /// One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes
-public struct InputPassportElementErrorSourceTranslationFile: Codable, Equatable {
+public struct InputPassportElementErrorSourceTranslationFile: Codable, Equatable, Hashable {
 
     /// Current hash of the file containing the translation
     public let fileHash: Data
@@ -201,7 +201,7 @@ public struct InputPassportElementErrorSourceTranslationFile: Codable, Equatable
 }
 
 /// The translation of the document contains an error. The error is considered resolved when the list of files changes
-public struct InputPassportElementErrorSourceTranslationFiles: Codable, Equatable {
+public struct InputPassportElementErrorSourceTranslationFiles: Codable, Equatable, Hashable {
 
     /// Current hashes of all files with the translation
     public let fileHashes: [Data]
@@ -213,7 +213,7 @@ public struct InputPassportElementErrorSourceTranslationFiles: Codable, Equatabl
 }
 
 /// The file contains an error. The error is considered resolved when the file changes
-public struct InputPassportElementErrorSourceFile: Codable, Equatable {
+public struct InputPassportElementErrorSourceFile: Codable, Equatable, Hashable {
 
     /// Current hash of the file which has the error
     public let fileHash: Data
@@ -225,7 +225,7 @@ public struct InputPassportElementErrorSourceFile: Codable, Equatable {
 }
 
 /// The list of attached files contains an error. The error is considered resolved when the file list changes
-public struct InputPassportElementErrorSourceFiles: Codable, Equatable {
+public struct InputPassportElementErrorSourceFiles: Codable, Equatable, Hashable {
 
     /// Current hashes of all attached files
     public let fileHashes: [Data]

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of available TDLib internal log tags
-public struct LogTags: Codable, Equatable {
+public struct LogTags: Codable, Equatable, Hashable {
 
     /// List of log tags
     public let tags: [String]

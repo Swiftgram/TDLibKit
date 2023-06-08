@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a list of hashtags
-public struct Hashtags: Codable, Equatable {
+public struct Hashtags: Codable, Equatable, Hashable {
 
     /// A list of hashtags
     public let hashtags: [String]

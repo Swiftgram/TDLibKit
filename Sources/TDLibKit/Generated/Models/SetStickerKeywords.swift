@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
-public struct SetStickerKeywords: Codable, Equatable {
+public struct SetStickerKeywords: Codable, Equatable, Hashable {
 
     /// List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     public let keywords: [String]?

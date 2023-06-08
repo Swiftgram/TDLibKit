@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the validity of an invite link for a chat and returns information about the corresponding chat
-public struct CheckChatInviteLink: Codable, Equatable {
+public struct CheckChatInviteLink: Codable, Equatable, Hashable {
 
     /// Invite link to be checked
     public let inviteLink: String?

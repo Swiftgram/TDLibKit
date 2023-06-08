@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
-public struct DeleteChatMessagesByDate: Codable, Equatable {
+public struct DeleteChatMessagesByDate: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

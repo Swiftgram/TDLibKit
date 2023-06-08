@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns the profile photos of a user. Personal and public photo aren't returned
-public struct GetUserProfilePhotos: Codable, Equatable {
+public struct GetUserProfilePhotos: Codable, Equatable, Hashable {
 
     /// The maximum number of photos to be returned; up to 100
     public let limit: Int?

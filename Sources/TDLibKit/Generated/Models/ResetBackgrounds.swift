@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Resets list of installed backgrounds to its default value
-public struct ResetBackgrounds: Codable, Equatable {
+public struct ResetBackgrounds: Codable, Equatable, Hashable {
 
 
     public init() {}

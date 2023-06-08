@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an action suggested to the current user
-public enum SuggestedAction: Codable, Equatable {
+public enum SuggestedAction: Codable, Equatable, Hashable {
 
     /// Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option
     case suggestedActionEnableArchiveAndMuteNewChats
@@ -100,7 +100,7 @@ public enum SuggestedAction: Codable, Equatable {
 }
 
 /// Suggests the user to convert specified supergroup to a broadcast group
-public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable {
+public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable, Hashable {
 
     /// Supergroup identifier
     public let supergroupId: Int64
@@ -112,7 +112,7 @@ public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable {
 }
 
 /// Suggests the user to set a 2-step verification password to be able to log in again
-public struct SuggestedActionSetPassword: Codable, Equatable {
+public struct SuggestedActionSetPassword: Codable, Equatable, Hashable {
 
     /// The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
     public let authorizationDelay: Int

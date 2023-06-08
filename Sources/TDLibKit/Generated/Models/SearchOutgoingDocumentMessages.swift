@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
-public struct SearchOutgoingDocumentMessages: Codable, Equatable {
+public struct SearchOutgoingDocumentMessages: Codable, Equatable, Hashable {
 
     /// The maximum number of messages to be returned; up to 100
     public let limit: Int?

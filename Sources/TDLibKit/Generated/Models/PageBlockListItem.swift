@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an item of a list page block
-public struct PageBlockListItem: Codable, Equatable {
+public struct PageBlockListItem: Codable, Equatable, Hashable {
 
     /// Item label
     public let label: String

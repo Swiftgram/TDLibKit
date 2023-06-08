@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the value of a string in a language pack
-public enum LanguagePackStringValue: Codable, Equatable {
+public enum LanguagePackStringValue: Codable, Equatable, Hashable {
 
     /// An ordinary language pack string
     case languagePackStringValueOrdinary(LanguagePackStringValueOrdinary)
@@ -60,7 +60,7 @@ public enum LanguagePackStringValue: Codable, Equatable {
 }
 
 /// An ordinary language pack string
-public struct LanguagePackStringValueOrdinary: Codable, Equatable {
+public struct LanguagePackStringValueOrdinary: Codable, Equatable, Hashable {
 
     /// String value
     public let value: String
@@ -72,7 +72,7 @@ public struct LanguagePackStringValueOrdinary: Codable, Equatable {
 }
 
 /// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
-public struct LanguagePackStringValuePluralized: Codable, Equatable {
+public struct LanguagePackStringValuePluralized: Codable, Equatable, Hashable {
 
     /// Value for few objects
     public let fewValue: String

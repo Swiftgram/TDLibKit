@@ -11,7 +11,7 @@ import Foundation
 
 
 /// A simple object containing a number; for testing only
-public struct TestInt: Codable, Equatable {
+public struct TestInt: Codable, Equatable, Hashable {
 
     /// Number
     public let value: Int

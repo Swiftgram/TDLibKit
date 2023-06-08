@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a proxy server. Can be called before authorization
-public struct RemoveProxy: Codable, Equatable {
+public struct RemoveProxy: Codable, Equatable, Hashable {
 
     /// Proxy identifier
     public let proxyId: Int?

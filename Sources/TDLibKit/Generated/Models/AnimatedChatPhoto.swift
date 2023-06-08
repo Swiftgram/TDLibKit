@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Animated variant of a chat photo in MPEG4 format
-public struct AnimatedChatPhoto: Codable, Equatable {
+public struct AnimatedChatPhoto: Codable, Equatable, Hashable {
 
     /// Information about the animation file
     public let file: File

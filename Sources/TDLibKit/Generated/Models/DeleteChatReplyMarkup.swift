@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
-public struct DeleteChatReplyMarkup: Codable, Equatable {
+public struct DeleteChatReplyMarkup: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

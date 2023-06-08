@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a list of forum topics
-public struct ForumTopics: Codable, Equatable {
+public struct ForumTopics: Codable, Equatable, Hashable {
 
     /// Offset date for the next getForumTopics request
     public let nextOffsetDate: Int

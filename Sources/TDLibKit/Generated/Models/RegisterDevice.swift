@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
-public struct RegisterDevice: Codable, Equatable {
+public struct RegisterDevice: Codable, Equatable, Hashable {
 
     /// Device token
     public let deviceToken: DeviceToken?

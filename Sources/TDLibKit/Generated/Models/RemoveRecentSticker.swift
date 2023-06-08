@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Removes a sticker from the list of recently used stickers
-public struct RemoveRecentSticker: Codable, Equatable {
+public struct RemoveRecentSticker: Codable, Equatable, Hashable {
 
     /// Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
     public let isAttached: Bool?

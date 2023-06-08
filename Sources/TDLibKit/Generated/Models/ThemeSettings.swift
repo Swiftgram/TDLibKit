@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes theme settings
-public struct ThemeSettings: Codable, Equatable {
+public struct ThemeSettings: Codable, Equatable, Hashable {
 
     /// Theme accent color in ARGB format
     public let accentColor: Int

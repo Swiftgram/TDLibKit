@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
-public struct ReorderSupergroupActiveUsernames: Codable, Equatable {
+public struct ReorderSupergroupActiveUsernames: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup or channel
     public let supergroupId: Int64?

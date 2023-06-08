@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the value of the default disable_notification parameter, used when a message is sent to a chat
-public struct ToggleChatDefaultDisableNotification: Codable, Equatable {
+public struct ToggleChatDefaultDisableNotification: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
-public struct CheckAuthenticationEmailCode: Codable, Equatable {
+public struct CheckAuthenticationEmailCode: Codable, Equatable, Hashable {
 
     /// Email address authentication to check
     public let code: EmailAddressAuthentication?

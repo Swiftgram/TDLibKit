@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a viewer of a message
-public struct MessageViewer: Codable, Equatable {
+public struct MessageViewer: Codable, Equatable, Hashable {
 
     /// User identifier of the viewer
     public let userId: Int64

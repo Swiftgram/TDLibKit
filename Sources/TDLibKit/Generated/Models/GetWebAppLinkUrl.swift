@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
-public struct GetWebAppLinkUrl: Codable, Equatable {
+public struct GetWebAppLinkUrl: Codable, Equatable, Hashable {
 
     /// Pass true if the current user allowed the bot to send them messages
     public let allowWriteAccess: Bool?

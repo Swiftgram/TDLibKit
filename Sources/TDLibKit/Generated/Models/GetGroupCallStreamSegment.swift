@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
-public struct GetGroupCallStreamSegment: Codable, Equatable {
+public struct GetGroupCallStreamSegment: Codable, Equatable, Hashable {
 
     /// Identifier of an audio/video channel to get as received from tgcalls
     public let channelId: Int?

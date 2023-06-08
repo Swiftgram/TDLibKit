@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about pending join requests for a chat
-public struct ChatJoinRequestsInfo: Codable, Equatable {
+public struct ChatJoinRequestsInfo: Codable, Equatable, Hashable {
 
     /// Total number of pending join requests
     public let totalCount: Int

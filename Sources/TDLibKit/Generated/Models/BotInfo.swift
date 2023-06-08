@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a bot
-public struct BotInfo: Codable, Equatable {
+public struct BotInfo: Codable, Equatable, Hashable {
 
     /// Animation shown in the chat with the bot if the chat is empty; may be null
     public let animation: Animation?

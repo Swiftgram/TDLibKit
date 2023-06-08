@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
-public struct TranslateText: Codable, Equatable {
+public struct TranslateText: Codable, Equatable, Hashable {
 
     /// Text to translate
     public let text: FormattedText?

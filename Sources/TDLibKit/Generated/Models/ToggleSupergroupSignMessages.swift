@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
-public struct ToggleSupergroupSignMessages: Codable, Equatable {
+public struct ToggleSupergroupSignMessages: Codable, Equatable, Hashable {
 
     /// New value of sign_messages
     public let signMessages: Bool?

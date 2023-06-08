@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Sets the result of a pre-checkout query; for bots only
-public struct AnswerPreCheckoutQuery: Codable, Equatable {
+public struct AnswerPreCheckoutQuery: Codable, Equatable, Hashable {
 
     /// An error message, empty on success
     public let errorMessage: String?

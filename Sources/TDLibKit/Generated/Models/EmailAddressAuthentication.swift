@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains authentication data for a email address
-public enum EmailAddressAuthentication: Codable, Equatable {
+public enum EmailAddressAuthentication: Codable, Equatable, Hashable {
 
     /// An authentication code delivered to a user's email address
     case emailAddressAuthenticationCode(EmailAddressAuthenticationCode)
@@ -62,7 +62,7 @@ public enum EmailAddressAuthentication: Codable, Equatable {
 }
 
 /// An authentication code delivered to a user's email address
-public struct EmailAddressAuthenticationCode: Codable, Equatable {
+public struct EmailAddressAuthenticationCode: Codable, Equatable, Hashable {
 
     /// The code
     public let code: String
@@ -74,7 +74,7 @@ public struct EmailAddressAuthenticationCode: Codable, Equatable {
 }
 
 /// An authentication token received through Apple ID
-public struct EmailAddressAuthenticationAppleId: Codable, Equatable {
+public struct EmailAddressAuthenticationAppleId: Codable, Equatable, Hashable {
 
     /// The token
     public let token: String
@@ -86,7 +86,7 @@ public struct EmailAddressAuthenticationAppleId: Codable, Equatable {
 }
 
 /// An authentication token received through Google ID
-public struct EmailAddressAuthenticationGoogleId: Codable, Equatable {
+public struct EmailAddressAuthenticationGoogleId: Codable, Equatable, Hashable {
 
     /// The token
     public let token: String

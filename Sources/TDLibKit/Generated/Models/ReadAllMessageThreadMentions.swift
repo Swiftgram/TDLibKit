@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Marks all mentions in a forum topic as read
-public struct ReadAllMessageThreadMentions: Codable, Equatable {
+public struct ReadAllMessageThreadMentions: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

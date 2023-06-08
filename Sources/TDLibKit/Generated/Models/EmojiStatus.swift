@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a custom emoji to be shown instead of the Telegram Premium badge
-public struct EmojiStatus: Codable, Equatable {
+public struct EmojiStatus: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji in stickerFormatTgs format
     public let customEmojiId: TdInt64

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns all active sessions of the current user
-public struct GetActiveSessions: Codable, Equatable {
+public struct GetActiveSessions: Codable, Equatable, Hashable {
 
 
     public init() {}

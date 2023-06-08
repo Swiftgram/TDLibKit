@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Specifies the kind of chat members to return in searchChatMembers
-public enum ChatMembersFilter: Codable, Equatable {
+public enum ChatMembersFilter: Codable, Equatable, Hashable {
 
     /// Returns contacts of the user
     case chatMembersFilterContacts
@@ -90,7 +90,7 @@ public enum ChatMembersFilter: Codable, Equatable {
 }
 
 /// Returns users which can be mentioned in the chat
-public struct ChatMembersFilterMention: Codable, Equatable {
+public struct ChatMembersFilterMention: Codable, Equatable, Hashable {
 
     /// If non-zero, the identifier of the current message thread
     public let messageThreadId: Int64

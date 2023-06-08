@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains basic information about a chat folder
-public struct ChatFolderInfo: Codable, Equatable {
+public struct ChatFolderInfo: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the chat folder has invite links created by the current user
     public let hasMyInviteLinks: Bool

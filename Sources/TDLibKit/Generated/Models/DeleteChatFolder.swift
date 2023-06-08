@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes existing chat folder
-public struct DeleteChatFolder: Codable, Equatable {
+public struct DeleteChatFolder: Codable, Equatable, Hashable {
 
     /// Chat folder identifier
     public let chatFolderId: Int?

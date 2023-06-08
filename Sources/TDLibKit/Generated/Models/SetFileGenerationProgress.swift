@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Informs TDLib on a file generation progress
-public struct SetFileGenerationProgress: Codable, Equatable {
+public struct SetFileGenerationProgress: Codable, Equatable, Hashable {
 
     /// Expected size of the generated file, in bytes; 0 if unknown
     public let expectedSize: Int64?

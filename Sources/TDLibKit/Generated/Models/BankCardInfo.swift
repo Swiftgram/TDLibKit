@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Information about a bank card
-public struct BankCardInfo: Codable, Equatable {
+public struct BankCardInfo: Codable, Equatable, Hashable {
 
     /// Actions that can be done with the bank card number
     public let actions: [BankCardActionOpenUrl]

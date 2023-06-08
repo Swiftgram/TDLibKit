@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns default icon name for a folder. Can be called synchronously
-public struct GetChatFolderDefaultIconName: Codable, Equatable {
+public struct GetChatFolderDefaultIconName: Codable, Equatable, Hashable {
 
     /// Chat folder
     public let folder: ChatFolder?

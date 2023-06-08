@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Changes the notification settings of a forum topic
-public struct SetForumTopicNotificationSettings: Codable, Equatable {
+public struct SetForumTopicNotificationSettings: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

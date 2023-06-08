@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a user that sent a join request and waits for administrator approval
-public struct ChatJoinRequest: Codable, Equatable {
+public struct ChatJoinRequest: Codable, Equatable, Hashable {
 
     /// A short bio of the user
     public let bio: String

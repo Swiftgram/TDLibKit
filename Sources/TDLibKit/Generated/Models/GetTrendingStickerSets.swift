@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
-public struct GetTrendingStickerSets: Codable, Equatable {
+public struct GetTrendingStickerSets: Codable, Equatable, Hashable {
 
     /// The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     public let limit: Int?

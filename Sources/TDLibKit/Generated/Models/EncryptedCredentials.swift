@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains encrypted Telegram Passport data credentials
-public struct EncryptedCredentials: Codable, Equatable {
+public struct EncryptedCredentials: Codable, Equatable, Hashable {
 
     /// The encrypted credentials
     public let data: Data

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
-public struct ReportMessageReactions: Codable, Equatable {
+public struct ReportMessageReactions: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?

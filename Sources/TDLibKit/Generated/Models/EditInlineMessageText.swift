@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Edits the text of an inline text or game message sent via a bot; for bots only
-public struct EditInlineMessageText: Codable, Equatable {
+public struct EditInlineMessageText: Codable, Equatable, Hashable {
 
     /// Inline message identifier
     public let inlineMessageId: String?

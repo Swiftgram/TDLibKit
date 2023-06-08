@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Adds or changes a custom local language pack to the current localization target
-public struct SetCustomLanguagePack: Codable, Equatable {
+public struct SetCustomLanguagePack: Codable, Equatable, Hashable {
 
     /// Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     public let info: LanguagePackInfo?

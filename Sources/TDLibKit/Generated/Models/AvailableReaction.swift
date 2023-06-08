@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents an available reaction
-public struct AvailableReaction: Codable, Equatable {
+public struct AvailableReaction: Codable, Equatable, Hashable {
 
     /// True, if Telegram Premium is needed to send the reaction
     public let needsPremium: Bool

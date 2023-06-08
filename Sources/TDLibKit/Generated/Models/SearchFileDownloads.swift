@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Searches for files in the file download list or recently downloaded files from the list
-public struct SearchFileDownloads: Codable, Equatable {
+public struct SearchFileDownloads: Codable, Equatable, Hashable {
 
     /// The maximum number of files to be returned
     public let limit: Int?

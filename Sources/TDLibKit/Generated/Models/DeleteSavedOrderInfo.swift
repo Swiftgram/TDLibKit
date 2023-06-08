@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Deletes saved order information
-public struct DeleteSavedOrderInfo: Codable, Equatable {
+public struct DeleteSavedOrderInfo: Codable, Equatable, Hashable {
 
 
     public init() {}

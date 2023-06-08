@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a file added to file download list
-public struct FileDownload: Codable, Equatable {
+public struct FileDownload: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the file was added to the download list
     public let addDate: Int
