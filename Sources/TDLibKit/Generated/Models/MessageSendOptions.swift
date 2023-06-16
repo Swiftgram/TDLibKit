@@ -23,7 +23,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     public let protectContent: Bool
 
     /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
-    public let schedulingState: MessageSchedulingState
+    public let schedulingState: MessageSchedulingState?
 
     /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     public let sendingId: Int
@@ -36,7 +36,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         disableNotification: Bool,
         fromBackground: Bool,
         protectContent: Bool,
-        schedulingState: MessageSchedulingState,
+        schedulingState: MessageSchedulingState?,
         sendingId: Int,
         updateOrderOfInstalledStickerSets: Bool
     ) {

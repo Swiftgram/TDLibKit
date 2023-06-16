@@ -161,7 +161,7 @@ public struct InputInlineQueryResultAnimation: Codable, Equatable, Hashable, Ide
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif" and "video/mp4"
     public let thumbnailMimeType: String
@@ -191,7 +191,7 @@ public struct InputInlineQueryResultAnimation: Codable, Equatable, Hashable, Ide
     public init(
         id: String,
         inputMessageContent: InputMessageContent,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailMimeType: String,
         thumbnailUrl: String,
         title: String,
@@ -230,7 +230,7 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
     public let thumbnailHeight: Int
@@ -253,7 +253,7 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
         hideUrl: Bool,
         id: String,
         inputMessageContent: InputMessageContent,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailHeight: Int,
         thumbnailUrl: String,
         thumbnailWidth: Int,
@@ -292,7 +292,7 @@ public struct InputInlineQueryResultAudio: Codable, Equatable, Hashable, Identif
     public let performer: String
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Title of the audio file
     public let title: String
@@ -304,7 +304,7 @@ public struct InputInlineQueryResultAudio: Codable, Equatable, Hashable, Identif
         id: String,
         inputMessageContent: InputMessageContent,
         performer: String,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         title: String
     ) {
         self.audioDuration = audioDuration
@@ -330,7 +330,7 @@ public struct InputInlineQueryResultContact: Codable, Equatable, Hashable, Ident
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
     public let thumbnailHeight: Int
@@ -346,7 +346,7 @@ public struct InputInlineQueryResultContact: Codable, Equatable, Hashable, Ident
         contact: Contact,
         id: String,
         inputMessageContent: InputMessageContent,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailHeight: Int,
         thumbnailUrl: String,
         thumbnailWidth: Int
@@ -379,7 +379,7 @@ public struct InputInlineQueryResultDocument: Codable, Equatable, Hashable, Iden
     public let mimeType: String
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Height of the thumbnail
     public let thumbnailHeight: Int
@@ -400,7 +400,7 @@ public struct InputInlineQueryResultDocument: Codable, Equatable, Hashable, Iden
         id: String,
         inputMessageContent: InputMessageContent,
         mimeType: String,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailHeight: Int,
         thumbnailUrl: String,
         thumbnailWidth: Int,
@@ -429,13 +429,13 @@ public struct InputInlineQueryResultGame: Codable, Equatable, Hashable, Identifi
     public let id: String
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
 
     public init(
         gameShortName: String,
         id: String,
-        replyMarkup: ReplyMarkup
+        replyMarkup: ReplyMarkup?
     ) {
         self.gameShortName = gameShortName
         self.id = id
@@ -459,7 +459,7 @@ public struct InputInlineQueryResultLocation: Codable, Equatable, Hashable, Iden
     public let location: Location
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
     public let thumbnailHeight: Int
@@ -479,7 +479,7 @@ public struct InputInlineQueryResultLocation: Codable, Equatable, Hashable, Iden
         inputMessageContent: InputMessageContent,
         livePeriod: Int,
         location: Location,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailHeight: Int,
         thumbnailUrl: String,
         thumbnailWidth: Int,
@@ -518,7 +518,7 @@ public struct InputInlineQueryResultPhoto: Codable, Equatable, Hashable, Identif
     public let photoWidth: Int
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// URL of the photo thumbnail, if it exists
     public let thumbnailUrl: String
@@ -534,7 +534,7 @@ public struct InputInlineQueryResultPhoto: Codable, Equatable, Hashable, Identif
         photoHeight: Int,
         photoUrl: String,
         photoWidth: Int,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailUrl: String,
         title: String
     ) {
@@ -560,7 +560,7 @@ public struct InputInlineQueryResultSticker: Codable, Equatable, Hashable, Ident
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Height of the sticker
     public let stickerHeight: Int
@@ -578,7 +578,7 @@ public struct InputInlineQueryResultSticker: Codable, Equatable, Hashable, Ident
     public init(
         id: String,
         inputMessageContent: InputMessageContent,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         stickerHeight: Int,
         stickerUrl: String,
         stickerWidth: Int,
@@ -604,7 +604,7 @@ public struct InputInlineQueryResultVenue: Codable, Equatable, Hashable, Identif
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
     public let thumbnailHeight: Int
@@ -622,7 +622,7 @@ public struct InputInlineQueryResultVenue: Codable, Equatable, Hashable, Identif
     public init(
         id: String,
         inputMessageContent: InputMessageContent,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailHeight: Int,
         thumbnailUrl: String,
         thumbnailWidth: Int,
@@ -653,7 +653,7 @@ public struct InputInlineQueryResultVideo: Codable, Equatable, Hashable, Identif
     public let mimeType: String
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// The URL of the video thumbnail (JPEG), if it exists
     public let thumbnailUrl: String
@@ -679,7 +679,7 @@ public struct InputInlineQueryResultVideo: Codable, Equatable, Hashable, Identif
         id: String,
         inputMessageContent: InputMessageContent,
         mimeType: String,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         thumbnailUrl: String,
         title: String,
         videoDuration: Int,
@@ -711,7 +711,7 @@ public struct InputInlineQueryResultVoiceNote: Codable, Equatable, Hashable, Ide
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    public let replyMarkup: ReplyMarkup
+    public let replyMarkup: ReplyMarkup?
 
     /// Title of the voice note
     public let title: String
@@ -726,7 +726,7 @@ public struct InputInlineQueryResultVoiceNote: Codable, Equatable, Hashable, Ide
     public init(
         id: String,
         inputMessageContent: InputMessageContent,
-        replyMarkup: ReplyMarkup,
+        replyMarkup: ReplyMarkup?,
         title: String,
         voiceNoteDuration: Int,
         voiceNoteUrl: String

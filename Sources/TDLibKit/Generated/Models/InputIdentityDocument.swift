@@ -14,7 +14,7 @@ import Foundation
 public struct InputIdentityDocument: Codable, Equatable, Hashable {
 
     /// Document expiry date; pass null if not applicable
-    public let expiryDate: Date
+    public let expiryDate: Date?
 
     /// Front side of the document
     public let frontSide: InputFile
@@ -23,21 +23,21 @@ public struct InputIdentityDocument: Codable, Equatable, Hashable {
     public let number: String
 
     /// Reverse side of the document; only for driver license and identity card; pass null otherwise
-    public let reverseSide: InputFile
+    public let reverseSide: InputFile?
 
     /// Selfie with the document; pass null if unavailable
-    public let selfie: InputFile
+    public let selfie: InputFile?
 
     /// List of files containing a certified English translation of the document
     public let translation: [InputFile]
 
 
     public init(
-        expiryDate: Date,
+        expiryDate: Date?,
         frontSide: InputFile,
         number: String,
-        reverseSide: InputFile,
-        selfie: InputFile,
+        reverseSide: InputFile?,
+        selfie: InputFile?,
         translation: [InputFile]
     ) {
         self.expiryDate = expiryDate

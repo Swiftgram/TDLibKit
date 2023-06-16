@@ -26,7 +26,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
     public let authenticationTokens: [String]
 
     /// For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication
-    public let firebaseAuthenticationSettings: FirebaseAuthenticationSettings
+    public let firebaseAuthenticationSettings: FirebaseAuthenticationSettings?
 
     /// Pass true if the authenticated phone number is used on the current device
     public let isCurrentPhoneNumber: Bool
@@ -37,7 +37,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
         allowMissedCall: Bool,
         allowSmsRetrieverApi: Bool,
         authenticationTokens: [String],
-        firebaseAuthenticationSettings: FirebaseAuthenticationSettings,
+        firebaseAuthenticationSettings: FirebaseAuthenticationSettings?,
         isCurrentPhoneNumber: Bool
     ) {
         self.allowFlashCall = allowFlashCall

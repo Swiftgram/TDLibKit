@@ -235,7 +235,7 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
     public let animation: InputFile
 
     /// Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    public let caption: FormattedText
+    public let caption: FormattedText?
 
     /// Duration of the animation, in seconds
     public let duration: Int
@@ -247,7 +247,7 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
     public let height: Int
 
     /// Animation thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail
+    public let thumbnail: InputThumbnail?
 
     /// Width of the animation; may be replaced by the server
     public let width: Int
@@ -256,11 +256,11 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
     public init(
         addedStickerFileIds: [Int],
         animation: InputFile,
-        caption: FormattedText,
+        caption: FormattedText?,
         duration: Int,
         hasSpoiler: Bool,
         height: Int,
-        thumbnail: InputThumbnail,
+        thumbnail: InputThumbnail?,
         width: Int
     ) {
         self.addedStickerFileIds = addedStickerFileIds
@@ -278,13 +278,13 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
 public struct InputMessageAudio: Codable, Equatable, Hashable {
 
     /// Thumbnail of the cover for the album; pass null to skip thumbnail uploading
-    public let albumCoverThumbnail: InputThumbnail
+    public let albumCoverThumbnail: InputThumbnail?
 
     /// Audio file to be sent
     public let audio: InputFile
 
     /// Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    public let caption: FormattedText
+    public let caption: FormattedText?
 
     /// Duration of the audio, in seconds; may be replaced by the server
     public let duration: Int
@@ -297,9 +297,9 @@ public struct InputMessageAudio: Codable, Equatable, Hashable {
 
 
     public init(
-        albumCoverThumbnail: InputThumbnail,
+        albumCoverThumbnail: InputThumbnail?,
         audio: InputFile,
-        caption: FormattedText,
+        caption: FormattedText?,
         duration: Int,
         performer: String,
         title: String
@@ -317,7 +317,7 @@ public struct InputMessageAudio: Codable, Equatable, Hashable {
 public struct InputMessageDocument: Codable, Equatable, Hashable {
 
     /// Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    public let caption: FormattedText
+    public let caption: FormattedText?
 
     /// If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
     public let disableContentTypeDetection: Bool
@@ -326,14 +326,14 @@ public struct InputMessageDocument: Codable, Equatable, Hashable {
     public let document: InputFile
 
     /// Document thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail
+    public let thumbnail: InputThumbnail?
 
 
     public init(
-        caption: FormattedText,
+        caption: FormattedText?,
         disableContentTypeDetection: Bool,
         document: InputFile,
-        thumbnail: InputThumbnail
+        thumbnail: InputThumbnail?
     ) {
         self.caption = caption
         self.disableContentTypeDetection = disableContentTypeDetection
@@ -349,7 +349,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
     public let addedStickerFileIds: [Int]
 
     /// Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    public let caption: FormattedText
+    public let caption: FormattedText?
 
     /// True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     public let hasSpoiler: Bool
@@ -364,7 +364,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
     public let selfDestructTime: Int
 
     /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
-    public let thumbnail: InputThumbnail
+    public let thumbnail: InputThumbnail?
 
     /// Photo width
     public let width: Int
@@ -372,12 +372,12 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
 
     public init(
         addedStickerFileIds: [Int],
-        caption: FormattedText,
+        caption: FormattedText?,
         hasSpoiler: Bool,
         height: Int,
         photo: InputFile,
         selfDestructTime: Int,
-        thumbnail: InputThumbnail,
+        thumbnail: InputThumbnail?,
         width: Int
     ) {
         self.addedStickerFileIds = addedStickerFileIds
@@ -404,7 +404,7 @@ public struct InputMessageSticker: Codable, Equatable, Hashable {
     public let sticker: InputFile
 
     /// Sticker thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail
+    public let thumbnail: InputThumbnail?
 
     /// Sticker width
     public let width: Int
@@ -414,7 +414,7 @@ public struct InputMessageSticker: Codable, Equatable, Hashable {
         emoji: String,
         height: Int,
         sticker: InputFile,
-        thumbnail: InputThumbnail,
+        thumbnail: InputThumbnail?,
         width: Int
     ) {
         self.emoji = emoji
@@ -432,7 +432,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     public let addedStickerFileIds: [Int]
 
     /// Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    public let caption: FormattedText
+    public let caption: FormattedText?
 
     /// Duration of the video, in seconds
     public let duration: Int
@@ -450,7 +450,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     public let supportsStreaming: Bool
 
     /// Video thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail
+    public let thumbnail: InputThumbnail?
 
     /// Video to be sent
     public let video: InputFile
@@ -461,13 +461,13 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
 
     public init(
         addedStickerFileIds: [Int],
-        caption: FormattedText,
+        caption: FormattedText?,
         duration: Int,
         hasSpoiler: Bool,
         height: Int,
         selfDestructTime: Int,
         supportsStreaming: Bool,
-        thumbnail: InputThumbnail,
+        thumbnail: InputThumbnail?,
         video: InputFile,
         width: Int
     ) {
@@ -494,7 +494,7 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
     public let length: Int
 
     /// Video thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail
+    public let thumbnail: InputThumbnail?
 
     /// Video note to be sent
     public let videoNote: InputFile
@@ -503,7 +503,7 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
     public init(
         duration: Int,
         length: Int,
-        thumbnail: InputThumbnail,
+        thumbnail: InputThumbnail?,
         videoNote: InputFile
     ) {
         self.duration = duration
@@ -517,7 +517,7 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
 public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
 
     /// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    public let caption: FormattedText
+    public let caption: FormattedText?
 
     /// Duration of the voice note, in seconds
     public let duration: Int
@@ -530,7 +530,7 @@ public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
 
 
     public init(
-        caption: FormattedText,
+        caption: FormattedText?,
         duration: Int,
         voiceNote: InputFile,
         waveform: Data
@@ -749,7 +749,7 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
 public struct InputMessageForwarded: Codable, Equatable, Hashable {
 
     /// Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
-    public let copyOptions: MessageCopyOptions
+    public let copyOptions: MessageCopyOptions?
 
     /// Identifier for the chat this forwarded message came from
     public let fromChatId: Int64
@@ -762,7 +762,7 @@ public struct InputMessageForwarded: Codable, Equatable, Hashable {
 
 
     public init(
-        copyOptions: MessageCopyOptions,
+        copyOptions: MessageCopyOptions?,
         fromChatId: Int64,
         inGameShare: Bool,
         messageId: Int64
