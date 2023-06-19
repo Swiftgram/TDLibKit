@@ -87,6 +87,9 @@ final class MethodsComposer: Composer {
         if swiftAsync {
             result = result.addLine(Constants.asyncAvailableString)
         }
+        if swiftAsync && info.rootName == "Ok" {
+            result = result.addLine("@discardableResult")
+        }
         if paramsList.count > 1 {
             let params = paramsList.reduce("", { $0.addLine("\($1)".indent()) })
             result = result
