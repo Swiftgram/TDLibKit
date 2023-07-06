@@ -28,7 +28,9 @@ let package = Package(
     targets: [
         .target(
             name: "TDLibKit",
-            dependencies: ["TDLibFramework"]
+            dependencies: ["TDLibFramework"],
+            swiftSettings: [.unsafeFlags(["-Onone"])]
+            // Workaround for https://github.com/Swiftgram/TDLibKit/issues/31
         ),
         .testTarget(
             name: "TDLibKitTests",
