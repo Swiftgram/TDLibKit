@@ -113,6 +113,7 @@ public final class TdApi {
     /// - Parameter useSecretChats: Pass true to enable support for secret chats
     /// - Parameter useTestDc: Pass true to use Telegram test environment instead of the production environment
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setTdlibParameters(
         apiHash: String?,
         apiId: Int?,
@@ -171,6 +172,7 @@ public final class TdApi {
     /// - Parameter phoneNumber: The phone number of the user, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setAuthenticationPhoneNumber(
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?
@@ -197,6 +199,7 @@ public final class TdApi {
     /// Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
     /// - Parameter emailAddress: The email address of the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setAuthenticationEmailAddress(emailAddress: String?) async throws -> Ok {
         let query = SetAuthenticationEmailAddress(
             emailAddress: emailAddress
@@ -212,6 +215,7 @@ public final class TdApi {
 
     /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func resendAuthenticationCode() async throws -> Ok {
         let query = ResendAuthenticationCode()
         return try await execute(query: query)
@@ -232,6 +236,7 @@ public final class TdApi {
     /// Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
     /// - Parameter code: Email address authentication to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkAuthenticationEmailCode(code: EmailAddressAuthentication?) async throws -> Ok {
         let query = CheckAuthenticationEmailCode(
             code: code
@@ -254,6 +259,7 @@ public final class TdApi {
     /// Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
     /// - Parameter code: Authentication code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkAuthenticationCode(code: String?) async throws -> Ok {
         let query = CheckAuthenticationCode(
             code: code
@@ -276,6 +282,7 @@ public final class TdApi {
     /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func requestQrCodeAuthentication(otherUserIds: [Int64]?) async throws -> Ok {
         let query = RequestQrCodeAuthentication(
             otherUserIds: otherUserIds
@@ -302,6 +309,7 @@ public final class TdApi {
     /// - Parameter firstName: The first name of the user; 1-64 characters
     /// - Parameter lastName: The last name of the user; 0-64 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func registerUser(
         firstName: String?,
         lastName: String?
@@ -323,6 +331,7 @@ public final class TdApi {
     /// Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending. Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.can_reset_email_address == true
     /// - Returns: May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func resetAuthenticationEmailAddress() async throws -> Ok {
         let query = ResetAuthenticationEmailAddress()
         return try await execute(query: query)
@@ -343,6 +352,7 @@ public final class TdApi {
     /// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter password: The 2-step verification password to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkAuthenticationPassword(password: String?) async throws -> Ok {
         let query = CheckAuthenticationPassword(
             password: password
@@ -358,6 +368,7 @@ public final class TdApi {
 
     /// Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func requestAuthenticationPasswordRecovery() async throws -> Ok {
         let query = RequestAuthenticationPasswordRecovery()
         return try await execute(query: query)
@@ -378,6 +389,7 @@ public final class TdApi {
     /// Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
     /// - Parameter recoveryCode: Recovery code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkAuthenticationPasswordRecoveryCode(recoveryCode: String?) async throws -> Ok {
         let query = CheckAuthenticationPasswordRecoveryCode(
             recoveryCode: recoveryCode
@@ -408,6 +420,7 @@ public final class TdApi {
     /// - Parameter newPassword: New 2-step verification password of the user; may be empty to remove the password
     /// - Parameter recoveryCode: Recovery code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func recoverAuthenticationPassword(
         newHint: String?,
         newPassword: String?,
@@ -438,6 +451,7 @@ public final class TdApi {
     /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     /// - Returns: Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendAuthenticationFirebaseSms(token: String?) async throws -> Ok {
         let query = SendAuthenticationFirebaseSms(
             token: token
@@ -460,6 +474,7 @@ public final class TdApi {
     /// Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
     /// - Parameter token: The bot token
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkAuthenticationBotToken(token: String?) async throws -> Ok {
         let query = CheckAuthenticationBotToken(
             token: token
@@ -475,6 +490,7 @@ public final class TdApi {
 
     /// Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func logOut() async throws -> Ok {
         let query = LogOut()
         return try await execute(query: query)
@@ -488,6 +504,7 @@ public final class TdApi {
 
     /// Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func close() async throws -> Ok {
         let query = Close()
         return try await execute(query: query)
@@ -501,6 +518,7 @@ public final class TdApi {
 
     /// Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func destroy() async throws -> Ok {
         let query = Destroy()
         return try await execute(query: query)
@@ -560,6 +578,7 @@ public final class TdApi {
     /// Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
     /// - Parameter newEncryptionKey: New encryption key
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setDatabaseEncryptionKey(newEncryptionKey: Data?) async throws -> Ok {
         let query = SetDatabaseEncryptionKey(
             newEncryptionKey: newEncryptionKey
@@ -680,6 +699,7 @@ public final class TdApi {
     /// Checks the login email address authentication
     /// - Parameter code: Email address authentication to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkLoginEmailAddressCode(code: EmailAddressAuthentication?) async throws -> Ok {
         let query = CheckLoginEmailAddressCode(
             code: code
@@ -804,6 +824,7 @@ public final class TdApi {
     /// Checks whether a 2-step verification password recovery code sent to an email address is valid
     /// - Parameter recoveryCode: Recovery code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkPasswordRecoveryCode(recoveryCode: String?) async throws -> Ok {
         let query = CheckPasswordRecoveryCode(
             recoveryCode: recoveryCode
@@ -868,6 +889,7 @@ public final class TdApi {
 
     /// Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func cancelPasswordReset() async throws -> Ok {
         let query = CancelPasswordReset()
         return try await execute(query: query)
@@ -1456,6 +1478,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
     /// - Returns: A 404 error if all chats have been loaded
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func loadChats(
         chatList: ChatList?,
         limit: Int?
@@ -1686,6 +1709,7 @@ public final class TdApi {
     /// - Parameter category: Category of frequently used chats
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeTopChat(
         category: TopChatCategory?,
         chatId: Int64?
@@ -1712,6 +1736,7 @@ public final class TdApi {
     /// Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
     /// - Parameter chatId: Identifier of the chat to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addRecentlyFoundChat(chatId: Int64?) async throws -> Ok {
         let query = AddRecentlyFoundChat(
             chatId: chatId
@@ -1734,6 +1759,7 @@ public final class TdApi {
     /// Removes a chat from the list of recently found chats
     /// - Parameter chatId: Identifier of the chat to be removed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeRecentlyFoundChat(chatId: Int64?) async throws -> Ok {
         let query = RemoveRecentlyFoundChat(
             chatId: chatId
@@ -1749,6 +1775,7 @@ public final class TdApi {
 
     /// Clears the list of recently found chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearRecentlyFoundChats() async throws -> Ok {
         let query = ClearRecentlyFoundChats()
         return try await execute(query: query)
@@ -1849,6 +1876,7 @@ public final class TdApi {
     /// - Parameter type: Type of the public chats, for which to check the limit
     /// - Returns: Corresponding error if the limit was reached
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkCreatedPublicChatsLimit(type: PublicChatType?) async throws -> Ok {
         let query = CheckCreatedPublicChatsLimit(
             type: type
@@ -2047,6 +2075,7 @@ public final class TdApi {
     /// - Parameter removeFromChatList: Pass true to remove the chat from all chat lists
     /// - Parameter revoke: Pass true to delete chat history for all users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChatHistory(
         chatId: Int64?,
         removeFromChatList: Bool?,
@@ -2075,6 +2104,7 @@ public final class TdApi {
     /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChat(chatId: Int64?) async throws -> Ok {
         let query = DeleteChat(
             chatId: chatId
@@ -2347,6 +2377,7 @@ public final class TdApi {
     /// Deletes all call messages
     /// - Parameter revoke: Pass true to delete the messages for all users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteAllCallMessages(revoke: Bool?) async throws -> Ok {
         let query = DeleteAllCallMessages(
             revoke: revoke
@@ -2708,6 +2739,7 @@ public final class TdApi {
     /// - Parameter notificationGroupId: Identifier of notification group to which the notification belongs
     /// - Parameter notificationId: Identifier of removed notification
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeNotification(
         notificationGroupId: Int?,
         notificationId: Int?
@@ -2738,6 +2770,7 @@ public final class TdApi {
     /// - Parameter maxNotificationId: The maximum identifier of removed notifications
     /// - Parameter notificationGroupId: Notification group identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeNotificationGroup(
         maxNotificationId: Int?,
         notificationGroupId: Int?
@@ -2948,6 +2981,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func recognizeSpeech(
         chatId: Int64?,
         messageId: Int64?
@@ -2982,6 +3016,7 @@ public final class TdApi {
     /// - Parameter isGood: Pass true if the speech recognition is good
     /// - Parameter messageId: Identifier of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func rateSpeechRecognition(
         chatId: Int64?,
         isGood: Bool?,
@@ -3038,6 +3073,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageSenderId: New message sender for the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatMessageSender(
         chatId: Int64?,
         messageSenderId: MessageSender?
@@ -3376,6 +3412,7 @@ public final class TdApi {
     /// Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendChatScreenshotTakenNotification(chatId: Int64?) async throws -> Ok {
         let query = SendChatScreenshotTakenNotification(
             chatId: chatId
@@ -3456,6 +3493,7 @@ public final class TdApi {
     /// - Parameter messageIds: Identifiers of the messages to be deleted
     /// - Parameter revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
@@ -3488,6 +3526,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter senderId: Identifier of the sender of messages to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChatMessagesBySender(
         chatId: Int64?,
         senderId: MessageSender?
@@ -3526,6 +3565,7 @@ public final class TdApi {
     /// - Parameter minDate: The minimum date of the messages to delete
     /// - Parameter revoke: Pass true to delete chat messages for all users; private chats only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChatMessagesByDate(
         chatId: Int64?,
         maxDate: Int?,
@@ -3790,6 +3830,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editInlineMessageText(
         inlineMessageId: String?,
         inputMessageContent: InputMessageContent?,
@@ -3834,6 +3875,7 @@ public final class TdApi {
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editInlineMessageLiveLocation(
         heading: Int?,
         inlineMessageId: String?,
@@ -3874,6 +3916,7 @@ public final class TdApi {
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editInlineMessageMedia(
         inlineMessageId: String?,
         inputMessageContent: InputMessageContent?,
@@ -3910,6 +3953,7 @@ public final class TdApi {
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editInlineMessageCaption(
         caption: FormattedText?,
         inlineMessageId: String?,
@@ -3942,6 +3986,7 @@ public final class TdApi {
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editInlineMessageReplyMarkup(
         inlineMessageId: String?,
         replyMarkup: ReplyMarkup?
@@ -3976,6 +4021,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editMessageSchedulingState(
         chatId: Int64?,
         messageId: Int64?,
@@ -4071,6 +4117,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     /// - Parameter name: New name of the topic; 0-128 characters. If empty, the previous topic name is kept
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editForumTopic(
         chatId: Int64?,
         editIconCustomEmoji: Bool?,
@@ -4231,6 +4278,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     /// - Parameter notificationSettings: New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setForumTopicNotificationSettings(
         chatId: Int64?,
         messageThreadId: Int64?,
@@ -4267,6 +4315,7 @@ public final class TdApi {
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleForumTopicIsClosed(
         chatId: Int64?,
         isClosed: Bool?,
@@ -4299,6 +4348,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGeneralForumTopicIsHidden(
         chatId: Int64?,
         isHidden: Bool?
@@ -4333,6 +4383,7 @@ public final class TdApi {
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleForumTopicIsPinned(
         chatId: Int64?,
         isPinned: Bool?,
@@ -4365,6 +4416,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadIds: The new list of pinned forum topics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setPinnedForumTopics(
         chatId: Int64?,
         messageThreadIds: [Int64]?
@@ -4395,6 +4447,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteForumTopic(
         chatId: Int64?,
         messageThreadId: Int64?
@@ -4491,6 +4544,7 @@ public final class TdApi {
 
     /// Clears the list of recently used reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearRecentReactions() async throws -> Ok {
         let query = ClearRecentReactions()
         return try await execute(query: query)
@@ -4527,6 +4581,7 @@ public final class TdApi {
     /// - Parameter reactionType: Type of the reaction to add
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addMessageReaction(
         chatId: Int64?,
         isBig: Bool?,
@@ -4567,6 +4622,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message
     /// - Parameter reactionType: Type of the reaction to remove
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeMessageReaction(
         chatId: Int64?,
         messageId: Int64?,
@@ -4645,6 +4701,7 @@ public final class TdApi {
     /// Changes type of default reaction for the current user
     /// - Parameter reactionType: New type of the default reaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setDefaultReactionType(reactionType: ReactionType?) async throws -> Ok {
         let query = SetDefaultReactionType(
             reactionType: reactionType
@@ -4955,6 +5012,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter optionIds: 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setPollAnswer(
         chatId: Int64?,
         messageId: Int64?,
@@ -5041,6 +5099,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func stopPoll(
         chatId: Int64?,
         messageId: Int64?,
@@ -5069,6 +5128,7 @@ public final class TdApi {
     /// Hides a suggested action
     /// - Parameter action: Suggested action to hide
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func hideSuggestedAction(action: SuggestedAction?) async throws -> Ok {
         let query = HideSuggestedAction(
             action: action
@@ -5189,6 +5249,7 @@ public final class TdApi {
     /// - Parameter onlyCheck: Pass true to check that the user can be shared by the button instead of actually sharing them
     /// - Parameter sharedUserId: Identifier of the shared user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func shareUserWithBot(
         buttonId: Int?,
         chatId: Int64?,
@@ -5237,6 +5298,7 @@ public final class TdApi {
     /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.//-If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat.//-If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
     /// - Parameter sharedChatId: Identifier of the shared chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func shareChatWithBot(
         buttonId: Int?,
         chatId: Int64?,
@@ -5339,6 +5401,7 @@ public final class TdApi {
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func answerInlineQuery(
         button: InlineQueryResultsButton?,
         cacheTime: Int?,
@@ -5519,6 +5582,7 @@ public final class TdApi {
     /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the Web App
     /// - Parameter data: The data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendWebAppData(
         botUserId: Int64?,
         buttonText: String?,
@@ -5607,6 +5671,7 @@ public final class TdApi {
     /// Informs TDLib that a previously opened Web App was closed
     /// - Parameter webAppLaunchId: Identifier of Web App launch, received from openWebApp
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func closeWebApp(webAppLaunchId: TdInt64?) async throws -> Ok {
         let query = CloseWebApp(
             webAppLaunchId: webAppLaunchId
@@ -5713,6 +5778,7 @@ public final class TdApi {
     /// - Parameter text: Text of the answer
     /// - Parameter url: URL to be opened
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func answerCallbackQuery(
         cacheTime: Int?,
         callbackQueryId: TdInt64?,
@@ -5753,6 +5819,7 @@ public final class TdApi {
     /// - Parameter shippingOptions: Available shipping options
     /// - Parameter shippingQueryId: Identifier of the shipping query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func answerShippingQuery(
         errorMessage: String?,
         shippingOptions: [ShippingOption]?,
@@ -5785,6 +5852,7 @@ public final class TdApi {
     /// - Parameter errorMessage: An error message, empty on success
     /// - Parameter preCheckoutQueryId: Identifier of the pre-checkout query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func answerPreCheckoutQuery(
         errorMessage: String?,
         preCheckoutQueryId: TdInt64?
@@ -5881,6 +5949,7 @@ public final class TdApi {
     /// - Parameter score: The new score
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setInlineGameScore(
         editMessage: Bool?,
         force: Bool?,
@@ -5987,6 +6056,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: The message identifier of the used keyboard
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChatReplyMarkup(
         chatId: Int64?,
         messageId: Int64?
@@ -6021,6 +6091,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the action was performed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendChatAction(
         action: ChatAction?,
         chatId: Int64?,
@@ -6049,6 +6120,7 @@ public final class TdApi {
     /// Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func openChat(chatId: Int64?) async throws -> Ok {
         let query = OpenChat(
             chatId: chatId
@@ -6071,6 +6143,7 @@ public final class TdApi {
     /// Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func closeChat(chatId: Int64?) async throws -> Ok {
         let query = CloseChat(
             chatId: chatId
@@ -6105,6 +6178,7 @@ public final class TdApi {
     /// - Parameter messageIds: The identifiers of the messages being viewed
     /// - Parameter source: Source of the message view; pass null to guess the source based on chat open state
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func viewMessages(
         chatId: Int64?,
         forceRead: Bool?,
@@ -6139,6 +6213,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter messageId: Identifier of the message with the opened content
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func openMessageContent(
         chatId: Int64?,
         messageId: Int64?
@@ -6309,6 +6384,7 @@ public final class TdApi {
     /// Marks all mentions in a chat as read
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func readAllChatMentions(chatId: Int64?) async throws -> Ok {
         let query = ReadAllChatMentions(
             chatId: chatId
@@ -6335,6 +6411,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadId: Message thread identifier in which mentions are marked as read
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func readAllMessageThreadMentions(
         chatId: Int64?,
         messageThreadId: Int64?
@@ -6361,6 +6438,7 @@ public final class TdApi {
     /// Marks all reactions in a chat or a forum topic as read
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func readAllChatReactions(chatId: Int64?) async throws -> Ok {
         let query = ReadAllChatReactions(
             chatId: chatId
@@ -6387,6 +6465,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadId: Message thread identifier in which reactions are marked as read
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func readAllMessageThreadReactions(
         chatId: Int64?,
         messageThreadId: Int64?
@@ -6707,6 +6786,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter chatList: The chat list. Use getChatListsToAddChat to get suitable chat lists
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addChatToList(
         chatId: Int64?,
         chatList: ChatList?
@@ -6817,6 +6897,7 @@ public final class TdApi {
     /// - Parameter chatFolderId: Chat folder identifier
     /// - Parameter leaveChatIds: Identifiers of the chats to leave. The chats must be pinned or always included in the folder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChatFolder(
         chatFolderId: Int?,
         leaveChatIds: [Int64]?
@@ -6871,6 +6952,7 @@ public final class TdApi {
     /// - Parameter chatFolderIds: Identifiers of chat folders in the new correct order
     /// - Parameter mainChatListPosition: Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reorderChatFolders(
         chatFolderIds: [Int]?,
         mainChatListPosition: Int?
@@ -7066,6 +7148,7 @@ public final class TdApi {
     /// - Parameter chatFolderId: Chat folder identifier
     /// - Parameter inviteLink: Invite link to be deleted
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteChatFolderInviteLink(
         chatFolderId: Int?,
         inviteLink: String?
@@ -7120,6 +7203,7 @@ public final class TdApi {
     /// - Parameter chatIds: Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
     /// - Parameter inviteLink: Invite link for the chat folder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addChatFolderByInviteLink(
         chatIds: [Int64]?,
         inviteLink: String?
@@ -7174,6 +7258,7 @@ public final class TdApi {
     /// - Parameter addedChatIds: Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
     /// - Parameter chatFolderId: Chat folder identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func processChatFolderNewChats(
         addedChatIds: [Int64]?,
         chatFolderId: Int?
@@ -7204,6 +7289,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter title: New title of the chat; 1-128 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatTitle(
         chatId: Int64?,
         title: String?
@@ -7234,6 +7320,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter photo: New chat photo; pass null to delete the chat photo
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatPhoto(
         chatId: Int64?,
         photo: InputChatPhoto?
@@ -7264,6 +7351,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageAutoDeleteTime: New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatMessageAutoDeleteTime(
         chatId: Int64?,
         messageAutoDeleteTime: Int?
@@ -7294,6 +7382,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter permissions: New non-administrator members permissions in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatPermissions(
         chatId: Int64?,
         permissions: ChatPermissions?
@@ -7332,6 +7421,7 @@ public final class TdApi {
     /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100
     /// - Parameter type: Background type; pass null to remove the current background
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatBackground(
         background: InputBackground?,
         chatId: Int64?,
@@ -7366,6 +7456,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter themeName: Name of the new chat theme; pass an empty string to return the default theme
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatTheme(
         chatId: Int64?,
         themeName: String?
@@ -7400,6 +7491,7 @@ public final class TdApi {
     /// - Parameter draftMessage: New draft message; pass null to remove the draft
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the draft was changed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatDraftMessage(
         chatId: Int64?,
         draftMessage: DraftMessage?,
@@ -7432,6 +7524,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter notificationSettings: New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatNotificationSettings(
         chatId: Int64?,
         notificationSettings: ChatNotificationSettings?
@@ -7462,6 +7555,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter hasProtectedContent: New value of has_protected_content
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleChatHasProtectedContent(
         chatId: Int64?,
         hasProtectedContent: Bool?
@@ -7492,6 +7586,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter isTranslatable: New value of is_translatable
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleChatIsTranslatable(
         chatId: Int64?,
         isTranslatable: Bool?
@@ -7522,6 +7617,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter isMarkedAsUnread: New value of is_marked_as_unread
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleChatIsMarkedAsUnread(
         chatId: Int64?,
         isMarkedAsUnread: Bool?
@@ -7552,6 +7648,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter defaultDisableNotification: New value of default_disable_notification
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleChatDefaultDisableNotification(
         chatId: Int64?,
         defaultDisableNotification: Bool?
@@ -7582,6 +7679,7 @@ public final class TdApi {
     /// - Parameter availableReactions: Reactions available in the chat. All emoji reactions must be active
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatAvailableReactions(
         availableReactions: ChatAvailableReactions?,
         chatId: Int64?
@@ -7612,6 +7710,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter clientData: New value of client_data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatClientData(
         chatId: Int64?,
         clientData: String?
@@ -7642,6 +7741,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter description: 
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatDescription(
         chatId: Int64?,
         description: String?
@@ -7672,6 +7772,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
     /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatDiscussionGroup(
         chatId: Int64?,
         discussionChatId: Int64?
@@ -7702,6 +7803,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter location: New location for the chat; must be valid and not null
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatLocation(
         chatId: Int64?,
         location: ChatLocation?
@@ -7732,6 +7834,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatSlowModeDelay(
         chatId: Int64?,
         slowModeDelay: Int?
@@ -7770,6 +7873,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the new pinned message
     /// - Parameter onlyForSelf: Pass true to pin the message only for self; private chats only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func pinChatMessage(
         chatId: Int64?,
         disableNotification: Bool?,
@@ -7804,6 +7908,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageId: Identifier of the removed pinned message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func unpinChatMessage(
         chatId: Int64?,
         messageId: Int64?
@@ -7830,6 +7935,7 @@ public final class TdApi {
     /// Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func unpinAllChatMessages(chatId: Int64?) async throws -> Ok {
         let query = UnpinAllChatMessages(
             chatId: chatId
@@ -7856,6 +7962,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageThreadId: Message thread identifier in which messages will be unpinned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func unpinAllMessageThreadMessages(
         chatId: Int64?,
         messageThreadId: Int64?
@@ -7884,6 +7991,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func joinChat(chatId: Int64?) async throws -> Ok {
         let query = JoinChat(
             chatId: chatId
@@ -7906,6 +8014,7 @@ public final class TdApi {
     /// Removes the current user from chat members. Private and secret chats can't be left using this method
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func leaveChat(chatId: Int64?) async throws -> Ok {
         let query = LeaveChat(
             chatId: chatId
@@ -7936,6 +8045,7 @@ public final class TdApi {
     /// - Parameter forwardLimit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     /// - Parameter userId: Identifier of the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addChatMember(
         chatId: Int64?,
         forwardLimit: Int?,
@@ -7968,6 +8078,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addChatMembers(
         chatId: Int64?,
         userIds: [Int64]?
@@ -8002,6 +8113,7 @@ public final class TdApi {
     /// - Parameter memberId: Member identifier. Chats can be only banned and unbanned in supergroups and channels
     /// - Parameter status: The new status of the member in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatMemberStatus(
         chatId: Int64?,
         memberId: MessageSender?,
@@ -8044,6 +8156,7 @@ public final class TdApi {
     /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
     /// - Returns: In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func banChatMember(
         bannedUntilDate: Int?,
         chatId: Int64?,
@@ -8095,6 +8208,7 @@ public final class TdApi {
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func transferChatOwnership(
         chatId: Int64?,
         password: String?,
@@ -8221,6 +8335,7 @@ public final class TdApi {
     /// Clears message drafts in all chats
     /// - Parameter excludeSecretChats: Pass true to keep local message drafts in secret chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearAllDraftMessages(excludeSecretChats: Bool?) async throws -> Ok {
         let query = ClearAllDraftMessages(
             excludeSecretChats: excludeSecretChats
@@ -8304,6 +8419,7 @@ public final class TdApi {
     /// Removes a notification sound from the list of saved notification sounds
     /// - Parameter notificationSoundId: Identifier of the notification sound
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeSavedNotificationSound(notificationSoundId: TdInt64?) async throws -> Ok {
         let query = RemoveSavedNotificationSound(
             notificationSoundId: notificationSoundId
@@ -8386,6 +8502,7 @@ public final class TdApi {
     /// - Parameter notificationSettings: The new notification settings for the given scope
     /// - Parameter scope: Types of chats for which to change the notification settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setScopeNotificationSettings(
         notificationSettings: ScopeNotificationSettings?,
         scope: NotificationSettingsScope?
@@ -8405,6 +8522,7 @@ public final class TdApi {
 
     /// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func resetAllNotificationSettings() async throws -> Ok {
         let query = ResetAllNotificationSettings()
         return try await execute(query: query)
@@ -8433,6 +8551,7 @@ public final class TdApi {
     /// - Parameter chatList: Chat list in which to change the pinned state of the chat
     /// - Parameter isPinned: Pass true to pin the chat; pass false to unpin it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleChatIsPinned(
         chatId: Int64?,
         chatList: ChatList?,
@@ -8465,6 +8584,7 @@ public final class TdApi {
     /// - Parameter chatIds: The new list of pinned chats
     /// - Parameter chatList: Chat list in which to change the order of pinned chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setPinnedChats(
         chatIds: [Int64]?,
         chatList: ChatList?
@@ -8491,6 +8611,7 @@ public final class TdApi {
     /// Traverse all chats in a chat list and marks all messages in the chats as read
     /// - Parameter chatList: Chat list in which to mark all chats as read
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func readChatList(chatList: ChatList?) async throws -> Ok {
         let query = ReadChatList(
             chatList: chatList
@@ -8545,6 +8666,7 @@ public final class TdApi {
     /// - Parameter botUserId: Bot's user identifier
     /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleBotIsAddedToAttachmentMenu(
         allowWriteAccess: Bool?,
         botUserId: Int64?,
@@ -8611,6 +8733,7 @@ public final class TdApi {
 
     /// Clears the list of recently used emoji statuses
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearRecentEmojiStatuses() async throws -> Ok {
         let query = ClearRecentEmojiStatuses()
         return try await execute(query: query)
@@ -8715,6 +8838,7 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of a file to stop downloading
     /// - Parameter onlyIfPending: Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func cancelDownloadFile(
         fileId: Int?,
         onlyIfPending: Bool?
@@ -8809,6 +8933,7 @@ public final class TdApi {
     /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
     /// - Parameter fileId: Identifier of the file to stop uploading
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func cancelPreliminaryUploadFile(fileId: Int?) async throws -> Ok {
         let query = CancelPreliminaryUploadFile(
             fileId: fileId
@@ -8839,6 +8964,7 @@ public final class TdApi {
     /// - Parameter generationId: The identifier of the generation process
     /// - Parameter offset: The offset from which to write the data to the file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func writeGeneratedFilePart(
         data: Data?,
         generationId: TdInt64?,
@@ -8875,6 +9001,7 @@ public final class TdApi {
     /// - Parameter generationId: The identifier of the generation process
     /// - Parameter localPrefixSize: The number of bytes already generated
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setFileGenerationProgress(
         expectedSize: Int64?,
         generationId: TdInt64?,
@@ -8907,6 +9034,7 @@ public final class TdApi {
     /// - Parameter error: If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
     /// - Parameter generationId: The identifier of the generation process
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func finishFileGeneration(
         error: Error?,
         generationId: TdInt64?
@@ -8971,6 +9099,7 @@ public final class TdApi {
     /// Deletes a file from the TDLib file cache
     /// - Parameter fileId: Identifier of the file to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteFile(fileId: Int?) async throws -> Ok {
         let query = DeleteFile(
             fileId: fileId
@@ -9039,6 +9168,7 @@ public final class TdApi {
     /// - Parameter fileId: Identifier of the downloaded file
     /// - Parameter isPaused: Pass true if the download is paused
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleDownloadIsPaused(
         fileId: Int?,
         isPaused: Bool?
@@ -9065,6 +9195,7 @@ public final class TdApi {
     /// Changes pause state of all files in the file download list
     /// - Parameter arePaused: Pass true to pause all downloads; pass false to unpause them
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleAllDownloadsArePaused(arePaused: Bool?) async throws -> Ok {
         let query = ToggleAllDownloadsArePaused(
             arePaused: arePaused
@@ -9091,6 +9222,7 @@ public final class TdApi {
     /// - Parameter deleteFromCache: Pass true to delete the file from the TDLib file cache
     /// - Parameter fileId: Identifier of the downloaded file
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeFileFromDownloads(
         deleteFromCache: Bool?,
         fileId: Int?
@@ -9125,6 +9257,7 @@ public final class TdApi {
     /// - Parameter onlyActive: Pass true to remove only active downloads, including paused
     /// - Parameter onlyCompleted: Pass true to remove only completed downloads
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeAllFilesFromDownloads(
         deleteFromCache: Bool?,
         onlyActive: Bool?,
@@ -9257,6 +9390,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
     /// - Parameter messageFile: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func importMessages(
         attachedFiles: [InputFile]?,
         chatId: Int64?,
@@ -9601,6 +9735,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to revoke
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteRevokedChatInviteLink(
         chatId: Int64?,
         inviteLink: String?
@@ -9631,6 +9766,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter creatorUserId: User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteAllRevokedChatInviteLinks(
         chatId: Int64?,
         creatorUserId: Int64?
@@ -9763,6 +9899,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter userId: Identifier of the user that sent the request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func processChatJoinRequest(
         approve: Bool?,
         chatId: Int64?,
@@ -9799,6 +9936,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func processChatJoinRequests(
         approve: Bool?,
         chatId: Int64?,
@@ -9867,6 +10005,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter `protocol`: The call protocols supported by the application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func acceptCall(
         callId: Int?,
         `protocol`: CallProtocol?
@@ -9897,6 +10036,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter data: The data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendCallSignalingData(
         callId: Int?,
         data: Data?
@@ -9939,6 +10079,7 @@ public final class TdApi {
     /// - Parameter isDisconnected: Pass true if the user was disconnected
     /// - Parameter isVideo: Pass true if the call was a video call
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func discardCall(
         callId: Int?,
         connectionId: TdInt64?,
@@ -9983,6 +10124,7 @@ public final class TdApi {
     /// - Parameter problems: List of the exact types of problems with the call, specified by the user
     /// - Parameter rating: Call rating; 1-5
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendCallRating(
         callId: Int?,
         comment: String?,
@@ -10017,6 +10159,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter debugInformation: Debug information in application-specific format
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendCallDebugInformation(
         callId: Int?,
         debugInformation: String?
@@ -10047,6 +10190,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter logFile: Call log file. Only inputFileLocal and inputFileGenerated are supported
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendCallLog(
         callId: Int?,
         logFile: InputFile?
@@ -10101,6 +10245,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter defaultParticipantId: Default group call participant identifier to join the video chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setVideoChatDefaultParticipant(
         chatId: Int64?,
         defaultParticipantId: MessageSender?
@@ -10239,6 +10384,7 @@ public final class TdApi {
     /// Starts a scheduled group call
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func startScheduledGroupCall(groupCallId: Int?) async throws -> Ok {
         let query = StartScheduledGroupCall(
             groupCallId: groupCallId
@@ -10265,6 +10411,7 @@ public final class TdApi {
     /// - Parameter enabledStartNotification: New value of the enabled_start_notification setting
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallEnabledStartNotification(
         enabledStartNotification: Bool?,
         groupCallId: Int?
@@ -10395,6 +10542,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isPaused: Pass true to pause screen sharing; pass false to unpause it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallScreenSharingIsPaused(
         groupCallId: Int?,
         isPaused: Bool?
@@ -10421,6 +10569,7 @@ public final class TdApi {
     /// Ends screen sharing in a joined group call
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func endGroupCallScreenSharing(groupCallId: Int?) async throws -> Ok {
         let query = EndGroupCallScreenSharing(
             groupCallId: groupCallId
@@ -10447,6 +10596,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter title: New group call title; 1-64 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setGroupCallTitle(
         groupCallId: Int?,
         title: String?
@@ -10477,6 +10627,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter muteNewParticipants: New value of the mute_new_participants setting
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallMuteNewParticipants(
         groupCallId: Int?,
         muteNewParticipants: Bool?
@@ -10507,6 +10658,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func inviteGroupCallParticipants(
         groupCallId: Int?,
         userIds: [Int64]?
@@ -10565,6 +10717,7 @@ public final class TdApi {
     /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func revokeGroupCallInviteLink(groupCallId: Int?) async throws -> Ok {
         let query = RevokeGroupCallInviteLink(
             groupCallId: groupCallId
@@ -10599,6 +10752,7 @@ public final class TdApi {
     /// - Parameter title: Group call recording title; 0-64 characters
     /// - Parameter usePortraitOrientation: Pass true to use portrait orientation for video instead of landscape one
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func startGroupCallRecording(
         groupCallId: Int?,
         recordVideo: Bool?,
@@ -10629,6 +10783,7 @@ public final class TdApi {
     /// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func endGroupCallRecording(groupCallId: Int?) async throws -> Ok {
         let query = EndGroupCallRecording(
             groupCallId: groupCallId
@@ -10655,6 +10810,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isMyVideoPaused: Pass true if the current user's video is paused
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallIsMyVideoPaused(
         groupCallId: Int?,
         isMyVideoPaused: Bool?
@@ -10685,6 +10841,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isMyVideoEnabled: Pass true if the current user's video is enabled
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallIsMyVideoEnabled(
         groupCallId: Int?,
         isMyVideoEnabled: Bool?
@@ -10719,6 +10876,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isSpeaking: Pass true if the user is speaking
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setGroupCallParticipantIsSpeaking(
         audioSource: Int?,
         groupCallId: Int?,
@@ -10755,6 +10913,7 @@ public final class TdApi {
     /// - Parameter isMuted: Pass true to mute the user; pass false to unmute the them
     /// - Parameter participantId: Participant identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallParticipantIsMuted(
         groupCallId: Int?,
         isMuted: Bool?,
@@ -10791,6 +10950,7 @@ public final class TdApi {
     /// - Parameter participantId: Participant identifier
     /// - Parameter volumeLevel: New participant's volume level; 1-20000 in hundreds of percents
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setGroupCallParticipantVolumeLevel(
         groupCallId: Int?,
         participantId: MessageSender?,
@@ -10827,6 +10987,7 @@ public final class TdApi {
     /// - Parameter isHandRaised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
     /// - Parameter participantId: Participant identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleGroupCallParticipantIsHandRaised(
         groupCallId: Int?,
         isHandRaised: Bool?,
@@ -10859,6 +11020,7 @@ public final class TdApi {
     /// - Parameter groupCallId: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     /// - Parameter limit: The maximum number of participants to load; up to 100
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func loadGroupCallParticipants(
         groupCallId: Int?,
         limit: Int?
@@ -10885,6 +11047,7 @@ public final class TdApi {
     /// Leaves a group call
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func leaveGroupCall(groupCallId: Int?) async throws -> Ok {
         let query = LeaveGroupCall(
             groupCallId: groupCallId
@@ -10907,6 +11070,7 @@ public final class TdApi {
     /// Ends a group call. Requires groupCall.can_be_managed
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func endGroupCall(groupCallId: Int?) async throws -> Ok {
         let query = EndGroupCall(
             groupCallId: groupCallId
@@ -11007,6 +11171,7 @@ public final class TdApi {
     /// - Parameter isBlocked: New value of is_blocked
     /// - Parameter senderId: Identifier of a message sender to block/unblock
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleMessageSenderIsBlocked(
         isBlocked: Bool?,
         senderId: MessageSender?
@@ -11045,6 +11210,7 @@ public final class TdApi {
     /// - Parameter messageId: The identifier of an incoming message in the Replies chat
     /// - Parameter reportSpam: Pass true to report the sender to the Telegram moderators
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func blockMessageSenderFromReplies(
         deleteAllMessages: Bool?,
         deleteMessage: Bool?,
@@ -11111,6 +11277,7 @@ public final class TdApi {
     /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
     /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.//-Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addContact(
         contact: Contact?,
         sharePhoneNumber: Bool?
@@ -11204,6 +11371,7 @@ public final class TdApi {
     /// Removes users from the contact list
     /// - Parameter userIds: Identifiers of users to be deleted
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeContacts(userIds: [Int64]?) async throws -> Ok {
         let query = RemoveContacts(
             userIds: userIds
@@ -11256,6 +11424,7 @@ public final class TdApi {
 
     /// Clears all imported contacts, contact list remains unchanged
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearImportedContacts() async throws -> Ok {
         let query = ClearImportedContacts()
         return try await execute(query: query)
@@ -11280,6 +11449,7 @@ public final class TdApi {
     /// - Parameter photo: Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setUserPersonalProfilePhoto(
         photo: InputChatPhoto?,
         userId: Int64?
@@ -11310,6 +11480,7 @@ public final class TdApi {
     /// - Parameter photo: Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func suggestUserProfilePhoto(
         photo: InputChatPhoto?,
         userId: Int64?
@@ -11360,6 +11531,7 @@ public final class TdApi {
     /// Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
     /// - Parameter userId: Identifier of the user with whom to share the phone number. The user must be a mutual contact
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sharePhoneNumber(userId: Int64?) async throws -> Ok {
         let query = SharePhoneNumber(
             userId: userId
@@ -11760,6 +11932,7 @@ public final class TdApi {
     /// - Parameter isInstalled: The new value of is_installed
     /// - Parameter setId: Identifier of the sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func changeStickerSet(
         isArchived: Bool?,
         isInstalled: Bool?,
@@ -11788,6 +11961,7 @@ public final class TdApi {
     /// Informs the server that some trending sticker sets have been viewed by the user
     /// - Parameter stickerSetIds: Identifiers of viewed trending sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func viewTrendingStickerSets(stickerSetIds: [TdInt64]?) async throws -> Ok {
         let query = ViewTrendingStickerSets(
             stickerSetIds: stickerSetIds
@@ -11814,6 +11988,7 @@ public final class TdApi {
     /// - Parameter stickerSetIds: Identifiers of installed sticker sets in the new correct order
     /// - Parameter stickerType: Type of the sticker sets to reorder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reorderInstalledStickerSets(
         stickerSetIds: [TdInt64]?,
         stickerType: StickerType?
@@ -11898,6 +12073,7 @@ public final class TdApi {
     /// - Parameter isAttached: Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
     /// - Parameter sticker: Sticker file to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeRecentSticker(
         isAttached: Bool?,
         sticker: InputFile?
@@ -11924,6 +12100,7 @@ public final class TdApi {
     /// Clears the list of recently used stickers
     /// - Parameter isAttached: Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearRecentStickers(isAttached: Bool?) async throws -> Ok {
         let query = ClearRecentStickers(
             isAttached: isAttached
@@ -11961,6 +12138,7 @@ public final class TdApi {
     /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addFavoriteSticker(sticker: InputFile?) async throws -> Ok {
         let query = AddFavoriteSticker(
             sticker: sticker
@@ -11983,6 +12161,7 @@ public final class TdApi {
     /// Removes a sticker from the list of favorite stickers
     /// - Parameter sticker: Sticker file to delete from the list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeFavoriteSticker(sticker: InputFile?) async throws -> Ok {
         let query = RemoveFavoriteSticker(
             sticker: sticker
@@ -12206,6 +12385,7 @@ public final class TdApi {
     /// Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list
     /// - Parameter animation: The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addSavedAnimation(animation: InputFile?) async throws -> Ok {
         let query = AddSavedAnimation(
             animation: animation
@@ -12228,6 +12408,7 @@ public final class TdApi {
     /// Removes an animation from the list of saved animations
     /// - Parameter animation: Animation file to be removed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeSavedAnimation(animation: InputFile?) async throws -> Ok {
         let query = RemoveSavedAnimation(
             animation: animation
@@ -12295,6 +12476,7 @@ public final class TdApi {
     /// Removes a hashtag from the list of recently used hashtags
     /// - Parameter hashtag: Hashtag to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeRecentHashtag(hashtag: String?) async throws -> Ok {
         let query = RemoveRecentHashtag(
             hashtag: hashtag
@@ -12377,6 +12559,7 @@ public final class TdApi {
     /// - Parameter isPublic: Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setProfilePhoto(
         isPublic: Bool?,
         photo: InputChatPhoto?
@@ -12403,6 +12586,7 @@ public final class TdApi {
     /// Deletes a profile photo
     /// - Parameter profilePhotoId: Identifier of the profile photo to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteProfilePhoto(profilePhotoId: TdInt64?) async throws -> Ok {
         let query = DeleteProfilePhoto(
             profilePhotoId: profilePhotoId
@@ -12429,6 +12613,7 @@ public final class TdApi {
     /// - Parameter firstName: The new value of the first name for the current user; 1-64 characters
     /// - Parameter lastName: The new value of the optional last name for the current user; 0-64 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setName(
         firstName: String?,
         lastName: String?
@@ -12455,6 +12640,7 @@ public final class TdApi {
     /// Changes the bio of the current user
     /// - Parameter bio: The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setBio(bio: String?) async throws -> Ok {
         let query = SetBio(
             bio: bio
@@ -12477,6 +12663,7 @@ public final class TdApi {
     /// Changes the editable username of the current user
     /// - Parameter username: The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setUsername(username: String?) async throws -> Ok {
         let query = SetUsername(
             username: username
@@ -12505,6 +12692,7 @@ public final class TdApi {
     /// - Parameter username: The username to change
     /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleUsernameIsActive(
         isActive: Bool?,
         username: String?
@@ -12531,6 +12719,7 @@ public final class TdApi {
     /// Changes order of active usernames of the current user
     /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reorderActiveUsernames(usernames: [String]?) async throws -> Ok {
         let query = ReorderActiveUsernames(
             usernames: usernames
@@ -12557,6 +12746,7 @@ public final class TdApi {
     /// - Parameter duration: Duration of the status, in seconds; pass 0 to keep the status active until it will be changed manually
     /// - Parameter emojiStatus: New emoji status; pass null to switch to the default badge
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setEmojiStatus(
         duration: Int?,
         emojiStatus: EmojiStatus?
@@ -12583,6 +12773,7 @@ public final class TdApi {
     /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
     /// - Parameter location: The new location of the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setLocation(location: Location?) async throws -> Ok {
         let query = SetLocation(
             location: location
@@ -12650,6 +12841,7 @@ public final class TdApi {
     /// Checks the authentication code sent to confirm a new phone number of the user
     /// - Parameter code: Authentication code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkChangePhoneNumberCode(code: String?) async throws -> Ok {
         let query = CheckChangePhoneNumberCode(
             code: code
@@ -12717,6 +12909,7 @@ public final class TdApi {
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
     /// - Parameter scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setCommands(
         commands: [BotCommand]?,
         languageCode: String?,
@@ -12749,6 +12942,7 @@ public final class TdApi {
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteCommands(
         languageCode: String?,
         scope: BotCommandScope?
@@ -12811,6 +13005,7 @@ public final class TdApi {
     /// - Parameter menuButton: New menu button
     /// - Parameter userId: Identifier of the user or 0 to set menu button for all users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setMenuButton(
         menuButton: BotMenuButton?,
         userId: Int64?
@@ -12861,6 +13056,7 @@ public final class TdApi {
     /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
     /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; may be null
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setDefaultGroupAdministratorRights(defaultGroupAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
         let query = SetDefaultGroupAdministratorRights(
             defaultGroupAdministratorRights: defaultGroupAdministratorRights
@@ -12883,6 +13079,7 @@ public final class TdApi {
     /// Sets default administrator rights for adding the bot to channel chats; for bots only
     /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; may be null
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setDefaultChannelAdministratorRights(defaultChannelAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
         let query = SetDefaultChannelAdministratorRights(
             defaultChannelAdministratorRights: defaultChannelAdministratorRights
@@ -12913,6 +13110,7 @@ public final class TdApi {
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
     /// - Parameter name: New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setBotName(
         botUserId: Int64?,
         languageCode: String?,
@@ -12977,6 +13175,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter photo: Profile photo to set; pass null to delete the chat photo
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setBotProfilePhoto(
         botUserId: Int64?,
         photo: InputChatPhoto?
@@ -13013,6 +13212,7 @@ public final class TdApi {
     /// - Parameter username: The username to change
     /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleBotUsernameIsActive(
         botUserId: Int64?,
         isActive: Bool?,
@@ -13045,6 +13245,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reorderActiveBotUsernames(
         botUserId: Int64?,
         usernames: [String]?
@@ -13079,6 +13280,7 @@ public final class TdApi {
     /// - Parameter description: 
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setBotInfoDescription(
         botUserId: Int64?,
         description: String?,
@@ -13147,6 +13349,7 @@ public final class TdApi {
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
     /// - Parameter shortDescription: New bot's short description on the specified language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setBotInfoShortDescription(
         botUserId: Int64?,
         languageCode: String?,
@@ -13222,6 +13425,7 @@ public final class TdApi {
     /// Terminates a session of the current user
     /// - Parameter sessionId: Session identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func terminateSession(sessionId: TdInt64?) async throws -> Ok {
         let query = TerminateSession(
             sessionId: sessionId
@@ -13237,6 +13441,7 @@ public final class TdApi {
 
     /// Terminates all other sessions of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func terminateAllOtherSessions() async throws -> Ok {
         let query = TerminateAllOtherSessions()
         return try await execute(query: query)
@@ -13261,6 +13466,7 @@ public final class TdApi {
     /// - Parameter canAcceptCalls: Pass true to allow accepting incoming calls by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSessionCanAcceptCalls(
         canAcceptCalls: Bool?,
         sessionId: TdInt64?
@@ -13291,6 +13497,7 @@ public final class TdApi {
     /// - Parameter canAcceptSecretChats: Pass true to allow accepting secret chats by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSessionCanAcceptSecretChats(
         canAcceptSecretChats: Bool?,
         sessionId: TdInt64?
@@ -13317,6 +13524,7 @@ public final class TdApi {
     /// Changes the period of inactivity after which sessions will automatically be terminated
     /// - Parameter inactiveSessionTtlDays: New number of days of inactivity before sessions will be automatically terminated; 1-366 days
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setInactiveSessionTtl(inactiveSessionTtlDays: Int?) async throws -> Ok {
         let query = SetInactiveSessionTtl(
             inactiveSessionTtlDays: inactiveSessionTtlDays
@@ -13354,6 +13562,7 @@ public final class TdApi {
     /// Disconnects website from the current user's Telegram account
     /// - Parameter websiteId: Website identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func disconnectWebsite(websiteId: TdInt64?) async throws -> Ok {
         let query = DisconnectWebsite(
             websiteId: websiteId
@@ -13369,6 +13578,7 @@ public final class TdApi {
 
     /// Disconnects all websites from the current user's Telegram account
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func disconnectAllWebsites() async throws -> Ok {
         let query = DisconnectAllWebsites()
         return try await execute(query: query)
@@ -13393,6 +13603,7 @@ public final class TdApi {
     /// - Parameter supergroupId: Identifier of the supergroup or channel
     /// - Parameter username: New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setSupergroupUsername(
         supergroupId: Int64?,
         username: String?
@@ -13429,6 +13640,7 @@ public final class TdApi {
     /// - Parameter username: The username to change
     /// - Returns: May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupUsernameIsActive(
         isActive: Bool?,
         supergroupId: Int64?,
@@ -13457,6 +13669,7 @@ public final class TdApi {
     /// Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
     /// - Parameter supergroupId: Identifier of the supergroup or channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func disableAllSupergroupUsernames(supergroupId: Int64?) async throws -> Ok {
         let query = DisableAllSupergroupUsernames(
             supergroupId: supergroupId
@@ -13483,6 +13696,7 @@ public final class TdApi {
     /// - Parameter supergroupId: Identifier of the supergroup or channel
     /// - Parameter usernames: The new order of active usernames. All currently active usernames must be specified
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reorderSupergroupActiveUsernames(
         supergroupId: Int64?,
         usernames: [String]?
@@ -13513,6 +13727,7 @@ public final class TdApi {
     /// - Parameter stickerSetId: New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setSupergroupStickerSet(
         stickerSetId: TdInt64?,
         supergroupId: Int64?
@@ -13543,6 +13758,7 @@ public final class TdApi {
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupSignMessages(
         signMessages: Bool?,
         supergroupId: Int64?
@@ -13573,6 +13789,7 @@ public final class TdApi {
     /// - Parameter joinToSendMessages: New value of join_to_send_messages
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupJoinToSendMessages(
         joinToSendMessages: Bool?,
         supergroupId: Int64?
@@ -13603,6 +13820,7 @@ public final class TdApi {
     /// - Parameter joinByRequest: New value of join_by_request
     /// - Parameter supergroupId: Identifier of the channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupJoinByRequest(
         joinByRequest: Bool?,
         supergroupId: Int64?
@@ -13633,6 +13851,7 @@ public final class TdApi {
     /// - Parameter isAllHistoryAvailable: The new value of is_all_history_available
     /// - Parameter supergroupId: The identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupIsAllHistoryAvailable(
         isAllHistoryAvailable: Bool?,
         supergroupId: Int64?
@@ -13663,6 +13882,7 @@ public final class TdApi {
     /// - Parameter hasHiddenMembers: New value of has_hidden_members
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupHasHiddenMembers(
         hasHiddenMembers: Bool?,
         supergroupId: Int64?
@@ -13693,6 +13913,7 @@ public final class TdApi {
     /// - Parameter hasAggressiveAntiSpamEnabled: The new value of has_aggressive_anti_spam_enabled
     /// - Parameter supergroupId: The identifier of the supergroup, which isn't a broadcast group
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupHasAggressiveAntiSpamEnabled(
         hasAggressiveAntiSpamEnabled: Bool?,
         supergroupId: Int64?
@@ -13723,6 +13944,7 @@ public final class TdApi {
     /// - Parameter isForum: New value of is_forum
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupIsForum(
         isForum: Bool?,
         supergroupId: Int64?
@@ -13749,6 +13971,7 @@ public final class TdApi {
     /// Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func toggleSupergroupIsBroadcastGroup(supergroupId: Int64?) async throws -> Ok {
         let query = ToggleSupergroupIsBroadcastGroup(
             supergroupId: supergroupId
@@ -13775,6 +13998,7 @@ public final class TdApi {
     /// - Parameter messageIds: Identifiers of messages to report
     /// - Parameter supergroupId: Supergroup identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reportSupergroupSpam(
         messageIds: [Int64]?,
         supergroupId: Int64?
@@ -13805,6 +14029,7 @@ public final class TdApi {
     /// - Parameter messageId: Identifier of the erroneously deleted message
     /// - Parameter supergroupId: Supergroup identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reportSupergroupAntiSpamFalsePositive(
         messageId: Int64?,
         supergroupId: Int64?
@@ -13875,6 +14100,7 @@ public final class TdApi {
     /// Closes a secret chat, effectively transferring its state to secretChatStateClosed
     /// - Parameter secretChatId: Secret chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func closeSecretChat(secretChatId: Int?) async throws -> Ok {
         let query = CloseSecretChat(
             secretChatId: secretChatId
@@ -14117,6 +14343,7 @@ public final class TdApi {
 
     /// Deletes saved order information
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteSavedOrderInfo() async throws -> Ok {
         let query = DeleteSavedOrderInfo()
         return try await execute(query: query)
@@ -14130,6 +14357,7 @@ public final class TdApi {
 
     /// Deletes saved credentials for all payment provider bots
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteSavedCredentials() async throws -> Ok {
         let query = DeleteSavedCredentials()
         return try await execute(query: query)
@@ -14299,6 +14527,7 @@ public final class TdApi {
     /// Removes background from the list of installed backgrounds
     /// - Parameter backgroundId: The background identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeBackground(backgroundId: TdInt64?) async throws -> Ok {
         let query = RemoveBackground(
             backgroundId: backgroundId
@@ -14314,6 +14543,7 @@ public final class TdApi {
 
     /// Resets list of installed backgrounds to its default value
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func resetBackgrounds() async throws -> Ok {
         let query = ResetBackgrounds()
         return try await execute(query: query)
@@ -14414,6 +14644,7 @@ public final class TdApi {
     /// Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
     /// - Parameter languagePackId: Language pack identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func synchronizeLanguagePack(languagePackId: String?) async throws -> Ok {
         let query = SynchronizeLanguagePack(
             languagePackId: languagePackId
@@ -14436,6 +14667,7 @@ public final class TdApi {
     /// Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
     /// - Parameter languagePackId: Identifier of a language pack to be added
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addCustomServerLanguagePack(languagePackId: String?) async throws -> Ok {
         let query = AddCustomServerLanguagePack(
             languagePackId: languagePackId
@@ -14462,6 +14694,7 @@ public final class TdApi {
     /// - Parameter info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     /// - Parameter strings: Strings of the new language pack
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setCustomLanguagePack(
         info: LanguagePackInfo?,
         strings: [LanguagePackString]?
@@ -14488,6 +14721,7 @@ public final class TdApi {
     /// Edits information about a custom local language pack in the current localization target. Can be called before authorization
     /// - Parameter info: New information about the custom local language pack
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editCustomLanguagePackInfo(info: LanguagePackInfo?) async throws -> Ok {
         let query = EditCustomLanguagePackInfo(
             info: info
@@ -14514,6 +14748,7 @@ public final class TdApi {
     /// - Parameter languagePackId: Identifier of a previously added custom local language pack in the current localization target
     /// - Parameter newString: New language pack string
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setCustomLanguagePackString(
         languagePackId: String?,
         newString: LanguagePackString?
@@ -14540,6 +14775,7 @@ public final class TdApi {
     /// Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
     /// - Parameter languagePackId: Identifier of the language pack to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteLanguagePack(languagePackId: String?) async throws -> Ok {
         let query = DeleteLanguagePack(
             languagePackId: languagePackId
@@ -14596,6 +14832,7 @@ public final class TdApi {
     /// - Parameter payload: JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
     /// - Returns: Error with code 406 if the push notification is not supported and connection to the server is required to fetch new data
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func processPushNotification(payload: String?) async throws -> Ok {
         let query = ProcessPushNotification(
             payload: payload
@@ -14670,6 +14907,7 @@ public final class TdApi {
     /// - Parameter rules: The new privacy rules
     /// - Parameter setting: The privacy setting
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setUserPrivacySettingRules(
         rules: UserPrivacySettingRules?,
         setting: UserPrivacySetting?
@@ -14748,6 +14986,7 @@ public final class TdApi {
     /// - Parameter name: The name of the option
     /// - Parameter value: The new value of the option; pass null to reset option value to a default value
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setOption(
         name: String?,
         value: OptionValue?
@@ -14774,6 +15013,7 @@ public final class TdApi {
     /// Changes the period of inactivity after which the account of the current user will automatically be deleted
     /// - Parameter ttl: New account TTL
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setAccountTtl(ttl: AccountTtl?) async throws -> Ok {
         let query = SetAccountTtl(
             ttl: ttl
@@ -14815,6 +15055,7 @@ public final class TdApi {
     /// - Parameter password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
     /// - Parameter reason: The reason why the account was deleted; optional
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteAccount(
         password: String?,
         reason: String?
@@ -14841,6 +15082,7 @@ public final class TdApi {
     /// Changes the default message auto-delete time for new chats
     /// - Parameter messageAutoDeleteTime: New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setDefaultMessageAutoDeleteTime(messageAutoDeleteTime: MessageAutoDeleteTime?) async throws -> Ok {
         let query = SetDefaultMessageAutoDeleteTime(
             messageAutoDeleteTime: messageAutoDeleteTime
@@ -14878,6 +15120,7 @@ public final class TdApi {
     /// Removes a chat action bar without any other action
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeChatActionBar(chatId: Int64?) async throws -> Ok {
         let query = RemoveChatActionBar(
             chatId: chatId
@@ -14912,6 +15155,7 @@ public final class TdApi {
     /// - Parameter reason: The reason for reporting the chat
     /// - Parameter text: Additional report details; 0-1024 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reportChat(
         chatId: Int64?,
         messageIds: [Int64]?,
@@ -14954,6 +15198,7 @@ public final class TdApi {
     /// - Parameter reason: The reason for reporting the chat photo
     /// - Parameter text: Additional report details; 0-1024 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reportChatPhoto(
         chatId: Int64?,
         fileId: Int?,
@@ -14992,6 +15237,7 @@ public final class TdApi {
     /// - Parameter messageId: Message identifier
     /// - Parameter senderId: Identifier of the sender, which added the reaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func reportMessageReactions(
         chatId: Int64?,
         messageId: Int64?,
@@ -15254,6 +15500,7 @@ public final class TdApi {
     /// Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it must be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics
     /// - Parameter type: The new network type; pass null to set network type to networkTypeOther
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setNetworkType(type: NetworkType?) async throws -> Ok {
         let query = SetNetworkType(
             type: type
@@ -15300,6 +15547,7 @@ public final class TdApi {
     /// Adds the specified data to data usage statistics. Can be called before authorization
     /// - Parameter entry: The network statistics entry with the data to be added to statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addNetworkStatistics(entry: NetworkStatisticsEntry?) async throws -> Ok {
         let query = AddNetworkStatistics(
             entry: entry
@@ -15315,6 +15563,7 @@ public final class TdApi {
 
     /// Resets all network data usage statistics to zero. Can be called before authorization
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func resetNetworkStatistics() async throws -> Ok {
         let query = ResetNetworkStatistics()
         return try await execute(query: query)
@@ -15354,6 +15603,7 @@ public final class TdApi {
     /// - Parameter settings: New user auto-download settings
     /// - Parameter type: Type of the network for which the new settings are relevant
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setAutoDownloadSettings(
         settings: AutoDownloadSettings?,
         type: NetworkType?
@@ -15399,6 +15649,7 @@ public final class TdApi {
     /// - Parameter scope: Autosave settings scope
     /// - Parameter settings: New autosave settings for the scope; pass null to set autosave settings to default
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setAutosaveSettings(
         scope: AutosaveSettingsScope?,
         settings: ScopeAutosaveSettings?
@@ -15418,6 +15669,7 @@ public final class TdApi {
 
     /// Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clearAutosaveSettingsExceptions() async throws -> Ok {
         let query = ClearAutosaveSettingsExceptions()
         return try await execute(query: query)
@@ -15550,6 +15802,7 @@ public final class TdApi {
     /// Deletes a Telegram Passport element
     /// - Parameter type: Element type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deletePassportElement(type: PassportElementType?) async throws -> Ok {
         let query = DeletePassportElement(
             type: type
@@ -15576,6 +15829,7 @@ public final class TdApi {
     /// - Parameter errors: The errors
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setPassportElementErrors(
         errors: [InputPassportElementError]?,
         userId: Int64?
@@ -15669,6 +15923,7 @@ public final class TdApi {
     /// Checks the phone number verification code for Telegram Passport
     /// - Parameter code: Verification code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkPhoneNumberVerificationCode(code: String?) async throws -> Ok {
         let query = CheckPhoneNumberVerificationCode(
             code: code
@@ -15726,6 +15981,7 @@ public final class TdApi {
     /// Checks the email address verification code for Telegram Passport
     /// - Parameter code: Verification code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkEmailAddressVerificationCode(code: String?) async throws -> Ok {
         let query = CheckEmailAddressVerificationCode(
             code: code
@@ -15828,6 +16084,7 @@ public final class TdApi {
     /// - Parameter authorizationFormId: Authorization form identifier
     /// - Parameter types: Types of Telegram Passport elements chosen by user to complete the authorization form
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func sendPassportAuthorizationForm(
         authorizationFormId: Int?,
         types: [PassportElementType]?
@@ -15903,6 +16160,7 @@ public final class TdApi {
     /// Checks phone number confirmation code
     /// - Parameter code: Confirmation code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func checkPhoneNumberConfirmationCode(code: String?) async throws -> Ok {
         let query = CheckPhoneNumberConfirmationCode(
             code: code
@@ -15929,6 +16187,7 @@ public final class TdApi {
     /// - Parameter errorMessage: The last error message
     /// - Parameter pendingUpdateCount: The number of pending updates
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setBotUpdatesStatus(
         errorMessage: String?,
         pendingUpdateCount: Int?
@@ -16115,6 +16374,7 @@ public final class TdApi {
     /// - Parameter sticker: Sticker to add to the set
     /// - Parameter userId: Sticker set owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addStickerToSet(
         name: String?,
         sticker: InputSticker?,
@@ -16151,6 +16411,7 @@ public final class TdApi {
     /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     /// - Parameter userId: Sticker set owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setStickerSetThumbnail(
         name: String?,
         thumbnail: InputFile?,
@@ -16183,6 +16444,7 @@ public final class TdApi {
     /// - Parameter customEmojiId: Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
     /// - Parameter name: Sticker set name
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setCustomEmojiStickerSetThumbnail(
         customEmojiId: TdInt64?,
         name: String?
@@ -16213,6 +16475,7 @@ public final class TdApi {
     /// - Parameter name: Sticker set name
     /// - Parameter title: New sticker set title
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setStickerSetTitle(
         name: String?,
         title: String?
@@ -16239,6 +16502,7 @@ public final class TdApi {
     /// Deleted a sticker set; for bots only
     /// - Parameter name: Sticker set name
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func deleteStickerSet(name: String?) async throws -> Ok {
         let query = DeleteStickerSet(
             name: name
@@ -16265,6 +16529,7 @@ public final class TdApi {
     /// - Parameter position: New position of the sticker in the set, 0-based
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setStickerPositionInSet(
         position: Int?,
         sticker: InputFile?
@@ -16291,6 +16556,7 @@ public final class TdApi {
     /// Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeStickerFromSet(sticker: InputFile?) async throws -> Ok {
         let query = RemoveStickerFromSet(
             sticker: sticker
@@ -16317,6 +16583,7 @@ public final class TdApi {
     /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setStickerEmojis(
         emojis: String?,
         sticker: InputFile?
@@ -16347,6 +16614,7 @@ public final class TdApi {
     /// - Parameter keywords: List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setStickerKeywords(
         keywords: [String]?,
         sticker: InputFile?
@@ -16377,6 +16645,7 @@ public final class TdApi {
     /// - Parameter maskPosition: Position where the mask is placed; pass null to remove mask position
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setStickerMaskPosition(
         maskPosition: MaskPosition?,
         sticker: InputFile?
@@ -16522,6 +16791,7 @@ public final class TdApi {
     /// Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
     /// - Parameter feature: The viewed premium feature
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func viewPremiumFeature(feature: PremiumFeature?) async throws -> Ok {
         let query = ViewPremiumFeature(
             feature: feature
@@ -16537,6 +16807,7 @@ public final class TdApi {
 
     /// Informs TDLib that the user clicked Premium subscription button on the Premium features screen
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func clickPremiumSubscriptionButton() async throws -> Ok {
         let query = ClickPremiumSubscriptionButton()
         return try await execute(query: query)
@@ -16572,6 +16843,7 @@ public final class TdApi {
     /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
     /// - Parameter purpose: Transaction purpose
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func canPurchasePremium(purpose: StorePaymentPurpose?) async throws -> Ok {
         let query = CanPurchasePremium(
             purpose: purpose
@@ -16598,6 +16870,7 @@ public final class TdApi {
     /// - Parameter purpose: Transaction purpose
     /// - Parameter receipt: App Store receipt
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func assignAppStoreTransaction(
         purpose: StorePaymentPurpose?,
         receipt: Data?
@@ -16636,6 +16909,7 @@ public final class TdApi {
     /// - Parameter purpose: Transaction purpose
     /// - Parameter storeProductId: Identifier of the purchased store product
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func assignGooglePlayTransaction(
         packageName: String?,
         purchaseToken: String?,
@@ -16666,6 +16940,7 @@ public final class TdApi {
     /// Accepts Telegram terms of services
     /// - Parameter termsOfServiceId: Terms of service identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func acceptTermsOfService(termsOfServiceId: String?) async throws -> Ok {
         let query = AcceptTermsOfService(
             termsOfServiceId: termsOfServiceId
@@ -16722,6 +16997,7 @@ public final class TdApi {
     /// - Parameter customQueryId: Identifier of a custom query
     /// - Parameter data: JSON-serialized answer to the query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func answerCustomQuery(
         customQueryId: TdInt64?,
         data: String?
@@ -16748,6 +17024,7 @@ public final class TdApi {
     /// Succeeds after a specified amount of time has passed. Can be called before initialization
     /// - Parameter seconds: Number of seconds before the function returns
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setAlarm(seconds: Double?) async throws -> Ok {
         let query = SetAlarm(
             seconds: seconds
@@ -16897,6 +17174,7 @@ public final class TdApi {
     /// - Parameter previousApplicationVersion: The previous application version
     /// - Returns: A 404 error if nothing changed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addApplicationChangelog(previousApplicationVersion: String?) async throws -> Ok {
         let query = AddApplicationChangelog(
             previousApplicationVersion: previousApplicationVersion
@@ -16927,6 +17205,7 @@ public final class TdApi {
     /// - Parameter data: The log event data
     /// - Parameter type: Event type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func saveApplicationLogEvent(
         chatId: Int64?,
         data: JsonValue?,
@@ -17060,6 +17339,7 @@ public final class TdApi {
     /// Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
     /// - Parameter proxyId: Proxy identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func enableProxy(proxyId: Int?) async throws -> Ok {
         let query = EnableProxy(
             proxyId: proxyId
@@ -17075,6 +17355,7 @@ public final class TdApi {
 
     /// Disables the currently enabled proxy. Can be called before authorization
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func disableProxy() async throws -> Ok {
         let query = DisableProxy()
         return try await execute(query: query)
@@ -17095,6 +17376,7 @@ public final class TdApi {
     /// Removes a proxy server. Can be called before authorization
     /// - Parameter proxyId: Proxy identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func removeProxy(proxyId: Int?) async throws -> Ok {
         let query = RemoveProxy(
             proxyId: proxyId
@@ -17178,6 +17460,7 @@ public final class TdApi {
     /// Sets new log stream for internal logging of TDLib. Can be called synchronously
     /// - Parameter logStream: New log stream
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setLogStream(logStream: LogStream?) async throws -> Ok {
         let query = SetLogStream(
             logStream: logStream
@@ -17215,6 +17498,7 @@ public final class TdApi {
     /// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
     /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,//-value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setLogVerbosityLevel(newVerbosityLevel: Int?) async throws -> Ok {
         let query = SetLogVerbosityLevel(
             newVerbosityLevel: newVerbosityLevel
@@ -17271,6 +17555,7 @@ public final class TdApi {
     /// - Parameter newVerbosityLevel: New verbosity level; 1-1024
     /// - Parameter tag: Logging tag to change verbosity level
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setLogTagVerbosityLevel(
         newVerbosityLevel: Int?,
         tag: String?
@@ -17325,6 +17610,7 @@ public final class TdApi {
     /// - Parameter text: Text of a message to log
     /// - Parameter verbosityLevel: The minimum verbosity level needed for the message to be logged; 0-1023
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func addLogMessage(
         text: String?,
         verbosityLevel: Int?
@@ -17413,6 +17699,7 @@ public final class TdApi {
 
     /// Does nothing; for testing only. This is an offline method. Can be called before authorization
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func testCallEmpty() async throws -> Ok {
         let query = TestCallEmpty()
         return try await execute(query: query)
@@ -17594,6 +17881,7 @@ public final class TdApi {
 
     /// Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func testNetwork() async throws -> Ok {
         let query = TestNetwork()
         return try await execute(query: query)
@@ -17630,6 +17918,7 @@ public final class TdApi {
     /// - Parameter timeout: The maximum overall timeout for the request
     /// - Parameter type: Proxy type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func testProxy(
         dcId: Int?,
         port: Int?,
@@ -17655,6 +17944,7 @@ public final class TdApi {
 
     /// Forces an updates.getDifference call to the Telegram servers; for testing only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func testGetDifference() async throws -> Ok {
         let query = TestGetDifference()
         return try await execute(query: query)
