@@ -14,7 +14,7 @@ import Foundation
 public struct MessageCopyOptions: Codable, Equatable, Hashable {
 
     /// New message caption; pass null to copy message without caption. Ignored if replace_caption is false
-    public let newCaption: FormattedText
+    public let newCaption: FormattedText?
 
     /// True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false
     public let replaceCaption: Bool
@@ -24,7 +24,7 @@ public struct MessageCopyOptions: Codable, Equatable, Hashable {
 
 
     public init(
-        newCaption: FormattedText,
+        newCaption: FormattedText?,
         replaceCaption: Bool,
         sendCopy: Bool
     ) {

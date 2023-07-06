@@ -17,12 +17,12 @@ public struct LanguagePackString: Codable, Equatable, Hashable {
     public let key: String
 
     /// String value; pass null if the string needs to be taken from the built-in English language pack
-    public let value: LanguagePackStringValue
+    public let value: LanguagePackStringValue?
 
 
     public init(
         key: String,
-        value: LanguagePackStringValue
+        value: LanguagePackStringValue?
     ) {
         self.key = key
         self.value = value

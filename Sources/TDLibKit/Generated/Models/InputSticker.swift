@@ -20,7 +20,7 @@ public struct InputSticker: Codable, Equatable, Hashable {
     public let keywords: [String]
 
     /// Position where the mask is placed; pass null if not specified
-    public let maskPosition: MaskPosition
+    public let maskPosition: MaskPosition?
 
     /// File with the sticker; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.//-See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     public let sticker: InputFile
@@ -29,7 +29,7 @@ public struct InputSticker: Codable, Equatable, Hashable {
     public init(
         emojis: String,
         keywords: [String],
-        maskPosition: MaskPosition,
+        maskPosition: MaskPosition?,
         sticker: InputFile
     ) {
         self.emojis = emojis
