@@ -20,7 +20,7 @@ open class TdClientImpl: TdClient {
     private var updateHandler: ((Data) -> Void)?
     private let logger: Logger?
     private var isClientDestroyed = true
-    private var stopFlag = false
+    private var stopFlag = true
     
     
     /// Instantiate a Tdlib Client
@@ -39,10 +39,15 @@ open class TdClientImpl: TdClient {
     public func close() {
         guard !isClientDestroyed else { return }
         if !stopFlag {
-            try! send(query: DTO(Close()), completion: { _ in })
+            try! send(query: DTO(Close()), completion: { _ in
+              self.stopFlag = true
+              self.tdlibMainQueue.async { [weak self] in
+                  guard let self else { return }
+                  td_json_client_destroy(self.client)
+                  self.isClientDestroyed = true
+              }
+            })
         }
-        isClientDestroyed = true
-        td_json_client_destroy(client)
     }
     
     /// Receives incoming updates and request responses from the TDLib client
@@ -53,7 +58,6 @@ open class TdClientImpl: TdClient {
         tdlibMainQueue.async { [weak self] in
             guard let self else { return }
             guard !self.isClientDestroyed else { return }
-            
             while (!self.stopFlag) {
                 guard
                     let res = td_json_client_receive(self.client, 10),
@@ -69,7 +73,9 @@ open class TdClientImpl: TdClient {
     
     /// Sends request to the TDLib client.
     public func send(query: TdQuery, completion: (CompletionHandler)? = nil) throws {
-        guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
+        guard !self.isClientDestroyed else {
+            throw Error(code: 404, message: "Client destroyed")
+        }
         
         tdlibQueryQueue.async { [weak self] in
             guard let `self` = self else { return }
@@ -81,6 +87,10 @@ open class TdClientImpl: TdClient {
             let data = try! query.make(with: extra)
             if let str = String(data: data, encoding: .utf8) {
                 self.logger?.log(str, type: .send)
+                // If client is closed, silence failure.
+                guard !self.stopFlag else {
+                    return
+                }
                 td_json_client_send(self.client, str)
             } else {
                 let errorText: String = "ERROR! Unable to encode query data, conversion returns nil"
@@ -122,6 +132,7 @@ open class TdClientImpl: TdClient {
         if isClientDestroyed {
             client = td_json_client_create()
             isClientDestroyed = false
+            stopFlag = false
         }
     }
     
