@@ -84,7 +84,7 @@ class TDLibKitTests: XCTestCase {
     }
     
     override func tearDownWithError() throws {
-        // api.client.close()
+        self.client.close()
         try super.tearDownWithError()
     }
     
@@ -102,6 +102,12 @@ class TDLibKitTests: XCTestCase {
         
         let configs = await [config1, config2, config3, config4, config5, config6, config7, config8, config9, config10]
         print("Application Configs \(configs)")
+    }
+
+    func testGetCountries() async {
+        let countries = try! await api.getCountries()
+        print("Countries \(countries)")
+        XCTAssertNotEqual(countries, nil)
     }
     
 }

@@ -41,8 +41,6 @@ open class TdClientImpl: TdClient {
         if !stopFlag {
             try! send(query: DTO(Close()), completion: { _ in })
         }
-        isClientDestroyed = true
-        td_json_client_destroy(client)
     }
     
     /// Receives incoming updates and request responses from the TDLib client
@@ -64,12 +62,18 @@ open class TdClientImpl: TdClient {
                 self.logger?.log(String(cString: res), type: .receive)
                 self.queryResultAsync(data)
             }
+            self.isClientDestroyed = true
+            td_json_client_destroy(self.client)
+            self.stopFlag = false
         }
     }
     
     /// Sends request to the TDLib client.
     public func send(query: TdQuery, completion: (CompletionHandler)? = nil) throws {
-        guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
+        guard !self.isClientDestroyed else {
+            logger?.log("Client destroyed. Query send aborted. Query: \(query)", type: .custom("Warning"))
+            return
+        }
         
         tdlibQueryQueue.async { [weak self] in
             guard let `self` = self else { return }
@@ -95,7 +99,10 @@ open class TdClientImpl: TdClient {
     
     /// Synchronously executes TDLib request.
     public func execute(query: TdQuery) throws -> [String:Any]? {
-        guard !self.isClientDestroyed else { throw Error(code: 404, message: "Client destroyed") }
+        guard !self.isClientDestroyed else {
+            logger?.log("Client destroyed. Execution aborted. Query: \(query)", type: .custom("Warning"))
+            return nil
+        }
         
         do {
             let data = try query.make(with: nil)
