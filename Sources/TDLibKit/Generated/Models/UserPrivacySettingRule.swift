@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
 
 
-/// Represents a single rule for managing privacy settings
+/// Represents a single rule for managing user privacy settings
 public enum UserPrivacySettingRule: Codable, Equatable, Hashable {
 
     /// A rule to allow all users to do something
     case userPrivacySettingRuleAllowAll
 
-    /// A rule to allow all of a user's contacts to do something
+    /// A rule to allow all contacts of the user to do something
     case userPrivacySettingRuleAllowContacts
 
     /// A rule to allow certain specified users to do something
@@ -28,7 +28,7 @@ public enum UserPrivacySettingRule: Codable, Equatable, Hashable {
     /// A rule to restrict all users from doing something
     case userPrivacySettingRuleRestrictAll
 
-    /// A rule to restrict all contacts of a user from doing something
+    /// A rule to restrict all contacts of the user from doing something
     case userPrivacySettingRuleRestrictContacts
 
     /// A rule to restrict all specified users from doing something

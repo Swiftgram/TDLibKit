@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public struct AutoDownloadSettings: Codable, Equatable, Hashable {
     /// True, if the next audio track needs to be preloaded while the user is listening to an audio file
     public let preloadNextAudio: Bool
 
+    /// True, if stories needs to be preloaded
+    public let preloadStories: Bool
+
     /// True, if "use less data for calls" option needs to be enabled
     public let useLessDataForCalls: Bool
 
@@ -45,6 +48,7 @@ public struct AutoDownloadSettings: Codable, Equatable, Hashable {
         maxVideoFileSize: Int64,
         preloadLargeVideos: Bool,
         preloadNextAudio: Bool,
+        preloadStories: Bool,
         useLessDataForCalls: Bool,
         videoUploadBitrate: Int
     ) {
@@ -54,6 +58,7 @@ public struct AutoDownloadSettings: Codable, Equatable, Hashable {
         self.maxVideoFileSize = maxVideoFileSize
         self.preloadLargeVideos = preloadLargeVideos
         self.preloadNextAudio = preloadNextAudio
+        self.preloadStories = preloadStories
         self.useLessDataForCalls = useLessDataForCalls
         self.videoUploadBitrate = videoUploadBitrate
     }

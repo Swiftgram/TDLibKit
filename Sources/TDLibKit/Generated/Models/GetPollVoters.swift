@@ -3,26 +3,26 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
 
 
-/// Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+/// Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
 public struct GetPollVoters: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the poll belongs
     public let chatId: Int64?
 
-    /// The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+    /// The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     public let limit: Int?
 
     /// Identifier of the message containing the poll
     public let messageId: Int64?
 
-    /// Number of users to skip in the result; must be non-negative
+    /// Number of voters to skip in the result; must be non-negative
     public let offset: Int?
 
     /// 0-based identifier of the answer option

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public enum UserPrivacySetting: Codable, Equatable, Hashable {
 
     /// A privacy setting for managing whether the user's phone number is visible
     case userPrivacySettingShowPhoneNumber
+
+    /// A privacy setting for managing whether the user's bio is visible
+    case userPrivacySettingShowBio
 
     /// A privacy setting for managing whether the user can be invited to chats
     case userPrivacySettingAllowChatInvites
@@ -46,6 +49,7 @@ public enum UserPrivacySetting: Codable, Equatable, Hashable {
         case userPrivacySettingShowProfilePhoto
         case userPrivacySettingShowLinkInForwardedMessages
         case userPrivacySettingShowPhoneNumber
+        case userPrivacySettingShowBio
         case userPrivacySettingAllowChatInvites
         case userPrivacySettingAllowCalls
         case userPrivacySettingAllowPeerToPeerCalls
@@ -65,6 +69,8 @@ public enum UserPrivacySetting: Codable, Equatable, Hashable {
             self = .userPrivacySettingShowLinkInForwardedMessages
         case .userPrivacySettingShowPhoneNumber:
             self = .userPrivacySettingShowPhoneNumber
+        case .userPrivacySettingShowBio:
+            self = .userPrivacySettingShowBio
         case .userPrivacySettingAllowChatInvites:
             self = .userPrivacySettingAllowChatInvites
         case .userPrivacySettingAllowCalls:
@@ -89,6 +95,8 @@ public enum UserPrivacySetting: Codable, Equatable, Hashable {
             try container.encode(Kind.userPrivacySettingShowLinkInForwardedMessages, forKey: .type)
         case .userPrivacySettingShowPhoneNumber:
             try container.encode(Kind.userPrivacySettingShowPhoneNumber, forKey: .type)
+        case .userPrivacySettingShowBio:
+            try container.encode(Kind.userPrivacySettingShowBio, forKey: .type)
         case .userPrivacySettingAllowChatInvites:
             try container.encode(Kind.userPrivacySettingAllowChatInvites, forKey: .type)
         case .userPrivacySettingAllowCalls:

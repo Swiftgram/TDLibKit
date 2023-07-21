@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct CallProtocol: Codable, Equatable, Hashable {
     /// List of supported tgcalls versions
     public let libraryVersions: [String]
 
-    /// The maximum supported API layer; use 65
+    /// The maximum supported API layer; use 92
     public let maxLayer: Int
 
     /// The minimum supported API layer; use 65

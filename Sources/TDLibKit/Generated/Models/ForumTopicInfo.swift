@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains basic information about a forum topic
 public struct ForumTopicInfo: Codable, Equatable, Hashable {
 
-    /// Date the topic was created
+    /// Point in time (Unix timestamp) when the topic was created
     public let creationDate: Int
 
     /// Identifier of the creator of the topic

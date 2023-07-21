@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
     /// Identifier of the inline query
     public let queryId: TdInt64?
 
-    /// Identifier of a replied message; 0 if none
-    public let replyToMessageId: Int64?
+    /// Identifier of the replied message or story; pass null if none
+    public let replyTo: MessageReplyTo?
 
     /// Identifier of the inline result
     public let resultId: String?
@@ -41,7 +41,7 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         queryId: TdInt64?,
-        replyToMessageId: Int64?,
+        replyTo: MessageReplyTo?,
         resultId: String?
     ) {
         self.chatId = chatId
@@ -49,7 +49,7 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
         self.messageThreadId = messageThreadId
         self.options = options
         self.queryId = queryId
-        self.replyToMessageId = replyToMessageId
+        self.replyTo = replyTo
         self.resultId = resultId
     }
 }

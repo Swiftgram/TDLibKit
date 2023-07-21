@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public enum FileType: Codable, Equatable, Hashable {
 
     /// The file is a photo
     case fileTypePhoto
+
+    /// The file is a photo published as a story
+    case fileTypePhotoStory
 
     /// The file is a profile photo
     case fileTypeProfilePhoto
@@ -58,6 +61,9 @@ public enum FileType: Codable, Equatable, Hashable {
     /// The file is a video note
     case fileTypeVideoNote
 
+    /// The file is a video published as a story
+    case fileTypeVideoStory
+
     /// The file is a voice note
     case fileTypeVoiceNote
 
@@ -72,6 +78,7 @@ public enum FileType: Codable, Equatable, Hashable {
         case fileTypeDocument
         case fileTypeNotificationSound
         case fileTypePhoto
+        case fileTypePhotoStory
         case fileTypeProfilePhoto
         case fileTypeSecret
         case fileTypeSecretThumbnail
@@ -81,6 +88,7 @@ public enum FileType: Codable, Equatable, Hashable {
         case fileTypeUnknown
         case fileTypeVideo
         case fileTypeVideoNote
+        case fileTypeVideoStory
         case fileTypeVoiceNote
         case fileTypeWallpaper
     }
@@ -101,6 +109,8 @@ public enum FileType: Codable, Equatable, Hashable {
             self = .fileTypeNotificationSound
         case .fileTypePhoto:
             self = .fileTypePhoto
+        case .fileTypePhotoStory:
+            self = .fileTypePhotoStory
         case .fileTypeProfilePhoto:
             self = .fileTypeProfilePhoto
         case .fileTypeSecret:
@@ -119,6 +129,8 @@ public enum FileType: Codable, Equatable, Hashable {
             self = .fileTypeVideo
         case .fileTypeVideoNote:
             self = .fileTypeVideoNote
+        case .fileTypeVideoStory:
+            self = .fileTypeVideoStory
         case .fileTypeVoiceNote:
             self = .fileTypeVoiceNote
         case .fileTypeWallpaper:
@@ -141,6 +153,8 @@ public enum FileType: Codable, Equatable, Hashable {
             try container.encode(Kind.fileTypeNotificationSound, forKey: .type)
         case .fileTypePhoto:
             try container.encode(Kind.fileTypePhoto, forKey: .type)
+        case .fileTypePhotoStory:
+            try container.encode(Kind.fileTypePhotoStory, forKey: .type)
         case .fileTypeProfilePhoto:
             try container.encode(Kind.fileTypeProfilePhoto, forKey: .type)
         case .fileTypeSecret:
@@ -159,6 +173,8 @@ public enum FileType: Codable, Equatable, Hashable {
             try container.encode(Kind.fileTypeVideo, forKey: .type)
         case .fileTypeVideoNote:
             try container.encode(Kind.fileTypeVideoNote, forKey: .type)
+        case .fileTypeVideoStory:
+            try container.encode(Kind.fileTypeVideoStory, forKey: .type)
         case .fileTypeVoiceNote:
             try container.encode(Kind.fileTypeVoiceNote, forKey: .type)
         case .fileTypeWallpaper:

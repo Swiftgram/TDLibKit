@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// Number of group chats where both the other user and the current user are a member; 0 for the current user
     public let groupInCommonCount: Int
+
+    /// True, if the user has pinned stories
+    public let hasPinnedStories: Bool
 
     /// True, if the user can't be called due to their privacy settings
     public let hasPrivateCalls: Bool
@@ -61,6 +64,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         botInfo: BotInfo?,
         canBeCalled: Bool,
         groupInCommonCount: Int,
+        hasPinnedStories: Bool,
         hasPrivateCalls: Bool,
         hasPrivateForwards: Bool,
         hasRestrictedVoiceAndVideoNoteMessages: Bool,
@@ -76,6 +80,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.botInfo = botInfo
         self.canBeCalled = canBeCalled
         self.groupInCommonCount = groupInCommonCount
+        self.hasPinnedStories = hasPinnedStories
         self.hasPrivateCalls = hasPrivateCalls
         self.hasPrivateForwards = hasPrivateForwards
         self.hasRestrictedVoiceAndVideoNoteMessages = hasRestrictedVoiceAndVideoNoteMessages

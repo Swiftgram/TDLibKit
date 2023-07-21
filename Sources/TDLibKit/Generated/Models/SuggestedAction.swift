@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes an action suggested to the current user
 public enum SuggestedAction: Codable, Equatable, Hashable {
 
-    /// Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option
+    /// Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
     case suggestedActionEnableArchiveAndMuteNewChats
 
     /// Suggests the user to check whether they still remember their 2-step verification password
@@ -34,6 +34,9 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
     case suggestedActionUpgradePremium
 
+    /// Suggests the user to restore a recently expired Premium subscription
+    case suggestedActionRestorePremium
+
     /// Suggests the user to subscribe to the Premium subscription with annual payments
     case suggestedActionSubscribeToAnnualPremium
 
@@ -46,6 +49,7 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionConvertToBroadcastGroup
         case suggestedActionSetPassword
         case suggestedActionUpgradePremium
+        case suggestedActionRestorePremium
         case suggestedActionSubscribeToAnnualPremium
     }
 
@@ -69,6 +73,8 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
             self = .suggestedActionSetPassword(value)
         case .suggestedActionUpgradePremium:
             self = .suggestedActionUpgradePremium
+        case .suggestedActionRestorePremium:
+            self = .suggestedActionRestorePremium
         case .suggestedActionSubscribeToAnnualPremium:
             self = .suggestedActionSubscribeToAnnualPremium
         }
@@ -93,6 +99,8 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .suggestedActionUpgradePremium:
             try container.encode(Kind.suggestedActionUpgradePremium, forKey: .type)
+        case .suggestedActionRestorePremium:
+            try container.encode(Kind.suggestedActionRestorePremium, forKey: .type)
         case .suggestedActionSubscribeToAnnualPremium:
             try container.encode(Kind.suggestedActionSubscribeToAnnualPremium, forKey: .type)
         }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -49,6 +49,9 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
     /// The maximum number of added shareable chat folders
     case premiumLimitTypeShareableChatFolderCount
 
+    /// The maximum number of active stories
+    case premiumLimitTypeActiveStoryCount
+
 
     private enum Kind: String, Codable {
         case premiumLimitTypeSupergroupCount
@@ -63,6 +66,7 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
         case premiumLimitTypeBioLength
         case premiumLimitTypeChatFolderInviteLinkCount
         case premiumLimitTypeShareableChatFolderCount
+        case premiumLimitTypeActiveStoryCount
     }
 
     public init(from decoder: Decoder) throws {
@@ -93,6 +97,8 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
             self = .premiumLimitTypeChatFolderInviteLinkCount
         case .premiumLimitTypeShareableChatFolderCount:
             self = .premiumLimitTypeShareableChatFolderCount
+        case .premiumLimitTypeActiveStoryCount:
+            self = .premiumLimitTypeActiveStoryCount
         }
     }
 
@@ -123,6 +129,8 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumLimitTypeChatFolderInviteLinkCount, forKey: .type)
         case .premiumLimitTypeShareableChatFolderCount:
             try container.encode(Kind.premiumLimitTypeShareableChatFolderCount, forKey: .type)
+        case .premiumLimitTypeActiveStoryCount:
+            try container.encode(Kind.premiumLimitTypeActiveStoryCount, forKey: .type)
         }
     }
 }

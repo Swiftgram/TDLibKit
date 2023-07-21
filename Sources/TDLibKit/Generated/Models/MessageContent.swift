@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -66,6 +66,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
 
     /// A message with a poll
     case messagePoll(MessagePoll)
+
+    /// A message with a forwarded story
+    case messageStory(MessageStory)
 
     /// A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
     case messageInvoice(MessageInvoice)
@@ -193,7 +196,7 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// A user in the chat came within proximity alert range
     case messageProximityAlertTriggered(MessageProximityAlertTriggered)
 
-    /// Message content that is not supported in the current TDLib version
+    /// A message content that is not supported in the current TDLib version
     case messageUnsupported
 
 
@@ -216,6 +219,7 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messageDice
         case messageGame
         case messagePoll
+        case messageStory
         case messageInvoice
         case messageCall
         case messageVideoChatScheduled
@@ -317,6 +321,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messagePoll:
             let value = try MessagePoll(from: decoder)
             self = .messagePoll(value)
+        case .messageStory:
+            let value = try MessageStory(from: decoder)
+            self = .messageStory(value)
         case .messageInvoice:
             let value = try MessageInvoice(from: decoder)
             self = .messageInvoice(value)
@@ -497,6 +504,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messagePoll(let value):
             try container.encode(Kind.messagePoll, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageStory(let value):
+            try container.encode(Kind.messageStory, forKey: .type)
             try value.encode(to: encoder)
         case .messageInvoice(let value):
             try container.encode(Kind.messageInvoice, forKey: .type)
@@ -968,6 +978,30 @@ public struct MessagePoll: Codable, Equatable, Hashable {
 
     public init(poll: Poll) {
         self.poll = poll
+    }
+}
+
+/// A message with a forwarded story
+public struct MessageStory: Codable, Equatable, Hashable {
+
+    /// Story identifier
+    public let storyId: Int
+
+    /// Identifier of the chat that posted the story
+    public let storySenderChatId: Int64
+
+    /// True, if the story was automatically forwarded because of a mention of the user
+    public let viaMention: Bool
+
+
+    public init(
+        storyId: Int,
+        storySenderChatId: Int64,
+        viaMention: Bool
+    ) {
+        self.storyId = storyId
+        self.storySenderChatId = storySenderChatId
+        self.viaMention = viaMention
     }
 }
 

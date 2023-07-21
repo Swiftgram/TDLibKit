@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
 
 
-/// Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
+/// Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
 public struct SearchChats: Codable, Equatable, Hashable {
 
     /// The maximum number of chats to be returned

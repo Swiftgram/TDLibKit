@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
     /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
     case inputMessagePoll(InputMessagePoll)
 
+    /// A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+    case inputMessageStory(InputMessageStory)
+
     /// A forwarded message
     case inputMessageForwarded(InputMessageForwarded)
 
@@ -82,6 +85,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case inputMessageGame
         case inputMessageInvoice
         case inputMessagePoll
+        case inputMessageStory
         case inputMessageForwarded
     }
 
@@ -137,6 +141,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case .inputMessagePoll:
             let value = try InputMessagePoll(from: decoder)
             self = .inputMessagePoll(value)
+        case .inputMessageStory:
+            let value = try InputMessageStory(from: decoder)
+            self = .inputMessageStory(value)
         case .inputMessageForwarded:
             let value = try InputMessageForwarded(from: decoder)
             self = .inputMessageForwarded(value)
@@ -193,6 +200,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputMessagePoll(let value):
             try container.encode(Kind.inputMessagePoll, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputMessageStory(let value):
+            try container.encode(Kind.inputMessageStory, forKey: .type)
             try value.encode(to: encoder)
         case .inputMessageForwarded(let value):
             try container.encode(Kind.inputMessageForwarded, forKey: .type)
@@ -742,6 +752,25 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
         self.options = options
         self.question = question
         self.type = type
+    }
+}
+
+/// A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+public struct InputMessageStory: Codable, Equatable, Hashable {
+
+    /// Story identifier
+    public let storyId: Int
+
+    /// Identifier of the chat that posted the story
+    public let storySenderChatId: Int64
+
+
+    public init(
+        storyId: Int,
+        storySenderChatId: Int64
+    ) {
+        self.storyId = storyId
+        self.storySenderChatId = storySenderChatId
     }
 }
 

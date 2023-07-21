@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -22,45 +22,25 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
     /// True, if the message needs to be labeled as "recommended" instead of "sponsored"
     public let isRecommended: Bool
 
-    /// An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
-    public let link: InternalLinkType?
-
     /// Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     public let messageId: Int64
 
-    /// True, if the sponsor's chat photo must be shown
-    public let showChatPhoto: Bool
-
-    /// Sponsor chat identifier; 0 if the sponsor chat is accessible through an invite link
-    public let sponsorChatId: Int64
-
-    /// Information about the sponsor chat; may be null unless sponsor_chat_id == 0
-    public let sponsorChatInfo: ChatInviteLinkInfo?
-
-    /// If non-empty, information about the sponsor to be shown along with the message
-    public let sponsorInfo: String
+    /// Information about the sponsor of the message
+    public let sponsor: MessageSponsor
 
 
     public init(
         additionalInfo: String,
         content: MessageContent,
         isRecommended: Bool,
-        link: InternalLinkType?,
         messageId: Int64,
-        showChatPhoto: Bool,
-        sponsorChatId: Int64,
-        sponsorChatInfo: ChatInviteLinkInfo?,
-        sponsorInfo: String
+        sponsor: MessageSponsor
     ) {
         self.additionalInfo = additionalInfo
         self.content = content
         self.isRecommended = isRecommended
-        self.link = link
         self.messageId = messageId
-        self.showChatPhoto = showChatPhoto
-        self.sponsorChatId = sponsorChatId
-        self.sponsorChatInfo = sponsorChatInfo
-        self.sponsorInfo = sponsorInfo
+        self.sponsor = sponsor
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -97,14 +97,11 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     public let messageThreadId: Int64
 
-    /// If non-zero, the identifier of the chat to which the replied message belongs; Currently, only messages in the Replies chat can have different reply_in_chat_id and chat_id
-    public let replyInChatId: Int64
-
     /// Reply markup for the message; may be null
     public let replyMarkup: ReplyMarkup?
 
-    /// If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
-    public let replyToMessageId: Int64
+    /// Information about the message or the story this message is replying to; may be null if none
+    public let replyTo: MessageReplyTo?
 
     /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     public let restrictionReason: String
@@ -160,9 +157,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         isTopicMessage: Bool,
         mediaAlbumId: TdInt64,
         messageThreadId: Int64,
-        replyInChatId: Int64,
         replyMarkup: ReplyMarkup?,
-        replyToMessageId: Int64,
+        replyTo: MessageReplyTo?,
         restrictionReason: String,
         schedulingState: MessageSchedulingState?,
         selfDestructIn: Double,
@@ -200,9 +196,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.isTopicMessage = isTopicMessage
         self.mediaAlbumId = mediaAlbumId
         self.messageThreadId = messageThreadId
-        self.replyInChatId = replyInChatId
         self.replyMarkup = replyMarkup
-        self.replyToMessageId = replyToMessageId
+        self.replyTo = replyTo
         self.restrictionReason = restrictionReason
         self.schedulingState = schedulingState
         self.selfDestructIn = selfDestructIn

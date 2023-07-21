@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -34,8 +34,8 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
     /// Poll question; 1-300 characters
     public let question: String
 
-    /// User identifiers of recent voters, if the poll is non-anonymous
-    public let recentVoterUserIds: [Int64]
+    /// Identifiers of recent voters, if the poll is non-anonymous
+    public let recentVoterIds: [MessageSender]
 
     /// Total number of voters, participating in the poll
     public let totalVoterCount: Int
@@ -52,7 +52,7 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
         openPeriod: Int,
         options: [PollOption],
         question: String,
-        recentVoterUserIds: [Int64],
+        recentVoterIds: [MessageSender],
         totalVoterCount: Int,
         type: PollType
     ) {
@@ -63,7 +63,7 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
         self.openPeriod = openPeriod
         self.options = options
         self.question = question
-        self.recentVoterUserIds = recentVoterUserIds
+        self.recentVoterIds = recentVoterIds
         self.totalVoterCount = totalVoterCount
         self.type = type
     }

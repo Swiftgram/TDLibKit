@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct SendMessageAlbum: Codable, Equatable, Hashable {
     /// Options to be used to send the messages; pass null to use default options
     public let options: MessageSendOptions?
 
-    /// Identifier of a replied message; 0 if none
-    public let replyToMessageId: Int64?
+    /// Identifier of the replied message or story; pass null if none
+    public let replyTo: MessageReplyTo?
 
 
     public init(
@@ -38,14 +38,14 @@ public struct SendMessageAlbum: Codable, Equatable, Hashable {
         messageThreadId: Int64?,
         onlyPreview: Bool?,
         options: MessageSendOptions?,
-        replyToMessageId: Int64?
+        replyTo: MessageReplyTo?
     ) {
         self.chatId = chatId
         self.inputMessageContents = inputMessageContents
         self.messageThreadId = messageThreadId
         self.onlyPreview = onlyPreview
         self.options = options
-        self.replyToMessageId = replyToMessageId
+        self.replyTo = replyTo
     }
 }
 

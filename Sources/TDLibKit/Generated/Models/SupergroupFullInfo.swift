@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -36,9 +36,6 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// True, if the supergroup sticker set can be changed
     public let canSetStickerSet: Bool
-
-    /// True, if the chat username can be changed
-    public let canSetUsername: Bool
 
     /// True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     public let canToggleAggressiveAntiSpam: Bool
@@ -97,7 +94,6 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         canHideMembers: Bool,
         canSetLocation: Bool,
         canSetStickerSet: Bool,
-        canSetUsername: Bool,
         canToggleAggressiveAntiSpam: Bool,
         description: String,
         hasAggressiveAntiSpamEnabled: Bool,
@@ -123,7 +119,6 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.canHideMembers = canHideMembers
         self.canSetLocation = canSetLocation
         self.canSetStickerSet = canSetStickerSet
-        self.canSetUsername = canSetUsername
         self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
         self.description = description
         self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled

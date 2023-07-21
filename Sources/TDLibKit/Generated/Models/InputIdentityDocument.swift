@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -13,8 +13,8 @@ import Foundation
 /// An identity document to be saved to Telegram Passport
 public struct InputIdentityDocument: Codable, Equatable, Hashable {
 
-    /// Document expiry date; pass null if not applicable
-    public let expiryDate: Date?
+    /// Document expiration date; pass null if not applicable
+    public let expirationDate: Date?
 
     /// Front side of the document
     public let frontSide: InputFile
@@ -33,14 +33,14 @@ public struct InputIdentityDocument: Codable, Equatable, Hashable {
 
 
     public init(
-        expiryDate: Date?,
+        expirationDate: Date?,
         frontSide: InputFile,
         number: String,
         reverseSide: InputFile?,
         selfie: InputFile?,
         translation: [InputFile]
     ) {
-        self.expiryDate = expiryDate
+        self.expirationDate = expirationDate
         self.frontSide = frontSide
         self.number = number
         self.reverseSide = reverseSide

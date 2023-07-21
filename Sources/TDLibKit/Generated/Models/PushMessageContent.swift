@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -54,6 +54,9 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A message with a sticker
     case pushMessageContentSticker(PushMessageContentSticker)
+
+    /// A message with a story
+    case pushMessageContentStory(PushMessageContentStory)
 
     /// A text message
     case pushMessageContentText(PushMessageContentText)
@@ -122,6 +125,7 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentPoll
         case pushMessageContentScreenshotTaken
         case pushMessageContentSticker
+        case pushMessageContentStory
         case pushMessageContentText
         case pushMessageContentVideo
         case pushMessageContentVideoNote
@@ -185,6 +189,9 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentSticker:
             let value = try PushMessageContentSticker(from: decoder)
             self = .pushMessageContentSticker(value)
+        case .pushMessageContentStory:
+            let value = try PushMessageContentStory(from: decoder)
+            self = .pushMessageContentStory(value)
         case .pushMessageContentText:
             let value = try PushMessageContentText(from: decoder)
             self = .pushMessageContentText(value)
@@ -276,6 +283,9 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
             try container.encode(Kind.pushMessageContentScreenshotTaken, forKey: .type)
         case .pushMessageContentSticker(let value):
             try container.encode(Kind.pushMessageContentSticker, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentStory(let value):
+            try container.encode(Kind.pushMessageContentStory, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentText(let value):
             try container.encode(Kind.pushMessageContentText, forKey: .type)
@@ -575,6 +585,18 @@ public struct PushMessageContentSticker: Codable, Equatable, Hashable {
         self.emoji = emoji
         self.isPinned = isPinned
         self.sticker = sticker
+    }
+}
+
+/// A message with a story
+public struct PushMessageContentStory: Codable, Equatable, Hashable {
+
+    /// True, if the message is a pinned message with the specified content
+    public let isPinned: Bool
+
+
+    public init(isPinned: Bool) {
+        self.isPinned = isPinned
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -52,7 +52,7 @@ public enum MessageSchedulingState: Codable, Equatable, Hashable {
 /// The message will be sent at the specified date
 public struct MessageSchedulingStateSendAtDate: Codable, Equatable, Hashable {
 
-    /// Date the message will be sent. The date must be within 367 days in the future
+    /// Point in time (Unix timestamp) when the message will be sent. The date must be within 367 days in the future
     public let sendDate: Int
 
 

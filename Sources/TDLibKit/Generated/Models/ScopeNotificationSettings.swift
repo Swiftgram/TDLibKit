@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -22,25 +22,45 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
     /// Time left before notifications will be unmuted, in seconds
     public let muteFor: Int
 
+    /// True, if story notifications are received without sound
+    public let muteStories: Bool
+
     /// True, if message content must be displayed in notifications
     public let showPreview: Bool
 
+    /// True, if the sender of stories must be displayed in notifications
+    public let showStorySender: Bool
+
     /// Identifier of the notification sound to be played; 0 if sound is disabled
     public let soundId: TdInt64
+
+    /// Identifier of the notification sound to be played for stories; 0 if sound is disabled
+    public let storySoundId: TdInt64
+
+    /// If true, mute_stories is ignored and stories are unmuted only for the first 5 chats from topChatCategoryUsers
+    public let useDefaultMuteStories: Bool
 
 
     public init(
         disableMentionNotifications: Bool,
         disablePinnedMessageNotifications: Bool,
         muteFor: Int,
+        muteStories: Bool,
         showPreview: Bool,
-        soundId: TdInt64
+        showStorySender: Bool,
+        soundId: TdInt64,
+        storySoundId: TdInt64,
+        useDefaultMuteStories: Bool
     ) {
         self.disableMentionNotifications = disableMentionNotifications
         self.disablePinnedMessageNotifications = disablePinnedMessageNotifications
         self.muteFor = muteFor
+        self.muteStories = muteStories
         self.showPreview = showPreview
+        self.showStorySender = showStorySender
         self.soundId = soundId
+        self.storySoundId = storySoundId
+        self.useDefaultMuteStories = useDefaultMuteStories
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -22,11 +22,20 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// First name of the user
     public let firstName: String
 
+    /// True, if the user has non-expired stories available to the current user
+    public let hasActiveStories: Bool
+
+    /// True, if the user has unread non-expired stories available to the current user
+    public let hasUnreadActiveStories: Bool
+
     /// If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
     public let haveAccess: Bool
 
     /// User identifier
     public let id: Int64
+
+    /// The user is a close friend of the current user; implies that the user is a contact
+    public let isCloseFriend: Bool
 
     /// The user is a contact of the current user
     public let isContact: Bool
@@ -78,8 +87,11 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         addedToAttachmentMenu: Bool,
         emojiStatus: EmojiStatus?,
         firstName: String,
+        hasActiveStories: Bool,
+        hasUnreadActiveStories: Bool,
         haveAccess: Bool,
         id: Int64,
+        isCloseFriend: Bool,
         isContact: Bool,
         isFake: Bool,
         isMutualContact: Bool,
@@ -99,8 +111,11 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.addedToAttachmentMenu = addedToAttachmentMenu
         self.emojiStatus = emojiStatus
         self.firstName = firstName
+        self.hasActiveStories = hasActiveStories
+        self.hasUnreadActiveStories = hasUnreadActiveStories
         self.haveAccess = haveAccess
         self.id = id
+        self.isCloseFriend = isCloseFriend
         self.isContact = isContact
         self.isFake = isFake
         self.isMutualContact = isMutualContact

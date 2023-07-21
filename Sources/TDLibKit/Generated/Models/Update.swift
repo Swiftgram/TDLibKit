@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -232,6 +232,18 @@ public enum Update: Codable, Equatable, Hashable {
     /// Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
     case updateUnreadChatCount(UpdateUnreadChatCount)
 
+    /// A story was changed
+    case updateStory(UpdateStory)
+
+    /// A story became inaccessible
+    case updateStoryDeleted(UpdateStoryDeleted)
+
+    /// The list of active stories posted by a specific chat has changed
+    case updateChatActiveStories(UpdateChatActiveStories)
+
+    /// Number of chats in a story list has changed
+    case updateStoryListChatCount(UpdateStoryListChatCount)
+
     /// An option changed its value
     case updateOption(UpdateOption)
 
@@ -415,6 +427,10 @@ public enum Update: Codable, Equatable, Hashable {
         case updateUserPrivacySettingRules
         case updateUnreadMessageCount
         case updateUnreadChatCount
+        case updateStory
+        case updateStoryDeleted
+        case updateChatActiveStories
+        case updateStoryListChatCount
         case updateOption
         case updateStickerSet
         case updateInstalledStickerSets
@@ -676,6 +692,18 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateUnreadChatCount:
             let value = try UpdateUnreadChatCount(from: decoder)
             self = .updateUnreadChatCount(value)
+        case .updateStory:
+            let value = try UpdateStory(from: decoder)
+            self = .updateStory(value)
+        case .updateStoryDeleted:
+            let value = try UpdateStoryDeleted(from: decoder)
+            self = .updateStoryDeleted(value)
+        case .updateChatActiveStories:
+            let value = try UpdateChatActiveStories(from: decoder)
+            self = .updateChatActiveStories(value)
+        case .updateStoryListChatCount:
+            let value = try UpdateStoryListChatCount(from: decoder)
+            self = .updateStoryListChatCount(value)
         case .updateOption:
             let value = try UpdateOption(from: decoder)
             self = .updateOption(value)
@@ -1008,6 +1036,18 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateUnreadChatCount(let value):
             try container.encode(Kind.updateUnreadChatCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateStory(let value):
+            try container.encode(Kind.updateStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateStoryDeleted(let value):
+            try container.encode(Kind.updateStoryDeleted, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatActiveStories(let value):
+            try container.encode(Kind.updateChatActiveStories, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateStoryListChatCount(let value):
+            try container.encode(Kind.updateStoryListChatCount, forKey: .type)
             try value.encode(to: encoder)
         case .updateOption(let value):
             try container.encode(Kind.updateOption, forKey: .type)
@@ -2589,6 +2629,68 @@ public struct UpdateUnreadChatCount: Codable, Equatable, Hashable {
     }
 }
 
+/// A story was changed
+public struct UpdateStory: Codable, Equatable, Hashable {
+
+    /// The new information about the story
+    public let story: Story
+
+
+    public init(story: Story) {
+        self.story = story
+    }
+}
+
+/// A story became inaccessible
+public struct UpdateStoryDeleted: Codable, Equatable, Hashable {
+
+    /// Story identifier
+    public let storyId: Int
+
+    /// Identifier of the chat that posted the story
+    public let storySenderChatId: Int64
+
+
+    public init(
+        storyId: Int,
+        storySenderChatId: Int64
+    ) {
+        self.storyId = storyId
+        self.storySenderChatId = storySenderChatId
+    }
+}
+
+/// The list of active stories posted by a specific chat has changed
+public struct UpdateChatActiveStories: Codable, Equatable, Hashable {
+
+    /// The new list of active stories
+    public let activeStories: ChatActiveStories
+
+
+    public init(activeStories: ChatActiveStories) {
+        self.activeStories = activeStories
+    }
+}
+
+/// Number of chats in a story list has changed
+public struct UpdateStoryListChatCount: Codable, Equatable, Hashable {
+
+    /// Approximate total number of chats with active stories in the list
+    public let chatCount: Int
+
+    /// The story list
+    public let storyList: StoryList
+
+
+    public init(
+        chatCount: Int,
+        storyList: StoryList
+    ) {
+        self.chatCount = chatCount
+        self.storyList = storyList
+    }
+}
+
 /// An option changed its value
 public struct UpdateOption: Codable, Equatable, Hashable {
 
@@ -3247,18 +3349,18 @@ public struct UpdatePollAnswer: Codable, Equatable, Hashable {
     /// Unique poll identifier
     public let pollId: TdInt64
 
-    /// The user, who changed the answer to the poll
-    public let userId: Int64
+    /// Identifier of the message sender that changed the answer to the poll
+    public let voterId: MessageSender
 
 
     public init(
         optionIds: [Int],
         pollId: TdInt64,
-        userId: Int64
+        voterId: MessageSender
     ) {
         self.optionIds = optionIds
         self.pollId = pollId
-        self.userId = userId
+        self.voterId = voterId
     }
 }
 

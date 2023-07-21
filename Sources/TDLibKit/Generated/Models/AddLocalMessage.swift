@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -22,8 +22,8 @@ public struct AddLocalMessage: Codable, Equatable, Hashable {
     /// The content of the message to be added
     public let inputMessageContent: InputMessageContent?
 
-    /// Identifier of the replied message; 0 if none
-    public let replyToMessageId: Int64?
+    /// Identifier of the replied message or story; pass null if none
+    public let replyTo: MessageReplyTo?
 
     /// Identifier of the sender of the message
     public let senderId: MessageSender?
@@ -33,13 +33,13 @@ public struct AddLocalMessage: Codable, Equatable, Hashable {
         chatId: Int64?,
         disableNotification: Bool?,
         inputMessageContent: InputMessageContent?,
-        replyToMessageId: Int64?,
+        replyTo: MessageReplyTo?,
         senderId: MessageSender?
     ) {
         self.chatId = chatId
         self.disableNotification = disableNotification
         self.inputMessageContent = inputMessageContent
-        self.replyToMessageId = replyToMessageId
+        self.replyTo = replyTo
         self.senderId = senderId
     }
 }

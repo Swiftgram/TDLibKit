@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public enum MessageSource: Codable, Equatable, Hashable {
     /// The message is from a notification
     case messageSourceNotification
 
+    /// The message was screenshotted; the source must be used only if the message content was visible during the screenshot
+    case messageSourceScreenshot
+
     /// The message is from some other source
     case messageSourceOther
 
@@ -50,6 +53,7 @@ public enum MessageSource: Codable, Equatable, Hashable {
         case messageSourceSearch
         case messageSourceChatEventLog
         case messageSourceNotification
+        case messageSourceScreenshot
         case messageSourceOther
     }
 
@@ -73,6 +77,8 @@ public enum MessageSource: Codable, Equatable, Hashable {
             self = .messageSourceChatEventLog
         case .messageSourceNotification:
             self = .messageSourceNotification
+        case .messageSourceScreenshot:
+            self = .messageSourceScreenshot
         case .messageSourceOther:
             self = .messageSourceOther
         }
@@ -97,6 +103,8 @@ public enum MessageSource: Codable, Equatable, Hashable {
             try container.encode(Kind.messageSourceChatEventLog, forKey: .type)
         case .messageSourceNotification:
             try container.encode(Kind.messageSourceNotification, forKey: .type)
+        case .messageSourceScreenshot:
+            try container.encode(Kind.messageSourceScreenshot, forKey: .type)
         case .messageSourceOther:
             try container.encode(Kind.messageSourceOther, forKey: .type)
         }

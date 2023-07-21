@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.14-66234ae2
-//  https://github.com/tdlib/td/tree/66234ae2
+//  Based on TDLib 1.8.15-2e5319ff
+//  https://github.com/tdlib/td/tree/2e5319ff
 //
 
 import Foundation
@@ -103,6 +103,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
     case internalLinkTypeStickerSet(InternalLinkTypeStickerSet)
 
+    /// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+    case internalLinkTypeStory(InternalLinkTypeStory)
+
     /// The link is a link to a theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
@@ -159,6 +162,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeRestorePurchases
         case internalLinkTypeSettings
         case internalLinkTypeStickerSet
+        case internalLinkTypeStory
         case internalLinkTypeTheme
         case internalLinkTypeThemeSettings
         case internalLinkTypeUnknownDeepLink
@@ -253,6 +257,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeStickerSet:
             let value = try InternalLinkTypeStickerSet(from: decoder)
             self = .internalLinkTypeStickerSet(value)
+        case .internalLinkTypeStory:
+            let value = try InternalLinkTypeStory(from: decoder)
+            self = .internalLinkTypeStory(value)
         case .internalLinkTypeTheme:
             let value = try InternalLinkTypeTheme(from: decoder)
             self = .internalLinkTypeTheme(value)
@@ -360,6 +367,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try container.encode(Kind.internalLinkTypeSettings, forKey: .type)
         case .internalLinkTypeStickerSet(let value):
             try container.encode(Kind.internalLinkTypeStickerSet, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeStory(let value):
+            try container.encode(Kind.internalLinkTypeStory, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeTheme(let value):
             try container.encode(Kind.internalLinkTypeTheme, forKey: .type)
@@ -736,6 +746,25 @@ public struct InternalLinkTypeStickerSet: Codable, Equatable, Hashable {
     ) {
         self.expectCustomEmoji = expectCustomEmoji
         self.stickerSetName = stickerSetName
+    }
+}
+
+/// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+public struct InternalLinkTypeStory: Codable, Equatable, Hashable {
+
+    /// Story identifier
+    public let storyId: Int
+
+    /// Username of the sender of the story
+    public let storySenderUsername: String
+
+
+    public init(
+        storyId: Int,
+        storySenderUsername: String
+    ) {
+        self.storyId = storyId
+        self.storySenderUsername = storySenderUsername
     }
 }
 
