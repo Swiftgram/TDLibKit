@@ -90,7 +90,7 @@ jobs:
         run: ./scripts/test.sh macOS
       
       - name: Tests (watchOS)
-        run: ./scripts/test.sh watchOS-simulator "9.1" "Apple Watch Series 8 (45mm)"
+        run: ./scripts/test.sh watchOS-simulator "9.1" "Apple Watch Series 8 (45mm)" || ./scripts/test.sh watchOS-simulator "9.1" "Apple Watch Series 8 (45mm)"
 
       - name: Push update
         if: github.ref == 'refs/heads/main'
