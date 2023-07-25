@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-2e5319ff
-//  https://github.com/tdlib/td/tree/2e5319ff
+//  Based on TDLib 1.8.15-8893dc80
+//  https://github.com/tdlib/td/tree/8893dc80
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public struct InputStoryContentPhoto: Codable, Equatable, Hashable {
     /// File identifiers of the stickers added to the photo, if applicable
     public let addedStickerFileIds: [Int]
 
-    /// Photo to send. The photo must be at most 10 MB in size. The photo size must be 720x1280
+    /// Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920
     public let photo: InputFile
 
 
