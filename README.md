@@ -33,9 +33,7 @@ Library provides multiple API interfaces based on different approaches
   13.0+, macOS 10.15+, watchOS 6.0+, tvOS 13.0+
 - Completion handlers & closures
 
-
-### Create client manager
-
+### Create client Manager
 
 ```swift
 import TDLibKit
@@ -46,12 +44,12 @@ Make sure to create only one `TDLibClientManager`, since `td_receive` can be onl
 
 Manager automatically polls for new updates, we will handle them per-client below.
 
-### Create client & Handle updates
+### Create Client & Handle updates
+
 ```swift
 let client = manager.createClient(updateHandler: { /* data: Data, client: TDLibCLient */
-    let api = TdApi(client: $1)
     do {
-        let update = try api.decoder.decode(Update.self, from: $0)
+        let update = try $1.decoder.decode(Update.self, from: $0)
         switch update {
             case .updateNewMessage(let newMsg):
                 switch newMsg.message.content {
@@ -75,11 +73,6 @@ let client = manager.createClient(updateHandler: { /* data: Data, client: TDLibC
 })
 ```
 
-### API Instance
-```swift
-let api = TdApi(client: client)
-```
-
 ### Synchronious requests
 
 Only for methods
@@ -89,7 +82,7 @@ in docs
 ```swift
 let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
 do {
-    let result = try api.client.execute(query: DTO(query))
+    let result = try client.execute(query: DTO(query))
     if let resultDict = result {
         print("Response: \(resultDict)")
     } else {
@@ -106,7 +99,7 @@ do {
 
 ```swift
 do {
-    let chatHistory = try await api.getChatHistory(
+    let chatHistory = try await client.getChatHistory(
         chatId: chatId,
         fromMessageId: 0,
         limit: 50,
@@ -145,7 +138,7 @@ do {
 #### Completion Handlers
 
 ```swift
-try? api.getChatHistory(
+try? client.getChatHistory(
     chatId: chatId,
     fromMessageId: 0,
     limit: 50,
@@ -221,15 +214,13 @@ let manager = TDLibClientManager(logger: StdOutLogger())
 ### Close client
 
 To ensure data integrity, you must properly close all the clients on app termination, either with
-
-
+    
 ```swift
 let client = manager.createClient()
-client.close()
-// Handle authorizationStateClosed
+try? client.close(completion: { _ in })
 ```
 
-or use blocking function
+or use a blocking function
 
 ```swift
 manager.closeAllClients()

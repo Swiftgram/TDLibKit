@@ -179,8 +179,7 @@ class TDLibClientManagerTests: XCTestCase {
             let clientClosedExpectation = XCTestExpectation(description: "Client \(i) closed")
             clientClosedExpectations.append(clientClosedExpectation)
             let client = manager.createClient(updateHandler: {
-                let api = TdApi(client: $1)
-                let update = try! api.decoder.decode(Update.self, from: $0)
+                let update = try! $1.decoder.decode(Update.self, from: $0)
                 switch (update) {
                     case .updateAuthorizationState(let updateAuthorizationState):
                         switch(updateAuthorizationState.authorizationState) {
@@ -193,18 +192,16 @@ class TDLibClientManagerTests: XCTestCase {
                         break
                 }
             })
-            let api = TdApi(client: client)
-            
-            let verbosityLevel = try! await api.getLogVerbosityLevel()
+            let verbosityLevel = try! await client.getLogVerbosityLevel()
             if verbosityLevel.verbosityLevel != 5 {
-                try! await api.setLogVerbosityLevel(newVerbosityLevel: 5)
+                try! await client.setLogVerbosityLevel(newVerbosityLevel: 5)
             }
             guard let cachesUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
                 XCTFail("Unable to get cache path")
                 return
             }
             let tdlibPath = cachesUrl.appendingPathComponent("tdlib-\(i)-\(UUID().uuidString)", isDirectory: true).path
-            try! await api.setTdlibParameters(
+            try! await client.setTdlibParameters(
                 apiHash: "5e6d7b36f0e363cf0c07baf2deb26076", // https://core.telegram.org/api/obtaining_api_id
                 apiId: 287311,
                 applicationVersion: "1.0",
@@ -221,7 +218,7 @@ class TDLibClientManagerTests: XCTestCase {
                 useMessageDatabase: true,
                 useSecretChats: true,
                 useTestDc: false)
-            let authState = try! await api.getAuthorizationState()
+            let authState = try! await client.getAuthorizationState()
             switch (authState) {
             case .authorizationStateWaitPhoneNumber:
                 break
@@ -230,8 +227,7 @@ class TDLibClientManagerTests: XCTestCase {
             }
         }
         
-        let api = TdApi(client: manager.clients[1]!)
-        let currentLogVerbosityLevel = try! await api.getLogVerbosityLevel()
+        let currentLogVerbosityLevel = try! await manager.clients[1]!.getLogVerbosityLevel()
         XCTAssertEqual(currentLogVerbosityLevel.verbosityLevel, 5)
         
         manager.closeClients()

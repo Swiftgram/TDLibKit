@@ -9,7 +9,7 @@ import Foundation
 import TDLibFramework
 
 
-public class TDLibClient: TdClient, Equatable {
+public class TDLibClient: TDLibApi, Equatable {
     public let id: Int32
     public private(set) var awaitingCompletions = ConcurrentDictionary<String, (Data) -> Void>()
     public let updateHandler: (Data, TDLibClient) -> Void
@@ -23,9 +23,10 @@ public class TDLibClient: TdClient, Equatable {
     fileprivate init(updateHandler: @escaping (Data, TDLibClient) -> Void, logger: TDLibLogger? = nil) {
         self.id = td_create_client_id()
         self.updateHandler = updateHandler
-        self.updateHandlerQueue = DispatchQueue(label: "com.swiftgram.TDLibKi.client-\(self.id).update-handler")
-        self.queryQueue = DispatchQueue(label: "com.swiftgram.TDLibKit.client-\(self.id).query", attributes: .concurrent)
+        self.updateHandlerQueue = DispatchQueue(label: "app.swiftgram.TDLibKi.client-\(self.id).update-handler")
+        self.queryQueue = DispatchQueue(label: "app.swiftgram.TDLibKit.client-\(self.id).query", attributes: .concurrent)
         self.logger = logger
+        super.init()
     }
     
 
@@ -38,7 +39,7 @@ public class TDLibClient: TdClient, Equatable {
     }
     
     /// Sends request to the TDLib client.
-    public func send(query: TdQuery, completion: ((Data) -> Void)? = nil) throws {
+    override public func send(query: TdQuery, completion: ((Data) -> Void)? = nil) throws {
         self.queryQueue.async { [weak self] in
             guard let `self` = self else { return }
             var extra: String? = nil
@@ -62,7 +63,7 @@ public class TDLibClient: TdClient, Equatable {
     }
     
     /// Synchronously executes TDLib request.
-    public func execute(query: TdQuery) throws -> [String:Any]? {
+    override public func execute(query: TdQuery) throws -> [String:Any]? {
         do {
             let data = try query.make(with: nil)
             let str = String(data: data, encoding: .utf8)!
@@ -81,14 +82,7 @@ public class TDLibClient: TdClient, Equatable {
             throw error
         }
     }
-    
-    /// Non-blocking method that will send `close` request to TDLib
-    public func close() {
-        try? self.send(query: DTO(Close()), completion: { _ in })
-    }
-    
-    @available(*, deprecated, message: "Noop, will be removed in future. Use TDLibClientManager")
-    public func run(updateHandler: @escaping (Data) -> Void) {}
+
     
     public static func == (lhs: TDLibClient, rhs: TDLibClient) -> Bool {
         return lhs.id == rhs.id
@@ -100,9 +94,9 @@ public class TDLibClient: TdClient, Equatable {
 #warning("Breaking changes may be introduced without major version bump.")
 open class TDLibClientManager {
     /// 'receiveQueue' is a separate queue that calls ``td_receive`` in a loop
-    private let receiveQueue = DispatchQueue(label: "com.swiftgram.TDLibKit.receive")
+    private let receiveQueue = DispatchQueue(label: "app.swiftgram.TDLibKit.receive")
     /// 'queryQueue' is a separate queue that will decode update string and lookup for possible completions in existing ``self.clients``. 'queryQueue' exists to quickly switch back to 'receiveQueue' and call next ``td_receive``
-    private let queryQueue = DispatchQueue(label: "com.swiftgram.TDLibKit.query")
+    private let queryQueue = DispatchQueue(label: "app.swiftgram.TDLibKit.query")
     public private(set) var clients = ConcurrentDictionary<Int32,TDLibClient>()
     private let logger: TDLibLogger?
     
@@ -138,7 +132,7 @@ open class TDLibClientManager {
     /// Will be called on manager's ``deinit``. However, consider to call this method manually on `willTerminateNotification` or similar. Otherwise, client data may be lost.
     public func closeClients() {
         for client in self.clients.values {
-            client.close()
+            try? client.close(completion: { _ in })
         }
         
         while (!self.clients.isEmpty) {}

@@ -151,16 +151,21 @@ public final class Application {
             outputDirectory: output.path,
             tdLibVersion: self.tdLibVersion,
             tdLibCommit: self.tdLibCommit)
-        
-        let composer = MethodsComposer(classInfoes: schema.classInfoes)
-        let methodsImpl = try composer.composeEntityUtilityImplementation(
+ 
+        let methodsImpl = try MethodsComposer(classInfoes: schema.classInfoes).composeEntityUtilityImplementation(
             forEntityName: "TdApi",
             projectName: Constants.project,
             outputDirectory: output.path,
             tdLibVersion: self.tdLibVersion,
             tdLibCommit: self.tdLibCommit)
+        let clientMethodsImpl = try MethodsComposer(classInfoes: schema.classInfoes, clientSubclassStrategy: true).composeEntityUtilityImplementation(
+            forEntityName: "TDLibApi",
+            projectName: Constants.project,
+            outputDirectory: output.path,
+            tdLibVersion: self.tdLibVersion,
+            tdLibCommit: self.tdLibCommit)
         
-        return [clientProtocol, methodsImpl]
+        return [clientProtocol, methodsImpl, clientMethodsImpl]
     }
     
 }
