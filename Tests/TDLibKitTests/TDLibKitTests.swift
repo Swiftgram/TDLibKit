@@ -235,6 +235,11 @@ class TDLibClientManagerTests: XCTestCase {
         XCTAssertEqual(currentLogVerbosityLevel.verbosityLevel, 5)
         
         manager.closeClients()
-        await fulfillment(of: clientClosedExpectations)
+        #if swift(>=5.8)
+            await fulfillment(of: clientClosedExpectations, timeout: 180.0)
+        #else
+            // TODO: We will update Xcode on CI one day
+            wait(for: clientClosedExpectations, timeout: 180.0)
+        #endif
     }
 }
