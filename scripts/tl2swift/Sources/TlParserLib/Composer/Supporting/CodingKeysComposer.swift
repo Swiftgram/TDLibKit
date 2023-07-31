@@ -15,6 +15,7 @@ final class CodingKeysComposer: Composer {
         .addLine("public enum DtoCodingKeys: String, CodingKey {")
         .addLine("case type = \"@type\"".indent())
         .addLine("case extra = \"@extra\"".indent())
+        .addLine("case clientId = \"@client_id\"".indent())
         .addLine("}")
     }
 }

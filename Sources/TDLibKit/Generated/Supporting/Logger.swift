@@ -10,6 +10,12 @@
 import Foundation
 
 
+public protocol TDLibLogger {
+    func log(_ message: String, type: LoggerMessageType?)
+}
+
+
+@available(*, deprecated, renamed: "TDLibLogger", message: "interferes with OSLog.Logger")
 public protocol Logger {
     func log(_ message: String, type: LoggerMessageType?)
 }

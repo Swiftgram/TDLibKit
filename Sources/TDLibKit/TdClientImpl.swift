@@ -8,6 +8,8 @@
 import Foundation
 import TDLibFramework
 
+
+@available(*, deprecated, message: "will be removed in next major version; consider TDLibClientManager")
 open class TdClientImpl: TdClient {
     
     public typealias CompletionHandler = (Data) -> Void

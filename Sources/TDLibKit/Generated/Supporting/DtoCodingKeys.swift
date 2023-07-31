@@ -13,4 +13,5 @@ import Foundation
 public enum DtoCodingKeys: String, CodingKey {
     case type = "@type"
     case extra = "@extra"
+    case clientId = "@client_id"
 }

@@ -29,15 +29,54 @@ adaptation.
 
 Library provides multiple API interfaces based on different approaches
 
-- [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch. Available for iOS
+- [Async/Await](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/) syntax & do/catch. Available for iOS
   13.0+, macOS 10.15+, watchOS 6.0+, tvOS 13.0+
 - Completion handlers & closures
 
-### Create Client & API instance
+
+### Create client manager
+
 
 ```swift
 import TDLibKit
-let client = TdClientImpl()
+let manager = TDLibClientManager()
+```
+
+Make sure to create only one `TDLibClientManager`, since `td_receive` can be only called from a single thread.
+
+Manager automatically polls for new updates, we will handle them per-client below.
+
+### Create client & Handle updates
+```swift
+let client = manager.createClient(updateHandler: { /* data: Data, client: TDLibCLient */
+    let api = TdApi(client: $1)
+    do {
+        let update = try api.decoder.decode(Update.self, from: $0)
+        switch update {
+            case .updateNewMessage(let newMsg):
+                switch newMsg.message.content {
+                    case .messageText(let text):
+                        print("Text Message: \(text.text.text)")
+                    default:
+                        break
+                }
+            case .updateMessageEdited:
+                break
+                
+            // ... etc
+
+            default:
+                print("Unhandled Update \(update)")
+                break
+        }
+    } catch {
+        print("Error in update handler \(error.localizedDescription)")
+    }
+})
+```
+
+### API Instance
+```swift
 let api = TdApi(client: client)
 ```
 
@@ -62,12 +101,6 @@ do {
 ```
 
 ### Async requests
-
-You must run _at least empty_ updates handler to get responses for async requests.
-
-```swift
-api.client.run { _ in }
-```
 
 #### Async/Await
 
@@ -152,42 +185,13 @@ try? api.getChatHistory(
 )
 ```
 
-### Listen for updates
-
-```swift
-api.client.run {
-    do {
-        let update = try api.decoder.decode(Update.self, from: $0)
-        switch update {
-            case .updateNewMessage(let newMsg):
-                switch newMsg.message.content {
-                    case .messageText(let text):
-                        print("Text Message: \(text.text.text)")
-                    default:
-                        break
-                }
-            case .updateMessageEdited:
-                break
-                
-            // ... etc
-
-            default:
-                print("Unhandled Update \(update)")
-                break
-        }
-    } catch {
-        print("Error in update handler \(error.localizedDescription)")
-    }
-}
-```
-
 ### Logging
 
 You can pass additional parameter with `Logger` type to log "send, receive, execute" and custom entries.
 
 ```swift
 import TDLibKit
-public final class StdOutLogger: Logger {
+public final class StdOutLogger: TDLibLogger {
     
     let queue: DispatchQueue
     
@@ -211,7 +215,24 @@ public final class StdOutLogger: Logger {
 }
 
 
-let client = TdClientImpl(completionQueue: .main, logger: StdOutLogger())
+let manager = TDLibClientManager(logger: StdOutLogger())
+```
+
+### Close client
+
+To ensure data integrity, you must properly close all the clients on app termination, either with
+
+
+```swift
+let client = manager.createClient()
+client.close()
+// Handle authorizationStateClosed
+```
+
+or use blocking function
+
+```swift
+manager.closeAllClients()
 ```
 
 ## Build

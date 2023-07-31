@@ -2,7 +2,7 @@ import XCTest
 @testable import TDLibKit
 
 
-public final class StdOutLogger: Logger {
+public final class StdOutLogger: Logger, TDLibLogger {
     
     let queue: DispatchQueue
     
@@ -103,7 +103,7 @@ class TDLibKitTests: XCTestCase {
         let configs = await [config1, config2, config3, config4, config5, config6, config7, config8, config9, config10]
         print("Application Configs \(configs)")
     }
-
+    
     func testGetCountries() async {
         let countries = try! await api.getCountries()
         print("Countries \(countries)")
@@ -164,5 +164,77 @@ class TDLibKitUnitTests: XCTestCase {
         XCTAssertEqual(error1, error1)
         XCTAssertNotEqual(error1, error2)
         XCTAssertNotEqual(error1, error3)
+    }
+}
+
+@available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+class TDLibClientManagerTests: XCTestCase {
+    
+    func testMultipleClientsInitialization() async {
+        let manager = TDLibClientManager(logger: StdOutLogger())
+        var clientClosedExpectations: [XCTestExpectation] = []
+        
+        
+        for i in 1...20 {
+            let clientClosedExpectation = XCTestExpectation(description: "Client \(i) closed")
+            clientClosedExpectations.append(clientClosedExpectation)
+            let client = manager.createClient(updateHandler: {
+                let api = TdApi(client: $1)
+                let update = try! api.decoder.decode(Update.self, from: $0)
+                switch (update) {
+                    case .updateAuthorizationState(let updateAuthorizationState):
+                        switch(updateAuthorizationState.authorizationState) {
+                            case .authorizationStateClosed:
+                                clientClosedExpectation.fulfill()
+                            default:
+                                break
+                        }
+                    default:
+                        break
+                }
+            })
+            let api = TdApi(client: client)
+            
+            let verbosityLevel = try! await api.getLogVerbosityLevel()
+            if verbosityLevel.verbosityLevel != 5 {
+                try! await api.setLogVerbosityLevel(newVerbosityLevel: 5)
+            }
+            guard let cachesUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+                XCTFail("Unable to get cache path")
+                return
+            }
+            let tdlibPath = cachesUrl.appendingPathComponent("tdlib-\(i)-\(UUID().uuidString)", isDirectory: true).path
+            try! await api.setTdlibParameters(
+                apiHash: "5e6d7b36f0e363cf0c07baf2deb26076", // https://core.telegram.org/api/obtaining_api_id
+                apiId: 287311,
+                applicationVersion: "1.0",
+                databaseDirectory: tdlibPath,
+                databaseEncryptionKey: nil,
+                deviceModel: "iOS",
+                enableStorageOptimizer: true,
+                filesDirectory: "",
+                ignoreFileNames: true,
+                systemLanguageCode: "en",
+                systemVersion: "Unknown",
+                useChatInfoDatabase: true,
+                useFileDatabase: true,
+                useMessageDatabase: true,
+                useSecretChats: true,
+                useTestDc: false)
+            let authState = try! await api.getAuthorizationState()
+            switch (authState) {
+            case .authorizationStateWaitPhoneNumber:
+                break
+            default:
+                XCTFail("Auth state is not ready for client \(i). It's \(authState)")
+            }
+        }
+        
+        let api = TdApi(client: manager.clients[1]!)
+        let currentLogVerbosityLevel = try! await api.getLogVerbosityLevel()
+        XCTAssertEqual(currentLogVerbosityLevel.verbosityLevel, 5)
+        
+        manager.closeClients()
+        await fulfillment(of: clientClosedExpectations)
     }
 }
