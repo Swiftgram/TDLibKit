@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-ff687167
-//  https://github.com/tdlib/td/tree/ff687167
+//  Based on TDLib 1.8.15-64264b0f
+//  https://github.com/tdlib/td/tree/64264b0f
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
     public let linkedChatId: Int64
 
-    /// Location to which the supergroup is connected; may be null
+    /// Location to which the supergroup is connected; may be null if none
     public let location: ChatLocation?
 
     /// Number of members in the supergroup or channel; 0 if unknown

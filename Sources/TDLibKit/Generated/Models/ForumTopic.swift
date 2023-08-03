@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-ff687167
-//  https://github.com/tdlib/td/tree/ff687167
+//  Based on TDLib 1.8.15-64264b0f
+//  https://github.com/tdlib/td/tree/64264b0f
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a forum topic
 public struct ForumTopic: Codable, Equatable, Hashable {
 
-    /// A draft of a message in the topic; may be null
+    /// A draft of a message in the topic; may be null if none
     public let draftMessage: DraftMessage?
 
     /// Basic information about the topic

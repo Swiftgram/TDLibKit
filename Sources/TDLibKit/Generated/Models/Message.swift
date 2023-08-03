@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-ff687167
-//  https://github.com/tdlib/td/tree/ff687167
+//  Based on TDLib 1.8.15-64264b0f
+//  https://github.com/tdlib/td/tree/64264b0f
 //
 
 import Foundation
@@ -67,7 +67,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the message was last edited
     public let editDate: Int
 
-    /// Information about the initial message sender; may be null
+    /// Information about the initial message sender; may be null if none or unknown
     public let forwardInfo: MessageForwardInfo?
 
     /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
@@ -76,7 +76,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Message identifier; unique for the chat to which the message belongs
     public let id: Int64
 
-    /// Information about interactions with the message; may be null
+    /// Information about interactions with the message; may be null if none
     public let interactionInfo: MessageInteractionInfo?
 
     /// True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
@@ -97,7 +97,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     public let messageThreadId: Int64
 
-    /// Reply markup for the message; may be null
+    /// Reply markup for the message; may be null if none
     public let replyMarkup: ReplyMarkup?
 
     /// Information about the message or the story this message is replying to; may be null if none
@@ -106,7 +106,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     public let restrictionReason: String
 
-    /// The scheduling state of the message; may be null
+    /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
 
     /// Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field
@@ -118,7 +118,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the sender of the message
     public let senderId: MessageSender
 
-    /// The sending state of the message; may be null
+    /// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     public let sendingState: MessageSendingState?
 
     /// Information about unread reactions added to the message

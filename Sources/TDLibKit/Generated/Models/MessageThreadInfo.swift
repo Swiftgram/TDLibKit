@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-ff687167
-//  https://github.com/tdlib/td/tree/ff687167
+//  Based on TDLib 1.8.15-64264b0f
+//  https://github.com/tdlib/td/tree/64264b0f
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct MessageThreadInfo: Codable, Equatable, Hashable {
     /// Identifier of the chat to which the message thread belongs
     public let chatId: Int64
 
-    /// A draft of a message in the message thread; may be null
+    /// A draft of a message in the message thread; may be null if none
     public let draftMessage: DraftMessage?
 
     /// Message thread identifier, unique within the chat

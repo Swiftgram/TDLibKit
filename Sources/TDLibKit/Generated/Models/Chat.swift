@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-ff687167
-//  https://github.com/tdlib/td/tree/ff687167
+//  Based on TDLib 1.8.15-64264b0f
+//  https://github.com/tdlib/td/tree/64264b0f
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
 public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
-    /// Information about actions which must be possible to do through the chat action bar; may be null
+    /// Information about actions which must be possible to do through the chat action bar; may be null if none
     public let actionBar: ChatActionBar?
 
     /// Types of reaction, available in the chat
@@ -37,7 +37,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Default value of the disable_notification parameter, used when a message is sent to the chat
     public let defaultDisableNotification: Bool
 
-    /// A draft of a message in the chat; may be null
+    /// A draft of a message in the chat; may be null if none
     public let draftMessage: DraftMessage?
 
     /// True, if chat content can't be saved locally, forwarded, or copied
@@ -58,7 +58,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// True, if translation of all messages in the chat must be suggested to the user
     public let isTranslatable: Bool
 
-    /// Last message in the chat; may be null
+    /// Last message in the chat; may be null if none or unknown
     public let lastMessage: Message?
 
     /// Identifier of the last read incoming message
@@ -76,7 +76,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Notification settings for the chat
     public let notificationSettings: ChatNotificationSettings
 
-    /// Information about pending join requests; may be null
+    /// Information about pending join requests; may be null if none
     public let pendingJoinRequests: ChatJoinRequestsInfo?
 
     /// Actions that non-administrator chat members are allowed to take in the chat

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-ff687167
-//  https://github.com/tdlib/td/tree/ff687167
+//  Based on TDLib 1.8.15-64264b0f
+//  https://github.com/tdlib/td/tree/64264b0f
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// A short user bio; may be null for bots
     public let bio: FormattedText?
 
-    /// For bots, information about the bot; may be null
+    /// For bots, information about the bot; may be null if the user isn't a bot
     public let botInfo: BotInfo?
 
     /// True, if the user can be called
