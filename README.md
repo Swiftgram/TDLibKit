@@ -29,16 +29,48 @@ adaptation.
 
 Library provides multiple API interfaces based on different approaches
 
-- [Async/Await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html) syntax & do/catch. Available for iOS
+- [Async/Await](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/) syntax & do/catch. Available for iOS
   13.0+, macOS 10.15+, watchOS 6.0+, tvOS 13.0+
 - Completion handlers & closures
 
-### Create Client & API instance
+### Create client Manager
 
 ```swift
 import TDLibKit
-let client = TdClientImpl()
-let api = TdApi(client: client)
+let manager = TDLibClientManager()
+```
+
+Make sure to create only one `TDLibClientManager`, since `td_receive` can be only called from a single thread.
+
+Manager automatically polls for new updates, we will handle them per-client below.
+
+### Create Client & Handle updates
+
+```swift
+let client = manager.createClient(updateHandler: { /* data: Data, client: TDLibCLient */
+    do {
+        let update = try $1.decoder.decode(Update.self, from: $0)
+        switch update {
+            case .updateNewMessage(let newMsg):
+                switch newMsg.message.content {
+                    case .messageText(let text):
+                        print("Text Message: \(text.text.text)")
+                    default:
+                        break
+                }
+            case .updateMessageEdited:
+                break
+                
+            // ... etc
+
+            default:
+                print("Unhandled Update \(update)")
+                break
+        }
+    } catch {
+        print("Error in update handler \(error.localizedDescription)")
+    }
+})
 ```
 
 ### Synchronious requests
@@ -50,7 +82,7 @@ in docs
 ```swift
 let query = SetLogVerbosityLevel(newVerbosityLevel: 5)
 do {
-    let result = try api.client.execute(query: DTO(query))
+    let result = try client.execute(query: DTO(query))
     if let resultDict = result {
         print("Response: \(resultDict)")
     } else {
@@ -63,17 +95,11 @@ do {
 
 ### Async requests
 
-You must run _at least empty_ updates handler to get responses for async requests.
-
-```swift
-api.client.run { _ in }
-```
-
 #### Async/Await
 
 ```swift
 do {
-    let chatHistory = try await api.getChatHistory(
+    let chatHistory = try await client.getChatHistory(
         chatId: chatId,
         fromMessageId: 0,
         limit: 50,
@@ -112,7 +138,7 @@ do {
 #### Completion Handlers
 
 ```swift
-try? api.getChatHistory(
+try? client.getChatHistory(
     chatId: chatId,
     fromMessageId: 0,
     limit: 50,
@@ -152,42 +178,13 @@ try? api.getChatHistory(
 )
 ```
 
-### Listen for updates
-
-```swift
-api.client.run {
-    do {
-        let update = try api.decoder.decode(Update.self, from: $0)
-        switch update {
-            case .updateNewMessage(let newMsg):
-                switch newMsg.message.content {
-                    case .messageText(let text):
-                        print("Text Message: \(text.text.text)")
-                    default:
-                        break
-                }
-            case .updateMessageEdited:
-                break
-                
-            // ... etc
-
-            default:
-                print("Unhandled Update \(update)")
-                break
-        }
-    } catch {
-        print("Error in update handler \(error.localizedDescription)")
-    }
-}
-```
-
 ### Logging
 
 You can pass additional parameter with `Logger` type to log "send, receive, execute" and custom entries.
 
 ```swift
 import TDLibKit
-public final class StdOutLogger: Logger {
+public final class StdOutLogger: TDLibLogger {
     
     let queue: DispatchQueue
     
@@ -211,7 +208,22 @@ public final class StdOutLogger: Logger {
 }
 
 
-let client = TdClientImpl(completionQueue: .main, logger: StdOutLogger())
+let manager = TDLibClientManager(logger: StdOutLogger())
+```
+
+### Close client
+
+To ensure data integrity, you must properly close all the clients on app termination, either with
+    
+```swift
+let client = manager.createClient()
+try? client.close(completion: { _ in })
+```
+
+or use a blocking function
+
+```swift
+manager.closeAllClients()
 ```
 
 ## Build

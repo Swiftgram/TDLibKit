@@ -12,6 +12,12 @@ final class LoggerCimposer: Composer {
     
     override func composeUtilitySourceCode() throws -> String {
         return ""
+            .addLine("public protocol TDLibLogger {")
+            .addLine("    func log(_ message: String, type: LoggerMessageType?)")
+            .addLine("}")
+            .addBlankLine()
+            .addBlankLine()
+            .addLine("@available(*, deprecated, renamed: \"TDLibLogger\", message: \"interferes with OSLog.Logger\")")
             .addLine("public protocol Logger {")
             .addLine("    func log(_ message: String, type: LoggerMessageType?)")
             .addLine("}")

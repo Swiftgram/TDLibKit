@@ -13,6 +13,8 @@ final class MethodsComposer: Composer {
     // MARK: - Private properties
     
     private let classInfoes: [ClassInfo]
+    private let clientSubclassStrategy: Bool
+    private let executingFuncName: String
     
 
     enum Constants {
@@ -21,8 +23,14 @@ final class MethodsComposer: Composer {
     
     // MARK: - Init
     
-    init(classInfoes: [ClassInfo]) {
+    init(classInfoes: [ClassInfo], clientSubclassStrategy: Bool = false) {
         self.classInfoes = classInfoes
+        self.clientSubclassStrategy = clientSubclassStrategy
+        if (self.clientSubclassStrategy) {
+            self.executingFuncName = "run"
+        } else {
+            self.executingFuncName = "execute"
+        }
     }
     
     
@@ -32,28 +40,54 @@ final class MethodsComposer: Composer {
         let methods = composeMethods(classInfoes: classInfoes)
         let executeFunc = composeExecuteFunc()
         let asyncExecuteFunc = composeExecuteFunc(swiftAsync: true)
-        
-        return ""
-            .addLine("public final class TdApi {")
-            .addBlankLine()
-            .addLine("public let client: TdClient".indent())
-            .addLine("public let encoder = JSONEncoder()".indent())
-            .addLine("public let decoder = JSONDecoder()".indent())
-            .addBlankLine()
-            .addLine("public init(client: TdClient) {".indent())
-            .addLine("self.client = client".indent().indent())
-            .addLine("self.encoder.keyEncodingStrategy = .convertToSnakeCase".indent().indent())
-            .addLine("self.decoder.keyDecodingStrategy = .convertFromSnakeCase".indent().indent())
-            .addLine("}".indent())
-            .addBlankLine()
-            .addBlankLine()
-            .append(methods.indent())
-            .addBlankLine()
-            .append(executeFunc.indent())
-            .addBlankLine()
-            .addBlankLine()
-            .append(asyncExecuteFunc.indent())
-            .addLine("}")
+        let sendFuncStub = composeSendFuncStub()
+        if (self.clientSubclassStrategy) {
+            return ""
+                .addLine("/// Must be subclassed with `send` and `execute` TDLib functions implementation")
+                .addLine("public class TDLibApi {")
+                .addBlankLine()
+                .addLine("public let encoder = JSONEncoder()".indent())
+                .addLine("public let decoder = JSONDecoder()".indent())
+                .addBlankLine()
+                .addLine("public init() {".indent())
+                .addLine("self.encoder.keyEncodingStrategy = .convertToSnakeCase".indent().indent())
+                .addLine("self.decoder.keyDecodingStrategy = .convertFromSnakeCase".indent().indent())
+                .addLine("}".indent())
+                .addBlankLine()
+                .addBlankLine()
+                .append(sendFuncStub.indent())
+                .addBlankLine()
+                .addBlankLine()
+                .append(methods.indent())
+                .addBlankLine()
+                .append(executeFunc.indent())
+                .addBlankLine()
+                .addBlankLine()
+                .append(asyncExecuteFunc.indent())
+                .addLine("}")
+        } else {
+            return ""
+                .addLine("public final class TdApi {")
+                .addBlankLine()
+                .addLine("public let client: TdClient".indent())
+                .addLine("public let encoder = JSONEncoder()".indent())
+                .addLine("public let decoder = JSONDecoder()".indent())
+                .addBlankLine()
+                .addLine("public init(client: TdClient) {".indent())
+                .addLine("self.client = client".indent().indent())
+                .addLine("self.encoder.keyEncodingStrategy = .convertToSnakeCase".indent().indent())
+                .addLine("self.decoder.keyDecodingStrategy = .convertFromSnakeCase".indent().indent())
+                .addLine("}".indent())
+                .addBlankLine()
+                .addBlankLine()
+                .append(methods.indent())
+                .addBlankLine()
+                .append(executeFunc.indent())
+                .addBlankLine()
+                .addBlankLine()
+                .append(asyncExecuteFunc.indent())
+                .addLine("}")
+        }
     }
     
     
@@ -90,10 +124,16 @@ final class MethodsComposer: Composer {
         if swiftAsync && info.rootName == "Ok" {
             result = result.addLine("@discardableResult")
         }
+        let methodScope: String
+        if self.clientSubclassStrategy {
+            methodScope = "public final"
+        } else {
+            methodScope = "public"
+        }
         if paramsList.count > 1 {
             let params = paramsList.reduce("", { $0.addLine("\($1)".indent()) })
             result = result
-                .addLine("public func \(info.name)(")
+                .addLine("\(methodScope) func \(info.name)(")
                 .append(params)
             if swiftAsync {
                 result = result.addLine(") async throws -> \(info.rootName) {")
@@ -102,9 +142,9 @@ final class MethodsComposer: Composer {
             }
         } else {
             if swiftAsync {
-                result = result.addLine("public func \(info.name)(\(paramsList.first ?? "")) async throws -> \(info.rootName) {")
+                result = result.addLine("\(methodScope) func \(info.name)(\(paramsList.first ?? "")) async throws -> \(info.rootName) {")
             } else {
-                result = result.addLine("public func \(info.name)(\(paramsList.first ?? "")) throws {")
+                result = result.addLine("\(methodScope) func \(info.name)(\(paramsList.first ?? "")) throws {")
             }
         }
         
@@ -185,21 +225,34 @@ final class MethodsComposer: Composer {
         }
 
         if swiftAsync {
-            return result.addLine("return try await execute(query: query)")
+            return result.addLine("return try await self.\(self.executingFuncName)(query: query)")
         } else {
-            return result.addLine("execute(query: query, completion: completion)")
+            return result.addLine("self.\(self.executingFuncName)(query: query, completion: completion)")
         }
     }
     
     private func composeExecuteFunc(swiftAsync: Bool = false) -> String {
+        let methodScope: String
+        if self.clientSubclassStrategy {
+            methodScope = "private final"
+        } else {
+            methodScope = "private"
+        }
+
+        let sendMethodSource: String
+        if self.clientSubclassStrategy {
+            sendMethodSource = "self"
+        } else {
+            sendMethodSource = "client"
+        }
         if swiftAsync {
             return ""
                 .addLine(Constants.asyncAvailableString)
-                .addLine("private func execute<Q, R>(query: Q) async throws -> R where Q: Codable, R: Codable {")
+                .addLine("\(methodScope) func \(self.executingFuncName)<Q, R>(query: Q) async throws -> R where Q: Codable, R: Codable {")
                 .addLine("    let dto = DTO(query, encoder: self.encoder)")
                 .addLine("    return try await withCheckedThrowingContinuation { continuation in")
                 .addLine("        do {")
-                .addLine("            try client.send(query: dto) { result in")
+                .addLine("            try \(sendMethodSource).send(query: dto) { result in")
                 .addLine("                if let error = try? self.decoder.decode(DTO<Error>.self, from: result) {")
                 .addLine("                    continuation.resume(with: .failure(error.payload))")
                 .addLine("                } else {")
@@ -217,14 +270,14 @@ final class MethodsComposer: Composer {
                 .addLine("}")
         } else {
             return ""
-                .addLine("private func execute<Q, R>(")
+                .addLine("\(methodScope) func \(self.executingFuncName)<Q, R>(")
                 .addLine("    query: Q,")
                 .addLine("    completion: @escaping (Result<R, Swift.Error>) -> Void)")
                 .addLine("    where Q: Codable, R: Codable {")
                 .addBlankLine()
                 .addLine("    let dto = DTO(query, encoder: self.encoder)")
                 .addLine("    do {")
-                .addLine("        try client.send(query: dto) { [weak self] result in")
+                .addLine("        try \(sendMethodSource).send(query: dto) { [weak self] result in")
                 .addLine("            guard let strongSelf = self else { return }")
                 .addLine("            if let error = try? strongSelf.decoder.decode(DTO<Error>.self, from: result) {")
                 .addLine("                completion(.failure(error.payload))")
@@ -241,5 +294,18 @@ final class MethodsComposer: Composer {
                 .addLine("    }")
                 .addLine("}")
         }
+    }
+
+    private func composeSendFuncStub() -> String {
+        return ""
+            .addLine("/// Sends request to the TDLib client.")
+            .addLine("public func send(query: TdQuery, completion: ((Data) -> Void)? = nil) throws {")
+            .addLine("fatalError(\"send() not implemented\")".indent())
+            .addLine("}")
+            .addBlankLine()
+            .addLine("/// Synchronously executes TDLib request.")
+            .addLine("public func execute(query: TdQuery) throws -> [String:Any]? {")
+            .addLine("fatalError(\"execute() not implemented\")".indent())
+            .addLine("}")
     }
 }
