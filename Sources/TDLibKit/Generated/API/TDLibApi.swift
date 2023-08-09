@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-2e5319ff
-//  https://github.com/tdlib/td/tree/2e5319ff
+//  Based on TDLib 1.8.15-572455ea
+//  https://github.com/tdlib/td/tree/572455ea
 //
 
 import Foundation
@@ -13706,7 +13706,7 @@ public class TDLibApi {
     }
 
     /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
-    /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+    /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
     public final func setDefaultGroupAdministratorRights(
         defaultGroupAdministratorRights: ChatAdministratorRights?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -13718,7 +13718,7 @@ public class TDLibApi {
     }
 
     /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
-    /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+    /// - Parameter defaultGroupAdministratorRights: Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setDefaultGroupAdministratorRights(defaultGroupAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
@@ -13729,7 +13729,7 @@ public class TDLibApi {
     }
 
     /// Sets default administrator rights for adding the bot to channel chats; for bots only
-    /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; may be null
+    /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; pass null to remove default rights
     public final func setDefaultChannelAdministratorRights(
         defaultChannelAdministratorRights: ChatAdministratorRights?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -13741,7 +13741,7 @@ public class TDLibApi {
     }
 
     /// Sets default administrator rights for adding the bot to channel chats; for bots only
-    /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; may be null
+    /// - Parameter defaultChannelAdministratorRights: Default administrator rights for adding the bot to channels; pass null to remove default rights
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setDefaultChannelAdministratorRights(defaultChannelAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
