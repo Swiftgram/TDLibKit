@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -128,7 +128,7 @@ public enum Update: Codable, Equatable, Hashable {
     case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
 
     /// A chat was blocked or unblocked
-    case updateChatIsBlocked(UpdateChatIsBlocked)
+    case updateChatBlockList(UpdateChatBlockList)
 
     /// A chat's has_scheduled_messages field has changed
     case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
@@ -238,11 +238,20 @@ public enum Update: Codable, Equatable, Hashable {
     /// A story became inaccessible
     case updateStoryDeleted(UpdateStoryDeleted)
 
+    /// A story has been successfully sent
+    case updateStorySendSucceeded(UpdateStorySendSucceeded)
+
+    /// A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+    case updateStorySendFailed(UpdateStorySendFailed)
+
     /// The list of active stories posted by a specific chat has changed
     case updateChatActiveStories(UpdateChatActiveStories)
 
     /// Number of chats in a story list has changed
     case updateStoryListChatCount(UpdateStoryListChatCount)
+
+    /// Story stealth mode settings have changed
+    case updateStoryStealthMode(UpdateStoryStealthMode)
 
     /// An option changed its value
     case updateOption(UpdateOption)
@@ -392,7 +401,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatHasProtectedContent
         case updateChatIsTranslatable
         case updateChatIsMarkedAsUnread
-        case updateChatIsBlocked
+        case updateChatBlockList
         case updateChatHasScheduledMessages
         case updateChatFolders
         case updateChatOnlineMemberCount
@@ -429,8 +438,11 @@ public enum Update: Codable, Equatable, Hashable {
         case updateUnreadChatCount
         case updateStory
         case updateStoryDeleted
+        case updateStorySendSucceeded
+        case updateStorySendFailed
         case updateChatActiveStories
         case updateStoryListChatCount
+        case updateStoryStealthMode
         case updateOption
         case updateStickerSet
         case updateInstalledStickerSets
@@ -587,9 +599,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatIsMarkedAsUnread:
             let value = try UpdateChatIsMarkedAsUnread(from: decoder)
             self = .updateChatIsMarkedAsUnread(value)
-        case .updateChatIsBlocked:
-            let value = try UpdateChatIsBlocked(from: decoder)
-            self = .updateChatIsBlocked(value)
+        case .updateChatBlockList:
+            let value = try UpdateChatBlockList(from: decoder)
+            self = .updateChatBlockList(value)
         case .updateChatHasScheduledMessages:
             let value = try UpdateChatHasScheduledMessages(from: decoder)
             self = .updateChatHasScheduledMessages(value)
@@ -698,12 +710,21 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateStoryDeleted:
             let value = try UpdateStoryDeleted(from: decoder)
             self = .updateStoryDeleted(value)
+        case .updateStorySendSucceeded:
+            let value = try UpdateStorySendSucceeded(from: decoder)
+            self = .updateStorySendSucceeded(value)
+        case .updateStorySendFailed:
+            let value = try UpdateStorySendFailed(from: decoder)
+            self = .updateStorySendFailed(value)
         case .updateChatActiveStories:
             let value = try UpdateChatActiveStories(from: decoder)
             self = .updateChatActiveStories(value)
         case .updateStoryListChatCount:
             let value = try UpdateStoryListChatCount(from: decoder)
             self = .updateStoryListChatCount(value)
+        case .updateStoryStealthMode:
+            let value = try UpdateStoryStealthMode(from: decoder)
+            self = .updateStoryStealthMode(value)
         case .updateOption:
             let value = try UpdateOption(from: decoder)
             self = .updateOption(value)
@@ -932,8 +953,8 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatIsMarkedAsUnread(let value):
             try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatIsBlocked(let value):
-            try container.encode(Kind.updateChatIsBlocked, forKey: .type)
+        case .updateChatBlockList(let value):
+            try container.encode(Kind.updateChatBlockList, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatHasScheduledMessages(let value):
             try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
@@ -1043,11 +1064,20 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateStoryDeleted(let value):
             try container.encode(Kind.updateStoryDeleted, forKey: .type)
             try value.encode(to: encoder)
+        case .updateStorySendSucceeded(let value):
+            try container.encode(Kind.updateStorySendSucceeded, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateStorySendFailed(let value):
+            try container.encode(Kind.updateStorySendFailed, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatActiveStories(let value):
             try container.encode(Kind.updateChatActiveStories, forKey: .type)
             try value.encode(to: encoder)
         case .updateStoryListChatCount(let value):
             try container.encode(Kind.updateStoryListChatCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateStoryStealthMode(let value):
+            try container.encode(Kind.updateStoryStealthMode, forKey: .type)
             try value.encode(to: encoder)
         case .updateOption(let value):
             try container.encode(Kind.updateOption, forKey: .type)
@@ -1928,21 +1958,21 @@ public struct UpdateChatIsMarkedAsUnread: Codable, Equatable, Hashable {
 }
 
 /// A chat was blocked or unblocked
-public struct UpdateChatIsBlocked: Codable, Equatable, Hashable {
+public struct UpdateChatBlockList: Codable, Equatable, Hashable {
+
+    /// Block list to which the chat is added; may be null if none
+    public let blockList: BlockList?
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// New value of is_blocked
-    public let isBlocked: Bool
-
 
     public init(
-        chatId: Int64,
-        isBlocked: Bool
+        blockList: BlockList?,
+        chatId: Int64
     ) {
+        self.blockList = blockList
         self.chatId = chatId
-        self.isBlocked = isBlocked
     }
 }
 
@@ -2660,6 +2690,54 @@ public struct UpdateStoryDeleted: Codable, Equatable, Hashable {
     }
 }
 
+/// A story has been successfully sent
+public struct UpdateStorySendSucceeded: Codable, Equatable, Hashable {
+
+    /// The previous temporary story identifier
+    public let oldStoryId: Int
+
+    /// The sent story
+    public let story: Story
+
+
+    public init(
+        oldStoryId: Int,
+        story: Story
+    ) {
+        self.oldStoryId = oldStoryId
+        self.story = story
+    }
+}
+
+/// A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+public struct UpdateStorySendFailed: Codable, Equatable, Hashable {
+
+    /// The cause of the failure; may be null if unknown
+    public let error: CanSendStoryResult?
+
+    /// An error code
+    public let errorCode: Int
+
+    /// Error message
+    public let errorMessage: String
+
+    /// The failed to send story
+    public let story: Story
+
+
+    public init(
+        error: CanSendStoryResult?,
+        errorCode: Int,
+        errorMessage: String,
+        story: Story
+    ) {
+        self.error = error
+        self.errorCode = errorCode
+        self.errorMessage = errorMessage
+        self.story = story
+    }
+}
+
 /// The list of active stories posted by a specific chat has changed
 public struct UpdateChatActiveStories: Codable, Equatable, Hashable {
 
@@ -2688,6 +2766,25 @@ public struct UpdateStoryListChatCount: Codable, Equatable, Hashable {
     ) {
         self.chatCount = chatCount
         self.storyList = storyList
+    }
+}
+
+/// Story stealth mode settings have changed
+public struct UpdateStoryStealthMode: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled
+    public let activeUntilDate: Int
+
+    /// Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown
+    public let cooldownUntilDate: Int
+
+
+    public init(
+        activeUntilDate: Int,
+        cooldownUntilDate: Int
+    ) {
+        self.activeUntilDate = activeUntilDate
+        self.cooldownUntilDate = cooldownUntilDate
     }
 }
 

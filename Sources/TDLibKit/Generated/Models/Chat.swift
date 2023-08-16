@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// Background set for the chat; may be null if none
     public let background: ChatBackground?
+
+    /// Block list to which the chat is added; may be null if none
+    public let blockList: BlockList?
 
     /// True, if the chat messages can be deleted for all users
     public let canBeDeletedForAllUsers: Bool
@@ -48,9 +51,6 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// Chat unique identifier
     public let id: Int64
-
-    /// True, if the chat is blocked by the current user and private messages from the chat can't be received
-    public let isBlocked: Bool
 
     /// True, if the chat is marked as unread
     public let isMarkedAsUnread: Bool
@@ -117,6 +117,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         actionBar: ChatActionBar?,
         availableReactions: ChatAvailableReactions,
         background: ChatBackground?,
+        blockList: BlockList?,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeReported: Bool,
@@ -126,7 +127,6 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         hasProtectedContent: Bool,
         hasScheduledMessages: Bool,
         id: Int64,
-        isBlocked: Bool,
         isMarkedAsUnread: Bool,
         isTranslatable: Bool,
         lastMessage: Message?,
@@ -151,6 +151,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.actionBar = actionBar
         self.availableReactions = availableReactions
         self.background = background
+        self.blockList = blockList
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeReported = canBeReported
@@ -160,7 +161,6 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.hasProtectedContent = hasProtectedContent
         self.hasScheduledMessages = hasScheduledMessages
         self.id = id
-        self.isBlocked = isBlocked
         self.isMarkedAsUnread = isMarkedAsUnread
         self.isTranslatable = isTranslatable
         self.lastMessage = lastMessage

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// A short user bio; may be null for bots
     public let bio: FormattedText?
+
+    /// Block list to which the user is added; may be null if none
+    public let blockList: BlockList?
 
     /// For bots, information about the bot; may be null if the user isn't a bot
     public let botInfo: BotInfo?
@@ -37,9 +40,6 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if voice and video notes can't be sent or forwarded to the user
     public let hasRestrictedVoiceAndVideoNoteMessages: Bool
 
-    /// True, if the user is blocked by the current user
-    public let isBlocked: Bool
-
     /// True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     public let needPhoneNumberPrivacyException: Bool
 
@@ -61,6 +61,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     public init(
         bio: FormattedText?,
+        blockList: BlockList?,
         botInfo: BotInfo?,
         canBeCalled: Bool,
         groupInCommonCount: Int,
@@ -68,7 +69,6 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         hasPrivateCalls: Bool,
         hasPrivateForwards: Bool,
         hasRestrictedVoiceAndVideoNoteMessages: Bool,
-        isBlocked: Bool,
         needPhoneNumberPrivacyException: Bool,
         personalPhoto: ChatPhoto?,
         photo: ChatPhoto?,
@@ -77,6 +77,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         supportsVideoCalls: Bool
     ) {
         self.bio = bio
+        self.blockList = blockList
         self.botInfo = botInfo
         self.canBeCalled = canBeCalled
         self.groupInCommonCount = groupInCommonCount
@@ -84,7 +85,6 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.hasPrivateCalls = hasPrivateCalls
         self.hasPrivateForwards = hasPrivateForwards
         self.hasRestrictedVoiceAndVideoNoteMessages = hasRestrictedVoiceAndVideoNoteMessages
-        self.isBlocked = isBlocked
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
         self.personalPhoto = personalPhoto
         self.photo = photo

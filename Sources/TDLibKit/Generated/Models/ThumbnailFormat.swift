@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public enum ThumbnailFormat: Codable, Equatable, Hashable {
     /// The thumbnail is in JPEG format
     case thumbnailFormatJpeg
 
-    /// The thumbnail is in static GIF format. It will be used only for some bot inline results
+    /// The thumbnail is in static GIF format. It will be used only for some bot inline query results
     case thumbnailFormatGif
 
     /// The thumbnail is in MPEG4 format. It will be used only for some animations and videos

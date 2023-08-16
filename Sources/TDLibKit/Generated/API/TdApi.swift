@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -3303,7 +3303,7 @@ public final class TdApi {
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
     /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
-    /// - Parameter resultId: Identifier of the inline result
+    /// - Parameter resultId: Identifier of the inline query result
     /// - Returns: The sent message
     public func sendInlineQueryResultMessage(
         chatId: Int64?,
@@ -3334,7 +3334,7 @@ public final class TdApi {
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
     /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
-    /// - Parameter resultId: Identifier of the inline result
+    /// - Parameter resultId: Identifier of the inline query result
     /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendInlineQueryResultMessage(
@@ -5357,7 +5357,7 @@ public final class TdApi {
     /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat where the query was sent
-    /// - Parameter offset: Offset of the first entry to return
+    /// - Parameter offset: Offset of the first entry to return; use empty string to get the first chunk of results
     /// - Parameter query: Text of the query
     /// - Parameter userLocation: Location of the user; pass null if unknown or the bot doesn't need user's location
     /// - Returns: Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -5382,7 +5382,7 @@ public final class TdApi {
     /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat where the query was sent
-    /// - Parameter offset: Offset of the first entry to return
+    /// - Parameter offset: Offset of the first entry to return; use empty string to get the first chunk of results
     /// - Parameter query: Text of the query
     /// - Parameter userLocation: Location of the user; pass null if unknown or the bot doesn't need user's location
     /// - Returns: Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -8757,16 +8757,31 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sends a new story. Returns a temporary story with identifier 0
-    /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// Checks whether the current user can send a story
+    public func canSendStory(completion: @escaping (Result<CanSendStoryResult, Swift.Error>) -> Void) throws {
+        let query = CanSendStory()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Checks whether the current user can send a story
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func canSendStory() async throws -> CanSendStoryResult {
+        let query = CanSendStory()
+        return try await self.execute(query: query)
+    }
+
+    /// Sends a new story. Returns a temporary story
+    /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
     /// - Parameter content: Content of the story
     /// - Parameter isPinned: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
-    /// - Returns: A temporary story with identifier 0
+    /// - Returns: A temporary story
     public func sendStory(
         activePeriod: Int?,
+        areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         isPinned: Bool?,
@@ -8776,6 +8791,7 @@ public final class TdApi {
     ) throws {
         let query = SendStory(
             activePeriod: activePeriod,
+            areas: areas,
             caption: caption,
             content: content,
             isPinned: isPinned,
@@ -8785,17 +8801,19 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sends a new story. Returns a temporary story with identifier 0
-    /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// Sends a new story. Returns a temporary story
+    /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
     /// - Parameter content: Content of the story
     /// - Parameter isPinned: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
-    /// - Returns: A temporary story with identifier 0
+    /// - Returns: A temporary story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendStory(
         activePeriod: Int?,
+        areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         isPinned: Bool?,
@@ -8804,6 +8822,7 @@ public final class TdApi {
     ) async throws -> Story {
         let query = SendStory(
             activePeriod: activePeriod,
+            areas: areas,
             caption: caption,
             content: content,
             isPinned: isPinned,
@@ -8814,16 +8833,19 @@ public final class TdApi {
     }
 
     /// Changes content and caption of a previously sent story
+    /// - Parameter areas: New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
     /// - Parameter caption: New story caption; pass null to keep the current caption
     /// - Parameter content: New content of the story; pass null to keep the current content
     /// - Parameter storyId: Identifier of the story to edit
     public func editStory(
+        areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         storyId: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditStory(
+            areas: areas,
             caption: caption,
             content: content,
             storyId: storyId
@@ -8832,17 +8854,20 @@ public final class TdApi {
     }
 
     /// Changes content and caption of a previously sent story
+    /// - Parameter areas: New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
     /// - Parameter caption: New story caption; pass null to keep the current caption
     /// - Parameter content: New content of the story; pass null to keep the current content
     /// - Parameter storyId: Identifier of the story to edit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func editStory(
+        areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         storyId: Int?
     ) async throws -> Ok {
         let query = EditStory(
+            areas: areas,
             caption: caption,
             content: content,
             storyId: storyId
@@ -9162,39 +9187,124 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
-    /// - Parameter limit: The maximum number of story viewers to return//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter offsetViewer: A viewer from which to return next viewers; pass null to get results from the beginning
+    /// Returns reactions, which can be chosen for a story
+    /// - Parameter rowSize: Number of reaction per row, 5-25
+    /// - Returns: Reactions, which can be chosen for a story
+    public func getStoryAvailableReactions(
+        rowSize: Int?,
+        completion: @escaping (Result<AvailableReactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStoryAvailableReactions(
+            rowSize: rowSize
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns reactions, which can be chosen for a story
+    /// - Parameter rowSize: Number of reaction per row, 5-25
+    /// - Returns: Reactions, which can be chosen for a story
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStoryAvailableReactions(rowSize: Int?) async throws -> AvailableReactions {
+        let query = GetStoryAvailableReactions(
+            rowSize: rowSize
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes chosen reaction on a story
+    /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+    /// - Parameter storyId: The identifier of the story
+    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
+    public func setStoryReaction(
+        reactionType: ReactionType?,
+        storyId: Int?,
+        storySenderChatId: Int64?,
+        updateRecentReactions: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetStoryReaction(
+            reactionType: reactionType,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId,
+            updateRecentReactions: updateRecentReactions
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes chosen reaction on a story
+    /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+    /// - Parameter storyId: The identifier of the story
+    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setStoryReaction(
+        reactionType: ReactionType?,
+        storyId: Int?,
+        storySenderChatId: Int64?,
+        updateRecentReactions: Bool?
+    ) async throws -> Ok {
+        let query = SetStoryReaction(
+            reactionType: reactionType,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId,
+            updateRecentReactions: updateRecentReactions
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns viewers of a story. The method can be called if story.can_get_viewers == true
+    /// - Parameter limit: The maximum number of story viewers to return
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyContacts: Pass true to get only contacts; pass false to get all relevant viewers
+    /// - Parameter preferWithReaction: Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+    /// - Parameter query: Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
     /// - Parameter storyId: Story identifier
-    /// - Returns: Viewers of a recent outgoing story. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: Viewers of a story
     public func getStoryViewers(
         limit: Int?,
-        offsetViewer: MessageViewer?,
+        offset: String?,
+        onlyContacts: Bool?,
+        preferWithReaction: Bool?,
+        query: String?,
         storyId: Int?,
-        completion: @escaping (Result<MessageViewers, Swift.Error>) -> Void
+        completion: @escaping (Result<StoryViewers, Swift.Error>) -> Void
     ) throws {
         let query = GetStoryViewers(
             limit: limit,
-            offsetViewer: offsetViewer,
+            offset: offset,
+            onlyContacts: onlyContacts,
+            preferWithReaction: preferWithReaction,
+            query: query,
             storyId: storyId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
-    /// - Parameter limit: The maximum number of story viewers to return//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter offsetViewer: A viewer from which to return next viewers; pass null to get results from the beginning
+    /// Returns viewers of a story. The method can be called if story.can_get_viewers == true
+    /// - Parameter limit: The maximum number of story viewers to return
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyContacts: Pass true to get only contacts; pass false to get all relevant viewers
+    /// - Parameter preferWithReaction: Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+    /// - Parameter query: Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
     /// - Parameter storyId: Story identifier
-    /// - Returns: Viewers of a recent outgoing story. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: Viewers of a story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStoryViewers(
         limit: Int?,
-        offsetViewer: MessageViewer?,
+        offset: String?,
+        onlyContacts: Bool?,
+        preferWithReaction: Bool?,
+        query: String?,
         storyId: Int?
-    ) async throws -> MessageViewers {
+    ) async throws -> StoryViewers {
         let query = GetStoryViewers(
             limit: limit,
-            offsetViewer: offsetViewer,
+            offset: offset,
+            onlyContacts: onlyContacts,
+            preferWithReaction: preferWithReaction,
+            query: query,
             storyId: storyId
         )
         return try await self.execute(query: query)
@@ -9240,6 +9350,20 @@ public final class TdApi {
             storySenderChatId: storySenderChatId,
             text: text
         )
+        return try await self.execute(query: query)
+    }
+
+    /// Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds and for the next "story_stealth_mode_future_period" seconds; for Telegram Premium users only
+    public func activateStoryStealthMode(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ActivateStoryStealthMode()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds and for the next "story_stealth_mode_future_period" seconds; for Telegram Premium users only
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func activateStoryStealthMode() async throws -> Ok {
+        let query = ActivateStoryStealthMode()
         return try await self.execute(query: query)
     }
 
@@ -11776,32 +11900,32 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
-    /// - Parameter isBlocked: New value of is_blocked
+    /// Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+    /// - Parameter blockList: New block list for the message sender; pass null to unblock the message sender
     /// - Parameter senderId: Identifier of a message sender to block/unblock
-    public func toggleMessageSenderIsBlocked(
-        isBlocked: Bool?,
+    public func setMessageSenderBlockList(
+        blockList: BlockList?,
         senderId: MessageSender?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ToggleMessageSenderIsBlocked(
-            isBlocked: isBlocked,
+        let query = SetMessageSenderBlockList(
+            blockList: blockList,
             senderId: senderId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
-    /// - Parameter isBlocked: New value of is_blocked
+    /// Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+    /// - Parameter blockList: New block list for the message sender; pass null to unblock the message sender
     /// - Parameter senderId: Identifier of a message sender to block/unblock
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func toggleMessageSenderIsBlocked(
-        isBlocked: Bool?,
+    public func setMessageSenderBlockList(
+        blockList: BlockList?,
         senderId: MessageSender?
     ) async throws -> Ok {
-        let query = ToggleMessageSenderIsBlocked(
-            isBlocked: isBlocked,
+        let query = SetMessageSenderBlockList(
+            blockList: blockList,
             senderId: senderId
         )
         return try await self.execute(query: query)
@@ -11851,15 +11975,18 @@ public final class TdApi {
     }
 
     /// Returns users and chats that were blocked by the current user
+    /// - Parameter blockList: Block list from which to return users
     /// - Parameter limit: The maximum number of users and chats to return; up to 100
     /// - Parameter offset: Number of users and chats to skip in the result; must be non-negative
     /// - Returns: Users and chats that were blocked by the current user
     public func getBlockedMessageSenders(
+        blockList: BlockList?,
         limit: Int?,
         offset: Int?,
         completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
     ) throws {
         let query = GetBlockedMessageSenders(
+            blockList: blockList,
             limit: limit,
             offset: offset
         )
@@ -11867,15 +11994,18 @@ public final class TdApi {
     }
 
     /// Returns users and chats that were blocked by the current user
+    /// - Parameter blockList: Block list from which to return users
     /// - Parameter limit: The maximum number of users and chats to return; up to 100
     /// - Parameter offset: Number of users and chats to skip in the result; must be non-negative
     /// - Returns: Users and chats that were blocked by the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBlockedMessageSenders(
+        blockList: BlockList?,
         limit: Int?,
         offset: Int?
     ) async throws -> MessageSenders {
         let query = GetBlockedMessageSenders(
+            blockList: blockList,
             limit: limit,
             offset: offset
         )

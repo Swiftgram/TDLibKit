@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
     /// Identifier of the replied message or story; pass null if none
     public let replyTo: MessageReplyTo?
 
-    /// Identifier of the inline result
+    /// Identifier of the inline query result
     public let resultId: String?
 
 

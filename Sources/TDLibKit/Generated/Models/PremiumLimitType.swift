@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -52,6 +52,15 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
     /// The maximum number of active stories
     case premiumLimitTypeActiveStoryCount
 
+    /// The maximum number of stories sent per week
+    case premiumLimitTypeWeeklySentStoryCount
+
+    /// The maximum number of stories sent per month
+    case premiumLimitTypeMonthlySentStoryCount
+
+    /// The maximum length of captions of sent stories
+    case premiumLimitTypeStoryCaptionLength
+
 
     private enum Kind: String, Codable {
         case premiumLimitTypeSupergroupCount
@@ -67,6 +76,9 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
         case premiumLimitTypeChatFolderInviteLinkCount
         case premiumLimitTypeShareableChatFolderCount
         case premiumLimitTypeActiveStoryCount
+        case premiumLimitTypeWeeklySentStoryCount
+        case premiumLimitTypeMonthlySentStoryCount
+        case premiumLimitTypeStoryCaptionLength
     }
 
     public init(from decoder: Decoder) throws {
@@ -99,6 +111,12 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
             self = .premiumLimitTypeShareableChatFolderCount
         case .premiumLimitTypeActiveStoryCount:
             self = .premiumLimitTypeActiveStoryCount
+        case .premiumLimitTypeWeeklySentStoryCount:
+            self = .premiumLimitTypeWeeklySentStoryCount
+        case .premiumLimitTypeMonthlySentStoryCount:
+            self = .premiumLimitTypeMonthlySentStoryCount
+        case .premiumLimitTypeStoryCaptionLength:
+            self = .premiumLimitTypeStoryCaptionLength
         }
     }
 
@@ -131,6 +149,12 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumLimitTypeShareableChatFolderCount, forKey: .type)
         case .premiumLimitTypeActiveStoryCount:
             try container.encode(Kind.premiumLimitTypeActiveStoryCount, forKey: .type)
+        case .premiumLimitTypeWeeklySentStoryCount:
+            try container.encode(Kind.premiumLimitTypeWeeklySentStoryCount, forKey: .type)
+        case .premiumLimitTypeMonthlySentStoryCount:
+            try container.encode(Kind.premiumLimitTypeMonthlySentStoryCount, forKey: .type)
+        case .premiumLimitTypeStoryCaptionLength:
+            try container.encode(Kind.premiumLimitTypeStoryCaptionLength, forKey: .type)
         }
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents a story
 public struct Story: Codable, Equatable, Hashable, Identifiable {
+
+    /// Clickable areas to be shown on the story content
+    public let areas: [StoryArea]
 
     /// True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
     public let canBeForwarded: Bool
@@ -24,6 +27,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
     /// Caption of the story
     public let caption: FormattedText
+
+    /// Type of the chosen reaction; may be null if none
+    public let chosenReactionType: ReactionType?
 
     /// Content of the story
     public let content: StoryContent
@@ -43,6 +49,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story is being edited by the current user
     public let isBeingEdited: Bool
 
+    /// True, if the story is being sent by the current user
+    public let isBeingSent: Bool
+
     /// True, if the story was edited
     public let isEdited: Bool
 
@@ -60,32 +69,38 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        areas: [StoryArea],
         canBeForwarded: Bool,
         canBeReplied: Bool,
         canGetViewers: Bool,
         caption: FormattedText,
+        chosenReactionType: ReactionType?,
         content: StoryContent,
         date: Int,
         hasExpiredViewers: Bool,
         id: Int,
         interactionInfo: StoryInteractionInfo?,
         isBeingEdited: Bool,
+        isBeingSent: Bool,
         isEdited: Bool,
         isPinned: Bool,
         isVisibleOnlyForSelf: Bool,
         privacySettings: StoryPrivacySettings,
         senderChatId: Int64
     ) {
+        self.areas = areas
         self.canBeForwarded = canBeForwarded
         self.canBeReplied = canBeReplied
         self.canGetViewers = canGetViewers
         self.caption = caption
+        self.chosenReactionType = chosenReactionType
         self.content = content
         self.date = date
         self.hasExpiredViewers = hasExpiredViewers
         self.id = id
         self.interactionInfo = interactionInfo
         self.isBeingEdited = isBeingEdited
+        self.isBeingSent = isBeingSent
         self.isEdited = isEdited
         self.isPinned = isPinned
         self.isVisibleOnlyForSelf = isVisibleOnlyForSelf

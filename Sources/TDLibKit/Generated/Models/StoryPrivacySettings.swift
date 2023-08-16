@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public enum StoryPrivacySettings: Codable, Equatable, Hashable {
 
     /// The story can be viewed by everyone
-    case storyPrivacySettingsEveryone
+    case storyPrivacySettingsEveryone(StoryPrivacySettingsEveryone)
 
     /// The story can be viewed by all contacts except chosen users
     case storyPrivacySettingsContacts(StoryPrivacySettingsContacts)
@@ -38,7 +38,8 @@ public enum StoryPrivacySettings: Codable, Equatable, Hashable {
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
         case .storyPrivacySettingsEveryone:
-            self = .storyPrivacySettingsEveryone
+            let value = try StoryPrivacySettingsEveryone(from: decoder)
+            self = .storyPrivacySettingsEveryone(value)
         case .storyPrivacySettingsContacts:
             let value = try StoryPrivacySettingsContacts(from: decoder)
             self = .storyPrivacySettingsContacts(value)
@@ -53,8 +54,9 @@ public enum StoryPrivacySettings: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .storyPrivacySettingsEveryone:
+        case .storyPrivacySettingsEveryone(let value):
             try container.encode(Kind.storyPrivacySettingsEveryone, forKey: .type)
+            try value.encode(to: encoder)
         case .storyPrivacySettingsContacts(let value):
             try container.encode(Kind.storyPrivacySettingsContacts, forKey: .type)
             try value.encode(to: encoder)
@@ -67,10 +69,22 @@ public enum StoryPrivacySettings: Codable, Equatable, Hashable {
     }
 }
 
+/// The story can be viewed by everyone
+public struct StoryPrivacySettingsEveryone: Codable, Equatable, Hashable {
+
+    /// Identifiers of the users that can't see the story; always unknown and empty for non-owned stories
+    public let exceptUserIds: [Int64]
+
+
+    public init(exceptUserIds: [Int64]) {
+        self.exceptUserIds = exceptUserIds
+    }
+}
+
 /// The story can be viewed by all contacts except chosen users
 public struct StoryPrivacySettingsContacts: Codable, Equatable, Hashable {
 
-    /// User identifiers of the contacts that can't see the story; always empty for non-owned stories
+    /// User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories
     public let exceptUserIds: [Int64]
 
 
@@ -82,7 +96,7 @@ public struct StoryPrivacySettingsContacts: Codable, Equatable, Hashable {
 /// The story can be viewed by certain specified users
 public struct StoryPrivacySettingsSelectedContacts: Codable, Equatable, Hashable {
 
-    /// Identifiers of the users; always empty for non-owned stories
+    /// Identifiers of the users; always unknown and empty for non-owned stories
     public let userIds: [Int64]
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
     /// A badge in the user's profile
     case premiumFeatureProfileBadge
 
-    /// A emoji status shown along with the user's name
+    /// An emoji status shown along with the user's name
     case premiumFeatureEmojiStatus
 
     /// Profile photo animation on message and chat screens
@@ -57,6 +57,9 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
 
     /// Allowed to translate chat messages real-time
     case premiumFeatureRealTimeChatTranslation
+
+    /// Allowed to use many additional features for stories
+    case premiumFeatureUpgradedStories
 
 
     private enum Kind: String, Codable {
@@ -75,6 +78,7 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureForumTopicIcon
         case premiumFeatureAppIcons
         case premiumFeatureRealTimeChatTranslation
+        case premiumFeatureUpgradedStories
     }
 
     public init(from decoder: Decoder) throws {
@@ -111,6 +115,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureAppIcons
         case .premiumFeatureRealTimeChatTranslation:
             self = .premiumFeatureRealTimeChatTranslation
+        case .premiumFeatureUpgradedStories:
+            self = .premiumFeatureUpgradedStories
         }
     }
 
@@ -147,6 +153,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureAppIcons, forKey: .type)
         case .premiumFeatureRealTimeChatTranslation:
             try container.encode(Kind.premiumFeatureRealTimeChatTranslation, forKey: .type)
+        case .premiumFeatureUpgradedStories:
+            try container.encode(Kind.premiumFeatureUpgradedStories, forKey: .type)
         }
     }
 }

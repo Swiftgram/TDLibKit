@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Returns users and chats that were blocked by the current user
 public struct GetBlockedMessageSenders: Codable, Equatable, Hashable {
+
+    /// Block list from which to return users
+    public let blockList: BlockList?
 
     /// The maximum number of users and chats to return; up to 100
     public let limit: Int?
@@ -21,9 +24,11 @@ public struct GetBlockedMessageSenders: Codable, Equatable, Hashable {
 
 
     public init(
+        blockList: BlockList?,
         limit: Int?,
         offset: Int?
     ) {
+        self.blockList = blockList
         self.limit = limit
         self.offset = offset
     }

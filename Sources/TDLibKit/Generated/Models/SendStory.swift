@@ -3,18 +3,21 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
 
 
-/// Sends a new story. Returns a temporary story with identifier 0
+/// Sends a new story. Returns a temporary story
 public struct SendStory: Codable, Equatable, Hashable {
 
-    /// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     public let activePeriod: Int?
+
+    /// Clickable rectangle areas to be shown on the story media; pass null if none
+    public let areas: InputStoryAreas?
 
     /// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
     public let caption: FormattedText?
@@ -34,6 +37,7 @@ public struct SendStory: Codable, Equatable, Hashable {
 
     public init(
         activePeriod: Int?,
+        areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         isPinned: Bool?,
@@ -41,6 +45,7 @@ public struct SendStory: Codable, Equatable, Hashable {
         protectContent: Bool?
     ) {
         self.activePeriod = activePeriod
+        self.areas = areas
         self.caption = caption
         self.content = content
         self.isPinned = isPinned

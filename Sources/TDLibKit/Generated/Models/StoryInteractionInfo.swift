@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about interactions with a story
 public struct StoryInteractionInfo: Codable, Equatable, Hashable {
+
+    /// Number of reactions added to the story
+    public let reactionCount: Int
 
     /// Identifiers of at most 3 recent viewers of the story
     public let recentViewerUserIds: [Int64]
@@ -21,9 +24,11 @@ public struct StoryInteractionInfo: Codable, Equatable, Hashable {
 
 
     public init(
+        reactionCount: Int,
         recentViewerUserIds: [Int64],
         viewCount: Int
     ) {
+        self.reactionCount = reactionCount
         self.recentViewerUserIds = recentViewerUserIds
         self.viewCount = viewCount
     }

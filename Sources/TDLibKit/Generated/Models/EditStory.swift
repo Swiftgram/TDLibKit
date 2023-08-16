@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.15-53888437
-//  https://github.com/tdlib/td/tree/53888437
+//  Based on TDLib 1.8.16-d44617b4
+//  https://github.com/tdlib/td/tree/d44617b4
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Changes content and caption of a previously sent story
 public struct EditStory: Codable, Equatable, Hashable {
+
+    /// New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
+    public let areas: InputStoryAreas?
 
     /// New story caption; pass null to keep the current caption
     public let caption: FormattedText?
@@ -24,10 +27,12 @@ public struct EditStory: Codable, Equatable, Hashable {
 
 
     public init(
+        areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         storyId: Int?
     ) {
+        self.areas = areas
         self.caption = caption
         self.content = content
         self.storyId = storyId
