@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-4d1d22d6
-//  https://github.com/tdlib/td/tree/4d1d22d6
+//  Based on TDLib 1.8.16-470c36ce
+//  https://github.com/tdlib/td/tree/470c36ce
 //
 
 import Foundation
@@ -1668,7 +1668,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a list of frequently used chats. Supported only if the chat info database is enabled
+    /// Returns a list of frequently used chats
     /// - Parameter category: Category of chats to be returned
     /// - Parameter limit: The maximum number of chats to be returned; up to 30
     /// - Returns: A list of frequently used chats
@@ -1684,7 +1684,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a list of frequently used chats. Supported only if the chat info database is enabled
+    /// Returns a list of frequently used chats
     /// - Parameter category: Category of chats to be returned
     /// - Parameter limit: The maximum number of chats to be returned; up to 30
     /// - Returns: A list of frequently used chats
