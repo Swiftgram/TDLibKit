@@ -4,6 +4,17 @@
 
 import PackageDescription
 
+
+// Workaround for Xcode 14.3+ https://github.com/Swiftgram/TDLibKit/issues/31
+#if swift(>=5.8)
+var swiftSettings: [SwiftSetting] = [
+    .unsafeFlags(["-Xllvm", "-vectorize-slp=false"], .when(configuration: .release))
+]
+#else
+var swiftSettings: [SwiftSetting] = []
+#endif
+
+
 let package = Package(
     name: "TDLibKit",
     platforms: [
@@ -25,8 +36,7 @@ let package = Package(
         .target(
             name: "TDLibKit",
             dependencies: ["TDLibFramework"],
-            swiftSettings: [.unsafeFlags(["-Onone"])]
-            // Workaround for https://github.com/Swiftgram/TDLibKit/issues/31
+            swiftSettings: swiftSettings
         ),
         .testTarget(
             name: "TDLibKitTests",

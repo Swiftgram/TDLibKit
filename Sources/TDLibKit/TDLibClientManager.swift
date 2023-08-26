@@ -91,7 +91,6 @@ public class TDLibClient: TDLibApi, Equatable {
 }
 
 
-#warning("Breaking changes may be introduced without major version bump.")
 open class TDLibClientManager {
     /// 'receiveQueue' is a separate queue that calls ``td_receive`` in a loop
     private let receiveQueue = DispatchQueue(label: "app.swiftgram.TDLibKit.receive")
@@ -106,6 +105,7 @@ open class TDLibClientManager {
     ///
     /// - Parameter logger: The logger object for debug print all queries and responses
     public init(logger: TDLibLogger? = nil) {
+        #warning("Breaking changes may be introduced to TDLibClientManager without major version bump.")
         self.logger = logger
         self.receiveQueue.async { [weak self] in
             while (true) {
