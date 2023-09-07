@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-470c36ce
-//  https://github.com/tdlib/td/tree/470c36ce
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -2093,7 +2093,7 @@ public struct UpdateNotification: Codable, Equatable, Hashable {
 /// A list of active notifications in a notification group has changed
 public struct UpdateNotificationGroup: Codable, Equatable, Hashable {
 
-    /// List of added group notifications, sorted by notification ID
+    /// List of added group notifications, sorted by notification identifier
     public let addedNotifications: [Notification]
 
     /// Identifier of a chat to which all notifications in the group belong
@@ -2108,7 +2108,7 @@ public struct UpdateNotificationGroup: Codable, Equatable, Hashable {
     /// Identifier of the notification sound to be played; 0 if sound is disabled
     public let notificationSoundId: TdInt64
 
-    /// Identifiers of removed group notifications, sorted by notification ID
+    /// Identifiers of removed group notifications, sorted by notification identifier
     public let removedNotificationIds: [Int]
 
     /// Total number of unread notifications in the group, can be bigger than number of active notifications

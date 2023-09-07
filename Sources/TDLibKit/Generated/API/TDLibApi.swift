@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-470c36ce
-//  https://github.com/tdlib/td/tree/470c36ce
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -1435,10 +1435,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+    /// Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter remoteFileId: Remote identifier of the file to get
-    /// - Returns: Information about a file by its remote ID
+    /// - Returns: Information about a file by its remote identifier
     public final func getRemoteFile(
         fileType: FileType?,
         remoteFileId: String?,
@@ -1451,10 +1451,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+    /// Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter remoteFileId: Remote identifier of the file to get
-    /// - Returns: Information about a file by its remote ID
+    /// - Returns: Information about a file by its remote identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getRemoteFile(
         fileType: FileType?,
@@ -15470,7 +15470,7 @@ public class TDLibApi {
     }
 
     /// Adds or changes a custom local language pack to the current localization target
-    /// - Parameter info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+    /// - Parameter info: Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     /// - Parameter strings: Strings of the new language pack
     public final func setCustomLanguagePack(
         info: LanguagePackInfo?,
@@ -15485,7 +15485,7 @@ public class TDLibApi {
     }
 
     /// Adds or changes a custom local language pack to the current localization target
-    /// - Parameter info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+    /// - Parameter info: Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     /// - Parameter strings: Strings of the new language pack
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-470c36ce
-//  https://github.com/tdlib/td/tree/470c36ce
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Points to a file
 public enum InputFile: Codable, Equatable, Hashable {
 
-    /// A file defined by its unique ID
+    /// A file defined by its unique identifier
     case inputFileId(InputFileId)
 
-    /// A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+    /// A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     case inputFileRemote(InputFileRemote)
 
     /// A file defined by a local path
@@ -71,7 +71,7 @@ public enum InputFile: Codable, Equatable, Hashable {
     }
 }
 
-/// A file defined by its unique ID
+/// A file defined by its unique identifier
 public struct InputFileId: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique file identifier
@@ -83,7 +83,7 @@ public struct InputFileId: Codable, Equatable, Hashable, Identifiable {
     }
 }
 
-/// A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+/// A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
 public struct InputFileRemote: Codable, Equatable, Hashable, Identifiable {
 
     /// Remote file identifier

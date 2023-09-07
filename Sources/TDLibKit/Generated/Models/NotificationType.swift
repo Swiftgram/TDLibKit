@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-470c36ce
-//  https://github.com/tdlib/td/tree/470c36ce
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -109,7 +109,7 @@ public struct NotificationTypeNewPushMessage: Codable, Equatable, Hashable {
     /// True, if the message is outgoing
     public let isOutgoing: Bool
 
-    /// The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as a message to reply
+    /// The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
     public let messageId: Int64
 
     /// Identifier of the sender of the message. Corresponding user or chat may be inaccessible

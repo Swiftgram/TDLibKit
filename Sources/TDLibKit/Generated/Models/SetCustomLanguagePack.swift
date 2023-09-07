@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-470c36ce
-//  https://github.com/tdlib/td/tree/470c36ce
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Adds or changes a custom local language pack to the current localization target
 public struct SetCustomLanguagePack: Codable, Equatable, Hashable {
 
-    /// Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+    /// Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     public let info: LanguagePackInfo?
 
     /// Strings of the new language pack
