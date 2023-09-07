@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-8a6f68f3
-//  https://github.com/tdlib/td/tree/8a6f68f3
+//  Based on TDLib 1.8.17-edc52845
+//  https://github.com/tdlib/td/tree/edc52845
 //
 
 import Foundation
@@ -24,8 +24,17 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
 
     public let description: String
 
+    /// True, if many users reported this chat as a fake account
+    public let isFake: Bool
+
     /// True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
     public let isPublic: Bool
+
+    /// True, if many users reported this chat as a scam
+    public let isScam: Bool
+
+    /// True, if the chat is verified
+    public let isVerified: Bool
 
     /// Number of members in the chat
     public let memberCount: Int
@@ -48,7 +57,10 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         chatId: Int64,
         createsJoinRequest: Bool,
         description: String,
+        isFake: Bool,
         isPublic: Bool,
+        isScam: Bool,
+        isVerified: Bool,
         memberCount: Int,
         memberUserIds: [Int64],
         photo: ChatPhotoInfo?,
@@ -59,7 +71,10 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.createsJoinRequest = createsJoinRequest
         self.description = description
+        self.isFake = isFake
         self.isPublic = isPublic
+        self.isScam = isScam
+        self.isVerified = isVerified
         self.memberCount = memberCount
         self.memberUserIds = memberUserIds
         self.photo = photo
