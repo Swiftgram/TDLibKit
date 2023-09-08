@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.16-8a6f68f3
-//  https://github.com/tdlib/td/tree/8a6f68f3
+//  Based on TDLib 1.8.17-00258ccb
+//  https://github.com/tdlib/td/tree/00258ccb
 //
 
 import Foundation
@@ -12423,6 +12423,50 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+    /// - Parameter chatId: Chat identifier for which to find stickers
+    /// - Parameter query: Search query
+    /// - Parameter returnOnlyMainEmoji: Pass true if only main emoji for each found sticker must be included in the result
+    /// - Parameter stickerType: Type of the stickers to search for
+    /// - Returns: Unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+    public final func getAllStickerEmojis(
+        chatId: Int64?,
+        query: String?,
+        returnOnlyMainEmoji: Bool?,
+        stickerType: StickerType?,
+        completion: @escaping (Result<Emojis, Swift.Error>) -> Void
+    ) throws {
+        let query = GetAllStickerEmojis(
+            chatId: chatId,
+            query: query,
+            returnOnlyMainEmoji: returnOnlyMainEmoji,
+            stickerType: stickerType
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+    /// - Parameter chatId: Chat identifier for which to find stickers
+    /// - Parameter query: Search query
+    /// - Parameter returnOnlyMainEmoji: Pass true if only main emoji for each found sticker must be included in the result
+    /// - Parameter stickerType: Type of the stickers to search for
+    /// - Returns: Unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getAllStickerEmojis(
+        chatId: Int64?,
+        query: String?,
+        returnOnlyMainEmoji: Bool?,
+        stickerType: StickerType?
+    ) async throws -> Emojis {
+        let query = GetAllStickerEmojis(
+            chatId: chatId,
+            query: query,
+            returnOnlyMainEmoji: returnOnlyMainEmoji,
+            stickerType: stickerType
+        )
+        return try await self.run(query: query)
+    }
+
     /// Searches for stickers from public sticker sets that correspond to any of the given emoji
     /// - Parameter emojis: Space-separated list of emoji to search for; must be non-empty
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
@@ -13877,6 +13921,90 @@ public class TDLibApi {
     public final func setDefaultChannelAdministratorRights(defaultChannelAdministratorRights: ChatAdministratorRights?) async throws -> Ok {
         let query = SetDefaultChannelAdministratorRights(
             defaultChannelAdministratorRights: defaultChannelAdministratorRights
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Returns: A 404 error if can't and the access can be granted by call to allowBotToSendMessages
+    public final func canBotSendMessages(
+        botUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CanBotSendMessages(
+            botUserId: botUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Returns: A 404 error if can't and the access can be granted by call to allowBotToSendMessages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func canBotSendMessages(botUserId: Int64?) async throws -> Ok {
+        let query = CanBotSendMessages(
+            botUserId: botUserId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Allows the specified bot to send messages to the user
+    /// - Parameter botUserId: Identifier of the target bot
+    public final func allowBotToSendMessages(
+        botUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AllowBotToSendMessages(
+            botUserId: botUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Allows the specified bot to send messages to the user
+    /// - Parameter botUserId: Identifier of the target bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func allowBotToSendMessages(botUserId: Int64?) async throws -> Ok {
+        let query = AllowBotToSendMessages(
+            botUserId: botUserId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sends a custom request from a Web App
+    /// - Parameter botUserId: Identifier of the bot
+    /// - Parameter method: The method name
+    /// - Parameter parameters: JSON-serialized method parameters
+    public final func sendWebAppCustomRequest(
+        botUserId: Int64?,
+        method: String?,
+        parameters: String?,
+        completion: @escaping (Result<CustomRequestResult, Swift.Error>) -> Void
+    ) throws {
+        let query = SendWebAppCustomRequest(
+            botUserId: botUserId,
+            method: method,
+            parameters: parameters
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sends a custom request from a Web App
+    /// - Parameter botUserId: Identifier of the bot
+    /// - Parameter method: The method name
+    /// - Parameter parameters: JSON-serialized method parameters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func sendWebAppCustomRequest(
+        botUserId: Int64?,
+        method: String?,
+        parameters: String?
+    ) async throws -> CustomRequestResult {
+        let query = SendWebAppCustomRequest(
+            botUserId: botUserId,
+            method: method,
+            parameters: parameters
         )
         return try await self.run(query: query)
     }
@@ -17738,6 +17866,50 @@ public class TDLibApi {
     public final func acceptTermsOfService(termsOfServiceId: String?) async throws -> Ok {
         let query = AcceptTermsOfService(
             termsOfServiceId: termsOfServiceId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+    /// - Parameter limit: The maximum number of objects to return
+    /// - Parameter query: Query to search for
+    /// - Parameter returnNoneForEmptyQuery: Pass true to receive no results for an empty query
+    /// - Parameter strings: The strings to search in for the query
+    /// - Returns: 0-based positions of strings that matched
+    public final func searchStringsByPrefix(
+        limit: Int?,
+        query: String?,
+        returnNoneForEmptyQuery: Bool?,
+        strings: [String]?,
+        completion: @escaping (Result<FoundPositions, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchStringsByPrefix(
+            limit: limit,
+            query: query,
+            returnNoneForEmptyQuery: returnNoneForEmptyQuery,
+            strings: strings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+    /// - Parameter limit: The maximum number of objects to return
+    /// - Parameter query: Query to search for
+    /// - Parameter returnNoneForEmptyQuery: Pass true to receive no results for an empty query
+    /// - Parameter strings: The strings to search in for the query
+    /// - Returns: 0-based positions of strings that matched
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func searchStringsByPrefix(
+        limit: Int?,
+        query: String?,
+        returnNoneForEmptyQuery: Bool?,
+        strings: [String]?
+    ) async throws -> FoundPositions {
+        let query = SearchStringsByPrefix(
+            limit: limit,
+            query: query,
+            returnNoneForEmptyQuery: returnNoneForEmptyQuery,
+            strings: strings
         )
         return try await self.run(query: query)
     }
