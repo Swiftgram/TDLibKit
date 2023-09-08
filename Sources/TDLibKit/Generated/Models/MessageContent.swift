@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-edc52845
-//  https://github.com/tdlib/td/tree/edc52845
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -1631,18 +1631,11 @@ public struct MessageWebsiteConnected: Codable, Equatable, Hashable {
 /// The user allowed the bot to send messages
 public struct MessageBotWriteAccessAllowed: Codable, Equatable, Hashable {
 
-    /// True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
-    public let byRequest: Bool
-
     /// Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
     public let webApp: WebApp?
 
 
-    public init(
-        byRequest: Bool,
-        webApp: WebApp?
-    ) {
-        self.byRequest = byRequest
+    public init(webApp: WebApp?) {
         self.webApp = webApp
     }
 }

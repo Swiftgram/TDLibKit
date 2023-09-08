@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-edc52845
-//  https://github.com/tdlib/td/tree/edc52845
+//  Based on TDLib 1.8.16-8a6f68f3
+//  https://github.com/tdlib/td/tree/8a6f68f3
 //
 
 import Foundation
@@ -19,9 +19,6 @@ public struct StoryViewers: Codable, Equatable, Hashable {
     /// Approximate total number of story viewers found
     public let totalCount: Int
 
-    /// Approximate total number of reactions set by found story viewers
-    public let totalReactionCount: Int
-
     /// List of story viewers
     public let viewers: [StoryViewer]
 
@@ -29,12 +26,10 @@ public struct StoryViewers: Codable, Equatable, Hashable {
     public init(
         nextOffset: String,
         totalCount: Int,
-        totalReactionCount: Int,
         viewers: [StoryViewer]
     ) {
         self.nextOffset = nextOffset
         self.totalCount = totalCount
-        self.totalReactionCount = totalReactionCount
         self.viewers = viewers
     }
 }
