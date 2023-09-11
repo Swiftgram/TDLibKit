@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-00258ccb
-//  https://github.com/tdlib/td/tree/00258ccb
+//  Based on TDLib 1.8.17-edb3d087
+//  https://github.com/tdlib/td/tree/edb3d087
 //
 
 import Foundation
@@ -1836,7 +1836,7 @@ public final class TdApi {
     }
 
     /// Checks whether a username can be set for a chat
-    /// - Parameter chatId: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+    /// - Parameter chatId: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
     /// - Parameter username: Username to be checked
     public func checkChatUsername(
         chatId: Int64?,
@@ -1851,7 +1851,7 @@ public final class TdApi {
     }
 
     /// Checks whether a username can be set for a chat
-    /// - Parameter chatId: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+    /// - Parameter chatId: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
     /// - Parameter username: Username to be checked
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func checkChatUsername(
