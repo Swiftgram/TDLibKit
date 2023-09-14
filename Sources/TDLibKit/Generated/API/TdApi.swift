@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -5553,12 +5553,12 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+    /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
-    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+    /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
+    /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
     public func getWebAppUrl(
         applicationName: String?,
         botUserId: Int64?,
@@ -5575,12 +5575,12 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+    /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
-    /// - Returns: An HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+    /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
+    /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppUrl(
         applicationName: String?,
@@ -5634,14 +5634,14 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter replyTo: Identifier of the replied message or story for the message sent by the Web App; pass null if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     public func openWebApp(
         applicationName: String?,
         botUserId: Int64?,
@@ -5664,14 +5664,14 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+    /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter replyTo: Identifier of the replied message or story for the message sent by the Web App; pass null if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func openWebApp(
         applicationName: String?,
@@ -9367,9 +9367,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a bot that can be added to attachment menu
+    /// Returns information about a bot that can be added to attachment or side menu
     /// - Parameter botUserId: Bot's user identifier
-    /// - Returns: Information about a bot that can be added to attachment menu
+    /// - Returns: Information about a bot that can be added to attachment or side menu
     public func getAttachmentMenuBot(
         botUserId: Int64?,
         completion: @escaping (Result<AttachmentMenuBot, Swift.Error>) -> Void
@@ -9380,9 +9380,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a bot that can be added to attachment menu
+    /// Returns information about a bot that can be added to attachment or side menu
     /// - Parameter botUserId: Bot's user identifier
-    /// - Returns: Information about a bot that can be added to attachment menu
+    /// - Returns: Information about a bot that can be added to attachment or side menu
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getAttachmentMenuBot(botUserId: Int64?) async throws -> AttachmentMenuBot {
         let query = GetAttachmentMenuBot(
@@ -9391,7 +9391,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    /// Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     /// - Parameter botUserId: Bot's user identifier
     /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
@@ -9409,7 +9409,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    /// Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     /// - Parameter botUserId: Bot's user identifier
     /// - Parameter isAdded: Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
@@ -14359,6 +14359,29 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Confirms an unconfirmed session of the current user from another device
+    /// - Parameter sessionId: Session identifier
+    public func confirmSession(
+        sessionId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ConfirmSession(
+            sessionId: sessionId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Confirms an unconfirmed session of the current user from another device
+    /// - Parameter sessionId: Session identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func confirmSession(sessionId: TdInt64?) async throws -> Ok {
+        let query = ConfirmSession(
+            sessionId: sessionId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Toggles whether a session can accept incoming calls
     /// - Parameter canAcceptCalls: Pass true to allow accepting incoming calls by the session; pass false otherwise
     /// - Parameter sessionId: Session identifier
@@ -18193,7 +18216,7 @@ public final class TdApi {
     /// Adds a proxy server for network requests. Can be called before authorization
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server IP address
+    /// - Parameter server: Proxy server domain or IP address
     /// - Parameter type: Proxy type
     public func addProxy(
         enable: Bool?,
@@ -18214,7 +18237,7 @@ public final class TdApi {
     /// Adds a proxy server for network requests. Can be called before authorization
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server IP address
+    /// - Parameter server: Proxy server domain or IP address
     /// - Parameter type: Proxy type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addProxy(
@@ -18236,7 +18259,7 @@ public final class TdApi {
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
     /// - Parameter proxyId: Proxy identifier
-    /// - Parameter server: Proxy server IP address
+    /// - Parameter server: Proxy server domain or IP address
     /// - Parameter type: Proxy type
     public func editProxy(
         enable: Bool?,
@@ -18260,7 +18283,7 @@ public final class TdApi {
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter port: Proxy server port
     /// - Parameter proxyId: Proxy identifier
-    /// - Parameter server: Proxy server IP address
+    /// - Parameter server: Proxy server domain or IP address
     /// - Parameter type: Proxy type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editProxy(
@@ -18846,7 +18869,7 @@ public final class TdApi {
     /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
     /// - Parameter dcId: Identifier of a datacenter with which to test connection
     /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server IP address
+    /// - Parameter server: Proxy server domain or IP address
     /// - Parameter timeout: The maximum overall timeout for the request
     /// - Parameter type: Proxy type
     public func testProxy(
@@ -18870,7 +18893,7 @@ public final class TdApi {
     /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
     /// - Parameter dcId: Identifier of a datacenter with which to test connection
     /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server IP address
+    /// - Parameter server: Proxy server domain or IP address
     /// - Parameter timeout: The maximum overall timeout for the request
     /// - Parameter type: Proxy type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

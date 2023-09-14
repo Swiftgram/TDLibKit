@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -68,7 +68,7 @@ public enum UserType: Codable, Equatable, Hashable {
 /// A bot (see https://core.telegram.org/bots)
 public struct UserTypeBot: Codable, Equatable, Hashable {
 
-    /// True, if the bot can be added to attachment menu
+    /// True, if the bot can be added to attachment or side menu
     public let canBeAddedToAttachmentMenu: Bool
 
     /// True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription

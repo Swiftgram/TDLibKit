@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public struct ConnectedWebsite: Codable, Equatable, Hashable, Identifiable {
     public let id: TdInt64
 
     /// IP address from which the user was logged in, in human-readable format
-    public let ip: String
+    public let ipAddress: String
 
     /// Point in time (Unix timestamp) when obtained authorization was last used
     public let lastActiveDate: Int
@@ -46,7 +46,7 @@ public struct ConnectedWebsite: Codable, Equatable, Hashable, Identifiable {
         browser: String,
         domainName: String,
         id: TdInt64,
-        ip: String,
+        ipAddress: String,
         lastActiveDate: Int,
         location: String,
         logInDate: Int,
@@ -56,7 +56,7 @@ public struct ConnectedWebsite: Codable, Equatable, Hashable, Identifiable {
         self.browser = browser
         self.domainName = domainName
         self.id = id
-        self.ip = ip
+        self.ipAddress = ipAddress
         self.lastActiveDate = lastActiveDate
         self.location = location
         self.logInDate = logInDate

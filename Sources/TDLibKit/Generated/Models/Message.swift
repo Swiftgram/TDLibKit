@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// For channel posts and anonymous group messages, optional author signature
     public let authorSignature: String
 
-    /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
+    /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     public let autoDeleteIn: Double
 
     /// True, if the message can be deleted for all users
@@ -109,11 +109,11 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
 
-    /// Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field
+    /// Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet
     public let selfDestructIn: Double
 
-    /// The message's self-destruct time, in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
-    public let selfDestructTime: Int
+    /// The message's self-destruct type; may be null if none
+    public let selfDestructType: MessageSelfDestructType?
 
     /// Identifier of the sender of the message
     public let senderId: MessageSender
@@ -162,7 +162,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         restrictionReason: String,
         schedulingState: MessageSchedulingState?,
         selfDestructIn: Double,
-        selfDestructTime: Int,
+        selfDestructType: MessageSelfDestructType?,
         senderId: MessageSender,
         sendingState: MessageSendingState?,
         unreadReactions: [UnreadReaction],
@@ -201,7 +201,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.restrictionReason = restrictionReason
         self.schedulingState = schedulingState
         self.selfDestructIn = selfDestructIn
-        self.selfDestructTime = selfDestructTime
+        self.selfDestructType = selfDestructType
         self.senderId = senderId
         self.sendingState = sendingState
         self.unreadReactions = unreadReactions

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -23,14 +23,14 @@ public enum StoryPrivacySettings: Codable, Equatable, Hashable {
     case storyPrivacySettingsCloseFriends
 
     /// The story can be viewed by certain specified users
-    case storyPrivacySettingsSelectedContacts(StoryPrivacySettingsSelectedContacts)
+    case storyPrivacySettingsSelectedUsers(StoryPrivacySettingsSelectedUsers)
 
 
     private enum Kind: String, Codable {
         case storyPrivacySettingsEveryone
         case storyPrivacySettingsContacts
         case storyPrivacySettingsCloseFriends
-        case storyPrivacySettingsSelectedContacts
+        case storyPrivacySettingsSelectedUsers
     }
 
     public init(from decoder: Decoder) throws {
@@ -45,9 +45,9 @@ public enum StoryPrivacySettings: Codable, Equatable, Hashable {
             self = .storyPrivacySettingsContacts(value)
         case .storyPrivacySettingsCloseFriends:
             self = .storyPrivacySettingsCloseFriends
-        case .storyPrivacySettingsSelectedContacts:
-            let value = try StoryPrivacySettingsSelectedContacts(from: decoder)
-            self = .storyPrivacySettingsSelectedContacts(value)
+        case .storyPrivacySettingsSelectedUsers:
+            let value = try StoryPrivacySettingsSelectedUsers(from: decoder)
+            self = .storyPrivacySettingsSelectedUsers(value)
         }
     }
 
@@ -62,8 +62,8 @@ public enum StoryPrivacySettings: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storyPrivacySettingsCloseFriends:
             try container.encode(Kind.storyPrivacySettingsCloseFriends, forKey: .type)
-        case .storyPrivacySettingsSelectedContacts(let value):
-            try container.encode(Kind.storyPrivacySettingsSelectedContacts, forKey: .type)
+        case .storyPrivacySettingsSelectedUsers(let value):
+            try container.encode(Kind.storyPrivacySettingsSelectedUsers, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -94,7 +94,7 @@ public struct StoryPrivacySettingsContacts: Codable, Equatable, Hashable {
 }
 
 /// The story can be viewed by certain specified users
-public struct StoryPrivacySettingsSelectedContacts: Codable, Equatable, Hashable {
+public struct StoryPrivacySettingsSelectedUsers: Codable, Equatable, Hashable {
 
     /// Identifiers of the users; always unknown and empty for non-owned stories
     public let userIds: [Int64]

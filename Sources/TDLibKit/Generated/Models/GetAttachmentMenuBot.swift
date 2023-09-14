@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
 
 
-/// Returns information about a bot that can be added to attachment menu
+/// Returns information about a bot that can be added to attachment or side menu
 public struct GetAttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Bot's user identifier

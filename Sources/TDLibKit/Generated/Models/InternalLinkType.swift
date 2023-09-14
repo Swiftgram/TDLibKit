@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -100,6 +100,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to application settings
     case internalLinkTypeSettings
 
+    /// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then user needs to confirm adding the bot to side and attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to attachment menu, then use getWebAppUrl with the given URL
+    case internalLinkTypeSideMenuBot(InternalLinkTypeSideMenuBot)
+
     /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
     case internalLinkTypeStickerSet(InternalLinkTypeStickerSet)
 
@@ -127,7 +130,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
-    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a mini-apps disclaimer instead of the dialog, and call toggleBotIsAddedToAttachmentMenu to add the bot to the menu before opening the Web App. If the user confirms, then call getWebAppLinkUrl and open the returned URL as a Web App
     case internalLinkTypeWebApp(InternalLinkTypeWebApp)
 
 
@@ -161,6 +164,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeQrCodeAuthentication
         case internalLinkTypeRestorePurchases
         case internalLinkTypeSettings
+        case internalLinkTypeSideMenuBot
         case internalLinkTypeStickerSet
         case internalLinkTypeStory
         case internalLinkTypeTheme
@@ -254,6 +258,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeRestorePurchases
         case .internalLinkTypeSettings:
             self = .internalLinkTypeSettings
+        case .internalLinkTypeSideMenuBot:
+            let value = try InternalLinkTypeSideMenuBot(from: decoder)
+            self = .internalLinkTypeSideMenuBot(value)
         case .internalLinkTypeStickerSet:
             let value = try InternalLinkTypeStickerSet(from: decoder)
             self = .internalLinkTypeStickerSet(value)
@@ -365,6 +372,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try container.encode(Kind.internalLinkTypeRestorePurchases, forKey: .type)
         case .internalLinkTypeSettings:
             try container.encode(Kind.internalLinkTypeSettings, forKey: .type)
+        case .internalLinkTypeSideMenuBot(let value):
+            try container.encode(Kind.internalLinkTypeSideMenuBot, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeStickerSet(let value):
             try container.encode(Kind.internalLinkTypeStickerSet, forKey: .type)
             try value.encode(to: encoder)
@@ -700,7 +710,7 @@ public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
     /// Proxy server port
     public let port: Int
 
-    /// Proxy server IP address
+    /// Proxy server domain or IP address
     public let server: String
 
     /// Type of the proxy
@@ -727,6 +737,25 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
 
     public init(chatUsername: String) {
         self.chatUsername = chatUsername
+    }
+}
+
+/// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then user needs to confirm adding the bot to side and attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to attachment menu, then use getWebAppUrl with the given URL
+public struct InternalLinkTypeSideMenuBot: Codable, Equatable, Hashable {
+
+    /// Username of the bot
+    public let botUsername: String
+
+    /// URL to be passed to getWebAppUrl
+    public let url: String
+
+
+    public init(
+        botUsername: String,
+        url: String
+    ) {
+        self.botUsername = botUsername
+        self.url = url
     }
 }
 
@@ -840,7 +869,7 @@ public struct InternalLinkTypeVideoChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a mini-apps disclaimer instead of the dialog, and call toggleBotIsAddedToAttachmentMenu to add the bot to the menu before opening the Web App. If the user confirms, then call getWebAppLinkUrl and open the returned URL as a Web App
 public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the Web App

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -28,9 +28,6 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
     /// True, if incoming secret chats can be accepted by the session
     public let canAcceptSecretChats: Bool
 
-    /// A two-letter country code for the country from which the session was created, based on the IP address
-    public let country: String
-
     /// Model of the device the application has been run or is running on, as provided by the application
     public let deviceModel: String
 
@@ -38,7 +35,7 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
     public let id: TdInt64
 
     /// IP address from which the session was created, in human-readable format
-    public let ip: String
+    public let ipAddress: String
 
     /// True, if this session is the current session
     public let isCurrent: Bool
@@ -49,17 +46,20 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
     /// True, if a 2-step verification password is needed to complete authorization of the session
     public let isPasswordPending: Bool
 
+    /// True, if the session wasn't confirmed from another session
+    public let isUnconfirmed: Bool
+
     /// Point in time (Unix timestamp) when the session was last used
     public let lastActiveDate: Int
+
+    /// A human-readable description of the location from which the session was created, based on the IP address
+    public let location: String
 
     /// Point in time (Unix timestamp) when the user has logged in
     public let logInDate: Int
 
     /// Operating system the application has been run or is running on, as provided by the application
     public let platform: String
-
-    /// Region code from which the session was created, based on the IP address
-    public let region: String
 
     /// Version of the operating system the application has been run or is running on, as provided by the application
     public let systemVersion: String
@@ -74,17 +74,17 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
         applicationVersion: String,
         canAcceptCalls: Bool,
         canAcceptSecretChats: Bool,
-        country: String,
         deviceModel: String,
         id: TdInt64,
-        ip: String,
+        ipAddress: String,
         isCurrent: Bool,
         isOfficialApplication: Bool,
         isPasswordPending: Bool,
+        isUnconfirmed: Bool,
         lastActiveDate: Int,
+        location: String,
         logInDate: Int,
         platform: String,
-        region: String,
         systemVersion: String,
         type: SessionType
     ) {
@@ -93,17 +93,17 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
         self.applicationVersion = applicationVersion
         self.canAcceptCalls = canAcceptCalls
         self.canAcceptSecretChats = canAcceptSecretChats
-        self.country = country
         self.deviceModel = deviceModel
         self.id = id
-        self.ip = ip
+        self.ipAddress = ipAddress
         self.isCurrent = isCurrent
         self.isOfficialApplication = isOfficialApplication
         self.isPasswordPending = isPasswordPending
+        self.isUnconfirmed = isUnconfirmed
         self.lastActiveDate = lastActiveDate
+        self.location = location
         self.logInDate = logInDate
         self.platform = platform
-        self.region = region
         self.systemVersion = systemVersion
         self.type = type
     }

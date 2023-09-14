@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -295,7 +295,10 @@ public enum Update: Codable, Equatable, Hashable {
     /// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
     case updateUsersNearby(UpdateUsersNearby)
 
-    /// The list of bots added to attachment menu has changed
+    /// The first unconfirmed session has changed
+    case updateUnconfirmedSession(UpdateUnconfirmedSession)
+
+    /// The list of bots added to attachment or side menu has changed
     case updateAttachmentMenuBots(UpdateAttachmentMenuBots)
 
     /// A message was sent by an opened Web App, so the Web App needs to be closed
@@ -457,6 +460,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateConnectionState
         case updateTermsOfService
         case updateUsersNearby
+        case updateUnconfirmedSession
         case updateAttachmentMenuBots
         case updateWebAppMessageSent
         case updateActiveEmojiReactions
@@ -767,6 +771,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateUsersNearby:
             let value = try UpdateUsersNearby(from: decoder)
             self = .updateUsersNearby(value)
+        case .updateUnconfirmedSession:
+            let value = try UpdateUnconfirmedSession(from: decoder)
+            self = .updateUnconfirmedSession(value)
         case .updateAttachmentMenuBots:
             let value = try UpdateAttachmentMenuBots(from: decoder)
             self = .updateAttachmentMenuBots(value)
@@ -1120,6 +1127,9 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateUsersNearby(let value):
             try container.encode(Kind.updateUsersNearby, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateUnconfirmedSession(let value):
+            try container.encode(Kind.updateUnconfirmedSession, forKey: .type)
             try value.encode(to: encoder)
         case .updateAttachmentMenuBots(let value):
             try container.encode(Kind.updateAttachmentMenuBots, forKey: .type)
@@ -3010,10 +3020,22 @@ public struct UpdateUsersNearby: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of bots added to attachment menu has changed
+/// The first unconfirmed session has changed
+public struct UpdateUnconfirmedSession: Codable, Equatable, Hashable {
+
+    /// The unconfirmed session; may be null if none
+    public let session: UnconfirmedSession?
+
+
+    public init(session: UnconfirmedSession?) {
+        self.session = session
+    }
+}
+
+/// The list of bots added to attachment or side menu has changed
 public struct UpdateAttachmentMenuBots: Codable, Equatable, Hashable {
 
-    /// The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
+    /// The new list of bots. The bots must not be shown on scheduled messages screen
     public let bots: [AttachmentMenuBot]
 
 

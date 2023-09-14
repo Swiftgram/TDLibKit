@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct TestProxy: Codable, Equatable, Hashable {
     /// Proxy server port
     public let port: Int?
 
-    /// Proxy server IP address
+    /// Proxy server domain or IP address
     public let server: String?
 
     /// The maximum overall timeout for the request

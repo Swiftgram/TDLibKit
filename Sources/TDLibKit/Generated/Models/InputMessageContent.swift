@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -370,8 +370,8 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
     /// Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
     public let photo: InputFile
 
-    /// Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-    public let selfDestructTime: Int
+    /// Photo self-destruct type; pass null if none; private chats only
+    public let selfDestructType: MessageSelfDestructType?
 
     /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
     public let thumbnail: InputThumbnail?
@@ -386,7 +386,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
         hasSpoiler: Bool,
         height: Int,
         photo: InputFile,
-        selfDestructTime: Int,
+        selfDestructType: MessageSelfDestructType?,
         thumbnail: InputThumbnail?,
         width: Int
     ) {
@@ -395,7 +395,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
         self.hasSpoiler = hasSpoiler
         self.height = height
         self.photo = photo
-        self.selfDestructTime = selfDestructTime
+        self.selfDestructType = selfDestructType
         self.thumbnail = thumbnail
         self.width = width
     }
@@ -453,8 +453,8 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     /// Video height
     public let height: Int
 
-    /// Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-    public let selfDestructTime: Int
+    /// Video self-destruct type; pass null if none; private chats only
+    public let selfDestructType: MessageSelfDestructType?
 
     /// True, if the video is supposed to be streamed
     public let supportsStreaming: Bool
@@ -475,7 +475,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
         duration: Int,
         hasSpoiler: Bool,
         height: Int,
-        selfDestructTime: Int,
+        selfDestructType: MessageSelfDestructType?,
         supportsStreaming: Bool,
         thumbnail: InputThumbnail?,
         video: InputFile,
@@ -486,7 +486,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
         self.duration = duration
         self.hasSpoiler = hasSpoiler
         self.height = height
-        self.selfDestructTime = selfDestructTime
+        self.selfDestructType = selfDestructType
         self.supportsStreaming = supportsStreaming
         self.thumbnail = thumbnail
         self.video = video

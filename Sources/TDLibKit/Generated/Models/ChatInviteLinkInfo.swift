@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.17-0ada45c3
-//  https://github.com/tdlib/td/tree/0ada45c3
+//  Based on TDLib 1.8.18-e79f5409
+//  https://github.com/tdlib/td/tree/e79f5409
 //
 
 import Foundation
@@ -48,8 +48,8 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
     /// Title of the chat
     public let title: String
 
-    /// Type of the chat; basic_group_id or supergroup_id can be 0 if the user has no access to the chat before joining
-    public let type: ChatType
+    /// Type of the chat
+    public let type: InviteLinkChatType
 
 
     public init(
@@ -65,7 +65,7 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         memberUserIds: [Int64],
         photo: ChatPhotoInfo?,
         title: String,
-        type: ChatType
+        type: InviteLinkChatType
     ) {
         self.accessibleFor = accessibleFor
         self.chatId = chatId
