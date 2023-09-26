@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -16,6 +16,12 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// Clickable areas to be shown on the story content
     public let areas: [StoryArea]
 
+    /// True, if the story can be deleted
+    public let canBeDeleted: Bool
+
+    /// True, if the story can be edited
+    public let canBeEdited: Bool
+
     /// True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
     public let canBeForwarded: Bool
 
@@ -24,6 +30,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if users viewed the story can be received through getStoryViewers
     public let canGetViewers: Bool
+
+    /// True, if the story's is_pinned value can be changed
+    public let canToggleIsPinned: Bool
 
     /// Caption of the story
     public let caption: FormattedText
@@ -70,9 +79,12 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         areas: [StoryArea],
+        canBeDeleted: Bool,
+        canBeEdited: Bool,
         canBeForwarded: Bool,
         canBeReplied: Bool,
         canGetViewers: Bool,
+        canToggleIsPinned: Bool,
         caption: FormattedText,
         chosenReactionType: ReactionType?,
         content: StoryContent,
@@ -89,9 +101,12 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         senderChatId: Int64
     ) {
         self.areas = areas
+        self.canBeDeleted = canBeDeleted
+        self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
         self.canBeReplied = canBeReplied
         self.canGetViewers = canGetViewers
+        self.canToggleIsPinned = canToggleIsPinned
         self.caption = caption
         self.chosenReactionType = chosenReactionType
         self.content = content

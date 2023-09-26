@@ -1,17 +1,20 @@
 //
-//  GetArchivedStories.swift
+//  GetChatArchivedStories.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
 
 
-/// Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
-public struct GetArchivedStories: Codable, Equatable, Hashable {
+/// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+public struct GetChatArchivedStories: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64?
 
     /// Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     public let fromStoryId: Int?
@@ -21,9 +24,11 @@ public struct GetArchivedStories: Codable, Equatable, Hashable {
 
 
     public init(
+        chatId: Int64?,
         fromStoryId: Int?,
         limit: Int?
     ) {
+        self.chatId = chatId
         self.fromStoryId = fromStoryId
         self.limit = limit
     }

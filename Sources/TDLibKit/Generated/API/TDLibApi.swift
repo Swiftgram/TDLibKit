@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -5124,7 +5124,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+    /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
@@ -5142,7 +5142,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+    /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
@@ -6685,7 +6685,7 @@ public class TDLibApi {
 
     /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
     /// - Parameter description: 
-    /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
+    /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessages
     /// - Parameter isChannel: Pass true to create a channel chat; ignored if a forum is created
     /// - Parameter isForum: Pass true to create a forum supergroup chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
@@ -6716,7 +6716,7 @@ public class TDLibApi {
 
     /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
     /// - Parameter description: 
-    /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessage
+    /// - Parameter forImport: Pass true to create a supergroup for importing messages using importMessages
     /// - Parameter isChannel: Pass true to create a channel chat; ignored if a forum is created
     /// - Parameter isForum: Pass true to create a forum supergroup chat
     /// - Parameter location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
@@ -8767,23 +8767,48 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Checks whether the current user can send a story
-    public final func canSendStory(completion: @escaping (Result<CanSendStoryResult, Swift.Error>) -> Void) throws {
-        let query = CanSendStory()
+    /// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+    /// - Returns: Channel chats in which the current user has the right to post stories
+    public final func getChatsToSendStories(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
+        let query = GetChatsToSendStories()
         self.run(query: query, completion: completion)
     }
 
-    /// Checks whether the current user can send a story
+    /// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+    /// - Returns: Channel chats in which the current user has the right to post stories
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func canSendStory() async throws -> CanSendStoryResult {
-        let query = CanSendStory()
+    public final func getChatsToSendStories() async throws -> Chats {
+        let query = GetChatsToSendStories()
         return try await self.run(query: query)
     }
 
-    /// Sends a new story. Returns a temporary story
+    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+    /// - Parameter chatId: Chat identifier
+    public final func canSendStory(
+        chatId: Int64?,
+        completion: @escaping (Result<CanSendStoryResult, Swift.Error>) -> Void
+    ) throws {
+        let query = CanSendStory(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func canSendStory(chatId: Int64?) async throws -> CanSendStoryResult {
+        let query = CanSendStory(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+    /// - Parameter chatId: Identifier of the chat that will post the story
     /// - Parameter content: Content of the story
     /// - Parameter isPinned: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story
@@ -8793,6 +8818,7 @@ public class TDLibApi {
         activePeriod: Int?,
         areas: InputStoryAreas?,
         caption: FormattedText?,
+        chatId: Int64?,
         content: InputStoryContent?,
         isPinned: Bool?,
         privacySettings: StoryPrivacySettings?,
@@ -8803,6 +8829,7 @@ public class TDLibApi {
             activePeriod: activePeriod,
             areas: areas,
             caption: caption,
+            chatId: chatId,
             content: content,
             isPinned: isPinned,
             privacySettings: privacySettings,
@@ -8811,10 +8838,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Sends a new story. Returns a temporary story
+    /// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+    /// - Parameter chatId: Identifier of the chat that will post the story
     /// - Parameter content: Content of the story
     /// - Parameter isPinned: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story
@@ -8825,6 +8853,7 @@ public class TDLibApi {
         activePeriod: Int?,
         areas: InputStoryAreas?,
         caption: FormattedText?,
+        chatId: Int64?,
         content: InputStoryContent?,
         isPinned: Bool?,
         privacySettings: StoryPrivacySettings?,
@@ -8834,6 +8863,7 @@ public class TDLibApi {
             activePeriod: activePeriod,
             areas: areas,
             caption: caption,
+            chatId: chatId,
             content: content,
             isPinned: isPinned,
             privacySettings: privacySettings,
@@ -8842,130 +8872,156 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes content and caption of a previously sent story
+    /// Changes content and caption of a story. Can be called only if story.can_be_edited == true
     /// - Parameter areas: New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
     /// - Parameter caption: New story caption; pass null to keep the current caption
     /// - Parameter content: New content of the story; pass null to keep the current content
     /// - Parameter storyId: Identifier of the story to edit
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     public final func editStory(
         areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         storyId: Int?,
+        storySenderChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditStory(
             areas: areas,
             caption: caption,
             content: content,
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Changes content and caption of a previously sent story
+    /// Changes content and caption of a story. Can be called only if story.can_be_edited == true
     /// - Parameter areas: New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
     /// - Parameter caption: New story caption; pass null to keep the current caption
     /// - Parameter content: New content of the story; pass null to keep the current content
     /// - Parameter storyId: Identifier of the story to edit
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editStory(
         areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
-        storyId: Int?
+        storyId: Int?,
+        storySenderChatId: Int64?
     ) async throws -> Ok {
         let query = EditStory(
             areas: areas,
             caption: caption,
             content: content,
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         return try await self.run(query: query)
     }
 
-    /// Changes privacy settings of a previously sent story
+    /// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
     /// - Parameter privacySettings: The new privacy settigs for the story
     /// - Parameter storyId: Identifier of the story
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     public final func setStoryPrivacySettings(
         privacySettings: StoryPrivacySettings?,
         storyId: Int?,
+        storySenderChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetStoryPrivacySettings(
             privacySettings: privacySettings,
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Changes privacy settings of a previously sent story
+    /// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
     /// - Parameter privacySettings: The new privacy settigs for the story
     /// - Parameter storyId: Identifier of the story
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setStoryPrivacySettings(
         privacySettings: StoryPrivacySettings?,
-        storyId: Int?
+        storyId: Int?,
+        storySenderChatId: Int64?
     ) async throws -> Ok {
         let query = SetStoryPrivacySettings(
             privacySettings: privacySettings,
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         return try await self.run(query: query)
     }
 
-    /// Toggles whether a story is accessible after expiration
+    /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
     /// - Parameter isPinned: Pass true to make the story accessible after expiration; pass false to make it private
     /// - Parameter storyId: Identifier of the story
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     public final func toggleStoryIsPinned(
         isPinned: Bool?,
         storyId: Int?,
+        storySenderChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleStoryIsPinned(
             isPinned: isPinned,
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Toggles whether a story is accessible after expiration
+    /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
     /// - Parameter isPinned: Pass true to make the story accessible after expiration; pass false to make it private
     /// - Parameter storyId: Identifier of the story
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func toggleStoryIsPinned(
         isPinned: Bool?,
-        storyId: Int?
+        storyId: Int?,
+        storySenderChatId: Int64?
     ) async throws -> Ok {
         let query = ToggleStoryIsPinned(
             isPinned: isPinned,
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         return try await self.run(query: query)
     }
 
-    /// Deletes a previously sent story
+    /// Deletes a previously sent story. Can be called only if story.can_be_deleted == true
     /// - Parameter storyId: Identifier of the story to delete
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     public final func deleteStory(
         storyId: Int?,
+        storySenderChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteStory(
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Deletes a previously sent story
+    /// Deletes a previously sent story. Can be called only if story.can_be_deleted == true
     /// - Parameter storyId: Identifier of the story to delete
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func deleteStory(storyId: Int?) async throws -> Ok {
+    public final func deleteStory(
+        storyId: Int?,
+        storySenderChatId: Int64?
+    ) async throws -> Ok {
         let query = DeleteStory(
-            storyId: storyId
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         return try await self.run(query: query)
     }
@@ -9103,32 +9159,38 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
-    public final func getArchivedStories(
+    /// - Returns: The list of all stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    public final func getChatArchivedStories(
+        chatId: Int64?,
         fromStoryId: Int?,
         limit: Int?,
         completion: @escaping (Result<Stories, Swift.Error>) -> Void
     ) throws {
-        let query = GetArchivedStories(
+        let query = GetChatArchivedStories(
+            chatId: chatId,
             fromStoryId: fromStoryId,
             limit: limit
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: The list of all stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getArchivedStories(
+    public final func getChatArchivedStories(
+        chatId: Int64?,
         fromStoryId: Int?,
         limit: Int?
     ) async throws -> Stories {
-        let query = GetArchivedStories(
+        let query = GetChatArchivedStories(
+            chatId: chatId,
             fromStoryId: fromStoryId,
             limit: limit
         )
@@ -9264,7 +9326,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns viewers of a story. The method can be called if story.can_get_viewers == true
+    /// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
     /// - Parameter limit: The maximum number of story viewers to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyContacts: Pass true to get only contacts; pass false to get all relevant viewers
@@ -9292,7 +9354,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns viewers of a story. The method can be called if story.can_get_viewers == true
+    /// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
     /// - Parameter limit: The maximum number of story viewers to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyContacts: Pass true to get only contacts; pass false to get all relevant viewers
@@ -9374,6 +9436,161 @@ public class TDLibApi {
     @discardableResult
     public final func activateStoryStealthMode() async throws -> Ok {
         let query = ActivateStoryStealthMode()
+        return try await self.run(query: query)
+    }
+
+    /// Returns the current boost status for a channel chat
+    /// - Parameter chatId: Identifier of the channel chat
+    /// - Returns: The current boost status for a channel chat
+    public final func getChatBoostStatus(
+        chatId: Int64?,
+        completion: @escaping (Result<ChatBoostStatus, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatBoostStatus(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the current boost status for a channel chat
+    /// - Parameter chatId: Identifier of the channel chat
+    /// - Returns: The current boost status for a channel chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatBoostStatus(chatId: Int64?) async throws -> ChatBoostStatus {
+        let query = GetChatBoostStatus(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Checks whether the current user can boost a chat
+    /// - Parameter chatId: Identifier of the chat
+    public final func canBoostChat(
+        chatId: Int64?,
+        completion: @escaping (Result<CanBoostChatResult, Swift.Error>) -> Void
+    ) throws {
+        let query = CanBoostChat(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Checks whether the current user can boost a chat
+    /// - Parameter chatId: Identifier of the chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func canBoostChat(chatId: Int64?) async throws -> CanBoostChatResult {
+        let query = CanBoostChat(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Boosts a chat
+    /// - Parameter chatId: Identifier of the chat
+    public final func boostChat(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = BoostChat(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Boosts a chat
+    /// - Parameter chatId: Identifier of the chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func boostChat(chatId: Int64?) async throws -> Ok {
+        let query = BoostChat(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns an HTTPS link to boost the specified channel chat
+    /// - Parameter chatId: Identifier of the chat
+    /// - Returns: An HTTPS link to boost the specified channel chat
+    public final func getChatBoostLink(
+        chatId: Int64?,
+        completion: @escaping (Result<ChatBoostLink, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatBoostLink(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS link to boost the specified channel chat
+    /// - Parameter chatId: Identifier of the chat
+    /// - Returns: An HTTPS link to boost the specified channel chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatBoostLink(chatId: Int64?) async throws -> ChatBoostLink {
+        let query = GetChatBoostLink(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+    /// - Parameter url: The link to boost a chat
+    /// - Returns: Information about a link to boost a chat
+    public final func getChatBoostLinkInfo(
+        url: String?,
+        completion: @escaping (Result<ChatBoostLinkInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatBoostLinkInfo(
+            url: url
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+    /// - Parameter url: The link to boost a chat
+    /// - Returns: Information about a link to boost a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatBoostLinkInfo(url: String?) async throws -> ChatBoostLinkInfo {
+        let query = GetChatBoostLinkInfo(
+            url: url
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: List of boosts applied to a chat
+    public final func getChatBoosts(
+        chatId: Int64?,
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<FoundChatBoosts, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatBoosts(
+            chatId: chatId,
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: List of boosts applied to a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatBoosts(
+        chatId: Int64?,
+        limit: Int?,
+        offset: String?
+    ) async throws -> FoundChatBoosts {
+        let query = GetChatBoosts(
+            chatId: chatId,
+            limit: limit,
+            offset: offset
+        )
         return try await self.run(query: query)
     }
 
@@ -11397,7 +11614,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+    /// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
     public final func inviteGroupCallParticipants(
@@ -11412,7 +11629,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+    /// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15109,7 +15326,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+    /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
     /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
     /// - Returns: An invoice payment form
@@ -15125,7 +15342,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+    /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
     /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
     /// - Returns: An invoice payment form

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
     /// Allowed to use many additional features for stories
     case premiumFeatureUpgradedStories
 
+    /// The ability to boost chats
+    case premiumFeatureChatBoost
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -79,6 +82,7 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureAppIcons
         case premiumFeatureRealTimeChatTranslation
         case premiumFeatureUpgradedStories
+        case premiumFeatureChatBoost
     }
 
     public init(from decoder: Decoder) throws {
@@ -117,6 +121,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureRealTimeChatTranslation
         case .premiumFeatureUpgradedStories:
             self = .premiumFeatureUpgradedStories
+        case .premiumFeatureChatBoost:
+            self = .premiumFeatureChatBoost
         }
     }
 
@@ -155,6 +161,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureRealTimeChatTranslation, forKey: .type)
         case .premiumFeatureUpgradedStories:
             try container.encode(Kind.premiumFeatureUpgradedStories, forKey: .type)
+        case .premiumFeatureChatBoost:
+            try container.encode(Kind.premiumFeatureChatBoost, forKey: .type)
         }
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -22,11 +22,15 @@ public enum InputStoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a venue already added to the story
     case inputStoryAreaTypePreviousVenue(InputStoryAreaTypePreviousVenue)
 
+    /// An area pointing to a suggested reaction
+    case inputStoryAreaTypeSuggestedReaction(InputStoryAreaTypeSuggestedReaction)
+
 
     private enum Kind: String, Codable {
         case inputStoryAreaTypeLocation
         case inputStoryAreaTypeFoundVenue
         case inputStoryAreaTypePreviousVenue
+        case inputStoryAreaTypeSuggestedReaction
     }
 
     public init(from decoder: Decoder) throws {
@@ -42,6 +46,9 @@ public enum InputStoryAreaType: Codable, Equatable, Hashable {
         case .inputStoryAreaTypePreviousVenue:
             let value = try InputStoryAreaTypePreviousVenue(from: decoder)
             self = .inputStoryAreaTypePreviousVenue(value)
+        case .inputStoryAreaTypeSuggestedReaction:
+            let value = try InputStoryAreaTypeSuggestedReaction(from: decoder)
+            self = .inputStoryAreaTypeSuggestedReaction(value)
         }
     }
 
@@ -56,6 +63,9 @@ public enum InputStoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputStoryAreaTypePreviousVenue(let value):
             try container.encode(Kind.inputStoryAreaTypePreviousVenue, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputStoryAreaTypeSuggestedReaction(let value):
+            try container.encode(Kind.inputStoryAreaTypeSuggestedReaction, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -108,6 +118,30 @@ public struct InputStoryAreaTypePreviousVenue: Codable, Equatable, Hashable {
     ) {
         self.venueId = venueId
         self.venueProvider = venueProvider
+    }
+}
+
+/// An area pointing to a suggested reaction
+public struct InputStoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable {
+
+    /// True, if reaction has a dark background
+    public let isDark: Bool
+
+    /// True, if reaction corner is flipped
+    public let isFlipped: Bool
+
+    /// Type of the reaction
+    public let reactionType: ReactionType
+
+
+    public init(
+        isDark: Bool,
+        isFlipped: Bool,
+        reactionType: ReactionType
+    ) {
+        self.isDark = isDark
+        self.isFlipped = isFlipped
+        self.reactionType = reactionType
     }
 }
 

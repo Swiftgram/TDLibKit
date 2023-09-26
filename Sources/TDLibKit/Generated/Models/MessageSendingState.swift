@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -69,11 +69,8 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
     /// True, if the message can be re-sent
     public let canRetry: Bool
 
-    /// An error code; 0 if unknown
-    public let errorCode: Int
-
-    /// Error message
-    public let errorMessage: String
+    /// The cause of the message sending failure
+    public let error: Error
 
     /// True, if the message can be re-sent only on behalf of a different sender
     public let needAnotherSender: Bool
@@ -84,14 +81,12 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
 
     public init(
         canRetry: Bool,
-        errorCode: Int,
-        errorMessage: String,
+        error: Error,
         needAnotherSender: Bool,
         retryAfter: Double
     ) {
         self.canRetry = canRetry
-        self.errorCode = errorCode
-        self.errorMessage = errorMessage
+        self.error = error
         self.needAnotherSender = needAnotherSender
         self.retryAfter = retryAfter
     }

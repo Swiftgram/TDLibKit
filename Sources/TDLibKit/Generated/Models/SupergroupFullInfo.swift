@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -47,6 +47,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
     public let hasHiddenMembers: Bool
+
+    /// True, if the channel has pinned stories
+    public let hasPinnedStories: Bool
 
     /// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     public let inviteLink: ChatInviteLink?
@@ -98,6 +101,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         description: String,
         hasAggressiveAntiSpamEnabled: Bool,
         hasHiddenMembers: Bool,
+        hasPinnedStories: Bool,
         inviteLink: ChatInviteLink?,
         isAllHistoryAvailable: Bool,
         linkedChatId: Int64,
@@ -123,6 +127,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.description = description
         self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
         self.hasHiddenMembers = hasHiddenMembers
+        self.hasPinnedStories = hasPinnedStories
         self.inviteLink = inviteLink
         self.isAllHistoryAvailable = isAllHistoryAvailable
         self.linkedChatId = linkedChatId

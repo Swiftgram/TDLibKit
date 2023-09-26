@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -16,11 +16,17 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
     public let date: Int
 
+    /// True, if the channel has non-expired stories available to the current user
+    public let hasActiveStories: Bool
+
     /// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     public let hasLinkedChat: Bool
 
     /// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     public let hasLocation: Bool
+
+    /// True, if the channel has unread non-expired stories available to the current user
+    public let hasUnreadActiveStories: Bool
 
     /// Supergroup or channel identifier
     public let id: Int64
@@ -70,8 +76,10 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         date: Int,
+        hasActiveStories: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
+        hasUnreadActiveStories: Bool,
         id: Int64,
         isBroadcastGroup: Bool,
         isChannel: Bool,
@@ -89,8 +97,10 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         usernames: Usernames?
     ) {
         self.date = date
+        self.hasActiveStories = hasActiveStories
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation
+        self.hasUnreadActiveStories = hasUnreadActiveStories
         self.id = id
         self.isBroadcastGroup = isBroadcastGroup
         self.isChannel = isChannel

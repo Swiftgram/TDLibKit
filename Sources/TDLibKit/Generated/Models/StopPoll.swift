@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
 
 
-/// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+/// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
 public struct StopPoll: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the poll belongs

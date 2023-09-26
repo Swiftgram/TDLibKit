@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
 
 
-/// Represents result of checking whether the current user can send a story
+/// Represents result of checking whether the current user can send a story in the specific chat
 public enum CanSendStoryResult: Codable, Equatable, Hashable {
 
     /// A story can be sent
@@ -18,6 +18,9 @@ public enum CanSendStoryResult: Codable, Equatable, Hashable {
 
     /// The user must subscribe to Telegram Premium to be able to post stories
     case canSendStoryResultPremiumNeeded
+
+    /// The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+    case canSendStoryResultBoostNeeded
 
     /// The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
     case canSendStoryResultActiveStoryLimitExceeded
@@ -32,6 +35,7 @@ public enum CanSendStoryResult: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case canSendStoryResultOk
         case canSendStoryResultPremiumNeeded
+        case canSendStoryResultBoostNeeded
         case canSendStoryResultActiveStoryLimitExceeded
         case canSendStoryResultWeeklyLimitExceeded
         case canSendStoryResultMonthlyLimitExceeded
@@ -45,6 +49,8 @@ public enum CanSendStoryResult: Codable, Equatable, Hashable {
             self = .canSendStoryResultOk
         case .canSendStoryResultPremiumNeeded:
             self = .canSendStoryResultPremiumNeeded
+        case .canSendStoryResultBoostNeeded:
+            self = .canSendStoryResultBoostNeeded
         case .canSendStoryResultActiveStoryLimitExceeded:
             self = .canSendStoryResultActiveStoryLimitExceeded
         case .canSendStoryResultWeeklyLimitExceeded:
@@ -63,6 +69,8 @@ public enum CanSendStoryResult: Codable, Equatable, Hashable {
             try container.encode(Kind.canSendStoryResultOk, forKey: .type)
         case .canSendStoryResultPremiumNeeded:
             try container.encode(Kind.canSendStoryResultPremiumNeeded, forKey: .type)
+        case .canSendStoryResultBoostNeeded:
+            try container.encode(Kind.canSendStoryResultBoostNeeded, forKey: .type)
         case .canSendStoryResultActiveStoryLimitExceeded:
             try container.encode(Kind.canSendStoryResultActiveStoryLimitExceeded, forKey: .type)
         case .canSendStoryResultWeeklyLimitExceeded(let value):

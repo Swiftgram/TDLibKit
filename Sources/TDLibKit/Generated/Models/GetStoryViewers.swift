@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
 
 
-/// Returns viewers of a story. The method can be called if story.can_get_viewers == true
+/// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
 public struct GetStoryViewers: Codable, Equatable, Hashable {
 
     /// The maximum number of story viewers to return

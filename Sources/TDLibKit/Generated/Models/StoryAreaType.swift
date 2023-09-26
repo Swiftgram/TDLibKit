@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a venue
     case storyAreaTypeVenue(StoryAreaTypeVenue)
 
+    /// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+    case storyAreaTypeSuggestedReaction(StoryAreaTypeSuggestedReaction)
+
 
     private enum Kind: String, Codable {
         case storyAreaTypeLocation
         case storyAreaTypeVenue
+        case storyAreaTypeSuggestedReaction
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,9 @@ public enum StoryAreaType: Codable, Equatable, Hashable {
         case .storyAreaTypeVenue:
             let value = try StoryAreaTypeVenue(from: decoder)
             self = .storyAreaTypeVenue(value)
+        case .storyAreaTypeSuggestedReaction:
+            let value = try StoryAreaTypeSuggestedReaction(from: decoder)
+            self = .storyAreaTypeSuggestedReaction(value)
         }
     }
 
@@ -46,6 +53,9 @@ public enum StoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storyAreaTypeVenue(let value):
             try container.encode(Kind.storyAreaTypeVenue, forKey: .type)
+            try value.encode(to: encoder)
+        case .storyAreaTypeSuggestedReaction(let value):
+            try container.encode(Kind.storyAreaTypeSuggestedReaction, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -72,6 +82,35 @@ public struct StoryAreaTypeVenue: Codable, Equatable, Hashable {
 
     public init(venue: Venue) {
         self.venue = venue
+    }
+}
+
+/// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+public struct StoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable {
+
+    /// True, if reaction has a dark background
+    public let isDark: Bool
+
+    /// True, if reaction corner is flipped
+    public let isFlipped: Bool
+
+    /// Type of the reaction
+    public let reactionType: ReactionType
+
+    /// Number of times the reaction was added
+    public let totalCount: Int
+
+
+    public init(
+        isDark: Bool,
+        isFlipped: Bool,
+        reactionType: ReactionType,
+        totalCount: Int
+    ) {
+        self.isDark = isDark
+        self.isFlipped = isFlipped
+        self.reactionType = reactionType
+        self.totalCount = totalCount
     }
 }
 

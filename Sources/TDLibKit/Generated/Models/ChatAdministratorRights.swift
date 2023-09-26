@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -19,13 +19,19 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can delete messages of other users
     public let canDeleteMessages: Bool
 
+    /// True, if the administrator can delete stories posted by other users; applicable to channels only
+    public let canDeleteStories: Bool
+
     /// True, if the administrator can edit messages of other users and pin messages; applicable to channels only
     public let canEditMessages: Bool
+
+    /// True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
+    public let canEditStories: Bool
 
     /// True, if the administrator can invite new users to the chat
     public let canInviteUsers: Bool
 
-    /// True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+    /// True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel members,//-see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
     /// True, if the administrator can manage topics; applicable to forum supergroups only
@@ -40,6 +46,9 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can create channel posts; applicable to channels only
     public let canPostMessages: Bool
 
+    /// True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+    public let canPostStories: Bool
+
     /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     public let canPromoteMembers: Bool
 
@@ -53,26 +62,32 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     public init(
         canChangeInfo: Bool,
         canDeleteMessages: Bool,
+        canDeleteStories: Bool,
         canEditMessages: Bool,
+        canEditStories: Bool,
         canInviteUsers: Bool,
         canManageChat: Bool,
         canManageTopics: Bool,
         canManageVideoChats: Bool,
         canPinMessages: Bool,
         canPostMessages: Bool,
+        canPostStories: Bool,
         canPromoteMembers: Bool,
         canRestrictMembers: Bool,
         isAnonymous: Bool
     ) {
         self.canChangeInfo = canChangeInfo
         self.canDeleteMessages = canDeleteMessages
+        self.canDeleteStories = canDeleteStories
         self.canEditMessages = canEditMessages
+        self.canEditStories = canEditStories
         self.canInviteUsers = canInviteUsers
         self.canManageChat = canManageChat
         self.canManageTopics = canManageTopics
         self.canManageVideoChats = canManageVideoChats
         self.canPinMessages = canPinMessages
         self.canPostMessages = canPostMessages
+        self.canPostStories = canPostStories
         self.canPromoteMembers = canPromoteMembers
         self.canRestrictMembers = canRestrictMembers
         self.isAnonymous = isAnonymous

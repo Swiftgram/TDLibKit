@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -52,6 +52,9 @@ public struct Invoice: Codable, Equatable, Hashable {
     /// Suggested amounts of tip in the smallest units of the currency
     public let suggestedTipAmounts: [Int64]
 
+    /// An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
+    public let termsOfServiceUrl: String
+
 
     public init(
         currency: String,
@@ -66,7 +69,8 @@ public struct Invoice: Codable, Equatable, Hashable {
         recurringPaymentTermsOfServiceUrl: String,
         sendEmailAddressToProvider: Bool,
         sendPhoneNumberToProvider: Bool,
-        suggestedTipAmounts: [Int64]
+        suggestedTipAmounts: [Int64],
+        termsOfServiceUrl: String
     ) {
         self.currency = currency
         self.isFlexible = isFlexible
@@ -81,6 +85,7 @@ public struct Invoice: Codable, Equatable, Hashable {
         self.sendEmailAddressToProvider = sendEmailAddressToProvider
         self.sendPhoneNumberToProvider = sendPhoneNumberToProvider
         self.suggestedTipAmounts = suggestedTipAmounts
+        self.termsOfServiceUrl = termsOfServiceUrl
     }
 }
 

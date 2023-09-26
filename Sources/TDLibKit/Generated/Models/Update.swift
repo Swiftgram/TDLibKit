@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.18-daf48013
-//  https://github.com/tdlib/td/tree/daf48013
+//  Based on TDLib 1.8.19-0d16085d
+//  https://github.com/tdlib/td/tree/0d16085d
 //
 
 import Foundation
@@ -1266,11 +1266,8 @@ public struct UpdateMessageSendSucceeded: Codable, Equatable, Hashable {
 /// A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
 public struct UpdateMessageSendFailed: Codable, Equatable, Hashable {
 
-    /// An error code
-    public let errorCode: Int
-
-    /// Error message
-    public let errorMessage: String
+    /// The cause of the message sending failure
+    public let error: Error
 
     /// The failed to send message
     public let message: Message
@@ -1280,13 +1277,11 @@ public struct UpdateMessageSendFailed: Codable, Equatable, Hashable {
 
 
     public init(
-        errorCode: Int,
-        errorMessage: String,
+        error: Error,
         message: Message,
         oldMessageId: Int64
     ) {
-        self.errorCode = errorCode
-        self.errorMessage = errorMessage
+        self.error = error
         self.message = message
         self.oldMessageId = oldMessageId
     }
@@ -2722,28 +2717,23 @@ public struct UpdateStorySendSucceeded: Codable, Equatable, Hashable {
 /// A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
 public struct UpdateStorySendFailed: Codable, Equatable, Hashable {
 
-    /// The cause of the failure; may be null if unknown
-    public let error: CanSendStoryResult?
+    /// The cause of the story sending failure
+    public let error: Error
 
-    /// An error code
-    public let errorCode: Int
-
-    /// Error message
-    public let errorMessage: String
+    /// Type of the error; may be null if unknown
+    public let errorType: CanSendStoryResult?
 
     /// The failed to send story
     public let story: Story
 
 
     public init(
-        error: CanSendStoryResult?,
-        errorCode: Int,
-        errorMessage: String,
+        error: Error,
+        errorType: CanSendStoryResult?,
         story: Story
     ) {
         self.error = error
-        self.errorCode = errorCode
-        self.errorMessage = errorMessage
+        self.errorType = errorType
         self.story = story
     }
 }
