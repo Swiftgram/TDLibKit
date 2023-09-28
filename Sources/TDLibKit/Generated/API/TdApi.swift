@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-9b4266c0
-//  https://github.com/tdlib/td/tree/9b4266c0
+//  Based on TDLib 1.8.19-a65f14ff
+//  https://github.com/tdlib/td/tree/a65f14ff
 //
 
 import Foundation
@@ -2678,50 +2678,6 @@ public final class TdApi {
     public func getChatScheduledMessages(chatId: Int64?) async throws -> Messages {
         let query = GetChatScheduledMessages(
             chatId: chatId
-        )
-        return try await self.execute(query: query)
-    }
-
-    /// Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
-    /// - Parameter chatId: Chat identifier of the message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter messageId: Message identifier
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
-    public func getMessagePublicForwards(
-        chatId: Int64?,
-        limit: Int?,
-        messageId: Int64?,
-        offset: String?,
-        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
-    ) throws {
-        let query = GetMessagePublicForwards(
-            chatId: chatId,
-            limit: limit,
-            messageId: messageId,
-            offset: offset
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
-    /// - Parameter chatId: Chat identifier of the message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter messageId: Message identifier
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getMessagePublicForwards(
-        chatId: Int64?,
-        limit: Int?,
-        messageId: Int64?,
-        offset: String?
-    ) async throws -> FoundMessages {
-        let query = GetMessagePublicForwards(
-            chatId: chatId,
-            limit: limit,
-            messageId: messageId,
-            offset: offset
         )
         return try await self.execute(query: query)
     }
@@ -16469,6 +16425,50 @@ public final class TdApi {
             chatId: chatId,
             isDark: isDark,
             messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns forwarded copies of a channel message to different public channels. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Parameter chatId: Chat identifier of the message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter messageId: Message identifier
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+    public func getMessagePublicForwards(
+        chatId: Int64?,
+        limit: Int?,
+        messageId: Int64?,
+        offset: String?,
+        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessagePublicForwards(
+            chatId: chatId,
+            limit: limit,
+            messageId: messageId,
+            offset: offset
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns forwarded copies of a channel message to different public channels. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Parameter chatId: Chat identifier of the message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter messageId: Message identifier
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getMessagePublicForwards(
+        chatId: Int64?,
+        limit: Int?,
+        messageId: Int64?,
+        offset: String?
+    ) async throws -> FoundMessages {
+        let query = GetMessagePublicForwards(
+            chatId: chatId,
+            limit: limit,
+            messageId: messageId,
+            offset: offset
         )
         return try await self.execute(query: query)
     }

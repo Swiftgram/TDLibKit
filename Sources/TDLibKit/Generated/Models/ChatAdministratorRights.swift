@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-9b4266c0
-//  https://github.com/tdlib/td/tree/9b4266c0
+//  Based on TDLib 1.8.19-a65f14ff
+//  https://github.com/tdlib/td/tree/a65f14ff
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can invite new users to the chat
     public let canInviteUsers: Bool
 
-    /// True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel members,//-see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+    /// True, if the administrator can get chat event log, get chat boosts in channels, get channel members, report supergroup spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
     /// True, if the administrator can manage topics; applicable to forum supergroups only
@@ -43,7 +43,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can pin messages; applicable to basic groups and supergroups only
     public let canPinMessages: Bool
 
-    /// True, if the administrator can create channel posts; applicable to channels only
+    /// True, if the administrator can create channel posts or view channel statistics; applicable to channels only
     public let canPostMessages: Bool
 
     /// True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
@@ -52,7 +52,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     public let canPromoteMembers: Bool
 
-    /// True, if the administrator can restrict, ban, or unban chat members; always true for channels
+    /// True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels
     public let canRestrictMembers: Bool
 
     /// True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
