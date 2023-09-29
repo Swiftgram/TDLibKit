@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-a65f14ff
-//  https://github.com/tdlib/td/tree/a65f14ff
+//  Based on TDLib 1.8.19-97ec3eac
+//  https://github.com/tdlib/td/tree/97ec3eac
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetMessageLink: Codable, Equatable, Hashable {
     /// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     public let inMessageThread: Bool?
 
-    /// If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
+    /// If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
     public let mediaTimestamp: Int?
 
     /// Identifier of the message

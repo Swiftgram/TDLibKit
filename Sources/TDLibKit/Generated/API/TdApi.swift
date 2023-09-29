@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-a65f14ff
-//  https://github.com/tdlib/td/tree/a65f14ff
+//  Based on TDLib 1.8.19-97ec3eac
+//  https://github.com/tdlib/td/tree/97ec3eac
 //
 
 import Foundation
@@ -2803,7 +2803,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
-    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
+    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
     /// - Returns: An HTTPS link to a message in a chat
     public func getMessageLink(
@@ -2828,7 +2828,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
-    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
+    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
     /// - Parameter messageId: Identifier of the message
     /// - Returns: An HTTPS link to a message in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

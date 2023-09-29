@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-a65f14ff
-//  https://github.com/tdlib/td/tree/a65f14ff
+//  Based on TDLib 1.8.19-97ec3eac
+//  https://github.com/tdlib/td/tree/97ec3eac
 //
 
 import Foundation
@@ -143,7 +143,7 @@ public struct ChatStatisticsSupergroup: Codable, Equatable, Hashable {
 /// A detailed statistics about a channel chat
 public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
 
-    /// A percentage of users with enabled notifications for the chat
+    /// A percentage of users with enabled notifications for the chat; 0-100
     public let enabledNotificationsPercentage: Double
 
     /// A graph containing number of views of associated with the chat instant views
