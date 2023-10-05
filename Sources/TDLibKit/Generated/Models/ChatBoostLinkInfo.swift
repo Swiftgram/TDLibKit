@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-97ec3eac
-//  https://github.com/tdlib/td/tree/97ec3eac
+//  Based on TDLib 1.8.19-b41a51f2
+//  https://github.com/tdlib/td/tree/b41a51f2
 //
 
 import Foundation
 
 
-/// Contains information about a link to boost a a chat
+/// Contains information about a link to boost a chat
 public struct ChatBoostLinkInfo: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the link points; 0 if the chat isn't found
