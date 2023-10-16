@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -25,16 +25,12 @@ public enum MessageForwardOrigin: Codable, Equatable, Hashable {
     /// The message was originally a post in a channel
     case messageForwardOriginChannel(MessageForwardOriginChannel)
 
-    /// The message was imported from an exported message history
-    case messageForwardOriginMessageImport(MessageForwardOriginMessageImport)
-
 
     private enum Kind: String, Codable {
         case messageForwardOriginUser
         case messageForwardOriginChat
         case messageForwardOriginHiddenUser
         case messageForwardOriginChannel
-        case messageForwardOriginMessageImport
     }
 
     public init(from decoder: Decoder) throws {
@@ -53,9 +49,6 @@ public enum MessageForwardOrigin: Codable, Equatable, Hashable {
         case .messageForwardOriginChannel:
             let value = try MessageForwardOriginChannel(from: decoder)
             self = .messageForwardOriginChannel(value)
-        case .messageForwardOriginMessageImport:
-            let value = try MessageForwardOriginMessageImport(from: decoder)
-            self = .messageForwardOriginMessageImport(value)
         }
     }
 
@@ -73,9 +66,6 @@ public enum MessageForwardOrigin: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageForwardOriginChannel(let value):
             try container.encode(Kind.messageForwardOriginChannel, forKey: .type)
-            try value.encode(to: encoder)
-        case .messageForwardOriginMessageImport(let value):
-            try container.encode(Kind.messageForwardOriginMessageImport, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -145,18 +135,6 @@ public struct MessageForwardOriginChannel: Codable, Equatable, Hashable {
         self.authorSignature = authorSignature
         self.chatId = chatId
         self.messageId = messageId
-    }
-}
-
-/// The message was imported from an exported message history
-public struct MessageForwardOriginMessageImport: Codable, Equatable, Hashable {
-
-    /// Name of the sender
-    public let senderName: String
-
-
-    public init(senderName: String) {
-        self.senderName = senderName
     }
 }
 

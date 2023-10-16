@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -16,6 +16,9 @@ public struct AddedReaction: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the reaction was added
     public let date: Int
 
+    /// True, if the reaction was added by the current user
+    public let isOutgoing: Bool
+
     /// Identifier of the chat member, applied the reaction
     public let senderId: MessageSender
 
@@ -25,10 +28,12 @@ public struct AddedReaction: Codable, Equatable, Hashable {
 
     public init(
         date: Int,
+        isOutgoing: Bool,
         senderId: MessageSender,
         type: ReactionType
     ) {
         self.date = date
+        self.isOutgoing = isOutgoing
         self.senderId = senderId
         self.type = type
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -75,6 +75,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// Message identifier; unique for the chat to which the message belongs
     public let id: Int64
+
+    /// Information about the initial message for messages created with importMessages; may be null if the message isn't imported
+    public let importInfo: MessageImportInfo?
 
     /// Information about interactions with the message; may be null if none
     public let interactionInfo: MessageInteractionInfo?
@@ -150,6 +153,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         forwardInfo: MessageForwardInfo?,
         hasTimestampedMedia: Bool,
         id: Int64,
+        importInfo: MessageImportInfo?,
         interactionInfo: MessageInteractionInfo?,
         isChannelPost: Bool,
         isOutgoing: Bool,
@@ -189,6 +193,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.forwardInfo = forwardInfo
         self.hasTimestampedMedia = hasTimestampedMedia
         self.id = id
+        self.importInfo = importInfo
         self.interactionInfo = interactionInfo
         self.isChannelPost = isChannelPost
         self.isOutgoing = isOutgoing

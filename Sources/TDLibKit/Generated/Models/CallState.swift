@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -157,7 +157,7 @@ public struct CallStateDiscarded: Codable, Equatable, Hashable {
     /// True, if the call rating must be sent to the server
     public let needRating: Bool
 
-    /// The reason, why the call has ended
+    /// The reason why the call has ended
     public let reason: CallDiscardReason
 
 

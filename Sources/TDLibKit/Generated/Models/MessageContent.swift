@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -175,9 +175,6 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// The current user shared a chat, which was requested by the bot
     case messageChatShared(MessageChatShared)
 
-    /// The current user has connected a website by logging in using Telegram Login Widget on it
-    case messageWebsiteConnected(MessageWebsiteConnected)
-
     /// The user allowed the bot to send messages
     case messageBotWriteAccessAllowed(MessageBotWriteAccessAllowed)
 
@@ -255,7 +252,6 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messageContactRegistered
         case messageUserShared
         case messageChatShared
-        case messageWebsiteConnected
         case messageBotWriteAccessAllowed
         case messageWebAppDataSent
         case messageWebAppDataReceived
@@ -424,9 +420,6 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messageChatShared:
             let value = try MessageChatShared(from: decoder)
             self = .messageChatShared(value)
-        case .messageWebsiteConnected:
-            let value = try MessageWebsiteConnected(from: decoder)
-            self = .messageWebsiteConnected(value)
         case .messageBotWriteAccessAllowed:
             let value = try MessageBotWriteAccessAllowed(from: decoder)
             self = .messageBotWriteAccessAllowed(value)
@@ -607,9 +600,6 @@ public enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageChatShared(let value):
             try container.encode(Kind.messageChatShared, forKey: .type)
-            try value.encode(to: encoder)
-        case .messageWebsiteConnected(let value):
-            try container.encode(Kind.messageWebsiteConnected, forKey: .type)
             try value.encode(to: encoder)
         case .messageBotWriteAccessAllowed(let value):
             try container.encode(Kind.messageBotWriteAccessAllowed, forKey: .type)
@@ -1616,34 +1606,15 @@ public struct MessageChatShared: Codable, Equatable, Hashable {
     }
 }
 
-/// The current user has connected a website by logging in using Telegram Login Widget on it
-public struct MessageWebsiteConnected: Codable, Equatable, Hashable {
-
-    /// Domain name of the connected website
-    public let domainName: String
-
-
-    public init(domainName: String) {
-        self.domainName = domainName
-    }
-}
-
 /// The user allowed the bot to send messages
 public struct MessageBotWriteAccessAllowed: Codable, Equatable, Hashable {
 
-    /// True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
-    public let byRequest: Bool
-
-    /// Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
-    public let webApp: WebApp?
+    /// The reason why the bot was allowed to write messages
+    public let reason: BotWriteAccessAllowReason
 
 
-    public init(
-        byRequest: Bool,
-        webApp: WebApp?
-    ) {
-        self.byRequest = byRequest
-        self.webApp = webApp
+    public init(reason: BotWriteAccessAllowReason) {
+        self.reason = reason
     }
 }
 

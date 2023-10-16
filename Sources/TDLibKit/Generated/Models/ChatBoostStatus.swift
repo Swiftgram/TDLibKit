@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
 
     /// The number of times the chat was boosted
     public let boostCount: Int
+
+    /// An HTTP URL, which can be used to boost the chat
+    public let boostUrl: String
 
     /// The number of boosts added to reach the current level
     public let currentLevelBoostCount: Int
@@ -37,6 +40,7 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
 
     public init(
         boostCount: Int,
+        boostUrl: String,
         currentLevelBoostCount: Int,
         isBoosted: Bool,
         level: Int,
@@ -45,6 +49,7 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
         premiumMemberPercentage: Double
     ) {
         self.boostCount = boostCount
+        self.boostUrl = boostUrl
         self.currentLevelBoostCount = currentLevelBoostCount
         self.isBoosted = isBoosted
         self.level = level

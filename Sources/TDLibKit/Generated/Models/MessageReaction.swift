@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.19-986f1ab4
-//  https://github.com/tdlib/td/tree/986f1ab4
+//  Based on TDLib 1.8.20-f441415d
+//  https://github.com/tdlib/td/tree/f441415d
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct MessageReaction: Codable, Equatable, Hashable {
     /// Type of the reaction
     public let type: ReactionType
 
+    /// Identifier of the message sender used by the current user to add the reaction; null if unknown or the reaction isn't chosen
+    public let usedSenderId: MessageSender
+
 
     public init(
         isChosen: Bool,
         recentSenderIds: [MessageSender],
         totalCount: Int,
-        type: ReactionType
+        type: ReactionType,
+        usedSenderId: MessageSender
     ) {
         self.isChosen = isChosen
         self.recentSenderIds = recentSenderIds
         self.totalCount = totalCount
         self.type = type
+        self.usedSenderId = usedSenderId
     }
 }
 
