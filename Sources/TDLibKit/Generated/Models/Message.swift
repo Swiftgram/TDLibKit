@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-f441415d
-//  https://github.com/tdlib/td/tree/f441415d
+//  Based on TDLib 1.8.20-522d5448
+//  https://github.com/tdlib/td/tree/522d5448
 //
 
 import Foundation
@@ -112,7 +112,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
 
-    /// Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet
+    /// Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     public let selfDestructIn: Double
 
     /// The message's self-destruct type; may be null if none

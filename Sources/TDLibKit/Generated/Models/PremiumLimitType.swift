@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-f441415d
-//  https://github.com/tdlib/td/tree/f441415d
+//  Based on TDLib 1.8.20-522d5448
+//  https://github.com/tdlib/td/tree/522d5448
 //
 
 import Foundation
