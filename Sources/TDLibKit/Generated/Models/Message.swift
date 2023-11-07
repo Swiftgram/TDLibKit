@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the message can be forwarded
     public let canBeForwarded: Bool
+
+    /// True, if the message can be replied in another chat
+    public let canBeRepliedInAnotherChat: Bool
 
     /// True, if content of the message can be saved locally or copied
     public let canBeSaved: Bool
@@ -138,6 +141,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         canBeDeletedOnlyForSelf: Bool,
         canBeEdited: Bool,
         canBeForwarded: Bool,
+        canBeRepliedInAnotherChat: Bool,
         canBeSaved: Bool,
         canGetAddedReactions: Bool,
         canGetMediaTimestampLinks: Bool,
@@ -178,6 +182,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
+        self.canBeRepliedInAnotherChat = canBeRepliedInAnotherChat
         self.canBeSaved = canBeSaved
         self.canGetAddedReactions = canGetAddedReactions
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks

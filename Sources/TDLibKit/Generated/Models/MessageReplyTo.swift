@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains information about the message or the story a message is replying to
 public enum MessageReplyTo: Codable, Equatable, Hashable {
 
-    /// Describes a replied message
+    /// Describes a message replied by a given message
     case messageReplyToMessage(MessageReplyToMessage)
 
-    /// Describes a replied story
+    /// Describes a story replied by a given message
     case messageReplyToStory(MessageReplyToStory)
 
 
@@ -51,32 +51,57 @@ public enum MessageReplyTo: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a replied message
+/// Describes a message replied by a given message
 public struct MessageReplyToMessage: Codable, Equatable, Hashable {
 
-    /// The identifier of the chat to which the replied message belongs; ignored for outgoing replies. For example, messages in the Replies chat are replies to messages in different chats
+    /// The identifier of the chat to which the message belongs; may be 0 if the replied message is in unknown chat
     public let chatId: Int64
 
-    /// The identifier of the replied message
+    /// Media content of the message if the message was replied from another chat; may be null for messages from the same chat and messages without media.//-Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation,//-messagePhoto, messagePoll, messagePremiumGiveaway, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
+    public let content: MessageContent?
+
+    /// True, if the quote was manually chosen by the message sender
+    public let isQuoteManual: Bool
+
+    /// The identifier of the message; may be 0 if the replied message is in unknown chat
     public let messageId: Int64
+
+    /// Information about origin of the message if the message was replied from another chat; may be null for messages from the same chat
+    public let origin: MessageOrigin?
+
+    /// Point in time (Unix timestamp) when the message was sent if the message was replied from another chat; 0 for messages from the same chat
+    public let originSendDate: Int
+
+    /// Manually or automatically chosen quote from the replied message; may be null if none. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the quote
+    public let quote: FormattedText?
 
 
     public init(
         chatId: Int64,
-        messageId: Int64
+        content: MessageContent?,
+        isQuoteManual: Bool,
+        messageId: Int64,
+        origin: MessageOrigin?,
+        originSendDate: Int,
+        quote: FormattedText?
     ) {
         self.chatId = chatId
+        self.content = content
+        self.isQuoteManual = isQuoteManual
         self.messageId = messageId
+        self.origin = origin
+        self.originSendDate = originSendDate
+        self.quote = quote
     }
 }
 
-/// Describes a replied story
+/// Describes a story replied by a given message
 public struct MessageReplyToStory: Codable, Equatable, Hashable {
 
-    /// The identifier of the replied story
+    /// The identifier of the story
     public let storyId: Int
 
-    /// The identifier of the sender of the replied story. Currently, stories can be replied only in the sender's chat
+    /// The identifier of the sender of the story
     public let storySenderChatId: Int64
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public enum TextEntityType: Codable, Equatable, Hashable {
     /// Text that must be formatted as if inside pre, and code HTML tags
     case textEntityTypePreCode(TextEntityTypePreCode)
 
+    /// Text that must be formatted as if inside a blockquote HTML tag
+    case textEntityTypeBlockQuote
+
     /// A text description shown instead of a raw URL
     case textEntityTypeTextUrl(TextEntityTypeTextUrl)
 
@@ -91,6 +94,7 @@ public enum TextEntityType: Codable, Equatable, Hashable {
         case textEntityTypeCode
         case textEntityTypePre
         case textEntityTypePreCode
+        case textEntityTypeBlockQuote
         case textEntityTypeTextUrl
         case textEntityTypeMentionName
         case textEntityTypeCustomEmoji
@@ -134,6 +138,8 @@ public enum TextEntityType: Codable, Equatable, Hashable {
         case .textEntityTypePreCode:
             let value = try TextEntityTypePreCode(from: decoder)
             self = .textEntityTypePreCode(value)
+        case .textEntityTypeBlockQuote:
+            self = .textEntityTypeBlockQuote
         case .textEntityTypeTextUrl:
             let value = try TextEntityTypeTextUrl(from: decoder)
             self = .textEntityTypeTextUrl(value)
@@ -185,6 +191,8 @@ public enum TextEntityType: Codable, Equatable, Hashable {
         case .textEntityTypePreCode(let value):
             try container.encode(Kind.textEntityTypePreCode, forKey: .type)
             try value.encode(to: encoder)
+        case .textEntityTypeBlockQuote:
+            try container.encode(Kind.textEntityTypeBlockQuote, forKey: .type)
         case .textEntityTypeTextUrl(let value):
             try container.encode(Kind.textEntityTypeTextUrl, forKey: .type)
             try value.encode(to: encoder)

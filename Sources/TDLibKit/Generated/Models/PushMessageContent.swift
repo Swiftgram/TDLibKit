@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -48,6 +48,12 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A message with a poll
     case pushMessageContentPoll(PushMessageContentPoll)
+
+    /// A message with a Telegram Premium gift code created for the user
+    case pushMessageContentPremiumGiftCode(PushMessageContentPremiumGiftCode)
+
+    /// A message with a Telegram Premium giveaway
+    case pushMessageContentPremiumGiveaway(PushMessageContentPremiumGiveaway)
 
     /// A screenshot of a message in the chat has been taken
     case pushMessageContentScreenshotTaken
@@ -123,6 +129,8 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentLocation
         case pushMessageContentPhoto
         case pushMessageContentPoll
+        case pushMessageContentPremiumGiftCode
+        case pushMessageContentPremiumGiveaway
         case pushMessageContentScreenshotTaken
         case pushMessageContentSticker
         case pushMessageContentStory
@@ -184,6 +192,12 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentPoll:
             let value = try PushMessageContentPoll(from: decoder)
             self = .pushMessageContentPoll(value)
+        case .pushMessageContentPremiumGiftCode:
+            let value = try PushMessageContentPremiumGiftCode(from: decoder)
+            self = .pushMessageContentPremiumGiftCode(value)
+        case .pushMessageContentPremiumGiveaway:
+            let value = try PushMessageContentPremiumGiveaway(from: decoder)
+            self = .pushMessageContentPremiumGiveaway(value)
         case .pushMessageContentScreenshotTaken:
             self = .pushMessageContentScreenshotTaken
         case .pushMessageContentSticker:
@@ -278,6 +292,12 @@ public enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentPoll(let value):
             try container.encode(Kind.pushMessageContentPoll, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentPremiumGiftCode(let value):
+            try container.encode(Kind.pushMessageContentPremiumGiftCode, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentPremiumGiveaway(let value):
+            try container.encode(Kind.pushMessageContentPremiumGiveaway, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentScreenshotTaken:
             try container.encode(Kind.pushMessageContentScreenshotTaken, forKey: .type)
@@ -561,6 +581,42 @@ public struct PushMessageContentPoll: Codable, Equatable, Hashable {
         self.isPinned = isPinned
         self.isRegular = isRegular
         self.question = question
+    }
+}
+
+/// A message with a Telegram Premium gift code created for the user
+public struct PushMessageContentPremiumGiftCode: Codable, Equatable, Hashable {
+
+    /// Number of month the Telegram Premium subscription will be active after code activation
+    public let monthCount: Int
+
+
+    public init(monthCount: Int) {
+        self.monthCount = monthCount
+    }
+}
+
+/// A message with a Telegram Premium giveaway
+public struct PushMessageContentPremiumGiveaway: Codable, Equatable, Hashable {
+
+    /// True, if the message is a pinned message with the specified content
+    public let isPinned: Bool
+
+    /// Number of month the Telegram Premium subscription will be active after code activation; 0 for pinned message
+    public let monthCount: Int
+
+    /// Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message
+    public let winnerCount: Int
+
+
+    public init(
+        isPinned: Bool,
+        monthCount: Int,
+        winnerCount: Int
+    ) {
+        self.isPinned = isPinned
+        self.monthCount = monthCount
+        self.winnerCount = winnerCount
     }
 }
 

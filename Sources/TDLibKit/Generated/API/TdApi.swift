@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -3108,7 +3108,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Returns: The sent message
     public func sendMessage(
         chatId: Int64?,
@@ -3116,7 +3116,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         replyMarkup: ReplyMarkup?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = SendMessage(
@@ -3136,7 +3136,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendMessage(
@@ -3145,7 +3145,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         replyMarkup: ReplyMarkup?,
-        replyTo: MessageReplyTo?
+        replyTo: InputMessageReplyTo?
     ) async throws -> Message {
         let query = SendMessage(
             chatId: chatId,
@@ -3162,24 +3162,21 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
-    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Returns: Sent messages
     public func sendMessageAlbum(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
         messageThreadId: Int64?,
-        onlyPreview: Bool?,
         options: MessageSendOptions?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = SendMessageAlbum(
             chatId: chatId,
             inputMessageContents: inputMessageContents,
             messageThreadId: messageThreadId,
-            onlyPreview: onlyPreview,
             options: options,
             replyTo: replyTo
         )
@@ -3190,24 +3187,21 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
-    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually sending them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Returns: Sent messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendMessageAlbum(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
         messageThreadId: Int64?,
-        onlyPreview: Bool?,
         options: MessageSendOptions?,
-        replyTo: MessageReplyTo?
+        replyTo: InputMessageReplyTo?
     ) async throws -> Messages {
         let query = SendMessageAlbum(
             chatId: chatId,
             inputMessageContents: inputMessageContents,
             messageThreadId: messageThreadId,
-            onlyPreview: onlyPreview,
             options: options,
             replyTo: replyTo
         )
@@ -3258,7 +3252,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Parameter resultId: Identifier of the inline query result
     /// - Returns: The sent message
     public func sendInlineQueryResultMessage(
@@ -3267,7 +3261,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         queryId: TdInt64?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         resultId: String?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
@@ -3289,7 +3283,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Parameter resultId: Identifier of the inline query result
     /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -3299,7 +3293,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         queryId: TdInt64?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         resultId: String?
     ) async throws -> Message {
         let query = SendInlineQueryResultMessage(
@@ -3317,9 +3311,8 @@ public final class TdApi {
     /// Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
-    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent; for forum threads only
-    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually forwarding them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
@@ -3329,7 +3322,6 @@ public final class TdApi {
         fromChatId: Int64?,
         messageIds: [Int64]?,
         messageThreadId: Int64?,
-        onlyPreview: Bool?,
         options: MessageSendOptions?,
         removeCaption: Bool?,
         sendCopy: Bool?,
@@ -3340,7 +3332,6 @@ public final class TdApi {
             fromChatId: fromChatId,
             messageIds: messageIds,
             messageThreadId: messageThreadId,
-            onlyPreview: onlyPreview,
             options: options,
             removeCaption: removeCaption,
             sendCopy: sendCopy
@@ -3351,9 +3342,8 @@ public final class TdApi {
     /// Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
-    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent; for forum threads only
-    /// - Parameter onlyPreview: Pass true to get fake messages instead of actually forwarding them
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
@@ -3364,7 +3354,6 @@ public final class TdApi {
         fromChatId: Int64?,
         messageIds: [Int64]?,
         messageThreadId: Int64?,
-        onlyPreview: Bool?,
         options: MessageSendOptions?,
         removeCaption: Bool?,
         sendCopy: Bool?
@@ -3374,7 +3363,6 @@ public final class TdApi {
             fromChatId: fromChatId,
             messageIds: messageIds,
             messageThreadId: messageThreadId,
-            onlyPreview: onlyPreview,
             options: options,
             removeCaption: removeCaption,
             sendCopy: sendCopy
@@ -3385,15 +3373,18 @@ public final class TdApi {
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    /// - Parameter quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
     /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     public func resendMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
+        quote: FormattedText?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = ResendMessages(
             chatId: chatId,
-            messageIds: messageIds
+            messageIds: messageIds,
+            quote: quote
         )
         self.execute(query: query, completion: completion)
     }
@@ -3401,15 +3392,18 @@ public final class TdApi {
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    /// - Parameter quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
     /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendMessages(
         chatId: Int64?,
-        messageIds: [Int64]?
+        messageIds: [Int64]?,
+        quote: FormattedText?
     ) async throws -> Messages {
         let query = ResendMessages(
             chatId: chatId,
-            messageIds: messageIds
+            messageIds: messageIds,
+            quote: quote
         )
         return try await self.execute(query: query)
     }
@@ -3418,14 +3412,14 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Parameter senderId: Identifier of the sender of the message
     /// - Returns: The added message
     public func addLocalMessage(
         chatId: Int64?,
         disableNotification: Bool?,
         inputMessageContent: InputMessageContent?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         senderId: MessageSender?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
@@ -3443,7 +3437,7 @@ public final class TdApi {
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
-    /// - Parameter replyTo: Identifier of the replied message or story; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Parameter senderId: Identifier of the sender of the message
     /// - Returns: The added message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -3451,7 +3445,7 @@ public final class TdApi {
         chatId: Int64?,
         disableNotification: Bool?,
         inputMessageContent: InputMessageContent?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         senderId: MessageSender?
     ) async throws -> Message {
         let query = AddLocalMessage(
@@ -4703,6 +4697,44 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
+    /// - Parameter quote: Quote to search for
+    /// - Parameter quotePosition: Approximate quote position in UTF-16 code units
+    /// - Parameter text: Text in which to search for the quote
+    /// - Returns: Found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found
+    public func searchQuote(
+        quote: FormattedText?,
+        quotePosition: Int?,
+        text: FormattedText?,
+        completion: @escaping (Result<FoundPosition, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchQuote(
+            quote: quote,
+            quotePosition: quotePosition,
+            text: text
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
+    /// - Parameter quote: Quote to search for
+    /// - Parameter quotePosition: Approximate quote position in UTF-16 code units
+    /// - Parameter text: Text in which to search for the quote
+    /// - Returns: Found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchQuote(
+        quote: FormattedText?,
+        quotePosition: Int?,
+        text: FormattedText?
+    ) async throws -> FoundPosition {
+        let query = SearchQuote(
+            quote: quote,
+            quotePosition: quotePosition,
+            text: text
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entities
     /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
@@ -4727,7 +4759,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     public func parseTextEntities(
@@ -4742,7 +4774,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -5595,7 +5627,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
-    /// - Parameter replyTo: Identifier of the replied message or story for the message sent by the Web App; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     public func openWebApp(
@@ -5603,7 +5635,7 @@ public final class TdApi {
         botUserId: Int64?,
         chatId: Int64?,
         messageThreadId: Int64?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         theme: ThemeParameters?,
         url: String?,
         completion: @escaping (Result<WebAppInfo, Swift.Error>) -> Void
@@ -5625,7 +5657,7 @@ public final class TdApi {
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
-    /// - Parameter replyTo: Identifier of the replied message or story for the message sent by the Web App; pass null if none
+    /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -5634,7 +5666,7 @@ public final class TdApi {
         botUserId: Int64?,
         chatId: Int64?,
         messageThreadId: Int64?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         theme: ThemeParameters?,
         url: String?
     ) async throws -> WebAppInfo {
@@ -7384,6 +7416,43 @@ public final class TdApi {
         let query = SetChatPhoto(
             chatId: chatId,
             photo: photo
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes accent color and background custom emoji of a chat. Supported only for channels with getOption("channel_custom_accent_color_boost_level_min") boost level. Requires can_change_info administrator right
+    /// - Parameter accentColorId: Identifier of the accent color to use
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// - Parameter chatId: Chat identifier
+    public func setChatAccentColor(
+        accentColorId: Int?,
+        backgroundCustomEmojiId: TdInt64?,
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatAccentColor(
+            accentColorId: accentColorId,
+            backgroundCustomEmojiId: backgroundCustomEmojiId,
+            chatId: chatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes accent color and background custom emoji of a chat. Supported only for channels with getOption("channel_custom_accent_color_boost_level_min") boost level. Requires can_change_info administrator right
+    /// - Parameter accentColorId: Identifier of the accent color to use
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setChatAccentColor(
+        accentColorId: Int?,
+        backgroundCustomEmojiId: TdInt64?,
+        chatId: Int64?
+    ) async throws -> Ok {
+        let query = SetChatAccentColor(
+            accentColorId: accentColorId,
+            backgroundCustomEmojiId: backgroundCustomEmojiId,
+            chatId: chatId
         )
         return try await self.execute(query: query)
     }
@@ -9385,6 +9454,21 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns the list of available chat boost slots for the current user
+    /// - Returns: The list of available chat boost slots for the current user
+    public func getAvailableChatBoostSlots(completion: @escaping (Result<ChatBoostSlots, Swift.Error>) -> Void) throws {
+        let query = GetAvailableChatBoostSlots()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of available chat boost slots for the current user
+    /// - Returns: The list of available chat boost slots for the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getAvailableChatBoostSlots() async throws -> ChatBoostSlots {
+        let query = GetAvailableChatBoostSlots()
+        return try await self.execute(query: query)
+    }
+
     /// Returns the current boost status for a channel chat
     /// - Parameter chatId: Identifier of the channel chat
     /// - Returns: The current boost status for a channel chat
@@ -9409,47 +9493,34 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Checks whether the current user can boost a chat
+    /// Boosts a chat and returns the list of available chat boost slots for the current user after the boost
     /// - Parameter chatId: Identifier of the chat
-    public func canBoostChat(
-        chatId: Int64?,
-        completion: @escaping (Result<CanBoostChatResult, Swift.Error>) -> Void
-    ) throws {
-        let query = CanBoostChat(
-            chatId: chatId
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Checks whether the current user can boost a chat
-    /// - Parameter chatId: Identifier of the chat
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func canBoostChat(chatId: Int64?) async throws -> CanBoostChatResult {
-        let query = CanBoostChat(
-            chatId: chatId
-        )
-        return try await self.execute(query: query)
-    }
-
-    /// Boosts a chat
-    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter slotIds: Identifiers of boost slots of the current user from which to apply boosts to the chat
+    /// - Returns: Boosts a chat and returns the list of available chat boost slots for the current user after the boost
     public func boostChat(
         chatId: Int64?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        slotIds: [Int]?,
+        completion: @escaping (Result<ChatBoostSlots, Swift.Error>) -> Void
     ) throws {
         let query = BoostChat(
-            chatId: chatId
+            chatId: chatId,
+            slotIds: slotIds
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Boosts a chat
+    /// Boosts a chat and returns the list of available chat boost slots for the current user after the boost
     /// - Parameter chatId: Identifier of the chat
+    /// - Parameter slotIds: Identifiers of boost slots of the current user from which to apply boosts to the chat
+    /// - Returns: Boosts a chat and returns the list of available chat boost slots for the current user after the boost
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public func boostChat(chatId: Int64?) async throws -> Ok {
+    public func boostChat(
+        chatId: Int64?,
+        slotIds: [Int]?
+    ) async throws -> ChatBoostSlots {
         let query = BoostChat(
-            chatId: chatId
+            chatId: chatId,
+            slotIds: slotIds
         )
         return try await self.execute(query: query)
     }
@@ -9502,40 +9573,78 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+    /// Returns list of boosts applied to a chat; requires administrator rights in the channel chat
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyGiftCodes: Pass true to receive only boosts received from gift codes and giveaways created by the chat
     /// - Returns: List of boosts applied to a chat
     public func getChatBoosts(
         chatId: Int64?,
         limit: Int?,
         offset: String?,
+        onlyGiftCodes: Bool?,
         completion: @escaping (Result<FoundChatBoosts, Swift.Error>) -> Void
     ) throws {
         let query = GetChatBoosts(
             chatId: chatId,
             limit: limit,
-            offset: offset
+            offset: offset,
+            onlyGiftCodes: onlyGiftCodes
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+    /// Returns list of boosts applied to a chat; requires administrator rights in the channel chat
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyGiftCodes: Pass true to receive only boosts received from gift codes and giveaways created by the chat
     /// - Returns: List of boosts applied to a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatBoosts(
         chatId: Int64?,
         limit: Int?,
-        offset: String?
+        offset: String?,
+        onlyGiftCodes: Bool?
     ) async throws -> FoundChatBoosts {
         let query = GetChatBoosts(
             chatId: chatId,
             limit: limit,
-            offset: offset
+            offset: offset,
+            onlyGiftCodes: onlyGiftCodes
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the channel chat; for bots only
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter userId: Identifier of the user
+    /// - Returns: List of boosts applied to a chat by a given user
+    public func getUserChatBoosts(
+        chatId: Int64?,
+        userId: Int64?,
+        completion: @escaping (Result<FoundChatBoosts, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUserChatBoosts(
+            chatId: chatId,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the channel chat; for bots only
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter userId: Identifier of the user
+    /// - Returns: List of boosts applied to a chat by a given user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getUserChatBoosts(
+        chatId: Int64?,
+        userId: Int64?
+    ) async throws -> FoundChatBoosts {
+        let query = GetUserChatBoosts(
+            chatId: chatId,
+            userId: userId
         )
         return try await self.execute(query: query)
     }
@@ -13364,6 +13473,21 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns default list of custom emoji stickers for reply background
+    /// - Returns: Default list of custom emoji stickers for reply background
+    public func getDefaultBackgroundCustomEmojiStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetDefaultBackgroundCustomEmojiStickers()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns default list of custom emoji stickers for reply background
+    /// - Returns: Default list of custom emoji stickers for reply background
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDefaultBackgroundCustomEmojiStickers() async throws -> Stickers {
+        let query = GetDefaultBackgroundCustomEmojiStickers()
+        return try await self.execute(query: query)
+    }
+
     /// Returns saved animations
     /// - Returns: Saved animations
     public func getSavedAnimations(completion: @escaping (Result<Animations, Swift.Error>) -> Void) throws {
@@ -13493,25 +13617,33 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+    /// Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
+    /// - Parameter linkPreviewOptions: Options to be used for generation of the link preview; pass null to use default link preview options
     /// - Parameter text: Message text with formatting
-    /// - Returns: A web page preview by the text of the message. Returns a 404 error if the web page has no preview
+    /// - Returns: A link preview by the text of a message. Returns a 404 error if the text has no link preview
     public func getWebPagePreview(
+        linkPreviewOptions: LinkPreviewOptions?,
         text: FormattedText?,
         completion: @escaping (Result<WebPage, Swift.Error>) -> Void
     ) throws {
         let query = GetWebPagePreview(
+            linkPreviewOptions: linkPreviewOptions,
             text: text
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+    /// Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
+    /// - Parameter linkPreviewOptions: Options to be used for generation of the link preview; pass null to use default link preview options
     /// - Parameter text: Message text with formatting
-    /// - Returns: A web page preview by the text of the message. Returns a 404 error if the web page has no preview
+    /// - Returns: A link preview by the text of a message. Returns a 404 error if the text has no link preview
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getWebPagePreview(text: FormattedText?) async throws -> WebPage {
+    public func getWebPagePreview(
+        linkPreviewOptions: LinkPreviewOptions?,
+        text: FormattedText?
+    ) async throws -> WebPage {
         let query = GetWebPagePreview(
+            linkPreviewOptions: linkPreviewOptions,
             text: text
         )
         return try await self.execute(query: query)
@@ -13599,6 +13731,37 @@ public final class TdApi {
     public func deleteProfilePhoto(profilePhotoId: TdInt64?) async throws -> Ok {
         let query = DeleteProfilePhoto(
             profilePhotoId: profilePhotoId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes accent color and background custom emoji for the current user; for Telegram Premium users only
+    /// - Parameter accentColorId: Identifier of the accent color to use
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    public func setAccentColor(
+        accentColorId: Int?,
+        backgroundCustomEmojiId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetAccentColor(
+            accentColorId: accentColorId,
+            backgroundCustomEmojiId: backgroundCustomEmojiId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes accent color and background custom emoji for the current user; for Telegram Premium users only
+    /// - Parameter accentColorId: Identifier of the accent color to use
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setAccentColor(
+        accentColorId: Int?,
+        backgroundCustomEmojiId: TdInt64?
+    ) async throws -> Ok {
+        let query = SetAccentColor(
+            accentColorId: accentColorId,
+            backgroundCustomEmojiId: backgroundCustomEmojiId
         )
         return try await self.execute(query: query)
     }
@@ -17977,6 +18140,140 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumState() async throws -> PremiumState {
         let query = GetPremiumState()
+        return try await self.execute(query: query)
+    }
+
+    /// Returns available options for Telegram Premium gift code or giveaway creation
+    /// - Parameter boostedChatId: Identifier of the channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
+    /// - Returns: Available options for Telegram Premium gift code or giveaway creation
+    public func getPremiumGiftCodePaymentOptions(
+        boostedChatId: Int64?,
+        completion: @escaping (Result<PremiumGiftCodePaymentOptions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPremiumGiftCodePaymentOptions(
+            boostedChatId: boostedChatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns available options for Telegram Premium gift code or giveaway creation
+    /// - Parameter boostedChatId: Identifier of the channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
+    /// - Returns: Available options for Telegram Premium gift code or giveaway creation
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumGiftCodePaymentOptions(boostedChatId: Int64?) async throws -> PremiumGiftCodePaymentOptions {
+        let query = GetPremiumGiftCodePaymentOptions(
+            boostedChatId: boostedChatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Return information about a Telegram Premium gift code
+    /// - Parameter code: The code to check
+    /// - Returns: Information about a Telegram Premium gift code
+    public func checkPremiumGiftCode(
+        code: String?,
+        completion: @escaping (Result<PremiumGiftCodeInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckPremiumGiftCode(
+            code: code
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Return information about a Telegram Premium gift code
+    /// - Parameter code: The code to check
+    /// - Returns: Information about a Telegram Premium gift code
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func checkPremiumGiftCode(code: String?) async throws -> PremiumGiftCodeInfo {
+        let query = CheckPremiumGiftCode(
+            code: code
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Applies a Telegram Premium gift code
+    /// - Parameter code: The code to apply
+    public func applyPremiumGiftCode(
+        code: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ApplyPremiumGiftCode(
+            code: code
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Applies a Telegram Premium gift code
+    /// - Parameter code: The code to apply
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func applyPremiumGiftCode(code: String?) async throws -> Ok {
+        let query = ApplyPremiumGiftCode(
+            code: code
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Launches a prepaid Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+    /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
+    /// - Parameter parameters: Giveaway parameters
+    public func launchPrepaidPremiumGiveaway(
+        giveawayId: TdInt64?,
+        parameters: PremiumGiveawayParameters?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = LaunchPrepaidPremiumGiveaway(
+            giveawayId: giveawayId,
+            parameters: parameters
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Launches a prepaid Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+    /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
+    /// - Parameter parameters: Giveaway parameters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func launchPrepaidPremiumGiveaway(
+        giveawayId: TdInt64?,
+        parameters: PremiumGiveawayParameters?
+    ) async throws -> Ok {
+        let query = LaunchPrepaidPremiumGiveaway(
+            giveawayId: giveawayId,
+            parameters: parameters
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns information about a Telegram Premium giveaway
+    /// - Parameter chatId: Identifier of the channel chat which started the giveaway
+    /// - Parameter messageId: Identifier of the giveaway message in the chat
+    /// - Returns: Information about a Telegram Premium giveaway
+    public func getPremiumGiveawayInfo(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<PremiumGiveawayInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPremiumGiveawayInfo(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a Telegram Premium giveaway
+    /// - Parameter chatId: Identifier of the channel chat which started the giveaway
+    /// - Parameter messageId: Identifier of the giveaway message in the chat
+    /// - Returns: Information about a Telegram Premium giveaway
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumGiveawayInfo(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> PremiumGiveawayInfo {
+        let query = GetPremiumGiveawayInfo(
+            chatId: chatId,
+            messageId: messageId
+        )
         return try await self.execute(query: query)
     }
 

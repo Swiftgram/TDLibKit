@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -13,8 +13,14 @@ import Foundation
 /// Represents a user
 public struct User: Codable, Equatable, Hashable, Identifiable {
 
+    /// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
+    public let accentColorId: Int
+
     /// True, if the user added the current bot to attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool
+
+    /// Identifier of a custom emoji to be shown on the reply header background; 0 if none. For Telegram Premium users only
+    public let backgroundCustomEmojiId: TdInt64
 
     /// Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only
     public let emojiStatus: EmojiStatus?
@@ -84,7 +90,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        accentColorId: Int,
         addedToAttachmentMenu: Bool,
+        backgroundCustomEmojiId: TdInt64,
         emojiStatus: EmojiStatus?,
         firstName: String,
         hasActiveStories: Bool,
@@ -108,7 +116,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         type: UserType,
         usernames: Usernames?
     ) {
+        self.accentColorId = accentColorId
         self.addedToAttachmentMenu = addedToAttachmentMenu
+        self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.emojiStatus = emojiStatus
         self.firstName = firstName
         self.hasActiveStories = hasActiveStories

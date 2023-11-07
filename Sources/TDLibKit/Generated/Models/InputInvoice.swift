@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public enum InputInvoice: Codable, Equatable, Hashable {
     /// An invoice from a link of the type internalLinkTypeInvoice
     case inputInvoiceName(InputInvoiceName)
 
+    /// An invoice for a payment toward Telegram; must not be used in the in-store apps
+    case inputInvoiceTelegram(InputInvoiceTelegram)
+
 
     private enum Kind: String, Codable {
         case inputInvoiceMessage
         case inputInvoiceName
+        case inputInvoiceTelegram
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,9 @@ public enum InputInvoice: Codable, Equatable, Hashable {
         case .inputInvoiceName:
             let value = try InputInvoiceName(from: decoder)
             self = .inputInvoiceName(value)
+        case .inputInvoiceTelegram:
+            let value = try InputInvoiceTelegram(from: decoder)
+            self = .inputInvoiceTelegram(value)
         }
     }
 
@@ -46,6 +53,9 @@ public enum InputInvoice: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputInvoiceName(let value):
             try container.encode(Kind.inputInvoiceName, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputInvoiceTelegram(let value):
+            try container.encode(Kind.inputInvoiceTelegram, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -79,6 +89,18 @@ public struct InputInvoiceName: Codable, Equatable, Hashable {
 
     public init(name: String) {
         self.name = name
+    }
+}
+
+/// An invoice for a payment toward Telegram; must not be used in the in-store apps
+public struct InputInvoiceTelegram: Codable, Equatable, Hashable {
+
+    /// Transaction purpose
+    public let purpose: TelegramPaymentPurpose
+
+
+    public init(purpose: TelegramPaymentPurpose) {
+        self.purpose = purpose
     }
 }
 

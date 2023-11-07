@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -64,6 +64,9 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to boost chats
     case premiumFeatureChatBoost
 
+    /// The ability to choose accent color
+    case premiumFeatureAccentColor
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -83,6 +86,7 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureRealTimeChatTranslation
         case premiumFeatureUpgradedStories
         case premiumFeatureChatBoost
+        case premiumFeatureAccentColor
     }
 
     public init(from decoder: Decoder) throws {
@@ -123,6 +127,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureUpgradedStories
         case .premiumFeatureChatBoost:
             self = .premiumFeatureChatBoost
+        case .premiumFeatureAccentColor:
+            self = .premiumFeatureAccentColor
         }
     }
 
@@ -163,6 +169,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureUpgradedStories, forKey: .type)
         case .premiumFeatureChatBoost:
             try container.encode(Kind.premiumFeatureChatBoost, forKey: .type)
+        case .premiumFeatureAccentColor:
+            try container.encode(Kind.premiumFeatureAccentColor, forKey: .type)
         }
     }
 }

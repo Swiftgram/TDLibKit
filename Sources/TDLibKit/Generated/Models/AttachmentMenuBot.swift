@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -76,9 +76,6 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
     /// True, if the bot supports opening from attachment menu in the chat with the bot
     public let supportsSelfChat: Bool
 
-    /// True, if the bot supports "settings_button_pressed" event
-    public let supportsSettings: Bool
-
     /// True, if the bot supports opening from attachment menu in private chats with ordinary users
     public let supportsUserChats: Bool
 
@@ -108,7 +105,6 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
         supportsChannelChats: Bool,
         supportsGroupChats: Bool,
         supportsSelfChat: Bool,
-        supportsSettings: Bool,
         supportsUserChats: Bool,
         webAppPlaceholder: File?
     ) {
@@ -133,7 +129,6 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
         self.supportsChannelChats = supportsChannelChats
         self.supportsGroupChats = supportsGroupChats
         self.supportsSelfChat = supportsSelfChat
-        self.supportsSettings = supportsSettings
         self.supportsUserChats = supportsUserChats
         self.webAppPlaceholder = webAppPlaceholder
     }

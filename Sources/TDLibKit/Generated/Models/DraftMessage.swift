@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -19,18 +19,18 @@ public struct DraftMessage: Codable, Equatable, Hashable {
     /// Content of the message draft; must be of the type inputMessageText
     public let inputMessageText: InputMessageContent
 
-    /// Identifier of the replied message; 0 if none
-    public let replyToMessageId: Int64
+    /// Information about the message to be replied; must be of the type inputMessageReplyToMessage; may be null if none
+    public let replyTo: InputMessageReplyTo?
 
 
     public init(
         date: Int,
         inputMessageText: InputMessageContent,
-        replyToMessageId: Int64
+        replyTo: InputMessageReplyTo?
     ) {
         self.date = date
         self.inputMessageText = inputMessageText
-        self.replyToMessageId = replyToMessageId
+        self.replyTo = replyTo
     }
 }
 

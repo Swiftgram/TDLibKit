@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct SendMessage: Codable, Equatable, Hashable {
     /// Markup for replying to the message; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup?
 
-    /// Identifier of the replied message or story; pass null if none
-    public let replyTo: MessageReplyTo?
+    /// Information about the message or story to be replied; pass null if none
+    public let replyTo: InputMessageReplyTo?
 
 
     public init(
@@ -38,7 +38,7 @@ public struct SendMessage: Codable, Equatable, Hashable {
         messageThreadId: Int64?,
         options: MessageSendOptions?,
         replyMarkup: ReplyMarkup?,
-        replyTo: MessageReplyTo?
+        replyTo: InputMessageReplyTo?
     ) {
         self.chatId = chatId
         self.inputMessageContent = inputMessageContent

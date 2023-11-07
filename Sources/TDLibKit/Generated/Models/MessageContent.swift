@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -166,6 +166,15 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// Telegram Premium was gifted to the user
     case messageGiftedPremium(MessageGiftedPremium)
 
+    /// A Telegram Premium gift code was created for the user
+    case messagePremiumGiftCode(MessagePremiumGiftCode)
+
+    /// A Telegram Premium giveaway was created for the chat
+    case messagePremiumGiveawayCreated
+
+    /// A Telegram Premium giveaway
+    case messagePremiumGiveaway(MessagePremiumGiveaway)
+
     /// A contact has registered with Telegram
     case messageContactRegistered
 
@@ -249,6 +258,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messagePaymentSuccessful
         case messagePaymentSuccessfulBot
         case messageGiftedPremium
+        case messagePremiumGiftCode
+        case messagePremiumGiveawayCreated
+        case messagePremiumGiveaway
         case messageContactRegistered
         case messageUserShared
         case messageChatShared
@@ -412,6 +424,14 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiftedPremium:
             let value = try MessageGiftedPremium(from: decoder)
             self = .messageGiftedPremium(value)
+        case .messagePremiumGiftCode:
+            let value = try MessagePremiumGiftCode(from: decoder)
+            self = .messagePremiumGiftCode(value)
+        case .messagePremiumGiveawayCreated:
+            self = .messagePremiumGiveawayCreated
+        case .messagePremiumGiveaway:
+            let value = try MessagePremiumGiveaway(from: decoder)
+            self = .messagePremiumGiveaway(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUserShared:
@@ -593,6 +613,14 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiftedPremium(let value):
             try container.encode(Kind.messageGiftedPremium, forKey: .type)
             try value.encode(to: encoder)
+        case .messagePremiumGiftCode(let value):
+            try container.encode(Kind.messagePremiumGiftCode, forKey: .type)
+            try value.encode(to: encoder)
+        case .messagePremiumGiveawayCreated:
+            try container.encode(Kind.messagePremiumGiveawayCreated, forKey: .type)
+        case .messagePremiumGiveaway(let value):
+            try container.encode(Kind.messagePremiumGiveaway, forKey: .type)
+            try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
         case .messageUserShared(let value):
@@ -628,17 +656,22 @@ public enum MessageContent: Codable, Equatable, Hashable {
 /// A text message
 public struct MessageText: Codable, Equatable, Hashable {
 
+    /// Options which was used for generation of the link preview; may be null if default options were used
+    public let linkPreviewOptions: LinkPreviewOptions?
+
     /// Text of the message
     public let text: FormattedText
 
-    /// A preview of the web page that's mentioned in the text; may be null
+    /// A link preview attached to the message; may be null
     public let webPage: WebPage?
 
 
     public init(
+        linkPreviewOptions: LinkPreviewOptions?,
         text: FormattedText,
         webPage: WebPage?
     ) {
+        self.linkPreviewOptions = linkPreviewOptions
         self.text = text
         self.webPage = webPage
     }
@@ -1565,6 +1598,74 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         self.gifterUserId = gifterUserId
         self.monthCount = monthCount
         self.sticker = sticker
+    }
+}
+
+/// A Telegram Premium gift code was created for the user
+public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
+
+    /// The gift code
+    public let code: String
+
+    /// Identifier of a chat or a user that created the gift code
+    public let creatorId: MessageSender
+
+    /// True, if the gift code was created for a giveaway
+    public let isFromGiveaway: Bool
+
+    /// True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
+    public let isUnclaimed: Bool
+
+    /// Number of month the Telegram Premium subscription will be active after code activation
+    public let monthCount: Int
+
+    /// A sticker to be shown in the message; may be null if unknown
+    public let sticker: Sticker?
+
+
+    public init(
+        code: String,
+        creatorId: MessageSender,
+        isFromGiveaway: Bool,
+        isUnclaimed: Bool,
+        monthCount: Int,
+        sticker: Sticker?
+    ) {
+        self.code = code
+        self.creatorId = creatorId
+        self.isFromGiveaway = isFromGiveaway
+        self.isUnclaimed = isUnclaimed
+        self.monthCount = monthCount
+        self.sticker = sticker
+    }
+}
+
+/// A Telegram Premium giveaway
+public struct MessagePremiumGiveaway: Codable, Equatable, Hashable {
+
+    /// Number of month the Telegram Premium subscription will be active after code activation
+    public let monthCount: Int
+
+    /// Giveaway parameters
+    public let parameters: PremiumGiveawayParameters
+
+    /// A sticker to be shown in the message; may be null if unknown
+    public let sticker: Sticker?
+
+    /// Number of users which will receive Telegram Premium subscription gift codes
+    public let winnerCount: Int
+
+
+    public init(
+        monthCount: Int,
+        parameters: PremiumGiveawayParameters,
+        sticker: Sticker?,
+        winnerCount: Int
+    ) {
+        self.monthCount = monthCount
+        self.parameters = parameters
+        self.sticker = sticker
+        self.winnerCount = winnerCount
     }
 }
 

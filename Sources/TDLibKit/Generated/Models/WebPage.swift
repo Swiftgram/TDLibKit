@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
 
 
-/// Describes a web page preview
+/// Describes a link preview
 public struct WebPage: Codable, Equatable, Hashable {
 
     /// Preview of the content as an animation, if available; may be null
@@ -45,14 +45,26 @@ public struct WebPage: Codable, Equatable, Hashable {
     /// Width of the embedded preview
     public let embedWidth: Int
 
+    /// True, if the preview has large media and its appearance can be changed
+    public let hasLargeMedia: Bool
+
     /// Version of web page instant view (currently, can be 1 or 2); 0 if none
     public let instantViewVersion: Int
 
     /// Image representing the content; may be null
     public let photo: Photo?
 
+    /// True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text
+    public let showAboveText: Bool
+
+    /// True, if large media preview must be shown
+    public let showLargeMedia: Bool
+
     /// Short name of the site (e.g., Google Docs, App Store)
     public let siteName: String
+
+    /// True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear
+    public let skipConfirmation: Bool
 
     /// Preview of the content as a sticker for small WEBP files, if available; may be null
     public let sticker: Sticker?
@@ -94,9 +106,13 @@ public struct WebPage: Codable, Equatable, Hashable {
         embedType: String,
         embedUrl: String,
         embedWidth: Int,
+        hasLargeMedia: Bool,
         instantViewVersion: Int,
         photo: Photo?,
+        showAboveText: Bool,
+        showLargeMedia: Bool,
         siteName: String,
+        skipConfirmation: Bool,
         sticker: Sticker?,
         storyId: Int,
         storySenderChatId: Int64,
@@ -118,9 +134,13 @@ public struct WebPage: Codable, Equatable, Hashable {
         self.embedType = embedType
         self.embedUrl = embedUrl
         self.embedWidth = embedWidth
+        self.hasLargeMedia = hasLargeMedia
         self.instantViewVersion = instantViewVersion
         self.photo = photo
+        self.showAboveText = showAboveText
+        self.showLargeMedia = showLargeMedia
         self.siteName = siteName
+        self.skipConfirmation = skipConfirmation
         self.sticker = sticker
         self.storyId = storyId
         self.storySenderChatId = storySenderChatId

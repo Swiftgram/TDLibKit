@@ -3,29 +3,44 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
 
 
-/// Describes a boost of a chat
-public struct ChatBoost: Codable, Equatable, Hashable {
+/// Describes a boost applied to a chat
+public struct ChatBoost: Codable, Equatable, Hashable, Identifiable {
 
-    /// Point in time (Unix timestamp) when the boost will automatically expire if the user will not prolongate their Telegram Premium subscription
+    /// The number of identical boosts applied
+    public let count: Int
+
+    /// Point in time (Unix timestamp) when the boost will expire
     public let expirationDate: Int
 
-    /// Identifier of a user that boosted the chat
-    public let userId: Int64
+    /// Unique identifier of the boost
+    public let id: String
+
+    /// Source of the boost
+    public let source: ChatBoostSource
+
+    /// Point in time (Unix timestamp) when the chat was boosted
+    public let startDate: Int
 
 
     public init(
+        count: Int,
         expirationDate: Int,
-        userId: Int64
+        id: String,
+        source: ChatBoostSource,
+        startDate: Int
     ) {
+        self.count = count
         self.expirationDate = expirationDate
-        self.userId = userId
+        self.id = id
+        self.source = source
+        self.startDate = startDate
     }
 }
 

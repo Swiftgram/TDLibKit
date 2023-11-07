@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
 
 
-/// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+/// Returns list of boosts applied to a chat; requires administrator rights in the channel chat
 public struct GetChatBoosts: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
@@ -22,15 +22,20 @@ public struct GetChatBoosts: Codable, Equatable, Hashable {
     /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     public let offset: String?
 
+    /// Pass true to receive only boosts received from gift codes and giveaways created by the chat
+    public let onlyGiftCodes: Bool?
+
 
     public init(
         chatId: Int64?,
         limit: Int?,
-        offset: String?
+        offset: String?,
+        onlyGiftCodes: Bool?
     ) {
         self.chatId = chatId
         self.limit = limit
         self.offset = offset
+        self.onlyGiftCodes = onlyGiftCodes
     }
 }
 

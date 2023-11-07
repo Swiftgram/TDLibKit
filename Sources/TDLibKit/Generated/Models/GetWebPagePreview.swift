@@ -3,21 +3,28 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
 
 
-/// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+/// Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
 public struct GetWebPagePreview: Codable, Equatable, Hashable {
+
+    /// Options to be used for generation of the link preview; pass null to use default link preview options
+    public let linkPreviewOptions: LinkPreviewOptions?
 
     /// Message text with formatting
     public let text: FormattedText?
 
 
-    public init(text: FormattedText?) {
+    public init(
+        linkPreviewOptions: LinkPreviewOptions?,
+        text: FormattedText?
+    ) {
+        self.linkPreviewOptions = linkPreviewOptions
         self.text = text
     }
 }

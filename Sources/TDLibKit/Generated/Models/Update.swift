@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -61,10 +61,16 @@ public enum Update: Codable, Equatable, Hashable {
     /// A chat photo was changed
     case updateChatPhoto(UpdateChatPhoto)
 
+    /// A chat accent color has changed
+    case updateChatAccentColor(UpdateChatAccentColor)
+
+    /// A chat's custom emoji for reply background has changed
+    case updateChatBackgroundCustomEmoji(UpdateChatBackgroundCustomEmoji)
+
     /// Chat permissions was changed
     case updateChatPermissions(UpdateChatPermissions)
 
-    /// The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
+    /// The last message of a chat was changed
     case updateChatLastMessage(UpdateChatLastMessage)
 
     /// The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
@@ -283,6 +289,9 @@ public enum Update: Codable, Equatable, Hashable {
     /// The list of available chat themes has changed
     case updateChatThemes(UpdateChatThemes)
 
+    /// The list of supported accent colors has changed
+    case updateAccentColors(UpdateAccentColors)
+
     /// Some language pack strings have been updated
     case updateLanguagePackStrings(UpdateLanguagePackStrings)
 
@@ -364,6 +373,9 @@ public enum Update: Codable, Equatable, Hashable {
     /// A user sent a join request to a chat; for bots only
     case updateNewChatJoinRequest(UpdateNewChatJoinRequest)
 
+    /// A chat boost has changed; for bots only
+    case updateChatBoost(UpdateChatBoost)
+
 
     private enum Kind: String, Codable {
         case updateAuthorizationState
@@ -382,6 +394,8 @@ public enum Update: Codable, Equatable, Hashable {
         case updateNewChat
         case updateChatTitle
         case updateChatPhoto
+        case updateChatAccentColor
+        case updateChatBackgroundCustomEmoji
         case updateChatPermissions
         case updateChatLastMessage
         case updateChatPosition
@@ -456,6 +470,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateSavedNotificationSounds
         case updateSelectedBackground
         case updateChatThemes
+        case updateAccentColors
         case updateLanguagePackStrings
         case updateConnectionState
         case updateTermsOfService
@@ -483,6 +498,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updatePollAnswer
         case updateChatMember
         case updateNewChatJoinRequest
+        case updateChatBoost
     }
 
     public init(from decoder: Decoder) throws {
@@ -537,6 +553,12 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatPhoto:
             let value = try UpdateChatPhoto(from: decoder)
             self = .updateChatPhoto(value)
+        case .updateChatAccentColor:
+            let value = try UpdateChatAccentColor(from: decoder)
+            self = .updateChatAccentColor(value)
+        case .updateChatBackgroundCustomEmoji:
+            let value = try UpdateChatBackgroundCustomEmoji(from: decoder)
+            self = .updateChatBackgroundCustomEmoji(value)
         case .updateChatPermissions:
             let value = try UpdateChatPermissions(from: decoder)
             self = .updateChatPermissions(value)
@@ -759,6 +781,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatThemes:
             let value = try UpdateChatThemes(from: decoder)
             self = .updateChatThemes(value)
+        case .updateAccentColors:
+            let value = try UpdateAccentColors(from: decoder)
+            self = .updateAccentColors(value)
         case .updateLanguagePackStrings:
             let value = try UpdateLanguagePackStrings(from: decoder)
             self = .updateLanguagePackStrings(value)
@@ -840,6 +865,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateNewChatJoinRequest:
             let value = try UpdateNewChatJoinRequest(from: decoder)
             self = .updateNewChatJoinRequest(value)
+        case .updateChatBoost:
+            let value = try UpdateChatBoost(from: decoder)
+            self = .updateChatBoost(value)
         }
     }
 
@@ -893,6 +921,12 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateChatPhoto(let value):
             try container.encode(Kind.updateChatPhoto, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatAccentColor(let value):
+            try container.encode(Kind.updateChatAccentColor, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatBackgroundCustomEmoji(let value):
+            try container.encode(Kind.updateChatBackgroundCustomEmoji, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatPermissions(let value):
             try container.encode(Kind.updateChatPermissions, forKey: .type)
@@ -1116,6 +1150,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatThemes(let value):
             try container.encode(Kind.updateChatThemes, forKey: .type)
             try value.encode(to: encoder)
+        case .updateAccentColors(let value):
+            try container.encode(Kind.updateAccentColors, forKey: .type)
+            try value.encode(to: encoder)
         case .updateLanguagePackStrings(let value):
             try container.encode(Kind.updateLanguagePackStrings, forKey: .type)
             try value.encode(to: encoder)
@@ -1196,6 +1233,9 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateNewChatJoinRequest(let value):
             try container.encode(Kind.updateNewChatJoinRequest, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatBoost(let value):
+            try container.encode(Kind.updateChatBoost, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -1529,6 +1569,44 @@ public struct UpdateChatPhoto: Codable, Equatable, Hashable {
     }
 }
 
+/// A chat accent color has changed
+public struct UpdateChatAccentColor: Codable, Equatable, Hashable {
+
+    /// The new chat accent color identifier
+    public let accentColorId: Int
+
+    /// Chat identifier
+    public let chatId: Int64
+
+
+    public init(
+        accentColorId: Int,
+        chatId: Int64
+    ) {
+        self.accentColorId = accentColorId
+        self.chatId = chatId
+    }
+}
+
+/// A chat's custom emoji for reply background has changed
+public struct UpdateChatBackgroundCustomEmoji: Codable, Equatable, Hashable {
+
+    /// The new tdentifier of a custom emoji to be shown on the reply header background
+    public let backgroundCustomEmojiId: TdInt64
+
+    /// Chat identifier
+    public let chatId: Int64
+
+
+    public init(
+        backgroundCustomEmojiId: TdInt64,
+        chatId: Int64
+    ) {
+        self.backgroundCustomEmojiId = backgroundCustomEmojiId
+        self.chatId = chatId
+    }
+}
+
 /// Chat permissions was changed
 public struct UpdateChatPermissions: Codable, Equatable, Hashable {
 
@@ -1548,13 +1626,13 @@ public struct UpdateChatPermissions: Codable, Equatable, Hashable {
     }
 }
 
-/// The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
+/// The last message of a chat was changed
 public struct UpdateChatLastMessage: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new last message in the chat; may be null
+    /// The new last message in the chat; may be null if the last message became unknown. While the last message is unknown, new messages can be added to the chat without corresponding updateNewMessage update
     public let lastMessage: Message?
 
     /// The new chat positions in the chat lists
@@ -2943,6 +3021,25 @@ public struct UpdateChatThemes: Codable, Equatable, Hashable {
     }
 }
 
+/// The list of supported accent colors has changed
+public struct UpdateAccentColors: Codable, Equatable, Hashable {
+
+    /// The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
+    public let availableAccentColorIds: [Int]
+
+    /// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported//-and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
+    public let colors: [AccentColor]
+
+
+    public init(
+        availableAccentColorIds: [Int],
+        colors: [AccentColor]
+    ) {
+        self.availableAccentColorIds = availableAccentColorIds
+        self.colors = colors
+    }
+}
+
 /// Some language pack strings have been updated
 public struct UpdateLanguagePackStrings: Codable, Equatable, Hashable {
 
@@ -3543,6 +3640,25 @@ public struct UpdateNewChatJoinRequest: Codable, Equatable, Hashable {
         self.inviteLink = inviteLink
         self.request = request
         self.userChatId = userChatId
+    }
+}
+
+/// A chat boost has changed; for bots only
+public struct UpdateChatBoost: Codable, Equatable, Hashable {
+
+    /// New information about the boost
+    public let boost: ChatBoost
+
+    /// Chat identifier
+    public let chatId: Int64
+
+
+    public init(
+        boost: ChatBoost,
+        chatId: Int64
+    ) {
+        self.boost = boost
+        self.chatId = chatId
     }
 }
 

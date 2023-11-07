@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -759,6 +759,9 @@ public struct PageBlockSlideshow: Codable, Equatable, Hashable {
 /// A link to a chat
 public struct PageBlockChatLink: Codable, Equatable, Hashable {
 
+    /// Identifier of the accent color for chat title and background of chat photo
+    public let accentColorId: Int
+
     /// Chat photo; may be null
     public let photo: ChatPhotoInfo?
 
@@ -770,10 +773,12 @@ public struct PageBlockChatLink: Codable, Equatable, Hashable {
 
 
     public init(
+        accentColorId: Int,
         photo: ChatPhotoInfo?,
         title: String,
         username: String
     ) {
+        self.accentColorId = accentColorId
         self.photo = photo
         self.title = title
         self.username = username

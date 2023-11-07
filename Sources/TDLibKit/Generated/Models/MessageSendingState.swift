@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -72,8 +72,14 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
     /// The cause of the message sending failure
     public let error: Error
 
+    /// True, if the message can be re-sent only if another quote is chosen in the message that is replied by the given message
+    public let needAnotherReplyQuote: Bool
+
     /// True, if the message can be re-sent only on behalf of a different sender
     public let needAnotherSender: Bool
+
+    /// True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages
+    public let needDropReply: Bool
 
     /// Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     public let retryAfter: Double
@@ -82,12 +88,16 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
     public init(
         canRetry: Bool,
         error: Error,
+        needAnotherReplyQuote: Bool,
         needAnotherSender: Bool,
+        needDropReply: Bool,
         retryAfter: Double
     ) {
         self.canRetry = canRetry
         self.error = error
+        self.needAnotherReplyQuote = needAnotherReplyQuote
         self.needAnotherSender = needAnotherSender
+        self.needDropReply = needDropReply
         self.retryAfter = retryAfter
     }
 }

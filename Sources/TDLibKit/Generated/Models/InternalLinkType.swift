@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the change phone number section of the app
     case internalLinkTypeChangePhoneNumber
 
-    /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and canBoostChat to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
+    /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     case internalLinkTypeChatBoost(InternalLinkTypeChatBoost)
 
     /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
@@ -84,6 +84,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
+
+    /// The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
+    case internalLinkTypePremiumGiftCode(InternalLinkTypePremiumGiftCode)
 
     /// The link is a link to the privacy and security section of the app settings
     case internalLinkTypePrivacyAndSecuritySettings
@@ -162,6 +165,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
         case internalLinkTypePremiumFeatures
+        case internalLinkTypePremiumGiftCode
         case internalLinkTypePrivacyAndSecuritySettings
         case internalLinkTypeProxy
         case internalLinkTypePublicChat
@@ -251,6 +255,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypePremiumFeatures:
             let value = try InternalLinkTypePremiumFeatures(from: decoder)
             self = .internalLinkTypePremiumFeatures(value)
+        case .internalLinkTypePremiumGiftCode:
+            let value = try InternalLinkTypePremiumGiftCode(from: decoder)
+            self = .internalLinkTypePremiumGiftCode(value)
         case .internalLinkTypePrivacyAndSecuritySettings:
             self = .internalLinkTypePrivacyAndSecuritySettings
         case .internalLinkTypeProxy:
@@ -367,6 +374,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypePremiumFeatures(let value):
             try container.encode(Kind.internalLinkTypePremiumFeatures, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypePremiumGiftCode(let value):
+            try container.encode(Kind.internalLinkTypePremiumGiftCode, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypePrivacyAndSecuritySettings:
             try container.encode(Kind.internalLinkTypePrivacyAndSecuritySettings, forKey: .type)
@@ -532,7 +542,7 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and canBoostChat to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
+/// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
 public struct InternalLinkTypeChatBoost: Codable, Equatable, Hashable {
 
     /// URL to be passed to getChatBoostLinkInfo
@@ -723,6 +733,18 @@ public struct InternalLinkTypePremiumFeatures: Codable, Equatable, Hashable {
 
     public init(referrer: String) {
         self.referrer = referrer
+    }
+}
+
+/// The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
+public struct InternalLinkTypePremiumGiftCode: Codable, Equatable, Hashable {
+
+    /// The Telegram Premium gift code
+    public let code: String
+
+
+    public init(code: String) {
+        self.code = code
     }
 }
 

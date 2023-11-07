@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
 public struct Chat: Codable, Equatable, Hashable, Identifiable {
+
+    /// Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview
+    public let accentColorId: Int
 
     /// Information about actions which must be possible to do through the chat action bar; may be null if none
     public let actionBar: ChatActionBar?
@@ -21,6 +24,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// Background set for the chat; may be null if none
     public let background: ChatBackground?
+
+    /// Identifier of a custom emoji to be shown on the reply header background in replies to messages sent by the chat; 0 if none
+    public let backgroundCustomEmojiId: TdInt64
 
     /// Block list to which the chat is added; may be null if none
     public let blockList: BlockList?
@@ -114,9 +120,11 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        accentColorId: Int,
         actionBar: ChatActionBar?,
         availableReactions: ChatAvailableReactions,
         background: ChatBackground?,
+        backgroundCustomEmojiId: TdInt64,
         blockList: BlockList?,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
@@ -148,9 +156,11 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         unreadReactionCount: Int,
         videoChat: VideoChat
     ) {
+        self.accentColorId = accentColorId
         self.actionBar = actionBar
         self.availableReactions = availableReactions
         self.background = background
+        self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.blockList = blockList
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -22,28 +22,23 @@ public struct SendMessageAlbum: Codable, Equatable, Hashable {
     /// If not 0, a message thread identifier in which the messages will be sent
     public let messageThreadId: Int64?
 
-    /// Pass true to get fake messages instead of actually sending them
-    public let onlyPreview: Bool?
-
     /// Options to be used to send the messages; pass null to use default options
     public let options: MessageSendOptions?
 
-    /// Identifier of the replied message or story; pass null if none
-    public let replyTo: MessageReplyTo?
+    /// Information about the message or story to be replied; pass null if none
+    public let replyTo: InputMessageReplyTo?
 
 
     public init(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
         messageThreadId: Int64?,
-        onlyPreview: Bool?,
         options: MessageSendOptions?,
-        replyTo: MessageReplyTo?
+        replyTo: InputMessageReplyTo?
     ) {
         self.chatId = chatId
         self.inputMessageContents = inputMessageContents
         self.messageThreadId = messageThreadId
-        self.onlyPreview = onlyPreview
         self.options = options
         self.replyTo = replyTo
     }

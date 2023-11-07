@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
     /// Name of the sticker set
     public let name: String
 
+    /// True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
+    public let needsRepainting: Bool
+
     /// Format of the stickers in the set
     public let stickerFormat: StickerFormat
 
@@ -61,6 +64,7 @@ public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
         isOfficial: Bool,
         isViewed: Bool,
         name: String,
+        needsRepainting: Bool,
         stickerFormat: StickerFormat,
         stickerType: StickerType,
         stickers: [Sticker],
@@ -75,6 +79,7 @@ public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
         self.isOfficial = isOfficial
         self.isViewed = isViewed
         self.name = name
+        self.needsRepainting = needsRepainting
         self.stickerFormat = stickerFormat
         self.stickerType = stickerType
         self.stickers = stickers

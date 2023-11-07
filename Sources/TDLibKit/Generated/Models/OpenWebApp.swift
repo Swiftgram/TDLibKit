@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public struct OpenWebApp: Codable, Equatable, Hashable {
     /// If not 0, a message thread identifier in which the message will be sent
     public let messageThreadId: Int64?
 
-    /// Identifier of the replied message or story for the message sent by the Web App; pass null if none
-    public let replyTo: MessageReplyTo?
+    /// Information about the message or story to be replied in the message sent by the Web App; pass null if none
+    public let replyTo: InputMessageReplyTo?
 
     /// Preferred Web App theme; pass null to use the default theme
     public let theme: ThemeParameters?
@@ -40,7 +40,7 @@ public struct OpenWebApp: Codable, Equatable, Hashable {
         botUserId: Int64?,
         chatId: Int64?,
         messageThreadId: Int64?,
-        replyTo: MessageReplyTo?,
+        replyTo: InputMessageReplyTo?,
         theme: ThemeParameters?,
         url: String?
     ) {

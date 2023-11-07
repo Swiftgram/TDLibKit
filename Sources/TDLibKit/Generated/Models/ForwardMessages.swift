@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -19,14 +19,11 @@ public struct ForwardMessages: Codable, Equatable, Hashable {
     /// Identifier of the chat from which to forward messages
     public let fromChatId: Int64?
 
-    /// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    /// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
     public let messageIds: [Int64]?
 
     /// If not 0, a message thread identifier in which the message will be sent; for forum threads only
     public let messageThreadId: Int64?
-
-    /// Pass true to get fake messages instead of actually forwarding them
-    public let onlyPreview: Bool?
 
     /// Options to be used to send the messages; pass null to use default options
     public let options: MessageSendOptions?
@@ -43,7 +40,6 @@ public struct ForwardMessages: Codable, Equatable, Hashable {
         fromChatId: Int64?,
         messageIds: [Int64]?,
         messageThreadId: Int64?,
-        onlyPreview: Bool?,
         options: MessageSendOptions?,
         removeCaption: Bool?,
         sendCopy: Bool?
@@ -52,7 +48,6 @@ public struct ForwardMessages: Codable, Equatable, Hashable {
         self.fromChatId = fromChatId
         self.messageIds = messageIds
         self.messageThreadId = messageThreadId
-        self.onlyPreview = onlyPreview
         self.options = options
         self.removeCaption = removeCaption
         self.sendCopy = sendCopy

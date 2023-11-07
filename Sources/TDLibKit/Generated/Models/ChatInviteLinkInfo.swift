@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about a chat invite link
 public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
+
+    /// Identifier of the accent color for chat title and background of chat photo
+    public let accentColorId: Int
 
     /// If non-zero, the amount of time for which read access to the chat will remain available, in seconds
     public let accessibleFor: Int
@@ -53,6 +56,7 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
 
 
     public init(
+        accentColorId: Int,
         accessibleFor: Int,
         chatId: Int64,
         createsJoinRequest: Bool,
@@ -67,6 +71,7 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         title: String,
         type: InviteLinkChatType
     ) {
+        self.accentColorId = accentColorId
         self.accessibleFor = accessibleFor
         self.chatId = chatId
         self.createsJoinRequest = createsJoinRequest

@@ -3,22 +3,29 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
 
 
-/// Boosts a chat
+/// Boosts a chat and returns the list of available chat boost slots for the current user after the boost
 public struct BoostChat: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?
 
+    /// Identifiers of boost slots of the current user from which to apply boosts to the chat
+    public let slotIds: [Int]?
 
-    public init(chatId: Int64?) {
+
+    public init(
+        chatId: Int64?,
+        slotIds: [Int]?
+    ) {
         self.chatId = chatId
+        self.slotIds = slotIds
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -217,20 +217,20 @@ public struct InputMessageText: Codable, Equatable, Hashable {
     /// True, if a chat message draft must be deleted
     public let clearDraft: Bool
 
-    /// True, if rich web page previews for URLs in the message text must be disabled
-    public let disableWebPagePreview: Bool
+    /// Options to be used for generation of a link preview; pass null to use default link preview options
+    public let linkPreviewOptions: LinkPreviewOptions?
 
-    /// Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    /// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     public let text: FormattedText
 
 
     public init(
         clearDraft: Bool,
-        disableWebPagePreview: Bool,
+        linkPreviewOptions: LinkPreviewOptions?,
         text: FormattedText
     ) {
         self.clearDraft = clearDraft
-        self.disableWebPagePreview = disableWebPagePreview
+        self.linkPreviewOptions = linkPreviewOptions
         self.text = text
     }
 }
@@ -786,7 +786,7 @@ public struct InputMessageForwarded: Codable, Equatable, Hashable {
     /// True, if a game message is being shared from a launched game; applies only to game messages
     public let inGameShare: Bool
 
-    /// Identifier of the message to forward
+    /// Identifier of the message to forward. A message can be forwarded only if message.can_be_forwarded
     public let messageId: Int64
 
 

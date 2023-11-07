@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.20-dd77e462
-//  https://github.com/tdlib/td/tree/dd77e462
+//  Based on TDLib 1.8.21-21d5184e
+//  https://github.com/tdlib/td/tree/21d5184e
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     /// Pass true if the message is sent from the background
     public let fromBackground: Bool
+
+    /// Pass true to get a fake message instead of actually sending them
+    public let onlyPreview: Bool
 
     /// Pass true if the content of the message must be protected from forwarding and saving; for bots only
     public let protectContent: Bool
@@ -35,6 +38,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     public init(
         disableNotification: Bool,
         fromBackground: Bool,
+        onlyPreview: Bool,
         protectContent: Bool,
         schedulingState: MessageSchedulingState?,
         sendingId: Int,
@@ -42,6 +46,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     ) {
         self.disableNotification = disableNotification
         self.fromBackground = fromBackground
+        self.onlyPreview = onlyPreview
         self.protectContent = protectContent
         self.schedulingState = schedulingState
         self.sendingId = sendingId
