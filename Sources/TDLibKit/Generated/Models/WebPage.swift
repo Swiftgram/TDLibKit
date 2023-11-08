@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-21d5184e
-//  https://github.com/tdlib/td/tree/21d5184e
+//  Based on TDLib 1.8.21-da9afda7
+//  https://github.com/tdlib/td/tree/da9afda7
 //
 
 import Foundation
@@ -45,7 +45,7 @@ public struct WebPage: Codable, Equatable, Hashable {
     /// Width of the embedded preview
     public let embedWidth: Int
 
-    /// True, if the preview has large media and its appearance can be changed
+    /// True, if size of media in the preview can be changed
     public let hasLargeMedia: Bool
 
     /// Version of web page instant view (currently, can be 1 or 2); 0 if none
