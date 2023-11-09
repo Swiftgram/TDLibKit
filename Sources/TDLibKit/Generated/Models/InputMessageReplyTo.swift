@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-da9afda7
-//  https://github.com/tdlib/td/tree/da9afda7
+//  Based on TDLib 1.8.21-9184b3e6
+//  https://github.com/tdlib/td/tree/9184b3e6
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public enum InputMessageReplyTo: Codable, Equatable, Hashable {
 /// Describes a message to be replied
 public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
 
-    /// The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat only if message.can_be_replied_in_another_chat
+    /// The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
     public let chatId: Int64
 
     /// The identifier of the message to be replied in the same or the specified chat

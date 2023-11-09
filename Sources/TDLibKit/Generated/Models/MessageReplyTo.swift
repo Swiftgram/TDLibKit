@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-da9afda7
-//  https://github.com/tdlib/td/tree/da9afda7
+//  Based on TDLib 1.8.21-9184b3e6
+//  https://github.com/tdlib/td/tree/9184b3e6
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     /// The identifier of the chat to which the message belongs; may be 0 if the replied message is in unknown chat
     public let chatId: Int64
 
-    /// Media content of the message if the message was replied from another chat; may be null for messages from the same chat and messages without media.//-Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation,//-messagePhoto, messagePoll, messagePremiumGiveaway, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
+    /// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media.//-Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation,//-messagePhoto, messagePoll, messagePremiumGiveaway, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
     public let content: MessageContent?
 
     /// True, if the quote was manually chosen by the message sender
@@ -66,10 +66,10 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     /// The identifier of the message; may be 0 if the replied message is in unknown chat
     public let messageId: Int64
 
-    /// Information about origin of the message if the message was replied from another chat; may be null for messages from the same chat
+    /// Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat
     public let origin: MessageOrigin?
 
-    /// Point in time (Unix timestamp) when the message was sent if the message was replied from another chat; 0 for messages from the same chat
+    /// Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
     public let originSendDate: Int
 
     /// Manually or automatically chosen quote from the replied message; may be null if none. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the quote

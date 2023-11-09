@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-da9afda7
-//  https://github.com/tdlib/td/tree/da9afda7
+//  Based on TDLib 1.8.21-9184b3e6
+//  https://github.com/tdlib/td/tree/9184b3e6
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message can be forwarded
     public let canBeForwarded: Bool
 
-    /// True, if the message can be replied in another chat
+    /// True, if the message can be replied in another chat or topic
     public let canBeRepliedInAnotherChat: Bool
 
     /// True, if content of the message can be saved locally or copied
