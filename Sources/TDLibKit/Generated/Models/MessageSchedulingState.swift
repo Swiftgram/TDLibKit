@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public enum MessageSchedulingState: Codable, Equatable, Hashable {
     /// The message will be sent at the specified date
     case messageSchedulingStateSendAtDate(MessageSchedulingStateSendAtDate)
 
-    /// The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+    /// The message will be sent when the other user is online. Applicable to private chats only and when the exact online status of the other user is known
     case messageSchedulingStateSendWhenOnline
 
 

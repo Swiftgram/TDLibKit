@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public enum Update: Codable, Equatable, Hashable {
     /// A new message was received; can also be an outgoing message
     case updateNewMessage(UpdateNewMessage)
 
-    /// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
+    /// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully. This update is sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
     case updateMessageSendAcknowledged(UpdateMessageSendAcknowledged)
 
     /// A message has been successfully sent
@@ -142,7 +142,7 @@ public enum Update: Codable, Equatable, Hashable {
     /// The list of chat folders or a chat folder has changed
     case updateChatFolders(UpdateChatFolders)
 
-    /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
+    /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
 
     /// Basic information about a topic in a forum chat was changed
@@ -1265,7 +1265,7 @@ public struct UpdateNewMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
+/// A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully. This update is sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
 public struct UpdateMessageSendAcknowledged: Codable, Equatable, Hashable {
 
     /// The chat identifier of the sent message
@@ -1591,7 +1591,7 @@ public struct UpdateChatAccentColor: Codable, Equatable, Hashable {
 /// A chat's custom emoji for reply background has changed
 public struct UpdateChatBackgroundCustomEmoji: Codable, Equatable, Hashable {
 
-    /// The new tdentifier of a custom emoji to be shown on the reply header background
+    /// The new identifier of a custom emoji to be shown on the reply header background; 0 if none
     public let backgroundCustomEmojiId: TdInt64
 
     /// Chat identifier
@@ -2097,7 +2097,7 @@ public struct UpdateChatFolders: Codable, Equatable, Hashable {
     }
 }
 
-/// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
+/// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
 public struct UpdateChatOnlineMemberCount: Codable, Equatable, Hashable {
 
     /// Identifier of the chat

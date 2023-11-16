@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -9912,7 +9912,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it is sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
@@ -9930,7 +9930,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it is sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
@@ -11422,7 +11422,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+    /// Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
     /// - Parameter enabledStartNotification: New value of the enabled_start_notification setting
     /// - Parameter groupCallId: Group call identifier
     public func toggleGroupCallEnabledStartNotification(
@@ -11437,7 +11437,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+    /// Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
     /// - Parameter enabledStartNotification: New value of the enabled_start_notification setting
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

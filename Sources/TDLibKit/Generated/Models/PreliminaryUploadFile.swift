@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
 
 
-/// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+/// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it is sent in a message
 public struct PreliminaryUploadFile: Codable, Equatable, Hashable {
 
     /// File to upload

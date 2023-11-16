@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -120,7 +120,7 @@ public struct ChatTypeSecret: Codable, Equatable, Hashable {
     /// Secret chat identifier
     public let secretChatId: Int
 
-    /// User identifier of the secret chat peer
+    /// User identifier of the other user in the secret chat
     public let userId: Int64
 
 

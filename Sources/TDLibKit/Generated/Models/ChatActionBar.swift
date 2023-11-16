@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -111,7 +111,7 @@ public struct ChatActionBarReportAddBlock: Codable, Equatable, Hashable {
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool
 
-    /// If non-negative, the current user was found by the peer through searchChatsNearby and this is the distance between the users
+    /// If non-negative, the current user was found by the other user through searchChatsNearby and this is the distance between the users
     public let distance: Int
 
 

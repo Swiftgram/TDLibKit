@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PremiumGiftCodeInfo: Codable, Equatable, Hashable {
     /// Identifier of a chat or a user that created the gift code
     public let creatorId: MessageSender
 
-    /// Identifier of the corresponding giveaway message; can be 0 or an identifier of a deleted message
+    /// Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message
     public let giveawayMessageId: Int64
 
     /// True, if the gift code was created for a giveaway

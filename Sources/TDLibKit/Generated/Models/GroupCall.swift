@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-6ee64289
-//  https://github.com/tdlib/td/tree/6ee64289
+//  Based on TDLib 1.8.21-aefbf032
+//  https://github.com/tdlib/td/tree/aefbf032
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
     /// Call duration, in seconds; for ended calls only
     public let duration: Int
 
-    /// True, if the group call is scheduled and the current user will receive a notification when the group call will start
+    /// True, if the group call is scheduled and the current user will receive a notification when the group call starts
     public let enabledStartNotification: Bool
 
     /// True, if group call participants, which are muted, aren't returned in participant list
