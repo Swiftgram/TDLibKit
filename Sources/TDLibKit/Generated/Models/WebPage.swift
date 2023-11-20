@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-aefbf032
-//  https://github.com/tdlib/td/tree/aefbf032
+//  Based on TDLib 1.8.21-ec788c75
+//  https://github.com/tdlib/td/tree/ec788c75
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public struct WebPage: Codable, Equatable, Hashable {
     /// True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text
     public let showAboveText: Bool
 
-    /// True, if large media preview must be shown
+    /// True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos
     public let showLargeMedia: Bool
 
     /// Short name of the site (e.g., Google Docs, App Store)
