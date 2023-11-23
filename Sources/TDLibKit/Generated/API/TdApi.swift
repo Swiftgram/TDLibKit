@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-ec788c75
-//  https://github.com/tdlib/td/tree/ec788c75
+//  Based on TDLib 1.8.21-07c1d53a
+//  https://github.com/tdlib/td/tree/07c1d53a
 //
 
 import Foundation
@@ -2977,10 +2977,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
+    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     public func recognizeSpeech(
         chatId: Int64?,
         messageId: Int64?,
@@ -2993,10 +2992,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
+    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Returns: May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func recognizeSpeech(
