@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -7690,7 +7690,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the translatable state of a chat; for Telegram Premium users only
+    /// Changes the translatable state of a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter isTranslatable: New value of is_translatable
     public func toggleChatIsTranslatable(
@@ -7705,7 +7705,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the translatable state of a chat; for Telegram Premium users only
+    /// Changes the translatable state of a chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter isTranslatable: New value of is_translatable
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -37,22 +37,22 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
     /// Identifier of the notification sound to be played for stories; 0 if sound is disabled
     public let storySoundId: TdInt64
 
-    /// If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
+    /// If true, the value for the relevant type of chat or the forum chat is used instead of disable_mention_notifications
     public let useDefaultDisableMentionNotifications: Bool
 
-    /// If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
+    /// If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications
     public let useDefaultDisablePinnedMessageNotifications: Bool
 
-    /// If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead
+    /// If true, the value for the relevant type of chat or the forum chat is used instead of mute_for
     public let useDefaultMuteFor: Bool
 
-    /// If true, mute_stories is ignored and the value for the relevant type of chat is used instead
+    /// If true, the value for the relevant type of chat is used instead of mute_stories
     public let useDefaultMuteStories: Bool
 
-    /// If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
+    /// If true, the value for the relevant type of chat or the forum chat is used instead of show_preview
     public let useDefaultShowPreview: Bool
 
-    /// If true, show_story_sender is ignored and the value for the relevant type of chat is used instead
+    /// If true, the value for the relevant type of chat is used instead of show_story_sender
     public let useDefaultShowStorySender: Bool
 
     /// If true, the value for the relevant type of chat or the forum chat is used instead of sound_id

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a list of reactions that can be added to a message
 public struct AvailableReactions: Codable, Equatable, Hashable {
 
-    /// True, if custom emoji reactions could be added by Telegram Premium subscribers
+    /// True, if any custom emoji reaction can be added by Telegram Premium subscribers
     public let allowCustomEmoji: Bool
 
     /// List of popular reactions

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Describes the current state of the connection to Telegram servers
 public enum ConnectionState: Codable, Equatable, Hashable {
 
-    /// Currently waiting for the network to become available. Use setNetworkType to change the available network type
+    /// Waiting for the network to become available. Use setNetworkType to change the available network type
     case connectionStateWaitingForNetwork
 
-    /// Currently establishing a connection with a proxy server
+    /// Establishing a connection with a proxy server
     case connectionStateConnectingToProxy
 
-    /// Currently establishing a connection to the Telegram servers
+    /// Establishing a connection to the Telegram servers
     case connectionStateConnecting
 
-    /// Downloading data received while the application was offline
+    /// Downloading data supposed to be received while the application was offline
     case connectionStateUpdating
 
     /// There is a working connection to the Telegram servers

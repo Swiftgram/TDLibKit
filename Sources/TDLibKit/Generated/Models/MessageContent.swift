@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -656,7 +656,7 @@ public enum MessageContent: Codable, Equatable, Hashable {
 /// A text message
 public struct MessageText: Codable, Equatable, Hashable {
 
-    /// Options which was used for generation of the link preview; may be null if default options were used
+    /// Options which were used for generation of the link preview; may be null if default options were used
     public let linkPreviewOptions: LinkPreviewOptions?
 
     /// Text of the message

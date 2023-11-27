@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
     /// Time left before notifications will be unmuted, in seconds
     public let muteFor: Int
 
-    /// True, if story notifications are disabled for the chat
+    /// True, if story notifications are disabled
     public let muteStories: Bool
 
     /// True, if message content must be displayed in notifications
@@ -37,7 +37,7 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
     /// Identifier of the notification sound to be played for stories; 0 if sound is disabled
     public let storySoundId: TdInt64
 
-    /// If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
+    /// If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories
     public let useDefaultMuteStories: Bool
 
 

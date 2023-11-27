@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -58,7 +58,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
     public let joinToSendMessages: Bool
 
-    /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received//-through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, getUserPrivacySettingRules, or in chatFolderInviteLinkInfo.missing_chat_ids
+    /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through//-getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants,//-searchChatsNearby, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids
     public let memberCount: Int
 
     /// If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted

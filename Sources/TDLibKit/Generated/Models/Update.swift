@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-07c1d53a
-//  https://github.com/tdlib/td/tree/07c1d53a
+//  Based on TDLib 1.8.21-404761c5
+//  https://github.com/tdlib/td/tree/404761c5
 //
 
 import Foundation
@@ -157,7 +157,7 @@ public enum Update: Codable, Equatable, Hashable {
     /// A list of active notifications in a notification group has changed
     case updateNotificationGroup(UpdateNotificationGroup)
 
-    /// Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+    /// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
     case updateActiveNotifications(UpdateActiveNotifications)
 
     /// Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
@@ -2222,7 +2222,7 @@ public struct UpdateNotificationGroup: Codable, Equatable, Hashable {
     }
 }
 
-/// Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+/// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
 public struct UpdateActiveNotifications: Codable, Equatable, Hashable {
 
     /// Lists of active notification groups
