@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -64,7 +64,7 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
     /// The message auto-delete timer was changed
     case chatEventMessageAutoDeleteTimeChanged(ChatEventMessageAutoDeleteTimeChanged)
 
-    /// The chat permissions was changed
+    /// The chat permissions were changed
     case chatEventPermissionsChanged(ChatEventPermissionsChanged)
 
     /// The chat photo was changed
@@ -761,7 +761,7 @@ public struct ChatEventMessageAutoDeleteTimeChanged: Codable, Equatable, Hashabl
     }
 }
 
-/// The chat permissions was changed
+/// The chat permissions were changed
 public struct ChatEventPermissionsChanged: Codable, Equatable, Hashable {
 
     /// New chat permissions

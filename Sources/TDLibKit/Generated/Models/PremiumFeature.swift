@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -64,8 +64,11 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to boost chats
     case premiumFeatureChatBoost
 
-    /// The ability to choose accent color
+    /// The ability to choose accent color for replies and user profile
     case premiumFeatureAccentColor
+
+    /// The ability to set private chat background for both users
+    case premiumFeatureBackgroundForBoth
 
 
     private enum Kind: String, Codable {
@@ -87,6 +90,7 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureUpgradedStories
         case premiumFeatureChatBoost
         case premiumFeatureAccentColor
+        case premiumFeatureBackgroundForBoth
     }
 
     public init(from decoder: Decoder) throws {
@@ -129,6 +133,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureChatBoost
         case .premiumFeatureAccentColor:
             self = .premiumFeatureAccentColor
+        case .premiumFeatureBackgroundForBoth:
+            self = .premiumFeatureBackgroundForBoth
         }
     }
 
@@ -171,6 +177,8 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureChatBoost, forKey: .type)
         case .premiumFeatureAccentColor:
             try container.encode(Kind.premiumFeatureAccentColor, forKey: .type)
+        case .premiumFeatureBackgroundForBoth:
+            try container.encode(Kind.premiumFeatureBackgroundForBoth, forKey: .type)
         }
     }
 }

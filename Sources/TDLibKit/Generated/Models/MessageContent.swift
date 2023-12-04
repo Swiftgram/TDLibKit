@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -175,6 +175,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// A Telegram Premium giveaway
     case messagePremiumGiveaway(MessagePremiumGiveaway)
 
+    /// A Telegram Premium giveaway has been completed for the chat
+    case messagePremiumGiveawayCompleted(MessagePremiumGiveawayCompleted)
+
     /// A contact has registered with Telegram
     case messageContactRegistered
 
@@ -261,6 +264,7 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messagePremiumGiftCode
         case messagePremiumGiveawayCreated
         case messagePremiumGiveaway
+        case messagePremiumGiveawayCompleted
         case messageContactRegistered
         case messageUserShared
         case messageChatShared
@@ -432,6 +436,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messagePremiumGiveaway:
             let value = try MessagePremiumGiveaway(from: decoder)
             self = .messagePremiumGiveaway(value)
+        case .messagePremiumGiveawayCompleted:
+            let value = try MessagePremiumGiveawayCompleted(from: decoder)
+            self = .messagePremiumGiveawayCompleted(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUserShared:
@@ -620,6 +627,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
             try container.encode(Kind.messagePremiumGiveawayCreated, forKey: .type)
         case .messagePremiumGiveaway(let value):
             try container.encode(Kind.messagePremiumGiveaway, forKey: .type)
+            try value.encode(to: encoder)
+        case .messagePremiumGiveawayCompleted(let value):
+            try container.encode(Kind.messagePremiumGiveawayCompleted, forKey: .type)
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
@@ -1303,13 +1313,18 @@ public struct MessageChatSetBackground: Codable, Equatable, Hashable {
     /// Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
     public let oldBackgroundMessageId: Int64
 
+    /// True, if the background was set only for self
+    public let onlyForSelf: Bool
+
 
     public init(
         background: ChatBackground,
-        oldBackgroundMessageId: Int64
+        oldBackgroundMessageId: Int64,
+        onlyForSelf: Bool
     ) {
         self.background = background
         self.oldBackgroundMessageId = oldBackgroundMessageId
+        self.onlyForSelf = onlyForSelf
     }
 }
 
@@ -1665,6 +1680,30 @@ public struct MessagePremiumGiveaway: Codable, Equatable, Hashable {
         self.monthCount = monthCount
         self.parameters = parameters
         self.sticker = sticker
+        self.winnerCount = winnerCount
+    }
+}
+
+/// A Telegram Premium giveaway has been completed for the chat
+public struct MessagePremiumGiveawayCompleted: Codable, Equatable, Hashable {
+
+    /// Identifier of the message with the giveaway, can be an identifier of a deleted message
+    public let giveawayMessageId: Int64
+
+    /// Number of undistributed prizes
+    public let unclaimedPrizeCount: Int
+
+    /// Number of winners in the giveaway
+    public let winnerCount: Int
+
+
+    public init(
+        giveawayMessageId: Int64,
+        unclaimedPrizeCount: Int,
+        winnerCount: Int
+    ) {
+        self.giveawayMessageId = giveawayMessageId
+        self.unclaimedPrizeCount = unclaimedPrizeCount
         self.winnerCount = winnerCount
     }
 }

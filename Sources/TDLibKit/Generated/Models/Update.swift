@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -67,7 +67,7 @@ public enum Update: Codable, Equatable, Hashable {
     /// A chat's custom emoji for reply background has changed
     case updateChatBackgroundCustomEmoji(UpdateChatBackgroundCustomEmoji)
 
-    /// Chat permissions was changed
+    /// Chat permissions were changed
     case updateChatPermissions(UpdateChatPermissions)
 
     /// The last message of a chat was changed
@@ -132,6 +132,9 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// A chat was marked as unread or was read
     case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
+
+    /// A chat default appearance has changed
+    case updateChatViewAsTopics(UpdateChatViewAsTopics)
 
     /// A chat was blocked or unblocked
     case updateChatBlockList(UpdateChatBlockList)
@@ -280,7 +283,7 @@ public enum Update: Codable, Equatable, Hashable {
     /// The list of saved animations was updated
     case updateSavedAnimations(UpdateSavedAnimations)
 
-    /// The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+    /// The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
     case updateSavedNotificationSounds(UpdateSavedNotificationSounds)
 
     /// The selected background has changed
@@ -291,6 +294,9 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// The list of supported accent colors has changed
     case updateAccentColors(UpdateAccentColors)
+
+    /// The list of supported accent colors for user profiles has changed
+    case updateProfileAccentColors(UpdateProfileAccentColors)
 
     /// Some language pack strings have been updated
     case updateLanguagePackStrings(UpdateLanguagePackStrings)
@@ -318,6 +324,9 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// The type of default reaction has changed
     case updateDefaultReactionType(UpdateDefaultReactionType)
+
+    /// The parameters of speech recognition without Telegram Premium subscription has changed
+    case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
     /// The list of supported dice emojis has changed
     case updateDiceEmojis(UpdateDiceEmojis)
@@ -418,6 +427,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatHasProtectedContent
         case updateChatIsTranslatable
         case updateChatIsMarkedAsUnread
+        case updateChatViewAsTopics
         case updateChatBlockList
         case updateChatHasScheduledMessages
         case updateChatFolders
@@ -471,6 +481,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateSelectedBackground
         case updateChatThemes
         case updateAccentColors
+        case updateProfileAccentColors
         case updateLanguagePackStrings
         case updateConnectionState
         case updateTermsOfService
@@ -480,6 +491,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateWebAppMessageSent
         case updateActiveEmojiReactions
         case updateDefaultReactionType
+        case updateSpeechRecognitionTrial
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
@@ -625,6 +637,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatIsMarkedAsUnread:
             let value = try UpdateChatIsMarkedAsUnread(from: decoder)
             self = .updateChatIsMarkedAsUnread(value)
+        case .updateChatViewAsTopics:
+            let value = try UpdateChatViewAsTopics(from: decoder)
+            self = .updateChatViewAsTopics(value)
         case .updateChatBlockList:
             let value = try UpdateChatBlockList(from: decoder)
             self = .updateChatBlockList(value)
@@ -784,6 +799,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateAccentColors:
             let value = try UpdateAccentColors(from: decoder)
             self = .updateAccentColors(value)
+        case .updateProfileAccentColors:
+            let value = try UpdateProfileAccentColors(from: decoder)
+            self = .updateProfileAccentColors(value)
         case .updateLanguagePackStrings:
             let value = try UpdateLanguagePackStrings(from: decoder)
             self = .updateLanguagePackStrings(value)
@@ -811,6 +829,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateDefaultReactionType:
             let value = try UpdateDefaultReactionType(from: decoder)
             self = .updateDefaultReactionType(value)
+        case .updateSpeechRecognitionTrial:
+            let value = try UpdateSpeechRecognitionTrial(from: decoder)
+            self = .updateSpeechRecognitionTrial(value)
         case .updateDiceEmojis:
             let value = try UpdateDiceEmojis(from: decoder)
             self = .updateDiceEmojis(value)
@@ -994,6 +1015,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatIsMarkedAsUnread(let value):
             try container.encode(Kind.updateChatIsMarkedAsUnread, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatViewAsTopics(let value):
+            try container.encode(Kind.updateChatViewAsTopics, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatBlockList(let value):
             try container.encode(Kind.updateChatBlockList, forKey: .type)
             try value.encode(to: encoder)
@@ -1153,6 +1177,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateAccentColors(let value):
             try container.encode(Kind.updateAccentColors, forKey: .type)
             try value.encode(to: encoder)
+        case .updateProfileAccentColors(let value):
+            try container.encode(Kind.updateProfileAccentColors, forKey: .type)
+            try value.encode(to: encoder)
         case .updateLanguagePackStrings(let value):
             try container.encode(Kind.updateLanguagePackStrings, forKey: .type)
             try value.encode(to: encoder)
@@ -1179,6 +1206,9 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateDefaultReactionType(let value):
             try container.encode(Kind.updateDefaultReactionType, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateSpeechRecognitionTrial(let value):
+            try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
             try value.encode(to: encoder)
         case .updateDiceEmojis(let value):
             try container.encode(Kind.updateDiceEmojis, forKey: .type)
@@ -1607,7 +1637,7 @@ public struct UpdateChatBackgroundCustomEmoji: Codable, Equatable, Hashable {
     }
 }
 
-/// Chat permissions was changed
+/// Chat permissions were changed
 public struct UpdateChatPermissions: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -2037,6 +2067,25 @@ public struct UpdateChatIsMarkedAsUnread: Codable, Equatable, Hashable {
     ) {
         self.chatId = chatId
         self.isMarkedAsUnread = isMarkedAsUnread
+    }
+}
+
+/// A chat default appearance has changed
+public struct UpdateChatViewAsTopics: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of view_as_topics
+    public let viewAsTopics: Bool
+
+
+    public init(
+        chatId: Int64,
+        viewAsTopics: Bool
+    ) {
+        self.chatId = chatId
+        self.viewAsTopics = viewAsTopics
     }
 }
 
@@ -2978,7 +3027,7 @@ public struct UpdateSavedAnimations: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+/// The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
 public struct UpdateSavedNotificationSounds: Codable, Equatable, Hashable {
 
     /// The new list of identifiers of saved notification sounds
@@ -3034,6 +3083,25 @@ public struct UpdateAccentColors: Codable, Equatable, Hashable {
     public init(
         availableAccentColorIds: [Int],
         colors: [AccentColor]
+    ) {
+        self.availableAccentColorIds = availableAccentColorIds
+        self.colors = colors
+    }
+}
+
+/// The list of supported accent colors for user profiles has changed
+public struct UpdateProfileAccentColors: Codable, Equatable, Hashable {
+
+    /// The list of accent color identifiers, which can be set through setProfileAccentColor. The colors must be shown in the specififed order
+    public let availableAccentColorIds: [Int]
+
+    /// Information about supported colors
+    public let colors: [ProfileAccentColor]
+
+
+    public init(
+        availableAccentColorIds: [Int],
+        colors: [ProfileAccentColor]
     ) {
         self.availableAccentColorIds = availableAccentColorIds
         self.colors = colors
@@ -3164,6 +3232,35 @@ public struct UpdateDefaultReactionType: Codable, Equatable, Hashable {
 
     public init(reactionType: ReactionType) {
         self.reactionType = reactionType
+    }
+}
+
+/// The parameters of speech recognition without Telegram Premium subscription has changed
+public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
+
+    /// Number of left speech recognition attempts this week
+    public let leftCount: Int
+
+    /// The maximum allowed duration of media for speech recognition without Telegram Premium subscription
+    public let maxMediaDuration: Int
+
+    /// Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
+    public let nextResetDate: Int
+
+    /// The total number of allowed speech recognitions per week; 0 if none
+    public let weeklyCount: Int
+
+
+    public init(
+        leftCount: Int,
+        maxMediaDuration: Int,
+        nextResetDate: Int,
+        weeklyCount: Int
+    ) {
+        self.leftCount = leftCount
+        self.maxMediaDuration = maxMediaDuration
+        self.nextResetDate = nextResetDate
+        self.weeklyCount = weeklyCount
     }
 }
 
@@ -3579,7 +3676,7 @@ public struct UpdateChatMember: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// Point in time (Unix timestamp) when the user rights was changed
+    /// Point in time (Unix timestamp) when the user rights were changed
     public let date: Int
 
     /// If user has joined the chat using an invite link, the invite link; may be null

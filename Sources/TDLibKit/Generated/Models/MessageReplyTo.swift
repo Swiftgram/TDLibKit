@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -60,9 +60,6 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     /// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media.//-Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation,//-messagePhoto, messagePoll, messagePremiumGiveaway, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
     public let content: MessageContent?
 
-    /// True, if the quote was manually chosen by the message sender
-    public let isQuoteManual: Bool
-
     /// The identifier of the message; may be 0 if the replied message is in unknown chat
     public let messageId: Int64
 
@@ -72,22 +69,20 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
     public let originSendDate: Int
 
-    /// Manually or automatically chosen quote from the replied message; may be null if none. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the quote
-    public let quote: FormattedText?
+    /// Chosen quote from the replied message; may be null if none
+    public let quote: TextQuote?
 
 
     public init(
         chatId: Int64,
         content: MessageContent?,
-        isQuoteManual: Bool,
         messageId: Int64,
         origin: MessageOrigin?,
         originSendDate: Int,
-        quote: FormattedText?
+        quote: TextQuote?
     ) {
         self.chatId = chatId
         self.content = content
-        self.isQuoteManual = isQuoteManual
         self.messageId = messageId
         self.origin = origin
         self.originSendDate = originSendDate

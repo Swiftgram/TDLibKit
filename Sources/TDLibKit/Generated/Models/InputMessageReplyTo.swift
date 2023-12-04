@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -60,14 +60,14 @@ public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
     /// The identifier of the message to be replied in the same or the specified chat
     public let messageId: Int64
 
-    /// Manually chosen quote from the message to be replied; pass null if none; 0-getOption("message_reply_quote_length_max") characters. Must always be null for replies in secret chats.//-Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed to be kept and must be kept in the quote
-    public let quote: FormattedText?
+    /// Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
+    public let quote: InputTextQuote?
 
 
     public init(
         chatId: Int64,
         messageId: Int64,
-        quote: FormattedText?
+        quote: InputTextQuote?
     ) {
         self.chatId = chatId
         self.messageId = messageId

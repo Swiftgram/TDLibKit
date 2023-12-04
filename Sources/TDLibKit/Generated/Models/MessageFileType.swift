@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Contains information about a file with messages exported from another app
 public enum MessageFileType: Codable, Equatable, Hashable {
 
-    /// The messages was exported from a private chat
+    /// The messages were exported from a private chat
     case messageFileTypePrivate(MessageFileTypePrivate)
 
-    /// The messages was exported from a group chat
+    /// The messages were exported from a group chat
     case messageFileTypeGroup(MessageFileTypeGroup)
 
-    /// The messages was exported from a chat of unknown type
+    /// The messages were exported from a chat of unknown type
     case messageFileTypeUnknown
 
 
@@ -59,7 +59,7 @@ public enum MessageFileType: Codable, Equatable, Hashable {
     }
 }
 
-/// The messages was exported from a private chat
+/// The messages were exported from a private chat
 public struct MessageFileTypePrivate: Codable, Equatable, Hashable {
 
     /// Name of the other party; may be empty if unrecognized
@@ -71,7 +71,7 @@ public struct MessageFileTypePrivate: Codable, Equatable, Hashable {
     }
 }
 
-/// The messages was exported from a group chat
+/// The messages were exported from a group chat
 public struct MessageFileTypeGroup: Codable, Equatable, Hashable {
 
     /// Title of the group chat; may be empty if unrecognized

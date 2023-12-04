@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -20,13 +20,13 @@ public struct ResendMessages: Codable, Equatable, Hashable {
     public let messageIds: [Int64]?
 
     /// New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
-    public let quote: FormattedText?
+    public let quote: InputTextQuote?
 
 
     public init(
         chatId: Int64?,
         messageIds: [Int64]?,
-        quote: FormattedText?
+        quote: InputTextQuote?
     ) {
         self.chatId = chatId
         self.messageIds = messageIds

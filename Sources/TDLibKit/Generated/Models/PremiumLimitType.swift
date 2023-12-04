@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -64,6 +64,9 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
     /// The maximum number of suggested reaction areas on a story
     case premiumLimitTypeStorySuggestedReactionAreaCount
 
+    /// The maximum number of received similar chats
+    case premiumLimitTypeSimilarChatCount
+
 
     private enum Kind: String, Codable {
         case premiumLimitTypeSupergroupCount
@@ -83,6 +86,7 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
         case premiumLimitTypeMonthlySentStoryCount
         case premiumLimitTypeStoryCaptionLength
         case premiumLimitTypeStorySuggestedReactionAreaCount
+        case premiumLimitTypeSimilarChatCount
     }
 
     public init(from decoder: Decoder) throws {
@@ -123,6 +127,8 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
             self = .premiumLimitTypeStoryCaptionLength
         case .premiumLimitTypeStorySuggestedReactionAreaCount:
             self = .premiumLimitTypeStorySuggestedReactionAreaCount
+        case .premiumLimitTypeSimilarChatCount:
+            self = .premiumLimitTypeSimilarChatCount
         }
     }
 
@@ -163,6 +169,8 @@ public enum PremiumLimitType: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumLimitTypeStoryCaptionLength, forKey: .type)
         case .premiumLimitTypeStorySuggestedReactionAreaCount:
             try container.encode(Kind.premiumLimitTypeStorySuggestedReactionAreaCount, forKey: .type)
+        case .premiumLimitTypeSimilarChatCount:
+            try container.encode(Kind.premiumLimitTypeSimilarChatCount, forKey: .type)
         }
     }
 }

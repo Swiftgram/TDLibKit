@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct FoundChatBoosts: Codable, Equatable, Hashable {
     /// List of boosts
     public let boosts: [ChatBoost]
 
-    /// The offset for the next request. If empty, there are no more results
+    /// The offset for the next request. If empty, then there are no more results
     public let nextOffset: String
 
     /// Total number of boosts applied to the chat

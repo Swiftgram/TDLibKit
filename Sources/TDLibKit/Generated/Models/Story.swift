@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the story can be replied in the chat with the story sender
     public let canBeReplied: Bool
+
+    /// True, if the story statistics are available through getStoryStatistics
+    public let canGetStatistics: Bool
 
     /// True, if users viewed the story can be received through getStoryViewers
     public let canGetViewers: Bool
@@ -73,6 +76,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// Privacy rules affecting story visibility; may be approximate for non-owned stories
     public let privacySettings: StoryPrivacySettings
 
+    /// Information about the original story; may be null if the story wasn't reposted
+    public let repostInfo: StoryRepostInfo?
+
     /// Identifier of the chat that posted the story
     public let senderChatId: Int64
 
@@ -83,6 +89,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         canBeEdited: Bool,
         canBeForwarded: Bool,
         canBeReplied: Bool,
+        canGetStatistics: Bool,
         canGetViewers: Bool,
         canToggleIsPinned: Bool,
         caption: FormattedText,
@@ -98,6 +105,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         isPinned: Bool,
         isVisibleOnlyForSelf: Bool,
         privacySettings: StoryPrivacySettings,
+        repostInfo: StoryRepostInfo?,
         senderChatId: Int64
     ) {
         self.areas = areas
@@ -105,6 +113,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
         self.canBeReplied = canBeReplied
+        self.canGetStatistics = canGetStatistics
         self.canGetViewers = canGetViewers
         self.canToggleIsPinned = canToggleIsPinned
         self.caption = caption
@@ -120,6 +129,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.isPinned = isPinned
         self.isVisibleOnlyForSelf = isVisibleOnlyForSelf
         self.privacySettings = privacySettings
+        self.repostInfo = repostInfo
         self.senderChatId = senderChatId
     }
 }

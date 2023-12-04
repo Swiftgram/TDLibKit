@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -158,11 +158,23 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
     /// A graph containing number of users viewed chat messages per language
     public let languageGraph: StatisticalGraph
 
-    /// Mean number of times the recently sent messages was shared
-    public let meanShareCount: StatisticalValue
+    /// Mean number of times reactions were added to the recently sent messages
+    public let meanMessageReactionCount: StatisticalValue
 
-    /// Mean number of times the recently sent messages was viewed
-    public let meanViewCount: StatisticalValue
+    /// Mean number of times the recently sent messages were shared
+    public let meanMessageShareCount: StatisticalValue
+
+    /// Mean number of times the recently sent messages were viewed
+    public let meanMessageViewCount: StatisticalValue
+
+    /// Mean number of times reactions were added to the recently sent stories
+    public let meanStoryReactionCount: StatisticalValue
+
+    /// Mean number of times the recently sent stories were shared
+    public let meanStoryShareCount: StatisticalValue
+
+    /// Mean number of times the recently sent stories were viewed
+    public let meanStoryViewCount: StatisticalValue
 
     /// Number of members in the chat
     public let memberCount: StatisticalValue
@@ -173,14 +185,23 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
     /// A graph containing number of chat message views and shares
     public let messageInteractionGraph: StatisticalGraph
 
+    /// A graph containing number of reactions on messages
+    public let messageReactionGraph: StatisticalGraph
+
     /// A graph containing number of members muted and unmuted the chat
     public let muteGraph: StatisticalGraph
 
     /// A period to which the statistics applies
     public let period: DateRange
 
-    /// Detailed statistics about number of views and shares of recently sent messages
-    public let recentMessageInteractions: [ChatStatisticsMessageInteractionInfo]
+    /// Detailed statistics about number of views and shares of recently sent messages and stories
+    public let recentInteractions: [ChatStatisticsInteractionInfo]
+
+    /// A graph containing number of story views and shares
+    public let storyInteractionGraph: StatisticalGraph
+
+    /// A graph containing number of reactions on stories
+    public let storyReactionGraph: StatisticalGraph
 
     /// A graph containing number of message views in a given hour in the last two weeks
     public let viewCountByHourGraph: StatisticalGraph
@@ -195,14 +216,21 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
         joinBySourceGraph: StatisticalGraph,
         joinGraph: StatisticalGraph,
         languageGraph: StatisticalGraph,
-        meanShareCount: StatisticalValue,
-        meanViewCount: StatisticalValue,
+        meanMessageReactionCount: StatisticalValue,
+        meanMessageShareCount: StatisticalValue,
+        meanMessageViewCount: StatisticalValue,
+        meanStoryReactionCount: StatisticalValue,
+        meanStoryShareCount: StatisticalValue,
+        meanStoryViewCount: StatisticalValue,
         memberCount: StatisticalValue,
         memberCountGraph: StatisticalGraph,
         messageInteractionGraph: StatisticalGraph,
+        messageReactionGraph: StatisticalGraph,
         muteGraph: StatisticalGraph,
         period: DateRange,
-        recentMessageInteractions: [ChatStatisticsMessageInteractionInfo],
+        recentInteractions: [ChatStatisticsInteractionInfo],
+        storyInteractionGraph: StatisticalGraph,
+        storyReactionGraph: StatisticalGraph,
         viewCountByHourGraph: StatisticalGraph,
         viewCountBySourceGraph: StatisticalGraph
     ) {
@@ -211,14 +239,21 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
         self.joinBySourceGraph = joinBySourceGraph
         self.joinGraph = joinGraph
         self.languageGraph = languageGraph
-        self.meanShareCount = meanShareCount
-        self.meanViewCount = meanViewCount
+        self.meanMessageReactionCount = meanMessageReactionCount
+        self.meanMessageShareCount = meanMessageShareCount
+        self.meanMessageViewCount = meanMessageViewCount
+        self.meanStoryReactionCount = meanStoryReactionCount
+        self.meanStoryShareCount = meanStoryShareCount
+        self.meanStoryViewCount = meanStoryViewCount
         self.memberCount = memberCount
         self.memberCountGraph = memberCountGraph
         self.messageInteractionGraph = messageInteractionGraph
+        self.messageReactionGraph = messageReactionGraph
         self.muteGraph = muteGraph
         self.period = period
-        self.recentMessageInteractions = recentMessageInteractions
+        self.recentInteractions = recentInteractions
+        self.storyInteractionGraph = storyInteractionGraph
+        self.storyReactionGraph = storyReactionGraph
         self.viewCountByHourGraph = viewCountByHourGraph
         self.viewCountBySourceGraph = viewCountBySourceGraph
     }

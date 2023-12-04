@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a user
 public struct User: Codable, Equatable, Hashable, Identifiable {
 
-    /// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
+    /// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview. For Telegram Premium users only
     public let accentColorId: Int
 
     /// True, if the user added the current bot to attachment menu; only available to bots
@@ -73,6 +73,12 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Phone number of the user
     public let phoneNumber: String
 
+    /// Identifier of the accent color for the user's profile; -1 if none. For Telegram Premium users only
+    public let profileAccentColorId: Int
+
+    /// Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none. For Telegram Premium users only
+    public let profileBackgroundCustomEmojiId: TdInt64
+
     /// Profile photo of the user; may be null
     public let profilePhoto: ProfilePhoto?
 
@@ -110,6 +116,8 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         languageCode: String,
         lastName: String,
         phoneNumber: String,
+        profileAccentColorId: Int,
+        profileBackgroundCustomEmojiId: TdInt64,
         profilePhoto: ProfilePhoto?,
         restrictionReason: String,
         status: UserStatus,
@@ -136,6 +144,8 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.languageCode = languageCode
         self.lastName = lastName
         self.phoneNumber = phoneNumber
+        self.profileAccentColorId = profileAccentColorId
+        self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
         self.profilePhoto = profilePhoto
         self.restrictionReason = restrictionReason
         self.status = status

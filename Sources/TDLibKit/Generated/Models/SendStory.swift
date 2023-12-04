@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct SendStory: Codable, Equatable, Hashable {
     /// Content of the story
     public let content: InputStoryContent?
 
+    /// Full identifier of the original story, which content was used to create the story
+    public let fromStoryFullId: StoryFullId?
+
     /// Pass true to keep the story accessible after expiration
     public let isPinned: Bool?
 
@@ -44,6 +47,7 @@ public struct SendStory: Codable, Equatable, Hashable {
         caption: FormattedText?,
         chatId: Int64?,
         content: InputStoryContent?,
+        fromStoryFullId: StoryFullId?,
         isPinned: Bool?,
         privacySettings: StoryPrivacySettings?,
         protectContent: Bool?
@@ -53,6 +57,7 @@ public struct SendStory: Codable, Equatable, Hashable {
         self.caption = caption
         self.chatId = chatId
         self.content = content
+        self.fromStoryFullId = fromStoryFullId
         self.isPinned = isPinned
         self.privacySettings = privacySettings
         self.protectContent = protectContent

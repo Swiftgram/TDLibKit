@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -55,6 +55,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.//-If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public let publicPhoto: ChatPhoto?
 
+    /// True, if the user set chat background for both chat users and it wasn't reverted yet
+    public let setChatBackground: Bool
+
     /// True, if a video call can be created with the user
     public let supportsVideoCalls: Bool
 
@@ -74,6 +77,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         photo: ChatPhoto?,
         premiumGiftOptions: [PremiumPaymentOption],
         publicPhoto: ChatPhoto?,
+        setChatBackground: Bool,
         supportsVideoCalls: Bool
     ) {
         self.bio = bio
@@ -90,6 +94,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.photo = photo
         self.premiumGiftOptions = premiumGiftOptions
         self.publicPhoto = publicPhoto
+        self.setChatBackground = setChatBackground
         self.supportsVideoCalls = supportsVideoCalls
     }
 }

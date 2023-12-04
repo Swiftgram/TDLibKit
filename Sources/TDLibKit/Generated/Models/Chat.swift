@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -118,6 +118,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Information about video chat of the chat
     public let videoChat: VideoChat
 
+    /// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode
+    public let viewAsTopics: Bool
+
 
     public init(
         accentColorId: Int,
@@ -154,7 +157,8 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         unreadCount: Int,
         unreadMentionCount: Int,
         unreadReactionCount: Int,
-        videoChat: VideoChat
+        videoChat: VideoChat,
+        viewAsTopics: Bool
     ) {
         self.accentColorId = accentColorId
         self.actionBar = actionBar
@@ -191,6 +195,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.unreadMentionCount = unreadMentionCount
         self.unreadReactionCount = unreadReactionCount
         self.videoChat = videoChat
+        self.viewAsTopics = viewAsTopics
     }
 }
 

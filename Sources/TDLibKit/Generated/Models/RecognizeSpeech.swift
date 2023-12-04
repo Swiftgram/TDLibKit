@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
 
 
-/// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled
+/// Recognizes speech in a video note or a voice note message. The message must be successfully sent, must not be scheduled, and must be from a non-secret chat
 public struct RecognizeSpeech: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs

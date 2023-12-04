@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.21-404761c5
-//  https://github.com/tdlib/td/tree/404761c5
+//  Based on TDLib 1.8.22-3f00bebf
+//  https://github.com/tdlib/td/tree/3f00bebf
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public enum MessageSponsorType: Codable, Equatable, Hashable {
 
     /// The sponsor is a bot
     case messageSponsorTypeBot(MessageSponsorTypeBot)
+
+    /// The sponsor is a web app
+    case messageSponsorTypeWebApp(MessageSponsorTypeWebApp)
 
     /// The sponsor is a public channel chat
     case messageSponsorTypePublicChannel(MessageSponsorTypePublicChannel)
@@ -28,6 +31,7 @@ public enum MessageSponsorType: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case messageSponsorTypeBot
+        case messageSponsorTypeWebApp
         case messageSponsorTypePublicChannel
         case messageSponsorTypePrivateChannel
         case messageSponsorTypeWebsite
@@ -40,6 +44,9 @@ public enum MessageSponsorType: Codable, Equatable, Hashable {
         case .messageSponsorTypeBot:
             let value = try MessageSponsorTypeBot(from: decoder)
             self = .messageSponsorTypeBot(value)
+        case .messageSponsorTypeWebApp:
+            let value = try MessageSponsorTypeWebApp(from: decoder)
+            self = .messageSponsorTypeWebApp(value)
         case .messageSponsorTypePublicChannel:
             let value = try MessageSponsorTypePublicChannel(from: decoder)
             self = .messageSponsorTypePublicChannel(value)
@@ -57,6 +64,9 @@ public enum MessageSponsorType: Codable, Equatable, Hashable {
         switch self {
         case .messageSponsorTypeBot(let value):
             try container.encode(Kind.messageSponsorTypeBot, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSponsorTypeWebApp(let value):
+            try container.encode(Kind.messageSponsorTypeWebApp, forKey: .type)
             try value.encode(to: encoder)
         case .messageSponsorTypePublicChannel(let value):
             try container.encode(Kind.messageSponsorTypePublicChannel, forKey: .type)
@@ -87,6 +97,25 @@ public struct MessageSponsorTypeBot: Codable, Equatable, Hashable {
     ) {
         self.botUserId = botUserId
         self.link = link
+    }
+}
+
+/// The sponsor is a web app
+public struct MessageSponsorTypeWebApp: Codable, Equatable, Hashable {
+
+    /// An internal link to be opened when the sponsored message is clicked
+    public let link: InternalLinkType
+
+    /// Web App title
+    public let webAppTitle: String
+
+
+    public init(
+        link: InternalLinkType,
+        webAppTitle: String
+    ) {
+        self.link = link
+        self.webAppTitle = webAppTitle
     }
 }
 
