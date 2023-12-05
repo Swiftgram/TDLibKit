@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-3f00bebf
-//  https://github.com/tdlib/td/tree/3f00bebf
+//  Based on TDLib 1.8.22-85c8c19b
+//  https://github.com/tdlib/td/tree/85c8c19b
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct TextQuote: Codable, Equatable, Hashable {
     /// True, if the quote was manually chosen by the message sender
     public let isManual: Bool
 
-    /// Approximate quote position in the original message in UTF-16 code units
+    /// Approximate quote position in the original message in UTF-16 code units as specified by the message sender
     public let position: Int
 
     /// Text of the quote. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the text

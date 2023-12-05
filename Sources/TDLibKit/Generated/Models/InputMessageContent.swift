@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-3f00bebf
-//  https://github.com/tdlib/td/tree/3f00bebf
+//  Based on TDLib 1.8.22-85c8c19b
+//  https://github.com/tdlib/td/tree/85c8c19b
 //
 
 import Foundation
@@ -329,7 +329,7 @@ public struct InputMessageDocument: Codable, Equatable, Hashable {
     /// Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// True, if automatic file type detection is disabled and the document must be sent as a file. Always true for files sent to secret chats
+    /// Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats
     public let disableContentTypeDetection: Bool
 
     /// Document to be sent

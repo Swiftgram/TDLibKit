@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-3f00bebf
-//  https://github.com/tdlib/td/tree/3f00bebf
+//  Based on TDLib 1.8.22-85c8c19b
+//  https://github.com/tdlib/td/tree/85c8c19b
 //
 
 import Foundation
 
 
-/// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without non-bundled replied message respectively
+/// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messagePremiumGiveawayCompleted and topic messages without non-bundled replied message respectively
 public struct GetRepliedMessage: Codable, Equatable, Hashable {
 
     /// Identifier of the chat the message belongs to
