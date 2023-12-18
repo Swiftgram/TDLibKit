@@ -23,7 +23,7 @@ public class TDLibClient: TDLibApi, Equatable {
     fileprivate init(updateHandler: @escaping (Data, TDLibClient) -> Void, logger: TDLibLogger? = nil) {
         self.id = td_create_client_id()
         self.updateHandler = updateHandler
-        self.updateHandlerQueue = DispatchQueue(label: "app.swiftgram.TDLibKi.client-\(self.id).update-handler")
+        self.updateHandlerQueue = DispatchQueue(label: "app.swiftgram.TDLibKit.client-\(self.id).update-handler")
         self.queryQueue = DispatchQueue(label: "app.swiftgram.TDLibKit.client-\(self.id).query", attributes: .concurrent)
         self.logger = logger
         super.init()
