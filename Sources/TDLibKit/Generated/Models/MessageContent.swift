@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-1a50ec47
-//  https://github.com/tdlib/td/tree/1a50ec47
+//  Based on TDLib 1.8.22-8951949e
+//  https://github.com/tdlib/td/tree/8951949e
 //
 
 import Foundation
@@ -1622,8 +1622,8 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
     /// The gift code
     public let code: String
 
-    /// Identifier of a chat or a user that created the gift code
-    public let creatorId: MessageSender
+    /// Identifier of a chat or a user that created the gift code; may be null if unknown
+    public let creatorId: MessageSender?
 
     /// True, if the gift code was created for a giveaway
     public let isFromGiveaway: Bool
@@ -1640,7 +1640,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
 
     public init(
         code: String,
-        creatorId: MessageSender,
+        creatorId: MessageSender?,
         isFromGiveaway: Bool,
         isUnclaimed: Bool,
         monthCount: Int,
@@ -1687,7 +1687,7 @@ public struct MessagePremiumGiveaway: Codable, Equatable, Hashable {
 /// A Telegram Premium giveaway has been completed for the chat
 public struct MessagePremiumGiveawayCompleted: Codable, Equatable, Hashable {
 
-    /// Identifier of the message with the giveaway, can be an identifier of a deleted message
+    /// Identifier of the message with the giveaway; can be 0 if the message was deleted
     public let giveawayMessageId: Int64
 
     /// Number of undistributed prizes
