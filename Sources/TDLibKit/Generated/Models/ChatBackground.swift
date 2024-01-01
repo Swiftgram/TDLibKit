@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ChatBackground: Codable, Equatable, Hashable {
     /// The background
     public let background: Background
 
-    /// Dimming of the background in dark themes, as a percentage; 0-100
+    /// Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
     public let darkThemeDimming: Int
 
 

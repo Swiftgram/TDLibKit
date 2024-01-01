@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -587,7 +587,7 @@ public struct PushMessageContentPoll: Codable, Equatable, Hashable {
 /// A message with a Telegram Premium gift code created for the user
 public struct PushMessageContentPremiumGiftCode: Codable, Equatable, Hashable {
 
-    /// Number of month the Telegram Premium subscription will be active after code activation
+    /// Number of months the Telegram Premium subscription will be active after code activation
     public let monthCount: Int
 
 
@@ -602,7 +602,7 @@ public struct PushMessageContentPremiumGiveaway: Codable, Equatable, Hashable {
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// Number of month the Telegram Premium subscription will be active after code activation; 0 for pinned message
+    /// Number of months the Telegram Premium subscription will be active after code activation; 0 for pinned message
     public let monthCount: Int
 
     /// Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message

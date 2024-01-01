@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains a list of story areas to be added
 public struct InputStoryAreas: Codable, Equatable, Hashable {
 
-    /// List of 0-10 input story areas
+    /// List of input story areas. Currently, a story can have//-up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas,//-up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, and up to 1 inputStoryAreaTypeMessage area
     public let areas: [InputStoryArea]
 
 

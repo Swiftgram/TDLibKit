@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -28,11 +28,11 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story can be replied in the chat with the story sender
     public let canBeReplied: Bool
 
+    /// True, if interactions with the story can be received through getStoryInteractions
+    public let canGetInteractions: Bool
+
     /// True, if the story statistics are available through getStoryStatistics
     public let canGetStatistics: Bool
-
-    /// True, if users viewed the story can be received through getStoryViewers
-    public let canGetViewers: Bool
 
     /// True, if the story's is_pinned value can be changed
     public let canToggleIsPinned: Bool
@@ -89,8 +89,8 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         canBeEdited: Bool,
         canBeForwarded: Bool,
         canBeReplied: Bool,
+        canGetInteractions: Bool,
         canGetStatistics: Bool,
-        canGetViewers: Bool,
         canToggleIsPinned: Bool,
         caption: FormattedText,
         chosenReactionType: ReactionType?,
@@ -113,8 +113,8 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded
         self.canBeReplied = canBeReplied
+        self.canGetInteractions = canGetInteractions
         self.canGetStatistics = canGetStatistics
-        self.canGetViewers = canGetViewers
         self.canToggleIsPinned = canToggleIsPinned
         self.caption = caption
         self.chosenReactionType = chosenReactionType

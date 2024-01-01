@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// True, if the user added the current bot to attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool
 
-    /// Identifier of a custom emoji to be shown on the reply header background; 0 if none. For Telegram Premium users only
+    /// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. For Telegram Premium users only
     public let backgroundCustomEmojiId: TdInt64
 
     /// Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only

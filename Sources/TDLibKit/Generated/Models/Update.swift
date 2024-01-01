@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -61,11 +61,8 @@ public enum Update: Codable, Equatable, Hashable {
     /// A chat photo was changed
     case updateChatPhoto(UpdateChatPhoto)
 
-    /// A chat accent color has changed
-    case updateChatAccentColor(UpdateChatAccentColor)
-
-    /// A chat's custom emoji for reply background has changed
-    case updateChatBackgroundCustomEmoji(UpdateChatBackgroundCustomEmoji)
+    /// Chat accent colors have changed
+    case updateChatAccentColors(UpdateChatAccentColors)
 
     /// Chat permissions were changed
     case updateChatPermissions(UpdateChatPermissions)
@@ -90,6 +87,9 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     case updateChatDraftMessage(UpdateChatDraftMessage)
+
+    /// Chat emoji status has changed
+    case updateChatEmojiStatus(UpdateChatEmojiStatus)
 
     /// The message sender that is selected to send messages in a chat has changed
     case updateChatMessageSender(UpdateChatMessageSender)
@@ -286,8 +286,8 @@ public enum Update: Codable, Equatable, Hashable {
     /// The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
     case updateSavedNotificationSounds(UpdateSavedNotificationSounds)
 
-    /// The selected background has changed
-    case updateSelectedBackground(UpdateSelectedBackground)
+    /// The default background has changed
+    case updateDefaultBackground(UpdateDefaultBackground)
 
     /// The list of available chat themes has changed
     case updateChatThemes(UpdateChatThemes)
@@ -385,6 +385,12 @@ public enum Update: Codable, Equatable, Hashable {
     /// A chat boost has changed; for bots only
     case updateChatBoost(UpdateChatBoost)
 
+    /// User changed its reactions on a message with public reactions; for bots only
+    case updateMessageReaction(UpdateMessageReaction)
+
+    /// Reactions added to a message with anonymous reactions have changed; for bots only
+    case updateMessageReactions(UpdateMessageReactions)
+
 
     private enum Kind: String, Codable {
         case updateAuthorizationState
@@ -403,8 +409,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateNewChat
         case updateChatTitle
         case updateChatPhoto
-        case updateChatAccentColor
-        case updateChatBackgroundCustomEmoji
+        case updateChatAccentColors
         case updateChatPermissions
         case updateChatLastMessage
         case updateChatPosition
@@ -413,6 +418,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatActionBar
         case updateChatAvailableReactions
         case updateChatDraftMessage
+        case updateChatEmojiStatus
         case updateChatMessageSender
         case updateChatMessageAutoDeleteTime
         case updateChatNotificationSettings
@@ -478,7 +484,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateFavoriteStickers
         case updateSavedAnimations
         case updateSavedNotificationSounds
-        case updateSelectedBackground
+        case updateDefaultBackground
         case updateChatThemes
         case updateAccentColors
         case updateProfileAccentColors
@@ -511,6 +517,8 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatMember
         case updateNewChatJoinRequest
         case updateChatBoost
+        case updateMessageReaction
+        case updateMessageReactions
     }
 
     public init(from decoder: Decoder) throws {
@@ -565,12 +573,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatPhoto:
             let value = try UpdateChatPhoto(from: decoder)
             self = .updateChatPhoto(value)
-        case .updateChatAccentColor:
-            let value = try UpdateChatAccentColor(from: decoder)
-            self = .updateChatAccentColor(value)
-        case .updateChatBackgroundCustomEmoji:
-            let value = try UpdateChatBackgroundCustomEmoji(from: decoder)
-            self = .updateChatBackgroundCustomEmoji(value)
+        case .updateChatAccentColors:
+            let value = try UpdateChatAccentColors(from: decoder)
+            self = .updateChatAccentColors(value)
         case .updateChatPermissions:
             let value = try UpdateChatPermissions(from: decoder)
             self = .updateChatPermissions(value)
@@ -595,6 +600,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatDraftMessage:
             let value = try UpdateChatDraftMessage(from: decoder)
             self = .updateChatDraftMessage(value)
+        case .updateChatEmojiStatus:
+            let value = try UpdateChatEmojiStatus(from: decoder)
+            self = .updateChatEmojiStatus(value)
         case .updateChatMessageSender:
             let value = try UpdateChatMessageSender(from: decoder)
             self = .updateChatMessageSender(value)
@@ -790,9 +798,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateSavedNotificationSounds:
             let value = try UpdateSavedNotificationSounds(from: decoder)
             self = .updateSavedNotificationSounds(value)
-        case .updateSelectedBackground:
-            let value = try UpdateSelectedBackground(from: decoder)
-            self = .updateSelectedBackground(value)
+        case .updateDefaultBackground:
+            let value = try UpdateDefaultBackground(from: decoder)
+            self = .updateDefaultBackground(value)
         case .updateChatThemes:
             let value = try UpdateChatThemes(from: decoder)
             self = .updateChatThemes(value)
@@ -889,6 +897,12 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatBoost:
             let value = try UpdateChatBoost(from: decoder)
             self = .updateChatBoost(value)
+        case .updateMessageReaction:
+            let value = try UpdateMessageReaction(from: decoder)
+            self = .updateMessageReaction(value)
+        case .updateMessageReactions:
+            let value = try UpdateMessageReactions(from: decoder)
+            self = .updateMessageReactions(value)
         }
     }
 
@@ -943,11 +957,8 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatPhoto(let value):
             try container.encode(Kind.updateChatPhoto, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatAccentColor(let value):
-            try container.encode(Kind.updateChatAccentColor, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateChatBackgroundCustomEmoji(let value):
-            try container.encode(Kind.updateChatBackgroundCustomEmoji, forKey: .type)
+        case .updateChatAccentColors(let value):
+            try container.encode(Kind.updateChatAccentColors, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatPermissions(let value):
             try container.encode(Kind.updateChatPermissions, forKey: .type)
@@ -972,6 +983,9 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateChatDraftMessage(let value):
             try container.encode(Kind.updateChatDraftMessage, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatEmojiStatus(let value):
+            try container.encode(Kind.updateChatEmojiStatus, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatMessageSender(let value):
             try container.encode(Kind.updateChatMessageSender, forKey: .type)
@@ -1168,8 +1182,8 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateSavedNotificationSounds(let value):
             try container.encode(Kind.updateSavedNotificationSounds, forKey: .type)
             try value.encode(to: encoder)
-        case .updateSelectedBackground(let value):
-            try container.encode(Kind.updateSelectedBackground, forKey: .type)
+        case .updateDefaultBackground(let value):
+            try container.encode(Kind.updateDefaultBackground, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatThemes(let value):
             try container.encode(Kind.updateChatThemes, forKey: .type)
@@ -1266,6 +1280,12 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateChatBoost(let value):
             try container.encode(Kind.updateChatBoost, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateMessageReaction(let value):
+            try container.encode(Kind.updateMessageReaction, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateMessageReactions(let value):
+            try container.encode(Kind.updateMessageReactions, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -1599,41 +1619,37 @@ public struct UpdateChatPhoto: Codable, Equatable, Hashable {
     }
 }
 
-/// A chat accent color has changed
-public struct UpdateChatAccentColor: Codable, Equatable, Hashable {
+/// Chat accent colors have changed
+public struct UpdateChatAccentColors: Codable, Equatable, Hashable {
 
     /// The new chat accent color identifier
     public let accentColorId: Int
 
-    /// Chat identifier
-    public let chatId: Int64
-
-
-    public init(
-        accentColorId: Int,
-        chatId: Int64
-    ) {
-        self.accentColorId = accentColorId
-        self.chatId = chatId
-    }
-}
-
-/// A chat's custom emoji for reply background has changed
-public struct UpdateChatBackgroundCustomEmoji: Codable, Equatable, Hashable {
-
-    /// The new identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// The new identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
     public let backgroundCustomEmojiId: TdInt64
 
     /// Chat identifier
     public let chatId: Int64
 
+    /// The new chat profile accent color identifier; -1 if none
+    public let profileAccentColorId: Int
+
+    /// The new identifier of a custom emoji to be shown on the profile background; 0 if none
+    public let profileBackgroundCustomEmojiId: TdInt64
+
 
     public init(
+        accentColorId: Int,
         backgroundCustomEmojiId: TdInt64,
-        chatId: Int64
+        chatId: Int64,
+        profileAccentColorId: Int,
+        profileBackgroundCustomEmojiId: TdInt64
     ) {
+        self.accentColorId = accentColorId
         self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.chatId = chatId
+        self.profileAccentColorId = profileAccentColorId
+        self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
     }
 }
 
@@ -1801,6 +1817,25 @@ public struct UpdateChatDraftMessage: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.draftMessage = draftMessage
         self.positions = positions
+    }
+}
+
+/// Chat emoji status has changed
+public struct UpdateChatEmojiStatus: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new chat emoji status; may be null
+    public let emojiStatus: EmojiStatus?
+
+
+    public init(
+        chatId: Int64,
+        emojiStatus: EmojiStatus?
+    ) {
+        self.chatId = chatId
+        self.emojiStatus = emojiStatus
     }
 }
 
@@ -3039,13 +3074,13 @@ public struct UpdateSavedNotificationSounds: Codable, Equatable, Hashable {
     }
 }
 
-/// The selected background has changed
-public struct UpdateSelectedBackground: Codable, Equatable, Hashable {
+/// The default background has changed
+public struct UpdateDefaultBackground: Codable, Equatable, Hashable {
 
-    /// The new selected background; may be null
+    /// The new default background; may be null
     public let background: Background?
 
-    /// True, if background for dark theme has changed
+    /// True, if default background for dark theme has changed
     public let forDarkTheme: Bool
 
 
@@ -3092,7 +3127,7 @@ public struct UpdateAccentColors: Codable, Equatable, Hashable {
 /// The list of supported accent colors for user profiles has changed
 public struct UpdateProfileAccentColors: Codable, Equatable, Hashable {
 
-    /// The list of accent color identifiers, which can be set through setProfileAccentColor. The colors must be shown in the specififed order
+    /// The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specififed order
     public let availableAccentColorIds: [Int]
 
     /// Information about supported colors
@@ -3756,6 +3791,74 @@ public struct UpdateChatBoost: Codable, Equatable, Hashable {
     ) {
         self.boost = boost
         self.chatId = chatId
+    }
+}
+
+/// User changed its reactions on a message with public reactions; for bots only
+public struct UpdateMessageReaction: Codable, Equatable, Hashable {
+
+    /// Identifier of the user or chat that changed reactions
+    public let actorId: MessageSender
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Point in time (Unix timestamp) when the reactions were changed
+    public let date: Int
+
+    /// Message identifier
+    public let messageId: Int64
+
+    /// New list of chosen reactions
+    public let newReactionTypes: [ReactionType]
+
+    /// Old list of chosen reactions
+    public let oldReactionTypes: [ReactionType]
+
+
+    public init(
+        actorId: MessageSender,
+        chatId: Int64,
+        date: Int,
+        messageId: Int64,
+        newReactionTypes: [ReactionType],
+        oldReactionTypes: [ReactionType]
+    ) {
+        self.actorId = actorId
+        self.chatId = chatId
+        self.date = date
+        self.messageId = messageId
+        self.newReactionTypes = newReactionTypes
+        self.oldReactionTypes = oldReactionTypes
+    }
+}
+
+/// Reactions added to a message with anonymous reactions have changed; for bots only
+public struct UpdateMessageReactions: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Point in time (Unix timestamp) when the reactions were changed
+    public let date: Int
+
+    /// Message identifier
+    public let messageId: Int64
+
+    /// The list of reactions added to the message
+    public let reactions: [MessageReaction]
+
+
+    public init(
+        chatId: Int64,
+        date: Int,
+        messageId: Int64,
+        reactions: [MessageReaction]
+    ) {
+        self.chatId = chatId
+        self.date = date
+        self.messageId = messageId
+        self.reactions = reactions
     }
 }
 

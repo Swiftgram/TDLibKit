@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct AccentColor: Codable, Equatable, Hashable, Identifiable {
     /// The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in light themes
     public let lightThemeColors: [Int]
 
+    /// The minimum chat boost level required to use the color
+    public let minChatBoostLevel: Int
+
 
     public init(
         builtInAccentColorId: Int,
         darkThemeColors: [Int],
         id: Int,
-        lightThemeColors: [Int]
+        lightThemeColors: [Int],
+        minChatBoostLevel: Int
     ) {
         self.builtInAccentColorId = builtInAccentColorId
         self.darkThemeColors = darkThemeColors
         self.id = id
         self.lightThemeColors = lightThemeColors
+        self.minChatBoostLevel = minChatBoostLevel
     }
 }
 

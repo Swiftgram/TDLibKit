@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -175,14 +175,17 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// A Telegram Premium giveaway
     case messagePremiumGiveaway(MessagePremiumGiveaway)
 
-    /// A Telegram Premium giveaway has been completed for the chat
+    /// A Telegram Premium giveaway without public winners has been completed for the chat
     case messagePremiumGiveawayCompleted(MessagePremiumGiveawayCompleted)
+
+    /// A Telegram Premium giveaway with public winners has been completed for the chat
+    case messagePremiumGiveawayWinners(MessagePremiumGiveawayWinners)
 
     /// A contact has registered with Telegram
     case messageContactRegistered
 
-    /// The current user shared a user, which was requested by the bot
-    case messageUserShared(MessageUserShared)
+    /// The current user shared users, which were requested by the bot
+    case messageUsersShared(MessageUsersShared)
 
     /// The current user shared a chat, which was requested by the bot
     case messageChatShared(MessageChatShared)
@@ -265,8 +268,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messagePremiumGiveawayCreated
         case messagePremiumGiveaway
         case messagePremiumGiveawayCompleted
+        case messagePremiumGiveawayWinners
         case messageContactRegistered
-        case messageUserShared
+        case messageUsersShared
         case messageChatShared
         case messageBotWriteAccessAllowed
         case messageWebAppDataSent
@@ -439,11 +443,14 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messagePremiumGiveawayCompleted:
             let value = try MessagePremiumGiveawayCompleted(from: decoder)
             self = .messagePremiumGiveawayCompleted(value)
+        case .messagePremiumGiveawayWinners:
+            let value = try MessagePremiumGiveawayWinners(from: decoder)
+            self = .messagePremiumGiveawayWinners(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
-        case .messageUserShared:
-            let value = try MessageUserShared(from: decoder)
-            self = .messageUserShared(value)
+        case .messageUsersShared:
+            let value = try MessageUsersShared(from: decoder)
+            self = .messageUsersShared(value)
         case .messageChatShared:
             let value = try MessageChatShared(from: decoder)
             self = .messageChatShared(value)
@@ -631,10 +638,13 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messagePremiumGiveawayCompleted(let value):
             try container.encode(Kind.messagePremiumGiveawayCompleted, forKey: .type)
             try value.encode(to: encoder)
+        case .messagePremiumGiveawayWinners(let value):
+            try container.encode(Kind.messagePremiumGiveawayWinners, forKey: .type)
+            try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
-        case .messageUserShared(let value):
-            try container.encode(Kind.messageUserShared, forKey: .type)
+        case .messageUsersShared(let value):
+            try container.encode(Kind.messageUsersShared, forKey: .type)
             try value.encode(to: encoder)
         case .messageChatShared(let value):
             try container.encode(Kind.messageChatShared, forKey: .type)
@@ -1581,7 +1591,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// Cryptocurrency used to pay for the gift; may be empty if none
     public let cryptocurrency: String
 
-    /// The paid amount, in the smallest units of the cryptocurrency
+    /// The paid amount, in the smallest units of the cryptocurrency; 0 if none
     public let cryptocurrencyAmount: TdInt64
 
     /// Currency for the paid amount
@@ -1590,7 +1600,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
     public let gifterUserId: Int64
 
-    /// Number of month the Telegram Premium subscription will be active
+    /// Number of months the Telegram Premium subscription will be active
     public let monthCount: Int
 
     /// A sticker to be shown in the message; may be null if unknown
@@ -1619,11 +1629,23 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
 /// A Telegram Premium gift code was created for the user
 public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
 
+    /// The paid amount, in the smallest units of the currency; 0 if unknown
+    public let amount: Int64
+
     /// The gift code
     public let code: String
 
     /// Identifier of a chat or a user that created the gift code; may be null if unknown
     public let creatorId: MessageSender?
+
+    /// Cryptocurrency used to pay for the gift; may be empty if none or unknown
+    public let cryptocurrency: String
+
+    /// The paid amount, in the smallest units of the cryptocurrency; 0 if unknown
+    public let cryptocurrencyAmount: TdInt64
+
+    /// Currency for the paid amount; empty if unknown
+    public let currency: String
 
     /// True, if the gift code was created for a giveaway
     public let isFromGiveaway: Bool
@@ -1631,7 +1653,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
     /// True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
     public let isUnclaimed: Bool
 
-    /// Number of month the Telegram Premium subscription will be active after code activation
+    /// Number of months the Telegram Premium subscription will be active after code activation
     public let monthCount: Int
 
     /// A sticker to be shown in the message; may be null if unknown
@@ -1639,15 +1661,23 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
 
 
     public init(
+        amount: Int64,
         code: String,
         creatorId: MessageSender?,
+        cryptocurrency: String,
+        cryptocurrencyAmount: TdInt64,
+        currency: String,
         isFromGiveaway: Bool,
         isUnclaimed: Bool,
         monthCount: Int,
         sticker: Sticker?
     ) {
+        self.amount = amount
         self.code = code
         self.creatorId = creatorId
+        self.cryptocurrency = cryptocurrency
+        self.cryptocurrencyAmount = cryptocurrencyAmount
+        self.currency = currency
         self.isFromGiveaway = isFromGiveaway
         self.isUnclaimed = isUnclaimed
         self.monthCount = monthCount
@@ -1658,7 +1688,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
 /// A Telegram Premium giveaway
 public struct MessagePremiumGiveaway: Codable, Equatable, Hashable {
 
-    /// Number of month the Telegram Premium subscription will be active after code activation
+    /// Number of months the Telegram Premium subscription will be active after code activation
     public let monthCount: Int
 
     /// Giveaway parameters
@@ -1684,7 +1714,7 @@ public struct MessagePremiumGiveaway: Codable, Equatable, Hashable {
     }
 }
 
-/// A Telegram Premium giveaway has been completed for the chat
+/// A Telegram Premium giveaway without public winners has been completed for the chat
 public struct MessagePremiumGiveawayCompleted: Codable, Equatable, Hashable {
 
     /// Identifier of the message with the giveaway; can be 0 if the message was deleted
@@ -1708,22 +1738,86 @@ public struct MessagePremiumGiveawayCompleted: Codable, Equatable, Hashable {
     }
 }
 
-/// The current user shared a user, which was requested by the bot
-public struct MessageUserShared: Codable, Equatable, Hashable {
+/// A Telegram Premium giveaway with public winners has been completed for the chat
+public struct MessagePremiumGiveawayWinners: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+    public let actualWinnersSelectionDate: Int
+
+    /// Number of other chats that participated in the giveaway
+    public let additionalChatCount: Int
+
+    /// Identifier of the channel chat, which was automatically boosted by the winners of the giveaway for duration of the Premium subscription
+    public let boostedChatId: Int64
+
+    /// Identifier of the message with the giveaway in the boosted chat
+    public let giveawayMessageId: Int64
+
+    /// Number of months the Telegram Premium subscription will be active after code activation
+    public let monthCount: Int
+
+    /// True, if only new members of the chats were eligible for the giveaway
+    public let onlyNewMembers: Bool
+
+    /// Additional description of the giveaway prize
+    public let prizeDescription: String
+
+    /// Number of undistributed prizes
+    public let unclaimedPrizeCount: Int
+
+    /// True, if the giveaway was canceled and was fully refunded
+    public let wasRefunded: Bool
+
+    /// Total number of winners in the giveaway
+    public let winnerCount: Int
+
+    /// Up to 100 user identifiers of the winners of the giveaway
+    public let winnerUserIds: [Int64]
+
+
+    public init(
+        actualWinnersSelectionDate: Int,
+        additionalChatCount: Int,
+        boostedChatId: Int64,
+        giveawayMessageId: Int64,
+        monthCount: Int,
+        onlyNewMembers: Bool,
+        prizeDescription: String,
+        unclaimedPrizeCount: Int,
+        wasRefunded: Bool,
+        winnerCount: Int,
+        winnerUserIds: [Int64]
+    ) {
+        self.actualWinnersSelectionDate = actualWinnersSelectionDate
+        self.additionalChatCount = additionalChatCount
+        self.boostedChatId = boostedChatId
+        self.giveawayMessageId = giveawayMessageId
+        self.monthCount = monthCount
+        self.onlyNewMembers = onlyNewMembers
+        self.prizeDescription = prizeDescription
+        self.unclaimedPrizeCount = unclaimedPrizeCount
+        self.wasRefunded = wasRefunded
+        self.winnerCount = winnerCount
+        self.winnerUserIds = winnerUserIds
+    }
+}
+
+/// The current user shared users, which were requested by the bot
+public struct MessageUsersShared: Codable, Equatable, Hashable {
 
     /// Identifier of the keyboard button with the request
     public let buttonId: Int
 
-    /// Identifier of the shared user
-    public let userId: Int64
+    /// Identifier of the shared users
+    public let userIds: [Int64]
 
 
     public init(
         buttonId: Int,
-        userId: Int64
+        userIds: [Int64]
     ) {
         self.buttonId = buttonId
-        self.userId = userId
+        self.userIds = userIds
     }
 }
 

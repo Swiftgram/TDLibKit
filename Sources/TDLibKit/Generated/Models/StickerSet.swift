@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
 
     /// Identifier of the sticker set
     public let id: TdInt64
+
+    /// True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
+    public let isAllowedAsChatEmojiStatus: Bool
 
     /// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
     public let isArchived: Bool
@@ -59,6 +62,7 @@ public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
     public init(
         emojis: [Emojis],
         id: TdInt64,
+        isAllowedAsChatEmojiStatus: Bool,
         isArchived: Bool,
         isInstalled: Bool,
         isOfficial: Bool,
@@ -74,6 +78,7 @@ public struct StickerSet: Codable, Equatable, Hashable, Identifiable {
     ) {
         self.emojis = emojis
         self.id = id
+        self.isAllowedAsChatEmojiStatus = isAllowedAsChatEmojiStatus
         self.isArchived = isArchived
         self.isInstalled = isInstalled
         self.isOfficial = isOfficial

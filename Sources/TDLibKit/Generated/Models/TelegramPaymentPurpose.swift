@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -63,7 +63,7 @@ public struct TelegramPaymentPurposePremiumGiftCodes: Codable, Equatable, Hashab
     /// ISO 4217 currency code of the payment currency
     public let currency: String
 
-    /// Number of month the Telegram Premium subscription will be active for the users
+    /// Number of months the Telegram Premium subscription will be active for the users
     public let monthCount: Int
 
     /// Identifiers of the users which can activate the gift codes
@@ -94,7 +94,7 @@ public struct TelegramPaymentPurposePremiumGiveaway: Codable, Equatable, Hashabl
     /// ISO 4217 currency code of the payment currency
     public let currency: String
 
-    /// Number of month the Telegram Premium subscription will be active for the users
+    /// Number of months the Telegram Premium subscription will be active for the users
     public let monthCount: Int
 
     /// Giveaway parameters

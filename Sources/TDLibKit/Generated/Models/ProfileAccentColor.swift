@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -13,24 +13,29 @@ import Foundation
 /// Contains information about supported accent color for user profile photo background
 public struct ProfileAccentColor: Codable, Equatable, Hashable, Identifiable {
 
-    /// Description of accent colors expected to be used in dark themes
+    /// Accent colors expected to be used in dark themes
     public let darkThemeColors: ProfileAccentColors
 
     /// Profile accent color identifier
     public let id: Int
 
-    /// Description of accent colors expected to be used in light themes
+    /// Accent colors expected to be used in light themes
     public let lightThemeColors: ProfileAccentColors
+
+    /// The minimum chat boost level required to use the color
+    public let minChatBoostLevel: Int
 
 
     public init(
         darkThemeColors: ProfileAccentColors,
         id: Int,
-        lightThemeColors: ProfileAccentColors
+        lightThemeColors: ProfileAccentColors,
+        minChatBoostLevel: Int
     ) {
         self.darkThemeColors = darkThemeColors
         self.id = id
         self.lightThemeColors = lightThemeColors
+        self.minChatBoostLevel = minChatBoostLevel
     }
 }
 

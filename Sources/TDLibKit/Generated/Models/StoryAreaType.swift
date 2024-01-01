@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -22,11 +22,15 @@ public enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
     case storyAreaTypeSuggestedReaction(StoryAreaTypeSuggestedReaction)
 
+    /// An area pointing to a message
+    case storyAreaTypeMessage(StoryAreaTypeMessage)
+
 
     private enum Kind: String, Codable {
         case storyAreaTypeLocation
         case storyAreaTypeVenue
         case storyAreaTypeSuggestedReaction
+        case storyAreaTypeMessage
     }
 
     public init(from decoder: Decoder) throws {
@@ -42,6 +46,9 @@ public enum StoryAreaType: Codable, Equatable, Hashable {
         case .storyAreaTypeSuggestedReaction:
             let value = try StoryAreaTypeSuggestedReaction(from: decoder)
             self = .storyAreaTypeSuggestedReaction(value)
+        case .storyAreaTypeMessage:
+            let value = try StoryAreaTypeMessage(from: decoder)
+            self = .storyAreaTypeMessage(value)
         }
     }
 
@@ -56,6 +63,9 @@ public enum StoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storyAreaTypeSuggestedReaction(let value):
             try container.encode(Kind.storyAreaTypeSuggestedReaction, forKey: .type)
+            try value.encode(to: encoder)
+        case .storyAreaTypeMessage(let value):
+            try container.encode(Kind.storyAreaTypeMessage, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -111,6 +121,25 @@ public struct StoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable {
         self.isFlipped = isFlipped
         self.reactionType = reactionType
         self.totalCount = totalCount
+    }
+}
+
+/// An area pointing to a message
+public struct StoryAreaTypeMessage: Codable, Equatable, Hashable {
+
+    /// Identifier of the chat with the message
+    public let chatId: Int64
+
+    /// Identifier of the message
+    public let messageId: Int64
+
+
+    public init(
+        chatId: Int64,
+        messageId: Int64
+    ) {
+        self.chatId = chatId
+        self.messageId = messageId
     }
 }
 

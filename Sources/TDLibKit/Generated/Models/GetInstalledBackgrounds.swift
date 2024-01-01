@@ -1,17 +1,17 @@
 //
-//  GetBackgrounds.swift
+//  GetInstalledBackgrounds.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
 
 
 /// Returns backgrounds installed by the user
-public struct GetBackgrounds: Codable, Equatable, Hashable {
+public struct GetInstalledBackgrounds: Codable, Equatable, Hashable {
 
     /// Pass true to order returned backgrounds for a dark theme
     public let forDarkTheme: Bool?

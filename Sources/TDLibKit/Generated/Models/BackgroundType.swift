@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -22,11 +22,15 @@ public enum BackgroundType: Codable, Equatable, Hashable {
     /// A filled background
     case backgroundTypeFill(BackgroundTypeFill)
 
+    /// A background from a chat theme; can be used only as a chat background in channels
+    case backgroundTypeChatTheme(BackgroundTypeChatTheme)
+
 
     private enum Kind: String, Codable {
         case backgroundTypeWallpaper
         case backgroundTypePattern
         case backgroundTypeFill
+        case backgroundTypeChatTheme
     }
 
     public init(from decoder: Decoder) throws {
@@ -42,6 +46,9 @@ public enum BackgroundType: Codable, Equatable, Hashable {
         case .backgroundTypeFill:
             let value = try BackgroundTypeFill(from: decoder)
             self = .backgroundTypeFill(value)
+        case .backgroundTypeChatTheme:
+            let value = try BackgroundTypeChatTheme(from: decoder)
+            self = .backgroundTypeChatTheme(value)
         }
     }
 
@@ -56,6 +63,9 @@ public enum BackgroundType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .backgroundTypeFill(let value):
             try container.encode(Kind.backgroundTypeFill, forKey: .type)
+            try value.encode(to: encoder)
+        case .backgroundTypeChatTheme(let value):
+            try container.encode(Kind.backgroundTypeChatTheme, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -118,6 +128,18 @@ public struct BackgroundTypeFill: Codable, Equatable, Hashable {
 
     public init(fill: BackgroundFill) {
         self.fill = fill
+    }
+}
+
+/// A background from a chat theme; can be used only as a chat background in channels
+public struct BackgroundTypeChatTheme: Codable, Equatable, Hashable {
+
+    /// Name of the chat theme
+    public let themeName: String
+
+
+    public init(themeName: String) {
+        self.themeName = themeName
     }
 }
 

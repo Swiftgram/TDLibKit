@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
 
 
-/// Contains a list of custom emoji identifiers, which can be set as emoji statuses
+/// Contains a list of custom emoji identifiers for emoji statuses
 public struct EmojiStatuses: Codable, Equatable, Hashable {
 
     /// The list of custom emoji identifiers

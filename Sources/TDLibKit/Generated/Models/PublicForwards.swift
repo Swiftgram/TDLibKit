@@ -1,20 +1,20 @@
 //
-//  StoryPublicForwards.swift
+//  PublicForwards.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
 
 
-/// Represents a list of public forwards and reposts of a story
-public struct StoryPublicForwards: Codable, Equatable, Hashable {
+/// Represents a list of public forwards and reposts as a story of a message or a story
+public struct PublicForwards: Codable, Equatable, Hashable {
 
     /// List of found public forwards and reposts
-    public let forwards: [StoryPublicForward]
+    public let forwards: [PublicForward]
 
     /// The offset for the next request. If empty, then there are no more results
     public let nextOffset: String
@@ -24,7 +24,7 @@ public struct StoryPublicForwards: Codable, Equatable, Hashable {
 
 
     public init(
-        forwards: [StoryPublicForward],
+        forwards: [PublicForward],
         nextOffset: String,
         totalCount: Int
     ) {

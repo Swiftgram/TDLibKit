@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -25,12 +25,16 @@ public enum InputStoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a suggested reaction
     case inputStoryAreaTypeSuggestedReaction(InputStoryAreaTypeSuggestedReaction)
 
+    /// An area pointing to a message
+    case inputStoryAreaTypeMessage(InputStoryAreaTypeMessage)
+
 
     private enum Kind: String, Codable {
         case inputStoryAreaTypeLocation
         case inputStoryAreaTypeFoundVenue
         case inputStoryAreaTypePreviousVenue
         case inputStoryAreaTypeSuggestedReaction
+        case inputStoryAreaTypeMessage
     }
 
     public init(from decoder: Decoder) throws {
@@ -49,6 +53,9 @@ public enum InputStoryAreaType: Codable, Equatable, Hashable {
         case .inputStoryAreaTypeSuggestedReaction:
             let value = try InputStoryAreaTypeSuggestedReaction(from: decoder)
             self = .inputStoryAreaTypeSuggestedReaction(value)
+        case .inputStoryAreaTypeMessage:
+            let value = try InputStoryAreaTypeMessage(from: decoder)
+            self = .inputStoryAreaTypeMessage(value)
         }
     }
 
@@ -66,6 +73,9 @@ public enum InputStoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputStoryAreaTypeSuggestedReaction(let value):
             try container.encode(Kind.inputStoryAreaTypeSuggestedReaction, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputStoryAreaTypeMessage(let value):
+            try container.encode(Kind.inputStoryAreaTypeMessage, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -142,6 +152,25 @@ public struct InputStoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable 
         self.isDark = isDark
         self.isFlipped = isFlipped
         self.reactionType = reactionType
+    }
+}
+
+/// An area pointing to a message
+public struct InputStoryAreaTypeMessage: Codable, Equatable, Hashable {
+
+    /// Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
+    public let chatId: Int64
+
+    /// Identifier of the message. Only successfully sent non-scheduled messages can be specified
+    public let messageId: Int64
+
+
+    public init(
+        chatId: Int64,
+        messageId: Int64
+    ) {
+        self.chatId = chatId
+        self.messageId = messageId
     }
 }
 

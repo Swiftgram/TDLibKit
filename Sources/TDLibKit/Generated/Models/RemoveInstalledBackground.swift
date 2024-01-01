@@ -1,17 +1,17 @@
 //
-//  RemoveBackground.swift
+//  RemoveInstalledBackground.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
 
 
 /// Removes background from the list of installed backgrounds
-public struct RemoveBackground: Codable, Equatable, Hashable {
+public struct RemoveInstalledBackground: Codable, Equatable, Hashable {
 
     /// The background identifier
     public let backgroundId: TdInt64?

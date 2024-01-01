@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct PrepaidPremiumGiveaway: Codable, Equatable, Hashable, Identifiable
     /// Unique identifier of the prepaid giveaway
     public let id: TdInt64
 
-    /// Number of month the Telegram Premium subscription will be active after code activation
+    /// Number of months the Telegram Premium subscription will be active after code activation
     public let monthCount: Int
 
     /// Point in time (Unix timestamp) when the giveaway was paid

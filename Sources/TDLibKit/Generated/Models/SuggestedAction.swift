@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -40,6 +40,9 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to subscribe to the Premium subscription with annual payments
     case suggestedActionSubscribeToAnnualPremium
 
+    /// Suggests the user to gift Telegram Premium to friends for Christmas
+    case suggestedActionGiftPremiumForChristmas
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -51,6 +54,7 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionUpgradePremium
         case suggestedActionRestorePremium
         case suggestedActionSubscribeToAnnualPremium
+        case suggestedActionGiftPremiumForChristmas
     }
 
     public init(from decoder: Decoder) throws {
@@ -77,6 +81,8 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
             self = .suggestedActionRestorePremium
         case .suggestedActionSubscribeToAnnualPremium:
             self = .suggestedActionSubscribeToAnnualPremium
+        case .suggestedActionGiftPremiumForChristmas:
+            self = .suggestedActionGiftPremiumForChristmas
         }
     }
 
@@ -103,6 +109,8 @@ public enum SuggestedAction: Codable, Equatable, Hashable {
             try container.encode(Kind.suggestedActionRestorePremium, forKey: .type)
         case .suggestedActionSubscribeToAnnualPremium:
             try container.encode(Kind.suggestedActionSubscribeToAnnualPremium, forKey: .type)
+        case .suggestedActionGiftPremiumForChristmas:
+            try container.encode(Kind.suggestedActionGiftPremiumForChristmas, forKey: .type)
         }
     }
 }

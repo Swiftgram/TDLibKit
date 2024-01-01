@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public enum KeyboardButtonType: Codable, Equatable, Hashable {
     /// A button that allows the user to create and send a poll when pressed; available only in private chats
     case keyboardButtonTypeRequestPoll(KeyboardButtonTypeRequestPoll)
 
-    /// A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request
-    case keyboardButtonTypeRequestUser(KeyboardButtonTypeRequestUser)
+    /// A button that requests users to be shared by the current user; available only in private chats. Use the method shareUsersWithBot to complete the request
+    case keyboardButtonTypeRequestUsers(KeyboardButtonTypeRequestUsers)
 
     /// A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
     case keyboardButtonTypeRequestChat(KeyboardButtonTypeRequestChat)
@@ -40,7 +40,7 @@ public enum KeyboardButtonType: Codable, Equatable, Hashable {
         case keyboardButtonTypeRequestPhoneNumber
         case keyboardButtonTypeRequestLocation
         case keyboardButtonTypeRequestPoll
-        case keyboardButtonTypeRequestUser
+        case keyboardButtonTypeRequestUsers
         case keyboardButtonTypeRequestChat
         case keyboardButtonTypeWebApp
     }
@@ -58,9 +58,9 @@ public enum KeyboardButtonType: Codable, Equatable, Hashable {
         case .keyboardButtonTypeRequestPoll:
             let value = try KeyboardButtonTypeRequestPoll(from: decoder)
             self = .keyboardButtonTypeRequestPoll(value)
-        case .keyboardButtonTypeRequestUser:
-            let value = try KeyboardButtonTypeRequestUser(from: decoder)
-            self = .keyboardButtonTypeRequestUser(value)
+        case .keyboardButtonTypeRequestUsers:
+            let value = try KeyboardButtonTypeRequestUsers(from: decoder)
+            self = .keyboardButtonTypeRequestUsers(value)
         case .keyboardButtonTypeRequestChat:
             let value = try KeyboardButtonTypeRequestChat(from: decoder)
             self = .keyboardButtonTypeRequestChat(value)
@@ -82,8 +82,8 @@ public enum KeyboardButtonType: Codable, Equatable, Hashable {
         case .keyboardButtonTypeRequestPoll(let value):
             try container.encode(Kind.keyboardButtonTypeRequestPoll, forKey: .type)
             try value.encode(to: encoder)
-        case .keyboardButtonTypeRequestUser(let value):
-            try container.encode(Kind.keyboardButtonTypeRequestUser, forKey: .type)
+        case .keyboardButtonTypeRequestUsers(let value):
+            try container.encode(Kind.keyboardButtonTypeRequestUsers, forKey: .type)
             try value.encode(to: encoder)
         case .keyboardButtonTypeRequestChat(let value):
             try container.encode(Kind.keyboardButtonTypeRequestChat, forKey: .type)
@@ -114,33 +114,38 @@ public struct KeyboardButtonTypeRequestPoll: Codable, Equatable, Hashable {
     }
 }
 
-/// A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request
-public struct KeyboardButtonTypeRequestUser: Codable, Equatable, Hashable, Identifiable {
+/// A button that requests users to be shared by the current user; available only in private chats. Use the method shareUsersWithBot to complete the request
+public struct KeyboardButtonTypeRequestUsers: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique button identifier
     public let id: Int
 
-    /// True, if the shared user must or must not be a bot
+    /// The maximum number of users to share
+    public let maxQuantity: Int
+
+    /// True, if the shared users must or must not be bots
     public let restrictUserIsBot: Bool
 
-    /// True, if the shared user must or must not be a Telegram Premium user
+    /// True, if the shared users must or must not be Telegram Premium users
     public let restrictUserIsPremium: Bool
 
-    /// True, if the shared user must be a bot; otherwise, the shared user must no be a bot. Ignored if restrict_user_is_bot is false
+    /// True, if the shared users must be bots; otherwise, the shared users must not be bots. Ignored if restrict_user_is_bot is false
     public let userIsBot: Bool
 
-    /// True, if the shared user must be a Telegram Premium user; otherwise, the shared user must no be a Telegram Premium user. Ignored if restrict_user_is_premium is false
+    /// True, if the shared users must be Telegram Premium users; otherwise, the shared users must not be Telegram Premium users. Ignored if restrict_user_is_premium is false
     public let userIsPremium: Bool
 
 
     public init(
         id: Int,
+        maxQuantity: Int,
         restrictUserIsBot: Bool,
         restrictUserIsPremium: Bool,
         userIsBot: Bool,
         userIsPremium: Bool
     ) {
         self.id = id
+        self.maxQuantity = maxQuantity
         self.restrictUserIsBot = restrictUserIsBot
         self.restrictUserIsPremium = restrictUserIsPremium
         self.userIsBot = userIsBot

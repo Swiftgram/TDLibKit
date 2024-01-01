@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -1710,6 +1710,37 @@ public final class TdApi {
         let query = GetChatSimilarChatCount(
             chatId: chatId,
             returnLocal: returnLocal
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Informs TDLib that a chat was opened from the list of similar chats. The method is independent from openChat and closeChat methods
+    /// - Parameter chatId: Identifier of the original chat, which similar chats were requested
+    /// - Parameter openedChatId: Identifier of the opened chat
+    public func openChatSimilarChat(
+        chatId: Int64?,
+        openedChatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = OpenChatSimilarChat(
+            chatId: chatId,
+            openedChatId: openedChatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a chat was opened from the list of similar chats. The method is independent from openChat and closeChat methods
+    /// - Parameter chatId: Identifier of the original chat, which similar chats were requested
+    /// - Parameter openedChatId: Identifier of the opened chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func openChatSimilarChat(
+        chatId: Int64?,
+        openedChatId: Int64?
+    ) async throws -> Ok {
+        let query = OpenChatSimilarChat(
+            chatId: chatId,
+            openedChatId: openedChatId
         )
         return try await self.execute(query: query)
     }
@@ -4678,6 +4709,49 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Sets reactions on a message; for bots only
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isBig: Pass true if the reactions are added with a big animation
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reactionTypes: Types of the reaction to set
+    public func setMessageReactions(
+        chatId: Int64?,
+        isBig: Bool?,
+        messageId: Int64?,
+        reactionTypes: [ReactionType]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetMessageReactions(
+            chatId: chatId,
+            isBig: isBig,
+            messageId: messageId,
+            reactionTypes: reactionTypes
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sets reactions on a message; for bots only
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isBig: Pass true if the reactions are added with a big animation
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter reactionTypes: Types of the reaction to set
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setMessageReactions(
+        chatId: Int64?,
+        isBig: Bool?,
+        messageId: Int64?,
+        reactionTypes: [ReactionType]?
+    ) async throws -> Ok {
+        let query = SetMessageReactions(
+            chatId: chatId,
+            isBig: isBig,
+            messageId: messageId,
+            reactionTypes: reactionTypes
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns reactions added for a message, along with their sender
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
@@ -5298,51 +5372,51 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+    /// Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
     /// - Parameter buttonId: Identifier of the button
     /// - Parameter chatId: Identifier of the chat with the bot
     /// - Parameter messageId: Identifier of the message with the button
-    /// - Parameter onlyCheck: Pass true to check that the user can be shared by the button instead of actually sharing them
-    /// - Parameter sharedUserId: Identifier of the shared user
-    public func shareUserWithBot(
+    /// - Parameter onlyCheck: Pass true to check that the users can be shared by the button instead of actually sharing them
+    /// - Parameter sharedUserIds: Identifiers of the shared users
+    public func shareUsersWithBot(
         buttonId: Int?,
         chatId: Int64?,
         messageId: Int64?,
         onlyCheck: Bool?,
-        sharedUserId: Int64?,
+        sharedUserIds: [Int64]?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ShareUserWithBot(
+        let query = ShareUsersWithBot(
             buttonId: buttonId,
             chatId: chatId,
             messageId: messageId,
             onlyCheck: onlyCheck,
-            sharedUserId: sharedUserId
+            sharedUserIds: sharedUserIds
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+    /// Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
     /// - Parameter buttonId: Identifier of the button
     /// - Parameter chatId: Identifier of the chat with the bot
     /// - Parameter messageId: Identifier of the message with the button
-    /// - Parameter onlyCheck: Pass true to check that the user can be shared by the button instead of actually sharing them
-    /// - Parameter sharedUserId: Identifier of the shared user
+    /// - Parameter onlyCheck: Pass true to check that the users can be shared by the button instead of actually sharing them
+    /// - Parameter sharedUserIds: Identifiers of the shared users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func shareUserWithBot(
+    public func shareUsersWithBot(
         buttonId: Int?,
         chatId: Int64?,
         messageId: Int64?,
         onlyCheck: Bool?,
-        sharedUserId: Int64?
+        sharedUserIds: [Int64]?
     ) async throws -> Ok {
-        let query = ShareUserWithBot(
+        let query = ShareUsersWithBot(
             buttonId: buttonId,
             chatId: chatId,
             messageId: messageId,
             onlyCheck: onlyCheck,
-            sharedUserId: sharedUserId
+            sharedUserIds: sharedUserIds
         )
         return try await self.execute(query: query)
     }
@@ -7474,9 +7548,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes accent color and background custom emoji of a chat. Supported only for channels with getOption("channel_custom_accent_color_boost_level_min") boost level. Requires can_change_info administrator right
-    /// - Parameter accentColorId: Identifier of the accent color to use
-    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// Changes accent color and background custom emoji of a chat. Requires can_change_info administrator right
+    /// - Parameter accentColorId: Identifier of the accent color to use. The chat must have at least accentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
     /// - Parameter chatId: Chat identifier
     public func setChatAccentColor(
         accentColorId: Int?,
@@ -7492,9 +7566,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes accent color and background custom emoji of a chat. Supported only for channels with getOption("channel_custom_accent_color_boost_level_min") boost level. Requires can_change_info administrator right
-    /// - Parameter accentColorId: Identifier of the accent color to use
-    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// Changes accent color and background custom emoji of a chat. Requires can_change_info administrator right
+    /// - Parameter accentColorId: Identifier of the accent color to use. The chat must have at least accentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -7507,6 +7581,43 @@ public final class TdApi {
             accentColorId: accentColorId,
             backgroundCustomEmojiId: backgroundCustomEmojiId,
             chatId: chatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes accent color and background custom emoji for profile of a chat. Requires can_change_info administrator right
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
+    public func setChatProfileAccentColor(
+        chatId: Int64?,
+        profileAccentColorId: Int?,
+        profileBackgroundCustomEmojiId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatProfileAccentColor(
+            chatId: chatId,
+            profileAccentColorId: profileAccentColorId,
+            profileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes accent color and background custom emoji for profile of a chat. Requires can_change_info administrator right
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setChatProfileAccentColor(
+        chatId: Int64?,
+        profileAccentColorId: Int?,
+        profileBackgroundCustomEmojiId: TdInt64?
+    ) async throws -> Ok {
+        let query = SetChatProfileAccentColor(
+            chatId: chatId,
+            profileAccentColorId: profileAccentColorId,
+            profileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId
         )
         return try await self.execute(query: query)
     }
@@ -7542,6 +7653,37 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Changes the emoji status of a chat. Use chatBoostLevelFeatures.can_set_emoji_status to check whether an emoji status can be set. Requires can_change_info administrator right
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter emojiStatus: New emoji status; pass null to remove emoji status
+    public func setChatEmojiStatus(
+        chatId: Int64?,
+        emojiStatus: EmojiStatus?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatEmojiStatus(
+            chatId: chatId,
+            emojiStatus: emojiStatus
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the emoji status of a chat. Use chatBoostLevelFeatures.can_set_emoji_status to check whether an emoji status can be set. Requires can_change_info administrator right
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter emojiStatus: New emoji status; pass null to remove emoji status
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setChatEmojiStatus(
+        chatId: Int64?,
+        emojiStatus: EmojiStatus?
+    ) async throws -> Ok {
+        let query = SetChatEmojiStatus(
+            chatId: chatId,
+            emojiStatus: emojiStatus
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter permissions: New non-administrator members permissions in the chat
@@ -7573,12 +7715,12 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users
-    /// - Parameter background: The input background to use; pass null to create a new filled background
+    /// Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
+    /// - Parameter background: The input background to use; pass null to create a new filled or chat theme background
     /// - Parameter chatId: Chat identifier
-    /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100
-    /// - Parameter onlyForSelf: Pass true to set background only for self; pass false to set background for both chat users. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
-    /// - Parameter type: Background type; pass null to use default background type for the chosen background
+    /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
+    /// - Parameter onlyForSelf: Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
+    /// - Parameter type: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.//-Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
     public func setChatBackground(
         background: InputBackground?,
         chatId: Int64?,
@@ -7597,12 +7739,12 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users
-    /// - Parameter background: The input background to use; pass null to create a new filled background
+    /// Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
+    /// - Parameter background: The input background to use; pass null to create a new filled or chat theme background
     /// - Parameter chatId: Chat identifier
-    /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100
-    /// - Parameter onlyForSelf: Pass true to set background only for self; pass false to set background for both chat users. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
-    /// - Parameter type: Background type; pass null to use default background type for the chosen background
+    /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
+    /// - Parameter onlyForSelf: Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
+    /// - Parameter type: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.//-Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setChatBackground(
@@ -9469,27 +9611,30 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
-    /// - Parameter limit: The maximum number of story viewers to return
+    /// Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
+    /// - Parameter limit: The maximum number of story interactions to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter onlyContacts: Pass true to get only contacts; pass false to get all relevant viewers
-    /// - Parameter preferWithReaction: Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
-    /// - Parameter query: Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+    /// - Parameter onlyContacts: Pass true to get only interactions by contacts; pass false to get all relevant interactions
+    /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+    /// - Parameter preferWithReaction: Pass true to get interactions with reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
+    /// - Parameter query: Query to search for in names, usernames and titles; may be empty to get all relevant interactions
     /// - Parameter storyId: Story identifier
-    /// - Returns: Viewers of a story
-    public func getStoryViewers(
+    /// - Returns: Interactions with a story
+    public func getStoryInteractions(
         limit: Int?,
         offset: String?,
         onlyContacts: Bool?,
+        preferForwards: Bool?,
         preferWithReaction: Bool?,
         query: String?,
         storyId: Int?,
-        completion: @escaping (Result<StoryViewers, Swift.Error>) -> Void
+        completion: @escaping (Result<StoryInteractions, Swift.Error>) -> Void
     ) throws {
-        let query = GetStoryViewers(
+        let query = GetStoryInteractions(
             limit: limit,
             offset: offset,
             onlyContacts: onlyContacts,
+            preferForwards: preferForwards,
             preferWithReaction: preferWithReaction,
             query: query,
             storyId: storyId
@@ -9497,30 +9642,89 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
-    /// - Parameter limit: The maximum number of story viewers to return
+    /// Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
+    /// - Parameter limit: The maximum number of story interactions to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter onlyContacts: Pass true to get only contacts; pass false to get all relevant viewers
-    /// - Parameter preferWithReaction: Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
-    /// - Parameter query: Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+    /// - Parameter onlyContacts: Pass true to get only interactions by contacts; pass false to get all relevant interactions
+    /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+    /// - Parameter preferWithReaction: Pass true to get interactions with reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
+    /// - Parameter query: Query to search for in names, usernames and titles; may be empty to get all relevant interactions
     /// - Parameter storyId: Story identifier
-    /// - Returns: Viewers of a story
+    /// - Returns: Interactions with a story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getStoryViewers(
+    public func getStoryInteractions(
         limit: Int?,
         offset: String?,
         onlyContacts: Bool?,
+        preferForwards: Bool?,
         preferWithReaction: Bool?,
         query: String?,
         storyId: Int?
-    ) async throws -> StoryViewers {
-        let query = GetStoryViewers(
+    ) async throws -> StoryInteractions {
+        let query = GetStoryInteractions(
             limit: limit,
             offset: offset,
             onlyContacts: onlyContacts,
+            preferForwards: preferForwards,
             preferWithReaction: preferWithReaction,
             query: query,
             storyId: storyId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
+    /// - Parameter limit: The maximum number of story interactions to return
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+    /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions
+    /// - Parameter storyId: Story identifier
+    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Returns: Interactions with a story posted in a chat
+    public func getChatStoryInteractions(
+        limit: Int?,
+        offset: String?,
+        preferForwards: Bool?,
+        reactionType: ReactionType?,
+        storyId: Int?,
+        storySenderChatId: Int64?,
+        completion: @escaping (Result<StoryInteractions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatStoryInteractions(
+            limit: limit,
+            offset: offset,
+            preferForwards: preferForwards,
+            reactionType: reactionType,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
+    /// - Parameter limit: The maximum number of story interactions to return
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+    /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions
+    /// - Parameter storyId: Story identifier
+    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Returns: Interactions with a story posted in a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatStoryInteractions(
+        limit: Int?,
+        offset: String?,
+        preferForwards: Bool?,
+        reactionType: ReactionType?,
+        storyId: Int?,
+        storySenderChatId: Int64?
+    ) async throws -> StoryInteractions {
+        let query = GetChatStoryInteractions(
+            limit: limit,
+            offset: offset,
+            preferForwards: preferForwards,
+            reactionType: reactionType,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
         )
         return try await self.execute(query: query)
     }
@@ -9593,7 +9797,7 @@ public final class TdApi {
         offset: String?,
         storyId: Int?,
         storySenderChatId: Int64?,
-        completion: @escaping (Result<StoryPublicForwards, Swift.Error>) -> Void
+        completion: @escaping (Result<PublicForwards, Swift.Error>) -> Void
     ) throws {
         let query = GetStoryPublicForwards(
             limit: limit,
@@ -9616,13 +9820,52 @@ public final class TdApi {
         offset: String?,
         storyId: Int?,
         storySenderChatId: Int64?
-    ) async throws -> StoryPublicForwards {
+    ) async throws -> PublicForwards {
         let query = GetStoryPublicForwards(
             limit: limit,
             offset: offset,
             storyId: storyId,
             storySenderChatId: storySenderChatId
         )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns list of features available on the specific chat boost level; this is an offline request
+    /// - Parameter level: Chat boost level
+    /// - Returns: List of features available on the specific chat boost level
+    public func getChatBoostLevelFeatures(
+        level: Int?,
+        completion: @escaping (Result<ChatBoostLevelFeatures, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatBoostLevelFeatures(
+            level: level
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns list of features available on the specific chat boost level; this is an offline request
+    /// - Parameter level: Chat boost level
+    /// - Returns: List of features available on the specific chat boost level
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatBoostLevelFeatures(level: Int?) async throws -> ChatBoostLevelFeatures {
+        let query = GetChatBoostLevelFeatures(
+            level: level
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns list of features available on the first 10 chat boost levels; this is an offline request
+    /// - Returns: List of features available on the first 10 chat boost levels
+    public func getChatBoostFeatures(completion: @escaping (Result<ChatBoostFeatures, Swift.Error>) -> Void) throws {
+        let query = GetChatBoostFeatures()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns list of features available on the first 10 chat boost levels; this is an offline request
+    /// - Returns: List of features available on the first 10 chat boost levels
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatBoostFeatures() async throws -> ChatBoostFeatures {
+        let query = GetChatBoostFeatures()
         return try await self.execute(query: query)
     }
 
@@ -9882,62 +10125,107 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
-    /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+    /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
+    /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
     public func getThemedEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
         let query = GetThemedEmojiStatuses()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
-    /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+    /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
+    /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getThemedEmojiStatuses() async throws -> EmojiStatuses {
         let query = GetThemedEmojiStatuses()
         return try await self.execute(query: query)
     }
 
-    /// Returns recent emoji statuses
-    /// - Returns: Recent emoji statuses
+    /// Returns recent emoji statuses for self status
+    /// - Returns: Recent emoji statuses for self status
     public func getRecentEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
         let query = GetRecentEmojiStatuses()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns recent emoji statuses
-    /// - Returns: Recent emoji statuses
+    /// Returns recent emoji statuses for self status
+    /// - Returns: Recent emoji statuses for self status
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRecentEmojiStatuses() async throws -> EmojiStatuses {
         let query = GetRecentEmojiStatuses()
         return try await self.execute(query: query)
     }
 
-    /// Returns default emoji statuses
-    /// - Returns: Default emoji statuses
+    /// Returns default emoji statuses for self status
+    /// - Returns: Default emoji statuses for self status
     public func getDefaultEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
         let query = GetDefaultEmojiStatuses()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns default emoji statuses
-    /// - Returns: Default emoji statuses
+    /// Returns default emoji statuses for self status
+    /// - Returns: Default emoji statuses for self status
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getDefaultEmojiStatuses() async throws -> EmojiStatuses {
         let query = GetDefaultEmojiStatuses()
         return try await self.execute(query: query)
     }
 
-    /// Clears the list of recently used emoji statuses
+    /// Clears the list of recently used emoji statuses for self status
     public func clearRecentEmojiStatuses(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ClearRecentEmojiStatuses()
         self.execute(query: query, completion: completion)
     }
 
-    /// Clears the list of recently used emoji statuses
+    /// Clears the list of recently used emoji statuses for self status
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func clearRecentEmojiStatuses() async throws -> Ok {
         let query = ClearRecentEmojiStatuses()
+        return try await self.execute(query: query)
+    }
+
+    /// Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
+    /// - Returns: Up to 8 emoji statuses, which must be shown in the emoji status list for chats
+    public func getThemedChatEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetThemedChatEmojiStatuses()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
+    /// - Returns: Up to 8 emoji statuses, which must be shown in the emoji status list for chats
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getThemedChatEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetThemedChatEmojiStatuses()
+        return try await self.execute(query: query)
+    }
+
+    /// Returns default emoji statuses for chats
+    /// - Returns: Default emoji statuses for chats
+    public func getDefaultChatEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetDefaultChatEmojiStatuses()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns default emoji statuses for chats
+    /// - Returns: Default emoji statuses for chats
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDefaultChatEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetDefaultChatEmojiStatuses()
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    public func getDisallowedChatEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetDisallowedChatEmojiStatuses()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDisallowedChatEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetDisallowedChatEmojiStatuses()
         return try await self.execute(query: query)
     }
 
@@ -13917,7 +14205,7 @@ public final class TdApi {
 
     /// Changes accent color and background custom emoji for the current user; for Telegram Premium users only
     /// - Parameter accentColorId: Identifier of the accent color to use
-    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
     public func setAccentColor(
         accentColorId: Int?,
         backgroundCustomEmojiId: TdInt64?,
@@ -13932,7 +14220,7 @@ public final class TdApi {
 
     /// Changes accent color and background custom emoji for the current user; for Telegram Premium users only
     /// - Parameter accentColorId: Identifier of the accent color to use
-    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setAccentColor(
@@ -13948,7 +14236,7 @@ public final class TdApi {
 
     /// Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
     /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none
-    /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown in the on the user's profile photo background; 0 if none
+    /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none
     public func setProfileAccentColor(
         profileAccentColorId: Int?,
         profileBackgroundCustomEmojiId: TdInt64?,
@@ -13963,7 +14251,7 @@ public final class TdApi {
 
     /// Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
     /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none
-    /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown in the on the user's profile photo background; 0 if none
+    /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setProfileAccentColor(
@@ -15882,33 +16170,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns backgrounds installed by the user
-    /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
-    /// - Returns: Backgrounds installed by the user
-    public func getBackgrounds(
-        forDarkTheme: Bool?,
-        completion: @escaping (Result<Backgrounds, Swift.Error>) -> Void
-    ) throws {
-        let query = GetBackgrounds(
-            forDarkTheme: forDarkTheme
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Returns backgrounds installed by the user
-    /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
-    /// - Returns: Backgrounds installed by the user
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getBackgrounds(forDarkTheme: Bool?) async throws -> Backgrounds {
-        let query = GetBackgrounds(
-            forDarkTheme: forDarkTheme
-        )
-        return try await self.execute(query: query)
-    }
-
     /// Constructs a persistent HTTP URL for a background
     /// - Parameter name: Background name
-    /// - Parameter type: Background type
+    /// - Parameter type: Background type; backgroundTypeChatTheme isn't supported
     public func getBackgroundUrl(
         name: String?,
         type: BackgroundType?,
@@ -15923,7 +16187,7 @@ public final class TdApi {
 
     /// Constructs a persistent HTTP URL for a background
     /// - Parameter name: Background name
-    /// - Parameter type: Background type
+    /// - Parameter type: Background type; backgroundTypeChatTheme isn't supported
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBackgroundUrl(
         name: String?,
@@ -15958,17 +16222,17 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the background selected by the user; adds background to the list of installed backgrounds
-    /// - Parameter background: The input background to use; pass null to create a new filled background or to remove the current background
-    /// - Parameter forDarkTheme: Pass true if the background is changed for a dark theme
-    /// - Parameter type: Background type; pass null to use the default type of the remote background or to remove the current background
-    public func setBackground(
+    /// Sets default background for chats; adds the background to the list of installed backgrounds
+    /// - Parameter background: The input background to use; pass null to create a new filled background
+    /// - Parameter forDarkTheme: Pass true if the background is set for a dark theme
+    /// - Parameter type: Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported
+    public func setDefaultBackground(
         background: InputBackground?,
         forDarkTheme: Bool?,
         type: BackgroundType?,
         completion: @escaping (Result<Background, Swift.Error>) -> Void
     ) throws {
-        let query = SetBackground(
+        let query = SetDefaultBackground(
             background: background,
             forDarkTheme: forDarkTheme,
             type: type
@@ -15976,17 +16240,17 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the background selected by the user; adds background to the list of installed backgrounds
-    /// - Parameter background: The input background to use; pass null to create a new filled background or to remove the current background
-    /// - Parameter forDarkTheme: Pass true if the background is changed for a dark theme
-    /// - Parameter type: Background type; pass null to use the default type of the remote background or to remove the current background
+    /// Sets default background for chats; adds the background to the list of installed backgrounds
+    /// - Parameter background: The input background to use; pass null to create a new filled background
+    /// - Parameter forDarkTheme: Pass true if the background is set for a dark theme
+    /// - Parameter type: Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func setBackground(
+    public func setDefaultBackground(
         background: InputBackground?,
         forDarkTheme: Bool?,
         type: BackgroundType?
     ) async throws -> Background {
-        let query = SetBackground(
+        let query = SetDefaultBackground(
             background: background,
             forDarkTheme: forDarkTheme,
             type: type
@@ -15994,13 +16258,60 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Deletes default background for chats
+    /// - Parameter forDarkTheme: Pass true if the background is deleted for a dark theme
+    public func deleteDefaultBackground(
+        forDarkTheme: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteDefaultBackground(
+            forDarkTheme: forDarkTheme
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes default background for chats
+    /// - Parameter forDarkTheme: Pass true if the background is deleted for a dark theme
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteDefaultBackground(forDarkTheme: Bool?) async throws -> Ok {
+        let query = DeleteDefaultBackground(
+            forDarkTheme: forDarkTheme
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns backgrounds installed by the user
+    /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
+    /// - Returns: Backgrounds installed by the user
+    public func getInstalledBackgrounds(
+        forDarkTheme: Bool?,
+        completion: @escaping (Result<Backgrounds, Swift.Error>) -> Void
+    ) throws {
+        let query = GetInstalledBackgrounds(
+            forDarkTheme: forDarkTheme
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns backgrounds installed by the user
+    /// - Parameter forDarkTheme: Pass true to order returned backgrounds for a dark theme
+    /// - Returns: Backgrounds installed by the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getInstalledBackgrounds(forDarkTheme: Bool?) async throws -> Backgrounds {
+        let query = GetInstalledBackgrounds(
+            forDarkTheme: forDarkTheme
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Removes background from the list of installed backgrounds
     /// - Parameter backgroundId: The background identifier
-    public func removeBackground(
+    public func removeInstalledBackground(
         backgroundId: TdInt64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = RemoveBackground(
+        let query = RemoveInstalledBackground(
             backgroundId: backgroundId
         )
         self.execute(query: query, completion: completion)
@@ -16010,24 +16321,24 @@ public final class TdApi {
     /// - Parameter backgroundId: The background identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func removeBackground(backgroundId: TdInt64?) async throws -> Ok {
-        let query = RemoveBackground(
+    public func removeInstalledBackground(backgroundId: TdInt64?) async throws -> Ok {
+        let query = RemoveInstalledBackground(
             backgroundId: backgroundId
         )
         return try await self.execute(query: query)
     }
 
     /// Resets list of installed backgrounds to its default value
-    public func resetBackgrounds(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
-        let query = ResetBackgrounds()
+    public func resetInstalledBackgrounds(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ResetInstalledBackgrounds()
         self.execute(query: query, completion: completion)
     }
 
     /// Resets list of installed backgrounds to its default value
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func resetBackgrounds() async throws -> Ok {
-        let query = ResetBackgrounds()
+    public func resetInstalledBackgrounds() async throws -> Ok {
+        let query = ResetInstalledBackgrounds()
         return try await self.execute(query: query)
     }
 
@@ -16803,18 +17114,18 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns forwarded copies of a channel message to different public channels. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages is chosen by TDLib
+    /// Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier of the message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: Forwarded copies of a channel message to different public channels and public reposts as a story. For optimal performance, the number of returned messages and stories is chosen by TDLib
     public func getMessagePublicForwards(
         chatId: Int64?,
         limit: Int?,
         messageId: Int64?,
         offset: String?,
-        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
+        completion: @escaping (Result<PublicForwards, Swift.Error>) -> Void
     ) throws {
         let query = GetMessagePublicForwards(
             chatId: chatId,
@@ -16825,19 +17136,19 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns forwarded copies of a channel message to different public channels. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages is chosen by TDLib
+    /// Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier of the message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: Forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: Forwarded copies of a channel message to different public channels and public reposts as a story. For optimal performance, the number of returned messages and stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessagePublicForwards(
         chatId: Int64?,
         limit: Int?,
         messageId: Int64?,
         offset: String?
-    ) async throws -> FoundMessages {
+    ) async throws -> PublicForwards {
         let query = GetMessagePublicForwards(
             chatId: chatId,
             limit: limit,
@@ -18496,7 +18807,7 @@ public final class TdApi {
 
     /// Returns information about a Telegram Premium giveaway
     /// - Parameter chatId: Identifier of the channel chat which started the giveaway
-    /// - Parameter messageId: Identifier of the giveaway message in the chat
+    /// - Parameter messageId: Identifier of the giveaway or a giveaway winners message in the chat
     /// - Returns: Information about a Telegram Premium giveaway
     public func getPremiumGiveawayInfo(
         chatId: Int64?,
@@ -18512,7 +18823,7 @@ public final class TdApi {
 
     /// Returns information about a Telegram Premium giveaway
     /// - Parameter chatId: Identifier of the channel chat which started the giveaway
-    /// - Parameter messageId: Identifier of the giveaway message in the chat
+    /// - Parameter messageId: Identifier of the giveaway or a giveaway winners message in the chat
     /// - Returns: Information about a Telegram Premium giveaway
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumGiveawayInfo(
@@ -18896,31 +19207,6 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getApplicationConfig() async throws -> JsonValue {
         let query = GetApplicationConfig()
-        return try await self.execute(query: query)
-    }
-
-    /// Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
-    /// - Parameter previousApplicationVersion: The previous application version
-    /// - Returns: A 404 error if nothing changed
-    public func addApplicationChangelog(
-        previousApplicationVersion: String?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = AddApplicationChangelog(
-            previousApplicationVersion: previousApplicationVersion
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
-    /// - Parameter previousApplicationVersion: The previous application version
-    /// - Returns: A 404 error if nothing changed
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public func addApplicationChangelog(previousApplicationVersion: String?) async throws -> Ok {
-        let query = AddApplicationChangelog(
-            previousApplicationVersion: previousApplicationVersion
-        )
         return try await self.execute(query: query)
     }
 

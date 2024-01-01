@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -84,6 +84,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
+
+    /// The link is a link to the screen for gifting Telegram Premium subscriptions to friends
+    case internalLinkTypePremiumGift(InternalLinkTypePremiumGift)
 
     /// The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
     case internalLinkTypePremiumGiftCode(InternalLinkTypePremiumGiftCode)
@@ -165,6 +168,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
         case internalLinkTypePremiumFeatures
+        case internalLinkTypePremiumGift
         case internalLinkTypePremiumGiftCode
         case internalLinkTypePrivacyAndSecuritySettings
         case internalLinkTypeProxy
@@ -255,6 +259,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypePremiumFeatures:
             let value = try InternalLinkTypePremiumFeatures(from: decoder)
             self = .internalLinkTypePremiumFeatures(value)
+        case .internalLinkTypePremiumGift:
+            let value = try InternalLinkTypePremiumGift(from: decoder)
+            self = .internalLinkTypePremiumGift(value)
         case .internalLinkTypePremiumGiftCode:
             let value = try InternalLinkTypePremiumGiftCode(from: decoder)
             self = .internalLinkTypePremiumGiftCode(value)
@@ -374,6 +381,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypePremiumFeatures(let value):
             try container.encode(Kind.internalLinkTypePremiumFeatures, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypePremiumGift(let value):
+            try container.encode(Kind.internalLinkTypePremiumGift, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypePremiumGiftCode(let value):
             try container.encode(Kind.internalLinkTypePremiumGiftCode, forKey: .type)
@@ -726,6 +736,18 @@ public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable, Hasha
 
 /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
 public struct InternalLinkTypePremiumFeatures: Codable, Equatable, Hashable {
+
+    /// Referrer specified in the link
+    public let referrer: String
+
+
+    public init(referrer: String) {
+        self.referrer = referrer
+    }
+}
+
+/// The link is a link to the screen for gifting Telegram Premium subscriptions to friends
+public struct InternalLinkTypePremiumGift: Codable, Equatable, Hashable {
 
     /// Referrer specified in the link
     public let referrer: String

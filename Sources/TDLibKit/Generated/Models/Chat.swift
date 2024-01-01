@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Background set for the chat; may be null if none
     public let background: ChatBackground?
 
-    /// Identifier of a custom emoji to be shown on the reply header background in replies to messages sent by the chat; 0 if none
+    /// Identifier of a custom emoji to be shown on the reply header and link preview background for messages sent by the chat; 0 if none
     public let backgroundCustomEmojiId: TdInt64
 
     /// Block list to which the chat is added; may be null if none
@@ -48,6 +48,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// A draft of a message in the chat; may be null if none
     public let draftMessage: DraftMessage?
+
+    /// Emoji status to be shown along with chat title; may be null
+    public let emojiStatus: EmojiStatus?
 
     /// True, if chat content can't be saved locally, forwarded, or copied
     public let hasProtectedContent: Bool
@@ -94,6 +97,12 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Positions of the chat in chat lists
     public let positions: [ChatPosition]
 
+    /// Identifier of the profile accent color for the chat's profile; -1 if none
+    public let profileAccentColorId: Int
+
+    /// Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
+    public let profileBackgroundCustomEmojiId: TdInt64
+
     /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
     public let replyMarkupMessageId: Int64
 
@@ -135,6 +144,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         clientData: String,
         defaultDisableNotification: Bool,
         draftMessage: DraftMessage?,
+        emojiStatus: EmojiStatus?,
         hasProtectedContent: Bool,
         hasScheduledMessages: Bool,
         id: Int64,
@@ -150,6 +160,8 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         permissions: ChatPermissions,
         photo: ChatPhotoInfo?,
         positions: [ChatPosition],
+        profileAccentColorId: Int,
+        profileBackgroundCustomEmojiId: TdInt64,
         replyMarkupMessageId: Int64,
         themeName: String,
         title: String,
@@ -172,6 +184,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.clientData = clientData
         self.defaultDisableNotification = defaultDisableNotification
         self.draftMessage = draftMessage
+        self.emojiStatus = emojiStatus
         self.hasProtectedContent = hasProtectedContent
         self.hasScheduledMessages = hasScheduledMessages
         self.id = id
@@ -187,6 +200,8 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.permissions = permissions
         self.photo = photo
         self.positions = positions
+        self.profileAccentColorId = profileAccentColorId
+        self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
         self.replyMarkupMessageId = replyMarkupMessageId
         self.themeName = themeName
         self.title = title

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -52,8 +52,14 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
     /// The chat available reactions were changed
     case chatEventAvailableReactionsChanged(ChatEventAvailableReactionsChanged)
 
+    /// The chat background was changed
+    case chatEventBackgroundChanged(ChatEventBackgroundChanged)
+
     /// The chat description was changed
     case chatEventDescriptionChanged(ChatEventDescriptionChanged)
+
+    /// The chat emoji status was changed
+    case chatEventEmojiStatusChanged(ChatEventEmojiStatusChanged)
 
     /// The linked chat of a supergroup was changed
     case chatEventLinkedChatChanged(ChatEventLinkedChatChanged)
@@ -85,11 +91,11 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
     /// The chat active usernames were changed
     case chatEventActiveUsernamesChanged(ChatEventActiveUsernamesChanged)
 
-    /// The chat accent color was changed
+    /// The chat accent color or background custom emoji were changed
     case chatEventAccentColorChanged(ChatEventAccentColorChanged)
 
-    /// The chat's custom emoji for reply background was changed
-    case chatEventBackgroundCustomEmojiChanged(ChatEventBackgroundCustomEmojiChanged)
+    /// The chat's profile accent color or profile background custom emoji were changed
+    case chatEventProfileAccentColorChanged(ChatEventProfileAccentColorChanged)
 
     /// The has_protected_content setting of a channel was toggled
     case chatEventHasProtectedContentToggled(ChatEventHasProtectedContentToggled)
@@ -166,7 +172,9 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case chatEventMemberPromoted
         case chatEventMemberRestricted
         case chatEventAvailableReactionsChanged
+        case chatEventBackgroundChanged
         case chatEventDescriptionChanged
+        case chatEventEmojiStatusChanged
         case chatEventLinkedChatChanged
         case chatEventLocationChanged
         case chatEventMessageAutoDeleteTimeChanged
@@ -178,7 +186,7 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case chatEventUsernameChanged
         case chatEventActiveUsernamesChanged
         case chatEventAccentColorChanged
-        case chatEventBackgroundCustomEmojiChanged
+        case chatEventProfileAccentColorChanged
         case chatEventHasProtectedContentToggled
         case chatEventInvitesToggled
         case chatEventIsAllHistoryAvailableToggled
@@ -242,9 +250,15 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventAvailableReactionsChanged:
             let value = try ChatEventAvailableReactionsChanged(from: decoder)
             self = .chatEventAvailableReactionsChanged(value)
+        case .chatEventBackgroundChanged:
+            let value = try ChatEventBackgroundChanged(from: decoder)
+            self = .chatEventBackgroundChanged(value)
         case .chatEventDescriptionChanged:
             let value = try ChatEventDescriptionChanged(from: decoder)
             self = .chatEventDescriptionChanged(value)
+        case .chatEventEmojiStatusChanged:
+            let value = try ChatEventEmojiStatusChanged(from: decoder)
+            self = .chatEventEmojiStatusChanged(value)
         case .chatEventLinkedChatChanged:
             let value = try ChatEventLinkedChatChanged(from: decoder)
             self = .chatEventLinkedChatChanged(value)
@@ -278,9 +292,9 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventAccentColorChanged:
             let value = try ChatEventAccentColorChanged(from: decoder)
             self = .chatEventAccentColorChanged(value)
-        case .chatEventBackgroundCustomEmojiChanged:
-            let value = try ChatEventBackgroundCustomEmojiChanged(from: decoder)
-            self = .chatEventBackgroundCustomEmojiChanged(value)
+        case .chatEventProfileAccentColorChanged:
+            let value = try ChatEventProfileAccentColorChanged(from: decoder)
+            self = .chatEventProfileAccentColorChanged(value)
         case .chatEventHasProtectedContentToggled:
             let value = try ChatEventHasProtectedContentToggled(from: decoder)
             self = .chatEventHasProtectedContentToggled(value)
@@ -384,8 +398,14 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventAvailableReactionsChanged(let value):
             try container.encode(Kind.chatEventAvailableReactionsChanged, forKey: .type)
             try value.encode(to: encoder)
+        case .chatEventBackgroundChanged(let value):
+            try container.encode(Kind.chatEventBackgroundChanged, forKey: .type)
+            try value.encode(to: encoder)
         case .chatEventDescriptionChanged(let value):
             try container.encode(Kind.chatEventDescriptionChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventEmojiStatusChanged(let value):
+            try container.encode(Kind.chatEventEmojiStatusChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventLinkedChatChanged(let value):
             try container.encode(Kind.chatEventLinkedChatChanged, forKey: .type)
@@ -420,8 +440,8 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventAccentColorChanged(let value):
             try container.encode(Kind.chatEventAccentColorChanged, forKey: .type)
             try value.encode(to: encoder)
-        case .chatEventBackgroundCustomEmojiChanged(let value):
-            try container.encode(Kind.chatEventBackgroundCustomEmojiChanged, forKey: .type)
+        case .chatEventProfileAccentColorChanged(let value):
+            try container.encode(Kind.chatEventProfileAccentColorChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventHasProtectedContentToggled(let value):
             try container.encode(Kind.chatEventHasProtectedContentToggled, forKey: .type)
@@ -685,6 +705,25 @@ public struct ChatEventAvailableReactionsChanged: Codable, Equatable, Hashable {
     }
 }
 
+/// The chat background was changed
+public struct ChatEventBackgroundChanged: Codable, Equatable, Hashable {
+
+    /// New background; may be null if none
+    public let newBackground: ChatBackground?
+
+    /// Previous background; may be null if none
+    public let oldBackground: ChatBackground?
+
+
+    public init(
+        newBackground: ChatBackground?,
+        oldBackground: ChatBackground?
+    ) {
+        self.newBackground = newBackground
+        self.oldBackground = oldBackground
+    }
+}
+
 /// The chat description was changed
 public struct ChatEventDescriptionChanged: Codable, Equatable, Hashable {
 
@@ -701,6 +740,25 @@ public struct ChatEventDescriptionChanged: Codable, Equatable, Hashable {
     ) {
         self.newDescription = newDescription
         self.oldDescription = oldDescription
+    }
+}
+
+/// The chat emoji status was changed
+public struct ChatEventEmojiStatusChanged: Codable, Equatable, Hashable {
+
+    /// New emoji status; may be null if none
+    public let newEmojiStatus: EmojiStatus?
+
+    /// Previous emoji status; may be null if none
+    public let oldEmojiStatus: EmojiStatus?
+
+
+    public init(
+        newEmojiStatus: EmojiStatus?,
+        oldEmojiStatus: EmojiStatus?
+    ) {
+        self.newEmojiStatus = newEmojiStatus
+        self.oldEmojiStatus = oldEmojiStatus
     }
 }
 
@@ -894,41 +952,61 @@ public struct ChatEventActiveUsernamesChanged: Codable, Equatable, Hashable {
     }
 }
 
-/// The chat accent color was changed
+/// The chat accent color or background custom emoji were changed
 public struct ChatEventAccentColorChanged: Codable, Equatable, Hashable {
 
     /// New identifier of chat accent color
     public let newAccentColorId: Int
 
-    /// Previous identifier of chat accent color
-    public let oldAccentColorId: Int
-
-
-    public init(
-        newAccentColorId: Int,
-        oldAccentColorId: Int
-    ) {
-        self.newAccentColorId = newAccentColorId
-        self.oldAccentColorId = oldAccentColorId
-    }
-}
-
-/// The chat's custom emoji for reply background was changed
-public struct ChatEventBackgroundCustomEmojiChanged: Codable, Equatable, Hashable {
-
     /// New identifier of the custom emoji; 0 if none
     public let newBackgroundCustomEmojiId: TdInt64
+
+    /// Previous identifier of chat accent color
+    public let oldAccentColorId: Int
 
     /// Previous identifier of the custom emoji; 0 if none
     public let oldBackgroundCustomEmojiId: TdInt64
 
 
     public init(
+        newAccentColorId: Int,
         newBackgroundCustomEmojiId: TdInt64,
+        oldAccentColorId: Int,
         oldBackgroundCustomEmojiId: TdInt64
     ) {
+        self.newAccentColorId = newAccentColorId
         self.newBackgroundCustomEmojiId = newBackgroundCustomEmojiId
+        self.oldAccentColorId = oldAccentColorId
         self.oldBackgroundCustomEmojiId = oldBackgroundCustomEmojiId
+    }
+}
+
+/// The chat's profile accent color or profile background custom emoji were changed
+public struct ChatEventProfileAccentColorChanged: Codable, Equatable, Hashable {
+
+    /// New identifier of chat's profile accent color; -1 if none
+    public let newProfileAccentColorId: Int
+
+    /// New identifier of the custom emoji; 0 if none
+    public let newProfileBackgroundCustomEmojiId: TdInt64
+
+    /// Previous identifier of chat's profile accent color; -1 if none
+    public let oldProfileAccentColorId: Int
+
+    /// Previous identifier of the custom emoji; 0 if none
+    public let oldProfileBackgroundCustomEmojiId: TdInt64
+
+
+    public init(
+        newProfileAccentColorId: Int,
+        newProfileBackgroundCustomEmojiId: TdInt64,
+        oldProfileAccentColorId: Int,
+        oldProfileBackgroundCustomEmojiId: TdInt64
+    ) {
+        self.newProfileAccentColorId = newProfileAccentColorId
+        self.newProfileBackgroundCustomEmojiId = newProfileBackgroundCustomEmojiId
+        self.oldProfileAccentColorId = oldProfileAccentColorId
+        self.oldProfileBackgroundCustomEmojiId = oldProfileBackgroundCustomEmojiId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SetAccentColor: Codable, Equatable, Hashable {
     /// Identifier of the accent color to use
     public let accentColorId: Int?
 
-    /// Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    /// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
     public let backgroundCustomEmojiId: TdInt64?
 
 

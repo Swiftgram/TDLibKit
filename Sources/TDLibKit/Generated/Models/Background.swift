@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a chat background
 public struct Background: Codable, Equatable, Hashable, Identifiable {
 
-    /// Document with the background; may be null. Null only for filled backgrounds
+    /// Document with the background; may be null. Null only for filled and chat theme backgrounds
     public let document: Document?
 
     /// Unique background identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetPremiumGiveawayInfo: Codable, Equatable, Hashable {
     /// Identifier of the channel chat which started the giveaway
     public let chatId: Int64?
 
-    /// Identifier of the giveaway message in the chat
+    /// Identifier of the giveaway or a giveaway winners message in the chat
     public let messageId: Int64?
 
 

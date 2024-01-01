@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
     /// True, if the user can send music files
     public let canSendAudios: Bool
 
-    /// True, if the user can send text messages, contacts, giveaways, invoices, locations, and venues
+    /// True, if the user can send text messages, contacts, giveaways, giveaway winners, invoices, locations, and venues
     public let canSendBasicMessages: Bool
 
     /// True, if the user can send documents

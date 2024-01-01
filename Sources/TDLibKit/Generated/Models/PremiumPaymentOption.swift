@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct PremiumPaymentOption: Codable, Equatable, Hashable {
     /// The discount associated with this option, as a percentage
     public let discountPercentage: Int
 
-    /// Number of month the Telegram Premium subscription will be active
+    /// Number of months the Telegram Premium subscription will be active
     public let monthCount: Int
 
     /// An internal link to be opened for buying Telegram Premium to the user if store payment isn't possible; may be null if direct payment isn't available

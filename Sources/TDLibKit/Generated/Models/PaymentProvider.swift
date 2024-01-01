@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.22-8951949e
-//  https://github.com/tdlib/td/tree/8951949e
+//  Based on TDLib 1.8.23-d963044e
+//  https://github.com/tdlib/td/tree/d963044e
 //
 
 import Foundation
@@ -67,9 +67,16 @@ public struct PaymentProviderSmartGlocal: Codable, Equatable, Hashable {
     /// Public payment token
     public let publicToken: String
 
+    /// URL for sending card tokenization requests
+    public let tokenizeUrl: String
 
-    public init(publicToken: String) {
+
+    public init(
+        publicToken: String,
+        tokenizeUrl: String
+    ) {
         self.publicToken = publicToken
+        self.tokenizeUrl = tokenizeUrl
     }
 }
 
