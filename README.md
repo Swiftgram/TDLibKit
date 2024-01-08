@@ -223,7 +223,7 @@ try? client.close(completion: { _ in })
 or use a blocking function
 
 ```swift
-manager.closeAllClients()
+manager.closeClients()
 ```
 
 ## Build
