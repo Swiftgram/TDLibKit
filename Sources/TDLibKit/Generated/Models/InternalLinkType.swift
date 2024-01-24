@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-b4c07559
-//  https://github.com/tdlib/td/tree/b4c07559
+//  Based on TDLib 1.8.23-5bbfc1cf
+//  https://github.com/tdlib/td/tree/5bbfc1cf
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
-    /// The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
+    /// The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
     case internalLinkTypeActiveSessions
 
     /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
@@ -22,7 +22,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
     case internalLinkTypeAuthenticationCode(InternalLinkTypeAuthenticationCode)
 
-    /// The link is a link to a background. Call searchBackground with the given background name to process the link
+    /// The link is a link to a background. Call searchBackground with the given background name to process the link If background is found and the user wants to apply it, then call setDefaultBackground
     case internalLinkTypeBackground(InternalLinkTypeBackground)
 
     /// The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
@@ -40,13 +40,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     case internalLinkTypeChatBoost(InternalLinkTypeChatBoost)
 
-    /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
+    /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
     case internalLinkTypeChatFolderInvite(InternalLinkTypeChatFolderInvite)
 
     /// The link is a link to the folder section of the app settings
     case internalLinkTypeChatFolderSettings
 
-    /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
+    /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
     /// The link is a link to the default message auto-delete timer settings section of the app settings
@@ -58,19 +58,19 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
-    /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
+    /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
     case internalLinkTypeInstantView(InternalLinkTypeInstantView)
 
     /// The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
     case internalLinkTypeInvoice(InternalLinkTypeInvoice)
 
-    /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
+    /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
     /// The link is a link to the language section of the app settings
     case internalLinkTypeLanguageSettings
 
-    /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
+    /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
     case internalLinkTypeMessage(InternalLinkTypeMessage)
 
     /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
@@ -79,13 +79,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
-    /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
+    /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
 
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
 
-    /// The link is a link to the screen for gifting Telegram Premium subscriptions to friends
+    /// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases
     case internalLinkTypePremiumGift(InternalLinkTypePremiumGift)
 
     /// The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
@@ -97,7 +97,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
 
-    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
+    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
     case internalLinkTypePublicChat(InternalLinkTypePublicChat)
 
     /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
@@ -109,13 +109,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to application settings
     case internalLinkTypeSettings
 
-    /// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL
+    /// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
     case internalLinkTypeSideMenuBot(InternalLinkTypeSideMenuBot)
 
-    /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
+    /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     case internalLinkTypeStickerSet(InternalLinkTypeStickerSet)
 
-    /// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+    /// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
     case internalLinkTypeStory(InternalLinkTypeStory)
 
     /// The link is a link to a theme. TDLib has no theme support yet
@@ -130,10 +130,10 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to an unsupported proxy. An alert can be shown to the user
     case internalLinkTypeUnsupportedProxy
 
-    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
+    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
     case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
 
-    /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+    /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
     case internalLinkTypeUserToken(InternalLinkTypeUserToken)
 
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
@@ -473,7 +473,7 @@ public struct InternalLinkTypeAuthenticationCode: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a background. Call searchBackground with the given background name to process the link
+/// The link is a link to a background. Call searchBackground with the given background name to process the link If background is found and the user wants to apply it, then call setDefaultBackground
 public struct InternalLinkTypeBackground: Codable, Equatable, Hashable {
 
     /// Name of the background
@@ -564,7 +564,7 @@ public struct InternalLinkTypeChatBoost: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
+/// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
 public struct InternalLinkTypeChatFolderInvite: Codable, Equatable, Hashable {
 
     /// Internal representation of the invite link
@@ -576,7 +576,7 @@ public struct InternalLinkTypeChatFolderInvite: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
+/// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
 public struct InternalLinkTypeChatInvite: Codable, Equatable, Hashable {
 
     /// Internal representation of the invite link
@@ -607,7 +607,7 @@ public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
     }
 }
 
-/// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
+/// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
 public struct InternalLinkTypeInstantView: Codable, Equatable, Hashable {
 
     /// An URL to open if getWebPageInstantView fails
@@ -638,7 +638,7 @@ public struct InternalLinkTypeInvoice: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
+/// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
 public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
 
     /// Language pack identifier
@@ -650,7 +650,7 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
+/// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
 public struct InternalLinkTypeMessage: Codable, Equatable, Hashable {
 
     /// URL to be passed to getMessageLinkInfo
@@ -715,7 +715,7 @@ public struct InternalLinkTypePassportDataRequest: Codable, Equatable, Hashable 
     }
 }
 
-/// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
+/// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
 public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable, Hashable {
 
     /// Hash value from the link
@@ -746,7 +746,7 @@ public struct InternalLinkTypePremiumFeatures: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to the screen for gifting Telegram Premium subscriptions to friends
+/// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases
 public struct InternalLinkTypePremiumGift: Codable, Equatable, Hashable {
 
     /// Referrer specified in the link
@@ -794,7 +794,7 @@ public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
+/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
 public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
 
     /// Username of the chat
@@ -806,7 +806,7 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL
+/// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
 public struct InternalLinkTypeSideMenuBot: Codable, Equatable, Hashable {
 
     /// Username of the bot
@@ -825,7 +825,7 @@ public struct InternalLinkTypeSideMenuBot: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
+/// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
 public struct InternalLinkTypeStickerSet: Codable, Equatable, Hashable {
 
     /// True, if the sticker set is expected to contain custom emoji
@@ -844,7 +844,7 @@ public struct InternalLinkTypeStickerSet: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+/// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
 public struct InternalLinkTypeStory: Codable, Equatable, Hashable {
 
     /// Story identifier
@@ -887,7 +887,7 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
+/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
 public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
 
     /// Phone number of the user
@@ -899,7 +899,7 @@ public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+/// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
 public struct InternalLinkTypeUserToken: Codable, Equatable, Hashable {
 
     /// The token
