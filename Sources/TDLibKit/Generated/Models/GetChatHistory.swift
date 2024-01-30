@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetChatHistory: Codable, Equatable, Hashable {
     /// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public let limit: Int?
 
-    /// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     public let offset: Int?
 
     /// Pass true to get only messages that are available without sending network requests

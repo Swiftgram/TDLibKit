@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -31,14 +31,8 @@ public struct SetTdlibParameters: Codable, Equatable, Hashable {
     /// Model of the device the application is being run on; must be non-empty
     public let deviceModel: String?
 
-    /// Pass true to automatically delete old files in background
-    public let enableStorageOptimizer: Bool?
-
     /// The path to the directory for storing files; if empty, database_directory will be used
     public let filesDirectory: String?
-
-    /// Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
-    public let ignoreFileNames: Bool?
 
     /// IETF language tag of the user's operating system language; must be non-empty
     public let systemLanguageCode: String?
@@ -69,9 +63,7 @@ public struct SetTdlibParameters: Codable, Equatable, Hashable {
         databaseDirectory: String?,
         databaseEncryptionKey: Data?,
         deviceModel: String?,
-        enableStorageOptimizer: Bool?,
         filesDirectory: String?,
-        ignoreFileNames: Bool?,
         systemLanguageCode: String?,
         systemVersion: String?,
         useChatInfoDatabase: Bool?,
@@ -86,9 +78,7 @@ public struct SetTdlibParameters: Codable, Equatable, Hashable {
         self.databaseDirectory = databaseDirectory
         self.databaseEncryptionKey = databaseEncryptionKey
         self.deviceModel = deviceModel
-        self.enableStorageOptimizer = enableStorageOptimizer
         self.filesDirectory = filesDirectory
-        self.ignoreFileNames = ignoreFileNames
         self.systemLanguageCode = systemLanguageCode
         self.systemVersion = systemVersion
         self.useChatInfoDatabase = useChatInfoDatabase

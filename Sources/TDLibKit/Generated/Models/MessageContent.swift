@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -28,23 +28,29 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// A photo message
     case messagePhoto(MessagePhoto)
 
-    /// A self-destructed photo message
-    case messageExpiredPhoto
-
     /// A sticker message
     case messageSticker(MessageSticker)
 
     /// A video message
     case messageVideo(MessageVideo)
 
-    /// A self-destructed video message
-    case messageExpiredVideo
-
     /// A video note message
     case messageVideoNote(MessageVideoNote)
 
     /// A voice note message
     case messageVoiceNote(MessageVoiceNote)
+
+    /// A self-destructed photo message
+    case messageExpiredPhoto
+
+    /// A self-destructed video message
+    case messageExpiredVideo
+
+    /// A self-destructed video note message
+    case messageExpiredVideoNote
+
+    /// A self-destructed voice note message
+    case messageExpiredVoiceNote
 
     /// A message with a location
     case messageLocation(MessageLocation)
@@ -218,12 +224,14 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messageAudio
         case messageDocument
         case messagePhoto
-        case messageExpiredPhoto
         case messageSticker
         case messageVideo
-        case messageExpiredVideo
         case messageVideoNote
         case messageVoiceNote
+        case messageExpiredPhoto
+        case messageExpiredVideo
+        case messageExpiredVideoNote
+        case messageExpiredVoiceNote
         case messageLocation
         case messageVenue
         case messageContact
@@ -300,22 +308,26 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messagePhoto:
             let value = try MessagePhoto(from: decoder)
             self = .messagePhoto(value)
-        case .messageExpiredPhoto:
-            self = .messageExpiredPhoto
         case .messageSticker:
             let value = try MessageSticker(from: decoder)
             self = .messageSticker(value)
         case .messageVideo:
             let value = try MessageVideo(from: decoder)
             self = .messageVideo(value)
-        case .messageExpiredVideo:
-            self = .messageExpiredVideo
         case .messageVideoNote:
             let value = try MessageVideoNote(from: decoder)
             self = .messageVideoNote(value)
         case .messageVoiceNote:
             let value = try MessageVoiceNote(from: decoder)
             self = .messageVoiceNote(value)
+        case .messageExpiredPhoto:
+            self = .messageExpiredPhoto
+        case .messageExpiredVideo:
+            self = .messageExpiredVideo
+        case .messageExpiredVideoNote:
+            self = .messageExpiredVideoNote
+        case .messageExpiredVoiceNote:
+            self = .messageExpiredVoiceNote
         case .messageLocation:
             let value = try MessageLocation(from: decoder)
             self = .messageLocation(value)
@@ -495,22 +507,26 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messagePhoto(let value):
             try container.encode(Kind.messagePhoto, forKey: .type)
             try value.encode(to: encoder)
-        case .messageExpiredPhoto:
-            try container.encode(Kind.messageExpiredPhoto, forKey: .type)
         case .messageSticker(let value):
             try container.encode(Kind.messageSticker, forKey: .type)
             try value.encode(to: encoder)
         case .messageVideo(let value):
             try container.encode(Kind.messageVideo, forKey: .type)
             try value.encode(to: encoder)
-        case .messageExpiredVideo:
-            try container.encode(Kind.messageExpiredVideo, forKey: .type)
         case .messageVideoNote(let value):
             try container.encode(Kind.messageVideoNote, forKey: .type)
             try value.encode(to: encoder)
         case .messageVoiceNote(let value):
             try container.encode(Kind.messageVoiceNote, forKey: .type)
             try value.encode(to: encoder)
+        case .messageExpiredPhoto:
+            try container.encode(Kind.messageExpiredPhoto, forKey: .type)
+        case .messageExpiredVideo:
+            try container.encode(Kind.messageExpiredVideo, forKey: .type)
+        case .messageExpiredVideoNote:
+            try container.encode(Kind.messageExpiredVideoNote, forKey: .type)
+        case .messageExpiredVoiceNote:
+            try container.encode(Kind.messageExpiredVoiceNote, forKey: .type)
         case .messageLocation(let value):
             try container.encode(Kind.messageLocation, forKey: .type)
             try value.encode(to: encoder)

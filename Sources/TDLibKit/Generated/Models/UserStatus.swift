@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes the last time the user was online
 public enum UserStatus: Codable, Equatable, Hashable {
 
-    /// The user status was never changed
+    /// The user's status has never been changed
     case userStatusEmpty
 
     /// The user is online
@@ -23,13 +23,13 @@ public enum UserStatus: Codable, Equatable, Hashable {
     case userStatusOffline(UserStatusOffline)
 
     /// The user was online recently
-    case userStatusRecently
+    case userStatusRecently(UserStatusRecently)
 
     /// The user is offline, but was online last week
-    case userStatusLastWeek
+    case userStatusLastWeek(UserStatusLastWeek)
 
     /// The user is offline, but was online last month
-    case userStatusLastMonth
+    case userStatusLastMonth(UserStatusLastMonth)
 
 
     private enum Kind: String, Codable {
@@ -54,11 +54,14 @@ public enum UserStatus: Codable, Equatable, Hashable {
             let value = try UserStatusOffline(from: decoder)
             self = .userStatusOffline(value)
         case .userStatusRecently:
-            self = .userStatusRecently
+            let value = try UserStatusRecently(from: decoder)
+            self = .userStatusRecently(value)
         case .userStatusLastWeek:
-            self = .userStatusLastWeek
+            let value = try UserStatusLastWeek(from: decoder)
+            self = .userStatusLastWeek(value)
         case .userStatusLastMonth:
-            self = .userStatusLastMonth
+            let value = try UserStatusLastMonth(from: decoder)
+            self = .userStatusLastMonth(value)
         }
     }
 
@@ -73,12 +76,15 @@ public enum UserStatus: Codable, Equatable, Hashable {
         case .userStatusOffline(let value):
             try container.encode(Kind.userStatusOffline, forKey: .type)
             try value.encode(to: encoder)
-        case .userStatusRecently:
+        case .userStatusRecently(let value):
             try container.encode(Kind.userStatusRecently, forKey: .type)
-        case .userStatusLastWeek:
+            try value.encode(to: encoder)
+        case .userStatusLastWeek(let value):
             try container.encode(Kind.userStatusLastWeek, forKey: .type)
-        case .userStatusLastMonth:
+            try value.encode(to: encoder)
+        case .userStatusLastMonth(let value):
             try container.encode(Kind.userStatusLastMonth, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -104,6 +110,42 @@ public struct UserStatusOffline: Codable, Equatable, Hashable {
 
     public init(wasOnline: Int) {
         self.wasOnline = wasOnline
+    }
+}
+
+/// The user was online recently
+public struct UserStatusRecently: Codable, Equatable, Hashable {
+
+    /// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+    public let byMyPrivacySettings: Bool
+
+
+    public init(byMyPrivacySettings: Bool) {
+        self.byMyPrivacySettings = byMyPrivacySettings
+    }
+}
+
+/// The user is offline, but was online last week
+public struct UserStatusLastWeek: Codable, Equatable, Hashable {
+
+    /// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+    public let byMyPrivacySettings: Bool
+
+
+    public init(byMyPrivacySettings: Bool) {
+        self.byMyPrivacySettings = byMyPrivacySettings
+    }
+}
+
+/// The user is offline, but was online last month
+public struct UserStatusLastMonth: Codable, Equatable, Hashable {
+
+    /// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+    public let byMyPrivacySettings: Bool
+
+
+    public init(byMyPrivacySettings: Bool) {
+        self.byMyPrivacySettings = byMyPrivacySettings
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -147,6 +147,9 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
+
+    /// The list of pinned Saved Messages topics has changed. The app can call getPinnedSavedMessagesTopics to get the new list
+    case updatePinnedSavedMessagesTopics
 
     /// Basic information about a topic in a forum chat was changed
     case updateForumTopicInfo(UpdateForumTopicInfo)
@@ -325,6 +328,9 @@ public enum Update: Codable, Equatable, Hashable {
     /// The type of default reaction has changed
     case updateDefaultReactionType(UpdateDefaultReactionType)
 
+    /// Used Saved Messages tags have changed
+    case updateSavedMessagesTags(UpdateSavedMessagesTags)
+
     /// The parameters of speech recognition without Telegram Premium subscription has changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
@@ -438,6 +444,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatHasScheduledMessages
         case updateChatFolders
         case updateChatOnlineMemberCount
+        case updatePinnedSavedMessagesTopics
         case updateForumTopicInfo
         case updateScopeNotificationSettings
         case updateNotification
@@ -497,6 +504,7 @@ public enum Update: Codable, Equatable, Hashable {
         case updateWebAppMessageSent
         case updateActiveEmojiReactions
         case updateDefaultReactionType
+        case updateSavedMessagesTags
         case updateSpeechRecognitionTrial
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
@@ -660,6 +668,8 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatOnlineMemberCount:
             let value = try UpdateChatOnlineMemberCount(from: decoder)
             self = .updateChatOnlineMemberCount(value)
+        case .updatePinnedSavedMessagesTopics:
+            self = .updatePinnedSavedMessagesTopics
         case .updateForumTopicInfo:
             let value = try UpdateForumTopicInfo(from: decoder)
             self = .updateForumTopicInfo(value)
@@ -837,6 +847,9 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateDefaultReactionType:
             let value = try UpdateDefaultReactionType(from: decoder)
             self = .updateDefaultReactionType(value)
+        case .updateSavedMessagesTags:
+            let value = try UpdateSavedMessagesTags(from: decoder)
+            self = .updateSavedMessagesTags(value)
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
@@ -1044,6 +1057,8 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatOnlineMemberCount(let value):
             try container.encode(Kind.updateChatOnlineMemberCount, forKey: .type)
             try value.encode(to: encoder)
+        case .updatePinnedSavedMessagesTopics:
+            try container.encode(Kind.updatePinnedSavedMessagesTopics, forKey: .type)
         case .updateForumTopicInfo(let value):
             try container.encode(Kind.updateForumTopicInfo, forKey: .type)
             try value.encode(to: encoder)
@@ -1220,6 +1235,9 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateDefaultReactionType(let value):
             try container.encode(Kind.updateDefaultReactionType, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateSavedMessagesTags(let value):
+            try container.encode(Kind.updateSavedMessagesTags, forKey: .type)
             try value.encode(to: encoder)
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
@@ -3267,6 +3285,18 @@ public struct UpdateDefaultReactionType: Codable, Equatable, Hashable {
 
     public init(reactionType: ReactionType) {
         self.reactionType = reactionType
+    }
+}
+
+/// Used Saved Messages tags have changed
+public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
+
+    /// The new used tags
+    public let tags: SavedMessagesTags
+
+
+    public init(tags: SavedMessagesTags) {
+        self.tags = tags
     }
 }
 

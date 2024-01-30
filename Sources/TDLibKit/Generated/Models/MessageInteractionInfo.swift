@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -16,8 +16,8 @@ public struct MessageInteractionInfo: Codable, Equatable, Hashable {
     /// Number of times the message was forwarded
     public let forwardCount: Int
 
-    /// The list of reactions added to the message
-    public let reactions: [MessageReaction]
+    /// The list of reactions or tags added to the message; may be null
+    public let reactions: MessageReactions?
 
     /// Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
     public let replyInfo: MessageReplyInfo?
@@ -28,7 +28,7 @@ public struct MessageInteractionInfo: Codable, Equatable, Hashable {
 
     public init(
         forwardCount: Int,
-        reactions: [MessageReaction],
+        reactions: MessageReactions?,
         replyInfo: MessageReplyInfo?,
         viewCount: Int
     ) {

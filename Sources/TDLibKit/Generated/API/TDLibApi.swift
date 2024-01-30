@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -55,9 +55,7 @@ public class TDLibApi {
     /// - Parameter databaseDirectory: The path to the directory for the persistent database; if empty, the current working directory will be used
     /// - Parameter databaseEncryptionKey: Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
     /// - Parameter deviceModel: Model of the device the application is being run on; must be non-empty
-    /// - Parameter enableStorageOptimizer: Pass true to automatically delete old files in background
     /// - Parameter filesDirectory: The path to the directory for storing files; if empty, database_directory will be used
-    /// - Parameter ignoreFileNames: Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
     /// - Parameter systemLanguageCode: IETF language tag of the user's operating system language; must be non-empty
     /// - Parameter systemVersion: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
     /// - Parameter useChatInfoDatabase: Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
@@ -72,9 +70,7 @@ public class TDLibApi {
         databaseDirectory: String?,
         databaseEncryptionKey: Data?,
         deviceModel: String?,
-        enableStorageOptimizer: Bool?,
         filesDirectory: String?,
-        ignoreFileNames: Bool?,
         systemLanguageCode: String?,
         systemVersion: String?,
         useChatInfoDatabase: Bool?,
@@ -91,9 +87,7 @@ public class TDLibApi {
             databaseDirectory: databaseDirectory,
             databaseEncryptionKey: databaseEncryptionKey,
             deviceModel: deviceModel,
-            enableStorageOptimizer: enableStorageOptimizer,
             filesDirectory: filesDirectory,
-            ignoreFileNames: ignoreFileNames,
             systemLanguageCode: systemLanguageCode,
             systemVersion: systemVersion,
             useChatInfoDatabase: useChatInfoDatabase,
@@ -112,9 +106,7 @@ public class TDLibApi {
     /// - Parameter databaseDirectory: The path to the directory for the persistent database; if empty, the current working directory will be used
     /// - Parameter databaseEncryptionKey: Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
     /// - Parameter deviceModel: Model of the device the application is being run on; must be non-empty
-    /// - Parameter enableStorageOptimizer: Pass true to automatically delete old files in background
     /// - Parameter filesDirectory: The path to the directory for storing files; if empty, database_directory will be used
-    /// - Parameter ignoreFileNames: Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
     /// - Parameter systemLanguageCode: IETF language tag of the user's operating system language; must be non-empty
     /// - Parameter systemVersion: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
     /// - Parameter useChatInfoDatabase: Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
@@ -131,9 +123,7 @@ public class TDLibApi {
         databaseDirectory: String?,
         databaseEncryptionKey: Data?,
         deviceModel: String?,
-        enableStorageOptimizer: Bool?,
         filesDirectory: String?,
-        ignoreFileNames: Bool?,
         systemLanguageCode: String?,
         systemVersion: String?,
         useChatInfoDatabase: Bool?,
@@ -149,9 +139,7 @@ public class TDLibApi {
             databaseDirectory: databaseDirectory,
             databaseEncryptionKey: databaseEncryptionKey,
             deviceModel: deviceModel,
-            enableStorageOptimizer: enableStorageOptimizer,
             filesDirectory: filesDirectory,
-            ignoreFileNames: ignoreFileNames,
             systemLanguageCode: systemLanguageCode,
             systemVersion: systemVersion,
             useChatInfoDatabase: useChatInfoDatabase,
@@ -806,6 +794,19 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Cancels verification of the 2-step verification recovery email address
+    public final func cancelRecoveryEmailAddressVerification(completion: @escaping (Result<PasswordState, Swift.Error>) -> Void) throws {
+        let query = CancelRecoveryEmailAddressVerification()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Cancels verification of the 2-step verification recovery email address
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func cancelRecoveryEmailAddressVerification() async throws -> PasswordState {
+        let query = CancelRecoveryEmailAddressVerification()
+        return try await self.run(query: query)
+    }
+
     /// Requests to send a 2-step verification password recovery code to an email address that was previously set up
     public final func requestPasswordRecovery(completion: @escaping (Result<EmailAddressAuthenticationCodeInfo, Swift.Error>) -> Void) throws {
         let query = RequestPasswordRecovery()
@@ -1373,6 +1374,38 @@ public class TDLibApi {
         messageId: Int64?
     ) async throws -> MessageThreadInfo {
         let query = GetMessageThread(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Read date of a recent outgoing message in a private chat
+    public final func getMessageReadDate(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<MessageReadDate, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageReadDate(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Read date of a recent outgoing message in a private chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getMessageReadDate(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> MessageReadDate {
+        let query = GetMessageReadDate(
             chatId: chatId,
             messageId: messageId
         )
@@ -2041,6 +2074,243 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns list of all pinned Saved Messages topics
+    /// - Returns: List of all pinned Saved Messages topics
+    public final func getPinnedSavedMessagesTopics(completion: @escaping (Result<FoundSavedMessagesTopics, Swift.Error>) -> Void) throws {
+        let query = GetPinnedSavedMessagesTopics()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns list of all pinned Saved Messages topics
+    /// - Returns: List of all pinned Saved Messages topics
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getPinnedSavedMessagesTopics() async throws -> FoundSavedMessagesTopics {
+        let query = GetPinnedSavedMessagesTopics()
+        return try await self.run(query: query)
+    }
+
+    /// Returns list of non-pinned Saved Messages topics from the specified offset
+    /// - Parameter limit: The maximum number of Saved Messages topics to be returned; up to 100
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: List of non-pinned Saved Messages topics from the specified offset
+    public final func getSavedMessagesTopics(
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<FoundSavedMessagesTopics, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSavedMessagesTopics(
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns list of non-pinned Saved Messages topics from the specified offset
+    /// - Parameter limit: The maximum number of Saved Messages topics to be returned; up to 100
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: List of non-pinned Saved Messages topics from the specified offset
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getSavedMessagesTopics(
+        limit: Int?,
+        offset: String?
+    ) async throws -> FoundSavedMessagesTopics {
+        let query = GetSavedMessagesTopics(
+            limit: limit,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be fetched
+    /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    public final func getSavedMessagesTopicHistory(
+        fromMessageId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        savedMessagesTopic: SavedMessagesTopic?,
+        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSavedMessagesTopicHistory(
+            fromMessageId: fromMessageId,
+            limit: limit,
+            offset: offset,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be fetched
+    /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getSavedMessagesTopicHistory(
+        fromMessageId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        savedMessagesTopic: SavedMessagesTopic?
+    ) async throws -> Messages {
+        let query = GetSavedMessagesTopicHistory(
+            fromMessageId: fromMessageId,
+            limit: limit,
+            offset: offset,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the last message sent in a Saved Messages topic no later than the specified date
+    /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
+    /// - Parameter savedMessagesTopic: Saved Messages topic which message will be returned
+    /// - Returns: The last message sent in a Saved Messages topic no later than the specified date
+    public final func getSavedMessagesTopicMessageByDate(
+        date: Int?,
+        savedMessagesTopic: SavedMessagesTopic?,
+        completion: @escaping (Result<Message, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSavedMessagesTopicMessageByDate(
+            date: date,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the last message sent in a Saved Messages topic no later than the specified date
+    /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
+    /// - Parameter savedMessagesTopic: Saved Messages topic which message will be returned
+    /// - Returns: The last message sent in a Saved Messages topic no later than the specified date
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getSavedMessagesTopicMessageByDate(
+        date: Int?,
+        savedMessagesTopic: SavedMessagesTopic?
+    ) async throws -> Message {
+        let query = GetSavedMessagesTopicMessageByDate(
+            date: date,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes all messages in a Saved Messages topic
+    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    public final func deleteSavedMessagesTopicHistory(
+        savedMessagesTopic: SavedMessagesTopic?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteSavedMessagesTopicHistory(
+            savedMessagesTopic: savedMessagesTopic
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes all messages in a Saved Messages topic
+    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteSavedMessagesTopicHistory(savedMessagesTopic: SavedMessagesTopic?) async throws -> Ok {
+        let query = DeleteSavedMessagesTopicHistory(
+            savedMessagesTopic: savedMessagesTopic
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
+    /// - Parameter maxDate: The maximum date of the messages to delete
+    /// - Parameter minDate: The minimum date of the messages to delete
+    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    public final func deleteSavedMessagesTopicMessagesByDate(
+        maxDate: Int?,
+        minDate: Int?,
+        savedMessagesTopic: SavedMessagesTopic?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteSavedMessagesTopicMessagesByDate(
+            maxDate: maxDate,
+            minDate: minDate,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
+    /// - Parameter maxDate: The maximum date of the messages to delete
+    /// - Parameter minDate: The minimum date of the messages to delete
+    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteSavedMessagesTopicMessagesByDate(
+        maxDate: Int?,
+        minDate: Int?,
+        savedMessagesTopic: SavedMessagesTopic?
+    ) async throws -> Ok {
+        let query = DeleteSavedMessagesTopicMessagesByDate(
+            maxDate: maxDate,
+            minDate: minDate,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
+    /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
+    /// - Parameter savedMessagesTopic: Saved Messages topic to pin or unpin
+    public final func toggleSavedMessagesTopicIsPinned(
+        isPinned: Bool?,
+        savedMessagesTopic: SavedMessagesTopic?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSavedMessagesTopicIsPinned(
+            isPinned: isPinned,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
+    /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
+    /// - Parameter savedMessagesTopic: Saved Messages topic to pin or unpin
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func toggleSavedMessagesTopicIsPinned(
+        isPinned: Bool?,
+        savedMessagesTopic: SavedMessagesTopic?
+    ) async throws -> Ok {
+        let query = ToggleSavedMessagesTopicIsPinned(
+            isPinned: isPinned,
+            savedMessagesTopic: savedMessagesTopic
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the order of pinned Saved Messages topics
+    /// - Parameter savedMessagesTopics: The new list of pinned Saved Messages topics
+    public final func setPinnedSavedMessagesTopics(
+        savedMessagesTopics: [SavedMessagesTopic]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetPinnedSavedMessagesTopics(
+            savedMessagesTopics: savedMessagesTopics
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the order of pinned Saved Messages topics
+    /// - Parameter savedMessagesTopics: The new list of pinned Saved Messages topics
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setPinnedSavedMessagesTopics(savedMessagesTopics: [SavedMessagesTopic]?) async throws -> Ok {
+        let query = SetPinnedSavedMessagesTopics(
+            savedMessagesTopics: savedMessagesTopics
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
     /// - Parameter limit: The maximum number of chats to be returned; up to 100
     /// - Parameter offsetChatId: Chat identifier starting from which to return chats; use 0 for the first request
@@ -2083,7 +2353,7 @@ public class TDLibApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public final func getChatHistory(
@@ -2108,7 +2378,7 @@ public class TDLibApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2134,7 +2404,7 @@ public class TDLibApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
-    /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public final func getMessageThreadHistory(
         chatId: Int64?,
@@ -2159,7 +2429,7 @@ public class TDLibApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
-    /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getMessageThreadHistory(
@@ -2245,8 +2515,9 @@ public class TDLibApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
-    /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be returned; pass null to return all messages, or for chats other than Saved Messages
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public final func searchChatMessages(
@@ -2257,6 +2528,7 @@ public class TDLibApi {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
+        savedMessagesTopic: SavedMessagesTopic?,
         senderId: MessageSender?,
         completion: @escaping (Result<FoundChatMessages, Swift.Error>) -> Void
     ) throws {
@@ -2268,6 +2540,7 @@ public class TDLibApi {
             messageThreadId: messageThreadId,
             offset: offset,
             query: query,
+            savedMessagesTopic: savedMessagesTopic,
             senderId: senderId
         )
         self.run(query: query, completion: completion)
@@ -2279,8 +2552,9 @@ public class TDLibApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
-    /// - Parameter offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be returned; pass null to return all messages, or for chats other than Saved Messages
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2292,6 +2566,7 @@ public class TDLibApi {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
+        savedMessagesTopic: SavedMessagesTopic?,
         senderId: MessageSender?
     ) async throws -> FoundChatMessages {
         let query = SearchChatMessages(
@@ -2302,6 +2577,7 @@ public class TDLibApi {
             messageThreadId: messageThreadId,
             offset: offset,
             query: query,
+            savedMessagesTopic: savedMessagesTopic,
             senderId: senderId
         )
         return try await self.run(query: query)
@@ -2415,6 +2691,56 @@ public class TDLibApi {
             limit: limit,
             offset: offset,
             query: query
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
+    /// - Parameter query: Query to search for
+    /// - Parameter tag: Tag to search for; pass null to return all suitable messages
+    /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    public final func searchSavedMessages(
+        fromMessageId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        query: String?,
+        tag: ReactionType?,
+        completion: @escaping (Result<FoundChatMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchSavedMessages(
+            fromMessageId: fromMessageId,
+            limit: limit,
+            offset: offset,
+            query: query,
+            tag: tag
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
+    /// - Parameter query: Query to search for
+    /// - Parameter tag: Tag to search for; pass null to return all suitable messages
+    /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func searchSavedMessages(
+        fromMessageId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        query: String?,
+        tag: ReactionType?
+    ) async throws -> FoundChatMessages {
+        let query = SearchSavedMessages(
+            fromMessageId: fromMessageId,
+            limit: limit,
+            offset: offset,
+            query: query,
+            tag: tag
         )
         return try await self.run(query: query)
     }
@@ -2596,19 +2922,22 @@ public class TDLibApi {
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
     /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     public final func getChatSparseMessagePositions(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?,
+        savedMessagesTopic: SavedMessagesTopic?,
         completion: @escaping (Result<MessagePositions, Swift.Error>) -> Void
     ) throws {
         let query = GetChatSparseMessagePositions(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
-            limit: limit
+            limit: limit,
+            savedMessagesTopic: savedMessagesTopic
         )
         self.run(query: query, completion: completion)
     }
@@ -2618,19 +2947,22 @@ public class TDLibApi {
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
     /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatSparseMessagePositions(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
-        limit: Int?
+        limit: Int?,
+        savedMessagesTopic: SavedMessagesTopic?
     ) async throws -> MessagePositions {
         let query = GetChatSparseMessagePositions(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
-            limit: limit
+            limit: limit,
+            savedMessagesTopic: savedMessagesTopic
         )
         return try await self.run(query: query)
     }
@@ -2639,17 +2971,20 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     public final func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
+        savedMessagesTopic: SavedMessagesTopic?,
         completion: @escaping (Result<MessageCalendar, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCalendar(
             chatId: chatId,
             filter: filter,
-            fromMessageId: fromMessageId
+            fromMessageId: fromMessageId,
+            savedMessagesTopic: savedMessagesTopic
         )
         self.run(query: query, completion: completion)
     }
@@ -2658,17 +2993,20 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
-        fromMessageId: Int64?
+        fromMessageId: Int64?,
+        savedMessagesTopic: SavedMessagesTopic?
     ) async throws -> MessageCalendar {
         let query = GetChatMessageCalendar(
             chatId: chatId,
             filter: filter,
-            fromMessageId: fromMessageId
+            fromMessageId: fromMessageId,
+            savedMessagesTopic: savedMessagesTopic
         )
         return try await self.run(query: query)
     }
@@ -2677,17 +3015,20 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be counted; pass null to count all messages, or for chats other than Saved Messages
     /// - Returns: Approximate number of messages of the specified type in the chat
     public final func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?,
+        savedMessagesTopic: SavedMessagesTopic?,
         completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCount(
             chatId: chatId,
             filter: filter,
-            returnLocal: returnLocal
+            returnLocal: returnLocal,
+            savedMessagesTopic: savedMessagesTopic
         )
         self.run(query: query, completion: completion)
     }
@@ -2696,17 +3037,20 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be counted; pass null to count all messages, or for chats other than Saved Messages
     /// - Returns: Approximate number of messages of the specified type in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
-        returnLocal: Bool?
+        returnLocal: Bool?,
+        savedMessagesTopic: SavedMessagesTopic?
     ) async throws -> Count {
         let query = GetChatMessageCount(
             chatId: chatId,
             filter: filter,
-            returnLocal: returnLocal
+            returnLocal: returnLocal,
+            savedMessagesTopic: savedMessagesTopic
         )
         return try await self.run(query: query)
     }
@@ -2716,19 +3060,22 @@ public class TDLibApi {
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all relevant messages, or for chats other than Saved Messages
     /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
     public final func getChatMessagePosition(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         messageId: Int64?,
         messageThreadId: Int64?,
+        savedMessagesTopic: SavedMessagesTopic?,
         completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessagePosition(
             chatId: chatId,
             filter: filter,
             messageId: messageId,
-            messageThreadId: messageThreadId
+            messageThreadId: messageThreadId,
+            savedMessagesTopic: savedMessagesTopic
         )
         self.run(query: query, completion: completion)
     }
@@ -2738,19 +3085,22 @@ public class TDLibApi {
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
+    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all relevant messages, or for chats other than Saved Messages
     /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatMessagePosition(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         messageId: Int64?,
-        messageThreadId: Int64?
+        messageThreadId: Int64?,
+        savedMessagesTopic: SavedMessagesTopic?
     ) async throws -> Count {
         let query = GetChatMessagePosition(
             chatId: chatId,
             filter: filter,
             messageId: messageId,
-            messageThreadId: messageThreadId
+            messageThreadId: messageThreadId,
+            savedMessagesTopic: savedMessagesTopic
         )
         return try await self.run(query: query)
     }
@@ -4133,7 +4483,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+    /// Creates a topic in a forum supergroup chat; requires can_manage_topics or can_create_topics rights in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter icon: Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     /// - Parameter name: Name of the topic; 1-128 characters
@@ -4151,7 +4501,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+    /// Creates a topic in a forum supergroup chat; requires can_manage_topics or can_create_topics rights in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter icon: Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     /// - Parameter name: Name of the topic; 1-128 characters
@@ -4169,7 +4519,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
@@ -4193,7 +4543,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
@@ -4375,7 +4725,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -4393,7 +4743,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -4412,7 +4762,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     public final func toggleGeneralForumTopicIsHidden(
@@ -4427,7 +4777,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4443,7 +4793,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+    /// Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
     /// - Parameter chatId: Chat identifier
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -4461,7 +4811,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+    /// Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
     /// - Parameter chatId: Chat identifier
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -4480,7 +4830,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the order of pinned forum topics
+    /// Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadIds: The new list of pinned forum topics
     public final func setPinnedForumTopics(
@@ -4495,7 +4845,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the order of pinned forum topics
+    /// Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadIds: The new list of pinned forum topics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4542,9 +4892,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+    /// Returns information about an emoji reaction. Returns a 404 error if the reaction is not found
     /// - Parameter emoji: Text representation of the reaction
-    /// - Returns: Information about a emoji reaction. Returns a 404 error if the reaction is not found
+    /// - Returns: Information about an emoji reaction. Returns a 404 error if the reaction is not found
     public final func getEmojiReaction(
         emoji: String?,
         completion: @escaping (Result<EmojiReaction, Swift.Error>) -> Void
@@ -4555,9 +4905,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+    /// Returns information about an emoji reaction. Returns a 404 error if the reaction is not found
     /// - Parameter emoji: Text representation of the reaction
-    /// - Returns: Information about a emoji reaction. Returns a 404 error if the reaction is not found
+    /// - Returns: Information about an emoji reaction. Returns a 404 error if the reaction is not found
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getEmojiReaction(emoji: String?) async throws -> EmojiReaction {
         let query = GetEmojiReaction(
@@ -4633,12 +4983,12 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
     /// - Parameter reactionType: Type of the reaction to add
-    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
+    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     public final func addMessageReaction(
         chatId: Int64?,
         isBig: Bool?,
@@ -4657,12 +5007,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
     /// - Parameter reactionType: Type of the reaction to add
-    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
+    /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func addMessageReaction(
@@ -4835,6 +5185,52 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns tags used in Saved Messages; for Telegram Premium users only
+    /// - Returns: Tags used in Saved Messages
+    public final func getSavedMessagesTags(completion: @escaping (Result<SavedMessagesTags, Swift.Error>) -> Void) throws {
+        let query = GetSavedMessagesTags()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns tags used in Saved Messages; for Telegram Premium users only
+    /// - Returns: Tags used in Saved Messages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getSavedMessagesTags() async throws -> SavedMessagesTags {
+        let query = GetSavedMessagesTags()
+        return try await self.run(query: query)
+    }
+
+    /// Changes label of a Saved Messages tag; for Telegram Premium users only
+    /// - Parameter label: New label for the tag; 0-12 characters
+    /// - Parameter tag: The tag which label will be changed
+    public final func setSavedMessagesTagLabel(
+        label: String?,
+        tag: ReactionType?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetSavedMessagesTagLabel(
+            label: label,
+            tag: tag
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes label of a Saved Messages tag; for Telegram Premium users only
+    /// - Parameter label: New label for the tag; 0-12 characters
+    /// - Parameter tag: The tag which label will be changed
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setSavedMessagesTagLabel(
+        label: String?,
+        tag: ReactionType?
+    ) async throws -> Ok {
+        let query = SetSavedMessagesTagLabel(
+            label: label,
+            tag: tag
+        )
+        return try await self.run(query: query)
+    }
+
     /// Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
     /// - Parameter quote: Quote to search for
     /// - Parameter quotePosition: Approximate quote position in UTF-16 code units
@@ -4967,6 +5363,30 @@ public class TDLibApi {
     public final func getMarkdownText(text: FormattedText?) async throws -> FormattedText {
         let query = GetMarkdownText(
             text: text
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+    /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
+    /// - Returns: An emoji for the given country. Returns an empty string on failure
+    public final func getCountryFlagEmoji(
+        countryCode: String?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetCountryFlagEmoji(
+            countryCode: countryCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+    /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
+    /// - Returns: An emoji for the given country. Returns an empty string on failure
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getCountryFlagEmoji(countryCode: String?) async throws -> Text {
+        let query = GetCountryFlagEmoji(
+            countryCode: countryCode
         )
         return try await self.run(query: query)
     }
@@ -13789,36 +14209,62 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Searches for emojis by keywords. Supported only if the file database is enabled
-    /// - Parameter exactMatch: Pass true if only emojis, which exactly match the text, needs to be returned
+    /// Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
     /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter text: Text to search for
     public final func searchEmojis(
-        exactMatch: Bool?,
         inputLanguageCodes: [String]?,
         text: String?,
-        completion: @escaping (Result<Emojis, Swift.Error>) -> Void
+        completion: @escaping (Result<EmojiKeywords, Swift.Error>) -> Void
     ) throws {
         let query = SearchEmojis(
-            exactMatch: exactMatch,
             inputLanguageCodes: inputLanguageCodes,
             text: text
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Searches for emojis by keywords. Supported only if the file database is enabled
-    /// - Parameter exactMatch: Pass true if only emojis, which exactly match the text, needs to be returned
+    /// Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
     /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter text: Text to search for
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchEmojis(
-        exactMatch: Bool?,
+        inputLanguageCodes: [String]?,
+        text: String?
+    ) async throws -> EmojiKeywords {
+        let query = SearchEmojis(
+            inputLanguageCodes: inputLanguageCodes,
+            text: text
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+    /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
+    /// - Parameter text: Text to search for
+    /// - Returns: Emojis matching the keyword
+    public final func getKeywordEmojis(
+        inputLanguageCodes: [String]?,
+        text: String?,
+        completion: @escaping (Result<Emojis, Swift.Error>) -> Void
+    ) throws {
+        let query = GetKeywordEmojis(
+            inputLanguageCodes: inputLanguageCodes,
+            text: text
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+    /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
+    /// - Parameter text: Text to search for
+    /// - Returns: Emojis matching the keyword
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getKeywordEmojis(
         inputLanguageCodes: [String]?,
         text: String?
     ) async throws -> Emojis {
-        let query = SearchEmojis(
-            exactMatch: exactMatch,
+        let query = GetKeywordEmojis(
             inputLanguageCodes: inputLanguageCodes,
             text: text
         )
@@ -16742,6 +17188,112 @@ public class TDLibApi {
     public final func getUserPrivacySettingRules(setting: UserPrivacySetting?) async throws -> UserPrivacySettingRules {
         let query = GetUserPrivacySettingRules(
             setting: setting
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes privacy settings for message read date
+    /// - Parameter settings: New settings
+    public final func setReadDatePrivacySettings(
+        settings: ReadDatePrivacySettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetReadDatePrivacySettings(
+            settings: settings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes privacy settings for message read date
+    /// - Parameter settings: New settings
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setReadDatePrivacySettings(settings: ReadDatePrivacySettings?) async throws -> Ok {
+        let query = SetReadDatePrivacySettings(
+            settings: settings
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns privacy settings for message read date
+    /// - Returns: Privacy settings for message read date
+    public final func getReadDatePrivacySettings(completion: @escaping (Result<ReadDatePrivacySettings, Swift.Error>) -> Void) throws {
+        let query = GetReadDatePrivacySettings()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns privacy settings for message read date
+    /// - Returns: Privacy settings for message read date
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getReadDatePrivacySettings() async throws -> ReadDatePrivacySettings {
+        let query = GetReadDatePrivacySettings()
+        return try await self.run(query: query)
+    }
+
+    /// Changes privacy settings for new chat creation; for Telegram Premium users only
+    /// - Parameter settings: New settings
+    public final func setNewChatPrivacySettings(
+        settings: NewChatPrivacySettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetNewChatPrivacySettings(
+            settings: settings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes privacy settings for new chat creation; for Telegram Premium users only
+    /// - Parameter settings: New settings
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setNewChatPrivacySettings(settings: NewChatPrivacySettings?) async throws -> Ok {
+        let query = SetNewChatPrivacySettings(
+            settings: settings
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns privacy settings for new chat creation
+    /// - Returns: Privacy settings for new chat creation
+    public final func getNewChatPrivacySettings(completion: @escaping (Result<NewChatPrivacySettings, Swift.Error>) -> Void) throws {
+        let query = GetNewChatPrivacySettings()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns privacy settings for new chat creation
+    /// - Returns: Privacy settings for new chat creation
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getNewChatPrivacySettings() async throws -> NewChatPrivacySettings {
+        let query = GetNewChatPrivacySettings()
+        return try await self.run(query: query)
+    }
+
+    /// Check whether the current user can message another user or try to create a chat with them
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
+    /// - Parameter userId: Identifier of the other user
+    public final func canSendMessageToUser(
+        onlyLocal: Bool?,
+        userId: Int64?,
+        completion: @escaping (Result<CanSendMessageToUserResult, Swift.Error>) -> Void
+    ) throws {
+        let query = CanSendMessageToUser(
+            onlyLocal: onlyLocal,
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Check whether the current user can message another user or try to create a chat with them
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
+    /// - Parameter userId: Identifier of the other user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func canSendMessageToUser(
+        onlyLocal: Bool?,
+        userId: Int64?
+    ) async throws -> CanSendMessageToUserResult {
+        let query = CanSendMessageToUser(
+            onlyLocal: onlyLocal,
+            userId: userId
         )
         return try await self.run(query: query)
     }

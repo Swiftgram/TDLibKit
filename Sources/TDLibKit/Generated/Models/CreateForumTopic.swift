@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
 
 
-/// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+/// Creates a topic in a forum supergroup chat; requires can_manage_topics or can_create_topics rights in the supergroup
 public struct CreateForumTopic: Codable, Equatable, Hashable {
 
     /// Identifier of the chat

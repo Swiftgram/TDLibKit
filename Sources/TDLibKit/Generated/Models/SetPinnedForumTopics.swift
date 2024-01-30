@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
 
 
-/// Changes the order of pinned forum topics
+/// Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
 public struct SetPinnedForumTopics: Codable, Equatable, Hashable {
 
     /// Chat identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -503,6 +503,9 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
     /// Video width and height; must be positive and not greater than 640
     public let length: Int
 
+    /// Video note self-destruct type; pass null if none; private chats only
+    public let selfDestructType: MessageSelfDestructType?
+
     /// Video thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail?
 
@@ -513,11 +516,13 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
     public init(
         duration: Int,
         length: Int,
+        selfDestructType: MessageSelfDestructType?,
         thumbnail: InputThumbnail?,
         videoNote: InputFile
     ) {
         self.duration = duration
         self.length = length
+        self.selfDestructType = selfDestructType
         self.thumbnail = thumbnail
         self.videoNote = videoNote
     }
@@ -532,6 +537,9 @@ public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
     /// Duration of the voice note, in seconds
     public let duration: Int
 
+    /// Voice note self-destruct type; pass null if none; private chats only
+    public let selfDestructType: MessageSelfDestructType?
+
     /// Voice note to be sent
     public let voiceNote: InputFile
 
@@ -542,11 +550,13 @@ public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
     public init(
         caption: FormattedText?,
         duration: Int,
+        selfDestructType: MessageSelfDestructType?,
         voiceNote: InputFile,
         waveform: Data
     ) {
         self.caption = caption
         self.duration = duration
+        self.selfDestructType = selfDestructType
         self.voiceNote = voiceNote
         self.waveform = waveform
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can get chat event log, get chat boosts in channels, get channel members, report supergroup spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
-    /// True, if the administrator can manage topics; applicable to forum supergroups only
+    /// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
     public let canManageTopics: Bool
 
     /// True, if the administrator can manage video chats

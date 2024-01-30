@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
 
 
-/// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+/// Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
 public struct AddMessageReaction: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
@@ -25,7 +25,7 @@ public struct AddMessageReaction: Codable, Equatable, Hashable {
     /// Type of the reaction to add
     public let reactionType: ReactionType?
 
-    /// Pass true if the reaction needs to be added to recent reactions
+    /// Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     public let updateRecentReactions: Bool?
 
 

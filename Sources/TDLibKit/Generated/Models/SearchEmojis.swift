@@ -3,18 +3,15 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
 
 
-/// Searches for emojis by keywords. Supported only if the file database is enabled
+/// Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
 public struct SearchEmojis: Codable, Equatable, Hashable {
-
-    /// Pass true if only emojis, which exactly match the text, needs to be returned
-    public let exactMatch: Bool?
 
     /// List of possible IETF language tags of the user's input language; may be empty if unknown
     public let inputLanguageCodes: [String]?
@@ -24,11 +21,9 @@ public struct SearchEmojis: Codable, Equatable, Hashable {
 
 
     public init(
-        exactMatch: Bool?,
         inputLanguageCodes: [String]?,
         text: String?
     ) {
-        self.exactMatch = exactMatch
         self.inputLanguageCodes = inputLanguageCodes
         self.text = text
     }

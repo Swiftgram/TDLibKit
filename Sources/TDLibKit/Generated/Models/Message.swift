@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -45,6 +45,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     public let canGetMessageThread: Bool
+
+    /// True, if read date of the message can be received through getMessageReadDate
+    public let canGetReadDate: Bool
 
     /// True, if the message statistics are available through getMessageStatistics
     public let canGetStatistics: Bool
@@ -112,6 +115,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     public let restrictionReason: String
 
+    /// Information about topic of the message in the Saved Messages chat; may be null for messages not from Saved Messages
+    public let savedMessagesTopic: SavedMessagesTopic?
+
     /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
 
@@ -146,6 +152,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         canGetAddedReactions: Bool,
         canGetMediaTimestampLinks: Bool,
         canGetMessageThread: Bool,
+        canGetReadDate: Bool,
         canGetStatistics: Bool,
         canGetViewers: Bool,
         canReportReactions: Bool,
@@ -168,6 +175,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
         restrictionReason: String,
+        savedMessagesTopic: SavedMessagesTopic?,
         schedulingState: MessageSchedulingState?,
         selfDestructIn: Double,
         selfDestructType: MessageSelfDestructType?,
@@ -187,6 +195,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.canGetAddedReactions = canGetAddedReactions
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
         self.canGetMessageThread = canGetMessageThread
+        self.canGetReadDate = canGetReadDate
         self.canGetStatistics = canGetStatistics
         self.canGetViewers = canGetViewers
         self.canReportReactions = canReportReactions
@@ -209,6 +218,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
         self.restrictionReason = restrictionReason
+        self.savedMessagesTopic = savedMessagesTopic
         self.schedulingState = schedulingState
         self.selfDestructIn = selfDestructIn
         self.selfDestructType = selfDestructType

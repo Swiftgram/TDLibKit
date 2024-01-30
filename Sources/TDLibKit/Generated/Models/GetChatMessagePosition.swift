@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct GetChatMessagePosition: Codable, Equatable, Hashable {
     /// If not 0, only messages in the specified thread will be considered; supergroups only
     public let messageThreadId: Int64?
 
+    /// If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all relevant messages, or for chats other than Saved Messages
+    public let savedMessagesTopic: SavedMessagesTopic?
+
 
     public init(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         messageId: Int64?,
-        messageThreadId: Int64?
+        messageThreadId: Int64?,
+        savedMessagesTopic: SavedMessagesTopic?
     ) {
         self.chatId = chatId
         self.filter = filter
         self.messageId = messageId
         self.messageThreadId = messageThreadId
+        self.savedMessagesTopic = savedMessagesTopic
     }
 }
 

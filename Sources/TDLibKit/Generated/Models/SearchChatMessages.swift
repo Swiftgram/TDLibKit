@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -28,11 +28,14 @@ public struct SearchChatMessages: Codable, Equatable, Hashable {
     /// If not 0, only messages in the specified thread will be returned; supergroups only
     public let messageThreadId: Int64?
 
-    /// Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+    /// Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     public let offset: Int?
 
     /// Query to search for
     public let query: String?
+
+    /// If not null, only messages in the specified Saved Messages topic will be returned; pass null to return all messages, or for chats other than Saved Messages
+    public let savedMessagesTopic: SavedMessagesTopic?
 
     /// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     public let senderId: MessageSender?
@@ -46,6 +49,7 @@ public struct SearchChatMessages: Codable, Equatable, Hashable {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
+        savedMessagesTopic: SavedMessagesTopic?,
         senderId: MessageSender?
     ) {
         self.chatId = chatId
@@ -55,6 +59,7 @@ public struct SearchChatMessages: Codable, Equatable, Hashable {
         self.messageThreadId = messageThreadId
         self.offset = offset
         self.query = query
+        self.savedMessagesTopic = savedMessagesTopic
         self.senderId = senderId
     }
 }

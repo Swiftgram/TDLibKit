@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct GetMessageThreadHistory: Codable, Equatable, Hashable {
     /// Message identifier, which thread history needs to be returned
     public let messageId: Int64?
 
-    /// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     public let offset: Int?
 
 

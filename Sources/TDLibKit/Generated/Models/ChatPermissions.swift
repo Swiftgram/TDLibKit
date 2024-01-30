@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.23-5bbfc1cf
-//  https://github.com/tdlib/td/tree/5bbfc1cf
+//  Based on TDLib 1.8.24-437c2d0c
+//  https://github.com/tdlib/td/tree/437c2d0c
 //
 
 import Foundation
@@ -19,11 +19,11 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
     /// True, if the user can change the chat title, photo, and other settings
     public let canChangeInfo: Bool
 
+    /// True, if the user can create topics
+    public let canCreateTopics: Bool
+
     /// True, if the user can invite new users to the chat
     public let canInviteUsers: Bool
-
-    /// True, if the user can manage topics
-    public let canManageTopics: Bool
 
     /// True, if the user can pin messages
     public let canPinMessages: Bool
@@ -59,8 +59,8 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
     public init(
         canAddWebPagePreviews: Bool,
         canChangeInfo: Bool,
+        canCreateTopics: Bool,
         canInviteUsers: Bool,
-        canManageTopics: Bool,
         canPinMessages: Bool,
         canSendAudios: Bool,
         canSendBasicMessages: Bool,
@@ -74,8 +74,8 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
     ) {
         self.canAddWebPagePreviews = canAddWebPagePreviews
         self.canChangeInfo = canChangeInfo
+        self.canCreateTopics = canCreateTopics
         self.canInviteUsers = canInviteUsers
-        self.canManageTopics = canManageTopics
         self.canPinMessages = canPinMessages
         self.canSendAudios = canSendAudios
         self.canSendBasicMessages = canSendBasicMessages
