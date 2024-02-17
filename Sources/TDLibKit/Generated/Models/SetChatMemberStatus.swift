@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+/// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
 public struct SetChatMemberStatus: Codable, Equatable, Hashable {
 
     /// Chat identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public enum CanSendStoryResult: Codable, Equatable, Hashable {
     /// The user must subscribe to Telegram Premium to be able to post stories
     case canSendStoryResultPremiumNeeded
 
-    /// The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+    /// The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
     case canSendStoryResultBoostNeeded
 
     /// The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -22,20 +22,25 @@ public struct ProfileAccentColor: Codable, Equatable, Hashable, Identifiable {
     /// Accent colors expected to be used in light themes
     public let lightThemeColors: ProfileAccentColors
 
-    /// The minimum chat boost level required to use the color
-    public let minChatBoostLevel: Int
+    /// The minimum chat boost level required to use the color in a channel chat
+    public let minChannelChatBoostLevel: Int
+
+    /// The minimum chat boost level required to use the color in a supergroup chat
+    public let minSupergroupChatBoostLevel: Int
 
 
     public init(
         darkThemeColors: ProfileAccentColors,
         id: Int,
         lightThemeColors: ProfileAccentColors,
-        minChatBoostLevel: Int
+        minChannelChatBoostLevel: Int,
+        minSupergroupChatBoostLevel: Int
     ) {
         self.darkThemeColors = darkThemeColors
         self.id = id
         self.lightThemeColors = lightThemeColors
-        self.minChatBoostLevel = minChatBoostLevel
+        self.minChannelChatBoostLevel = minChannelChatBoostLevel
+        self.minSupergroupChatBoostLevel = minSupergroupChatBoostLevel
     }
 }
 

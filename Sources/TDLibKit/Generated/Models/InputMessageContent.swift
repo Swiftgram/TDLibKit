@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -217,7 +217,7 @@ public struct InputMessageText: Codable, Equatable, Hashable {
     /// True, if a chat message draft must be deleted
     public let clearDraft: Bool
 
-    /// Options to be used for generation of a link preview; pass null to use default link preview options
+    /// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     public let linkPreviewOptions: LinkPreviewOptions?
 
     /// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
@@ -503,10 +503,10 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
     /// Video width and height; must be positive and not greater than 640
     public let length: Int
 
-    /// Video note self-destruct type; pass null if none; private chats only
+    /// Video note self-destruct type; may be null if none; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
-    /// Video thumbnail; pass null to skip thumbnail uploading
+    /// Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail?
 
     /// Video note to be sent
@@ -531,13 +531,13 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
 /// A voice note message
 public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
 
-    /// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    /// Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
     /// Duration of the voice note, in seconds
     public let duration: Int
 
-    /// Voice note self-destruct type; pass null if none; private chats only
+    /// Voice note self-destruct type; may be null if none; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
     /// Voice note to be sent

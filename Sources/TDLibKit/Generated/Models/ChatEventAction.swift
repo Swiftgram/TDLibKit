@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -81,6 +81,9 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
 
     /// The supergroup sticker set was changed
     case chatEventStickerSetChanged(ChatEventStickerSetChanged)
+
+    /// The supergroup sticker set with allowed custom emoji was changed
+    case chatEventCustomEmojiStickerSetChanged(ChatEventCustomEmojiStickerSetChanged)
 
     /// The chat title was changed
     case chatEventTitleChanged(ChatEventTitleChanged)
@@ -182,6 +185,7 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case chatEventPhotoChanged
         case chatEventSlowModeDelayChanged
         case chatEventStickerSetChanged
+        case chatEventCustomEmojiStickerSetChanged
         case chatEventTitleChanged
         case chatEventUsernameChanged
         case chatEventActiveUsernamesChanged
@@ -280,6 +284,9 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventStickerSetChanged:
             let value = try ChatEventStickerSetChanged(from: decoder)
             self = .chatEventStickerSetChanged(value)
+        case .chatEventCustomEmojiStickerSetChanged:
+            let value = try ChatEventCustomEmojiStickerSetChanged(from: decoder)
+            self = .chatEventCustomEmojiStickerSetChanged(value)
         case .chatEventTitleChanged:
             let value = try ChatEventTitleChanged(from: decoder)
             self = .chatEventTitleChanged(value)
@@ -427,6 +434,9 @@ public enum ChatEventAction: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .chatEventStickerSetChanged(let value):
             try container.encode(Kind.chatEventStickerSetChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventCustomEmojiStickerSetChanged(let value):
+            try container.encode(Kind.chatEventCustomEmojiStickerSetChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventTitleChanged(let value):
             try container.encode(Kind.chatEventTitleChanged, forKey: .type)
@@ -878,6 +888,25 @@ public struct ChatEventSlowModeDelayChanged: Codable, Equatable, Hashable {
 
 /// The supergroup sticker set was changed
 public struct ChatEventStickerSetChanged: Codable, Equatable, Hashable {
+
+    /// New identifier of the chat sticker set; 0 if none
+    public let newStickerSetId: TdInt64
+
+    /// Previous identifier of the chat sticker set; 0 if none
+    public let oldStickerSetId: TdInt64
+
+
+    public init(
+        newStickerSetId: TdInt64,
+        oldStickerSetId: TdInt64
+    ) {
+        self.newStickerSetId = newStickerSetId
+        self.oldStickerSetId = oldStickerSetId
+    }
+}
+
+/// The supergroup sticker set with allowed custom emoji was changed
+public struct ChatEventCustomEmojiStickerSetChanged: Codable, Equatable, Hashable {
 
     /// New identifier of the chat sticker set; 0 if none
     public let newStickerSetId: TdInt64

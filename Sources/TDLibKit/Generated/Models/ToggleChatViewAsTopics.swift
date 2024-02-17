@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Changes the view_as_topics setting of a forum chat
+/// Changes the view_as_topics setting of a forum chat or Saved Messages
 public struct ToggleChatViewAsTopics: Codable, Equatable, Hashable {
 
     /// Chat identifier

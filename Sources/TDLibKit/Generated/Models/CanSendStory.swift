@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+/// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
 public struct CanSendStory: Codable, Equatable, Hashable {
 
     /// Chat identifier

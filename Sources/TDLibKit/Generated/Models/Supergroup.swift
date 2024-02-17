@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
     public let date: Int
 
-    /// True, if the channel has non-expired stories available to the current user
+    /// True, if the supergroup or channel has non-expired stories available to the current user
     public let hasActiveStories: Bool
 
     /// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
@@ -28,7 +28,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     public let hasLocation: Bool
 
-    /// True, if the channel has unread non-expired stories available to the current user
+    /// True, if the supergroup or channel has unread non-expired stories available to the current user
     public let hasUnreadActiveStories: Bool
 
     /// Supergroup or channel identifier

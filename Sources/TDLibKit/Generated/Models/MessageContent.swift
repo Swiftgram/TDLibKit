@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -142,6 +142,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
     /// The auto-delete or self-destruct timer for messages in the chat has been changed
     case messageChatSetMessageAutoDeleteTime(MessageChatSetMessageAutoDeleteTime)
 
+    /// The chat was boosted by the sender of the message
+    case messageChatBoost(MessageChatBoost)
+
     /// A forum topic has been created
     case messageForumTopicCreated(MessageForumTopicCreated)
 
@@ -262,6 +265,7 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case messageChatSetBackground
         case messageChatSetTheme
         case messageChatSetMessageAutoDeleteTime
+        case messageChatBoost
         case messageForumTopicCreated
         case messageForumTopicEdited
         case messageForumTopicIsClosedToggled
@@ -414,6 +418,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
         case .messageChatSetMessageAutoDeleteTime:
             let value = try MessageChatSetMessageAutoDeleteTime(from: decoder)
             self = .messageChatSetMessageAutoDeleteTime(value)
+        case .messageChatBoost:
+            let value = try MessageChatBoost(from: decoder)
+            self = .messageChatBoost(value)
         case .messageForumTopicCreated:
             let value = try MessageForumTopicCreated(from: decoder)
             self = .messageForumTopicCreated(value)
@@ -612,6 +619,9 @@ public enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageChatSetMessageAutoDeleteTime(let value):
             try container.encode(Kind.messageChatSetMessageAutoDeleteTime, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChatBoost(let value):
+            try container.encode(Kind.messageChatBoost, forKey: .type)
             try value.encode(to: encoder)
         case .messageForumTopicCreated(let value):
             try container.encode(Kind.messageForumTopicCreated, forKey: .type)
@@ -1382,6 +1392,18 @@ public struct MessageChatSetMessageAutoDeleteTime: Codable, Equatable, Hashable 
     ) {
         self.fromUserId = fromUserId
         self.messageAutoDeleteTime = messageAutoDeleteTime
+    }
+}
+
+/// The chat was boosted by the sender of the message
+public struct MessageChatBoost: Codable, Equatable, Hashable {
+
+    /// Number of times the chat was boosted
+    public let boostCount: Int
+
+
+    public init(boostCount: Int) {
+        self.boostCount = boostCount
     }
 }
 

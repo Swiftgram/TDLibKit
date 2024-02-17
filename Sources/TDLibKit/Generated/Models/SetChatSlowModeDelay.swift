@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+/// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
 public struct SetChatSlowModeDelay: Codable, Equatable, Hashable {
 
     /// Chat identifier

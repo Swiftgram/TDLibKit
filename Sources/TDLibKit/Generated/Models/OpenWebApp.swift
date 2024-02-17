@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct OpenWebApp: Codable, Equatable, Hashable {
     /// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     public let chatId: Int64?
 
-    /// If not 0, a message thread identifier in which the message will be sent
+    /// If not 0, the message thread identifier in which the message will be sent
     public let messageThreadId: Int64?
 
     /// Information about the message or story to be replied in the message sent by the Web App; pass null if none

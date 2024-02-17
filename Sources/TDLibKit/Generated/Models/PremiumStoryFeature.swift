@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a story feature available to Premium users
 public enum PremiumStoryFeature: Codable, Equatable, Hashable {
 
-    /// User stories are displayed before stories of non-premium contacts and channels
+    /// Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels
     case premiumStoryFeaturePriorityOrder
 
     /// The ability to hide the fact that the user viewed other's stories
@@ -31,6 +31,9 @@ public enum PremiumStoryFeature: Codable, Equatable, Hashable {
     /// The ability to use links and formatting in story caption
     case premiumStoryFeatureLinksAndFormatting
 
+    /// The ability to choose better quality for viewed stories
+    case premiumStoryFeatureVideoQuality
+
 
     private enum Kind: String, Codable {
         case premiumStoryFeaturePriorityOrder
@@ -39,6 +42,7 @@ public enum PremiumStoryFeature: Codable, Equatable, Hashable {
         case premiumStoryFeatureCustomExpirationDuration
         case premiumStoryFeatureSaveStories
         case premiumStoryFeatureLinksAndFormatting
+        case premiumStoryFeatureVideoQuality
     }
 
     public init(from decoder: Decoder) throws {
@@ -57,6 +61,8 @@ public enum PremiumStoryFeature: Codable, Equatable, Hashable {
             self = .premiumStoryFeatureSaveStories
         case .premiumStoryFeatureLinksAndFormatting:
             self = .premiumStoryFeatureLinksAndFormatting
+        case .premiumStoryFeatureVideoQuality:
+            self = .premiumStoryFeatureVideoQuality
         }
     }
 
@@ -75,6 +81,8 @@ public enum PremiumStoryFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumStoryFeatureSaveStories, forKey: .type)
         case .premiumStoryFeatureLinksAndFormatting:
             try container.encode(Kind.premiumStoryFeatureLinksAndFormatting, forKey: .type)
+        case .premiumStoryFeatureVideoQuality:
+            try container.encode(Kind.premiumStoryFeatureVideoQuality, forKey: .type)
         }
     }
 }

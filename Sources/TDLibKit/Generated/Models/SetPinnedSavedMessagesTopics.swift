@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -13,12 +13,12 @@ import Foundation
 /// Changes the order of pinned Saved Messages topics
 public struct SetPinnedSavedMessagesTopics: Codable, Equatable, Hashable {
 
-    /// The new list of pinned Saved Messages topics
-    public let savedMessagesTopics: [SavedMessagesTopic]?
+    /// Identifiers of the new pinned Saved Messages topics
+    public let savedMessagesTopicIds: [Int64]?
 
 
-    public init(savedMessagesTopics: [SavedMessagesTopic]?) {
-        self.savedMessagesTopics = savedMessagesTopics
+    public init(savedMessagesTopicIds: [Int64]?) {
+        self.savedMessagesTopicIds = savedMessagesTopicIds
     }
 }
 

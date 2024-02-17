@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -25,6 +25,9 @@ public struct SearchSavedMessages: Codable, Equatable, Hashable {
     /// Query to search for
     public let query: String?
 
+    /// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
+    public let savedMessagesTopicId: Int64?
+
     /// Tag to search for; pass null to return all suitable messages
     public let tag: ReactionType?
 
@@ -34,12 +37,14 @@ public struct SearchSavedMessages: Codable, Equatable, Hashable {
         limit: Int?,
         offset: Int?,
         query: String?,
+        savedMessagesTopicId: Int64?,
         tag: ReactionType?
     ) {
         self.fromMessageId = fromMessageId
         self.limit = limit
         self.offset = offset
         self.query = query
+        self.savedMessagesTopicId = savedMessagesTopicId
         self.tag = tag
     }
 }

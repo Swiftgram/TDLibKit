@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -127,7 +127,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Information about video chat of the chat
     public let videoChat: VideoChat
 
-    /// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode
+    /// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats"
     public let viewAsTopics: Bool
 
 

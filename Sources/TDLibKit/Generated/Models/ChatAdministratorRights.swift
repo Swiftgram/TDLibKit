@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -19,19 +19,19 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can delete messages of other users
     public let canDeleteMessages: Bool
 
-    /// True, if the administrator can delete stories posted by other users; applicable to channels only
+    /// True, if the administrator can delete stories posted by other users; applicable to supergroups and channels only
     public let canDeleteStories: Bool
 
     /// True, if the administrator can edit messages of other users and pin messages; applicable to channels only
     public let canEditMessages: Bool
 
-    /// True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
+    /// True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to supergroups and channels only
     public let canEditStories: Bool
 
     /// True, if the administrator can invite new users to the chat
     public let canInviteUsers: Bool
 
-    /// True, if the administrator can get chat event log, get chat boosts in channels, get channel members, report supergroup spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+    /// True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
     /// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
@@ -46,7 +46,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can create channel posts or view channel statistics; applicable to channels only
     public let canPostMessages: Bool
 
-    /// True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+    /// True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only
     public let canPostStories: Bool
 
     /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them

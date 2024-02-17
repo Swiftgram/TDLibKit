@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -25,8 +25,8 @@ public struct GetChatSparseMessagePositions: Codable, Equatable, Hashable {
     /// The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     public let limit: Int?
 
-    /// If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
-    public let savedMessagesTopic: SavedMessagesTopic?
+    /// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+    public let savedMessagesTopicId: Int64?
 
 
     public init(
@@ -34,13 +34,13 @@ public struct GetChatSparseMessagePositions: Codable, Equatable, Hashable {
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) {
         self.chatId = chatId
         self.filter = filter
         self.fromMessageId = fromMessageId
         self.limit = limit
-        self.savedMessagesTopic = savedMessagesTopic
+        self.savedMessagesTopicId = savedMessagesTopicId
     }
 }
 

@@ -3,17 +3,22 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Returns tags used in Saved Messages; for Telegram Premium users only
+/// Returns tags used in Saved Messages or a Saved Messages topic
 public struct GetSavedMessagesTags: Codable, Equatable, Hashable {
 
+    /// Identifier of Saved Messages topic which tags will be returned; pass 0 to get all Saved Messages tags
+    public let savedMessagesTopicId: Int64?
 
-    public init() {}
+
+    public init(savedMessagesTopicId: Int64?) {
+        self.savedMessagesTopicId = savedMessagesTopicId
+    }
 }
 

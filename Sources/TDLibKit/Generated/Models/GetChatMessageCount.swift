@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct GetChatMessageCount: Codable, Equatable, Hashable {
     /// Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     public let returnLocal: Bool?
 
-    /// If not null, only messages in the specified Saved Messages topic will be counted; pass null to count all messages, or for chats other than Saved Messages
-    public let savedMessagesTopic: SavedMessagesTopic?
+    /// If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages
+    public let savedMessagesTopicId: Int64?
 
 
     public init(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) {
         self.chatId = chatId
         self.filter = filter
         self.returnLocal = returnLocal
-        self.savedMessagesTopic = savedMessagesTopic
+        self.savedMessagesTopicId = savedMessagesTopicId
     }
 }
 

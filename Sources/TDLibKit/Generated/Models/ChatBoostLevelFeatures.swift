@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -16,11 +16,17 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
     /// Number of custom colors for background of empty chat photo, replies to messages and link previews
     public let accentColorCount: Int
 
+    /// True, if speech recognition can be used for video note and voice note messages by all users
+    public let canRecognizeSpeech: Bool
+
     /// True, if custom emoji for reply header and link preview background can be set
     public let canSetBackgroundCustomEmoji: Bool
 
     /// True, if custom background can be set in the chat for all users
     public let canSetCustomBackground: Bool
+
+    /// True, if custom emoji sticker set can be set for the chat
+    public let canSetCustomEmojiStickerSet: Bool
 
     /// True, if emoji status can be set
     public let canSetEmojiStatus: Bool
@@ -49,8 +55,10 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
 
     public init(
         accentColorCount: Int,
+        canRecognizeSpeech: Bool,
         canSetBackgroundCustomEmoji: Bool,
         canSetCustomBackground: Bool,
+        canSetCustomEmojiStickerSet: Bool,
         canSetEmojiStatus: Bool,
         canSetProfileBackgroundCustomEmoji: Bool,
         chatThemeBackgroundCount: Int,
@@ -61,8 +69,10 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
         titleColorCount: Int
     ) {
         self.accentColorCount = accentColorCount
+        self.canRecognizeSpeech = canRecognizeSpeech
         self.canSetBackgroundCustomEmoji = canSetBackgroundCustomEmoji
         self.canSetCustomBackground = canSetCustomBackground
+        self.canSetCustomEmojiStickerSet = canSetCustomEmojiStickerSet
         self.canSetEmojiStatus = canSetEmojiStatus
         self.canSetProfileBackgroundCustomEmoji = canSetProfileBackgroundCustomEmoji
         self.chatThemeBackgroundCount = chatThemeBackgroundCount

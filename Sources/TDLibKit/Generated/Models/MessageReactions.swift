@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains a list of reactions added to a message
 public struct MessageReactions: Codable, Equatable, Hashable {
 
-    /// True, if the reactions are tags and Telegram Premium users can filter messages by them; currently, always false
+    /// True, if the reactions are tags and Telegram Premium users can filter messages by them
     public let areTags: Bool
 
     /// List of added reactions

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -148,8 +148,11 @@ public enum Update: Codable, Equatable, Hashable {
     /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
 
-    /// The list of pinned Saved Messages topics has changed. The app can call getPinnedSavedMessagesTopics to get the new list
-    case updatePinnedSavedMessagesTopics
+    /// Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
+    case updateSavedMessagesTopic(UpdateSavedMessagesTopic)
+
+    /// Number of Saved Messages topics has changed
+    case updateSavedMessagesTopicCount(UpdateSavedMessagesTopicCount)
 
     /// Basic information about a topic in a forum chat was changed
     case updateForumTopicInfo(UpdateForumTopicInfo)
@@ -328,7 +331,7 @@ public enum Update: Codable, Equatable, Hashable {
     /// The type of default reaction has changed
     case updateDefaultReactionType(UpdateDefaultReactionType)
 
-    /// Used Saved Messages tags have changed
+    /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
 
     /// The parameters of speech recognition without Telegram Premium subscription has changed
@@ -444,7 +447,8 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatHasScheduledMessages
         case updateChatFolders
         case updateChatOnlineMemberCount
-        case updatePinnedSavedMessagesTopics
+        case updateSavedMessagesTopic
+        case updateSavedMessagesTopicCount
         case updateForumTopicInfo
         case updateScopeNotificationSettings
         case updateNotification
@@ -668,8 +672,12 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatOnlineMemberCount:
             let value = try UpdateChatOnlineMemberCount(from: decoder)
             self = .updateChatOnlineMemberCount(value)
-        case .updatePinnedSavedMessagesTopics:
-            self = .updatePinnedSavedMessagesTopics
+        case .updateSavedMessagesTopic:
+            let value = try UpdateSavedMessagesTopic(from: decoder)
+            self = .updateSavedMessagesTopic(value)
+        case .updateSavedMessagesTopicCount:
+            let value = try UpdateSavedMessagesTopicCount(from: decoder)
+            self = .updateSavedMessagesTopicCount(value)
         case .updateForumTopicInfo:
             let value = try UpdateForumTopicInfo(from: decoder)
             self = .updateForumTopicInfo(value)
@@ -1057,8 +1065,12 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatOnlineMemberCount(let value):
             try container.encode(Kind.updateChatOnlineMemberCount, forKey: .type)
             try value.encode(to: encoder)
-        case .updatePinnedSavedMessagesTopics:
-            try container.encode(Kind.updatePinnedSavedMessagesTopics, forKey: .type)
+        case .updateSavedMessagesTopic(let value):
+            try container.encode(Kind.updateSavedMessagesTopic, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateSavedMessagesTopicCount(let value):
+            try container.encode(Kind.updateSavedMessagesTopicCount, forKey: .type)
+            try value.encode(to: encoder)
         case .updateForumTopicInfo(let value):
             try container.encode(Kind.updateForumTopicInfo, forKey: .type)
             try value.encode(to: encoder)
@@ -1820,7 +1832,7 @@ public struct UpdateChatDraftMessage: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new draft message; may be null
+    /// The new draft message; may be null if none
     public let draftMessage: DraftMessage?
 
     /// The new chat positions in the chat lists
@@ -2218,6 +2230,30 @@ public struct UpdateChatOnlineMemberCount: Codable, Equatable, Hashable {
     }
 }
 
+/// Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
+public struct UpdateSavedMessagesTopic: Codable, Equatable, Hashable {
+
+    /// New data about the topic
+    public let topic: SavedMessagesTopic
+
+
+    public init(topic: SavedMessagesTopic) {
+        self.topic = topic
+    }
+}
+
+/// Number of Saved Messages topics has changed
+public struct UpdateSavedMessagesTopicCount: Codable, Equatable, Hashable {
+
+    /// Approximate total number of Saved Messages topics
+    public let topicCount: Int
+
+
+    public init(topicCount: Int) {
+        self.topicCount = topicCount
+    }
+}
+
 /// Basic information about a topic in a forum chat was changed
 public struct UpdateForumTopicInfo: Codable, Equatable, Hashable {
 
@@ -2393,7 +2429,7 @@ public struct UpdateChatAction: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// If not 0, a message thread identifier in which the action was performed
+    /// If not 0, the message thread identifier in which the action was performed
     public let messageThreadId: Int64
 
     /// Identifier of a message sender performing the action
@@ -3288,14 +3324,21 @@ public struct UpdateDefaultReactionType: Codable, Equatable, Hashable {
     }
 }
 
-/// Used Saved Messages tags have changed
+/// Tags used in Saved Messages or a Saved Messages topic have changed
 public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
 
-    /// The new used tags
+    /// Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
+    public let savedMessagesTopicId: Int64
+
+    /// The new tags
     public let tags: SavedMessagesTags
 
 
-    public init(tags: SavedMessagesTags) {
+    public init(
+        savedMessagesTopicId: Int64,
+        tags: SavedMessagesTags
+    ) {
+        self.savedMessagesTopicId = savedMessagesTopicId
         self.tags = tags
     }
 }

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
+/// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
 public struct SendStory: Codable, Equatable, Hashable {
 
     /// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
@@ -34,7 +34,7 @@ public struct SendStory: Codable, Equatable, Hashable {
     /// Pass true to keep the story accessible after expiration
     public let isPinned: Bool?
 
-    /// The privacy settings for the story
+    /// The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     public let privacySettings: StoryPrivacySettings?
 
     /// Pass true if the content of the story must be protected from forwarding and screenshotting

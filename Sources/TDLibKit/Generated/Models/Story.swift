@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the chat that posted the story
     public let senderChatId: Int64
 
+    /// Identifier of the sender of the story; may be null if the story is posted on behalf of the sender_chat_id
+    public let senderId: MessageSender?
+
 
     public init(
         areas: [StoryArea],
@@ -106,7 +109,8 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         isVisibleOnlyForSelf: Bool,
         privacySettings: StoryPrivacySettings,
         repostInfo: StoryRepostInfo?,
-        senderChatId: Int64
+        senderChatId: Int64,
+        senderId: MessageSender?
     ) {
         self.areas = areas
         self.canBeDeleted = canBeDeleted
@@ -131,6 +135,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.privacySettings = privacySettings
         self.repostInfo = repostInfo
         self.senderChatId = senderChatId
+        self.senderId = senderId
     }
 }
 

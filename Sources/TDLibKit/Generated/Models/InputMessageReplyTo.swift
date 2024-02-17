@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -81,7 +81,7 @@ public struct InputMessageReplyToStory: Codable, Equatable, Hashable {
     /// The identifier of the story
     public let storyId: Int
 
-    /// The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat
+    /// The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat and channel stories can't be replied
     public let storySenderChatId: Int64
 
 

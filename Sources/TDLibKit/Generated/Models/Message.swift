@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -115,8 +115,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     public let restrictionReason: String
 
-    /// Information about topic of the message in the Saved Messages chat; may be null for messages not from Saved Messages
-    public let savedMessagesTopic: SavedMessagesTopic?
+    /// Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
+    public let savedMessagesTopicId: Int64
 
     /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
@@ -126,6 +126,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// The message's self-destruct type; may be null if none
     public let selfDestructType: MessageSelfDestructType?
+
+    /// Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
+    public let senderBoostCount: Int
 
     /// Identifier of the sender of the message
     public let senderId: MessageSender
@@ -175,10 +178,11 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
         restrictionReason: String,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64,
         schedulingState: MessageSchedulingState?,
         selfDestructIn: Double,
         selfDestructType: MessageSelfDestructType?,
+        senderBoostCount: Int,
         senderId: MessageSender,
         sendingState: MessageSendingState?,
         unreadReactions: [UnreadReaction],
@@ -218,10 +222,11 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
         self.restrictionReason = restrictionReason
-        self.savedMessagesTopic = savedMessagesTopic
+        self.savedMessagesTopicId = savedMessagesTopicId
         self.schedulingState = schedulingState
         self.selfDestructIn = selfDestructIn
         self.selfDestructType = selfDestructType
+        self.senderBoostCount = senderBoostCount
         self.senderId = senderId
         self.sendingState = sendingState
         self.unreadReactions = unreadReactions

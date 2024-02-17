@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
+/// Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
 public struct SetStoryPrivacySettings: Codable, Equatable, Hashable {
 
     /// The new privacy settigs for the story
@@ -19,18 +19,13 @@ public struct SetStoryPrivacySettings: Codable, Equatable, Hashable {
     /// Identifier of the story
     public let storyId: Int?
 
-    /// Identifier of the chat that posted the story
-    public let storySenderChatId: Int64?
-
 
     public init(
         privacySettings: StoryPrivacySettings?,
-        storyId: Int?,
-        storySenderChatId: Int64?
+        storyId: Int?
     ) {
         self.privacySettings = privacySettings
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
     }
 }
 

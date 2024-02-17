@@ -3,69 +3,49 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
 /// Contains information about a Saved Messages topic
-public enum SavedMessagesTopic: Codable, Equatable, Hashable {
+public struct SavedMessagesTopic: Codable, Equatable, Hashable, Identifiable {
 
-    /// Topic containing messages sent by the current user of forwarded from an unknown chat
-    case savedMessagesTopicMyNotes
+    /// A draft of a message in the topic; may be null if none
+    public let draftMessage: DraftMessage?
 
-    /// Topic containing messages forwarded from a user with hidden privacy
-    case savedMessagesTopicAuthorHidden
+    /// Unique topic identifier
+    public let id: Int64
 
-    /// Topic containing messages forwarded from a specific chat
-    case savedMessagesTopicSavedFromChat(SavedMessagesTopicSavedFromChat)
+    /// True, if the topic is pinned
+    public let isPinned: Bool
 
+    /// Last message in the topic; may be null if none or unknown
+    public let lastMessage: Message?
 
-    private enum Kind: String, Codable {
-        case savedMessagesTopicMyNotes
-        case savedMessagesTopicAuthorHidden
-        case savedMessagesTopicSavedFromChat
-    }
+    /// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
+    public let order: TdInt64
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: DtoCodingKeys.self)
-        let type = try container.decode(Kind.self, forKey: .type)
-        switch type {
-        case .savedMessagesTopicMyNotes:
-            self = .savedMessagesTopicMyNotes
-        case .savedMessagesTopicAuthorHidden:
-            self = .savedMessagesTopicAuthorHidden
-        case .savedMessagesTopicSavedFromChat:
-            let value = try SavedMessagesTopicSavedFromChat(from: decoder)
-            self = .savedMessagesTopicSavedFromChat(value)
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: DtoCodingKeys.self)
-        switch self {
-        case .savedMessagesTopicMyNotes:
-            try container.encode(Kind.savedMessagesTopicMyNotes, forKey: .type)
-        case .savedMessagesTopicAuthorHidden:
-            try container.encode(Kind.savedMessagesTopicAuthorHidden, forKey: .type)
-        case .savedMessagesTopicSavedFromChat(let value):
-            try container.encode(Kind.savedMessagesTopicSavedFromChat, forKey: .type)
-            try value.encode(to: encoder)
-        }
-    }
-}
-
-/// Topic containing messages forwarded from a specific chat
-public struct SavedMessagesTopicSavedFromChat: Codable, Equatable, Hashable {
-
-    /// Identifier of the chat
-    public let chatId: Int64
+    /// Type of the topic
+    public let type: SavedMessagesTopicType
 
 
-    public init(chatId: Int64) {
-        self.chatId = chatId
+    public init(
+        draftMessage: DraftMessage?,
+        id: Int64,
+        isPinned: Bool,
+        lastMessage: Message?,
+        order: TdInt64,
+        type: SavedMessagesTopicType
+    ) {
+        self.draftMessage = draftMessage
+        self.id = id
+        self.isPinned = isPinned
+        self.lastMessage = lastMessage
+        self.order = order
+        self.type = type
     }
 }
 

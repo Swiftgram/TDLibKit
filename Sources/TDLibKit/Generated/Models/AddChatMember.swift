@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Adds a new member to a chat. Members can't be added to private or secret chats
+/// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats
 public struct AddChatMember: Codable, Equatable, Hashable {
 
     /// Chat identifier

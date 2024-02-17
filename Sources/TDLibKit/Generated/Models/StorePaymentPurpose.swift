@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public enum StorePaymentPurpose: Codable, Equatable, Hashable {
     /// The user creating Telegram Premium gift codes for other users
     case storePaymentPurposePremiumGiftCodes(StorePaymentPurposePremiumGiftCodes)
 
-    /// The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+    /// The user creating a Telegram Premium giveaway
     case storePaymentPurposePremiumGiveaway(StorePaymentPurposePremiumGiveaway)
 
 
@@ -120,7 +120,7 @@ public struct StorePaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable 
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
-    /// Identifier of the channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+    /// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
     public let boostedChatId: Int64
 
     /// ISO 4217 currency code of the payment currency
@@ -143,7 +143,7 @@ public struct StorePaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable 
     }
 }
 
-/// The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+/// The user creating a Telegram Premium giveaway
 public struct StorePaymentPurposePremiumGiveaway: Codable, Equatable, Hashable {
 
     /// Paid amount, in the smallest units of the currency

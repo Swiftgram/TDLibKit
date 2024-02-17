@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -70,6 +70,15 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to set private chat background for both users
     case premiumFeatureBackgroundForBoth
 
+    /// The ability to use tags in Saved Messages
+    case premiumFeatureSavedMessagesTags
+
+    /// The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
+    case premiumFeatureMessagePrivacy
+
+    /// The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
+    case premiumFeatureLastSeenTimes
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -91,6 +100,9 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureChatBoost
         case premiumFeatureAccentColor
         case premiumFeatureBackgroundForBoth
+        case premiumFeatureSavedMessagesTags
+        case premiumFeatureMessagePrivacy
+        case premiumFeatureLastSeenTimes
     }
 
     public init(from decoder: Decoder) throws {
@@ -135,6 +147,12 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureAccentColor
         case .premiumFeatureBackgroundForBoth:
             self = .premiumFeatureBackgroundForBoth
+        case .premiumFeatureSavedMessagesTags:
+            self = .premiumFeatureSavedMessagesTags
+        case .premiumFeatureMessagePrivacy:
+            self = .premiumFeatureMessagePrivacy
+        case .premiumFeatureLastSeenTimes:
+            self = .premiumFeatureLastSeenTimes
         }
     }
 
@@ -179,6 +197,12 @@ public enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureAccentColor, forKey: .type)
         case .premiumFeatureBackgroundForBoth:
             try container.encode(Kind.premiumFeatureBackgroundForBoth, forKey: .type)
+        case .premiumFeatureSavedMessagesTags:
+            try container.encode(Kind.premiumFeatureSavedMessagesTags, forKey: .type)
+        case .premiumFeatureMessagePrivacy:
+            try container.encode(Kind.premiumFeatureMessagePrivacy, forKey: .type)
+        case .premiumFeatureLastSeenTimes:
+            try container.encode(Kind.premiumFeatureLastSeenTimes, forKey: .type)
         }
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public enum UserPrivacySetting: Codable, Equatable, Hashable {
     /// A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
     case userPrivacySettingAllowFindingByPhoneNumber
 
-    /// A privacy setting for managing whether the user can receive voice and video messages in private chats
+    /// A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
     case userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
 
 

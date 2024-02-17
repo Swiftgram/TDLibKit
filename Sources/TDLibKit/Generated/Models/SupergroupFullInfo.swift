@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -40,6 +40,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     public let canToggleAggressiveAntiSpam: Bool
 
+    /// Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
+    public let customEmojiStickerSetId: TdInt64
+
     public let description: String
 
     /// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
@@ -48,7 +51,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
     public let hasHiddenMembers: Bool
 
-    /// True, if the channel has pinned stories
+    /// True, if the supergroup or channel has pinned stories
     public let hasPinnedStories: Bool
 
     /// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
@@ -66,6 +69,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Number of members in the supergroup or channel; 0 if unknown
     public let memberCount: Int
 
+    /// Number of times the current user boosted the supergroup or channel
+    public let myBoostCount: Int
+
     /// Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
     public let photo: ChatPhoto?
 
@@ -78,8 +84,11 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
     public let slowModeDelayExpiresIn: Double
 
-    /// Identifier of the supergroup sticker set; 0 if none
+    /// Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
     public let stickerSetId: TdInt64
+
+    /// Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
+    public let unrestrictBoostCount: Int
 
     /// Identifier of the basic group from which supergroup was upgraded; 0 if none
     public let upgradedFromBasicGroupId: Int64
@@ -98,6 +107,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         canSetLocation: Bool,
         canSetStickerSet: Bool,
         canToggleAggressiveAntiSpam: Bool,
+        customEmojiStickerSetId: TdInt64,
         description: String,
         hasAggressiveAntiSpamEnabled: Bool,
         hasHiddenMembers: Bool,
@@ -107,11 +117,13 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         linkedChatId: Int64,
         location: ChatLocation?,
         memberCount: Int,
+        myBoostCount: Int,
         photo: ChatPhoto?,
         restrictedCount: Int,
         slowModeDelay: Int,
         slowModeDelayExpiresIn: Double,
         stickerSetId: TdInt64,
+        unrestrictBoostCount: Int,
         upgradedFromBasicGroupId: Int64,
         upgradedFromMaxMessageId: Int64
     ) {
@@ -124,6 +136,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.canSetLocation = canSetLocation
         self.canSetStickerSet = canSetStickerSet
         self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
+        self.customEmojiStickerSetId = customEmojiStickerSetId
         self.description = description
         self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
         self.hasHiddenMembers = hasHiddenMembers
@@ -133,11 +146,13 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.linkedChatId = linkedChatId
         self.location = location
         self.memberCount = memberCount
+        self.myBoostCount = myBoostCount
         self.photo = photo
         self.restrictedCount = restrictedCount
         self.slowModeDelay = slowModeDelay
         self.slowModeDelayExpiresIn = slowModeDelayExpiresIn
         self.stickerSetId = stickerSetId
+        self.unrestrictBoostCount = unrestrictBoostCount
         self.upgradedFromBasicGroupId = upgradedFromBasicGroupId
         self.upgradedFromMaxMessageId = upgradedFromMaxMessageId
     }

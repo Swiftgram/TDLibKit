@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct GetSavedMessagesTopicHistory: Codable, Equatable, Hashable {
     /// Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     public let offset: Int?
 
-    /// Saved Messages topic which messages will be fetched
-    public let savedMessagesTopic: SavedMessagesTopic?
+    /// Identifier of Saved Messages topic which messages will be fetched
+    public let savedMessagesTopicId: Int64?
 
 
     public init(
         fromMessageId: Int64?,
         limit: Int?,
         offset: Int?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) {
         self.fromMessageId = fromMessageId
         self.limit = limit
         self.offset = offset
-        self.savedMessagesTopic = savedMessagesTopic
+        self.savedMessagesTopicId = savedMessagesTopicId
     }
 }
 

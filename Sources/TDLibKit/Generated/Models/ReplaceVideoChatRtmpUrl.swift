@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+/// Replaces the current RTMP URL for streaming to the chat; requires owner privileges
 public struct ReplaceVideoChatRtmpUrl: Codable, Equatable, Hashable {
 
     /// Chat identifier

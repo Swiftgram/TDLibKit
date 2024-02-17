@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
@@ -279,14 +279,17 @@ public final class TdApi {
     }
 
     /// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+    /// - Parameter disableNotification: Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
     /// - Parameter firstName: The first name of the user; 1-64 characters
     /// - Parameter lastName: The last name of the user; 0-64 characters
     public func registerUser(
+        disableNotification: Bool?,
         firstName: String?,
         lastName: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = RegisterUser(
+            disableNotification: disableNotification,
             firstName: firstName,
             lastName: lastName
         )
@@ -294,15 +297,18 @@ public final class TdApi {
     }
 
     /// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+    /// - Parameter disableNotification: Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
     /// - Parameter firstName: The first name of the user; 1-64 characters
     /// - Parameter lastName: The last name of the user; 0-64 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func registerUser(
+        disableNotification: Bool?,
         firstName: String?,
         lastName: String?
     ) async throws -> Ok {
         let query = RegisterUser(
+            disableNotification: disableNotification,
             firstName: firstName,
             lastName: lastName
         )
@@ -2064,49 +2070,27 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns list of all pinned Saved Messages topics
-    /// - Returns: List of all pinned Saved Messages topics
-    public func getPinnedSavedMessagesTopics(completion: @escaping (Result<FoundSavedMessagesTopics, Swift.Error>) -> Void) throws {
-        let query = GetPinnedSavedMessagesTopics()
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Returns list of all pinned Saved Messages topics
-    /// - Returns: List of all pinned Saved Messages topics
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getPinnedSavedMessagesTopics() async throws -> FoundSavedMessagesTopics {
-        let query = GetPinnedSavedMessagesTopics()
-        return try await self.execute(query: query)
-    }
-
-    /// Returns list of non-pinned Saved Messages topics from the specified offset
-    /// - Parameter limit: The maximum number of Saved Messages topics to be returned; up to 100
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: List of non-pinned Saved Messages topics from the specified offset
-    public func getSavedMessagesTopics(
+    /// Loads more Saved Messages topics. The loaded topics will be sent through updateSavedMessagesTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
+    /// - Parameter limit: The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    /// - Returns: A 404 error if all topics have been loaded
+    public func loadSavedMessagesTopics(
         limit: Int?,
-        offset: String?,
-        completion: @escaping (Result<FoundSavedMessagesTopics, Swift.Error>) -> Void
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = GetSavedMessagesTopics(
-            limit: limit,
-            offset: offset
+        let query = LoadSavedMessagesTopics(
+            limit: limit
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns list of non-pinned Saved Messages topics from the specified offset
-    /// - Parameter limit: The maximum number of Saved Messages topics to be returned; up to 100
-    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: List of non-pinned Saved Messages topics from the specified offset
+    /// Loads more Saved Messages topics. The loaded topics will be sent through updateSavedMessagesTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
+    /// - Parameter limit: The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    /// - Returns: A 404 error if all topics have been loaded
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getSavedMessagesTopics(
-        limit: Int?,
-        offset: String?
-    ) async throws -> FoundSavedMessagesTopics {
-        let query = GetSavedMessagesTopics(
-            limit: limit,
-            offset: offset
+    @discardableResult
+    public func loadSavedMessagesTopics(limit: Int?) async throws -> Ok {
+        let query = LoadSavedMessagesTopics(
+            limit: limit
         )
         return try await self.execute(query: query)
     }
@@ -2115,20 +2099,20 @@ public final class TdApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
-    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be fetched
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be fetched
     /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     public func getSavedMessagesTopicHistory(
         fromMessageId: Int64?,
         limit: Int?,
         offset: Int?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = GetSavedMessagesTopicHistory(
             fromMessageId: fromMessageId,
             limit: limit,
             offset: offset,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -2137,75 +2121,75 @@ public final class TdApi {
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
-    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be fetched
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be fetched
     /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedMessagesTopicHistory(
         fromMessageId: Int64?,
         limit: Int?,
         offset: Int?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> Messages {
         let query = GetSavedMessagesTopicHistory(
             fromMessageId: fromMessageId,
             limit: limit,
             offset: offset,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
 
     /// Returns the last message sent in a Saved Messages topic no later than the specified date
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
-    /// - Parameter savedMessagesTopic: Saved Messages topic which message will be returned
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which message will be returned
     /// - Returns: The last message sent in a Saved Messages topic no later than the specified date
     public func getSavedMessagesTopicMessageByDate(
         date: Int?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = GetSavedMessagesTopicMessageByDate(
             date: date,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns the last message sent in a Saved Messages topic no later than the specified date
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
-    /// - Parameter savedMessagesTopic: Saved Messages topic which message will be returned
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which message will be returned
     /// - Returns: The last message sent in a Saved Messages topic no later than the specified date
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSavedMessagesTopicMessageByDate(
         date: Int?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> Message {
         let query = GetSavedMessagesTopicMessageByDate(
             date: date,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
 
     /// Deletes all messages in a Saved Messages topic
-    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be deleted
     public func deleteSavedMessagesTopicHistory(
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteSavedMessagesTopicHistory(
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Deletes all messages in a Saved Messages topic
-    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be deleted
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func deleteSavedMessagesTopicHistory(savedMessagesTopic: SavedMessagesTopic?) async throws -> Ok {
+    public func deleteSavedMessagesTopicHistory(savedMessagesTopicId: Int64?) async throws -> Ok {
         let query = DeleteSavedMessagesTopicHistory(
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
@@ -2213,17 +2197,17 @@ public final class TdApi {
     /// Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
     /// - Parameter maxDate: The maximum date of the messages to delete
     /// - Parameter minDate: The minimum date of the messages to delete
-    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be deleted
     public func deleteSavedMessagesTopicMessagesByDate(
         maxDate: Int?,
         minDate: Int?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteSavedMessagesTopicMessagesByDate(
             maxDate: maxDate,
             minDate: minDate,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -2231,72 +2215,72 @@ public final class TdApi {
     /// Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
     /// - Parameter maxDate: The maximum date of the messages to delete
     /// - Parameter minDate: The minimum date of the messages to delete
-    /// - Parameter savedMessagesTopic: Saved Messages topic which messages will be deleted
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be deleted
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func deleteSavedMessagesTopicMessagesByDate(
         maxDate: Int?,
         minDate: Int?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> Ok {
         let query = DeleteSavedMessagesTopicMessagesByDate(
             maxDate: maxDate,
             minDate: minDate,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
 
     /// Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
-    /// - Parameter savedMessagesTopic: Saved Messages topic to pin or unpin
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic to pin or unpin
     public func toggleSavedMessagesTopicIsPinned(
         isPinned: Bool?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSavedMessagesTopicIsPinned(
             isPinned: isPinned,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
-    /// - Parameter savedMessagesTopic: Saved Messages topic to pin or unpin
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic to pin or unpin
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func toggleSavedMessagesTopicIsPinned(
         isPinned: Bool?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> Ok {
         let query = ToggleSavedMessagesTopicIsPinned(
             isPinned: isPinned,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
 
     /// Changes the order of pinned Saved Messages topics
-    /// - Parameter savedMessagesTopics: The new list of pinned Saved Messages topics
+    /// - Parameter savedMessagesTopicIds: Identifiers of the new pinned Saved Messages topics
     public func setPinnedSavedMessagesTopics(
-        savedMessagesTopics: [SavedMessagesTopic]?,
+        savedMessagesTopicIds: [Int64]?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetPinnedSavedMessagesTopics(
-            savedMessagesTopics: savedMessagesTopics
+            savedMessagesTopicIds: savedMessagesTopicIds
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Changes the order of pinned Saved Messages topics
-    /// - Parameter savedMessagesTopics: The new list of pinned Saved Messages topics
+    /// - Parameter savedMessagesTopicIds: Identifiers of the new pinned Saved Messages topics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func setPinnedSavedMessagesTopics(savedMessagesTopics: [SavedMessagesTopic]?) async throws -> Ok {
+    public func setPinnedSavedMessagesTopics(savedMessagesTopicIds: [Int64]?) async throws -> Ok {
         let query = SetPinnedSavedMessagesTopics(
-            savedMessagesTopics: savedMessagesTopics
+            savedMessagesTopicIds: savedMessagesTopicIds
         )
         return try await self.execute(query: query)
     }
@@ -2507,7 +2491,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be returned; pass null to return all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be returned; pass 0 to return all messages, or for chats other than Saved Messages
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchChatMessages(
@@ -2518,7 +2502,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         senderId: MessageSender?,
         completion: @escaping (Result<FoundChatMessages, Swift.Error>) -> Void
     ) throws {
@@ -2530,7 +2514,7 @@ public final class TdApi {
             messageThreadId: messageThreadId,
             offset: offset,
             query: query,
-            savedMessagesTopic: savedMessagesTopic,
+            savedMessagesTopicId: savedMessagesTopicId,
             senderId: senderId
         )
         self.execute(query: query, completion: completion)
@@ -2544,7 +2528,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be returned; pass null to return all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be returned; pass 0 to return all messages, or for chats other than Saved Messages
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2556,7 +2540,7 @@ public final class TdApi {
         messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         senderId: MessageSender?
     ) async throws -> FoundChatMessages {
         let query = SearchChatMessages(
@@ -2567,7 +2551,7 @@ public final class TdApi {
             messageThreadId: messageThreadId,
             offset: offset,
             query: query,
-            savedMessagesTopic: savedMessagesTopic,
+            savedMessagesTopicId: savedMessagesTopicId,
             senderId: senderId
         )
         return try await self.execute(query: query)
@@ -2690,6 +2674,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
     /// - Parameter tag: Tag to search for; pass null to return all suitable messages
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchSavedMessages(
@@ -2697,6 +2682,7 @@ public final class TdApi {
         limit: Int?,
         offset: Int?,
         query: String?,
+        savedMessagesTopicId: Int64?,
         tag: ReactionType?,
         completion: @escaping (Result<FoundChatMessages, Swift.Error>) -> Void
     ) throws {
@@ -2705,6 +2691,7 @@ public final class TdApi {
             limit: limit,
             offset: offset,
             query: query,
+            savedMessagesTopicId: savedMessagesTopicId,
             tag: tag
         )
         self.execute(query: query, completion: completion)
@@ -2715,6 +2702,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
     /// - Parameter tag: Tag to search for; pass null to return all suitable messages
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2723,6 +2711,7 @@ public final class TdApi {
         limit: Int?,
         offset: Int?,
         query: String?,
+        savedMessagesTopicId: Int64?,
         tag: ReactionType?
     ) async throws -> FoundChatMessages {
         let query = SearchSavedMessages(
@@ -2730,6 +2719,7 @@ public final class TdApi {
             limit: limit,
             offset: offset,
             query: query,
+            savedMessagesTopicId: savedMessagesTopicId,
             tag: tag
         )
         return try await self.execute(query: query)
@@ -2912,14 +2902,14 @@ public final class TdApi {
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
     /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     public func getChatSparseMessagePositions(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<MessagePositions, Swift.Error>) -> Void
     ) throws {
         let query = GetChatSparseMessagePositions(
@@ -2927,7 +2917,7 @@ public final class TdApi {
             filter: filter,
             fromMessageId: fromMessageId,
             limit: limit,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -2937,7 +2927,7 @@ public final class TdApi {
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
     /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatSparseMessagePositions(
@@ -2945,14 +2935,14 @@ public final class TdApi {
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> MessagePositions {
         let query = GetChatSparseMessagePositions(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
             limit: limit,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
@@ -2961,20 +2951,20 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     public func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<MessageCalendar, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCalendar(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -2983,20 +2973,20 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> MessageCalendar {
         let query = GetChatMessageCalendar(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
@@ -3005,20 +2995,20 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be counted; pass null to count all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages
     /// - Returns: Approximate number of messages of the specified type in the chat
     public func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCount(
             chatId: chatId,
             filter: filter,
             returnLocal: returnLocal,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -3027,20 +3017,20 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be counted; pass null to count all messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages
     /// - Returns: Approximate number of messages of the specified type in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> Count {
         let query = GetChatMessageCount(
             chatId: chatId,
             filter: filter,
             returnLocal: returnLocal,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
@@ -3050,14 +3040,14 @@ public final class TdApi {
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all relevant messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages
     /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
     public func getChatMessagePosition(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         messageId: Int64?,
         messageThreadId: Int64?,
-        savedMessagesTopic: SavedMessagesTopic?,
+        savedMessagesTopicId: Int64?,
         completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessagePosition(
@@ -3065,7 +3055,7 @@ public final class TdApi {
             filter: filter,
             messageId: messageId,
             messageThreadId: messageThreadId,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -3075,7 +3065,7 @@ public final class TdApi {
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
-    /// - Parameter savedMessagesTopic: If not null, only messages in the specified Saved Messages topic will be considered; pass null to consider all relevant messages, or for chats other than Saved Messages
+    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages
     /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessagePosition(
@@ -3083,14 +3073,14 @@ public final class TdApi {
         filter: SearchMessagesFilter?,
         messageId: Int64?,
         messageThreadId: Int64?,
-        savedMessagesTopic: SavedMessagesTopic?
+        savedMessagesTopicId: Int64?
     ) async throws -> Count {
         let query = GetChatMessagePosition(
             chatId: chatId,
             filter: filter,
             messageId: messageId,
             messageThreadId: messageThreadId,
-            savedMessagesTopic: savedMessagesTopic
+            savedMessagesTopicId: savedMessagesTopicId
         )
         return try await self.execute(query: query)
     }
@@ -3540,7 +3530,7 @@ public final class TdApi {
     /// Sends a message. Returns the sent message
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContent: The content of the message to be sent
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -3568,7 +3558,7 @@ public final class TdApi {
     /// Sends a message. Returns the sent message
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContent: The content of the message to be sent
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -3596,7 +3586,7 @@ public final class TdApi {
     /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the messages will be sent
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Returns: Sent messages
@@ -3621,7 +3611,7 @@ public final class TdApi {
     /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     /// - Parameter chatId: Target chat
     /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the messages will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the messages will be sent
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
     /// - Returns: Sent messages
@@ -3643,7 +3633,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
+    /// Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
     /// - Parameter botUserId: Identifier of the bot
     /// - Parameter chatId: Identifier of the target chat
     /// - Parameter parameter: A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
@@ -3662,7 +3652,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
+    /// Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
     /// - Parameter botUserId: Identifier of the bot
     /// - Parameter chatId: Identifier of the target chat
     /// - Parameter parameter: A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
@@ -3684,7 +3674,7 @@ public final class TdApi {
     /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
     /// - Parameter chatId: Target chat
     /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -3715,7 +3705,7 @@ public final class TdApi {
     /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
     /// - Parameter chatId: Target chat
     /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter options: Options to be used to send the message; pass null to use default options
     /// - Parameter queryId: Identifier of the inline query
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -3747,7 +3737,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent; for forum threads only
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
@@ -3778,7 +3768,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
     /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent; for forum threads only
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
@@ -4473,7 +4463,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Creates a topic in a forum supergroup chat; requires can_manage_topics or can_create_topics rights in the supergroup
+    /// Creates a topic in a forum supergroup chat; requires can_manage_topics administrator or can_create_topics member right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter icon: Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     /// - Parameter name: Name of the topic; 1-128 characters
@@ -4491,7 +4481,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Creates a topic in a forum supergroup chat; requires can_manage_topics or can_create_topics rights in the supergroup
+    /// Creates a topic in a forum supergroup chat; requires can_manage_topics administrator or can_create_topics member right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter icon: Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     /// - Parameter name: Name of the topic; 1-128 characters
@@ -5175,18 +5165,27 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns tags used in Saved Messages; for Telegram Premium users only
-    /// - Returns: Tags used in Saved Messages
-    public func getSavedMessagesTags(completion: @escaping (Result<SavedMessagesTags, Swift.Error>) -> Void) throws {
-        let query = GetSavedMessagesTags()
+    /// Returns tags used in Saved Messages or a Saved Messages topic
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which tags will be returned; pass 0 to get all Saved Messages tags
+    /// - Returns: Tags used in Saved Messages or a Saved Messages topic
+    public func getSavedMessagesTags(
+        savedMessagesTopicId: Int64?,
+        completion: @escaping (Result<SavedMessagesTags, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSavedMessagesTags(
+            savedMessagesTopicId: savedMessagesTopicId
+        )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns tags used in Saved Messages; for Telegram Premium users only
-    /// - Returns: Tags used in Saved Messages
+    /// Returns tags used in Saved Messages or a Saved Messages topic
+    /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which tags will be returned; pass 0 to get all Saved Messages tags
+    /// - Returns: Tags used in Saved Messages or a Saved Messages topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getSavedMessagesTags() async throws -> SavedMessagesTags {
-        let query = GetSavedMessagesTags()
+    public func getSavedMessagesTags(savedMessagesTopicId: Int64?) async throws -> SavedMessagesTags {
+        let query = GetSavedMessagesTags(
+            savedMessagesTopicId: savedMessagesTopicId
+        )
         return try await self.execute(query: query)
     }
 
@@ -6174,7 +6173,7 @@ public final class TdApi {
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
@@ -6204,7 +6203,7 @@ public final class TdApi {
     /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
@@ -6645,7 +6644,7 @@ public final class TdApi {
     /// Sends a notification about user activity in a chat
     /// - Parameter action: The action description; pass null to cancel the currently active action
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the action was performed
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the action was performed
     public func sendChatAction(
         action: ChatAction?,
         chatId: Int64?,
@@ -6663,7 +6662,7 @@ public final class TdApi {
     /// Sends a notification about user activity in a chat
     /// - Parameter action: The action description; pass null to cancel the currently active action
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the action was performed
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the action was performed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendChatAction(
@@ -7295,7 +7294,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+    /// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges. Deactivates the original basic group
     /// - Parameter chatId: Identifier of the chat to upgrade
     public func upgradeBasicGroupChatToSupergroupChat(
         chatId: Int64?,
@@ -7307,7 +7306,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+    /// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges. Deactivates the original basic group
     /// - Parameter chatId: Identifier of the chat to upgrade
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func upgradeBasicGroupChatToSupergroupChat(chatId: Int64?) async throws -> Chat {
@@ -7906,7 +7905,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+    /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
     /// - Parameter chatId: Chat identifier
     /// - Parameter title: New title of the chat; 1-128 characters
     public func setChatTitle(
@@ -7921,7 +7920,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+    /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
     /// - Parameter chatId: Chat identifier
     /// - Parameter title: New title of the chat; 1-128 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7937,7 +7936,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+    /// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
     /// - Parameter chatId: Chat identifier
     /// - Parameter photo: New chat photo; pass null to delete the chat photo
     public func setChatPhoto(
@@ -7952,7 +7951,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+    /// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
     /// - Parameter chatId: Chat identifier
     /// - Parameter photo: New chat photo; pass null to delete the chat photo
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7968,8 +7967,8 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes accent color and background custom emoji of a chat. Requires can_change_info administrator right
-    /// - Parameter accentColorId: Identifier of the accent color to use. The chat must have at least accentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
+    /// - Parameter accentColorId: Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
     /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
     /// - Parameter chatId: Chat identifier
     public func setChatAccentColor(
@@ -7986,8 +7985,8 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes accent color and background custom emoji of a chat. Requires can_change_info administrator right
-    /// - Parameter accentColorId: Identifier of the accent color to use. The chat must have at least accentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
+    /// - Parameter accentColorId: Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
     /// - Parameter backgroundCustomEmojiId: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8005,9 +8004,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes accent color and background custom emoji for profile of a chat. Requires can_change_info administrator right
+    /// Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
     /// - Parameter chatId: Chat identifier
-    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups//-or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
     /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
     public func setChatProfileAccentColor(
         chatId: Int64?,
@@ -8023,9 +8022,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes accent color and background custom emoji for profile of a chat. Requires can_change_info administrator right
+    /// Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
     /// - Parameter chatId: Chat identifier
-    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_chat_boost_level boost level to pass the corresponding color
+    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups//-or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
     /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -8248,8 +8247,8 @@ public final class TdApi {
 
     /// Changes the draft message in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter draftMessage: New draft message; pass null to remove the draft
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the draft was changed
+    /// - Parameter draftMessage: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the draft was changed
     public func setChatDraftMessage(
         chatId: Int64?,
         draftMessage: DraftMessage?,
@@ -8266,8 +8265,8 @@ public final class TdApi {
 
     /// Changes the draft message in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter draftMessage: New draft message; pass null to remove the draft
-    /// - Parameter messageThreadId: If not 0, a message thread identifier in which the draft was changed
+    /// - Parameter draftMessage: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the draft was changed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setChatDraftMessage(
@@ -8345,7 +8344,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the view_as_topics setting of a forum chat
+    /// Changes the view_as_topics setting of a forum chat or Saved Messages
     /// - Parameter chatId: Chat identifier
     /// - Parameter viewAsTopics: New value of view_as_topics
     public func toggleChatViewAsTopics(
@@ -8360,7 +8359,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the view_as_topics setting of a forum chat
+    /// Changes the view_as_topics setting of a forum chat or Saved Messages
     /// - Parameter chatId: Chat identifier
     /// - Parameter viewAsTopics: New value of view_as_topics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8469,8 +8468,8 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    /// - Parameter availableReactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. Up to the chat's boost level custom emoji reactions can be explicitly specified
+    /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+    /// - Parameter availableReactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
     /// - Parameter chatId: Identifier of the chat
     public func setChatAvailableReactions(
         availableReactions: ChatAvailableReactions?,
@@ -8484,8 +8483,8 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    /// - Parameter availableReactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. Up to the chat's boost level custom emoji reactions can be explicitly specified
+    /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+    /// - Parameter availableReactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -8531,7 +8530,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+    /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter description: 
     public func setChatDescription(
@@ -8546,7 +8545,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+    /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter description: 
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8563,7 +8562,7 @@ public final class TdApi {
     }
 
     /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
-    /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
+    /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages member right in the supergroup)
     /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     public func setChatDiscussionGroup(
         chatId: Int64?,
@@ -8578,7 +8577,7 @@ public final class TdApi {
     }
 
     /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
-    /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
+    /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages member right in the supergroup)
     /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -8624,7 +8623,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     public func setChatSlowModeDelay(
@@ -8639,7 +8638,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8655,7 +8654,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+    /// Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter disableNotification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     /// - Parameter messageId: Identifier of the new pinned message
@@ -8676,7 +8675,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+    /// Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter disableNotification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     /// - Parameter messageId: Identifier of the new pinned message
@@ -8698,7 +8697,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+    /// Removes a pinned message from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageId: Identifier of the removed pinned message
     public func unpinChatMessage(
@@ -8713,7 +8712,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+    /// Removes a pinned message from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageId: Identifier of the removed pinned message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8729,7 +8728,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+    /// Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
     /// - Parameter chatId: Identifier of the chat
     public func unpinAllChatMessages(
         chatId: Int64?,
@@ -8741,7 +8740,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+    /// Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -8752,7 +8751,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+    /// Removes all pinned messages from a forum topic; requires can_pin_messages member right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageThreadId: Message thread identifier in which messages will be unpinned
     public func unpinAllMessageThreadMessages(
@@ -8767,7 +8766,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+    /// Removes all pinned messages from a forum topic; requires can_pin_messages member right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter messageThreadId: Message thread identifier in which messages will be unpinned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8831,7 +8830,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds a new member to a chat. Members can't be added to private or secret chats
+    /// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats
     /// - Parameter chatId: Chat identifier
     /// - Parameter forwardLimit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     /// - Parameter userId: Identifier of the user
@@ -8849,7 +8848,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds a new member to a chat. Members can't be added to private or secret chats
+    /// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats
     /// - Parameter chatId: Chat identifier
     /// - Parameter forwardLimit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     /// - Parameter userId: Identifier of the user
@@ -8868,7 +8867,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     public func addChatMembers(
@@ -8883,7 +8882,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8899,7 +8898,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+    /// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier. Chats can be only banned and unbanned in supergroups and channels
     /// - Parameter status: The new status of the member in the chat
@@ -8917,7 +8916,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+    /// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier. Chats can be only banned and unbanned in supergroups and channels
     /// - Parameter status: The new status of the member in the chat
@@ -8936,7 +8935,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+    /// Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
     /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
@@ -8958,7 +8957,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+    /// Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
     /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
@@ -8994,7 +8993,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+    /// Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
@@ -9012,7 +9011,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+    /// Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
@@ -9063,7 +9062,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
+    /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
     /// - Parameter chatId: Chat identifier
     /// - Parameter filter: The type of users to search for; pass null to search among all chat members
     /// - Parameter limit: The maximum number of users to be returned; up to 200
@@ -9084,7 +9083,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
+    /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
     /// - Parameter chatId: Chat identifier
     /// - Parameter filter: The type of users to search for; pass null to search among all chat members
     /// - Parameter limit: The maximum number of users to be returned; up to 200
@@ -9466,22 +9465,22 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
-    /// - Returns: Channel chats in which the current user has the right to post stories
+    /// Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+    /// - Returns: Supergroup and channel chats in which the current user has the right to post stories
     public func getChatsToSendStories(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetChatsToSendStories()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
-    /// - Returns: Channel chats in which the current user has the right to post stories
+    /// Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+    /// - Returns: Supergroup and channel chats in which the current user has the right to post stories
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatsToSendStories() async throws -> Chats {
         let query = GetChatsToSendStories()
         return try await self.execute(query: query)
     }
 
-    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
     /// - Parameter chatId: Chat identifier
     public func canSendStory(
         chatId: Int64?,
@@ -9493,7 +9492,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func canSendStory(chatId: Int64?) async throws -> CanSendStoryResult {
@@ -9503,7 +9502,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
+    /// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
@@ -9511,7 +9510,7 @@ public final class TdApi {
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
     /// - Parameter isPinned: Pass true to keep the story accessible after expiration
-    /// - Parameter privacySettings: The privacy settings for the story
+    /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
     public func sendStory(
@@ -9540,7 +9539,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
+    /// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
@@ -9548,7 +9547,7 @@ public final class TdApi {
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
     /// - Parameter isPinned: Pass true to keep the story accessible after expiration
-    /// - Parameter privacySettings: The privacy settings for the story
+    /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -9626,39 +9625,33 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
+    /// Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
     /// - Parameter privacySettings: The new privacy settigs for the story
     /// - Parameter storyId: Identifier of the story
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     public func setStoryPrivacySettings(
         privacySettings: StoryPrivacySettings?,
         storyId: Int?,
-        storySenderChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetStoryPrivacySettings(
             privacySettings: privacySettings,
-            storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyId: storyId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
+    /// Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
     /// - Parameter privacySettings: The new privacy settigs for the story
     /// - Parameter storyId: Identifier of the story
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setStoryPrivacySettings(
         privacySettings: StoryPrivacySettings?,
-        storyId: Int?,
-        storySenderChatId: Int64?
+        storyId: Int?
     ) async throws -> Ok {
         let query = SetStoryPrivacySettings(
             privacySettings: privacySettings,
-            storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyId: storyId
         )
         return try await self.execute(query: query)
     }
@@ -9864,7 +9857,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -9883,7 +9876,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -9988,7 +9981,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes chosen reaction on a story
+    /// Changes chosen reaction on a story that has already been sent
     /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
     /// - Parameter storyId: The identifier of the story
     /// - Parameter storySenderChatId: The identifier of the sender of the story
@@ -10009,7 +10002,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes chosen reaction on a story
+    /// Changes chosen reaction on a story that has already been sent
     /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
     /// - Parameter storyId: The identifier of the story
     /// - Parameter storySenderChatId: The identifier of the sender of the story
@@ -10251,41 +10244,58 @@ public final class TdApi {
     }
 
     /// Returns list of features available on the specific chat boost level; this is an offline request
+    /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     /// - Parameter level: Chat boost level
     /// - Returns: List of features available on the specific chat boost level
     public func getChatBoostLevelFeatures(
+        isChannel: Bool?,
         level: Int?,
         completion: @escaping (Result<ChatBoostLevelFeatures, Swift.Error>) -> Void
     ) throws {
         let query = GetChatBoostLevelFeatures(
+            isChannel: isChannel,
             level: level
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns list of features available on the specific chat boost level; this is an offline request
+    /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     /// - Parameter level: Chat boost level
     /// - Returns: List of features available on the specific chat boost level
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatBoostLevelFeatures(level: Int?) async throws -> ChatBoostLevelFeatures {
+    public func getChatBoostLevelFeatures(
+        isChannel: Bool?,
+        level: Int?
+    ) async throws -> ChatBoostLevelFeatures {
         let query = GetChatBoostLevelFeatures(
+            isChannel: isChannel,
             level: level
         )
         return try await self.execute(query: query)
     }
 
     /// Returns list of features available on the first 10 chat boost levels; this is an offline request
+    /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     /// - Returns: List of features available on the first 10 chat boost levels
-    public func getChatBoostFeatures(completion: @escaping (Result<ChatBoostFeatures, Swift.Error>) -> Void) throws {
-        let query = GetChatBoostFeatures()
+    public func getChatBoostFeatures(
+        isChannel: Bool?,
+        completion: @escaping (Result<ChatBoostFeatures, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatBoostFeatures(
+            isChannel: isChannel
+        )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns list of features available on the first 10 chat boost levels; this is an offline request
+    /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     /// - Returns: List of features available on the first 10 chat boost levels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatBoostFeatures() async throws -> ChatBoostFeatures {
-        let query = GetChatBoostFeatures()
+    public func getChatBoostFeatures(isChannel: Bool?) async throws -> ChatBoostFeatures {
+        let query = GetChatBoostFeatures(
+            isChannel: isChannel
+        )
         return try await self.execute(query: query)
     }
 
@@ -10304,9 +10314,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the current boost status for a channel chat
-    /// - Parameter chatId: Identifier of the channel chat
-    /// - Returns: The current boost status for a channel chat
+    /// Returns the current boost status for a supergroup or a channel chat
+    /// - Parameter chatId: Identifier of the chat
+    /// - Returns: The current boost status for a supergroup or a channel chat
     public func getChatBoostStatus(
         chatId: Int64?,
         completion: @escaping (Result<ChatBoostStatus, Swift.Error>) -> Void
@@ -10317,9 +10327,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the current boost status for a channel chat
-    /// - Parameter chatId: Identifier of the channel chat
-    /// - Returns: The current boost status for a channel chat
+    /// Returns the current boost status for a supergroup or a channel chat
+    /// - Parameter chatId: Identifier of the chat
+    /// - Returns: The current boost status for a supergroup or a channel chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatBoostStatus(chatId: Int64?) async throws -> ChatBoostStatus {
         let query = GetChatBoostStatus(
@@ -10360,9 +10370,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns an HTTPS link to boost the specified channel chat
+    /// Returns an HTTPS link to boost the specified supergroup or channel chat
     /// - Parameter chatId: Identifier of the chat
-    /// - Returns: An HTTPS link to boost the specified channel chat
+    /// - Returns: An HTTPS link to boost the specified supergroup or channel chat
     public func getChatBoostLink(
         chatId: Int64?,
         completion: @escaping (Result<ChatBoostLink, Swift.Error>) -> Void
@@ -10373,9 +10383,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS link to boost the specified channel chat
+    /// Returns an HTTPS link to boost the specified supergroup or channel chat
     /// - Parameter chatId: Identifier of the chat
-    /// - Returns: An HTTPS link to boost the specified channel chat
+    /// - Returns: An HTTPS link to boost the specified supergroup or channel chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatBoostLink(chatId: Int64?) async throws -> ChatBoostLink {
         let query = GetChatBoostLink(
@@ -10408,7 +10418,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns list of boosts applied to a chat; requires administrator rights in the channel chat
+    /// Returns list of boosts applied to a chat; requires administrator rights in the chat
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -10430,7 +10440,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns list of boosts applied to a chat; requires administrator rights in the channel chat
+    /// Returns list of boosts applied to a chat; requires administrator rights in the chat
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -10452,7 +10462,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the channel chat; for bots only
+    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter userId: Identifier of the user
     /// - Returns: List of boosts applied to a chat by a given user
@@ -10468,7 +10478,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the channel chat; for bots only
+    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter userId: Identifier of the user
     /// - Returns: List of boosts applied to a chat by a given user
@@ -11254,7 +11264,7 @@ public final class TdApi {
     }
 
     /// Returns a confirmation text to be shown to the user before starting message import
-    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     /// - Returns: A confirmation text to be shown to the user before starting message import
     public func getMessageImportConfirmationText(
         chatId: Int64?,
@@ -11267,7 +11277,7 @@ public final class TdApi {
     }
 
     /// Returns a confirmation text to be shown to the user before starting message import
-    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     /// - Returns: A confirmation text to be shown to the user before starting message import
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageImportConfirmationText(chatId: Int64?) async throws -> Text {
@@ -11279,7 +11289,7 @@ public final class TdApi {
 
     /// Imports messages exported from another app
     /// - Parameter attachedFiles: Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
-    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     /// - Parameter messageFile: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
     public func importMessages(
         attachedFiles: [InputFile]?,
@@ -11297,7 +11307,7 @@ public final class TdApi {
 
     /// Imports messages exported from another app
     /// - Parameter attachedFiles: Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
-    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     /// - Parameter messageFile: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -12167,9 +12177,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
-    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
+    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     public func createVideoChat(
@@ -12188,9 +12198,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
-    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
+    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12209,7 +12219,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns RTMP URL for streaming to the chat; requires creator privileges
+    /// Returns RTMP URL for streaming to the chat; requires owner privileges
     /// - Parameter chatId: Chat identifier
     /// - Returns: RTMP URL for streaming to the chat
     public func getVideoChatRtmpUrl(
@@ -12222,7 +12232,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns RTMP URL for streaming to the chat; requires creator privileges
+    /// Returns RTMP URL for streaming to the chat; requires owner privileges
     /// - Parameter chatId: Chat identifier
     /// - Returns: RTMP URL for streaming to the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12233,7 +12243,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+    /// Replaces the current RTMP URL for streaming to the chat; requires owner privileges
     /// - Parameter chatId: Chat identifier
     public func replaceVideoChatRtmpUrl(
         chatId: Int64?,
@@ -12245,7 +12255,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+    /// Replaces the current RTMP URL for streaming to the chat; requires owner privileges
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func replaceVideoChatRtmpUrl(chatId: Int64?) async throws -> RtmpUrl {
@@ -15955,7 +15965,69 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+    /// Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
+    /// - Parameter customEmojiStickerSetId: New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup
+    /// - Parameter supergroupId: Identifier of the supergroup
+    public func setSupergroupCustomEmojiStickerSet(
+        customEmojiStickerSetId: TdInt64?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetSupergroupCustomEmojiStickerSet(
+            customEmojiStickerSetId: customEmojiStickerSetId,
+            supergroupId: supergroupId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
+    /// - Parameter customEmojiStickerSetId: New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup
+    /// - Parameter supergroupId: Identifier of the supergroup
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setSupergroupCustomEmojiStickerSet(
+        customEmojiStickerSetId: TdInt64?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = SetSupergroupCustomEmojiStickerSet(
+            customEmojiStickerSetId: customEmojiStickerSetId,
+            supergroupId: supergroupId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; requires can_restrict_members administrator right
+    /// - Parameter supergroupId: Identifier of the supergroup
+    /// - Parameter unrestrictBoostCount: New value of the unrestrict_boost_count supergroup setting; 0-8. Use 0 to remove the setting
+    public func setSupergroupUnrestrictBoostCount(
+        supergroupId: Int64?,
+        unrestrictBoostCount: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetSupergroupUnrestrictBoostCount(
+            supergroupId: supergroupId,
+            unrestrictBoostCount: unrestrictBoostCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; requires can_restrict_members administrator right
+    /// - Parameter supergroupId: Identifier of the supergroup
+    /// - Parameter unrestrictBoostCount: New value of the unrestrict_boost_count supergroup setting; 0-8. Use 0 to remove the setting
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setSupergroupUnrestrictBoostCount(
+        supergroupId: Int64?,
+        unrestrictBoostCount: Int?
+    ) async throws -> Ok {
+        let query = SetSupergroupUnrestrictBoostCount(
+            supergroupId: supergroupId,
+            unrestrictBoostCount: unrestrictBoostCount
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info member right
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     public func toggleSupergroupSignMessages(
@@ -15970,7 +16042,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info member right
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -16048,7 +16120,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+    /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
     /// - Parameter isAllHistoryAvailable: The new value of is_all_history_available
     /// - Parameter supergroupId: The identifier of the supergroup
     public func toggleSupergroupIsAllHistoryAvailable(
@@ -16063,7 +16135,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+    /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
     /// - Parameter isAllHistoryAvailable: The new value of is_all_history_available
     /// - Parameter supergroupId: The identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19256,7 +19328,7 @@ public final class TdApi {
     }
 
     /// Returns available options for Telegram Premium gift code or giveaway creation
-    /// - Parameter boostedChatId: Identifier of the channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
+    /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
     /// - Returns: Available options for Telegram Premium gift code or giveaway creation
     public func getPremiumGiftCodePaymentOptions(
         boostedChatId: Int64?,
@@ -19269,7 +19341,7 @@ public final class TdApi {
     }
 
     /// Returns available options for Telegram Premium gift code or giveaway creation
-    /// - Parameter boostedChatId: Identifier of the channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
+    /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
     /// - Returns: Available options for Telegram Premium gift code or giveaway creation
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumGiftCodePaymentOptions(boostedChatId: Int64?) async throws -> PremiumGiftCodePaymentOptions {
@@ -19326,7 +19398,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Launches a prepaid Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+    /// Launches a prepaid Telegram Premium giveaway
     /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
     /// - Parameter parameters: Giveaway parameters
     public func launchPrepaidPremiumGiveaway(
@@ -19341,7 +19413,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Launches a prepaid Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+    /// Launches a prepaid Telegram Premium giveaway
     /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
     /// - Parameter parameters: Giveaway parameters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

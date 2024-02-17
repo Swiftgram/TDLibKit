@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.24-d79bd4b6
-//  https://github.com/tdlib/td/tree/d79bd4b6
+//  Based on TDLib 1.8.25-d0ff90bb
+//  https://github.com/tdlib/td/tree/d0ff90bb
 //
 
 import Foundation
 
 
-/// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+/// Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
 public struct ToggleSupergroupIsAllHistoryAvailable: Codable, Equatable, Hashable {
 
     /// The new value of is_all_history_available
