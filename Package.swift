@@ -30,7 +30,7 @@ let package = Package(
             targets: ["TDLibKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.25-6c5441c8")),
+        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.25-fe620155")),
     ],
     targets: [
         .target(
