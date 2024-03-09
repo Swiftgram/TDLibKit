@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.25-fe620155
-//  https://github.com/tdlib/td/tree/fe620155
+//  Based on TDLib 1.8.26-b1b33cf4
+//  https://github.com/tdlib/td/tree/b1b33cf4
 //
 
 import Foundation
 
 
-/// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+/// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
 public struct SetLocation: Codable, Equatable, Hashable {
 
     /// The new location of the user

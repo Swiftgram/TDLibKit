@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.25-fe620155
-//  https://github.com/tdlib/td/tree/fe620155
+//  Based on TDLib 1.8.26-b1b33cf4
+//  https://github.com/tdlib/td/tree/b1b33cf4
 //
 
 import Foundation
@@ -72,6 +72,12 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
     case updateChatPosition(UpdateChatPosition)
+
+    /// A chat was added to a chat list
+    case updateChatAddedToList(UpdateChatAddedToList)
+
+    /// A chat was removed from a chat list
+    case updateChatRemovedFromList(UpdateChatRemovedFromList)
 
     /// Incoming messages were read or the number of unread messages has been changed
     case updateChatReadInbox(UpdateChatReadInbox)
@@ -153,6 +159,18 @@ public enum Update: Codable, Equatable, Hashable {
 
     /// Number of Saved Messages topics has changed
     case updateSavedMessagesTopicCount(UpdateSavedMessagesTopicCount)
+
+    /// Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
+    case updateQuickReplyShortcut(UpdateQuickReplyShortcut)
+
+    /// A quick reply shortcut and all its messages were deleted
+    case updateQuickReplyShortcutDeleted(UpdateQuickReplyShortcutDeleted)
+
+    /// The list of quick reply shortcuts has changed
+    case updateQuickReplyShortcuts(UpdateQuickReplyShortcuts)
+
+    /// The list of quick reply shortcut messages has changed
+    case updateQuickReplyShortcutMessages(UpdateQuickReplyShortcutMessages)
 
     /// Basic information about a topic in a forum chat was changed
     case updateForumTopicInfo(UpdateForumTopicInfo)
@@ -422,6 +440,8 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatPermissions
         case updateChatLastMessage
         case updateChatPosition
+        case updateChatAddedToList
+        case updateChatRemovedFromList
         case updateChatReadInbox
         case updateChatReadOutbox
         case updateChatActionBar
@@ -449,6 +469,10 @@ public enum Update: Codable, Equatable, Hashable {
         case updateChatOnlineMemberCount
         case updateSavedMessagesTopic
         case updateSavedMessagesTopicCount
+        case updateQuickReplyShortcut
+        case updateQuickReplyShortcutDeleted
+        case updateQuickReplyShortcuts
+        case updateQuickReplyShortcutMessages
         case updateForumTopicInfo
         case updateScopeNotificationSettings
         case updateNotification
@@ -597,6 +621,12 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatPosition:
             let value = try UpdateChatPosition(from: decoder)
             self = .updateChatPosition(value)
+        case .updateChatAddedToList:
+            let value = try UpdateChatAddedToList(from: decoder)
+            self = .updateChatAddedToList(value)
+        case .updateChatRemovedFromList:
+            let value = try UpdateChatRemovedFromList(from: decoder)
+            self = .updateChatRemovedFromList(value)
         case .updateChatReadInbox:
             let value = try UpdateChatReadInbox(from: decoder)
             self = .updateChatReadInbox(value)
@@ -678,6 +708,18 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateSavedMessagesTopicCount:
             let value = try UpdateSavedMessagesTopicCount(from: decoder)
             self = .updateSavedMessagesTopicCount(value)
+        case .updateQuickReplyShortcut:
+            let value = try UpdateQuickReplyShortcut(from: decoder)
+            self = .updateQuickReplyShortcut(value)
+        case .updateQuickReplyShortcutDeleted:
+            let value = try UpdateQuickReplyShortcutDeleted(from: decoder)
+            self = .updateQuickReplyShortcutDeleted(value)
+        case .updateQuickReplyShortcuts:
+            let value = try UpdateQuickReplyShortcuts(from: decoder)
+            self = .updateQuickReplyShortcuts(value)
+        case .updateQuickReplyShortcutMessages:
+            let value = try UpdateQuickReplyShortcutMessages(from: decoder)
+            self = .updateQuickReplyShortcutMessages(value)
         case .updateForumTopicInfo:
             let value = try UpdateForumTopicInfo(from: decoder)
             self = .updateForumTopicInfo(value)
@@ -990,6 +1032,12 @@ public enum Update: Codable, Equatable, Hashable {
         case .updateChatPosition(let value):
             try container.encode(Kind.updateChatPosition, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatAddedToList(let value):
+            try container.encode(Kind.updateChatAddedToList, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatRemovedFromList(let value):
+            try container.encode(Kind.updateChatRemovedFromList, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatReadInbox(let value):
             try container.encode(Kind.updateChatReadInbox, forKey: .type)
             try value.encode(to: encoder)
@@ -1070,6 +1118,18 @@ public enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateSavedMessagesTopicCount(let value):
             try container.encode(Kind.updateSavedMessagesTopicCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateQuickReplyShortcut(let value):
+            try container.encode(Kind.updateQuickReplyShortcut, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateQuickReplyShortcutDeleted(let value):
+            try container.encode(Kind.updateQuickReplyShortcutDeleted, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateQuickReplyShortcuts(let value):
+            try container.encode(Kind.updateQuickReplyShortcuts, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateQuickReplyShortcutMessages(let value):
+            try container.encode(Kind.updateQuickReplyShortcutMessages, forKey: .type)
             try value.encode(to: encoder)
         case .updateForumTopicInfo(let value):
             try container.encode(Kind.updateForumTopicInfo, forKey: .type)
@@ -1745,6 +1805,44 @@ public struct UpdateChatPosition: Codable, Equatable, Hashable {
     }
 }
 
+/// A chat was added to a chat list
+public struct UpdateChatAddedToList: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The chat list to which the chat was added
+    public let chatList: ChatList
+
+
+    public init(
+        chatId: Int64,
+        chatList: ChatList
+    ) {
+        self.chatId = chatId
+        self.chatList = chatList
+    }
+}
+
+/// A chat was removed from a chat list
+public struct UpdateChatRemovedFromList: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The chat list from which the chat was removed
+    public let chatList: ChatList
+
+
+    public init(
+        chatId: Int64,
+        chatList: ChatList
+    ) {
+        self.chatId = chatId
+        self.chatList = chatList
+    }
+}
+
 /// Incoming messages were read or the number of unread messages has been changed
 public struct UpdateChatReadInbox: Codable, Equatable, Hashable {
 
@@ -2195,6 +2293,9 @@ public struct UpdateChatHasScheduledMessages: Codable, Equatable, Hashable {
 /// The list of chat folders or a chat folder has changed
 public struct UpdateChatFolders: Codable, Equatable, Hashable {
 
+    /// True, if folder tags are enabled
+    public let areTagsEnabled: Bool
+
     /// The new list of chat folders
     public let chatFolders: [ChatFolderInfo]
 
@@ -2203,9 +2304,11 @@ public struct UpdateChatFolders: Codable, Equatable, Hashable {
 
 
     public init(
+        areTagsEnabled: Bool,
         chatFolders: [ChatFolderInfo],
         mainChatListPosition: Int
     ) {
+        self.areTagsEnabled = areTagsEnabled
         self.chatFolders = chatFolders
         self.mainChatListPosition = mainChatListPosition
     }
@@ -2251,6 +2354,61 @@ public struct UpdateSavedMessagesTopicCount: Codable, Equatable, Hashable {
 
     public init(topicCount: Int) {
         self.topicCount = topicCount
+    }
+}
+
+/// Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
+public struct UpdateQuickReplyShortcut: Codable, Equatable, Hashable {
+
+    /// New data about the shortcut
+    public let shortcut: QuickReplyShortcut
+
+
+    public init(shortcut: QuickReplyShortcut) {
+        self.shortcut = shortcut
+    }
+}
+
+/// A quick reply shortcut and all its messages were deleted
+public struct UpdateQuickReplyShortcutDeleted: Codable, Equatable, Hashable {
+
+    /// The identifier of the deleted shortcut
+    public let shortcutId: Int
+
+
+    public init(shortcutId: Int) {
+        self.shortcutId = shortcutId
+    }
+}
+
+/// The list of quick reply shortcuts has changed
+public struct UpdateQuickReplyShortcuts: Codable, Equatable, Hashable {
+
+    /// The new list of identifiers of quick reply shortcuts
+    public let shortcutIds: [Int]
+
+
+    public init(shortcutIds: [Int]) {
+        self.shortcutIds = shortcutIds
+    }
+}
+
+/// The list of quick reply shortcut messages has changed
+public struct UpdateQuickReplyShortcutMessages: Codable, Equatable, Hashable {
+
+    /// The new list of quick reply messages for the shortcut in order from the first to the last sent
+    public let messages: [QuickReplyMessage]
+
+    /// The identifier of the shortcut
+    public let shortcutId: Int
+
+
+    public init(
+        messages: [QuickReplyMessage],
+        shortcutId: Int
+    ) {
+        self.messages = messages
+        self.shortcutId = shortcutId
     }
 }
 

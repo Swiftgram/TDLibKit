@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.25-fe620155
-//  https://github.com/tdlib/td/tree/fe620155
+//  Based on TDLib 1.8.26-b1b33cf4
+//  https://github.com/tdlib/td/tree/b1b33cf4
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents a folder for user chats
 public struct ChatFolder: Codable, Equatable, Hashable {
+
+    /// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled
+    public let colorId: Int
 
     /// True, if archived chats need to be excluded
     public let excludeArchived: Bool
@@ -57,6 +60,7 @@ public struct ChatFolder: Codable, Equatable, Hashable {
 
 
     public init(
+        colorId: Int,
         excludeArchived: Bool,
         excludeMuted: Bool,
         excludeRead: Bool,
@@ -72,6 +76,7 @@ public struct ChatFolder: Codable, Equatable, Hashable {
         pinnedChatIds: [Int64],
         title: String
     ) {
+        self.colorId = colorId
         self.excludeArchived = excludeArchived
         self.excludeMuted = excludeMuted
         self.excludeRead = excludeRead

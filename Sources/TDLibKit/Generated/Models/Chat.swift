@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.25-fe620155
-//  https://github.com/tdlib/td/tree/fe620155
+//  Based on TDLib 1.8.26-b1b33cf4
+//  https://github.com/tdlib/td/tree/b1b33cf4
 //
 
 import Foundation
@@ -39,6 +39,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
     public let canBeReported: Bool
+
+    /// Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even it doesn't belong to the chat list and have no position in a chat list even it belongs to the chat list
+    public let chatLists: [ChatList]
 
     /// Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
     public let clientData: String
@@ -141,6 +144,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeReported: Bool,
+        chatLists: [ChatList],
         clientData: String,
         defaultDisableNotification: Bool,
         draftMessage: DraftMessage?,
@@ -181,6 +185,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeReported = canBeReported
+        self.chatLists = chatLists
         self.clientData = clientData
         self.defaultDisableNotification = defaultDisableNotification
         self.draftMessage = draftMessage

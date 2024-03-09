@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.25-fe620155
-//  https://github.com/tdlib/td/tree/fe620155
+//  Based on TDLib 1.8.26-b1b33cf4
+//  https://github.com/tdlib/td/tree/b1b33cf4
 //
 
 import Foundation
@@ -3795,6 +3795,42 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+    /// - Parameter chatId: Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
+    /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    public func sendQuickReplyShortcutMessages(
+        chatId: Int64?,
+        sendingId: Int?,
+        shortcutId: Int?,
+        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+    ) throws {
+        let query = SendQuickReplyShortcutMessages(
+            chatId: chatId,
+            sendingId: sendingId,
+            shortcutId: shortcutId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+    /// - Parameter chatId: Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
+    /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendQuickReplyShortcutMessages(
+        chatId: Int64?,
+        sendingId: Int?,
+        shortcutId: Int?
+    ) async throws -> Messages {
+        let query = SendQuickReplyShortcutMessages(
+            chatId: chatId,
+            sendingId: sendingId,
+            shortcutId: shortcutId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
@@ -4444,6 +4480,174 @@ public final class TdApi {
             chatId: chatId,
             messageId: messageId,
             schedulingState: schedulingState
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Checks validness of a name for a quick reply shortcut. Can be called synchronously
+    /// - Parameter name: The name of the shortcut; 1-32 characters
+    public func checkQuickReplyShortcutName(
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckQuickReplyShortcutName(
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Checks validness of a name for a quick reply shortcut. Can be called synchronously
+    /// - Parameter name: The name of the shortcut; 1-32 characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func checkQuickReplyShortcutName(name: String?) async throws -> Ok {
+        let query = CheckQuickReplyShortcutName(
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts
+    public func loadQuickReplyShortcuts(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = LoadQuickReplyShortcuts()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func loadQuickReplyShortcuts() async throws -> Ok {
+        let query = LoadQuickReplyShortcuts()
+        return try await self.execute(query: query)
+    }
+
+    /// Changes name of a quick reply shortcut
+    /// - Parameter name: New name for the shortcut. Use checkQuickReplyShortcutName to check its validness
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    public func setQuickReplyShortcutName(
+        name: String?,
+        shortcutId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetQuickReplyShortcutName(
+            name: name,
+            shortcutId: shortcutId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes name of a quick reply shortcut
+    /// - Parameter name: New name for the shortcut. Use checkQuickReplyShortcutName to check its validness
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setQuickReplyShortcutName(
+        name: String?,
+        shortcutId: Int?
+    ) async throws -> Ok {
+        let query = SetQuickReplyShortcutName(
+            name: name,
+            shortcutId: shortcutId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes a quick reply shortcut
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    public func deleteQuickReplyShortcut(
+        shortcutId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteQuickReplyShortcut(
+            shortcutId: shortcutId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes a quick reply shortcut
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteQuickReplyShortcut(shortcutId: Int?) async throws -> Ok {
+        let query = DeleteQuickReplyShortcut(
+            shortcutId: shortcutId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the order of quick reply shortcuts
+    /// - Parameter shortcutIds: The new order of quick reply shortcuts
+    public func reorderQuickReplyShortcuts(
+        shortcutIds: [Int]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderQuickReplyShortcuts(
+            shortcutIds: shortcutIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the order of quick reply shortcuts
+    /// - Parameter shortcutIds: The new order of quick reply shortcuts
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func reorderQuickReplyShortcuts(shortcutIds: [Int]?) async throws -> Ok {
+        let query = ReorderQuickReplyShortcuts(
+            shortcutIds: shortcutIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Loads quick reply messages that can be sent by a given quick reply shortcut. The loaded messages will be sent through updateQuickReplyShortcutMessages
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    public func loadQuickReplyShortcutMessages(
+        shortcutId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = LoadQuickReplyShortcutMessages(
+            shortcutId: shortcutId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Loads quick reply messages that can be sent by a given quick reply shortcut. The loaded messages will be sent through updateQuickReplyShortcutMessages
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func loadQuickReplyShortcutMessages(shortcutId: Int?) async throws -> Ok {
+        let query = LoadQuickReplyShortcutMessages(
+            shortcutId: shortcutId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes specified quick reply messages
+    /// - Parameter messageIds: Unique identifiers of the messages
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut to which the messages belong
+    public func deleteQuickReplyShortcutMessages(
+        messageIds: [Int64]?,
+        shortcutId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteQuickReplyShortcutMessages(
+            messageIds: messageIds,
+            shortcutId: shortcutId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes specified quick reply messages
+    /// - Parameter messageIds: Unique identifiers of the messages
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut to which the messages belong
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteQuickReplyShortcutMessages(
+        messageIds: [Int64]?,
+        shortcutId: Int?
+    ) async throws -> Ok {
+        let query = DeleteQuickReplyShortcutMessages(
+            messageIds: messageIds,
+            shortcutId: shortcutId
         )
         return try await self.execute(query: query)
     }
@@ -7557,6 +7761,29 @@ public final class TdApi {
         let query = ReorderChatFolders(
             chatFolderIds: chatFolderIds,
             mainChatListPosition: mainChatListPosition
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Toggles whether chat folder tags are enabled
+    /// - Parameter areTagsEnabled: Pass true to enable folder tags; pass false to disable them
+    public func toggleChatFolderTags(
+        areTagsEnabled: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleChatFolderTags(
+            areTagsEnabled: areTagsEnabled
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether chat folder tags are enabled
+    /// - Parameter areTagsEnabled: Pass true to enable folder tags; pass false to disable them
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func toggleChatFolderTags(areTagsEnabled: Bool?) async throws -> Ok {
+        let query = ToggleChatFolderTags(
+            areTagsEnabled: areTagsEnabled
         )
         return try await self.execute(query: query)
     }
@@ -14040,7 +14267,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
+    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to recent stickers
     /// - Parameter isAttached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     /// - Parameter sticker: Sticker file to add
     public func addRecentSticker(
@@ -14055,7 +14282,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
+    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to recent stickers
     /// - Parameter isAttached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14139,7 +14366,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
+    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     public func addFavoriteSticker(
         sticker: InputFile?,
@@ -14151,7 +14378,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
+    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -14877,7 +15104,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
     /// - Parameter location: The new location of the user
     public func setLocation(
         location: Location?,
@@ -14889,13 +15116,105 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
     /// - Parameter location: The new location of the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setLocation(location: Location?) async throws -> Ok {
         let query = SetLocation(
             location: location
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the business location of the current user. Requires Telegram Business subscription
+    /// - Parameter location: The new location of the business; pass null to remove the location
+    public func setBusinessLocation(
+        location: BusinessLocation?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessLocation(
+            location: location
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the business location of the current user. Requires Telegram Business subscription
+    /// - Parameter location: The new location of the business; pass null to remove the location
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBusinessLocation(location: BusinessLocation?) async throws -> Ok {
+        let query = SetBusinessLocation(
+            location: location
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the business opening hours of the current user. Requires Telegram Business subscription
+    /// - Parameter openingHours: The new opening hours of the business; pass null to remove the opening hours
+    public func setBusinessOpeningHours(
+        openingHours: BusinessOpeningHours?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessOpeningHours(
+            openingHours: openingHours
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the business opening hours of the current user. Requires Telegram Business subscription
+    /// - Parameter openingHours: The new opening hours of the business; pass null to remove the opening hours
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBusinessOpeningHours(openingHours: BusinessOpeningHours?) async throws -> Ok {
+        let query = SetBusinessOpeningHours(
+            openingHours: openingHours
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the business greeting message settings of the current user. Requires Telegram Business subscription
+    /// - Parameter greetingMessageSettings: The new settings for the greeting message of the business; pass null to disable the greeting message
+    public func setBusinessGreetingMessageSettings(
+        greetingMessageSettings: BusinessGreetingMessageSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessGreetingMessageSettings(
+            greetingMessageSettings: greetingMessageSettings
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the business greeting message settings of the current user. Requires Telegram Business subscription
+    /// - Parameter greetingMessageSettings: The new settings for the greeting message of the business; pass null to disable the greeting message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBusinessGreetingMessageSettings(greetingMessageSettings: BusinessGreetingMessageSettings?) async throws -> Ok {
+        let query = SetBusinessGreetingMessageSettings(
+            greetingMessageSettings: greetingMessageSettings
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the business away message settings of the current user. Requires Telegram Business subscription
+    /// - Parameter awayMessageSettings: The new settings for the away message of the business; pass null to disable the away message
+    public func setBusinessAwayMessageSettings(
+        awayMessageSettings: BusinessAwayMessageSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessAwayMessageSettings(
+            awayMessageSettings: awayMessageSettings
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the business away message settings of the current user. Requires Telegram Business subscription
+    /// - Parameter awayMessageSettings: The new settings for the away message of the business; pass null to disable the away message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBusinessAwayMessageSettings(awayMessageSettings: BusinessAwayMessageSettings?) async throws -> Ok {
+        let query = SetBusinessAwayMessageSettings(
+            awayMessageSettings: awayMessageSettings
         )
         return try await self.execute(query: query)
     }
@@ -14964,6 +15283,67 @@ public final class TdApi {
     public func checkChangePhoneNumberCode(code: String?) async throws -> Ok {
         let query = CheckChangePhoneNumberCode(
             code: code
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    /// - Returns: The business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    public func getBusinessConnectedBot(completion: @escaping (Result<BusinessConnectedBot, Swift.Error>) -> Void) throws {
+        let query = GetBusinessConnectedBot()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    /// - Returns: The business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getBusinessConnectedBot() async throws -> BusinessConnectedBot {
+        let query = GetBusinessConnectedBot()
+        return try await self.execute(query: query)
+    }
+
+    /// Adds or changes business bot that is connected to the current user account
+    /// - Parameter bot: Connection settings for the bot
+    public func setBusinessConnectedBot(
+        bot: BusinessConnectedBot?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessConnectedBot(
+            bot: bot
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds or changes business bot that is connected to the current user account
+    /// - Parameter bot: Connection settings for the bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBusinessConnectedBot(bot: BusinessConnectedBot?) async throws -> Ok {
+        let query = SetBusinessConnectedBot(
+            bot: bot
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes the business bot that is connected to the current user account
+    /// - Parameter botUserId: Unique user identifier for the bot
+    public func deleteBusinessConnectedBot(
+        botUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteBusinessConnectedBot(
+            botUserId: botUserId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes the business bot that is connected to the current user account
+    /// - Parameter botUserId: Unique user identifier for the bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteBusinessConnectedBot(botUserId: Int64?) async throws -> Ok {
+        let query = DeleteBusinessConnectedBot(
+            botUserId: botUserId
         )
         return try await self.execute(query: query)
     }
@@ -16449,6 +16829,21 @@ public final class TdApi {
             query: query,
             userIds: userIds
         )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of supported time zones
+    /// - Returns: The list of supported time zones
+    public func getTimeZones(completion: @escaping (Result<TimeZones, Swift.Error>) -> Void) throws {
+        let query = GetTimeZones()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of supported time zones
+    /// - Returns: The list of supported time zones
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getTimeZones() async throws -> TimeZones {
+        let query = GetTimeZones()
         return try await self.execute(query: query)
     }
 

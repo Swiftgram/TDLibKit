@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.25-fe620155
-//  https://github.com/tdlib/td/tree/fe620155
+//  Based on TDLib 1.8.26-b1b33cf4
+//  https://github.com/tdlib/td/tree/b1b33cf4
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// For bots, information about the bot; may be null if the user isn't a bot
     public let botInfo: BotInfo?
+
+    /// Information about business settings for Telegram Business accounts; may be null if none
+    public let businessInfo: BusinessInfo?
 
     /// True, if the user can be called
     public let canBeCalled: Bool
@@ -66,6 +69,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         bio: FormattedText?,
         blockList: BlockList?,
         botInfo: BotInfo?,
+        businessInfo: BusinessInfo?,
         canBeCalled: Bool,
         groupInCommonCount: Int,
         hasPinnedStories: Bool,
@@ -83,6 +87,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.bio = bio
         self.blockList = blockList
         self.botInfo = botInfo
+        self.businessInfo = businessInfo
         self.canBeCalled = canBeCalled
         self.groupInCommonCount = groupInCommonCount
         self.hasPinnedStories = hasPinnedStories
