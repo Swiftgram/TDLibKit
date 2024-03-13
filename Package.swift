@@ -18,11 +18,11 @@ var swiftSettings: [SwiftSetting] = []
 let package = Package(
     name: "TDLibKit",
     platforms: [
-        // Minimum versions as of Xcode 14.2
-        .iOS(.v11),
-        .macOS(.v10_13),
+        // Following versions of https://github.com/Swiftgram/TDLibFramework/blob/main/Package.swift
+        .iOS(.v12),
+        .macOS(.v10_15),
         .watchOS(.v4),
-        .tvOS(.v11)
+        .tvOS(.v12)
     ],
     products: [
         .library(
@@ -30,7 +30,7 @@ let package = Package(
             targets: ["TDLibKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.26-b1b33cf4")),
+        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.26-b41f3219")),
     ],
     targets: [
         .target(
