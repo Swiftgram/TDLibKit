@@ -2,8 +2,7 @@
 
 [![CI](https://github.com/Swiftgram/TDLibKit/actions/workflows/ci.yml/badge.svg)](https://github.com/Swiftgram/TDLibKit/actions/workflows/ci.yml)
 
-TDLibKit is a native Swift wrapper for [TDLib](https://github.com/tdlib/td) with support for iOS, macOS, watchOS and
-even tvOS.
+TDLibKit is a native Swift wrapper for [TDLib](https://github.com/tdlib/td) with support for iOS, macOS, watchOS, tvOS and visionOS.
 
 Powered by pre-built multi-platform [TDLibFramework](https://github.com/Swiftgram/TDLibFramework) implementation
 of [TDLib](https://github.com/tdlib/td) and generated sources with [tl2swift](scripts/tl2swift)
@@ -30,7 +29,7 @@ adaptation.
 Library provides multiple API interfaces based on different approaches
 
 - [Async/Await](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/) syntax & do/catch. Available for iOS
-  13.0+, macOS 10.15+, watchOS 6.0+, tvOS 13.0+
+  13.0+, macOS 10.15+, watchOS 6.0+, tvOS 13.0+, visionOS
 - Completion handlers & closures
 
 ### Create client Manager

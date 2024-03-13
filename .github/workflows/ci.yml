@@ -25,11 +25,11 @@ concurrency:
 
 env:
   TDLIB_REPO: https://github.com/tdlib/td
-  DEVELOPER_DIR: /Applications/Xcode_14.2.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
 
 jobs:
   Build:
-    runs-on: macos-12
+    runs-on: macos-14
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -81,16 +81,19 @@ jobs:
           git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
 
       - name: Tests (iOS)
-        run: ./scripts/test.sh iOS-simulator "16.2" "iPhone 14" || ./scripts/test.sh iOS-simulator "16.2" "iPhone 14"
+        run: ./scripts/test.sh iOS-simulator "17.0.1" "iPhone 14" || ./scripts/test.sh iOS-simulator "17.0.1" "iPhone 14"
       
       - name: Tests (tvOS) # Dirty hack to retry step. tvOS sim can stuck for some reason
-        run: ./scripts/test.sh tvOS-simulator "16.1" "Apple TV 4K (3rd generation) (at 1080p)" || ./scripts/test.sh tvOS-simulator "16.1" "Apple TV 4K (3rd generation) (at 1080p)"
+        run: ./scripts/test.sh tvOS-simulator "17.0" "Apple TV 4K (3rd generation) (at 1080p)" || ./scripts/test.sh tvOS-simulator "17.0" "Apple TV 4K (3rd generation) (at 1080p)"
 
       - name: Tests (macOS)
         run: ./scripts/test.sh macOS
       
       - name: Tests (watchOS)
-        run: ./scripts/test.sh watchOS-simulator "9.1" "Apple Watch Series 8 (45mm)" || ./scripts/test.sh watchOS-simulator "9.1" "Apple Watch Series 8 (45mm)"
+        run: ./scripts/test.sh watchOS-simulator "9.4" "Apple Watch Series 8 (45mm)" || ./scripts/test.sh watchOS-simulator "9.4" "Apple Watch Series 8 (45mm)"      
+      
+      - name: Tests (visionOS)
+        run: ./scripts/test.sh visionOS-simulator "1.0" "Apple Vision Pro" || ./scripts/test.sh visionOS-simulator "1.0" "Apple Vision Pro"
 
       - name: Push update
         if: github.ref == 'refs/heads/main'
