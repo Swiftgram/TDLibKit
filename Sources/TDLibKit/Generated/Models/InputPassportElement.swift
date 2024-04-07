@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Telegram Passport element to be saved
-public enum InputPassportElement: Codable, Equatable, Hashable {
+public indirect enum InputPassportElement: Codable, Equatable, Hashable {
 
     /// A Telegram Passport element to be saved containing the user's personal details
     case inputPassportElementPersonalDetails(InputPassportElementPersonalDetails)

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a chat event
-public enum ChatEventAction: Codable, Equatable, Hashable {
+public indirect enum ChatEventAction: Codable, Equatable, Hashable {
 
     /// A message was edited
     case chatEventMessageEdited(ChatEventMessageEdited)

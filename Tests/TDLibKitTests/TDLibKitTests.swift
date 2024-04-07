@@ -172,11 +172,12 @@ class TDLibClientManagerTests: XCTestCase {
         let manager = TDLibClientManager(logger: StdOutLogger())
         var clientClosedExpectations: [XCTestExpectation] = []
         
-        
-        for i in 1...20 {
+        for i in 1...50 {
             let clientClosedExpectation = XCTestExpectation(description: "Client \(i) closed")
             clientClosedExpectations.append(clientClosedExpectation)
             let client = manager.createClient(updateHandler: {
+                print("Size of Update type: \(MemoryLayout<Update>.size)")
+                print("Stack size for client thread \(i): \(Thread.current.stackSize)")
                 let update = try! $1.decoder.decode(Update.self, from: $0)
                 switch (update) {
                     case .updateAuthorizationState(let updateAuthorizationState):

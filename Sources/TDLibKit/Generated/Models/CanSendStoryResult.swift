@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of checking whether the current user can send a story in the specific chat
-public enum CanSendStoryResult: Codable, Equatable, Hashable {
+public indirect enum CanSendStoryResult: Codable, Equatable, Hashable {
 
     /// A story can be sent
     case canSendStoryResultOk

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a stream to which TDLib internal log is written
-public enum LogStream: Codable, Equatable, Hashable {
+public indirect enum LogStream: Codable, Equatable, Hashable {
 
     /// The log is written to stderr or an OS specific log
     case logStreamDefault

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes privacy settings of a story
-public enum StoryPrivacySettings: Codable, Equatable, Hashable {
+public indirect enum StoryPrivacySettings: Codable, Equatable, Hashable {
 
     /// The story can be viewed by everyone
     case storyPrivacySettingsEveryone(StoryPrivacySettingsEveryone)

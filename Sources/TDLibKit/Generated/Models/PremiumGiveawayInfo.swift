@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about Telegram Premium giveaway
-public enum PremiumGiveawayInfo: Codable, Equatable, Hashable {
+public indirect enum PremiumGiveawayInfo: Codable, Equatable, Hashable {
 
     /// Describes an ongoing giveaway
     case premiumGiveawayInfoOngoing(PremiumGiveawayInfoOngoing)

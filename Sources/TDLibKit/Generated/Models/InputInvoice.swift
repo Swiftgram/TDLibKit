@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes an invoice to process
-public enum InputInvoice: Codable, Equatable, Hashable {
+public indirect enum InputInvoice: Codable, Equatable, Hashable {
 
     /// An invoice from a message of the type messageInvoice
     case inputInvoiceMessage(InputInvoiceMessage)

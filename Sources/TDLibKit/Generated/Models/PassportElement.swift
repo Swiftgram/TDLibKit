@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a Telegram Passport element
-public enum PassportElement: Codable, Equatable, Hashable {
+public indirect enum PassportElement: Codable, Equatable, Hashable {
 
     /// A Telegram Passport element containing the user's personal details
     case passportElementPersonalDetails(PassportElementPersonalDetails)

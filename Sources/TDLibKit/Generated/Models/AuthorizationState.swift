@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the current authorization state of the TDLib client
-public enum AuthorizationState: Codable, Equatable, Hashable {
+public indirect enum AuthorizationState: Codable, Equatable, Hashable {
 
     /// Initialization parameters are needed. Call setTdlibParameters to provide them
     case authorizationStateWaitTdlibParameters

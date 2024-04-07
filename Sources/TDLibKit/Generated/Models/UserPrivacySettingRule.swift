@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single rule for managing user privacy settings
-public enum UserPrivacySettingRule: Codable, Equatable, Hashable {
+public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
 
     /// A rule to allow all users to do something
     case userPrivacySettingRuleAllowAll

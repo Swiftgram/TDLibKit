@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Specifies the kind of chat members to return in searchChatMembers
-public enum ChatMembersFilter: Codable, Equatable, Hashable {
+public indirect enum ChatMembersFilter: Codable, Equatable, Hashable {
 
     /// Returns contacts of the user
     case chatMembersFilterContacts

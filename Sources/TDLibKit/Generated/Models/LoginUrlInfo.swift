@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
-public enum LoginUrlInfo: Codable, Equatable, Hashable {
+public indirect enum LoginUrlInfo: Codable, Equatable, Hashable {
 
     /// An HTTP URL needs to be open
     case loginUrlInfoOpen(LoginUrlInfoOpen)

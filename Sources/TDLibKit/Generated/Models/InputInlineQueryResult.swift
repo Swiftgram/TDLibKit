@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single result of an inline query; for bots only
-public enum InputInlineQueryResult: Codable, Equatable, Hashable {
+public indirect enum InputInlineQueryResult: Codable, Equatable, Hashable {
 
     /// Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video
     case inputInlineQueryResultAnimation(InputInlineQueryResultAnimation)

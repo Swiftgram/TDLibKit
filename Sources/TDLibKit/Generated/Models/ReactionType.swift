@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of message reaction
-public enum ReactionType: Codable, Equatable, Hashable {
+public indirect enum ReactionType: Codable, Equatable, Hashable {
 
     /// A reaction with an emoji
     case reactionTypeEmoji(ReactionTypeEmoji)

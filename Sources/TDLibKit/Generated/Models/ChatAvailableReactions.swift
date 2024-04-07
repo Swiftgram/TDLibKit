@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes reactions available in the chat
-public enum ChatAvailableReactions: Codable, Equatable, Hashable {
+public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
 
     /// All reactions are available in the chat
     case chatAvailableReactionsAll

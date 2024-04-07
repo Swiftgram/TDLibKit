@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a fill of a background
-public enum BackgroundFill: Codable, Equatable, Hashable {
+public indirect enum BackgroundFill: Codable, Equatable, Hashable {
 
     /// Describes a solid fill of a background
     case backgroundFillSolid(BackgroundFillSolid)

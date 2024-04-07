@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a chat
-public enum ChatType: Codable, Equatable, Hashable {
+public indirect enum ChatType: Codable, Equatable, Hashable {
 
     /// An ordinary chat with a user
     case chatTypePrivate(ChatTypePrivate)

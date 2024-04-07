@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a list of stories
-public enum StoryList: Codable, Equatable, Hashable {
+public indirect enum StoryList: Codable, Equatable, Hashable {
 
     /// The list of stories, shown in the main chat list and folder chat lists
     case storyListMain

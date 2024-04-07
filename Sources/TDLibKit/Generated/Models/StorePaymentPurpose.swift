@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a purpose of an in-store payment
-public enum StorePaymentPurpose: Codable, Equatable, Hashable {
+public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
 
     /// The user subscribing to Telegram Premium
     case storePaymentPurposePremiumSubscription(StorePaymentPurposePremiumSubscription)

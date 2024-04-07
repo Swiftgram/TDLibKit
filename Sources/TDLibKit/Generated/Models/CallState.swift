@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the current call state
-public enum CallState: Codable, Equatable, Hashable {
+public indirect enum CallState: Codable, Equatable, Hashable {
 
     /// The call is pending, waiting to be accepted by a user
     case callStatePending(CallStatePending)

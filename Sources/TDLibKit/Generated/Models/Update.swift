@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains notifications about data changes
-public enum Update: Codable, Equatable, Hashable {
+public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The user authorization state has changed
     case updateAuthorizationState(UpdateAuthorizationState)

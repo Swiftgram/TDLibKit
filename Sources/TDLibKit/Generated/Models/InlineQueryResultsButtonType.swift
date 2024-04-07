@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a type of a button in results of inline query
-public enum InlineQueryResultsButtonType: Codable, Equatable, Hashable {
+public indirect enum InlineQueryResultsButtonType: Codable, Equatable, Hashable {
 
     /// Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
     case inlineQueryResultsButtonTypeStartBot(InlineQueryResultsButtonTypeStartBot)

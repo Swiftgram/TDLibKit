@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of checking whether the current session can be used to transfer a chat ownership to another user
-public enum CanTransferOwnershipResult: Codable, Equatable, Hashable {
+public indirect enum CanTransferOwnershipResult: Codable, Equatable, Hashable {
 
     /// The session can be used
     case canTransferOwnershipResultOk

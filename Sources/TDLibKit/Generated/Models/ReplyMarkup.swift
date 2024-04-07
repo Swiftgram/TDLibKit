@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
-public enum ReplyMarkup: Codable, Equatable, Hashable {
+public indirect enum ReplyMarkup: Codable, Equatable, Hashable {
 
     /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
     case replyMarkupRemoveKeyboard(ReplyMarkupRemoveKeyboard)

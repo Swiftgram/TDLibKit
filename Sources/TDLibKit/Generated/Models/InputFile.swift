@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Points to a file
-public enum InputFile: Codable, Equatable, Hashable {
+public indirect enum InputFile: Codable, Equatable, Hashable {
 
     /// A file defined by its unique identifier
     case inputFileId(InputFileId)

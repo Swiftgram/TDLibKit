@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes why the current user can't add reactions to the message, despite some other users can
-public enum ReactionUnavailabilityReason: Codable, Equatable, Hashable {
+public indirect enum ReactionUnavailabilityReason: Codable, Equatable, Hashable {
 
     /// The user is an anonymous administrator in the supergroup, but isn't a creator of it, so they can't vote on behalf of the supergroup
     case reactionUnavailabilityReasonAnonymousAdministrator

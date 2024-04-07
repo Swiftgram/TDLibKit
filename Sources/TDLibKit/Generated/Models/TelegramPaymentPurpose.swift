@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a purpose of a payment toward Telegram
-public enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
+public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
 
     /// The user creating Telegram Premium gift codes for other users
     case telegramPaymentPurposePremiumGiftCodes(TelegramPaymentPurposePremiumGiftCodes)

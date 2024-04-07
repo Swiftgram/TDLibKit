@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a keyboard button type
-public enum KeyboardButtonType: Codable, Equatable, Hashable {
+public indirect enum KeyboardButtonType: Codable, Equatable, Hashable {
 
     /// A simple button, with text that must be sent when the button is pressed
     case keyboardButtonTypeText

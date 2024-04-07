@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of an inline keyboard button
-public enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
+public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
 
     /// A button that opens a specified URL
     case inlineKeyboardButtonTypeUrl(InlineKeyboardButtonTypeUrl)

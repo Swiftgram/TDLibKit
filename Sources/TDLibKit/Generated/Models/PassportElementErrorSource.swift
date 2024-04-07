@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the description of an error in a Telegram Passport element
-public enum PassportElementErrorSource: Codable, Equatable, Hashable {
+public indirect enum PassportElementErrorSource: Codable, Equatable, Hashable {
 
     /// The element contains an error in an unspecified place. The error will be considered resolved when new data is added
     case passportElementErrorSourceUnspecified

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Specifies the kind of chat members to return in getSupergroupMembers
-public enum SupergroupMembersFilter: Codable, Equatable, Hashable {
+public indirect enum SupergroupMembersFilter: Codable, Equatable, Hashable {
 
     /// Returns recently active users in reverse chronological order
     case supergroupMembersFilterRecent

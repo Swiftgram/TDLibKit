@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes available user privacy settings
-public enum UserPrivacySetting: Codable, Equatable, Hashable {
+public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
 
     /// A privacy setting for managing whether the user's online status is visible
     case userPrivacySettingShowStatus

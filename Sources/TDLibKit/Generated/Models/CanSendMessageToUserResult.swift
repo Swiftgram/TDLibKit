@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes result of canSendMessageToUser
-public enum CanSendMessageToUserResult: Codable, Equatable, Hashable {
+public indirect enum CanSendMessageToUserResult: Codable, Equatable, Hashable {
 
     /// The user can be messaged
     case canSendMessageToUserResultOk

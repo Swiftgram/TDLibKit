@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the current secret chat state
-public enum SecretChatState: Codable, Equatable, Hashable {
+public indirect enum SecretChatState: Codable, Equatable, Hashable {
 
     /// The secret chat is not yet created; waiting for the other user to get online
     case secretChatStatePending

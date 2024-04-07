@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the different types of activity in a chat
-public enum ChatAction: Codable, Equatable, Hashable {
+public indirect enum ChatAction: Codable, Equatable, Hashable {
 
     /// The user is typing a message
     case chatActionTyping

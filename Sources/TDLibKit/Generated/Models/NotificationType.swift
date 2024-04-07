@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains detailed information about a notification
-public enum NotificationType: Codable, Equatable, Hashable {
+public indirect enum NotificationType: Codable, Equatable, Hashable {
 
     /// New message was received
     case notificationTypeNewMessage(NotificationTypeNewMessage)

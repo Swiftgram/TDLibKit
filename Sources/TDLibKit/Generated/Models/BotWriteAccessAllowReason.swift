@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a reason why a bot was allowed to write messages to the current user
-public enum BotWriteAccessAllowReason: Codable, Equatable, Hashable {
+public indirect enum BotWriteAccessAllowReason: Codable, Equatable, Hashable {
 
     /// The user connected a website by logging in using Telegram Login Widget on it
     case botWriteAccessAllowReasonConnectedWebsite(BotWriteAccessAllowReasonConnectedWebsite)

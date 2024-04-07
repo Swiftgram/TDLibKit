@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the value of an option
-public enum OptionValue: Codable, Equatable, Hashable {
+public indirect enum OptionValue: Codable, Equatable, Hashable {
 
     /// Represents a boolean option
     case optionValueBoolean(OptionValueBoolean)

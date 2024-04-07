@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains settings for Firebase Authentication in the official applications
-public enum FirebaseAuthenticationSettings: Codable, Equatable, Hashable {
+public indirect enum FirebaseAuthenticationSettings: Codable, Equatable, Hashable {
 
     /// Settings for Firebase Authentication in the official Android application
     case firebaseAuthenticationSettingsAndroid

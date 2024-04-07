@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains statistics about network usage
-public enum NetworkStatisticsEntry: Codable, Equatable, Hashable {
+public indirect enum NetworkStatisticsEntry: Codable, Equatable, Hashable {
 
     /// Contains information about the total amount of data that was used to send and receive files
     case networkStatisticsEntryFile(NetworkStatisticsEntryFile)

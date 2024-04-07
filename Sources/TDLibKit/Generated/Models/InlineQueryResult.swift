@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a single result of an inline query
-public enum InlineQueryResult: Codable, Equatable, Hashable {
+public indirect enum InlineQueryResult: Codable, Equatable, Hashable {
 
     /// Represents a link to an article or web page
     case inlineQueryResultArticle(InlineQueryResultArticle)

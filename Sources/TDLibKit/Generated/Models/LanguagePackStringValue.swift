@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the value of a string in a language pack
-public enum LanguagePackStringValue: Codable, Equatable, Hashable {
+public indirect enum LanguagePackStringValue: Codable, Equatable, Hashable {
 
     /// An ordinary language pack string
     case languagePackStringValueOrdinary(LanguagePackStringValueOrdinary)

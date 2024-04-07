@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a part of the text which must be formatted differently
-public enum TextEntityType: Codable, Equatable, Hashable {
+public indirect enum TextEntityType: Codable, Equatable, Hashable {
 
     /// A mention of a user, a supergroup, or a channel by their username
     case textEntityTypeMention

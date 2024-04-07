@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes source of a message
-public enum MessageSource: Codable, Equatable, Hashable {
+public indirect enum MessageSource: Codable, Equatable, Hashable {
 
     /// The message is from a chat history
     case messageSourceChatHistory

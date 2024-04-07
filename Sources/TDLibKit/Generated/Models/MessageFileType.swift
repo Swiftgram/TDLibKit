@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a file with messages exported from another app
-public enum MessageFileType: Codable, Equatable, Hashable {
+public indirect enum MessageFileType: Codable, Equatable, Hashable {
 
     /// The messages were exported from a private chat
     case messageFileTypePrivate(MessageFileTypePrivate)

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of an object, for which statistics are provided
-public enum ChatStatisticsObjectType: Codable, Equatable, Hashable {
+public indirect enum ChatStatisticsObjectType: Codable, Equatable, Hashable {
 
     /// Describes a message sent in the chat
     case chatStatisticsObjectTypeMessage(ChatStatisticsObjectTypeMessage)

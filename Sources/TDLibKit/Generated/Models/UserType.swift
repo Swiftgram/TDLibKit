@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the type of a user. The following types are possible: regular users, deleted users and bots
-public enum UserType: Codable, Equatable, Hashable {
+public indirect enum UserType: Codable, Equatable, Hashable {
 
     /// A regular user
     case userTypeRegular

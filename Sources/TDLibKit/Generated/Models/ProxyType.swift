@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a proxy server
-public enum ProxyType: Codable, Equatable, Hashable {
+public indirect enum ProxyType: Codable, Equatable, Hashable {
 
     /// A SOCKS5 proxy server
     case proxyTypeSocks5(ProxyTypeSocks5)

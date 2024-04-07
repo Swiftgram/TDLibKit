@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a filter for message search results
-public enum SearchMessagesFilter: Codable, Equatable, Hashable {
+public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
 
     /// Returns all found messages, no filter is applied
     case searchMessagesFilterEmpty

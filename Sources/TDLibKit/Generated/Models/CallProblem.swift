@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the exact type of a problem with a call
-public enum CallProblem: Codable, Equatable, Hashable {
+public indirect enum CallProblem: Codable, Equatable, Hashable {
 
     /// The user heard their own voice
     case callProblemEcho

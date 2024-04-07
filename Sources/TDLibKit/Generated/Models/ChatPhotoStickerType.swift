@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a sticker, which was used to create a chat photo
-public enum ChatPhotoStickerType: Codable, Equatable, Hashable {
+public indirect enum ChatPhotoStickerType: Codable, Equatable, Hashable {
 
     /// Information about the sticker, which was used to create the chat photo
     case chatPhotoStickerTypeRegularOrMask(ChatPhotoStickerTypeRegularOrMask)

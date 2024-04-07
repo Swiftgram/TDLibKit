@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the content of a story
-public enum StoryContent: Codable, Equatable, Hashable {
+public indirect enum StoryContent: Codable, Equatable, Hashable {
 
     /// A photo story
     case storyContentPhoto(StoryContentPhoto)

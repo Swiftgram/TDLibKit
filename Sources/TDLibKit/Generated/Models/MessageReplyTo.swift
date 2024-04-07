@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the message or the story a message is replying to
-public enum MessageReplyTo: Codable, Equatable, Hashable {
+public indirect enum MessageReplyTo: Codable, Equatable, Hashable {
 
     /// Describes a message replied by a given message
     case messageReplyToMessage(MessageReplyToMessage)

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a story feature available to Premium users
-public enum PremiumStoryFeature: Codable, Equatable, Hashable {
+public indirect enum PremiumStoryFeature: Codable, Equatable, Hashable {
 
     /// Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels
     case premiumStoryFeaturePriorityOrder

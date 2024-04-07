@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a reason why an external chat is shown in a chat list
-public enum ChatSource: Codable, Equatable, Hashable {
+public indirect enum ChatSource: Codable, Equatable, Hashable {
 
     /// The chat is sponsored by the user's MTProxy server
     case chatSourceMtprotoProxy

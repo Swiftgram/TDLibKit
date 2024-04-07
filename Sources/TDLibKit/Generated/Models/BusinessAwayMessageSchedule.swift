@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes conditions for sending of away messages by a Telegram Business account
-public enum BusinessAwayMessageSchedule: Codable, Equatable, Hashable {
+public indirect enum BusinessAwayMessageSchedule: Codable, Equatable, Hashable {
 
     /// Send away messages always
     case businessAwayMessageScheduleAlways
