@@ -27,110 +27,82 @@ env:
   TDLIB_REPO: https://github.com/tdlib/td
   DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
 
+permissions:
+  contents: write
+
 jobs:
-  Build:
+  update:
     runs-on: macos-14
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Get latest Github release
-        if: github.ref == 'refs/heads/main'
-        id: framework_releases
-        uses: joutvhu/get-release@v1.0.0
-        with:
-          owner: Swiftgram
-          repo: TDLibFramework
-          latest: true
-          throwing: true
+      - name: Update package
+        run: ./scripts/update.py
         env:
-          GITHUB_TOKEN:  ${{ secrets.GH_RELEASES_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+  
+      - name: Upload Workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: TDLibKit-${{ github.sha }}
+          path: .
+          if-no-files-found: error
 
-      - name: Set TDLibFramework version
-        if: github.ref == 'refs/heads/main'
-        run: python3 scripts/swift_package_generator.py "${{ steps.framework_releases.outputs.tag_name }}"
-
-      - name: Resolve Deps
-        run: swift package update
-
-      - name: Get commit & version
-        run: |
-          TDLIB_COMMIT=$(python3 scripts/parse_tdlib_version.py commit)
-          TDLIB_VERSION=$(python3 scripts/parse_tdlib_version.py version)
-          PACKAGE_VERSION=$(cat version | python3 -c "print(input().strip())")
-          RELEASE_TAG=${PACKAGE_VERSION}-tdlib-${TDLIB_VERSION}-${TDLIB_COMMIT}
-          TDLIB_COMMIT_URL=${{ env.TDLIB_REPO }}/tree/${TDLIB_COMMIT}
-
-          echo "TDLIB_COMMIT=$TDLIB_COMMIT" >> $GITHUB_ENV
-          echo "TDLIB_VERSION=$TDLIB_VERSION" >> $GITHUB_ENV
-          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
-          echo "TDLIB_COMMIT_URL=$TDLIB_COMMIT_URL" >> $GITHUB_ENV
-
-      - name: Download td_api.tl
-        run: wget https://raw.githubusercontent.com/tdlib/td/$TDLIB_COMMIT/td/generate/scheme/td_api.tl
-
-      - name: Run Generator
-        working-directory: scripts/tl2swift
-        run: rm -rf ../../Sources/TDLibKit/Generated && swift run tl2swift ../../td_api.tl ../../Sources/TDLibKit/Generated $TDLIB_VERSION $TDLIB_COMMIT
-
-      - name: Commit Files
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git add . || true
-          git commit -m "[no ci] Version ${{ env.RELEASE_TAG }}" || true
-
-      - name: Tests (iOS)
-        run: ./scripts/test.sh iOS-simulator "17.0.1" "iPhone 14" || ./scripts/test.sh iOS-simulator "17.0.1" "iPhone 14"
-      
-      - name: Tests (tvOS) # Dirty hack to retry step. tvOS sim can stuck for some reason
-        run: ./scripts/test.sh tvOS-simulator "17.0" "Apple TV 4K (3rd generation) (at 1080p)" || ./scripts/test.sh tvOS-simulator "17.0" "Apple TV 4K (3rd generation) (at 1080p)"
-
-      - name: Tests (macOS)
-        run: ./scripts/test.sh macOS
-      
-      - name: Tests (watchOS)
-        run: ./scripts/test.sh watchOS-simulator "9.4" "Apple Watch Series 8 (45mm)" || ./scripts/test.sh watchOS-simulator "9.4" "Apple Watch Series 8 (45mm)"      
-      
-      - name: Tests (visionOS)
-        run: ./scripts/test.sh visionOS-simulator "1.0" "Apple Vision Pro" || ./scripts/test.sh visionOS-simulator "1.0" "Apple Vision Pro"
-
-      - name: Push update
-        if: github.ref == 'refs/heads/main'
-        run: git push origin main || true
-
-      - name: Clean local files
-        if: github.ref != 'refs/heads/main'
-        run: |
-          git clean -nfdx
-          git clean -fdx
-          rm -rf .git
-          rm -rf .github
-          rm -rf .build
-
-      - name: Upload artifact
-        if: github.ref != 'refs/heads/main'
-        uses: actions/upload-artifact@v3
+  test:
+    runs-on: macos-14
+    needs: [update]
+    strategy:
+      matrix:
+        include:
+          - platform: "macOS"
+          - platform: "iOS-simulator"
+            os_list: "17.0.1"
+            device_name: "iPhone 14"
+          - platform: "tvOS-simulator"
+            os_list: "17.0"
+            device_name: "Apple TV 4K (3rd generation) (at 1080p)"
+          # Became much slower on CI with macos-14 images, while working fine locally
+          # - platform: "watchOS-simulator"
+          #   os_list: "9.4"
+          #   device_name: "Apple Watch Series 8 (45mm)"
+          - platform: "visionOS-simulator"
+            os_list: "1.0"
+            device_name: "Apple Vision Pro"
+    steps:
+      - name: Download Workspace
+        uses: actions/download-artifact@v4
         with:
           name: TDLibKit-${{ github.sha }}
           path: .
 
-      - name: Remove previous release
-        if: github.ref == 'refs/heads/main'
-        uses: dev-drprasad/delete-tag-and-release@7550ea180f81ca0a875ee3c135b1f72ef66ff4b1
+      - name: Tests (${{ matrix.platform }})
+        run: |
+          chmod +x ./scripts/test.sh 
+          ./scripts/test.sh ${{ matrix.platform }} "${{ matrix.os_list }}" "${{ matrix.device_name }}"
+  
+  release:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: macos-14
+    needs: [test]
+    steps:
+      - name: Download Workspace
+        uses: actions/download-artifact@v4
         with:
-          delete_release: true
-          tag_name: ${{ env.RELEASE_TAG }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: TDLibKit-${{ github.sha }}
+          path: .
+
+      - name: Commit Files
+        run: |
+          git add . || true
+          git commit -m "[no ci] Version $(python3 -c 'import json; print(json.load(open("versions.json"))["package"])')" || true
+
+      - name: Push update
+        run: git push origin main || true
 
       - name: Release
-        if: github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
-        with:
-          target_commitish: main
-          tag_name: ${{ env.RELEASE_TAG }}
-          files: ${{ env.ARTIFACT_PATH }}
-          body: "TDLibKit based on TDLib-${{ env.TDLIB_VERSION }} commit [${{ env.TDLIB_COMMIT }}](${{ env.TDLIB_COMMIT_URL }})"
+        run: |
+          chmod +x ./scripts/*
+          ./scripts/release.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
