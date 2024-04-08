@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// A badge in the user's profile
     case premiumFeatureProfileBadge
 
-    /// An emoji status shown along with the user's name
+    /// The ability to show an emoji status along with the user's name
     case premiumFeatureEmojiStatus
 
     /// Profile photo animation on message and chat screens
@@ -79,6 +79,9 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
     case premiumFeatureLastSeenTimes
 
+    /// The ability to use Business features
+    case premiumFeatureBusiness
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -103,6 +106,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureSavedMessagesTags
         case premiumFeatureMessagePrivacy
         case premiumFeatureLastSeenTimes
+        case premiumFeatureBusiness
     }
 
     public init(from decoder: Decoder) throws {
@@ -153,6 +157,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureMessagePrivacy
         case .premiumFeatureLastSeenTimes:
             self = .premiumFeatureLastSeenTimes
+        case .premiumFeatureBusiness:
+            self = .premiumFeatureBusiness
         }
     }
 
@@ -203,6 +209,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureMessagePrivacy, forKey: .type)
         case .premiumFeatureLastSeenTimes:
             try container.encode(Kind.premiumFeatureLastSeenTimes, forKey: .type)
+        case .premiumFeatureBusiness:
+            try container.encode(Kind.premiumFeatureBusiness, forKey: .type)
         }
     }
 }

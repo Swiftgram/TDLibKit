@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SendStory: Codable, Equatable, Hashable {
     /// Clickable rectangle areas to be shown on the story media; pass null if none
     public let areas: InputStoryAreas?
 
-    /// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+    /// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     public let caption: FormattedText?
 
     /// Identifier of the chat that will post the story

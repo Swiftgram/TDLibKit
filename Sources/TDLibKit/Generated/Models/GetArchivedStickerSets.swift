@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetArchivedStickerSets: Codable, Equatable, Hashable {
     /// The maximum number of sticker sets to return; up to 100
     public let limit: Int?
 
-    /// Identifier of the sticker set from which to return the result
+    /// Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
     public let offsetStickerSetId: TdInt64?
 
     /// Type of the sticker sets to return

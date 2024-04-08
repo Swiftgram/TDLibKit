@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -74,6 +74,9 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription
     public let canBeEdited: Bool
 
+    /// True, if the bot supports connection to Telegram Business accounts
+    public let canConnectToBusiness: Bool
+
     /// True, if the bot can be invited to basic group and supergroup chats
     public let canJoinGroups: Bool
 
@@ -93,6 +96,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     public init(
         canBeAddedToAttachmentMenu: Bool,
         canBeEdited: Bool,
+        canConnectToBusiness: Bool,
         canJoinGroups: Bool,
         canReadAllGroupMessages: Bool,
         inlineQueryPlaceholder: String,
@@ -101,6 +105,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     ) {
         self.canBeAddedToAttachmentMenu = canBeAddedToAttachmentMenu
         self.canBeEdited = canBeEdited
+        self.canConnectToBusiness = canConnectToBusiness
         self.canJoinGroups = canJoinGroups
         self.canReadAllGroupMessages = canReadAllGroupMessages
         self.inlineQueryPlaceholder = inlineQueryPlaceholder

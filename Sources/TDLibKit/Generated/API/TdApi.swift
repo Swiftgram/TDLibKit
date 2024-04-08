@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -2070,6 +2070,21 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns a list of channel chats, which can be used as a personal chat
+    /// - Returns: A list of channel chats, which can be used as a personal chat
+    public func getSuitablePersonalChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
+        let query = GetSuitablePersonalChats()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns a list of channel chats, which can be used as a personal chat
+    /// - Returns: A list of channel chats, which can be used as a personal chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getSuitablePersonalChats() async throws -> Chats {
+        let query = GetSuitablePersonalChats()
+        return try await self.execute(query: query)
+    }
+
     /// Loads more Saved Messages topics. The loaded topics will be sent through updateSavedMessagesTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
     /// - Parameter limit: The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
     /// - Returns: A 404 error if all topics have been loaded
@@ -3160,6 +3175,42 @@ public final class TdApi {
         let query = ClickChatSponsoredMessage(
             chatId: chatId,
             messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Reports a sponsored message to Telegram moderators
+    /// - Parameter chatId: Chat identifier of the sponsored message
+    /// - Parameter messageId: Identifier of the sponsored message
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    public func reportChatSponsoredMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        optionId: Data?,
+        completion: @escaping (Result<ReportChatSponsoredMessageResult, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportChatSponsoredMessage(
+            chatId: chatId,
+            messageId: messageId,
+            optionId: optionId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Reports a sponsored message to Telegram moderators
+    /// - Parameter chatId: Chat identifier of the sponsored message
+    /// - Parameter messageId: Identifier of the sponsored message
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reportChatSponsoredMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        optionId: Data?
+    ) async throws -> ReportChatSponsoredMessageResult {
+        let query = ReportChatSponsoredMessage(
+            chatId: chatId,
+            messageId: messageId,
+            optionId: optionId
         )
         return try await self.execute(query: query)
     }
@@ -4480,6 +4531,124 @@ public final class TdApi {
             chatId: chatId,
             messageId: messageId,
             schedulingState: schedulingState
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
+    /// - Parameter chatId: Target chat
+    /// - Parameter disableNotification: Pass true to disable notification for the message
+    /// - Parameter inputMessageContent: The content of the message to be sent
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replyMarkup: Markup for replying to the message; pass null if none
+    /// - Parameter replyTo: Information about the message to be replied; pass null if none
+    /// - Returns: The message after it was sent
+    public func sendBusinessMessage(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        disableNotification: Bool?,
+        inputMessageContent: InputMessageContent?,
+        protectContent: Bool?,
+        replyMarkup: ReplyMarkup?,
+        replyTo: InputMessageReplyTo?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = SendBusinessMessage(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            disableNotification: disableNotification,
+            inputMessageContent: inputMessageContent,
+            protectContent: protectContent,
+            replyMarkup: replyMarkup,
+            replyTo: replyTo
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
+    /// - Parameter chatId: Target chat
+    /// - Parameter disableNotification: Pass true to disable notification for the message
+    /// - Parameter inputMessageContent: The content of the message to be sent
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replyMarkup: Markup for replying to the message; pass null if none
+    /// - Parameter replyTo: Information about the message to be replied; pass null if none
+    /// - Returns: The message after it was sent
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendBusinessMessage(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        disableNotification: Bool?,
+        inputMessageContent: InputMessageContent?,
+        protectContent: Bool?,
+        replyMarkup: ReplyMarkup?,
+        replyTo: InputMessageReplyTo?
+    ) async throws -> BusinessMessage {
+        let query = SendBusinessMessage(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            disableNotification: disableNotification,
+            inputMessageContent: inputMessageContent,
+            protectContent: protectContent,
+            replyMarkup: replyMarkup,
+            replyTo: replyTo
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
+    /// - Parameter chatId: Target chat
+    /// - Parameter disableNotification: Pass true to disable notification for the message
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replyTo: Information about the message to be replied; pass null if none
+    /// - Returns: Sent messages
+    public func sendBusinessMessageAlbum(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        disableNotification: Bool?,
+        inputMessageContents: [InputMessageContent]?,
+        protectContent: Bool?,
+        replyTo: InputMessageReplyTo?,
+        completion: @escaping (Result<BusinessMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = SendBusinessMessageAlbum(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            disableNotification: disableNotification,
+            inputMessageContents: inputMessageContents,
+            protectContent: protectContent,
+            replyTo: replyTo
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
+    /// - Parameter chatId: Target chat
+    /// - Parameter disableNotification: Pass true to disable notification for the message
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replyTo: Information about the message to be replied; pass null if none
+    /// - Returns: Sent messages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendBusinessMessageAlbum(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        disableNotification: Bool?,
+        inputMessageContents: [InputMessageContent]?,
+        protectContent: Bool?,
+        replyTo: InputMessageReplyTo?
+    ) async throws -> BusinessMessages {
+        let query = SendBusinessMessageAlbum(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            disableNotification: disableNotification,
+            inputMessageContents: inputMessageContents,
+            protectContent: protectContent,
+            replyTo: replyTo
         )
         return try await self.execute(query: query)
     }
@@ -5913,6 +6082,30 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns information about a business connection by its identifier; for bots only
+    /// - Parameter connectionId: Identifier of the business connection to return
+    /// - Returns: Information about a business connection by its identifier
+    public func getBusinessConnection(
+        connectionId: String?,
+        completion: @escaping (Result<BusinessConnection, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBusinessConnection(
+            connectionId: connectionId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a business connection by its identifier; for bots only
+    /// - Parameter connectionId: Identifier of the business connection to return
+    /// - Returns: Information about a business connection by its identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getBusinessConnection(connectionId: String?) async throws -> BusinessConnection {
+        let query = GetBusinessConnection(
+            connectionId: connectionId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
@@ -6847,16 +7040,19 @@ public final class TdApi {
 
     /// Sends a notification about user activity in a chat
     /// - Parameter action: The action description; pass null to cancel the currently active action
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the action was performed
     public func sendChatAction(
         action: ChatAction?,
+        businessConnectionId: String?,
         chatId: Int64?,
         messageThreadId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendChatAction(
             action: action,
+            businessConnectionId: businessConnectionId,
             chatId: chatId,
             messageThreadId: messageThreadId
         )
@@ -6865,17 +7061,20 @@ public final class TdApi {
 
     /// Sends a notification about user activity in a chat
     /// - Parameter action: The action description; pass null to cancel the currently active action
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the action was performed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendChatAction(
         action: ChatAction?,
+        businessConnectionId: String?,
         chatId: Int64?,
         messageThreadId: Int64?
     ) async throws -> Ok {
         let query = SendChatAction(
             action: action,
+            businessConnectionId: businessConnectionId,
             chatId: chatId,
             messageThreadId: messageThreadId
         )
@@ -9732,7 +9931,7 @@ public final class TdApi {
     /// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
-    /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+    /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     /// - Parameter chatId: Identifier of the chat that will post the story
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
@@ -9769,7 +9968,7 @@ public final class TdApi {
     /// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
-    /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+    /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     /// - Parameter chatId: Identifier of the chat that will post the story
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
@@ -13942,7 +14141,7 @@ public final class TdApi {
 
     /// Returns a list of archived sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return; up to 100
-    /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
+    /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
     /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of archived sticker sets
     public func getArchivedStickerSets(
@@ -13961,7 +14160,7 @@ public final class TdApi {
 
     /// Returns a list of archived sticker sets
     /// - Parameter limit: The maximum number of sticker sets to return; up to 100
-    /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result
+    /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
     /// - Parameter stickerType: Type of the sticker sets to return
     /// - Returns: A list of archived sticker sets
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14267,7 +14466,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to recent stickers
+    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to recent stickers
     /// - Parameter isAttached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     /// - Parameter sticker: Sticker file to add
     public func addRecentSticker(
@@ -14282,7 +14481,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to recent stickers
+    /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to recent stickers
     /// - Parameter isAttached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14366,7 +14565,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to favorite stickers
+    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     public func addFavoriteSticker(
         sticker: InputFile?,
@@ -14378,7 +14577,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP format can be added to this list. Emoji stickers can't be added to favorite stickers
+    /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to favorite stickers
     /// - Parameter sticker: Sticker file to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15081,6 +15280,52 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Changes the birthdate of the current user
+    /// - Parameter birthdate: The new value of the current user's birthdate; pass null to remove the birthdate
+    public func setBirthdate(
+        birthdate: Birthdate?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBirthdate(
+            birthdate: birthdate
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the birthdate of the current user
+    /// - Parameter birthdate: The new value of the current user's birthdate; pass null to remove the birthdate
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBirthdate(birthdate: Birthdate?) async throws -> Ok {
+        let query = SetBirthdate(
+            birthdate: birthdate
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the personal chat of the current user
+    /// - Parameter chatId: Identifier of the new personal chat; pass 0 to remove the chat. Use getSuitablePersonalChats to get suitable chats
+    public func setPersonalChat(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetPersonalChat(
+            chatId: chatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the personal chat of the current user
+    /// - Parameter chatId: Identifier of the new personal chat; pass 0 to remove the chat. Use getSuitablePersonalChats to get suitable chats
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setPersonalChat(chatId: Int64?) async throws -> Ok {
+        let query = SetPersonalChat(
+            chatId: chatId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Changes the emoji status of the current user; for Telegram Premium users only
     /// - Parameter emojiStatus: New emoji status; pass null to switch to the default badge
     public func setEmojiStatus(
@@ -15151,7 +15396,7 @@ public final class TdApi {
     }
 
     /// Changes the business opening hours of the current user. Requires Telegram Business subscription
-    /// - Parameter openingHours: The new opening hours of the business; pass null to remove the opening hours
+    /// - Parameter openingHours: The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified
     public func setBusinessOpeningHours(
         openingHours: BusinessOpeningHours?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -15163,7 +15408,7 @@ public final class TdApi {
     }
 
     /// Changes the business opening hours of the current user. Requires Telegram Business subscription
-    /// - Parameter openingHours: The new opening hours of the business; pass null to remove the opening hours
+    /// - Parameter openingHours: The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setBusinessOpeningHours(openingHours: BusinessOpeningHours?) async throws -> Ok {
@@ -15215,6 +15460,29 @@ public final class TdApi {
     public func setBusinessAwayMessageSettings(awayMessageSettings: BusinessAwayMessageSettings?) async throws -> Ok {
         let query = SetBusinessAwayMessageSettings(
             awayMessageSettings: awayMessageSettings
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the business intro of the current user. Requires Telegram Business subscription
+    /// - Parameter intro: The new intro of the business; pass null to remove the intro
+    public func setBusinessIntro(
+        intro: InputBusinessIntro?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessIntro(
+            intro: intro
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the business intro of the current user. Requires Telegram Business subscription
+    /// - Parameter intro: The new intro of the business; pass null to remove the intro
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setBusinessIntro(intro: InputBusinessIntro?) async throws -> Ok {
+        let query = SetBusinessIntro(
+            intro: intro
         )
         return try await self.execute(query: query)
     }
@@ -17687,7 +17955,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes privacy settings for new chat creation; for Telegram Premium users only
+    /// Changes privacy settings for new chat creation; can be used only if getOption("can_set_new_chat_privacy_settings")
     /// - Parameter settings: New settings
     public func setNewChatPrivacySettings(
         settings: NewChatPrivacySettings?,
@@ -17699,7 +17967,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes privacy settings for new chat creation; for Telegram Premium users only
+    /// Changes privacy settings for new chat creation; can be used only if getOption("can_set_new_chat_privacy_settings")
     /// - Parameter settings: New settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -19178,12 +19446,11 @@ public final class TdApi {
     }
 
     /// Creates a new sticker set. Returns the newly created sticker set
-    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.//-If empty, then the name returned by getSuggestedStickerSetName will be used automatically
     /// - Parameter needsRepainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
     /// - Parameter source: Source of the sticker set; may be empty if unknown
-    /// - Parameter stickerFormat: Format of the stickers in the set
     /// - Parameter stickerType: Type of the stickers in the set
-    /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+    /// - Parameter stickers: List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
     /// - Returns: The newly created sticker set
@@ -19191,7 +19458,6 @@ public final class TdApi {
         name: String?,
         needsRepainting: Bool?,
         source: String?,
-        stickerFormat: StickerFormat?,
         stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
@@ -19202,7 +19468,6 @@ public final class TdApi {
             name: name,
             needsRepainting: needsRepainting,
             source: source,
-            stickerFormat: stickerFormat,
             stickerType: stickerType,
             stickers: stickers,
             title: title,
@@ -19212,12 +19477,11 @@ public final class TdApi {
     }
 
     /// Creates a new sticker set. Returns the newly created sticker set
-    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.//-If empty, then the name returned by getSuggestedStickerSetName will be used automatically
     /// - Parameter needsRepainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
     /// - Parameter source: Source of the sticker set; may be empty if unknown
-    /// - Parameter stickerFormat: Format of the stickers in the set
     /// - Parameter stickerType: Type of the stickers in the set
-    /// - Parameter stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+    /// - Parameter stickers: List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     /// - Parameter title: Sticker set title; 1-64 characters
     /// - Parameter userId: Sticker set owner; ignored for regular users
     /// - Returns: The newly created sticker set
@@ -19226,7 +19490,6 @@ public final class TdApi {
         name: String?,
         needsRepainting: Bool?,
         source: String?,
-        stickerFormat: StickerFormat?,
         stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
@@ -19236,7 +19499,6 @@ public final class TdApi {
             name: name,
             needsRepainting: needsRepainting,
             source: source,
-            stickerFormat: stickerFormat,
             stickerType: stickerType,
             stickers: stickers,
             title: title,
@@ -19245,10 +19507,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds a new sticker to a set; for bots only
-    /// - Parameter name: Sticker set name
+    /// Adds a new sticker to a set
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
     /// - Parameter sticker: Sticker to add to the set
-    /// - Parameter userId: Sticker set owner
+    /// - Parameter userId: Sticker set owner; ignored for regular users
     public func addStickerToSet(
         name: String?,
         sticker: InputSticker?,
@@ -19263,10 +19525,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds a new sticker to a set; for bots only
-    /// - Parameter name: Sticker set name
+    /// Adds a new sticker to a set
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
     /// - Parameter sticker: Sticker to add to the set
-    /// - Parameter userId: Sticker set owner
+    /// - Parameter userId: Sticker set owner; ignored for regular users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func addStickerToSet(
@@ -19282,17 +19544,63 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sets a sticker set thumbnail; for bots only
-    /// - Parameter name: Sticker set name
-    /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
-    /// - Parameter userId: Sticker set owner
+    /// Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
+    /// - Parameter newSticker: Sticker to add to the set
+    /// - Parameter oldSticker: Sticker to remove from the set
+    /// - Parameter userId: Sticker set owner; ignored for regular users
+    public func replaceStickerInSet(
+        name: String?,
+        newSticker: InputSticker?,
+        oldSticker: InputFile?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReplaceStickerInSet(
+            name: name,
+            newSticker: newSticker,
+            oldSticker: oldSticker,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
+    /// - Parameter newSticker: Sticker to add to the set
+    /// - Parameter oldSticker: Sticker to remove from the set
+    /// - Parameter userId: Sticker set owner; ignored for regular users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func replaceStickerInSet(
+        name: String?,
+        newSticker: InputSticker?,
+        oldSticker: InputFile?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = ReplaceStickerInSet(
+            name: name,
+            newSticker: newSticker,
+            oldSticker: oldSticker,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sets a sticker set thumbnail
+    /// - Parameter format: Format of the thumbnail; pass null if thumbnail is removed
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
+    /// - Parameter thumbnail: Thumbnail to set; pass null to remove the sticker set thumbnail
+    /// - Parameter userId: Sticker set owner; ignored for regular users
     public func setStickerSetThumbnail(
+        format: StickerFormat?,
         name: String?,
         thumbnail: InputFile?,
         userId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetStickerSetThumbnail(
+            format: format,
             name: name,
             thumbnail: thumbnail,
             userId: userId
@@ -19300,18 +19608,21 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sets a sticker set thumbnail; for bots only
-    /// - Parameter name: Sticker set name
-    /// - Parameter thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
-    /// - Parameter userId: Sticker set owner
+    /// Sets a sticker set thumbnail
+    /// - Parameter format: Format of the thumbnail; pass null if thumbnail is removed
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
+    /// - Parameter thumbnail: Thumbnail to set; pass null to remove the sticker set thumbnail
+    /// - Parameter userId: Sticker set owner; ignored for regular users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setStickerSetThumbnail(
+        format: StickerFormat?,
         name: String?,
         thumbnail: InputFile?,
         userId: Int64?
     ) async throws -> Ok {
         let query = SetStickerSetThumbnail(
+            format: format,
             name: name,
             thumbnail: thumbnail,
             userId: userId
@@ -19319,9 +19630,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sets a custom emoji sticker set thumbnail; for bots only
+    /// Sets a custom emoji sticker set thumbnail
     /// - Parameter customEmojiId: Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
-    /// - Parameter name: Sticker set name
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
     public func setCustomEmojiStickerSetThumbnail(
         customEmojiId: TdInt64?,
         name: String?,
@@ -19334,9 +19645,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sets a custom emoji sticker set thumbnail; for bots only
+    /// Sets a custom emoji sticker set thumbnail
     /// - Parameter customEmojiId: Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
-    /// - Parameter name: Sticker set name
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setCustomEmojiStickerSetThumbnail(
@@ -19350,8 +19661,8 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sets a sticker set title; for bots only
-    /// - Parameter name: Sticker set name
+    /// Sets a sticker set title
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
     /// - Parameter title: New sticker set title
     public func setStickerSetTitle(
         name: String?,
@@ -19365,8 +19676,8 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sets a sticker set title; for bots only
-    /// - Parameter name: Sticker set name
+    /// Sets a sticker set title
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
     /// - Parameter title: New sticker set title
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -19381,8 +19692,8 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Deleted a sticker set; for bots only
-    /// - Parameter name: Sticker set name
+    /// Completely deletes a sticker set
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
     public func deleteStickerSet(
         name: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -19393,8 +19704,8 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Deleted a sticker set; for bots only
-    /// - Parameter name: Sticker set name
+    /// Completely deletes a sticker set
+    /// - Parameter name: Sticker set name. The sticker set must be owned by the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func deleteStickerSet(name: String?) async throws -> Ok {
@@ -19404,7 +19715,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+    /// Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
     /// - Parameter position: New position of the sticker in the set, 0-based
     /// - Parameter sticker: Sticker
     public func setStickerPositionInSet(
@@ -19419,7 +19730,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+    /// Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
     /// - Parameter position: New position of the sticker in the set, 0-based
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19435,8 +19746,8 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
-    /// - Parameter sticker: Sticker
+    /// Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user
+    /// - Parameter sticker: Sticker to remove from the set
     public func removeStickerFromSet(
         sticker: InputFile?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -19447,8 +19758,8 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
-    /// - Parameter sticker: Sticker
+    /// Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user
+    /// - Parameter sticker: Sticker to remove from the set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func removeStickerFromSet(sticker: InputFile?) async throws -> Ok {
@@ -19458,7 +19769,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
     /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
     /// - Parameter sticker: Sticker
     public func setStickerEmojis(
@@ -19473,7 +19784,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
     /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19489,7 +19800,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
     /// - Parameter keywords: List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     /// - Parameter sticker: Sticker
     public func setStickerKeywords(
@@ -19504,7 +19815,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    /// Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
     /// - Parameter keywords: List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19520,7 +19831,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+    /// Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
     /// - Parameter maskPosition: Position where the mask is placed; pass null to remove mask position
     /// - Parameter sticker: Sticker
     public func setStickerMaskPosition(
@@ -19535,7 +19846,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+    /// Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
     /// - Parameter maskPosition: Position where the mask is placed; pass null to remove mask position
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19547,6 +19858,38 @@ public final class TdApi {
         let query = SetStickerMaskPosition(
             maskPosition: maskPosition,
             sticker: sticker
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns sticker sets owned by the current user
+    /// - Parameter limit: The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
+    /// - Returns: Sticker sets owned by the current user
+    public func getOwnedStickerSets(
+        limit: Int?,
+        offsetStickerSetId: TdInt64?,
+        completion: @escaping (Result<StickerSets, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOwnedStickerSets(
+            limit: limit,
+            offsetStickerSetId: offsetStickerSetId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns sticker sets owned by the current user
+    /// - Parameter limit: The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offsetStickerSetId: Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
+    /// - Returns: Sticker sets owned by the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getOwnedStickerSets(
+        limit: Int?,
+        offsetStickerSetId: TdInt64?
+    ) async throws -> StickerSets {
+        let query = GetOwnedStickerSets(
+            limit: limit,
+            offsetStickerSetId: offsetStickerSetId
         )
         return try await self.execute(query: query)
     }
@@ -19953,6 +20296,30 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns information about features, available to Business users
+    /// - Parameter source: Source of the request; pass null if the method is called from settings or some non-standard source
+    /// - Returns: Information about features, available to Business users
+    public func getBusinessFeatures(
+        source: BusinessFeature?,
+        completion: @escaping (Result<BusinessFeatures, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBusinessFeatures(
+            source: source
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about features, available to Business users
+    /// - Parameter source: Source of the request; pass null if the method is called from settings or some non-standard source
+    /// - Returns: Information about features, available to Business users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getBusinessFeatures(source: BusinessFeature?) async throws -> BusinessFeatures {
+        let query = GetBusinessFeatures(
+            source: source
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Accepts Telegram terms of services
     /// - Parameter termsOfServiceId: Terms of service identifier
     public func acceptTermsOfService(
@@ -20186,6 +20553,30 @@ public final class TdApi {
         let query = GetPhoneNumberInfoSync(
             languageCode: languageCode,
             phoneNumberPrefix: phoneNumberPrefix
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns information about a given collectible item that was purchased at https://fragment.com
+    /// - Parameter type: Type of the collectible item. The item must be used by a user and must be visible to the current user
+    /// - Returns: Information about a given collectible item that was purchased at https://fragment
+    public func getCollectibleItemInfo(
+        type: CollectibleItemType?,
+        completion: @escaping (Result<CollectibleItemInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetCollectibleItemInfo(
+            type: type
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about a given collectible item that was purchased at https://fragment.com
+    /// - Parameter type: Type of the collectible item. The item must be used by a user and must be visible to the current user
+    /// - Returns: Information about a given collectible item that was purchased at https://fragment
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getCollectibleItemInfo(type: CollectibleItemType?) async throws -> CollectibleItemInfo {
+        let query = GetCollectibleItemInfo(
+            type: type
         )
         return try await self.execute(query: query)
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -77,7 +77,7 @@ public struct MessageExtendedMediaPreview: Codable, Equatable, Hashable {
     /// Media caption
     public let caption: FormattedText
 
-    /// Media duration; 0 if unknown
+    /// Media duration, in seconds; 0 if unknown
     public let duration: Int
 
     /// Media height; 0 if unknown

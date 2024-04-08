@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -1846,16 +1846,16 @@ public struct MessageUsersShared: Codable, Equatable, Hashable {
     /// Identifier of the keyboard button with the request
     public let buttonId: Int
 
-    /// Identifier of the shared users
-    public let userIds: [Int64]
+    /// The shared users
+    public let users: [SharedUser]
 
 
     public init(
         buttonId: Int,
-        userIds: [Int64]
+        users: [SharedUser]
     ) {
         self.buttonId = buttonId
-        self.userIds = userIds
+        self.users = users
     }
 }
 
@@ -1865,16 +1865,16 @@ public struct MessageChatShared: Codable, Equatable, Hashable {
     /// Identifier of the keyboard button with the request
     public let buttonId: Int
 
-    /// Identifier of the shared chat
-    public let chatId: Int64
+    /// The shared chat
+    public let chat: SharedChat
 
 
     public init(
         buttonId: Int,
-        chatId: Int64
+        chat: SharedChat
     ) {
         self.buttonId = buttonId
-        self.chatId = chatId
+        self.chat = chat
     }
 }
 

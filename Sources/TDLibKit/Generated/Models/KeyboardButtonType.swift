@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -123,6 +123,15 @@ public struct KeyboardButtonTypeRequestUsers: Codable, Equatable, Hashable, Iden
     /// The maximum number of users to share
     public let maxQuantity: Int
 
+    /// Pass true to request name of the users; bots only
+    public let requestName: Bool
+
+    /// Pass true to request photo of the users; bots only
+    public let requestPhoto: Bool
+
+    /// Pass true to request username of the users; bots only
+    public let requestUsername: Bool
+
     /// True, if the shared users must or must not be bots
     public let restrictUserIsBot: Bool
 
@@ -139,6 +148,9 @@ public struct KeyboardButtonTypeRequestUsers: Codable, Equatable, Hashable, Iden
     public init(
         id: Int,
         maxQuantity: Int,
+        requestName: Bool,
+        requestPhoto: Bool,
+        requestUsername: Bool,
         restrictUserIsBot: Bool,
         restrictUserIsPremium: Bool,
         userIsBot: Bool,
@@ -146,6 +158,9 @@ public struct KeyboardButtonTypeRequestUsers: Codable, Equatable, Hashable, Iden
     ) {
         self.id = id
         self.maxQuantity = maxQuantity
+        self.requestName = requestName
+        self.requestPhoto = requestPhoto
+        self.requestUsername = requestUsername
         self.restrictUserIsBot = restrictUserIsBot
         self.restrictUserIsPremium = restrictUserIsPremium
         self.userIsBot = userIsBot
@@ -177,6 +192,15 @@ public struct KeyboardButtonTypeRequestChat: Codable, Equatable, Hashable, Ident
     /// Unique button identifier
     public let id: Int
 
+    /// Pass true to request photo of the chat; bots only
+    public let requestPhoto: Bool
+
+    /// Pass true to request title of the chat; bots only
+    public let requestTitle: Bool
+
+    /// Pass true to request username of the chat; bots only
+    public let requestUsername: Bool
+
     /// True, if the chat must or must not have a username
     public let restrictChatHasUsername: Bool
 
@@ -195,6 +219,9 @@ public struct KeyboardButtonTypeRequestChat: Codable, Equatable, Hashable, Ident
         chatIsCreated: Bool,
         chatIsForum: Bool,
         id: Int,
+        requestPhoto: Bool,
+        requestTitle: Bool,
+        requestUsername: Bool,
         restrictChatHasUsername: Bool,
         restrictChatIsForum: Bool,
         userAdministratorRights: ChatAdministratorRights?
@@ -206,6 +233,9 @@ public struct KeyboardButtonTypeRequestChat: Codable, Equatable, Hashable, Ident
         self.chatIsCreated = chatIsCreated
         self.chatIsForum = chatIsForum
         self.id = id
+        self.requestPhoto = requestPhoto
+        self.requestTitle = requestTitle
+        self.requestUsername = requestUsername
         self.restrictChatHasUsername = restrictChatHasUsername
         self.restrictChatIsForum = restrictChatIsForum
         self.userAdministratorRights = userAdministratorRights

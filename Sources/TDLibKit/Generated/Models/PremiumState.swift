@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -16,6 +16,9 @@ public struct PremiumState: Codable, Equatable, Hashable {
     /// The list of available promotion animations for Premium features
     public let animations: [PremiumFeaturePromotionAnimation]
 
+    /// The list of available promotion animations for Business features
+    public let businessAnimations: [BusinessFeaturePromotionAnimation]
+
     /// The list of available options for buying Telegram Premium
     public let paymentOptions: [PremiumStatePaymentOption]
 
@@ -25,10 +28,12 @@ public struct PremiumState: Codable, Equatable, Hashable {
 
     public init(
         animations: [PremiumFeaturePromotionAnimation],
+        businessAnimations: [BusinessFeaturePromotionAnimation],
         paymentOptions: [PremiumStatePaymentOption],
         state: FormattedText
     ) {
         self.animations = animations
+        self.businessAnimations = businessAnimations
         self.paymentOptions = paymentOptions
         self.state = state
     }

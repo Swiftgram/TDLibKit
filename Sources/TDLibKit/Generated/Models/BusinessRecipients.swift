@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct BusinessRecipients: Codable, Equatable, Hashable {
 
     /// If true, then all private chats except the selected are chosen. Otherwise, only the selected chats are chosen
     public let excludeSelected: Bool
+
+    /// Identifiers of private chats that are always excluded; for businessConnectedBot only
+    public let excludedChatIds: [Int64]
 
     /// True, if all private chats with contacts are selected
     public let selectContacts: Bool
@@ -35,6 +38,7 @@ public struct BusinessRecipients: Codable, Equatable, Hashable {
     public init(
         chatIds: [Int64],
         excludeSelected: Bool,
+        excludedChatIds: [Int64],
         selectContacts: Bool,
         selectExistingChats: Bool,
         selectNewChats: Bool,
@@ -42,6 +46,7 @@ public struct BusinessRecipients: Codable, Equatable, Hashable {
     ) {
         self.chatIds = chatIds
         self.excludeSelected = excludeSelected
+        self.excludedChatIds = excludedChatIds
         self.selectContacts = selectContacts
         self.selectExistingChats = selectExistingChats
         self.selectNewChats = selectNewChats

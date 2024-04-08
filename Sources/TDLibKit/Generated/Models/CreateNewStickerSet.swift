@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Creates a new sticker set. Returns the newly created sticker set
 public struct CreateNewStickerSet: Codable, Equatable, Hashable {
 
-    /// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+    /// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.//-If empty, then the name returned by getSuggestedStickerSetName will be used automatically
     public let name: String?
 
     /// Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
@@ -22,13 +22,10 @@ public struct CreateNewStickerSet: Codable, Equatable, Hashable {
     /// Source of the sticker set; may be empty if unknown
     public let source: String?
 
-    /// Format of the stickers in the set
-    public let stickerFormat: StickerFormat?
-
     /// Type of the stickers in the set
     public let stickerType: StickerType?
 
-    /// List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+    /// List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     public let stickers: [InputSticker]?
 
     /// Sticker set title; 1-64 characters
@@ -42,7 +39,6 @@ public struct CreateNewStickerSet: Codable, Equatable, Hashable {
         name: String?,
         needsRepainting: Bool?,
         source: String?,
-        stickerFormat: StickerFormat?,
         stickerType: StickerType?,
         stickers: [InputSticker]?,
         title: String?,
@@ -51,7 +47,6 @@ public struct CreateNewStickerSet: Codable, Equatable, Hashable {
         self.name = name
         self.needsRepainting = needsRepainting
         self.source = source
-        self.stickerFormat = stickerFormat
         self.stickerType = stickerType
         self.stickers = stickers
         self.title = title

@@ -3,31 +3,36 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
 
 
-/// Sets a sticker set thumbnail; for bots only
+/// Sets a sticker set thumbnail
 public struct SetStickerSetThumbnail: Codable, Equatable, Hashable {
 
-    /// Sticker set name
+    /// Format of the thumbnail; pass null if thumbnail is removed
+    public let format: StickerFormat?
+
+    /// Sticker set name. The sticker set must be owned by the current user
     public let name: String?
 
-    /// Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
+    /// Thumbnail to set; pass null to remove the sticker set thumbnail
     public let thumbnail: InputFile?
 
-    /// Sticker set owner
+    /// Sticker set owner; ignored for regular users
     public let userId: Int64?
 
 
     public init(
+        format: StickerFormat?,
         name: String?,
         thumbnail: InputFile?,
         userId: Int64?
     ) {
+        self.format = format
         self.name = name
         self.thumbnail = thumbnail
         self.userId = userId

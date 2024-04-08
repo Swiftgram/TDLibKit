@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
 
 
-/// Adds a new sticker to a set; for bots only
+/// Adds a new sticker to a set
 public struct AddStickerToSet: Codable, Equatable, Hashable {
 
-    /// Sticker set name
+    /// Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
     public let name: String?
 
     /// Sticker to add to the set
     public let sticker: InputSticker?
 
-    /// Sticker set owner
+    /// Sticker set owner; ignored for regular users
     public let userId: Int64?
 
 

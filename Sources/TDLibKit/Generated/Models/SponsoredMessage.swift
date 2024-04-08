@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
 
     /// If non-empty, text for the message action button
     public let buttonText: String
+
+    /// True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage
+    public let canBeReported: Bool
 
     /// Content of the message. Currently, can be only of the type messageText
     public let content: MessageContent
@@ -35,6 +38,7 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
     public init(
         additionalInfo: String,
         buttonText: String,
+        canBeReported: Bool,
         content: MessageContent,
         isRecommended: Bool,
         messageId: Int64,
@@ -42,6 +46,7 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
     ) {
         self.additionalInfo = additionalInfo
         self.buttonText = buttonText
+        self.canBeReported = canBeReported
         self.content = content
         self.isRecommended = isRecommended
         self.messageId = messageId

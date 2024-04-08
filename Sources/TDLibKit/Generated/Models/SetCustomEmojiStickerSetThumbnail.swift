@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
 
 
-/// Sets a custom emoji sticker set thumbnail; for bots only
+/// Sets a custom emoji sticker set thumbnail
 public struct SetCustomEmojiStickerSetThumbnail: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
     public let customEmojiId: TdInt64?
 
-    /// Sticker set name
+    /// Sticker set name. The sticker set must be owned by the current user
     public let name: String?
 
 

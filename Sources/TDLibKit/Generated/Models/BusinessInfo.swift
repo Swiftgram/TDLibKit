@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct BusinessInfo: Codable, Equatable, Hashable {
     /// The greeting message; may be null if none or the Business account is not of the current user
     public let greetingMessageSettings: BusinessGreetingMessageSettings?
 
+    /// Information about intro of the business; may be null if none
+    public let intro: BusinessIntro?
+
     /// Location of the business; may be null if none
     public let location: BusinessLocation?
 
@@ -29,11 +32,13 @@ public struct BusinessInfo: Codable, Equatable, Hashable {
     public init(
         awayMessageSettings: BusinessAwayMessageSettings?,
         greetingMessageSettings: BusinessGreetingMessageSettings?,
+        intro: BusinessIntro?,
         location: BusinessLocation?,
         openingHours: BusinessOpeningHours?
     ) {
         self.awayMessageSettings = awayMessageSettings
         self.greetingMessageSettings = greetingMessageSettings
+        self.intro = intro
         self.location = location
         self.openingHours = openingHours
     }

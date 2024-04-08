@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -25,13 +25,13 @@ public indirect enum ThumbnailFormat: Codable, Equatable, Hashable {
     /// The thumbnail is in PNG format. It will be used only for background patterns
     case thumbnailFormatPng
 
-    /// The thumbnail is in TGS format. It will be used only for TGS sticker sets
+    /// The thumbnail is in TGS format. It will be used only for sticker sets
     case thumbnailFormatTgs
 
-    /// The thumbnail is in WEBM format. It will be used only for WEBM sticker sets
+    /// The thumbnail is in WEBM format. It will be used only for sticker sets
     case thumbnailFormatWebm
 
-    /// The thumbnail is in WEBP format. It will be used only for some stickers
+    /// The thumbnail is in WEBP format. It will be used only for some stickers and sticker sets
     case thumbnailFormatWebp
 
 

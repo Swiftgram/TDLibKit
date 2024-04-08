@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum CheckChatUsernameResult: Codable, Equatable, Hashable {
     /// The username is occupied
     case checkChatUsernameResultUsernameOccupied
 
-    /// The username can be purchased at fragment.com
+    /// The username can be purchased at https://fragment.com. Information about the username can be received using getCollectibleItemInfo
     case checkChatUsernameResultUsernamePurchasable
 
     /// The user has too many chats with username, one of them must be made private first

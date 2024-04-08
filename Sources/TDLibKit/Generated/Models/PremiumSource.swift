@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public indirect enum PremiumSource: Codable, Equatable, Hashable {
     /// A user tried to use a Premium feature
     case premiumSourceFeature(PremiumSourceFeature)
 
+    /// A user tried to use a Business feature
+    case premiumSourceBusinessFeature(PremiumSourceBusinessFeature)
+
     /// A user tried to use a Premium story feature
     case premiumSourceStoryFeature(PremiumSourceStoryFeature)
 
@@ -32,6 +35,7 @@ public indirect enum PremiumSource: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case premiumSourceLimitExceeded
         case premiumSourceFeature
+        case premiumSourceBusinessFeature
         case premiumSourceStoryFeature
         case premiumSourceLink
         case premiumSourceSettings
@@ -47,6 +51,9 @@ public indirect enum PremiumSource: Codable, Equatable, Hashable {
         case .premiumSourceFeature:
             let value = try PremiumSourceFeature(from: decoder)
             self = .premiumSourceFeature(value)
+        case .premiumSourceBusinessFeature:
+            let value = try PremiumSourceBusinessFeature(from: decoder)
+            self = .premiumSourceBusinessFeature(value)
         case .premiumSourceStoryFeature:
             let value = try PremiumSourceStoryFeature(from: decoder)
             self = .premiumSourceStoryFeature(value)
@@ -66,6 +73,9 @@ public indirect enum PremiumSource: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .premiumSourceFeature(let value):
             try container.encode(Kind.premiumSourceFeature, forKey: .type)
+            try value.encode(to: encoder)
+        case .premiumSourceBusinessFeature(let value):
+            try container.encode(Kind.premiumSourceBusinessFeature, forKey: .type)
             try value.encode(to: encoder)
         case .premiumSourceStoryFeature(let value):
             try container.encode(Kind.premiumSourceStoryFeature, forKey: .type)
@@ -99,6 +109,18 @@ public struct PremiumSourceFeature: Codable, Equatable, Hashable {
 
 
     public init(feature: PremiumFeature) {
+        self.feature = feature
+    }
+}
+
+/// A user tried to use a Business feature
+public struct PremiumSourceBusinessFeature: Codable, Equatable, Hashable {
+
+    /// The used feature; pass null if none specific feature was used
+    public let feature: BusinessFeature?
+
+
+    public init(feature: BusinessFeature?) {
         self.feature = feature
     }
 }

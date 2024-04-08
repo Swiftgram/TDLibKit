@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// A short user bio; may be null for bots
     public let bio: FormattedText?
+
+    /// Birthdate of the user; may be null if unknown
+    public let birthdate: Birthdate?
 
     /// Block list to which the user is added; may be null if none
     public let blockList: BlockList?
@@ -46,6 +49,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     public let needPhoneNumberPrivacyException: Bool
 
+    /// Identifier of the personal chat of the user; 0 if none
+    public let personalChatId: Int64
+
     /// User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.//-If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public let personalPhoto: ChatPhoto?
 
@@ -67,6 +73,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     public init(
         bio: FormattedText?,
+        birthdate: Birthdate?,
         blockList: BlockList?,
         botInfo: BotInfo?,
         businessInfo: BusinessInfo?,
@@ -77,6 +84,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         hasPrivateForwards: Bool,
         hasRestrictedVoiceAndVideoNoteMessages: Bool,
         needPhoneNumberPrivacyException: Bool,
+        personalChatId: Int64,
         personalPhoto: ChatPhoto?,
         photo: ChatPhoto?,
         premiumGiftOptions: [PremiumPaymentOption],
@@ -85,6 +93,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         supportsVideoCalls: Bool
     ) {
         self.bio = bio
+        self.birthdate = birthdate
         self.blockList = blockList
         self.botInfo = botInfo
         self.businessInfo = businessInfo
@@ -95,6 +104,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.hasPrivateForwards = hasPrivateForwards
         self.hasRestrictedVoiceAndVideoNoteMessages = hasRestrictedVoiceAndVideoNoteMessages
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
+        self.personalChatId = personalChatId
         self.personalPhoto = personalPhoto
         self.photo = photo
         self.premiumGiftOptions = premiumGiftOptions

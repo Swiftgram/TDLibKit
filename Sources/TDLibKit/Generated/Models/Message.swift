@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -91,6 +91,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
     public let isChannelPost: Bool
 
+    /// True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message
+    public let isFromOffline: Bool
+
     /// True, if the message is outgoing
     public let isOutgoing: Bool
 
@@ -130,6 +133,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
     public let senderBoostCount: Int
 
+    /// If non-zero, the user identifier of the business bot that sent this message
+    public let senderBusinessBotUserId: Int64
+
     /// Identifier of the sender of the message
     public let senderId: MessageSender
 
@@ -139,7 +145,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Information about unread reactions added to the message
     public let unreadReactions: [UnreadReaction]
 
-    /// If non-zero, the user identifier of the bot through which this message was sent
+    /// If non-zero, the user identifier of the inline bot through which this message was sent
     public let viaBotUserId: Int64
 
 
@@ -170,6 +176,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         importInfo: MessageImportInfo?,
         interactionInfo: MessageInteractionInfo?,
         isChannelPost: Bool,
+        isFromOffline: Bool,
         isOutgoing: Bool,
         isPinned: Bool,
         isTopicMessage: Bool,
@@ -183,6 +190,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         selfDestructIn: Double,
         selfDestructType: MessageSelfDestructType?,
         senderBoostCount: Int,
+        senderBusinessBotUserId: Int64,
         senderId: MessageSender,
         sendingState: MessageSendingState?,
         unreadReactions: [UnreadReaction],
@@ -214,6 +222,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.importInfo = importInfo
         self.interactionInfo = interactionInfo
         self.isChannelPost = isChannelPost
+        self.isFromOffline = isFromOffline
         self.isOutgoing = isOutgoing
         self.isPinned = isPinned
         self.isTopicMessage = isTopicMessage
@@ -227,6 +236,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.selfDestructIn = selfDestructIn
         self.selfDestructType = selfDestructType
         self.senderBoostCount = senderBoostCount
+        self.senderBusinessBotUserId = senderBusinessBotUserId
         self.senderId = senderId
         self.sendingState = sendingState
         self.unreadReactions = unreadReactions

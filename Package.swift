@@ -5,8 +5,6 @@
 import PackageDescription
 
 
-var swiftSettings: [SwiftSetting] = []
-
 
 let package = Package(
     name: "TDLibKit",
@@ -23,13 +21,12 @@ let package = Package(
             targets: ["TDLibKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.26-586bc784")),
+        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.27-d7203eb7")),
     ],
     targets: [
         .target(
             name: "TDLibKit",
-            dependencies: ["TDLibFramework"],
-            swiftSettings: swiftSettings
+            dependencies: ["TDLibFramework"]
         ),
         .testTarget(
             name: "TDLibKitTests",

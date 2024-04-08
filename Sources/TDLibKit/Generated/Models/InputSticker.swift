@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct InputSticker: Codable, Equatable, Hashable {
 
     /// String with 1-20 emoji corresponding to the sticker
     public let emojis: String
+
+    /// Format of the sticker
+    public let format: StickerFormat
 
     /// List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     public let keywords: [String]
@@ -28,11 +31,13 @@ public struct InputSticker: Codable, Equatable, Hashable {
 
     public init(
         emojis: String,
+        format: StickerFormat,
         keywords: [String],
         maskPosition: MaskPosition?,
         sticker: InputFile
     ) {
         self.emojis = emojis
+        self.format = format
         self.keywords = keywords
         self.maskPosition = maskPosition
         self.sticker = sticker

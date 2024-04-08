@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.26-586bc784
-//  https://github.com/tdlib/td/tree/586bc784
+//  Based on TDLib 1.8.27-d7203eb7
+//  https://github.com/tdlib/td/tree/d7203eb7
 //
 
 import Foundation
@@ -367,11 +367,26 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of suggested to the user actions has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
+    /// The list of contacts that had birthdays recently or will have birthday soon has changed
+    case updateContactCloseBirthdays(UpdateContactCloseBirthdays)
+
     /// Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
     case updateAddChatMembersPrivacyForbidden(UpdateAddChatMembersPrivacyForbidden)
 
     /// Autosave settings for some type of chats were updated
     case updateAutosaveSettings(UpdateAutosaveSettings)
+
+    /// A business connection has changed; for bots only
+    case updateBusinessConnection(UpdateBusinessConnection)
+
+    /// A new message was added to a business account; for bots only
+    case updateNewBusinessMessage(UpdateNewBusinessMessage)
+
+    /// A message in a business account was edited; for bots only
+    case updateBusinessMessageEdited(UpdateBusinessMessageEdited)
+
+    /// Messages in a business account were deleted; for bots only
+    case updateBusinessMessagesDeleted(UpdateBusinessMessagesDeleted)
 
     /// A new incoming inline query; for bots only
     case updateNewInlineQuery(UpdateNewInlineQuery)
@@ -538,8 +553,13 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
         case updateSuggestedActions
+        case updateContactCloseBirthdays
         case updateAddChatMembersPrivacyForbidden
         case updateAutosaveSettings
+        case updateBusinessConnection
+        case updateNewBusinessMessage
+        case updateBusinessMessageEdited
+        case updateBusinessMessagesDeleted
         case updateNewInlineQuery
         case updateNewChosenInlineResult
         case updateNewCallbackQuery
@@ -915,12 +935,27 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSuggestedActions:
             let value = try UpdateSuggestedActions(from: decoder)
             self = .updateSuggestedActions(value)
+        case .updateContactCloseBirthdays:
+            let value = try UpdateContactCloseBirthdays(from: decoder)
+            self = .updateContactCloseBirthdays(value)
         case .updateAddChatMembersPrivacyForbidden:
             let value = try UpdateAddChatMembersPrivacyForbidden(from: decoder)
             self = .updateAddChatMembersPrivacyForbidden(value)
         case .updateAutosaveSettings:
             let value = try UpdateAutosaveSettings(from: decoder)
             self = .updateAutosaveSettings(value)
+        case .updateBusinessConnection:
+            let value = try UpdateBusinessConnection(from: decoder)
+            self = .updateBusinessConnection(value)
+        case .updateNewBusinessMessage:
+            let value = try UpdateNewBusinessMessage(from: decoder)
+            self = .updateNewBusinessMessage(value)
+        case .updateBusinessMessageEdited:
+            let value = try UpdateBusinessMessageEdited(from: decoder)
+            self = .updateBusinessMessageEdited(value)
+        case .updateBusinessMessagesDeleted:
+            let value = try UpdateBusinessMessagesDeleted(from: decoder)
+            self = .updateBusinessMessagesDeleted(value)
         case .updateNewInlineQuery:
             let value = try UpdateNewInlineQuery(from: decoder)
             self = .updateNewInlineQuery(value)
@@ -1326,11 +1361,26 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSuggestedActions(let value):
             try container.encode(Kind.updateSuggestedActions, forKey: .type)
             try value.encode(to: encoder)
+        case .updateContactCloseBirthdays(let value):
+            try container.encode(Kind.updateContactCloseBirthdays, forKey: .type)
+            try value.encode(to: encoder)
         case .updateAddChatMembersPrivacyForbidden(let value):
             try container.encode(Kind.updateAddChatMembersPrivacyForbidden, forKey: .type)
             try value.encode(to: encoder)
         case .updateAutosaveSettings(let value):
             try container.encode(Kind.updateAutosaveSettings, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateBusinessConnection(let value):
+            try container.encode(Kind.updateBusinessConnection, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewBusinessMessage(let value):
+            try container.encode(Kind.updateNewBusinessMessage, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateBusinessMessageEdited(let value):
+            try container.encode(Kind.updateBusinessMessageEdited, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateBusinessMessagesDeleted(let value):
+            try container.encode(Kind.updateBusinessMessagesDeleted, forKey: .type)
             try value.encode(to: encoder)
         case .updateNewInlineQuery(let value):
             try container.encode(Kind.updateNewInlineQuery, forKey: .type)
@@ -3507,7 +3557,7 @@ public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
     /// Number of left speech recognition attempts this week
     public let leftCount: Int
 
-    /// The maximum allowed duration of media for speech recognition without Telegram Premium subscription
+    /// The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
     public let maxMediaDuration: Int
 
     /// Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
@@ -3604,6 +3654,18 @@ public struct UpdateSuggestedActions: Codable, Equatable, Hashable {
     }
 }
 
+/// The list of contacts that had birthdays recently or will have birthday soon has changed
+public struct UpdateContactCloseBirthdays: Codable, Equatable, Hashable {
+
+    /// List of contact users with close birthday
+    public let closeBirthdayUsers: [CloseBirthdayUser]
+
+
+    public init(closeBirthdayUsers: [CloseBirthdayUser]) {
+        self.closeBirthdayUsers = closeBirthdayUsers
+    }
+}
+
 /// Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
 public struct UpdateAddChatMembersPrivacyForbidden: Codable, Equatable, Hashable {
 
@@ -3639,6 +3701,80 @@ public struct UpdateAutosaveSettings: Codable, Equatable, Hashable {
     ) {
         self.scope = scope
         self.settings = settings
+    }
+}
+
+/// A business connection has changed; for bots only
+public struct UpdateBusinessConnection: Codable, Equatable, Hashable {
+
+    /// New data about the connection
+    public let connection: BusinessConnection
+
+
+    public init(connection: BusinessConnection) {
+        self.connection = connection
+    }
+}
+
+/// A new message was added to a business account; for bots only
+public struct UpdateNewBusinessMessage: Codable, Equatable, Hashable {
+
+    /// Unique identifier of the business connection
+    public let connectionId: String
+
+    /// The new message
+    public let message: BusinessMessage
+
+
+    public init(
+        connectionId: String,
+        message: BusinessMessage
+    ) {
+        self.connectionId = connectionId
+        self.message = message
+    }
+}
+
+/// A message in a business account was edited; for bots only
+public struct UpdateBusinessMessageEdited: Codable, Equatable, Hashable {
+
+    /// Unique identifier of the business connection
+    public let connectionId: String
+
+    /// The edited message
+    public let message: BusinessMessage
+
+
+    public init(
+        connectionId: String,
+        message: BusinessMessage
+    ) {
+        self.connectionId = connectionId
+        self.message = message
+    }
+}
+
+/// Messages in a business account were deleted; for bots only
+public struct UpdateBusinessMessagesDeleted: Codable, Equatable, Hashable {
+
+    /// Identifier of a chat in the business account in which messages were deleted
+    public let chatId: Int64
+
+    /// Unique identifier of the business connection
+    public let connectionId: String
+
+    /// Unique message identifiers of the deleted messages
+    public let messageIds: [Int64]
+
+
+    public init(
+        chatId: Int64,
+        connectionId: String,
+        messageIds: [Int64]
+    ) {
+        self.chatId = chatId
+        self.connectionId = connectionId
+        self.messageIds = messageIds
     }
 }
 
