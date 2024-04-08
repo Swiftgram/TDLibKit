@@ -11,6 +11,7 @@ import Foundation
 
 
 /// Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
+/// This Swift enum is recursive.
 public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user

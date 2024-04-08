@@ -11,6 +11,7 @@ import Foundation
 
 
 /// The content of a message to send
+/// This Swift enum is recursive.
 public indirect enum InputMessageContent: Codable, Equatable, Hashable {
 
     /// A text message

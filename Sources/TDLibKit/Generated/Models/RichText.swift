@@ -11,6 +11,7 @@ import Foundation
 
 
 /// Describes a text object inside an instant-view web page
+/// This Swift enum is recursive.
 public indirect enum RichText: Codable, Equatable, Hashable {
 
     /// A plain text

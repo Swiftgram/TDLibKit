@@ -11,6 +11,7 @@ import Foundation
 
 
 /// Describes a block of an instant view web page
+/// This Swift enum is recursive.
 public indirect enum PageBlock: Codable, Equatable, Hashable {
 
     /// The title of a page

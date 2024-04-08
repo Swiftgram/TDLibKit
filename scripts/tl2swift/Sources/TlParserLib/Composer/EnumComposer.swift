@@ -26,16 +26,21 @@ final class EnumComposer: Composer {
     // MARK: - Override
     
     override public func composeUtilitySourceCode() throws -> String {
-        let indirect = isIndirect(enumInfo.enumType) ? "indirect " : ""
+        let recursive = isRecursive(enumInfo.enumType)
         let cases = composeCaseItems(enumInfo.items)
         let kinds = composeKindItems(enumInfo.items)
         let decoder = composeDecoder(enumInfo.items)
         let encoder = composeEncoder(enumInfo.items)
         let structs = try composeAssociatedStructs()
         
-        return ""
-            .addLine("/// \(enumInfo.description)")
-            .addLine("public \(indirect)enum \(enumInfo.enumType): Codable, Equatable, Hashable {")
+        var composedEnum = ""
+        composedEnum = composedEnum.addLine("/// \(enumInfo.description)")
+        if recursive {
+            composedEnum = composedEnum.addLine("/// This Swift enum is recursive.")
+        }
+
+        return composedEnum
+            .addLine("public indirect enum \(enumInfo.enumType): Codable, Equatable, Hashable {")
             .addBlankLine()
             .append(cases.indent())
             .addBlankLine()
@@ -139,8 +144,7 @@ final class EnumComposer: Composer {
         return result
     }
     
-    private func isIndirect(_ name: String) -> Bool {
-        return true // Significantly reduces Enum sizes since we're hitting StackSize limits. https://github.com/Swiftgram/TDLibKit/issues/33
+    private func isRecursive(_ name: String) -> Bool {
         // TODO: check enum recursion
         let indirectEnums = ["RichText", "PageBlock", "InternalLinkType", "InputMessageContent"]
         return indirectEnums.contains(name)
