@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a vector path command
-public enum VectorPathCommand: Codable, Equatable, Hashable {
+public indirect enum VectorPathCommand: Codable, Equatable, Hashable {
 
     /// A straight line to a given point
     case vectorPathCommandLine(VectorPathCommandLine)

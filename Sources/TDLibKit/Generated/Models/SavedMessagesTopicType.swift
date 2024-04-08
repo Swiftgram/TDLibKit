@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a Saved Messages topic
-public enum SavedMessagesTopicType: Codable, Equatable, Hashable {
+public indirect enum SavedMessagesTopicType: Codable, Equatable, Hashable {
 
     /// Topic containing messages sent by the current user of forwarded from an unknown chat
     case savedMessagesTopicTypeMyNotes

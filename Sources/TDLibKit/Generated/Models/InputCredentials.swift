@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the payment method chosen by the user
-public enum InputCredentials: Codable, Equatable, Hashable {
+public indirect enum InputCredentials: Codable, Equatable, Hashable {
 
     /// Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
     case inputCredentialsSaved(InputCredentialsSaved)

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the message or the story to be replied
-public enum InputMessageReplyTo: Codable, Equatable, Hashable {
+public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
 
     /// Describes a message to be replied
     case inputMessageReplyToMessage(InputMessageReplyToMessage)

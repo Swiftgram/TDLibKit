@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a source from which the Premium features screen is opened
-public enum PremiumSource: Codable, Equatable, Hashable {
+public indirect enum PremiumSource: Codable, Equatable, Hashable {
 
     /// A limit was exceeded
     case premiumSourceLimitExceeded(PremiumSourceLimitExceeded)

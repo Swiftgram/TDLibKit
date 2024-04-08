@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains a detailed statistics about a chat
-public enum ChatStatistics: Codable, Equatable, Hashable {
+public indirect enum ChatStatistics: Codable, Equatable, Hashable {
 
     /// A detailed statistics about a supergroup chat
     case chatStatisticsSupergroup(ChatStatisticsSupergroup)

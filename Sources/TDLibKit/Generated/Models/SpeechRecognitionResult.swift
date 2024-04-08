@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes result of speech recognition in a voice note
-public enum SpeechRecognitionResult: Codable, Equatable, Hashable {
+public indirect enum SpeechRecognitionResult: Codable, Equatable, Hashable {
 
     /// The speech recognition is ongoing
     case speechRecognitionResultPending(SpeechRecognitionResultPending)

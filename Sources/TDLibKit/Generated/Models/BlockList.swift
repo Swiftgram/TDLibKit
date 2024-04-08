@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a type of a block list
-public enum BlockList: Codable, Equatable, Hashable {
+public indirect enum BlockList: Codable, Equatable, Hashable {
 
     /// The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions
     case blockListMain

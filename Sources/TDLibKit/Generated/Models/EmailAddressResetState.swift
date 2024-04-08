@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes reset state of a email address
-public enum EmailAddressResetState: Codable, Equatable, Hashable {
+public indirect enum EmailAddressResetState: Codable, Equatable, Hashable {
 
     /// Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
     case emailAddressResetStateAvailable(EmailAddressResetStateAvailable)

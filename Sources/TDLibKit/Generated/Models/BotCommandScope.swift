@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the scope to which bot commands are relevant
-public enum BotCommandScope: Codable, Equatable, Hashable {
+public indirect enum BotCommandScope: Codable, Equatable, Hashable {
 
     /// A scope covering all users
     case botCommandScopeDefault

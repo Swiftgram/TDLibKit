@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a media, which is attached to an invoice
-public enum MessageExtendedMedia: Codable, Equatable, Hashable {
+public indirect enum MessageExtendedMedia: Codable, Equatable, Hashable {
 
     /// The media is hidden until the invoice is paid
     case messageExtendedMediaPreview(MessageExtendedMediaPreview)

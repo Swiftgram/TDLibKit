@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains content of a push message notification
-public enum PushMessageContent: Codable, Equatable, Hashable {
+public indirect enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A general message with hidden content
     case pushMessageContentHidden(PushMessageContentHidden)

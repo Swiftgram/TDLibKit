@@ -140,6 +140,7 @@ final class EnumComposer: Composer {
     }
     
     private func isIndirect(_ name: String) -> Bool {
+        return true // Significantly reduces Enum sizes since we're hitting StackSize limits. https://github.com/Swiftgram/TDLibKit/issues/33
         // TODO: check enum recursion
         let indirectEnums = ["RichText", "PageBlock", "InternalLinkType", "InputMessageContent"]
         return indirectEnums.contains(name)

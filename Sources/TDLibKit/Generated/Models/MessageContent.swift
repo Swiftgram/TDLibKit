@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains the content of a message
-public enum MessageContent: Codable, Equatable, Hashable {
+public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A text message
     case messageText(MessageText)

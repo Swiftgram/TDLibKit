@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes when a message will be self-destructed
-public enum MessageSelfDestructType: Codable, Equatable, Hashable {
+public indirect enum MessageSelfDestructType: Codable, Equatable, Hashable {
 
     /// The message will be self-destructed in the specified time after its content was opened
     case messageSelfDestructTypeTimer(MessageSelfDestructTypeTimer)

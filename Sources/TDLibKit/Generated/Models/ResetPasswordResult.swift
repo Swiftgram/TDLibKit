@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of 2-step verification password reset
-public enum ResetPasswordResult: Codable, Equatable, Hashable {
+public indirect enum ResetPasswordResult: Codable, Equatable, Hashable {
 
     /// The password was reset
     case resetPasswordResultOk

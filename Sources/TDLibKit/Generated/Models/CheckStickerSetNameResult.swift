@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of checking whether a name can be used for a new sticker set
-public enum CheckStickerSetNameResult: Codable, Equatable, Hashable {
+public indirect enum CheckStickerSetNameResult: Codable, Equatable, Hashable {
 
     /// The name can be set
     case checkStickerSetNameResultOk

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a data needed to subscribe for push notifications through registerDevice method.
-public enum DeviceToken: Codable, Equatable, Hashable {
+public indirect enum DeviceToken: Codable, Equatable, Hashable {
 
     /// A token for Firebase Cloud Messaging
     case deviceTokenFirebaseCloudMessaging(DeviceTokenFirebaseCloudMessaging)

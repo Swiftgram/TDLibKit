@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about a payment provider
-public enum PaymentProvider: Codable, Equatable, Hashable {
+public indirect enum PaymentProvider: Codable, Equatable, Hashable {
 
     /// Smart Glocal payment provider
     case paymentProviderSmartGlocal(PaymentProviderSmartGlocal)

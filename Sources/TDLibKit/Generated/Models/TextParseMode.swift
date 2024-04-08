@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the way the text needs to be parsed for text entities
-public enum TextParseMode: Codable, Equatable, Hashable {
+public indirect enum TextParseMode: Codable, Equatable, Hashable {
 
     /// The text uses Markdown-style formatting
     case textParseModeMarkdown(TextParseModeMarkdown)

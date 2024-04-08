@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the sending state of the message
-public enum MessageSendingState: Codable, Equatable, Hashable {
+public indirect enum MessageSendingState: Codable, Equatable, Hashable {
 
     /// The message is being sent now, but has not yet been delivered to the server
     case messageSendingStatePending(MessageSendingStatePending)

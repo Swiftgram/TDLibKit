@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a background
-public enum BackgroundType: Codable, Equatable, Hashable {
+public indirect enum BackgroundType: Codable, Equatable, Hashable {
 
     /// A wallpaper in JPEG format
     case backgroundTypeWallpaper(BackgroundTypeWallpaper)

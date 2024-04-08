@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the origin of a story that was reposted
-public enum StoryOrigin: Codable, Equatable, Hashable {
+public indirect enum StoryOrigin: Codable, Equatable, Hashable {
 
     /// The original story was a public story with known sender
     case storyOriginPublicStory(StoryOriginPublicStory)

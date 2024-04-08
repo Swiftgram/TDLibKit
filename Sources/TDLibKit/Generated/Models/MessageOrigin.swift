@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the origin of a message
-public enum MessageOrigin: Codable, Equatable, Hashable {
+public indirect enum MessageOrigin: Codable, Equatable, Hashable {
 
     /// The message was originally sent by a known user
     case messageOriginUser(MessageOriginUser)

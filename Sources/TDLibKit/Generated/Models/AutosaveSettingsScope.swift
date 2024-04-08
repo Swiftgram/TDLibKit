@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes scope of autosave settings
-public enum AutosaveSettingsScope: Codable, Equatable, Hashable {
+public indirect enum AutosaveSettingsScope: Codable, Equatable, Hashable {
 
     /// Autosave settings applied to all private chats without chat-specific settings
     case autosaveSettingsScopePrivateChats

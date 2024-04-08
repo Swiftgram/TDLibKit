@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes source of a chat boost
-public enum ChatBoostSource: Codable, Equatable, Hashable {
+public indirect enum ChatBoostSource: Codable, Equatable, Hashable {
 
     /// The chat created a Telegram Premium gift code for a user
     case chatBoostSourceGiftCode(ChatBoostSourceGiftCode)

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes actions which must be possible to do through a chat action bar
-public enum ChatActionBar: Codable, Equatable, Hashable {
+public indirect enum ChatActionBar: Codable, Equatable, Hashable {
 
     /// The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     case chatActionBarReportSpam(ChatActionBarReportSpam)

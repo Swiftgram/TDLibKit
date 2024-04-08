@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains animated stickers which must be used for dice animation rendering
-public enum DiceStickers: Codable, Equatable, Hashable {
+public indirect enum DiceStickers: Codable, Equatable, Hashable {
 
     /// A regular animated sticker
     case diceStickersRegular(DiceStickersRegular)

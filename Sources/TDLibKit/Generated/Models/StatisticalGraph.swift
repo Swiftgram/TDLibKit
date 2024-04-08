@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a statistical graph
-public enum StatisticalGraph: Codable, Equatable, Hashable {
+public indirect enum StatisticalGraph: Codable, Equatable, Hashable {
 
     /// A graph data
     case statisticalGraphData(StatisticalGraphData)

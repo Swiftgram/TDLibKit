@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a poll
-public enum PollType: Codable, Equatable, Hashable {
+public indirect enum PollType: Codable, Equatable, Hashable {
 
     /// A regular poll
     case pollTypeRegular(PollTypeRegular)

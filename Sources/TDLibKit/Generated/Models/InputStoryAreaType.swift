@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a clickable rectangle area on a story media to be added
-public enum InputStoryAreaType: Codable, Equatable, Hashable {
+public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
 
     /// An area pointing to a location
     case inputStoryAreaTypeLocation(InputStoryAreaTypeLocation)

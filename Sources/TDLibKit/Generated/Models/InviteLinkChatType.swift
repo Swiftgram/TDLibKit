@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a chat to which points an invite link
-public enum InviteLinkChatType: Codable, Equatable, Hashable {
+public indirect enum InviteLinkChatType: Codable, Equatable, Hashable {
 
     /// The link is an invite link for a basic group
     case inviteLinkChatTypeBasicGroup

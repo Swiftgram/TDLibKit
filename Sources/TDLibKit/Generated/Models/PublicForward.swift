@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a public forward or repost of a story
-public enum PublicForward: Codable, Equatable, Hashable {
+public indirect enum PublicForward: Codable, Equatable, Hashable {
 
     /// Contains a public forward as a message
     case publicForwardMessage(PublicForwardMessage)

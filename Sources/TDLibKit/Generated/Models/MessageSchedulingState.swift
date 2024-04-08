@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the time when a scheduled message will be sent
-public enum MessageSchedulingState: Codable, Equatable, Hashable {
+public indirect enum MessageSchedulingState: Codable, Equatable, Hashable {
 
     /// The message will be sent at the specified date
     case messageSchedulingStateSendAtDate(MessageSchedulingStateSendAtDate)

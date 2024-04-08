@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the target chat to be opened
-public enum TargetChat: Codable, Equatable, Hashable {
+public indirect enum TargetChat: Codable, Equatable, Hashable {
 
     /// The currently opened chat needs to be kept
     case targetChatCurrent

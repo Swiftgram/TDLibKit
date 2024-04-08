@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the type of a session
-public enum SessionType: Codable, Equatable, Hashable {
+public indirect enum SessionType: Codable, Equatable, Hashable {
 
     /// The session is running on an Android device
     case sessionTypeAndroid

@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the last time the user was online
-public enum UserStatus: Codable, Equatable, Hashable {
+public indirect enum UserStatus: Codable, Equatable, Hashable {
 
     /// The user's status has never been changed
     case userStatusEmpty

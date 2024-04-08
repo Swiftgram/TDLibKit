@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes read date of a recent outgoing message in a private chat
-public enum MessageReadDate: Codable, Equatable, Hashable {
+public indirect enum MessageReadDate: Codable, Equatable, Hashable {
 
     /// Contains read date of the message
     case messageReadDateRead(MessageReadDateRead)

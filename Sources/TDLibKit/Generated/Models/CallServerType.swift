@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a call server
-public enum CallServerType: Codable, Equatable, Hashable {
+public indirect enum CallServerType: Codable, Equatable, Hashable {
 
     /// A Telegram call reflector
     case callServerTypeTelegramReflector(CallServerTypeTelegramReflector)

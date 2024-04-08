@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains authentication data for a email address
-public enum EmailAddressAuthentication: Codable, Equatable, Hashable {
+public indirect enum EmailAddressAuthentication: Codable, Equatable, Hashable {
 
     /// An authentication code delivered to a user's email address
     case emailAddressAuthenticationCode(EmailAddressAuthenticationCode)

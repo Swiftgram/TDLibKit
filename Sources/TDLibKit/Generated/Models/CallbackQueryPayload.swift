@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a payload of a callback query
-public enum CallbackQueryPayload: Codable, Equatable, Hashable {
+public indirect enum CallbackQueryPayload: Codable, Equatable, Hashable {
 
     /// The payload for a general callback button
     case callbackQueryPayloadData(CallbackQueryPayloadData)

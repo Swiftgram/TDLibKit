@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Provides information about the status of a member in a chat
-public enum ChatMemberStatus: Codable, Equatable, Hashable {
+public indirect enum ChatMemberStatus: Codable, Equatable, Hashable {
 
     /// The user is the owner of the chat and has all the administrator privileges
     case chatMemberStatusCreator(ChatMemberStatusCreator)

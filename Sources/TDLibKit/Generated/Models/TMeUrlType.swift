@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes the type of a URL linking to an internal Telegram entity
-public enum TMeUrlType: Codable, Equatable, Hashable {
+public indirect enum TMeUrlType: Codable, Equatable, Hashable {
 
     /// A URL linking to a user
     case tMeUrlTypeUser(TMeUrlTypeUser)

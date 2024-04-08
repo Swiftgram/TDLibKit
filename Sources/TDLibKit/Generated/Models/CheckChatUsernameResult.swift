@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents result of checking whether a username can be set for a chat
-public enum CheckChatUsernameResult: Codable, Equatable, Hashable {
+public indirect enum CheckChatUsernameResult: Codable, Equatable, Hashable {
 
     /// The username can be set
     case checkChatUsernameResultOk

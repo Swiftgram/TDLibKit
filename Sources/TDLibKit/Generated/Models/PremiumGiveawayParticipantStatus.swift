@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about status of a user in a Telegram Premium giveaway
-public enum PremiumGiveawayParticipantStatus: Codable, Equatable, Hashable {
+public indirect enum PremiumGiveawayParticipantStatus: Codable, Equatable, Hashable {
 
     /// The user is eligible for the giveaway
     case premiumGiveawayParticipantStatusEligible

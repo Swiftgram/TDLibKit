@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of a message sponsor
-public enum MessageSponsorType: Codable, Equatable, Hashable {
+public indirect enum MessageSponsorType: Codable, Equatable, Hashable {
 
     /// The sponsor is a bot
     case messageSponsorTypeBot(MessageSponsorTypeBot)

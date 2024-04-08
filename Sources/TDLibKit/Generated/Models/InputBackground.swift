@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about background to set
-public enum InputBackground: Codable, Equatable, Hashable {
+public indirect enum InputBackground: Codable, Equatable, Hashable {
 
     /// A background from a local file
     case inputBackgroundLocal(InputBackgroundLocal)

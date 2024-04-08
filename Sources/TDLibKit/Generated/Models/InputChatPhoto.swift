@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a photo to be set as a user profile or chat photo
-public enum InputChatPhoto: Codable, Equatable, Hashable {
+public indirect enum InputChatPhoto: Codable, Equatable, Hashable {
 
     /// A previously used profile photo of the current user
     case inputChatPhotoPrevious(InputChatPhotoPrevious)

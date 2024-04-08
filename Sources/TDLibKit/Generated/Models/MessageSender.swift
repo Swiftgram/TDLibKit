@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Contains information about the sender of a message
-public enum MessageSender: Codable, Equatable, Hashable {
+public indirect enum MessageSender: Codable, Equatable, Hashable {
 
     /// The message was sent by a known user
     case messageSenderUser(MessageSenderUser)

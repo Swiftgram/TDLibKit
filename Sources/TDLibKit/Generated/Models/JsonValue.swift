@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents a JSON value
-public enum JsonValue: Codable, Equatable, Hashable {
+public indirect enum JsonValue: Codable, Equatable, Hashable {
 
     /// Represents a null JSON value
     case jsonValueNull

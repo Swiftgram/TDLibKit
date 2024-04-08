@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes type of interaction with a story
-public enum StoryInteractionType: Codable, Equatable, Hashable {
+public indirect enum StoryInteractionType: Codable, Equatable, Hashable {
 
     /// A view of the story
     case storyInteractionTypeView(StoryInteractionTypeView)

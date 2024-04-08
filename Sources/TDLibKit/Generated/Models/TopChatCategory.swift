@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Represents the categories of chats for which a list of frequently used chats can be retrieved
-public enum TopChatCategory: Codable, Equatable, Hashable {
+public indirect enum TopChatCategory: Codable, Equatable, Hashable {
 
     /// A category containing frequently used private chats with non-bot users
     case topChatCategoryUsers

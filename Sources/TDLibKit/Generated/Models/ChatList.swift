@@ -11,7 +11,7 @@ import Foundation
 
 
 /// Describes a list of chats
-public enum ChatList: Codable, Equatable, Hashable {
+public indirect enum ChatList: Codable, Equatable, Hashable {
 
     /// A main list of chats
     case chatListMain
