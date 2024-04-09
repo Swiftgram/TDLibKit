@@ -31,8 +31,10 @@ def main():
             "release",
             "create",
             release_tag,
+            "--title",
+            release_tag,
             "--notes",
-            f"TDLibKit based on TDLib-{versions['tdlib_version']} commit [{[versions['tdlib_commit']]}](https://github.com/tdlib/td/tree/{versions['tdlib_commit']}/)",
+            f"TDLibKit based on TDLib-{versions['tdlib_version']} commit [{versions['tdlib_commit']}](https://github.com/tdlib/td/tree/{versions['tdlib_commit']})",
         ],
         check=False,
     )

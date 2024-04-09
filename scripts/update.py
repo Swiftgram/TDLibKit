@@ -32,7 +32,7 @@ def main(tdlibframework_version: str = None):
 
     os.chdir(os.path.join(scripts_dir, ".."))
     # Run the swift_package_generator.py script with the version
-    subprocess.run(
+    run_command(
         [
             "python3",
             os.path.join(scripts_dir, "swift_package_generator.py"),
@@ -42,7 +42,7 @@ def main(tdlibframework_version: str = None):
     )
 
     # Update Swift package
-    subprocess.run(["swift", "package", "update"], check=True)
+    run_command(["swift", "package", "update"], check=True)
 
     # Parse the TDLIB commit version
     tdlib_version = run_command(
@@ -60,7 +60,7 @@ def main(tdlibframework_version: str = None):
     # Change directory to tl2swift and generate Swift code
     os.chdir(os.path.join(scripts_dir, "tl2swift"))
     # Remove the existing generated code
-    subprocess.run(
+    run_command(
         [
             "rm",
             "-rf",
@@ -69,7 +69,7 @@ def main(tdlibframework_version: str = None):
         check=True,
     )
     # Generate new Swift code
-    subprocess.run(
+    run_command(
         [
             "swift",
             "run",
