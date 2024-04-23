@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Represents the type of a session
+/// Represents the type of session
 public indirect enum SessionType: Codable, Equatable, Hashable {
 
     /// The session is running on an Android device

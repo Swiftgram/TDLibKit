@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct MessageForwardInfo: Codable, Equatable, Hashable {
     /// Origin of the forwarded message
     public let origin: MessageOrigin
 
-    /// The type of a public service announcement for the forwarded message
+    /// The type of public service announcement for the forwarded message
     public let publicServiceAnnouncementType: String
 
     /// For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, information about the source message from which the message was forwarded last time; may be null for other forwards or if unknown

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+/// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
 public struct CreateNewBasicGroupChat: Codable, Equatable, Hashable {
 
     /// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -22,13 +22,13 @@ public struct QuickReplyMessage: Codable, Equatable, Hashable, Identifiable {
     /// Unique message identifier among all quick replies
     public let id: Int64
 
-    /// Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
+    /// Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     public let mediaAlbumId: TdInt64
 
     /// Inline keyboard reply markup for the message; may be null if none
     public let replyMarkup: ReplyMarkup?
 
-    /// Information about the identifier of the quick reply message to which the message replies
+    /// The identifier of the quick reply message to which the message replies; 0 if none
     public let replyToMessageId: Int64
 
     /// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent

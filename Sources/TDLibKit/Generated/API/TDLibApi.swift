@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -1763,7 +1763,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Informs TDLib that a chat was opened from the list of similar chats. The method is independent from openChat and closeChat methods
+    /// Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods
     /// - Parameter chatId: Identifier of the original chat, which similar chats were requested
     /// - Parameter openedChatId: Identifier of the opened chat
     public final func openChatSimilarChat(
@@ -1778,7 +1778,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Informs TDLib that a chat was opened from the list of similar chats. The method is independent from openChat and closeChat methods
+    /// Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods
     /// - Parameter chatId: Identifier of the original chat, which similar chats were requested
     /// - Parameter openedChatId: Identifier of the opened chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4831,6 +4831,163 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: The added message
+    public final func addQuickReplyShortcutMessage(
+        inputMessageContent: InputMessageContent?,
+        replyToMessageId: Int64?,
+        shortcutName: String?,
+        completion: @escaping (Result<QuickReplyMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = AddQuickReplyShortcutMessage(
+            inputMessageContent: inputMessageContent,
+            replyToMessageId: replyToMessageId,
+            shortcutName: shortcutName
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: The added message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func addQuickReplyShortcutMessage(
+        inputMessageContent: InputMessageContent?,
+        replyToMessageId: Int64?,
+        shortcutName: String?
+    ) async throws -> QuickReplyMessage {
+        let query = AddQuickReplyShortcutMessage(
+            inputMessageContent: inputMessageContent,
+            replyToMessageId: replyToMessageId,
+            shortcutName: shortcutName
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+    /// - Parameter queryId: Identifier of the inline query
+    /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// - Parameter resultId: Identifier of the inline query result
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: The added message
+    public final func addQuickReplyShortcutInlineQueryResultMessage(
+        hideViaBot: Bool?,
+        queryId: TdInt64?,
+        replyToMessageId: Int64?,
+        resultId: String?,
+        shortcutName: String?,
+        completion: @escaping (Result<QuickReplyMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = AddQuickReplyShortcutInlineQueryResultMessage(
+            hideViaBot: hideViaBot,
+            queryId: queryId,
+            replyToMessageId: replyToMessageId,
+            resultId: resultId,
+            shortcutName: shortcutName
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+    /// - Parameter hideViaBot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+    /// - Parameter queryId: Identifier of the inline query
+    /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// - Parameter resultId: Identifier of the inline query result
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: The added message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func addQuickReplyShortcutInlineQueryResultMessage(
+        hideViaBot: Bool?,
+        queryId: TdInt64?,
+        replyToMessageId: Int64?,
+        resultId: String?,
+        shortcutName: String?
+    ) async throws -> QuickReplyMessage {
+        let query = AddQuickReplyShortcutInlineQueryResultMessage(
+            hideViaBot: hideViaBot,
+            queryId: queryId,
+            replyToMessageId: replyToMessageId,
+            resultId: resultId,
+            shortcutName: shortcutName
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is readded, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// - Parameter messageIds: Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    public final func readdQuickReplyShortcutMessages(
+        messageIds: [Int64]?,
+        shortcutName: String?,
+        completion: @escaping (Result<QuickReplyMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = ReaddQuickReplyShortcutMessages(
+            messageIds: messageIds,
+            shortcutName: shortcutName
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is readded, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// - Parameter messageIds: Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func readdQuickReplyShortcutMessages(
+        messageIds: [Int64]?,
+        shortcutName: String?
+    ) async throws -> QuickReplyMessages {
+        let query = ReaddQuickReplyShortcutMessages(
+            messageIds: messageIds,
+            shortcutName: shortcutName
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
+    public final func editQuickReplyMessage(
+        inputMessageContent: InputMessageContent?,
+        messageId: Int64?,
+        shortcutId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditQuickReplyMessage(
+            inputMessageContent: inputMessageContent,
+            messageId: messageId,
+            shortcutId: shortcutId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func editQuickReplyMessage(
+        inputMessageContent: InputMessageContent?,
+        messageId: Int64?,
+        shortcutId: Int?
+    ) async throws -> Ok {
+        let query = EditQuickReplyMessage(
+            inputMessageContent: inputMessageContent,
+            messageId: messageId,
+            shortcutId: shortcutId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns list of custom emojis, which can be used as forum topic icon by all users
     /// - Returns: List of custom emojis, which can be used as forum topic icon by all users
     public final func getForumTopicDefaultIcons(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
@@ -7275,9 +7432,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
+    /// Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization
     /// - Parameter link: The link
-    /// - Returns: Information about the type of an internal link. Returns a 404 error if the link is not internal
+    /// - Returns: Information about the type of internal link. Returns a 404 error if the link is not internal
     public final func getInternalLinkType(
         link: String?,
         completion: @escaping (Result<InternalLinkType, Swift.Error>) -> Void
@@ -7288,9 +7445,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
+    /// Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization
     /// - Parameter link: The link
-    /// - Returns: Information about the type of an internal link. Returns a 404 error if the link is not internal
+    /// - Returns: Information about the type of internal link. Returns a 404 error if the link is not internal
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getInternalLinkType(link: String?) async throws -> InternalLinkType {
         let query = GetInternalLinkType(
@@ -7583,16 +7740,16 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+    /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
     /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
-    /// - Returns: The newly created chat
+    /// - Returns: Information about the newly created chat
     public final func createNewBasicGroupChat(
         messageAutoDeleteTime: Int?,
         title: String?,
         userIds: [Int64]?,
-        completion: @escaping (Result<Chat, Swift.Error>) -> Void
+        completion: @escaping (Result<CreatedBasicGroupChat, Swift.Error>) -> Void
     ) throws {
         let query = CreateNewBasicGroupChat(
             messageAutoDeleteTime: messageAutoDeleteTime,
@@ -7602,17 +7759,17 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+    /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
     /// - Parameter messageAutoDeleteTime: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     /// - Parameter title: Title of the new basic group; 1-128 characters
     /// - Parameter userIds: Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
-    /// - Returns: The newly created chat
+    /// - Returns: Information about the newly created chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func createNewBasicGroupChat(
         messageAutoDeleteTime: Int?,
         title: String?,
         userIds: [Int64]?
-    ) async throws -> Chat {
+    ) async throws -> CreatedBasicGroupChat {
         let query = CreateNewBasicGroupChat(
             messageAutoDeleteTime: messageAutoDeleteTime,
             title: title,
@@ -9266,15 +9423,16 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats
+    /// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
     /// - Parameter chatId: Chat identifier
     /// - Parameter forwardLimit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     /// - Parameter userId: Identifier of the user
+    /// - Returns: Information about members that weren't added
     public final func addChatMember(
         chatId: Int64?,
         forwardLimit: Int?,
         userId: Int64?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<FailedToAddMembers, Swift.Error>) -> Void
     ) throws {
         let query = AddChatMember(
             chatId: chatId,
@@ -9284,17 +9442,17 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats
+    /// Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
     /// - Parameter chatId: Chat identifier
     /// - Parameter forwardLimit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     /// - Parameter userId: Identifier of the user
+    /// - Returns: Information about members that weren't added
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public final func addChatMember(
         chatId: Int64?,
         forwardLimit: Int?,
         userId: Int64?
-    ) async throws -> Ok {
+    ) async throws -> FailedToAddMembers {
         let query = AddChatMember(
             chatId: chatId,
             forwardLimit: forwardLimit,
@@ -9303,13 +9461,14 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
+    /// - Returns: Information about members that weren't added
     public final func addChatMembers(
         chatId: Int64?,
         userIds: [Int64]?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<FailedToAddMembers, Swift.Error>) -> Void
     ) throws {
         let query = AddChatMembers(
             chatId: chatId,
@@ -9318,15 +9477,15 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
+    /// - Returns: Information about members that weren't added
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public final func addChatMembers(
         chatId: Int64?,
         userIds: [Int64]?
-    ) async throws -> Ok {
+    ) async throws -> FailedToAddMembers {
         let query = AddChatMembers(
             chatId: chatId,
             userIds: userIds
@@ -10711,9 +10870,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of features available on the first 10 chat boost levels; this is an offline request
+    /// Returns list of features available for different chat boost levels; this is an offline request
     /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
-    /// - Returns: List of features available on the first 10 chat boost levels
+    /// - Returns: List of features available for different chat boost levels
     public final func getChatBoostFeatures(
         isChannel: Bool?,
         completion: @escaping (Result<ChatBoostFeatures, Swift.Error>) -> Void
@@ -10724,9 +10883,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of features available on the first 10 chat boost levels; this is an offline request
+    /// Returns list of features available for different chat boost levels; this is an offline request
     /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
-    /// - Returns: List of features available on the first 10 chat boost levels
+    /// - Returns: List of features available for different chat boost levels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatBoostFeatures(isChannel: Bool?) async throws -> ChatBoostFeatures {
         let query = GetChatBoostFeatures(
@@ -11463,7 +11622,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
+    /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
     /// - Parameter chatId: Chat identifier of the message with the file
     /// - Parameter fileId: Identifier of the file to download
     /// - Parameter messageId: Message identifier
@@ -11484,7 +11643,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
+    /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
     /// - Parameter chatId: Chat identifier of the message with the file
     /// - Parameter fileId: Identifier of the file to download
     /// - Parameter messageId: Message identifier
@@ -14101,6 +14260,21 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns greeting stickers from regular sticker sets that can be used for the start page of other users
+    /// - Returns: Greeting stickers from regular sticker sets that can be used for the start page of other users
+    public final func getGreetingStickers(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
+        let query = GetGreetingStickers()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns greeting stickers from regular sticker sets that can be used for the start page of other users
+    /// - Returns: Greeting stickers from regular sticker sets that can be used for the start page of other users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getGreetingStickers() async throws -> Stickers {
+        let query = GetGreetingStickers()
+        return try await self.run(query: query)
+    }
+
     /// Returns premium stickers from regular sticker sets
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
     /// - Returns: Premium stickers from regular sticker sets
@@ -15474,92 +15648,121 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the business intro of the current user. Requires Telegram Business subscription
-    /// - Parameter intro: The new intro of the business; pass null to remove the intro
-    public final func setBusinessIntro(
-        intro: InputBusinessIntro?,
+    /// Changes the business start page of the current user. Requires Telegram Business subscription
+    /// - Parameter startPage: The new start page of the business; pass null to remove custom start page
+    public final func setBusinessStartPage(
+        startPage: InputBusinessStartPage?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetBusinessIntro(
-            intro: intro
+        let query = SetBusinessStartPage(
+            startPage: startPage
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the business intro of the current user. Requires Telegram Business subscription
-    /// - Parameter intro: The new intro of the business; pass null to remove the intro
+    /// Changes the business start page of the current user. Requires Telegram Business subscription
+    /// - Parameter startPage: The new start page of the business; pass null to remove custom start page
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func setBusinessIntro(intro: InputBusinessIntro?) async throws -> Ok {
-        let query = SetBusinessIntro(
-            intro: intro
+    public final func setBusinessStartPage(startPage: InputBusinessStartPage?) async throws -> Ok {
+        let query = SetBusinessStartPage(
+            startPage: startPage
         )
         return try await self.run(query: query)
     }
 
-    /// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
-    /// - Parameter phoneNumber: The new phone number of the user in international format
+    /// Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
+    /// - Parameter phoneNumber: The phone number, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
+    /// - Parameter type: Type of the request for which the code is sent
     /// - Returns: On success, returns information about the sent code
-    public final func changePhoneNumber(
+    public final func sendPhoneNumberCode(
         phoneNumber: String?,
         settings: PhoneNumberAuthenticationSettings?,
+        type: PhoneNumberCodeType?,
         completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
     ) throws {
-        let query = ChangePhoneNumber(
+        let query = SendPhoneNumberCode(
             phoneNumber: phoneNumber,
-            settings: settings
+            settings: settings,
+            type: type
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
-    /// - Parameter phoneNumber: The new phone number of the user in international format
+    /// Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
+    /// - Parameter phoneNumber: The phone number, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
+    /// - Parameter type: Type of the request for which the code is sent
     /// - Returns: On success, returns information about the sent code
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func changePhoneNumber(
+    public final func sendPhoneNumberCode(
         phoneNumber: String?,
-        settings: PhoneNumberAuthenticationSettings?
+        settings: PhoneNumberAuthenticationSettings?,
+        type: PhoneNumberCodeType?
     ) async throws -> AuthenticationCodeInfo {
-        let query = ChangePhoneNumber(
+        let query = SendPhoneNumberCode(
             phoneNumber: phoneNumber,
-            settings: settings
+            settings: settings,
+            type: type
         )
         return try await self.run(query: query)
     }
 
-    /// Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-    public final func resendChangePhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
-        let query = ResendChangePhoneNumberCode()
+    /// Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    public final func sendPhoneNumberFirebaseSms(
+        token: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendPhoneNumberFirebaseSms(
+            token: token
+        )
         self.run(query: query, completion: completion)
     }
 
-    /// Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    /// Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func resendChangePhoneNumberCode() async throws -> AuthenticationCodeInfo {
-        let query = ResendChangePhoneNumberCode()
+    @discardableResult
+    public final func sendPhoneNumberFirebaseSms(token: String?) async throws -> Ok {
+        let query = SendPhoneNumberFirebaseSms(
+            token: token
+        )
         return try await self.run(query: query)
     }
 
-    /// Checks the authentication code sent to confirm a new phone number of the user
+    /// Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    public final func resendPhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
+        let query = ResendPhoneNumberCode()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func resendPhoneNumberCode() async throws -> AuthenticationCodeInfo {
+        let query = ResendPhoneNumberCode()
+        return try await self.run(query: query)
+    }
+
+    /// Check the authentication code and completes the request for which the code was sent if appropriate
     /// - Parameter code: Authentication code to check
-    public final func checkChangePhoneNumberCode(
+    public final func checkPhoneNumberCode(
         code: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = CheckChangePhoneNumberCode(
+        let query = CheckPhoneNumberCode(
             code: code
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Checks the authentication code sent to confirm a new phone number of the user
+    /// Check the authentication code and completes the request for which the code was sent if appropriate
     /// - Parameter code: Authentication code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func checkChangePhoneNumberCode(code: String?) async throws -> Ok {
-        let query = CheckChangePhoneNumberCode(
+    public final func checkPhoneNumberCode(code: String?) async throws -> Ok {
+        let query = CheckPhoneNumberCode(
             code: code
         )
         return try await self.run(query: query)
@@ -15622,6 +15825,178 @@ public class TDLibApi {
     public final func deleteBusinessConnectedBot(botUserId: Int64?) async throws -> Ok {
         let query = DeleteBusinessConnectedBot(
             botUserId: botUserId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Pauses or resumes the connected business bot in a specific chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isPaused: Pass true to pause the connected bot in the chat; pass false to resume the bot
+    public final func toggleBusinessConnectedBotChatIsPaused(
+        chatId: Int64?,
+        isPaused: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleBusinessConnectedBotChatIsPaused(
+            chatId: chatId,
+            isPaused: isPaused
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Pauses or resumes the connected business bot in a specific chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isPaused: Pass true to pause the connected bot in the chat; pass false to resume the bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func toggleBusinessConnectedBotChatIsPaused(
+        chatId: Int64?,
+        isPaused: Bool?
+    ) async throws -> Ok {
+        let query = ToggleBusinessConnectedBotChatIsPaused(
+            chatId: chatId,
+            isPaused: isPaused
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids
+    /// - Parameter chatId: Chat identifier
+    public final func removeBusinessConnectedBotFromChat(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveBusinessConnectedBotFromChat(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func removeBusinessConnectedBotFromChat(chatId: Int64?) async throws -> Ok {
+        let query = RemoveBusinessConnectedBotFromChat(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns business chat links created for the current account
+    /// - Returns: Business chat links created for the current account
+    public final func getBusinessChatLinks(completion: @escaping (Result<BusinessChatLinks, Swift.Error>) -> Void) throws {
+        let query = GetBusinessChatLinks()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns business chat links created for the current account
+    /// - Returns: Business chat links created for the current account
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBusinessChatLinks() async throws -> BusinessChatLinks {
+        let query = GetBusinessChatLinks()
+        return try await self.run(query: query)
+    }
+
+    /// Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
+    /// - Parameter linkInfo: Information about the link to create
+    /// - Returns: The created link
+    public final func createBusinessChatLink(
+        linkInfo: InputBusinessChatLink?,
+        completion: @escaping (Result<BusinessChatLink, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateBusinessChatLink(
+            linkInfo: linkInfo
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
+    /// - Parameter linkInfo: Information about the link to create
+    /// - Returns: The created link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func createBusinessChatLink(linkInfo: InputBusinessChatLink?) async throws -> BusinessChatLink {
+        let query = CreateBusinessChatLink(
+            linkInfo: linkInfo
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Edits a business chat link of the current account. Requires Telegram Business subscription. Returns the edited link
+    /// - Parameter link: The link to edit
+    /// - Parameter linkInfo: New description of the link
+    /// - Returns: The edited link
+    public final func editBusinessChatLink(
+        link: String?,
+        linkInfo: InputBusinessChatLink?,
+        completion: @escaping (Result<BusinessChatLink, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessChatLink(
+            link: link,
+            linkInfo: linkInfo
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Edits a business chat link of the current account. Requires Telegram Business subscription. Returns the edited link
+    /// - Parameter link: The link to edit
+    /// - Parameter linkInfo: New description of the link
+    /// - Returns: The edited link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func editBusinessChatLink(
+        link: String?,
+        linkInfo: InputBusinessChatLink?
+    ) async throws -> BusinessChatLink {
+        let query = EditBusinessChatLink(
+            link: link,
+            linkInfo: linkInfo
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes a business chat link of the current account
+    /// - Parameter link: The link to delete
+    public final func deleteBusinessChatLink(
+        link: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteBusinessChatLink(
+            link: link
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes a business chat link of the current account
+    /// - Parameter link: The link to delete
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteBusinessChatLink(link: String?) async throws -> Ok {
+        let query = DeleteBusinessChatLink(
+            link: link
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about a business chat link
+    /// - Parameter linkName: Name of the link
+    /// - Returns: Information about a business chat link
+    public final func getBusinessChatLinkInfo(
+        linkName: String?,
+        completion: @escaping (Result<BusinessChatLinkInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBusinessChatLinkInfo(
+            linkName: linkName
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about a business chat link
+    /// - Parameter linkName: Name of the link
+    /// - Returns: Information about a business chat link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBusinessChatLinkInfo(linkName: String?) async throws -> BusinessChatLinkInfo {
+        let query = GetBusinessChatLinkInfo(
+            linkName: linkName
         )
         return try await self.run(query: query)
     }
@@ -16809,6 +17184,37 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
+    /// - Parameter canHaveSponsoredMessages: The new value of can_have_sponsored_messages
+    /// - Parameter supergroupId: The identifier of the channel
+    public final func toggleSupergroupCanHaveSponsoredMessages(
+        canHaveSponsoredMessages: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupCanHaveSponsoredMessages(
+            canHaveSponsoredMessages: canHaveSponsoredMessages,
+            supergroupId: supergroupId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
+    /// - Parameter canHaveSponsoredMessages: The new value of can_have_sponsored_messages
+    /// - Parameter supergroupId: The identifier of the channel
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func toggleSupergroupCanHaveSponsoredMessages(
+        canHaveSponsoredMessages: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupCanHaveSponsoredMessages(
+            canHaveSponsoredMessages: canHaveSponsoredMessages,
+            supergroupId: supergroupId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
     /// - Parameter hasHiddenMembers: New value of has_hidden_members
     /// - Parameter supergroupId: Identifier of the supergroup
@@ -16989,7 +17395,7 @@ public class TDLibApi {
 
     /// Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
     /// - Parameter filter: The type of users to return; pass null to use supergroupMembersFilterRecent
-    /// - Parameter limit: The maximum number of users be returned; up to 200
+    /// - Parameter limit: The maximum number of users to be returned; up to 200
     /// - Parameter offset: Number of users to skip
     /// - Parameter supergroupId: Identifier of the supergroup or channel
     /// - Returns: Information about members or banned users in a supergroup or channel
@@ -17011,7 +17417,7 @@ public class TDLibApi {
 
     /// Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
     /// - Parameter filter: The type of users to return; pass null to use supergroupMembersFilterRecent
-    /// - Parameter limit: The maximum number of users be returned; up to 200
+    /// - Parameter limit: The maximum number of users to be returned; up to 200
     /// - Parameter offset: Number of users to skip
     /// - Parameter supergroupId: Identifier of the supergroup or channel
     /// - Returns: Information about members or banned users in a supergroup or channel
@@ -18341,6 +18747,108 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Returns: Detailed revenue statistics about a chat
+    public final func getChatRevenueStatistics(
+        chatId: Int64?,
+        isDark: Bool?,
+        completion: @escaping (Result<ChatRevenueStatistics, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatRevenueStatistics(
+            chatId: chatId,
+            isDark: isDark
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Returns: Detailed revenue statistics about a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatRevenueStatistics(
+        chatId: Int64?,
+        isDark: Bool?
+    ) async throws -> ChatRevenueStatistics {
+        let query = GetChatRevenueStatistics(
+            chatId: chatId,
+            isDark: isDark
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter password: The 2-step verification password of the current user
+    /// - Returns: URL for chat revenue withdrawal
+    public final func getChatRevenueWithdrawalUrl(
+        chatId: Int64?,
+        password: String?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatRevenueWithdrawalUrl(
+            chatId: chatId,
+            password: password
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter password: The 2-step verification password of the current user
+    /// - Returns: URL for chat revenue withdrawal
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatRevenueWithdrawalUrl(
+        chatId: Int64?,
+        password: String?
+    ) async throws -> HttpUrl {
+        let query = GetChatRevenueWithdrawalUrl(
+            chatId: chatId,
+            password: password
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter limit: The maximum number of transactions to be returned; up to 200
+    /// - Parameter offset: Number of transactions to skip
+    /// - Returns: List of revenue transactions for a chat
+    public final func getChatRevenueTransactions(
+        chatId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        completion: @escaping (Result<ChatRevenueTransactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatRevenueTransactions(
+            chatId: chatId,
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter limit: The maximum number of transactions to be returned; up to 200
+    /// - Parameter offset: Number of transactions to skip
+    /// - Returns: List of revenue transactions for a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatRevenueTransactions(
+        chatId: Int64?,
+        limit: Int?,
+        offset: Int?
+    ) async throws -> ChatRevenueTransactions {
+        let query = GetChatRevenueTransactions(
+            chatId: chatId,
+            limit: limit,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
@@ -19037,72 +19545,6 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Sends a code to verify a phone number to be added to a user's Telegram Passport
-    /// - Parameter phoneNumber: The phone number of the user, in international format
-    /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
-    public final func sendPhoneNumberVerificationCode(
-        phoneNumber: String?,
-        settings: PhoneNumberAuthenticationSettings?,
-        completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
-    ) throws {
-        let query = SendPhoneNumberVerificationCode(
-            phoneNumber: phoneNumber,
-            settings: settings
-        )
-        self.run(query: query, completion: completion)
-    }
-
-    /// Sends a code to verify a phone number to be added to a user's Telegram Passport
-    /// - Parameter phoneNumber: The phone number of the user, in international format
-    /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func sendPhoneNumberVerificationCode(
-        phoneNumber: String?,
-        settings: PhoneNumberAuthenticationSettings?
-    ) async throws -> AuthenticationCodeInfo {
-        let query = SendPhoneNumberVerificationCode(
-            phoneNumber: phoneNumber,
-            settings: settings
-        )
-        return try await self.run(query: query)
-    }
-
-    /// Resends the code to verify a phone number to be added to a user's Telegram Passport
-    public final func resendPhoneNumberVerificationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
-        let query = ResendPhoneNumberVerificationCode()
-        self.run(query: query, completion: completion)
-    }
-
-    /// Resends the code to verify a phone number to be added to a user's Telegram Passport
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func resendPhoneNumberVerificationCode() async throws -> AuthenticationCodeInfo {
-        let query = ResendPhoneNumberVerificationCode()
-        return try await self.run(query: query)
-    }
-
-    /// Checks the phone number verification code for Telegram Passport
-    /// - Parameter code: Verification code to check
-    public final func checkPhoneNumberVerificationCode(
-        code: String?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = CheckPhoneNumberVerificationCode(
-            code: code
-        )
-        self.run(query: query, completion: completion)
-    }
-
-    /// Checks the phone number verification code for Telegram Passport
-    /// - Parameter code: Verification code to check
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public final func checkPhoneNumberVerificationCode(code: String?) async throws -> Ok {
-        let query = CheckPhoneNumberVerificationCode(
-            code: code
-        )
-        return try await self.run(query: query)
-    }
-
     /// Sends a code to verify an email address to be added to a user's Telegram Passport
     /// - Parameter emailAddress: Email address
     public final func sendEmailAddressVerificationCode(
@@ -19264,78 +19706,6 @@ public class TDLibApi {
         let query = SendPassportAuthorizationForm(
             authorizationFormId: authorizationFormId,
             types: types
-        )
-        return try await self.run(query: query)
-    }
-
-    /// Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
-    /// - Parameter hash: Hash value from the link
-    /// - Parameter phoneNumber: Phone number value from the link
-    /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
-    public final func sendPhoneNumberConfirmationCode(
-        hash: String?,
-        phoneNumber: String?,
-        settings: PhoneNumberAuthenticationSettings?,
-        completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
-    ) throws {
-        let query = SendPhoneNumberConfirmationCode(
-            hash: hash,
-            phoneNumber: phoneNumber,
-            settings: settings
-        )
-        self.run(query: query, completion: completion)
-    }
-
-    /// Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
-    /// - Parameter hash: Hash value from the link
-    /// - Parameter phoneNumber: Phone number value from the link
-    /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func sendPhoneNumberConfirmationCode(
-        hash: String?,
-        phoneNumber: String?,
-        settings: PhoneNumberAuthenticationSettings?
-    ) async throws -> AuthenticationCodeInfo {
-        let query = SendPhoneNumberConfirmationCode(
-            hash: hash,
-            phoneNumber: phoneNumber,
-            settings: settings
-        )
-        return try await self.run(query: query)
-    }
-
-    /// Resends phone number confirmation code
-    public final func resendPhoneNumberConfirmationCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
-        let query = ResendPhoneNumberConfirmationCode()
-        self.run(query: query, completion: completion)
-    }
-
-    /// Resends phone number confirmation code
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func resendPhoneNumberConfirmationCode() async throws -> AuthenticationCodeInfo {
-        let query = ResendPhoneNumberConfirmationCode()
-        return try await self.run(query: query)
-    }
-
-    /// Checks phone number confirmation code
-    /// - Parameter code: Confirmation code to check
-    public final func checkPhoneNumberConfirmationCode(
-        code: String?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = CheckPhoneNumberConfirmationCode(
-            code: code
-        )
-        self.run(query: query, completion: completion)
-    }
-
-    /// Checks phone number confirmation code
-    /// - Parameter code: Confirmation code to check
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public final func checkPhoneNumberConfirmationCode(code: String?) async throws -> Ok {
-        let query = CheckPhoneNumberConfirmationCode(
-            code: code
         )
         return try await self.run(query: query)
     }

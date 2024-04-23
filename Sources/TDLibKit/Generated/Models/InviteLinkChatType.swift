@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Describes the type of a chat to which points an invite link
+/// Describes the type of chat to which points an invite link
 public indirect enum InviteLinkChatType: Codable, Equatable, Hashable {
 
     /// The link is an invite link for a basic group

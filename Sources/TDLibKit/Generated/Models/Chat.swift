@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// Block list to which the chat is added; may be null if none
     public let blockList: BlockList?
+
+    /// Information about bar for managing a business bot in the chat; may be null if none
+    public let businessBotManageBar: BusinessBotManageBar?
 
     /// True, if the chat messages can be deleted for all users
     public let canBeDeletedForAllUsers: Bool
@@ -141,6 +144,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         background: ChatBackground?,
         backgroundCustomEmojiId: TdInt64,
         blockList: BlockList?,
+        businessBotManageBar: BusinessBotManageBar?,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeReported: Bool,
@@ -182,6 +186,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.background = background
         self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.blockList = blockList
+        self.businessBotManageBar = businessBotManageBar
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeReported = canBeReported

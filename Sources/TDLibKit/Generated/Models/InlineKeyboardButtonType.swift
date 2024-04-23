@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Describes the type of an inline keyboard button
+/// Describes the type of inline keyboard button
 public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
 
     /// A button that opens a specified URL

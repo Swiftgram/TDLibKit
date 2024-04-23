@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -87,6 +87,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The chat action bar was changed
     case updateChatActionBar(UpdateChatActionBar)
+
+    /// The bar for managing business bot was changed in a chat
+    case updateChatBusinessBotManageBar(UpdateChatBusinessBotManageBar)
 
     /// The chat available reactions were changed
     case updateChatAvailableReactions(UpdateChatAvailableReactions)
@@ -367,11 +370,11 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of suggested to the user actions has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
+    /// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+    case updateSpeedLimitNotification(UpdateSpeedLimitNotification)
+
     /// The list of contacts that had birthdays recently or will have birthday soon has changed
     case updateContactCloseBirthdays(UpdateContactCloseBirthdays)
-
-    /// Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
-    case updateAddChatMembersPrivacyForbidden(UpdateAddChatMembersPrivacyForbidden)
 
     /// Autosave settings for some type of chats were updated
     case updateAutosaveSettings(UpdateAutosaveSettings)
@@ -460,6 +463,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatReadInbox
         case updateChatReadOutbox
         case updateChatActionBar
+        case updateChatBusinessBotManageBar
         case updateChatAvailableReactions
         case updateChatDraftMessage
         case updateChatEmojiStatus
@@ -553,8 +557,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
         case updateSuggestedActions
+        case updateSpeedLimitNotification
         case updateContactCloseBirthdays
-        case updateAddChatMembersPrivacyForbidden
         case updateAutosaveSettings
         case updateBusinessConnection
         case updateNewBusinessMessage
@@ -656,6 +660,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatActionBar:
             let value = try UpdateChatActionBar(from: decoder)
             self = .updateChatActionBar(value)
+        case .updateChatBusinessBotManageBar:
+            let value = try UpdateChatBusinessBotManageBar(from: decoder)
+            self = .updateChatBusinessBotManageBar(value)
         case .updateChatAvailableReactions:
             let value = try UpdateChatAvailableReactions(from: decoder)
             self = .updateChatAvailableReactions(value)
@@ -935,12 +942,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSuggestedActions:
             let value = try UpdateSuggestedActions(from: decoder)
             self = .updateSuggestedActions(value)
+        case .updateSpeedLimitNotification:
+            let value = try UpdateSpeedLimitNotification(from: decoder)
+            self = .updateSpeedLimitNotification(value)
         case .updateContactCloseBirthdays:
             let value = try UpdateContactCloseBirthdays(from: decoder)
             self = .updateContactCloseBirthdays(value)
-        case .updateAddChatMembersPrivacyForbidden:
-            let value = try UpdateAddChatMembersPrivacyForbidden(from: decoder)
-            self = .updateAddChatMembersPrivacyForbidden(value)
         case .updateAutosaveSettings:
             let value = try UpdateAutosaveSettings(from: decoder)
             self = .updateAutosaveSettings(value)
@@ -1081,6 +1088,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateChatActionBar(let value):
             try container.encode(Kind.updateChatActionBar, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatBusinessBotManageBar(let value):
+            try container.encode(Kind.updateChatBusinessBotManageBar, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatAvailableReactions(let value):
             try container.encode(Kind.updateChatAvailableReactions, forKey: .type)
@@ -1361,11 +1371,11 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSuggestedActions(let value):
             try container.encode(Kind.updateSuggestedActions, forKey: .type)
             try value.encode(to: encoder)
+        case .updateSpeedLimitNotification(let value):
+            try container.encode(Kind.updateSpeedLimitNotification, forKey: .type)
+            try value.encode(to: encoder)
         case .updateContactCloseBirthdays(let value):
             try container.encode(Kind.updateContactCloseBirthdays, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateAddChatMembersPrivacyForbidden(let value):
-            try container.encode(Kind.updateAddChatMembersPrivacyForbidden, forKey: .type)
             try value.encode(to: encoder)
         case .updateAutosaveSettings(let value):
             try container.encode(Kind.updateAutosaveSettings, forKey: .type)
@@ -1951,6 +1961,25 @@ public struct UpdateChatActionBar: Codable, Equatable, Hashable {
         chatId: Int64
     ) {
         self.actionBar = actionBar
+        self.chatId = chatId
+    }
+}
+
+/// The bar for managing business bot was changed in a chat
+public struct UpdateChatBusinessBotManageBar: Codable, Equatable, Hashable {
+
+    /// The new value of the business bot manage bar; may be null
+    public let businessBotManageBar: BusinessBotManageBar?
+
+    /// Chat identifier
+    public let chatId: Int64
+
+
+    public init(
+        businessBotManageBar: BusinessBotManageBar?,
+        chatId: Int64
+    ) {
+        self.businessBotManageBar = businessBotManageBar
         self.chatId = chatId
     }
 }
@@ -3654,6 +3683,18 @@ public struct UpdateSuggestedActions: Codable, Equatable, Hashable {
     }
 }
 
+/// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+public struct UpdateSpeedLimitNotification: Codable, Equatable, Hashable {
+
+    /// True, if upload speed was limited; false, if download speed was limited
+    public let isUpload: Bool
+
+
+    public init(isUpload: Bool) {
+        self.isUpload = isUpload
+    }
+}
+
 /// The list of contacts that had birthdays recently or will have birthday soon has changed
 public struct UpdateContactCloseBirthdays: Codable, Equatable, Hashable {
 
@@ -3663,25 +3704,6 @@ public struct UpdateContactCloseBirthdays: Codable, Equatable, Hashable {
 
     public init(closeBirthdayUsers: [CloseBirthdayUser]) {
         self.closeBirthdayUsers = closeBirthdayUsers
-    }
-}
-
-/// Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
-public struct UpdateAddChatMembersPrivacyForbidden: Codable, Equatable, Hashable {
-
-    /// Chat identifier
-    public let chatId: Int64
-
-    /// Identifiers of users, which weren't added because of their privacy settings
-    public let userIds: [Int64]
-
-
-    public init(
-        chatId: Int64,
-        userIds: [Int64]
-    ) {
-        self.chatId = chatId
-        self.userIds = userIds
     }
 }
 

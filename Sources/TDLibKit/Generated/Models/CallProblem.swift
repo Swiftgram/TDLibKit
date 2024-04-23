@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Describes the exact type of a problem with a call
+/// Describes the exact type of problem with a call
 public indirect enum CallProblem: Codable, Equatable, Hashable {
 
     /// The user heard their own voice

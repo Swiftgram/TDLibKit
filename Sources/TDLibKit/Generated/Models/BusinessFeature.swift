@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -31,8 +31,8 @@ public indirect enum BusinessFeature: Codable, Equatable, Hashable {
     /// The ability to create links to the business account with predefined message text
     case businessFeatureAccountLinks
 
-    /// The ability to customize intro
-    case businessFeatureIntro
+    /// The ability to customize start page
+    case businessFeatureStartPage
 
     /// The ability to connect a bot to the account
     case businessFeatureBots
@@ -54,7 +54,7 @@ public indirect enum BusinessFeature: Codable, Equatable, Hashable {
         case businessFeatureGreetingMessage
         case businessFeatureAwayMessage
         case businessFeatureAccountLinks
-        case businessFeatureIntro
+        case businessFeatureStartPage
         case businessFeatureBots
         case businessFeatureEmojiStatus
         case businessFeatureChatFolderTags
@@ -77,8 +77,8 @@ public indirect enum BusinessFeature: Codable, Equatable, Hashable {
             self = .businessFeatureAwayMessage
         case .businessFeatureAccountLinks:
             self = .businessFeatureAccountLinks
-        case .businessFeatureIntro:
-            self = .businessFeatureIntro
+        case .businessFeatureStartPage:
+            self = .businessFeatureStartPage
         case .businessFeatureBots:
             self = .businessFeatureBots
         case .businessFeatureEmojiStatus:
@@ -105,8 +105,8 @@ public indirect enum BusinessFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.businessFeatureAwayMessage, forKey: .type)
         case .businessFeatureAccountLinks:
             try container.encode(Kind.businessFeatureAccountLinks, forKey: .type)
-        case .businessFeatureIntro:
-            try container.encode(Kind.businessFeatureIntro, forKey: .type)
+        case .businessFeatureStartPage:
+            try container.encode(Kind.businessFeatureStartPage, forKey: .type)
         case .businessFeatureBots:
             try container.encode(Kind.businessFeatureBots, forKey: .type)
         case .businessFeatureEmojiStatus:

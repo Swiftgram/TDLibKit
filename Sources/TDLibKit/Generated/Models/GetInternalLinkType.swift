@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
+/// Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization
 public struct GetInternalLinkType: Codable, Equatable, Hashable {
 
     /// The link

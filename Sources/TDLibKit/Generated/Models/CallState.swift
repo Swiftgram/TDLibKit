@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -115,6 +115,9 @@ public struct CallStateReady: Codable, Equatable, Hashable {
     /// A JSON-encoded call config
     public let config: String
 
+    /// Custom JSON-encoded call parameters to be passed to tgcalls
+    public let customParameters: String
+
     /// Encryption key emojis fingerprint
     public let emojis: [String]
 
@@ -131,6 +134,7 @@ public struct CallStateReady: Codable, Equatable, Hashable {
     public init(
         allowP2p: Bool,
         config: String,
+        customParameters: String,
         emojis: [String],
         encryptionKey: Data,
         `protocol`: CallProtocol,
@@ -138,6 +142,7 @@ public struct CallStateReady: Codable, Equatable, Hashable {
     ) {
         self.allowP2p = allowP2p
         self.config = config
+        self.customParameters = customParameters
         self.emojis = emojis
         self.encryptionKey = encryptionKey
         self.`protocol` = `protocol`

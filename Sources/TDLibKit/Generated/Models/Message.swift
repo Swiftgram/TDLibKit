@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -103,7 +103,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message is a forum topic message
     public let isTopicMessage: Bool
 
-    /// Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
+    /// Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     public let mediaAlbumId: TdInt64
 
     /// If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs

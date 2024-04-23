@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
     /// The minimum boost level allowing to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only
     public let minSpeechRecognitionBoostLevel: Int
 
+    /// The minimum boost level allowing to disable sponsored messages in the chat; for channel chats only
+    public let minSponsoredMessageDisableBoostLevel: Int
+
 
     public init(
         features: [ChatBoostLevelFeatures],
@@ -46,7 +49,8 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
         minCustomEmojiStickerSetBoostLevel: Int,
         minEmojiStatusBoostLevel: Int,
         minProfileBackgroundCustomEmojiBoostLevel: Int,
-        minSpeechRecognitionBoostLevel: Int
+        minSpeechRecognitionBoostLevel: Int,
+        minSponsoredMessageDisableBoostLevel: Int
     ) {
         self.features = features
         self.minBackgroundCustomEmojiBoostLevel = minBackgroundCustomEmojiBoostLevel
@@ -56,6 +60,7 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
         self.minEmojiStatusBoostLevel = minEmojiStatusBoostLevel
         self.minProfileBackgroundCustomEmojiBoostLevel = minProfileBackgroundCustomEmojiBoostLevel
         self.minSpeechRecognitionBoostLevel = minSpeechRecognitionBoostLevel
+        self.minSponsoredMessageDisableBoostLevel = minSponsoredMessageDisableBoostLevel
     }
 }
 

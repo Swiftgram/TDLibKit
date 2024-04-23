@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -25,8 +25,14 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
     public let canGetMembers: Bool
 
+    /// True, if the supergroup or channel revenue statistics are available
+    public let canGetRevenueStatistics: Bool
+
     /// True, if the supergroup or channel statistics are available
     public let canGetStatistics: Bool
+
+    /// True, if the chat can have sponsored messages. The value of this field is only available to the owner of the chat
+    public let canHaveSponsoredMessages: Bool
 
     /// True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
     public let canHideMembers: Bool
@@ -102,7 +108,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         bannedCount: Int,
         botCommands: [BotCommands],
         canGetMembers: Bool,
+        canGetRevenueStatistics: Bool,
         canGetStatistics: Bool,
+        canHaveSponsoredMessages: Bool,
         canHideMembers: Bool,
         canSetLocation: Bool,
         canSetStickerSet: Bool,
@@ -131,7 +139,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.bannedCount = bannedCount
         self.botCommands = botCommands
         self.canGetMembers = canGetMembers
+        self.canGetRevenueStatistics = canGetRevenueStatistics
         self.canGetStatistics = canGetStatistics
+        self.canHaveSponsoredMessages = canHaveSponsoredMessages
         self.canHideMembers = canHideMembers
         self.canSetLocation = canSetLocation
         self.canSetStickerSet = canSetStickerSet

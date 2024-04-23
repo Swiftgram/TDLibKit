@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a folder for user chats
 public struct ChatFolder: Codable, Equatable, Hashable {
 
-    /// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled. Can't be changed if folder tags are disabled or the current user doesn't have Telegram Premium subscription
+    /// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled. Can't be changed if folder tags are disabled or the current user doesn't have Telegram Premium subscription
     public let colorId: Int
 
     /// True, if archived chats need to be excluded

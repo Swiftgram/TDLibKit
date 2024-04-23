@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Contains the type of a Telegram Passport element
+/// Contains the type of Telegram Passport element
 public indirect enum PassportElementType: Codable, Equatable, Hashable {
 
     /// A Telegram Passport element containing the user's personal details

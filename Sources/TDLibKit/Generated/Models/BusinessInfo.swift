@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -19,28 +19,28 @@ public struct BusinessInfo: Codable, Equatable, Hashable {
     /// The greeting message; may be null if none or the Business account is not of the current user
     public let greetingMessageSettings: BusinessGreetingMessageSettings?
 
-    /// Information about intro of the business; may be null if none
-    public let intro: BusinessIntro?
-
     /// Location of the business; may be null if none
     public let location: BusinessLocation?
 
     /// Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days
     public let openingHours: BusinessOpeningHours?
 
+    /// Information about start page of the account; may be null if none
+    public let startPage: BusinessStartPage?
+
 
     public init(
         awayMessageSettings: BusinessAwayMessageSettings?,
         greetingMessageSettings: BusinessGreetingMessageSettings?,
-        intro: BusinessIntro?,
         location: BusinessLocation?,
-        openingHours: BusinessOpeningHours?
+        openingHours: BusinessOpeningHours?,
+        startPage: BusinessStartPage?
     ) {
         self.awayMessageSettings = awayMessageSettings
         self.greetingMessageSettings = greetingMessageSettings
-        self.intro = intro
         self.location = location
         self.openingHours = openingHours
+        self.startPage = startPage
     }
 }
 

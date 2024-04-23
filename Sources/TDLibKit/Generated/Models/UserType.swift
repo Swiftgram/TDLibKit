@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Represents the type of a user. The following types are possible: regular users, deleted users and bots
+/// Represents the type of user. The following types are possible: regular users, deleted users and bots
 public indirect enum UserType: Codable, Equatable, Hashable {
 
     /// A regular user

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetSupergroupMembers: Codable, Equatable, Hashable {
     /// The type of users to return; pass null to use supergroupMembersFilterRecent
     public let filter: SupergroupMembersFilter?
 
-    /// The maximum number of users be returned; up to 200
+    /// The maximum number of users to be returned; up to 200
     public let limit: Int?
 
     /// Number of users to skip

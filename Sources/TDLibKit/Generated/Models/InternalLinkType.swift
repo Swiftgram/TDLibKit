@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
     case internalLinkTypeBotStartInGroup(InternalLinkTypeBotStartInGroup)
+
+    /// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
+    case internalLinkTypeBusinessChat(InternalLinkTypeBusinessChat)
 
     /// The link is a link to the change phone number section of the app
     case internalLinkTypeChangePhoneNumber
@@ -80,7 +83,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
-    /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
+    /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
 
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
@@ -98,7 +101,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
 
-    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
+    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat, then put the draft text in the input field
     case internalLinkTypePublicChat(InternalLinkTypePublicChat)
 
     /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
@@ -131,7 +134,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to an unsupported proxy. An alert can be shown to the user
     case internalLinkTypeUnsupportedProxy
 
-    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
+    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
     case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
 
     /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
@@ -152,6 +155,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeBotAddToChannel
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
+        case internalLinkTypeBusinessChat
         case internalLinkTypeChangePhoneNumber
         case internalLinkTypeChatBoost
         case internalLinkTypeChatFolderInvite
@@ -214,6 +218,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBotStartInGroup:
             let value = try InternalLinkTypeBotStartInGroup(from: decoder)
             self = .internalLinkTypeBotStartInGroup(value)
+        case .internalLinkTypeBusinessChat:
+            let value = try InternalLinkTypeBusinessChat(from: decoder)
+            self = .internalLinkTypeBusinessChat(value)
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
         case .internalLinkTypeChatBoost:
@@ -336,6 +343,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeBotStartInGroup(let value):
             try container.encode(Kind.internalLinkTypeBotStartInGroup, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeBusinessChat(let value):
+            try container.encode(Kind.internalLinkTypeBusinessChat, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
@@ -553,6 +563,18 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
+public struct InternalLinkTypeBusinessChat: Codable, Equatable, Hashable {
+
+    /// Name of the link
+    public let linkName: String
+
+
+    public init(linkName: String) {
+        self.linkName = linkName
+    }
+}
+
 /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
 public struct InternalLinkTypeChatBoost: Codable, Equatable, Hashable {
 
@@ -716,7 +738,7 @@ public struct InternalLinkTypePassportDataRequest: Codable, Equatable, Hashable 
     }
 }
 
-/// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
+/// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
 public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable, Hashable {
 
     /// Hash value from the link
@@ -795,15 +817,22 @@ public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
+/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat, then put the draft text in the input field
 public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
 
     /// Username of the chat
     public let chatUsername: String
 
+    /// Draft text for message to send in the chat
+    public let draftText: String
 
-    public init(chatUsername: String) {
+
+    public init(
+        chatUsername: String,
+        draftText: String
+    ) {
         self.chatUsername = chatUsername
+        self.draftText = draftText
     }
 }
 
@@ -888,14 +917,21 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
+/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
 public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
+
+    /// Draft text for message to send in the chat
+    public let draftText: String
 
     /// Phone number of the user
     public let phoneNumber: String
 
 
-    public init(phoneNumber: String) {
+    public init(
+        draftText: String,
+        phoneNumber: String
+    ) {
+        self.draftText = draftText
         self.phoneNumber = phoneNumber
     }
 }

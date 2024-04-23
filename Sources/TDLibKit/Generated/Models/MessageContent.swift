@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
@@ -91,7 +91,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A message with information about an ended video chat
     case messageVideoChatEnded(MessageVideoChatEnded)
 
-    /// A message with information about an invite to a video chat
+    /// A message with information about an invitation to a video chat
     case messageInviteVideoChatParticipants(MessageInviteVideoChatParticipants)
 
     /// A newly created basic group
@@ -1199,7 +1199,7 @@ public struct MessageVideoChatEnded: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with information about an invite to a video chat
+/// A message with information about an invitation to a video chat
 public struct MessageInviteVideoChatParticipants: Codable, Equatable, Hashable {
 
     /// Identifier of the video chat. The video chat can be received through the method getGroupCall

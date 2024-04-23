@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.27-d7203eb7
-//  https://github.com/tdlib/td/tree/d7203eb7
+//  Based on TDLib 1.8.28-2424d681
+//  https://github.com/tdlib/td/tree/2424d681
 //
 
 import Foundation
 
 
-/// Describes type of a Saved Messages topic
+/// Describes type of Saved Messages topic
 public indirect enum SavedMessagesTopicType: Codable, Equatable, Hashable {
 
     /// Topic containing messages sent by the current user of forwarded from an unknown chat
