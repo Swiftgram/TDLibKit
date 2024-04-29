@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-4d90c2a2
-//  https://github.com/tdlib/td/tree/4d90c2a2
+//  Based on TDLib 1.8.28-77b34797
+//  https://github.com/tdlib/td/tree/77b34797
 //
 
 import Foundation
 
 
-/// Describes reset state of a email address
+/// Describes reset state of an email address
 public indirect enum EmailAddressResetState: Codable, Equatable, Hashable {
 
     /// Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
