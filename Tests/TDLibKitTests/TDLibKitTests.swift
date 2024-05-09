@@ -122,7 +122,7 @@ class TDLibKitUnitTests: XCTestCase {
     
     func testEquatableStructsWithEnums() {
         let struct1 = EditMessageLiveLocation(
-            chatId: 1234567, heading: 10, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), messageId: 12345, proximityAlertRadius: 30, replyMarkup: .replyMarkupInlineKeyboard(
+            chatId: 1234567, heading: 10, livePeriod: 0x7FFFFFFF, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), messageId: 12345, proximityAlertRadius: 30, replyMarkup: .replyMarkupInlineKeyboard(
                 ReplyMarkupInlineKeyboard(
                     rows: [
                         [
@@ -134,7 +134,7 @@ class TDLibKitUnitTests: XCTestCase {
         )
         
         let struct2 = EditMessageLiveLocation(
-            chatId: 1234567, heading: 10, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), messageId: 12345, proximityAlertRadius: 30, replyMarkup: .replyMarkupInlineKeyboard(
+            chatId: 1234567, heading: 10, livePeriod: 0x7FFFFFFF, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), messageId: 12345, proximityAlertRadius: 30, replyMarkup: .replyMarkupInlineKeyboard(
                 ReplyMarkupInlineKeyboard(
                     rows: [
                         [

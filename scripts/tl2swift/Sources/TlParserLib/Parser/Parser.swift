@@ -142,6 +142,7 @@ public final class Parser {
             var paramName = scanner.scanUpTo(" ") ?? ""
             paramName = paramName.trimmingCharacters(in: CharacterSet.at)
             var paramDesc = scanner.scanUpTo("@") ?? ""
+            paramDesc = paramDesc.replacingOccurrences(of: "\n//-", with: " ")
             paramDesc = paramDesc.trimmingCharacters(in: CharacterSet.comment)
             result.params[paramName] = paramDesc
         }
