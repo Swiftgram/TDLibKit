@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -17,20 +17,20 @@ public struct MessageSponsor: Codable, Equatable, Hashable {
     public let info: String
 
     /// Photo of the sponsor; may be null if must not be shown
-    public let photo: ChatPhotoInfo?
+    public let photo: Photo?
 
-    /// Type of the sponsor
-    public let type: MessageSponsorType
+    /// URL of the sponsor to be opened when the message is clicked
+    public let url: String
 
 
     public init(
         info: String,
-        photo: ChatPhotoInfo?,
-        type: MessageSponsorType
+        photo: Photo?,
+        url: String
     ) {
         self.info = info
         self.photo = photo
-        self.type = type
+        self.url = url
     }
 }
 

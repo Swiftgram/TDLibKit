@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
     /// For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication
     public let firebaseAuthenticationSettings: FirebaseAuthenticationSettings?
 
+    /// Pass true if there is a SIM card in the current device, but it is not possible to check whether phone number matches
+    public let hasUnknownPhoneNumber: Bool
+
     /// Pass true if the authenticated phone number is used on the current device
     public let isCurrentPhoneNumber: Bool
 
@@ -38,6 +41,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
         allowSmsRetrieverApi: Bool,
         authenticationTokens: [String],
         firebaseAuthenticationSettings: FirebaseAuthenticationSettings?,
+        hasUnknownPhoneNumber: Bool,
         isCurrentPhoneNumber: Bool
     ) {
         self.allowFlashCall = allowFlashCall
@@ -45,6 +49,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
         self.allowSmsRetrieverApi = allowSmsRetrieverApi
         self.authenticationTokens = authenticationTokens
         self.firebaseAuthenticationSettings = firebaseAuthenticationSettings
+        self.hasUnknownPhoneNumber = hasUnknownPhoneNumber
         self.isCurrentPhoneNumber = isCurrentPhoneNumber
     }
 }

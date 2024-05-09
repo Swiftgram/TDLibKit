@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -13,10 +13,16 @@ import Foundation
 /// Describes a sponsored message
 public struct SponsoredMessage: Codable, Equatable, Hashable {
 
+    /// Identifier of the accent color for title, button text and message background
+    public let accentColorId: Int
+
     /// If non-empty, additional information about the sponsored message to be shown along with the message
     public let additionalInfo: String
 
-    /// If non-empty, text for the message action button
+    /// Identifier of a custom emoji to be shown on the message background; 0 if none
+    public let backgroundCustomEmojiId: TdInt64
+
+    /// Text for the message action button
     public let buttonText: String
 
     /// True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage
@@ -34,23 +40,32 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
     /// Information about the sponsor of the message
     public let sponsor: MessageSponsor
 
+    /// Title of the sponsored message
+    public let title: String
+
 
     public init(
+        accentColorId: Int,
         additionalInfo: String,
+        backgroundCustomEmojiId: TdInt64,
         buttonText: String,
         canBeReported: Bool,
         content: MessageContent,
         isRecommended: Bool,
         messageId: Int64,
-        sponsor: MessageSponsor
+        sponsor: MessageSponsor,
+        title: String
     ) {
+        self.accentColorId = accentColorId
         self.additionalInfo = additionalInfo
+        self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.buttonText = buttonText
         self.canBeReported = canBeReported
         self.content = content
         self.isRecommended = isRecommended
         self.messageId = messageId
         self.sponsor = sponsor
+        self.title = title
     }
 }
 

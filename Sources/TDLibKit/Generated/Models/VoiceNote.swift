@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
 
 
-/// Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
+/// Describes a voice note
 public struct VoiceNote: Codable, Equatable, Hashable {
 
     /// Duration of the voice note, in seconds; as defined by the sender
     public let duration: Int
 
-    /// MIME type of the file; as defined by the sender
+    /// MIME type of the file; as defined by the sender. Usually, one of "audio/ogg" for Opus in an OGG container, "audio/mpeg" for an MP3 audio, or "audio/mp4" for an M4A audio
     public let mimeType: String
 
     /// Result of speech recognition in the voice note; may be null

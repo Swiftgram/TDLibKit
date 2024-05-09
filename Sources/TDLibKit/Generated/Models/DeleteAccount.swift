@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
 public struct DeleteAccount: Codable, Equatable, Hashable {
 
-    /// The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+    /// The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week
     public let password: String?
 
     /// The reason why the account was deleted; optional

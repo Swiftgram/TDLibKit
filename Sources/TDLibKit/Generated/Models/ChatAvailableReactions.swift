@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
 
     /// All reactions are available in the chat
-    case chatAvailableReactionsAll
+    case chatAvailableReactionsAll(ChatAvailableReactionsAll)
 
     /// Only specific reactions are available in the chat
     case chatAvailableReactionsSome(ChatAvailableReactionsSome)
@@ -30,7 +30,8 @@ public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
         case .chatAvailableReactionsAll:
-            self = .chatAvailableReactionsAll
+            let value = try ChatAvailableReactionsAll(from: decoder)
+            self = .chatAvailableReactionsAll(value)
         case .chatAvailableReactionsSome:
             let value = try ChatAvailableReactionsSome(from: decoder)
             self = .chatAvailableReactionsSome(value)
@@ -40,8 +41,9 @@ public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .chatAvailableReactionsAll:
+        case .chatAvailableReactionsAll(let value):
             try container.encode(Kind.chatAvailableReactionsAll, forKey: .type)
+            try value.encode(to: encoder)
         case .chatAvailableReactionsSome(let value):
             try container.encode(Kind.chatAvailableReactionsSome, forKey: .type)
             try value.encode(to: encoder)
@@ -49,14 +51,33 @@ public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
     }
 }
 
+/// All reactions are available in the chat
+public struct ChatAvailableReactionsAll: Codable, Equatable, Hashable {
+
+    /// The maximum allowed number of reactions per message; 1-11
+    public let maxReactionCount: Int
+
+
+    public init(maxReactionCount: Int) {
+        self.maxReactionCount = maxReactionCount
+    }
+}
+
 /// Only specific reactions are available in the chat
 public struct ChatAvailableReactionsSome: Codable, Equatable, Hashable {
+
+    /// The maximum allowed number of reactions per message; 1-11
+    public let maxReactionCount: Int
 
     /// The list of reactions
     public let reactions: [ReactionType]
 
 
-    public init(reactions: [ReactionType]) {
+    public init(
+        maxReactionCount: Int,
+        reactions: [ReactionType]
+    ) {
+        self.maxReactionCount = maxReactionCount
         self.reactions = reactions
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct DeleteChatBackground: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true.//-Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
+    /// Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true. Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
     public let restorePrevious: Bool?
 
 

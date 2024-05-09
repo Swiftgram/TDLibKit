@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -31,8 +31,8 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
     /// List of poll answer options
     public let options: [PollOption]
 
-    /// Poll question; 1-300 characters
-    public let question: String
+    /// Poll question; 1-300 characters. Only custom emoji entities are allowed
+    public let question: FormattedText
 
     /// Identifiers of recent voters, if the poll is non-anonymous
     public let recentVoterIds: [MessageSender]
@@ -51,7 +51,7 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
         isClosed: Bool,
         openPeriod: Int,
         options: [PollOption],
-        question: String,
+        question: FormattedText,
         recentVoterIds: [MessageSender],
         totalVoterCount: Int,
         type: PollType

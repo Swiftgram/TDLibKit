@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -459,6 +459,29 @@ public class TDLibApi {
     public final func sendAuthenticationFirebaseSms(token: String?) async throws -> Ok {
         let query = SendAuthenticationFirebaseSms(
             token: token
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Reports that authentication code wasn't delivered via SMS; for official mobile apps only. Works only when the current authorization state is authorizationStateWaitCode
+    /// - Parameter mobileNetworkCode: Current mobile network code
+    public final func reportAuthenticationCodeMissing(
+        mobileNetworkCode: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportAuthenticationCodeMissing(
+            mobileNetworkCode: mobileNetworkCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Reports that authentication code wasn't delivered via SMS; for official mobile apps only. Works only when the current authorization state is authorizationStateWaitCode
+    /// - Parameter mobileNetworkCode: Current mobile network code
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func reportAuthenticationCodeMissing(mobileNetworkCode: String?) async throws -> Ok {
+        let query = ReportAuthenticationCodeMissing(
+            mobileNetworkCode: mobileNetworkCode
         )
         return try await self.run(query: query)
     }
@@ -1707,6 +1730,21 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns a list of channel chats recommended to the current user
+    /// - Returns: A list of channel chats recommended to the current user
+    public final func getRecommendedChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
+        let query = GetRecommendedChats()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a list of channel chats recommended to the current user
+    /// - Returns: A list of channel chats recommended to the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getRecommendedChats() async throws -> Chats {
+        let query = GetRecommendedChats()
+        return try await self.run(query: query)
+    }
+
     /// Returns a list of chats similar to the given chat
     /// - Parameter chatId: Identifier of the target chat; must be an identifier of a channel chat
     /// - Returns: A list of chats similar to the given chat
@@ -2122,7 +2160,7 @@ public class TDLibApi {
 
     /// Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be fetched
     /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -2144,7 +2182,7 @@ public class TDLibApi {
 
     /// Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be fetched
     /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -2351,7 +2389,7 @@ public class TDLibApi {
     /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -2376,7 +2414,7 @@ public class TDLibApi {
     /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
     /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -2401,7 +2439,7 @@ public class TDLibApi {
     /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -2426,7 +2464,7 @@ public class TDLibApi {
     /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -2512,7 +2550,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
@@ -2549,7 +2587,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
@@ -2589,6 +2627,7 @@ public class TDLibApi {
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyInChannels: Pass true to search only for messages in channels
     /// - Parameter query: Query to search for
     /// - Returns: The results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public final func searchMessages(
@@ -2598,6 +2637,7 @@ public class TDLibApi {
         maxDate: Int?,
         minDate: Int?,
         offset: String?,
+        onlyInChannels: Bool?,
         query: String?,
         completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
     ) throws {
@@ -2608,6 +2648,7 @@ public class TDLibApi {
             maxDate: maxDate,
             minDate: minDate,
             offset: offset,
+            onlyInChannels: onlyInChannels,
             query: query
         )
         self.run(query: query, completion: completion)
@@ -2620,6 +2661,7 @@ public class TDLibApi {
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyInChannels: Pass true to search only for messages in channels
     /// - Parameter query: Query to search for
     /// - Returns: The results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -2630,6 +2672,7 @@ public class TDLibApi {
         maxDate: Int?,
         minDate: Int?,
         offset: String?,
+        onlyInChannels: Bool?,
         query: String?
     ) async throws -> FoundMessages {
         let query = SearchMessages(
@@ -2639,6 +2682,7 @@ public class TDLibApi {
             maxDate: maxDate,
             minDate: minDate,
             offset: offset,
+            onlyInChannels: onlyInChannels,
             query: query
         )
         return try await self.run(query: query)
@@ -2696,7 +2740,7 @@ public class TDLibApi {
 
     /// Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
     /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
@@ -2724,7 +2768,7 @@ public class TDLibApi {
 
     /// Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
-    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.//-For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
     /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
@@ -3401,7 +3445,7 @@ public class TDLibApi {
 
     /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
-    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     public final func translateText(
         text: FormattedText?,
         toLanguageCode: String?,
@@ -3416,7 +3460,7 @@ public class TDLibApi {
 
     /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
-    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func translateText(
         text: FormattedText?,
@@ -3432,7 +3476,7 @@ public class TDLibApi {
     /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     public final func translateMessageText(
         chatId: Int64?,
         messageId: Int64?,
@@ -3450,7 +3494,7 @@ public class TDLibApi {
     /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of//-"af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et",//-"fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko",//-"ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr",//-"st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func translateMessageText(
         chatId: Int64?,
@@ -3533,9 +3577,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of message sender identifiers, which can be used to send messages in a chat
+    /// Returns the list of message sender identifiers, which can be used to send messages in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Returns: List of message sender identifiers, which can be used to send messages in a chat
+    /// - Returns: The list of message sender identifiers, which can be used to send messages in a chat
     public final func getChatAvailableMessageSenders(
         chatId: Int64?,
         completion: @escaping (Result<ChatMessageSenders, Swift.Error>) -> Void
@@ -3546,9 +3590,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of message sender identifiers, which can be used to send messages in a chat
+    /// Returns the list of message sender identifiers, which can be used to send messages in a chat
     /// - Parameter chatId: Chat identifier
-    /// - Returns: List of message sender identifiers, which can be used to send messages in a chat
+    /// - Returns: The list of message sender identifiers, which can be used to send messages in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatAvailableMessageSenders(chatId: Int64?) async throws -> ChatMessageSenders {
         let query = GetChatAvailableMessageSenders(
@@ -4138,6 +4182,7 @@ public class TDLibApi {
     /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     /// - Parameter location: New location content of the message; pass null to stop sharing the live location
     /// - Parameter messageId: Identifier of the message
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
@@ -4146,6 +4191,7 @@ public class TDLibApi {
     public final func editMessageLiveLocation(
         chatId: Int64?,
         heading: Int?,
+        livePeriod: Int?,
         location: Location?,
         messageId: Int64?,
         proximityAlertRadius: Int?,
@@ -4155,6 +4201,7 @@ public class TDLibApi {
         let query = EditMessageLiveLocation(
             chatId: chatId,
             heading: heading,
+            livePeriod: livePeriod,
             location: location,
             messageId: messageId,
             proximityAlertRadius: proximityAlertRadius,
@@ -4166,6 +4213,7 @@ public class TDLibApi {
     /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     /// - Parameter location: New location content of the message; pass null to stop sharing the live location
     /// - Parameter messageId: Identifier of the message
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
@@ -4175,6 +4223,7 @@ public class TDLibApi {
     public final func editMessageLiveLocation(
         chatId: Int64?,
         heading: Int?,
+        livePeriod: Int?,
         location: Location?,
         messageId: Int64?,
         proximityAlertRadius: Int?,
@@ -4183,6 +4232,7 @@ public class TDLibApi {
         let query = EditMessageLiveLocation(
             chatId: chatId,
             heading: heading,
+            livePeriod: livePeriod,
             location: location,
             messageId: messageId,
             proximityAlertRadius: proximityAlertRadius,
@@ -4357,12 +4407,14 @@ public class TDLibApi {
     /// Edits the content of a live location in an inline message sent via a bot; for bots only
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter inlineMessageId: Inline message identifier
+    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     /// - Parameter location: New location content of the message; pass null to stop sharing the live location
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public final func editInlineMessageLiveLocation(
         heading: Int?,
         inlineMessageId: String?,
+        livePeriod: Int?,
         location: Location?,
         proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?,
@@ -4371,6 +4423,7 @@ public class TDLibApi {
         let query = EditInlineMessageLiveLocation(
             heading: heading,
             inlineMessageId: inlineMessageId,
+            livePeriod: livePeriod,
             location: location,
             proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
@@ -4381,6 +4434,7 @@ public class TDLibApi {
     /// Edits the content of a live location in an inline message sent via a bot; for bots only
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter inlineMessageId: Inline message identifier
+    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     /// - Parameter location: New location content of the message; pass null to stop sharing the live location
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
@@ -4389,6 +4443,7 @@ public class TDLibApi {
     public final func editInlineMessageLiveLocation(
         heading: Int?,
         inlineMessageId: String?,
+        livePeriod: Int?,
         location: Location?,
         proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?
@@ -4396,6 +4451,7 @@ public class TDLibApi {
         let query = EditInlineMessageLiveLocation(
             heading: heading,
             inlineMessageId: inlineMessageId,
+            livePeriod: livePeriod,
             location: location,
             proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
@@ -4919,6 +4975,44 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: Sent messages
+    public final func addQuickReplyShortcutMessageAlbum(
+        inputMessageContents: [InputMessageContent]?,
+        replyToMessageId: Int64?,
+        shortcutName: String?,
+        completion: @escaping (Result<QuickReplyMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = AddQuickReplyShortcutMessageAlbum(
+            inputMessageContents: inputMessageContents,
+            replyToMessageId: replyToMessageId,
+            shortcutName: shortcutName
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// - Parameter shortcutName: Name of the target shortcut
+    /// - Returns: Sent messages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func addQuickReplyShortcutMessageAlbum(
+        inputMessageContents: [InputMessageContent]?,
+        replyToMessageId: Int64?,
+        shortcutName: String?
+    ) async throws -> QuickReplyMessages {
+        let query = AddQuickReplyShortcutMessageAlbum(
+            inputMessageContents: inputMessageContents,
+            replyToMessageId: replyToMessageId,
+            shortcutName: shortcutName
+        )
+        return try await self.run(query: query)
+    }
+
     /// Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is readded, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
     /// - Parameter messageIds: Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
     /// - Parameter shortcutName: Name of the target shortcut
@@ -4988,15 +5082,15 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of custom emojis, which can be used as forum topic icon by all users
-    /// - Returns: List of custom emojis, which can be used as forum topic icon by all users
+    /// Returns the list of custom emojis, which can be used as forum topic icon by all users
+    /// - Returns: The list of custom emojis, which can be used as forum topic icon by all users
     public final func getForumTopicDefaultIcons(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
         let query = GetForumTopicDefaultIcons()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of custom emojis, which can be used as forum topic icon by all users
-    /// - Returns: List of custom emojis, which can be used as forum topic icon by all users
+    /// Returns the list of custom emojis, which can be used as forum topic icon by all users
+    /// - Returns: The list of custom emojis, which can be used as forum topic icon by all users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getForumTopicDefaultIcons() async throws -> Stickers {
         let query = GetForumTopicDefaultIcons()
@@ -6249,6 +6343,20 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Hides the list of contacts that have close birthdays for 24 hours
+    public final func hideContactCloseBirthdays(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = HideContactCloseBirthdays()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Hides the list of contacts that have close birthdays for 24 hours
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func hideContactCloseBirthdays() async throws -> Ok {
+        let query = HideContactCloseBirthdays()
+        return try await self.run(query: query)
+    }
+
     /// Returns information about a business connection by its identifier; for bots only
     /// - Parameter connectionId: Identifier of the business connection to return
     /// - Returns: Information about a business connection by its identifier
@@ -6408,7 +6516,7 @@ public class TDLibApi {
     /// - Parameter buttonId: Identifier of the button
     /// - Parameter chatId: Identifier of the chat with the bot
     /// - Parameter messageId: Identifier of the message with the button
-    /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.//-If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat.//-If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
+    /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions. If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat. If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
     /// - Parameter sharedChatId: Identifier of the shared chat
     public final func shareChatWithBot(
         buttonId: Int?,
@@ -6432,7 +6540,7 @@ public class TDLibApi {
     /// - Parameter buttonId: Identifier of the button
     /// - Parameter chatId: Identifier of the chat with the bot
     /// - Parameter messageId: Identifier of the message with the button
-    /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.//-If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat.//-If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
+    /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions. If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat. If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
     /// - Parameter sharedChatId: Identifier of the shared chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -8599,7 +8707,7 @@ public class TDLibApi {
 
     /// Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
     /// - Parameter chatId: Chat identifier
-    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups//-or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
+    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
     /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
     public final func setChatProfileAccentColor(
         chatId: Int64?,
@@ -8617,7 +8725,7 @@ public class TDLibApi {
 
     /// Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
     /// - Parameter chatId: Chat identifier
-    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups//-or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
+    /// - Parameter profileAccentColorId: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
     /// - Parameter profileBackgroundCustomEmojiId: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -8732,7 +8840,7 @@ public class TDLibApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
     /// - Parameter onlyForSelf: Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
-    /// - Parameter type: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.//-Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
+    /// - Parameter type: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
     public final func setChatBackground(
         background: InputBackground?,
         chatId: Int64?,
@@ -8756,7 +8864,7 @@ public class TDLibApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter darkThemeDimming: Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
     /// - Parameter onlyForSelf: Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
-    /// - Parameter type: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats.//-Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
+    /// - Parameter type: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setChatBackground(
@@ -8778,7 +8886,7 @@ public class TDLibApi {
 
     /// Deletes background in a specific chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter restorePrevious: Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true.//-Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
+    /// - Parameter restorePrevious: Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true. Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
     public final func deleteChatBackground(
         chatId: Int64?,
         restorePrevious: Bool?,
@@ -8793,7 +8901,7 @@ public class TDLibApi {
 
     /// Deletes background in a specific chat
     /// - Parameter chatId: Chat identifier
-    /// - Parameter restorePrevious: Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true.//-Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
+    /// - Parameter restorePrevious: Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true. Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func deleteChatBackground(
@@ -9156,7 +9264,7 @@ public class TDLibApi {
 
     /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
     /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages member right in the supergroup)
-    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
+    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     public final func setChatDiscussionGroup(
         chatId: Int64?,
         discussionChatId: Int64?,
@@ -9171,7 +9279,7 @@ public class TDLibApi {
 
     /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
     /// - Parameter chatId: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages member right in the supergroup)
-    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.//-Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
+    /// - Parameter discussionChatId: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setChatDiscussionGroup(
@@ -9770,15 +9878,15 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
-    /// - Returns: List of saved notification sounds
+    /// Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    /// - Returns: The list of saved notification sounds
     public final func getSavedNotificationSounds(completion: @escaping (Result<NotificationSounds, Swift.Error>) -> Void) throws {
         let query = GetSavedNotificationSounds()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
-    /// - Returns: List of saved notification sounds
+    /// Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    /// - Returns: The list of saved notification sounds
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getSavedNotificationSounds() async throws -> NotificationSounds {
         let query = GetSavedNotificationSounds()
@@ -9830,10 +9938,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of chats with non-default notification settings for new messages
+    /// Returns the list of chats with non-default notification settings for new messages
     /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
-    /// - Returns: List of chats with non-default notification settings for new messages
+    /// - Returns: The list of chats with non-default notification settings for new messages
     public final func getChatNotificationSettingsExceptions(
         compareSound: Bool?,
         scope: NotificationSettingsScope?,
@@ -9846,10 +9954,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of chats with non-default notification settings for new messages
+    /// Returns the list of chats with non-default notification settings for new messages
     /// - Parameter compareSound: Pass true to include in the response chats with only non-default sound
     /// - Parameter scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
-    /// - Returns: List of chats with non-default notification settings for new messages
+    /// - Returns: The list of chats with non-default notification settings for new messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatNotificationSettingsExceptions(
         compareSound: Bool?,
@@ -9917,13 +10025,36 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
+    /// Changes notification settings for reactions
+    /// - Parameter notificationSettings: The new notification settings for reactions
+    public final func setReactionNotificationSettings(
+        notificationSettings: ReactionNotificationSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetReactionNotificationSettings(
+            notificationSettings: notificationSettings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes notification settings for reactions
+    /// - Parameter notificationSettings: The new notification settings for reactions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setReactionNotificationSettings(notificationSettings: ReactionNotificationSettings?) async throws -> Ok {
+        let query = SetReactionNotificationSettings(
+            notificationSettings: notificationSettings
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
     public final func resetAllNotificationSettings(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = ResetAllNotificationSettings()
         self.run(query: query, completion: completion)
     }
 
-    /// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
+    /// Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func resetAllNotificationSettings() async throws -> Ok {
@@ -10104,7 +10235,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat that will post the story
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
-    /// - Parameter isPinned: Pass true to keep the story accessible after expiration
+    /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
@@ -10115,7 +10246,7 @@ public class TDLibApi {
         chatId: Int64?,
         content: InputStoryContent?,
         fromStoryFullId: StoryFullId?,
-        isPinned: Bool?,
+        isPostedToChatPage: Bool?,
         privacySettings: StoryPrivacySettings?,
         protectContent: Bool?,
         completion: @escaping (Result<Story, Swift.Error>) -> Void
@@ -10127,7 +10258,7 @@ public class TDLibApi {
             chatId: chatId,
             content: content,
             fromStoryFullId: fromStoryFullId,
-            isPinned: isPinned,
+            isPostedToChatPage: isPostedToChatPage,
             privacySettings: privacySettings,
             protectContent: protectContent
         )
@@ -10141,7 +10272,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat that will post the story
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
-    /// - Parameter isPinned: Pass true to keep the story accessible after expiration
+    /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
@@ -10153,7 +10284,7 @@ public class TDLibApi {
         chatId: Int64?,
         content: InputStoryContent?,
         fromStoryFullId: StoryFullId?,
-        isPinned: Bool?,
+        isPostedToChatPage: Bool?,
         privacySettings: StoryPrivacySettings?,
         protectContent: Bool?
     ) async throws -> Story {
@@ -10164,7 +10295,7 @@ public class TDLibApi {
             chatId: chatId,
             content: content,
             fromStoryFullId: fromStoryFullId,
-            isPinned: isPinned,
+            isPostedToChatPage: isPostedToChatPage,
             privacySettings: privacySettings,
             protectContent: protectContent
         )
@@ -10251,37 +10382,37 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
-    /// - Parameter isPinned: Pass true to make the story accessible after expiration; pass false to make it private
+    /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
+    /// - Parameter isPostedToChatPage: Pass true to make the story accessible after expiration; pass false to make it private
     /// - Parameter storyId: Identifier of the story
     /// - Parameter storySenderChatId: Identifier of the chat that posted the story
-    public final func toggleStoryIsPinned(
-        isPinned: Bool?,
+    public final func toggleStoryIsPostedToChatPage(
+        isPostedToChatPage: Bool?,
         storyId: Int?,
         storySenderChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ToggleStoryIsPinned(
-            isPinned: isPinned,
+        let query = ToggleStoryIsPostedToChatPage(
+            isPostedToChatPage: isPostedToChatPage,
             storyId: storyId,
             storySenderChatId: storySenderChatId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
-    /// - Parameter isPinned: Pass true to make the story accessible after expiration; pass false to make it private
+    /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
+    /// - Parameter isPostedToChatPage: Pass true to make the story accessible after expiration; pass false to make it private
     /// - Parameter storyId: Identifier of the story
     /// - Parameter storySenderChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func toggleStoryIsPinned(
-        isPinned: Bool?,
+    public final func toggleStoryIsPostedToChatPage(
+        isPostedToChatPage: Bool?,
         storyId: Int?,
         storySenderChatId: Int64?
     ) async throws -> Ok {
-        let query = ToggleStoryIsPinned(
-            isPinned: isPinned,
+        let query = ToggleStoryIsPostedToChatPage(
+            isPostedToChatPage: isPostedToChatPage,
             storyId: storyId,
             storySenderChatId: storySenderChatId
         )
@@ -10319,15 +10450,15 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of chats with non-default notification settings for stories
-    /// - Returns: List of chats with non-default notification settings for stories
+    /// Returns the list of chats with non-default notification settings for stories
+    /// - Returns: The list of chats with non-default notification settings for stories
     public final func getStoryNotificationSettingsExceptions(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetStoryNotificationSettingsExceptions()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of chats with non-default notification settings for stories
-    /// - Returns: List of chats with non-default notification settings for stories
+    /// Returns the list of chats with non-default notification settings for stories
+    /// - Returns: The list of chats with non-default notification settings for stories
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStoryNotificationSettingsExceptions() async throws -> Chats {
         let query = GetStoryNotificationSettingsExceptions()
@@ -10414,18 +10545,18 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
-    /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
-    /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
-    public final func getChatPinnedStories(
+    /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
+    /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Returns: The list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    public final func getChatPostedToChatPageStories(
         chatId: Int64?,
         fromStoryId: Int?,
         limit: Int?,
         completion: @escaping (Result<Stories, Swift.Error>) -> Void
     ) throws {
-        let query = GetChatPinnedStories(
+        let query = GetChatPostedToChatPageStories(
             chatId: chatId,
             fromStoryId: fromStoryId,
             limit: limit
@@ -10433,18 +10564,18 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
-    /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
-    /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
+    /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Returns: The list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getChatPinnedStories(
+    public final func getChatPostedToChatPageStories(
         chatId: Int64?,
         fromStoryId: Int?,
         limit: Int?
     ) async throws -> Stories {
-        let query = GetChatPinnedStories(
+        let query = GetChatPostedToChatPageStories(
             chatId: chatId,
             fromStoryId: fromStoryId,
             limit: limit
@@ -10455,7 +10586,7 @@ public class TDLibApi {
     /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
-    /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Returns: The list of all stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     public final func getChatArchivedStories(
         chatId: Int64?,
@@ -10474,7 +10605,7 @@ public class TDLibApi {
     /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
-    /// - Parameter limit: The maximum number of stories to be returned//-For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Returns: The list of all stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatArchivedStories(
@@ -10486,6 +10617,37 @@ public class TDLibApi {
             chatId: chatId,
             fromStoryId: fromStoryId,
             limit: limit
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat
+    /// - Parameter chatId: Identifier of the chat that posted the stories
+    /// - Parameter storyIds: New list of pinned stories. All stories must be posted to the chat page first. There can be up to getOption("pinned_story_count_max") pinned stories on a chat page
+    public final func setChatPinnedStories(
+        chatId: Int64?,
+        storyIds: [Int]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatPinnedStories(
+            chatId: chatId,
+            storyIds: storyIds
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat
+    /// - Parameter chatId: Identifier of the chat that posted the stories
+    /// - Parameter storyIds: New list of pinned stories. All stories must be posted to the chat page first. There can be up to getOption("pinned_story_count_max") pinned stories on a chat page
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setChatPinnedStories(
+        chatId: Int64?,
+        storyIds: [Int]?
+    ) async throws -> Ok {
+        let query = SetChatPinnedStories(
+            chatId: chatId,
+            storyIds: storyIds
         )
         return try await self.run(query: query)
     }
@@ -10838,10 +11000,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of features available on the specific chat boost level; this is an offline request
+    /// Returns the list of features available on the specific chat boost level; this is an offline request
     /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     /// - Parameter level: Chat boost level
-    /// - Returns: List of features available on the specific chat boost level
+    /// - Returns: The list of features available on the specific chat boost level
     public final func getChatBoostLevelFeatures(
         isChannel: Bool?,
         level: Int?,
@@ -10854,10 +11016,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of features available on the specific chat boost level; this is an offline request
+    /// Returns the list of features available on the specific chat boost level; this is an offline request
     /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     /// - Parameter level: Chat boost level
-    /// - Returns: List of features available on the specific chat boost level
+    /// - Returns: The list of features available on the specific chat boost level
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatBoostLevelFeatures(
         isChannel: Bool?,
@@ -10870,9 +11032,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of features available for different chat boost levels; this is an offline request
+    /// Returns the list of features available for different chat boost levels; this is an offline request
     /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
-    /// - Returns: List of features available for different chat boost levels
+    /// - Returns: The list of features available for different chat boost levels
     public final func getChatBoostFeatures(
         isChannel: Bool?,
         completion: @escaping (Result<ChatBoostFeatures, Swift.Error>) -> Void
@@ -10883,9 +11045,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of features available for different chat boost levels; this is an offline request
+    /// Returns the list of features available for different chat boost levels; this is an offline request
     /// - Parameter isChannel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
-    /// - Returns: List of features available for different chat boost levels
+    /// - Returns: The list of features available for different chat boost levels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatBoostFeatures(isChannel: Bool?) async throws -> ChatBoostFeatures {
         let query = GetChatBoostFeatures(
@@ -11013,12 +11175,12 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of boosts applied to a chat; requires administrator rights in the chat
+    /// Returns the list of boosts applied to a chat; requires administrator rights in the chat
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyGiftCodes: Pass true to receive only boosts received from gift codes and giveaways created by the chat
-    /// - Returns: List of boosts applied to a chat
+    /// - Returns: The list of boosts applied to a chat
     public final func getChatBoosts(
         chatId: Int64?,
         limit: Int?,
@@ -11035,12 +11197,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of boosts applied to a chat; requires administrator rights in the chat
+    /// Returns the list of boosts applied to a chat; requires administrator rights in the chat
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyGiftCodes: Pass true to receive only boosts received from gift codes and giveaways created by the chat
-    /// - Returns: List of boosts applied to a chat
+    /// - Returns: The list of boosts applied to a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatBoosts(
         chatId: Int64?,
@@ -11057,10 +11219,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
+    /// Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter userId: Identifier of the user
-    /// - Returns: List of boosts applied to a chat by a given user
+    /// - Returns: The list of boosts applied to a chat by a given user
     public final func getUserChatBoosts(
         chatId: Int64?,
         userId: Int64?,
@@ -11073,10 +11235,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
+    /// Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter userId: Identifier of the user
-    /// - Returns: List of boosts applied to a chat by a given user
+    /// - Returns: The list of boosts applied to a chat by a given user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getUserChatBoosts(
         chatId: Int64?,
@@ -11397,7 +11559,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it is sent in a message
+    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
@@ -11415,7 +11577,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it is sent in a message
+    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
@@ -12075,9 +12237,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+    /// Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
     /// - Parameter chatId: Chat identifier
-    /// - Returns: List of chat administrators with number of their invite links
+    /// - Returns: The list of chat administrators with number of their invite links
     public final func getChatInviteLinkCounts(
         chatId: Int64?,
         completion: @escaping (Result<ChatInviteLinkCounts, Swift.Error>) -> Void
@@ -12088,9 +12250,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+    /// Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
     /// - Parameter chatId: Chat identifier
-    /// - Returns: List of chat administrators with number of their invite links
+    /// - Returns: The list of chat administrators with number of their invite links
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatInviteLinkCounts(chatId: Int64?) async throws -> ChatInviteLinkCounts {
         let query = GetChatInviteLinkCounts(
@@ -12717,9 +12879,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+    /// Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
     /// - Parameter chatId: Chat identifier
-    /// - Returns: List of participant identifiers, on whose behalf a video chat in the chat can be joined
+    /// - Returns: The list of participant identifiers, on whose behalf a video chat in the chat can be joined
     public final func getVideoChatAvailableParticipants(
         chatId: Int64?,
         completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
@@ -12730,9 +12892,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+    /// Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
     /// - Parameter chatId: Chat identifier
-    /// - Returns: List of participant identifiers, on whose behalf a video chat in the chat can be joined
+    /// - Returns: The list of participant identifiers, on whose behalf a video chat in the chat can be joined
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getVideoChatAvailableParticipants(chatId: Int64?) async throws -> MessageSenders {
         let query = GetVideoChatAvailableParticipants(
@@ -13781,7 +13943,7 @@ public class TDLibApi {
 
     /// Adds a user to the contact list or edits an existing contact by their user identifier
     /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
-    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.//-Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     public final func addContact(
         contact: Contact?,
         sharePhoneNumber: Bool?,
@@ -13796,7 +13958,7 @@ public class TDLibApi {
 
     /// Adds a user to the contact list or edits an existing contact by their user identifier
     /// - Parameter contact: The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
-    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.//-Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+    /// - Parameter sharePhoneNumber: Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func addContact(
@@ -14953,9 +15115,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    /// Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
     /// - Parameter customEmojiIds: Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
-    /// - Returns: List of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    /// - Returns: The list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
     public final func getCustomEmojiStickers(
         customEmojiIds: [TdInt64]?,
         completion: @escaping (Result<Stickers, Swift.Error>) -> Void
@@ -14966,9 +15128,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    /// Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
     /// - Parameter customEmojiIds: Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
-    /// - Returns: List of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    /// - Returns: The list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getCustomEmojiStickers(customEmojiIds: [TdInt64]?) async throws -> Stickers {
         let query = GetCustomEmojiStickers(
@@ -15556,6 +15718,29 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Toggles whether the current user has sponsored messages enabled. The setting has no effect for users without Telegram Premium for which sponsored messages are always enabled
+    /// - Parameter hasSponsoredMessagesEnabled: Pass true to enable sponsored messages for the current user; false to disable them
+    public final func toggleHasSponsoredMessagesEnabled(
+        hasSponsoredMessagesEnabled: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleHasSponsoredMessagesEnabled(
+            hasSponsoredMessagesEnabled: hasSponsoredMessagesEnabled
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Toggles whether the current user has sponsored messages enabled. The setting has no effect for users without Telegram Premium for which sponsored messages are always enabled
+    /// - Parameter hasSponsoredMessagesEnabled: Pass true to enable sponsored messages for the current user; false to disable them
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func toggleHasSponsoredMessagesEnabled(hasSponsoredMessagesEnabled: Bool?) async throws -> Ok {
+        let query = ToggleHasSponsoredMessagesEnabled(
+            hasSponsoredMessagesEnabled: hasSponsoredMessagesEnabled
+        )
+        return try await self.run(query: query)
+    }
+
     /// Changes the business location of the current user. Requires Telegram Business subscription
     /// - Parameter location: The new location of the business; pass null to remove the location
     public final func setBusinessLocation(
@@ -15728,6 +15913,29 @@ public class TDLibApi {
     public final func sendPhoneNumberFirebaseSms(token: String?) async throws -> Ok {
         let query = SendPhoneNumberFirebaseSms(
             token: token
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile apps only
+    /// - Parameter mobileNetworkCode: Current mobile network code
+    public final func reportPhoneNumberCodeMissing(
+        mobileNetworkCode: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportPhoneNumberCodeMissing(
+            mobileNetworkCode: mobileNetworkCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile apps only
+    /// - Parameter mobileNetworkCode: Current mobile network code
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func reportPhoneNumberCodeMissing(mobileNetworkCode: String?) async throws -> Ok {
+        let query = ReportPhoneNumberCodeMissing(
+            mobileNetworkCode: mobileNetworkCode
         )
         return try await self.run(query: query)
     }
@@ -16106,10 +16314,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of commands supported by the bot for the given user scope and language; for bots only
+    /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-    /// - Returns: List of commands supported by the bot for the given user scope and language
+    /// - Returns: The list of commands supported by the bot for the given user scope and language
     public final func getCommands(
         languageCode: String?,
         scope: BotCommandScope?,
@@ -16122,10 +16330,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of commands supported by the bot for the given user scope and language; for bots only
+    /// Returns the list of commands supported by the bot for the given user scope and language; for bots only
     /// - Parameter languageCode: A two-letter ISO 639-1 language code or an empty string
     /// - Parameter scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-    /// - Returns: List of commands supported by the bot for the given user scope and language
+    /// - Returns: The list of commands supported by the bot for the given user scope and language
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getCommands(
         languageCode: String?,
@@ -18533,7 +18741,7 @@ public class TDLibApi {
     }
 
     /// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
-    /// - Parameter password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+    /// - Parameter password: The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week
     /// - Parameter reason: The reason why the account was deleted; optional
     public final func deleteAccount(
         password: String?,
@@ -18548,7 +18756,7 @@ public class TDLibApi {
     }
 
     /// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
-    /// - Parameter password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+    /// - Parameter password: The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week
     /// - Parameter reason: The reason why the account was deleted; optional
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -18811,11 +19019,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of transactions to be returned; up to 200
     /// - Parameter offset: Number of transactions to skip
-    /// - Returns: List of revenue transactions for a chat
+    /// - Returns: The list of revenue transactions for a chat
     public final func getChatRevenueTransactions(
         chatId: Int64?,
         limit: Int?,
@@ -18830,11 +19038,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of transactions to be returned; up to 200
     /// - Parameter offset: Number of transactions to skip
-    /// - Returns: List of revenue transactions for a chat
+    /// - Returns: The list of revenue transactions for a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatRevenueTransactions(
         chatId: Int64?,
@@ -19742,7 +19950,7 @@ public class TDLibApi {
     }
 
     /// Uploads a file with a sticker; returns the uploaded file
-    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.//-See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     /// - Parameter stickerFormat: Sticker format
     /// - Parameter userId: Sticker file owner; ignored for regular users
     /// - Returns: The uploaded file
@@ -19761,7 +19969,7 @@ public class TDLibApi {
     }
 
     /// Uploads a file with a sticker; returns the uploaded file
-    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.//-See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     /// - Parameter stickerFormat: Sticker format
     /// - Parameter userId: Sticker file owner; ignored for regular users
     /// - Returns: The uploaded file
@@ -19826,7 +20034,7 @@ public class TDLibApi {
     }
 
     /// Creates a new sticker set. Returns the newly created sticker set
-    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.//-If empty, then the name returned by getSuggestedStickerSetName will be used automatically
+    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters. If empty, then the name returned by getSuggestedStickerSetName will be used automatically
     /// - Parameter needsRepainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
     /// - Parameter source: Source of the sticker set; may be empty if unknown
     /// - Parameter stickerType: Type of the stickers in the set
@@ -19857,7 +20065,7 @@ public class TDLibApi {
     }
 
     /// Creates a new sticker set. Returns the newly created sticker set
-    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters.//-If empty, then the name returned by getSuggestedStickerSetName will be used automatically
+    /// - Parameter name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters. If empty, then the name returned by getSuggestedStickerSetName will be used automatically
     /// - Parameter needsRepainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
     /// - Parameter source: Source of the sticker set; may be empty if unknown
     /// - Parameter stickerType: Type of the stickers in the set
@@ -21202,15 +21410,15 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of proxies that are currently set up. Can be called before authorization
-    /// - Returns: List of proxies that are currently set up
+    /// Returns the list of proxies that are currently set up. Can be called before authorization
+    /// - Returns: The list of proxies that are currently set up
     public final func getProxies(completion: @escaping (Result<Proxies, Swift.Error>) -> Void) throws {
         let query = GetProxies()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of proxies that are currently set up. Can be called before authorization
-    /// - Returns: List of proxies that are currently set up
+    /// Returns the list of proxies that are currently set up. Can be called before authorization
+    /// - Returns: The list of proxies that are currently set up
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getProxies() async throws -> Proxies {
         let query = GetProxies()
@@ -21302,7 +21510,7 @@ public class TDLibApi {
     }
 
     /// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
-    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,//-value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
+    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
     public final func setLogVerbosityLevel(
         newVerbosityLevel: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -21314,7 +21522,7 @@ public class TDLibApi {
     }
 
     /// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
-    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,//-value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
+    /// - Parameter newVerbosityLevel: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setLogVerbosityLevel(newVerbosityLevel: Int?) async throws -> Ok {
@@ -21339,15 +21547,15 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
-    /// - Returns: List of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]
+    /// Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+    /// - Returns: The list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]
     public final func getLogTags(completion: @escaping (Result<LogTags, Swift.Error>) -> Void) throws {
         let query = GetLogTags()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
-    /// - Returns: List of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]
+    /// Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+    /// - Returns: The list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getLogTags() async throws -> LogTags {
         let query = GetLogTags()

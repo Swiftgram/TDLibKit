@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -541,7 +541,7 @@ public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
     /// Voice note self-destruct type; may be null if none; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
-    /// Voice note to be sent
+    /// Voice note to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio
     public let voiceNote: InputFile
 
     /// Waveform representation of the voice note in 5-bit format
@@ -569,7 +569,7 @@ public struct InputMessageLocation: Codable, Equatable, Hashable {
     /// For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int
 
-    /// Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
+    /// Period for which the location can be updated, in seconds; must be between 60 and 86400 for a temporary live location, 0x7FFFFFFF for permanent live location, and 0 otherwise
     public let livePeriod: Int
 
     /// Location to be sent
@@ -737,11 +737,11 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// Amount of time the poll will be active after creation, in seconds; for bots only
     public let openPeriod: Int
 
-    /// List of poll answer options, 2-10 strings 1-100 characters each
-    public let options: [String]
+    /// List of poll answer options, 2-10 strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
+    public let options: [FormattedText]
 
-    /// Poll question; 1-255 characters (up to 300 characters for bots)
-    public let question: String
+    /// Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
+    public let question: FormattedText
 
     /// Type of the poll
     public let type: PollType
@@ -752,8 +752,8 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
         isAnonymous: Bool,
         isClosed: Bool,
         openPeriod: Int,
-        options: [String],
-        question: String,
+        options: [FormattedText],
+        question: FormattedText,
         type: PollType
     ) {
         self.closeDate = closeDate

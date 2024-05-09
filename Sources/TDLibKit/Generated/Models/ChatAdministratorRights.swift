@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can edit messages of other users and pin messages; applicable to channels only
     public let canEditMessages: Bool
 
-    /// True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to supergroups and channels only
+    /// True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access story archive; applicable to supergroups and channels only
     public let canEditStories: Bool
 
     /// True, if the administrator can invite new users to the chat

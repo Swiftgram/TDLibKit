@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -69,6 +69,9 @@ public struct WebPage: Codable, Equatable, Hashable {
     /// Preview of the content as a sticker for small WEBP files, if available; may be null
     public let sticker: Sticker?
 
+    /// Up to 4 stickers from the sticker set available via the link
+    public let stickers: [Sticker]
+
     /// The identifier of the previewed story; 0 if none
     public let storyId: Int
 
@@ -114,6 +117,7 @@ public struct WebPage: Codable, Equatable, Hashable {
         siteName: String,
         skipConfirmation: Bool,
         sticker: Sticker?,
+        stickers: [Sticker],
         storyId: Int,
         storySenderChatId: Int64,
         title: String,
@@ -142,6 +146,7 @@ public struct WebPage: Codable, Equatable, Hashable {
         self.siteName = siteName
         self.skipConfirmation = skipConfirmation
         self.sticker = sticker
+        self.stickers = stickers
         self.storyId = storyId
         self.storySenderChatId = storySenderChatId
         self.title = title

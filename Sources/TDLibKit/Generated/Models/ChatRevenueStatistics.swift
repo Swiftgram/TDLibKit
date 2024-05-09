@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -13,17 +13,8 @@ import Foundation
 /// A detailed statistics about revenue earned from sponsored messages in a chat
 public struct ChatRevenueStatistics: Codable, Equatable, Hashable {
 
-    /// Cryptocurrency in which revenue is calculated
-    public let cryptocurrency: String
-
-    /// Amount of the cryptocurrency available for withdrawal, in the smallest units of the cryptocurrency
-    public let cryptocurrencyAvailableAmount: TdInt64
-
-    /// Amount of the cryptocurrency that isn't withdrawn yet, in the smallest units of the cryptocurrency
-    public let cryptocurrencyBalanceAmount: TdInt64
-
-    /// Total amount of the cryptocurrency earned, in the smallest units of the cryptocurrency
-    public let cryptocurrencyTotalAmount: TdInt64
+    /// Amount of earned revenue
+    public let revenueAmount: ChatRevenueAmount
 
     /// A graph containing amount of revenue in a given hour
     public let revenueByHourGraph: StatisticalGraph
@@ -31,23 +22,17 @@ public struct ChatRevenueStatistics: Codable, Equatable, Hashable {
     /// A graph containing amount of revenue
     public let revenueGraph: StatisticalGraph
 
-    /// Current conversion rate of the cryptocurrency to USD
+    /// Current conversion rate of the cryptocurrency in which revenue is calculated to USD
     public let usdRate: Double
 
 
     public init(
-        cryptocurrency: String,
-        cryptocurrencyAvailableAmount: TdInt64,
-        cryptocurrencyBalanceAmount: TdInt64,
-        cryptocurrencyTotalAmount: TdInt64,
+        revenueAmount: ChatRevenueAmount,
         revenueByHourGraph: StatisticalGraph,
         revenueGraph: StatisticalGraph,
         usdRate: Double
     ) {
-        self.cryptocurrency = cryptocurrency
-        self.cryptocurrencyAvailableAmount = cryptocurrencyAvailableAmount
-        self.cryptocurrencyBalanceAmount = cryptocurrencyBalanceAmount
-        self.cryptocurrencyTotalAmount = cryptocurrencyTotalAmount
+        self.revenueAmount = revenueAmount
         self.revenueByHourGraph = revenueByHourGraph
         self.revenueGraph = revenueGraph
         self.usdRate = usdRate

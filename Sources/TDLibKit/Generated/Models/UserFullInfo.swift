@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -34,8 +34,8 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// Number of group chats where both the other user and the current user are a member; 0 for the current user
     public let groupInCommonCount: Int
 
-    /// True, if the user has pinned stories
-    public let hasPinnedStories: Bool
+    /// True, if the user has posted to profile stories
+    public let hasPostedToProfileStories: Bool
 
     /// True, if the user can't be called due to their privacy settings
     public let hasPrivateCalls: Bool
@@ -46,22 +46,25 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if voice and video notes can't be sent or forwarded to the user
     public let hasRestrictedVoiceAndVideoNoteMessages: Bool
 
+    /// True, if the user always enabled sponsored messages; known only for the current user
+    public let hasSponsoredMessagesEnabled: Bool
+
     /// True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     public let needPhoneNumberPrivacyException: Bool
 
     /// Identifier of the personal chat of the user; 0 if none
     public let personalChatId: Int64
 
-    /// User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.//-If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    /// User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public let personalPhoto: ChatPhoto?
 
-    /// User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.//-If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
+    /// User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
     public let photo: ChatPhoto?
 
     /// The list of available options for gifting Telegram Premium to the user
     public let premiumGiftOptions: [PremiumPaymentOption]
 
-    /// User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.//-If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    /// User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public let publicPhoto: ChatPhoto?
 
     /// True, if the user set chat background for both chat users and it wasn't reverted yet
@@ -79,10 +82,11 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         businessInfo: BusinessInfo?,
         canBeCalled: Bool,
         groupInCommonCount: Int,
-        hasPinnedStories: Bool,
+        hasPostedToProfileStories: Bool,
         hasPrivateCalls: Bool,
         hasPrivateForwards: Bool,
         hasRestrictedVoiceAndVideoNoteMessages: Bool,
+        hasSponsoredMessagesEnabled: Bool,
         needPhoneNumberPrivacyException: Bool,
         personalChatId: Int64,
         personalPhoto: ChatPhoto?,
@@ -99,10 +103,11 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.businessInfo = businessInfo
         self.canBeCalled = canBeCalled
         self.groupInCommonCount = groupInCommonCount
-        self.hasPinnedStories = hasPinnedStories
+        self.hasPostedToProfileStories = hasPostedToProfileStories
         self.hasPrivateCalls = hasPrivateCalls
         self.hasPrivateForwards = hasPrivateForwards
         self.hasRestrictedVoiceAndVideoNoteMessages = hasRestrictedVoiceAndVideoNoteMessages
+        self.hasSponsoredMessagesEnabled = hasSponsoredMessagesEnabled
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
         self.personalChatId = personalChatId
         self.personalPhoto = personalPhoto

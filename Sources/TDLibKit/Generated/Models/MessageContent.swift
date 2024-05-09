@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -918,13 +918,13 @@ public struct MessageVoiceNote: Codable, Equatable, Hashable {
 /// A message with a location
 public struct MessageLocation: Codable, Equatable, Hashable {
 
-    /// Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
+    /// Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
     public let expiresIn: Int
 
     /// For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
     public let heading: Int
 
-    /// Time relative to the message send date, for which the location can be updated, in seconds
+    /// Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever
     public let livePeriod: Int
 
     /// The location description
@@ -998,10 +998,10 @@ public struct MessageDice: Codable, Equatable, Hashable {
     /// Emoji on which the dice throw animation is based
     public let emoji: String
 
-    /// The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+    /// The animated stickers with the final dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
     public let finalState: DiceStickers?
 
-    /// The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+    /// The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
     public let initialState: DiceStickers?
 
     /// Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
 
 
-/// Returns list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
+/// Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
 public struct GetUserChatBoosts: Codable, Equatable, Hashable {
 
     /// Identifier of the chat

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -63,7 +63,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     public let inviteLink: ChatInviteLink?
 
-    /// True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available,//-so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
+    /// True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
     public let isAllHistoryAvailable: Bool
 
     /// Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown

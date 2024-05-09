@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -13,13 +13,19 @@ import Foundation
 /// Provides information about the method by which an authentication code is delivered to the user
 public indirect enum AuthenticationCodeType: Codable, Equatable, Hashable {
 
-    /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
+    /// A digit-only authentication code is delivered via a private Telegram message, which can be viewed from another active session
     case authenticationCodeTypeTelegramMessage(AuthenticationCodeTypeTelegramMessage)
 
-    /// An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
+    /// A digit-only authentication code is delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
     case authenticationCodeTypeSms(AuthenticationCodeTypeSms)
 
-    /// An authentication code is delivered via a phone call to the specified phone number
+    /// An authentication code is a word delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    case authenticationCodeTypeSmsWord(AuthenticationCodeTypeSmsWord)
+
+    /// An authentication code is a phrase from multiple words delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    case authenticationCodeTypeSmsPhrase(AuthenticationCodeTypeSmsPhrase)
+
+    /// A digit-only authentication code is delivered via a phone call to the specified phone number
     case authenticationCodeTypeCall(AuthenticationCodeTypeCall)
 
     /// An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
@@ -28,19 +34,21 @@ public indirect enum AuthenticationCodeType: Codable, Equatable, Hashable {
     /// An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
     case authenticationCodeTypeMissedCall(AuthenticationCodeTypeMissedCall)
 
-    /// An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
+    /// A digit-only authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
     case authenticationCodeTypeFragment(AuthenticationCodeTypeFragment)
 
-    /// An authentication code is delivered via Firebase Authentication to the official Android application
+    /// A digit-only authentication code is delivered via Firebase Authentication to the official Android application
     case authenticationCodeTypeFirebaseAndroid(AuthenticationCodeTypeFirebaseAndroid)
 
-    /// An authentication code is delivered via Firebase Authentication to the official iOS application
+    /// A digit-only authentication code is delivered via Firebase Authentication to the official iOS application
     case authenticationCodeTypeFirebaseIos(AuthenticationCodeTypeFirebaseIos)
 
 
     private enum Kind: String, Codable {
         case authenticationCodeTypeTelegramMessage
         case authenticationCodeTypeSms
+        case authenticationCodeTypeSmsWord
+        case authenticationCodeTypeSmsPhrase
         case authenticationCodeTypeCall
         case authenticationCodeTypeFlashCall
         case authenticationCodeTypeMissedCall
@@ -59,6 +67,12 @@ public indirect enum AuthenticationCodeType: Codable, Equatable, Hashable {
         case .authenticationCodeTypeSms:
             let value = try AuthenticationCodeTypeSms(from: decoder)
             self = .authenticationCodeTypeSms(value)
+        case .authenticationCodeTypeSmsWord:
+            let value = try AuthenticationCodeTypeSmsWord(from: decoder)
+            self = .authenticationCodeTypeSmsWord(value)
+        case .authenticationCodeTypeSmsPhrase:
+            let value = try AuthenticationCodeTypeSmsPhrase(from: decoder)
+            self = .authenticationCodeTypeSmsPhrase(value)
         case .authenticationCodeTypeCall:
             let value = try AuthenticationCodeTypeCall(from: decoder)
             self = .authenticationCodeTypeCall(value)
@@ -89,6 +103,12 @@ public indirect enum AuthenticationCodeType: Codable, Equatable, Hashable {
         case .authenticationCodeTypeSms(let value):
             try container.encode(Kind.authenticationCodeTypeSms, forKey: .type)
             try value.encode(to: encoder)
+        case .authenticationCodeTypeSmsWord(let value):
+            try container.encode(Kind.authenticationCodeTypeSmsWord, forKey: .type)
+            try value.encode(to: encoder)
+        case .authenticationCodeTypeSmsPhrase(let value):
+            try container.encode(Kind.authenticationCodeTypeSmsPhrase, forKey: .type)
+            try value.encode(to: encoder)
         case .authenticationCodeTypeCall(let value):
             try container.encode(Kind.authenticationCodeTypeCall, forKey: .type)
             try value.encode(to: encoder)
@@ -111,7 +131,7 @@ public indirect enum AuthenticationCodeType: Codable, Equatable, Hashable {
     }
 }
 
-/// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
+/// A digit-only authentication code is delivered via a private Telegram message, which can be viewed from another active session
 public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable, Hashable {
 
     /// Length of the code
@@ -123,7 +143,7 @@ public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable, Hashabl
     }
 }
 
-/// An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
+/// A digit-only authentication code is delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
 public struct AuthenticationCodeTypeSms: Codable, Equatable, Hashable {
 
     /// Length of the code
@@ -135,7 +155,31 @@ public struct AuthenticationCodeTypeSms: Codable, Equatable, Hashable {
     }
 }
 
-/// An authentication code is delivered via a phone call to the specified phone number
+/// An authentication code is a word delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+public struct AuthenticationCodeTypeSmsWord: Codable, Equatable, Hashable {
+
+    /// The first letters of the word if known
+    public let firstLetter: String
+
+
+    public init(firstLetter: String) {
+        self.firstLetter = firstLetter
+    }
+}
+
+/// An authentication code is a phrase from multiple words delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+public struct AuthenticationCodeTypeSmsPhrase: Codable, Equatable, Hashable {
+
+    /// The first word of the phrase if known
+    public let firstWord: String
+
+
+    public init(firstWord: String) {
+        self.firstWord = firstWord
+    }
+}
+
+/// A digit-only authentication code is delivered via a phone call to the specified phone number
 public struct AuthenticationCodeTypeCall: Codable, Equatable, Hashable {
 
     /// Length of the code
@@ -178,7 +222,7 @@ public struct AuthenticationCodeTypeMissedCall: Codable, Equatable, Hashable {
     }
 }
 
-/// An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
+/// A digit-only authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
 public struct AuthenticationCodeTypeFragment: Codable, Equatable, Hashable {
 
     /// Length of the code
@@ -197,7 +241,7 @@ public struct AuthenticationCodeTypeFragment: Codable, Equatable, Hashable {
     }
 }
 
-/// An authentication code is delivered via Firebase Authentication to the official Android application
+/// A digit-only authentication code is delivered via Firebase Authentication to the official Android application
 public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable, Hashable {
 
     /// Length of the code
@@ -216,7 +260,7 @@ public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable, Hashabl
     }
 }
 
-/// An authentication code is delivered via Firebase Authentication to the official iOS application
+/// A digit-only authentication code is delivered via Firebase Authentication to the official iOS application
 public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable, Hashable {
 
     /// Length of the code

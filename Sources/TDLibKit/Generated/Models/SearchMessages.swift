@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public struct SearchMessages: Codable, Equatable, Hashable {
     /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     public let offset: String?
 
+    /// Pass true to search only for messages in channels
+    public let onlyInChannels: Bool?
+
     /// Query to search for
     public let query: String?
 
@@ -42,6 +45,7 @@ public struct SearchMessages: Codable, Equatable, Hashable {
         maxDate: Int?,
         minDate: Int?,
         offset: String?,
+        onlyInChannels: Bool?,
         query: String?
     ) {
         self.chatList = chatList
@@ -50,6 +54,7 @@ public struct SearchMessages: Codable, Equatable, Hashable {
         self.maxDate = maxDate
         self.minDate = minDate
         self.offset = offset
+        self.onlyInChannels = onlyInChannels
         self.query = query
     }
 }

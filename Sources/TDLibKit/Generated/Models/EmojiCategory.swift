@@ -3,34 +3,39 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
 
 
-/// Contains a list of similar emoji to search for in getStickers and searchStickers
+/// Describes an emoji category
 public struct EmojiCategory: Codable, Equatable, Hashable {
-
-    /// List of emojis in the category
-    public let emojis: [String]
 
     /// Custom emoji sticker, which represents icon of the category
     public let icon: Sticker
 
+    /// True, if the category must be shown first when choosing a sticker for the start page
+    public let isGreeting: Bool
+
     /// Name of the category
     public let name: String
 
+    /// Source of stickers for the emoji category
+    public let source: EmojiCategorySource
+
 
     public init(
-        emojis: [String],
         icon: Sticker,
-        name: String
+        isGreeting: Bool,
+        name: String,
+        source: EmojiCategorySource
     ) {
-        self.emojis = emojis
         self.icon = icon
+        self.isGreeting = isGreeting
         self.name = name
+        self.source = source
     }
 }
 

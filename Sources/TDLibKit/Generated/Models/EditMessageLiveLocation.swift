@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
 
     /// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     public let heading: Int?
+
+    /// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
+    public let livePeriod: Int?
 
     /// New location content of the message; pass null to stop sharing the live location
     public let location: Location?
@@ -35,6 +38,7 @@ public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
     public init(
         chatId: Int64?,
         heading: Int?,
+        livePeriod: Int?,
         location: Location?,
         messageId: Int64?,
         proximityAlertRadius: Int?,
@@ -42,6 +46,7 @@ public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
     ) {
         self.chatId = chatId
         self.heading = heading
+        self.livePeriod = livePeriod
         self.location = location
         self.messageId = messageId
         self.proximityAlertRadius = proximityAlertRadius

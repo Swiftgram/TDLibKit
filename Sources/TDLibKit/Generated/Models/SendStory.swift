@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -32,7 +32,7 @@ public struct SendStory: Codable, Equatable, Hashable {
     public let fromStoryFullId: StoryFullId?
 
     /// Pass true to keep the story accessible after expiration
-    public let isPinned: Bool?
+    public let isPostedToChatPage: Bool?
 
     /// The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     public let privacySettings: StoryPrivacySettings?
@@ -48,7 +48,7 @@ public struct SendStory: Codable, Equatable, Hashable {
         chatId: Int64?,
         content: InputStoryContent?,
         fromStoryFullId: StoryFullId?,
-        isPinned: Bool?,
+        isPostedToChatPage: Bool?,
         privacySettings: StoryPrivacySettings?,
         protectContent: Bool?
     ) {
@@ -58,7 +58,7 @@ public struct SendStory: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.content = content
         self.fromStoryFullId = fromStoryFullId
-        self.isPinned = isPinned
+        self.isPostedToChatPage = isPostedToChatPage
         self.privacySettings = privacySettings
         self.protectContent = protectContent
     }

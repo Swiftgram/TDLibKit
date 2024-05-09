@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to set birthdate
     case suggestedActionSetBirthdate
 
+    /// Suggests the user to extend their expiring Telegram Premium subscription
+    case suggestedActionExtendPremium(SuggestedActionExtendPremium)
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -59,6 +62,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionSubscribeToAnnualPremium
         case suggestedActionGiftPremiumForChristmas
         case suggestedActionSetBirthdate
+        case suggestedActionExtendPremium
     }
 
     public init(from decoder: Decoder) throws {
@@ -89,6 +93,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             self = .suggestedActionGiftPremiumForChristmas
         case .suggestedActionSetBirthdate:
             self = .suggestedActionSetBirthdate
+        case .suggestedActionExtendPremium:
+            let value = try SuggestedActionExtendPremium(from: decoder)
+            self = .suggestedActionExtendPremium(value)
         }
     }
 
@@ -119,6 +126,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             try container.encode(Kind.suggestedActionGiftPremiumForChristmas, forKey: .type)
         case .suggestedActionSetBirthdate:
             try container.encode(Kind.suggestedActionSetBirthdate, forKey: .type)
+        case .suggestedActionExtendPremium(let value):
+            try container.encode(Kind.suggestedActionExtendPremium, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -144,6 +154,18 @@ public struct SuggestedActionSetPassword: Codable, Equatable, Hashable {
 
     public init(authorizationDelay: Int) {
         self.authorizationDelay = authorizationDelay
+    }
+}
+
+/// Suggests the user to extend their expiring Telegram Premium subscription
+public struct SuggestedActionExtendPremium: Codable, Equatable, Hashable {
+
+    /// A URL for managing Telegram Premium subscription
+    public let managePremiumSubscriptionUrl: String
+
+
+    public init(managePremiumSubscriptionUrl: String) {
+        self.managePremiumSubscriptionUrl = managePremiumSubscriptionUrl
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -34,8 +34,8 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story statistics are available through getStoryStatistics
     public let canGetStatistics: Bool
 
-    /// True, if the story's is_pinned value can be changed
-    public let canToggleIsPinned: Bool
+    /// True, if the story's is_posted_to_chat_page value can be changed
+    public let canToggleIsPostedToChatPage: Bool
 
     /// Caption of the story
     public let caption: FormattedText
@@ -68,7 +68,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     public let isEdited: Bool
 
     /// True, if the story is saved in the sender's profile and will be available there after expiration
-    public let isPinned: Bool
+    public let isPostedToChatPage: Bool
 
     /// True, if the story is visible only for the current user
     public let isVisibleOnlyForSelf: Bool
@@ -94,7 +94,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         canBeReplied: Bool,
         canGetInteractions: Bool,
         canGetStatistics: Bool,
-        canToggleIsPinned: Bool,
+        canToggleIsPostedToChatPage: Bool,
         caption: FormattedText,
         chosenReactionType: ReactionType?,
         content: StoryContent,
@@ -105,7 +105,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         isBeingEdited: Bool,
         isBeingSent: Bool,
         isEdited: Bool,
-        isPinned: Bool,
+        isPostedToChatPage: Bool,
         isVisibleOnlyForSelf: Bool,
         privacySettings: StoryPrivacySettings,
         repostInfo: StoryRepostInfo?,
@@ -119,7 +119,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.canBeReplied = canBeReplied
         self.canGetInteractions = canGetInteractions
         self.canGetStatistics = canGetStatistics
-        self.canToggleIsPinned = canToggleIsPinned
+        self.canToggleIsPostedToChatPage = canToggleIsPostedToChatPage
         self.caption = caption
         self.chosenReactionType = chosenReactionType
         self.content = content
@@ -130,7 +130,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.isBeingEdited = isBeingEdited
         self.isBeingSent = isBeingSent
         self.isEdited = isEdited
-        self.isPinned = isPinned
+        self.isPostedToChatPage = isPostedToChatPage
         self.isVisibleOnlyForSelf = isVisibleOnlyForSelf
         self.privacySettings = privacySettings
         self.repostInfo = repostInfo

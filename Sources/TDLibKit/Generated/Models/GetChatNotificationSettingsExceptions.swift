@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
 
 
-/// Returns list of chats with non-default notification settings for new messages
+/// Returns the list of chats with non-default notification settings for new messages
 public struct GetChatNotificationSettingsExceptions: Codable, Equatable, Hashable {
 
     /// Pass true to include in the response chats with only non-default sound

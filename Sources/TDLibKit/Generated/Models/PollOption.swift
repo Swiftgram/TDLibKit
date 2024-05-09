@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -19,8 +19,8 @@ public struct PollOption: Codable, Equatable, Hashable {
     /// True, if the option was chosen by the user
     public let isChosen: Bool
 
-    /// Option text; 1-100 characters
-    public let text: String
+    /// Option text; 1-100 characters. Only custom emoji entities are allowed
+    public let text: FormattedText
 
     /// The percentage of votes for this option; 0-100
     public let votePercentage: Int
@@ -32,7 +32,7 @@ public struct PollOption: Codable, Equatable, Hashable {
     public init(
         isBeingChosen: Bool,
         isChosen: Bool,
-        text: String,
+        text: FormattedText,
         votePercentage: Int,
         voterCount: Int
     ) {

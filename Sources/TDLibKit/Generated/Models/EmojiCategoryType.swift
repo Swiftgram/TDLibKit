@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -13,8 +13,11 @@ import Foundation
 /// Describes type of emoji category
 public indirect enum EmojiCategoryType: Codable, Equatable, Hashable {
 
-    /// The category must be used by default
+    /// The category must be used by default (e.g., for custom emoji or animation search)
     case emojiCategoryTypeDefault
+
+    /// The category must be used by default for regular sticker selection. It may contain greeting emoji category and Premium stickers
+    case emojiCategoryTypeRegularStickers
 
     /// The category must be used for emoji status selection
     case emojiCategoryTypeEmojiStatus
@@ -25,6 +28,7 @@ public indirect enum EmojiCategoryType: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case emojiCategoryTypeDefault
+        case emojiCategoryTypeRegularStickers
         case emojiCategoryTypeEmojiStatus
         case emojiCategoryTypeChatPhoto
     }
@@ -35,6 +39,8 @@ public indirect enum EmojiCategoryType: Codable, Equatable, Hashable {
         switch type {
         case .emojiCategoryTypeDefault:
             self = .emojiCategoryTypeDefault
+        case .emojiCategoryTypeRegularStickers:
+            self = .emojiCategoryTypeRegularStickers
         case .emojiCategoryTypeEmojiStatus:
             self = .emojiCategoryTypeEmojiStatus
         case .emojiCategoryTypeChatPhoto:
@@ -47,6 +53,8 @@ public indirect enum EmojiCategoryType: Codable, Equatable, Hashable {
         switch self {
         case .emojiCategoryTypeDefault:
             try container.encode(Kind.emojiCategoryTypeDefault, forKey: .type)
+        case .emojiCategoryTypeRegularStickers:
+            try container.encode(Kind.emojiCategoryTypeRegularStickers, forKey: .type)
         case .emojiCategoryTypeEmojiStatus:
             try container.encode(Kind.emojiCategoryTypeEmojiStatus, forKey: .type)
         case .emojiCategoryTypeChatPhoto:

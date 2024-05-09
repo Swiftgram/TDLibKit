@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.28-77b34797
-//  https://github.com/tdlib/td/tree/77b34797
+//  Based on TDLib 1.8.29-e4796b9b
+//  https://github.com/tdlib/td/tree/e4796b9b
 //
 
 import Foundation
@@ -181,6 +181,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Notification settings for some type of chats were updated
     case updateScopeNotificationSettings(UpdateScopeNotificationSettings)
 
+    /// Notification settings for reactions were updated
+    case updateReactionNotificationSettings(UpdateReactionNotificationSettings)
+
     /// A notification was changed
     case updateNotification(UpdateNotification)
 
@@ -355,6 +358,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
 
+    /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+    case updateChatRevenueAmount
+
     /// The parameters of speech recognition without Telegram Premium subscription has changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
@@ -494,6 +500,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateQuickReplyShortcutMessages
         case updateForumTopicInfo
         case updateScopeNotificationSettings
+        case updateReactionNotificationSettings
         case updateNotification
         case updateNotificationGroup
         case updateActiveNotifications
@@ -552,6 +559,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateActiveEmojiReactions
         case updateDefaultReactionType
         case updateSavedMessagesTags
+        case updateChatRevenueAmount
         case updateSpeechRecognitionTrial
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
@@ -753,6 +761,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateScopeNotificationSettings:
             let value = try UpdateScopeNotificationSettings(from: decoder)
             self = .updateScopeNotificationSettings(value)
+        case .updateReactionNotificationSettings:
+            let value = try UpdateReactionNotificationSettings(from: decoder)
+            self = .updateReactionNotificationSettings(value)
         case .updateNotification:
             let value = try UpdateNotification(from: decoder)
             self = .updateNotification(value)
@@ -927,6 +938,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSavedMessagesTags:
             let value = try UpdateSavedMessagesTags(from: decoder)
             self = .updateSavedMessagesTags(value)
+        case .updateChatRevenueAmount:
+            self = .updateChatRevenueAmount
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
@@ -1182,6 +1195,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateScopeNotificationSettings(let value):
             try container.encode(Kind.updateScopeNotificationSettings, forKey: .type)
             try value.encode(to: encoder)
+        case .updateReactionNotificationSettings(let value):
+            try container.encode(Kind.updateReactionNotificationSettings, forKey: .type)
+            try value.encode(to: encoder)
         case .updateNotification(let value):
             try container.encode(Kind.updateNotification, forKey: .type)
             try value.encode(to: encoder)
@@ -1356,6 +1372,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSavedMessagesTags(let value):
             try container.encode(Kind.updateSavedMessagesTags, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatRevenueAmount:
+            try container.encode(Kind.updateChatRevenueAmount, forKey: .type)
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
             try value.encode(to: encoder)
@@ -2529,6 +2547,18 @@ public struct UpdateScopeNotificationSettings: Codable, Equatable, Hashable {
     }
 }
 
+/// Notification settings for reactions were updated
+public struct UpdateReactionNotificationSettings: Codable, Equatable, Hashable {
+
+    /// The new notification settings
+    public let notificationSettings: ReactionNotificationSettings
+
+
+    public init(notificationSettings: ReactionNotificationSettings) {
+        self.notificationSettings = notificationSettings
+    }
+}
+
 /// A notification was changed
 public struct UpdateNotification: Codable, Equatable, Hashable {
 
@@ -3402,7 +3432,7 @@ public struct UpdateAccentColors: Codable, Equatable, Hashable {
     /// The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
     public let availableAccentColorIds: [Int]
 
-    /// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported//-and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
+    /// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
     public let colors: [AccentColor]
 
 
@@ -4115,6 +4145,9 @@ public struct UpdateChatMember: Codable, Equatable, Hashable {
     /// True, if the user has joined the chat using an invite link for a chat folder
     public let viaChatFolderInviteLink: Bool
 
+    /// True, if the user has joined the chat after sending a join request and being approved by an administrator
+    public let viaJoinRequest: Bool
+
 
     public init(
         actorUserId: Int64,
@@ -4123,7 +4156,8 @@ public struct UpdateChatMember: Codable, Equatable, Hashable {
         inviteLink: ChatInviteLink?,
         newChatMember: ChatMember,
         oldChatMember: ChatMember,
-        viaChatFolderInviteLink: Bool
+        viaChatFolderInviteLink: Bool,
+        viaJoinRequest: Bool
     ) {
         self.actorUserId = actorUserId
         self.chatId = chatId
@@ -4132,6 +4166,7 @@ public struct UpdateChatMember: Codable, Equatable, Hashable {
         self.newChatMember = newChatMember
         self.oldChatMember = oldChatMember
         self.viaChatFolderInviteLink = viaChatFolderInviteLink
+        self.viaJoinRequest = viaJoinRequest
     }
 }
 
