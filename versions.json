@@ -1,6 +1,6 @@
 {
-    "package": "1.5.1",
+    "package": "1.5.2",
     "tdlib_version": "1.8.29",
-    "tdlib_commit": "4e0c0009",
-    "tdlibframework_version": "1.8.29-4e0c0009"
+    "tdlib_commit": "39d82693",
+    "tdlibframework_version": "1.8.29-39d82693"
 }
