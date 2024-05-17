@@ -103,7 +103,7 @@ jobs:
           git config user.email github-actions@github.com
           git add . || true
 
-          COMMIT_VERSION=$(python3 <<EOF
+          export COMMIT_VERSION=$(python3 <<EOF
           import json
           import os
           with open("versions.json") as f:
