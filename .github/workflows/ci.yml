@@ -112,7 +112,7 @@ jobs:
           EOF
           )
 
-          git commit -m "[no ci] Version $(COMMIT_VERSION)" || true
+          git commit -m "[no ci] Version ${COMMIT_VERSION}" || true
 
       - name: Push update
         run: git push origin main || true
