@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -221,7 +221,7 @@ public struct InputMessageText: Codable, Equatable, Hashable {
     /// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     public let linkPreviewOptions: LinkPreviewOptions?
 
-    /// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    /// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     public let text: FormattedText
 
 
@@ -257,6 +257,9 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
     /// Height of the animation; may be replaced by the server
     public let height: Int
 
+    /// True, if caption must be shown above the animation; otherwise, caption must be shown below the animation; not supported in secret chats
+    public let showCaptionAboveMedia: Bool
+
     /// Animation thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail?
 
@@ -271,6 +274,7 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
         duration: Int,
         hasSpoiler: Bool,
         height: Int,
+        showCaptionAboveMedia: Bool,
         thumbnail: InputThumbnail?,
         width: Int
     ) {
@@ -280,6 +284,7 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
         self.duration = duration
         self.hasSpoiler = hasSpoiler
         self.height = height
+        self.showCaptionAboveMedia = showCaptionAboveMedia
         self.thumbnail = thumbnail
         self.width = width
     }
@@ -374,6 +379,9 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
     /// Photo self-destruct type; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
+    /// True, if caption must be shown above the photo; otherwise, caption must be shown below the photo; not supported in secret chats
+    public let showCaptionAboveMedia: Bool
+
     /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
     public let thumbnail: InputThumbnail?
 
@@ -388,6 +396,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
         height: Int,
         photo: InputFile,
         selfDestructType: MessageSelfDestructType?,
+        showCaptionAboveMedia: Bool,
         thumbnail: InputThumbnail?,
         width: Int
     ) {
@@ -397,6 +406,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
         self.height = height
         self.photo = photo
         self.selfDestructType = selfDestructType
+        self.showCaptionAboveMedia = showCaptionAboveMedia
         self.thumbnail = thumbnail
         self.width = width
     }
@@ -457,6 +467,9 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     /// Video self-destruct type; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
+    /// True, if caption must be shown above the video; otherwise, caption must be shown below the video; not supported in secret chats
+    public let showCaptionAboveMedia: Bool
+
     /// True, if the video is supposed to be streamed
     public let supportsStreaming: Bool
 
@@ -477,6 +490,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
         hasSpoiler: Bool,
         height: Int,
         selfDestructType: MessageSelfDestructType?,
+        showCaptionAboveMedia: Bool,
         supportsStreaming: Bool,
         thumbnail: InputThumbnail?,
         video: InputFile,
@@ -488,6 +502,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
         self.hasSpoiler = hasSpoiler
         self.height = height
         self.selfDestructType = selfDestructType
+        self.showCaptionAboveMedia = showCaptionAboveMedia
         self.supportsStreaming = supportsStreaming
         self.thumbnail = thumbnail
         self.video = video
@@ -683,7 +698,7 @@ public struct InputMessageInvoice: Codable, Equatable, Hashable {
     /// JSON-encoded data about the invoice, which will be shared with the payment provider
     public let providerData: String
 
-    /// Payment provider token
+    /// Payment provider token; may be empty for payments in Telegram Stars
     public let providerToken: String
 
     /// Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message

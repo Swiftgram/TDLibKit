@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes type of the request for which a code is sent to a phone number
 public indirect enum PhoneNumberCodeType: Codable, Equatable, Hashable {
 
-    /// Checks ownership of a new phone number to change the user's authentication phone number; for official Android and iOS applications only.
+    /// Checks ownership of a new phone number to change the user's authentication phone number; for official Android and iOS applications only
     case phoneNumberCodeTypeChange
 
     /// Verifies ownership of a phone number to be added to the user's Telegram Passport

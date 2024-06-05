@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -206,16 +206,25 @@ public class TDLibApi {
     }
 
     /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
-    public final func resendAuthenticationCode(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
-        let query = ResendAuthenticationCode()
+    /// - Parameter reason: Reason of code resending; pass null if unknown
+    public final func resendAuthenticationCode(
+        reason: ResendCodeReason?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ResendAuthenticationCode(
+            reason: reason
+        )
         self.run(query: query, completion: completion)
     }
 
     /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
+    /// - Parameter reason: Reason of code resending; pass null if unknown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func resendAuthenticationCode() async throws -> Ok {
-        let query = ResendAuthenticationCode()
+    public final func resendAuthenticationCode(reason: ResendCodeReason?) async throws -> Ok {
+        let query = ResendAuthenticationCode(
+            reason: reason
+        )
         return try await self.run(query: query)
     }
 
@@ -439,7 +448,7 @@ public class TDLibApi {
     }
 
     /// Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
-    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    /// - Parameter token: Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     /// - Returns: Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
     public final func sendAuthenticationFirebaseSms(
         token: String?,
@@ -452,7 +461,7 @@ public class TDLibApi {
     }
 
     /// Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
-    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    /// - Parameter token: Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     /// - Returns: Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -463,7 +472,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Reports that authentication code wasn't delivered via SMS; for official mobile apps only. Works only when the current authorization state is authorizationStateWaitCode
+    /// Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
     /// - Parameter mobileNetworkCode: Current mobile network code
     public final func reportAuthenticationCodeMissing(
         mobileNetworkCode: String?,
@@ -475,7 +484,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Reports that authentication code wasn't delivered via SMS; for official mobile apps only. Works only when the current authorization state is authorizationStateWaitCode
+    /// Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
     /// - Parameter mobileNetworkCode: Current mobile network code
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -2864,6 +2873,113 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter hashtag: Hashtag or cashtag to search for
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    public final func searchPublicHashtagMessages(
+        hashtag: String?,
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchPublicHashtagMessages(
+            hashtag: hashtag,
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter hashtag: Hashtag or cashtag to search for
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func searchPublicHashtagMessages(
+        hashtag: String?,
+        limit: Int?,
+        offset: String?
+    ) async throws -> FoundMessages {
+        let query = SearchPublicHashtagMessages(
+            hashtag: hashtag,
+            limit: limit,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns recently searched for hashtags or cashtags by their prefix
+    /// - Parameter limit: The maximum number of items to be returned
+    /// - Parameter prefix: Prefix of hashtags or cashtags to return
+    /// - Returns: Recently searched for hashtags or cashtags by their prefix
+    public final func getSearchedForHashtags(
+        limit: Int?,
+        prefix: String?,
+        completion: @escaping (Result<Hashtags, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSearchedForHashtags(
+            limit: limit,
+            prefix: prefix
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns recently searched for hashtags or cashtags by their prefix
+    /// - Parameter limit: The maximum number of items to be returned
+    /// - Parameter prefix: Prefix of hashtags or cashtags to return
+    /// - Returns: Recently searched for hashtags or cashtags by their prefix
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getSearchedForHashtags(
+        limit: Int?,
+        prefix: String?
+    ) async throws -> Hashtags {
+        let query = GetSearchedForHashtags(
+            limit: limit,
+            prefix: prefix
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
+    /// - Parameter hashtag: Hashtag or cashtag to delete
+    public final func removeSearchedForHashtag(
+        hashtag: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveSearchedForHashtag(
+            hashtag: hashtag
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
+    /// - Parameter hashtag: Hashtag or cashtag to delete
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func removeSearchedForHashtag(hashtag: String?) async throws -> Ok {
+        let query = RemoveSearchedForHashtag(
+            hashtag: hashtag
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Clears the list of recently searched for hashtags
+    public final func clearSearchedForHashtags(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = ClearSearchedForHashtags()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Clears the list of recently searched for hashtags
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func clearSearchedForHashtags() async throws -> Ok {
+        let query = ClearSearchedForHashtags()
+        return try await self.run(query: query)
+    }
+
     /// Deletes all call messages
     /// - Parameter revoke: Pass true to delete the messages for all users
     public final func deleteAllCallMessages(
@@ -3690,7 +3806,7 @@ public class TDLibApi {
 
     /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     /// - Parameter chatId: Target chat
-    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the messages will be sent
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -3715,7 +3831,7 @@ public class TDLibApi {
 
     /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     /// - Parameter chatId: Target chat
-    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the messages will be sent
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -4135,7 +4251,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
     /// - Parameter messageId: Identifier of the message
@@ -4157,7 +4273,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
     /// - Parameter messageId: Identifier of the message
@@ -4179,7 +4295,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
@@ -4210,7 +4326,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
@@ -4241,7 +4357,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
@@ -4263,7 +4379,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
@@ -4285,51 +4401,57 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
+    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageCaption(
         caption: FormattedText?,
         chatId: Int64?,
         messageId: Int64?,
         replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageCaption(
             caption: caption,
             chatId: chatId,
             messageId: messageId,
-            replyMarkup: replyMarkup
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
+    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func editMessageCaption(
         caption: FormattedText?,
         chatId: Int64?,
         messageId: Int64?,
-        replyMarkup: ReplyMarkup?
+        replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?
     ) async throws -> Message {
         let query = EditMessageCaption(
             caption: caption,
             chatId: chatId,
             messageId: messageId,
-            replyMarkup: replyMarkup
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
         )
         return try await self.run(query: query)
     }
 
-    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
@@ -4348,7 +4470,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
@@ -4500,16 +4622,19 @@ public class TDLibApi {
     /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
     public final func editInlineMessageCaption(
         caption: FormattedText?,
         inlineMessageId: String?,
         replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageCaption(
             caption: caption,
             inlineMessageId: inlineMessageId,
-            replyMarkup: replyMarkup
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
         )
         self.run(query: query, completion: completion)
     }
@@ -4518,17 +4643,20 @@ public class TDLibApi {
     /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editInlineMessageCaption(
         caption: FormattedText?,
         inlineMessageId: String?,
-        replyMarkup: ReplyMarkup?
+        replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?
     ) async throws -> Ok {
         let query = EditInlineMessageCaption(
             caption: caption,
             inlineMessageId: inlineMessageId,
-            replyMarkup: replyMarkup
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
         )
         return try await self.run(query: query)
     }
@@ -4601,10 +4729,48 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
+    /// - Parameter chatId: The channel chat the message belongs to
+    /// - Parameter messageId: Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+    /// - Parameter text: New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
+    public final func setMessageFactCheck(
+        chatId: Int64?,
+        messageId: Int64?,
+        text: FormattedText?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetMessageFactCheck(
+            chatId: chatId,
+            messageId: messageId,
+            text: text
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
+    /// - Parameter chatId: The channel chat the message belongs to
+    /// - Parameter messageId: Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+    /// - Parameter text: New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setMessageFactCheck(
+        chatId: Int64?,
+        messageId: Int64?,
+        text: FormattedText?
+    ) async throws -> Ok {
+        let query = SetMessageFactCheck(
+            chatId: chatId,
+            messageId: messageId,
+            text: text
+        )
+        return try await self.run(query: query)
+    }
+
     /// Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
+    /// - Parameter effectId: Identifier of the effect to apply to the message
     /// - Parameter inputMessageContent: The content of the message to be sent
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none
@@ -4614,6 +4780,7 @@ public class TDLibApi {
         businessConnectionId: String?,
         chatId: Int64?,
         disableNotification: Bool?,
+        effectId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
         replyMarkup: ReplyMarkup?,
@@ -4624,6 +4791,7 @@ public class TDLibApi {
             businessConnectionId: businessConnectionId,
             chatId: chatId,
             disableNotification: disableNotification,
+            effectId: effectId,
             inputMessageContent: inputMessageContent,
             protectContent: protectContent,
             replyMarkup: replyMarkup,
@@ -4636,6 +4804,7 @@ public class TDLibApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
+    /// - Parameter effectId: Identifier of the effect to apply to the message
     /// - Parameter inputMessageContent: The content of the message to be sent
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none
@@ -4646,6 +4815,7 @@ public class TDLibApi {
         businessConnectionId: String?,
         chatId: Int64?,
         disableNotification: Bool?,
+        effectId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
         replyMarkup: ReplyMarkup?,
@@ -4655,6 +4825,7 @@ public class TDLibApi {
             businessConnectionId: businessConnectionId,
             chatId: chatId,
             disableNotification: disableNotification,
+            effectId: effectId,
             inputMessageContent: inputMessageContent,
             protectContent: protectContent,
             replyMarkup: replyMarkup,
@@ -4667,7 +4838,8 @@ public class TDLibApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
-    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter effectId: Identifier of the effect to apply to the message
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
     /// - Parameter replyTo: Information about the message to be replied; pass null if none
     /// - Returns: Sent messages
@@ -4675,6 +4847,7 @@ public class TDLibApi {
         businessConnectionId: String?,
         chatId: Int64?,
         disableNotification: Bool?,
+        effectId: TdInt64?,
         inputMessageContents: [InputMessageContent]?,
         protectContent: Bool?,
         replyTo: InputMessageReplyTo?,
@@ -4684,6 +4857,7 @@ public class TDLibApi {
             businessConnectionId: businessConnectionId,
             chatId: chatId,
             disableNotification: disableNotification,
+            effectId: effectId,
             inputMessageContents: inputMessageContents,
             protectContent: protectContent,
             replyTo: replyTo
@@ -4695,7 +4869,8 @@ public class TDLibApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
     /// - Parameter chatId: Target chat
     /// - Parameter disableNotification: Pass true to disable notification for the message
-    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter effectId: Identifier of the effect to apply to the message
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
     /// - Parameter replyTo: Information about the message to be replied; pass null if none
     /// - Returns: Sent messages
@@ -4704,6 +4879,7 @@ public class TDLibApi {
         businessConnectionId: String?,
         chatId: Int64?,
         disableNotification: Bool?,
+        effectId: TdInt64?,
         inputMessageContents: [InputMessageContent]?,
         protectContent: Bool?,
         replyTo: InputMessageReplyTo?
@@ -4712,6 +4888,7 @@ public class TDLibApi {
             businessConnectionId: businessConnectionId,
             chatId: chatId,
             disableNotification: disableNotification,
+            effectId: effectId,
             inputMessageContents: inputMessageContents,
             protectContent: protectContent,
             replyTo: replyTo
@@ -4976,7 +5153,7 @@ public class TDLibApi {
     }
 
     /// Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
-    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: Sent messages
@@ -4995,7 +5172,7 @@ public class TDLibApi {
     }
 
     /// Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
-    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album
+    /// - Parameter inputMessageContents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: Sent messages
@@ -5854,6 +6031,30 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns information about a message effect. Returns a 404 error if the effect is not found
+    /// - Parameter effectId: Unique identifier of the effect
+    /// - Returns: Information about a message effect. Returns a 404 error if the effect is not found
+    public final func getMessageEffect(
+        effectId: TdInt64?,
+        completion: @escaping (Result<MessageEffect, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageEffect(
+            effectId: effectId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about a message effect. Returns a 404 error if the effect is not found
+    /// - Parameter effectId: Unique identifier of the effect
+    /// - Returns: Information about a message effect. Returns a 404 error if the effect is not found
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getMessageEffect(effectId: TdInt64?) async throws -> MessageEffect {
+        let query = GetMessageEffect(
+            effectId: effectId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
     /// - Parameter quote: Quote to search for
     /// - Parameter quotePosition: Approximate quote position in UTF-16 code units
@@ -5916,7 +6117,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     public final func parseTextEntities(
@@ -5931,7 +6132,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -11996,6 +12197,37 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Application verification has been completed. Can be called before authorization
+    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired
+    public final func setApplicationVerificationToken(
+        token: String?,
+        verificationId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetApplicationVerificationToken(
+            token: token,
+            verificationId: verificationId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Application verification has been completed. Can be called before authorization
+    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setApplicationVerificationToken(
+        token: String?,
+        verificationId: Int64?
+    ) async throws -> Ok {
+        let query = SetApplicationVerificationToken(
+            token: token,
+            verificationId: verificationId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns information about a file with messages exported from another application
     /// - Parameter messageFileHead: Beginning of the message file; up to 100 first lines
     /// - Returns: Information about a file with messages exported from another application
@@ -14214,24 +14446,32 @@ public class TDLibApi {
     }
 
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter phoneNumber: Phone number to search for
     /// - Returns: A 404 error if the user can't be found
     public final func searchUserByPhoneNumber(
+        onlyLocal: Bool?,
         phoneNumber: String?,
         completion: @escaping (Result<User, Swift.Error>) -> Void
     ) throws {
         let query = SearchUserByPhoneNumber(
+            onlyLocal: onlyLocal,
             phoneNumber: phoneNumber
         )
         self.run(query: query, completion: completion)
     }
 
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter phoneNumber: Phone number to search for
     /// - Returns: A 404 error if the user can't be found
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func searchUserByPhoneNumber(phoneNumber: String?) async throws -> User {
+    public final func searchUserByPhoneNumber(
+        onlyLocal: Bool?,
+        phoneNumber: String?
+    ) async throws -> User {
         let query = SearchUserByPhoneNumber(
+            onlyLocal: onlyLocal,
             phoneNumber: phoneNumber
         )
         return try await self.run(query: query)
@@ -15895,7 +16135,7 @@ public class TDLibApi {
     }
 
     /// Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
-    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    /// - Parameter token: Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     public final func sendPhoneNumberFirebaseSms(
         token: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -15907,7 +16147,7 @@ public class TDLibApi {
     }
 
     /// Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
-    /// - Parameter token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    /// - Parameter token: Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func sendPhoneNumberFirebaseSms(token: String?) async throws -> Ok {
@@ -15917,7 +16157,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile apps only
+    /// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only
     /// - Parameter mobileNetworkCode: Current mobile network code
     public final func reportPhoneNumberCodeMissing(
         mobileNetworkCode: String?,
@@ -15929,7 +16169,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile apps only
+    /// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only
     /// - Parameter mobileNetworkCode: Current mobile network code
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15941,15 +16181,24 @@ public class TDLibApi {
     }
 
     /// Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-    public final func resendPhoneNumberCode(completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void) throws {
-        let query = ResendPhoneNumberCode()
+    /// - Parameter reason: Reason of code resending; pass null if unknown
+    public final func resendPhoneNumberCode(
+        reason: ResendCodeReason?,
+        completion: @escaping (Result<AuthenticationCodeInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = ResendPhoneNumberCode(
+            reason: reason
+        )
         self.run(query: query, completion: completion)
     }
 
     /// Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+    /// - Parameter reason: Reason of code resending; pass null if unknown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func resendPhoneNumberCode() async throws -> AuthenticationCodeInfo {
-        let query = ResendPhoneNumberCode()
+    public final func resendPhoneNumberCode(reason: ResendCodeReason?) async throws -> AuthenticationCodeInfo {
+        let query = ResendPhoneNumberCode(
+            reason: reason
+        )
         return try await self.run(query: query)
     }
 
@@ -17301,7 +17550,7 @@ public class TDLibApi {
 
     /// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
     /// - Parameter joinToSendMessages: New value of join_to_send_messages
-    /// - Parameter supergroupId: Identifier of the supergroup
+    /// - Parameter supergroupId: Identifier of the supergroup that isn't a broadcast group
     public final func toggleSupergroupJoinToSendMessages(
         joinToSendMessages: Bool?,
         supergroupId: Int64?,
@@ -17316,7 +17565,7 @@ public class TDLibApi {
 
     /// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
     /// - Parameter joinToSendMessages: New value of join_to_send_messages
-    /// - Parameter supergroupId: Identifier of the supergroup
+    /// - Parameter supergroupId: Identifier of the supergroup that isn't a broadcast group
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func toggleSupergroupJoinToSendMessages(
@@ -17332,7 +17581,7 @@ public class TDLibApi {
 
     /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
     /// - Parameter joinByRequest: New value of join_by_request
-    /// - Parameter supergroupId: Identifier of the channel
+    /// - Parameter supergroupId: Identifier of the supergroup that isn't a broadcast group
     public final func toggleSupergroupJoinByRequest(
         joinByRequest: Bool?,
         supergroupId: Int64?,
@@ -17347,7 +17596,7 @@ public class TDLibApi {
 
     /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
     /// - Parameter joinByRequest: New value of join_by_request
-    /// - Parameter supergroupId: Identifier of the channel
+    /// - Parameter supergroupId: Identifier of the supergroup that isn't a broadcast group
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func toggleSupergroupJoinByRequest(
@@ -17810,7 +18059,7 @@ public class TDLibApi {
     }
 
     /// Sends a filled-out payment form to the bot for final verification
-    /// - Parameter credentials: The credentials chosen by user for payment
+    /// - Parameter credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars
     /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfoId: Identifier returned by validateOrderInfo, or an empty string
     /// - Parameter paymentFormId: Payment form identifier returned by getPaymentForm
@@ -17837,7 +18086,7 @@ public class TDLibApi {
     }
 
     /// Sends a filled-out payment form to the bot for final verification
-    /// - Parameter credentials: The credentials chosen by user for payment
+    /// - Parameter credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars
     /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfoId: Identifier returned by validateOrderInfo, or an empty string
     /// - Parameter paymentFormId: Payment form identifier returned by getPaymentForm
@@ -17956,6 +18205,37 @@ public class TDLibApi {
     public final func createInvoiceLink(invoice: InputMessageContent?) async throws -> HttpUrl {
         let query = CreateInvoiceLink(
             invoice: invoice
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Refunds a previously done payment in Telegram Stars
+    /// - Parameter telegramPaymentChargeId: Telegram payment identifier
+    /// - Parameter userId: Identifier of the user that did the payment
+    public final func refundStarPayment(
+        telegramPaymentChargeId: String?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RefundStarPayment(
+            telegramPaymentChargeId: telegramPaymentChargeId,
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Refunds a previously done payment in Telegram Stars
+    /// - Parameter telegramPaymentChargeId: Telegram payment identifier
+    /// - Parameter userId: Identifier of the user that did the payment
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func refundStarPayment(
+        telegramPaymentChargeId: String?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = RefundStarPayment(
+            telegramPaymentChargeId: telegramPaymentChargeId,
+            userId: userId
         )
         return try await self.run(query: query)
     }
@@ -20787,24 +21067,71 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+    /// Returns available options for Telegram stars purchase
+    /// - Returns: Available options for Telegram stars purchase
+    public final func getStarPaymentOptions(completion: @escaping (Result<StarPaymentOptions, Swift.Error>) -> Void) throws {
+        let query = GetStarPaymentOptions()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns available options for Telegram stars purchase
+    /// - Returns: Available options for Telegram stars purchase
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getStarPaymentOptions() async throws -> StarPaymentOptions {
+        let query = GetStarPaymentOptions()
+        return try await self.run(query: query)
+    }
+
+    /// Returns the list of Telegram star transactions for the current user
+    /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: The list of Telegram star transactions for the current user
+    public final func getStarTransactions(
+        direction: StarTransactionDirection?,
+        offset: String?,
+        completion: @escaping (Result<StarTransactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStarTransactions(
+            direction: direction,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of Telegram star transactions for the current user
+    /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: The list of Telegram star transactions for the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getStarTransactions(
+        direction: StarTransactionDirection?,
+        offset: String?
+    ) async throws -> StarTransactions {
+        let query = GetStarTransactions(
+            direction: direction,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Checks whether an in-store purchase is possible. Must be called before any in-store purchase
     /// - Parameter purpose: Transaction purpose
-    public final func canPurchasePremium(
+    public final func canPurchaseFromStore(
         purpose: StorePaymentPurpose?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = CanPurchasePremium(
+        let query = CanPurchaseFromStore(
             purpose: purpose
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+    /// Checks whether an in-store purchase is possible. Must be called before any in-store purchase
     /// - Parameter purpose: Transaction purpose
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func canPurchasePremium(purpose: StorePaymentPurpose?) async throws -> Ok {
-        let query = CanPurchasePremium(
+    public final func canPurchaseFromStore(purpose: StorePaymentPurpose?) async throws -> Ok {
+        let query = CanPurchaseFromStore(
             purpose: purpose
         )
         return try await self.run(query: query)

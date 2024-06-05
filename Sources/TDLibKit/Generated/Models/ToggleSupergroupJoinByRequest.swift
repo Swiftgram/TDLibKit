@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ToggleSupergroupJoinByRequest: Codable, Equatable, Hashable {
     /// New value of join_by_request
     public let joinByRequest: Bool?
 
-    /// Identifier of the channel
+    /// Identifier of the supergroup that isn't a broadcast group
     public let supergroupId: Int64?
 
 

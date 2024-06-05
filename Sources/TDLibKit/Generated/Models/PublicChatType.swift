@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
 
 
-/// Describes a type of public chats
+/// Describes type of public chat
 public indirect enum PublicChatType: Codable, Equatable, Hashable {
 
     /// The chat is public, because it has an active username

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SendMessageAlbum: Codable, Equatable, Hashable {
     /// Target chat
     public let chatId: Int64?
 
-    /// Contents of messages to be sent. At most 10 messages can be added to an album
+    /// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     public let inputMessageContents: [InputMessageContent]?
 
     /// If not 0, the message thread identifier in which the messages will be sent

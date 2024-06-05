@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     /// Pass true to disable notification for the message
     public let disableNotification: Bool
+
+    /// Identifier of the effect to apply to the message; applicable only to sendMessage and sendMessageAlbum in private chats
+    public let effectId: TdInt64
 
     /// Pass true if the message is sent from the background
     public let fromBackground: Bool
@@ -37,6 +40,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     public init(
         disableNotification: Bool,
+        effectId: TdInt64,
         fromBackground: Bool,
         onlyPreview: Bool,
         protectContent: Bool,
@@ -45,6 +49,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         updateOrderOfInstalledStickerSets: Bool
     ) {
         self.disableNotification = disableNotification
+        self.effectId = effectId
         self.fromBackground = fromBackground
         self.onlyPreview = onlyPreview
         self.protectContent = protectContent

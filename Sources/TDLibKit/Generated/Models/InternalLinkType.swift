@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -101,7 +101,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
 
-    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat, then put the draft text in the input field
+    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
     case internalLinkTypePublicChat(InternalLinkTypePublicChat)
 
     /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
@@ -817,7 +817,7 @@ public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat, then put the draft text in the input field
+/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
 public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
 
     /// Username of the chat

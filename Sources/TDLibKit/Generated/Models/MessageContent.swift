@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -738,17 +738,22 @@ public struct MessageAnimation: Codable, Equatable, Hashable {
     /// True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
     public let isSecret: Bool
 
+    /// True, if caption must be shown above the animation; otherwise, caption must be shown below the animation
+    public let showCaptionAboveMedia: Bool
+
 
     public init(
         animation: Animation,
         caption: FormattedText,
         hasSpoiler: Bool,
-        isSecret: Bool
+        isSecret: Bool,
+        showCaptionAboveMedia: Bool
     ) {
         self.animation = animation
         self.caption = caption
         self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
+        self.showCaptionAboveMedia = showCaptionAboveMedia
     }
 }
 
@@ -805,17 +810,22 @@ public struct MessagePhoto: Codable, Equatable, Hashable {
     /// The photo
     public let photo: Photo
 
+    /// True, if caption must be shown above the photo; otherwise, caption must be shown below the photo
+    public let showCaptionAboveMedia: Bool
+
 
     public init(
         caption: FormattedText,
         hasSpoiler: Bool,
         isSecret: Bool,
-        photo: Photo
+        photo: Photo,
+        showCaptionAboveMedia: Bool
     ) {
         self.caption = caption
         self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
         self.photo = photo
+        self.showCaptionAboveMedia = showCaptionAboveMedia
     }
 }
 
@@ -850,6 +860,9 @@ public struct MessageVideo: Codable, Equatable, Hashable {
     /// True, if the video thumbnail must be blurred and the video must be shown only while tapped
     public let isSecret: Bool
 
+    /// True, if caption must be shown above the video; otherwise, caption must be shown below the video
+    public let showCaptionAboveMedia: Bool
+
     /// The video description
     public let video: Video
 
@@ -858,11 +871,13 @@ public struct MessageVideo: Codable, Equatable, Hashable {
         caption: FormattedText,
         hasSpoiler: Bool,
         isSecret: Bool,
+        showCaptionAboveMedia: Bool,
         video: Video
     ) {
         self.caption = caption
         self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
+        self.showCaptionAboveMedia = showCaptionAboveMedia
         self.video = video
     }
 }
@@ -1080,8 +1095,6 @@ public struct MessageInvoice: Codable, Equatable, Hashable {
     /// Currency for the product price
     public let currency: String
 
-    public let description: FormattedText
-
     /// Extended media attached to the invoice; may be null
     public let extendedMedia: MessageExtendedMedia?
 
@@ -1091,8 +1104,8 @@ public struct MessageInvoice: Codable, Equatable, Hashable {
     /// True, if the shipping address must be specified
     public let needShippingAddress: Bool
 
-    /// Product photo; may be null
-    public let photo: Photo?
+    /// Information about the product
+    public let productInfo: ProductInfo
 
     /// The identifier of the message with the receipt, after the product has been purchased
     public let receiptMessageId: Int64
@@ -1100,34 +1113,27 @@ public struct MessageInvoice: Codable, Equatable, Hashable {
     /// Unique invoice bot start_parameter to be passed to getInternalLink
     public let startParameter: String
 
-    /// Product title
-    public let title: String
-
     /// Product total price in the smallest units of the currency
     public let totalAmount: Int64
 
 
     public init(
         currency: String,
-        description: FormattedText,
         extendedMedia: MessageExtendedMedia?,
         isTest: Bool,
         needShippingAddress: Bool,
-        photo: Photo?,
+        productInfo: ProductInfo,
         receiptMessageId: Int64,
         startParameter: String,
-        title: String,
         totalAmount: Int64
     ) {
         self.currency = currency
-        self.description = description
         self.extendedMedia = extendedMedia
         self.isTest = isTest
         self.needShippingAddress = needShippingAddress
-        self.photo = photo
+        self.productInfo = productInfo
         self.receiptMessageId = receiptMessageId
         self.startParameter = startParameter
-        self.title = title
         self.totalAmount = totalAmount
     }
 }

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
 
 
-/// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+/// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 public struct EditMessageReplyMarkup: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to

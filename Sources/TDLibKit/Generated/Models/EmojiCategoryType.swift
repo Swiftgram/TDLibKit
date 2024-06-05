@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum EmojiCategoryType: Codable, Equatable, Hashable {
     /// The category must be used by default (e.g., for custom emoji or animation search)
     case emojiCategoryTypeDefault
 
-    /// The category must be used by default for regular sticker selection. It may contain greeting emoji category and Premium stickers
+    /// The category must be used by default for regular sticker selection. It may contain greeting emoji category and premium stickers
     case emojiCategoryTypeRegularStickers
 
     /// The category must be used for emoji status selection

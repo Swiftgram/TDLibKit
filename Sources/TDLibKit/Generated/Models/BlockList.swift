@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
 
 
-/// Describes a type of block list
+/// Describes type of block list
 public indirect enum BlockList: Codable, Equatable, Hashable {
 
     /// The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions

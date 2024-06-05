@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -247,16 +247,21 @@ public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable, Hashabl
     /// Length of the code
     public let length: Int
 
-    /// Nonce to pass to the SafetyNet Attestation API
+    /// Nonce to pass to the Play Integrity API or the SafetyNet Attestation API
     public let nonce: Data
+
+    /// True, if Play Integrity API must be used for device verification. Otherwise, SafetyNet Attestation API must be used
+    public let usePlayIntegrity: Bool
 
 
     public init(
         length: Int,
-        nonce: Data
+        nonce: Data,
+        usePlayIntegrity: Bool
     ) {
         self.length = length
         self.nonce = nonce
+        self.usePlayIntegrity = usePlayIntegrity
     }
 }
 

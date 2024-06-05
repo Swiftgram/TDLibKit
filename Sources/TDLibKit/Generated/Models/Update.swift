@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -48,6 +48,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The list of unread reactions added to a message was changed
     case updateMessageUnreadReactions(UpdateMessageUnreadReactions)
+
+    /// A fact-check added to a message was changed
+    case updateMessageFactCheck(UpdateMessageFactCheck)
 
     /// A message with a live location was viewed. When the update is received, the application is supposed to update the live location
     case updateMessageLiveLocationViewed(UpdateMessageLiveLocationViewed)
@@ -250,6 +253,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
     case updateFileRemovedFromDownloads(UpdateFileRemovedFromDownloads)
 
+    /// A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
+    case updateApplicationVerificationRequired(UpdateApplicationVerificationRequired)
+
     /// New call was created or information about a call was updated
     case updateCall(UpdateCall)
 
@@ -352,14 +358,20 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of active emoji reactions has changed
     case updateActiveEmojiReactions(UpdateActiveEmojiReactions)
 
+    /// The list of available message effects has changed
+    case updateAvailableMessageEffects(UpdateAvailableMessageEffects)
+
     /// The type of default reaction has changed
     case updateDefaultReactionType(UpdateDefaultReactionType)
 
     /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
 
+    /// The number of Telegram stars owned by the current user has changed
+    case updateOwnedStarCount(UpdateOwnedStarCount)
+
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
-    case updateChatRevenueAmount
+    case updateChatRevenueAmount(UpdateChatRevenueAmount)
 
     /// The parameters of speech recognition without Telegram Premium subscription has changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
@@ -456,6 +468,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateMessageContentOpened
         case updateMessageMentionRead
         case updateMessageUnreadReactions
+        case updateMessageFactCheck
         case updateMessageLiveLocationViewed
         case updateNewChat
         case updateChatTitle
@@ -523,6 +536,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateFileAddedToDownloads
         case updateFileDownload
         case updateFileRemovedFromDownloads
+        case updateApplicationVerificationRequired
         case updateCall
         case updateGroupCall
         case updateGroupCallParticipant
@@ -557,8 +571,10 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateAttachmentMenuBots
         case updateWebAppMessageSent
         case updateActiveEmojiReactions
+        case updateAvailableMessageEffects
         case updateDefaultReactionType
         case updateSavedMessagesTags
+        case updateOwnedStarCount
         case updateChatRevenueAmount
         case updateSpeechRecognitionTrial
         case updateDiceEmojis
@@ -629,6 +645,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageUnreadReactions:
             let value = try UpdateMessageUnreadReactions(from: decoder)
             self = .updateMessageUnreadReactions(value)
+        case .updateMessageFactCheck:
+            let value = try UpdateMessageFactCheck(from: decoder)
+            self = .updateMessageFactCheck(value)
         case .updateMessageLiveLocationViewed:
             let value = try UpdateMessageLiveLocationViewed(from: decoder)
             self = .updateMessageLiveLocationViewed(value)
@@ -830,6 +849,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateFileRemovedFromDownloads:
             let value = try UpdateFileRemovedFromDownloads(from: decoder)
             self = .updateFileRemovedFromDownloads(value)
+        case .updateApplicationVerificationRequired:
+            let value = try UpdateApplicationVerificationRequired(from: decoder)
+            self = .updateApplicationVerificationRequired(value)
         case .updateCall:
             let value = try UpdateCall(from: decoder)
             self = .updateCall(value)
@@ -932,14 +954,21 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateActiveEmojiReactions:
             let value = try UpdateActiveEmojiReactions(from: decoder)
             self = .updateActiveEmojiReactions(value)
+        case .updateAvailableMessageEffects:
+            let value = try UpdateAvailableMessageEffects(from: decoder)
+            self = .updateAvailableMessageEffects(value)
         case .updateDefaultReactionType:
             let value = try UpdateDefaultReactionType(from: decoder)
             self = .updateDefaultReactionType(value)
         case .updateSavedMessagesTags:
             let value = try UpdateSavedMessagesTags(from: decoder)
             self = .updateSavedMessagesTags(value)
+        case .updateOwnedStarCount:
+            let value = try UpdateOwnedStarCount(from: decoder)
+            self = .updateOwnedStarCount(value)
         case .updateChatRevenueAmount:
-            self = .updateChatRevenueAmount
+            let value = try UpdateChatRevenueAmount(from: decoder)
+            self = .updateChatRevenueAmount(value)
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
@@ -1062,6 +1091,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateMessageUnreadReactions(let value):
             try container.encode(Kind.updateMessageUnreadReactions, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateMessageFactCheck(let value):
+            try container.encode(Kind.updateMessageFactCheck, forKey: .type)
             try value.encode(to: encoder)
         case .updateMessageLiveLocationViewed(let value):
             try container.encode(Kind.updateMessageLiveLocationViewed, forKey: .type)
@@ -1264,6 +1296,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateFileRemovedFromDownloads(let value):
             try container.encode(Kind.updateFileRemovedFromDownloads, forKey: .type)
             try value.encode(to: encoder)
+        case .updateApplicationVerificationRequired(let value):
+            try container.encode(Kind.updateApplicationVerificationRequired, forKey: .type)
+            try value.encode(to: encoder)
         case .updateCall(let value):
             try container.encode(Kind.updateCall, forKey: .type)
             try value.encode(to: encoder)
@@ -1366,14 +1401,21 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateActiveEmojiReactions(let value):
             try container.encode(Kind.updateActiveEmojiReactions, forKey: .type)
             try value.encode(to: encoder)
+        case .updateAvailableMessageEffects(let value):
+            try container.encode(Kind.updateAvailableMessageEffects, forKey: .type)
+            try value.encode(to: encoder)
         case .updateDefaultReactionType(let value):
             try container.encode(Kind.updateDefaultReactionType, forKey: .type)
             try value.encode(to: encoder)
         case .updateSavedMessagesTags(let value):
             try container.encode(Kind.updateSavedMessagesTags, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatRevenueAmount:
+        case .updateOwnedStarCount(let value):
+            try container.encode(Kind.updateOwnedStarCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatRevenueAmount(let value):
             try container.encode(Kind.updateChatRevenueAmount, forKey: .type)
+            try value.encode(to: encoder)
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
             try value.encode(to: encoder)
@@ -1715,6 +1757,30 @@ public struct UpdateMessageUnreadReactions: Codable, Equatable, Hashable {
         self.messageId = messageId
         self.unreadReactionCount = unreadReactionCount
         self.unreadReactions = unreadReactions
+    }
+}
+
+/// A fact-check added to a message was changed
+public struct UpdateMessageFactCheck: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new fact-check
+    public let factCheck: FactCheck
+
+    /// Message identifier
+    public let messageId: Int64
+
+
+    public init(
+        chatId: Int64,
+        factCheck: FactCheck,
+        messageId: Int64
+    ) {
+        self.chatId = chatId
+        self.factCheck = factCheck
+        self.messageId = messageId
     }
 }
 
@@ -3003,6 +3069,25 @@ public struct UpdateFileRemovedFromDownloads: Codable, Equatable, Hashable {
     }
 }
 
+/// A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
+public struct UpdateApplicationVerificationRequired: Codable, Equatable, Hashable {
+
+    /// Unique nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    public let nonce: String
+
+    /// Unique identifier for the verification process
+    public let verificationId: Int64
+
+
+    public init(
+        nonce: String,
+        verificationId: Int64
+    ) {
+        self.nonce = nonce
+        self.verificationId = verificationId
+    }
+}
+
 /// New call was created or information about a call was updated
 public struct UpdateCall: Codable, Equatable, Hashable {
 
@@ -3579,6 +3664,25 @@ public struct UpdateActiveEmojiReactions: Codable, Equatable, Hashable {
     }
 }
 
+/// The list of available message effects has changed
+public struct UpdateAvailableMessageEffects: Codable, Equatable, Hashable {
+
+    /// The new list of available message effects from emoji reactions
+    public let reactionEffectIds: [TdInt64]
+
+    /// The new list of available message effects from Premium stickers
+    public let stickerEffectIds: [TdInt64]
+
+
+    public init(
+        reactionEffectIds: [TdInt64],
+        stickerEffectIds: [TdInt64]
+    ) {
+        self.reactionEffectIds = reactionEffectIds
+        self.stickerEffectIds = stickerEffectIds
+    }
+}
+
 /// The type of default reaction has changed
 public struct UpdateDefaultReactionType: Codable, Equatable, Hashable {
 
@@ -3607,6 +3711,37 @@ public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
     ) {
         self.savedMessagesTopicId = savedMessagesTopicId
         self.tags = tags
+    }
+}
+
+/// The number of Telegram stars owned by the current user has changed
+public struct UpdateOwnedStarCount: Codable, Equatable, Hashable {
+
+    /// The new number of Telegram stars owned
+    public let starCount: Int64
+
+
+    public init(starCount: Int64) {
+        self.starCount = starCount
+    }
+}
+
+/// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+public struct UpdateChatRevenueAmount: Codable, Equatable, Hashable {
+
+    /// Identifier of the chat
+    public let chatId: Int64
+
+    /// New amount of earned revenue
+    public let revenueAmount: ChatRevenueAmount
+
+
+    public init(
+        chatId: Int64,
+        revenueAmount: ChatRevenueAmount
+    ) {
+        self.chatId = chatId
+        self.revenueAmount = revenueAmount
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct SendBusinessMessage: Codable, Equatable, Hashable {
 
     /// Pass true to disable notification for the message
     public let disableNotification: Bool?
+
+    /// Identifier of the effect to apply to the message
+    public let effectId: TdInt64?
 
     /// The content of the message to be sent
     public let inputMessageContent: InputMessageContent?
@@ -39,6 +42,7 @@ public struct SendBusinessMessage: Codable, Equatable, Hashable {
         businessConnectionId: String?,
         chatId: Int64?,
         disableNotification: Bool?,
+        effectId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
         replyMarkup: ReplyMarkup?,
@@ -47,6 +51,7 @@ public struct SendBusinessMessage: Codable, Equatable, Hashable {
         self.businessConnectionId = businessConnectionId
         self.chatId = chatId
         self.disableNotification = disableNotification
+        self.effectId = effectId
         self.inputMessageContent = inputMessageContent
         self.protectContent = protectContent
         self.replyMarkup = replyMarkup

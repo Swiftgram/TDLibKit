@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -72,6 +72,12 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// Point in time (Unix timestamp) when the message was last edited
     public let editDate: Int
+
+    /// Unique identifier of the effect added to the message; 0 if none
+    public let effectId: TdInt64
+
+    /// Information about fact-check added to the message; may be null if none
+    public let factCheck: FactCheck?
 
     /// Information about the initial message sender; may be null if none or unknown
     public let forwardInfo: MessageForwardInfo?
@@ -170,6 +176,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         content: MessageContent,
         date: Int,
         editDate: Int,
+        effectId: TdInt64,
+        factCheck: FactCheck?,
         forwardInfo: MessageForwardInfo?,
         hasTimestampedMedia: Bool,
         id: Int64,
@@ -216,6 +224,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.content = content
         self.date = date
         self.editDate = editDate
+        self.effectId = effectId
+        self.factCheck = factCheck
         self.forwardInfo = forwardInfo
         self.hasTimestampedMedia = hasTimestampedMedia
         self.id = id

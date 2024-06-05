@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
     /// The user creating a Telegram Premium giveaway
     case telegramPaymentPurposePremiumGiveaway(TelegramPaymentPurposePremiumGiveaway)
 
+    /// The user buying Telegram stars
+    case telegramPaymentPurposeStars(TelegramPaymentPurposeStars)
+
 
     private enum Kind: String, Codable {
         case telegramPaymentPurposePremiumGiftCodes
         case telegramPaymentPurposePremiumGiveaway
+        case telegramPaymentPurposeStars
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
         case .telegramPaymentPurposePremiumGiveaway:
             let value = try TelegramPaymentPurposePremiumGiveaway(from: decoder)
             self = .telegramPaymentPurposePremiumGiveaway(value)
+        case .telegramPaymentPurposeStars:
+            let value = try TelegramPaymentPurposeStars(from: decoder)
+            self = .telegramPaymentPurposeStars(value)
         }
     }
 
@@ -46,6 +53,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .telegramPaymentPurposePremiumGiveaway(let value):
             try container.encode(Kind.telegramPaymentPurposePremiumGiveaway, forKey: .type)
+            try value.encode(to: encoder)
+        case .telegramPaymentPurposeStars(let value):
+            try container.encode(Kind.telegramPaymentPurposeStars, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -116,6 +126,30 @@ public struct TelegramPaymentPurposePremiumGiveaway: Codable, Equatable, Hashabl
         self.monthCount = monthCount
         self.parameters = parameters
         self.winnerCount = winnerCount
+    }
+}
+
+/// The user buying Telegram stars
+public struct TelegramPaymentPurposeStars: Codable, Equatable, Hashable {
+
+    /// Paid amount, in the smallest units of the currency
+    public let amount: Int64
+
+    /// ISO 4217 currency code of the payment currency
+    public let currency: String
+
+    /// Number of bought stars
+    public let starCount: Int64
+
+
+    public init(
+        amount: Int64,
+        currency: String,
+        starCount: Int64
+    ) {
+        self.amount = amount
+        self.currency = currency
+        self.starCount = starCount
     }
 }
 

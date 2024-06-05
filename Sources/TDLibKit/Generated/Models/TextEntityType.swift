@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
@@ -61,8 +61,11 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     /// Text that must be formatted as if inside pre, and code HTML tags
     case textEntityTypePreCode(TextEntityTypePreCode)
 
-    /// Text that must be formatted as if inside a blockquote HTML tag
+    /// Text that must be formatted as if inside a blockquote HTML tag; not supported in secret chats
     case textEntityTypeBlockQuote
+
+    /// Text that must be formatted as if inside a blockquote HTML tag and collapsed by default to 3 lines with the ability to show full text; not supported in secret chats
+    case textEntityTypeExpandableBlockQuote
 
     /// A text description shown instead of a raw URL
     case textEntityTypeTextUrl(TextEntityTypeTextUrl)
@@ -95,6 +98,7 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
         case textEntityTypePre
         case textEntityTypePreCode
         case textEntityTypeBlockQuote
+        case textEntityTypeExpandableBlockQuote
         case textEntityTypeTextUrl
         case textEntityTypeMentionName
         case textEntityTypeCustomEmoji
@@ -140,6 +144,8 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
             self = .textEntityTypePreCode(value)
         case .textEntityTypeBlockQuote:
             self = .textEntityTypeBlockQuote
+        case .textEntityTypeExpandableBlockQuote:
+            self = .textEntityTypeExpandableBlockQuote
         case .textEntityTypeTextUrl:
             let value = try TextEntityTypeTextUrl(from: decoder)
             self = .textEntityTypeTextUrl(value)
@@ -193,6 +199,8 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .textEntityTypeBlockQuote:
             try container.encode(Kind.textEntityTypeBlockQuote, forKey: .type)
+        case .textEntityTypeExpandableBlockQuote:
+            try container.encode(Kind.textEntityTypeExpandableBlockQuote, forKey: .type)
         case .textEntityTypeTextUrl(let value):
             try container.encode(Kind.textEntityTypeTextUrl, forKey: .type)
             try value.encode(to: encoder)

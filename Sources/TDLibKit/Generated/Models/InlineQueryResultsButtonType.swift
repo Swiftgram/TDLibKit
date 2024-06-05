@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.29-fd3154b2
-//  https://github.com/tdlib/td/tree/fd3154b2
+//  Based on TDLib 1.8.30-b102c3ad
+//  https://github.com/tdlib/td/tree/b102c3ad
 //
 
 import Foundation
 
 
-/// Represents a type of button in results of inline query
+/// Represents type of button in results of inline query
 public indirect enum InlineQueryResultsButtonType: Codable, Equatable, Hashable {
 
     /// Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
