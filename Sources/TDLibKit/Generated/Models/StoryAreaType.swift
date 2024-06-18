@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -25,12 +25,16 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a message
     case storyAreaTypeMessage(StoryAreaTypeMessage)
 
+    /// An area pointing to a HTTP or tg:// link
+    case storyAreaTypeLink(StoryAreaTypeLink)
+
 
     private enum Kind: String, Codable {
         case storyAreaTypeLocation
         case storyAreaTypeVenue
         case storyAreaTypeSuggestedReaction
         case storyAreaTypeMessage
+        case storyAreaTypeLink
     }
 
     public init(from decoder: Decoder) throws {
@@ -49,6 +53,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
         case .storyAreaTypeMessage:
             let value = try StoryAreaTypeMessage(from: decoder)
             self = .storyAreaTypeMessage(value)
+        case .storyAreaTypeLink:
+            let value = try StoryAreaTypeLink(from: decoder)
+            self = .storyAreaTypeLink(value)
         }
     }
 
@@ -67,6 +74,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
         case .storyAreaTypeMessage(let value):
             try container.encode(Kind.storyAreaTypeMessage, forKey: .type)
             try value.encode(to: encoder)
+        case .storyAreaTypeLink(let value):
+            try container.encode(Kind.storyAreaTypeLink, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -74,11 +84,18 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
 /// An area pointing to a location
 public struct StoryAreaTypeLocation: Codable, Equatable, Hashable {
 
+    /// Address of the location; may be null if unknown
+    public let address: LocationAddress?
+
     /// The location
     public let location: Location
 
 
-    public init(location: Location) {
+    public init(
+        address: LocationAddress?,
+        location: Location
+    ) {
+        self.address = address
         self.location = location
     }
 }
@@ -140,6 +157,18 @@ public struct StoryAreaTypeMessage: Codable, Equatable, Hashable {
     ) {
         self.chatId = chatId
         self.messageId = messageId
+    }
+}
+
+/// An area pointing to a HTTP or tg:// link
+public struct StoryAreaTypeLink: Codable, Equatable, Hashable {
+
+    /// HTTP or tg:// URL to be opened when the area is clicked
+    public let url: String
+
+
+    public init(url: String) {
+        self.url = url
     }
 }
 

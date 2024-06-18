@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetStickers: Codable, Equatable, Hashable {
     /// The maximum number of stickers to be returned
     public let limit: Int?
 
-    /// Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
     public let query: String?
 
     /// Type of the stickers to return

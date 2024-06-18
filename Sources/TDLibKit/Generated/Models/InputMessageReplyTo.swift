@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -13,8 +13,11 @@ import Foundation
 /// Contains information about the message or the story to be replied
 public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
 
-    /// Describes a message to be replied
+    /// Describes a message to be replied in the same chat and forum topic
     case inputMessageReplyToMessage(InputMessageReplyToMessage)
+
+    /// Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
+    case inputMessageReplyToExternalMessage(InputMessageReplyToExternalMessage)
 
     /// Describes a story to be replied
     case inputMessageReplyToStory(InputMessageReplyToStory)
@@ -22,6 +25,7 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case inputMessageReplyToMessage
+        case inputMessageReplyToExternalMessage
         case inputMessageReplyToStory
     }
 
@@ -32,6 +36,9 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
         case .inputMessageReplyToMessage:
             let value = try InputMessageReplyToMessage(from: decoder)
             self = .inputMessageReplyToMessage(value)
+        case .inputMessageReplyToExternalMessage:
+            let value = try InputMessageReplyToExternalMessage(from: decoder)
+            self = .inputMessageReplyToExternalMessage(value)
         case .inputMessageReplyToStory:
             let value = try InputMessageReplyToStory(from: decoder)
             self = .inputMessageReplyToStory(value)
@@ -44,6 +51,9 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
         case .inputMessageReplyToMessage(let value):
             try container.encode(Kind.inputMessageReplyToMessage, forKey: .type)
             try value.encode(to: encoder)
+        case .inputMessageReplyToExternalMessage(let value):
+            try container.encode(Kind.inputMessageReplyToExternalMessage, forKey: .type)
+            try value.encode(to: encoder)
         case .inputMessageReplyToStory(let value):
             try container.encode(Kind.inputMessageReplyToStory, forKey: .type)
             try value.encode(to: encoder)
@@ -51,16 +61,35 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a message to be replied
+/// Describes a message to be replied in the same chat and forum topic
 public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
 
-    /// The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
-    public let chatId: Int64
-
-    /// The identifier of the message to be replied in the same or the specified chat
+    /// The identifier of the message to be replied in the same chat and forum topic
     public let messageId: Int64
 
     /// Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
+    public let quote: InputTextQuote?
+
+
+    public init(
+        messageId: Int64,
+        quote: InputTextQuote?
+    ) {
+        self.messageId = messageId
+        self.quote = quote
+    }
+}
+
+/// Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
+public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
+
+    /// The identifier of the chat to which the message to be replied belongs
+    public let chatId: Int64
+
+    /// The identifier of the message to be replied in the specified chat. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
+    public let messageId: Int64
+
+    /// Quote from the message to be replied; pass null if none
     public let quote: InputTextQuote?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     /// Pass true to disable notification for the message
     public let disableNotification: Bool
 
-    /// Identifier of the effect to apply to the message; applicable only to sendMessage and sendMessageAlbum in private chats
+    /// Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats
     public let effectId: TdInt64
 
     /// Pass true if the message is sent from the background

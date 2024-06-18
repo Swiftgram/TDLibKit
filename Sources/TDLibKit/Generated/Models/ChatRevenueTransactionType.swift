@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -87,7 +87,7 @@ public struct ChatRevenueTransactionTypeWithdrawal: Codable, Equatable, Hashable
     public let provider: String
 
     /// State of the withdrawal
-    public let state: ChatRevenueWithdrawalState
+    public let state: RevenueWithdrawalState
 
     /// Point in time (Unix timestamp) when the earnings withdrawal started
     public let withdrawalDate: Int
@@ -95,7 +95,7 @@ public struct ChatRevenueTransactionTypeWithdrawal: Codable, Equatable, Hashable
 
     public init(
         provider: String,
-        state: ChatRevenueWithdrawalState,
+        state: RevenueWithdrawalState,
         withdrawalDate: Int
     ) {
         self.provider = provider

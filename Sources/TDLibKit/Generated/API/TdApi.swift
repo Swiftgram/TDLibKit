@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -2863,110 +2863,239 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter hashtag: Hashtag or cashtag to search for
+    /// Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter tag: Hashtag or cashtag to search for
     /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    public func searchPublicHashtagMessages(
-        hashtag: String?,
+    public func searchPublicMessagesByTag(
         limit: Int?,
         offset: String?,
+        tag: String?,
         completion: @escaping (Result<FoundMessages, Swift.Error>) -> Void
     ) throws {
-        let query = SearchPublicHashtagMessages(
-            hashtag: hashtag,
+        let query = SearchPublicMessagesByTag(
             limit: limit,
-            offset: offset
+            offset: offset,
+            tag: tag
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter hashtag: Hashtag or cashtag to search for
+    /// Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter tag: Hashtag or cashtag to search for
     /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func searchPublicHashtagMessages(
-        hashtag: String?,
+    public func searchPublicMessagesByTag(
+        limit: Int?,
+        offset: String?,
+        tag: String?
+    ) async throws -> FoundMessages {
+        let query = SearchPublicMessagesByTag(
+            limit: limit,
+            offset: offset,
+            tag: tag
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter tag: Hashtag or cashtag to search for
+    /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    public func searchPublicStoriesByTag(
+        limit: Int?,
+        offset: String?,
+        tag: String?,
+        completion: @escaping (Result<FoundStories, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchPublicStoriesByTag(
+            limit: limit,
+            offset: offset,
+            tag: tag
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter tag: Hashtag or cashtag to search for
+    /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchPublicStoriesByTag(
+        limit: Int?,
+        offset: String?,
+        tag: String?
+    ) async throws -> FoundStories {
+        let query = SearchPublicStoriesByTag(
+            limit: limit,
+            offset: offset,
+            tag: tag
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter address: Address of the location
+    /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    public func searchPublicStoriesByLocation(
+        address: LocationAddress?,
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<FoundStories, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchPublicStoriesByLocation(
+            address: address,
+            limit: limit,
+            offset: offset
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter address: Address of the location
+    /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchPublicStoriesByLocation(
+        address: LocationAddress?,
         limit: Int?,
         offset: String?
-    ) async throws -> FoundMessages {
-        let query = SearchPublicHashtagMessages(
-            hashtag: hashtag,
+    ) async throws -> FoundStories {
+        let query = SearchPublicStoriesByLocation(
+            address: address,
             limit: limit,
             offset: offset
         )
         return try await self.execute(query: query)
     }
 
+    /// Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter venueId: Identifier of the venue in the provider database
+    /// - Parameter venueProvider: Provider of the venue
+    /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    public func searchPublicStoriesByVenue(
+        limit: Int?,
+        offset: String?,
+        venueId: String?,
+        venueProvider: String?,
+        completion: @escaping (Result<FoundStories, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchPublicStoriesByVenue(
+            limit: limit,
+            offset: offset,
+            venueId: venueId,
+            venueProvider: venueProvider
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter venueId: Identifier of the venue in the provider database
+    /// - Parameter venueProvider: Provider of the venue
+    /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchPublicStoriesByVenue(
+        limit: Int?,
+        offset: String?,
+        venueId: String?,
+        venueProvider: String?
+    ) async throws -> FoundStories {
+        let query = SearchPublicStoriesByVenue(
+            limit: limit,
+            offset: offset,
+            venueId: venueId,
+            venueProvider: venueProvider
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns recently searched for hashtags or cashtags by their prefix
     /// - Parameter limit: The maximum number of items to be returned
-    /// - Parameter prefix: Prefix of hashtags or cashtags to return
+    /// - Parameter tagPrefix: Prefix of hashtags or cashtags to return
     /// - Returns: Recently searched for hashtags or cashtags by their prefix
-    public func getSearchedForHashtags(
+    public func getSearchedForTags(
         limit: Int?,
-        prefix: String?,
+        tagPrefix: String?,
         completion: @escaping (Result<Hashtags, Swift.Error>) -> Void
     ) throws {
-        let query = GetSearchedForHashtags(
+        let query = GetSearchedForTags(
             limit: limit,
-            prefix: prefix
+            tagPrefix: tagPrefix
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns recently searched for hashtags or cashtags by their prefix
     /// - Parameter limit: The maximum number of items to be returned
-    /// - Parameter prefix: Prefix of hashtags or cashtags to return
+    /// - Parameter tagPrefix: Prefix of hashtags or cashtags to return
     /// - Returns: Recently searched for hashtags or cashtags by their prefix
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getSearchedForHashtags(
+    public func getSearchedForTags(
         limit: Int?,
-        prefix: String?
+        tagPrefix: String?
     ) async throws -> Hashtags {
-        let query = GetSearchedForHashtags(
+        let query = GetSearchedForTags(
             limit: limit,
-            prefix: prefix
+            tagPrefix: tagPrefix
         )
         return try await self.execute(query: query)
     }
 
     /// Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
-    /// - Parameter hashtag: Hashtag or cashtag to delete
-    public func removeSearchedForHashtag(
-        hashtag: String?,
+    /// - Parameter tag: Hashtag or cashtag to delete
+    public func removeSearchedForTag(
+        tag: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = RemoveSearchedForHashtag(
-            hashtag: hashtag
+        let query = RemoveSearchedForTag(
+            tag: tag
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
-    /// - Parameter hashtag: Hashtag or cashtag to delete
+    /// - Parameter tag: Hashtag or cashtag to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func removeSearchedForHashtag(hashtag: String?) async throws -> Ok {
-        let query = RemoveSearchedForHashtag(
-            hashtag: hashtag
+    public func removeSearchedForTag(tag: String?) async throws -> Ok {
+        let query = RemoveSearchedForTag(
+            tag: tag
         )
         return try await self.execute(query: query)
     }
 
-    /// Clears the list of recently searched for hashtags
-    public func clearSearchedForHashtags(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
-        let query = ClearSearchedForHashtags()
+    /// Clears the list of recently searched for hashtags or cashtags
+    /// - Parameter clearCashtags: Pass true to clear the list of recently searched for cashtags; otherwise, the list of recently searched for hashtags will be cleared
+    public func clearSearchedForTags(
+        clearCashtags: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ClearSearchedForTags(
+            clearCashtags: clearCashtags
+        )
         self.execute(query: query, completion: completion)
     }
 
-    /// Clears the list of recently searched for hashtags
+    /// Clears the list of recently searched for hashtags or cashtags
+    /// - Parameter clearCashtags: Pass true to clear the list of recently searched for cashtags; otherwise, the list of recently searched for hashtags will be cleared
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func clearSearchedForHashtags() async throws -> Ok {
-        let query = ClearSearchedForHashtags()
+    public func clearSearchedForTags(clearCashtags: Bool?) async throws -> Ok {
+        let query = ClearSearchedForTags(
+            clearCashtags: clearCashtags
+        )
         return try await self.execute(query: query)
     }
 
@@ -4886,6 +5015,306 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Edits the text of a text or game message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public func editBusinessMessageText(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessMessageText(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the text of a text or game message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editBusinessMessageText(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> BusinessMessage {
+        let query = EditBusinessMessageText(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the content of a live location in a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
+    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public func editBusinessMessageLiveLocation(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        heading: Int?,
+        livePeriod: Int?,
+        location: Location?,
+        messageId: Int64?,
+        proximityAlertRadius: Int?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessMessageLiveLocation(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            heading: heading,
+            livePeriod: livePeriod,
+            location: location,
+            messageId: messageId,
+            proximityAlertRadius: proximityAlertRadius,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the content of a live location in a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
+    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editBusinessMessageLiveLocation(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        heading: Int?,
+        livePeriod: Int?,
+        location: Location?,
+        messageId: Int64?,
+        proximityAlertRadius: Int?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> BusinessMessage {
+        let query = EditBusinessMessageLiveLocation(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            heading: heading,
+            livePeriod: livePeriod,
+            location: location,
+            messageId: messageId,
+            proximityAlertRadius: proximityAlertRadius,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    public func editBusinessMessageMedia(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessMessageMedia(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editBusinessMessageMedia(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> BusinessMessage {
+        let query = EditBusinessMessageMedia(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the caption of a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    public func editBusinessMessageCaption(
+        businessConnectionId: String?,
+        caption: FormattedText?,
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessMessageCaption(
+            businessConnectionId: businessConnectionId,
+            caption: caption,
+            chatId: chatId,
+            messageId: messageId,
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the caption of a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editBusinessMessageCaption(
+        businessConnectionId: String?,
+        caption: FormattedText?,
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?
+    ) async throws -> BusinessMessage {
+        let query = EditBusinessMessageCaption(
+            businessConnectionId: businessConnectionId,
+            caption: caption,
+            chatId: chatId,
+            messageId: messageId,
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the reply markup of a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public func editBusinessMessageReplyMarkup(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessMessageReplyMarkup(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the reply markup of a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editBusinessMessageReplyMarkup(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> BusinessMessage {
+        let query = EditBusinessMessageReplyMarkup(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Stops a poll sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message with the poll was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message containing the poll
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public func stopBusinessPoll(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = StopBusinessPoll(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Stops a poll sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message with the poll was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message containing the poll
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func stopBusinessPoll(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> BusinessMessage {
+        let query = StopBusinessPoll(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Checks validness of a name for a quick reply shortcut. Can be called synchronously
     /// - Parameter name: The name of the shortcut; 1-32 characters
     public func checkQuickReplyShortcutName(
@@ -5249,15 +5678,15 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of custom emojis, which can be used as forum topic icon by all users
-    /// - Returns: The list of custom emojis, which can be used as forum topic icon by all users
+    /// Returns the list of custom emoji, which can be used as forum topic icon by all users
+    /// - Returns: The list of custom emoji, which can be used as forum topic icon by all users
     public func getForumTopicDefaultIcons(completion: @escaping (Result<Stickers, Swift.Error>) -> Void) throws {
         let query = GetForumTopicDefaultIcons()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of custom emojis, which can be used as forum topic icon by all users
-    /// - Returns: The list of custom emojis, which can be used as forum topic icon by all users
+    /// Returns the list of custom emoji, which can be used as forum topic icon by all users
+    /// - Returns: The list of custom emoji, which can be used as forum topic icon by all users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getForumTopicDefaultIcons() async throws -> Stickers {
         let query = GetForumTopicDefaultIcons()
@@ -14531,7 +14960,7 @@ public final class TdApi {
     /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
-    /// - Parameter query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// - Parameter query: Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
     /// - Parameter stickerType: Type of the stickers to return
     /// - Returns: Stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     public func getStickers(
@@ -14553,7 +14982,7 @@ public final class TdApi {
     /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
-    /// - Parameter query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+    /// - Parameter query: Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
     /// - Parameter stickerType: Type of the stickers to return
     /// - Returns: Stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14617,7 +15046,7 @@ public final class TdApi {
     }
 
     /// Searches for stickers from public sticker sets that correspond to any of the given emoji
-    /// - Parameter emojis: Space-separated list of emoji to search for; must be non-empty
+    /// - Parameter emojis: Space-separated list of emojis to search for; must be non-empty
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
     /// - Parameter stickerType: Type of the stickers to return
     public func searchStickers(
@@ -14635,7 +15064,7 @@ public final class TdApi {
     }
 
     /// Searches for stickers from public sticker sets that correspond to any of the given emoji
-    /// - Parameter emojis: Space-separated list of emoji to search for; must be non-empty
+    /// - Parameter emojis: Space-separated list of emojis to search for; must be non-empty
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
     /// - Parameter stickerType: Type of the stickers to return
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15273,9 +15702,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns available emojis categories
+    /// Returns available emoji categories
     /// - Parameter type: Type of emoji categories to return; pass null to get default emoji categories
-    /// - Returns: Available emojis categories
+    /// - Returns: Available emoji categories
     public func getEmojiCategories(
         type: EmojiCategoryType?,
         completion: @escaping (Result<EmojiCategories, Swift.Error>) -> Void
@@ -15286,9 +15715,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns available emojis categories
+    /// Returns available emoji categories
     /// - Parameter type: Type of emoji categories to return; pass null to get default emoji categories
-    /// - Returns: Available emojis categories
+    /// - Returns: Available emoji categories
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getEmojiCategories(type: EmojiCategoryType?) async throws -> EmojiCategories {
         let query = GetEmojiCategories(
@@ -19327,6 +19756,76 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns detailed Telegram star revenue statistics
+    /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Returns: Detailed Telegram star revenue statistics
+    public func getStarRevenueStatistics(
+        isDark: Bool?,
+        ownerId: MessageSender?,
+        completion: @escaping (Result<StarRevenueStatistics, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStarRevenueStatistics(
+            isDark: isDark,
+            ownerId: ownerId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns detailed Telegram star revenue statistics
+    /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Returns: Detailed Telegram star revenue statistics
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStarRevenueStatistics(
+        isDark: Bool?,
+        ownerId: MessageSender?
+    ) async throws -> StarRevenueStatistics {
+        let query = GetStarRevenueStatistics(
+            isDark: isDark,
+            ownerId: ownerId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns URL for Telegram star withdrawal
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter password: The 2-step verification password of the current user
+    /// - Parameter starCount: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// - Returns: URL for Telegram star withdrawal
+    public func getStarWithdrawalUrl(
+        ownerId: MessageSender?,
+        password: String?,
+        starCount: Int64?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStarWithdrawalUrl(
+            ownerId: ownerId,
+            password: password,
+            starCount: starCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns URL for Telegram star withdrawal
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter password: The 2-step verification password of the current user
+    /// - Parameter starCount: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// - Returns: URL for Telegram star withdrawal
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStarWithdrawalUrl(
+        ownerId: MessageSender?,
+        password: String?,
+        starCount: Int64?
+    ) async throws -> HttpUrl {
+        let query = GetStarWithdrawalUrl(
+            ownerId: ownerId,
+            password: password,
+            starCount: starCount
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
@@ -20627,7 +21126,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
+    /// Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
     /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
     /// - Parameter sticker: Sticker
     public func setStickerEmojis(
@@ -20642,7 +21141,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
+    /// Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
     /// - Parameter emojis: New string with 1-20 emoji corresponding to the sticker
     /// - Parameter sticker: Sticker
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -21072,34 +21571,46 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of Telegram star transactions for the current user
+    /// Returns the list of Telegram star transactions for the specified owner
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: The list of Telegram star transactions for the current user
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Returns: The list of Telegram star transactions for the specified owner
     public func getStarTransactions(
         direction: StarTransactionDirection?,
+        limit: Int?,
         offset: String?,
+        ownerId: MessageSender?,
         completion: @escaping (Result<StarTransactions, Swift.Error>) -> Void
     ) throws {
         let query = GetStarTransactions(
             direction: direction,
-            offset: offset
+            limit: limit,
+            offset: offset,
+            ownerId: ownerId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of Telegram star transactions for the current user
+    /// Returns the list of Telegram star transactions for the specified owner
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: The list of Telegram star transactions for the current user
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Returns: The list of Telegram star transactions for the specified owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStarTransactions(
         direction: StarTransactionDirection?,
-        offset: String?
+        limit: Int?,
+        offset: String?,
+        ownerId: MessageSender?
     ) async throws -> StarTransactions {
         let query = GetStarTransactions(
             direction: direction,
-            offset: offset
+            limit: limit,
+            offset: offset,
+            ownerId: ownerId
         )
         return try await self.execute(query: query)
     }

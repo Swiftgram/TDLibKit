@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a message
     case inputStoryAreaTypeMessage(InputStoryAreaTypeMessage)
 
+    /// An area pointing to a HTTP or tg:// link
+    case inputStoryAreaTypeLink(InputStoryAreaTypeLink)
+
 
     private enum Kind: String, Codable {
         case inputStoryAreaTypeLocation
@@ -35,6 +38,7 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         case inputStoryAreaTypePreviousVenue
         case inputStoryAreaTypeSuggestedReaction
         case inputStoryAreaTypeMessage
+        case inputStoryAreaTypeLink
     }
 
     public init(from decoder: Decoder) throws {
@@ -56,6 +60,9 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         case .inputStoryAreaTypeMessage:
             let value = try InputStoryAreaTypeMessage(from: decoder)
             self = .inputStoryAreaTypeMessage(value)
+        case .inputStoryAreaTypeLink:
+            let value = try InputStoryAreaTypeLink(from: decoder)
+            self = .inputStoryAreaTypeLink(value)
         }
     }
 
@@ -77,6 +84,9 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         case .inputStoryAreaTypeMessage(let value):
             try container.encode(Kind.inputStoryAreaTypeMessage, forKey: .type)
             try value.encode(to: encoder)
+        case .inputStoryAreaTypeLink(let value):
+            try container.encode(Kind.inputStoryAreaTypeLink, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -84,11 +94,18 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
 /// An area pointing to a location
 public struct InputStoryAreaTypeLocation: Codable, Equatable, Hashable {
 
+    /// Address of the location; pass null if unknown
+    public let address: LocationAddress?
+
     /// The location
     public let location: Location
 
 
-    public init(location: Location) {
+    public init(
+        address: LocationAddress?,
+        location: Location
+    ) {
+        self.address = address
         self.location = location
     }
 }
@@ -171,6 +188,18 @@ public struct InputStoryAreaTypeMessage: Codable, Equatable, Hashable {
     ) {
         self.chatId = chatId
         self.messageId = messageId
+    }
+}
+
+/// An area pointing to a HTTP or tg:// link
+public struct InputStoryAreaTypeLink: Codable, Equatable, Hashable {
+
+    /// HTTP or tg:// URL to be opened when the area is clicked
+    public let url: String
+
+
+    public init(url: String) {
+        self.url = url
     }
 }
 

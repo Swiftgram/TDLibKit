@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -373,6 +373,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
 
+    /// The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    case updateStarRevenueStatus(UpdateStarRevenueStatus)
+
     /// The parameters of speech recognition without Telegram Premium subscription has changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
@@ -420,6 +423,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A new incoming callback query from a message sent via a bot; for bots only
     case updateNewInlineCallbackQuery(UpdateNewInlineCallbackQuery)
+
+    /// A new incoming callback query from a business message; for bots only
+    case updateNewBusinessCallbackQuery(UpdateNewBusinessCallbackQuery)
 
     /// A new incoming shipping query; for bots only. Only for invoices with flexible price
     case updateNewShippingQuery(UpdateNewShippingQuery)
@@ -576,6 +582,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateSavedMessagesTags
         case updateOwnedStarCount
         case updateChatRevenueAmount
+        case updateStarRevenueStatus
         case updateSpeechRecognitionTrial
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
@@ -592,6 +599,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateNewChosenInlineResult
         case updateNewCallbackQuery
         case updateNewInlineCallbackQuery
+        case updateNewBusinessCallbackQuery
         case updateNewShippingQuery
         case updateNewPreCheckoutQuery
         case updateNewCustomEvent
@@ -969,6 +977,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatRevenueAmount:
             let value = try UpdateChatRevenueAmount(from: decoder)
             self = .updateChatRevenueAmount(value)
+        case .updateStarRevenueStatus:
+            let value = try UpdateStarRevenueStatus(from: decoder)
+            self = .updateStarRevenueStatus(value)
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
@@ -1017,6 +1028,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateNewInlineCallbackQuery:
             let value = try UpdateNewInlineCallbackQuery(from: decoder)
             self = .updateNewInlineCallbackQuery(value)
+        case .updateNewBusinessCallbackQuery:
+            let value = try UpdateNewBusinessCallbackQuery(from: decoder)
+            self = .updateNewBusinessCallbackQuery(value)
         case .updateNewShippingQuery:
             let value = try UpdateNewShippingQuery(from: decoder)
             self = .updateNewShippingQuery(value)
@@ -1416,6 +1430,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatRevenueAmount(let value):
             try container.encode(Kind.updateChatRevenueAmount, forKey: .type)
             try value.encode(to: encoder)
+        case .updateStarRevenueStatus(let value):
+            try container.encode(Kind.updateStarRevenueStatus, forKey: .type)
+            try value.encode(to: encoder)
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
             try value.encode(to: encoder)
@@ -1463,6 +1480,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateNewInlineCallbackQuery(let value):
             try container.encode(Kind.updateNewInlineCallbackQuery, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewBusinessCallbackQuery(let value):
+            try container.encode(Kind.updateNewBusinessCallbackQuery, forKey: .type)
             try value.encode(to: encoder)
         case .updateNewShippingQuery(let value):
             try container.encode(Kind.updateNewShippingQuery, forKey: .type)
@@ -3745,6 +3765,25 @@ public struct UpdateChatRevenueAmount: Codable, Equatable, Hashable {
     }
 }
 
+/// The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
+
+    /// Identifier of the owner of the Telegram stars
+    public let ownerId: MessageSender
+
+    /// New Telegram star revenue status
+    public let status: StarRevenueStatus
+
+
+    public init(
+        ownerId: MessageSender,
+        status: StarRevenueStatus
+    ) {
+        self.ownerId = ownerId
+        self.status = status
+    }
+}
+
 /// The parameters of speech recognition without Telegram Premium subscription has changed
 public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
 
@@ -4106,6 +4145,45 @@ public struct UpdateNewInlineCallbackQuery: Codable, Equatable, Hashable, Identi
         self.chatInstance = chatInstance
         self.id = id
         self.inlineMessageId = inlineMessageId
+        self.payload = payload
+        self.senderUserId = senderUserId
+    }
+}
+
+/// A new incoming callback query from a business message; for bots only
+public struct UpdateNewBusinessCallbackQuery: Codable, Equatable, Hashable, Identifiable {
+
+    /// An identifier uniquely corresponding to the chat a message was sent to
+    public let chatInstance: TdInt64
+
+    /// Unique identifier of the business connection
+    public let connectionId: String
+
+    /// Unique query identifier
+    public let id: TdInt64
+
+    /// The message from the business account from which the query originated
+    public let message: BusinessMessage
+
+    /// Query payload
+    public let payload: CallbackQueryPayload
+
+    /// Identifier of the user who sent the query
+    public let senderUserId: Int64
+
+
+    public init(
+        chatInstance: TdInt64,
+        connectionId: String,
+        id: TdInt64,
+        message: BusinessMessage,
+        payload: CallbackQueryPayload,
+        senderUserId: Int64
+    ) {
+        self.chatInstance = chatInstance
+        self.connectionId = connectionId
+        self.id = id
+        self.message = message
         self.payload = payload
         self.senderUserId = senderUserId
     }

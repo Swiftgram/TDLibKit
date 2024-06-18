@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.30-4257a341
-//  https://github.com/tdlib/td/tree/4257a341
+//  Based on TDLib 1.8.31-8f19c751
+//  https://github.com/tdlib/td/tree/8f19c751
 //
 
 import Foundation
@@ -16,6 +16,9 @@ public struct DraftMessage: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the draft was created
     public let date: Int
 
+    /// Identifier of the effect to apply to the message when it is sent; 0 if none
+    public let effectId: TdInt64
+
     /// Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote
     public let inputMessageText: InputMessageContent
 
@@ -25,10 +28,12 @@ public struct DraftMessage: Codable, Equatable, Hashable {
 
     public init(
         date: Int,
+        effectId: TdInt64,
         inputMessageText: InputMessageContent,
         replyTo: InputMessageReplyTo?
     ) {
         self.date = date
+        self.effectId = effectId
         self.inputMessageText = inputMessageText
         self.replyTo = replyTo
     }
