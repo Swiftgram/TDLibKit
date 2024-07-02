@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -32,7 +32,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
     case internalLinkTypeBotStart(InternalLinkTypeBotStart)
 
-    /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
+    /// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat
     case internalLinkTypeBotStartInGroup(InternalLinkTypeBotStartInGroup)
 
     /// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
@@ -539,7 +539,7 @@ public struct InternalLinkTypeBotStart: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
+/// The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat
 public struct InternalLinkTypeBotStartInGroup: Codable, Equatable, Hashable {
 
     /// Expected administrator rights for the bot; may be null
@@ -842,15 +842,20 @@ public struct InternalLinkTypeSideMenuBot: Codable, Equatable, Hashable {
     /// Username of the bot
     public let botUsername: String
 
+    /// True, if the Web App must be opened in a compact mode instead of a full-size mode
+    public let isCompact: Bool
+
     /// URL to be passed to getWebAppUrl
     public let url: String
 
 
     public init(
         botUsername: String,
+        isCompact: Bool,
         url: String
     ) {
         self.botUsername = botUsername
+        self.isCompact = isCompact
         self.url = url
     }
 }
@@ -978,6 +983,9 @@ public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
     /// Username of the bot that owns the Web App
     public let botUsername: String
 
+    /// True, if the Web App must be opened in a compact mode instead of a full-size mode
+    public let isCompact: Bool
+
     /// Start parameter to be passed to getWebAppLinkUrl
     public let startParameter: String
 
@@ -987,10 +995,12 @@ public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     public init(
         botUsername: String,
+        isCompact: Bool,
         startParameter: String,
         webAppShortName: String
     ) {
         self.botUsername = botUsername
+        self.isCompact = isCompact
         self.startParameter = startParameter
         self.webAppShortName = webAppShortName
     }

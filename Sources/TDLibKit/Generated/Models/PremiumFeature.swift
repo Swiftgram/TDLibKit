@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to use Business features
     case premiumFeatureBusiness
 
+    /// The ability to use all available message effects
+    case premiumFeatureMessageEffects
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -107,6 +110,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureMessagePrivacy
         case premiumFeatureLastSeenTimes
         case premiumFeatureBusiness
+        case premiumFeatureMessageEffects
     }
 
     public init(from decoder: Decoder) throws {
@@ -159,6 +163,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureLastSeenTimes
         case .premiumFeatureBusiness:
             self = .premiumFeatureBusiness
+        case .premiumFeatureMessageEffects:
+            self = .premiumFeatureMessageEffects
         }
     }
 
@@ -211,6 +217,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureLastSeenTimes, forKey: .type)
         case .premiumFeatureBusiness:
             try container.encode(Kind.premiumFeatureBusiness, forKey: .type)
+        case .premiumFeatureMessageEffects:
+            try container.encode(Kind.premiumFeatureMessageEffects, forKey: .type)
         }
     }
 }

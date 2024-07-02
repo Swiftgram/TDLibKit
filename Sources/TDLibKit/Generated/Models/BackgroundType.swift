@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -96,7 +96,7 @@ public struct BackgroundTypePattern: Codable, Equatable, Hashable {
     /// Fill of the background
     public let fill: BackgroundFill
 
-    /// Intensity of the pattern when it is shown above the filled background; 0-100.
+    /// Intensity of the pattern when it is shown above the filled background; 0-100
     public let intensity: Int
 
     /// True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only

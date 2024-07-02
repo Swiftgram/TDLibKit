@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -3092,7 +3092,10 @@ public struct UpdateFileRemovedFromDownloads: Codable, Equatable, Hashable {
 /// A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
 public struct UpdateApplicationVerificationRequired: Codable, Equatable, Hashable {
 
-    /// Unique nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    /// Cloud project number to pass to the Play Integrity API on Android
+    public let cloudProjectNumber: TdInt64
+
+    /// Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
     public let nonce: String
 
     /// Unique identifier for the verification process
@@ -3100,9 +3103,11 @@ public struct UpdateApplicationVerificationRequired: Codable, Equatable, Hashabl
 
 
     public init(
+        cloudProjectNumber: TdInt64,
         nonce: String,
         verificationId: Int64
     ) {
+        self.cloudProjectNumber = cloudProjectNumber
         self.nonce = nonce
         self.verificationId = verificationId
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -25,6 +25,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
 
     /// A document message (general file)
     case inputMessageDocument(InputMessageDocument)
+
+    /// A message with paid media; can be used only in channel chats with supergroupFullInfo.has_paid_media_allowed
+    case inputMessagePaidMedia(InputMessagePaidMedia)
 
     /// A photo message
     case inputMessagePhoto(InputMessagePhoto)
@@ -74,6 +77,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case inputMessageAnimation
         case inputMessageAudio
         case inputMessageDocument
+        case inputMessagePaidMedia
         case inputMessagePhoto
         case inputMessageSticker
         case inputMessageVideo
@@ -106,6 +110,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case .inputMessageDocument:
             let value = try InputMessageDocument(from: decoder)
             self = .inputMessageDocument(value)
+        case .inputMessagePaidMedia:
+            let value = try InputMessagePaidMedia(from: decoder)
+            self = .inputMessagePaidMedia(value)
         case .inputMessagePhoto:
             let value = try InputMessagePhoto(from: decoder)
             self = .inputMessagePhoto(value)
@@ -165,6 +172,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputMessageDocument(let value):
             try container.encode(Kind.inputMessageDocument, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputMessagePaidMedia(let value):
+            try container.encode(Kind.inputMessagePaidMedia, forKey: .type)
             try value.encode(to: encoder)
         case .inputMessagePhoto(let value):
             try container.encode(Kind.inputMessagePhoto, forKey: .type)
@@ -257,7 +267,7 @@ public struct InputMessageAnimation: Codable, Equatable, Hashable {
     /// Height of the animation; may be replaced by the server
     public let height: Int
 
-    /// True, if caption must be shown above the animation; otherwise, caption must be shown below the animation; not supported in secret chats
+    /// True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
     /// Animation thumbnail; pass null to skip thumbnail uploading
@@ -358,6 +368,35 @@ public struct InputMessageDocument: Codable, Equatable, Hashable {
     }
 }
 
+/// A message with paid media; can be used only in channel chats with supergroupFullInfo.has_paid_media_allowed
+public struct InputMessagePaidMedia: Codable, Equatable, Hashable {
+
+    /// Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    public let caption: FormattedText?
+
+    /// The content of the paid media
+    public let paidMedia: [InputPaidMedia]
+
+    /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
+    public let showCaptionAboveMedia: Bool
+
+    /// The number of stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
+    public let starCount: Int64
+
+
+    public init(
+        caption: FormattedText?,
+        paidMedia: [InputPaidMedia],
+        showCaptionAboveMedia: Bool,
+        starCount: Int64
+    ) {
+        self.caption = caption
+        self.paidMedia = paidMedia
+        self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.starCount = starCount
+    }
+}
+
 /// A photo message
 public struct InputMessagePhoto: Codable, Equatable, Hashable {
 
@@ -379,7 +418,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
     /// Photo self-destruct type; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
-    /// True, if caption must be shown above the photo; otherwise, caption must be shown below the photo; not supported in secret chats
+    /// True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
     /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
@@ -467,7 +506,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     /// Video self-destruct type; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
-    /// True, if caption must be shown above the video; otherwise, caption must be shown below the video; not supported in secret chats
+    /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
     /// True, if the video is supposed to be streamed
@@ -674,11 +713,14 @@ public struct InputMessageInvoice: Codable, Equatable, Hashable {
 
     public let description: String
 
-    /// The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
-    public let extendedMediaContent: InputMessageContent
-
     /// Invoice
     public let invoice: Invoice
+
+    /// The content of paid media attached to the invoice; pass null if none
+    public let paidMedia: InputPaidMedia?
+
+    /// Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    public let paidMediaCaption: FormattedText?
 
     /// The invoice payload
     public let payload: Data
@@ -710,8 +752,9 @@ public struct InputMessageInvoice: Codable, Equatable, Hashable {
 
     public init(
         description: String,
-        extendedMediaContent: InputMessageContent,
         invoice: Invoice,
+        paidMedia: InputPaidMedia?,
+        paidMediaCaption: FormattedText?,
         payload: Data,
         photoHeight: Int,
         photoSize: Int,
@@ -723,8 +766,9 @@ public struct InputMessageInvoice: Codable, Equatable, Hashable {
         title: String
     ) {
         self.description = description
-        self.extendedMediaContent = extendedMediaContent
         self.invoice = invoice
+        self.paidMedia = paidMedia
+        self.paidMediaCaption = paidMediaCaption
         self.payload = payload
         self.photoHeight = photoHeight
         self.photoSize = photoSize

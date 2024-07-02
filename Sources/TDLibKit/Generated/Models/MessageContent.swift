@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A document message (general file)
     case messageDocument(MessageDocument)
+
+    /// A message with paid media
+    case messagePaidMedia(MessagePaidMedia)
 
     /// A photo message
     case messagePhoto(MessagePhoto)
@@ -178,7 +181,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A Telegram Premium gift code was created for the user
     case messagePremiumGiftCode(MessagePremiumGiftCode)
 
-    /// A Telegram Premium giveaway was created for the chat
+    /// A Telegram Premium giveaway was created for the chat. Use telegramPaymentPurposePremiumGiveaway or storePaymentPurposePremiumGiveaway to create a giveaway
     case messagePremiumGiveawayCreated
 
     /// A Telegram Premium giveaway
@@ -226,6 +229,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageAnimation
         case messageAudio
         case messageDocument
+        case messagePaidMedia
         case messagePhoto
         case messageSticker
         case messageVideo
@@ -309,6 +313,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageDocument:
             let value = try MessageDocument(from: decoder)
             self = .messageDocument(value)
+        case .messagePaidMedia:
+            let value = try MessagePaidMedia(from: decoder)
+            self = .messagePaidMedia(value)
         case .messagePhoto:
             let value = try MessagePhoto(from: decoder)
             self = .messagePhoto(value)
@@ -510,6 +517,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageDocument(let value):
             try container.encode(Kind.messageDocument, forKey: .type)
+            try value.encode(to: encoder)
+        case .messagePaidMedia(let value):
+            try container.encode(Kind.messagePaidMedia, forKey: .type)
             try value.encode(to: encoder)
         case .messagePhoto(let value):
             try container.encode(Kind.messagePhoto, forKey: .type)
@@ -738,7 +748,7 @@ public struct MessageAnimation: Codable, Equatable, Hashable {
     /// True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
     public let isSecret: Bool
 
-    /// True, if caption must be shown above the animation; otherwise, caption must be shown below the animation
+    /// True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation
     public let showCaptionAboveMedia: Bool
 
 
@@ -795,6 +805,35 @@ public struct MessageDocument: Codable, Equatable, Hashable {
     }
 }
 
+/// A message with paid media
+public struct MessagePaidMedia: Codable, Equatable, Hashable {
+
+    /// Media caption
+    public let caption: FormattedText
+
+    /// Information about the media
+    public let media: [PaidMedia]
+
+    /// True, if the caption must be shown above the media; otherwise, the caption must be shown below the media
+    public let showCaptionAboveMedia: Bool
+
+    /// Number of stars needed to buy access to the media in the message
+    public let starCount: Int64
+
+
+    public init(
+        caption: FormattedText,
+        media: [PaidMedia],
+        showCaptionAboveMedia: Bool,
+        starCount: Int64
+    ) {
+        self.caption = caption
+        self.media = media
+        self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.starCount = starCount
+    }
+}
+
 /// A photo message
 public struct MessagePhoto: Codable, Equatable, Hashable {
 
@@ -810,7 +849,7 @@ public struct MessagePhoto: Codable, Equatable, Hashable {
     /// The photo
     public let photo: Photo
 
-    /// True, if caption must be shown above the photo; otherwise, caption must be shown below the photo
+    /// True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo
     public let showCaptionAboveMedia: Bool
 
 
@@ -860,7 +899,7 @@ public struct MessageVideo: Codable, Equatable, Hashable {
     /// True, if the video thumbnail must be blurred and the video must be shown only while tapped
     public let isSecret: Bool
 
-    /// True, if caption must be shown above the video; otherwise, caption must be shown below the video
+    /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video
     public let showCaptionAboveMedia: Bool
 
     /// The video description
@@ -1095,14 +1134,17 @@ public struct MessageInvoice: Codable, Equatable, Hashable {
     /// Currency for the product price
     public let currency: String
 
-    /// Extended media attached to the invoice; may be null
-    public let extendedMedia: MessageExtendedMedia?
-
     /// True, if the invoice is a test invoice
     public let isTest: Bool
 
     /// True, if the shipping address must be specified
     public let needShippingAddress: Bool
+
+    /// Extended media attached to the invoice; may be null if none
+    public let paidMedia: PaidMedia?
+
+    /// Extended media caption; may be null if none
+    public let paidMediaCaption: FormattedText?
 
     /// Information about the product
     public let productInfo: ProductInfo
@@ -1119,18 +1161,20 @@ public struct MessageInvoice: Codable, Equatable, Hashable {
 
     public init(
         currency: String,
-        extendedMedia: MessageExtendedMedia?,
         isTest: Bool,
         needShippingAddress: Bool,
+        paidMedia: PaidMedia?,
+        paidMediaCaption: FormattedText?,
         productInfo: ProductInfo,
         receiptMessageId: Int64,
         startParameter: String,
         totalAmount: Int64
     ) {
         self.currency = currency
-        self.extendedMedia = extendedMedia
         self.isTest = isTest
         self.needShippingAddress = needShippingAddress
+        self.paidMedia = paidMedia
+        self.paidMediaCaption = paidMediaCaption
         self.productInfo = productInfo
         self.receiptMessageId = receiptMessageId
         self.startParameter = startParameter

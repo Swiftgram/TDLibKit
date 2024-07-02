@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public struct ThemeParameters: Codable, Equatable, Hashable {
     /// A color of text on the section headers in the RGB24 format
     public let sectionHeaderTextColor: Int
 
+    /// A color of the section separator in the RGB24 format
+    public let sectionSeparatorColor: Int
+
     /// A color of the subtitle text in the RGB24 format
     public let subtitleTextColor: Int
 
@@ -65,6 +68,7 @@ public struct ThemeParameters: Codable, Equatable, Hashable {
         secondaryBackgroundColor: Int,
         sectionBackgroundColor: Int,
         sectionHeaderTextColor: Int,
+        sectionSeparatorColor: Int,
         subtitleTextColor: Int,
         textColor: Int
     ) {
@@ -79,6 +83,7 @@ public struct ThemeParameters: Codable, Equatable, Hashable {
         self.secondaryBackgroundColor = secondaryBackgroundColor
         self.sectionBackgroundColor = sectionBackgroundColor
         self.sectionHeaderTextColor = sectionHeaderTextColor
+        self.sectionSeparatorColor = sectionSeparatorColor
         self.subtitleTextColor = subtitleTextColor
         self.textColor = textColor
     }

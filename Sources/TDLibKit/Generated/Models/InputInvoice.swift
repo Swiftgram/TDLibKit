@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes an invoice to process
 public indirect enum InputInvoice: Codable, Equatable, Hashable {
 
-    /// An invoice from a message of the type messageInvoice
+    /// An invoice from a message of the type messageInvoice or paid media purchase from messagePaidMedia
     case inputInvoiceMessage(InputInvoiceMessage)
 
     /// An invoice from a link of the type internalLinkTypeInvoice
@@ -61,7 +61,7 @@ public indirect enum InputInvoice: Codable, Equatable, Hashable {
     }
 }
 
-/// An invoice from a message of the type messageInvoice
+/// An invoice from a message of the type messageInvoice or paid media purchase from messagePaidMedia
 public struct InputInvoiceMessage: Codable, Equatable, Hashable {
 
     /// Chat identifier of the message

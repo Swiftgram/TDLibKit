@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -42,6 +42,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A message with a location
     case pushMessageContentLocation(PushMessageContentLocation)
+
+    /// A message with paid media
+    case pushMessageContentPaidMedia(PushMessageContentPaidMedia)
 
     /// A photo message
     case pushMessageContentPhoto(PushMessageContentPhoto)
@@ -127,6 +130,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentGameScore
         case pushMessageContentInvoice
         case pushMessageContentLocation
+        case pushMessageContentPaidMedia
         case pushMessageContentPhoto
         case pushMessageContentPoll
         case pushMessageContentPremiumGiftCode
@@ -186,6 +190,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentLocation:
             let value = try PushMessageContentLocation(from: decoder)
             self = .pushMessageContentLocation(value)
+        case .pushMessageContentPaidMedia:
+            let value = try PushMessageContentPaidMedia(from: decoder)
+            self = .pushMessageContentPaidMedia(value)
         case .pushMessageContentPhoto:
             let value = try PushMessageContentPhoto(from: decoder)
             self = .pushMessageContentPhoto(value)
@@ -286,6 +293,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentLocation(let value):
             try container.encode(Kind.pushMessageContentLocation, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentPaidMedia(let value):
+            try container.encode(Kind.pushMessageContentPaidMedia, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentPhoto(let value):
             try container.encode(Kind.pushMessageContentPhoto, forKey: .type)
@@ -528,6 +538,25 @@ public struct PushMessageContentLocation: Codable, Equatable, Hashable {
     ) {
         self.isLive = isLive
         self.isPinned = isPinned
+    }
+}
+
+/// A message with paid media
+public struct PushMessageContentPaidMedia: Codable, Equatable, Hashable {
+
+    /// True, if the message is a pinned message with the specified content
+    public let isPinned: Bool
+
+    /// Number of stars needed to buy access to the media in the message; 0 for pinned message
+    public let starCount: Int64
+
+
+    public init(
+        isPinned: Bool,
+        starCount: Int64
+    ) {
+        self.isPinned = isPinned
+        self.starCount = starCount
     }
 }
 

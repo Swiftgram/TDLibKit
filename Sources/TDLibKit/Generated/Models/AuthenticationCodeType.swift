@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -244,24 +244,19 @@ public struct AuthenticationCodeTypeFragment: Codable, Equatable, Hashable {
 /// A digit-only authentication code is delivered via Firebase Authentication to the official Android application
 public struct AuthenticationCodeTypeFirebaseAndroid: Codable, Equatable, Hashable {
 
+    /// Parameters to be used for device verification
+    public let deviceVerificationParameters: FirebaseDeviceVerificationParameters
+
     /// Length of the code
     public let length: Int
 
-    /// Nonce to pass to the Play Integrity API or the SafetyNet Attestation API
-    public let nonce: Data
-
-    /// True, if Play Integrity API must be used for device verification. Otherwise, SafetyNet Attestation API must be used
-    public let usePlayIntegrity: Bool
-
 
     public init(
-        length: Int,
-        nonce: Data,
-        usePlayIntegrity: Bool
+        deviceVerificationParameters: FirebaseDeviceVerificationParameters,
+        length: Int
     ) {
+        self.deviceVerificationParameters = deviceVerificationParameters
         self.length = length
-        self.nonce = nonce
-        self.usePlayIntegrity = usePlayIntegrity
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -4535,7 +4535,7 @@ public class TDLibApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageCaption(
         caption: FormattedText?,
@@ -4560,7 +4560,7 @@ public class TDLibApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func editMessageCaption(
@@ -4751,7 +4751,7 @@ public class TDLibApi {
     /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     public final func editInlineMessageCaption(
         caption: FormattedText?,
         inlineMessageId: String?,
@@ -4772,7 +4772,7 @@ public class TDLibApi {
     /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editInlineMessageCaption(
@@ -5193,7 +5193,7 @@ public class TDLibApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     public final func editBusinessMessageCaption(
         businessConnectionId: String?,
         caption: FormattedText?,
@@ -5220,7 +5220,7 @@ public class TDLibApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func editBusinessMessageCaption(
         businessConnectionId: String?,
@@ -18417,7 +18417,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
+    /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy, or wants to buy access to media in a messagePaidMedia message
     /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
     /// - Returns: An invoice payment form
@@ -18433,7 +18433,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
+    /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy, or wants to buy access to media in a messagePaidMedia message
     /// - Parameter inputInvoice: The invoice
     /// - Parameter theme: Preferred payment form theme; pass null to use the default theme
     /// - Returns: An invoice payment form
@@ -19696,10 +19696,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    /// Returns a URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Returns: URL for chat revenue withdrawal
+    /// - Returns: A URL for chat revenue withdrawal
     public final func getChatRevenueWithdrawalUrl(
         chatId: Int64?,
         password: String?,
@@ -19712,10 +19712,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    /// Returns a URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Returns: URL for chat revenue withdrawal
+    /// - Returns: A URL for chat revenue withdrawal
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatRevenueWithdrawalUrl(
         chatId: Int64?,
@@ -19768,7 +19768,7 @@ public class TDLibApi {
 
     /// Returns detailed Telegram star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
     /// - Returns: Detailed Telegram star revenue statistics
     public final func getStarRevenueStatistics(
         isDark: Bool?,
@@ -19784,7 +19784,7 @@ public class TDLibApi {
 
     /// Returns detailed Telegram star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
     /// - Returns: Detailed Telegram star revenue statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarRevenueStatistics(
@@ -19798,11 +19798,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns URL for Telegram star withdrawal
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns a URL for Telegram star withdrawal
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter starCount: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
-    /// - Returns: URL for Telegram star withdrawal
+    /// - Returns: A URL for Telegram star withdrawal
     public final func getStarWithdrawalUrl(
         ownerId: MessageSender?,
         password: String?,
@@ -19817,11 +19817,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns URL for Telegram star withdrawal
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns a URL for Telegram star withdrawal
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter starCount: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
-    /// - Returns: URL for Telegram star withdrawal
+    /// - Returns: A URL for Telegram star withdrawal
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarWithdrawalUrl(
         ownerId: MessageSender?,
@@ -19832,6 +19832,30 @@ public class TDLibApi {
             ownerId: ownerId,
             password: password,
             starCount: starCount
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    public final func getStarAdAccountUrl(
+        ownerId: MessageSender?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStarAdAccountUrl(
+            ownerId: ownerId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getStarAdAccountUrl(ownerId: MessageSender?) async throws -> HttpUrl {
+        let query = GetStarAdAccountUrl(
+            ownerId: ownerId
         )
         return try await self.run(query: query)
     }

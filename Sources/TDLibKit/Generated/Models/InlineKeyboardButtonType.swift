@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.31-63c7d030
-//  https://github.com/tdlib/td/tree/63c7d030
+//  Based on TDLib 1.8.32-35cfcf5d
+//  https://github.com/tdlib/td/tree/35cfcf5d
 //
 
 import Foundation
@@ -120,7 +120,7 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
 /// A button that opens a specified URL
 public struct InlineKeyboardButtonTypeUrl: Codable, Equatable, Hashable {
 
-    /// HTTP or tg:// URL to open
+    /// HTTP or tg:// URL to open. If the link is of the type internalLinkTypeWebApp, then the button must be marked as a Web App button
     public let url: String
 
 
