@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-35cfcf5d
-//  https://github.com/tdlib/td/tree/35cfcf5d
+//  Based on TDLib 1.8.32-2820a9d2
+//  https://github.com/tdlib/td/tree/2820a9d2
 //
 
 import Foundation
@@ -19836,9 +19836,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
     /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
-    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
     public final func getStarAdAccountUrl(
         ownerId: MessageSender?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
@@ -19849,9 +19849,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
     /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
-    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars
+    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarAdAccountUrl(ownerId: MessageSender?) async throws -> HttpUrl {
         let query = GetStarAdAccountUrl(
