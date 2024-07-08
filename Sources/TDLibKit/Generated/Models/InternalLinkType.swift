@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -122,7 +122,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
     case internalLinkTypeStory(InternalLinkTypeStory)
 
-    /// The link is a link to a theme. TDLib has no theme support yet
+    /// The link is a link to a cloud theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
     /// The link is a link to the theme section of the app settings
@@ -898,7 +898,7 @@ public struct InternalLinkTypeStory: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a theme. TDLib has no theme support yet
+/// The link is a link to a cloud theme. TDLib has no theme support yet
 public struct InternalLinkTypeTheme: Codable, Equatable, Hashable {
 
     /// Name of the theme

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public struct WebPageInstantView: Codable, Equatable, Hashable {
     /// An internal link to be opened to leave feedback about the instant view
     public let feedbackLink: InternalLinkType
 
-    /// True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
+    /// True, if the instant view contains the full page. A network request might be needed to get the full instant view
     public let isFull: Bool
 
     /// True, if the instant view must be shown from right to left
     public let isRtl: Bool
 
-    /// Content of the web page
+    /// Content of the instant view page
     public let pageBlocks: [PageBlock]
 
     /// Version of the instant view; currently, can be 1 or 2

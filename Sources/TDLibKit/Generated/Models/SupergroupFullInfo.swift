@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// True, if the supergroup or channel revenue statistics are available
     public let canGetRevenueStatistics: Bool
+
+    /// True, if the supergroup or channel Telegram Star revenue statistics are available
+    public let canGetStarRevenueStatistics: Bool
 
     /// True, if the supergroup or channel statistics are available
     public let canGetStatistics: Bool
@@ -112,6 +115,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         botCommands: [BotCommands],
         canGetMembers: Bool,
         canGetRevenueStatistics: Bool,
+        canGetStarRevenueStatistics: Bool,
         canGetStatistics: Bool,
         canHaveSponsoredMessages: Bool,
         canHideMembers: Bool,
@@ -144,6 +148,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.botCommands = botCommands
         self.canGetMembers = canGetMembers
         self.canGetRevenueStatistics = canGetRevenueStatistics
+        self.canGetStarRevenueStatistics = canGetStarRevenueStatistics
         self.canGetStatistics = canGetStatistics
         self.canHaveSponsoredMessages = canHaveSponsoredMessages
         self.canHideMembers = canHideMembers

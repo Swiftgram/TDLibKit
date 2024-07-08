@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct MessageLinkInfo: Codable, Equatable, Hashable {
     /// True, if the link is a public link for a message or a forum topic in a chat
     public let isPublic: Bool
 
-    /// Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
+    /// Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its link preview
     public let mediaTimestamp: Int
 
     /// If found, the linked message; may be null

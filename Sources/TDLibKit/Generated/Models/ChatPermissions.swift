@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -13,8 +13,8 @@ import Foundation
 /// Describes actions that a user is allowed to take in a chat
 public struct ChatPermissions: Codable, Equatable, Hashable {
 
-    /// True, if the user may add a web page preview to their messages
-    public let canAddWebPagePreviews: Bool
+    /// True, if the user may add a link preview to their messages
+    public let canAddLinkPreviews: Bool
 
     /// True, if the user can change the chat title, photo, and other settings
     public let canChangeInfo: Bool
@@ -57,7 +57,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
 
 
     public init(
-        canAddWebPagePreviews: Bool,
+        canAddLinkPreviews: Bool,
         canChangeInfo: Bool,
         canCreateTopics: Bool,
         canInviteUsers: Bool,
@@ -72,7 +72,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
         canSendVideos: Bool,
         canSendVoiceNotes: Bool
     ) {
-        self.canAddWebPagePreviews = canAddWebPagePreviews
+        self.canAddLinkPreviews = canAddLinkPreviews
         self.canChangeInfo = canChangeInfo
         self.canCreateTopics = canCreateTopics
         self.canInviteUsers = canInviteUsers

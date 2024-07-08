@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -3580,7 +3580,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
-    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
+    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
     /// - Parameter messageId: Identifier of the message
     /// - Returns: An HTTPS link to a message in a chat
     public final func getMessageLink(
@@ -3605,7 +3605,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
-    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
+    /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
     /// - Parameter messageId: Identifier of the message
     /// - Returns: An HTTPS link to a message in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8194,7 +8194,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
+    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
     /// - Parameter link: The link
     /// - Returns: Information about an action to be done when the current user clicks an external link
     public final func getExternalLinkInfo(
@@ -8207,7 +8207,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
+    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
     /// - Parameter link: The link
     /// - Returns: Information about an action to be done when the current user clicks an external link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15986,12 +15986,12 @@ public class TDLibApi {
     /// - Parameter linkPreviewOptions: Options to be used for generation of the link preview; pass null to use default link preview options
     /// - Parameter text: Message text with formatting
     /// - Returns: A link preview by the text of a message. Returns a 404 error if the text has no link preview
-    public final func getWebPagePreview(
+    public final func getLinkPreview(
         linkPreviewOptions: LinkPreviewOptions?,
         text: FormattedText?,
-        completion: @escaping (Result<WebPage, Swift.Error>) -> Void
+        completion: @escaping (Result<LinkPreview, Swift.Error>) -> Void
     ) throws {
-        let query = GetWebPagePreview(
+        let query = GetLinkPreview(
             linkPreviewOptions: linkPreviewOptions,
             text: text
         )
@@ -16003,11 +16003,11 @@ public class TDLibApi {
     /// - Parameter text: Message text with formatting
     /// - Returns: A link preview by the text of a message. Returns a 404 error if the text has no link preview
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getWebPagePreview(
+    public final func getLinkPreview(
         linkPreviewOptions: LinkPreviewOptions?,
         text: FormattedText?
-    ) async throws -> WebPage {
-        let query = GetWebPagePreview(
+    ) async throws -> LinkPreview {
+        let query = GetLinkPreview(
             linkPreviewOptions: linkPreviewOptions,
             text: text
         )
@@ -19768,7 +19768,7 @@ public class TDLibApi {
 
     /// Returns detailed Telegram star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Returns: Detailed Telegram star revenue statistics
     public final func getStarRevenueStatistics(
         isDark: Bool?,
@@ -19784,7 +19784,7 @@ public class TDLibApi {
 
     /// Returns detailed Telegram star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Returns: Detailed Telegram star revenue statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarRevenueStatistics(
@@ -21609,7 +21609,7 @@ public class TDLibApi {
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Returns: The list of Telegram star transactions for the specified owner
     public final func getStarTransactions(
         direction: StarTransactionDirection?,
@@ -21631,7 +21631,7 @@ public class TDLibApi {
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Returns: The list of Telegram star transactions for the specified owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarTransactions(

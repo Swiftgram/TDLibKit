@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the list of added reactions is available through getMessageAddedReactions
     public let canGetAddedReactions: Bool
 
-    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
+    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description through getMessageLink
     public let canGetMediaTimestampLinks: Bool
 
     /// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory

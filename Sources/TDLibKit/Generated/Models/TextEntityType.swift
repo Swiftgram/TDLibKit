@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -268,7 +268,7 @@ public struct TextEntityTypeCustomEmoji: Codable, Equatable, Hashable {
 /// A media timestamp
 public struct TextEntityTypeMediaTimestamp: Codable, Equatable, Hashable {
 
-    /// Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+    /// Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the link preview of the current message, or in the same places in the replied message
     public let mediaTimestamp: Int
 
 

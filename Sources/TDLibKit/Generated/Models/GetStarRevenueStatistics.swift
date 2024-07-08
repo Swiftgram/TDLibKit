@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetStarRevenueStatistics: Codable, Equatable, Hashable {
     /// Pass true if a dark theme is used by the application
     public let isDark: Bool?
 
-    /// Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     public let ownerId: MessageSender?
 
 

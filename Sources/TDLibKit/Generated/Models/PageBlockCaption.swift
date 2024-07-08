@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
 
 
-/// Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+/// Contains a caption of another block
 public struct PageBlockCaption: Codable, Equatable, Hashable {
 
     /// Block credit (like HTML tag <cite>)

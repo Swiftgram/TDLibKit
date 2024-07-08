@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
 
 
-/// Describes a block of an instant view web page
+/// Describes a block of an instant view for a web page
 /// This Swift enum is recursive.
 public indirect enum PageBlock: Codable, Equatable, Hashable {
 
@@ -652,7 +652,7 @@ public struct PageBlockEmbedded: Codable, Equatable, Hashable {
     /// Poster photo, if available; may be null
     public let posterPhoto: Photo?
 
-    /// Web page URL, if available
+    /// URL of the embedded page, if available
     public let url: String
 
     /// Block width; 0 if unknown
@@ -698,7 +698,7 @@ public struct PageBlockEmbeddedPost: Codable, Equatable, Hashable {
     /// Post content
     public let pageBlocks: [PageBlock]
 
-    /// Web page URL
+    /// URL of the embedded post
     public let url: String
 
 

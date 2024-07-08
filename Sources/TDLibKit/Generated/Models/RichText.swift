@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
 
 
-/// Describes a text object inside an instant-view web page
+/// Describes a formatted text object
 /// This Swift enum is recursive.
 public indirect enum RichText: Codable, Equatable, Hashable {
 
@@ -53,13 +53,13 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A small image inside the text
     case richTextIcon(RichTextIcon)
 
-    /// A reference to a richTexts object on the same web page
+    /// A reference to a richTexts object on the same page
     case richTextReference(RichTextReference)
 
     /// An anchor
     case richTextAnchor(RichTextAnchor)
 
-    /// A link to an anchor on the same web page
+    /// A link to an anchor on the same page
     case richTextAnchorLink(RichTextAnchorLink)
 
     /// A concatenation of rich texts
@@ -396,7 +396,7 @@ public struct RichTextIcon: Codable, Equatable, Hashable {
     }
 }
 
-/// A reference to a richTexts object on the same web page
+/// A reference to a richTexts object on the same page
 public struct RichTextReference: Codable, Equatable, Hashable {
 
     /// The name of a richTextAnchor object, which is the first element of the target richTexts object
@@ -432,7 +432,7 @@ public struct RichTextAnchor: Codable, Equatable, Hashable {
     }
 }
 
-/// A link to an anchor on the same web page
+/// A link to an anchor on the same page
 public struct RichTextAnchorLink: Codable, Equatable, Hashable {
 
     /// The anchor name. If the name is empty, the link must bring back to top

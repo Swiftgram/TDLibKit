@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.32-3cd93569
-//  https://github.com/tdlib/td/tree/3cd93569
+//  Based on TDLib 1.8.33-cb164927
+//  https://github.com/tdlib/td/tree/cb164927
 //
 
 import Foundation
@@ -175,6 +175,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A payment has been completed; for bots only
     case messagePaymentSuccessfulBot(MessagePaymentSuccessfulBot)
 
+    /// A payment has been refunded
+    case messagePaymentRefunded(MessagePaymentRefunded)
+
     /// Telegram Premium was gifted to the user
     case messageGiftedPremium(MessageGiftedPremium)
 
@@ -279,6 +282,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGameScore
         case messagePaymentSuccessful
         case messagePaymentSuccessfulBot
+        case messagePaymentRefunded
         case messageGiftedPremium
         case messagePremiumGiftCode
         case messagePremiumGiveawayCreated
@@ -455,6 +459,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messagePaymentSuccessfulBot:
             let value = try MessagePaymentSuccessfulBot(from: decoder)
             self = .messagePaymentSuccessfulBot(value)
+        case .messagePaymentRefunded:
+            let value = try MessagePaymentRefunded(from: decoder)
+            self = .messagePaymentRefunded(value)
         case .messageGiftedPremium:
             let value = try MessageGiftedPremium(from: decoder)
             self = .messageGiftedPremium(value)
@@ -660,6 +667,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messagePaymentSuccessfulBot(let value):
             try container.encode(Kind.messagePaymentSuccessfulBot, forKey: .type)
             try value.encode(to: encoder)
+        case .messagePaymentRefunded(let value):
+            try container.encode(Kind.messagePaymentRefunded, forKey: .type)
+            try value.encode(to: encoder)
         case .messageGiftedPremium(let value):
             try container.encode(Kind.messageGiftedPremium, forKey: .type)
             try value.encode(to: encoder)
@@ -712,24 +722,24 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 /// A text message
 public struct MessageText: Codable, Equatable, Hashable {
 
+    /// A link preview attached to the message; may be null
+    public let linkPreview: LinkPreview?
+
     /// Options which were used for generation of the link preview; may be null if default options were used
     public let linkPreviewOptions: LinkPreviewOptions?
 
     /// Text of the message
     public let text: FormattedText
 
-    /// A link preview attached to the message; may be null
-    public let webPage: WebPage?
-
 
     public init(
+        linkPreview: LinkPreview?,
         linkPreviewOptions: LinkPreviewOptions?,
-        text: FormattedText,
-        webPage: WebPage?
+        text: FormattedText
     ) {
+        self.linkPreview = linkPreview
         self.linkPreviewOptions = linkPreviewOptions
         self.text = text
-        self.webPage = webPage
     }
 }
 
@@ -1665,6 +1675,45 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable, Hashable {
         self.orderInfo = orderInfo
         self.providerPaymentChargeId = providerPaymentChargeId
         self.shippingOptionId = shippingOptionId
+        self.telegramPaymentChargeId = telegramPaymentChargeId
+        self.totalAmount = totalAmount
+    }
+}
+
+/// A payment has been refunded
+public struct MessagePaymentRefunded: Codable, Equatable, Hashable {
+
+    /// Currency for the price of the product
+    public let currency: String
+
+    /// Invoice payload; only for bots
+    public let invoicePayload: Data
+
+    /// Identifier of the previous owner of the Telegram stars that refunds them
+    public let ownerId: MessageSender
+
+    /// Provider payment identifier
+    public let providerPaymentChargeId: String
+
+    /// Telegram payment identifier
+    public let telegramPaymentChargeId: String
+
+    /// Total price for the product, in the smallest units of the currency
+    public let totalAmount: Int64
+
+
+    public init(
+        currency: String,
+        invoicePayload: Data,
+        ownerId: MessageSender,
+        providerPaymentChargeId: String,
+        telegramPaymentChargeId: String,
+        totalAmount: Int64
+    ) {
+        self.currency = currency
+        self.invoicePayload = invoicePayload
+        self.ownerId = ownerId
+        self.providerPaymentChargeId = providerPaymentChargeId
         self.telegramPaymentChargeId = telegramPaymentChargeId
         self.totalAmount = totalAmount
     }
