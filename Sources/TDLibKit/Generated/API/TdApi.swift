@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-cb164927
-//  https://github.com/tdlib/td/tree/cb164927
+//  Based on TDLib 1.8.33-97ded010
+//  https://github.com/tdlib/td/tree/97ded010
 //
 
 import Foundation
@@ -10827,7 +10827,7 @@ public final class TdApi {
     }
 
     /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
-    /// - Parameter chatId: Chat identifier
+    /// - Parameter chatId: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     public func canSendStory(
         chatId: Int64?,
         completion: @escaping (Result<CanSendStoryResult, Swift.Error>) -> Void
@@ -10839,7 +10839,7 @@ public final class TdApi {
     }
 
     /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
-    /// - Parameter chatId: Chat identifier
+    /// - Parameter chatId: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func canSendStory(chatId: Int64?) async throws -> CanSendStoryResult {
         let query = CanSendStory(
@@ -10852,9 +10852,9 @@ public final class TdApi {
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
-    /// - Parameter chatId: Identifier of the chat that will post the story
+    /// - Parameter chatId: Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     /// - Parameter content: Content of the story
-    /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
+    /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
@@ -10889,9 +10889,9 @@ public final class TdApi {
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
-    /// - Parameter chatId: Identifier of the chat that will post the story
+    /// - Parameter chatId: Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     /// - Parameter content: Content of the story
-    /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story
+    /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
     /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting

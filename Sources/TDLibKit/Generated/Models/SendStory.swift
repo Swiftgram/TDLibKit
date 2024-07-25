@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-cb164927
-//  https://github.com/tdlib/td/tree/cb164927
+//  Based on TDLib 1.8.33-97ded010
+//  https://github.com/tdlib/td/tree/97ded010
 //
 
 import Foundation
@@ -22,13 +22,13 @@ public struct SendStory: Codable, Equatable, Hashable {
     /// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     public let caption: FormattedText?
 
-    /// Identifier of the chat that will post the story
+    /// Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     public let chatId: Int64?
 
     /// Content of the story
     public let content: InputStoryContent?
 
-    /// Full identifier of the original story, which content was used to create the story
+    /// Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     public let fromStoryFullId: StoryFullId?
 
     /// Pass true to keep the story accessible after expiration
