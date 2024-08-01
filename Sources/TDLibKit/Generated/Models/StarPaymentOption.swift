@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Describes an option for buying Telegram stars. Use telegramPaymentPurposeStars for out-of-store payments
+/// Describes an option for buying Telegram Stars. Use telegramPaymentPurposeStars for out-of-store payments
 public struct StarPaymentOption: Codable, Equatable, Hashable {
 
     /// The amount to pay, in the smallest units of the currency
@@ -22,7 +22,7 @@ public struct StarPaymentOption: Codable, Equatable, Hashable {
     /// True, if the option must be shown only in the full list of payment options
     public let isAdditional: Bool
 
-    /// Number of Telegram stars that will be purchased
+    /// Number of Telegram Stars that will be purchased
     public let starCount: Int64
 
     /// Identifier of the store product associated with the option; may be empty if none

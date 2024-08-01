@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+/// Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
 public struct GetMessageThreadHistory: Codable, Equatable, Hashable {
 
     /// Chat identifier

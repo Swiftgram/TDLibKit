@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -178,7 +178,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A payment has been refunded
     case messagePaymentRefunded(MessagePaymentRefunded)
 
-    /// Telegram Premium was gifted to the user
+    /// Telegram Premium was gifted to a user
     case messageGiftedPremium(MessageGiftedPremium)
 
     /// A Telegram Premium gift code was created for the user
@@ -195,6 +195,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A Telegram Premium giveaway with public winners has been completed for the chat
     case messagePremiumGiveawayWinners(MessagePremiumGiveawayWinners)
+
+    /// Telegram Stars were gifted to a user
+    case messageGiftedStars(MessageGiftedStars)
 
     /// A contact has registered with Telegram
     case messageContactRegistered
@@ -289,6 +292,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messagePremiumGiveaway
         case messagePremiumGiveawayCompleted
         case messagePremiumGiveawayWinners
+        case messageGiftedStars
         case messageContactRegistered
         case messageUsersShared
         case messageChatShared
@@ -479,6 +483,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messagePremiumGiveawayWinners:
             let value = try MessagePremiumGiveawayWinners(from: decoder)
             self = .messagePremiumGiveawayWinners(value)
+        case .messageGiftedStars:
+            let value = try MessageGiftedStars(from: decoder)
+            self = .messageGiftedStars(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUsersShared:
@@ -687,6 +694,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messagePremiumGiveawayWinners(let value):
             try container.encode(Kind.messagePremiumGiveawayWinners, forKey: .type)
             try value.encode(to: encoder)
+        case .messageGiftedStars(let value):
+            try container.encode(Kind.messageGiftedStars, forKey: .type)
+            try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
         case .messageUsersShared(let value):
@@ -827,7 +837,7 @@ public struct MessagePaidMedia: Codable, Equatable, Hashable {
     /// True, if the caption must be shown above the media; otherwise, the caption must be shown below the media
     public let showCaptionAboveMedia: Bool
 
-    /// Number of stars needed to buy access to the media in the message
+    /// Number of Telegram Stars needed to buy access to the media in the message
     public let starCount: Int64
 
 
@@ -1689,7 +1699,7 @@ public struct MessagePaymentRefunded: Codable, Equatable, Hashable {
     /// Invoice payload; only for bots
     public let invoicePayload: Data
 
-    /// Identifier of the previous owner of the Telegram stars that refunds them
+    /// Identifier of the previous owner of the Telegram Stars that refunds them
     public let ownerId: MessageSender
 
     /// Provider payment identifier
@@ -1719,7 +1729,7 @@ public struct MessagePaymentRefunded: Codable, Equatable, Hashable {
     }
 }
 
-/// Telegram Premium was gifted to the user
+/// Telegram Premium was gifted to a user
 public struct MessageGiftedPremium: Codable, Equatable, Hashable {
 
     /// The paid amount, in the smallest units of the currency
@@ -1734,11 +1744,14 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// Currency for the paid amount
     public let currency: String
 
-    /// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+    /// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
     /// Number of months the Telegram Premium subscription will be active
     public let monthCount: Int
+
+    /// The identifier of a user that received Telegram Premium; 0 if the gift is incoming
+    public let receiverUserId: Int64
 
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
@@ -1751,6 +1764,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         currency: String,
         gifterUserId: Int64,
         monthCount: Int,
+        receiverUserId: Int64,
         sticker: Sticker?
     ) {
         self.amount = amount
@@ -1759,6 +1773,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         self.currency = currency
         self.gifterUserId = gifterUserId
         self.monthCount = monthCount
+        self.receiverUserId = receiverUserId
         self.sticker = sticker
     }
 }
@@ -1936,6 +1951,60 @@ public struct MessagePremiumGiveawayWinners: Codable, Equatable, Hashable {
         self.wasRefunded = wasRefunded
         self.winnerCount = winnerCount
         self.winnerUserIds = winnerUserIds
+    }
+}
+
+/// Telegram Stars were gifted to a user
+public struct MessageGiftedStars: Codable, Equatable, Hashable {
+
+    /// The paid amount, in the smallest units of the currency
+    public let amount: Int64
+
+    /// Cryptocurrency used to pay for the gift; may be empty if none
+    public let cryptocurrency: String
+
+    /// The paid amount, in the smallest units of the cryptocurrency; 0 if none
+    public let cryptocurrencyAmount: TdInt64
+
+    /// Currency for the paid amount
+    public let currency: String
+
+    /// The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
+    public let gifterUserId: Int64
+
+    /// The identifier of a user that received Telegram Stars; 0 if the gift is incoming
+    public let receiverUserId: Int64
+
+    /// Number of Telegram Stars that were gifted
+    public let starCount: Int64
+
+    /// A sticker to be shown in the message; may be null if unknown
+    public let sticker: Sticker?
+
+    /// Identifier of the transaction for Telegram Stars purchase; for receiver only
+    public let transactionId: String
+
+
+    public init(
+        amount: Int64,
+        cryptocurrency: String,
+        cryptocurrencyAmount: TdInt64,
+        currency: String,
+        gifterUserId: Int64,
+        receiverUserId: Int64,
+        starCount: Int64,
+        sticker: Sticker?,
+        transactionId: String
+    ) {
+        self.amount = amount
+        self.cryptocurrency = cryptocurrency
+        self.cryptocurrencyAmount = cryptocurrencyAmount
+        self.currency = currency
+        self.gifterUserId = gifterUserId
+        self.receiverUserId = receiverUserId
+        self.starCount = starCount
+        self.sticker = sticker
+        self.transactionId = transactionId
     }
 }
 

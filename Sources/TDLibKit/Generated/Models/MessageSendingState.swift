@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -66,7 +66,7 @@ public struct MessageSendingStatePending: Codable, Equatable, Hashable {
 /// The message failed to be sent
 public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
 
-    /// True, if the message can be re-sent
+    /// True, if the message can be re-sent using resendMessages or readdQuickReplyShortcutMessages
     public let canRetry: Bool
 
     /// The cause of the message sending failure

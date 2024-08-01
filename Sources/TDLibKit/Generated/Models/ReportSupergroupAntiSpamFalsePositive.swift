@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
 public struct ReportSupergroupAntiSpamFalsePositive: Codable, Equatable, Hashable {
 
-    /// Identifier of the erroneously deleted message
+    /// Identifier of the erroneously deleted message from chatEventMessageDeleted
     public let messageId: Int64?
 
     /// Supergroup identifier

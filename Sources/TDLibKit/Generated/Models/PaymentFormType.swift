@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum PaymentFormType: Codable, Equatable, Hashable {
     /// The payment form is for a regular payment
     case paymentFormTypeRegular(PaymentFormTypeRegular)
 
-    /// The payment form is for a payment in Telegram stars
+    /// The payment form is for a payment in Telegram Stars
     case paymentFormTypeStars(PaymentFormTypeStars)
 
 
@@ -100,10 +100,10 @@ public struct PaymentFormTypeRegular: Codable, Equatable, Hashable {
     }
 }
 
-/// The payment form is for a payment in Telegram stars
+/// The payment form is for a payment in Telegram Stars
 public struct PaymentFormTypeStars: Codable, Equatable, Hashable {
 
-    /// Number of Telegram stars that will be paid
+    /// Number of Telegram Stars that will be paid
     public let starCount: Int64
 
 

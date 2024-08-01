@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
+/// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
 public struct GetWebAppUrl: Codable, Equatable, Hashable {
 
-    /// Short name of the application; 0-64 English letters, digits, and underscores
+    /// Short name of the current application; 0-64 English letters, digits, and underscores
     public let applicationName: String?
 
     /// Identifier of the target bot
@@ -22,7 +22,7 @@ public struct GetWebAppUrl: Codable, Equatable, Hashable {
     /// Preferred Web App theme; pass null to use the default theme
     public let theme: ThemeParameters?
 
-    /// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
+    /// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     public let url: String?
 
 

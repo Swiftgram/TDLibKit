@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -367,13 +367,13 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
 
-    /// The number of Telegram stars owned by the current user has changed
+    /// The number of Telegram Stars owned by the current user has changed
     case updateOwnedStarCount(UpdateOwnedStarCount)
 
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
 
-    /// The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    /// The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
     case updateStarRevenueStatus(UpdateStarRevenueStatus)
 
     /// The parameters of speech recognition without Telegram Premium subscription has changed
@@ -3739,10 +3739,10 @@ public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
     }
 }
 
-/// The number of Telegram stars owned by the current user has changed
+/// The number of Telegram Stars owned by the current user has changed
 public struct UpdateOwnedStarCount: Codable, Equatable, Hashable {
 
-    /// The new number of Telegram stars owned
+    /// The new number of Telegram Stars owned
     public let starCount: Int64
 
 
@@ -3770,13 +3770,13 @@ public struct UpdateChatRevenueAmount: Codable, Equatable, Hashable {
     }
 }
 
-/// The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+/// The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
 
-    /// Identifier of the owner of the Telegram stars
+    /// Identifier of the owner of the Telegram Stars
     public let ownerId: MessageSender
 
-    /// New Telegram star revenue status
+    /// New Telegram Star revenue status
     public let status: StarRevenueStatus
 
 

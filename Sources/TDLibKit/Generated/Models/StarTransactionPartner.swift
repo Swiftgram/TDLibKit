@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Describes source or recipient of a transaction with Telegram stars
+/// Describes source or recipient of a transaction with Telegram Stars
 public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
 
     /// The transaction is a transaction with Telegram through a bot
@@ -34,6 +34,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
     /// The transaction is a transaction with a channel chat
     case starTransactionPartnerChannel(StarTransactionPartnerChannel)
 
+    /// The transaction is a gift of Telegram Stars from another user
+    case starTransactionPartnerUser(StarTransactionPartnerUser)
+
     /// The transaction is a transaction with unknown partner
     case starTransactionPartnerUnsupported
 
@@ -46,6 +49,7 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case starTransactionPartnerTelegramAds
         case starTransactionPartnerBot
         case starTransactionPartnerChannel
+        case starTransactionPartnerUser
         case starTransactionPartnerUnsupported
     }
 
@@ -70,6 +74,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case .starTransactionPartnerChannel:
             let value = try StarTransactionPartnerChannel(from: decoder)
             self = .starTransactionPartnerChannel(value)
+        case .starTransactionPartnerUser:
+            let value = try StarTransactionPartnerUser(from: decoder)
+            self = .starTransactionPartnerUser(value)
         case .starTransactionPartnerUnsupported:
             self = .starTransactionPartnerUnsupported
         }
@@ -95,6 +102,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case .starTransactionPartnerChannel(let value):
             try container.encode(Kind.starTransactionPartnerChannel, forKey: .type)
             try value.encode(to: encoder)
+        case .starTransactionPartnerUser(let value):
+            try container.encode(Kind.starTransactionPartnerUser, forKey: .type)
+            try value.encode(to: encoder)
         case .starTransactionPartnerUnsupported:
             try container.encode(Kind.starTransactionPartnerUnsupported, forKey: .type)
         }
@@ -116,24 +126,24 @@ public struct StarTransactionPartnerFragment: Codable, Equatable, Hashable {
 /// The transaction is a transaction with a bot
 public struct StarTransactionPartnerBot: Codable, Equatable, Hashable {
 
-    /// Identifier of the bot
-    public let botUserId: Int64
-
     /// Invoice payload; for bots only
     public let invoicePayload: Data
 
     /// Information about the bought product; may be null if not applicable
     public let productInfo: ProductInfo?
 
+    /// Identifier of the bot for the user, or the user for the bot
+    public let userId: Int64
+
 
     public init(
-        botUserId: Int64,
         invoicePayload: Data,
-        productInfo: ProductInfo?
+        productInfo: ProductInfo?,
+        userId: Int64
     ) {
-        self.botUserId = botUserId
         self.invoicePayload = invoicePayload
         self.productInfo = productInfo
+        self.userId = userId
     }
 }
 
@@ -158,6 +168,25 @@ public struct StarTransactionPartnerChannel: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.media = media
         self.paidMediaMessageId = paidMediaMessageId
+    }
+}
+
+/// The transaction is a gift of Telegram Stars from another user
+public struct StarTransactionPartnerUser: Codable, Equatable, Hashable {
+
+    /// A sticker to be shown in the transaction information; may be null if unknown
+    public let sticker: Sticker?
+
+    /// Identifier of the user; 0 if the gift was anonymous
+    public let userId: Int64
+
+
+    public init(
+        sticker: Sticker?,
+        userId: Int64
+    ) {
+        self.sticker = sticker
+        self.userId = userId
     }
 }
 

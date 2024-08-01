@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -547,7 +547,7 @@ public struct PushMessageContentPaidMedia: Codable, Equatable, Hashable {
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// Number of stars needed to buy access to the media in the message; 0 for pinned message
+    /// Number of Telegram Stars needed to buy access to the media in the message; 0 for pinned message
     public let starCount: Int64
 
 

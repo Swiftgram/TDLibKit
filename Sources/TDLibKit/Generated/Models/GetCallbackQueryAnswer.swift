@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetCallbackQueryAnswer: Codable, Equatable, Hashable {
     /// Identifier of the chat with the message
     public let chatId: Int64?
 
-    /// Identifier of the message from which the query originated
+    /// Identifier of the message from which the query originated. The message must not be scheduled
     public let messageId: Int64?
 
     /// Query payload

@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// A detailed statistics about Telegram stars earned by a bot or a chat
+/// A detailed statistics about Telegram Stars earned by a bot or a chat
 public struct StarRevenueStatistics: Codable, Equatable, Hashable {
 
     /// A graph containing amount of revenue in a given day
     public let revenueByDayGraph: StatisticalGraph
 
-    /// Telegram star revenue status
+    /// Telegram Star revenue status
     public let status: StarRevenueStatus
 
-    /// Current conversion rate of a Telegram star to USD
+    /// Current conversion rate of a Telegram Star to USD
     public let usdRate: Double
 
 

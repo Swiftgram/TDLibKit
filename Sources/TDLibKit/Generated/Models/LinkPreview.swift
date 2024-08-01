@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct LinkPreview: Codable, Equatable, Hashable {
     /// True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos
     public let showLargeMedia: Bool
 
+    /// True, if media must be shown above link preview description; otherwise, the media must be shown below the description
+    public let showMediaAboveDescription: Bool
+
     /// Short name of the site (e.g., Google Docs, App Store)
     public let siteName: String
 
@@ -53,6 +56,7 @@ public struct LinkPreview: Codable, Equatable, Hashable {
         instantViewVersion: Int,
         showAboveText: Bool,
         showLargeMedia: Bool,
+        showMediaAboveDescription: Bool,
         siteName: String,
         skipConfirmation: Bool,
         title: String,
@@ -65,6 +69,7 @@ public struct LinkPreview: Codable, Equatable, Hashable {
         self.instantViewVersion = instantViewVersion
         self.showAboveText = showAboveText
         self.showLargeMedia = showLargeMedia
+        self.showMediaAboveDescription = showMediaAboveDescription
         self.siteName = siteName
         self.skipConfirmation = skipConfirmation
         self.title = title

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetWebAppLinkUrl: Codable, Equatable, Hashable {
     /// Pass true if the current user allowed the bot to send them messages
     public let allowWriteAccess: Bool?
 
-    /// Short name of the application; 0-64 English letters, digits, and underscores
+    /// Short name of the current application; 0-64 English letters, digits, and underscores
     public let applicationName: String?
 
     /// Identifier of the target bot

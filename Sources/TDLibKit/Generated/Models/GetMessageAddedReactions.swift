@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetMessageAddedReactions: Codable, Equatable, Hashable {
     /// The maximum number of reactions to be returned; must be positive and can't be greater than 100
     public let limit: Int?
 
-    /// Identifier of the message
+    /// Identifier of the message. Use messageProperties.can_get_added_reactions to check whether added reactions can be received for the message
     public let messageId: Int64?
 
     /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results

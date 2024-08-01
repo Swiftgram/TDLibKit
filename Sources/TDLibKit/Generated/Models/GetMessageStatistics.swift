@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+/// Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true
 public struct GetMessageStatistics: Codable, Equatable, Hashable {
 
     /// Chat identifier

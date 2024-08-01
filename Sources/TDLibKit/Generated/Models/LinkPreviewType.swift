@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -39,6 +39,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a general file
     case linkPreviewTypeDocument(LinkPreviewTypeDocument)
+
+    /// The link is a link to an animation player
+    case linkPreviewTypeEmbeddedAnimationPlayer(LinkPreviewTypeEmbeddedAnimationPlayer)
 
     /// The link is a link to an audio player
     case linkPreviewTypeEmbeddedAudioPlayer(LinkPreviewTypeEmbeddedAudioPlayer)
@@ -108,6 +111,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeChannelBoost
         case linkPreviewTypeChat
         case linkPreviewTypeDocument
+        case linkPreviewTypeEmbeddedAnimationPlayer
         case linkPreviewTypeEmbeddedAudioPlayer
         case linkPreviewTypeEmbeddedVideoPlayer
         case linkPreviewTypeInvoice
@@ -160,6 +164,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeDocument:
             let value = try LinkPreviewTypeDocument(from: decoder)
             self = .linkPreviewTypeDocument(value)
+        case .linkPreviewTypeEmbeddedAnimationPlayer:
+            let value = try LinkPreviewTypeEmbeddedAnimationPlayer(from: decoder)
+            self = .linkPreviewTypeEmbeddedAnimationPlayer(value)
         case .linkPreviewTypeEmbeddedAudioPlayer:
             let value = try LinkPreviewTypeEmbeddedAudioPlayer(from: decoder)
             self = .linkPreviewTypeEmbeddedAudioPlayer(value)
@@ -244,6 +251,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypeDocument(let value):
             try container.encode(Kind.linkPreviewTypeDocument, forKey: .type)
+            try value.encode(to: encoder)
+        case .linkPreviewTypeEmbeddedAnimationPlayer(let value):
+            try container.encode(Kind.linkPreviewTypeEmbeddedAnimationPlayer, forKey: .type)
             try value.encode(to: encoder)
         case .linkPreviewTypeEmbeddedAudioPlayer(let value):
             try container.encode(Kind.linkPreviewTypeEmbeddedAudioPlayer, forKey: .type)
@@ -478,6 +488,45 @@ public struct LinkPreviewTypeDocument: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to an animation player
+public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashable {
+
+    /// Author of the animation
+    public let author: String
+
+    /// Duration of the animation, in seconds
+    public let duration: Int
+
+    /// Expected height of the embedded player
+    public let height: Int
+
+    /// Thumbnail of the animation; may be null if unknown
+    public let thumbnail: Photo?
+
+    /// URL of the external animation player
+    public let url: String
+
+    /// Expected width of the embedded player
+    public let width: Int
+
+
+    public init(
+        author: String,
+        duration: Int,
+        height: Int,
+        thumbnail: Photo?,
+        url: String,
+        width: Int
+    ) {
+        self.author = author
+        self.duration = duration
+        self.height = height
+        self.thumbnail = thumbnail
+        self.url = url
+        self.width = width
+    }
+}
+
 /// The link is a link to an audio player
 public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
 
@@ -487,18 +536,33 @@ public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
     /// Duration of the audio, in seconds
     public let duration: Int
 
+    /// Expected height of the embedded player
+    public let height: Int
+
+    /// Thumbnail of the audio; may be null if unknown
+    public let thumbnail: Photo?
+
     /// URL of the external audio player
     public let url: String
+
+    /// Expected width of the embedded player
+    public let width: Int
 
 
     public init(
         author: String,
         duration: Int,
-        url: String
+        height: Int,
+        thumbnail: Photo?,
+        url: String,
+        width: Int
     ) {
         self.author = author
         self.duration = duration
+        self.height = height
+        self.thumbnail = thumbnail
         self.url = url
+        self.width = width
     }
 }
 
@@ -511,13 +575,16 @@ public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
     /// Duration of the video, in seconds
     public let duration: Int
 
-    /// Expected height of the preview
+    /// Expected height of the embedded player
     public let height: Int
+
+    /// Thumbnail of the video; may be null if unknown
+    public let thumbnail: Photo?
 
     /// URL of the external video player
     public let url: String
 
-    /// Expected width of the preview
+    /// Expected width of the embedded player
     public let width: Int
 
 
@@ -525,12 +592,14 @@ public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
         author: String,
         duration: Int,
         height: Int,
+        thumbnail: Photo?,
         url: String,
         width: Int
     ) {
         self.author = author
         self.duration = duration
         self.height = height
+        self.thumbnail = thumbnail
         self.url = url
         self.width = width
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -39,6 +39,9 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// The internal link, which can be used to edit bot settings; may be null
     public let editSettingsLink: InternalLinkType?
 
+    /// True, if the bot has media previews
+    public let hasMediaPreviews: Bool
+
     /// Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
     public let menuButton: BotMenuButton?
 
@@ -59,6 +62,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         editDescriptionLink: InternalLinkType?,
         editDescriptionMediaLink: InternalLinkType?,
         editSettingsLink: InternalLinkType?,
+        hasMediaPreviews: Bool,
         menuButton: BotMenuButton?,
         photo: Photo?,
         shortDescription: String
@@ -72,6 +76,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         self.editDescriptionLink = editDescriptionLink
         self.editDescriptionMediaLink = editDescriptionMediaLink
         self.editSettingsLink = editSettingsLink
+        self.hasMediaPreviews = hasMediaPreviews
         self.menuButton = menuButton
         self.photo = photo
         self.shortDescription = shortDescription

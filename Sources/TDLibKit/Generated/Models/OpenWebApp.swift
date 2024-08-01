@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
 public struct OpenWebApp: Codable, Equatable, Hashable {
 
-    /// Short name of the application; 0-64 English letters, digits, and underscores
+    /// Short name of the current application; 0-64 English letters, digits, and underscores
     public let applicationName: String?
 
     /// Identifier of the bot, providing the Web App

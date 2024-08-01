@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Describes type of clickable rectangle area on a story media to be added
+/// Describes type of clickable area on a story media to be added
 public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
 
     /// An area pointing to a location
@@ -31,6 +31,9 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a HTTP or tg:// link
     case inputStoryAreaTypeLink(InputStoryAreaTypeLink)
 
+    /// An area with information about weather
+    case inputStoryAreaTypeWeather(InputStoryAreaTypeWeather)
+
 
     private enum Kind: String, Codable {
         case inputStoryAreaTypeLocation
@@ -39,6 +42,7 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         case inputStoryAreaTypeSuggestedReaction
         case inputStoryAreaTypeMessage
         case inputStoryAreaTypeLink
+        case inputStoryAreaTypeWeather
     }
 
     public init(from decoder: Decoder) throws {
@@ -63,6 +67,9 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         case .inputStoryAreaTypeLink:
             let value = try InputStoryAreaTypeLink(from: decoder)
             self = .inputStoryAreaTypeLink(value)
+        case .inputStoryAreaTypeWeather:
+            let value = try InputStoryAreaTypeWeather(from: decoder)
+            self = .inputStoryAreaTypeWeather(value)
         }
     }
 
@@ -86,6 +93,9 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputStoryAreaTypeLink(let value):
             try container.encode(Kind.inputStoryAreaTypeLink, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputStoryAreaTypeWeather(let value):
+            try container.encode(Kind.inputStoryAreaTypeWeather, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -178,7 +188,7 @@ public struct InputStoryAreaTypeMessage: Codable, Equatable, Hashable {
     /// Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
     public let chatId: Int64
 
-    /// Identifier of the message. Only successfully sent non-scheduled messages can be specified
+    /// Identifier of the message. Use messageProperties.can_be_shared_in_story to check whether the message is suitable
     public let messageId: Int64
 
 
@@ -200,6 +210,30 @@ public struct InputStoryAreaTypeLink: Codable, Equatable, Hashable {
 
     public init(url: String) {
         self.url = url
+    }
+}
+
+/// An area with information about weather
+public struct InputStoryAreaTypeWeather: Codable, Equatable, Hashable {
+
+    /// A color of the area background in the ARGB format
+    public let backgroundColor: Int
+
+    /// Emoji representing the weather
+    public let emoji: String
+
+    /// Temperature, in degree Celsius
+    public let temperature: Double
+
+
+    public init(
+        backgroundColor: Int,
+        emoji: String,
+        temperature: Double
+    ) {
+        self.backgroundColor = backgroundColor
+        self.emoji = emoji
+        self.temperature = temperature
     }
 }
 

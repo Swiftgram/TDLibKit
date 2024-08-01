@@ -3,29 +3,29 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Contains information about Telegram stars earned by a bot or a chat
+/// Contains information about Telegram Stars earned by a bot or a chat
 public struct StarRevenueStatus: Codable, Equatable, Hashable {
 
-    /// The number of Telegram stars that are available for withdrawal
+    /// The number of Telegram Stars that are available for withdrawal
     public let availableCount: Int64
 
-    /// The number of Telegram stars that aren't withdrawn yet
+    /// The number of Telegram Stars that aren't withdrawn yet
     public let currentCount: Int64
 
     /// Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
     public let nextWithdrawalIn: Int
 
-    /// Total number of the stars earned
+    /// Total number of Telegram Stars earned
     public let totalCount: Int64
 
-    /// True, if Telegram stars can be withdrawn now or later
+    /// True, if Telegram Stars can be withdrawn now or later
     public let withdrawalEnabled: Bool
 
 

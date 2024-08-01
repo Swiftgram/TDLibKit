@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Represents a transaction changing the amount of owned Telegram stars
+/// Represents a transaction changing the amount of owned Telegram Stars
 public struct StarTransaction: Codable, Equatable, Hashable, Identifiable {
 
     /// Point in time (Unix timestamp) when the transaction was completed
@@ -25,7 +25,7 @@ public struct StarTransaction: Codable, Equatable, Hashable, Identifiable {
     /// Source of the incoming transaction, or its recipient for outgoing transactions
     public let partner: StarTransactionPartner
 
-    /// The amount of added owned Telegram stars; negative for outgoing transactions
+    /// The amount of added owned Telegram Stars; negative for outgoing transactions
     public let starCount: Int64
 
 

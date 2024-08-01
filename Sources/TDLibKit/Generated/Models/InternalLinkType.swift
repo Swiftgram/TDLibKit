@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
     case internalLinkTypeActiveSessions
 
-    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     case internalLinkTypeAttachmentMenuBot(InternalLinkTypeAttachmentMenuBot)
 
     /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
@@ -74,6 +74,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the language section of the app settings
     case internalLinkTypeLanguageSettings
 
+    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+    case internalLinkTypeMainWebApp(InternalLinkTypeMainWebApp)
+
     /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
     case internalLinkTypeMessage(InternalLinkTypeMessage)
 
@@ -113,9 +116,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to application settings
     case internalLinkTypeSettings
 
-    /// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
-    case internalLinkTypeSideMenuBot(InternalLinkTypeSideMenuBot)
-
     /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     case internalLinkTypeStickerSet(InternalLinkTypeStickerSet)
 
@@ -134,7 +134,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to an unsupported proxy. An alert can be shown to the user
     case internalLinkTypeUnsupportedProxy
 
-    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
+    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
     case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
 
     /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
@@ -143,7 +143,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
-    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     case internalLinkTypeWebApp(InternalLinkTypeWebApp)
 
 
@@ -168,6 +168,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeInvoice
         case internalLinkTypeLanguagePack
         case internalLinkTypeLanguageSettings
+        case internalLinkTypeMainWebApp
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
         case internalLinkTypePassportDataRequest
@@ -181,7 +182,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeQrCodeAuthentication
         case internalLinkTypeRestorePurchases
         case internalLinkTypeSettings
-        case internalLinkTypeSideMenuBot
         case internalLinkTypeStickerSet
         case internalLinkTypeStory
         case internalLinkTypeTheme
@@ -252,6 +252,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeLanguagePack(value)
         case .internalLinkTypeLanguageSettings:
             self = .internalLinkTypeLanguageSettings
+        case .internalLinkTypeMainWebApp:
+            let value = try InternalLinkTypeMainWebApp(from: decoder)
+            self = .internalLinkTypeMainWebApp(value)
         case .internalLinkTypeMessage:
             let value = try InternalLinkTypeMessage(from: decoder)
             self = .internalLinkTypeMessage(value)
@@ -287,9 +290,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeRestorePurchases
         case .internalLinkTypeSettings:
             self = .internalLinkTypeSettings
-        case .internalLinkTypeSideMenuBot:
-            let value = try InternalLinkTypeSideMenuBot(from: decoder)
-            self = .internalLinkTypeSideMenuBot(value)
         case .internalLinkTypeStickerSet:
             let value = try InternalLinkTypeStickerSet(from: decoder)
             self = .internalLinkTypeStickerSet(value)
@@ -378,6 +378,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeLanguageSettings:
             try container.encode(Kind.internalLinkTypeLanguageSettings, forKey: .type)
+        case .internalLinkTypeMainWebApp(let value):
+            try container.encode(Kind.internalLinkTypeMainWebApp, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeMessage(let value):
             try container.encode(Kind.internalLinkTypeMessage, forKey: .type)
             try value.encode(to: encoder)
@@ -413,9 +416,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try container.encode(Kind.internalLinkTypeRestorePurchases, forKey: .type)
         case .internalLinkTypeSettings:
             try container.encode(Kind.internalLinkTypeSettings, forKey: .type)
-        case .internalLinkTypeSideMenuBot(let value):
-            try container.encode(Kind.internalLinkTypeSideMenuBot, forKey: .type)
-            try value.encode(to: encoder)
         case .internalLinkTypeStickerSet(let value):
             try container.encode(Kind.internalLinkTypeStickerSet, forKey: .type)
             try value.encode(to: encoder)
@@ -448,7 +448,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
 public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Username of the bot
@@ -673,6 +673,30 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+public struct InternalLinkTypeMainWebApp: Codable, Equatable, Hashable {
+
+    /// Username of the bot
+    public let botUsername: String
+
+    /// True, if the Web App must be opened in the compact mode instead of the full-size mode
+    public let isCompact: Bool
+
+    /// Start parameter to be passed to getMainWebApp
+    public let startParameter: String
+
+
+    public init(
+        botUsername: String,
+        isCompact: Bool,
+        startParameter: String
+    ) {
+        self.botUsername = botUsername
+        self.isCompact = isCompact
+        self.startParameter = startParameter
+    }
+}
+
 /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
 public struct InternalLinkTypeMessage: Codable, Equatable, Hashable {
 
@@ -826,37 +850,18 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
     /// Draft text for message to send in the chat
     public let draftText: String
 
+    /// True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
+    public let openProfile: Bool
+
 
     public init(
         chatUsername: String,
-        draftText: String
+        draftText: String,
+        openProfile: Bool
     ) {
         self.chatUsername = chatUsername
         self.draftText = draftText
-    }
-}
-
-/// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
-public struct InternalLinkTypeSideMenuBot: Codable, Equatable, Hashable {
-
-    /// Username of the bot
-    public let botUsername: String
-
-    /// True, if the Web App must be opened in a compact mode instead of a full-size mode
-    public let isCompact: Bool
-
-    /// URL to be passed to getWebAppUrl
-    public let url: String
-
-
-    public init(
-        botUsername: String,
-        isCompact: Bool,
-        url: String
-    ) {
-        self.botUsername = botUsername
-        self.isCompact = isCompact
-        self.url = url
+        self.openProfile = openProfile
     }
 }
 
@@ -922,11 +927,14 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
+/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
 public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
 
     /// Draft text for message to send in the chat
     public let draftText: String
+
+    /// True, if user's profile information screen must be opened; otherwise, the chat itself must be opened
+    public let openProfile: Bool
 
     /// Phone number of the user
     public let phoneNumber: String
@@ -934,9 +942,11 @@ public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
 
     public init(
         draftText: String,
+        openProfile: Bool,
         phoneNumber: String
     ) {
         self.draftText = draftText
+        self.openProfile = openProfile
         self.phoneNumber = phoneNumber
     }
 }
@@ -977,13 +987,13 @@ public struct InternalLinkTypeVideoChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
 public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the Web App
     public let botUsername: String
 
-    /// True, if the Web App must be opened in a compact mode instead of a full-size mode
+    /// True, if the Web App must be opened in the compact mode instead of the full-size mode
     public let isCompact: Bool
 
     /// Start parameter to be passed to getWebAppLinkUrl

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
     /// A category containing frequently used chats with inline bots sorted by their usage in inline mode
     case topChatCategoryInlineBots
 
+    /// A category containing frequently used chats with bots, which Web Apps were opened
+    case topChatCategoryWebAppBots
+
     /// A category containing frequently used chats used for calls
     case topChatCategoryCalls
 
@@ -41,6 +44,7 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
         case topChatCategoryGroups
         case topChatCategoryChannels
         case topChatCategoryInlineBots
+        case topChatCategoryWebAppBots
         case topChatCategoryCalls
         case topChatCategoryForwardChats
     }
@@ -59,6 +63,8 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
             self = .topChatCategoryChannels
         case .topChatCategoryInlineBots:
             self = .topChatCategoryInlineBots
+        case .topChatCategoryWebAppBots:
+            self = .topChatCategoryWebAppBots
         case .topChatCategoryCalls:
             self = .topChatCategoryCalls
         case .topChatCategoryForwardChats:
@@ -79,6 +85,8 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
             try container.encode(Kind.topChatCategoryChannels, forKey: .type)
         case .topChatCategoryInlineBots:
             try container.encode(Kind.topChatCategoryInlineBots, forKey: .type)
+        case .topChatCategoryWebAppBots:
+            try container.encode(Kind.topChatCategoryWebAppBots, forKey: .type)
         case .topChatCategoryCalls:
             try container.encode(Kind.topChatCategoryCalls, forKey: .type)
         case .topChatCategoryForwardChats:

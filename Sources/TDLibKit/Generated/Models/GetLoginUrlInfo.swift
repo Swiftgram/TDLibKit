@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetLoginUrlInfo: Codable, Equatable, Hashable {
     /// Chat identifier of the message with the button
     public let chatId: Int64?
 
-    /// Message identifier of the message with the button
+    /// Message identifier of the message with the button. The message must not be scheduled
     public let messageId: Int64?
 
 

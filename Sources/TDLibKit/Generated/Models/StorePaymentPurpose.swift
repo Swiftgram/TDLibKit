@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -25,8 +25,11 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
     /// The user creating a Telegram Premium giveaway
     case storePaymentPurposePremiumGiveaway(StorePaymentPurposePremiumGiveaway)
 
-    /// The user buying Telegram stars
+    /// The user buying Telegram Stars
     case storePaymentPurposeStars(StorePaymentPurposeStars)
+
+    /// The user buying Telegram Stars for other users
+    case storePaymentPurposeGiftedStars(StorePaymentPurposeGiftedStars)
 
 
     private enum Kind: String, Codable {
@@ -35,6 +38,7 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
         case storePaymentPurposePremiumGiftCodes
         case storePaymentPurposePremiumGiveaway
         case storePaymentPurposeStars
+        case storePaymentPurposeGiftedStars
     }
 
     public init(from decoder: Decoder) throws {
@@ -56,6 +60,9 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
         case .storePaymentPurposeStars:
             let value = try StorePaymentPurposeStars(from: decoder)
             self = .storePaymentPurposeStars(value)
+        case .storePaymentPurposeGiftedStars:
+            let value = try StorePaymentPurposeGiftedStars(from: decoder)
+            self = .storePaymentPurposeGiftedStars(value)
         }
     }
 
@@ -76,6 +83,9 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storePaymentPurposeStars(let value):
             try container.encode(Kind.storePaymentPurposeStars, forKey: .type)
+            try value.encode(to: encoder)
+        case .storePaymentPurposeGiftedStars(let value):
+            try container.encode(Kind.storePaymentPurposeGiftedStars, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -109,7 +119,7 @@ public struct StorePaymentPurposeGiftedPremium: Codable, Equatable, Hashable {
     /// ISO 4217 currency code of the payment currency
     public let currency: String
 
-    /// Identifier of the user to which Premium was gifted
+    /// Identifier of the user to which Telegram Premium is gifted
     public let userId: Int64
 
 
@@ -177,7 +187,7 @@ public struct StorePaymentPurposePremiumGiveaway: Codable, Equatable, Hashable {
     }
 }
 
-/// The user buying Telegram stars
+/// The user buying Telegram Stars
 public struct StorePaymentPurposeStars: Codable, Equatable, Hashable {
 
     /// Paid amount, in the smallest units of the currency
@@ -186,7 +196,7 @@ public struct StorePaymentPurposeStars: Codable, Equatable, Hashable {
     /// ISO 4217 currency code of the payment currency
     public let currency: String
 
-    /// Number of bought stars
+    /// Number of bought Telegram Stars
     public let starCount: Int64
 
 
@@ -198,6 +208,35 @@ public struct StorePaymentPurposeStars: Codable, Equatable, Hashable {
         self.amount = amount
         self.currency = currency
         self.starCount = starCount
+    }
+}
+
+/// The user buying Telegram Stars for other users
+public struct StorePaymentPurposeGiftedStars: Codable, Equatable, Hashable {
+
+    /// Paid amount, in the smallest units of the currency
+    public let amount: Int64
+
+    /// ISO 4217 currency code of the payment currency
+    public let currency: String
+
+    /// Number of bought Telegram Stars
+    public let starCount: Int64
+
+    /// Identifier of the user to which Telegram Stars are gifted
+    public let userId: Int64
+
+
+    public init(
+        amount: Int64,
+        currency: String,
+        starCount: Int64,
+        userId: Int64
+    ) {
+        self.amount = amount
+        self.currency = currency
+        self.starCount = starCount
+        self.userId = userId
     }
 }
 

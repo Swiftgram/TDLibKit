@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Describes a video file sent in a story
 public struct StoryVideo: Codable, Equatable, Hashable {
+
+    /// Timestamp of the frame used as video thumbnail
+    public let coverFrameTimestamp: Double
 
     /// Duration of the video, in seconds
     public let duration: Double
@@ -42,6 +45,7 @@ public struct StoryVideo: Codable, Equatable, Hashable {
 
 
     public init(
+        coverFrameTimestamp: Double,
         duration: Double,
         hasStickers: Bool,
         height: Int,
@@ -52,6 +56,7 @@ public struct StoryVideo: Codable, Equatable, Hashable {
         video: File,
         width: Int
     ) {
+        self.coverFrameTimestamp = coverFrameTimestamp
         self.duration = duration
         self.hasStickers = hasStickers
         self.height = height

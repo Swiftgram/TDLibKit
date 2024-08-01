@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Returns available options for Telegram stars purchase
+/// Returns available options for Telegram Stars purchase
 public struct GetStarPaymentOptions: Codable, Equatable, Hashable {
 
 

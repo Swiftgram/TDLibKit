@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -1386,7 +1386,39 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a message thread. Can be used only if message.can_get_message_thread == true
+    /// Returns properties of a message; this is an offline request
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Properties of a message
+    public final func getMessageProperties(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<MessageProperties, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageProperties(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns properties of a message; this is an offline request
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Properties of a message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getMessageProperties(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> MessageProperties {
+        let query = GetMessageProperties(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
     /// - Returns: Information about a message thread
@@ -1402,7 +1434,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a message thread. Can be used only if message.can_get_message_thread == true
+    /// Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
     /// - Returns: Information about a message thread
@@ -1418,7 +1450,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read
+    /// Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
     /// - Returns: Read date of a recent outgoing message in a private chat
@@ -1434,7 +1466,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read
+    /// Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
     /// - Returns: Read date of a recent outgoing message in a private chat
@@ -1450,7 +1482,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
+    /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if messageProperties.can_get_viewers == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
     /// - Returns: Viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned
@@ -1466,7 +1498,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
+    /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if messageProperties.can_get_viewers == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
     /// - Returns: Viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned
@@ -2167,12 +2199,12 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be fetched
-    /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Returns: Messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     public final func getSavedMessagesTopicHistory(
         fromMessageId: Int64?,
         limit: Int?,
@@ -2189,12 +2221,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter savedMessagesTopicId: Identifier of Saved Messages topic which messages will be fetched
-    /// - Returns: Messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Returns: Messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getSavedMessagesTopicHistory(
         fromMessageId: Int64?,
@@ -2395,13 +2427,13 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
+    /// Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
-    /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: Messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public final func getChatHistory(
         chatId: Int64?,
         fromMessageId: Int64?,
@@ -2420,13 +2452,13 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
+    /// Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
     /// - Parameter onlyLocal: Pass true to get only messages that are available without sending network requests
-    /// - Returns: Messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: Messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatHistory(
         chatId: Int64?,
@@ -2445,13 +2477,13 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
-    /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: Messages in a message thread of a message. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     public final func getMessageThreadHistory(
         chatId: Int64?,
         fromMessageId: Int64?,
@@ -2470,13 +2502,13 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// Returns messages in a message thread of a message. Can be used only if messageProperties.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier, which thread history needs to be returned
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
-    /// - Returns: Messages in a message thread of a message. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// - Returns: Messages in a message thread of a message. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getMessageThreadHistory(
         chatId: Int64?,
@@ -3399,9 +3431,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter chatId: Chat identifier
-    /// - Returns: All scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Returns: All scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     public final func getChatScheduledMessages(
         chatId: Int64?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
@@ -3412,9 +3444,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     /// - Parameter chatId: Chat identifier
-    /// - Returns: All scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Returns: All scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatScheduledMessages(chatId: Int64?) async throws -> Messages {
         let query = GetChatScheduledMessages(
@@ -3576,7 +3608,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+    /// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
@@ -3601,7 +3633,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+    /// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
@@ -3626,7 +3658,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+    /// Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to return an HTML code for embedding of the whole media album
     /// - Parameter messageId: Identifier of the message
@@ -3645,7 +3677,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+    /// Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter forAlbum: Pass true to return an HTML code for embedding of the whole media album
     /// - Parameter messageId: Identifier of the message
@@ -3754,9 +3786,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent, must not be scheduled, and must be from a non-secret chat
+    /// Recognizes speech in a video note or a voice note message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_recognize_speech to check whether the message is suitable
     public final func recognizeSpeech(
         chatId: Int64?,
         messageId: Int64?,
@@ -3769,9 +3801,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Recognizes speech in a video note or a voice note message. The message must be successfully sent, must not be scheduled, and must be from a non-secret chat
+    /// Recognizes speech in a video note or a voice note message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_recognize_speech to check whether the message is suitable
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func recognizeSpeech(
@@ -4086,7 +4118,7 @@ public class TDLibApi {
     /// Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
-    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
+    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
@@ -4117,7 +4149,7 @@ public class TDLibApi {
     /// Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to which to forward messages
     /// - Parameter fromChatId: Identifier of the chat from which to forward messages
-    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
+    /// - Parameter messageIds: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
@@ -4271,7 +4303,7 @@ public class TDLibApi {
 
     /// Deletes messages
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of the messages to be deleted
+    /// - Parameter messageIds: Identifiers of the messages to be deleted. Use messageProperties.can_be_deleted_only_for_self and messageProperties.can_be_deleted_for_all_users to get suitable messages
     /// - Parameter revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     public final func deleteMessages(
         chatId: Int64?,
@@ -4289,7 +4321,7 @@ public class TDLibApi {
 
     /// Deletes messages
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of the messages to be deleted
+    /// - Parameter messageIds: Identifiers of the messages to be deleted. Use messageProperties.can_be_deleted_only_for_self and messageProperties.can_be_deleted_for_all_users to get suitable messages
     /// - Parameter revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -4380,10 +4412,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageText(
@@ -4402,10 +4434,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4424,12 +4456,12 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     /// - Parameter location: New location content of the message; pass null to stop sharing the live location
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
@@ -4455,12 +4487,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     /// - Parameter location: New location content of the message; pass null to stop sharing the live location
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
@@ -4486,10 +4518,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageMedia(
@@ -4508,10 +4540,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4530,10 +4562,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
     /// - Parameter caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
@@ -4555,10 +4587,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
     /// - Parameter caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
@@ -4580,9 +4612,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageReplyMarkup(
@@ -4599,9 +4631,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4823,7 +4855,7 @@ public class TDLibApi {
 
     /// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
     /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately
     public final func editMessageSchedulingState(
         chatId: Int64?,
@@ -4841,7 +4873,7 @@ public class TDLibApi {
 
     /// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
     /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -4858,9 +4890,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
+    /// Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true
     /// - Parameter chatId: The channel chat the message belongs to
-    /// - Parameter messageId: Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+    /// - Parameter messageId: Identifier of the message
     /// - Parameter text: New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
     public final func setMessageFactCheck(
         chatId: Int64?,
@@ -4876,9 +4908,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
+    /// Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true
     /// - Parameter chatId: The channel chat the message belongs to
-    /// - Parameter messageId: Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+    /// - Parameter messageId: Identifier of the message
     /// - Parameter text: New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -5321,6 +5353,49 @@ public class TDLibApi {
             chatId: chatId,
             messageId: messageId,
             replyMarkup: replyMarkup
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Pins or unpins a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter isPinned: Pass true to pin the message, pass false to unpin it
+    /// - Parameter messageId: Identifier of the message
+    public final func setBusinessMessageIsPinned(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        isPinned: Bool?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessMessageIsPinned(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            isPinned: isPinned,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Pins or unpins a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter isPinned: Pass true to pin the message, pass false to unpin it
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBusinessMessageIsPinned(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        isPinned: Bool?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = SetBusinessMessageIsPinned(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            isPinned: isPinned,
+            messageId: messageId
         )
         return try await self.run(query: query)
     }
@@ -6335,7 +6410,7 @@ public class TDLibApi {
     /// Returns reactions added for a message, along with their sender
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_get_added_reactions to check whether added reactions can be received for the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions
     /// - Returns: Reactions added for a message, along with their sender
@@ -6360,7 +6435,7 @@ public class TDLibApi {
     /// Returns reactions added for a message, along with their sender
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
-    /// - Parameter messageId: Identifier of the message
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_get_added_reactions to check whether added reactions can be received for the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions
     /// - Returns: Reactions added for a message, along with their sender
@@ -6913,9 +6988,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
+    /// Stops a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
-    /// - Parameter messageId: Identifier of the message containing the poll
+    /// - Parameter messageId: Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     public final func stopPoll(
         chatId: Int64?,
@@ -6931,9 +7006,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
+    /// Stops a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
-    /// - Parameter messageId: Identifier of the message containing the poll
+    /// - Parameter messageId: Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -7014,7 +7089,7 @@ public class TDLibApi {
     /// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
-    /// - Parameter messageId: Message identifier of the message with the button
+    /// - Parameter messageId: Message identifier of the message with the button. The message must not be scheduled
     /// - Returns: Information about a button of type inlineKeyboardButtonTypeLoginUrl
     public final func getLoginUrlInfo(
         buttonId: Int64?,
@@ -7033,7 +7108,7 @@ public class TDLibApi {
     /// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
-    /// - Parameter messageId: Message identifier of the message with the button
+    /// - Parameter messageId: Message identifier of the message with the button. The message must not be scheduled
     /// - Returns: Information about a button of type inlineKeyboardButtonTypeLoginUrl
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getLoginUrlInfo(
@@ -7296,6 +7371,38 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns popular Web App bots
+    /// - Parameter limit: The maximum number of bots to be returned; up to 100
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Popular Web App bots
+    public final func getPopularWebAppBots(
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<FoundUsers, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPopularWebAppBots(
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns popular Web App bots
+    /// - Parameter limit: The maximum number of bots to be returned; up to 100
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Popular Web App bots
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getPopularWebAppBots(
+        limit: Int?,
+        offset: String?
+    ) async throws -> FoundUsers {
+        let query = GetPopularWebAppBots(
+            limit: limit,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter webAppShortName: Short name of the Web App
@@ -7330,7 +7437,7 @@ public class TDLibApi {
 
     /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages
-    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat in which the link was clicked; pass 0 if none
     /// - Parameter startParameter: Start parameter from internalLinkTypeWebApp
@@ -7361,7 +7468,7 @@ public class TDLibApi {
 
     /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages
-    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat in which the link was clicked; pass 0 if none
     /// - Parameter startParameter: Start parameter from internalLinkTypeWebApp
@@ -7390,12 +7497,62 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
-    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// Returns information needed to open the main Web App of a bot
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter chatId: Identifier of the chat in which the Web App is opened; pass 0 if none
+    /// - Parameter startParameter: Start parameter from internalLinkTypeMainWebApp
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
+    /// - Returns: Information needed to open the main Web App of a bot
+    public final func getMainWebApp(
+        applicationName: String?,
+        botUserId: Int64?,
+        chatId: Int64?,
+        startParameter: String?,
+        theme: ThemeParameters?,
+        completion: @escaping (Result<MainWebApp, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMainWebApp(
+            applicationName: applicationName,
+            botUserId: botUserId,
+            chatId: chatId,
+            startParameter: startParameter,
+            theme: theme
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information needed to open the main Web App of a bot
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter chatId: Identifier of the chat in which the Web App is opened; pass 0 if none
+    /// - Parameter startParameter: Start parameter from internalLinkTypeMainWebApp
+    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
+    /// - Returns: Information needed to open the main Web App of a bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getMainWebApp(
+        applicationName: String?,
+        botUserId: Int64?,
+        chatId: Int64?,
+        startParameter: String?,
+        theme: ThemeParameters?
+    ) async throws -> MainWebApp {
+        let query = GetMainWebApp(
+            applicationName: applicationName,
+            botUserId: botUserId,
+            chatId: chatId,
+            startParameter: startParameter,
+            theme: theme
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
-    /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
+    /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
+    /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
     public final func getWebAppUrl(
         applicationName: String?,
         botUserId: Int64?,
@@ -7412,12 +7569,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
-    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
-    /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
-    /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
+    /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
+    /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getWebAppUrl(
         applicationName: String?,
@@ -7472,7 +7629,7 @@ public class TDLibApi {
     }
 
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
@@ -7502,7 +7659,7 @@ public class TDLibApi {
     }
 
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter applicationName: Short name of the application; 0-64 English letters, digits, and underscores
+    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
@@ -7586,7 +7743,7 @@ public class TDLibApi {
 
     /// Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     /// - Parameter chatId: Identifier of the chat with the message
-    /// - Parameter messageId: Identifier of the message from which the query originated
+    /// - Parameter messageId: Identifier of the message from which the query originated. The message must not be scheduled
     /// - Parameter payload: Query payload
     /// - Returns: Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     public final func getCallbackQueryAnswer(
@@ -7605,7 +7762,7 @@ public class TDLibApi {
 
     /// Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     /// - Parameter chatId: Identifier of the chat with the message
-    /// - Parameter messageId: Identifier of the message from which the query originated
+    /// - Parameter messageId: Identifier of the message from which the query originated. The message must not be scheduled
     /// - Parameter payload: Query payload
     /// - Returns: Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -9985,7 +10142,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
+    /// Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter disableNotification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     /// - Parameter messageId: Identifier of the new pinned message
@@ -10006,7 +10163,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
+    /// Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter disableNotification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     /// - Parameter messageId: Identifier of the new pinned message
@@ -10783,6 +10940,30 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns the current weather in the given location
+    /// - Parameter location: The location
+    /// - Returns: The current weather in the given location
+    public final func getCurrentWeather(
+        location: Location?,
+        completion: @escaping (Result<CurrentWeather, Swift.Error>) -> Void
+    ) throws {
+        let query = GetCurrentWeather(
+            location: location
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the current weather in the given location
+    /// - Parameter location: The location
+    /// - Returns: The current weather in the given location
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getCurrentWeather(location: Location?) async throws -> CurrentWeather {
+        let query = GetCurrentWeather(
+            location: location
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns a story
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter storyId: Story identifier
@@ -10975,6 +11156,43 @@ public class TDLibApi {
             areas: areas,
             caption: caption,
             content: content,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
+    /// - Parameter coverFrameTimestamp: New timestamp of the frame, which will be used as video thumbnail
+    /// - Parameter storyId: Identifier of the story to edit
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    public final func editStoryCover(
+        coverFrameTimestamp: Double?,
+        storyId: Int?,
+        storySenderChatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditStoryCover(
+            coverFrameTimestamp: coverFrameTimestamp,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
+    /// - Parameter coverFrameTimestamp: New timestamp of the frame, which will be used as video thumbnail
+    /// - Parameter storyId: Identifier of the story to edit
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func editStoryCover(
+        coverFrameTimestamp: Double?,
+        storyId: Int?,
+        storySenderChatId: Int64?
+    ) async throws -> Ok {
+        let query = EditStoryCover(
+            coverFrameTimestamp: coverFrameTimestamp,
             storyId: storyId,
             storySenderChatId: storySenderChatId
         )
@@ -11175,11 +11393,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
     /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: The list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     public final func getChatPostedToChatPageStories(
         chatId: Int64?,
         fromStoryId: Int?,
@@ -11194,11 +11412,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
     /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: The list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatPostedToChatPageStories(
         chatId: Int64?,
@@ -11213,11 +11431,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of all stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: The list of all stories posted by the given chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     public final func getChatArchivedStories(
         chatId: Int64?,
         fromStoryId: Int?,
@@ -11232,11 +11450,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-    /// - Returns: The list of all stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Returns: The list of all stories posted by the given chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatArchivedStories(
         chatId: Int64?,
@@ -17209,6 +17427,218 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns the list of media previews of a bot
+    /// - Parameter botUserId: Identifier of the target bot. The bot must have the main Web App
+    /// - Returns: The list of media previews of a bot
+    public final func getBotMediaPreviews(
+        botUserId: Int64?,
+        completion: @escaping (Result<BotMediaPreviews, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotMediaPreviews(
+            botUserId: botUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of media previews of a bot
+    /// - Parameter botUserId: Identifier of the target bot. The bot must have the main Web App
+    /// - Returns: The list of media previews of a bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBotMediaPreviews(botUserId: Int64?) async throws -> BotMediaPreviews {
+        let query = GetBotMediaPreviews(
+            botUserId: botUserId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the list of media previews for the given language and the list of languages for which the bot has dedicated previews
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code for which to get previews. If empty, then default previews are returned
+    /// - Returns: The list of media previews for the given language and the list of languages for which the bot has dedicated previews
+    public final func getBotMediaPreviewInfo(
+        botUserId: Int64?,
+        languageCode: String?,
+        completion: @escaping (Result<BotMediaPreviewInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotMediaPreviewInfo(
+            botUserId: botUserId,
+            languageCode: languageCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of media previews for the given language and the list of languages for which the bot has dedicated previews
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code for which to get previews. If empty, then default previews are returned
+    /// - Returns: The list of media previews for the given language and the list of languages for which the bot has dedicated previews
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBotMediaPreviewInfo(
+        botUserId: Int64?,
+        languageCode: String?
+    ) async throws -> BotMediaPreviewInfo {
+        let query = GetBotMediaPreviewInfo(
+            botUserId: botUserId,
+            languageCode: languageCode
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds a new media preview to the beginning of the list of media previews of a bot. Returns the added preview after addition is completed server-side. The total number of previews must not exceed getOption("bot_media_preview_count_max") for the given language
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter content: Content of the added preview
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews. If non-empty, then there must be an official language pack of the same name, which is returned by getLocalizationTargetInfo
+    /// - Returns: The added preview after addition is completed server-side
+    public final func addBotMediaPreview(
+        botUserId: Int64?,
+        content: InputStoryContent?,
+        languageCode: String?,
+        completion: @escaping (Result<BotMediaPreview, Swift.Error>) -> Void
+    ) throws {
+        let query = AddBotMediaPreview(
+            botUserId: botUserId,
+            content: content,
+            languageCode: languageCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds a new media preview to the beginning of the list of media previews of a bot. Returns the added preview after addition is completed server-side. The total number of previews must not exceed getOption("bot_media_preview_count_max") for the given language
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter content: Content of the added preview
+    /// - Parameter languageCode: A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews. If non-empty, then there must be an official language pack of the same name, which is returned by getLocalizationTargetInfo
+    /// - Returns: The added preview after addition is completed server-side
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func addBotMediaPreview(
+        botUserId: Int64?,
+        content: InputStoryContent?,
+        languageCode: String?
+    ) async throws -> BotMediaPreview {
+        let query = AddBotMediaPreview(
+            botUserId: botUserId,
+            content: content,
+            languageCode: languageCode
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Replaces media preview in the list of media previews of a bot. Returns the new preview after edit is completed server-side
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter content: Content of the new preview
+    /// - Parameter fileId: File identifier of the media to replace
+    /// - Parameter languageCode: Language code of the media preview to edit
+    /// - Returns: The new preview after edit is completed server-side
+    public final func editBotMediaPreview(
+        botUserId: Int64?,
+        content: InputStoryContent?,
+        fileId: Int?,
+        languageCode: String?,
+        completion: @escaping (Result<BotMediaPreview, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBotMediaPreview(
+            botUserId: botUserId,
+            content: content,
+            fileId: fileId,
+            languageCode: languageCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Replaces media preview in the list of media previews of a bot. Returns the new preview after edit is completed server-side
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter content: Content of the new preview
+    /// - Parameter fileId: File identifier of the media to replace
+    /// - Parameter languageCode: Language code of the media preview to edit
+    /// - Returns: The new preview after edit is completed server-side
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func editBotMediaPreview(
+        botUserId: Int64?,
+        content: InputStoryContent?,
+        fileId: Int?,
+        languageCode: String?
+    ) async throws -> BotMediaPreview {
+        let query = EditBotMediaPreview(
+            botUserId: botUserId,
+            content: content,
+            fileId: fileId,
+            languageCode: languageCode
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes order of media previews in the list of media previews of a bot
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter fileIds: File identifiers of the media in the new order
+    /// - Parameter languageCode: Language code of the media previews to reorder
+    public final func reorderBotMediaPreviews(
+        botUserId: Int64?,
+        fileIds: [Int]?,
+        languageCode: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderBotMediaPreviews(
+            botUserId: botUserId,
+            fileIds: fileIds,
+            languageCode: languageCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes order of media previews in the list of media previews of a bot
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter fileIds: File identifiers of the media in the new order
+    /// - Parameter languageCode: Language code of the media previews to reorder
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func reorderBotMediaPreviews(
+        botUserId: Int64?,
+        fileIds: [Int]?,
+        languageCode: String?
+    ) async throws -> Ok {
+        let query = ReorderBotMediaPreviews(
+            botUserId: botUserId,
+            fileIds: fileIds,
+            languageCode: languageCode
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Delete media previews from the list of media previews of a bot
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter fileIds: File identifiers of the media to delete
+    /// - Parameter languageCode: Language code of the media previews to delete
+    public final func deleteBotMediaPreviews(
+        botUserId: Int64?,
+        fileIds: [Int]?,
+        languageCode: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteBotMediaPreviews(
+            botUserId: botUserId,
+            fileIds: fileIds,
+            languageCode: languageCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Delete media previews from the list of media previews of a bot
+    /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
+    /// - Parameter fileIds: File identifiers of the media to delete
+    /// - Parameter languageCode: Language code of the media previews to delete
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteBotMediaPreviews(
+        botUserId: Int64?,
+        fileIds: [Int]?,
+        languageCode: String?
+    ) async throws -> Ok {
+        let query = DeleteBotMediaPreviews(
+            botUserId: botUserId,
+            fileIds: fileIds,
+            languageCode: languageCode
+        )
+        return try await self.run(query: query)
+    }
+
     /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
@@ -18218,7 +18648,7 @@ public class TDLibApi {
     }
 
     /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages to report
+    /// - Parameter messageIds: Identifiers of messages to report. Use messageProperties.can_be_reported to check whether the message can be reported
     /// - Parameter supergroupId: Supergroup identifier
     public final func reportSupergroupSpam(
         messageIds: [Int64]?,
@@ -18233,7 +18663,7 @@ public class TDLibApi {
     }
 
     /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages to report
+    /// - Parameter messageIds: Identifiers of messages to report. Use messageProperties.can_be_reported to check whether the message can be reported
     /// - Parameter supergroupId: Supergroup identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -18249,7 +18679,7 @@ public class TDLibApi {
     }
 
     /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
-    /// - Parameter messageId: Identifier of the erroneously deleted message
+    /// - Parameter messageId: Identifier of the erroneously deleted message from chatEventMessageDeleted
     /// - Parameter supergroupId: Supergroup identifier
     public final func reportSupergroupAntiSpamFalsePositive(
         messageId: Int64?,
@@ -18264,7 +18694,7 @@ public class TDLibApi {
     }
 
     /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
-    /// - Parameter messageId: Identifier of the erroneously deleted message
+    /// - Parameter messageId: Identifier of the erroneously deleted message from chatEventMessageDeleted
     /// - Parameter supergroupId: Supergroup identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -18488,7 +18918,7 @@ public class TDLibApi {
     }
 
     /// Sends a filled-out payment form to the bot for final verification
-    /// - Parameter credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars
+    /// - Parameter credentials: The credentials chosen by user for payment; pass null for a payment in Telegram Stars
     /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfoId: Identifier returned by validateOrderInfo, or an empty string
     /// - Parameter paymentFormId: Payment form identifier returned by getPaymentForm
@@ -18515,7 +18945,7 @@ public class TDLibApi {
     }
 
     /// Sends a filled-out payment form to the bot for final verification
-    /// - Parameter credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars
+    /// - Parameter credentials: The credentials chosen by user for payment; pass null for a payment in Telegram Stars
     /// - Parameter inputInvoice: The invoice
     /// - Parameter orderInfoId: Identifier returned by validateOrderInfo, or an empty string
     /// - Parameter paymentFormId: Payment form identifier returned by getPaymentForm
@@ -19543,7 +19973,7 @@ public class TDLibApi {
 
     /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat
+    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported
     /// - Parameter reason: The reason for reporting the chat
     /// - Parameter text: Additional report details; 0-1024 characters
     public final func reportChat(
@@ -19564,7 +19994,7 @@ public class TDLibApi {
 
     /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat
+    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported
     /// - Parameter reason: The reason for reporting the chat
     /// - Parameter text: Additional report details; 0-1024 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19627,7 +20057,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+    /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Message identifier
     /// - Parameter senderId: Identifier of the sender, which added the reaction
@@ -19645,7 +20075,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+    /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Message identifier
     /// - Parameter senderId: Identifier of the sender, which added the reaction
@@ -19766,10 +20196,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns detailed Telegram star revenue statistics
+    /// Returns detailed Telegram Star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
-    /// - Returns: Detailed Telegram star revenue statistics
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Returns: Detailed Telegram Star revenue statistics
     public final func getStarRevenueStatistics(
         isDark: Bool?,
         ownerId: MessageSender?,
@@ -19782,10 +20212,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns detailed Telegram star revenue statistics
+    /// Returns detailed Telegram Star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
-    /// - Returns: Detailed Telegram star revenue statistics
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Returns: Detailed Telegram Star revenue statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarRevenueStatistics(
         isDark: Bool?,
@@ -19798,11 +20228,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a URL for Telegram star withdrawal
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// Returns a URL for Telegram Star withdrawal
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Parameter starCount: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
-    /// - Returns: A URL for Telegram star withdrawal
+    /// - Parameter starCount: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// - Returns: A URL for Telegram Star withdrawal
     public final func getStarWithdrawalUrl(
         ownerId: MessageSender?,
         password: String?,
@@ -19817,11 +20247,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a URL for Telegram star withdrawal
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// Returns a URL for Telegram Star withdrawal
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Parameter starCount: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
-    /// - Returns: A URL for Telegram star withdrawal
+    /// - Parameter starCount: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// - Returns: A URL for Telegram Star withdrawal
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarWithdrawalUrl(
         ownerId: MessageSender?,
@@ -19836,9 +20266,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
-    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
+    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
     public final func getStarAdAccountUrl(
         ownerId: MessageSender?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
@@ -19849,9 +20279,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
-    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars
+    /// Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Returns: A URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram Stars
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarAdAccountUrl(ownerId: MessageSender?) async throws -> HttpUrl {
         let query = GetStarAdAccountUrl(
@@ -19892,7 +20322,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+    /// Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     /// - Parameter messageId: Message identifier
@@ -19911,7 +20341,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+    /// Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     /// - Parameter messageId: Message identifier
@@ -19930,7 +20360,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
+    /// Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
@@ -19952,7 +20382,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
+    /// Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier of the message
     /// - Parameter limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter messageId: Message identifier
@@ -21590,27 +22020,51 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns available options for Telegram stars purchase
-    /// - Returns: Available options for Telegram stars purchase
+    /// Returns available options for Telegram Stars purchase
+    /// - Returns: Available options for Telegram Stars purchase
     public final func getStarPaymentOptions(completion: @escaping (Result<StarPaymentOptions, Swift.Error>) -> Void) throws {
         let query = GetStarPaymentOptions()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns available options for Telegram stars purchase
-    /// - Returns: Available options for Telegram stars purchase
+    /// Returns available options for Telegram Stars purchase
+    /// - Returns: Available options for Telegram Stars purchase
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarPaymentOptions() async throws -> StarPaymentOptions {
         let query = GetStarPaymentOptions()
         return try await self.run(query: query)
     }
 
-    /// Returns the list of Telegram star transactions for the specified owner
+    /// Returns available options for Telegram Stars gifting
+    /// - Parameter userId: Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+    /// - Returns: Available options for Telegram Stars gifting
+    public final func getStarGiftPaymentOptions(
+        userId: Int64?,
+        completion: @escaping (Result<StarPaymentOptions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStarGiftPaymentOptions(
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns available options for Telegram Stars gifting
+    /// - Parameter userId: Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+    /// - Returns: Available options for Telegram Stars gifting
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getStarGiftPaymentOptions(userId: Int64?) async throws -> StarPaymentOptions {
+        let query = GetStarGiftPaymentOptions(
+            userId: userId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the list of Telegram Star transactions for the specified owner
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
-    /// - Returns: The list of Telegram star transactions for the specified owner
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Returns: The list of Telegram Star transactions for the specified owner
     public final func getStarTransactions(
         direction: StarTransactionDirection?,
         limit: Int?,
@@ -21627,12 +22081,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of Telegram star transactions for the specified owner
+    /// Returns the list of Telegram Star transactions for the specified owner
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter ownerId: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
-    /// - Returns: The list of Telegram star transactions for the specified owner
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Returns: The list of Telegram Star transactions for the specified owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarTransactions(
         direction: StarTransactionDirection?,

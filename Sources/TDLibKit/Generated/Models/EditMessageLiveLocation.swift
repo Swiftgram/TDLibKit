@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+/// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
 public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
@@ -25,7 +25,7 @@ public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
     /// New location content of the message; pass null to stop sharing the live location
     public let location: Location?
 
-    /// Identifier of the message
+    /// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     public let messageId: Int64?
 
     /// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled

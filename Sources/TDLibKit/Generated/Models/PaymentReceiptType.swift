@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum PaymentReceiptType: Codable, Equatable, Hashable {
     /// The payment was done using a third-party payment provider
     case paymentReceiptTypeRegular(PaymentReceiptTypeRegular)
 
-    /// The payment was done using Telegram stars
+    /// The payment was done using Telegram Stars
     case paymentReceiptTypeStars(PaymentReceiptTypeStars)
 
 
@@ -90,10 +90,10 @@ public struct PaymentReceiptTypeRegular: Codable, Equatable, Hashable {
     }
 }
 
-/// The payment was done using Telegram stars
+/// The payment was done using Telegram Stars
 public struct PaymentReceiptTypeStars: Codable, Equatable, Hashable {
 
-    /// Number of Telegram stars that were paid
+    /// Number of Telegram Stars that were paid
     public let starCount: Int64
 
     /// Unique identifier of the transaction that can be used to dispute it

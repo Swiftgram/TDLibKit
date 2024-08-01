@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -19,44 +19,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     public let autoDeleteIn: Double
 
-    /// True, if the message can be deleted for all users
-    public let canBeDeletedForAllUsers: Bool
-
-    /// True, if the message can be deleted only for the current user while other users will continue to see it
-    public let canBeDeletedOnlyForSelf: Bool
-
-    /// True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
-    public let canBeEdited: Bool
-
-    /// True, if the message can be forwarded
-    public let canBeForwarded: Bool
-
-    /// True, if the message can be replied in another chat or topic
-    public let canBeRepliedInAnotherChat: Bool
-
     /// True, if content of the message can be saved locally or copied
     public let canBeSaved: Bool
-
-    /// True, if the list of added reactions is available through getMessageAddedReactions
-    public let canGetAddedReactions: Bool
-
-    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description through getMessageLink
-    public let canGetMediaTimestampLinks: Bool
-
-    /// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
-    public let canGetMessageThread: Bool
-
-    /// True, if read date of the message can be received through getMessageReadDate
-    public let canGetReadDate: Bool
-
-    /// True, if the message statistics are available through getMessageStatistics
-    public let canGetStatistics: Bool
-
-    /// True, if chat members already viewed the message can be received through getMessageViewers
-    public let canGetViewers: Bool
-
-    /// True, if reactions on the message can be reported through reportMessageReactions
-    public let canReportReactions: Bool
 
     /// Chat identifier
     public let chatId: Int64
@@ -158,19 +122,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     public init(
         authorSignature: String,
         autoDeleteIn: Double,
-        canBeDeletedForAllUsers: Bool,
-        canBeDeletedOnlyForSelf: Bool,
-        canBeEdited: Bool,
-        canBeForwarded: Bool,
-        canBeRepliedInAnotherChat: Bool,
         canBeSaved: Bool,
-        canGetAddedReactions: Bool,
-        canGetMediaTimestampLinks: Bool,
-        canGetMessageThread: Bool,
-        canGetReadDate: Bool,
-        canGetStatistics: Bool,
-        canGetViewers: Bool,
-        canReportReactions: Bool,
         chatId: Int64,
         containsUnreadMention: Bool,
         content: MessageContent,
@@ -206,19 +158,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     ) {
         self.authorSignature = authorSignature
         self.autoDeleteIn = autoDeleteIn
-        self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
-        self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
-        self.canBeEdited = canBeEdited
-        self.canBeForwarded = canBeForwarded
-        self.canBeRepliedInAnotherChat = canBeRepliedInAnotherChat
         self.canBeSaved = canBeSaved
-        self.canGetAddedReactions = canGetAddedReactions
-        self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
-        self.canGetMessageThread = canGetMessageThread
-        self.canGetReadDate = canGetReadDate
-        self.canGetStatistics = canGetStatistics
-        self.canGetViewers = canGetViewers
-        self.canReportReactions = canReportReactions
         self.chatId = chatId
         self.containsUnreadMention = containsUnreadMention
         self.content = content

@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Represents a list of Telegram star transactions
+/// Represents a list of Telegram Star transactions
 public struct StarTransactions: Codable, Equatable, Hashable {
 
     /// The offset for the next request. If empty, then there are no more results
     public let nextOffset: String
 
-    /// The amount of owned Telegram stars
+    /// The amount of owned Telegram Stars
     public let starCount: Int64
 
-    /// List of transactions with Telegram stars
+    /// List of transactions with Telegram Stars
     public let transactions: [StarTransaction]
 
 

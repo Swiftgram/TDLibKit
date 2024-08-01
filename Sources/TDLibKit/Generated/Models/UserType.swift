@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -68,6 +68,9 @@ public indirect enum UserType: Codable, Equatable, Hashable {
 /// A bot (see https://core.telegram.org/bots)
 public struct UserTypeBot: Codable, Equatable, Hashable {
 
+    /// The number of recently active users of the bot
+    public let activeUserCount: Int
+
     /// True, if the bot can be added to attachment or side menu
     public let canBeAddedToAttachmentMenu: Bool
 
@@ -83,6 +86,9 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
     public let canReadAllGroupMessages: Bool
 
+    /// True, if the bot has the main Web App
+    public let hasMainWebApp: Bool
+
     /// Placeholder for inline queries (displayed on the application input field)
     public let inlineQueryPlaceholder: String
 
@@ -94,20 +100,24 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
 
 
     public init(
+        activeUserCount: Int,
         canBeAddedToAttachmentMenu: Bool,
         canBeEdited: Bool,
         canConnectToBusiness: Bool,
         canJoinGroups: Bool,
         canReadAllGroupMessages: Bool,
+        hasMainWebApp: Bool,
         inlineQueryPlaceholder: String,
         isInline: Bool,
         needLocation: Bool
     ) {
+        self.activeUserCount = activeUserCount
         self.canBeAddedToAttachmentMenu = canBeAddedToAttachmentMenu
         self.canBeEdited = canBeEdited
         self.canConnectToBusiness = canConnectToBusiness
         self.canJoinGroups = canJoinGroups
         self.canReadAllGroupMessages = canReadAllGroupMessages
+        self.hasMainWebApp = hasMainWebApp
         self.inlineQueryPlaceholder = inlineQueryPlaceholder
         self.isInline = isInline
         self.needLocation = needLocation

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Describes type of clickable rectangle area on a story media
+/// Describes type of clickable area on a story media
 public indirect enum StoryAreaType: Codable, Equatable, Hashable {
 
     /// An area pointing to a location
@@ -28,6 +28,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a HTTP or tg:// link
     case storyAreaTypeLink(StoryAreaTypeLink)
 
+    /// An area with information about weather
+    case storyAreaTypeWeather(StoryAreaTypeWeather)
+
 
     private enum Kind: String, Codable {
         case storyAreaTypeLocation
@@ -35,6 +38,7 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
         case storyAreaTypeSuggestedReaction
         case storyAreaTypeMessage
         case storyAreaTypeLink
+        case storyAreaTypeWeather
     }
 
     public init(from decoder: Decoder) throws {
@@ -56,6 +60,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
         case .storyAreaTypeLink:
             let value = try StoryAreaTypeLink(from: decoder)
             self = .storyAreaTypeLink(value)
+        case .storyAreaTypeWeather:
+            let value = try StoryAreaTypeWeather(from: decoder)
+            self = .storyAreaTypeWeather(value)
         }
     }
 
@@ -76,6 +83,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storyAreaTypeLink(let value):
             try container.encode(Kind.storyAreaTypeLink, forKey: .type)
+            try value.encode(to: encoder)
+        case .storyAreaTypeWeather(let value):
+            try container.encode(Kind.storyAreaTypeWeather, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -169,6 +179,30 @@ public struct StoryAreaTypeLink: Codable, Equatable, Hashable {
 
     public init(url: String) {
         self.url = url
+    }
+}
+
+/// An area with information about weather
+public struct StoryAreaTypeWeather: Codable, Equatable, Hashable {
+
+    /// A color of the area background in the ARGB format
+    public let backgroundColor: Int
+
+    /// Emoji representing the weather
+    public let emoji: String
+
+    /// Temperature, in degree Celsius
+    public let temperature: Double
+
+
+    public init(
+        backgroundColor: Int,
+        emoji: String,
+        temperature: Double
+    ) {
+        self.backgroundColor = backgroundColor
+        self.emoji = emoji
+        self.temperature = temperature
     }
 }
 

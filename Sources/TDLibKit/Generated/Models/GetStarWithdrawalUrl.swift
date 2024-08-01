@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Returns a URL for Telegram star withdrawal
+/// Returns a URL for Telegram Star withdrawal
 public struct GetStarWithdrawalUrl: Codable, Equatable, Hashable {
 
-    /// Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
     public let ownerId: MessageSender?
 
     /// The 2-step verification password of the current user
     public let password: String?
 
-    /// The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
     public let starCount: Int64?
 
 

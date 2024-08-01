@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct MessageThreadInfo: Codable, Equatable, Hashable {
     /// Message thread identifier, unique within the chat
     public let messageThreadId: Int64
 
-    /// The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    /// The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     public let messages: [Message]
 
     /// Information about the message thread; may be null for forum topic threads

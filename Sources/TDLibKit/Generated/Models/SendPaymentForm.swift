@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Sends a filled-out payment form to the bot for final verification
 public struct SendPaymentForm: Codable, Equatable, Hashable {
 
-    /// The credentials chosen by user for payment; pass null for a payment in Telegram stars
+    /// The credentials chosen by user for payment; pass null for a payment in Telegram Stars
     public let credentials: InputCredentials?
 
     /// The invoice

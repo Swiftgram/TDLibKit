@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
@@ -380,7 +380,7 @@ public struct InputMessagePaidMedia: Codable, Equatable, Hashable {
     /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
-    /// The number of stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
+    /// The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
     public let starCount: Int64
 
 
@@ -856,7 +856,7 @@ public struct InputMessageForwarded: Codable, Equatable, Hashable {
     /// True, if a game message is being shared from a launched game; applies only to game messages
     public let inGameShare: Bool
 
-    /// Identifier of the message to forward. A message can be forwarded only if message.can_be_forwarded
+    /// Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
     public let messageId: Int64
 
 

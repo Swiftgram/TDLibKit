@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.33-97ded010
-//  https://github.com/tdlib/td/tree/97ded010
+//  Based on TDLib 1.8.34-a24af099
+//  https://github.com/tdlib/td/tree/a24af099
 //
 
 import Foundation
 
 
-/// Describes direction of a transaction with Telegram stars
+/// Describes direction of a transaction with Telegram Stars
 public indirect enum StarTransactionDirection: Codable, Equatable, Hashable {
 
-    /// The transaction is incoming and increases the number of owned Telegram stars
+    /// The transaction is incoming and increases the number of owned Telegram Stars
     case starTransactionDirectionIncoming
 
-    /// The transaction is outgoing and decreases the number of owned Telegram stars
+    /// The transaction is outgoing and decreases the number of owned Telegram Stars
     case starTransactionDirectionOutgoing
 
 
