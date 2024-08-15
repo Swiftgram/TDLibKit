@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public indirect enum ReactionType: Codable, Equatable, Hashable {
     /// A reaction with a custom emoji
     case reactionTypeCustomEmoji(ReactionTypeCustomEmoji)
 
+    /// The paid reaction in a channel chat
+    case reactionTypePaid
+
 
     private enum Kind: String, Codable {
         case reactionTypeEmoji
         case reactionTypeCustomEmoji
+        case reactionTypePaid
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,8 @@ public indirect enum ReactionType: Codable, Equatable, Hashable {
         case .reactionTypeCustomEmoji:
             let value = try ReactionTypeCustomEmoji(from: decoder)
             self = .reactionTypeCustomEmoji(value)
+        case .reactionTypePaid:
+            self = .reactionTypePaid
         }
     }
 
@@ -47,6 +53,8 @@ public indirect enum ReactionType: Codable, Equatable, Hashable {
         case .reactionTypeCustomEmoji(let value):
             try container.encode(Kind.reactionTypeCustomEmoji, forKey: .type)
             try value.encode(to: encoder)
+        case .reactionTypePaid:
+            try container.encode(Kind.reactionTypePaid, forKey: .type)
         }
     }
 }

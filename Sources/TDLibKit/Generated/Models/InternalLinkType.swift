@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
     case internalLinkTypeActiveSessions
 
-    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     case internalLinkTypeAttachmentMenuBot(InternalLinkTypeAttachmentMenuBot)
 
     /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
@@ -38,7 +38,10 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
     case internalLinkTypeBusinessChat(InternalLinkTypeBusinessChat)
 
-    /// The link is a link to the change phone number section of the app
+    /// The link is a link to the Telegram Star purchase section of the application
+    case internalLinkTypeBuyStars(InternalLinkTypeBuyStars)
+
+    /// The link is a link to the change phone number section of the application
     case internalLinkTypeChangePhoneNumber
 
     /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
@@ -47,16 +50,16 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
     case internalLinkTypeChatFolderInvite(InternalLinkTypeChatFolderInvite)
 
-    /// The link is a link to the folder section of the app settings
+    /// The link is a link to the folder section of the application settings
     case internalLinkTypeChatFolderSettings
 
     /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
-    /// The link is a link to the default message auto-delete timer settings section of the app settings
+    /// The link is a link to the default message auto-delete timer settings section of the application settings
     case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
 
-    /// The link is a link to the edit profile section of the app settings
+    /// The link is a link to the edit profile section of the application settings
     case internalLinkTypeEditProfileSettings
 
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
@@ -71,10 +74,10 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
-    /// The link is a link to the language section of the app settings
+    /// The link is a link to the language section of the application settings
     case internalLinkTypeLanguageSettings
 
-    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
     case internalLinkTypeMainWebApp(InternalLinkTypeMainWebApp)
 
     /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
@@ -98,7 +101,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
     case internalLinkTypePremiumGiftCode(InternalLinkTypePremiumGiftCode)
 
-    /// The link is a link to the privacy and security section of the app settings
+    /// The link is a link to the privacy and security section of the application settings
     case internalLinkTypePrivacyAndSecuritySettings
 
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
@@ -125,7 +128,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
-    /// The link is a link to the theme section of the app settings
+    /// The link is a link to the theme section of the application settings
     case internalLinkTypeThemeSettings
 
     /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
@@ -143,7 +146,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
-    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     case internalLinkTypeWebApp(InternalLinkTypeWebApp)
 
 
@@ -156,6 +159,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
         case internalLinkTypeBusinessChat
+        case internalLinkTypeBuyStars
         case internalLinkTypeChangePhoneNumber
         case internalLinkTypeChatBoost
         case internalLinkTypeChatFolderInvite
@@ -221,6 +225,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBusinessChat:
             let value = try InternalLinkTypeBusinessChat(from: decoder)
             self = .internalLinkTypeBusinessChat(value)
+        case .internalLinkTypeBuyStars:
+            let value = try InternalLinkTypeBuyStars(from: decoder)
+            self = .internalLinkTypeBuyStars(value)
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
         case .internalLinkTypeChatBoost:
@@ -347,6 +354,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBusinessChat(let value):
             try container.encode(Kind.internalLinkTypeBusinessChat, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeBuyStars(let value):
+            try container.encode(Kind.internalLinkTypeBuyStars, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
         case .internalLinkTypeChatBoost(let value):
@@ -448,7 +458,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
 public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Username of the bot
@@ -575,6 +585,25 @@ public struct InternalLinkTypeBusinessChat: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to the Telegram Star purchase section of the application
+public struct InternalLinkTypeBuyStars: Codable, Equatable, Hashable {
+
+    /// Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+    public let purpose: String
+
+    /// The number of Telegram Stars that must be owned by the user
+    public let starCount: Int64
+
+
+    public init(
+        purpose: String,
+        starCount: Int64
+    ) {
+        self.purpose = purpose
+        self.starCount = starCount
+    }
+}
+
 /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
 public struct InternalLinkTypeChatBoost: Codable, Equatable, Hashable {
 
@@ -673,7 +702,7 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
 public struct InternalLinkTypeMainWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot
@@ -987,7 +1016,7 @@ public struct InternalLinkTypeVideoChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
 public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the Web App

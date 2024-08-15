@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -45,6 +45,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// Information about the initial message sender; may be null if none or unknown
     public let forwardInfo: MessageForwardInfo?
+
+    /// True, if media content of the message must be hidden with 18+ spoiler
+    public let hasSensitiveContent: Bool
 
     /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     public let hasTimestampedMedia: Bool
@@ -131,6 +134,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         effectId: TdInt64,
         factCheck: FactCheck?,
         forwardInfo: MessageForwardInfo?,
+        hasSensitiveContent: Bool,
         hasTimestampedMedia: Bool,
         id: Int64,
         importInfo: MessageImportInfo?,
@@ -167,6 +171,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.effectId = effectId
         self.factCheck = factCheck
         self.forwardInfo = forwardInfo
+        self.hasSensitiveContent = hasSensitiveContent
         self.hasTimestampedMedia = hasTimestampedMedia
         self.id = id
         self.importInfo = importInfo

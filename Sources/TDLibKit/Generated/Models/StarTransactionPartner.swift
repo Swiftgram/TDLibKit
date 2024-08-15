@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
     /// The transaction is a transaction with a bot
     case starTransactionPartnerBot(StarTransactionPartnerBot)
 
+    /// The transaction is a transaction with a business account
+    case starTransactionPartnerBusiness(StarTransactionPartnerBusiness)
+
     /// The transaction is a transaction with a channel chat
     case starTransactionPartnerChannel(StarTransactionPartnerChannel)
 
@@ -48,6 +51,7 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case starTransactionPartnerFragment
         case starTransactionPartnerTelegramAds
         case starTransactionPartnerBot
+        case starTransactionPartnerBusiness
         case starTransactionPartnerChannel
         case starTransactionPartnerUser
         case starTransactionPartnerUnsupported
@@ -71,6 +75,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case .starTransactionPartnerBot:
             let value = try StarTransactionPartnerBot(from: decoder)
             self = .starTransactionPartnerBot(value)
+        case .starTransactionPartnerBusiness:
+            let value = try StarTransactionPartnerBusiness(from: decoder)
+            self = .starTransactionPartnerBusiness(value)
         case .starTransactionPartnerChannel:
             let value = try StarTransactionPartnerChannel(from: decoder)
             self = .starTransactionPartnerChannel(value)
@@ -99,6 +106,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case .starTransactionPartnerBot(let value):
             try container.encode(Kind.starTransactionPartnerBot, forKey: .type)
             try value.encode(to: encoder)
+        case .starTransactionPartnerBusiness(let value):
+            try container.encode(Kind.starTransactionPartnerBusiness, forKey: .type)
+            try value.encode(to: encoder)
         case .starTransactionPartnerChannel(let value):
             try container.encode(Kind.starTransactionPartnerChannel, forKey: .type)
             try value.encode(to: encoder)
@@ -126,23 +136,37 @@ public struct StarTransactionPartnerFragment: Codable, Equatable, Hashable {
 /// The transaction is a transaction with a bot
 public struct StarTransactionPartnerBot: Codable, Equatable, Hashable {
 
-    /// Invoice payload; for bots only
-    public let invoicePayload: Data
+    /// Purpose of the transaction
+    public let purpose: BotTransactionPurpose
 
-    /// Information about the bought product; may be null if not applicable
-    public let productInfo: ProductInfo?
-
-    /// Identifier of the bot for the user, or the user for the bot
+    /// Identifier of the bot
     public let userId: Int64
 
 
     public init(
-        invoicePayload: Data,
-        productInfo: ProductInfo?,
+        purpose: BotTransactionPurpose,
         userId: Int64
     ) {
-        self.invoicePayload = invoicePayload
-        self.productInfo = productInfo
+        self.purpose = purpose
+        self.userId = userId
+    }
+}
+
+/// The transaction is a transaction with a business account
+public struct StarTransactionPartnerBusiness: Codable, Equatable, Hashable {
+
+    /// The bought media if the trancastion wasn't refunded
+    public let media: [PaidMedia]
+
+    /// Identifier of the business account user
+    public let userId: Int64
+
+
+    public init(
+        media: [PaidMedia],
+        userId: Int64
+    ) {
+        self.media = media
         self.userId = userId
     }
 }
@@ -153,21 +177,16 @@ public struct StarTransactionPartnerChannel: Codable, Equatable, Hashable {
     /// Identifier of the chat
     public let chatId: Int64
 
-    /// Information about the bought media
-    public let media: [PaidMedia]
-
-    /// Identifier of the corresponding message with paid media; can be an identifier of a deleted message
-    public let paidMediaMessageId: Int64
+    /// Purpose of the transaction
+    public let purpose: ChannelTransactionPurpose
 
 
     public init(
         chatId: Int64,
-        media: [PaidMedia],
-        paidMediaMessageId: Int64
+        purpose: ChannelTransactionPurpose
     ) {
         self.chatId = chatId
-        self.media = media
-        self.paidMediaMessageId = paidMediaMessageId
+        self.purpose = purpose
     }
 }
 

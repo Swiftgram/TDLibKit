@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     public let hasLocation: Bool
+
+    /// True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler
+    public let hasSensitiveContent: Bool
 
     /// True, if the supergroup or channel has unread non-expired stories available to the current user
     public let hasUnreadActiveStories: Bool
@@ -67,7 +70,10 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
     public let restrictionReason: String
 
-    /// True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
+    /// True, if messages sent to the channel have information about the sender user. This field is only applicable to channels
+    public let showMessageSender: Bool
+
+    /// True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
     public let signMessages: Bool
 
     /// Status of the current user in the supergroup or channel; custom title will always be empty
@@ -83,6 +89,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         hasActiveStories: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
+        hasSensitiveContent: Bool,
         hasUnreadActiveStories: Bool,
         id: Int64,
         isBroadcastGroup: Bool,
@@ -96,6 +103,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         joinToSendMessages: Bool,
         memberCount: Int,
         restrictionReason: String,
+        showMessageSender: Bool,
         signMessages: Bool,
         status: ChatMemberStatus,
         usernames: Usernames?
@@ -105,6 +113,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.hasActiveStories = hasActiveStories
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation
+        self.hasSensitiveContent = hasSensitiveContent
         self.hasUnreadActiveStories = hasUnreadActiveStories
         self.id = id
         self.isBroadcastGroup = isBroadcastGroup
@@ -118,6 +127,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.joinToSendMessages = joinToSendMessages
         self.memberCount = memberCount
         self.restrictionReason = restrictionReason
+        self.showMessageSender = showMessageSender
         self.signMessages = signMessages
         self.status = status
         self.usernames = usernames

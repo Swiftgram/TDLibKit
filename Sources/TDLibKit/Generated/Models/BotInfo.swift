@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -48,6 +48,9 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// Photo shown in the chat with the bot if the chat is empty; may be null
     public let photo: Photo?
 
+    /// The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
+    public let privacyPolicyUrl: String
+
     /// The text that is shown on the bot's profile page and is sent together with the link when users share the bot
     public let shortDescription: String
 
@@ -65,6 +68,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         hasMediaPreviews: Bool,
         menuButton: BotMenuButton?,
         photo: Photo?,
+        privacyPolicyUrl: String,
         shortDescription: String
     ) {
         self.animation = animation
@@ -79,6 +83,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         self.hasMediaPreviews = hasMediaPreviews
         self.menuButton = menuButton
         self.photo = photo
+        self.privacyPolicyUrl = privacyPolicyUrl
         self.shortDescription = shortDescription
     }
 }

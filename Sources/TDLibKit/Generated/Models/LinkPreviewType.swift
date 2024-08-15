@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -64,7 +64,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a shareable chat folder
     case linkPreviewTypeShareableChatFolder
 
-    /// The link is a link to a sticker message
+    /// The link is a link to a sticker
     case linkPreviewTypeSticker(LinkPreviewTypeSticker)
 
     /// The link is a link to a sticker set
@@ -424,11 +424,18 @@ public struct LinkPreviewTypeAudio: Codable, Equatable, Hashable {
 /// The link is a link to a background. Link preview title and description are available only for filled backgrounds
 public struct LinkPreviewTypeBackground: Codable, Equatable, Hashable {
 
+    /// Type of the background; may be null if unknown
+    public let backgroundType: BackgroundType?
+
     /// Document with the background; may be null for filled backgrounds
     public let document: Document?
 
 
-    public init(document: Document?) {
+    public init(
+        backgroundType: BackgroundType?,
+        document: Document?
+    ) {
+        self.backgroundType = backgroundType
         self.document = document
     }
 }
@@ -624,10 +631,10 @@ public struct LinkPreviewTypePhoto: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a sticker message
+/// The link is a link to a sticker
 public struct LinkPreviewTypeSticker: Codable, Equatable, Hashable {
 
-    /// The sticker
+    /// The sticker. It can be an arbitrary WEBP image and can have dimensions bigger than 512
     public let sticker: Sticker
 
 

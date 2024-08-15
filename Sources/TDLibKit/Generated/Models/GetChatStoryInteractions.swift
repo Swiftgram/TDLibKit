@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetChatStoryInteractions: Codable, Equatable, Hashable {
     /// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
     public let preferForwards: Bool?
 
-    /// Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions
+    /// Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
     public let reactionType: ReactionType?
 
     /// Story identifier

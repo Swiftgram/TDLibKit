@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -48,6 +48,9 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
     /// Chat photo; may be null
     public let photo: ChatPhotoInfo?
 
+    /// Information about subscription plan that must be paid by the user to use the link; may be null if the link doesn't require subscription
+    public let subscriptionInfo: ChatInviteLinkSubscriptionInfo?
+
     /// Title of the chat
     public let title: String
 
@@ -68,6 +71,7 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         memberCount: Int,
         memberUserIds: [Int64],
         photo: ChatPhotoInfo?,
+        subscriptionInfo: ChatInviteLinkSubscriptionInfo?,
         title: String,
         type: InviteLinkChatType
     ) {
@@ -83,6 +87,7 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         self.memberCount = memberCount
         self.memberUserIds = memberUserIds
         self.photo = photo
+        self.subscriptionInfo = subscriptionInfo
         self.title = title
         self.type = type
     }

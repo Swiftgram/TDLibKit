@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -45,9 +45,6 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
     /// True, if scheduling state of the message can be edited
     public let canEditSchedulingState: Bool
-
-    /// True, if the list of added reactions is available using getMessageAddedReactions
-    public let canGetAddedReactions: Bool
 
     /// True, if code for message embedding can be received using getMessageEmbeddingCode
     public let canGetEmbeddingCode: Bool
@@ -101,7 +98,6 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canBeSaved: Bool,
         canBeSharedInStory: Bool,
         canEditSchedulingState: Bool,
-        canGetAddedReactions: Bool,
         canGetEmbeddingCode: Bool,
         canGetLink: Bool,
         canGetMediaTimestampLinks: Bool,
@@ -127,7 +123,6 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canBeSaved = canBeSaved
         self.canBeSharedInStory = canBeSharedInStory
         self.canEditSchedulingState = canEditSchedulingState
-        self.canGetAddedReactions = canGetAddedReactions
         self.canGetEmbeddingCode = canGetEmbeddingCode
         self.canGetLink = canGetLink
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks

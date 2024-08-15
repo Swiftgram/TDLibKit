@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -20,7 +20,7 @@ public indirect enum ChatMemberStatus: Codable, Equatable, Hashable {
     case chatMemberStatusAdministrator(ChatMemberStatusAdministrator)
 
     /// The user is a member of the chat, without any additional privileges or restrictions
-    case chatMemberStatusMember
+    case chatMemberStatusMember(ChatMemberStatusMember)
 
     /// The user is under certain restrictions in the chat. Not supported in basic groups and channels
     case chatMemberStatusRestricted(ChatMemberStatusRestricted)
@@ -52,7 +52,8 @@ public indirect enum ChatMemberStatus: Codable, Equatable, Hashable {
             let value = try ChatMemberStatusAdministrator(from: decoder)
             self = .chatMemberStatusAdministrator(value)
         case .chatMemberStatusMember:
-            self = .chatMemberStatusMember
+            let value = try ChatMemberStatusMember(from: decoder)
+            self = .chatMemberStatusMember(value)
         case .chatMemberStatusRestricted:
             let value = try ChatMemberStatusRestricted(from: decoder)
             self = .chatMemberStatusRestricted(value)
@@ -73,8 +74,9 @@ public indirect enum ChatMemberStatus: Codable, Equatable, Hashable {
         case .chatMemberStatusAdministrator(let value):
             try container.encode(Kind.chatMemberStatusAdministrator, forKey: .type)
             try value.encode(to: encoder)
-        case .chatMemberStatusMember:
+        case .chatMemberStatusMember(let value):
             try container.encode(Kind.chatMemberStatusMember, forKey: .type)
+            try value.encode(to: encoder)
         case .chatMemberStatusRestricted(let value):
             try container.encode(Kind.chatMemberStatusRestricted, forKey: .type)
             try value.encode(to: encoder)
@@ -132,6 +134,18 @@ public struct ChatMemberStatusAdministrator: Codable, Equatable, Hashable {
         self.canBeEdited = canBeEdited
         self.customTitle = customTitle
         self.rights = rights
+    }
+}
+
+/// The user is a member of the chat, without any additional privileges or restrictions
+public struct ChatMemberStatusMember: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) when the user will be removed from the chat because of the expired subscription; 0 if never. Ignored in setChatMemberStatus
+    public let memberUntilDate: Int
+
+
+    public init(memberUntilDate: Int) {
+        self.memberUntilDate = memberUntilDate
     }
 }
 

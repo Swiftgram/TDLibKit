@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct GetChatInviteLinkMembers: Codable, Equatable, Hashable {
     /// A chat member from which to return next chat members; pass null to get results from the beginning
     public let offsetMember: ChatInviteLinkMember?
 
+    /// Pass true if the link is a subscription link and only members with expired subscription must be returned
+    public let onlyWithExpiredSubscription: Bool?
+
 
     public init(
         chatId: Int64?,
         inviteLink: String?,
         limit: Int?,
-        offsetMember: ChatInviteLinkMember?
+        offsetMember: ChatInviteLinkMember?,
+        onlyWithExpiredSubscription: Bool?
     ) {
         self.chatId = chatId
         self.inviteLink = inviteLink
         self.limit = limit
         self.offsetMember = offsetMember
+        self.onlyWithExpiredSubscription = onlyWithExpiredSubscription
     }
 }
 

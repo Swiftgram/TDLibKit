@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -25,12 +25,16 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
     /// The user buying Telegram Stars for other users
     case telegramPaymentPurposeGiftedStars(TelegramPaymentPurposeGiftedStars)
 
+    /// The user joins a chat and subscribes to regular payments in Telegram Stars
+    case telegramPaymentPurposeJoinChat(TelegramPaymentPurposeJoinChat)
+
 
     private enum Kind: String, Codable {
         case telegramPaymentPurposePremiumGiftCodes
         case telegramPaymentPurposePremiumGiveaway
         case telegramPaymentPurposeStars
         case telegramPaymentPurposeGiftedStars
+        case telegramPaymentPurposeJoinChat
     }
 
     public init(from decoder: Decoder) throws {
@@ -49,6 +53,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
         case .telegramPaymentPurposeGiftedStars:
             let value = try TelegramPaymentPurposeGiftedStars(from: decoder)
             self = .telegramPaymentPurposeGiftedStars(value)
+        case .telegramPaymentPurposeJoinChat:
+            let value = try TelegramPaymentPurposeJoinChat(from: decoder)
+            self = .telegramPaymentPurposeJoinChat(value)
         }
     }
 
@@ -66,6 +73,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .telegramPaymentPurposeGiftedStars(let value):
             try container.encode(Kind.telegramPaymentPurposeGiftedStars, forKey: .type)
+            try value.encode(to: encoder)
+        case .telegramPaymentPurposeJoinChat(let value):
+            try container.encode(Kind.telegramPaymentPurposeJoinChat, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -189,6 +199,18 @@ public struct TelegramPaymentPurposeGiftedStars: Codable, Equatable, Hashable {
         self.currency = currency
         self.starCount = starCount
         self.userId = userId
+    }
+}
+
+/// The user joins a chat and subscribes to regular payments in Telegram Stars
+public struct TelegramPaymentPurposeJoinChat: Codable, Equatable, Hashable {
+
+    /// Invite link to use
+    public let inviteLink: String
+
+
+    public init(inviteLink: String) {
+        self.inviteLink = inviteLink
     }
 }
 

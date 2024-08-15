@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -367,6 +367,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
 
+    /// The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+    case updateActiveLiveLocationMessages(UpdateActiveLiveLocationMessages)
+
     /// The number of Telegram Stars owned by the current user has changed
     case updateOwnedStarCount(UpdateOwnedStarCount)
 
@@ -580,6 +583,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateAvailableMessageEffects
         case updateDefaultReactionType
         case updateSavedMessagesTags
+        case updateActiveLiveLocationMessages
         case updateOwnedStarCount
         case updateChatRevenueAmount
         case updateStarRevenueStatus
@@ -971,6 +975,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSavedMessagesTags:
             let value = try UpdateSavedMessagesTags(from: decoder)
             self = .updateSavedMessagesTags(value)
+        case .updateActiveLiveLocationMessages:
+            let value = try UpdateActiveLiveLocationMessages(from: decoder)
+            self = .updateActiveLiveLocationMessages(value)
         case .updateOwnedStarCount:
             let value = try UpdateOwnedStarCount(from: decoder)
             self = .updateOwnedStarCount(value)
@@ -1423,6 +1430,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateSavedMessagesTags(let value):
             try container.encode(Kind.updateSavedMessagesTags, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateActiveLiveLocationMessages(let value):
+            try container.encode(Kind.updateActiveLiveLocationMessages, forKey: .type)
             try value.encode(to: encoder)
         case .updateOwnedStarCount(let value):
             try container.encode(Kind.updateOwnedStarCount, forKey: .type)
@@ -3736,6 +3746,18 @@ public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
     ) {
         self.savedMessagesTopicId = savedMessagesTopicId
         self.tags = tags
+    }
+}
+
+/// The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+public struct UpdateActiveLiveLocationMessages: Codable, Equatable, Hashable {
+
+    /// The list of messages with active live locations
+    public let messages: [Message]
+
+
+    public init(messages: [Message]) {
+        self.messages = messages
     }
 }
 

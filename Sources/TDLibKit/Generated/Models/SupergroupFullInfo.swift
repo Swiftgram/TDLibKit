@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// List of commands of bots in the group
     public let botCommands: [BotCommands]
+
+    /// True, if paid reaction can be enabled in the channel chat; for channels only
+    public let canEnablePaidReaction: Bool
 
     /// True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
     public let canGetMembers: Bool
@@ -113,6 +116,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         administratorCount: Int,
         bannedCount: Int,
         botCommands: [BotCommands],
+        canEnablePaidReaction: Bool,
         canGetMembers: Bool,
         canGetRevenueStatistics: Bool,
         canGetStarRevenueStatistics: Bool,
@@ -146,6 +150,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.administratorCount = administratorCount
         self.bannedCount = bannedCount
         self.botCommands = botCommands
+        self.canEnablePaidReaction = canEnablePaidReaction
         self.canGetMembers = canGetMembers
         self.canGetRevenueStatistics = canGetRevenueStatistics
         self.canGetStarRevenueStatistics = canGetStarRevenueStatistics

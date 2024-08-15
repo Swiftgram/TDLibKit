@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -3186,21 +3186,6 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
-    /// - Returns: All active live locations that need to be updated by the application
-    public func getActiveLiveLocationMessages(completion: @escaping (Result<Messages, Swift.Error>) -> Void) throws {
-        let query = GetActiveLiveLocationMessages()
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
-    /// - Returns: All active live locations that need to be updated by the application
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getActiveLiveLocationMessages() async throws -> Messages {
-        let query = GetActiveLiveLocationMessages()
-        return try await self.execute(query: query)
-    }
-
     /// Returns the last message sent in a chat no later than the specified date
     /// - Parameter chatId: Chat identifier
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
@@ -6272,7 +6257,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionType: Type of the reaction to add
+    /// - Parameter reactionType: Type of the reaction to add. Use addPaidMessageReaction instead to add the paid reaction
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     public func addMessageReaction(
         chatId: Int64?,
@@ -6296,7 +6281,7 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionType: Type of the reaction to add
+    /// - Parameter reactionType: Type of the reaction to add. Use addPaidMessageReaction instead to add the paid reaction
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -6320,7 +6305,7 @@ public final class TdApi {
     /// Removes a reaction from a message. A chosen reaction can always be removed
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionType: Type of the reaction to remove
+    /// - Parameter reactionType: Type of the reaction to remove. The paid reaction can't be removed
     public func removeMessageReaction(
         chatId: Int64?,
         messageId: Int64?,
@@ -6338,7 +6323,7 @@ public final class TdApi {
     /// Removes a reaction from a message. A chosen reaction can always be removed
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionType: Type of the reaction to remove
+    /// - Parameter reactionType: Type of the reaction to remove. The paid reaction can't be removed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func removeMessageReaction(
@@ -6350,6 +6335,117 @@ public final class TdApi {
             chatId: chatId,
             messageId: messageId,
             reactionType: reactionType
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter starCount: Number of Telegram Stars to be used for the reaction; 1-getOption("paid_reaction_star_count_max")
+    public func addPaidMessageReaction(
+        chatId: Int64?,
+        isAnonymous: Bool?,
+        messageId: Int64?,
+        starCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddPaidMessageReaction(
+            chatId: chatId,
+            isAnonymous: isAnonymous,
+            messageId: messageId,
+            starCount: starCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter starCount: Number of Telegram Stars to be used for the reaction; 1-getOption("paid_reaction_star_count_max")
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func addPaidMessageReaction(
+        chatId: Int64?,
+        isAnonymous: Bool?,
+        messageId: Int64?,
+        starCount: Int64?
+    ) async throws -> Ok {
+        let query = AddPaidMessageReaction(
+            chatId: chatId,
+            isAnonymous: isAnonymous,
+            messageId: messageId,
+            starCount: starCount
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes all pending paid reactions on a message. Can be called within 5 seconds after the last addPaidMessageReaction call
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    public func removePendingPaidMessageReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemovePendingPaidMessageReactions(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes all pending paid reactions on a message. Can be called within 5 seconds after the last addPaidMessageReaction call
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func removePendingPaidMessageReactions(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = RemovePendingPaidMessageReactions(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes whether the paid message reaction of the user to a message is anonymous. The message must have paid reaction added by the user
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
+    /// - Parameter messageId: Identifier of the message
+    public func togglePaidMessageReactionIsAnonymous(
+        chatId: Int64?,
+        isAnonymous: Bool?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = TogglePaidMessageReactionIsAnonymous(
+            chatId: chatId,
+            isAnonymous: isAnonymous,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes whether the paid message reaction of the user to a message is anonymous. The message must have paid reaction added by the user
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func togglePaidMessageReactionIsAnonymous(
+        chatId: Int64?,
+        isAnonymous: Bool?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = TogglePaidMessageReactionIsAnonymous(
+            chatId: chatId,
+            isAnonymous: isAnonymous,
+            messageId: messageId
         )
         return try await self.execute(query: query)
     }
@@ -6400,9 +6496,9 @@ public final class TdApi {
     /// Returns reactions added for a message, along with their sender
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
-    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_get_added_reactions to check whether added reactions can be received for the message
+    /// - Parameter messageId: Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions
+    /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
     /// - Returns: Reactions added for a message, along with their sender
     public func getMessageAddedReactions(
         chatId: Int64?,
@@ -6425,9 +6521,9 @@ public final class TdApi {
     /// Returns reactions added for a message, along with their sender
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
-    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_get_added_reactions to check whether added reactions can be received for the message
+    /// - Parameter messageId: Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions
+    /// - Parameter reactionType: Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported
     /// - Returns: Reactions added for a message, along with their sender
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageAddedReactions(
@@ -6448,7 +6544,7 @@ public final class TdApi {
     }
 
     /// Changes type of default reaction for the current user
-    /// - Parameter reactionType: New type of the default reaction
+    /// - Parameter reactionType: New type of the default reaction. The paid reaction can't be set as default
     public func setDefaultReactionType(
         reactionType: ReactionType?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -6460,7 +6556,7 @@ public final class TdApi {
     }
 
     /// Changes type of default reaction for the current user
-    /// - Parameter reactionType: New type of the default reaction
+    /// - Parameter reactionType: New type of the default reaction. The paid reaction can't be set as default
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setDefaultReactionType(reactionType: ReactionType?) async throws -> Ok {
@@ -11577,7 +11673,7 @@ public final class TdApi {
     }
 
     /// Changes chosen reaction on a story that has already been sent
-    /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+    /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
     /// - Parameter storyId: The identifier of the story
     /// - Parameter storySenderChatId: The identifier of the sender of the story
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
@@ -11598,7 +11694,7 @@ public final class TdApi {
     }
 
     /// Changes chosen reaction on a story that has already been sent
-    /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+    /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
     /// - Parameter storyId: The identifier of the story
     /// - Parameter storySenderChatId: The identifier of the sender of the story
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
@@ -11685,7 +11781,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of story interactions to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
-    /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions
+    /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
     /// - Parameter storyId: Story identifier
     /// - Parameter storySenderChatId: The identifier of the sender of the story
     /// - Returns: Interactions with a story posted in a chat
@@ -11713,7 +11809,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of story interactions to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
-    /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions
+    /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
     /// - Parameter storyId: Story identifier
     /// - Parameter storySenderChatId: The identifier of the sender of the story
     /// - Returns: Interactions with a story posted in a chat
@@ -13020,7 +13116,43 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// Creates a new subscription invite link for a channel chat. Requires can_invite_users right in the chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter name: Invite link name; 0-32 characters
+    /// - Parameter subscriptionPricing: Information about subscription plan that will be applied to the users joining the chat via the link. Subscription period must be 2592000 in production environment, and 60 or 300 if Telegram test environment is used
+    public func createChatSubscriptionInviteLink(
+        chatId: Int64?,
+        name: String?,
+        subscriptionPricing: StarSubscriptionPricing?,
+        completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateChatSubscriptionInviteLink(
+            chatId: chatId,
+            name: name,
+            subscriptionPricing: subscriptionPricing
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Creates a new subscription invite link for a channel chat. Requires can_invite_users right in the chat
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter name: Invite link name; 0-32 characters
+    /// - Parameter subscriptionPricing: Information about subscription plan that will be applied to the users joining the chat via the link. Subscription period must be 2592000 in production environment, and 60 or 300 if Telegram test environment is used
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createChatSubscriptionInviteLink(
+        chatId: Int64?,
+        name: String?,
+        subscriptionPricing: StarSubscriptionPricing?
+    ) async throws -> ChatInviteLink {
+        let query = CreateChatSubscriptionInviteLink(
+            chatId: chatId,
+            name: name,
+            subscriptionPricing: subscriptionPricing
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -13047,7 +13179,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -13069,6 +13201,42 @@ public final class TdApi {
             expirationDate: expirationDate,
             inviteLink: inviteLink,
             memberLimit: memberLimit,
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits a subscription invite link for a channel chat. Requires can_invite_users right in the chat for own links and owner privileges for other links
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter inviteLink: Invite link to be edited
+    /// - Parameter name: Invite link name; 0-32 characters
+    public func editChatSubscriptionInviteLink(
+        chatId: Int64?,
+        inviteLink: String?,
+        name: String?,
+        completion: @escaping (Result<ChatInviteLink, Swift.Error>) -> Void
+    ) throws {
+        let query = EditChatSubscriptionInviteLink(
+            chatId: chatId,
+            inviteLink: inviteLink,
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits a subscription invite link for a channel chat. Requires can_invite_users right in the chat for own links and owner privileges for other links
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter inviteLink: Invite link to be edited
+    /// - Parameter name: Invite link name; 0-32 characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editChatSubscriptionInviteLink(
+        chatId: Int64?,
+        inviteLink: String?,
+        name: String?
+    ) async throws -> ChatInviteLink {
+        let query = EditChatSubscriptionInviteLink(
+            chatId: chatId,
+            inviteLink: inviteLink,
             name: name
         )
         return try await self.execute(query: query)
@@ -13191,19 +13359,22 @@ public final class TdApi {
     /// - Parameter inviteLink: Invite link for which to return chat members
     /// - Parameter limit: The maximum number of chat members to return; up to 100
     /// - Parameter offsetMember: A chat member from which to return next chat members; pass null to get results from the beginning
+    /// - Parameter onlyWithExpiredSubscription: Pass true if the link is a subscription link and only members with expired subscription must be returned
     /// - Returns: Chat members joined a chat via an invite link
     public func getChatInviteLinkMembers(
         chatId: Int64?,
         inviteLink: String?,
         limit: Int?,
         offsetMember: ChatInviteLinkMember?,
+        onlyWithExpiredSubscription: Bool?,
         completion: @escaping (Result<ChatInviteLinkMembers, Swift.Error>) -> Void
     ) throws {
         let query = GetChatInviteLinkMembers(
             chatId: chatId,
             inviteLink: inviteLink,
             limit: limit,
-            offsetMember: offsetMember
+            offsetMember: offsetMember,
+            onlyWithExpiredSubscription: onlyWithExpiredSubscription
         )
         self.execute(query: query, completion: completion)
     }
@@ -13213,19 +13384,22 @@ public final class TdApi {
     /// - Parameter inviteLink: Invite link for which to return chat members
     /// - Parameter limit: The maximum number of chat members to return; up to 100
     /// - Parameter offsetMember: A chat member from which to return next chat members; pass null to get results from the beginning
+    /// - Parameter onlyWithExpiredSubscription: Pass true if the link is a subscription link and only members with expired subscription must be returned
     /// - Returns: Chat members joined a chat via an invite link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatInviteLinkMembers(
         chatId: Int64?,
         inviteLink: String?,
         limit: Int?,
-        offsetMember: ChatInviteLinkMember?
+        offsetMember: ChatInviteLinkMember?,
+        onlyWithExpiredSubscription: Bool?
     ) async throws -> ChatInviteLinkMembers {
         let query = GetChatInviteLinkMembers(
             chatId: chatId,
             inviteLink: inviteLink,
             limit: limit,
-            offsetMember: offsetMember
+            offsetMember: offsetMember,
+            onlyWithExpiredSubscription: onlyWithExpiredSubscription
         )
         return try await self.execute(query: query)
     }
@@ -18366,31 +18540,37 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info member right
+    /// Toggles whether sender signature or link to the account is added to sent messages in a channel; requires can_change_info member right
+    /// - Parameter showMessageSender: New value of show_message_sender
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     public func toggleSupergroupSignMessages(
+        showMessageSender: Bool?,
         signMessages: Bool?,
         supergroupId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSupergroupSignMessages(
+            showMessageSender: showMessageSender,
             signMessages: signMessages,
             supergroupId: supergroupId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info member right
+    /// Toggles whether sender signature or link to the account is added to sent messages in a channel; requires can_change_info member right
+    /// - Parameter showMessageSender: New value of show_message_sender
     /// - Parameter signMessages: New value of sign_messages
     /// - Parameter supergroupId: Identifier of the channel
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func toggleSupergroupSignMessages(
+        showMessageSender: Bool?,
         signMessages: Bool?,
         supergroupId: Int64?
     ) async throws -> Ok {
         let query = ToggleSupergroupSignMessages(
+            showMessageSender: showMessageSender,
             signMessages: signMessages,
             supergroupId: supergroupId
         )
@@ -22054,19 +22234,22 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Parameter subscriptionId: If non-empty, only transactions related to the Star Subscription will be returned
     /// - Returns: The list of Telegram Star transactions for the specified owner
     public func getStarTransactions(
         direction: StarTransactionDirection?,
         limit: Int?,
         offset: String?,
         ownerId: MessageSender?,
+        subscriptionId: String?,
         completion: @escaping (Result<StarTransactions, Swift.Error>) -> Void
     ) throws {
         let query = GetStarTransactions(
             direction: direction,
             limit: limit,
             offset: offset,
-            ownerId: ownerId
+            ownerId: ownerId,
+            subscriptionId: subscriptionId
         )
         self.execute(query: query, completion: completion)
     }
@@ -22076,19 +22259,54 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Parameter subscriptionId: If non-empty, only transactions related to the Star Subscription will be returned
     /// - Returns: The list of Telegram Star transactions for the specified owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStarTransactions(
         direction: StarTransactionDirection?,
         limit: Int?,
         offset: String?,
-        ownerId: MessageSender?
+        ownerId: MessageSender?,
+        subscriptionId: String?
     ) async throws -> StarTransactions {
         let query = GetStarTransactions(
             direction: direction,
             limit: limit,
             offset: offset,
-            ownerId: ownerId
+            ownerId: ownerId,
+            subscriptionId: subscriptionId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of Telegram Star subscriptions for the current user
+    /// - Parameter offset: Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyExpiring: Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+    /// - Returns: The list of Telegram Star subscriptions for the current user
+    public func getStarSubscriptions(
+        offset: String?,
+        onlyExpiring: Bool?,
+        completion: @escaping (Result<StarSubscriptions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStarSubscriptions(
+            offset: offset,
+            onlyExpiring: onlyExpiring
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of Telegram Star subscriptions for the current user
+    /// - Parameter offset: Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter onlyExpiring: Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+    /// - Returns: The list of Telegram Star subscriptions for the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStarSubscriptions(
+        offset: String?,
+        onlyExpiring: Bool?
+    ) async throws -> StarSubscriptions {
+        let query = GetStarSubscriptions(
+            offset: offset,
+            onlyExpiring: onlyExpiring
         )
         return try await self.execute(query: query)
     }
@@ -22186,6 +22404,60 @@ public final class TdApi {
             purchaseToken: purchaseToken,
             purpose: purpose,
             storeProductId: storeProductId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Cancels or reenables Telegram Star subscription to a channel
+    /// - Parameter isCanceled: New value of is_canceled
+    /// - Parameter subscriptionId: Identifier of the subscription to change
+    public func editStarSubscription(
+        isCanceled: Bool?,
+        subscriptionId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditStarSubscription(
+            isCanceled: isCanceled,
+            subscriptionId: subscriptionId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Cancels or reenables Telegram Star subscription to a channel
+    /// - Parameter isCanceled: New value of is_canceled
+    /// - Parameter subscriptionId: Identifier of the subscription to change
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func editStarSubscription(
+        isCanceled: Bool?,
+        subscriptionId: String?
+    ) async throws -> Ok {
+        let query = EditStarSubscription(
+            isCanceled: isCanceled,
+            subscriptionId: subscriptionId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Reuses an active subscription and joins the subscribed chat again
+    /// - Parameter subscriptionId: Identifier of the subscription
+    public func reuseStarSubscription(
+        subscriptionId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReuseStarSubscription(
+            subscriptionId: subscriptionId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Reuses an active subscription and joins the subscribed chat again
+    /// - Parameter subscriptionId: Identifier of the subscription
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func reuseStarSubscription(subscriptionId: String?) async throws -> Ok {
+        let query = ReuseStarSubscription(
+            subscriptionId: subscriptionId
         )
         return try await self.execute(query: query)
     }

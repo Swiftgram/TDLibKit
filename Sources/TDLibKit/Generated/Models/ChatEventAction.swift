@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -115,6 +115,9 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
     /// The sign_messages setting of a channel was toggled
     case chatEventSignMessagesToggled(ChatEventSignMessagesToggled)
 
+    /// The show_message_sender setting of a channel was toggled
+    case chatEventShowMessageSenderToggled(ChatEventShowMessageSenderToggled)
+
     /// A chat invite link was edited
     case chatEventInviteLinkEdited(ChatEventInviteLinkEdited)
 
@@ -196,6 +199,7 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
         case chatEventIsAllHistoryAvailableToggled
         case chatEventHasAggressiveAntiSpamEnabledToggled
         case chatEventSignMessagesToggled
+        case chatEventShowMessageSenderToggled
         case chatEventInviteLinkEdited
         case chatEventInviteLinkRevoked
         case chatEventInviteLinkDeleted
@@ -317,6 +321,9 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventSignMessagesToggled:
             let value = try ChatEventSignMessagesToggled(from: decoder)
             self = .chatEventSignMessagesToggled(value)
+        case .chatEventShowMessageSenderToggled:
+            let value = try ChatEventShowMessageSenderToggled(from: decoder)
+            self = .chatEventShowMessageSenderToggled(value)
         case .chatEventInviteLinkEdited:
             let value = try ChatEventInviteLinkEdited(from: decoder)
             self = .chatEventInviteLinkEdited(value)
@@ -467,6 +474,9 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .chatEventSignMessagesToggled(let value):
             try container.encode(Kind.chatEventSignMessagesToggled, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventShowMessageSenderToggled(let value):
+            try container.encode(Kind.chatEventShowMessageSenderToggled, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventInviteLinkEdited(let value):
             try container.encode(Kind.chatEventInviteLinkEdited, forKey: .type)
@@ -1096,6 +1106,18 @@ public struct ChatEventSignMessagesToggled: Codable, Equatable, Hashable {
 
     public init(signMessages: Bool) {
         self.signMessages = signMessages
+    }
+}
+
+/// The show_message_sender setting of a channel was toggled
+public struct ChatEventShowMessageSenderToggled: Codable, Equatable, Hashable {
+
+    /// New value of show_message_sender
+    public let showMessageSender: Bool
+
+
+    public init(showMessageSender: Bool) {
+        self.showMessageSender = showMessageSender
     }
 }
 

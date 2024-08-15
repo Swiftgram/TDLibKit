@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the link will expire; 0 if never
     public let expirationDate: Int
 
+    /// Number of chat members, which joined the chat using the link, but have already left because of expired subscription; for subscription links only
+    public let expiredMemberCount: Int
+
     /// Chat invite link
     public let inviteLink: String
 
@@ -49,6 +52,9 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
     /// Number of pending join requests created using this link
     public let pendingJoinRequestCount: Int
 
+    /// Information about subscription plan that is applied to the users joining the chat by the link; may be null if the link doesn't require subscription
+    public let subscriptionPricing: StarSubscriptionPricing?
+
 
     public init(
         createsJoinRequest: Bool,
@@ -56,19 +62,22 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
         date: Int,
         editDate: Int,
         expirationDate: Int,
+        expiredMemberCount: Int,
         inviteLink: String,
         isPrimary: Bool,
         isRevoked: Bool,
         memberCount: Int,
         memberLimit: Int,
         name: String,
-        pendingJoinRequestCount: Int
+        pendingJoinRequestCount: Int,
+        subscriptionPricing: StarSubscriptionPricing?
     ) {
         self.createsJoinRequest = createsJoinRequest
         self.creatorUserId = creatorUserId
         self.date = date
         self.editDate = editDate
         self.expirationDate = expirationDate
+        self.expiredMemberCount = expiredMemberCount
         self.inviteLink = inviteLink
         self.isPrimary = isPrimary
         self.isRevoked = isRevoked
@@ -76,6 +85,7 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
         self.memberLimit = memberLimit
         self.name = name
         self.pendingJoinRequestCount = pendingJoinRequestCount
+        self.subscriptionPricing = subscriptionPricing
     }
 }
 

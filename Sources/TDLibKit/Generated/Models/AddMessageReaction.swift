@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct AddMessageReaction: Codable, Equatable, Hashable {
     /// Identifier of the message
     public let messageId: Int64?
 
-    /// Type of the reaction to add
+    /// Type of the reaction to add. Use addPaidMessageReaction instead to add the paid reaction
     public let reactionType: ReactionType?
 
     /// Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions

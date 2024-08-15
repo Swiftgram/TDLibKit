@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -49,6 +49,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to extend their expiring Telegram Premium subscription
     case suggestedActionExtendPremium(SuggestedActionExtendPremium)
 
+    /// Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of required to buy Telegram Stars
+    case suggestedActionExtendStarSubscriptions
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -63,6 +66,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionGiftPremiumForChristmas
         case suggestedActionSetBirthdate
         case suggestedActionExtendPremium
+        case suggestedActionExtendStarSubscriptions
     }
 
     public init(from decoder: Decoder) throws {
@@ -96,6 +100,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case .suggestedActionExtendPremium:
             let value = try SuggestedActionExtendPremium(from: decoder)
             self = .suggestedActionExtendPremium(value)
+        case .suggestedActionExtendStarSubscriptions:
+            self = .suggestedActionExtendStarSubscriptions
         }
     }
 
@@ -129,6 +135,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case .suggestedActionExtendPremium(let value):
             try container.encode(Kind.suggestedActionExtendPremium, forKey: .type)
             try value.encode(to: encoder)
+        case .suggestedActionExtendStarSubscriptions:
+            try container.encode(Kind.suggestedActionExtendStarSubscriptions, forKey: .type)
         }
     }
 }

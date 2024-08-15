@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.34-81dc2e24
-//  https://github.com/tdlib/td/tree/81dc2e24
+//  Based on TDLib 1.8.35-8d08b34e
+//  https://github.com/tdlib/td/tree/8d08b34e
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes reactions available in the chat
 public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
 
-    /// All reactions are available in the chat
+    /// All reactions are available in the chat, excluding the paid reaction and custom reactions in channel chats
     case chatAvailableReactionsAll(ChatAvailableReactionsAll)
 
     /// Only specific reactions are available in the chat
@@ -51,7 +51,7 @@ public indirect enum ChatAvailableReactions: Codable, Equatable, Hashable {
     }
 }
 
-/// All reactions are available in the chat
+/// All reactions are available in the chat, excluding the paid reaction and custom reactions in channel chats
 public struct ChatAvailableReactionsAll: Codable, Equatable, Hashable {
 
     /// The maximum allowed number of reactions per message; 1-11
