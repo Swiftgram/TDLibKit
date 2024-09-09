@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct ThemeParameters: Codable, Equatable, Hashable {
 
     /// A color of the background in the RGB24 format
     public let backgroundColor: Int
+
+    /// A color of the bottom bar background in the RGB24 format
+    public let bottomBarBackgroundColor: Int
 
     /// A color of the buttons in the RGB24 format
     public let buttonColor: Int
@@ -59,6 +62,7 @@ public struct ThemeParameters: Codable, Equatable, Hashable {
     public init(
         accentTextColor: Int,
         backgroundColor: Int,
+        bottomBarBackgroundColor: Int,
         buttonColor: Int,
         buttonTextColor: Int,
         destructiveTextColor: Int,
@@ -74,6 +78,7 @@ public struct ThemeParameters: Codable, Equatable, Hashable {
     ) {
         self.accentTextColor = accentTextColor
         self.backgroundColor = backgroundColor
+        self.bottomBarBackgroundColor = bottomBarBackgroundColor
         self.buttonColor = buttonColor
         self.buttonTextColor = buttonTextColor
         self.destructiveTextColor = destructiveTextColor

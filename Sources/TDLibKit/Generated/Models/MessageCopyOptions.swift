@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
 
 
-/// Options to be used when a message content is copied without reference to the original sender. Service messages, messages with messageInvoice, messagePaidMedia, messagePremiumGiveaway, or messagePremiumGiveawayWinners content can't be copied
+/// Options to be used when a message content is copied without reference to the original sender. Service messages, messages with messageInvoice, messagePaidMedia, messageGiveaway, or messageGiveawayWinners content can't be copied
 public struct MessageCopyOptions: Codable, Equatable, Hashable {
 
     /// New message caption; pass null to copy message without caption. Ignored if replace_caption is false

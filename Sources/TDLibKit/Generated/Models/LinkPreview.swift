@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Describes a link preview
 public struct LinkPreview: Codable, Equatable, Hashable {
+
+    /// Author of the content
+    public let author: String
 
     public let description: FormattedText
 
@@ -50,6 +53,7 @@ public struct LinkPreview: Codable, Equatable, Hashable {
 
 
     public init(
+        author: String,
         description: FormattedText,
         displayUrl: String,
         hasLargeMedia: Bool,
@@ -63,6 +67,7 @@ public struct LinkPreview: Codable, Equatable, Hashable {
         type: LinkPreviewType,
         url: String
     ) {
+        self.author = author
         self.description = description
         self.displayUrl = displayUrl
         self.hasLargeMedia = hasLargeMedia

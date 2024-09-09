@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -463,6 +463,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Reactions added to a message with anonymous reactions have changed; for bots only
     case updateMessageReactions(UpdateMessageReactions)
 
+    /// Paid media were purchased by a user; for bots only
+    case updatePaidMediaPurchased(UpdatePaidMediaPurchased)
+
 
     private enum Kind: String, Codable {
         case updateAuthorizationState
@@ -615,6 +618,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatBoost
         case updateMessageReaction
         case updateMessageReactions
+        case updatePaidMediaPurchased
     }
 
     public init(from decoder: Decoder) throws {
@@ -1071,6 +1075,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageReactions:
             let value = try UpdateMessageReactions(from: decoder)
             self = .updateMessageReactions(value)
+        case .updatePaidMediaPurchased:
+            let value = try UpdatePaidMediaPurchased(from: decoder)
+            self = .updatePaidMediaPurchased(value)
         }
     }
 
@@ -1526,6 +1533,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateMessageReactions(let value):
             try container.encode(Kind.updateMessageReactions, forKey: .type)
+            try value.encode(to: encoder)
+        case .updatePaidMediaPurchased(let value):
+            try container.encode(Kind.updatePaidMediaPurchased, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -4523,6 +4533,25 @@ public struct UpdateMessageReactions: Codable, Equatable, Hashable {
         self.date = date
         self.messageId = messageId
         self.reactions = reactions
+    }
+}
+
+/// Paid media were purchased by a user; for bots only
+public struct UpdatePaidMediaPurchased: Codable, Equatable, Hashable {
+
+    /// Bot-specified payload for the paid media
+    public let payload: String
+
+    /// User identifier
+    public let userId: Int64
+
+
+    public init(
+        payload: String,
+        userId: Int64
+    ) {
+        self.payload = payload
+        self.userId = userId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -48,6 +48,12 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a video player
     case linkPreviewTypeEmbeddedVideoPlayer(LinkPreviewTypeEmbeddedVideoPlayer)
+
+    /// The link is a link to an audio file
+    case linkPreviewTypeExternalAudio(LinkPreviewTypeExternalAudio)
+
+    /// The link is a link to a video file
+    case linkPreviewTypeExternalVideo(LinkPreviewTypeExternalVideo)
 
     /// The link is a link to an invoice
     case linkPreviewTypeInvoice
@@ -114,6 +120,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeEmbeddedAnimationPlayer
         case linkPreviewTypeEmbeddedAudioPlayer
         case linkPreviewTypeEmbeddedVideoPlayer
+        case linkPreviewTypeExternalAudio
+        case linkPreviewTypeExternalVideo
         case linkPreviewTypeInvoice
         case linkPreviewTypeMessage
         case linkPreviewTypePhoto
@@ -173,6 +181,12 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeEmbeddedVideoPlayer:
             let value = try LinkPreviewTypeEmbeddedVideoPlayer(from: decoder)
             self = .linkPreviewTypeEmbeddedVideoPlayer(value)
+        case .linkPreviewTypeExternalAudio:
+            let value = try LinkPreviewTypeExternalAudio(from: decoder)
+            self = .linkPreviewTypeExternalAudio(value)
+        case .linkPreviewTypeExternalVideo:
+            let value = try LinkPreviewTypeExternalVideo(from: decoder)
+            self = .linkPreviewTypeExternalVideo(value)
         case .linkPreviewTypeInvoice:
             self = .linkPreviewTypeInvoice
         case .linkPreviewTypeMessage:
@@ -261,6 +275,12 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeEmbeddedVideoPlayer(let value):
             try container.encode(Kind.linkPreviewTypeEmbeddedVideoPlayer, forKey: .type)
             try value.encode(to: encoder)
+        case .linkPreviewTypeExternalAudio(let value):
+            try container.encode(Kind.linkPreviewTypeExternalAudio, forKey: .type)
+            try value.encode(to: encoder)
+        case .linkPreviewTypeExternalVideo(let value):
+            try container.encode(Kind.linkPreviewTypeExternalVideo, forKey: .type)
+            try value.encode(to: encoder)
         case .linkPreviewTypeInvoice:
             try container.encode(Kind.linkPreviewTypeInvoice, forKey: .type)
         case .linkPreviewTypeMessage:
@@ -336,34 +356,20 @@ public struct LinkPreviewTypeAnimation: Codable, Equatable, Hashable {
     /// The animation
     public let animation: Animation
 
-    /// Author of the animation
-    public let author: String
 
-
-    public init(
-        animation: Animation,
-        author: String
-    ) {
+    public init(animation: Animation) {
         self.animation = animation
-        self.author = author
     }
 }
 
 /// The link is a link to an app at App Store or Google Play
 public struct LinkPreviewTypeApp: Codable, Equatable, Hashable {
 
-    /// Author of the app
-    public let author: String
-
     /// Photo for the app
     public let photo: Photo
 
 
-    public init(
-        author: String,
-        photo: Photo
-    ) {
-        self.author = author
+    public init(photo: Photo) {
         self.photo = photo
     }
 }
@@ -371,18 +377,11 @@ public struct LinkPreviewTypeApp: Codable, Equatable, Hashable {
 /// The link is a link to a web site
 public struct LinkPreviewTypeArticle: Codable, Equatable, Hashable {
 
-    /// Author of the article
-    public let author: String
-
     /// Article's main photo; may be null
     public let photo: Photo?
 
 
-    public init(
-        author: String,
-        photo: Photo?
-    ) {
-        self.author = author
+    public init(photo: Photo?) {
         self.photo = photo
     }
 }
@@ -390,34 +389,12 @@ public struct LinkPreviewTypeArticle: Codable, Equatable, Hashable {
 /// The link is a link to an audio
 public struct LinkPreviewTypeAudio: Codable, Equatable, Hashable {
 
-    /// The audio description; may be null if unknown
-    public let audio: Audio?
-
-    /// Author of the audio
-    public let author: String
-
-    /// Duration of the audio, in seconds; 0 if unknown
-    public let duration: Int
-
-    /// MIME type of the audio file
-    public let mimeType: String
-
-    /// URL of the audio; may be empty if none
-    public let url: String
+    /// The audio description
+    public let audio: Audio
 
 
-    public init(
-        audio: Audio?,
-        author: String,
-        duration: Int,
-        mimeType: String,
-        url: String
-    ) {
+    public init(audio: Audio) {
         self.audio = audio
-        self.author = author
-        self.duration = duration
-        self.mimeType = mimeType
-        self.url = url
     }
 }
 
@@ -479,27 +456,17 @@ public struct LinkPreviewTypeChat: Codable, Equatable, Hashable {
 /// The link is a link to a general file
 public struct LinkPreviewTypeDocument: Codable, Equatable, Hashable {
 
-    /// Author of the document
-    public let author: String
-
     /// The document description
     public let document: Document
 
 
-    public init(
-        author: String,
-        document: Document
-    ) {
-        self.author = author
+    public init(document: Document) {
         self.document = document
     }
 }
 
 /// The link is a link to an animation player
 public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashable {
-
-    /// Author of the animation
-    public let author: String
 
     /// Duration of the animation, in seconds
     public let duration: Int
@@ -518,14 +485,12 @@ public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashab
 
 
     public init(
-        author: String,
         duration: Int,
         height: Int,
         thumbnail: Photo?,
         url: String,
         width: Int
     ) {
-        self.author = author
         self.duration = duration
         self.height = height
         self.thumbnail = thumbnail
@@ -536,9 +501,6 @@ public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashab
 
 /// The link is a link to an audio player
 public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
-
-    /// Author of the audio
-    public let author: String
 
     /// Duration of the audio, in seconds
     public let duration: Int
@@ -557,14 +519,12 @@ public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
 
 
     public init(
-        author: String,
         duration: Int,
         height: Int,
         thumbnail: Photo?,
         url: String,
         width: Int
     ) {
-        self.author = author
         self.duration = duration
         self.height = height
         self.thumbnail = thumbnail
@@ -575,9 +535,6 @@ public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
 
 /// The link is a link to a video player
 public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
-
-    /// Author of the video
-    public let author: String
 
     /// Duration of the video, in seconds
     public let duration: Int
@@ -596,14 +553,12 @@ public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
 
 
     public init(
-        author: String,
         duration: Int,
         height: Int,
         thumbnail: Photo?,
         url: String,
         width: Int
     ) {
-        self.author = author
         self.duration = duration
         self.height = height
         self.thumbnail = thumbnail
@@ -612,21 +567,72 @@ public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to an audio file
+public struct LinkPreviewTypeExternalAudio: Codable, Equatable, Hashable {
+
+    /// Duration of the audio, in seconds; 0 if unknown
+    public let duration: Int
+
+    /// MIME type of the audio file
+    public let mimeType: String
+
+    /// URL of the audio file
+    public let url: String
+
+
+    public init(
+        duration: Int,
+        mimeType: String,
+        url: String
+    ) {
+        self.duration = duration
+        self.mimeType = mimeType
+        self.url = url
+    }
+}
+
+/// The link is a link to a video file
+public struct LinkPreviewTypeExternalVideo: Codable, Equatable, Hashable {
+
+    /// Duration of the video, in seconds; 0 if unknown
+    public let duration: Int
+
+    /// Expected height of the video preview; 0 if unknown
+    public let height: Int
+
+    /// MIME type of the video file
+    public let mimeType: String
+
+    /// URL of the video file
+    public let url: String
+
+    /// Expected width of the video preview; 0 if unknown
+    public let width: Int
+
+
+    public init(
+        duration: Int,
+        height: Int,
+        mimeType: String,
+        url: String,
+        width: Int
+    ) {
+        self.duration = duration
+        self.height = height
+        self.mimeType = mimeType
+        self.url = url
+        self.width = width
+    }
+}
+
 /// The link is a link to a photo
 public struct LinkPreviewTypePhoto: Codable, Equatable, Hashable {
-
-    /// Author of the photo
-    public let author: String
 
     /// The photo
     public let photo: Photo
 
 
-    public init(
-        author: String,
-        photo: Photo
-    ) {
-        self.author = author
+    public init(photo: Photo) {
         self.photo = photo
     }
 }
@@ -727,44 +733,12 @@ public struct LinkPreviewTypeUser: Codable, Equatable, Hashable {
 /// The link is a link to a video
 public struct LinkPreviewTypeVideo: Codable, Equatable, Hashable {
 
-    /// Author of the video
-    public let author: String
-
-    /// Duration of the video, in seconds; 0 if unknown
-    public let duration: Int
-
-    /// Expected height of the preview
-    public let height: Int
-
-    /// MIME type of the video file
-    public let mimeType: String
-
-    /// URL of the video; may be empty if none
-    public let url: String
-
-    /// The video description; may be null if unknown
-    public let video: Video?
-
-    /// Expected width of the preview
-    public let width: Int
+    /// The video description
+    public let video: Video
 
 
-    public init(
-        author: String,
-        duration: Int,
-        height: Int,
-        mimeType: String,
-        url: String,
-        video: Video?,
-        width: Int
-    ) {
-        self.author = author
-        self.duration = duration
-        self.height = height
-        self.mimeType = mimeType
-        self.url = url
+    public init(video: Video) {
         self.video = video
-        self.width = width
     }
 }
 

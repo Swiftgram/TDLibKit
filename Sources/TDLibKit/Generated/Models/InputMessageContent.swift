@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -377,6 +377,9 @@ public struct InputMessagePaidMedia: Codable, Equatable, Hashable {
     /// The content of the paid media
     public let paidMedia: [InputPaidMedia]
 
+    /// Bot-provided data for the paid media; bots only
+    public let payload: String
+
     /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
@@ -387,11 +390,13 @@ public struct InputMessagePaidMedia: Codable, Equatable, Hashable {
     public init(
         caption: FormattedText?,
         paidMedia: [InputPaidMedia],
+        payload: String,
         showCaptionAboveMedia: Bool,
         starCount: Int64
     ) {
         self.caption = caption
         self.paidMedia = paidMedia
+        self.payload = payload
         self.showCaptionAboveMedia = showCaptionAboveMedia
         self.starCount = starCount
     }

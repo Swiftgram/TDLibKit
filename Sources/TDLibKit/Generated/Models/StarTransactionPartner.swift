@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -34,8 +34,8 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
     /// The transaction is a transaction with a business account
     case starTransactionPartnerBusiness(StarTransactionPartnerBusiness)
 
-    /// The transaction is a transaction with a channel chat
-    case starTransactionPartnerChannel(StarTransactionPartnerChannel)
+    /// The transaction is a transaction with a supergroup or a channel chat
+    case starTransactionPartnerChat(StarTransactionPartnerChat)
 
     /// The transaction is a gift of Telegram Stars from another user
     case starTransactionPartnerUser(StarTransactionPartnerUser)
@@ -52,7 +52,7 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case starTransactionPartnerTelegramAds
         case starTransactionPartnerBot
         case starTransactionPartnerBusiness
-        case starTransactionPartnerChannel
+        case starTransactionPartnerChat
         case starTransactionPartnerUser
         case starTransactionPartnerUnsupported
     }
@@ -78,9 +78,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case .starTransactionPartnerBusiness:
             let value = try StarTransactionPartnerBusiness(from: decoder)
             self = .starTransactionPartnerBusiness(value)
-        case .starTransactionPartnerChannel:
-            let value = try StarTransactionPartnerChannel(from: decoder)
-            self = .starTransactionPartnerChannel(value)
+        case .starTransactionPartnerChat:
+            let value = try StarTransactionPartnerChat(from: decoder)
+            self = .starTransactionPartnerChat(value)
         case .starTransactionPartnerUser:
             let value = try StarTransactionPartnerUser(from: decoder)
             self = .starTransactionPartnerUser(value)
@@ -109,8 +109,8 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case .starTransactionPartnerBusiness(let value):
             try container.encode(Kind.starTransactionPartnerBusiness, forKey: .type)
             try value.encode(to: encoder)
-        case .starTransactionPartnerChannel(let value):
-            try container.encode(Kind.starTransactionPartnerChannel, forKey: .type)
+        case .starTransactionPartnerChat(let value):
+            try container.encode(Kind.starTransactionPartnerChat, forKey: .type)
             try value.encode(to: encoder)
         case .starTransactionPartnerUser(let value):
             try container.encode(Kind.starTransactionPartnerUser, forKey: .type)
@@ -171,19 +171,19 @@ public struct StarTransactionPartnerBusiness: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a transaction with a channel chat
-public struct StarTransactionPartnerChannel: Codable, Equatable, Hashable {
+/// The transaction is a transaction with a supergroup or a channel chat
+public struct StarTransactionPartnerChat: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64
 
     /// Purpose of the transaction
-    public let purpose: ChannelTransactionPurpose
+    public let purpose: ChatTransactionPurpose
 
 
     public init(
         chatId: Int64,
-        purpose: ChannelTransactionPurpose
+        purpose: ChatTransactionPurpose
     ) {
         self.chatId = chatId
         self.purpose = purpose

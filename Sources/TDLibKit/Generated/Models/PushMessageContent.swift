@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -55,8 +55,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A message with a Telegram Premium gift code created for the user
     case pushMessageContentPremiumGiftCode(PushMessageContentPremiumGiftCode)
 
-    /// A message with a Telegram Premium giveaway
-    case pushMessageContentPremiumGiveaway(PushMessageContentPremiumGiveaway)
+    /// A message with a giveaway
+    case pushMessageContentGiveaway(PushMessageContentGiveaway)
 
     /// A screenshot of a message in the chat has been taken
     case pushMessageContentScreenshotTaken
@@ -134,7 +134,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentPhoto
         case pushMessageContentPoll
         case pushMessageContentPremiumGiftCode
-        case pushMessageContentPremiumGiveaway
+        case pushMessageContentGiveaway
         case pushMessageContentScreenshotTaken
         case pushMessageContentSticker
         case pushMessageContentStory
@@ -202,9 +202,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentPremiumGiftCode:
             let value = try PushMessageContentPremiumGiftCode(from: decoder)
             self = .pushMessageContentPremiumGiftCode(value)
-        case .pushMessageContentPremiumGiveaway:
-            let value = try PushMessageContentPremiumGiveaway(from: decoder)
-            self = .pushMessageContentPremiumGiveaway(value)
+        case .pushMessageContentGiveaway:
+            let value = try PushMessageContentGiveaway(from: decoder)
+            self = .pushMessageContentGiveaway(value)
         case .pushMessageContentScreenshotTaken:
             self = .pushMessageContentScreenshotTaken
         case .pushMessageContentSticker:
@@ -306,8 +306,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentPremiumGiftCode(let value):
             try container.encode(Kind.pushMessageContentPremiumGiftCode, forKey: .type)
             try value.encode(to: encoder)
-        case .pushMessageContentPremiumGiveaway(let value):
-            try container.encode(Kind.pushMessageContentPremiumGiveaway, forKey: .type)
+        case .pushMessageContentGiveaway(let value):
+            try container.encode(Kind.pushMessageContentGiveaway, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentScreenshotTaken:
             try container.encode(Kind.pushMessageContentScreenshotTaken, forKey: .type)
@@ -625,26 +625,26 @@ public struct PushMessageContentPremiumGiftCode: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with a Telegram Premium giveaway
-public struct PushMessageContentPremiumGiveaway: Codable, Equatable, Hashable {
+/// A message with a giveaway
+public struct PushMessageContentGiveaway: Codable, Equatable, Hashable {
 
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// Number of months the Telegram Premium subscription will be active after code activation; 0 for pinned message
-    public let monthCount: Int
+    /// Prize of the giveaway; may be null for pinned message
+    public let prize: GiveawayPrize?
 
-    /// Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message
+    /// Number of users which will receive giveaway prizes; 0 for pinned message
     public let winnerCount: Int
 
 
     public init(
         isPinned: Bool,
-        monthCount: Int,
+        prize: GiveawayPrize?,
         winnerCount: Int
     ) {
         self.isPinned = isPinned
-        self.monthCount = monthCount
+        self.prize = prize
         self.winnerCount = winnerCount
     }
 }

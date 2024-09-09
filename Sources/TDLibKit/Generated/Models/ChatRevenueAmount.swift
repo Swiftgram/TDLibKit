@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct ChatRevenueAmount: Codable, Equatable, Hashable {
     /// Total amount of the cryptocurrency earned, in the smallest units of the cryptocurrency
     public let totalAmount: TdInt64
 
+    /// True, if Telegram Stars can be withdrawn now or later
+    public let withdrawalEnabled: Bool
+
 
     public init(
         availableAmount: TdInt64,
         balanceAmount: TdInt64,
         cryptocurrency: String,
-        totalAmount: TdInt64
+        totalAmount: TdInt64,
+        withdrawalEnabled: Bool
     ) {
         self.availableAmount = availableAmount
         self.balanceAmount = balanceAmount
         self.cryptocurrency = cryptocurrency
         self.totalAmount = totalAmount
+        self.withdrawalEnabled = withdrawalEnabled
     }
 }
 

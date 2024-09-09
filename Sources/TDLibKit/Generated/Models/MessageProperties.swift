@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains properties of a message and describes actions that can be done with the message right now
 public struct MessageProperties: Codable, Equatable, Hashable {
+
+    /// True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
+    public let canBeCopiedToSecretChat: Bool
 
     /// True, if the message can be deleted for all users using the method deleteMessages with revoke == true
     public let canBeDeletedForAllUsers: Bool
@@ -87,6 +90,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
 
     public init(
+        canBeCopiedToSecretChat: Bool,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeEdited: Bool,
@@ -112,6 +116,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canSetFactCheck: Bool,
         needShowStatistics: Bool
     ) {
+        self.canBeCopiedToSecretChat = canBeCopiedToSecretChat
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeEdited = canBeEdited

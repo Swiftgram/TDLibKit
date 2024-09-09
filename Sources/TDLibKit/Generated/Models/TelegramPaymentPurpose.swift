@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -25,6 +25,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
     /// The user buying Telegram Stars for other users
     case telegramPaymentPurposeGiftedStars(TelegramPaymentPurposeGiftedStars)
 
+    /// The user creating a Telegram Star giveaway
+    case telegramPaymentPurposeStarGiveaway(TelegramPaymentPurposeStarGiveaway)
+
     /// The user joins a chat and subscribes to regular payments in Telegram Stars
     case telegramPaymentPurposeJoinChat(TelegramPaymentPurposeJoinChat)
 
@@ -34,6 +37,7 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
         case telegramPaymentPurposePremiumGiveaway
         case telegramPaymentPurposeStars
         case telegramPaymentPurposeGiftedStars
+        case telegramPaymentPurposeStarGiveaway
         case telegramPaymentPurposeJoinChat
     }
 
@@ -53,6 +57,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
         case .telegramPaymentPurposeGiftedStars:
             let value = try TelegramPaymentPurposeGiftedStars(from: decoder)
             self = .telegramPaymentPurposeGiftedStars(value)
+        case .telegramPaymentPurposeStarGiveaway:
+            let value = try TelegramPaymentPurposeStarGiveaway(from: decoder)
+            self = .telegramPaymentPurposeStarGiveaway(value)
         case .telegramPaymentPurposeJoinChat:
             let value = try TelegramPaymentPurposeJoinChat(from: decoder)
             self = .telegramPaymentPurposeJoinChat(value)
@@ -73,6 +80,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .telegramPaymentPurposeGiftedStars(let value):
             try container.encode(Kind.telegramPaymentPurposeGiftedStars, forKey: .type)
+            try value.encode(to: encoder)
+        case .telegramPaymentPurposeStarGiveaway(let value):
+            try container.encode(Kind.telegramPaymentPurposeStarGiveaway, forKey: .type)
             try value.encode(to: encoder)
         case .telegramPaymentPurposeJoinChat(let value):
             try container.encode(Kind.telegramPaymentPurposeJoinChat, forKey: .type)
@@ -128,7 +138,7 @@ public struct TelegramPaymentPurposePremiumGiveaway: Codable, Equatable, Hashabl
     public let monthCount: Int
 
     /// Giveaway parameters
-    public let parameters: PremiumGiveawayParameters
+    public let parameters: GiveawayParameters
 
     /// Number of users which will be able to activate the gift codes
     public let winnerCount: Int
@@ -138,7 +148,7 @@ public struct TelegramPaymentPurposePremiumGiveaway: Codable, Equatable, Hashabl
         amount: Int64,
         currency: String,
         monthCount: Int,
-        parameters: PremiumGiveawayParameters,
+        parameters: GiveawayParameters,
         winnerCount: Int
     ) {
         self.amount = amount
@@ -199,6 +209,40 @@ public struct TelegramPaymentPurposeGiftedStars: Codable, Equatable, Hashable {
         self.currency = currency
         self.starCount = starCount
         self.userId = userId
+    }
+}
+
+/// The user creating a Telegram Star giveaway
+public struct TelegramPaymentPurposeStarGiveaway: Codable, Equatable, Hashable {
+
+    /// Paid amount, in the smallest units of the currency
+    public let amount: Int64
+
+    /// ISO 4217 currency code of the payment currency
+    public let currency: String
+
+    /// Giveaway parameters
+    public let parameters: GiveawayParameters
+
+    /// The number of Telegram Stars to be distributed through the giveaway
+    public let starCount: Int64
+
+    /// The number of users to receive Telegram Stars
+    public let winnerCount: Int
+
+
+    public init(
+        amount: Int64,
+        currency: String,
+        parameters: GiveawayParameters,
+        starCount: Int64,
+        winnerCount: Int
+    ) {
+        self.amount = amount
+        self.currency = currency
+        self.parameters = parameters
+        self.starCount = starCount
+        self.winnerCount = winnerCount
     }
 }
 

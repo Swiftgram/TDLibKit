@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -1260,10 +1260,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messagePremiumGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messagePremiumGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
     public final func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1276,10 +1276,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messagePremiumGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messagePremiumGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getRepliedMessage(
         chatId: Int64?,
@@ -5408,13 +5408,13 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts
+    /// Loads quick reply shortcuts created by the current user. The loaded data will be sent through updateQuickReplyShortcut and updateQuickReplyShortcuts
     public final func loadQuickReplyShortcuts(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = LoadQuickReplyShortcuts()
         self.run(query: query, completion: completion)
     }
 
-    /// Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts
+    /// Loads quick reply shortcuts created by the current user. The loaded data will be sent through updateQuickReplyShortcut and updateQuickReplyShortcuts
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func loadQuickReplyShortcuts() async throws -> Ok {
@@ -6267,7 +6267,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionType: Type of the reaction to add. Use addPaidMessageReaction instead to add the paid reaction
+    /// - Parameter reactionType: Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     public final func addMessageReaction(
         chatId: Int64?,
@@ -6291,7 +6291,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reaction is added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionType: Type of the reaction to add. Use addPaidMessageReaction instead to add the paid reaction
+    /// - Parameter reactionType: Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -6349,50 +6349,87 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to check whether the reaction is available for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
+    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter starCount: Number of Telegram Stars to be used for the reaction; 1-getOption("paid_reaction_star_count_max")
-    public final func addPaidMessageReaction(
+    /// - Parameter starCount: Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
+    /// - Parameter useDefaultIsAnonymous: Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
+    public final func addPendingPaidMessageReaction(
         chatId: Int64?,
         isAnonymous: Bool?,
         messageId: Int64?,
         starCount: Int64?,
+        useDefaultIsAnonymous: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = AddPaidMessageReaction(
+        let query = AddPendingPaidMessageReaction(
             chatId: chatId,
             isAnonymous: isAnonymous,
             messageId: messageId,
-            starCount: starCount
+            starCount: starCount,
+            useDefaultIsAnonymous: useDefaultIsAnonymous
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to check whether the reaction is available for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
+    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter starCount: Number of Telegram Stars to be used for the reaction; 1-getOption("paid_reaction_star_count_max")
+    /// - Parameter starCount: Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
+    /// - Parameter useDefaultIsAnonymous: Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func addPaidMessageReaction(
+    public final func addPendingPaidMessageReaction(
         chatId: Int64?,
         isAnonymous: Bool?,
         messageId: Int64?,
-        starCount: Int64?
+        starCount: Int64?,
+        useDefaultIsAnonymous: Bool?
     ) async throws -> Ok {
-        let query = AddPaidMessageReaction(
+        let query = AddPendingPaidMessageReaction(
             chatId: chatId,
             isAnonymous: isAnonymous,
             messageId: messageId,
-            starCount: starCount
+            starCount: starCount,
+            useDefaultIsAnonymous: useDefaultIsAnonymous
         )
         return try await self.run(query: query)
     }
 
-    /// Removes all pending paid reactions on a message. Can be called within 5 seconds after the last addPaidMessageReaction call
+    /// Applies all pending paid reactions on a message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    public final func commitPendingPaidMessageReactions(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CommitPendingPaidMessageReactions(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Applies all pending paid reactions on a message
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func commitPendingPaidMessageReactions(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = CommitPendingPaidMessageReactions(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Removes all pending paid reactions on a message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
     public final func removePendingPaidMessageReactions(
@@ -6407,7 +6444,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Removes all pending paid reactions on a message. Can be called within 5 seconds after the last addPaidMessageReaction call
+    /// Removes all pending paid reactions on a message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7467,32 +7504,32 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns popular Web App bots
+    /// Returns the most grossing Web App bots
     /// - Parameter limit: The maximum number of bots to be returned; up to 100
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: Popular Web App bots
-    public final func getPopularWebAppBots(
+    /// - Returns: The most grossing Web App bots
+    public final func getGrossingWebAppBots(
         limit: Int?,
         offset: String?,
         completion: @escaping (Result<FoundUsers, Swift.Error>) -> Void
     ) throws {
-        let query = GetPopularWebAppBots(
+        let query = GetGrossingWebAppBots(
             limit: limit,
             offset: offset
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns popular Web App bots
+    /// Returns the most grossing Web App bots
     /// - Parameter limit: The maximum number of bots to be returned; up to 100
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: Popular Web App bots
+    /// - Returns: The most grossing Web App bots
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getPopularWebAppBots(
+    public final func getGrossingWebAppBots(
         limit: Int?,
         offset: String?
     ) async throws -> FoundUsers {
-        let query = GetPopularWebAppBots(
+        let query = GetGrossingWebAppBots(
             limit: limit,
             offset: offset
         )
@@ -15670,6 +15707,30 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns name of a sticker set by its identifier
+    /// - Parameter setId: Identifier of the sticker set
+    /// - Returns: Name of a sticker set by its identifier
+    public final func getStickerSetName(
+        setId: TdInt64?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStickerSetName(
+            setId: setId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns name of a sticker set by its identifier
+    /// - Parameter setId: Identifier of the sticker set
+    /// - Returns: Name of a sticker set by its identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getStickerSetName(setId: TdInt64?) async throws -> Text {
+        let query = GetStickerSetName(
+            setId: setId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Searches for a sticker set by its name
     /// - Parameter name: Name of the sticker set
     public final func searchStickerSet(
@@ -22066,9 +22127,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns available options for Telegram Premium gift code or giveaway creation
+    /// Returns available options for Telegram Premium gift code or Telegram Premium giveaway creation
     /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
-    /// - Returns: Available options for Telegram Premium gift code or giveaway creation
+    /// - Returns: Available options for Telegram Premium gift code or Telegram Premium giveaway creation
     public final func getPremiumGiftCodePaymentOptions(
         boostedChatId: Int64?,
         completion: @escaping (Result<PremiumGiftCodePaymentOptions, Swift.Error>) -> Void
@@ -22079,9 +22140,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns available options for Telegram Premium gift code or giveaway creation
+    /// Returns available options for Telegram Premium gift code or Telegram Premium giveaway creation
     /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
-    /// - Returns: Available options for Telegram Premium gift code or giveaway creation
+    /// - Returns: Available options for Telegram Premium gift code or Telegram Premium giveaway creation
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getPremiumGiftCodePaymentOptions(boostedChatId: Int64?) async throws -> PremiumGiftCodePaymentOptions {
         let query = GetPremiumGiftCodePaymentOptions(
@@ -22137,63 +22198,75 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Launches a prepaid Telegram Premium giveaway
+    /// Launches a prepaid giveaway
     /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
     /// - Parameter parameters: Giveaway parameters
-    public final func launchPrepaidPremiumGiveaway(
+    /// - Parameter starCount: The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways
+    /// - Parameter winnerCount: The number of users to receive giveaway prize
+    public final func launchPrepaidGiveaway(
         giveawayId: TdInt64?,
-        parameters: PremiumGiveawayParameters?,
+        parameters: GiveawayParameters?,
+        starCount: Int64?,
+        winnerCount: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = LaunchPrepaidPremiumGiveaway(
+        let query = LaunchPrepaidGiveaway(
             giveawayId: giveawayId,
-            parameters: parameters
+            parameters: parameters,
+            starCount: starCount,
+            winnerCount: winnerCount
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Launches a prepaid Telegram Premium giveaway
+    /// Launches a prepaid giveaway
     /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
     /// - Parameter parameters: Giveaway parameters
+    /// - Parameter starCount: The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways
+    /// - Parameter winnerCount: The number of users to receive giveaway prize
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func launchPrepaidPremiumGiveaway(
+    public final func launchPrepaidGiveaway(
         giveawayId: TdInt64?,
-        parameters: PremiumGiveawayParameters?
+        parameters: GiveawayParameters?,
+        starCount: Int64?,
+        winnerCount: Int?
     ) async throws -> Ok {
-        let query = LaunchPrepaidPremiumGiveaway(
+        let query = LaunchPrepaidGiveaway(
             giveawayId: giveawayId,
-            parameters: parameters
+            parameters: parameters,
+            starCount: starCount,
+            winnerCount: winnerCount
         )
         return try await self.run(query: query)
     }
 
-    /// Returns information about a Telegram Premium giveaway
+    /// Returns information about a giveaway
     /// - Parameter chatId: Identifier of the channel chat which started the giveaway
     /// - Parameter messageId: Identifier of the giveaway or a giveaway winners message in the chat
-    /// - Returns: Information about a Telegram Premium giveaway
-    public final func getPremiumGiveawayInfo(
+    /// - Returns: Information about a giveaway
+    public final func getGiveawayInfo(
         chatId: Int64?,
         messageId: Int64?,
-        completion: @escaping (Result<PremiumGiveawayInfo, Swift.Error>) -> Void
+        completion: @escaping (Result<GiveawayInfo, Swift.Error>) -> Void
     ) throws {
-        let query = GetPremiumGiveawayInfo(
+        let query = GetGiveawayInfo(
             chatId: chatId,
             messageId: messageId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a Telegram Premium giveaway
+    /// Returns information about a giveaway
     /// - Parameter chatId: Identifier of the channel chat which started the giveaway
     /// - Parameter messageId: Identifier of the giveaway or a giveaway winners message in the chat
-    /// - Returns: Information about a Telegram Premium giveaway
+    /// - Returns: Information about a giveaway
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getPremiumGiveawayInfo(
+    public final func getGiveawayInfo(
         chatId: Int64?,
         messageId: Int64?
-    ) async throws -> PremiumGiveawayInfo {
-        let query = GetPremiumGiveawayInfo(
+    ) async throws -> GiveawayInfo {
+        let query = GetGiveawayInfo(
             chatId: chatId,
             messageId: messageId
         )
@@ -22236,6 +22309,21 @@ public class TDLibApi {
         let query = GetStarGiftPaymentOptions(
             userId: userId
         )
+        return try await self.run(query: query)
+    }
+
+    /// Returns available options for Telegram Star giveaway creation
+    /// - Returns: Available options for Telegram Star giveaway creation
+    public final func getStarGiveawayPaymentOptions(completion: @escaping (Result<StarGiveawayPaymentOptions, Swift.Error>) -> Void) throws {
+        let query = GetStarGiveawayPaymentOptions()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns available options for Telegram Star giveaway creation
+    /// - Returns: Available options for Telegram Star giveaway creation
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getStarGiveawayPaymentOptions() async throws -> StarGiveawayPaymentOptions {
+        let query = GetStarGiveawayPaymentOptions()
         return try await self.run(query: query)
     }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ChatBoostSource: Codable, Equatable, Hashable {
     /// The chat created a Telegram Premium gift code for a user
     case chatBoostSourceGiftCode(ChatBoostSourceGiftCode)
 
-    /// The chat created a Telegram Premium giveaway
+    /// The chat created a giveaway
     case chatBoostSourceGiveaway(ChatBoostSourceGiveaway)
 
     /// A user with Telegram Premium subscription or gifted Telegram Premium boosted the chat
@@ -80,17 +80,20 @@ public struct ChatBoostSourceGiftCode: Codable, Equatable, Hashable {
     }
 }
 
-/// The chat created a Telegram Premium giveaway
+/// The chat created a giveaway
 public struct ChatBoostSourceGiveaway: Codable, Equatable, Hashable {
 
-    /// The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise
+    /// The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only
     public let giftCode: String
 
     /// Identifier of the corresponding giveaway message; can be an identifier of a deleted message
     public let giveawayMessageId: Int64
 
-    /// True, if the winner for the corresponding Telegram Premium subscription wasn't chosen, because there were not enough participants
+    /// True, if the winner for the corresponding giveaway prize wasn't chosen, because there were not enough participants
     public let isUnclaimed: Bool
+
+    /// Number of Telegram Stars distributed among winners of the giveaway
+    public let starCount: Int64
 
     /// Identifier of a user that won in the giveaway; 0 if none
     public let userId: Int64
@@ -100,11 +103,13 @@ public struct ChatBoostSourceGiveaway: Codable, Equatable, Hashable {
         giftCode: String,
         giveawayMessageId: Int64,
         isUnclaimed: Bool,
+        starCount: Int64,
         userId: Int64
     ) {
         self.giftCode = giftCode
         self.giveawayMessageId = giveawayMessageId
         self.isUnclaimed = isUnclaimed
+        self.starCount = starCount
         self.userId = userId
     }
 }

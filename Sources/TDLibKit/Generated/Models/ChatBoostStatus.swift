@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.35-9b6ff586
-//  https://github.com/tdlib/td/tree/9b6ff586
+//  Based on TDLib 1.8.36-87d88107
+//  https://github.com/tdlib/td/tree/87d88107
 //
 
 import Foundation
@@ -41,7 +41,7 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
     public let premiumMemberPercentage: Double
 
     /// The list of prepaid giveaways available for the chat; only for chat administrators
-    public let prepaidGiveaways: [PrepaidPremiumGiveaway]
+    public let prepaidGiveaways: [PrepaidGiveaway]
 
 
     public init(
@@ -54,7 +54,7 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
         nextLevelBoostCount: Int,
         premiumMemberCount: Int,
         premiumMemberPercentage: Double,
-        prepaidGiveaways: [PrepaidPremiumGiveaway]
+        prepaidGiveaways: [PrepaidGiveaway]
     ) {
         self.appliedSlotIds = appliedSlotIds
         self.boostCount = boostCount
