@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-87d88107
-//  https://github.com/tdlib/td/tree/87d88107
+//  Based on TDLib 1.8.36-dcfd86c7
+//  https://github.com/tdlib/td/tree/dcfd86c7
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetChatPostedToChatPageStories: Codable, Equatable, Hashable {
     /// Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
     public let fromStoryId: Int?
 
-    /// The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     public let limit: Int?
 
 

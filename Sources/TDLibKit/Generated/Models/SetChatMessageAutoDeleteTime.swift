@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-87d88107
-//  https://github.com/tdlib/td/tree/87d88107
+//  Based on TDLib 1.8.36-dcfd86c7
+//  https://github.com/tdlib/td/tree/dcfd86c7
 //
 
 import Foundation
 
 
-/// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+/// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
 public struct SetChatMessageAutoDeleteTime: Codable, Equatable, Hashable {
 
     /// Chat identifier
