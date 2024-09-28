@@ -4,6 +4,7 @@ set -ex
 PLATFORM="$1"
 OS_LIST="$2"
 NAME="$3"
+ACTIONS=${4:-test}
 
 if [[ $PLATFORM = "iOS-simulator" ]]; then
     SDK="iphonesimulator"
@@ -26,10 +27,9 @@ else
 fi
 
 if [[ $OS_LIST != "" ]]; then
-    for OS in $OS_LIST;
-    do
-    xcodebuild -scheme TDLibKit -sdk ${SDK} -destination "${DESTINATION},OS=${OS}" clean test
+    for OS in $OS_LIST; do
+        xcodebuild -scheme TDLibKit -sdk ${SDK} -destination "${DESTINATION},OS=${OS}" clean ${ACTIONS}
     done
 else
-    xcodebuild -scheme TDLibKit -sdk ${SDK} -destination "${DESTINATION}" clean test
+    xcodebuild -scheme TDLibKit -sdk ${SDK} -destination "${DESTINATION}" clean ${ACTIONS}
 fi
