@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -199,8 +199,11 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Telegram Stars were gifted to a user
     case messageGiftedStars(MessageGiftedStars)
 
-    /// A Telegram Stars were received by the cuurent user from a giveaway
+    /// A Telegram Stars were received by the current user from a giveaway
     case messageGiveawayPrizeStars(MessageGiveawayPrizeStars)
+
+    /// A gift was received or sent by the current user
+    case messageGift(MessageGift)
 
     /// A contact has registered with Telegram
     case messageContactRegistered
@@ -297,6 +300,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGiveawayWinners
         case messageGiftedStars
         case messageGiveawayPrizeStars
+        case messageGift
         case messageContactRegistered
         case messageUsersShared
         case messageChatShared
@@ -494,6 +498,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiveawayPrizeStars:
             let value = try MessageGiveawayPrizeStars(from: decoder)
             self = .messageGiveawayPrizeStars(value)
+        case .messageGift:
+            let value = try MessageGift(from: decoder)
+            self = .messageGift(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUsersShared:
@@ -709,6 +716,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiveawayPrizeStars(let value):
             try container.encode(Kind.messageGiveawayPrizeStars, forKey: .type)
             try value.encode(to: encoder)
+        case .messageGift(let value):
+            try container.encode(Kind.messageGift, forKey: .type)
+            try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
         case .messageUsersShared(let value):
@@ -922,6 +932,9 @@ public struct MessageSticker: Codable, Equatable, Hashable {
 /// A video message
 public struct MessageVideo: Codable, Equatable, Hashable {
 
+    /// Alternative qualities of the video
+    public let alternativeVideos: [AlternativeVideo]
+
     /// Video caption
     public let caption: FormattedText
 
@@ -939,12 +952,14 @@ public struct MessageVideo: Codable, Equatable, Hashable {
 
 
     public init(
+        alternativeVideos: [AlternativeVideo],
         caption: FormattedText,
         hasSpoiler: Bool,
         isSecret: Bool,
         showCaptionAboveMedia: Bool,
         video: Video
     ) {
+        self.alternativeVideos = alternativeVideos
         self.caption = caption
         self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
@@ -1244,7 +1259,7 @@ public struct MessageVideoChatScheduled: Codable, Equatable, Hashable {
     /// Identifier of the video chat. The video chat can be received through the method getGroupCall
     public let groupCallId: Int
 
-    /// Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+    /// Point in time (Unix timestamp) when the group call is expected to be started by an administrator
     public let startDate: Int
 
 
@@ -2037,7 +2052,7 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
     }
 }
 
-/// A Telegram Stars were received by the cuurent user from a giveaway
+/// A Telegram Stars were received by the current user from a giveaway
 public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
@@ -2073,6 +2088,45 @@ public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
         self.starCount = starCount
         self.sticker = sticker
         self.transactionId = transactionId
+    }
+}
+
+/// A gift was received or sent by the current user
+public struct MessageGift: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: Gift
+
+    /// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
+    public let isPrivate: Bool
+
+    /// True, if the gift is displayed on the user's profile page; only for the receiver of the gift
+    public let isSaved: Bool
+
+    /// Number of Telegram Stars that can be claimed by the receiver instead of the gift
+    public let sellStarCount: Int64
+
+    /// Message added to the gift
+    public let text: FormattedText
+
+    /// True, if the gift was converted to Telegram Stars; only for the receiver of the gift
+    public let wasConverted: Bool
+
+
+    public init(
+        gift: Gift,
+        isPrivate: Bool,
+        isSaved: Bool,
+        sellStarCount: Int64,
+        text: FormattedText,
+        wasConverted: Bool
+    ) {
+        self.gift = gift
+        self.isPrivate = isPrivate
+        self.isSaved = isSaved
+        self.sellStarCount = sellStarCount
+        self.text = text
+        self.wasConverted = wasConverted
     }
 }
 

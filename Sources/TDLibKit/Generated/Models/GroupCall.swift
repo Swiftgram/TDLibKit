@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -70,7 +70,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
     /// Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
     public let recordDuration: Int
 
-    /// Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 if it is already active or was ended
+    /// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 if it is already active or was ended
     public let scheduledStartDate: Int
 
     /// Group call title

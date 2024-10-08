@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -380,7 +380,7 @@ public struct InputMessagePaidMedia: Codable, Equatable, Hashable {
     /// Bot-provided data for the paid media; bots only
     public let payload: String
 
-    /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
+    /// True, if the caption must be shown above the media; otherwise, the caption must be shown below the media; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
     /// The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
@@ -514,13 +514,13 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     public let showCaptionAboveMedia: Bool
 
-    /// True, if the video is supposed to be streamed
+    /// True, if the video is expected to be streamed
     public let supportsStreaming: Bool
 
     /// Video thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail?
 
-    /// Video to be sent
+    /// Video to be sent. The video is expected to be reencoded to MPEG4 format with H.264 codec by the sender
     public let video: InputFile
 
     /// Video width

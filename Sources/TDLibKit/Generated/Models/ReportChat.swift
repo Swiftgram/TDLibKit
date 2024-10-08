@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -16,25 +16,25 @@ public struct ReportChat: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported
+    /// Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
     public let messageIds: [Int64]?
 
-    /// The reason for reporting the chat
-    public let reason: ReportReason?
+    /// Option identifier chosen by the user; leave empty for the initial request
+    public let optionId: Data?
 
-    /// Additional report details; 0-1024 characters
+    /// Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
     public let text: String?
 
 
     public init(
         chatId: Int64?,
         messageIds: [Int64]?,
-        reason: ReportReason?,
+        optionId: Data?,
         text: String?
     ) {
         self.chatId = chatId
         self.messageIds = messageIds
-        self.reason = reason
+        self.optionId = optionId
         self.text = text
     }
 }

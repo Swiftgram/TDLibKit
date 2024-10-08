@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
     /// The transaction is a transaction with a supergroup or a channel chat
     case starTransactionPartnerChat(StarTransactionPartnerChat)
 
-    /// The transaction is a gift of Telegram Stars from another user
+    /// The transaction is a transcation with another user
     case starTransactionPartnerUser(StarTransactionPartnerUser)
 
     /// The transaction is a transaction with unknown partner
@@ -190,21 +190,21 @@ public struct StarTransactionPartnerChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a gift of Telegram Stars from another user
+/// The transaction is a transcation with another user
 public struct StarTransactionPartnerUser: Codable, Equatable, Hashable {
 
-    /// A sticker to be shown in the transaction information; may be null if unknown
-    public let sticker: Sticker?
+    /// Purpose of the transaction
+    public let purpose: UserTransactionPurpose
 
-    /// Identifier of the user; 0 if the gift was anonymous
+    /// Identifier of the user; 0 if the user was anonymous
     public let userId: Int64
 
 
     public init(
-        sticker: Sticker?,
+        purpose: UserTransactionPurpose,
         userId: Int64
     ) {
-        self.sticker = sticker
+        self.purpose = purpose
         self.userId = userId
     }
 }

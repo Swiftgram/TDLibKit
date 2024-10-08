@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct MessageCopyOptions: Codable, Equatable, Hashable {
     /// New message caption; pass null to copy message without caption. Ignored if replace_caption is false
     public let newCaption: FormattedText?
 
-    /// True, if new caption must be shown above the animation; otherwise, new caption must be shown below the animation; not supported in secret chats. Ignored if replace_caption is false
+    /// True, if new caption must be shown above the media; otherwise, new caption must be shown below the media; not supported in secret chats. Ignored if replace_caption is false
     public let newShowCaptionAboveMedia: Bool
 
     /// True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PaidReactor: Codable, Equatable, Hashable {
     /// True, if the paid reaction was added by the current user
     public let isMe: Bool
 
-    /// True, if the reactor is one of the most active reactors; can be false if the reactor is the current user
+    /// True, if the reactor is one of the most active reactors; may be false if the reactor is the current user
     public let isTop: Bool
 
     /// Identifier of the user or chat that added the reactions; may be null for anonymous reactors that aren't the current user

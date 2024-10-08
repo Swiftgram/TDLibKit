@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -40,6 +40,9 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
     /// A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
     case inlineKeyboardButtonTypeUser(InlineKeyboardButtonTypeUser)
 
+    /// A button that copies specified text to clipboard
+    case inlineKeyboardButtonTypeCopyText(InlineKeyboardButtonTypeCopyText)
+
 
     private enum Kind: String, Codable {
         case inlineKeyboardButtonTypeUrl
@@ -51,6 +54,7 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
         case inlineKeyboardButtonTypeSwitchInline
         case inlineKeyboardButtonTypeBuy
         case inlineKeyboardButtonTypeUser
+        case inlineKeyboardButtonTypeCopyText
     }
 
     public init(from decoder: Decoder) throws {
@@ -82,6 +86,9 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
         case .inlineKeyboardButtonTypeUser:
             let value = try InlineKeyboardButtonTypeUser(from: decoder)
             self = .inlineKeyboardButtonTypeUser(value)
+        case .inlineKeyboardButtonTypeCopyText:
+            let value = try InlineKeyboardButtonTypeCopyText(from: decoder)
+            self = .inlineKeyboardButtonTypeCopyText(value)
         }
     }
 
@@ -112,6 +119,9 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
             try container.encode(Kind.inlineKeyboardButtonTypeBuy, forKey: .type)
         case .inlineKeyboardButtonTypeUser(let value):
             try container.encode(Kind.inlineKeyboardButtonTypeUser, forKey: .type)
+            try value.encode(to: encoder)
+        case .inlineKeyboardButtonTypeCopyText(let value):
+            try container.encode(Kind.inlineKeyboardButtonTypeCopyText, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -217,6 +227,18 @@ public struct InlineKeyboardButtonTypeUser: Codable, Equatable, Hashable {
 
     public init(userId: Int64) {
         self.userId = userId
+    }
+}
+
+/// A button that copies specified text to clipboard
+public struct InlineKeyboardButtonTypeCopyText: Codable, Equatable, Hashable {
+
+    /// The text to copy to clipboard
+    public let text: String
+
+
+    public init(text: String) {
+        self.text = text
     }
 }
 

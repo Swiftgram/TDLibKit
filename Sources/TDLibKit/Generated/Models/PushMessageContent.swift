@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -57,6 +57,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A message with a giveaway
     case pushMessageContentGiveaway(PushMessageContentGiveaway)
+
+    /// A message with a gift
+    case pushMessageContentGift(PushMessageContentGift)
 
     /// A screenshot of a message in the chat has been taken
     case pushMessageContentScreenshotTaken
@@ -135,6 +138,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentPoll
         case pushMessageContentPremiumGiftCode
         case pushMessageContentGiveaway
+        case pushMessageContentGift
         case pushMessageContentScreenshotTaken
         case pushMessageContentSticker
         case pushMessageContentStory
@@ -205,6 +209,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentGiveaway:
             let value = try PushMessageContentGiveaway(from: decoder)
             self = .pushMessageContentGiveaway(value)
+        case .pushMessageContentGift:
+            let value = try PushMessageContentGift(from: decoder)
+            self = .pushMessageContentGift(value)
         case .pushMessageContentScreenshotTaken:
             self = .pushMessageContentScreenshotTaken
         case .pushMessageContentSticker:
@@ -308,6 +315,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentGiveaway(let value):
             try container.encode(Kind.pushMessageContentGiveaway, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentGift(let value):
+            try container.encode(Kind.pushMessageContentGift, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentScreenshotTaken:
             try container.encode(Kind.pushMessageContentScreenshotTaken, forKey: .type)
@@ -646,6 +656,18 @@ public struct PushMessageContentGiveaway: Codable, Equatable, Hashable {
         self.isPinned = isPinned
         self.prize = prize
         self.winnerCount = winnerCount
+    }
+}
+
+/// A message with a gift
+public struct PushMessageContentGift: Codable, Equatable, Hashable {
+
+    /// Number of Telegram Stars that sender paid for the gift
+    public let starCount: Int64
+
+
+    public init(starCount: Int64) {
+        self.starCount = starCount
     }
 }
 

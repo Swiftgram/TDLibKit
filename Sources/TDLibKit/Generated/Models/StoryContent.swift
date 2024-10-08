@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -74,7 +74,7 @@ public struct StoryContentPhoto: Codable, Equatable, Hashable {
 /// A video story
 public struct StoryContentVideo: Codable, Equatable, Hashable {
 
-    /// Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
+    /// Alternative version of the video in MPEG4 format, encoded with H.264 codec; may be null
     public let alternativeVideo: StoryVideo?
 
     /// The video in MPEG4 format

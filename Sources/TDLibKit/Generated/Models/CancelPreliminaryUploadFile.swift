@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
 
 
-/// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+/// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile
 public struct CancelPreliminaryUploadFile: Codable, Equatable, Hashable {
 
     /// Identifier of the file to stop uploading

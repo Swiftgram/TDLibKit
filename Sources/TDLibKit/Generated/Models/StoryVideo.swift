@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct StoryVideo: Codable, Equatable, Hashable {
     /// Video minithumbnail; may be null
     public let minithumbnail: Minithumbnail?
 
-    /// Size of file prefix, which is supposed to be preloaded, in bytes
+    /// Size of file prefix, which is expected to be preloaded, in bytes
     public let preloadPrefixSize: Int
 
     /// Video thumbnail in JPEG or MPEG4 format; may be null

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -13,8 +13,8 @@ import Foundation
 /// Reports a story to the Telegram moderators
 public struct ReportStory: Codable, Equatable, Hashable {
 
-    /// The reason for reporting the story
-    public let reason: ReportReason?
+    /// Option identifier chosen by the user; leave empty for the initial request
+    public let optionId: Data?
 
     /// The identifier of the story to report
     public let storyId: Int?
@@ -22,17 +22,17 @@ public struct ReportStory: Codable, Equatable, Hashable {
     /// The identifier of the sender of the story to report
     public let storySenderChatId: Int64?
 
-    /// Additional report details; 0-1024 characters
+    /// Additional report details; 0-1024 characters; leave empty for the initial request
     public let text: String?
 
 
     public init(
-        reason: ReportReason?,
+        optionId: Data?,
         storyId: Int?,
         storySenderChatId: Int64?,
         text: String?
     ) {
-        self.reason = reason
+        self.optionId = optionId
         self.storyId = storyId
         self.storySenderChatId = storySenderChatId
         self.text = text

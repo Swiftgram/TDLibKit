@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -1186,10 +1186,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a message
+    /// Returns information about a message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
-    /// - Returns: Information about a message
+    /// - Returns: Information about a message. Returns a 404 error if the message doesn't exist
     public func getMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1202,10 +1202,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a message
+    /// Returns information about a message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
-    /// - Returns: Information about a message
+    /// - Returns: Information about a message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessage(
         chatId: Int64?,
@@ -1218,10 +1218,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a message, if it is available without sending network request. This is an offline request
+    /// Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline request
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
-    /// - Returns: Information about a message, if it is available without sending network request
+    /// - Returns: Information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally
     public func getMessageLocally(
         chatId: Int64?,
         messageId: Int64?,
@@ -1234,10 +1234,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a message, if it is available without sending network request. This is an offline request
+    /// Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline request
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the message to get
-    /// - Returns: Information about a message, if it is available without sending network request
+    /// - Returns: Information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMessageLocally(
         chatId: Int64?,
@@ -1250,10 +1250,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1266,10 +1266,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -1282,9 +1282,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a newest pinned message in the chat
+    /// Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
-    /// - Returns: Information about a newest pinned message in the chat
+    /// - Returns: Information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
     public func getChatPinnedMessage(
         chatId: Int64?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
@@ -1295,9 +1295,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a newest pinned message in the chat
+    /// Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
-    /// - Returns: Information about a newest pinned message in the chat
+    /// - Returns: Information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatPinnedMessage(chatId: Int64?) async throws -> Message {
         let query = GetChatPinnedMessage(
@@ -1737,9 +1737,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
+    /// Returns a list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
     /// - Parameter location: Current user location
-    /// - Returns: A list of users and location-based supergroups nearby
+    /// - Returns: A list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
     public func searchChatsNearby(
         location: Location?,
         completion: @escaping (Result<ChatsNearby, Swift.Error>) -> Void
@@ -1750,9 +1750,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
+    /// Returns a list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
     /// - Parameter location: Current user location
-    /// - Returns: A list of users and location-based supergroups nearby
+    /// - Returns: A list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChatsNearby(location: Location?) async throws -> ChatsNearby {
         let query = SearchChatsNearby(
@@ -3186,10 +3186,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the last message sent in a chat no later than the specified date
+    /// Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
     /// - Parameter chatId: Chat identifier
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
-    /// - Returns: The last message sent in a chat no later than the specified date
+    /// - Returns: The last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
     public func getChatMessageByDate(
         chatId: Int64?,
         date: Int?,
@@ -3202,10 +3202,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the last message sent in a chat no later than the specified date
+    /// Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
     /// - Parameter chatId: Chat identifier
     /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
-    /// - Returns: The last message sent in a chat no later than the specified date
+    /// - Returns: The last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageByDate(
         chatId: Int64?,
@@ -3454,32 +3454,44 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
+    /// Informs TDLib that the user opened the sponsored chat via the button, the name, the chat photo, a mention in the sponsored message text, or the media in the sponsored message
     /// - Parameter chatId: Chat identifier of the sponsored message
+    /// - Parameter fromFullscreen: Pass true if the user expanded the video from the sponsored message fullscreen before the click
+    /// - Parameter isMediaClick: Pass true if the media was clicked in the sponsored message
     /// - Parameter messageId: Identifier of the sponsored message
     public func clickChatSponsoredMessage(
         chatId: Int64?,
+        fromFullscreen: Bool?,
+        isMediaClick: Bool?,
         messageId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ClickChatSponsoredMessage(
             chatId: chatId,
+            fromFullscreen: fromFullscreen,
+            isMediaClick: isMediaClick,
             messageId: messageId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
+    /// Informs TDLib that the user opened the sponsored chat via the button, the name, the chat photo, a mention in the sponsored message text, or the media in the sponsored message
     /// - Parameter chatId: Chat identifier of the sponsored message
+    /// - Parameter fromFullscreen: Pass true if the user expanded the video from the sponsored message fullscreen before the click
+    /// - Parameter isMediaClick: Pass true if the media was clicked in the sponsored message
     /// - Parameter messageId: Identifier of the sponsored message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func clickChatSponsoredMessage(
         chatId: Int64?,
+        fromFullscreen: Bool?,
+        isMediaClick: Bool?,
         messageId: Int64?
     ) async throws -> Ok {
         let query = ClickChatSponsoredMessage(
             chatId: chatId,
+            fromFullscreen: fromFullscreen,
+            isMediaClick: isMediaClick,
             messageId: messageId
         )
         return try await self.execute(query: query)
@@ -4542,7 +4554,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
     public func editMessageCaption(
         caption: FormattedText?,
@@ -4567,7 +4579,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editMessageCaption(
@@ -4758,7 +4770,7 @@ public final class TdApi {
     /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     public func editInlineMessageCaption(
         caption: FormattedText?,
         inlineMessageId: String?,
@@ -4779,7 +4791,7 @@ public final class TdApi {
     /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func editInlineMessageCaption(
@@ -5200,7 +5212,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     public func editBusinessMessageCaption(
         businessConnectionId: String?,
         caption: FormattedText?,
@@ -5227,7 +5239,7 @@ public final class TdApi {
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editBusinessMessageCaption(
         businessConnectionId: String?,
@@ -6890,7 +6902,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
+    /// Removes potentially dangerous characters from the name of a file. Returns an empty string on failure. Can be called synchronously
     /// - Parameter fileName: File name or path to the file
     /// - Returns: An empty string on failure
     public func cleanFileName(
@@ -6903,7 +6915,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
+    /// Removes potentially dangerous characters from the name of a file. Returns an empty string on failure. Can be called synchronously
     /// - Parameter fileName: File name or path to the file
     /// - Returns: An empty string on failure
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -11871,19 +11883,19 @@ public final class TdApi {
     }
 
     /// Reports a story to the Telegram moderators
-    /// - Parameter reason: The reason for reporting the story
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
     /// - Parameter storyId: The identifier of the story to report
     /// - Parameter storySenderChatId: The identifier of the sender of the story to report
-    /// - Parameter text: Additional report details; 0-1024 characters
+    /// - Parameter text: Additional report details; 0-1024 characters; leave empty for the initial request
     public func reportStory(
-        reason: ReportReason?,
+        optionId: Data?,
         storyId: Int?,
         storySenderChatId: Int64?,
         text: String?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<ReportStoryResult, Swift.Error>) -> Void
     ) throws {
         let query = ReportStory(
-            reason: reason,
+            optionId: optionId,
             storyId: storyId,
             storySenderChatId: storySenderChatId,
             text: text
@@ -11892,20 +11904,19 @@ public final class TdApi {
     }
 
     /// Reports a story to the Telegram moderators
-    /// - Parameter reason: The reason for reporting the story
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
     /// - Parameter storyId: The identifier of the story to report
     /// - Parameter storySenderChatId: The identifier of the sender of the story to report
-    /// - Parameter text: Additional report details; 0-1024 characters
+    /// - Parameter text: Additional report details; 0-1024 characters; leave empty for the initial request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public func reportStory(
-        reason: ReportReason?,
+        optionId: Data?,
         storyId: Int?,
         storySenderChatId: Int64?,
         text: String?
-    ) async throws -> Ok {
+    ) async throws -> ReportStoryResult {
         let query = ReportStory(
-            reason: reason,
+            optionId: optionId,
             storyId: storyId,
             storySenderChatId: storySenderChatId,
             text: text
@@ -12499,7 +12510,7 @@ public final class TdApi {
     }
 
     /// Returns suggested name for saving a file in a given directory
-    /// - Parameter directory: Directory in which the file is supposed to be saved
+    /// - Parameter directory: Directory in which the file is expected to be saved
     /// - Parameter fileId: Identifier of the file
     /// - Returns: Suggested name for saving a file in a given directory
     public func getSuggestedFileName(
@@ -12515,7 +12526,7 @@ public final class TdApi {
     }
 
     /// Returns suggested name for saving a file in a given directory
-    /// - Parameter directory: Directory in which the file is supposed to be saved
+    /// - Parameter directory: Directory in which the file is expected to be saved
     /// - Parameter fileId: Identifier of the file
     /// - Returns: Suggested name for saving a file in a given directory
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12566,7 +12577,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+    /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile
     /// - Parameter fileId: Identifier of the file to stop uploading
     public func cancelPreliminaryUploadFile(
         fileId: Int?,
@@ -12578,7 +12589,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+    /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile
     /// - Parameter fileId: Identifier of the file to stop uploading
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -14017,7 +14028,7 @@ public final class TdApi {
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
     /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
-    /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+    /// - Parameter startDate: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     public func createVideoChat(
         chatId: Int64?,
@@ -14038,7 +14049,7 @@ public final class TdApi {
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
     /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
-    /// - Parameter startDate: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+    /// - Parameter startDate: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createVideoChat(
@@ -18879,7 +18890,7 @@ public final class TdApi {
     }
 
     /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages to report. Use messageProperties.can_be_reported to check whether the message can be reported
+    /// - Parameter messageIds: Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported
     /// - Parameter supergroupId: Supergroup identifier
     public func reportSupergroupSpam(
         messageIds: [Int64]?,
@@ -18894,7 +18905,7 @@ public final class TdApi {
     }
 
     /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
-    /// - Parameter messageIds: Identifiers of messages to report. Use messageProperties.can_be_reported to check whether the message can be reported
+    /// - Parameter messageIds: Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported
     /// - Parameter supergroupId: Supergroup identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -19277,6 +19288,170 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns gifts that can be sent to other users
+    /// - Returns: Gifts that can be sent to other users
+    public func getAvailableGifts(completion: @escaping (Result<Gifts, Swift.Error>) -> Void) throws {
+        let query = GetAvailableGifts()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns gifts that can be sent to other users
+    /// - Returns: Gifts that can be sent to other users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getAvailableGifts() async throws -> Gifts {
+        let query = GetAvailableGifts()
+        return try await self.execute(query: query)
+    }
+
+    /// Send a gift to another user
+    /// - Parameter giftId: Identifier of the gift to send
+    /// - Parameter isPrivate: Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter userId: Identifier of the user that will receive the gift
+    public func sendGift(
+        giftId: TdInt64?,
+        isPrivate: Bool?,
+        text: FormattedText?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendGift(
+            giftId: giftId,
+            isPrivate: isPrivate,
+            text: text,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Send a gift to another user
+    /// - Parameter giftId: Identifier of the gift to send
+    /// - Parameter isPrivate: Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter userId: Identifier of the user that will receive the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func sendGift(
+        giftId: TdInt64?,
+        isPrivate: Bool?,
+        text: FormattedText?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = SendGift(
+            giftId: giftId,
+            isPrivate: isPrivate,
+            text: text,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sells a gift received by the current user for Telegram Stars
+    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
+    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    public func sellGift(
+        messageId: Int64?,
+        senderUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SellGift(
+            messageId: messageId,
+            senderUserId: senderUserId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sells a gift received by the current user for Telegram Stars
+    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
+    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func sellGift(
+        messageId: Int64?,
+        senderUserId: Int64?
+    ) async throws -> Ok {
+        let query = SellGift(
+            messageId: messageId,
+            senderUserId: senderUserId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Toggles whether a gift is shown on the current user's profile page
+    /// - Parameter isSaved: Pass true to display the gift on the user's profile page; pass false to remove it from the profile page
+    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
+    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    public func toggleGiftIsSaved(
+        isSaved: Bool?,
+        messageId: Int64?,
+        senderUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleGiftIsSaved(
+            isSaved: isSaved,
+            messageId: messageId,
+            senderUserId: senderUserId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether a gift is shown on the current user's profile page
+    /// - Parameter isSaved: Pass true to display the gift on the user's profile page; pass false to remove it from the profile page
+    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
+    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func toggleGiftIsSaved(
+        isSaved: Bool?,
+        messageId: Int64?,
+        senderUserId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleGiftIsSaved(
+            isSaved: isSaved,
+            messageId: messageId,
+            senderUserId: senderUserId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns gifts saved to profile by the given user
+    /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter userId: Identifier of the user
+    /// - Returns: Gifts saved to profile by the given user
+    public func getUserGifts(
+        limit: Int?,
+        offset: String?,
+        userId: Int64?,
+        completion: @escaping (Result<UserGifts, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUserGifts(
+            limit: limit,
+            offset: offset,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns gifts saved to profile by the given user
+    /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter userId: Identifier of the user
+    /// - Returns: Gifts saved to profile by the given user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getUserGifts(
+        limit: Int?,
+        offset: String?,
+        userId: Int64?
+    ) async throws -> UserGifts {
+        let query = GetUserGifts(
+            limit: limit,
+            offset: offset,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Creates a link for the given invoice; for bots only
     /// - Parameter invoice: Information about the invoice of the type inputMessageInvoice
     public func createInvoiceLink(
@@ -19299,7 +19474,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Refunds a previously done payment in Telegram Stars
+    /// Refunds a previously done payment in Telegram Stars; for bots only
     /// - Parameter telegramPaymentChargeId: Telegram payment identifier
     /// - Parameter userId: Identifier of the user that did the payment
     public func refundStarPayment(
@@ -19314,7 +19489,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Refunds a previously done payment in Telegram Stars
+    /// Refunds a previously done payment in Telegram Stars; for bots only
     /// - Parameter telegramPaymentChargeId: Telegram payment identifier
     /// - Parameter userId: Identifier of the user that did the payment
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -20204,20 +20379,20 @@ public final class TdApi {
 
     /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported
-    /// - Parameter reason: The reason for reporting the chat
-    /// - Parameter text: Additional report details; 0-1024 characters
+    /// - Parameter messageIds: Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    /// - Parameter text: Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
     public func reportChat(
         chatId: Int64?,
         messageIds: [Int64]?,
-        reason: ReportReason?,
+        optionId: Data?,
         text: String?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<ReportChatResult, Swift.Error>) -> Void
     ) throws {
         let query = ReportChat(
             chatId: chatId,
             messageIds: messageIds,
-            reason: reason,
+            optionId: optionId,
             text: text
         )
         self.execute(query: query, completion: completion)
@@ -20225,21 +20400,20 @@ public final class TdApi {
 
     /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
     /// - Parameter chatId: Chat identifier
-    /// - Parameter messageIds: Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported
-    /// - Parameter reason: The reason for reporting the chat
-    /// - Parameter text: Additional report details; 0-1024 characters
+    /// - Parameter messageIds: Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    /// - Parameter text: Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public func reportChat(
         chatId: Int64?,
         messageIds: [Int64]?,
-        reason: ReportReason?,
+        optionId: Data?,
         text: String?
-    ) async throws -> Ok {
+    ) async throws -> ReportChatResult {
         let query = ReportChat(
             chatId: chatId,
             messageIds: messageIds,
-            reason: reason,
+            optionId: optionId,
             text: text
         )
         return try await self.execute(query: query)
@@ -22062,6 +22236,30 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getPremiumStickerExamples() async throws -> Stickers {
         let query = GetPremiumStickerExamples()
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the sticker to be used as representation of the Telegram Premium subscription
+    /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active
+    /// - Returns: The sticker to be used as representation of the Telegram Premium subscription
+    public func getPremiumInfoSticker(
+        monthCount: Int?,
+        completion: @escaping (Result<Sticker, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPremiumInfoSticker(
+            monthCount: monthCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the sticker to be used as representation of the Telegram Premium subscription
+    /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active
+    /// - Returns: The sticker to be used as representation of the Telegram Premium subscription
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumInfoSticker(monthCount: Int?) async throws -> Sticker {
+        let query = GetPremiumInfoSticker(
+            monthCount: monthCount
+        )
         return try await self.execute(query: query)
     }
 

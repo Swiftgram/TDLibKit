@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// True, if the user can be called
     public let canBeCalled: Bool
+
+    /// Number of gifts saved to profile by the user
+    public let giftCount: Int
 
     /// Number of group chats where both the other user and the current user are a member; 0 for the current user
     public let groupInCommonCount: Int
@@ -81,6 +84,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         botInfo: BotInfo?,
         businessInfo: BusinessInfo?,
         canBeCalled: Bool,
+        giftCount: Int,
         groupInCommonCount: Int,
         hasPostedToProfileStories: Bool,
         hasPrivateCalls: Bool,
@@ -102,6 +106,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.botInfo = botInfo
         self.businessInfo = businessInfo
         self.canBeCalled = canBeCalled
+        self.giftCount = giftCount
         self.groupInCommonCount = groupInCommonCount
         self.hasPostedToProfileStories = hasPostedToProfileStories
         self.hasPrivateCalls = hasPrivateCalls

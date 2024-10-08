@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -90,7 +90,7 @@ public struct GiveawayInfoCompleted: Codable, Equatable, Hashable {
     /// Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway
     public let giftCode: String
 
-    /// True, if the cuurent user is a winner of the giveaway
+    /// True, if the current user is a winner of the giveaway
     public let isWinner: Bool
 
     /// True, if the giveaway was canceled and was fully refunded

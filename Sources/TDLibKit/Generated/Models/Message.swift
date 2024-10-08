@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     public let autoDeleteIn: Double
 
-    /// True, if content of the message can be saved locally or copied
+    /// True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
     public let canBeSaved: Bool
 
     /// Chat identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.36-91aa6c9e
-//  https://github.com/tdlib/td/tree/91aa6c9e
+//  Based on TDLib 1.8.37-6dae0a56
+//  https://github.com/tdlib/td/tree/6dae0a56
 //
 
 import Foundation
@@ -266,7 +266,7 @@ public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable, Hashable {
     /// Length of the code
     public let length: Int
 
-    /// Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
+    /// Time after the next authentication method is expected to be used if verification push notification isn't received, in seconds
     public let pushTimeout: Int
 
     /// Receipt of successful application token validation to compare with receipt from push notification
