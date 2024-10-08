@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-6dae0a56
-//  https://github.com/tdlib/td/tree/6dae0a56
+//  Based on TDLib 1.8.37-fe6f2f93
+//  https://github.com/tdlib/td/tree/fe6f2f93
 //
 
 import Foundation
@@ -19313,11 +19313,12 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Send a gift to another user
+    /// Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     /// - Parameter giftId: Identifier of the gift to send
     /// - Parameter isPrivate: Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
     /// - Parameter userId: Identifier of the user that will receive the gift
+    /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     public final func sendGift(
         giftId: TdInt64?,
         isPrivate: Bool?,
@@ -19334,11 +19335,12 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Send a gift to another user
+    /// Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     /// - Parameter giftId: Identifier of the gift to send
     /// - Parameter isPrivate: Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
     /// - Parameter userId: Identifier of the user that will receive the gift
+    /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func sendGift(

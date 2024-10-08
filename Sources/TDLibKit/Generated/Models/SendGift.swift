@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-6dae0a56
-//  https://github.com/tdlib/td/tree/6dae0a56
+//  Based on TDLib 1.8.37-fe6f2f93
+//  https://github.com/tdlib/td/tree/fe6f2f93
 //
 
 import Foundation
 
 
-/// Send a gift to another user
+/// Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
 public struct SendGift: Codable, Equatable, Hashable {
 
     /// Identifier of the gift to send

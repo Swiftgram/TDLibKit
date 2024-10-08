@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-6dae0a56
-//  https://github.com/tdlib/td/tree/6dae0a56
+//  Based on TDLib 1.8.37-fe6f2f93
+//  https://github.com/tdlib/td/tree/fe6f2f93
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Unique identifier of the gift
     public let id: TdInt64
 
-    /// Number of remaining times the gift can be purchased by all users; 0 if not limited
+    /// Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
     public let remainingCount: Int
 
     /// Number of Telegram Stars that must be paid for the gift
