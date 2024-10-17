@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-fe6f2f93
-//  https://github.com/tdlib/td/tree/fe6f2f93
+//  Based on TDLib 1.8.37-672f837c
+//  https://github.com/tdlib/td/tree/672f837c
 //
 
 import Foundation
@@ -64,7 +64,7 @@ public indirect enum BackgroundFill: Codable, Equatable, Hashable {
 /// Describes a solid fill of a background
 public struct BackgroundFillSolid: Codable, Equatable, Hashable {
 
-    /// A color of the background in the RGB24 format
+    /// A color of the background in the RGB format
     public let color: Int
 
 
@@ -76,13 +76,13 @@ public struct BackgroundFillSolid: Codable, Equatable, Hashable {
 /// Describes a gradient fill of a background
 public struct BackgroundFillGradient: Codable, Equatable, Hashable {
 
-    /// A bottom color of the background in the RGB24 format
+    /// A bottom color of the background in the RGB format
     public let bottomColor: Int
 
     /// Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
     public let rotationAngle: Int
 
-    /// A top color of the background in the RGB24 format
+    /// A top color of the background in the RGB format
     public let topColor: Int
 
 
@@ -100,7 +100,7 @@ public struct BackgroundFillGradient: Codable, Equatable, Hashable {
 /// Describes a freeform gradient fill of a background
 public struct BackgroundFillFreeformGradient: Codable, Equatable, Hashable {
 
-    /// A list of 3 or 4 colors of the freeform gradient in the RGB24 format
+    /// A list of 3 or 4 colors of the freeform gradient in the RGB format
     public let colors: [Int]
 
 

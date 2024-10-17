@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-fe6f2f93
-//  https://github.com/tdlib/td/tree/fe6f2f93
+//  Based on TDLib 1.8.37-672f837c
+//  https://github.com/tdlib/td/tree/672f837c
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Describes actions which must be possible to do through a chat action bar
 public indirect enum ChatActionBar: Codable, Equatable, Hashable {
 
-    /// The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+    /// The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     case chatActionBarReportSpam(ChatActionBarReportSpam)
 
-    /// The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason reportReasonUnrelatedLocation
+    /// The chat is a location-based supergroup, which can't be reported anymore
     case chatActionBarReportUnrelatedLocation
 
     /// The chat is a recently created group chat to which new members can be invited
@@ -93,7 +93,7 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
     }
 }
 
-/// The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+/// The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 public struct ChatActionBarReportSpam: Codable, Equatable, Hashable {
 
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings

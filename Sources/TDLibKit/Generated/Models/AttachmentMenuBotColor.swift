@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-fe6f2f93
-//  https://github.com/tdlib/td/tree/fe6f2f93
+//  Based on TDLib 1.8.37-672f837c
+//  https://github.com/tdlib/td/tree/672f837c
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Describes a color to highlight a bot added to attachment menu
 public struct AttachmentMenuBotColor: Codable, Equatable, Hashable {
 
-    /// Color in the RGB24 format for dark themes
+    /// Color in the RGB format for dark themes
     public let darkColor: Int
 
-    /// Color in the RGB24 format for light themes
+    /// Color in the RGB format for light themes
     public let lightColor: Int
 
 

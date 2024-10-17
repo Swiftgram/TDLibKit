@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-fe6f2f93
-//  https://github.com/tdlib/td/tree/fe6f2f93
+//  Based on TDLib 1.8.37-672f837c
+//  https://github.com/tdlib/td/tree/672f837c
 //
 
 import Foundation
@@ -698,13 +698,13 @@ public struct LinkPreviewTypeTheme: Codable, Equatable, Hashable {
     /// The list of files with theme description
     public let documents: [Document]
 
-    /// Settings for the cloud theme
-    public let settings: ThemeSettings
+    /// Settings for the cloud theme; may be null if unknown
+    public let settings: ThemeSettings?
 
 
     public init(
         documents: [Document],
-        settings: ThemeSettings
+        settings: ThemeSettings?
     ) {
         self.documents = documents
         self.settings = settings
@@ -788,11 +788,11 @@ public struct LinkPreviewTypeVoiceNote: Codable, Equatable, Hashable {
 /// The link is a link to a Web App
 public struct LinkPreviewTypeWebApp: Codable, Equatable, Hashable {
 
-    /// Web App photo
-    public let photo: Photo
+    /// Web App photo; may be null if none
+    public let photo: Photo?
 
 
-    public init(photo: Photo) {
+    public init(photo: Photo?) {
         self.photo = photo
     }
 }
