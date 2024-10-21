@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-c1fea0f2
-//  https://github.com/tdlib/td/tree/c1fea0f2
+//  Based on TDLib 1.8.37-b39769be
+//  https://github.com/tdlib/td/tree/b39769be
 //
 
 import Foundation
@@ -4119,7 +4119,7 @@ public class TDLibApi {
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
-    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_saved and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
     /// - Returns: The forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     public final func forwardMessages(
         chatId: Int64?,
@@ -4150,7 +4150,7 @@ public class TDLibApi {
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
-    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_saved and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
     /// - Returns: The forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func forwardMessages(
@@ -6513,7 +6513,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reactions are added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionTypes: Types of the reaction to set
+    /// - Parameter reactionTypes: Types of the reaction to set; pass an empty list to remove the reactions
     public final func setMessageReactions(
         chatId: Int64?,
         isBig: Bool?,
@@ -6534,7 +6534,7 @@ public class TDLibApi {
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter isBig: Pass true if the reactions are added with a big animation
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter reactionTypes: Types of the reaction to set
+    /// - Parameter reactionTypes: Types of the reaction to set; pass an empty list to remove the reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setMessageReactions(

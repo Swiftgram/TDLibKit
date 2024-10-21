@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-c1fea0f2
-//  https://github.com/tdlib/td/tree/c1fea0f2
+//  Based on TDLib 1.8.37-b39769be
+//  https://github.com/tdlib/td/tree/b39769be
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct SetMessageReactions: Codable, Equatable, Hashable {
     /// Identifier of the message
     public let messageId: Int64?
 
-    /// Types of the reaction to set
+    /// Types of the reaction to set; pass an empty list to remove the reactions
     public let reactionTypes: [ReactionType]?
 
 
