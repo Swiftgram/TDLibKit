@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
     /// The transaction is a transaction with a supergroup or a channel chat
     case starTransactionPartnerChat(StarTransactionPartnerChat)
 
-    /// The transaction is a transcation with another user
+    /// The transaction is a transaction with another user
     case starTransactionPartnerUser(StarTransactionPartnerUser)
 
     /// The transaction is a transaction with unknown partner
@@ -155,7 +155,7 @@ public struct StarTransactionPartnerBot: Codable, Equatable, Hashable {
 /// The transaction is a transaction with a business account
 public struct StarTransactionPartnerBusiness: Codable, Equatable, Hashable {
 
-    /// The bought media if the trancastion wasn't refunded
+    /// The bought media if the transaction wasn't refunded
     public let media: [PaidMedia]
 
     /// Identifier of the business account user
@@ -190,7 +190,7 @@ public struct StarTransactionPartnerChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a transcation with another user
+/// The transaction is a transaction with another user
 public struct StarTransactionPartnerUser: Codable, Equatable, Hashable {
 
     /// Purpose of the transaction

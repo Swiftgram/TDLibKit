@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     /// A mention of a user, a supergroup, or a channel by their username
     case textEntityTypeMention
 
-    /// A hashtag text, beginning with "#"
+    /// A hashtag text, beginning with "#" and optionally containing a chat username at the end
     case textEntityTypeHashtag
 
-    /// A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
+    /// A cashtag text, beginning with "$", consisting of capital English letters (e.g., "$USD"), and optionally containing a chat username at the end
     case textEntityTypeCashtag
 
     /// A bot command, beginning with "/"

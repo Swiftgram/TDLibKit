@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -74,7 +74,7 @@ public indirect enum ChatTransactionPurpose: Codable, Equatable, Hashable {
 /// Paid media were bought
 public struct ChatTransactionPurposePaidMedia: Codable, Equatable, Hashable {
 
-    /// The bought media if the trancastion wasn't refunded
+    /// The bought media if the transaction wasn't refunded
     public let media: [PaidMedia]
 
     /// Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message

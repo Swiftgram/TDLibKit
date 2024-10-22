@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -13,11 +13,18 @@ import Foundation
 /// Searches for a sticker set by its name
 public struct SearchStickerSet: Codable, Equatable, Hashable {
 
+    /// Pass true to ignore local cache of sticker sets and always send a network request
+    public let ignoreCache: Bool?
+
     /// Name of the sticker set
     public let name: String?
 
 
-    public init(name: String?) {
+    public init(
+        ignoreCache: Bool?,
+        name: String?
+    ) {
+        self.ignoreCache = ignoreCache
         self.name = name
     }
 }

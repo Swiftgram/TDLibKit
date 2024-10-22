@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -15,9 +15,6 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
 
     /// The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     case chatActionBarReportSpam(ChatActionBarReportSpam)
-
-    /// The chat is a location-based supergroup, which can't be reported anymore
-    case chatActionBarReportUnrelatedLocation
 
     /// The chat is a recently created group chat to which new members can be invited
     case chatActionBarInviteMembers
@@ -37,7 +34,6 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case chatActionBarReportSpam
-        case chatActionBarReportUnrelatedLocation
         case chatActionBarInviteMembers
         case chatActionBarReportAddBlock
         case chatActionBarAddContact
@@ -52,8 +48,6 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
         case .chatActionBarReportSpam:
             let value = try ChatActionBarReportSpam(from: decoder)
             self = .chatActionBarReportSpam(value)
-        case .chatActionBarReportUnrelatedLocation:
-            self = .chatActionBarReportUnrelatedLocation
         case .chatActionBarInviteMembers:
             self = .chatActionBarInviteMembers
         case .chatActionBarReportAddBlock:
@@ -75,8 +69,6 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
         case .chatActionBarReportSpam(let value):
             try container.encode(Kind.chatActionBarReportSpam, forKey: .type)
             try value.encode(to: encoder)
-        case .chatActionBarReportUnrelatedLocation:
-            try container.encode(Kind.chatActionBarReportUnrelatedLocation, forKey: .type)
         case .chatActionBarInviteMembers:
             try container.encode(Kind.chatActionBarInviteMembers, forKey: .type)
         case .chatActionBarReportAddBlock(let value):
@@ -111,16 +103,9 @@ public struct ChatActionBarReportAddBlock: Codable, Equatable, Hashable {
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool
 
-    /// If non-negative, the current user was found by the other user through searchChatsNearby and this is the distance between the users
-    public let distance: Int
 
-
-    public init(
-        canUnarchive: Bool,
-        distance: Int
-    ) {
+    public init(canUnarchive: Bool) {
         self.canUnarchive = canUnarchive
-        self.distance = distance
     }
 }
 

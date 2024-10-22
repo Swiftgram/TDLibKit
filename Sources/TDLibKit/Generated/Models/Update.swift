@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -343,9 +343,6 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     case updateTermsOfService(UpdateTermsOfService)
 
-    /// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
-    case updateUsersNearby(UpdateUsersNearby)
-
     /// The first unconfirmed session has changed
     case updateUnconfirmedSession(UpdateUnconfirmedSession)
 
@@ -578,7 +575,6 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateLanguagePackStrings
         case updateConnectionState
         case updateTermsOfService
-        case updateUsersNearby
         case updateUnconfirmedSession
         case updateAttachmentMenuBots
         case updateWebAppMessageSent
@@ -955,9 +951,6 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateTermsOfService:
             let value = try UpdateTermsOfService(from: decoder)
             self = .updateTermsOfService(value)
-        case .updateUsersNearby:
-            let value = try UpdateUsersNearby(from: decoder)
-            self = .updateUsersNearby(value)
         case .updateUnconfirmedSession:
             let value = try UpdateUnconfirmedSession(from: decoder)
             self = .updateUnconfirmedSession(value)
@@ -1413,9 +1406,6 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateTermsOfService(let value):
             try container.encode(Kind.updateTermsOfService, forKey: .type)
-            try value.encode(to: encoder)
-        case .updateUsersNearby(let value):
-            try container.encode(Kind.updateUsersNearby, forKey: .type)
             try value.encode(to: encoder)
         case .updateUnconfirmedSession(let value):
             try container.encode(Kind.updateUnconfirmedSession, forKey: .type)
@@ -3646,18 +3636,6 @@ public struct UpdateTermsOfService: Codable, Equatable, Hashable {
     ) {
         self.termsOfService = termsOfService
         self.termsOfServiceId = termsOfServiceId
-    }
-}
-
-/// The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
-public struct UpdateUsersNearby: Codable, Equatable, Hashable {
-
-    /// The new list of users nearby
-    public let usersNearby: [ChatNearby]
-
-
-    public init(usersNearby: [ChatNearby]) {
-        self.usersNearby = usersNearby
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -156,6 +156,9 @@ public struct StorePaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable 
     /// ISO 4217 currency code of the payment currency
     public let currency: String
 
+    /// Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    public let text: FormattedText
+
     /// Identifiers of the users which can activate the gift codes
     public let userIds: [Int64]
 
@@ -164,11 +167,13 @@ public struct StorePaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable 
         amount: Int64,
         boostedChatId: Int64,
         currency: String,
+        text: FormattedText,
         userIds: [Int64]
     ) {
         self.amount = amount
         self.boostedChatId = boostedChatId
         self.currency = currency
+        self.text = text
         self.userIds = userIds
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -1783,6 +1783,9 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
 
+    /// Message added to the gifted Telegram Premium by the sender
+    public let text: FormattedText
+
 
     public init(
         amount: Int64,
@@ -1792,7 +1795,8 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         gifterUserId: Int64,
         monthCount: Int,
         receiverUserId: Int64,
-        sticker: Sticker?
+        sticker: Sticker?,
+        text: FormattedText
     ) {
         self.amount = amount
         self.cryptocurrency = cryptocurrency
@@ -1802,6 +1806,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         self.monthCount = monthCount
         self.receiverUserId = receiverUserId
         self.sticker = sticker
+        self.text = text
     }
 }
 
@@ -1838,6 +1843,9 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
 
+    /// Message added to the gift
+    public let text: FormattedText
+
 
     public init(
         amount: Int64,
@@ -1849,7 +1857,8 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
         isFromGiveaway: Bool,
         isUnclaimed: Bool,
         monthCount: Int,
-        sticker: Sticker?
+        sticker: Sticker?,
+        text: FormattedText
     ) {
         self.amount = amount
         self.code = code
@@ -1861,6 +1870,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
         self.isUnclaimed = isUnclaimed
         self.monthCount = monthCount
         self.sticker = sticker
+        self.text = text
     }
 }
 

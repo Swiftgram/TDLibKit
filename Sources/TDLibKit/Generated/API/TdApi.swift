@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.37-b39769be
-//  https://github.com/tdlib/td/tree/b39769be
+//  Based on TDLib 1.8.38-d321984b
+//  https://github.com/tdlib/td/tree/d321984b
 //
 
 import Foundation
@@ -1733,30 +1733,6 @@ public final class TdApi {
         let query = SearchChatsOnServer(
             limit: limit,
             query: query
-        )
-        return try await self.execute(query: query)
-    }
-
-    /// Returns a list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
-    /// - Parameter location: Current user location
-    /// - Returns: A list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
-    public func searchChatsNearby(
-        location: Location?,
-        completion: @escaping (Result<ChatsNearby, Swift.Error>) -> Void
-    ) throws {
-        let query = SearchChatsNearby(
-            location: location
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Returns a list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
-    /// - Parameter location: Current user location
-    /// - Returns: A list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func searchChatsNearby(location: Location?) async throws -> ChatsNearby {
-        let query = SearchChatsNearby(
-            location: location
         )
         return try await self.execute(query: query)
     }
@@ -15733,22 +15709,30 @@ public final class TdApi {
     }
 
     /// Searches for a sticker set by its name
+    /// - Parameter ignoreCache: Pass true to ignore local cache of sticker sets and always send a network request
     /// - Parameter name: Name of the sticker set
     public func searchStickerSet(
+        ignoreCache: Bool?,
         name: String?,
         completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
     ) throws {
         let query = SearchStickerSet(
+            ignoreCache: ignoreCache,
             name: name
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Searches for a sticker set by its name
+    /// - Parameter ignoreCache: Pass true to ignore local cache of sticker sets and always send a network request
     /// - Parameter name: Name of the sticker set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func searchStickerSet(name: String?) async throws -> StickerSet {
+    public func searchStickerSet(
+        ignoreCache: Bool?,
+        name: String?
+    ) async throws -> StickerSet {
         let query = SearchStickerSet(
+            ignoreCache: ignoreCache,
             name: name
         )
         return try await self.execute(query: query)
@@ -16814,29 +16798,6 @@ public final class TdApi {
     public func setEmojiStatus(emojiStatus: EmojiStatus?) async throws -> Ok {
         let query = SetEmojiStatus(
             emojiStatus: emojiStatus
-        )
-        return try await self.execute(query: query)
-    }
-
-    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
-    /// - Parameter location: The new location of the user
-    public func setLocation(
-        location: Location?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = SetLocation(
-            location: location
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
-    /// - Parameter location: The new location of the user
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public func setLocation(location: Location?) async throws -> Ok {
-        let query = SetLocation(
-            location: location
         )
         return try await self.execute(query: query)
     }
