@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -19,8 +19,14 @@ public struct PremiumGiftCodePaymentOption: Codable, Equatable, Hashable {
     /// ISO 4217 currency code for Telegram Premium gift code payment
     public let currency: String
 
+    /// The discount associated with this option, as a percentage
+    public let discountPercentage: Int
+
     /// Number of months the Telegram Premium subscription will be active
     public let monthCount: Int
+
+    /// A sticker to be shown along with the gift code; may be null if unknown
+    public let sticker: Sticker?
 
     /// Identifier of the store product associated with the option; may be empty if none
     public let storeProductId: String
@@ -35,14 +41,18 @@ public struct PremiumGiftCodePaymentOption: Codable, Equatable, Hashable {
     public init(
         amount: Int64,
         currency: String,
+        discountPercentage: Int,
         monthCount: Int,
+        sticker: Sticker?,
         storeProductId: String,
         storeProductQuantity: Int,
         winnerCount: Int
     ) {
         self.amount = amount
         self.currency = currency
+        self.discountPercentage = discountPercentage
         self.monthCount = monthCount
+        self.sticker = sticker
         self.storeProductId = storeProductId
         self.storeProductQuantity = storeProductQuantity
         self.winnerCount = winnerCount

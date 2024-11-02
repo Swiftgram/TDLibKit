@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -2922,17 +2922,20 @@ public class TDLibApi {
     /// Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
     /// - Parameter tag: Hashtag or cashtag to search for
     /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     public final func searchPublicStoriesByTag(
         limit: Int?,
         offset: String?,
+        storySenderChatId: Int64?,
         tag: String?,
         completion: @escaping (Result<FoundStories, Swift.Error>) -> Void
     ) throws {
         let query = SearchPublicStoriesByTag(
             limit: limit,
             offset: offset,
+            storySenderChatId: storySenderChatId,
             tag: tag
         )
         self.run(query: query, completion: completion)
@@ -2941,17 +2944,20 @@ public class TDLibApi {
     /// Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
     /// - Parameter tag: Hashtag or cashtag to search for
     /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchPublicStoriesByTag(
         limit: Int?,
         offset: String?,
+        storySenderChatId: Int64?,
         tag: String?
     ) async throws -> FoundStories {
         let query = SearchPublicStoriesByTag(
             limit: limit,
             offset: offset,
+            storySenderChatId: storySenderChatId,
             tag: tag
         )
         return try await self.run(query: query)
@@ -3416,7 +3422,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns sponsored messages to be shown in a chat; for channel chats only
+    /// Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only
     /// - Parameter chatId: Identifier of the chat
     /// - Returns: Sponsored messages to be shown in a chat
     public final func getChatSponsoredMessages(
@@ -3429,7 +3435,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns sponsored messages to be shown in a chat; for channel chats only
+    /// Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only
     /// - Parameter chatId: Identifier of the chat
     /// - Returns: Sponsored messages to be shown in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4491,10 +4497,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+    /// Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_edit_media to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageMedia(
@@ -4513,10 +4519,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+    /// Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_edit_media to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -4715,7 +4721,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+    /// Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
@@ -4733,7 +4739,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+    /// Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
@@ -4829,7 +4835,7 @@ public class TDLibApi {
     /// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
-    /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately
+    /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed
     public final func editMessageSchedulingState(
         chatId: Int64?,
         messageId: Int64?,
@@ -4847,7 +4853,7 @@ public class TDLibApi {
     /// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
-    /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately
+    /// - Parameter schedulingState: The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editMessageSchedulingState(
@@ -5144,7 +5150,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+    /// Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
@@ -5168,7 +5174,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+    /// Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
@@ -5699,7 +5705,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
@@ -5717,7 +5723,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
@@ -20472,7 +20478,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     /// - Returns: Detailed revenue statistics about a chat
@@ -20488,7 +20494,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter isDark: Pass true if a dark theme is used by the application
     /// - Returns: Detailed revenue statistics about a chat
@@ -20504,7 +20510,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    /// Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only if getOption("can_withdraw_chat_revenue") for channels with supergroupFullInfo.can_get_revenue_statistics == true or bots with userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: A URL for chat revenue withdrawal
@@ -20520,7 +20526,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    /// Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only if getOption("can_withdraw_chat_revenue") for channels with supergroupFullInfo.can_get_revenue_statistics == true or bots with userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Returns: A URL for chat revenue withdrawal
@@ -20536,7 +20542,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of transactions to be returned; up to 200
     /// - Parameter offset: Number of transactions to skip
@@ -20555,7 +20561,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of transactions to be returned; up to 200
     /// - Parameter offset: Number of transactions to skip

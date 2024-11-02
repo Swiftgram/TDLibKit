@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -64,9 +64,6 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
     public let photo: ChatPhoto?
 
-    /// The list of available options for gifting Telegram Premium to the user
-    public let premiumGiftOptions: [PremiumPaymentOption]
-
     /// User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public let publicPhoto: ChatPhoto?
 
@@ -95,7 +92,6 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         personalChatId: Int64,
         personalPhoto: ChatPhoto?,
         photo: ChatPhoto?,
-        premiumGiftOptions: [PremiumPaymentOption],
         publicPhoto: ChatPhoto?,
         setChatBackground: Bool,
         supportsVideoCalls: Bool
@@ -117,7 +113,6 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.personalChatId = personalChatId
         self.personalPhoto = personalPhoto
         self.photo = photo
-        self.premiumGiftOptions = premiumGiftOptions
         self.publicPhoto = publicPhoto
         self.setChatBackground = setChatBackground
         self.supportsVideoCalls = supportsVideoCalls

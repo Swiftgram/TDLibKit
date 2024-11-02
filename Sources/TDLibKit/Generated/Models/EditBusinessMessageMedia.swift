@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
 
 
-/// Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+/// Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
 public struct EditBusinessMessageMedia: Codable, Equatable, Hashable {
 
     /// Unique identifier of business connection on behalf of which the message was sent

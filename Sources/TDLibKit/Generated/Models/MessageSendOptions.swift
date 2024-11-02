@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Options to be used when a message is sent
 public struct MessageSendOptions: Codable, Equatable, Hashable {
+
+    /// Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only
+    public let allowPaidBroadcast: Bool
 
     /// Pass true to disable notification for the message
     public let disableNotification: Bool
@@ -39,6 +42,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
 
     public init(
+        allowPaidBroadcast: Bool,
         disableNotification: Bool,
         effectId: TdInt64,
         fromBackground: Bool,
@@ -48,6 +52,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         sendingId: Int,
         updateOrderOfInstalledStickerSets: Bool
     ) {
+        self.allowPaidBroadcast = allowPaidBroadcast
         self.disableNotification = disableNotification
         self.effectId = effectId
         self.fromBackground = fromBackground

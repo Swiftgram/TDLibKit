@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -569,7 +569,7 @@ public struct InputMessageVideoNote: Codable, Equatable, Hashable {
     /// Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail?
 
-    /// Video note to be sent
+    /// Video note to be sent. The video is expected to be encoded to MPEG4 format with H.264 codec and have no data outside of the visible circle
     public let videoNote: InputFile
 
 

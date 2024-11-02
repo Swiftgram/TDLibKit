@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -54,6 +54,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A message with a live location was viewed. When the update is received, the application is expected to update the live location
     case updateMessageLiveLocationViewed(UpdateMessageLiveLocationViewed)
+
+    /// An automatically scheduled message with video has been successfully sent after conversion
+    case updateVideoPublished(UpdateVideoPublished)
 
     /// A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
     case updateNewChat(UpdateNewChat)
@@ -479,6 +482,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateMessageUnreadReactions
         case updateMessageFactCheck
         case updateMessageLiveLocationViewed
+        case updateVideoPublished
         case updateNewChat
         case updateChatTitle
         case updateChatPhoto
@@ -663,6 +667,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageLiveLocationViewed:
             let value = try UpdateMessageLiveLocationViewed(from: decoder)
             self = .updateMessageLiveLocationViewed(value)
+        case .updateVideoPublished:
+            let value = try UpdateVideoPublished(from: decoder)
+            self = .updateVideoPublished(value)
         case .updateNewChat:
             let value = try UpdateNewChat(from: decoder)
             self = .updateNewChat(value)
@@ -1118,6 +1125,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateMessageLiveLocationViewed(let value):
             try container.encode(Kind.updateMessageLiveLocationViewed, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateVideoPublished(let value):
+            try container.encode(Kind.updateVideoPublished, forKey: .type)
             try value.encode(to: encoder)
         case .updateNewChat(let value):
             try container.encode(Kind.updateNewChat, forKey: .type)
@@ -1577,7 +1587,7 @@ public struct UpdateMessageSendAcknowledged: Codable, Equatable, Hashable {
 /// A message has been successfully sent
 public struct UpdateMessageSendSucceeded: Codable, Equatable, Hashable {
 
-    /// The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+    /// The sent message. Almost any field of the new message can be different from the corresponding field of the original message. For example, the field scheduling_state may change, making the message scheduled, or non-scheduled
     public let message: Message
 
     /// The previous temporary message identifier
@@ -1821,6 +1831,25 @@ public struct UpdateMessageLiveLocationViewed: Codable, Equatable, Hashable {
     public let chatId: Int64
 
     /// Identifier of the message with live location
+    public let messageId: Int64
+
+
+    public init(
+        chatId: Int64,
+        messageId: Int64
+    ) {
+        self.chatId = chatId
+        self.messageId = messageId
+    }
+}
+
+/// An automatically scheduled message with video has been successfully sent after conversion
+public struct UpdateVideoPublished: Codable, Equatable, Hashable {
+
+    /// Identifier of the chat with the message
+    public let chatId: Int64
+
+    /// Identifier of the sent message
     public let messageId: Int64
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     public let canBeDeletedOnlyForSelf: Bool
 
-    /// True, if the message can be edited using the methods editMessageText, editMessageMedia, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
+    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
     public let canBeEdited: Bool
 
     /// True, if the message can be forwarded using inputMessageForwarded or forwardMessages
@@ -45,6 +45,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
     /// True, if the message can be shared in a story using inputStoryAreaTypeMessage
     public let canBeSharedInStory: Bool
+
+    /// True, if the message can be edited using the method editMessageMedia
+    public let canEditMedia: Bool
 
     /// True, if scheduling state of the message can be edited
     public let canEditSchedulingState: Bool
@@ -101,6 +104,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canBeRepliedInAnotherChat: Bool,
         canBeSaved: Bool,
         canBeSharedInStory: Bool,
+        canEditMedia: Bool,
         canEditSchedulingState: Bool,
         canGetEmbeddingCode: Bool,
         canGetLink: Bool,
@@ -127,6 +131,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canBeRepliedInAnotherChat = canBeRepliedInAnotherChat
         self.canBeSaved = canBeSaved
         self.canBeSharedInStory = canBeSharedInStory
+        self.canEditMedia = canEditMedia
         self.canEditSchedulingState = canEditSchedulingState
         self.canGetEmbeddingCode = canGetEmbeddingCode
         self.canGetLink = canGetLink

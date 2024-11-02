@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
     /// The transaction is a transaction with Telegram Ad platform
     case starTransactionPartnerTelegramAds
 
+    /// The transaction is a transaction with Telegram for API usage
+    case starTransactionPartnerTelegramApi(StarTransactionPartnerTelegramApi)
+
     /// The transaction is a transaction with a bot
     case starTransactionPartnerBot(StarTransactionPartnerBot)
 
@@ -50,6 +53,7 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
         case starTransactionPartnerGooglePlay
         case starTransactionPartnerFragment
         case starTransactionPartnerTelegramAds
+        case starTransactionPartnerTelegramApi
         case starTransactionPartnerBot
         case starTransactionPartnerBusiness
         case starTransactionPartnerChat
@@ -72,6 +76,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
             self = .starTransactionPartnerFragment(value)
         case .starTransactionPartnerTelegramAds:
             self = .starTransactionPartnerTelegramAds
+        case .starTransactionPartnerTelegramApi:
+            let value = try StarTransactionPartnerTelegramApi(from: decoder)
+            self = .starTransactionPartnerTelegramApi(value)
         case .starTransactionPartnerBot:
             let value = try StarTransactionPartnerBot(from: decoder)
             self = .starTransactionPartnerBot(value)
@@ -103,6 +110,9 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .starTransactionPartnerTelegramAds:
             try container.encode(Kind.starTransactionPartnerTelegramAds, forKey: .type)
+        case .starTransactionPartnerTelegramApi(let value):
+            try container.encode(Kind.starTransactionPartnerTelegramApi, forKey: .type)
+            try value.encode(to: encoder)
         case .starTransactionPartnerBot(let value):
             try container.encode(Kind.starTransactionPartnerBot, forKey: .type)
             try value.encode(to: encoder)
@@ -124,12 +134,24 @@ public indirect enum StarTransactionPartner: Codable, Equatable, Hashable {
 /// The transaction is a transaction with Fragment
 public struct StarTransactionPartnerFragment: Codable, Equatable, Hashable {
 
-    /// State of the withdrawal; may be null for refunds from Fragment
+    /// State of the withdrawal; may be null for refunds from Fragment or for Telegram Stars bought on Fragment
     public let withdrawalState: RevenueWithdrawalState?
 
 
     public init(withdrawalState: RevenueWithdrawalState?) {
         self.withdrawalState = withdrawalState
+    }
+}
+
+/// The transaction is a transaction with Telegram for API usage
+public struct StarTransactionPartnerTelegramApi: Codable, Equatable, Hashable {
+
+    /// The number of billed requests
+    public let requestCount: Int
+
+
+    public init(requestCount: Int) {
+        self.requestCount = requestCount
     }
 }
 

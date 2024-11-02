@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -31,10 +31,10 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Content of the message
     public let content: MessageContent
 
-    /// Point in time (Unix timestamp) when the message was sent
+    /// Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
     public let date: Int
 
-    /// Point in time (Unix timestamp) when the message was last edited
+    /// Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
     public let editDate: Int
 
     /// Unique identifier of the effect added to the message; 0 if none

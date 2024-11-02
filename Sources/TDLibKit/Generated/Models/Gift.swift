@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -16,8 +16,14 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Number of Telegram Stars that can be claimed by the receiver instead of the gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     public let defaultSellStarCount: Int64
 
+    /// Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
+    public let firstSendDate: Int
+
     /// Unique identifier of the gift
     public let id: TdInt64
+
+    /// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
+    public let lastSendDate: Int
 
     /// Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
     public let remainingCount: Int
@@ -34,14 +40,18 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         defaultSellStarCount: Int64,
+        firstSendDate: Int,
         id: TdInt64,
+        lastSendDate: Int,
         remainingCount: Int,
         starCount: Int64,
         sticker: Sticker,
         totalCount: Int
     ) {
         self.defaultSellStarCount = defaultSellStarCount
+        self.firstSendDate = firstSendDate
         self.id = id
+        self.lastSendDate = lastSendDate
         self.remainingCount = remainingCount
         self.starCount = starCount
         self.sticker = sticker

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct EditMessageSchedulingState: Codable, Equatable, Hashable {
     /// Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
     public let messageId: Int64?
 
-    /// The new message scheduling state; pass null to send the message immediately
+    /// The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed
     public let schedulingState: MessageSchedulingState?
 
 

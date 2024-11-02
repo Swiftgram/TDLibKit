@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
 
 
-/// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+/// Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
 public struct EditMessageMedia: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
@@ -19,7 +19,7 @@ public struct EditMessageMedia: Codable, Equatable, Hashable {
     /// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     public let inputMessageContent: InputMessageContent?
 
-    /// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+    /// Identifier of the message. Use messageProperties.can_edit_media to check whether the message can be edited
     public let messageId: Int64?
 
     /// The new message reply markup; pass null if none; for bots only

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct BotInfo: Codable, Equatable, Hashable {
 
     /// Animation shown in the chat with the bot if the chat is empty; may be null
     public let animation: Animation?
+
+    /// True, if the bot's revenue statistics are available
+    public let canGetRevenueStatistics: Bool
 
     /// List of the bot commands
     public let commands: [BotCommand]
@@ -57,6 +60,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
 
     public init(
         animation: Animation?,
+        canGetRevenueStatistics: Bool,
         commands: [BotCommand],
         defaultChannelAdministratorRights: ChatAdministratorRights?,
         defaultGroupAdministratorRights: ChatAdministratorRights?,
@@ -72,6 +76,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         shortDescription: String
     ) {
         self.animation = animation
+        self.canGetRevenueStatistics = canGetRevenueStatistics
         self.commands = commands
         self.defaultChannelAdministratorRights = defaultChannelAdministratorRights
         self.defaultGroupAdministratorRights = defaultGroupAdministratorRights

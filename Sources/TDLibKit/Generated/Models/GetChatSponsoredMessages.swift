@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
 
 
-/// Returns sponsored messages to be shown in a chat; for channel chats only
+/// Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only
 public struct GetChatSponsoredMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat

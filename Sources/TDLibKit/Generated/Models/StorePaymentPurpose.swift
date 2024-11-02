@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.38-c684471b
-//  https://github.com/tdlib/td/tree/c684471b
+//  Based on TDLib 1.8.39-056963e4
+//  https://github.com/tdlib/td/tree/056963e4
 //
 
 import Foundation
@@ -15,9 +15,6 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
 
     /// The user subscribing to Telegram Premium
     case storePaymentPurposePremiumSubscription(StorePaymentPurposePremiumSubscription)
-
-    /// The user gifting Telegram Premium to another user
-    case storePaymentPurposeGiftedPremium(StorePaymentPurposeGiftedPremium)
 
     /// The user creating Telegram Premium gift codes for other users
     case storePaymentPurposePremiumGiftCodes(StorePaymentPurposePremiumGiftCodes)
@@ -37,7 +34,6 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case storePaymentPurposePremiumSubscription
-        case storePaymentPurposeGiftedPremium
         case storePaymentPurposePremiumGiftCodes
         case storePaymentPurposePremiumGiveaway
         case storePaymentPurposeStarGiveaway
@@ -52,9 +48,6 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
         case .storePaymentPurposePremiumSubscription:
             let value = try StorePaymentPurposePremiumSubscription(from: decoder)
             self = .storePaymentPurposePremiumSubscription(value)
-        case .storePaymentPurposeGiftedPremium:
-            let value = try StorePaymentPurposeGiftedPremium(from: decoder)
-            self = .storePaymentPurposeGiftedPremium(value)
         case .storePaymentPurposePremiumGiftCodes:
             let value = try StorePaymentPurposePremiumGiftCodes(from: decoder)
             self = .storePaymentPurposePremiumGiftCodes(value)
@@ -78,9 +71,6 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
         switch self {
         case .storePaymentPurposePremiumSubscription(let value):
             try container.encode(Kind.storePaymentPurposePremiumSubscription, forKey: .type)
-            try value.encode(to: encoder)
-        case .storePaymentPurposeGiftedPremium(let value):
-            try container.encode(Kind.storePaymentPurposeGiftedPremium, forKey: .type)
             try value.encode(to: encoder)
         case .storePaymentPurposePremiumGiftCodes(let value):
             try container.encode(Kind.storePaymentPurposePremiumGiftCodes, forKey: .type)
@@ -117,30 +107,6 @@ public struct StorePaymentPurposePremiumSubscription: Codable, Equatable, Hashab
     ) {
         self.isRestore = isRestore
         self.isUpgrade = isUpgrade
-    }
-}
-
-/// The user gifting Telegram Premium to another user
-public struct StorePaymentPurposeGiftedPremium: Codable, Equatable, Hashable {
-
-    /// Paid amount, in the smallest units of the currency
-    public let amount: Int64
-
-    /// ISO 4217 currency code of the payment currency
-    public let currency: String
-
-    /// Identifier of the user to which Telegram Premium is gifted
-    public let userId: Int64
-
-
-    public init(
-        amount: Int64,
-        currency: String,
-        userId: Int64
-    ) {
-        self.amount = amount
-        self.currency = currency
-        self.userId = userId
     }
 }
 
