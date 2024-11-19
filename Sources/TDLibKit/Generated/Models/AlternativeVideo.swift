@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
 
 
-/// Describes an alternative reencoded quality of a video file
+/// Describes an alternative re-encoded quality of a video file
 public struct AlternativeVideo: Codable, Equatable, Hashable {
 
     /// Codec used for video file encoding, for example, "h264", "h265", or "av1"

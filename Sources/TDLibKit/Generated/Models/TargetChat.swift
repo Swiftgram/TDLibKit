@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -62,29 +62,12 @@ public indirect enum TargetChat: Codable, Equatable, Hashable {
 /// The chat needs to be chosen by the user among chats of the specified types
 public struct TargetChatChosen: Codable, Equatable, Hashable {
 
-    /// True, if private chats with other bots are allowed
-    public let allowBotChats: Bool
-
-    /// True, if channel chats are allowed
-    public let allowChannelChats: Bool
-
-    /// True, if basic group and supergroup chats are allowed
-    public let allowGroupChats: Bool
-
-    /// True, if private chats with ordinary users are allowed
-    public let allowUserChats: Bool
+    /// Allowed types for the chat
+    public let types: TargetChatTypes
 
 
-    public init(
-        allowBotChats: Bool,
-        allowChannelChats: Bool,
-        allowGroupChats: Bool,
-        allowUserChats: Bool
-    ) {
-        self.allowBotChats = allowBotChats
-        self.allowChannelChats = allowChannelChats
-        self.allowGroupChats = allowGroupChats
-        self.allowUserChats = allowUserChats
+    public init(types: TargetChatTypes) {
+        self.types = types
     }
 }
 

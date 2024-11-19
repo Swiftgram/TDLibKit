@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public indirect enum UserTransactionPurpose: Codable, Equatable, Hashable {
     /// A user gifted Telegram Stars
     case userTransactionPurposeGiftedStars(UserTransactionPurposeGiftedStars)
 
-    /// The current user sold a gift received from another user
+    /// The user sold a gift received from another user or bot
     case userTransactionPurposeGiftSell(UserTransactionPurposeGiftSell)
 
-    /// The current user sent a gift to another user
+    /// The user or the bot sent a gift to a user
     case userTransactionPurposeGiftSend(UserTransactionPurposeGiftSend)
 
 
@@ -73,7 +73,7 @@ public struct UserTransactionPurposeGiftedStars: Codable, Equatable, Hashable {
     }
 }
 
-/// The current user sold a gift received from another user
+/// The user sold a gift received from another user or bot
 public struct UserTransactionPurposeGiftSell: Codable, Equatable, Hashable {
 
     /// The gift
@@ -85,7 +85,7 @@ public struct UserTransactionPurposeGiftSell: Codable, Equatable, Hashable {
     }
 }
 
-/// The current user sent a gift to another user
+/// The user or the bot sent a gift to a user
 public struct UserTransactionPurposeGiftSend: Codable, Equatable, Hashable {
 
     /// The gift

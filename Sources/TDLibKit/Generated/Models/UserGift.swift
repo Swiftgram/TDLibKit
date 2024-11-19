@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct UserGift: Codable, Equatable, Hashable {
     /// Identifier of the message with the gift in the chat with the sender of the gift; can be 0 or an identifier of a deleted message; only for the gift receiver
     public let messageId: Int64
 
-    /// Number of Telegram Stars that can be claimed by the receiver instead of the gift; only for the gift receiver
+    /// Number of Telegram Stars that can be claimed by the receiver instead of the gift; 0 if the gift can't be sold by the current user
     public let sellStarCount: Int64
 
     /// Identifier of the user that sent the gift; 0 if unknown

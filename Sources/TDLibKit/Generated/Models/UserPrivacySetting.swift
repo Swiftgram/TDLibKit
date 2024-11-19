@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
     /// A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
     case userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
 
+    /// A privacy setting for managing whether received gifts are automatically shown on the user's profile page
+    case userPrivacySettingAutosaveGifts
+
 
     private enum Kind: String, Codable {
         case userPrivacySettingShowStatus
@@ -59,6 +62,7 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
         case userPrivacySettingAllowPeerToPeerCalls
         case userPrivacySettingAllowFindingByPhoneNumber
         case userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+        case userPrivacySettingAutosaveGifts
     }
 
     public init(from decoder: Decoder) throws {
@@ -87,6 +91,8 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
             self = .userPrivacySettingAllowFindingByPhoneNumber
         case .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages:
             self = .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+        case .userPrivacySettingAutosaveGifts:
+            self = .userPrivacySettingAutosaveGifts
         }
     }
 
@@ -115,6 +121,8 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
             try container.encode(Kind.userPrivacySettingAllowFindingByPhoneNumber, forKey: .type)
         case .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages:
             try container.encode(Kind.userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages, forKey: .type)
+        case .userPrivacySettingAutosaveGifts:
+            try container.encode(Kind.userPrivacySettingAutosaveGifts, forKey: .type)
         }
     }
 }

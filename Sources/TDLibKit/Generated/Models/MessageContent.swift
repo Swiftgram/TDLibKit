@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -169,10 +169,10 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A new high score was achieved in a game
     case messageGameScore(MessageGameScore)
 
-    /// A payment has been completed
+    /// A payment has been sent to a bot or a business account
     case messagePaymentSuccessful(MessagePaymentSuccessful)
 
-    /// A payment has been completed; for bots only
+    /// A payment has been received by the bot or the business account
     case messagePaymentSuccessfulBot(MessagePaymentSuccessfulBot)
 
     /// A payment has been refunded
@@ -1619,7 +1619,7 @@ public struct MessageGameScore: Codable, Equatable, Hashable {
     }
 }
 
-/// A payment has been completed
+/// A payment has been sent to a bot or a business account
 public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
 
     /// Currency for the price of the product
@@ -1640,6 +1640,9 @@ public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
     /// True, if this is a recurring payment
     public let isRecurring: Bool
 
+    /// Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
+    public let subscriptionUntilDate: Int
+
     /// Total price for the product, in the smallest units of the currency
     public let totalAmount: Int64
 
@@ -1651,6 +1654,7 @@ public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
         invoiceName: String,
         isFirstRecurring: Bool,
         isRecurring: Bool,
+        subscriptionUntilDate: Int,
         totalAmount: Int64
     ) {
         self.currency = currency
@@ -1659,11 +1663,12 @@ public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
         self.invoiceName = invoiceName
         self.isFirstRecurring = isFirstRecurring
         self.isRecurring = isRecurring
+        self.subscriptionUntilDate = subscriptionUntilDate
         self.totalAmount = totalAmount
     }
 }
 
-/// A payment has been completed; for bots only
+/// A payment has been received by the bot or the business account
 public struct MessagePaymentSuccessfulBot: Codable, Equatable, Hashable {
 
     /// Currency for price of the product
@@ -1678,14 +1683,17 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable, Hashable {
     /// True, if this is a recurring payment
     public let isRecurring: Bool
 
-    /// Information about the order; may be null
+    /// Information about the order; may be null; for bots only
     public let orderInfo: OrderInfo?
 
     /// Provider payment identifier
     public let providerPaymentChargeId: String
 
-    /// Identifier of the shipping option chosen by the user; may be empty if not applicable
+    /// Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only
     public let shippingOptionId: String
+
+    /// Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
+    public let subscriptionUntilDate: Int
 
     /// Telegram payment identifier
     public let telegramPaymentChargeId: String
@@ -1702,6 +1710,7 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable, Hashable {
         orderInfo: OrderInfo?,
         providerPaymentChargeId: String,
         shippingOptionId: String,
+        subscriptionUntilDate: Int,
         telegramPaymentChargeId: String,
         totalAmount: Int64
     ) {
@@ -1712,6 +1721,7 @@ public struct MessagePaymentSuccessfulBot: Codable, Equatable, Hashable {
         self.orderInfo = orderInfo
         self.providerPaymentChargeId = providerPaymentChargeId
         self.shippingOptionId = shippingOptionId
+        self.subscriptionUntilDate = subscriptionUntilDate
         self.telegramPaymentChargeId = telegramPaymentChargeId
         self.totalAmount = totalAmount
     }
@@ -2113,7 +2123,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the user's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
-    /// Number of Telegram Stars that can be claimed by the receiver instead of the gift
+    /// Number of Telegram Stars that can be claimed by the receiver instead of the gift; 0 if the gift can't be sold by the receiver
     public let sellStarCount: Int64
 
     /// Message added to the gift

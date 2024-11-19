@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -13,18 +13,18 @@ import Foundation
 /// Contains information about the main Web App of a bot
 public struct MainWebApp: Codable, Equatable, Hashable {
 
-    /// True, if the Web App must always be opened in the compact mode instead of the full-size mode
-    public let isCompact: Bool
+    /// The mode in which the Web App must be opened
+    public let mode: WebAppOpenMode
 
     /// URL of the Web App to open
     public let url: String
 
 
     public init(
-        isCompact: Bool,
+        mode: WebAppOpenMode,
         url: String
     ) {
-        self.isCompact = isCompact
+        self.mode = mode
         self.url = url
     }
 }

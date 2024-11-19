@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -16,8 +16,11 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// Animation shown in the chat with the bot if the chat is empty; may be null
     public let animation: Animation?
 
-    /// True, if the bot's revenue statistics are available
+    /// True, if the bot's revenue statistics are available to the current user
     public let canGetRevenueStatistics: Bool
+
+    /// True, if the bot can manage emoji status of the current user
+    public let canManageEmojiStatus: Bool
 
     /// List of the bot commands
     public let commands: [BotCommand]
@@ -57,10 +60,23 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// The text that is shown on the bot's profile page and is sent together with the link when users share the bot
     public let shortDescription: String
 
+    /// Default dark background color for bot Web Apps; -1 if not specified
+    public let webAppBackgroundDarkColor: Int
+
+    /// Default light background color for bot Web Apps; -1 if not specified
+    public let webAppBackgroundLightColor: Int
+
+    /// Default dark header color for bot Web Apps; -1 if not specified
+    public let webAppHeaderDarkColor: Int
+
+    /// Default light header color for bot Web Apps; -1 if not specified
+    public let webAppHeaderLightColor: Int
+
 
     public init(
         animation: Animation?,
         canGetRevenueStatistics: Bool,
+        canManageEmojiStatus: Bool,
         commands: [BotCommand],
         defaultChannelAdministratorRights: ChatAdministratorRights?,
         defaultGroupAdministratorRights: ChatAdministratorRights?,
@@ -73,10 +89,15 @@ public struct BotInfo: Codable, Equatable, Hashable {
         menuButton: BotMenuButton?,
         photo: Photo?,
         privacyPolicyUrl: String,
-        shortDescription: String
+        shortDescription: String,
+        webAppBackgroundDarkColor: Int,
+        webAppBackgroundLightColor: Int,
+        webAppHeaderDarkColor: Int,
+        webAppHeaderLightColor: Int
     ) {
         self.animation = animation
         self.canGetRevenueStatistics = canGetRevenueStatistics
+        self.canManageEmojiStatus = canManageEmojiStatus
         self.commands = commands
         self.defaultChannelAdministratorRights = defaultChannelAdministratorRights
         self.defaultGroupAdministratorRights = defaultGroupAdministratorRights
@@ -90,6 +111,10 @@ public struct BotInfo: Codable, Equatable, Hashable {
         self.photo = photo
         self.privacyPolicyUrl = privacyPolicyUrl
         self.shortDescription = shortDescription
+        self.webAppBackgroundDarkColor = webAppBackgroundDarkColor
+        self.webAppBackgroundLightColor = webAppBackgroundLightColor
+        self.webAppHeaderDarkColor = webAppHeaderDarkColor
+        self.webAppHeaderLightColor = webAppHeaderLightColor
     }
 }
 

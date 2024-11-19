@@ -3,20 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
 
 
-/// Contains information about subscription to a channel chat paid in Telegram Stars
+/// Contains information about subscription to a channel chat, a bot, or a business account that was paid in Telegram Stars
 public struct StarSubscription: Codable, Equatable, Hashable, Identifiable {
 
-    /// True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
-    public let canReuse: Bool
-
-    /// Identifier of the channel chat that is subscribed
+    /// Identifier of the chat that is subscribed
     public let chatId: Int64
 
     /// Point in time (Unix timestamp) when the subscription will expire or expired
@@ -24,9 +21,6 @@ public struct StarSubscription: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the subscription
     public let id: String
-
-    /// The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
-    public let inviteLink: String
 
     /// True, if the subscription was canceled
     public let isCanceled: Bool
@@ -37,25 +31,26 @@ public struct StarSubscription: Codable, Equatable, Hashable, Identifiable {
     /// The subscription plan
     public let pricing: StarSubscriptionPricing
 
+    /// Type of the subscription
+    public let type: StarSubscriptionType
+
 
     public init(
-        canReuse: Bool,
         chatId: Int64,
         expirationDate: Int,
         id: String,
-        inviteLink: String,
         isCanceled: Bool,
         isExpiring: Bool,
-        pricing: StarSubscriptionPricing
+        pricing: StarSubscriptionPricing,
+        type: StarSubscriptionType
     ) {
-        self.canReuse = canReuse
         self.chatId = chatId
         self.expirationDate = expirationDate
         self.id = id
-        self.inviteLink = inviteLink
         self.isCanceled = isCanceled
         self.isExpiring = isExpiring
         self.pricing = pricing
+        self.type = type
     }
 }
 

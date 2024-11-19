@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
 
     /// A rule to allow all contacts of the user to do something
     case userPrivacySettingRuleAllowContacts
+
+    /// A rule to allow all bots to do something
+    case userPrivacySettingRuleAllowBots
 
     /// A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
     case userPrivacySettingRuleAllowPremiumUsers
@@ -34,6 +37,9 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
     /// A rule to restrict all contacts of the user from doing something
     case userPrivacySettingRuleRestrictContacts
 
+    /// A rule to restrict all bots from doing something
+    case userPrivacySettingRuleRestrictBots
+
     /// A rule to restrict all specified users from doing something
     case userPrivacySettingRuleRestrictUsers(UserPrivacySettingRuleRestrictUsers)
 
@@ -44,11 +50,13 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case userPrivacySettingRuleAllowAll
         case userPrivacySettingRuleAllowContacts
+        case userPrivacySettingRuleAllowBots
         case userPrivacySettingRuleAllowPremiumUsers
         case userPrivacySettingRuleAllowUsers
         case userPrivacySettingRuleAllowChatMembers
         case userPrivacySettingRuleRestrictAll
         case userPrivacySettingRuleRestrictContacts
+        case userPrivacySettingRuleRestrictBots
         case userPrivacySettingRuleRestrictUsers
         case userPrivacySettingRuleRestrictChatMembers
     }
@@ -61,6 +69,8 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
             self = .userPrivacySettingRuleAllowAll
         case .userPrivacySettingRuleAllowContacts:
             self = .userPrivacySettingRuleAllowContacts
+        case .userPrivacySettingRuleAllowBots:
+            self = .userPrivacySettingRuleAllowBots
         case .userPrivacySettingRuleAllowPremiumUsers:
             self = .userPrivacySettingRuleAllowPremiumUsers
         case .userPrivacySettingRuleAllowUsers:
@@ -73,6 +83,8 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
             self = .userPrivacySettingRuleRestrictAll
         case .userPrivacySettingRuleRestrictContacts:
             self = .userPrivacySettingRuleRestrictContacts
+        case .userPrivacySettingRuleRestrictBots:
+            self = .userPrivacySettingRuleRestrictBots
         case .userPrivacySettingRuleRestrictUsers:
             let value = try UserPrivacySettingRuleRestrictUsers(from: decoder)
             self = .userPrivacySettingRuleRestrictUsers(value)
@@ -89,6 +101,8 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
             try container.encode(Kind.userPrivacySettingRuleAllowAll, forKey: .type)
         case .userPrivacySettingRuleAllowContacts:
             try container.encode(Kind.userPrivacySettingRuleAllowContacts, forKey: .type)
+        case .userPrivacySettingRuleAllowBots:
+            try container.encode(Kind.userPrivacySettingRuleAllowBots, forKey: .type)
         case .userPrivacySettingRuleAllowPremiumUsers:
             try container.encode(Kind.userPrivacySettingRuleAllowPremiumUsers, forKey: .type)
         case .userPrivacySettingRuleAllowUsers(let value):
@@ -101,6 +115,8 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
             try container.encode(Kind.userPrivacySettingRuleRestrictAll, forKey: .type)
         case .userPrivacySettingRuleRestrictContacts:
             try container.encode(Kind.userPrivacySettingRuleRestrictContacts, forKey: .type)
+        case .userPrivacySettingRuleRestrictBots:
+            try container.encode(Kind.userPrivacySettingRuleRestrictBots, forKey: .type)
         case .userPrivacySettingRuleRestrictUsers(let value):
             try container.encode(Kind.userPrivacySettingRuleRestrictUsers, forKey: .type)
             try value.encode(to: encoder)

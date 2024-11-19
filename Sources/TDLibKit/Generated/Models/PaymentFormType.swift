@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public indirect enum PaymentFormType: Codable, Equatable, Hashable {
     /// The payment form is for a payment in Telegram Stars
     case paymentFormTypeStars(PaymentFormTypeStars)
 
+    /// The payment form is for a payment in Telegram Stars for subscription
+    case paymentFormTypeStarSubscription(PaymentFormTypeStarSubscription)
+
 
     private enum Kind: String, Codable {
         case paymentFormTypeRegular
         case paymentFormTypeStars
+        case paymentFormTypeStarSubscription
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,9 @@ public indirect enum PaymentFormType: Codable, Equatable, Hashable {
         case .paymentFormTypeStars:
             let value = try PaymentFormTypeStars(from: decoder)
             self = .paymentFormTypeStars(value)
+        case .paymentFormTypeStarSubscription:
+            let value = try PaymentFormTypeStarSubscription(from: decoder)
+            self = .paymentFormTypeStarSubscription(value)
         }
     }
 
@@ -46,6 +53,9 @@ public indirect enum PaymentFormType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .paymentFormTypeStars(let value):
             try container.encode(Kind.paymentFormTypeStars, forKey: .type)
+            try value.encode(to: encoder)
+        case .paymentFormTypeStarSubscription(let value):
+            try container.encode(Kind.paymentFormTypeStarSubscription, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -109,6 +119,18 @@ public struct PaymentFormTypeStars: Codable, Equatable, Hashable {
 
     public init(starCount: Int64) {
         self.starCount = starCount
+    }
+}
+
+/// The payment form is for a payment in Telegram Stars for subscription
+public struct PaymentFormTypeStarSubscription: Codable, Equatable, Hashable {
+
+    /// Information about subscription plan
+    public let pricing: StarSubscriptionPricing
+
+
+    public init(pricing: StarSubscriptionPricing) {
+        self.pricing = pricing
     }
 }
 

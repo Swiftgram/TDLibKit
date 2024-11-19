@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public indirect enum BotTransactionPurpose: Codable, Equatable, Hashable {
     /// User bought a product from the bot
     case botTransactionPurposeInvoicePayment(BotTransactionPurposeInvoicePayment)
 
+    /// User bought a subscription in a bot or a business account
+    case botTransactionPurposeSubscription(BotTransactionPurposeSubscription)
+
 
     private enum Kind: String, Codable {
         case botTransactionPurposePaidMedia
         case botTransactionPurposeInvoicePayment
+        case botTransactionPurposeSubscription
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,9 @@ public indirect enum BotTransactionPurpose: Codable, Equatable, Hashable {
         case .botTransactionPurposeInvoicePayment:
             let value = try BotTransactionPurposeInvoicePayment(from: decoder)
             self = .botTransactionPurposeInvoicePayment(value)
+        case .botTransactionPurposeSubscription:
+            let value = try BotTransactionPurposeSubscription(from: decoder)
+            self = .botTransactionPurposeSubscription(value)
         }
     }
 
@@ -46,6 +53,9 @@ public indirect enum BotTransactionPurpose: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .botTransactionPurposeInvoicePayment(let value):
             try container.encode(Kind.botTransactionPurposeInvoicePayment, forKey: .type)
+            try value.encode(to: encoder)
+        case .botTransactionPurposeSubscription(let value):
+            try container.encode(Kind.botTransactionPurposeSubscription, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -85,6 +95,30 @@ public struct BotTransactionPurposeInvoicePayment: Codable, Equatable, Hashable 
         productInfo: ProductInfo?
     ) {
         self.invoicePayload = invoicePayload
+        self.productInfo = productInfo
+    }
+}
+
+/// User bought a subscription in a bot or a business account
+public struct BotTransactionPurposeSubscription: Codable, Equatable, Hashable {
+
+    /// Invoice payload; for bots only
+    public let invoicePayload: Data
+
+    /// The number of seconds between consecutive Telegram Star debiting
+    public let period: Int
+
+    /// Information about the bought subscription; may be null if not applicable
+    public let productInfo: ProductInfo?
+
+
+    public init(
+        invoicePayload: Data,
+        period: Int,
+        productInfo: ProductInfo?
+    ) {
+        self.invoicePayload = invoicePayload
+        self.period = period
         self.productInfo = productInfo
     }
 }

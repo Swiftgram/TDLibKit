@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -49,6 +49,9 @@ public struct Invoice: Codable, Equatable, Hashable {
     /// True, if the user's phone number will be sent to the provider
     public let sendPhoneNumberToProvider: Bool
 
+    /// The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription
+    public let subscriptionPeriod: Int
+
     /// Suggested amounts of tip in the smallest units of the currency
     public let suggestedTipAmounts: [Int64]
 
@@ -69,6 +72,7 @@ public struct Invoice: Codable, Equatable, Hashable {
         recurringPaymentTermsOfServiceUrl: String,
         sendEmailAddressToProvider: Bool,
         sendPhoneNumberToProvider: Bool,
+        subscriptionPeriod: Int,
         suggestedTipAmounts: [Int64],
         termsOfServiceUrl: String
     ) {
@@ -84,6 +88,7 @@ public struct Invoice: Codable, Equatable, Hashable {
         self.recurringPaymentTermsOfServiceUrl = recurringPaymentTermsOfServiceUrl
         self.sendEmailAddressToProvider = sendEmailAddressToProvider
         self.sendPhoneNumberToProvider = sendPhoneNumberToProvider
+        self.subscriptionPeriod = subscriptionPeriod
         self.suggestedTipAmounts = suggestedTipAmounts
         self.termsOfServiceUrl = termsOfServiceUrl
     }

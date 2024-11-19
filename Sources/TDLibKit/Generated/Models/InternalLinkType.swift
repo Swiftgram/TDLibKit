@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -77,7 +77,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the language section of the application settings
     case internalLinkTypeLanguageSettings
 
-    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
     case internalLinkTypeMainWebApp(InternalLinkTypeMainWebApp)
 
     /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
@@ -702,14 +702,14 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
 public struct InternalLinkTypeMainWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot
     public let botUsername: String
 
-    /// True, if the Web App must be opened in the compact mode instead of the full-size mode
-    public let isCompact: Bool
+    /// The mode to be passed to getMainWebApp
+    public let mode: WebAppOpenMode
 
     /// Start parameter to be passed to getMainWebApp
     public let startParameter: String
@@ -717,11 +717,11 @@ public struct InternalLinkTypeMainWebApp: Codable, Equatable, Hashable {
 
     public init(
         botUsername: String,
-        isCompact: Bool,
+        mode: WebAppOpenMode,
         startParameter: String
     ) {
         self.botUsername = botUsername
-        self.isCompact = isCompact
+        self.mode = mode
         self.startParameter = startParameter
     }
 }
@@ -1022,8 +1022,8 @@ public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
     /// Username of the bot that owns the Web App
     public let botUsername: String
 
-    /// True, if the Web App must be opened in the compact mode instead of the full-size mode
-    public let isCompact: Bool
+    /// The mode in which the Web App must be opened
+    public let mode: WebAppOpenMode
 
     /// Start parameter to be passed to getWebAppLinkUrl
     public let startParameter: String
@@ -1034,12 +1034,12 @@ public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     public init(
         botUsername: String,
-        isCompact: Bool,
+        mode: WebAppOpenMode,
         startParameter: String,
         webAppShortName: String
     ) {
         self.botUsername = botUsername
-        self.isCompact = isCompact
+        self.mode = mode
         self.startParameter = startParameter
         self.webAppShortName = webAppShortName
     }

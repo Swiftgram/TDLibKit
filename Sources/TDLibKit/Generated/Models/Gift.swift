@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the gift
     public let id: TdInt64
+
+    /// True, if the gift is a birthday gift
+    public let isForBirthday: Bool
 
     /// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     public let lastSendDate: Int
@@ -42,6 +45,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         defaultSellStarCount: Int64,
         firstSendDate: Int,
         id: TdInt64,
+        isForBirthday: Bool,
         lastSendDate: Int,
         remainingCount: Int,
         starCount: Int64,
@@ -51,6 +55,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         self.defaultSellStarCount = defaultSellStarCount
         self.firstSendDate = firstSendDate
         self.id = id
+        self.isForBirthday = isForBirthday
         self.lastSendDate = lastSendDate
         self.remainingCount = remainingCount
         self.starCount = starCount

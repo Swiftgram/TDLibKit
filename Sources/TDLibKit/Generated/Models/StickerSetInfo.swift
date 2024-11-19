@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -52,8 +52,8 @@ public struct StickerSetInfo: Codable, Equatable, Hashable, Identifiable {
     /// Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
     public let thumbnail: Thumbnail?
 
-    /// Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-    public let thumbnailOutline: [ClosedVectorPath]
+    /// Sticker set thumbnail's outline; may be null if unknown
+    public let thumbnailOutline: Outline?
 
     /// Title of the sticker set
     public let title: String
@@ -73,7 +73,7 @@ public struct StickerSetInfo: Codable, Equatable, Hashable, Identifiable {
         size: Int,
         stickerType: StickerType,
         thumbnail: Thumbnail?,
-        thumbnailOutline: [ClosedVectorPath],
+        thumbnailOutline: Outline?,
         title: String
     ) {
         self.covers = covers

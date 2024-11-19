@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -7488,6 +7488,72 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Saves an inline message to be sent by the given user; for bots only
+    /// - Parameter chatTypes: Types of the chats to which the message can be sent
+    /// - Parameter result: The description of the message
+    /// - Parameter userId: Identifier of the user
+    public func savePreparedInlineMessage(
+        chatTypes: TargetChatTypes?,
+        result: InputInlineQueryResult?,
+        userId: Int64?,
+        completion: @escaping (Result<PreparedInlineMessageId, Swift.Error>) -> Void
+    ) throws {
+        let query = SavePreparedInlineMessage(
+            chatTypes: chatTypes,
+            result: result,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Saves an inline message to be sent by the given user; for bots only
+    /// - Parameter chatTypes: Types of the chats to which the message can be sent
+    /// - Parameter result: The description of the message
+    /// - Parameter userId: Identifier of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func savePreparedInlineMessage(
+        chatTypes: TargetChatTypes?,
+        result: InputInlineQueryResult?,
+        userId: Int64?
+    ) async throws -> PreparedInlineMessageId {
+        let query = SavePreparedInlineMessage(
+            chatTypes: chatTypes,
+            result: result,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Saves an inline message to be sent by the given user; for bots only
+    /// - Parameter botUserId: Identifier of the bot that created the message
+    /// - Parameter preparedMessageId: Identifier of the prepared message
+    public func getPreparedInlineMessage(
+        botUserId: Int64?,
+        preparedMessageId: String?,
+        completion: @escaping (Result<PreparedInlineMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPreparedInlineMessage(
+            botUserId: botUserId,
+            preparedMessageId: preparedMessageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Saves an inline message to be sent by the given user; for bots only
+    /// - Parameter botUserId: Identifier of the bot that created the message
+    /// - Parameter preparedMessageId: Identifier of the prepared message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPreparedInlineMessage(
+        botUserId: Int64?,
+        preparedMessageId: String?
+    ) async throws -> PreparedInlineMessage {
+        let query = GetPreparedInlineMessage(
+            botUserId: botUserId,
+            preparedMessageId: preparedMessageId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns the most grossing Web App bots
     /// - Parameter limit: The maximum number of bots to be returned; up to 100
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -7552,32 +7618,53 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns a default placeholder for Web Apps of a bot; this is an offline request. Returns a 404 error if the placeholder isn't known
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Returns: A default placeholder for Web Apps of a bot. Returns a 404 error if the placeholder isn't known
+    public func getWebAppPlaceholder(
+        botUserId: Int64?,
+        completion: @escaping (Result<Outline, Swift.Error>) -> Void
+    ) throws {
+        let query = GetWebAppPlaceholder(
+            botUserId: botUserId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns a default placeholder for Web Apps of a bot; this is an offline request. Returns a 404 error if the placeholder isn't known
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Returns: A default placeholder for Web Apps of a bot. Returns a 404 error if the placeholder isn't known
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getWebAppPlaceholder(botUserId: Int64?) async throws -> Outline {
+        let query = GetWebAppPlaceholder(
+            botUserId: botUserId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat in which the link was clicked; pass 0 if none
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter startParameter: Start parameter from internalLinkTypeWebApp
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter webAppShortName: Short name of the Web App
     /// - Returns: An HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
     public func getWebAppLinkUrl(
         allowWriteAccess: Bool?,
-        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
+        parameters: WebAppOpenParameters?,
         startParameter: String?,
-        theme: ThemeParameters?,
         webAppShortName: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetWebAppLinkUrl(
             allowWriteAccess: allowWriteAccess,
-            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
+            parameters: parameters,
             startParameter: startParameter,
-            theme: theme,
             webAppShortName: webAppShortName
         )
         self.execute(query: query, completion: completion)
@@ -7585,124 +7672,109 @@ public final class TdApi {
 
     /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot to send them messages
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat in which the link was clicked; pass 0 if none
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter startParameter: Start parameter from internalLinkTypeWebApp
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter webAppShortName: Short name of the Web App
     /// - Returns: An HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppLinkUrl(
         allowWriteAccess: Bool?,
-        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
+        parameters: WebAppOpenParameters?,
         startParameter: String?,
-        theme: ThemeParameters?,
         webAppShortName: String?
     ) async throws -> HttpUrl {
         let query = GetWebAppLinkUrl(
             allowWriteAccess: allowWriteAccess,
-            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
+            parameters: parameters,
             startParameter: startParameter,
-            theme: theme,
             webAppShortName: webAppShortName
         )
         return try await self.execute(query: query)
     }
 
     /// Returns information needed to open the main Web App of a bot
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened; pass 0 if none
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter startParameter: Start parameter from internalLinkTypeMainWebApp
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Returns: Information needed to open the main Web App of a bot
     public func getMainWebApp(
-        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
+        parameters: WebAppOpenParameters?,
         startParameter: String?,
-        theme: ThemeParameters?,
         completion: @escaping (Result<MainWebApp, Swift.Error>) -> Void
     ) throws {
         let query = GetMainWebApp(
-            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
-            startParameter: startParameter,
-            theme: theme
+            parameters: parameters,
+            startParameter: startParameter
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns information needed to open the main Web App of a bot
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened; pass 0 if none
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter startParameter: Start parameter from internalLinkTypeMainWebApp
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Returns: Information needed to open the main Web App of a bot
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getMainWebApp(
-        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
-        startParameter: String?,
-        theme: ThemeParameters?
+        parameters: WebAppOpenParameters?,
+        startParameter: String?
     ) async throws -> MainWebApp {
         let query = GetMainWebApp(
-            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
-            startParameter: startParameter,
-            theme: theme
+            parameters: parameters,
+            startParameter: startParameter
         )
         return try await self.execute(query: query)
     }
 
     /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
     public func getWebAppUrl(
-        applicationName: String?,
         botUserId: Int64?,
-        theme: ThemeParameters?,
+        parameters: WebAppOpenParameters?,
         url: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetWebAppUrl(
-            applicationName: applicationName,
             botUserId: botUserId,
-            theme: theme,
+            parameters: parameters,
             url: url
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the target bot
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebAppUrl(
-        applicationName: String?,
         botUserId: Int64?,
-        theme: ThemeParameters?,
+        parameters: WebAppOpenParameters?,
         url: String?
     ) async throws -> HttpUrl {
         let query = GetWebAppUrl(
-            applicationName: applicationName,
             botUserId: botUserId,
-            theme: theme,
+            parameters: parameters,
             url: url
         )
         return try await self.execute(query: query)
@@ -7746,60 +7818,54 @@ public final class TdApi {
     }
 
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     public func openWebApp(
-        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
         messageThreadId: Int64?,
+        parameters: WebAppOpenParameters?,
         replyTo: InputMessageReplyTo?,
-        theme: ThemeParameters?,
         url: String?,
         completion: @escaping (Result<WebAppInfo, Swift.Error>) -> Void
     ) throws {
         let query = OpenWebApp(
-            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
             messageThreadId: messageThreadId,
+            parameters: parameters,
             replyTo: replyTo,
-            theme: theme,
             url: url
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter applicationName: Short name of the current application; 0-64 English letters, digits, and underscores
     /// - Parameter botUserId: Identifier of the bot, providing the Web App
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
+    /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
-    /// - Parameter theme: Preferred Web App theme; pass null to use the default theme
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func openWebApp(
-        applicationName: String?,
         botUserId: Int64?,
         chatId: Int64?,
         messageThreadId: Int64?,
+        parameters: WebAppOpenParameters?,
         replyTo: InputMessageReplyTo?,
-        theme: ThemeParameters?,
         url: String?
     ) async throws -> WebAppInfo {
         let query = OpenWebApp(
-            applicationName: applicationName,
             botUserId: botUserId,
             chatId: chatId,
             messageThreadId: messageThreadId,
+            parameters: parameters,
             replyTo: replyTo,
-            theme: theme,
             url: url
         )
         return try await self.execute(query: query)
@@ -7854,6 +7920,43 @@ public final class TdApi {
         let query = AnswerWebAppQuery(
             result: result,
             webAppQueryId: webAppQueryId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Checks whether a file can be downloaded and saved locally by Web App request
+    /// - Parameter botUserId: Identifier of the bot, providing the Web App
+    /// - Parameter fileName: Name of the file
+    /// - Parameter url: URL of the file
+    public func checkWebAppFileDownload(
+        botUserId: Int64?,
+        fileName: String?,
+        url: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckWebAppFileDownload(
+            botUserId: botUserId,
+            fileName: fileName,
+            url: url
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Checks whether a file can be downloaded and saved locally by Web App request
+    /// - Parameter botUserId: Identifier of the bot, providing the Web App
+    /// - Parameter fileName: Name of the file
+    /// - Parameter url: URL of the file
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func checkWebAppFileDownload(
+        botUserId: Int64?,
+        fileName: String?,
+        url: String?
+    ) async throws -> Ok {
+        let query = CheckWebAppFileDownload(
+            botUserId: botUserId,
+            fileName: fileName,
+            url: url
         )
         return try await self.execute(query: query)
     }
@@ -14049,7 +14152,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns RTMP URL for streaming to the chat; requires owner privileges
+    /// Returns RTMP URL for streaming to the chat; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Chat identifier
     /// - Returns: RTMP URL for streaming to the chat
     public func getVideoChatRtmpUrl(
@@ -14062,7 +14165,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns RTMP URL for streaming to the chat; requires owner privileges
+    /// Returns RTMP URL for streaming to the chat; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Chat identifier
     /// - Returns: RTMP URL for streaming to the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15286,6 +15389,68 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Toggles whether the bot can manage emoji status of the current user
+    /// - Parameter botUserId: User identifier of the bot
+    /// - Parameter canManageEmojiStatus: Pass true if the bot is allowed to change emoji status of the user; pass false otherwise
+    public func toggleBotCanManageEmojiStatus(
+        botUserId: Int64?,
+        canManageEmojiStatus: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleBotCanManageEmojiStatus(
+            botUserId: botUserId,
+            canManageEmojiStatus: canManageEmojiStatus
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether the bot can manage emoji status of the current user
+    /// - Parameter botUserId: User identifier of the bot
+    /// - Parameter canManageEmojiStatus: Pass true if the bot is allowed to change emoji status of the user; pass false otherwise
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func toggleBotCanManageEmojiStatus(
+        botUserId: Int64?,
+        canManageEmojiStatus: Bool?
+    ) async throws -> Ok {
+        let query = ToggleBotCanManageEmojiStatus(
+            botUserId: botUserId,
+            canManageEmojiStatus: canManageEmojiStatus
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the emoji status of a user; for bots only
+    /// - Parameter emojiStatus: New emoji status; pass null to switch to the default badge
+    /// - Parameter userId: Identifier of the user
+    public func setUserEmojiStatus(
+        emojiStatus: EmojiStatus?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetUserEmojiStatus(
+            emojiStatus: emojiStatus,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the emoji status of a user; for bots only
+    /// - Parameter emojiStatus: New emoji status; pass null to switch to the default badge
+    /// - Parameter userId: Identifier of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setUserEmojiStatus(
+        emojiStatus: EmojiStatus?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = SetUserEmojiStatus(
+            emojiStatus: emojiStatus,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter phoneNumber: Phone number to search for
@@ -15375,6 +15540,44 @@ public final class TdApi {
             limit: limit,
             offset: offset,
             userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known
+    /// - Parameter forAnimatedEmoji: Pass true to get the outline scaled for animated emoji
+    /// - Parameter forClickedAnimatedEmojiMessage: Pass true to get the outline scaled for clicked animated emoji message
+    /// - Parameter stickerFileId: File identifier of the sticker
+    /// - Returns: Outline of a sticker. Returns a 404 error if the outline isn't known
+    public func getStickerOutline(
+        forAnimatedEmoji: Bool?,
+        forClickedAnimatedEmojiMessage: Bool?,
+        stickerFileId: Int?,
+        completion: @escaping (Result<Outline, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStickerOutline(
+            forAnimatedEmoji: forAnimatedEmoji,
+            forClickedAnimatedEmojiMessage: forClickedAnimatedEmojiMessage,
+            stickerFileId: stickerFileId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known
+    /// - Parameter forAnimatedEmoji: Pass true to get the outline scaled for animated emoji
+    /// - Parameter forClickedAnimatedEmojiMessage: Pass true to get the outline scaled for clicked animated emoji message
+    /// - Parameter stickerFileId: File identifier of the sticker
+    /// - Returns: Outline of a sticker. Returns a 404 error if the outline isn't known
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStickerOutline(
+        forAnimatedEmoji: Bool?,
+        forClickedAnimatedEmojiMessage: Bool?,
+        stickerFileId: Int?
+    ) async throws -> Outline {
+        let query = GetStickerOutline(
+            forAnimatedEmoji: forAnimatedEmoji,
+            forClickedAnimatedEmojiMessage: forClickedAnimatedEmojiMessage,
+            stickerFileId: stickerFileId
         )
         return try await self.execute(query: query)
     }
@@ -19422,22 +19625,30 @@ public final class TdApi {
     }
 
     /// Creates a link for the given invoice; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
     /// - Parameter invoice: Information about the invoice of the type inputMessageInvoice
     public func createInvoiceLink(
+        businessConnectionId: String?,
         invoice: InputMessageContent?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = CreateInvoiceLink(
+            businessConnectionId: businessConnectionId,
             invoice: invoice
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Creates a link for the given invoice; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request
     /// - Parameter invoice: Information about the invoice of the type inputMessageInvoice
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func createInvoiceLink(invoice: InputMessageContent?) async throws -> HttpUrl {
+    public func createInvoiceLink(
+        businessConnectionId: String?,
+        invoice: InputMessageContent?
+    ) async throws -> HttpUrl {
         let query = CreateInvoiceLink(
+            businessConnectionId: businessConnectionId,
             invoice: invoice
         )
         return try await self.execute(query: query)
@@ -22663,7 +22874,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Cancels or reenables Telegram Star subscription to a channel
+    /// Cancels or re-enables Telegram Star subscription
     /// - Parameter isCanceled: New value of is_canceled
     /// - Parameter subscriptionId: Identifier of the subscription to change
     public func editStarSubscription(
@@ -22678,7 +22889,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Cancels or reenables Telegram Star subscription to a channel
+    /// Cancels or re-enables Telegram Star subscription
     /// - Parameter isCanceled: New value of is_canceled
     /// - Parameter subscriptionId: Identifier of the subscription to change
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -22694,7 +22905,44 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Reuses an active subscription and joins the subscribed chat again
+    /// Cancels or re-enables Telegram Star subscription for a user; for bots only
+    /// - Parameter isCanceled: Pass true to cancel the subscription; pass false to allow the user to enable it
+    /// - Parameter telegramPaymentChargeId: Telegram payment identifier of the subscription
+    /// - Parameter userId: User identifier
+    public func editUserStarSubscription(
+        isCanceled: Bool?,
+        telegramPaymentChargeId: String?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditUserStarSubscription(
+            isCanceled: isCanceled,
+            telegramPaymentChargeId: telegramPaymentChargeId,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Cancels or re-enables Telegram Star subscription for a user; for bots only
+    /// - Parameter isCanceled: Pass true to cancel the subscription; pass false to allow the user to enable it
+    /// - Parameter telegramPaymentChargeId: Telegram payment identifier of the subscription
+    /// - Parameter userId: User identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func editUserStarSubscription(
+        isCanceled: Bool?,
+        telegramPaymentChargeId: String?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = EditUserStarSubscription(
+            isCanceled: isCanceled,
+            telegramPaymentChargeId: telegramPaymentChargeId,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Reuses an active Telegram Star subscription to a channel chat and joins the chat again
     /// - Parameter subscriptionId: Identifier of the subscription
     public func reuseStarSubscription(
         subscriptionId: String?,
@@ -22706,7 +22954,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Reuses an active subscription and joins the subscribed chat again
+    /// Reuses an active Telegram Star subscription to a channel chat and joins the chat again
     /// - Parameter subscriptionId: Identifier of the subscription
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult

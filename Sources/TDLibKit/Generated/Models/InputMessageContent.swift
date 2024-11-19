@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.39-18618cad
-//  https://github.com/tdlib/td/tree/18618cad
+//  Based on TDLib 1.8.40-22d49d5b
+//  https://github.com/tdlib/td/tree/22d49d5b
 //
 
 import Foundation
@@ -520,7 +520,7 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     /// Video thumbnail; pass null to skip thumbnail uploading
     public let thumbnail: InputThumbnail?
 
-    /// Video to be sent. The video is expected to be reencoded to MPEG4 format with H.264 codec by the sender
+    /// Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
     public let video: InputFile
 
     /// Video width
