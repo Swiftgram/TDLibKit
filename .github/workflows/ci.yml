@@ -59,16 +59,16 @@ jobs:
         include:
           - platform: "macOS"
           - platform: "iOS-simulator"
-            os_list: "17.0.1"
+            os_list: "17.2"
             device_name: "iPhone 14"
           - platform: "tvOS-simulator"
-            os_list: "17.0"
+            os_list: "17.2"
             device_name: "Apple TV 4K (3rd generation) (at 1080p)"
           # Became much slower on CI with macos-14 images, while working fine locally
           # we will only build them
           - platform: "watchOS-simulator"
-            os_list: "9.4"
-            device_name: "Apple Watch Series 8 (45mm)"
+            os_list: "10.2"
+            device_name: "Apple Watch Series 9 (45mm)"
             action: "build"
           - platform: "visionOS-simulator"
             os_list: "1.0"
