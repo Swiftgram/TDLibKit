@@ -60,7 +60,7 @@ jobs:
           - platform: "macOS"
           - platform: "iOS-simulator"
             os_list: "17.2"
-            device_name: "iPhone 14"
+            device_name: "iPhone 15"
           - platform: "tvOS-simulator"
             os_list: "17.2"
             device_name: "Apple TV 4K (3rd generation) (at 1080p)"
