@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.40-22d49d5b
-//  https://github.com/tdlib/td/tree/22d49d5b
+//  Based on TDLib 1.8.41-eb98bbe6
+//  https://github.com/tdlib/td/tree/eb98bbe6
 //
 
 import Foundation
@@ -22,25 +22,25 @@ public struct StarTransaction: Codable, Equatable, Hashable, Identifiable {
     /// True, if the transaction is a refund of a previous transaction
     public let isRefund: Bool
 
-    /// Source of the incoming transaction, or its recipient for outgoing transactions
-    public let partner: StarTransactionPartner
-
     /// The amount of added owned Telegram Stars; negative for outgoing transactions
-    public let starCount: Int64
+    public let starAmount: StarAmount
+
+    /// Type of the transaction
+    public let type: StarTransactionType
 
 
     public init(
         date: Int,
         id: String,
         isRefund: Bool,
-        partner: StarTransactionPartner,
-        starCount: Int64
+        starAmount: StarAmount,
+        type: StarTransactionType
     ) {
         self.date = date
         self.id = id
         self.isRefund = isRefund
-        self.partner = partner
-        self.starCount = starCount
+        self.starAmount = starAmount
+        self.type = type
     }
 }
 

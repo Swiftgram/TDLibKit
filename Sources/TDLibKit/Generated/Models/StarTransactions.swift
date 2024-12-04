@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.40-22d49d5b
-//  https://github.com/tdlib/td/tree/22d49d5b
+//  Based on TDLib 1.8.41-eb98bbe6
+//  https://github.com/tdlib/td/tree/eb98bbe6
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct StarTransactions: Codable, Equatable, Hashable {
     public let nextOffset: String
 
     /// The amount of owned Telegram Stars
-    public let starCount: Int64
+    public let starAmount: StarAmount
 
     /// List of transactions with Telegram Stars
     public let transactions: [StarTransaction]
@@ -25,11 +25,11 @@ public struct StarTransactions: Codable, Equatable, Hashable {
 
     public init(
         nextOffset: String,
-        starCount: Int64,
+        starAmount: StarAmount,
         transactions: [StarTransaction]
     ) {
         self.nextOffset = nextOffset
-        self.starCount = starCount
+        self.starAmount = starAmount
         self.transactions = transactions
     }
 }

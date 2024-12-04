@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.40-22d49d5b
-//  https://github.com/tdlib/td/tree/22d49d5b
+//  Based on TDLib 1.8.41-eb98bbe6
+//  https://github.com/tdlib/td/tree/eb98bbe6
 //
 
 import Foundation
@@ -46,6 +46,18 @@ public indirect enum FileType: Codable, Equatable, Hashable {
     /// The file is a file from Secure storage used for storing Telegram Passport files
     case fileTypeSecure
 
+    /// The file is a self-destructing photo in a private chat
+    case fileTypeSelfDestructingPhoto
+
+    /// The file is a self-destructing video in a private chat
+    case fileTypeSelfDestructingVideo
+
+    /// The file is a self-destructing video note in a private chat
+    case fileTypeSelfDestructingVideoNote
+
+    /// The file is a self-destructing voice note in a private chat
+    case fileTypeSelfDestructingVoiceNote
+
     /// The file is a sticker
     case fileTypeSticker
 
@@ -83,6 +95,10 @@ public indirect enum FileType: Codable, Equatable, Hashable {
         case fileTypeSecret
         case fileTypeSecretThumbnail
         case fileTypeSecure
+        case fileTypeSelfDestructingPhoto
+        case fileTypeSelfDestructingVideo
+        case fileTypeSelfDestructingVideoNote
+        case fileTypeSelfDestructingVoiceNote
         case fileTypeSticker
         case fileTypeThumbnail
         case fileTypeUnknown
@@ -119,6 +135,14 @@ public indirect enum FileType: Codable, Equatable, Hashable {
             self = .fileTypeSecretThumbnail
         case .fileTypeSecure:
             self = .fileTypeSecure
+        case .fileTypeSelfDestructingPhoto:
+            self = .fileTypeSelfDestructingPhoto
+        case .fileTypeSelfDestructingVideo:
+            self = .fileTypeSelfDestructingVideo
+        case .fileTypeSelfDestructingVideoNote:
+            self = .fileTypeSelfDestructingVideoNote
+        case .fileTypeSelfDestructingVoiceNote:
+            self = .fileTypeSelfDestructingVoiceNote
         case .fileTypeSticker:
             self = .fileTypeSticker
         case .fileTypeThumbnail:
@@ -163,6 +187,14 @@ public indirect enum FileType: Codable, Equatable, Hashable {
             try container.encode(Kind.fileTypeSecretThumbnail, forKey: .type)
         case .fileTypeSecure:
             try container.encode(Kind.fileTypeSecure, forKey: .type)
+        case .fileTypeSelfDestructingPhoto:
+            try container.encode(Kind.fileTypeSelfDestructingPhoto, forKey: .type)
+        case .fileTypeSelfDestructingVideo:
+            try container.encode(Kind.fileTypeSelfDestructingVideo, forKey: .type)
+        case .fileTypeSelfDestructingVideoNote:
+            try container.encode(Kind.fileTypeSelfDestructingVideoNote, forKey: .type)
+        case .fileTypeSelfDestructingVoiceNote:
+            try container.encode(Kind.fileTypeSelfDestructingVoiceNote, forKey: .type)
         case .fileTypeSticker:
             try container.encode(Kind.fileTypeSticker, forKey: .type)
         case .fileTypeThumbnail:

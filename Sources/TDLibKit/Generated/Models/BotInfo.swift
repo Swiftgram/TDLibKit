@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.40-22d49d5b
-//  https://github.com/tdlib/td/tree/22d49d5b
+//  Based on TDLib 1.8.41-eb98bbe6
+//  https://github.com/tdlib/td/tree/eb98bbe6
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about a bot
 public struct BotInfo: Codable, Equatable, Hashable {
+
+    /// Information about the affiliate program of the bot; may be null if none
+    public let affiliateProgram: AffiliateProgramInfo?
 
     /// Animation shown in the chat with the bot if the chat is empty; may be null
     public let animation: Animation?
@@ -74,6 +77,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
 
 
     public init(
+        affiliateProgram: AffiliateProgramInfo?,
         animation: Animation?,
         canGetRevenueStatistics: Bool,
         canManageEmojiStatus: Bool,
@@ -95,6 +99,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         webAppHeaderDarkColor: Int,
         webAppHeaderLightColor: Int
     ) {
+        self.affiliateProgram = affiliateProgram
         self.animation = animation
         self.canGetRevenueStatistics = canGetRevenueStatistics
         self.canManageEmojiStatus = canManageEmojiStatus

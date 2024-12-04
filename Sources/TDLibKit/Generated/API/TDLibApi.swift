@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.40-22d49d5b
-//  https://github.com/tdlib/td/tree/22d49d5b
+//  Based on TDLib 1.8.41-eb98bbe6
+//  https://github.com/tdlib/td/tree/eb98bbe6
 //
 
 import Foundation
@@ -7534,7 +7534,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Saves an inline message to be sent by the given user; for bots only
+    /// Saves an inline message to be sent by the given user
     /// - Parameter botUserId: Identifier of the bot that created the message
     /// - Parameter preparedMessageId: Identifier of the prepared message
     public final func getPreparedInlineMessage(
@@ -7549,7 +7549,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Saves an inline message to be sent by the given user; for bots only
+    /// Saves an inline message to be sent by the given user
     /// - Parameter botUserId: Identifier of the bot that created the message
     /// - Parameter preparedMessageId: Identifier of the prepared message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14122,7 +14122,7 @@ public class TDLibApi {
 
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
-    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
+    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     public final func createVideoChat(
@@ -14143,7 +14143,7 @@ public class TDLibApi {
 
     /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
-    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
+    /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     /// - Parameter title: Group call title; if empty, chat title will be used
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15681,36 +15681,54 @@ public class TDLibApi {
     }
 
     /// Searches for stickers from public sticker sets that correspond to any of the given emoji
-    /// - Parameter emojis: Space-separated list of emojis to search for; must be non-empty
+    /// - Parameter emojis: Space-separated list of emojis to search for
+    /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
+    /// - Parameter offset: The offset from which to return the stickers; must be non-negative
+    /// - Parameter query: Query to search for; may be empty to search for emoji only
     /// - Parameter stickerType: Type of the stickers to return
     public final func searchStickers(
         emojis: String?,
+        inputLanguageCodes: [String]?,
         limit: Int?,
+        offset: Int?,
+        query: String?,
         stickerType: StickerType?,
         completion: @escaping (Result<Stickers, Swift.Error>) -> Void
     ) throws {
         let query = SearchStickers(
             emojis: emojis,
+            inputLanguageCodes: inputLanguageCodes,
             limit: limit,
+            offset: offset,
+            query: query,
             stickerType: stickerType
         )
         self.run(query: query, completion: completion)
     }
 
     /// Searches for stickers from public sticker sets that correspond to any of the given emoji
-    /// - Parameter emojis: Space-separated list of emojis to search for; must be non-empty
+    /// - Parameter emojis: Space-separated list of emojis to search for
+    /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter limit: The maximum number of stickers to be returned; 0-100
+    /// - Parameter offset: The offset from which to return the stickers; must be non-negative
+    /// - Parameter query: Query to search for; may be empty to search for emoji only
     /// - Parameter stickerType: Type of the stickers to return
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchStickers(
         emojis: String?,
+        inputLanguageCodes: [String]?,
         limit: Int?,
+        offset: Int?,
+        query: String?,
         stickerType: StickerType?
     ) async throws -> Stickers {
         let query = SearchStickers(
             emojis: emojis,
+            inputLanguageCodes: inputLanguageCodes,
             limit: limit,
+            offset: offset,
+            query: query,
             stickerType: stickerType
         )
         return try await self.run(query: query)
@@ -16583,6 +16601,21 @@ public class TDLibApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getRecentInlineBots() async throws -> Users {
         let query = GetRecentInlineBots()
+        return try await self.run(query: query)
+    }
+
+    /// Returns the list of owned by the current user bots
+    /// - Returns: The list of owned by the current user bots
+    public final func getOwnedBots(completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
+        let query = GetOwnedBots()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of owned by the current user bots
+    /// - Returns: The list of owned by the current user bots
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getOwnedBots() async throws -> Users {
+        let query = GetOwnedBots()
         return try await self.run(query: query)
     }
 
@@ -22971,6 +23004,245 @@ public class TDLibApi {
     public final func reuseStarSubscription(subscriptionId: String?) async throws -> Ok {
         let query = ReuseStarSubscription(
             subscriptionId: subscriptionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes affiliate program for a bot
+    /// - Parameter chatId: Identifier of the chat with an owned bot for which affiliate program is changed
+    /// - Parameter parameters: Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased. If the active program is scheduled to be closed, then it can't be changed anymore
+    public final func setChatAffiliateProgram(
+        chatId: Int64?,
+        parameters: AffiliateProgramParameters?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatAffiliateProgram(
+            chatId: chatId,
+            parameters: parameters
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes affiliate program for a bot
+    /// - Parameter chatId: Identifier of the chat with an owned bot for which affiliate program is changed
+    /// - Parameter parameters: Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased. If the active program is scheduled to be closed, then it can't be changed anymore
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setChatAffiliateProgram(
+        chatId: Int64?,
+        parameters: AffiliateProgramParameters?
+    ) async throws -> Ok {
+        let query = SetChatAffiliateProgram(
+            chatId: chatId,
+            parameters: parameters
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Searches a chat with an affiliate program. Returns the chat if found and the program is active
+    /// - Parameter referrer: The referrer from an internalLinkTypeChatAffiliateProgram link
+    /// - Parameter username: Username of the chat
+    /// - Returns: The chat if found and the program is active
+    public final func searchChatAffiliateProgram(
+        referrer: String?,
+        username: String?,
+        completion: @escaping (Result<Chat, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchChatAffiliateProgram(
+            referrer: referrer,
+            username: username
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Searches a chat with an affiliate program. Returns the chat if found and the program is active
+    /// - Parameter referrer: The referrer from an internalLinkTypeChatAffiliateProgram link
+    /// - Parameter username: Username of the chat
+    /// - Returns: The chat if found and the program is active
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func searchChatAffiliateProgram(
+        referrer: String?,
+        username: String?
+    ) async throws -> Chat {
+        let query = SearchChatAffiliateProgram(
+            referrer: referrer,
+            username: username
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Searches affiliate programs that can be applied to the given chat
+    /// - Parameter chatId: Identifier of the chat for which affiliate programs are searched for. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Parameter limit: The maximum number of affiliate programs to return
+    /// - Parameter offset: Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter sortOrder: Sort order for the results
+    public final func searchAffiliatePrograms(
+        chatId: Int64?,
+        limit: Int?,
+        offset: String?,
+        sortOrder: AffiliateProgramSortOrder?,
+        completion: @escaping (Result<FoundAffiliatePrograms, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchAffiliatePrograms(
+            chatId: chatId,
+            limit: limit,
+            offset: offset,
+            sortOrder: sortOrder
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Searches affiliate programs that can be applied to the given chat
+    /// - Parameter chatId: Identifier of the chat for which affiliate programs are searched for. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Parameter limit: The maximum number of affiliate programs to return
+    /// - Parameter offset: Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter sortOrder: Sort order for the results
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func searchAffiliatePrograms(
+        chatId: Int64?,
+        limit: Int?,
+        offset: String?,
+        sortOrder: AffiliateProgramSortOrder?
+    ) async throws -> FoundAffiliatePrograms {
+        let query = SearchAffiliatePrograms(
+            chatId: chatId,
+            limit: limit,
+            offset: offset,
+            sortOrder: sortOrder
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Connects an affiliate program to the given chat. Returns information about the connected affiliate program
+    /// - Parameter botUserId: Identifier of the bot, which affiliate program is connected
+    /// - Parameter chatId: Identifier of the chat to which the affiliate program will be connected. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Returns: Information about the connected affiliate program
+    public final func connectChatAffiliateProgram(
+        botUserId: Int64?,
+        chatId: Int64?,
+        completion: @escaping (Result<ChatAffiliateProgram, Swift.Error>) -> Void
+    ) throws {
+        let query = ConnectChatAffiliateProgram(
+            botUserId: botUserId,
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Connects an affiliate program to the given chat. Returns information about the connected affiliate program
+    /// - Parameter botUserId: Identifier of the bot, which affiliate program is connected
+    /// - Parameter chatId: Identifier of the chat to which the affiliate program will be connected. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Returns: Information about the connected affiliate program
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func connectChatAffiliateProgram(
+        botUserId: Int64?,
+        chatId: Int64?
+    ) async throws -> ChatAffiliateProgram {
+        let query = ConnectChatAffiliateProgram(
+            botUserId: botUserId,
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Disconnects an affiliate program from the given chat and immediately deactivates its referral link. Returns updated information about the disconnected affiliate program
+    /// - Parameter chatId: Identifier of the chat for which the affiliate program is connected
+    /// - Parameter url: The referral link of the affiliate program
+    /// - Returns: Updated information about the disconnected affiliate program
+    public final func disconnectChatAffiliateProgram(
+        chatId: Int64?,
+        url: String?,
+        completion: @escaping (Result<ChatAffiliateProgram, Swift.Error>) -> Void
+    ) throws {
+        let query = DisconnectChatAffiliateProgram(
+            chatId: chatId,
+            url: url
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Disconnects an affiliate program from the given chat and immediately deactivates its referral link. Returns updated information about the disconnected affiliate program
+    /// - Parameter chatId: Identifier of the chat for which the affiliate program is connected
+    /// - Parameter url: The referral link of the affiliate program
+    /// - Returns: Updated information about the disconnected affiliate program
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func disconnectChatAffiliateProgram(
+        chatId: Int64?,
+        url: String?
+    ) async throws -> ChatAffiliateProgram {
+        let query = DisconnectChatAffiliateProgram(
+            chatId: chatId,
+            url: url
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns an affiliate program that were connected to the given chat by identifier of the bot that created the program
+    /// - Parameter botUserId: Identifier of the bot that created the program
+    /// - Parameter chatId: Identifier of the chat for which the affiliate program was connected. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Returns: An affiliate program that were connected to the given chat by identifier of the bot that created the program
+    public final func getChatAffiliateProgram(
+        botUserId: Int64?,
+        chatId: Int64?,
+        completion: @escaping (Result<ChatAffiliateProgram, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatAffiliateProgram(
+            botUserId: botUserId,
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns an affiliate program that were connected to the given chat by identifier of the bot that created the program
+    /// - Parameter botUserId: Identifier of the bot that created the program
+    /// - Parameter chatId: Identifier of the chat for which the affiliate program was connected. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Returns: An affiliate program that were connected to the given chat by identifier of the bot that created the program
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatAffiliateProgram(
+        botUserId: Int64?,
+        chatId: Int64?
+    ) async throws -> ChatAffiliateProgram {
+        let query = GetChatAffiliateProgram(
+            botUserId: botUserId,
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns affiliate programs that were connected to the given chat
+    /// - Parameter chatId: Identifier of the chat for which the affiliate programs were connected. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Parameter limit: The maximum number of affiliate programs to return
+    /// - Parameter offset: Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Affiliate programs that were connected to the given chat
+    public final func getChatAffiliatePrograms(
+        chatId: Int64?,
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<ChatAffiliatePrograms, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatAffiliatePrograms(
+            chatId: chatId,
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns affiliate programs that were connected to the given chat
+    /// - Parameter chatId: Identifier of the chat for which the affiliate programs were connected. Can be an identifier of the Saved Messages chat, of a chat with an owned bot, or of a channel chat with can_post_messages administrator right
+    /// - Parameter limit: The maximum number of affiliate programs to return
+    /// - Parameter offset: Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: Affiliate programs that were connected to the given chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatAffiliatePrograms(
+        chatId: Int64?,
+        limit: Int?,
+        offset: String?
+    ) async throws -> ChatAffiliatePrograms {
+        let query = GetChatAffiliatePrograms(
+            chatId: chatId,
+            limit: limit,
+            offset: offset
         )
         return try await self.run(query: query)
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.40-22d49d5b
-//  https://github.com/tdlib/td/tree/22d49d5b
+//  Based on TDLib 1.8.41-eb98bbe6
+//  https://github.com/tdlib/td/tree/eb98bbe6
 //
 
 import Foundation
@@ -43,6 +43,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to the change phone number section of the application
     case internalLinkTypeChangePhoneNumber
+
+    /// The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
+    case internalLinkTypeChatAffiliateProgram(InternalLinkTypeChatAffiliateProgram)
 
     /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     case internalLinkTypeChatBoost(InternalLinkTypeChatBoost)
@@ -161,6 +164,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeBusinessChat
         case internalLinkTypeBuyStars
         case internalLinkTypeChangePhoneNumber
+        case internalLinkTypeChatAffiliateProgram
         case internalLinkTypeChatBoost
         case internalLinkTypeChatFolderInvite
         case internalLinkTypeChatFolderSettings
@@ -230,6 +234,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeBuyStars(value)
         case .internalLinkTypeChangePhoneNumber:
             self = .internalLinkTypeChangePhoneNumber
+        case .internalLinkTypeChatAffiliateProgram:
+            let value = try InternalLinkTypeChatAffiliateProgram(from: decoder)
+            self = .internalLinkTypeChatAffiliateProgram(value)
         case .internalLinkTypeChatBoost:
             let value = try InternalLinkTypeChatBoost(from: decoder)
             self = .internalLinkTypeChatBoost(value)
@@ -359,6 +366,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeChangePhoneNumber:
             try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
+        case .internalLinkTypeChatAffiliateProgram(let value):
+            try container.encode(Kind.internalLinkTypeChatAffiliateProgram, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeChatBoost(let value):
             try container.encode(Kind.internalLinkTypeChatBoost, forKey: .type)
             try value.encode(to: encoder)
@@ -601,6 +611,25 @@ public struct InternalLinkTypeBuyStars: Codable, Equatable, Hashable {
     ) {
         self.purpose = purpose
         self.starCount = starCount
+    }
+}
+
+/// The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
+public struct InternalLinkTypeChatAffiliateProgram: Codable, Equatable, Hashable {
+
+    /// Referrer to be passed to searchChatAffiliateProgram
+    public let referrer: String
+
+    /// Username to be passed to searchChatAffiliateProgram
+    public let username: String
+
+
+    public init(
+        referrer: String,
+        username: String
+    ) {
+        self.referrer = referrer
+        self.username = username
     }
 }
 
