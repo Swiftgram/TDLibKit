@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-eb98bbe6
-//  https://github.com/tdlib/td/tree/eb98bbe6
+//  Based on TDLib 1.8.41-c85b20a4
+//  https://github.com/tdlib/td/tree/c85b20a4
 //
 
 import Foundation
 
 
-/// Returns the list of owned by the current user bots
+/// Returns the list of bots owned by the current user
 public struct GetOwnedBots: Codable, Equatable, Hashable {
 
 

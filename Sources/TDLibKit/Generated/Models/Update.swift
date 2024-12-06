@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-eb98bbe6
-//  https://github.com/tdlib/td/tree/eb98bbe6
+//  Based on TDLib 1.8.41-c85b20a4
+//  https://github.com/tdlib/td/tree/c85b20a4
 //
 
 import Foundation
@@ -3578,7 +3578,7 @@ public struct UpdateChatThemes: Codable, Equatable, Hashable {
 /// The list of supported accent colors has changed
 public struct UpdateAccentColors: Codable, Equatable, Hashable {
 
-    /// The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
+    /// The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order
     public let availableAccentColorIds: [Int]
 
     /// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
@@ -3597,7 +3597,7 @@ public struct UpdateAccentColors: Codable, Equatable, Hashable {
 /// The list of supported accent colors for user profiles has changed
 public struct UpdateProfileAccentColors: Codable, Equatable, Hashable {
 
-    /// The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specififed order
+    /// The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specified order
     public let availableAccentColorIds: [Int]
 
     /// Information about supported colors

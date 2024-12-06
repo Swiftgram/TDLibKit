@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-eb98bbe6
-//  https://github.com/tdlib/td/tree/eb98bbe6
+//  Based on TDLib 1.8.41-c85b20a4
+//  https://github.com/tdlib/td/tree/c85b20a4
 //
 
 import Foundation
@@ -11420,7 +11420,7 @@ public final class TdApi {
     }
 
     /// Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
-    /// - Parameter privacySettings: The new privacy settigs for the story
+    /// - Parameter privacySettings: The new privacy settings for the story
     /// - Parameter storyId: Identifier of the story
     public func setStoryPrivacySettings(
         privacySettings: StoryPrivacySettings?,
@@ -11435,7 +11435,7 @@ public final class TdApi {
     }
 
     /// Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
-    /// - Parameter privacySettings: The new privacy settigs for the story
+    /// - Parameter privacySettings: The new privacy settings for the story
     /// - Parameter storyId: Identifier of the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -16594,15 +16594,15 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of owned by the current user bots
-    /// - Returns: The list of owned by the current user bots
+    /// Returns the list of bots owned by the current user
+    /// - Returns: The list of bots owned by the current user
     public func getOwnedBots(completion: @escaping (Result<Users, Swift.Error>) -> Void) throws {
         let query = GetOwnedBots()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of owned by the current user bots
-    /// - Returns: The list of owned by the current user bots
+    /// Returns the list of bots owned by the current user
+    /// - Returns: The list of bots owned by the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getOwnedBots() async throws -> Users {
         let query = GetOwnedBots()
