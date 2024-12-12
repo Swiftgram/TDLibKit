@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-437e7f9a
-//  https://github.com/tdlib/td/tree/437e7f9a
+//  Based on TDLib 1.8.41-d961806b
+//  https://github.com/tdlib/td/tree/d961806b
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Represents a user
 public struct User: Codable, Equatable, Hashable, Identifiable {
 
-    /// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview. For Telegram Premium users only
+    /// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
     public let accentColorId: Int
 
     /// True, if the user added the current bot to attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool
 
-    /// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. For Telegram Premium users only
+    /// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
     public let backgroundCustomEmojiId: TdInt64
 
-    /// Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only
+    /// Emoji status to be shown instead of the default Telegram Premium badge; may be null
     public let emojiStatus: EmojiStatus?
 
     /// First name of the user
@@ -73,10 +73,10 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Phone number of the user
     public let phoneNumber: String
 
-    /// Identifier of the accent color for the user's profile; -1 if none. For Telegram Premium users only
+    /// Identifier of the accent color for the user's profile; -1 if none
     public let profileAccentColorId: Int
 
-    /// Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none. For Telegram Premium users only
+    /// Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none
     public let profileBackgroundCustomEmojiId: TdInt64
 
     /// Profile photo of the user; may be null
