@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct ChatFolderInfo: Codable, Equatable, Hashable, Identifiable {
     /// True, if at least one link has been created for the folder
     public let isShareable: Bool
 
-    /// The title of the folder; 1-12 characters without line feeds
-    public let title: String
+    /// The name of the folder
+    public let name: ChatFolderName
 
 
     public init(
@@ -38,14 +38,14 @@ public struct ChatFolderInfo: Codable, Equatable, Hashable, Identifiable {
         icon: ChatFolderIcon,
         id: Int,
         isShareable: Bool,
-        title: String
+        name: ChatFolderName
     ) {
         self.colorId = colorId
         self.hasMyInviteLinks = hasMyInviteLinks
         self.icon = icon
         self.id = id
         self.isShareable = isShareable
-        self.title = title
+        self.name = name
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
     /// The call was ended because one of the parties hung up
     case callDiscardReasonHungUp
 
+    /// The call was ended because it has been used successfully to transfer private encryption key for the associated group call
+    case callDiscardReasonAllowGroupCall(CallDiscardReasonAllowGroupCall)
+
 
     private enum Kind: String, Codable {
         case callDiscardReasonEmpty
@@ -35,6 +38,7 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
         case callDiscardReasonDeclined
         case callDiscardReasonDisconnected
         case callDiscardReasonHungUp
+        case callDiscardReasonAllowGroupCall
     }
 
     public init(from decoder: Decoder) throws {
@@ -51,6 +55,9 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
             self = .callDiscardReasonDisconnected
         case .callDiscardReasonHungUp:
             self = .callDiscardReasonHungUp
+        case .callDiscardReasonAllowGroupCall:
+            let value = try CallDiscardReasonAllowGroupCall(from: decoder)
+            self = .callDiscardReasonAllowGroupCall(value)
         }
     }
 
@@ -67,7 +74,22 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
             try container.encode(Kind.callDiscardReasonDisconnected, forKey: .type)
         case .callDiscardReasonHungUp:
             try container.encode(Kind.callDiscardReasonHungUp, forKey: .type)
+        case .callDiscardReasonAllowGroupCall(let value):
+            try container.encode(Kind.callDiscardReasonAllowGroupCall, forKey: .type)
+            try value.encode(to: encoder)
         }
+    }
+}
+
+/// The call was ended because it has been used successfully to transfer private encryption key for the associated group call
+public struct CallDiscardReasonAllowGroupCall: Codable, Equatable, Hashable {
+
+    /// Encrypted using the call private key encryption key for the associated group call
+    public let encryptedGroupCallKey: Data
+
+
+    public init(encryptedGroupCallKey: Data) {
+        self.encryptedGroupCallKey = encryptedGroupCallKey
     }
 }
 

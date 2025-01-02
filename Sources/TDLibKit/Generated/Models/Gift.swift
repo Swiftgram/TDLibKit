@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a gift that can be sent to another user
 public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
-    /// Number of Telegram Stars that can be claimed by the receiver instead of the gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
+    /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     public let defaultSellStarCount: Int64
 
     /// Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
@@ -40,6 +40,9 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Number of total times the gift can be purchased by all users; 0 if not limited
     public let totalCount: Int
 
+    /// Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible
+    public let upgradeStarCount: Int64
+
 
     public init(
         defaultSellStarCount: Int64,
@@ -50,7 +53,8 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         remainingCount: Int,
         starCount: Int64,
         sticker: Sticker,
-        totalCount: Int
+        totalCount: Int,
+        upgradeStarCount: Int64
     ) {
         self.defaultSellStarCount = defaultSellStarCount
         self.firstSendDate = firstSendDate
@@ -61,6 +65,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         self.starCount = starCount
         self.sticker = sticker
         self.totalCount = totalCount
+        self.upgradeStarCount = upgradeStarCount
     }
 }
 

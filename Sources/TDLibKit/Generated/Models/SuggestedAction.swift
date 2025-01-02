@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to set birthdate
     case suggestedActionSetBirthdate
 
+    /// Suggests the user to set profile photo
+    case suggestedActionSetProfilePhoto
+
     /// Suggests the user to extend their expiring Telegram Premium subscription
     case suggestedActionExtendPremium(SuggestedActionExtendPremium)
 
@@ -65,6 +68,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionSubscribeToAnnualPremium
         case suggestedActionGiftPremiumForChristmas
         case suggestedActionSetBirthdate
+        case suggestedActionSetProfilePhoto
         case suggestedActionExtendPremium
         case suggestedActionExtendStarSubscriptions
     }
@@ -97,6 +101,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             self = .suggestedActionGiftPremiumForChristmas
         case .suggestedActionSetBirthdate:
             self = .suggestedActionSetBirthdate
+        case .suggestedActionSetProfilePhoto:
+            self = .suggestedActionSetProfilePhoto
         case .suggestedActionExtendPremium:
             let value = try SuggestedActionExtendPremium(from: decoder)
             self = .suggestedActionExtendPremium(value)
@@ -132,6 +138,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             try container.encode(Kind.suggestedActionGiftPremiumForChristmas, forKey: .type)
         case .suggestedActionSetBirthdate:
             try container.encode(Kind.suggestedActionSetBirthdate, forKey: .type)
+        case .suggestedActionSetProfilePhoto:
+            try container.encode(Kind.suggestedActionSetProfilePhoto, forKey: .type)
         case .suggestedActionExtendPremium(let value):
             try container.encode(Kind.suggestedActionExtendPremium, forKey: .type)
             try value.encode(to: encoder)

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -52,11 +52,11 @@ public struct ChatFolder: Codable, Equatable, Hashable {
     /// True, if at least one link has been created for the folder
     public let isShareable: Bool
 
+    /// The name of the folder
+    public let name: ChatFolderName
+
     /// The chat identifiers of pinned chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium
     public let pinnedChatIds: [Int64]
-
-    /// The title of the folder; 1-12 characters without line feeds
-    public let title: String
 
 
     public init(
@@ -73,8 +73,8 @@ public struct ChatFolder: Codable, Equatable, Hashable {
         includeNonContacts: Bool,
         includedChatIds: [Int64],
         isShareable: Bool,
-        pinnedChatIds: [Int64],
-        title: String
+        name: ChatFolderName,
+        pinnedChatIds: [Int64]
     ) {
         self.colorId = colorId
         self.excludeArchived = excludeArchived
@@ -89,8 +89,8 @@ public struct ChatFolder: Codable, Equatable, Hashable {
         self.includeNonContacts = includeNonContacts
         self.includedChatIds = includedChatIds
         self.isShareable = isShareable
+        self.name = name
         self.pinnedChatIds = pinnedChatIds
-        self.title = title
     }
 }
 

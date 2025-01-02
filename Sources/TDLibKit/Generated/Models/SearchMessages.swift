@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct SearchMessages: Codable, Equatable, Hashable {
 
     /// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     public let chatList: ChatList?
+
+    /// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
+    public let chatTypeFilter: SearchMessagesChatTypeFilter?
 
     /// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
     public let filter: SearchMessagesFilter?
@@ -31,30 +34,27 @@ public struct SearchMessages: Codable, Equatable, Hashable {
     /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     public let offset: String?
 
-    /// Pass true to search only for messages in channels
-    public let onlyInChannels: Bool?
-
     /// Query to search for
     public let query: String?
 
 
     public init(
         chatList: ChatList?,
+        chatTypeFilter: SearchMessagesChatTypeFilter?,
         filter: SearchMessagesFilter?,
         limit: Int?,
         maxDate: Int?,
         minDate: Int?,
         offset: String?,
-        onlyInChannels: Bool?,
         query: String?
     ) {
         self.chatList = chatList
+        self.chatTypeFilter = chatTypeFilter
         self.filter = filter
         self.limit = limit
         self.maxDate = maxDate
         self.minDate = minDate
         self.offset = offset
-        self.onlyInChannels = onlyInChannels
         self.query = query
     }
 }

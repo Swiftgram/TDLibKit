@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -27,17 +27,8 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
 
     public let description: String
 
-    /// True, if many users reported this chat as a fake account
-    public let isFake: Bool
-
     /// True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
     public let isPublic: Bool
-
-    /// True, if many users reported this chat as a scam
-    public let isScam: Bool
-
-    /// True, if the chat is verified
-    public let isVerified: Bool
 
     /// Number of members in the chat
     public let memberCount: Int
@@ -57,6 +48,9 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
     /// Type of the chat
     public let type: InviteLinkChatType
 
+    /// Information about verification status of the chat; may be null if none
+    public let verificationStatus: VerificationStatus?
+
 
     public init(
         accentColorId: Int,
@@ -64,32 +58,28 @@ public struct ChatInviteLinkInfo: Codable, Equatable, Hashable {
         chatId: Int64,
         createsJoinRequest: Bool,
         description: String,
-        isFake: Bool,
         isPublic: Bool,
-        isScam: Bool,
-        isVerified: Bool,
         memberCount: Int,
         memberUserIds: [Int64],
         photo: ChatPhotoInfo?,
         subscriptionInfo: ChatInviteLinkSubscriptionInfo?,
         title: String,
-        type: InviteLinkChatType
+        type: InviteLinkChatType,
+        verificationStatus: VerificationStatus?
     ) {
         self.accentColorId = accentColorId
         self.accessibleFor = accessibleFor
         self.chatId = chatId
         self.createsJoinRequest = createsJoinRequest
         self.description = description
-        self.isFake = isFake
         self.isPublic = isPublic
-        self.isScam = isScam
-        self.isVerified = isVerified
         self.memberCount = memberCount
         self.memberUserIds = memberUserIds
         self.photo = photo
         self.subscriptionInfo = subscriptionInfo
         self.title = title
         self.type = type
+        self.verificationStatus = verificationStatus
     }
 }
 

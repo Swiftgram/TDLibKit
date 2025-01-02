@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -46,23 +46,14 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// The user is a contact of the current user
     public let isContact: Bool
 
-    /// True, if many users reported this user as a fake account
-    public let isFake: Bool
-
     /// The user is a contact of the current user and the current user is a contact of the user
     public let isMutualContact: Bool
 
     /// True, if the user is a Telegram Premium user
     public let isPremium: Bool
 
-    /// True, if many users reported this user as a scam
-    public let isScam: Bool
-
     /// True, if the user is Telegram support account
     public let isSupport: Bool
-
-    /// True, if the user is verified
-    public let isVerified: Bool
 
     /// IETF language tag of the user's language; only available to bots
     public let languageCode: String
@@ -97,6 +88,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Usernames of the user; may be null
     public let usernames: Usernames?
 
+    /// Information about verification status of the user; may be null if none
+    public let verificationStatus: VerificationStatus?
+
 
     public init(
         accentColorId: Int,
@@ -110,12 +104,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         id: Int64,
         isCloseFriend: Bool,
         isContact: Bool,
-        isFake: Bool,
         isMutualContact: Bool,
         isPremium: Bool,
-        isScam: Bool,
         isSupport: Bool,
-        isVerified: Bool,
         languageCode: String,
         lastName: String,
         phoneNumber: String,
@@ -126,7 +117,8 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         restrictsNewChats: Bool,
         status: UserStatus,
         type: UserType,
-        usernames: Usernames?
+        usernames: Usernames?,
+        verificationStatus: VerificationStatus?
     ) {
         self.accentColorId = accentColorId
         self.addedToAttachmentMenu = addedToAttachmentMenu
@@ -139,12 +131,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.id = id
         self.isCloseFriend = isCloseFriend
         self.isContact = isContact
-        self.isFake = isFake
         self.isMutualContact = isMutualContact
         self.isPremium = isPremium
-        self.isScam = isScam
         self.isSupport = isSupport
-        self.isVerified = isVerified
         self.languageCode = languageCode
         self.lastName = lastName
         self.phoneNumber = phoneNumber
@@ -156,6 +145,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.status = status
         self.type = type
         self.usernames = usernames
+        self.verificationStatus = verificationStatus
     }
 }
 

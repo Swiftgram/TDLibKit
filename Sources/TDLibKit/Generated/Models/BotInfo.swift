@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -63,6 +63,9 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// The text that is shown on the bot's profile page and is sent together with the link when users share the bot
     public let shortDescription: String
 
+    /// Parameters of the verification that can be provided by the bot; may be null if none or the current user isn't the owner of the bot
+    public let verificationParameters: BotVerificationParameters?
+
     /// Default dark background color for bot Web Apps; -1 if not specified
     public let webAppBackgroundDarkColor: Int
 
@@ -94,6 +97,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         photo: Photo?,
         privacyPolicyUrl: String,
         shortDescription: String,
+        verificationParameters: BotVerificationParameters?,
         webAppBackgroundDarkColor: Int,
         webAppBackgroundLightColor: Int,
         webAppHeaderDarkColor: Int,
@@ -116,6 +120,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         self.photo = photo
         self.privacyPolicyUrl = privacyPolicyUrl
         self.shortDescription = shortDescription
+        self.verificationParameters = verificationParameters
         self.webAppBackgroundDarkColor = webAppBackgroundDarkColor
         self.webAppBackgroundLightColor = webAppBackgroundLightColor
         self.webAppHeaderDarkColor = webAppHeaderDarkColor

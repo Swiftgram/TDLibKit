@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -220,9 +220,6 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
 
     public let description: String
 
-    /// True, if the URL must be not shown
-    public let hideUrl: Bool
-
     /// Unique identifier of the query result
     public let id: String
 
@@ -250,7 +247,6 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
 
     public init(
         description: String,
-        hideUrl: Bool,
         id: String,
         inputMessageContent: InputMessageContent,
         replyMarkup: ReplyMarkup?,
@@ -261,7 +257,6 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
         url: String
     ) {
         self.description = description
-        self.hideUrl = hideUrl
         self.id = id
         self.inputMessageContent = inputMessageContent
         self.replyMarkup = replyMarkup

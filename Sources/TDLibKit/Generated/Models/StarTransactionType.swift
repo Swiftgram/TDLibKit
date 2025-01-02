@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -70,11 +70,17 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a sale of a subscription by the channel chat; for channel chats only
     case starTransactionTypeChannelSubscriptionSale(StarTransactionTypeChannelSubscriptionSale)
 
-    /// The transaction is a purchase of a gift to another user; for regular users and bots only
+    /// The transaction is a purchase of a regular gift to another user; for regular users and bots only
     case starTransactionTypeGiftPurchase(StarTransactionTypeGiftPurchase)
+
+    /// The transaction is a transfer of an upgraded gift to another user; for regular users only
+    case starTransactionTypeGiftTransfer(StarTransactionTypeGiftTransfer)
 
     /// The transaction is a sale of a gift received from another user or bot; for regular users only
     case starTransactionTypeGiftSale(StarTransactionTypeGiftSale)
+
+    /// The transaction is an upgrade of a gift; for regular users only
+    case starTransactionTypeGiftUpgrade(StarTransactionTypeGiftUpgrade)
 
     /// The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only
     case starTransactionTypeChannelPaidReactionSend(StarTransactionTypeChannelPaidReactionSend)
@@ -110,7 +116,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypeChannelSubscriptionPurchase
         case starTransactionTypeChannelSubscriptionSale
         case starTransactionTypeGiftPurchase
+        case starTransactionTypeGiftTransfer
         case starTransactionTypeGiftSale
+        case starTransactionTypeGiftUpgrade
         case starTransactionTypeChannelPaidReactionSend
         case starTransactionTypeChannelPaidReactionReceive
         case starTransactionTypeAffiliateProgramCommission
@@ -176,9 +184,15 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeGiftPurchase:
             let value = try StarTransactionTypeGiftPurchase(from: decoder)
             self = .starTransactionTypeGiftPurchase(value)
+        case .starTransactionTypeGiftTransfer:
+            let value = try StarTransactionTypeGiftTransfer(from: decoder)
+            self = .starTransactionTypeGiftTransfer(value)
         case .starTransactionTypeGiftSale:
             let value = try StarTransactionTypeGiftSale(from: decoder)
             self = .starTransactionTypeGiftSale(value)
+        case .starTransactionTypeGiftUpgrade:
+            let value = try StarTransactionTypeGiftUpgrade(from: decoder)
+            self = .starTransactionTypeGiftUpgrade(value)
         case .starTransactionTypeChannelPaidReactionSend:
             let value = try StarTransactionTypeChannelPaidReactionSend(from: decoder)
             self = .starTransactionTypeChannelPaidReactionSend(value)
@@ -251,8 +265,14 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeGiftPurchase(let value):
             try container.encode(Kind.starTransactionTypeGiftPurchase, forKey: .type)
             try value.encode(to: encoder)
+        case .starTransactionTypeGiftTransfer(let value):
+            try container.encode(Kind.starTransactionTypeGiftTransfer, forKey: .type)
+            try value.encode(to: encoder)
         case .starTransactionTypeGiftSale(let value):
             try container.encode(Kind.starTransactionTypeGiftSale, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeGiftUpgrade(let value):
+            try container.encode(Kind.starTransactionTypeGiftUpgrade, forKey: .type)
             try value.encode(to: encoder)
         case .starTransactionTypeChannelPaidReactionSend(let value):
             try container.encode(Kind.starTransactionTypeChannelPaidReactionSend, forKey: .type)
@@ -571,7 +591,7 @@ public struct StarTransactionTypeChannelSubscriptionSale: Codable, Equatable, Ha
     }
 }
 
-/// The transaction is a purchase of a gift to another user; for regular users and bots only
+/// The transaction is a purchase of a regular gift to another user; for regular users and bots only
 public struct StarTransactionTypeGiftPurchase: Codable, Equatable, Hashable {
 
     /// The gift
@@ -583,6 +603,25 @@ public struct StarTransactionTypeGiftPurchase: Codable, Equatable, Hashable {
 
     public init(
         gift: Gift,
+        userId: Int64
+    ) {
+        self.gift = gift
+        self.userId = userId
+    }
+}
+
+/// The transaction is a transfer of an upgraded gift to another user; for regular users only
+public struct StarTransactionTypeGiftTransfer: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// Identifier of the user that received the gift
+    public let userId: Int64
+
+
+    public init(
+        gift: UpgradedGift,
         userId: Int64
     ) {
         self.gift = gift
@@ -606,6 +645,18 @@ public struct StarTransactionTypeGiftSale: Codable, Equatable, Hashable {
     ) {
         self.gift = gift
         self.userId = userId
+    }
+}
+
+/// The transaction is an upgrade of a gift; for regular users only
+public struct StarTransactionTypeGiftUpgrade: Codable, Equatable, Hashable {
+
+    /// The upgraded gift
+    public let gift: UpgradedGift
+
+
+    public init(gift: UpgradedGift) {
+        self.gift = gift
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.41-53acb2b5
-//  https://github.com/tdlib/td/tree/53acb2b5
+//  Based on TDLib 1.8.42-2be9e799
+//  https://github.com/tdlib/td/tree/2be9e799
 //
 
 import Foundation
@@ -43,20 +43,11 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if the supergroup is a channel
     public let isChannel: Bool
 
-    /// True, if many users reported this supergroup or channel as a fake account
-    public let isFake: Bool
-
     /// True, if the supergroup is a forum with topics
     public let isForum: Bool
 
-    /// True, if many users reported this supergroup or channel as a scam
-    public let isScam: Bool
-
     /// True, if the slow mode is enabled in the supergroup
     public let isSlowModeEnabled: Bool
-
-    /// True, if the supergroup or channel is verified
-    public let isVerified: Bool
 
     /// True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
     public let joinByRequest: Bool
@@ -82,6 +73,9 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Usernames of the supergroup or channel; may be null
     public let usernames: Usernames?
 
+    /// Information about verification status of the supergroup or channel; may be null if none
+    public let verificationStatus: VerificationStatus?
+
 
     public init(
         boostLevel: Int,
@@ -94,11 +88,8 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         id: Int64,
         isBroadcastGroup: Bool,
         isChannel: Bool,
-        isFake: Bool,
         isForum: Bool,
-        isScam: Bool,
         isSlowModeEnabled: Bool,
-        isVerified: Bool,
         joinByRequest: Bool,
         joinToSendMessages: Bool,
         memberCount: Int,
@@ -106,7 +97,8 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         showMessageSender: Bool,
         signMessages: Bool,
         status: ChatMemberStatus,
-        usernames: Usernames?
+        usernames: Usernames?,
+        verificationStatus: VerificationStatus?
     ) {
         self.boostLevel = boostLevel
         self.date = date
@@ -118,11 +110,8 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.id = id
         self.isBroadcastGroup = isBroadcastGroup
         self.isChannel = isChannel
-        self.isFake = isFake
         self.isForum = isForum
-        self.isScam = isScam
         self.isSlowModeEnabled = isSlowModeEnabled
-        self.isVerified = isVerified
         self.joinByRequest = joinByRequest
         self.joinToSendMessages = joinToSendMessages
         self.memberCount = memberCount
@@ -131,6 +120,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.signMessages = signMessages
         self.status = status
         self.usernames = usernames
+        self.verificationStatus = verificationStatus
     }
 }
 
