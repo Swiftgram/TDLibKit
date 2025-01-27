@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -52,18 +52,28 @@ public indirect enum InputPaidMediaType: Codable, Equatable, Hashable {
 /// The media is a video
 public struct InputPaidMediaTypeVideo: Codable, Equatable, Hashable {
 
+    /// Cover of the video; pass null to skip cover uploading
+    public let cover: InputFile?
+
     /// Duration of the video, in seconds
     public let duration: Int
+
+    /// Timestamp from which the video playing must start, in seconds
+    public let startTimestamp: Int
 
     /// True, if the video is expected to be streamed
     public let supportsStreaming: Bool
 
 
     public init(
+        cover: InputFile?,
         duration: Int,
+        startTimestamp: Int,
         supportsStreaming: Bool
     ) {
+        self.cover = cover
         self.duration = duration
+        self.startTimestamp = startTimestamp
         self.supportsStreaming = supportsStreaming
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -140,6 +140,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to an unsupported proxy. An alert can be shown to the user
     case internalLinkTypeUnsupportedProxy
 
+    /// The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
+    case internalLinkTypeUpgradedGift(InternalLinkTypeUpgradedGift)
+
     /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
     case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
 
@@ -196,6 +199,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeThemeSettings
         case internalLinkTypeUnknownDeepLink
         case internalLinkTypeUnsupportedProxy
+        case internalLinkTypeUpgradedGift
         case internalLinkTypeUserPhoneNumber
         case internalLinkTypeUserToken
         case internalLinkTypeVideoChat
@@ -320,6 +324,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeUnknownDeepLink(value)
         case .internalLinkTypeUnsupportedProxy:
             self = .internalLinkTypeUnsupportedProxy
+        case .internalLinkTypeUpgradedGift:
+            let value = try InternalLinkTypeUpgradedGift(from: decoder)
+            self = .internalLinkTypeUpgradedGift(value)
         case .internalLinkTypeUserPhoneNumber:
             let value = try InternalLinkTypeUserPhoneNumber(from: decoder)
             self = .internalLinkTypeUserPhoneNumber(value)
@@ -452,6 +459,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeUnsupportedProxy:
             try container.encode(Kind.internalLinkTypeUnsupportedProxy, forKey: .type)
+        case .internalLinkTypeUpgradedGift(let value):
+            try container.encode(Kind.internalLinkTypeUpgradedGift, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeUserPhoneNumber(let value):
             try container.encode(Kind.internalLinkTypeUserPhoneNumber, forKey: .type)
             try value.encode(to: encoder)
@@ -982,6 +992,18 @@ public struct InternalLinkTypeUnknownDeepLink: Codable, Equatable, Hashable {
 
     public init(link: String) {
         self.link = link
+    }
+}
+
+/// The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
+public struct InternalLinkTypeUpgradedGift: Codable, Equatable, Hashable {
+
+    /// Name of the unique gift
+    public let name: String
+
+
+    public init(name: String) {
+        self.name = name
     }
 }
 

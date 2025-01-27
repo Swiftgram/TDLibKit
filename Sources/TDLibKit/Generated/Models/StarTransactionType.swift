@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -70,13 +70,13 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a sale of a subscription by the channel chat; for channel chats only
     case starTransactionTypeChannelSubscriptionSale(StarTransactionTypeChannelSubscriptionSale)
 
-    /// The transaction is a purchase of a regular gift to another user; for regular users and bots only
+    /// The transaction is a purchase of a regular gift; for regular users and bots only
     case starTransactionTypeGiftPurchase(StarTransactionTypeGiftPurchase)
 
-    /// The transaction is a transfer of an upgraded gift to another user; for regular users only
+    /// The transaction is a transfer of an upgraded gift; for regular users only
     case starTransactionTypeGiftTransfer(StarTransactionTypeGiftTransfer)
 
-    /// The transaction is a sale of a gift received from another user or bot; for regular users only
+    /// The transaction is a sale of a received gift; for regular users and channel chats only
     case starTransactionTypeGiftSale(StarTransactionTypeGiftSale)
 
     /// The transaction is an upgrade of a gift; for regular users only
@@ -591,45 +591,45 @@ public struct StarTransactionTypeChannelSubscriptionSale: Codable, Equatable, Ha
     }
 }
 
-/// The transaction is a purchase of a regular gift to another user; for regular users and bots only
+/// The transaction is a purchase of a regular gift; for regular users and bots only
 public struct StarTransactionTypeGiftPurchase: Codable, Equatable, Hashable {
 
     /// The gift
     public let gift: Gift
 
-    /// Identifier of the user that received the gift
-    public let userId: Int64
+    /// Identifier of the user or the channel that received the gift
+    public let ownerId: MessageSender
 
 
     public init(
         gift: Gift,
-        userId: Int64
+        ownerId: MessageSender
     ) {
         self.gift = gift
-        self.userId = userId
+        self.ownerId = ownerId
     }
 }
 
-/// The transaction is a transfer of an upgraded gift to another user; for regular users only
+/// The transaction is a transfer of an upgraded gift; for regular users only
 public struct StarTransactionTypeGiftTransfer: Codable, Equatable, Hashable {
 
     /// The gift
     public let gift: UpgradedGift
 
-    /// Identifier of the user that received the gift
-    public let userId: Int64
+    /// Identifier of the user or the channel that received the gift
+    public let ownerId: MessageSender
 
 
     public init(
         gift: UpgradedGift,
-        userId: Int64
+        ownerId: MessageSender
     ) {
         self.gift = gift
-        self.userId = userId
+        self.ownerId = ownerId
     }
 }
 
-/// The transaction is a sale of a gift received from another user or bot; for regular users only
+/// The transaction is a sale of a received gift; for regular users and channel chats only
 public struct StarTransactionTypeGiftSale: Codable, Equatable, Hashable {
 
     /// The gift

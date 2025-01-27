@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -113,11 +113,23 @@ public struct PaidMediaPhoto: Codable, Equatable, Hashable {
 /// The media is a video
 public struct PaidMediaVideo: Codable, Equatable, Hashable {
 
+    /// Cover of the video; may be null if none
+    public let cover: Photo?
+
+    /// Timestamp from which the video playing must start, in seconds
+    public let startTimestamp: Int
+
     /// The video
     public let video: Video
 
 
-    public init(video: Video) {
+    public init(
+        cover: Photo?,
+        startTimestamp: Int,
+        video: Video
+    ) {
+        self.cover = cover
+        self.startTimestamp = startTimestamp
         self.video = video
     }
 }

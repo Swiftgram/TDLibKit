@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
 
 
-/// Describes a gift that can be sent to another user
+/// Describes a gift that can be sent to another user or channel chat
 public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
@@ -28,7 +28,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     public let lastSendDate: Int
 
-    /// Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
+    /// Number of remaining times the gift can be purchased; 0 if not limited or the gift was sold out
     public let remainingCount: Int
 
     /// Number of Telegram Stars that must be paid for the gift
@@ -37,7 +37,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// The sticker representing the gift
     public let sticker: Sticker
 
-    /// Number of total times the gift can be purchased by all users; 0 if not limited
+    /// Number of total times the gift can be purchased; 0 if not limited
     public let totalCount: Int
 
     /// Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible

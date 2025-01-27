@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
 
 
-/// Describes an upgraded gift that can be gifted to another user or transferred to TON blockchain as an NFT
+/// Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
 public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Backdrop of the upgraded gift
@@ -25,14 +25,23 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Model of the upgraded gift
     public let model: UpgradedGiftModel
 
+    /// Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift
+    public let name: String
+
     /// Unique number of the upgraded gift among gifts upgraded from the same gift
     public let number: Int
 
     /// Information about the originally sent gift; may be null if unknown
     public let originalDetails: UpgradedGiftOriginalDetails?
 
-    /// User identifier of the user that owns the upgraded gift; 0 if none
-    public let ownerUserId: Int64
+    /// Address of the gift NFT owner in TON blockchain; may be empty if none
+    public let ownerAddress: String
+
+    /// Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown
+    public let ownerId: MessageSender?
+
+    /// Name of the owner for the case when owner identifier and address aren't known
+    public let ownerName: String
 
     /// Symbol of the upgraded gift
     public let symbol: UpgradedGiftSymbol
@@ -49,9 +58,12 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         id: TdInt64,
         maxUpgradedCount: Int,
         model: UpgradedGiftModel,
+        name: String,
         number: Int,
         originalDetails: UpgradedGiftOriginalDetails?,
-        ownerUserId: Int64,
+        ownerAddress: String,
+        ownerId: MessageSender?,
+        ownerName: String,
         symbol: UpgradedGiftSymbol,
         title: String,
         totalUpgradedCount: Int
@@ -60,9 +72,12 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.id = id
         self.maxUpgradedCount = maxUpgradedCount
         self.model = model
+        self.name = name
         self.number = number
         self.originalDetails = originalDetails
-        self.ownerUserId = ownerUserId
+        self.ownerAddress = ownerAddress
+        self.ownerId = ownerId
+        self.ownerName = ownerName
         self.symbol = symbol
         self.title = title
         self.totalUpgradedCount = totalUpgradedCount

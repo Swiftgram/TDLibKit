@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -13,11 +13,8 @@ import Foundation
 /// Describes a backdrop of an upgraded gift
 public struct UpgradedGiftBackdrop: Codable, Equatable, Hashable {
 
-    /// A color in the center of the backdrop in the RGB format
-    public let centerColor: Int
-
-    /// A color on the edges of the backdrop in the RGB format
-    public let edgeColor: Int
+    /// Colors of the backdrop
+    public let colors: UpgradedGiftBackdropColors
 
     /// Name of the backdrop
     public let name: String
@@ -25,27 +22,15 @@ public struct UpgradedGiftBackdrop: Codable, Equatable, Hashable {
     /// The number of upgraded gift that receive this backdrop for each 1000 gifts upgraded
     public let rarityPerMille: Int
 
-    /// A color to be applied for the symbol in the RGB format
-    public let symbolColor: Int
-
-    /// A color for the text on the backdrop in the RGB format
-    public let textColor: Int
-
 
     public init(
-        centerColor: Int,
-        edgeColor: Int,
+        colors: UpgradedGiftBackdropColors,
         name: String,
-        rarityPerMille: Int,
-        symbolColor: Int,
-        textColor: Int
+        rarityPerMille: Int
     ) {
-        self.centerColor = centerColor
-        self.edgeColor = edgeColor
+        self.colors = colors
         self.name = name
         self.rarityPerMille = rarityPerMille
-        self.symbolColor = symbolColor
-        self.textColor = textColor
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct BotVerification: Codable, Equatable, Hashable {
     /// Identifier of the bot that provided the verification
     public let botUserId: Int64
 
-    /// Custom description of verification reason set by the bot
+    /// Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities
     public let customDescription: FormattedText
 
     /// Identifier of the custom emoji that is used as the verification sign

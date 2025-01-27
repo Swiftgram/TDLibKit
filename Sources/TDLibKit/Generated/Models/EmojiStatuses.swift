@@ -3,22 +3,22 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
 
 
-/// Contains a list of custom emoji identifiers for emoji statuses
+/// Contains a list of emoji statuses
 public struct EmojiStatuses: Codable, Equatable, Hashable {
 
-    /// The list of custom emoji identifiers
-    public let customEmojiIds: [TdInt64]
+    /// The list of emoji statuses identifiers
+    public let emojiStatuses: [EmojiStatus]
 
 
-    public init(customEmojiIds: [TdInt64]) {
-        self.customEmojiIds = customEmojiIds
+    public init(emojiStatuses: [EmojiStatus]) {
+        self.emojiStatuses = emojiStatuses
     }
 }
 

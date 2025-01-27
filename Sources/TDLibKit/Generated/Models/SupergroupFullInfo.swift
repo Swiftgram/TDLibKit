@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
     public let canHideMembers: Bool
 
+    /// True, if the user can send a gift to the supergroup or channel using sendGift or transferGift
+    public let canSendGift: Bool
+
     /// True, if the supergroup location can be changed
     public let canSetLocation: Bool
 
@@ -59,6 +62,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     public let customEmojiStickerSetId: TdInt64
 
     public let description: String
+
+    /// Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
+    public let giftCount: Int
 
     /// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
     public let hasAggressiveAntiSpamEnabled: Bool
@@ -127,11 +133,13 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         canGetStatistics: Bool,
         canHaveSponsoredMessages: Bool,
         canHideMembers: Bool,
+        canSendGift: Bool,
         canSetLocation: Bool,
         canSetStickerSet: Bool,
         canToggleAggressiveAntiSpam: Bool,
         customEmojiStickerSetId: TdInt64,
         description: String,
+        giftCount: Int,
         hasAggressiveAntiSpamEnabled: Bool,
         hasHiddenMembers: Bool,
         hasPaidMediaAllowed: Bool,
@@ -162,11 +170,13 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.canGetStatistics = canGetStatistics
         self.canHaveSponsoredMessages = canHaveSponsoredMessages
         self.canHideMembers = canHideMembers
+        self.canSendGift = canSendGift
         self.canSetLocation = canSetLocation
         self.canSetStickerSet = canSetStickerSet
         self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
         self.customEmojiStickerSetId = customEmojiStickerSetId
         self.description = description
+        self.giftCount = giftCount
         self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
         self.hasHiddenMembers = hasHiddenMembers
         self.hasPaidMediaAllowed = hasPaidMediaAllowed

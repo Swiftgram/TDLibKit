@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -202,10 +202,10 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A Telegram Stars were received by the current user from a giveaway
     case messageGiveawayPrizeStars(MessageGiveawayPrizeStars)
 
-    /// A regular gift was received or sent by the current user
+    /// A regular gift was received or sent by the current user, or the current user was notified about a channel gift
     case messageGift(MessageGift)
 
-    /// An upgraded gift was received or sent by the current user
+    /// An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
     case messageUpgradedGift(MessageUpgradedGift)
 
     /// A gift which purchase, upgrade or transfer were refunded
@@ -958,6 +958,9 @@ public struct MessageVideo: Codable, Equatable, Hashable {
     /// Video caption
     public let caption: FormattedText
 
+    /// Cover of the video; may be null if none
+    public let cover: Photo?
+
     /// True, if the video preview must be covered by a spoiler animation
     public let hasSpoiler: Bool
 
@@ -967,6 +970,9 @@ public struct MessageVideo: Codable, Equatable, Hashable {
     /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video
     public let showCaptionAboveMedia: Bool
 
+    /// Timestamp from which the video playing must start, in seconds
+    public let startTimestamp: Int
+
     /// The video description
     public let video: Video
 
@@ -974,16 +980,20 @@ public struct MessageVideo: Codable, Equatable, Hashable {
     public init(
         alternativeVideos: [AlternativeVideo],
         caption: FormattedText,
+        cover: Photo?,
         hasSpoiler: Bool,
         isSecret: Bool,
         showCaptionAboveMedia: Bool,
+        startTimestamp: Int,
         video: Video
     ) {
         self.alternativeVideos = alternativeVideos
         self.caption = caption
+        self.cover = cover
         self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
         self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.startTimestamp = startTimestamp
         self.video = video
     }
 }
@@ -2131,7 +2141,7 @@ public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
     }
 }
 
-/// A regular gift was received or sent by the current user
+/// A regular gift was received or sent by the current user, or the current user was notified about a channel gift
 public struct MessageGift: Codable, Equatable, Hashable {
 
     /// True, if the gift can be upgraded to a unique gift; only for the receiver of the gift
@@ -2143,20 +2153,26 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     public let isPrivate: Bool
 
-    /// True, if the gift is displayed on the user's profile page; only for the receiver of the gift
+    /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
     /// Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
     public let prepaidUpgradeStarCount: Int64
 
+    /// Unique identifier of the received gift for the current user; only for the receiver of the gift
+    public let receivedGiftId: String
+
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
     public let sellStarCount: Int64
+
+    /// Sender of the gift
+    public let senderId: MessageSender
 
     /// Message added to the gift
     public let text: FormattedText
 
-    /// Identifier of the service message messageUpgradedGift or messageRefundedUpgradedGift with upgraded version of the gift; can be 0 if none or an identifier of a deleted message. Use getUserGift to get information about the gift
-    public let upgradeMessageId: Int64
+    /// Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift
+    public let upgradedReceivedGiftId: String
 
     /// True, if the gift was converted to Telegram Stars; only for the receiver of the gift
     public let wasConverted: Bool
@@ -2174,9 +2190,11 @@ public struct MessageGift: Codable, Equatable, Hashable {
         isPrivate: Bool,
         isSaved: Bool,
         prepaidUpgradeStarCount: Int64,
+        receivedGiftId: String,
         sellStarCount: Int64,
+        senderId: MessageSender,
         text: FormattedText,
-        upgradeMessageId: Int64,
+        upgradedReceivedGiftId: String,
         wasConverted: Bool,
         wasRefunded: Bool,
         wasUpgraded: Bool
@@ -2186,37 +2204,45 @@ public struct MessageGift: Codable, Equatable, Hashable {
         self.isPrivate = isPrivate
         self.isSaved = isSaved
         self.prepaidUpgradeStarCount = prepaidUpgradeStarCount
+        self.receivedGiftId = receivedGiftId
         self.sellStarCount = sellStarCount
+        self.senderId = senderId
         self.text = text
-        self.upgradeMessageId = upgradeMessageId
+        self.upgradedReceivedGiftId = upgradedReceivedGiftId
         self.wasConverted = wasConverted
         self.wasRefunded = wasRefunded
         self.wasUpgraded = wasUpgraded
     }
 }
 
-/// An upgraded gift was received or sent by the current user
+/// An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
 public struct MessageUpgradedGift: Codable, Equatable, Hashable {
 
-    /// True, if the gift can be transferred to another user; only for the receiver of the gift
+    /// True, if the gift can be transferred to another owner; only for the receiver of the gift
     public let canBeTransferred: Bool
 
-    /// Point in time (Unix timestamp) when the gift can be transferred to TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    /// Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
     public let exportDate: Int
 
     /// The gift
     public let gift: UpgradedGift
 
-    /// True, if the gift is displayed on the user's profile page; only for the receiver of the gift
+    /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
     /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
     public let isUpgrade: Bool
 
+    /// Unique identifier of the received gift for the current user; only for the receiver of the gift
+    public let receivedGiftId: String
+
+    /// Sender of the gift; may be null for anonymous gifts
+    public let senderId: MessageSender?
+
     /// Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
     public let transferStarCount: Int64
 
-    /// True, if the gift was transferred to another user; only for the receiver of the gift
+    /// True, if the gift was transferred to another owner; only for the receiver of the gift
     public let wasTransferred: Bool
 
 
@@ -2226,6 +2252,8 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         gift: UpgradedGift,
         isSaved: Bool,
         isUpgrade: Bool,
+        receivedGiftId: String,
+        senderId: MessageSender?,
         transferStarCount: Int64,
         wasTransferred: Bool
     ) {
@@ -2234,6 +2262,8 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.gift = gift
         self.isSaved = isSaved
         self.isUpgrade = isUpgrade
+        self.receivedGiftId = receivedGiftId
+        self.senderId = senderId
         self.transferStarCount = transferStarCount
         self.wasTransferred = wasTransferred
     }
@@ -2248,13 +2278,18 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift was obtained by upgrading of a previously received gift
     public let isUpgrade: Bool
 
+    /// Sender of the gift
+    public let senderId: MessageSender
+
 
     public init(
         gift: Gift,
-        isUpgrade: Bool
+        isUpgrade: Bool,
+        senderId: MessageSender
     ) {
         self.gift = gift
         self.isUpgrade = isUpgrade
+        self.senderId = senderId
     }
 }
 

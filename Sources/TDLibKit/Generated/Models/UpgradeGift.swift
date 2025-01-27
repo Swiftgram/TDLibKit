@@ -3,34 +3,34 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
 
 
-/// Upgrades a gift received by the current user. Unless the gift has prepaid_upgrade_star_count > 0, the user must pay gift.upgrade_star_count Telegram Stars for the upgrade
+/// Upgrades a regular gift
 public struct UpgradeGift: Codable, Equatable, Hashable {
 
     /// Pass true to keep the original gift text, sender and receiver in the upgraded gift
     public let keepOriginalDetails: Bool?
 
-    /// Identifier of the message with the gift in the chat with the user
-    public let messageId: Int64?
+    /// Identifier of the gift
+    public let receivedGiftId: String?
 
-    /// Identifier of the user that sent the gift
-    public let senderUserId: Int64?
+    /// The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    public let starCount: Int64?
 
 
     public init(
         keepOriginalDetails: Bool?,
-        messageId: Int64?,
-        senderUserId: Int64?
+        receivedGiftId: String?,
+        starCount: Int64?
     ) {
         self.keepOriginalDetails = keepOriginalDetails
-        self.messageId = messageId
-        self.senderUserId = senderUserId
+        self.receivedGiftId = receivedGiftId
+        self.starCount = starCount
     }
 }
 

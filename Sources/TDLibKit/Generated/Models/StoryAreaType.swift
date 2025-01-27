@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area with information about weather
     case storyAreaTypeWeather(StoryAreaTypeWeather)
 
+    /// An area with an upgraded gift
+    case storyAreaTypeUpgradedGift(StoryAreaTypeUpgradedGift)
+
 
     private enum Kind: String, Codable {
         case storyAreaTypeLocation
@@ -39,6 +42,7 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
         case storyAreaTypeMessage
         case storyAreaTypeLink
         case storyAreaTypeWeather
+        case storyAreaTypeUpgradedGift
     }
 
     public init(from decoder: Decoder) throws {
@@ -63,6 +67,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
         case .storyAreaTypeWeather:
             let value = try StoryAreaTypeWeather(from: decoder)
             self = .storyAreaTypeWeather(value)
+        case .storyAreaTypeUpgradedGift:
+            let value = try StoryAreaTypeUpgradedGift(from: decoder)
+            self = .storyAreaTypeUpgradedGift(value)
         }
     }
 
@@ -86,6 +93,9 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storyAreaTypeWeather(let value):
             try container.encode(Kind.storyAreaTypeWeather, forKey: .type)
+            try value.encode(to: encoder)
+        case .storyAreaTypeUpgradedGift(let value):
+            try container.encode(Kind.storyAreaTypeUpgradedGift, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -203,6 +213,18 @@ public struct StoryAreaTypeWeather: Codable, Equatable, Hashable {
         self.backgroundColor = backgroundColor
         self.emoji = emoji
         self.temperature = temperature
+    }
+}
+
+/// An area with an upgraded gift
+public struct StoryAreaTypeUpgradedGift: Codable, Equatable, Hashable {
+
+    /// Unique name of the upgraded gift
+    public let giftName: String
+
+
+    public init(giftName: String) {
+        self.giftName = giftName
     }
 }
 

@@ -3,29 +3,29 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
 
 
-/// Describes a custom emoji to be shown instead of the Telegram Premium badge
+/// Describes an emoji to be shown instead of the Telegram Premium badge
 public struct EmojiStatus: Codable, Equatable, Hashable {
-
-    /// Identifier of the custom emoji in stickerFormatTgs format
-    public let customEmojiId: TdInt64
 
     /// Point in time (Unix timestamp) when the status will expire; 0 if never
     public let expirationDate: Int
 
+    /// Type of the emoji status
+    public let type: EmojiStatusType
+
 
     public init(
-        customEmojiId: TdInt64,
-        expirationDate: Int
+        expirationDate: Int,
+        type: EmojiStatusType
     ) {
-        self.customEmojiId = customEmojiId
         self.expirationDate = expirationDate
+        self.type = type
     }
 }
 

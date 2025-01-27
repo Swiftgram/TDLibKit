@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -499,6 +499,9 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     /// Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
+    /// Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages
+    public let cover: InputFile?
+
     /// Duration of the video, in seconds
     public let duration: Int
 
@@ -513,6 +516,9 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
 
     /// True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     public let showCaptionAboveMedia: Bool
+
+    /// Timestamp from which the video playing must start, in seconds
+    public let startTimestamp: Int
 
     /// True, if the video is expected to be streamed
     public let supportsStreaming: Bool
@@ -530,11 +536,13 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     public init(
         addedStickerFileIds: [Int],
         caption: FormattedText?,
+        cover: InputFile?,
         duration: Int,
         hasSpoiler: Bool,
         height: Int,
         selfDestructType: MessageSelfDestructType?,
         showCaptionAboveMedia: Bool,
+        startTimestamp: Int,
         supportsStreaming: Bool,
         thumbnail: InputThumbnail?,
         video: InputFile,
@@ -542,11 +550,13 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
     ) {
         self.addedStickerFileIds = addedStickerFileIds
         self.caption = caption
+        self.cover = cover
         self.duration = duration
         self.hasSpoiler = hasSpoiler
         self.height = height
         self.selfDestructType = selfDestructType
         self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.startTimestamp = startTimestamp
         self.supportsStreaming = supportsStreaming
         self.thumbnail = thumbnail
         self.video = video
@@ -858,23 +868,33 @@ public struct InputMessageForwarded: Codable, Equatable, Hashable {
     /// Identifier for the chat this forwarded message came from
     public let fromChatId: Int64
 
-    /// True, if a game message is being shared from a launched game; applies only to game messages
+    /// Pass true if a game message is being shared from a launched game; applies only to game messages
     public let inGameShare: Bool
 
     /// Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
     public let messageId: Int64
+
+    /// The new video start timestamp; ignored if replace_video_start_timestamp == false
+    public let newVideoStartTimestamp: Int
+
+    /// Pass true to replace video start timestamp in the forwarded message
+    public let replaceVideoStartTimestamp: Bool
 
 
     public init(
         copyOptions: MessageCopyOptions?,
         fromChatId: Int64,
         inGameShare: Bool,
-        messageId: Int64
+        messageId: Int64,
+        newVideoStartTimestamp: Int,
+        replaceVideoStartTimestamp: Bool
     ) {
         self.copyOptions = copyOptions
         self.fromChatId = fromChatId
         self.inGameShare = inGameShare
         self.messageId = messageId
+        self.newVideoStartTimestamp = newVideoStartTimestamp
+        self.replaceVideoStartTimestamp = replaceVideoStartTimestamp
     }
 }
 

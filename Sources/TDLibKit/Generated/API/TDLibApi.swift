@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -1845,6 +1845,93 @@ public class TDLibApi {
         let query = OpenChatSimilarChat(
             chatId: chatId,
             openedChatId: openedChatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a list of bots similar to the given bot
+    /// - Parameter botUserId: User identifier of the target bot
+    /// - Returns: A list of bots similar to the given bot
+    public final func getBotSimilarBots(
+        botUserId: Int64?,
+        completion: @escaping (Result<Users, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotSimilarBots(
+            botUserId: botUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a list of bots similar to the given bot
+    /// - Parameter botUserId: User identifier of the target bot
+    /// - Returns: A list of bots similar to the given bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBotSimilarBots(botUserId: Int64?) async throws -> Users {
+        let query = GetBotSimilarBots(
+            botUserId: botUserId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns approximate number of bots similar to the given bot
+    /// - Parameter botUserId: User identifier of the target bot
+    /// - Parameter returnLocal: Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
+    /// - Returns: Approximate number of bots similar to the given bot
+    public final func getBotSimilarBotCount(
+        botUserId: Int64?,
+        returnLocal: Bool?,
+        completion: @escaping (Result<Count, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotSimilarBotCount(
+            botUserId: botUserId,
+            returnLocal: returnLocal
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns approximate number of bots similar to the given bot
+    /// - Parameter botUserId: User identifier of the target bot
+    /// - Parameter returnLocal: Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
+    /// - Returns: Approximate number of bots similar to the given bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBotSimilarBotCount(
+        botUserId: Int64?,
+        returnLocal: Bool?
+    ) async throws -> Count {
+        let query = GetBotSimilarBotCount(
+            botUserId: botUserId,
+            returnLocal: returnLocal
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs TDLib that a bot was opened from the list of similar bots
+    /// - Parameter botUserId: Identifier of the original bot, which similar bots were requested
+    /// - Parameter openedBotUserId: Identifier of the opened bot
+    public final func openBotSimilarBot(
+        botUserId: Int64?,
+        openedBotUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = OpenBotSimilarBot(
+            botUserId: botUserId,
+            openedBotUserId: openedBotUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a bot was opened from the list of similar bots
+    /// - Parameter botUserId: Identifier of the original bot, which similar bots were requested
+    /// - Parameter openedBotUserId: Identifier of the opened bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func openBotSimilarBot(
+        botUserId: Int64?,
+        openedBotUserId: Int64?
+    ) async throws -> Ok {
+        let query = OpenBotSimilarBot(
+            botUserId: botUserId,
+            openedBotUserId: openedBotUserId
         )
         return try await self.run(query: query)
     }
@@ -4317,7 +4404,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+    /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter senderId: Identifier of the sender of messages to delete
     public final func deleteChatMessagesBySender(
@@ -4332,7 +4419,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+    /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter senderId: Identifier of the sender of messages to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12391,7 +12478,7 @@ public class TDLibApi {
 
     /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
     /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
-    public final func getThemedEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+    public final func getThemedEmojiStatuses(completion: @escaping (Result<EmojiStatusCustomEmojis, Swift.Error>) -> Void) throws {
         let query = GetThemedEmojiStatuses()
         self.run(query: query, completion: completion)
     }
@@ -12399,7 +12486,7 @@ public class TDLibApi {
     /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
     /// - Returns: Up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getThemedEmojiStatuses() async throws -> EmojiStatuses {
+    public final func getThemedEmojiStatuses() async throws -> EmojiStatusCustomEmojis {
         let query = GetThemedEmojiStatuses()
         return try await self.run(query: query)
     }
@@ -12419,9 +12506,24 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns available upgraded gift emoji statuses for self status
+    /// - Returns: Available upgraded gift emoji statuses for self status
+    public final func getUpgradedGiftEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+        let query = GetUpgradedGiftEmojiStatuses()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns available upgraded gift emoji statuses for self status
+    /// - Returns: Available upgraded gift emoji statuses for self status
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getUpgradedGiftEmojiStatuses() async throws -> EmojiStatuses {
+        let query = GetUpgradedGiftEmojiStatuses()
+        return try await self.run(query: query)
+    }
+
     /// Returns default emoji statuses for self status
     /// - Returns: Default emoji statuses for self status
-    public final func getDefaultEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+    public final func getDefaultEmojiStatuses(completion: @escaping (Result<EmojiStatusCustomEmojis, Swift.Error>) -> Void) throws {
         let query = GetDefaultEmojiStatuses()
         self.run(query: query, completion: completion)
     }
@@ -12429,7 +12531,7 @@ public class TDLibApi {
     /// Returns default emoji statuses for self status
     /// - Returns: Default emoji statuses for self status
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getDefaultEmojiStatuses() async throws -> EmojiStatuses {
+    public final func getDefaultEmojiStatuses() async throws -> EmojiStatusCustomEmojis {
         let query = GetDefaultEmojiStatuses()
         return try await self.run(query: query)
     }
@@ -12450,7 +12552,7 @@ public class TDLibApi {
 
     /// Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
     /// - Returns: Up to 8 emoji statuses, which must be shown in the emoji status list for chats
-    public final func getThemedChatEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+    public final func getThemedChatEmojiStatuses(completion: @escaping (Result<EmojiStatusCustomEmojis, Swift.Error>) -> Void) throws {
         let query = GetThemedChatEmojiStatuses()
         self.run(query: query, completion: completion)
     }
@@ -12458,14 +12560,14 @@ public class TDLibApi {
     /// Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
     /// - Returns: Up to 8 emoji statuses, which must be shown in the emoji status list for chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getThemedChatEmojiStatuses() async throws -> EmojiStatuses {
+    public final func getThemedChatEmojiStatuses() async throws -> EmojiStatusCustomEmojis {
         let query = GetThemedChatEmojiStatuses()
         return try await self.run(query: query)
     }
 
     /// Returns default emoji statuses for chats
     /// - Returns: Default emoji statuses for chats
-    public final func getDefaultChatEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+    public final func getDefaultChatEmojiStatuses(completion: @escaping (Result<EmojiStatusCustomEmojis, Swift.Error>) -> Void) throws {
         let query = GetDefaultChatEmojiStatuses()
         self.run(query: query, completion: completion)
     }
@@ -12473,14 +12575,14 @@ public class TDLibApi {
     /// Returns default emoji statuses for chats
     /// - Returns: Default emoji statuses for chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getDefaultChatEmojiStatuses() async throws -> EmojiStatuses {
+    public final func getDefaultChatEmojiStatuses() async throws -> EmojiStatusCustomEmojis {
         let query = GetDefaultChatEmojiStatuses()
         return try await self.run(query: query)
     }
 
     /// Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
     /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
-    public final func getDisallowedChatEmojiStatuses(completion: @escaping (Result<EmojiStatuses, Swift.Error>) -> Void) throws {
+    public final func getDisallowedChatEmojiStatuses(completion: @escaping (Result<EmojiStatusCustomEmojis, Swift.Error>) -> Void) throws {
         let query = GetDisallowedChatEmojiStatuses()
         self.run(query: query, completion: completion)
     }
@@ -12488,7 +12590,7 @@ public class TDLibApi {
     /// Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
     /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getDisallowedChatEmojiStatuses() async throws -> EmojiStatuses {
+    public final func getDisallowedChatEmojiStatuses() async throws -> EmojiStatusCustomEmojis {
         let query = GetDisallowedChatEmojiStatuses()
         return try await self.run(query: query)
     }
@@ -19598,136 +19700,153 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns gifts that can be sent to other users
-    /// - Returns: Gifts that can be sent to other users
+    /// Returns gifts that can be sent to other users and channel chats
+    /// - Returns: Gifts that can be sent to other users and channel chats
     public final func getAvailableGifts(completion: @escaping (Result<Gifts, Swift.Error>) -> Void) throws {
         let query = GetAvailableGifts()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns gifts that can be sent to other users
-    /// - Returns: Gifts that can be sent to other users
+    /// Returns gifts that can be sent to other users and channel chats
+    /// - Returns: Gifts that can be sent to other users and channel chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getAvailableGifts() async throws -> Gifts {
         let query = GetAvailableGifts()
         return try await self.run(query: query)
     }
 
-    /// Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
+    /// Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     /// - Parameter giftId: Identifier of the gift to send
-    /// - Parameter isPrivate: Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter payForUpgrade: Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
-    /// - Parameter userId: Identifier of the user that will receive the gift
     /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     public final func sendGift(
         giftId: TdInt64?,
         isPrivate: Bool?,
+        ownerId: MessageSender?,
         payForUpgrade: Bool?,
         text: FormattedText?,
-        userId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendGift(
             giftId: giftId,
             isPrivate: isPrivate,
+            ownerId: ownerId,
             payForUpgrade: payForUpgrade,
-            text: text,
-            userId: userId
+            text: text
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
+    /// Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     /// - Parameter giftId: Identifier of the gift to send
-    /// - Parameter isPrivate: Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter payForUpgrade: Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
-    /// - Parameter userId: Identifier of the user that will receive the gift
     /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func sendGift(
         giftId: TdInt64?,
         isPrivate: Bool?,
+        ownerId: MessageSender?,
         payForUpgrade: Bool?,
-        text: FormattedText?,
-        userId: Int64?
+        text: FormattedText?
     ) async throws -> Ok {
         let query = SendGift(
             giftId: giftId,
             isPrivate: isPrivate,
+            ownerId: ownerId,
             payForUpgrade: payForUpgrade,
-            text: text,
-            userId: userId
+            text: text
         )
         return try await self.run(query: query)
     }
 
-    /// Sells a gift received by the current user for Telegram Stars
-    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    /// Sells a gift for Telegram Stars
+    /// - Parameter receivedGiftId: Identifier of the gift
     public final func sellGift(
-        messageId: Int64?,
-        senderUserId: Int64?,
+        receivedGiftId: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SellGift(
-            messageId: messageId,
-            senderUserId: senderUserId
+            receivedGiftId: receivedGiftId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Sells a gift received by the current user for Telegram Stars
-    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    /// Sells a gift for Telegram Stars
+    /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func sellGift(
-        messageId: Int64?,
-        senderUserId: Int64?
-    ) async throws -> Ok {
+    public final func sellGift(receivedGiftId: String?) async throws -> Ok {
         let query = SellGift(
-            messageId: messageId,
-            senderUserId: senderUserId
+            receivedGiftId: receivedGiftId
         )
         return try await self.run(query: query)
     }
 
-    /// Toggles whether a gift is shown on the current user's profile page
-    /// - Parameter isSaved: Pass true to display the gift on the user's profile page; pass false to remove it from the profile page
-    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
+    /// - Parameter isSaved: Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
+    /// - Parameter receivedGiftId: Identifier of the gift
     public final func toggleGiftIsSaved(
         isSaved: Bool?,
-        messageId: Int64?,
-        senderUserId: Int64?,
+        receivedGiftId: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleGiftIsSaved(
             isSaved: isSaved,
-            messageId: messageId,
-            senderUserId: senderUserId
+            receivedGiftId: receivedGiftId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Toggles whether a gift is shown on the current user's profile page
-    /// - Parameter isSaved: Pass true to display the gift on the user's profile page; pass false to remove it from the profile page
-    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
+    /// - Parameter isSaved: Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
+    /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func toggleGiftIsSaved(
         isSaved: Bool?,
-        messageId: Int64?,
-        senderUserId: Int64?
+        receivedGiftId: String?
     ) async throws -> Ok {
         let query = ToggleGiftIsSaved(
             isSaved: isSaved,
-            messageId: messageId,
-            senderUserId: senderUserId
+            receivedGiftId: receivedGiftId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Toggles whether notifications for new gifts received by a channel chat are sent to the current user; requires can_post_messages administrator right in the chat
+    /// - Parameter areEnabled: Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications
+    /// - Parameter chatId: Identifier of the channel chat
+    public final func toggleChatGiftNotifications(
+        areEnabled: Bool?,
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleChatGiftNotifications(
+            areEnabled: areEnabled,
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Toggles whether notifications for new gifts received by a channel chat are sent to the current user; requires can_post_messages administrator right in the chat
+    /// - Parameter areEnabled: Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications
+    /// - Parameter chatId: Identifier of the channel chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func toggleChatGiftNotifications(
+        areEnabled: Bool?,
+        chatId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleChatGiftNotifications(
+            areEnabled: areEnabled,
+            chatId: chatId
         )
         return try await self.run(query: query)
     }
@@ -19756,143 +19875,229 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Upgrades a gift received by the current user. Unless the gift has prepaid_upgrade_star_count > 0, the user must pay gift.upgrade_star_count Telegram Stars for the upgrade
+    /// Upgrades a regular gift
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
-    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Parameter starCount: The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     public final func upgradeGift(
         keepOriginalDetails: Bool?,
-        messageId: Int64?,
-        senderUserId: Int64?,
+        receivedGiftId: String?,
+        starCount: Int64?,
         completion: @escaping (Result<UpgradeGiftResult, Swift.Error>) -> Void
     ) throws {
         let query = UpgradeGift(
             keepOriginalDetails: keepOriginalDetails,
-            messageId: messageId,
-            senderUserId: senderUserId
+            receivedGiftId: receivedGiftId,
+            starCount: starCount
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Upgrades a gift received by the current user. Unless the gift has prepaid_upgrade_star_count > 0, the user must pay gift.upgrade_star_count Telegram Stars for the upgrade
+    /// Upgrades a regular gift
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
-    /// - Parameter messageId: Identifier of the message with the gift in the chat with the user
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Parameter starCount: The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func upgradeGift(
         keepOriginalDetails: Bool?,
-        messageId: Int64?,
-        senderUserId: Int64?
+        receivedGiftId: String?,
+        starCount: Int64?
     ) async throws -> UpgradeGiftResult {
         let query = UpgradeGift(
             keepOriginalDetails: keepOriginalDetails,
-            messageId: messageId,
-            senderUserId: senderUserId
+            receivedGiftId: receivedGiftId,
+            starCount: starCount
         )
         return try await self.run(query: query)
     }
 
-    /// Sends a gift upgraded by the current user to another user
-    /// - Parameter messageId: Identifier of the message with the upgraded gift in the chat with the user
-    /// - Parameter receiverUserId: Identifier of the user that will receive the gift
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
-    /// - Parameter starCount: The amount of Telegram Stars required for the transfer
+    /// Sends an upgraded gift to another user or a channel chat
+    /// - Parameter newOwnerId: Identifier of the user or the channel chat that will receive the gift
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Parameter starCount: The amount of Telegram Stars required to pay for the transfer
     public final func transferGift(
-        messageId: Int64?,
-        receiverUserId: Int64?,
-        senderUserId: Int64?,
+        newOwnerId: MessageSender?,
+        receivedGiftId: String?,
         starCount: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = TransferGift(
-            messageId: messageId,
-            receiverUserId: receiverUserId,
-            senderUserId: senderUserId,
+            newOwnerId: newOwnerId,
+            receivedGiftId: receivedGiftId,
             starCount: starCount
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Sends a gift upgraded by the current user to another user
-    /// - Parameter messageId: Identifier of the message with the upgraded gift in the chat with the user
-    /// - Parameter receiverUserId: Identifier of the user that will receive the gift
-    /// - Parameter senderUserId: Identifier of the user that sent the gift
-    /// - Parameter starCount: The amount of Telegram Stars required for the transfer
+    /// Sends an upgraded gift to another user or a channel chat
+    /// - Parameter newOwnerId: Identifier of the user or the channel chat that will receive the gift
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Parameter starCount: The amount of Telegram Stars required to pay for the transfer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func transferGift(
-        messageId: Int64?,
-        receiverUserId: Int64?,
-        senderUserId: Int64?,
+        newOwnerId: MessageSender?,
+        receivedGiftId: String?,
         starCount: Int64?
     ) async throws -> Ok {
         let query = TransferGift(
-            messageId: messageId,
-            receiverUserId: receiverUserId,
-            senderUserId: senderUserId,
+            newOwnerId: newOwnerId,
+            receivedGiftId: receivedGiftId,
             starCount: starCount
         )
         return try await self.run(query: query)
     }
 
-    /// Returns gifts saved to profile by the given user
+    /// Returns gifts received by the given user or chat
+    /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeUnsaved: Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
+    /// - Parameter excludeUpgraded: Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
     /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter userId: Identifier of the user
-    /// - Returns: Gifts saved to profile by the given user
-    public final func getUserGifts(
+    /// - Parameter ownerId: Identifier of the gift receiver
+    /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+    /// - Returns: Gifts received by the given user or chat
+    public final func getReceivedGifts(
+        excludeLimited: Bool?,
+        excludeSaved: Bool?,
+        excludeUnlimited: Bool?,
+        excludeUnsaved: Bool?,
+        excludeUpgraded: Bool?,
         limit: Int?,
         offset: String?,
-        userId: Int64?,
-        completion: @escaping (Result<UserGifts, Swift.Error>) -> Void
+        ownerId: MessageSender?,
+        sortByPrice: Bool?,
+        completion: @escaping (Result<ReceivedGifts, Swift.Error>) -> Void
     ) throws {
-        let query = GetUserGifts(
+        let query = GetReceivedGifts(
+            excludeLimited: excludeLimited,
+            excludeSaved: excludeSaved,
+            excludeUnlimited: excludeUnlimited,
+            excludeUnsaved: excludeUnsaved,
+            excludeUpgraded: excludeUpgraded,
             limit: limit,
             offset: offset,
-            userId: userId
+            ownerId: ownerId,
+            sortByPrice: sortByPrice
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns gifts saved to profile by the given user
+    /// Returns gifts received by the given user or chat
+    /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeUnsaved: Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
+    /// - Parameter excludeUpgraded: Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
     /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter userId: Identifier of the user
-    /// - Returns: Gifts saved to profile by the given user
+    /// - Parameter ownerId: Identifier of the gift receiver
+    /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+    /// - Returns: Gifts received by the given user or chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getUserGifts(
+    public final func getReceivedGifts(
+        excludeLimited: Bool?,
+        excludeSaved: Bool?,
+        excludeUnlimited: Bool?,
+        excludeUnsaved: Bool?,
+        excludeUpgraded: Bool?,
         limit: Int?,
         offset: String?,
-        userId: Int64?
-    ) async throws -> UserGifts {
-        let query = GetUserGifts(
+        ownerId: MessageSender?,
+        sortByPrice: Bool?
+    ) async throws -> ReceivedGifts {
+        let query = GetReceivedGifts(
+            excludeLimited: excludeLimited,
+            excludeSaved: excludeSaved,
+            excludeUnlimited: excludeUnlimited,
+            excludeUnsaved: excludeUnsaved,
+            excludeUpgraded: excludeUpgraded,
             limit: limit,
             offset: offset,
-            userId: userId
+            ownerId: ownerId,
+            sortByPrice: sortByPrice
         )
         return try await self.run(query: query)
     }
 
-    /// Returns information about a gift received or sent by the current user
-    /// - Parameter messageId: Identifier of the message with the gift
-    /// - Returns: Information about a gift received or sent by the current user
-    public final func getUserGift(
-        messageId: Int64?,
-        completion: @escaping (Result<UserGift, Swift.Error>) -> Void
+    /// Returns information about a received gift
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Returns: Information about a received gift
+    public final func getReceivedGift(
+        receivedGiftId: String?,
+        completion: @escaping (Result<ReceivedGift, Swift.Error>) -> Void
     ) throws {
-        let query = GetUserGift(
-            messageId: messageId
+        let query = GetReceivedGift(
+            receivedGiftId: receivedGiftId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a gift received or sent by the current user
-    /// - Parameter messageId: Identifier of the message with the gift
-    /// - Returns: Information about a gift received or sent by the current user
+    /// Returns information about a received gift
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Returns: Information about a received gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getUserGift(messageId: Int64?) async throws -> UserGift {
-        let query = GetUserGift(
-            messageId: messageId
+    public final func getReceivedGift(receivedGiftId: String?) async throws -> ReceivedGift {
+        let query = GetReceivedGift(
+            receivedGiftId: receivedGiftId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about an upgraded gift by its name
+    /// - Parameter name: Unique name of the upgraded gift
+    /// - Returns: Information about an upgraded gift by its name
+    public final func getUpgradedGift(
+        name: String?,
+        completion: @escaping (Result<UpgradedGift, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUpgradedGift(
+            name: name
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about an upgraded gift by its name
+    /// - Parameter name: Unique name of the upgraded gift
+    /// - Returns: Information about an upgraded gift by its name
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getUpgradedGift(name: String?) async throws -> UpgradedGift {
+        let query = GetUpgradedGift(
+            name: name
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
+    /// - Parameter password: The 2-step verification password of the current user
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Returns: A URL for upgraded gift withdrawal in the TON blockchain as an NFT
+    public final func getUpgradedGiftWithdrawalUrl(
+        password: String?,
+        receivedGiftId: String?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUpgradedGiftWithdrawalUrl(
+            password: password,
+            receivedGiftId: receivedGiftId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
+    /// - Parameter password: The 2-step verification password of the current user
+    /// - Parameter receivedGiftId: Identifier of the gift
+    /// - Returns: A URL for upgraded gift withdrawal in the TON blockchain as an NFT
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getUpgradedGiftWithdrawalUrl(
+        password: String?,
+        receivedGiftId: String?
+    ) async throws -> HttpUrl {
+        let query = GetUpgradedGiftWithdrawalUrl(
+            password: password,
+            receivedGiftId: receivedGiftId
         )
         return try await self.run(query: query)
     }

@@ -3,34 +3,29 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
 
 
-/// Toggles whether a gift is shown on the current user's profile page
+/// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
 public struct ToggleGiftIsSaved: Codable, Equatable, Hashable {
 
-    /// Pass true to display the gift on the user's profile page; pass false to remove it from the profile page
+    /// Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
     public let isSaved: Bool?
 
-    /// Identifier of the message with the gift in the chat with the user
-    public let messageId: Int64?
-
-    /// Identifier of the user that sent the gift
-    public let senderUserId: Int64?
+    /// Identifier of the gift
+    public let receivedGiftId: String?
 
 
     public init(
         isSaved: Bool?,
-        messageId: Int64?,
-        senderUserId: Int64?
+        receivedGiftId: String?
     ) {
         self.isSaved = isSaved
-        self.messageId = messageId
-        self.senderUserId = senderUserId
+        self.receivedGiftId = receivedGiftId
     }
 }
 

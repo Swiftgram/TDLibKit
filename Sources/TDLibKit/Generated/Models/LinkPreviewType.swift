@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.42-2be9e799
-//  https://github.com/tdlib/td/tree/2be9e799
+//  Based on TDLib 1.8.44-28c6f2e9
+//  https://github.com/tdlib/td/tree/28c6f2e9
 //
 
 import Foundation
@@ -88,6 +88,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link preview type is unsupported yet
     case linkPreviewTypeUnsupported
 
+    /// The link is a link to an upgraded gift
+    case linkPreviewTypeUpgradedGift(LinkPreviewTypeUpgradedGift)
+
     /// The link is a link to a user
     case linkPreviewTypeUser(LinkPreviewTypeUser)
 
@@ -133,6 +136,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeSupergroupBoost
         case linkPreviewTypeTheme
         case linkPreviewTypeUnsupported
+        case linkPreviewTypeUpgradedGift
         case linkPreviewTypeUser
         case linkPreviewTypeVideo
         case linkPreviewTypeVideoChat
@@ -215,6 +219,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             self = .linkPreviewTypeTheme(value)
         case .linkPreviewTypeUnsupported:
             self = .linkPreviewTypeUnsupported
+        case .linkPreviewTypeUpgradedGift:
+            let value = try LinkPreviewTypeUpgradedGift(from: decoder)
+            self = .linkPreviewTypeUpgradedGift(value)
         case .linkPreviewTypeUser:
             let value = try LinkPreviewTypeUser(from: decoder)
             self = .linkPreviewTypeUser(value)
@@ -309,6 +316,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypeUnsupported:
             try container.encode(Kind.linkPreviewTypeUnsupported, forKey: .type)
+        case .linkPreviewTypeUpgradedGift(let value):
+            try container.encode(Kind.linkPreviewTypeUpgradedGift, forKey: .type)
+            try value.encode(to: encoder)
         case .linkPreviewTypeUser(let value):
             try container.encode(Kind.linkPreviewTypeUser, forKey: .type)
             try value.encode(to: encoder)
@@ -708,6 +718,18 @@ public struct LinkPreviewTypeTheme: Codable, Equatable, Hashable {
     ) {
         self.documents = documents
         self.settings = settings
+    }
+}
+
+/// The link is a link to an upgraded gift
+public struct LinkPreviewTypeUpgradedGift: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+
+    public init(gift: UpgradedGift) {
+        self.gift = gift
     }
 }
 
