@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -259,6 +259,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
     case updateApplicationVerificationRequired(UpdateApplicationVerificationRequired)
 
+    /// A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
+    case updateApplicationRecaptchaVerificationRequired(UpdateApplicationRecaptchaVerificationRequired)
+
     /// New call was created or information about a call was updated
     case updateCall(UpdateCall)
 
@@ -363,6 +366,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The type of default reaction has changed
     case updateDefaultReactionType(UpdateDefaultReactionType)
+
+    /// The type of default paid reaction has changed
+    case updateDefaultPaidReactionType(UpdateDefaultPaidReactionType)
 
     /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
@@ -550,6 +556,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateFileDownload
         case updateFileRemovedFromDownloads
         case updateApplicationVerificationRequired
+        case updateApplicationRecaptchaVerificationRequired
         case updateCall
         case updateGroupCall
         case updateGroupCallParticipant
@@ -585,6 +592,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateActiveEmojiReactions
         case updateAvailableMessageEffects
         case updateDefaultReactionType
+        case updateDefaultPaidReactionType
         case updateSavedMessagesTags
         case updateActiveLiveLocationMessages
         case updateOwnedStarCount
@@ -871,6 +879,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateApplicationVerificationRequired:
             let value = try UpdateApplicationVerificationRequired(from: decoder)
             self = .updateApplicationVerificationRequired(value)
+        case .updateApplicationRecaptchaVerificationRequired:
+            let value = try UpdateApplicationRecaptchaVerificationRequired(from: decoder)
+            self = .updateApplicationRecaptchaVerificationRequired(value)
         case .updateCall:
             let value = try UpdateCall(from: decoder)
             self = .updateCall(value)
@@ -976,6 +987,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateDefaultReactionType:
             let value = try UpdateDefaultReactionType(from: decoder)
             self = .updateDefaultReactionType(value)
+        case .updateDefaultPaidReactionType:
+            let value = try UpdateDefaultPaidReactionType(from: decoder)
+            self = .updateDefaultPaidReactionType(value)
         case .updateSavedMessagesTags:
             let value = try UpdateSavedMessagesTags(from: decoder)
             self = .updateSavedMessagesTags(value)
@@ -1330,6 +1344,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateApplicationVerificationRequired(let value):
             try container.encode(Kind.updateApplicationVerificationRequired, forKey: .type)
             try value.encode(to: encoder)
+        case .updateApplicationRecaptchaVerificationRequired(let value):
+            try container.encode(Kind.updateApplicationRecaptchaVerificationRequired, forKey: .type)
+            try value.encode(to: encoder)
         case .updateCall(let value):
             try container.encode(Kind.updateCall, forKey: .type)
             try value.encode(to: encoder)
@@ -1434,6 +1451,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateDefaultReactionType(let value):
             try container.encode(Kind.updateDefaultReactionType, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateDefaultPaidReactionType(let value):
+            try container.encode(Kind.updateDefaultPaidReactionType, forKey: .type)
             try value.encode(to: encoder)
         case .updateSavedMessagesTags(let value):
             try container.encode(Kind.updateSavedMessagesTags, forKey: .type)
@@ -3152,6 +3172,30 @@ public struct UpdateApplicationVerificationRequired: Codable, Equatable, Hashabl
     }
 }
 
+/// A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
+public struct UpdateApplicationRecaptchaVerificationRequired: Codable, Equatable, Hashable {
+
+    /// The action for the check
+    public let action: String
+
+    /// Identifier of the reCAPTCHA key
+    public let recaptchaKeyId: String
+
+    /// Unique identifier for the verification process
+    public let verificationId: Int64
+
+
+    public init(
+        action: String,
+        recaptchaKeyId: String,
+        verificationId: Int64
+    ) {
+        self.action = action
+        self.recaptchaKeyId = recaptchaKeyId
+        self.verificationId = verificationId
+    }
+}
+
 /// New call was created or information about a call was updated
 public struct UpdateCall: Codable, Equatable, Hashable {
 
@@ -3744,6 +3788,18 @@ public struct UpdateDefaultReactionType: Codable, Equatable, Hashable {
 
     public init(reactionType: ReactionType) {
         self.reactionType = reactionType
+    }
+}
+
+/// The type of default paid reaction has changed
+public struct UpdateDefaultPaidReactionType: Codable, Equatable, Hashable {
+
+    /// The new type of the default paid reaction
+    public let type: PaidReactionType
+
+
+    public init(type: PaidReactionType) {
+        self.type = type
     }
 }
 

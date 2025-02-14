@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns information needed to open the main Web App of a bot
 public struct GetMainWebApp: Codable, Equatable, Hashable {
 
-    /// Identifier of the target bot
+    /// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     public let botUserId: Int64?
 
     /// Identifier of the chat in which the Web App is opened; pass 0 if none

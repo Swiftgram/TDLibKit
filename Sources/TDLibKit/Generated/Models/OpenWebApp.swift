@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
 public struct OpenWebApp: Codable, Equatable, Hashable {
 
-    /// Identifier of the bot, providing the Web App
+    /// Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
     public let botUserId: Int64?
 
     /// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats

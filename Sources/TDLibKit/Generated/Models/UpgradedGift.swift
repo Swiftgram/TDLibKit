@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Backdrop of the upgraded gift
     public let backdrop: UpgradedGiftBackdrop
+
+    /// Address of the gift NFT in TON blockchain; may be empty if none
+    public let giftAddress: String
 
     /// Unique identifier of the gift
     public let id: TdInt64
@@ -55,6 +58,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         backdrop: UpgradedGiftBackdrop,
+        giftAddress: String,
         id: TdInt64,
         maxUpgradedCount: Int,
         model: UpgradedGiftModel,
@@ -69,6 +73,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         totalUpgradedCount: Int
     ) {
         self.backdrop = backdrop
+        self.giftAddress = giftAddress
         self.id = id
         self.maxUpgradedCount = maxUpgradedCount
         self.model = model

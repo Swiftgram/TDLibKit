@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -755,11 +755,23 @@ public struct LinkPreviewTypeUser: Codable, Equatable, Hashable {
 /// The link is a link to a video
 public struct LinkPreviewTypeVideo: Codable, Equatable, Hashable {
 
+    /// Cover of the video; may be null if none
+    public let cover: Photo?
+
+    /// Timestamp from which the video playing must start, in seconds
+    public let startTimestamp: Int
+
     /// The video description
     public let video: Video
 
 
-    public init(video: Video) {
+    public init(
+        cover: Photo?,
+        startTimestamp: Int,
+        video: Video
+    ) {
+        self.cover = cover
+        self.startTimestamp = startTimestamp
         self.video = video
     }
 }

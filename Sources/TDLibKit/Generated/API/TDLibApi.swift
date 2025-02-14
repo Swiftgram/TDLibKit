@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -6430,51 +6430,69 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Returns: The list of message sender identifiers, which can be used to send a paid reaction in a chat
+    public final func getChatAvailablePaidMessageReactionSenders(
+        chatId: Int64?,
+        completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatAvailablePaidMessageReactionSenders(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
+    /// - Parameter chatId: Chat identifier
+    /// - Returns: The list of message sender identifiers, which can be used to send a paid reaction in a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatAvailablePaidMessageReactionSenders(chatId: Int64?) async throws -> MessageSenders {
+        let query = GetChatAvailablePaidMessageReactionSenders(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to check whether the reaction is available for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
     /// - Parameter messageId: Identifier of the message
     /// - Parameter starCount: Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
-    /// - Parameter useDefaultIsAnonymous: Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
+    /// - Parameter type: Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble
     public final func addPendingPaidMessageReaction(
         chatId: Int64?,
-        isAnonymous: Bool?,
         messageId: Int64?,
         starCount: Int64?,
-        useDefaultIsAnonymous: Bool?,
+        type: PaidReactionType?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddPendingPaidMessageReaction(
             chatId: chatId,
-            isAnonymous: isAnonymous,
             messageId: messageId,
             starCount: starCount,
-            useDefaultIsAnonymous: useDefaultIsAnonymous
+            type: type
         )
         self.run(query: query, completion: completion)
     }
 
     /// Adds the paid message reaction to a message. Use getMessageAvailableReactions to check whether the reaction is available for the message
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
     /// - Parameter messageId: Identifier of the message
     /// - Parameter starCount: Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
-    /// - Parameter useDefaultIsAnonymous: Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
+    /// - Parameter type: Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func addPendingPaidMessageReaction(
         chatId: Int64?,
-        isAnonymous: Bool?,
         messageId: Int64?,
         starCount: Int64?,
-        useDefaultIsAnonymous: Bool?
+        type: PaidReactionType?
     ) async throws -> Ok {
         let query = AddPendingPaidMessageReaction(
             chatId: chatId,
-            isAnonymous: isAnonymous,
             messageId: messageId,
             starCount: starCount,
-            useDefaultIsAnonymous: useDefaultIsAnonymous
+            type: type
         )
         return try await self.run(query: query)
     }
@@ -6541,39 +6559,39 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes whether the paid message reaction of the user to a message is anonymous. The message must have paid reaction added by the user
+    /// Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
     /// - Parameter messageId: Identifier of the message
-    public final func togglePaidMessageReactionIsAnonymous(
+    /// - Parameter type: New type of the paid reaction
+    public final func setPaidMessageReactionType(
         chatId: Int64?,
-        isAnonymous: Bool?,
         messageId: Int64?,
+        type: PaidReactionType?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = TogglePaidMessageReactionIsAnonymous(
+        let query = SetPaidMessageReactionType(
             chatId: chatId,
-            isAnonymous: isAnonymous,
-            messageId: messageId
+            messageId: messageId,
+            type: type
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Changes whether the paid message reaction of the user to a message is anonymous. The message must have paid reaction added by the user
+    /// Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
     /// - Parameter chatId: Identifier of the chat to which the message belongs
-    /// - Parameter isAnonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
     /// - Parameter messageId: Identifier of the message
+    /// - Parameter type: New type of the paid reaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func togglePaidMessageReactionIsAnonymous(
+    public final func setPaidMessageReactionType(
         chatId: Int64?,
-        isAnonymous: Bool?,
-        messageId: Int64?
+        messageId: Int64?,
+        type: PaidReactionType?
     ) async throws -> Ok {
-        let query = TogglePaidMessageReactionIsAnonymous(
+        let query = SetPaidMessageReactionType(
             chatId: chatId,
-            isAnonymous: isAnonymous,
-            messageId: messageId
+            messageId: messageId,
+            type: type
         )
         return try await self.run(query: query)
     }
@@ -7796,7 +7814,7 @@ public class TDLibApi {
     }
 
     /// Returns information needed to open the main Web App of a bot
-    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter botUserId: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened; pass 0 if none
     /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter startParameter: Start parameter from internalLinkTypeMainWebApp
@@ -7818,7 +7836,7 @@ public class TDLibApi {
     }
 
     /// Returns information needed to open the main Web App of a bot
-    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter botUserId: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened; pass 0 if none
     /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter startParameter: Start parameter from internalLinkTypeMainWebApp
@@ -7840,7 +7858,7 @@ public class TDLibApi {
     }
 
     /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
-    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter botUserId: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
@@ -7859,7 +7877,7 @@ public class TDLibApi {
     }
 
     /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
-    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter botUserId: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     /// - Returns: An HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
@@ -7915,7 +7933,7 @@ public class TDLibApi {
     }
 
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter botUserId: Identifier of the bot, providing the Web App
+    /// - Parameter botUserId: Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter parameters: Parameters to use to open the Web App
@@ -7942,7 +7960,7 @@ public class TDLibApi {
     }
 
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    /// - Parameter botUserId: Identifier of the bot, providing the Web App
+    /// - Parameter botUserId: Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
     /// - Parameter parameters: Parameters to use to open the Web App
@@ -13175,9 +13193,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Application verification has been completed. Can be called before authorization
-    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
-    /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired
+    /// Application or reCAPTCHA verification has been completed. Can be called before authorization
+    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
     public final func setApplicationVerificationToken(
         token: String?,
         verificationId: Int64?,
@@ -13190,9 +13208,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Application verification has been completed. Can be called before authorization
-    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
-    /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired
+    /// Application or reCAPTCHA verification has been completed. Can be called before authorization
+    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setApplicationVerificationToken(
@@ -19949,15 +19967,15 @@ public class TDLibApi {
     }
 
     /// Returns gifts received by the given user or chat
-    /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
-    /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
-    /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
+    /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
+    /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times
     /// - Parameter excludeUnsaved: Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
-    /// - Parameter excludeUpgraded: Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeUpgraded: Pass true to exclude upgraded gifts
     /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter ownerId: Identifier of the gift receiver
-    /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+    /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date
     /// - Returns: Gifts received by the given user or chat
     public final func getReceivedGifts(
         excludeLimited: Bool?,
@@ -19986,15 +20004,15 @@ public class TDLibApi {
     }
 
     /// Returns gifts received by the given user or chat
-    /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
-    /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
-    /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
+    /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
+    /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times
     /// - Parameter excludeUnsaved: Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
-    /// - Parameter excludeUpgraded: Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
+    /// - Parameter excludeUpgraded: Pass true to exclude upgraded gifts
     /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter ownerId: Identifier of the gift receiver
-    /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+    /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date
     /// - Returns: Gifts received by the given user or chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getReceivedGifts(

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.44-28c6f2e9
-//  https://github.com/tdlib/td/tree/28c6f2e9
+//  Based on TDLib 1.8.45-721300bc
+//  https://github.com/tdlib/td/tree/721300bc
 //
 
 import Foundation
@@ -13,19 +13,19 @@ import Foundation
 /// Returns gifts received by the given user or chat
 public struct GetReceivedGifts: Codable, Equatable, Hashable {
 
-    /// Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
+    /// Pass true to exclude gifts that can be purchased limited number of times
     public let excludeLimited: Bool?
 
-    /// Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
+    /// Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
     public let excludeSaved: Bool?
 
-    /// Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+    /// Pass true to exclude gifts that can be purchased unlimited number of times
     public let excludeUnlimited: Bool?
 
     /// Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
     public let excludeUnsaved: Bool?
 
-    /// Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
+    /// Pass true to exclude upgraded gifts
     public let excludeUpgraded: Bool?
 
     /// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
@@ -37,7 +37,7 @@ public struct GetReceivedGifts: Codable, Equatable, Hashable {
     /// Identifier of the gift receiver
     public let ownerId: MessageSender?
 
-    /// Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+    /// Pass true to sort results by gift price instead of send date
     public let sortByPrice: Bool?
 
 
