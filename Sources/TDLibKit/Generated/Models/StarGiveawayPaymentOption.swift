@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
 
 
-/// Describes an option for creating Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
+/// Describes an option for creating of Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
 public struct StarGiveawayPaymentOption: Codable, Equatable, Hashable {
 
     /// The amount to pay, in the smallest units of the currency

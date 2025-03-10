@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct SendGift: Codable, Equatable, Hashable {
     /// Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
     public let payForUpgrade: Bool?
 
-    /// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
     public let text: FormattedText?
 
 

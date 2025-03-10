@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
     public let botVerification: BotVerification?
+
+    /// True, if paid messages can be enabled in the supergroup chat; for supergroup only
+    public let canEnablePaidMessages: Bool
 
     /// True, if paid reaction can be enabled in the channel chat; for channels only
     public let canEnablePaidReaction: Bool
@@ -126,6 +129,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         bannedCount: Int,
         botCommands: [BotCommands],
         botVerification: BotVerification?,
+        canEnablePaidMessages: Bool,
         canEnablePaidReaction: Bool,
         canGetMembers: Bool,
         canGetRevenueStatistics: Bool,
@@ -163,6 +167,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.bannedCount = bannedCount
         self.botCommands = botCommands
         self.botVerification = botVerification
+        self.canEnablePaidMessages = canEnablePaidMessages
         self.canEnablePaidReaction = canEnablePaidReaction
         self.canGetMembers = canGetMembers
         self.canGetRevenueStatistics = canGetRevenueStatistics

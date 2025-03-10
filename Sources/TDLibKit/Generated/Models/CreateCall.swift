@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Creates a new call
 public struct CreateCall: Codable, Equatable, Hashable {
 
-    /// Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none; currently, ignored
+    /// Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
     public let groupCallId: Int?
 
     /// Pass true to create a video call

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -16,6 +16,9 @@ public indirect enum CanSendMessageToUserResult: Codable, Equatable, Hashable {
     /// The user can be messaged
     case canSendMessageToUserResultOk
 
+    /// The user can be messaged, but the messages are paid
+    case canSendMessageToUserResultUserHasPaidMessages(CanSendMessageToUserResultUserHasPaidMessages)
+
     /// The user can't be messaged, because they are deleted or unknown
     case canSendMessageToUserResultUserIsDeleted
 
@@ -25,6 +28,7 @@ public indirect enum CanSendMessageToUserResult: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case canSendMessageToUserResultOk
+        case canSendMessageToUserResultUserHasPaidMessages
         case canSendMessageToUserResultUserIsDeleted
         case canSendMessageToUserResultUserRestrictsNewChats
     }
@@ -35,6 +39,9 @@ public indirect enum CanSendMessageToUserResult: Codable, Equatable, Hashable {
         switch type {
         case .canSendMessageToUserResultOk:
             self = .canSendMessageToUserResultOk
+        case .canSendMessageToUserResultUserHasPaidMessages:
+            let value = try CanSendMessageToUserResultUserHasPaidMessages(from: decoder)
+            self = .canSendMessageToUserResultUserHasPaidMessages(value)
         case .canSendMessageToUserResultUserIsDeleted:
             self = .canSendMessageToUserResultUserIsDeleted
         case .canSendMessageToUserResultUserRestrictsNewChats:
@@ -47,11 +54,26 @@ public indirect enum CanSendMessageToUserResult: Codable, Equatable, Hashable {
         switch self {
         case .canSendMessageToUserResultOk:
             try container.encode(Kind.canSendMessageToUserResultOk, forKey: .type)
+        case .canSendMessageToUserResultUserHasPaidMessages(let value):
+            try container.encode(Kind.canSendMessageToUserResultUserHasPaidMessages, forKey: .type)
+            try value.encode(to: encoder)
         case .canSendMessageToUserResultUserIsDeleted:
             try container.encode(Kind.canSendMessageToUserResultUserIsDeleted, forKey: .type)
         case .canSendMessageToUserResultUserRestrictsNewChats:
             try container.encode(Kind.canSendMessageToUserResultUserRestrictsNewChats, forKey: .type)
         }
+    }
+}
+
+/// The user can be messaged, but the messages are paid
+public struct CanSendMessageToUserResultUserHasPaidMessages: Codable, Equatable, Hashable {
+
+    /// Number of Telegram Stars that must be paid by the current user for each sent message to the user
+    public let outgoingPaidMessageStarCount: Int64
+
+
+    public init(outgoingPaidMessageStarCount: Int64) {
+        self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount
     }
 }
 

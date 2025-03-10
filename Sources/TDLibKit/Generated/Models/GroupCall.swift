@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the group call is scheduled and the current user will receive a notification when the group call starts
     public let enabledStartNotification: Bool
+
+    /// Identifier of one-to-one call from which the group call was created; 0 if unknown
+    public let fromCallId: Int
 
     /// True, if group call participants, which are muted, aren't returned in participant list
     public let hasHiddenListeners: Bool
@@ -83,6 +86,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         canToggleMuteNewParticipants: Bool,
         duration: Int,
         enabledStartNotification: Bool,
+        fromCallId: Int,
         hasHiddenListeners: Bool,
         id: Int,
         isActive: Bool,
@@ -105,6 +109,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         self.canToggleMuteNewParticipants = canToggleMuteNewParticipants
         self.duration = duration
         self.enabledStartNotification = enabledStartNotification
+        self.fromCallId = fromCallId
         self.hasHiddenListeners = hasHiddenListeners
         self.id = id
         self.isActive = isActive

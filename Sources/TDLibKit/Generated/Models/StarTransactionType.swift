@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a deposit of Telegram Stars from a giveaway; for regular users only
     case starTransactionTypeGiveawayDeposit(StarTransactionTypeGiveawayDeposit)
 
-    /// The transaction is a withdrawal of earned Telegram Stars to Fragment; for bots and channel chats only
+    /// The transaction is a withdrawal of earned Telegram Stars to Fragment; for regular users, bots, supergroup and channel chats only
     case starTransactionTypeFragmentWithdrawal(StarTransactionTypeFragmentWithdrawal)
 
     /// The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; for bots and channel chats only
@@ -91,6 +91,15 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a receiving of a commission from an affiliate program; for regular users, bots and channel chats only
     case starTransactionTypeAffiliateProgramCommission(StarTransactionTypeAffiliateProgramCommission)
 
+    /// The transaction is a sending of a paid message; for regular users only
+    case starTransactionTypePaidMessageSend(StarTransactionTypePaidMessageSend)
+
+    /// The transaction is a receiving of a paid message; for regular users and supergroup chats only
+    case starTransactionTypePaidMessageReceive(StarTransactionTypePaidMessageReceive)
+
+    /// The transaction is a purchase of Telegram Premium subscription; for regular users only
+    case starTransactionTypePremiumPurchase(StarTransactionTypePremiumPurchase)
+
     /// The transaction is a transaction of an unsupported type
     case starTransactionTypeUnsupported
 
@@ -122,6 +131,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypeChannelPaidReactionSend
         case starTransactionTypeChannelPaidReactionReceive
         case starTransactionTypeAffiliateProgramCommission
+        case starTransactionTypePaidMessageSend
+        case starTransactionTypePaidMessageReceive
+        case starTransactionTypePremiumPurchase
         case starTransactionTypeUnsupported
     }
 
@@ -202,6 +214,15 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeAffiliateProgramCommission:
             let value = try StarTransactionTypeAffiliateProgramCommission(from: decoder)
             self = .starTransactionTypeAffiliateProgramCommission(value)
+        case .starTransactionTypePaidMessageSend:
+            let value = try StarTransactionTypePaidMessageSend(from: decoder)
+            self = .starTransactionTypePaidMessageSend(value)
+        case .starTransactionTypePaidMessageReceive:
+            let value = try StarTransactionTypePaidMessageReceive(from: decoder)
+            self = .starTransactionTypePaidMessageReceive(value)
+        case .starTransactionTypePremiumPurchase:
+            let value = try StarTransactionTypePremiumPurchase(from: decoder)
+            self = .starTransactionTypePremiumPurchase(value)
         case .starTransactionTypeUnsupported:
             self = .starTransactionTypeUnsupported
         }
@@ -283,6 +304,15 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeAffiliateProgramCommission(let value):
             try container.encode(Kind.starTransactionTypeAffiliateProgramCommission, forKey: .type)
             try value.encode(to: encoder)
+        case .starTransactionTypePaidMessageSend(let value):
+            try container.encode(Kind.starTransactionTypePaidMessageSend, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypePaidMessageReceive(let value):
+            try container.encode(Kind.starTransactionTypePaidMessageReceive, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypePremiumPurchase(let value):
+            try container.encode(Kind.starTransactionTypePremiumPurchase, forKey: .type)
+            try value.encode(to: encoder)
         case .starTransactionTypeUnsupported:
             try container.encode(Kind.starTransactionTypeUnsupported, forKey: .type)
         }
@@ -327,7 +357,7 @@ public struct StarTransactionTypeGiveawayDeposit: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a withdrawal of earned Telegram Stars to Fragment; for bots and channel chats only
+/// The transaction is a withdrawal of earned Telegram Stars to Fragment; for regular users, bots, supergroup and channel chats only
 public struct StarTransactionTypeFragmentWithdrawal: Codable, Equatable, Hashable {
 
     /// State of the withdrawal; may be null for refunds from Fragment
@@ -654,9 +684,16 @@ public struct StarTransactionTypeGiftUpgrade: Codable, Equatable, Hashable {
     /// The upgraded gift
     public let gift: UpgradedGift
 
+    /// Identifier of the user that initially sent the gift
+    public let userId: Int64
 
-    public init(gift: UpgradedGift) {
+
+    public init(
+        gift: UpgradedGift,
+        userId: Int64
+    ) {
         self.gift = gift
+        self.userId = userId
     }
 }
 
@@ -714,6 +751,78 @@ public struct StarTransactionTypeAffiliateProgramCommission: Codable, Equatable,
     ) {
         self.chatId = chatId
         self.commissionPerMille = commissionPerMille
+    }
+}
+
+/// The transaction is a sending of a paid message; for regular users only
+public struct StarTransactionTypePaidMessageSend: Codable, Equatable, Hashable {
+
+    /// Identifier of the chat that received the payment
+    public let chatId: Int64
+
+    /// Number of sent paid messages
+    public let messageCount: Int
+
+
+    public init(
+        chatId: Int64,
+        messageCount: Int
+    ) {
+        self.chatId = chatId
+        self.messageCount = messageCount
+    }
+}
+
+/// The transaction is a receiving of a paid message; for regular users and supergroup chats only
+public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashable {
+
+    /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
+    public let commissionPerMille: Int
+
+    /// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    public let commissionStarAmount: StarAmount
+
+    /// Number of received paid messages
+    public let messageCount: Int
+
+    /// Identifier of the sender of the message
+    public let senderId: MessageSender
+
+
+    public init(
+        commissionPerMille: Int,
+        commissionStarAmount: StarAmount,
+        messageCount: Int,
+        senderId: MessageSender
+    ) {
+        self.commissionPerMille = commissionPerMille
+        self.commissionStarAmount = commissionStarAmount
+        self.messageCount = messageCount
+        self.senderId = senderId
+    }
+}
+
+/// The transaction is a purchase of Telegram Premium subscription; for regular users only
+public struct StarTransactionTypePremiumPurchase: Codable, Equatable, Hashable {
+
+    /// Number of months the Telegram Premium subscription will be active
+    public let monthCount: Int
+
+    /// A sticker to be shown in the transaction information; may be null if unknown
+    public let sticker: Sticker?
+
+    /// Identifier of the user that received the Telegram Premium subscription
+    public let userId: Int64
+
+
+    public init(
+        monthCount: Int,
+        sticker: Sticker?,
+        userId: Int64
+    ) {
+        self.monthCount = monthCount
+        self.sticker = sticker
+        self.userId = userId
     }
 }
 

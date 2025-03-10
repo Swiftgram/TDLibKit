@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Last name of the user
     public let lastName: String
 
+    /// Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay
+    public let paidMessageStarCount: Int64
+
     /// Phone number of the user
     public let phoneNumber: String
 
@@ -109,6 +112,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         isSupport: Bool,
         languageCode: String,
         lastName: String,
+        paidMessageStarCount: Int64,
         phoneNumber: String,
         profileAccentColorId: Int,
         profileBackgroundCustomEmojiId: TdInt64,
@@ -136,6 +140,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.isSupport = isSupport
         self.languageCode = languageCode
         self.lastName = lastName
+        self.paidMessageStarCount = paidMessageStarCount
         self.phoneNumber = phoneNumber
         self.profileAccentColorId = profileAccentColorId
         self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct JoinGroupCall: Codable, Equatable, Hashable {
     /// Pass true if the user's video is enabled
     public let isMyVideoEnabled: Bool?
 
+    /// Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
+    public let keyFingerprint: TdInt64?
+
     /// Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     public let participantId: MessageSender?
 
@@ -41,6 +44,7 @@ public struct JoinGroupCall: Codable, Equatable, Hashable {
         inviteHash: String?,
         isMuted: Bool?,
         isMyVideoEnabled: Bool?,
+        keyFingerprint: TdInt64?,
         participantId: MessageSender?,
         payload: String?
     ) {
@@ -49,6 +53,7 @@ public struct JoinGroupCall: Codable, Equatable, Hashable {
         self.inviteHash = inviteHash
         self.isMuted = isMuted
         self.isMyVideoEnabled = isMyVideoEnabled
+        self.keyFingerprint = keyFingerprint
         self.participantId = participantId
         self.payload = payload
     }

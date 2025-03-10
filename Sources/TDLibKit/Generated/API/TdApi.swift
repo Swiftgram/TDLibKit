@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -4233,7 +4233,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+    /// Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
     /// - Parameter chatId: Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
     /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
@@ -4251,7 +4251,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+    /// Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
     /// - Parameter chatId: Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
     /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut
@@ -4272,17 +4272,20 @@ public final class TdApi {
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    /// - Parameter paidMessageStarCount: The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
     /// - Parameter quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
     /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     public func resendMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
+        paidMessageStarCount: Int64?,
         quote: InputTextQuote?,
         completion: @escaping (Result<Messages, Swift.Error>) -> Void
     ) throws {
         let query = ResendMessages(
             chatId: chatId,
             messageIds: messageIds,
+            paidMessageStarCount: paidMessageStarCount,
             quote: quote
         )
         self.execute(query: query, completion: completion)
@@ -4291,17 +4294,20 @@ public final class TdApi {
     /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     /// - Parameter chatId: Identifier of the chat to send messages
     /// - Parameter messageIds: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    /// - Parameter paidMessageStarCount: The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
     /// - Parameter quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
     /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func resendMessages(
         chatId: Int64?,
         messageIds: [Int64]?,
+        paidMessageStarCount: Int64?,
         quote: InputTextQuote?
     ) async throws -> Messages {
         let query = ResendMessages(
             chatId: chatId,
             messageIds: messageIds,
+            paidMessageStarCount: paidMessageStarCount,
             quote: quote
         )
         return try await self.execute(query: query)
@@ -13924,7 +13930,7 @@ public final class TdApi {
     }
 
     /// Creates a new call
-    /// - Parameter groupCallId: Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none; currently, ignored
+    /// - Parameter groupCallId: Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
     /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
@@ -13945,7 +13951,7 @@ public final class TdApi {
     }
 
     /// Creates a new call
-    /// - Parameter groupCallId: Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none; currently, ignored
+    /// - Parameter groupCallId: Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
     /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
@@ -14431,6 +14437,7 @@ public final class TdApi {
     /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
     /// - Parameter isMuted: Pass true to join the call with muted microphone
     /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
+    /// - Parameter keyFingerprint: Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
     /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
     /// - Returns: Join response payload for tgcalls
@@ -14440,6 +14447,7 @@ public final class TdApi {
         inviteHash: String?,
         isMuted: Bool?,
         isMyVideoEnabled: Bool?,
+        keyFingerprint: TdInt64?,
         participantId: MessageSender?,
         payload: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -14450,6 +14458,7 @@ public final class TdApi {
             inviteHash: inviteHash,
             isMuted: isMuted,
             isMyVideoEnabled: isMyVideoEnabled,
+            keyFingerprint: keyFingerprint,
             participantId: participantId,
             payload: payload
         )
@@ -14462,6 +14471,7 @@ public final class TdApi {
     /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
     /// - Parameter isMuted: Pass true to join the call with muted microphone
     /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
+    /// - Parameter keyFingerprint: Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
     /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     /// - Parameter payload: Group call join payload; received from tgcalls
     /// - Returns: Join response payload for tgcalls
@@ -14472,6 +14482,7 @@ public final class TdApi {
         inviteHash: String?,
         isMuted: Bool?,
         isMyVideoEnabled: Bool?,
+        keyFingerprint: TdInt64?,
         participantId: MessageSender?,
         payload: String?
     ) async throws -> Text {
@@ -14481,6 +14492,7 @@ public final class TdApi {
             inviteHash: inviteHash,
             isMuted: isMuted,
             isMyVideoEnabled: isMyVideoEnabled,
+            keyFingerprint: keyFingerprint,
             participantId: participantId,
             payload: payload
         )
@@ -15507,7 +15519,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Suggests a profile photo to another regular user with common messages
+    /// Suggests a profile photo to another regular user with common messages and allowing non-paid messages
     /// - Parameter photo: Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
     /// - Parameter userId: User identifier
     public func suggestUserProfilePhoto(
@@ -15522,7 +15534,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Suggests a profile photo to another regular user with common messages
+    /// Suggests a profile photo to another regular user with common messages and allowing non-paid messages
     /// - Parameter photo: Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -16843,33 +16855,33 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-    /// - Parameter forceFull: Pass true to get full instant view for the web page
+    /// Returns an instant view version of a web page if available. This is an offline request if only_local is true. Returns a 404 error if the web page has no instant view page
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter url: The web page URL
     /// - Returns: An instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
     public func getWebPageInstantView(
-        forceFull: Bool?,
+        onlyLocal: Bool?,
         url: String?,
         completion: @escaping (Result<WebPageInstantView, Swift.Error>) -> Void
     ) throws {
         let query = GetWebPageInstantView(
-            forceFull: forceFull,
+            onlyLocal: onlyLocal,
             url: url
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-    /// - Parameter forceFull: Pass true to get full instant view for the web page
+    /// Returns an instant view version of a web page if available. This is an offline request if only_local is true. Returns a 404 error if the web page has no instant view page
+    /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter url: The web page URL
     /// - Returns: An instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getWebPageInstantView(
-        forceFull: Bool?,
+        onlyLocal: Bool?,
         url: String?
     ) async throws -> WebPageInstantView {
         let query = GetWebPageInstantView(
-            forceFull: forceFull,
+            onlyLocal: onlyLocal,
             url: url
         )
         return try await self.execute(query: query)
@@ -19728,7 +19740,7 @@ public final class TdApi {
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter payForUpgrade: Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
-    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
     /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     public func sendGift(
         giftId: TdInt64?,
@@ -19753,7 +19765,7 @@ public final class TdApi {
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter payForUpgrade: Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
-    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
     /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -19797,7 +19809,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
+    /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
     /// - Parameter isSaved: Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
     /// - Parameter receivedGiftId: Identifier of the gift
     public func toggleGiftIsSaved(
@@ -19812,7 +19824,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
+    /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
     /// - Parameter isSaved: Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
     /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -19824,6 +19836,37 @@ public final class TdApi {
         let query = ToggleGiftIsSaved(
             isSaved: isSaved,
             receivedGiftId: receivedGiftId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the list of pinned gifts on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
+    /// - Parameter ownerId: Identifier of the user or the channel chat that received the gifts
+    /// - Parameter receivedGiftIds: New list of pinned gifts. All gifts must be upgraded and saved on the profile page first. There can be up to getOption("pinned_gift_count_max") pinned gifts
+    public func setPinnedGifts(
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetPinnedGifts(
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the list of pinned gifts on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
+    /// - Parameter ownerId: Identifier of the user or the channel chat that received the gifts
+    /// - Parameter receivedGiftIds: New list of pinned gifts. All gifts must be upgraded and saved on the profile page first. There can be up to getOption("pinned_gift_count_max") pinned gifts
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setPinnedGifts(
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?
+    ) async throws -> Ok {
+        let query = SetPinnedGifts(
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
         )
         return try await self.execute(query: query)
     }
@@ -20828,6 +20871,92 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns the total number of Telegram Stars received by the current user for paid messages from the given user
+    /// - Parameter userId: Identifier of the user
+    /// - Returns: The total number of Telegram Stars received by the current user for paid messages from the given user
+    public func getPaidMessageRevenue(
+        userId: Int64?,
+        completion: @escaping (Result<StarCount, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPaidMessageRevenue(
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the total number of Telegram Stars received by the current user for paid messages from the given user
+    /// - Parameter userId: Identifier of the user
+    /// - Returns: The total number of Telegram Stars received by the current user for paid messages from the given user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPaidMessageRevenue(userId: Int64?) async throws -> StarCount {
+        let query = GetPaidMessageRevenue(
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
+    /// - Parameter refundPayments: Pass true to refund the user previously paid messages
+    /// - Parameter userId: Identifier of the user
+    public func allowUnpaidMessagesFromUser(
+        refundPayments: Bool?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AllowUnpaidMessagesFromUser(
+            refundPayments: refundPayments,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
+    /// - Parameter refundPayments: Pass true to refund the user previously paid messages
+    /// - Parameter userId: Identifier of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func allowUnpaidMessagesFromUser(
+        refundPayments: Bool?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = AllowUnpaidMessagesFromUser(
+            refundPayments: refundPayments,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+    /// - Parameter chatId: Identifier of the supergroup chat
+    /// - Parameter paidMessageStarCount: The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max"). The supergroup will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending
+    public func setChatPaidMessageStarCount(
+        chatId: Int64?,
+        paidMessageStarCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatPaidMessageStarCount(
+            chatId: chatId,
+            paidMessageStarCount: paidMessageStarCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+    /// - Parameter chatId: Identifier of the supergroup chat
+    /// - Parameter paidMessageStarCount: The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max"). The supergroup will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setChatPaidMessageStarCount(
+        chatId: Int64?,
+        paidMessageStarCount: Int64?
+    ) async throws -> Ok {
+        let query = SetChatPaidMessageStarCount(
+            chatId: chatId,
+            paidMessageStarCount: paidMessageStarCount
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Check whether the current user can message another user or try to create a chat with them
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter userId: Identifier of the other user
@@ -21269,7 +21398,7 @@ public final class TdApi {
 
     /// Returns detailed Telegram Star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Returns: Detailed Telegram Star revenue statistics
     public func getStarRevenueStatistics(
         isDark: Bool?,
@@ -21285,7 +21414,7 @@ public final class TdApi {
 
     /// Returns detailed Telegram Star revenue statistics
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Returns: Detailed Telegram Star revenue statistics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStarRevenueStatistics(
@@ -21300,7 +21429,7 @@ public final class TdApi {
     }
 
     /// Returns a URL for Telegram Star withdrawal
-    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter starCount: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
     /// - Returns: A URL for Telegram Star withdrawal
@@ -21319,7 +21448,7 @@ public final class TdApi {
     }
 
     /// Returns a URL for Telegram Star withdrawal
-    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter starCount: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
     /// - Returns: A URL for Telegram Star withdrawal
@@ -22981,25 +23110,40 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns available options for Telegram Premium gift code or Telegram Premium giveaway creation
-    /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
-    /// - Returns: Available options for Telegram Premium gift code or Telegram Premium giveaway creation
-    public func getPremiumGiftCodePaymentOptions(
+    /// Returns available options for gifting Telegram Premium to a user
+    /// - Returns: Available options for gifting Telegram Premium to a user
+    public func getPremiumGiftPaymentOptions(completion: @escaping (Result<PremiumGiftPaymentOptions, Swift.Error>) -> Void) throws {
+        let query = GetPremiumGiftPaymentOptions()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns available options for gifting Telegram Premium to a user
+    /// - Returns: Available options for gifting Telegram Premium to a user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPremiumGiftPaymentOptions() async throws -> PremiumGiftPaymentOptions {
+        let query = GetPremiumGiftPaymentOptions()
+        return try await self.execute(query: query)
+    }
+
+    /// Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+    /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user
+    /// - Returns: Available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+    public func getPremiumGiveawayPaymentOptions(
         boostedChatId: Int64?,
-        completion: @escaping (Result<PremiumGiftCodePaymentOptions, Swift.Error>) -> Void
+        completion: @escaping (Result<PremiumGiveawayPaymentOptions, Swift.Error>) -> Void
     ) throws {
-        let query = GetPremiumGiftCodePaymentOptions(
+        let query = GetPremiumGiveawayPaymentOptions(
             boostedChatId: boostedChatId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns available options for Telegram Premium gift code or Telegram Premium giveaway creation
-    /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
-    /// - Returns: Available options for Telegram Premium gift code or Telegram Premium giveaway creation
+    /// Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+    /// - Parameter boostedChatId: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user
+    /// - Returns: Available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getPremiumGiftCodePaymentOptions(boostedChatId: Int64?) async throws -> PremiumGiftCodePaymentOptions {
-        let query = GetPremiumGiftCodePaymentOptions(
+    public func getPremiumGiveawayPaymentOptions(boostedChatId: Int64?) async throws -> PremiumGiveawayPaymentOptions {
+        let query = GetPremiumGiveawayPaymentOptions(
             boostedChatId: boostedChatId
         )
         return try await self.execute(query: query)
@@ -23185,7 +23329,7 @@ public final class TdApi {
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Parameter subscriptionId: If non-empty, only transactions related to the Star Subscription will be returned
     /// - Returns: The list of Telegram Star transactions for the specified owner
     public func getStarTransactions(
@@ -23210,7 +23354,7 @@ public final class TdApi {
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     /// - Parameter subscriptionId: If non-empty, only transactions related to the Star Subscription will be returned
     /// - Returns: The list of Telegram Star transactions for the specified owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

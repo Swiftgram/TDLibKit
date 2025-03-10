@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -49,6 +49,9 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
     /// A privacy setting for managing whether received gifts are automatically shown on the user's profile page
     case userPrivacySettingAutosaveGifts
 
+    /// A privacy setting for managing whether the user can receive messages without additional payment
+    case userPrivacySettingAllowUnpaidMessages
+
 
     private enum Kind: String, Codable {
         case userPrivacySettingShowStatus
@@ -63,6 +66,7 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
         case userPrivacySettingAllowFindingByPhoneNumber
         case userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
         case userPrivacySettingAutosaveGifts
+        case userPrivacySettingAllowUnpaidMessages
     }
 
     public init(from decoder: Decoder) throws {
@@ -93,6 +97,8 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
             self = .userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
         case .userPrivacySettingAutosaveGifts:
             self = .userPrivacySettingAutosaveGifts
+        case .userPrivacySettingAllowUnpaidMessages:
+            self = .userPrivacySettingAllowUnpaidMessages
         }
     }
 
@@ -123,6 +129,8 @@ public indirect enum UserPrivacySetting: Codable, Equatable, Hashable {
             try container.encode(Kind.userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages, forKey: .type)
         case .userPrivacySettingAutosaveGifts:
             try container.encode(Kind.userPrivacySettingAutosaveGifts, forKey: .type)
+        case .userPrivacySettingAllowUnpaidMessages:
+            try container.encode(Kind.userPrivacySettingAllowUnpaidMessages, forKey: .type)
         }
     }
 }

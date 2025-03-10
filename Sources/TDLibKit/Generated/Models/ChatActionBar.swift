@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -100,11 +100,18 @@ public struct ChatActionBarReportSpam: Codable, Equatable, Hashable {
 /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 public struct ChatActionBarReportAddBlock: Codable, Equatable, Hashable {
 
+    /// Basic information about the other user in the chat; may be null if unknown
+    public let accountInfo: AccountInfo?
+
     /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     public let canUnarchive: Bool
 
 
-    public init(canUnarchive: Bool) {
+    public init(
+        accountInfo: AccountInfo?,
+        canUnarchive: Bool
+    ) {
+        self.accountInfo = accountInfo
         self.canUnarchive = canUnarchive
     }
 }

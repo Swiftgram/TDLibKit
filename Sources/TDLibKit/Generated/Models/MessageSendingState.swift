@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -81,6 +81,9 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
     /// True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages
     public let needDropReply: Bool
 
+    /// The number of Telegram Stars that must be paid to send the message; 0 if the current amount is correct
+    public let requiredPaidMessageStarCount: Int64
+
     /// Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     public let retryAfter: Double
 
@@ -91,6 +94,7 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
         needAnotherReplyQuote: Bool,
         needAnotherSender: Bool,
         needDropReply: Bool,
+        requiredPaidMessageStarCount: Int64,
         retryAfter: Double
     ) {
         self.canRetry = canRetry
@@ -98,6 +102,7 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
         self.needAnotherReplyQuote = needAnotherReplyQuote
         self.needAnotherSender = needAnotherSender
         self.needDropReply = needDropReply
+        self.requiredPaidMessageStarCount = requiredPaidMessageStarCount
         self.retryAfter = retryAfter
     }
 }

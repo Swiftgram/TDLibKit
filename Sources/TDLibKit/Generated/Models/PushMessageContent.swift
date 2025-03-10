@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -88,6 +88,15 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A newly created basic group
     case pushMessageContentBasicGroupChatCreate
 
+    /// A video chat or live stream was started
+    case pushMessageContentVideoChatStarted
+
+    /// A video chat or live stream has ended
+    case pushMessageContentVideoChatEnded
+
+    /// An invitation of participants to a video chat or live stream
+    case pushMessageContentInviteVideoChatParticipants(PushMessageContentInviteVideoChatParticipants)
+
     /// New chat members were invited to a group
     case pushMessageContentChatAddMembers(PushMessageContentChatAddMembers)
 
@@ -117,6 +126,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A profile photo was suggested to the user
     case pushMessageContentSuggestProfilePhoto
+
+    /// A user in the chat came within proximity alert range from the current user
+    case pushMessageContentProximityAlertTriggered(PushMessageContentProximityAlertTriggered)
 
     /// A forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
@@ -151,6 +163,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentVideoNote
         case pushMessageContentVoiceNote
         case pushMessageContentBasicGroupChatCreate
+        case pushMessageContentVideoChatStarted
+        case pushMessageContentVideoChatEnded
+        case pushMessageContentInviteVideoChatParticipants
         case pushMessageContentChatAddMembers
         case pushMessageContentChatChangePhoto
         case pushMessageContentChatChangeTitle
@@ -161,6 +176,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentChatJoinByRequest
         case pushMessageContentRecurringPayment
         case pushMessageContentSuggestProfilePhoto
+        case pushMessageContentProximityAlertTriggered
         case pushMessageContentMessageForwards
         case pushMessageContentMediaAlbum
     }
@@ -241,6 +257,13 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             self = .pushMessageContentVoiceNote(value)
         case .pushMessageContentBasicGroupChatCreate:
             self = .pushMessageContentBasicGroupChatCreate
+        case .pushMessageContentVideoChatStarted:
+            self = .pushMessageContentVideoChatStarted
+        case .pushMessageContentVideoChatEnded:
+            self = .pushMessageContentVideoChatEnded
+        case .pushMessageContentInviteVideoChatParticipants:
+            let value = try PushMessageContentInviteVideoChatParticipants(from: decoder)
+            self = .pushMessageContentInviteVideoChatParticipants(value)
         case .pushMessageContentChatAddMembers:
             let value = try PushMessageContentChatAddMembers(from: decoder)
             self = .pushMessageContentChatAddMembers(value)
@@ -267,6 +290,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             self = .pushMessageContentRecurringPayment(value)
         case .pushMessageContentSuggestProfilePhoto:
             self = .pushMessageContentSuggestProfilePhoto
+        case .pushMessageContentProximityAlertTriggered:
+            let value = try PushMessageContentProximityAlertTriggered(from: decoder)
+            self = .pushMessageContentProximityAlertTriggered(value)
         case .pushMessageContentMessageForwards:
             let value = try PushMessageContentMessageForwards(from: decoder)
             self = .pushMessageContentMessageForwards(value)
@@ -351,6 +377,13 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentBasicGroupChatCreate:
             try container.encode(Kind.pushMessageContentBasicGroupChatCreate, forKey: .type)
+        case .pushMessageContentVideoChatStarted:
+            try container.encode(Kind.pushMessageContentVideoChatStarted, forKey: .type)
+        case .pushMessageContentVideoChatEnded:
+            try container.encode(Kind.pushMessageContentVideoChatEnded, forKey: .type)
+        case .pushMessageContentInviteVideoChatParticipants(let value):
+            try container.encode(Kind.pushMessageContentInviteVideoChatParticipants, forKey: .type)
+            try value.encode(to: encoder)
         case .pushMessageContentChatAddMembers(let value):
             try container.encode(Kind.pushMessageContentChatAddMembers, forKey: .type)
             try value.encode(to: encoder)
@@ -377,6 +410,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentSuggestProfilePhoto:
             try container.encode(Kind.pushMessageContentSuggestProfilePhoto, forKey: .type)
+        case .pushMessageContentProximityAlertTriggered(let value):
+            try container.encode(Kind.pushMessageContentProximityAlertTriggered, forKey: .type)
+            try value.encode(to: encoder)
         case .pushMessageContentMessageForwards(let value):
             try container.encode(Kind.pushMessageContentMessageForwards, forKey: .type)
             try value.encode(to: encoder)
@@ -720,11 +756,18 @@ public struct PushMessageContentSticker: Codable, Equatable, Hashable {
 /// A message with a story
 public struct PushMessageContentStory: Codable, Equatable, Hashable {
 
+    /// True, if the user was mentioned in the story
+    public let isMention: Bool
+
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
 
-    public init(isPinned: Bool) {
+    public init(
+        isMention: Bool,
+        isPinned: Bool
+    ) {
+        self.isMention = isMention
         self.isPinned = isPinned
     }
 }
@@ -812,6 +855,18 @@ public struct PushMessageContentVoiceNote: Codable, Equatable, Hashable {
     ) {
         self.isPinned = isPinned
         self.voiceNote = voiceNote
+    }
+}
+
+/// An invitation of participants to a video chat or live stream
+public struct PushMessageContentInviteVideoChatParticipants: Codable, Equatable, Hashable {
+
+    /// True, if the current user was invited to the video chat or the live stream
+    public let isCurrentUser: Bool
+
+
+    public init(isCurrentUser: Bool) {
+        self.isCurrentUser = isCurrentUser
     }
 }
 
@@ -908,6 +963,18 @@ public struct PushMessageContentRecurringPayment: Codable, Equatable, Hashable {
 
     public init(amount: String) {
         self.amount = amount
+    }
+}
+
+/// A user in the chat came within proximity alert range from the current user
+public struct PushMessageContentProximityAlertTriggered: Codable, Equatable, Hashable {
+
+    /// The distance to the user
+    public let distance: Int
+
+
+    public init(distance: Int) {
+        self.distance = distance
     }
 }
 

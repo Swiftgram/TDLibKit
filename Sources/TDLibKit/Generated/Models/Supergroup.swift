@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -58,6 +58,9 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories
     public let memberCount: Int
 
+    /// Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
+    public let paidMessageStarCount: Int64
+
     /// If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
     public let restrictionReason: String
 
@@ -93,6 +96,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         joinByRequest: Bool,
         joinToSendMessages: Bool,
         memberCount: Int,
+        paidMessageStarCount: Int64,
         restrictionReason: String,
         showMessageSender: Bool,
         signMessages: Bool,
@@ -115,6 +119,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.joinByRequest = joinByRequest
         self.joinToSendMessages = joinToSendMessages
         self.memberCount = memberCount
+        self.paidMessageStarCount = paidMessageStarCount
         self.restrictionReason = restrictionReason
         self.showMessageSender = showMessageSender
         self.signMessages = signMessages

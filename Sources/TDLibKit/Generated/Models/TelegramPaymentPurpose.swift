@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -13,7 +13,10 @@ import Foundation
 /// Describes a purpose of a payment toward Telegram
 public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
 
-    /// The user creating Telegram Premium gift codes for other users
+    /// The user gifting Telegram Premium to another user
+    case telegramPaymentPurposePremiumGift(TelegramPaymentPurposePremiumGift)
+
+    /// The user boosting a chat by creating Telegram Premium gift codes for other users
     case telegramPaymentPurposePremiumGiftCodes(TelegramPaymentPurposePremiumGiftCodes)
 
     /// The user creating a Telegram Premium giveaway
@@ -33,6 +36,7 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
 
 
     private enum Kind: String, Codable {
+        case telegramPaymentPurposePremiumGift
         case telegramPaymentPurposePremiumGiftCodes
         case telegramPaymentPurposePremiumGiveaway
         case telegramPaymentPurposeStars
@@ -45,6 +49,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
         let container = try decoder.container(keyedBy: DtoCodingKeys.self)
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
+        case .telegramPaymentPurposePremiumGift:
+            let value = try TelegramPaymentPurposePremiumGift(from: decoder)
+            self = .telegramPaymentPurposePremiumGift(value)
         case .telegramPaymentPurposePremiumGiftCodes:
             let value = try TelegramPaymentPurposePremiumGiftCodes(from: decoder)
             self = .telegramPaymentPurposePremiumGiftCodes(value)
@@ -69,6 +76,9 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
+        case .telegramPaymentPurposePremiumGift(let value):
+            try container.encode(Kind.telegramPaymentPurposePremiumGift, forKey: .type)
+            try value.encode(to: encoder)
         case .telegramPaymentPurposePremiumGiftCodes(let value):
             try container.encode(Kind.telegramPaymentPurposePremiumGiftCodes, forKey: .type)
             try value.encode(to: encoder)
@@ -91,13 +101,47 @@ public indirect enum TelegramPaymentPurpose: Codable, Equatable, Hashable {
     }
 }
 
-/// The user creating Telegram Premium gift codes for other users
+/// The user gifting Telegram Premium to another user
+public struct TelegramPaymentPurposePremiumGift: Codable, Equatable, Hashable {
+
+    /// Paid amount, in the smallest units of the currency
+    public let amount: Int64
+
+    /// ISO 4217 currency code of the payment currency
+    public let currency: String
+
+    /// Number of months the Telegram Premium subscription will be active for the user
+    public let monthCount: Int
+
+    /// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    public let text: FormattedText
+
+    /// Identifier of the user which will receive Telegram Premium
+    public let userId: Int64
+
+
+    public init(
+        amount: Int64,
+        currency: String,
+        monthCount: Int,
+        text: FormattedText,
+        userId: Int64
+    ) {
+        self.amount = amount
+        self.currency = currency
+        self.monthCount = monthCount
+        self.text = text
+        self.userId = userId
+    }
+}
+
+/// The user boosting a chat by creating Telegram Premium gift codes for other users
 public struct TelegramPaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable {
 
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
-    /// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+    /// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
     public let boostedChatId: Int64
 
     /// ISO 4217 currency code of the payment currency

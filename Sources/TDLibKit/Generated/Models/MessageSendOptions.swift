@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -28,10 +28,13 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     /// Pass true to get a fake message instead of actually sending them
     public let onlyPreview: Bool
 
+    /// The number of Telegram Stars the user agreed to pay to send the messages
+    public let paidMessageStarCount: Int64
+
     /// Pass true if the content of the message must be protected from forwarding and saving; for bots only
     public let protectContent: Bool
 
-    /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
+    /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, live location messages and self-destructing messages can't be scheduled
     public let schedulingState: MessageSchedulingState?
 
     /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
@@ -47,6 +50,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         effectId: TdInt64,
         fromBackground: Bool,
         onlyPreview: Bool,
+        paidMessageStarCount: Int64,
         protectContent: Bool,
         schedulingState: MessageSchedulingState?,
         sendingId: Int,
@@ -57,6 +61,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         self.effectId = effectId
         self.fromBackground = fromBackground
         self.onlyPreview = onlyPreview
+        self.paidMessageStarCount = paidMessageStarCount
         self.protectContent = protectContent
         self.schedulingState = schedulingState
         self.sendingId = sendingId

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
 
 
-/// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
+/// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
 public struct ToggleGiftIsSaved: Codable, Equatable, Hashable {
 
     /// Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page

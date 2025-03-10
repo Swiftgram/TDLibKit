@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     public let messageThreadId: Int64
 
+    /// The number of Telegram Stars the sender paid to send the message
+    public let paidMessageStarCount: Int64
+
     /// Reply markup for the message; may be null if none
     public let replyMarkup: ReplyMarkup?
 
@@ -146,6 +149,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         isTopicMessage: Bool,
         mediaAlbumId: TdInt64,
         messageThreadId: Int64,
+        paidMessageStarCount: Int64,
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
         restrictionReason: String,
@@ -183,6 +187,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.isTopicMessage = isTopicMessage
         self.mediaAlbumId = mediaAlbumId
         self.messageThreadId = messageThreadId
+        self.paidMessageStarCount = paidMessageStarCount
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
         self.restrictionReason = restrictionReason

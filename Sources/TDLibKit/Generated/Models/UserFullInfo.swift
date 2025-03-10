@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -55,8 +55,14 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if the user always enabled sponsored messages; known only for the current user
     public let hasSponsoredMessagesEnabled: Bool
 
+    /// Number of Telegram Stars that must be paid by the user for each sent message to the current user
+    public let incomingPaidMessageStarCount: Int64
+
     /// True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     public let needPhoneNumberPrivacyException: Bool
+
+    /// Number of Telegram Stars that must be paid by the current user for each sent message to the user
+    public let outgoingPaidMessageStarCount: Int64
 
     /// Identifier of the personal chat of the user; 0 if none
     public let personalChatId: Int64
@@ -92,7 +98,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         hasPrivateForwards: Bool,
         hasRestrictedVoiceAndVideoNoteMessages: Bool,
         hasSponsoredMessagesEnabled: Bool,
+        incomingPaidMessageStarCount: Int64,
         needPhoneNumberPrivacyException: Bool,
+        outgoingPaidMessageStarCount: Int64,
         personalChatId: Int64,
         personalPhoto: ChatPhoto?,
         photo: ChatPhoto?,
@@ -114,7 +122,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.hasPrivateForwards = hasPrivateForwards
         self.hasRestrictedVoiceAndVideoNoteMessages = hasRestrictedVoiceAndVideoNoteMessages
         self.hasSponsoredMessagesEnabled = hasSponsoredMessagesEnabled
+        self.incomingPaidMessageStarCount = incomingPaidMessageStarCount
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
+        self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount
         self.personalChatId = personalChatId
         self.personalPhoto = personalPhoto
         self.photo = photo

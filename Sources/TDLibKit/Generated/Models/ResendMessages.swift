@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.45-521aed8e
-//  https://github.com/tdlib/td/tree/521aed8e
+//  Based on TDLib 1.8.46-207f3be7
+//  https://github.com/tdlib/td/tree/207f3be7
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct ResendMessages: Codable, Equatable, Hashable {
     /// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
     public let messageIds: [Int64]?
 
+    /// The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
+    public let paidMessageStarCount: Int64?
+
     /// New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
     public let quote: InputTextQuote?
 
@@ -26,10 +29,12 @@ public struct ResendMessages: Codable, Equatable, Hashable {
     public init(
         chatId: Int64?,
         messageIds: [Int64]?,
+        paidMessageStarCount: Int64?,
         quote: InputTextQuote?
     ) {
         self.chatId = chatId
         self.messageIds = messageIds
+        self.paidMessageStarCount = paidMessageStarCount
         self.quote = quote
     }
 }
