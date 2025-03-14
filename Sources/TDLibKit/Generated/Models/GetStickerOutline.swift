@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-207f3be7
-//  https://github.com/tdlib/td/tree/207f3be7
+//  Based on TDLib 1.8.46-b498497b
+//  https://github.com/tdlib/td/tree/b498497b
 //
 
 import Foundation
 
 
-/// Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known
+/// Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
 public struct GetStickerOutline: Codable, Equatable, Hashable {
 
     /// Pass true to get the outline scaled for animated emoji

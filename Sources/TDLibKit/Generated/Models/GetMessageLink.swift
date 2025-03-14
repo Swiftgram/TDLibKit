@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-207f3be7
-//  https://github.com/tdlib/td/tree/207f3be7
+//  Based on TDLib 1.8.46-b498497b
+//  https://github.com/tdlib/td/tree/b498497b
 //
 
 import Foundation
 
 
-/// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+/// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
 public struct GetMessageLink: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs

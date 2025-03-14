@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-207f3be7
-//  https://github.com/tdlib/td/tree/207f3be7
+//  Based on TDLib 1.8.46-b498497b
+//  https://github.com/tdlib/td/tree/b498497b
 //
 
 import Foundation
 
 
-/// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
+/// Returns information about the current localization target. This is an offline method if only_local is true. Can be called before authorization
 public struct GetLocalizationTargetInfo: Codable, Equatable, Hashable {
 
     /// Pass true to get only locally available information without sending network requests
