@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
 
     /// TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
     case authorizationStateWaitPhoneNumber
+
+    /// The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
+    case authorizationStateWaitPremiumPurchase(AuthorizationStateWaitPremiumPurchase)
 
     /// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
     case authorizationStateWaitEmailAddress(AuthorizationStateWaitEmailAddress)
@@ -53,6 +56,7 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case authorizationStateWaitTdlibParameters
         case authorizationStateWaitPhoneNumber
+        case authorizationStateWaitPremiumPurchase
         case authorizationStateWaitEmailAddress
         case authorizationStateWaitEmailCode
         case authorizationStateWaitCode
@@ -73,6 +77,9 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
             self = .authorizationStateWaitTdlibParameters
         case .authorizationStateWaitPhoneNumber:
             self = .authorizationStateWaitPhoneNumber
+        case .authorizationStateWaitPremiumPurchase:
+            let value = try AuthorizationStateWaitPremiumPurchase(from: decoder)
+            self = .authorizationStateWaitPremiumPurchase(value)
         case .authorizationStateWaitEmailAddress:
             let value = try AuthorizationStateWaitEmailAddress(from: decoder)
             self = .authorizationStateWaitEmailAddress(value)
@@ -109,6 +116,9 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
             try container.encode(Kind.authorizationStateWaitTdlibParameters, forKey: .type)
         case .authorizationStateWaitPhoneNumber:
             try container.encode(Kind.authorizationStateWaitPhoneNumber, forKey: .type)
+        case .authorizationStateWaitPremiumPurchase(let value):
+            try container.encode(Kind.authorizationStateWaitPremiumPurchase, forKey: .type)
+            try value.encode(to: encoder)
         case .authorizationStateWaitEmailAddress(let value):
             try container.encode(Kind.authorizationStateWaitEmailAddress, forKey: .type)
             try value.encode(to: encoder)
@@ -136,6 +146,18 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
         case .authorizationStateClosed:
             try container.encode(Kind.authorizationStateClosed, forKey: .type)
         }
+    }
+}
+
+/// The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
+public struct AuthorizationStateWaitPremiumPurchase: Codable, Equatable, Hashable {
+
+    /// Identifier of the store product that must be bought
+    public let storeProductId: String
+
+
+    public init(storeProductId: String) {
+        self.storeProductId = storeProductId
     }
 }
 

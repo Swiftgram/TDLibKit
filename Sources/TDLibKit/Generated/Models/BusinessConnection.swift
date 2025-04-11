@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -12,9 +12,6 @@ import Foundation
 
 /// Describes a connection of the bot with a business account
 public struct BusinessConnection: Codable, Equatable, Hashable, Identifiable {
-
-    /// True, if the bot can send messages to the connected user; false otherwise
-    public let canReply: Bool
 
     /// Point in time (Unix timestamp) when the connection was established
     public let date: Int
@@ -25,6 +22,9 @@ public struct BusinessConnection: Codable, Equatable, Hashable, Identifiable {
     /// True, if the connection is enabled; false otherwise
     public let isEnabled: Bool
 
+    /// Rights of the bot; may be null if the connection was disabled
+    public let rights: BusinessBotRights?
+
     /// Chat identifier of the private chat with the user
     public let userChatId: Int64
 
@@ -33,17 +33,17 @@ public struct BusinessConnection: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
-        canReply: Bool,
         date: Int,
         id: String,
         isEnabled: Bool,
+        rights: BusinessBotRights?,
         userChatId: Int64,
         userId: Int64
     ) {
-        self.canReply = canReply
         self.date = date
         self.id = id
         self.isEnabled = isEnabled
+        self.rights = rights
         self.userChatId = userChatId
         self.userId = userId
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -211,6 +211,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A gift which purchase, upgrade or transfer were refunded
     case messageRefundedUpgradedGift(MessageRefundedUpgradedGift)
 
+    /// Paid messages were refunded
+    case messagePaidMessagesRefunded(MessagePaidMessagesRefunded)
+
+    /// A price for paid messages was changed in the supergroup chat
+    case messagePaidMessagePriceChanged(MessagePaidMessagePriceChanged)
+
     /// A contact has registered with Telegram
     case messageContactRegistered
 
@@ -309,6 +315,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGift
         case messageUpgradedGift
         case messageRefundedUpgradedGift
+        case messagePaidMessagesRefunded
+        case messagePaidMessagePriceChanged
         case messageContactRegistered
         case messageUsersShared
         case messageChatShared
@@ -515,6 +523,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageRefundedUpgradedGift:
             let value = try MessageRefundedUpgradedGift(from: decoder)
             self = .messageRefundedUpgradedGift(value)
+        case .messagePaidMessagesRefunded:
+            let value = try MessagePaidMessagesRefunded(from: decoder)
+            self = .messagePaidMessagesRefunded(value)
+        case .messagePaidMessagePriceChanged:
+            let value = try MessagePaidMessagePriceChanged(from: decoder)
+            self = .messagePaidMessagePriceChanged(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUsersShared:
@@ -738,6 +752,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageRefundedUpgradedGift(let value):
             try container.encode(Kind.messageRefundedUpgradedGift, forKey: .type)
+            try value.encode(to: encoder)
+        case .messagePaidMessagesRefunded(let value):
+            try container.encode(Kind.messagePaidMessagesRefunded, forKey: .type)
+            try value.encode(to: encoder)
+        case .messagePaidMessagePriceChanged(let value):
+            try container.encode(Kind.messagePaidMessagePriceChanged, forKey: .type)
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
@@ -2290,6 +2310,37 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
         self.gift = gift
         self.isUpgrade = isUpgrade
         self.senderId = senderId
+    }
+}
+
+/// Paid messages were refunded
+public struct MessagePaidMessagesRefunded: Codable, Equatable, Hashable {
+
+    /// The number of refunded messages
+    public let messageCount: Int
+
+    /// The number of refunded Telegram Stars
+    public let starCount: Int64
+
+
+    public init(
+        messageCount: Int,
+        starCount: Int64
+    ) {
+        self.messageCount = messageCount
+        self.starCount = starCount
+    }
+}
+
+/// A price for paid messages was changed in the supergroup chat
+public struct MessagePaidMessagePriceChanged: Codable, Equatable, Hashable {
+
+    /// The new number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
+    public let paidMessageStarCount: Int64
+
+
+    public init(paidMessageStarCount: Int64) {
+        self.paidMessageStarCount = paidMessageStarCount
     }
 }
 

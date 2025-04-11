@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains basic information about a forum topic
 public struct ForumTopicInfo: Codable, Equatable, Hashable {
+
+    /// Identifier of the forum chat to which the topic belongs
+    public let chatId: Int64
 
     /// Point in time (Unix timestamp) when the topic was created
     public let creationDate: Int
@@ -42,6 +45,7 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
 
 
     public init(
+        chatId: Int64,
         creationDate: Int,
         creatorId: MessageSender,
         icon: ForumTopicIcon,
@@ -52,6 +56,7 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
         messageThreadId: Int64,
         name: String
     ) {
+        self.chatId = chatId
         self.creationDate = creationDate
         self.creatorId = creatorId
         self.icon = icon

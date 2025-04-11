@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -184,6 +184,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Basic information about a topic in a forum chat was changed
     case updateForumTopicInfo(UpdateForumTopicInfo)
 
+    /// Information about a topic in a forum chat was changed
+    case updateForumTopic(UpdateForumTopic)
+
     /// Notification settings for some type of chats were updated
     case updateScopeNotificationSettings(UpdateScopeNotificationSettings)
 
@@ -345,6 +348,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The connection state has changed. This update must be used only to show a human-readable description of the connection state
     case updateConnectionState(UpdateConnectionState)
+
+    /// The freeze state of the current user's account has changed
+    case updateFreezeState(UpdateFreezeState)
 
     /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     case updateTermsOfService(UpdateTermsOfService)
@@ -531,6 +537,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateQuickReplyShortcuts
         case updateQuickReplyShortcutMessages
         case updateForumTopicInfo
+        case updateForumTopic
         case updateScopeNotificationSettings
         case updateReactionNotificationSettings
         case updateNotification
@@ -585,6 +592,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateProfileAccentColors
         case updateLanguagePackStrings
         case updateConnectionState
+        case updateFreezeState
         case updateTermsOfService
         case updateUnconfirmedSession
         case updateAttachmentMenuBots
@@ -804,6 +812,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateForumTopicInfo:
             let value = try UpdateForumTopicInfo(from: decoder)
             self = .updateForumTopicInfo(value)
+        case .updateForumTopic:
+            let value = try UpdateForumTopic(from: decoder)
+            self = .updateForumTopic(value)
         case .updateScopeNotificationSettings:
             let value = try UpdateScopeNotificationSettings(from: decoder)
             self = .updateScopeNotificationSettings(value)
@@ -966,6 +977,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateConnectionState:
             let value = try UpdateConnectionState(from: decoder)
             self = .updateConnectionState(value)
+        case .updateFreezeState:
+            let value = try UpdateFreezeState(from: decoder)
+            self = .updateFreezeState(value)
         case .updateTermsOfService:
             let value = try UpdateTermsOfService(from: decoder)
             self = .updateTermsOfService(value)
@@ -1269,6 +1283,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateForumTopicInfo(let value):
             try container.encode(Kind.updateForumTopicInfo, forKey: .type)
             try value.encode(to: encoder)
+        case .updateForumTopic(let value):
+            try container.encode(Kind.updateForumTopic, forKey: .type)
+            try value.encode(to: encoder)
         case .updateScopeNotificationSettings(let value):
             try container.encode(Kind.updateScopeNotificationSettings, forKey: .type)
             try value.encode(to: encoder)
@@ -1430,6 +1447,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateConnectionState(let value):
             try container.encode(Kind.updateConnectionState, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateFreezeState(let value):
+            try container.encode(Kind.updateFreezeState, forKey: .type)
             try value.encode(to: encoder)
         case .updateTermsOfService(let value):
             try container.encode(Kind.updateTermsOfService, forKey: .type)
@@ -2657,19 +2677,46 @@ public struct UpdateQuickReplyShortcutMessages: Codable, Equatable, Hashable {
 /// Basic information about a topic in a forum chat was changed
 public struct UpdateForumTopicInfo: Codable, Equatable, Hashable {
 
-    /// Chat identifier
-    public let chatId: Int64
-
     /// New information about the topic
     public let info: ForumTopicInfo
 
 
+    public init(info: ForumTopicInfo) {
+        self.info = info
+    }
+}
+
+/// Information about a topic in a forum chat was changed
+public struct UpdateForumTopic: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// True, if the topic is pinned in the topic list
+    public let isPinned: Bool
+
+    /// Identifier of the last read outgoing message
+    public let lastReadOutboxMessageId: Int64
+
+    /// Message thread identifier of the topic
+    public let messageThreadId: Int64
+
+    /// Notification settings for the topic
+    public let notificationSettings: ChatNotificationSettings
+
+
     public init(
         chatId: Int64,
-        info: ForumTopicInfo
+        isPinned: Bool,
+        lastReadOutboxMessageId: Int64,
+        messageThreadId: Int64,
+        notificationSettings: ChatNotificationSettings
     ) {
         self.chatId = chatId
-        self.info = info
+        self.isPinned = isPinned
+        self.lastReadOutboxMessageId = lastReadOutboxMessageId
+        self.messageThreadId = messageThreadId
+        self.notificationSettings = notificationSettings
     }
 }
 
@@ -3690,6 +3737,35 @@ public struct UpdateConnectionState: Codable, Equatable, Hashable {
 
     public init(state: ConnectionState) {
         self.state = state
+    }
+}
+
+/// The freeze state of the current user's account has changed
+public struct UpdateFreezeState: Codable, Equatable, Hashable {
+
+    /// The link to open to send an appeal to unfreeze the account
+    public let appealLink: String
+
+    /// Point in time (Unix timestamp) when the account will be deleted and can't be unfrozen; 0 if the account isn't frozen
+    public let deletionDate: Int
+
+    /// Point in time (Unix timestamp) when the account was frozen; 0 if the account isn't frozen
+    public let freezingDate: Int
+
+    /// True, if the account is frozen
+    public let isFrozen: Bool
+
+
+    public init(
+        appealLink: String,
+        deletionDate: Int,
+        freezingDate: Int,
+        isFrozen: Bool
+    ) {
+        self.appealLink = appealLink
+        self.deletionDate = deletionDate
+        self.freezingDate = freezingDate
+        self.isFrozen = isFrozen
     }
 }
 

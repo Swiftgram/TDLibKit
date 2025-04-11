@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -97,8 +97,14 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a receiving of a paid message; for regular users and supergroup chats only
     case starTransactionTypePaidMessageReceive(StarTransactionTypePaidMessageReceive)
 
-    /// The transaction is a purchase of Telegram Premium subscription; for regular users only
+    /// The transaction is a purchase of Telegram Premium subscription; for regular users and bots only
     case starTransactionTypePremiumPurchase(StarTransactionTypePremiumPurchase)
+
+    /// The transaction is a transfer of Telegram Stars to a business bot; for regular users only
+    case starTransactionTypeBusinessBotTransferSend(StarTransactionTypeBusinessBotTransferSend)
+
+    /// The transaction is a transfer of Telegram Stars from a business account; for bots only
+    case starTransactionTypeBusinessBotTransferReceive(StarTransactionTypeBusinessBotTransferReceive)
 
     /// The transaction is a transaction of an unsupported type
     case starTransactionTypeUnsupported
@@ -134,6 +140,8 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypePaidMessageSend
         case starTransactionTypePaidMessageReceive
         case starTransactionTypePremiumPurchase
+        case starTransactionTypeBusinessBotTransferSend
+        case starTransactionTypeBusinessBotTransferReceive
         case starTransactionTypeUnsupported
     }
 
@@ -223,6 +231,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypePremiumPurchase:
             let value = try StarTransactionTypePremiumPurchase(from: decoder)
             self = .starTransactionTypePremiumPurchase(value)
+        case .starTransactionTypeBusinessBotTransferSend:
+            let value = try StarTransactionTypeBusinessBotTransferSend(from: decoder)
+            self = .starTransactionTypeBusinessBotTransferSend(value)
+        case .starTransactionTypeBusinessBotTransferReceive:
+            let value = try StarTransactionTypeBusinessBotTransferReceive(from: decoder)
+            self = .starTransactionTypeBusinessBotTransferReceive(value)
         case .starTransactionTypeUnsupported:
             self = .starTransactionTypeUnsupported
         }
@@ -312,6 +326,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .starTransactionTypePremiumPurchase(let value):
             try container.encode(Kind.starTransactionTypePremiumPurchase, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeBusinessBotTransferSend(let value):
+            try container.encode(Kind.starTransactionTypeBusinessBotTransferSend, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeBusinessBotTransferReceive(let value):
+            try container.encode(Kind.starTransactionTypeBusinessBotTransferReceive, forKey: .type)
             try value.encode(to: encoder)
         case .starTransactionTypeUnsupported:
             try container.encode(Kind.starTransactionTypeUnsupported, forKey: .type)
@@ -802,7 +822,7 @@ public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashabl
     }
 }
 
-/// The transaction is a purchase of Telegram Premium subscription; for regular users only
+/// The transaction is a purchase of Telegram Premium subscription; for regular users and bots only
 public struct StarTransactionTypePremiumPurchase: Codable, Equatable, Hashable {
 
     /// Number of months the Telegram Premium subscription will be active
@@ -822,6 +842,30 @@ public struct StarTransactionTypePremiumPurchase: Codable, Equatable, Hashable {
     ) {
         self.monthCount = monthCount
         self.sticker = sticker
+        self.userId = userId
+    }
+}
+
+/// The transaction is a transfer of Telegram Stars to a business bot; for regular users only
+public struct StarTransactionTypeBusinessBotTransferSend: Codable, Equatable, Hashable {
+
+    /// Identifier of the bot that received Telegram Stars
+    public let userId: Int64
+
+
+    public init(userId: Int64) {
+        self.userId = userId
+    }
+}
+
+/// The transaction is a transfer of Telegram Stars from a business account; for bots only
+public struct StarTransactionTypeBusinessBotTransferReceive: Codable, Equatable, Hashable {
+
+    /// Identifier of the user that sent Telegram Stars
+    public let userId: Int64
+
+
+    public init(userId: Int64) {
         self.userId = userId
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -151,7 +151,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter phoneNumber: The phone number of the user, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     public final func setAuthenticationPhoneNumber(
@@ -166,7 +166,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter phoneNumber: The phone number of the user, in international format
     /// - Parameter settings: Settings for the authentication of the user's phone number; pass null to use default settings
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -178,6 +178,80 @@ public class TDLibApi {
         let query = SetAuthenticationPhoneNumber(
             phoneNumber: phoneNumber,
             settings: settings
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+    /// - Parameter amount: Paid amount, in the smallest units of the currency
+    /// - Parameter currency: ISO 4217 currency code of the payment currency
+    public final func checkAuthenticationPremiumPurchase(
+        amount: Int64?,
+        currency: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckAuthenticationPremiumPurchase(
+            amount: amount,
+            currency: currency
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+    /// - Parameter amount: Paid amount, in the smallest units of the currency
+    /// - Parameter currency: ISO 4217 currency code of the payment currency
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func checkAuthenticationPremiumPurchase(
+        amount: Int64?,
+        currency: String?
+    ) async throws -> Ok {
+        let query = CheckAuthenticationPremiumPurchase(
+            amount: amount,
+            currency: currency
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+    /// - Parameter amount: Paid amount, in the smallest units of the currency
+    /// - Parameter currency: ISO 4217 currency code of the payment currency
+    /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+    /// - Parameter transaction: Information about the transaction
+    public final func setAuthenticationPremiumPurchaseTransaction(
+        amount: Int64?,
+        currency: String?,
+        isRestore: Bool?,
+        transaction: StoreTransaction?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetAuthenticationPremiumPurchaseTransaction(
+            amount: amount,
+            currency: currency,
+            isRestore: isRestore,
+            transaction: transaction
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+    /// - Parameter amount: Paid amount, in the smallest units of the currency
+    /// - Parameter currency: ISO 4217 currency code of the payment currency
+    /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+    /// - Parameter transaction: Information about the transaction
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setAuthenticationPremiumPurchaseTransaction(
+        amount: Int64?,
+        currency: String?,
+        isRestore: Bool?,
+        transaction: StoreTransaction?
+    ) async throws -> Ok {
+        let query = SetAuthenticationPremiumPurchaseTransaction(
+            amount: amount,
+            currency: currency,
+            isRestore: isRestore,
+            transaction: transaction
         )
         return try await self.run(query: query)
     }
@@ -274,7 +348,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
     public final func requestQrCodeAuthentication(
         otherUserIds: [Int64]?,
@@ -286,7 +360,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
     /// - Parameter otherUserIds: List of user identifiers of other users currently using the application
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -3584,7 +3658,7 @@ public class TDLibApi {
         chatId: Int64?,
         messageId: Int64?,
         optionId: Data?,
-        completion: @escaping (Result<ReportChatSponsoredMessageResult, Swift.Error>) -> Void
+        completion: @escaping (Result<ReportSponsoredResult, Swift.Error>) -> Void
     ) throws {
         let query = ReportChatSponsoredMessage(
             chatId: chatId,
@@ -3603,11 +3677,111 @@ public class TDLibApi {
         chatId: Int64?,
         messageId: Int64?,
         optionId: Data?
-    ) async throws -> ReportChatSponsoredMessageResult {
+    ) async throws -> ReportSponsoredResult {
         let query = ReportChatSponsoredMessage(
             chatId: chatId,
             messageId: messageId,
             optionId: optionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns sponsored chats to be shown in the search results
+    /// - Parameter query: Query the user searches for
+    /// - Returns: Sponsored chats to be shown in the search results
+    public final func getSearchSponsoredChats(
+        query: String?,
+        completion: @escaping (Result<SponsoredChats, Swift.Error>) -> Void
+    ) throws {
+        let query = GetSearchSponsoredChats(
+            query: query
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns sponsored chats to be shown in the search results
+    /// - Parameter query: Query the user searches for
+    /// - Returns: Sponsored chats to be shown in the search results
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getSearchSponsoredChats(query: String?) async throws -> SponsoredChats {
+        let query = GetSearchSponsoredChats(
+            query: query
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs TDLib that the user fully viewed a sponsored chat
+    /// - Parameter sponsoredChatUniqueId: Unique identifier of the sponsored chat
+    public final func viewSponsoredChat(
+        sponsoredChatUniqueId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ViewSponsoredChat(
+            sponsoredChatUniqueId: sponsoredChatUniqueId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that the user fully viewed a sponsored chat
+    /// - Parameter sponsoredChatUniqueId: Unique identifier of the sponsored chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func viewSponsoredChat(sponsoredChatUniqueId: Int64?) async throws -> Ok {
+        let query = ViewSponsoredChat(
+            sponsoredChatUniqueId: sponsoredChatUniqueId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs TDLib that the user opened a sponsored chat
+    /// - Parameter sponsoredChatUniqueId: Unique identifier of the sponsored chat
+    public final func openSponsoredChat(
+        sponsoredChatUniqueId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = OpenSponsoredChat(
+            sponsoredChatUniqueId: sponsoredChatUniqueId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that the user opened a sponsored chat
+    /// - Parameter sponsoredChatUniqueId: Unique identifier of the sponsored chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func openSponsoredChat(sponsoredChatUniqueId: Int64?) async throws -> Ok {
+        let query = OpenSponsoredChat(
+            sponsoredChatUniqueId: sponsoredChatUniqueId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Reports a sponsored chat to Telegram moderators
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    /// - Parameter sponsoredChatUniqueId: Unique identifier of the sponsored chat
+    public final func reportSponsoredChat(
+        optionId: Data?,
+        sponsoredChatUniqueId: Int64?,
+        completion: @escaping (Result<ReportSponsoredResult, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportSponsoredChat(
+            optionId: optionId,
+            sponsoredChatUniqueId: sponsoredChatUniqueId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Reports a sponsored chat to Telegram moderators
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    /// - Parameter sponsoredChatUniqueId: Unique identifier of the sponsored chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func reportSponsoredChat(
+        optionId: Data?,
+        sponsoredChatUniqueId: Int64?
+    ) async throws -> ReportSponsoredResult {
+        let query = ReportSponsoredChat(
+            optionId: optionId,
+            sponsoredChatUniqueId: sponsoredChatUniqueId
         )
         return try await self.run(query: query)
     }
@@ -5468,6 +5642,381 @@ public class TDLibApi {
             chatId: chatId,
             isPinned: isPinned,
             messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Reads a message on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection through which the message was received
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    public final func readBusinessMessage(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadBusinessMessage(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Reads a message on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection through which the message was received
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func readBusinessMessage(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = ReadBusinessMessage(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes messages on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection through which the messages were received
+    /// - Parameter messageIds: Identifier of the messages
+    public final func deleteBusinessMessages(
+        businessConnectionId: String?,
+        messageIds: [Int64]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteBusinessMessages(
+            businessConnectionId: businessConnectionId,
+            messageIds: messageIds
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes messages on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection through which the messages were received
+    /// - Parameter messageIds: Identifier of the messages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteBusinessMessages(
+        businessConnectionId: String?,
+        messageIds: [Int64]?
+    ) async throws -> Ok {
+        let query = DeleteBusinessMessages(
+            businessConnectionId: businessConnectionId,
+            messageIds: messageIds
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes a story sent by the bot on behalf of a business account; for bots only
+    /// - Parameter areas: New clickable rectangle areas to be shown on the story media
+    /// - Parameter caption: New story caption
+    /// - Parameter content: New content of the story
+    /// - Parameter privacySettings: The new privacy settings for the story
+    /// - Parameter storyId: Identifier of the story to edit
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    public final func editBusinessStory(
+        areas: InputStoryAreas?,
+        caption: FormattedText?,
+        content: InputStoryContent?,
+        privacySettings: StoryPrivacySettings?,
+        storyId: Int?,
+        storySenderChatId: Int64?,
+        completion: @escaping (Result<Story, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessStory(
+            areas: areas,
+            caption: caption,
+            content: content,
+            privacySettings: privacySettings,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes a story sent by the bot on behalf of a business account; for bots only
+    /// - Parameter areas: New clickable rectangle areas to be shown on the story media
+    /// - Parameter caption: New story caption
+    /// - Parameter content: New content of the story
+    /// - Parameter privacySettings: The new privacy settings for the story
+    /// - Parameter storyId: Identifier of the story to edit
+    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func editBusinessStory(
+        areas: InputStoryAreas?,
+        caption: FormattedText?,
+        content: InputStoryContent?,
+        privacySettings: StoryPrivacySettings?,
+        storyId: Int?,
+        storySenderChatId: Int64?
+    ) async throws -> Story {
+        let query = EditBusinessStory(
+            areas: areas,
+            caption: caption,
+            content: content,
+            privacySettings: privacySettings,
+            storyId: storyId,
+            storySenderChatId: storySenderChatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes a story sent by the bot on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter storyId: Identifier of the story to delete
+    public final func deleteBusinessStory(
+        businessConnectionId: String?,
+        storyId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteBusinessStory(
+            businessConnectionId: businessConnectionId,
+            storyId: storyId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes a story sent by the bot on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter storyId: Identifier of the story to delete
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteBusinessStory(
+        businessConnectionId: String?,
+        storyId: Int?
+    ) async throws -> Ok {
+        let query = DeleteBusinessStory(
+            businessConnectionId: businessConnectionId,
+            storyId: storyId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the first and last name of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter firstName: The new value of the first name for the business account; 1-64 characters
+    /// - Parameter lastName: The new value of the optional last name for the business account; 0-64 characters
+    public final func setBusinessAccountName(
+        businessConnectionId: String?,
+        firstName: String?,
+        lastName: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessAccountName(
+            businessConnectionId: businessConnectionId,
+            firstName: firstName,
+            lastName: lastName
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the first and last name of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter firstName: The new value of the first name for the business account; 1-64 characters
+    /// - Parameter lastName: The new value of the optional last name for the business account; 0-64 characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBusinessAccountName(
+        businessConnectionId: String?,
+        firstName: String?,
+        lastName: String?
+    ) async throws -> Ok {
+        let query = SetBusinessAccountName(
+            businessConnectionId: businessConnectionId,
+            firstName: firstName,
+            lastName: lastName
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the bio of a business account; for bots only
+    /// - Parameter bio: The new value of the bio; 0-getOption("bio_length_max") characters without line feeds
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    public final func setBusinessAccountBio(
+        bio: String?,
+        businessConnectionId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessAccountBio(
+            bio: bio,
+            businessConnectionId: businessConnectionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the bio of a business account; for bots only
+    /// - Parameter bio: The new value of the bio; 0-getOption("bio_length_max") characters without line feeds
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBusinessAccountBio(
+        bio: String?,
+        businessConnectionId: String?
+    ) async throws -> Ok {
+        let query = SetBusinessAccountBio(
+            bio: bio,
+            businessConnectionId: businessConnectionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes a profile photo of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter photo: Profile photo to set; pass null to remove the photo
+    public final func setBusinessAccountProfilePhoto(
+        businessConnectionId: String?,
+        isPublic: Bool?,
+        photo: InputChatPhoto?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessAccountProfilePhoto(
+            businessConnectionId: businessConnectionId,
+            isPublic: isPublic,
+            photo: photo
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes a profile photo of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter photo: Profile photo to set; pass null to remove the photo
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBusinessAccountProfilePhoto(
+        businessConnectionId: String?,
+        isPublic: Bool?,
+        photo: InputChatPhoto?
+    ) async throws -> Ok {
+        let query = SetBusinessAccountProfilePhoto(
+            businessConnectionId: businessConnectionId,
+            isPublic: isPublic,
+            photo: photo
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the editable username of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter username: The new value of the username
+    public final func setBusinessAccountUsername(
+        businessConnectionId: String?,
+        username: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessAccountUsername(
+            businessConnectionId: businessConnectionId,
+            username: username
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the editable username of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter username: The new value of the username
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBusinessAccountUsername(
+        businessConnectionId: String?,
+        username: String?
+    ) async throws -> Ok {
+        let query = SetBusinessAccountUsername(
+            businessConnectionId: businessConnectionId,
+            username: username
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes settings for gift receiving of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter settings: The new settings
+    public final func setBusinessAccountGiftSettings(
+        businessConnectionId: String?,
+        settings: GiftSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBusinessAccountGiftSettings(
+            businessConnectionId: businessConnectionId,
+            settings: settings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes settings for gift receiving of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter settings: The new settings
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBusinessAccountGiftSettings(
+        businessConnectionId: String?,
+        settings: GiftSettings?
+    ) async throws -> Ok {
+        let query = SetBusinessAccountGiftSettings(
+            businessConnectionId: businessConnectionId,
+            settings: settings
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the amount of Telegram Stars owned by a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Returns: The amount of Telegram Stars owned by a business account
+    public final func getBusinessAccountStarAmount(
+        businessConnectionId: String?,
+        completion: @escaping (Result<StarAmount, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBusinessAccountStarAmount(
+            businessConnectionId: businessConnectionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the amount of Telegram Stars owned by a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Returns: The amount of Telegram Stars owned by a business account
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBusinessAccountStarAmount(businessConnectionId: String?) async throws -> StarAmount {
+        let query = GetBusinessAccountStarAmount(
+            businessConnectionId: businessConnectionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Transfer Telegram Stars from the business account to the business bot; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter starCount: Number of Telegram Stars to transfer
+    public final func transferBusinessAccountStars(
+        businessConnectionId: String?,
+        starCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = TransferBusinessAccountStars(
+            businessConnectionId: businessConnectionId,
+            starCount: starCount
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Transfer Telegram Stars from the business account to the business bot; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection
+    /// - Parameter starCount: Number of Telegram Stars to transfer
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func transferBusinessAccountStars(
+        businessConnectionId: String?,
+        starCount: Int64?
+    ) async throws -> Ok {
+        let query = TransferBusinessAccountStars(
+            businessConnectionId: businessConnectionId,
+            starCount: starCount
         )
         return try await self.run(query: query)
     }
@@ -16898,7 +17447,7 @@ public class TDLibApi {
     }
 
     /// Changes a profile photo for the current user
-    /// - Parameter isPublic: Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     public final func setProfilePhoto(
         isPublic: Bool?,
@@ -16913,7 +17462,7 @@ public class TDLibApi {
     }
 
     /// Changes a profile photo for the current user
-    /// - Parameter isPublic: Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -19730,6 +20279,29 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Changes settings for gift receiving for the current user
+    /// - Parameter settings: The new settings
+    public final func setGiftSettings(
+        settings: GiftSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetGiftSettings(
+            settings: settings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes settings for gift receiving for the current user
+    /// - Parameter settings: The new settings
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setGiftSettings(settings: GiftSettings?) async throws -> Ok {
+        let query = SetGiftSettings(
+            settings: settings
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns gifts that can be sent to other users and channel chats
     /// - Returns: Gifts that can be sent to other users and channel chats
     public final func getAvailableGifts(completion: @escaping (Result<Gifts, Swift.Error>) -> Void) throws {
@@ -19797,23 +20369,31 @@ public class TDLibApi {
     }
 
     /// Sells a gift for Telegram Stars
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     public final func sellGift(
+        businessConnectionId: String?,
         receivedGiftId: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SellGift(
+            businessConnectionId: businessConnectionId,
             receivedGiftId: receivedGiftId
         )
         self.run(query: query, completion: completion)
     }
 
     /// Sells a gift for Telegram Stars
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func sellGift(receivedGiftId: String?) async throws -> Ok {
+    public final func sellGift(
+        businessConnectionId: String?,
+        receivedGiftId: String?
+    ) async throws -> Ok {
         let query = SellGift(
+            businessConnectionId: businessConnectionId,
             receivedGiftId: receivedGiftId
         )
         return try await self.run(query: query)
@@ -19937,16 +20517,19 @@ public class TDLibApi {
     }
 
     /// Upgrades a regular gift
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
     /// - Parameter starCount: The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     public final func upgradeGift(
+        businessConnectionId: String?,
         keepOriginalDetails: Bool?,
         receivedGiftId: String?,
         starCount: Int64?,
         completion: @escaping (Result<UpgradeGiftResult, Swift.Error>) -> Void
     ) throws {
         let query = UpgradeGift(
+            businessConnectionId: businessConnectionId,
             keepOriginalDetails: keepOriginalDetails,
             receivedGiftId: receivedGiftId,
             starCount: starCount
@@ -19955,16 +20538,19 @@ public class TDLibApi {
     }
 
     /// Upgrades a regular gift
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
     /// - Parameter starCount: The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func upgradeGift(
+        businessConnectionId: String?,
         keepOriginalDetails: Bool?,
         receivedGiftId: String?,
         starCount: Int64?
     ) async throws -> UpgradeGiftResult {
         let query = UpgradeGift(
+            businessConnectionId: businessConnectionId,
             keepOriginalDetails: keepOriginalDetails,
             receivedGiftId: receivedGiftId,
             starCount: starCount
@@ -19973,16 +20559,19 @@ public class TDLibApi {
     }
 
     /// Sends an upgraded gift to another user or a channel chat
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter newOwnerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter receivedGiftId: Identifier of the gift
     /// - Parameter starCount: The amount of Telegram Stars required to pay for the transfer
     public final func transferGift(
+        businessConnectionId: String?,
         newOwnerId: MessageSender?,
         receivedGiftId: String?,
         starCount: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = TransferGift(
+            businessConnectionId: businessConnectionId,
             newOwnerId: newOwnerId,
             receivedGiftId: receivedGiftId,
             starCount: starCount
@@ -19991,17 +20580,20 @@ public class TDLibApi {
     }
 
     /// Sends an upgraded gift to another user or a channel chat
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter newOwnerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter receivedGiftId: Identifier of the gift
     /// - Parameter starCount: The amount of Telegram Stars required to pay for the transfer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func transferGift(
+        businessConnectionId: String?,
         newOwnerId: MessageSender?,
         receivedGiftId: String?,
         starCount: Int64?
     ) async throws -> Ok {
         let query = TransferGift(
+            businessConnectionId: businessConnectionId,
             newOwnerId: newOwnerId,
             receivedGiftId: receivedGiftId,
             starCount: starCount
@@ -20010,6 +20602,7 @@ public class TDLibApi {
     }
 
     /// Returns gifts received by the given user or chat
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
     /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
     /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times
@@ -20021,6 +20614,7 @@ public class TDLibApi {
     /// - Parameter sortByPrice: Pass true to sort results by gift price instead of send date
     /// - Returns: Gifts received by the given user or chat
     public final func getReceivedGifts(
+        businessConnectionId: String?,
         excludeLimited: Bool?,
         excludeSaved: Bool?,
         excludeUnlimited: Bool?,
@@ -20033,6 +20627,7 @@ public class TDLibApi {
         completion: @escaping (Result<ReceivedGifts, Swift.Error>) -> Void
     ) throws {
         let query = GetReceivedGifts(
+            businessConnectionId: businessConnectionId,
             excludeLimited: excludeLimited,
             excludeSaved: excludeSaved,
             excludeUnlimited: excludeUnlimited,
@@ -20047,6 +20642,7 @@ public class TDLibApi {
     }
 
     /// Returns gifts received by the given user or chat
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
     /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
     /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times
@@ -20059,6 +20655,7 @@ public class TDLibApi {
     /// - Returns: Gifts received by the given user or chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getReceivedGifts(
+        businessConnectionId: String?,
         excludeLimited: Bool?,
         excludeSaved: Bool?,
         excludeUnlimited: Bool?,
@@ -20070,6 +20667,7 @@ public class TDLibApi {
         sortByPrice: Bool?
     ) async throws -> ReceivedGifts {
         let query = GetReceivedGifts(
+            businessConnectionId: businessConnectionId,
             excludeLimited: excludeLimited,
             excludeSaved: excludeSaved,
             excludeUnlimited: excludeUnlimited,
@@ -23206,6 +23804,49 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
+    /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active for the user
+    /// - Parameter starCount: The number of Telegram Stars to pay for subscription
+    /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter userId: Identifier of the user which will receive Telegram Premium
+    public final func giftPremiumWithStars(
+        monthCount: Int?,
+        starCount: Int64?,
+        text: FormattedText?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = GiftPremiumWithStars(
+            monthCount: monthCount,
+            starCount: starCount,
+            text: text,
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
+    /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active for the user
+    /// - Parameter starCount: The number of Telegram Stars to pay for subscription
+    /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter userId: Identifier of the user which will receive Telegram Premium
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func giftPremiumWithStars(
+        monthCount: Int?,
+        starCount: Int64?,
+        text: FormattedText?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = GiftPremiumWithStars(
+            monthCount: monthCount,
+            starCount: starCount,
+            text: text,
+            userId: userId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Launches a prepaid giveaway
     /// - Parameter giveawayId: Unique identifier of the prepaid giveaway
     /// - Parameter parameters: Giveaway parameters
@@ -23417,7 +24058,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Checks whether an in-store purchase is possible. Must be called before any in-store purchase
+    /// Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only
     /// - Parameter purpose: Transaction purpose
     public final func canPurchaseFromStore(
         purpose: StorePaymentPurpose?,
@@ -23429,7 +24070,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Checks whether an in-store purchase is possible. Must be called before any in-store purchase
+    /// Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only
     /// - Parameter purpose: Transaction purpose
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -23440,76 +24081,33 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Informs server about a purchase through App Store. For official applications only
+    /// Informs server about an in-store purchase. For official applications only
     /// - Parameter purpose: Transaction purpose
-    /// - Parameter receipt: App Store receipt
-    public final func assignAppStoreTransaction(
+    /// - Parameter transaction: Information about the transaction
+    public final func assignStoreTransaction(
         purpose: StorePaymentPurpose?,
-        receipt: Data?,
+        transaction: StoreTransaction?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = AssignAppStoreTransaction(
+        let query = AssignStoreTransaction(
             purpose: purpose,
-            receipt: receipt
+            transaction: transaction
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Informs server about a purchase through App Store. For official applications only
+    /// Informs server about an in-store purchase. For official applications only
     /// - Parameter purpose: Transaction purpose
-    /// - Parameter receipt: App Store receipt
+    /// - Parameter transaction: Information about the transaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func assignAppStoreTransaction(
+    public final func assignStoreTransaction(
         purpose: StorePaymentPurpose?,
-        receipt: Data?
+        transaction: StoreTransaction?
     ) async throws -> Ok {
-        let query = AssignAppStoreTransaction(
+        let query = AssignStoreTransaction(
             purpose: purpose,
-            receipt: receipt
-        )
-        return try await self.run(query: query)
-    }
-
-    /// Informs server about a purchase through Google Play. For official applications only
-    /// - Parameter packageName: Application package name
-    /// - Parameter purchaseToken: Google Play purchase token
-    /// - Parameter purpose: Transaction purpose
-    /// - Parameter storeProductId: Identifier of the purchased store product
-    public final func assignGooglePlayTransaction(
-        packageName: String?,
-        purchaseToken: String?,
-        purpose: StorePaymentPurpose?,
-        storeProductId: String?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
-    ) throws {
-        let query = AssignGooglePlayTransaction(
-            packageName: packageName,
-            purchaseToken: purchaseToken,
-            purpose: purpose,
-            storeProductId: storeProductId
-        )
-        self.run(query: query, completion: completion)
-    }
-
-    /// Informs server about a purchase through Google Play. For official applications only
-    /// - Parameter packageName: Application package name
-    /// - Parameter purchaseToken: Google Play purchase token
-    /// - Parameter purpose: Transaction purpose
-    /// - Parameter storeProductId: Identifier of the purchased store product
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public final func assignGooglePlayTransaction(
-        packageName: String?,
-        purchaseToken: String?,
-        purpose: StorePaymentPurpose?,
-        storeProductId: String?
-    ) async throws -> Ok {
-        let query = AssignGooglePlayTransaction(
-            packageName: packageName,
-            purchaseToken: purchaseToken,
-            purpose: purpose,
-            storeProductId: storeProductId
+            transaction: transaction
         )
         return try await self.run(query: query)
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct ForumTopic: Codable, Equatable, Hashable {
     /// Notification settings for the topic
     public let notificationSettings: ChatNotificationSettings
 
+    /// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
+    public let order: TdInt64
+
     /// Number of unread messages in the topic
     public let unreadCount: Int
 
@@ -52,6 +55,7 @@ public struct ForumTopic: Codable, Equatable, Hashable {
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
         notificationSettings: ChatNotificationSettings,
+        order: TdInt64,
         unreadCount: Int,
         unreadMentionCount: Int,
         unreadReactionCount: Int
@@ -63,6 +67,7 @@ public struct ForumTopic: Codable, Equatable, Hashable {
         self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
         self.notificationSettings = notificationSettings
+        self.order = order
         self.unreadCount = unreadCount
         self.unreadMentionCount = unreadMentionCount
         self.unreadReactionCount = unreadReactionCount

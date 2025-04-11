@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Upgrades a regular gift
 public struct UpgradeGift: Codable, Equatable, Hashable {
+
+    /// Unique identifier of business connection on behalf of which to send the request; for bots only
+    public let businessConnectionId: String?
 
     /// Pass true to keep the original gift text, sender and receiver in the upgraded gift
     public let keepOriginalDetails: Bool?
@@ -24,10 +27,12 @@ public struct UpgradeGift: Codable, Equatable, Hashable {
 
 
     public init(
+        businessConnectionId: String?,
         keepOriginalDetails: Bool?,
         receivedGiftId: String?,
         starCount: Int64?
     ) {
+        self.businessConnectionId = businessConnectionId
         self.keepOriginalDetails = keepOriginalDetails
         self.receivedGiftId = receivedGiftId
         self.starCount = starCount

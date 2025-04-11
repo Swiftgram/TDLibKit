@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -107,7 +107,7 @@ public struct TelegramPaymentPurposePremiumGift: Codable, Equatable, Hashable {
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
-    /// ISO 4217 currency code of the payment currency
+    /// ISO 4217 currency code of the payment currency, or "XTR" for payments in Telegram Stars
     public let currency: String
 
     /// Number of months the Telegram Premium subscription will be active for the user

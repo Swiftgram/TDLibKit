@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -36,6 +36,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// Number of saved to profile gifts for other users or the total number of received gifts for the current user
     public let giftCount: Int
+
+    /// Settings for gift receiving for the user
+    public let giftSettings: GiftSettings
 
     /// Number of group chats where both the other user and the current user are a member; 0 for the current user
     public let groupInCommonCount: Int
@@ -92,6 +95,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         businessInfo: BusinessInfo?,
         canBeCalled: Bool,
         giftCount: Int,
+        giftSettings: GiftSettings,
         groupInCommonCount: Int,
         hasPostedToProfileStories: Bool,
         hasPrivateCalls: Bool,
@@ -116,6 +120,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.businessInfo = businessInfo
         self.canBeCalled = canBeCalled
         self.giftCount = giftCount
+        self.giftSettings = giftSettings
         self.groupInCommonCount = groupInCommonCount
         self.hasPostedToProfileStories = hasPostedToProfileStories
         self.hasPrivateCalls = hasPrivateCalls

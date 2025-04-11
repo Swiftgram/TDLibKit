@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.46-b498497b
-//  https://github.com/tdlib/td/tree/b498497b
+//  Based on TDLib 1.8.47-a03a9047
+//  https://github.com/tdlib/td/tree/a03a9047
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Backdrop of the upgraded gift
     public let backdrop: UpgradedGiftBackdrop
 
-    /// Address of the gift NFT in TON blockchain; may be empty if none
+    /// Address of the gift NFT in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
     public let giftAddress: String
 
     /// Unique identifier of the gift
@@ -37,7 +37,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Information about the originally sent gift; may be null if unknown
     public let originalDetails: UpgradedGiftOriginalDetails?
 
-    /// Address of the gift NFT owner in TON blockchain; may be empty if none
+    /// Address of the gift NFT owner in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
     public let ownerAddress: String
 
     /// Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown
