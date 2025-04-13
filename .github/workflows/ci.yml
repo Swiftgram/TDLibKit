@@ -25,14 +25,14 @@ concurrency:
 
 env:
   TDLIB_REPO: https://github.com/tdlib/td
-  DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_16.0.app/Contents/Developer
 
 permissions:
   contents: write
 
 jobs:
   update:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,26 +52,26 @@ jobs:
           if-no-files-found: error
 
   test:
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [update]
     strategy:
       matrix:
         include:
           - platform: "macOS"
           - platform: "iOS-simulator"
-            os_list: "17.2"
-            device_name: "iPhone 15"
+            os_list: "18.0"
+            device_name: "iPhone 16"
           - platform: "tvOS-simulator"
-            os_list: "17.2"
+            os_list: "18.0"
             device_name: "Apple TV 4K (3rd generation) (at 1080p)"
           # Became much slower on CI with macos-14 images, while working fine locally
           # we will only build them
           - platform: "watchOS-simulator"
-            os_list: "10.2"
-            device_name: "Apple Watch Series 9 (45mm)"
+            os_list: "11.0"
+            device_name: "Apple Watch Series 10 (46mm)"
             action: "build"
           - platform: "visionOS-simulator"
-            os_list: "1.0"
+            os_list: "2.0"
             device_name: "Apple Vision Pro"
             action: "build"
     steps:
@@ -88,7 +88,7 @@ jobs:
   
   release:
     if: ${{ github.ref == 'refs/heads/main' }}
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [test]
     steps:
       - name: Setup Git
