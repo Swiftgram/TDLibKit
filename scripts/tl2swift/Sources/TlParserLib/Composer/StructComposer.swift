@@ -31,7 +31,7 @@ final class StructComposer: Composer {
     // MARK: - Private methods
     
     private func composeStruct(classInfo: ClassInfo) -> String {
-        let structName = classInfo.name.capitalizedFirstLetter
+        let structName = TypesHelper.resolveAmbiguousType(classInfo.name.capitalizedFirstLetter)
         let protocols = protocolConformance(for: structName, using: classInfo.properties)
         let props = composeStructProperties(classInfo.properties)
         let structInit = composeInit(classInfo.properties)

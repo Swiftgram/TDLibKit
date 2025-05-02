@@ -13,7 +13,7 @@ struct TypesHelper {
     /// - Parameter tlType: TL type
     /// - Parameter optional: can be optional
     static func getType(_ tlType: String, optional: Bool = false) -> String {
-        let resultType: String
+        var resultType: String
         if tlType.hasPrefix("vector") {
             let startIdx = tlType.firstIndex(of: "<")  ?? tlType.startIndex
             let endIdx = tlType.lastIndex(of: ">") ?? tlType.endIndex
@@ -22,7 +22,7 @@ struct TypesHelper {
         } else if let primitive = mapPrimitiveType(tlType) {
             resultType = primitive
         } else {
-            resultType = tlType.capitalizedFirstLetter
+            resultType = resolveAmbiguousType(tlType.capitalizedFirstLetter)
         }
         return optional ? "\(resultType)?" : resultType
     }
@@ -48,6 +48,18 @@ struct TypesHelper {
             return "`\(keyword)`"
         }
         return keyword
+    }
+
+    private static func mapAmbiguousType(_ tlType: String) -> String? {
+        let mapping = [
+            "Data": "TdData",
+            // NOTE: Remember to edit DtoComposer.swift if you add new mappings here
+        ]
+        return mapping[tlType]
+    }
+
+    static func resolveAmbiguousType(_ tlType: String) -> String {
+        return mapAmbiguousType(tlType) ?? tlType
     }
     
 }

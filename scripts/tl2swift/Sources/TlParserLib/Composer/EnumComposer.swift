@@ -40,7 +40,7 @@ final class EnumComposer: Composer {
         }
 
         return composedEnum
-            .addLine("public indirect enum \(enumInfo.enumType): Codable, Equatable, Hashable {")
+            .addLine("public indirect enum \(TypesHelper.resolveAmbiguousType(enumInfo.enumType)): Codable, Equatable, Hashable {")
             .addBlankLine()
             .append(cases.indent())
             .addBlankLine()
@@ -62,7 +62,7 @@ final class EnumComposer: Composer {
         for item in items {
             result = result.addLine("/// \(item.description)")
             if let assocClass = item.associatedClassName {
-                result = result.addLine("case \(item.name)(\(assocClass))")
+                result = result.addLine("case \(item.name)(\(TypesHelper.resolveAmbiguousType(assocClass)))")
             } else {
                 result = result.addLine("case \(item.name)")
             }
@@ -96,7 +96,7 @@ final class EnumComposer: Composer {
         for item in items {
             result = result.addLine("case .\(item.name):")
             if let assocStruct = item.associatedClassName {
-                result = result.addLine("let value = try \(assocStruct)(from: decoder)".indent())
+                result = result.addLine("let value = try \(TypesHelper.resolveAmbiguousType(assocStruct))(from: decoder)".indent())
                 result = result.addLine("self = .\(item.name)(value)".indent())
             } else {
                 result = result.addLine("self = .\(item.name)".indent())

@@ -163,6 +163,37 @@ class TDLibKitUnitTests: XCTestCase {
         XCTAssertNotEqual(error1, error2)
         XCTAssertNotEqual(error1, error3)
     }
+    
+    func testTdDataDecoder() {
+        let api = TDLibApi()
+        let dataString = """
+        {"@type":"data","@extra":"someExtraInfo","data":"AQIDBAUGBwgJCg=="}
+        """.data(using: .utf8)!
+        let dataObj = try! api.decoder.decode(DTO<TdData>.self, from: dataString)
+        
+        XCTAssertEqual(dataObj.type, "data")
+        XCTAssertEqual(dataObj.extra, Optional("someExtraInfo"))
+        XCTAssertEqual(dataObj.payload.data, Data(base64Encoded: "AQIDBAUGBwgJCg=="))
+    }
+    
+    func testTdDataEncoder() {
+        let api = TDLibApi()
+        let data = Data(base64Encoded: "AQIDBAUGBwgJCg==")!
+        let tdData = TdData(data: data)
+        let dto = DTO(tdData, encoder: api.encoder)
+
+        let encodedData = try! dto.make(with: "someExtraInfo")
+        let encodedJson = try! JSONSerialization.jsonObject(with: encodedData) as! [String: Any]
+
+        let expectedJsonString = """
+        {"@extra":"someExtraInfo","@type":"data","data":"AQIDBAUGBwgJCg=="}
+        """
+        let expectedData = expectedJsonString.data(using: .utf8)!
+        let expectedJson = try! JSONSerialization.jsonObject(with: expectedData) as! [String: Any]
+
+        XCTAssertEqual(encodedJson as NSDictionary, expectedJson as NSDictionary)
+    }
+
 }
 
 @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

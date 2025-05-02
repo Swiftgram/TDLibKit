@@ -103,6 +103,7 @@ final class MethodsComposer: Composer {
     }
     
     private func composeMethod(_ info: ClassInfo, swiftAsync: Bool = false) -> String {
+        let returnType = TypesHelper.getType(info.rootName)
         var paramsList = [String]()
         for param in info.properties {
             let type = TypesHelper.getType(param.type, optional: param.optional)
@@ -114,14 +115,14 @@ final class MethodsComposer: Composer {
                 paramsList[paramsList.count - 1] = String(paramsList[paramsList.count - 1].dropLast())
             }
         } else {
-            paramsList.append("completion: @escaping (Result<\(info.rootName), Swift.Error>) -> Void")
+            paramsList.append("completion: @escaping (Result<\(returnType), Swift.Error>) -> Void")
         }
         
         var result = composeComment(info)
         if swiftAsync {
             result = result.addLine(Constants.asyncAvailableString)
         }
-        if swiftAsync && info.rootName == "Ok" {
+        if swiftAsync && returnType == "Ok" {
             result = result.addLine("@discardableResult")
         }
         let methodScope: String
@@ -136,13 +137,13 @@ final class MethodsComposer: Composer {
                 .addLine("\(methodScope) func \(info.name)(")
                 .append(params)
             if swiftAsync {
-                result = result.addLine(") async throws -> \(info.rootName) {")
+                result = result.addLine(") async throws -> \(returnType) {")
             } else {
                 result = result.addLine(") throws {")
             }
         } else {
             if swiftAsync {
-                result = result.addLine("\(methodScope) func \(info.name)(\(paramsList.first ?? "")) async throws -> \(info.rootName) {")
+                result = result.addLine("\(methodScope) func \(info.name)(\(paramsList.first ?? "")) async throws -> \(returnType) {")
             } else {
                 result = result.addLine("\(methodScope) func \(info.name)(\(paramsList.first ?? "")) throws {")
             }
