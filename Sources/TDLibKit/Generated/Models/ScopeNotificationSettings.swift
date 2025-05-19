@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
     /// True, if message content must be displayed in notifications
     public let showPreview: Bool
 
-    /// True, if the sender of stories must be displayed in notifications
-    public let showStorySender: Bool
+    /// True, if the chat that posted a story must be displayed in notifications
+    public let showStoryPoster: Bool
 
     /// Identifier of the notification sound to be played; 0 if sound is disabled
     public let soundId: TdInt64
@@ -47,7 +47,7 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
         muteFor: Int,
         muteStories: Bool,
         showPreview: Bool,
-        showStorySender: Bool,
+        showStoryPoster: Bool,
         soundId: TdInt64,
         storySoundId: TdInt64,
         useDefaultMuteStories: Bool
@@ -57,7 +57,7 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
         self.muteFor = muteFor
         self.muteStories = muteStories
         self.showPreview = showPreview
-        self.showStorySender = showStorySender
+        self.showStoryPoster = showStoryPoster
         self.soundId = soundId
         self.storySoundId = storySoundId
         self.useDefaultMuteStories = useDefaultMuteStories

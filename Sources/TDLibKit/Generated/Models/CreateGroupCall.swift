@@ -3,22 +3,22 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Creates a group call from a one-to-one call
+/// Creates a new group call that isn't bound to a chat
 public struct CreateGroupCall: Codable, Equatable, Hashable {
 
-    /// Call identifier
-    public let callId: Int?
+    /// Parameters to join the call; pass null to only create call link without joining the call
+    public let joinParameters: GroupCallJoinParameters?
 
 
-    public init(callId: Int?) {
-        self.callId = callId
+    public init(joinParameters: GroupCallJoinParameters?) {
+        self.joinParameters = joinParameters
     }
 }
 

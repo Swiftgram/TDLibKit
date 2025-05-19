@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -12,9 +12,6 @@ import Foundation
 
 /// Describes a call
 public struct Call: Codable, Equatable, Hashable, Identifiable {
-
-    /// Identifier of the group call associated with the call; 0 if the group call isn't created yet. The group call can be received through the method getGroupCall
-    public let groupCallId: Int
 
     /// Call identifier, not persistent
     public let id: Int
@@ -33,14 +30,12 @@ public struct Call: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
-        groupCallId: Int,
         id: Int,
         isOutgoing: Bool,
         isVideo: Bool,
         state: CallState,
         userId: Int64
     ) {
-        self.groupCallId = groupCallId
         self.id = id
         self.isOutgoing = isOutgoing
         self.isVideo = isVideo

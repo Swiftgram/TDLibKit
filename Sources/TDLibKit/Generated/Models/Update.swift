@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -274,6 +274,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
     case updateGroupCallParticipant(UpdateGroupCallParticipant)
 
+    /// The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+    case updateGroupCallParticipants(UpdateGroupCallParticipants)
+
+    /// The verification state of an encrypted group call has changed; for group calls not bound to a chat only
+    case updateGroupCallVerificationState(UpdateGroupCallVerificationState)
+
     /// New call signaling data arrived
     case updateNewCallSignalingData(UpdateNewCallSignalingData)
 
@@ -292,11 +298,11 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A story became inaccessible
     case updateStoryDeleted(UpdateStoryDeleted)
 
-    /// A story has been successfully sent
-    case updateStorySendSucceeded(UpdateStorySendSucceeded)
+    /// A story has been successfully posted
+    case updateStoryPostSucceeded(UpdateStoryPostSucceeded)
 
-    /// A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
-    case updateStorySendFailed(UpdateStorySendFailed)
+    /// A story failed to post. If the story posting is canceled, then updateStoryDeleted will be received instead of this update
+    case updateStoryPostFailed(UpdateStoryPostFailed)
 
     /// The list of active stories posted by a specific chat has changed
     case updateChatActiveStories(UpdateChatActiveStories)
@@ -567,14 +573,16 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateCall
         case updateGroupCall
         case updateGroupCallParticipant
+        case updateGroupCallParticipants
+        case updateGroupCallVerificationState
         case updateNewCallSignalingData
         case updateUserPrivacySettingRules
         case updateUnreadMessageCount
         case updateUnreadChatCount
         case updateStory
         case updateStoryDeleted
-        case updateStorySendSucceeded
-        case updateStorySendFailed
+        case updateStoryPostSucceeded
+        case updateStoryPostFailed
         case updateChatActiveStories
         case updateStoryListChatCount
         case updateStoryStealthMode
@@ -902,6 +910,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateGroupCallParticipant:
             let value = try UpdateGroupCallParticipant(from: decoder)
             self = .updateGroupCallParticipant(value)
+        case .updateGroupCallParticipants:
+            let value = try UpdateGroupCallParticipants(from: decoder)
+            self = .updateGroupCallParticipants(value)
+        case .updateGroupCallVerificationState:
+            let value = try UpdateGroupCallVerificationState(from: decoder)
+            self = .updateGroupCallVerificationState(value)
         case .updateNewCallSignalingData:
             let value = try UpdateNewCallSignalingData(from: decoder)
             self = .updateNewCallSignalingData(value)
@@ -920,12 +934,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStoryDeleted:
             let value = try UpdateStoryDeleted(from: decoder)
             self = .updateStoryDeleted(value)
-        case .updateStorySendSucceeded:
-            let value = try UpdateStorySendSucceeded(from: decoder)
-            self = .updateStorySendSucceeded(value)
-        case .updateStorySendFailed:
-            let value = try UpdateStorySendFailed(from: decoder)
-            self = .updateStorySendFailed(value)
+        case .updateStoryPostSucceeded:
+            let value = try UpdateStoryPostSucceeded(from: decoder)
+            self = .updateStoryPostSucceeded(value)
+        case .updateStoryPostFailed:
+            let value = try UpdateStoryPostFailed(from: decoder)
+            self = .updateStoryPostFailed(value)
         case .updateChatActiveStories:
             let value = try UpdateChatActiveStories(from: decoder)
             self = .updateChatActiveStories(value)
@@ -1373,6 +1387,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateGroupCallParticipant(let value):
             try container.encode(Kind.updateGroupCallParticipant, forKey: .type)
             try value.encode(to: encoder)
+        case .updateGroupCallParticipants(let value):
+            try container.encode(Kind.updateGroupCallParticipants, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateGroupCallVerificationState(let value):
+            try container.encode(Kind.updateGroupCallVerificationState, forKey: .type)
+            try value.encode(to: encoder)
         case .updateNewCallSignalingData(let value):
             try container.encode(Kind.updateNewCallSignalingData, forKey: .type)
             try value.encode(to: encoder)
@@ -1391,11 +1411,11 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStoryDeleted(let value):
             try container.encode(Kind.updateStoryDeleted, forKey: .type)
             try value.encode(to: encoder)
-        case .updateStorySendSucceeded(let value):
-            try container.encode(Kind.updateStorySendSucceeded, forKey: .type)
+        case .updateStoryPostSucceeded(let value):
+            try container.encode(Kind.updateStoryPostSucceeded, forKey: .type)
             try value.encode(to: encoder)
-        case .updateStorySendFailed(let value):
-            try container.encode(Kind.updateStorySendFailed, forKey: .type)
+        case .updateStoryPostFailed(let value):
+            try container.encode(Kind.updateStoryPostFailed, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatActiveStories(let value):
             try container.encode(Kind.updateChatActiveStories, forKey: .type)
@@ -2695,6 +2715,9 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
     /// True, if the topic is pinned in the topic list
     public let isPinned: Bool
 
+    /// Identifier of the last read incoming message
+    public let lastReadInboxMessageId: Int64
+
     /// Identifier of the last read outgoing message
     public let lastReadOutboxMessageId: Int64
 
@@ -2708,12 +2731,14 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
     public init(
         chatId: Int64,
         isPinned: Bool,
+        lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
         messageThreadId: Int64,
         notificationSettings: ChatNotificationSettings
     ) {
         self.chatId = chatId
         self.isPinned = isPinned
+        self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
         self.messageThreadId = messageThreadId
         self.notificationSettings = notificationSettings
@@ -3258,7 +3283,7 @@ public struct UpdateCall: Codable, Equatable, Hashable {
 /// Information about a group call was updated
 public struct UpdateGroupCall: Codable, Equatable, Hashable {
 
-    /// New data about a group call
+    /// New data about the group call
     public let groupCall: GroupCall
 
 
@@ -3270,10 +3295,10 @@ public struct UpdateGroupCall: Codable, Equatable, Hashable {
 /// Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
 public struct UpdateGroupCallParticipant: Codable, Equatable, Hashable {
 
-    /// Identifier of group call
+    /// Identifier of the group call
     public let groupCallId: Int
 
-    /// New data about a participant
+    /// New data about the participant
     public let participant: GroupCallParticipant
 
 
@@ -3283,6 +3308,49 @@ public struct UpdateGroupCallParticipant: Codable, Equatable, Hashable {
     ) {
         self.groupCallId = groupCallId
         self.participant = participant
+    }
+}
+
+/// The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+public struct UpdateGroupCallParticipants: Codable, Equatable, Hashable {
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+    /// New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown. The participants must be shown in the list of group call participants even there is no information about them
+    public let participantUserIds: [TdInt64]
+
+
+    public init(
+        groupCallId: Int,
+        participantUserIds: [TdInt64]
+    ) {
+        self.groupCallId = groupCallId
+        self.participantUserIds = participantUserIds
+    }
+}
+
+/// The verification state of an encrypted group call has changed; for group calls not bound to a chat only
+public struct UpdateGroupCallVerificationState: Codable, Equatable, Hashable {
+
+    /// Group call state fingerprint represented as 4 emoji; may be empty if the state isn't verified yet
+    public let emojis: [String]
+
+    /// The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different
+    public let generation: Int
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+
+    public init(
+        emojis: [String],
+        generation: Int,
+        groupCallId: Int
+    ) {
+        self.emojis = emojis
+        self.generation = generation
+        self.groupCallId = groupCallId
     }
 }
 
@@ -3406,25 +3474,25 @@ public struct UpdateStoryDeleted: Codable, Equatable, Hashable {
     public let storyId: Int
 
     /// Identifier of the chat that posted the story
-    public let storySenderChatId: Int64
+    public let storyPosterChatId: Int64
 
 
     public init(
         storyId: Int,
-        storySenderChatId: Int64
+        storyPosterChatId: Int64
     ) {
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
     }
 }
 
-/// A story has been successfully sent
-public struct UpdateStorySendSucceeded: Codable, Equatable, Hashable {
+/// A story has been successfully posted
+public struct UpdateStoryPostSucceeded: Codable, Equatable, Hashable {
 
     /// The previous temporary story identifier
     public let oldStoryId: Int
 
-    /// The sent story
+    /// The posted story
     public let story: Story
 
 
@@ -3437,22 +3505,22 @@ public struct UpdateStorySendSucceeded: Codable, Equatable, Hashable {
     }
 }
 
-/// A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
-public struct UpdateStorySendFailed: Codable, Equatable, Hashable {
+/// A story failed to post. If the story posting is canceled, then updateStoryDeleted will be received instead of this update
+public struct UpdateStoryPostFailed: Codable, Equatable, Hashable {
 
-    /// The cause of the story sending failure
+    /// The cause of the story posting failure
     public let error: Error
 
     /// Type of the error; may be null if unknown
-    public let errorType: CanSendStoryResult?
+    public let errorType: CanPostStoryResult?
 
-    /// The failed to send story
+    /// The failed to post story
     public let story: Story
 
 
     public init(
         error: Error,
-        errorType: CanSendStoryResult?,
+        errorType: CanPostStoryResult?,
         story: Story
     ) {
         self.error = error

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -167,13 +167,13 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
     /// Mean number of times the recently sent messages were viewed
     public let meanMessageViewCount: StatisticalValue
 
-    /// Mean number of times reactions were added to the recently sent stories
+    /// Mean number of times reactions were added to the recently posted stories
     public let meanStoryReactionCount: StatisticalValue
 
-    /// Mean number of times the recently sent stories were shared
+    /// Mean number of times the recently posted stories were shared
     public let meanStoryShareCount: StatisticalValue
 
-    /// Mean number of times the recently sent stories were viewed
+    /// Mean number of times the recently posted stories were viewed
     public let meanStoryViewCount: StatisticalValue
 
     /// Number of members in the chat
@@ -194,7 +194,7 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
     /// A period to which the statistics applies
     public let period: DateRange
 
-    /// Detailed statistics about number of views and shares of recently sent messages and stories
+    /// Detailed statistics about number of views and shares of recently sent messages and posted stories
     public let recentInteractions: [ChatStatisticsInteractionInfo]
 
     /// A graph containing number of story views and shares

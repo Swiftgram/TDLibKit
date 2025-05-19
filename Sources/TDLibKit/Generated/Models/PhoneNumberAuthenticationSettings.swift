@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
     /// For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
     public let allowSmsRetrieverApi: Bool
 
-    /// List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions
+    /// List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions; for setAuthenticationPhoneNumber only
     public let authenticationTokens: [String]
 
     /// For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -54,6 +54,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a video file
     case linkPreviewTypeExternalVideo(LinkPreviewTypeExternalVideo)
+
+    /// The link is a link to a group call that isn't bound to a chat
+    case linkPreviewTypeGroupCall
 
     /// The link is a link to an invoice
     case linkPreviewTypeInvoice
@@ -125,6 +128,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeEmbeddedVideoPlayer
         case linkPreviewTypeExternalAudio
         case linkPreviewTypeExternalVideo
+        case linkPreviewTypeGroupCall
         case linkPreviewTypeInvoice
         case linkPreviewTypeMessage
         case linkPreviewTypePhoto
@@ -191,6 +195,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeExternalVideo:
             let value = try LinkPreviewTypeExternalVideo(from: decoder)
             self = .linkPreviewTypeExternalVideo(value)
+        case .linkPreviewTypeGroupCall:
+            self = .linkPreviewTypeGroupCall
         case .linkPreviewTypeInvoice:
             self = .linkPreviewTypeInvoice
         case .linkPreviewTypeMessage:
@@ -288,6 +294,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeExternalVideo(let value):
             try container.encode(Kind.linkPreviewTypeExternalVideo, forKey: .type)
             try value.encode(to: encoder)
+        case .linkPreviewTypeGroupCall:
+            try container.encode(Kind.linkPreviewTypeGroupCall, forKey: .type)
         case .linkPreviewTypeInvoice:
             try container.encode(Kind.linkPreviewTypeInvoice, forKey: .type)
         case .linkPreviewTypeMessage:
@@ -678,15 +686,15 @@ public struct LinkPreviewTypeStory: Codable, Equatable, Hashable {
     public let storyId: Int
 
     /// The identifier of the chat that posted the story
-    public let storySenderChatId: Int64
+    public let storyPosterChatId: Int64
 
 
     public init(
         storyId: Int,
-        storySenderChatId: Int64
+        storyPosterChatId: Int64
     ) {
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -82,6 +82,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is an upgrade of a gift; for regular users only
     case starTransactionTypeGiftUpgrade(StarTransactionTypeGiftUpgrade)
 
+    /// The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+    case starTransactionTypeUpgradedGiftPurchase(StarTransactionTypeUpgradedGiftPurchase)
+
+    /// The transaction is a sale of an upgraded gift; for regular users only
+    case starTransactionTypeUpgradedGiftSale(StarTransactionTypeUpgradedGiftSale)
+
     /// The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only
     case starTransactionTypeChannelPaidReactionSend(StarTransactionTypeChannelPaidReactionSend)
 
@@ -134,6 +140,8 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypeGiftTransfer
         case starTransactionTypeGiftSale
         case starTransactionTypeGiftUpgrade
+        case starTransactionTypeUpgradedGiftPurchase
+        case starTransactionTypeUpgradedGiftSale
         case starTransactionTypeChannelPaidReactionSend
         case starTransactionTypeChannelPaidReactionReceive
         case starTransactionTypeAffiliateProgramCommission
@@ -213,6 +221,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeGiftUpgrade:
             let value = try StarTransactionTypeGiftUpgrade(from: decoder)
             self = .starTransactionTypeGiftUpgrade(value)
+        case .starTransactionTypeUpgradedGiftPurchase:
+            let value = try StarTransactionTypeUpgradedGiftPurchase(from: decoder)
+            self = .starTransactionTypeUpgradedGiftPurchase(value)
+        case .starTransactionTypeUpgradedGiftSale:
+            let value = try StarTransactionTypeUpgradedGiftSale(from: decoder)
+            self = .starTransactionTypeUpgradedGiftSale(value)
         case .starTransactionTypeChannelPaidReactionSend:
             let value = try StarTransactionTypeChannelPaidReactionSend(from: decoder)
             self = .starTransactionTypeChannelPaidReactionSend(value)
@@ -308,6 +322,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .starTransactionTypeGiftUpgrade(let value):
             try container.encode(Kind.starTransactionTypeGiftUpgrade, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeUpgradedGiftPurchase(let value):
+            try container.encode(Kind.starTransactionTypeUpgradedGiftPurchase, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeUpgradedGiftSale(let value):
+            try container.encode(Kind.starTransactionTypeUpgradedGiftSale, forKey: .type)
             try value.encode(to: encoder)
         case .starTransactionTypeChannelPaidReactionSend(let value):
             try container.encode(Kind.starTransactionTypeChannelPaidReactionSend, forKey: .type)
@@ -712,6 +732,49 @@ public struct StarTransactionTypeGiftUpgrade: Codable, Equatable, Hashable {
         gift: UpgradedGift,
         userId: Int64
     ) {
+        self.gift = gift
+        self.userId = userId
+    }
+}
+
+/// The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+public struct StarTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// Identifier of the user that sold the gift
+    public let userId: Int64
+
+
+    public init(
+        gift: UpgradedGift,
+        userId: Int64
+    ) {
+        self.gift = gift
+        self.userId = userId
+    }
+}
+
+/// The transaction is a sale of an upgraded gift; for regular users only
+public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
+
+    /// Information about commission received by Telegram from the transaction
+    public let affiliate: AffiliateInfo
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// Identifier of the user that bought the gift
+    public let userId: Int64
+
+
+    public init(
+        affiliate: AffiliateInfo,
+        gift: UpgradedGift,
+        userId: Int64
+    ) {
+        self.affiliate = affiliate
         self.gift = gift
         self.userId = userId
     }

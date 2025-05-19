@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -65,7 +65,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
     /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
     case inputMessagePoll(InputMessagePoll)
 
-    /// A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+    /// A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
     case inputMessageStory(InputMessageStory)
 
     /// A forwarded message
@@ -840,22 +840,22 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+/// A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
 public struct InputMessageStory: Codable, Equatable, Hashable {
 
     /// Story identifier
     public let storyId: Int
 
     /// Identifier of the chat that posted the story
-    public let storySenderChatId: Int64
+    public let storyPosterChatId: Int64
 
 
     public init(
         storyId: Int,
-        storySenderChatId: Int64
+        storyPosterChatId: Int64
     ) {
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
     }
 }
 

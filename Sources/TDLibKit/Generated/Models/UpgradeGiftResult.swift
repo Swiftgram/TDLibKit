@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -25,6 +25,12 @@ public struct UpgradeGiftResult: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the user's or the channel's profile page
     public let isSaved: Bool
 
+    /// Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
+    public let nextResaleDate: Int
+
+    /// Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible
+    public let nextTransferDate: Int
+
     /// Unique identifier of the received gift for the current user
     public let receivedGiftId: String
 
@@ -37,6 +43,8 @@ public struct UpgradeGiftResult: Codable, Equatable, Hashable {
         exportDate: Int,
         gift: UpgradedGift,
         isSaved: Bool,
+        nextResaleDate: Int,
+        nextTransferDate: Int,
         receivedGiftId: String,
         transferStarCount: Int64
     ) {
@@ -44,6 +52,8 @@ public struct UpgradeGiftResult: Codable, Equatable, Hashable {
         self.exportDate = exportDate
         self.gift = gift
         self.isSaved = isSaved
+        self.nextResaleDate = nextResaleDate
+        self.nextTransferDate = nextTransferDate
         self.receivedGiftId = receivedGiftId
         self.transferStarCount = transferStarCount
     }

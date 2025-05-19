@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct GetStoryPublicForwards: Codable, Equatable, Hashable {
     /// The identifier of the story
     public let storyId: Int?
 
-    /// The identifier of the sender of the story
-    public let storySenderChatId: Int64?
+    /// The identifier of the poster of the story
+    public let storyPosterChatId: Int64?
 
 
     public init(
         limit: Int?,
         offset: String?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) {
         self.limit = limit
         self.offset = offset
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
     }
 }
 

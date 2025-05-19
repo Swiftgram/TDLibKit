@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
 
     /// True, if sponsored messages can be disabled in the chat
     public let canDisableSponsoredMessages: Bool
+
+    /// True, if automatic translation of messages can be enabled in the chat
+    public let canEnableAutomaticTranslation: Bool
 
     /// True, if speech recognition can be used for video note and voice note messages by all users
     public let canRecognizeSpeech: Bool
@@ -59,6 +62,7 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
     public init(
         accentColorCount: Int,
         canDisableSponsoredMessages: Bool,
+        canEnableAutomaticTranslation: Bool,
         canRecognizeSpeech: Bool,
         canSetBackgroundCustomEmoji: Bool,
         canSetCustomBackground: Bool,
@@ -74,6 +78,7 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
     ) {
         self.accentColorCount = accentColorCount
         self.canDisableSponsoredMessages = canDisableSponsoredMessages
+        self.canEnableAutomaticTranslation = canEnableAutomaticTranslation
         self.canRecognizeSpeech = canRecognizeSpeech
         self.canSetBackgroundCustomEmoji = canSetBackgroundCustomEmoji
         self.canSetCustomBackground = canSetCustomBackground

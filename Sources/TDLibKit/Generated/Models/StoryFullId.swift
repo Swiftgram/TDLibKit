@@ -3,28 +3,28 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Contains identifier of a story along with identifier of its sender
+/// Contains identifier of a story along with identifier of the chat that posted it
 public struct StoryFullId: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that posted the story
-    public let senderChatId: Int64
+    public let posterChatId: Int64
 
-    /// Unique story identifier among stories of the given sender
+    /// Unique story identifier among stories of the chat
     public let storyId: Int
 
 
     public init(
-        senderChatId: Int64,
+        posterChatId: Int64,
         storyId: Int
     ) {
-        self.senderChatId = senderChatId
+        self.posterChatId = posterChatId
         self.storyId = storyId
     }
 }

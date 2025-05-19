@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -2962,7 +2962,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
@@ -2981,7 +2981,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+    /// Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter onlyMissed: Pass true to search only for messages with missed/declined calls
@@ -3073,20 +3073,20 @@ public final class TdApi {
     /// Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
     /// - Parameter tag: Hashtag or cashtag to search for
     /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     public func searchPublicStoriesByTag(
         limit: Int?,
         offset: String?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         tag: String?,
         completion: @escaping (Result<FoundStories, Swift.Error>) -> Void
     ) throws {
         let query = SearchPublicStoriesByTag(
             limit: limit,
             offset: offset,
-            storySenderChatId: storySenderChatId,
+            storyPosterChatId: storyPosterChatId,
             tag: tag
         )
         self.execute(query: query, completion: completion)
@@ -3095,20 +3095,20 @@ public final class TdApi {
     /// Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
     /// - Parameter tag: Hashtag or cashtag to search for
     /// - Returns: For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchPublicStoriesByTag(
         limit: Int?,
         offset: String?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         tag: String?
     ) async throws -> FoundStories {
         let query = SearchPublicStoriesByTag(
             limit: limit,
             offset: offset,
-            storySenderChatId: storySenderChatId,
+            storyPosterChatId: storyPosterChatId,
             tag: tag
         )
         return try await self.execute(query: query)
@@ -5704,20 +5704,20 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes a story sent by the bot on behalf of a business account; for bots only
+    /// Changes a story posted by the bot on behalf of a business account; for bots only
     /// - Parameter areas: New clickable rectangle areas to be shown on the story media
     /// - Parameter caption: New story caption
     /// - Parameter content: New content of the story
     /// - Parameter privacySettings: The new privacy settings for the story
     /// - Parameter storyId: Identifier of the story to edit
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     public func editBusinessStory(
         areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         privacySettings: StoryPrivacySettings?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Story, Swift.Error>) -> Void
     ) throws {
         let query = EditBusinessStory(
@@ -5726,18 +5726,18 @@ public final class TdApi {
             content: content,
             privacySettings: privacySettings,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes a story sent by the bot on behalf of a business account; for bots only
+    /// Changes a story posted by the bot on behalf of a business account; for bots only
     /// - Parameter areas: New clickable rectangle areas to be shown on the story media
     /// - Parameter caption: New story caption
     /// - Parameter content: New content of the story
     /// - Parameter privacySettings: The new privacy settings for the story
     /// - Parameter storyId: Identifier of the story to edit
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editBusinessStory(
         areas: InputStoryAreas?,
@@ -5745,7 +5745,7 @@ public final class TdApi {
         content: InputStoryContent?,
         privacySettings: StoryPrivacySettings?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Story {
         let query = EditBusinessStory(
             areas: areas,
@@ -5753,12 +5753,12 @@ public final class TdApi {
             content: content,
             privacySettings: privacySettings,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
 
-    /// Deletes a story sent by the bot on behalf of a business account; for bots only
+    /// Deletes a story posted by the bot on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
     /// - Parameter storyId: Identifier of the story to delete
     public func deleteBusinessStory(
@@ -5773,7 +5773,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Deletes a story sent by the bot on behalf of a business account; for bots only
+    /// Deletes a story posted by the bot on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
     /// - Parameter storyId: Identifier of the story to delete
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -11847,18 +11847,18 @@ public final class TdApi {
     /// Returns a story
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter storyId: Story identifier
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     /// - Returns: A story
     public func getStory(
         onlyLocal: Bool?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Story, Swift.Error>) -> Void
     ) throws {
         let query = GetStory(
             onlyLocal: onlyLocal,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
@@ -11866,60 +11866,60 @@ public final class TdApi {
     /// Returns a story
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter storyId: Story identifier
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     /// - Returns: A story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStory(
         onlyLocal: Bool?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Story {
         let query = GetStory(
             onlyLocal: onlyLocal,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
 
-    /// Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+    /// Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canPostStory before actually trying to post a story there
     /// - Returns: Supergroup and channel chats in which the current user has the right to post stories
-    public func getChatsToSendStories(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
-        let query = GetChatsToSendStories()
+    public func getChatsToPostStories(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
+        let query = GetChatsToPostStories()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+    /// Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canPostStory before actually trying to post a story there
     /// - Returns: Supergroup and channel chats in which the current user has the right to post stories
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getChatsToSendStories() async throws -> Chats {
-        let query = GetChatsToSendStories()
+    public func getChatsToPostStories() async throws -> Chats {
+        let query = GetChatsToPostStories()
         return try await self.execute(query: query)
     }
 
-    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
+    /// Checks whether the current user can post a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
     /// - Parameter chatId: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
-    public func canSendStory(
+    public func canPostStory(
         chatId: Int64?,
-        completion: @escaping (Result<CanSendStoryResult, Swift.Error>) -> Void
+        completion: @escaping (Result<CanPostStoryResult, Swift.Error>) -> Void
     ) throws {
-        let query = CanSendStory(
+        let query = CanPostStory(
             chatId: chatId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
+    /// Checks whether the current user can post a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
     /// - Parameter chatId: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func canSendStory(chatId: Int64?) async throws -> CanSendStoryResult {
-        let query = CanSendStory(
+    public func canPostStory(chatId: Int64?) async throws -> CanPostStoryResult {
+        let query = CanPostStory(
             chatId: chatId
         )
         return try await self.execute(query: query)
     }
 
-    /// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
+    /// Posts a new story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
@@ -11927,10 +11927,10 @@ public final class TdApi {
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
-    /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
+    /// - Parameter privacySettings: The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
-    public func sendStory(
+    public func postStory(
         activePeriod: Int?,
         areas: InputStoryAreas?,
         caption: FormattedText?,
@@ -11942,7 +11942,7 @@ public final class TdApi {
         protectContent: Bool?,
         completion: @escaping (Result<Story, Swift.Error>) -> Void
     ) throws {
-        let query = SendStory(
+        let query = PostStory(
             activePeriod: activePeriod,
             areas: areas,
             caption: caption,
@@ -11956,7 +11956,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
+    /// Posts a new story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
@@ -11964,11 +11964,11 @@ public final class TdApi {
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
-    /// - Parameter privacySettings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
+    /// - Parameter privacySettings: The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func sendStory(
+    public func postStory(
         activePeriod: Int?,
         areas: InputStoryAreas?,
         caption: FormattedText?,
@@ -11979,7 +11979,7 @@ public final class TdApi {
         privacySettings: StoryPrivacySettings?,
         protectContent: Bool?
     ) async throws -> Story {
-        let query = SendStory(
+        let query = PostStory(
             activePeriod: activePeriod,
             areas: areas,
             caption: caption,
@@ -11998,13 +11998,13 @@ public final class TdApi {
     /// - Parameter caption: New story caption; pass null to keep the current caption
     /// - Parameter content: New content of the story; pass null to keep the current content
     /// - Parameter storyId: Identifier of the story to edit
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     public func editStory(
         areas: InputStoryAreas?,
         caption: FormattedText?,
         content: InputStoryContent?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditStory(
@@ -12012,7 +12012,7 @@ public final class TdApi {
             caption: caption,
             content: content,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
@@ -12022,7 +12022,7 @@ public final class TdApi {
     /// - Parameter caption: New story caption; pass null to keep the current caption
     /// - Parameter content: New content of the story; pass null to keep the current content
     /// - Parameter storyId: Identifier of the story to edit
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func editStory(
@@ -12030,14 +12030,14 @@ public final class TdApi {
         caption: FormattedText?,
         content: InputStoryContent?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Ok {
         let query = EditStory(
             areas: areas,
             caption: caption,
             content: content,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
@@ -12045,17 +12045,17 @@ public final class TdApi {
     /// Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
     /// - Parameter coverFrameTimestamp: New timestamp of the frame, which will be used as video thumbnail
     /// - Parameter storyId: Identifier of the story to edit
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     public func editStoryCover(
         coverFrameTimestamp: Double?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditStoryCover(
             coverFrameTimestamp: coverFrameTimestamp,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
@@ -12063,18 +12063,18 @@ public final class TdApi {
     /// Changes cover of a video story. Can be called only if story.can_be_edited == true and the story isn't being edited now
     /// - Parameter coverFrameTimestamp: New timestamp of the frame, which will be used as video thumbnail
     /// - Parameter storyId: Identifier of the story to edit
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func editStoryCover(
         coverFrameTimestamp: Double?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Ok {
         let query = EditStoryCover(
             coverFrameTimestamp: coverFrameTimestamp,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
@@ -12113,17 +12113,17 @@ public final class TdApi {
     /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
     /// - Parameter isPostedToChatPage: Pass true to make the story accessible after expiration; pass false to make it private
     /// - Parameter storyId: Identifier of the story
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     public func toggleStoryIsPostedToChatPage(
         isPostedToChatPage: Bool?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleStoryIsPostedToChatPage(
             isPostedToChatPage: isPostedToChatPage,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
@@ -12131,49 +12131,49 @@ public final class TdApi {
     /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
     /// - Parameter isPostedToChatPage: Pass true to make the story accessible after expiration; pass false to make it private
     /// - Parameter storyId: Identifier of the story
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func toggleStoryIsPostedToChatPage(
         isPostedToChatPage: Bool?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Ok {
         let query = ToggleStoryIsPostedToChatPage(
             isPostedToChatPage: isPostedToChatPage,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
 
-    /// Deletes a previously sent story. Can be called only if story.can_be_deleted == true
+    /// Deletes a previously posted story. Can be called only if story.can_be_deleted == true
     /// - Parameter storyId: Identifier of the story to delete
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     public func deleteStory(
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = DeleteStory(
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Deletes a previously sent story. Can be called only if story.can_be_deleted == true
+    /// Deletes a previously posted story. Can be called only if story.can_be_deleted == true
     /// - Parameter storyId: Identifier of the story to delete
-    /// - Parameter storySenderChatId: Identifier of the chat that posted the story
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func deleteStory(
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Ok {
         let query = DeleteStory(
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
@@ -12193,7 +12193,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_sender_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
+    /// Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_poster_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
     /// - Parameter storyList: The story list in which to load active stories
     /// - Returns: A 404 error if all active stories have been loaded
     public func loadActiveStories(
@@ -12206,7 +12206,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_sender_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
+    /// Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_poster_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
     /// - Parameter storyList: The story list in which to load active stories
     /// - Returns: A 404 error if all active stories have been loaded
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12382,62 +12382,62 @@ public final class TdApi {
 
     /// Informs TDLib that a story is opened and is being viewed by the user
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the opened story
+    /// - Parameter storyPosterChatId: The identifier of the chat that posted the opened story
     public func openStory(
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = OpenStory(
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Informs TDLib that a story is opened and is being viewed by the user
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the opened story
+    /// - Parameter storyPosterChatId: The identifier of the chat that posted the opened story
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func openStory(
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Ok {
         let query = OpenStory(
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
 
     /// Informs TDLib that a story is closed by the user
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the story to close
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story to close
     public func closeStory(
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CloseStory(
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Informs TDLib that a story is closed by the user
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the story to close
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story to close
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func closeStory(
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> Ok {
         let query = CloseStory(
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
@@ -12469,19 +12469,19 @@ public final class TdApi {
     /// Changes chosen reaction on a story that has already been sent
     /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
     public func setStoryReaction(
         reactionType: ReactionType?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         updateRecentReactions: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetStoryReaction(
             reactionType: reactionType,
             storyId: storyId,
-            storySenderChatId: storySenderChatId,
+            storyPosterChatId: storyPosterChatId,
             updateRecentReactions: updateRecentReactions
         )
         self.execute(query: query, completion: completion)
@@ -12490,20 +12490,20 @@ public final class TdApi {
     /// Changes chosen reaction on a story that has already been sent
     /// - Parameter reactionType: Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story
     /// - Parameter updateRecentReactions: Pass true if the reaction needs to be added to recent reactions
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setStoryReaction(
         reactionType: ReactionType?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         updateRecentReactions: Bool?
     ) async throws -> Ok {
         let query = SetStoryReaction(
             reactionType: reactionType,
             storyId: storyId,
-            storySenderChatId: storySenderChatId,
+            storyPosterChatId: storyPosterChatId,
             updateRecentReactions: updateRecentReactions
         )
         return try await self.execute(query: query)
@@ -12577,7 +12577,7 @@ public final class TdApi {
     /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
     /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
     /// - Parameter storyId: Story identifier
-    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story
     /// - Returns: Interactions with a story posted in a chat
     public func getChatStoryInteractions(
         limit: Int?,
@@ -12585,7 +12585,7 @@ public final class TdApi {
         preferForwards: Bool?,
         reactionType: ReactionType?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<StoryInteractions, Swift.Error>) -> Void
     ) throws {
         let query = GetChatStoryInteractions(
@@ -12594,7 +12594,7 @@ public final class TdApi {
             preferForwards: preferForwards,
             reactionType: reactionType,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
@@ -12605,7 +12605,7 @@ public final class TdApi {
     /// - Parameter preferForwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
     /// - Parameter reactionType: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
     /// - Parameter storyId: Story identifier
-    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story
     /// - Returns: Interactions with a story posted in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatStoryInteractions(
@@ -12614,7 +12614,7 @@ public final class TdApi {
         preferForwards: Bool?,
         reactionType: ReactionType?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> StoryInteractions {
         let query = GetChatStoryInteractions(
             limit: limit,
@@ -12622,7 +12622,7 @@ public final class TdApi {
             preferForwards: preferForwards,
             reactionType: reactionType,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
@@ -12630,19 +12630,19 @@ public final class TdApi {
     /// Reports a story to the Telegram moderators
     /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
     /// - Parameter storyId: The identifier of the story to report
-    /// - Parameter storySenderChatId: The identifier of the sender of the story to report
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story to report
     /// - Parameter text: Additional report details; 0-1024 characters; leave empty for the initial request
     public func reportStory(
         optionId: Data?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         text: String?,
         completion: @escaping (Result<ReportStoryResult, Swift.Error>) -> Void
     ) throws {
         let query = ReportStory(
             optionId: optionId,
             storyId: storyId,
-            storySenderChatId: storySenderChatId,
+            storyPosterChatId: storyPosterChatId,
             text: text
         )
         self.execute(query: query, completion: completion)
@@ -12651,19 +12651,19 @@ public final class TdApi {
     /// Reports a story to the Telegram moderators
     /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
     /// - Parameter storyId: The identifier of the story to report
-    /// - Parameter storySenderChatId: The identifier of the sender of the story to report
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story to report
     /// - Parameter text: Additional report details; 0-1024 characters; leave empty for the initial request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func reportStory(
         optionId: Data?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         text: String?
     ) async throws -> ReportStoryResult {
         let query = ReportStory(
             optionId: optionId,
             storyId: storyId,
-            storySenderChatId: storySenderChatId,
+            storyPosterChatId: storyPosterChatId,
             text: text
         )
         return try await self.execute(query: query)
@@ -12687,20 +12687,20 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story
     /// - Returns: Forwards of a story as a message to public chats and reposts by public channels. For optimal performance, the number of returned messages and stories is chosen by TDLib
     public func getStoryPublicForwards(
         limit: Int?,
         offset: String?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         completion: @escaping (Result<PublicForwards, Swift.Error>) -> Void
     ) throws {
         let query = GetStoryPublicForwards(
             limit: limit,
             offset: offset,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         self.execute(query: query, completion: completion)
     }
@@ -12709,20 +12709,20 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter storyId: The identifier of the story
-    /// - Parameter storySenderChatId: The identifier of the sender of the story
+    /// - Parameter storyPosterChatId: The identifier of the poster of the story
     /// - Returns: Forwards of a story as a message to public chats and reposts by public channels. For optimal performance, the number of returned messages and stories is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStoryPublicForwards(
         limit: Int?,
         offset: String?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) async throws -> PublicForwards {
         let query = GetStoryPublicForwards(
             limit: limit,
             offset: offset,
             storyId: storyId,
-            storySenderChatId: storySenderChatId
+            storyPosterChatId: storyPosterChatId
         )
         return try await self.execute(query: query)
     }
@@ -13474,7 +13474,7 @@ public final class TdApi {
         count: Int64?,
         fileId: Int?,
         offset: Int64?,
-        completion: @escaping (Result<FilePart, Swift.Error>) -> Void
+        completion: @escaping (Result<TdData, Swift.Error>) -> Void
     ) throws {
         let query = ReadFilePart(
             count: count,
@@ -13494,7 +13494,7 @@ public final class TdApi {
         count: Int64?,
         fileId: Int?,
         offset: Int64?
-    ) async throws -> FilePart {
+    ) async throws -> TdData {
         let query = ReadFilePart(
             count: count,
             fileId: fileId,
@@ -14479,19 +14479,16 @@ public final class TdApi {
     }
 
     /// Creates a new call
-    /// - Parameter groupCallId: Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
     /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
     public func createCall(
-        groupCallId: Int?,
         isVideo: Bool?,
         `protocol`: CallProtocol?,
         userId: Int64?,
         completion: @escaping (Result<CallId, Swift.Error>) -> Void
     ) throws {
         let query = CreateCall(
-            groupCallId: groupCallId,
             isVideo: isVideo,
             protocol: `protocol`,
             userId: userId
@@ -14500,19 +14497,16 @@ public final class TdApi {
     }
 
     /// Creates a new call
-    /// - Parameter groupCallId: Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
     /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
     /// - Parameter userId: Identifier of the user to be called
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createCall(
-        groupCallId: Int?,
         isVideo: Bool?,
         `protocol`: CallProtocol?,
         userId: Int64?
     ) async throws -> CallId {
         let query = CreateCall(
-            groupCallId: groupCallId,
             isVideo: isVideo,
             protocol: `protocol`,
             userId: userId
@@ -14586,12 +14580,14 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter connectionId: Identifier of the connection used during the call
     /// - Parameter duration: The call duration, in seconds
+    /// - Parameter inviteLink: If the call was upgraded to a group call, pass invite link to the group call
     /// - Parameter isDisconnected: Pass true if the user was disconnected
     /// - Parameter isVideo: Pass true if the call was a video call
     public func discardCall(
         callId: Int?,
         connectionId: TdInt64?,
         duration: Int?,
+        inviteLink: String?,
         isDisconnected: Bool?,
         isVideo: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -14600,6 +14596,7 @@ public final class TdApi {
             callId: callId,
             connectionId: connectionId,
             duration: duration,
+            inviteLink: inviteLink,
             isDisconnected: isDisconnected,
             isVideo: isVideo
         )
@@ -14610,6 +14607,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter connectionId: Identifier of the connection used during the call
     /// - Parameter duration: The call duration, in seconds
+    /// - Parameter inviteLink: If the call was upgraded to a group call, pass invite link to the group call
     /// - Parameter isDisconnected: Pass true if the user was disconnected
     /// - Parameter isVideo: Pass true if the call was a video call
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14618,6 +14616,7 @@ public final class TdApi {
         callId: Int?,
         connectionId: TdInt64?,
         duration: Int?,
+        inviteLink: String?,
         isDisconnected: Bool?,
         isVideo: Bool?
     ) async throws -> Ok {
@@ -14625,6 +14624,7 @@ public final class TdApi {
             callId: callId,
             connectionId: connectionId,
             duration: duration,
+            inviteLink: inviteLink,
             isDisconnected: isDisconnected,
             isVideo: isVideo
         )
@@ -14833,32 +14833,31 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Creates a group call from a one-to-one call
-    /// - Parameter callId: Call identifier
+    /// Creates a new group call that isn't bound to a chat
+    /// - Parameter joinParameters: Parameters to join the call; pass null to only create call link without joining the call
     public func createGroupCall(
-        callId: Int?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        joinParameters: GroupCallJoinParameters?,
+        completion: @escaping (Result<GroupCallInfo, Swift.Error>) -> Void
     ) throws {
         let query = CreateGroupCall(
-            callId: callId
+            joinParameters: joinParameters
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Creates a group call from a one-to-one call
-    /// - Parameter callId: Call identifier
+    /// Creates a new group call that isn't bound to a chat
+    /// - Parameter joinParameters: Parameters to join the call; pass null to only create call link without joining the call
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public func createGroupCall(callId: Int?) async throws -> Ok {
+    public func createGroupCall(joinParameters: GroupCallJoinParameters?) async throws -> GroupCallInfo {
         let query = CreateGroupCall(
-            callId: callId
+            joinParameters: joinParameters
         )
         return try await self.execute(query: query)
     }
 
-    /// Returns RTMP URL for streaming to the chat; requires can_manage_video_chats administrator right
+    /// Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Chat identifier
-    /// - Returns: RTMP URL for streaming to the chat
+    /// - Returns: RTMP URL for streaming to the video chat of a chat
     public func getVideoChatRtmpUrl(
         chatId: Int64?,
         completion: @escaping (Result<RtmpUrl, Swift.Error>) -> Void
@@ -14869,9 +14868,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns RTMP URL for streaming to the chat; requires can_manage_video_chats administrator right
+    /// Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Chat identifier
-    /// - Returns: RTMP URL for streaming to the chat
+    /// - Returns: RTMP URL for streaming to the video chat of a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getVideoChatRtmpUrl(chatId: Int64?) async throws -> RtmpUrl {
         let query = GetVideoChatRtmpUrl(
@@ -14880,7 +14879,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Replaces the current RTMP URL for streaming to the chat; requires owner privileges
+    /// Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat
     /// - Parameter chatId: Chat identifier
     public func replaceVideoChatRtmpUrl(
         chatId: Int64?,
@@ -14892,7 +14891,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Replaces the current RTMP URL for streaming to the chat; requires owner privileges
+    /// Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func replaceVideoChatRtmpUrl(chatId: Int64?) async throws -> RtmpUrl {
@@ -14926,124 +14925,130 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Starts a scheduled group call
-    /// - Parameter groupCallId: Group call identifier
-    public func startScheduledGroupCall(
+    /// Starts a scheduled video chat
+    /// - Parameter groupCallId: Group call identifier of the video chat
+    public func startScheduledVideoChat(
         groupCallId: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = StartScheduledGroupCall(
+        let query = StartScheduledVideoChat(
             groupCallId: groupCallId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Starts a scheduled group call
-    /// - Parameter groupCallId: Group call identifier
+    /// Starts a scheduled video chat
+    /// - Parameter groupCallId: Group call identifier of the video chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func startScheduledGroupCall(groupCallId: Int?) async throws -> Ok {
-        let query = StartScheduledGroupCall(
+    public func startScheduledVideoChat(groupCallId: Int?) async throws -> Ok {
+        let query = StartScheduledVideoChat(
             groupCallId: groupCallId
         )
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
+    /// Toggles whether the current user will receive a notification when the video chat starts; for scheduled video chats only
     /// - Parameter enabledStartNotification: New value of the enabled_start_notification setting
     /// - Parameter groupCallId: Group call identifier
-    public func toggleGroupCallEnabledStartNotification(
+    public func toggleVideoChatEnabledStartNotification(
         enabledStartNotification: Bool?,
         groupCallId: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ToggleGroupCallEnabledStartNotification(
+        let query = ToggleVideoChatEnabledStartNotification(
             enabledStartNotification: enabledStartNotification,
             groupCallId: groupCallId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
+    /// Toggles whether the current user will receive a notification when the video chat starts; for scheduled video chats only
     /// - Parameter enabledStartNotification: New value of the enabled_start_notification setting
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func toggleGroupCallEnabledStartNotification(
+    public func toggleVideoChatEnabledStartNotification(
         enabledStartNotification: Bool?,
         groupCallId: Int?
     ) async throws -> Ok {
-        let query = ToggleGroupCallEnabledStartNotification(
+        let query = ToggleVideoChatEnabledStartNotification(
             enabledStartNotification: enabledStartNotification,
             groupCallId: groupCallId
         )
         return try await self.execute(query: query)
     }
 
-    /// Joins an active group call. Returns join response payload for tgcalls
-    /// - Parameter audioSourceId: Caller audio channel synchronization source identifier; received from tgcalls
-    /// - Parameter groupCallId: Group call identifier
-    /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
-    /// - Parameter isMuted: Pass true to join the call with muted microphone
-    /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
-    /// - Parameter keyFingerprint: Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
-    /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
-    /// - Parameter payload: Group call join payload; received from tgcalls
-    /// - Returns: Join response payload for tgcalls
+    /// Joins a group call that is not bound to a chat
+    /// - Parameter inputGroupCall: The group call to join
+    /// - Parameter joinParameters: Parameters to join the call
     public func joinGroupCall(
-        audioSourceId: Int?,
-        groupCallId: Int?,
-        inviteHash: String?,
-        isMuted: Bool?,
-        isMyVideoEnabled: Bool?,
-        keyFingerprint: TdInt64?,
-        participantId: MessageSender?,
-        payload: String?,
-        completion: @escaping (Result<Text, Swift.Error>) -> Void
+        inputGroupCall: InputGroupCall?,
+        joinParameters: GroupCallJoinParameters?,
+        completion: @escaping (Result<GroupCallInfo, Swift.Error>) -> Void
     ) throws {
         let query = JoinGroupCall(
-            audioSourceId: audioSourceId,
-            groupCallId: groupCallId,
-            inviteHash: inviteHash,
-            isMuted: isMuted,
-            isMyVideoEnabled: isMyVideoEnabled,
-            keyFingerprint: keyFingerprint,
-            participantId: participantId,
-            payload: payload
+            inputGroupCall: inputGroupCall,
+            joinParameters: joinParameters
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Joins an active group call. Returns join response payload for tgcalls
-    /// - Parameter audioSourceId: Caller audio channel synchronization source identifier; received from tgcalls
-    /// - Parameter groupCallId: Group call identifier
-    /// - Parameter inviteHash: If non-empty, invite hash to be used to join the group call without being muted by administrators
-    /// - Parameter isMuted: Pass true to join the call with muted microphone
-    /// - Parameter isMyVideoEnabled: Pass true if the user's video is enabled
-    /// - Parameter keyFingerprint: Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
-    /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
-    /// - Parameter payload: Group call join payload; received from tgcalls
-    /// - Returns: Join response payload for tgcalls
+    /// Joins a group call that is not bound to a chat
+    /// - Parameter inputGroupCall: The group call to join
+    /// - Parameter joinParameters: Parameters to join the call
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func joinGroupCall(
-        audioSourceId: Int?,
+        inputGroupCall: InputGroupCall?,
+        joinParameters: GroupCallJoinParameters?
+    ) async throws -> GroupCallInfo {
+        let query = JoinGroupCall(
+            inputGroupCall: inputGroupCall,
+            joinParameters: joinParameters
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Joins an active video chat. Returns join response payload for tgcalls
+    /// - Parameter groupCallId: Group call identifier
+    /// - Parameter inviteHash: Invite hash as received from internalLinkTypeVideoChat
+    /// - Parameter joinParameters: Parameters to join the call
+    /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
+    /// - Returns: Join response payload for tgcalls
+    public func joinVideoChat(
         groupCallId: Int?,
         inviteHash: String?,
-        isMuted: Bool?,
-        isMyVideoEnabled: Bool?,
-        keyFingerprint: TdInt64?,
+        joinParameters: GroupCallJoinParameters?,
         participantId: MessageSender?,
-        payload: String?
-    ) async throws -> Text {
-        let query = JoinGroupCall(
-            audioSourceId: audioSourceId,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = JoinVideoChat(
             groupCallId: groupCallId,
             inviteHash: inviteHash,
-            isMuted: isMuted,
-            isMyVideoEnabled: isMyVideoEnabled,
-            keyFingerprint: keyFingerprint,
-            participantId: participantId,
-            payload: payload
+            joinParameters: joinParameters,
+            participantId: participantId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Joins an active video chat. Returns join response payload for tgcalls
+    /// - Parameter groupCallId: Group call identifier
+    /// - Parameter inviteHash: Invite hash as received from internalLinkTypeVideoChat
+    /// - Parameter joinParameters: Parameters to join the call
+    /// - Parameter participantId: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
+    /// - Returns: Join response payload for tgcalls
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func joinVideoChat(
+        groupCallId: Int?,
+        inviteHash: String?,
+        joinParameters: GroupCallJoinParameters?,
+        participantId: MessageSender?
+    ) async throws -> Text {
+        let query = JoinVideoChat(
+            groupCallId: groupCallId,
+            inviteHash: inviteHash,
+            joinParameters: joinParameters,
+            participantId: participantId
         )
         return try await self.execute(query: query)
     }
@@ -15140,93 +15145,191 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sets group call title. Requires groupCall.can_be_managed group call flag
+    /// Sets title of a video chat; requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter title: New group call title; 1-64 characters
-    public func setGroupCallTitle(
+    public func setVideoChatTitle(
         groupCallId: Int?,
         title: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = SetGroupCallTitle(
+        let query = SetVideoChatTitle(
             groupCallId: groupCallId,
             title: title
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Sets group call title. Requires groupCall.can_be_managed group call flag
+    /// Sets title of a video chat; requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter title: New group call title; 1-64 characters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func setGroupCallTitle(
+    public func setVideoChatTitle(
         groupCallId: Int?,
         title: String?
     ) async throws -> Ok {
-        let query = SetGroupCallTitle(
+        let query = SetVideoChatTitle(
             groupCallId: groupCallId,
             title: title
         )
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
+    /// Toggles whether new participants of a video chat can be unmuted only by administrators of the video chat. Requires groupCall.can_toggle_mute_new_participants right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter muteNewParticipants: New value of the mute_new_participants setting
-    public func toggleGroupCallMuteNewParticipants(
+    public func toggleVideoChatMuteNewParticipants(
         groupCallId: Int?,
         muteNewParticipants: Bool?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = ToggleGroupCallMuteNewParticipants(
+        let query = ToggleVideoChatMuteNewParticipants(
             groupCallId: groupCallId,
             muteNewParticipants: muteNewParticipants
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
+    /// Toggles whether new participants of a video chat can be unmuted only by administrators of the video chat. Requires groupCall.can_toggle_mute_new_participants right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter muteNewParticipants: New value of the mute_new_participants setting
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func toggleGroupCallMuteNewParticipants(
+    public func toggleVideoChatMuteNewParticipants(
         groupCallId: Int?,
         muteNewParticipants: Bool?
     ) async throws -> Ok {
-        let query = ToggleGroupCallMuteNewParticipants(
+        let query = ToggleVideoChatMuteNewParticipants(
             groupCallId: groupCallId,
             muteNewParticipants: muteNewParticipants
         )
         return try await self.execute(query: query)
     }
 
-    /// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
+    /// Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall. The group call can have at most getOption("group_call_participant_count_max") participants
+    /// - Parameter groupCallId: Group call identifier
+    /// - Parameter isVideo: Pass true if the group call is a video call
+    /// - Parameter userId: User identifier
+    public func inviteGroupCallParticipant(
+        groupCallId: Int?,
+        isVideo: Bool?,
+        userId: Int64?,
+        completion: @escaping (Result<InviteGroupCallParticipantResult, Swift.Error>) -> Void
+    ) throws {
+        let query = InviteGroupCallParticipant(
+            groupCallId: groupCallId,
+            isVideo: isVideo,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Invites a user to an active group call; for group calls not bound to a chat only. Sends a service message of the type messageGroupCall. The group call can have at most getOption("group_call_participant_count_max") participants
+    /// - Parameter groupCallId: Group call identifier
+    /// - Parameter isVideo: Pass true if the group call is a video call
+    /// - Parameter userId: User identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func inviteGroupCallParticipant(
+        groupCallId: Int?,
+        isVideo: Bool?,
+        userId: Int64?
+    ) async throws -> InviteGroupCallParticipantResult {
+        let query = InviteGroupCallParticipant(
+            groupCallId: groupCallId,
+            isVideo: isVideo,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Declines an invitation to an active group call via messageGroupCall. Can be called both by the sender and the receiver of the invitation
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter messageId: Identifier of the message of the type messageGroupCall
+    public func declineGroupCallInvitation(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeclineGroupCallInvitation(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Declines an invitation to an active group call via messageGroupCall. Can be called both by the sender and the receiver of the invitation
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter messageId: Identifier of the message of the type messageGroupCall
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func declineGroupCallInvitation(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = DeclineGroupCallInvitation(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Bans users from a group call not bound to a chat; requires groupCall.is_owned. Only the owner of the group call can invite the banned users back
+    /// - Parameter groupCallId: Group call identifier
+    /// - Parameter userIds: Identifiers of group call participants to ban; identifiers of unknown users from the update updateGroupCallParticipants can be also passed to the method
+    public func banGroupCallParticipants(
+        groupCallId: Int?,
+        userIds: [TdInt64]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = BanGroupCallParticipants(
+            groupCallId: groupCallId,
+            userIds: userIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Bans users from a group call not bound to a chat; requires groupCall.is_owned. Only the owner of the group call can invite the banned users back
+    /// - Parameter groupCallId: Group call identifier
+    /// - Parameter userIds: Identifiers of group call participants to ban; identifiers of unknown users from the update updateGroupCallParticipants can be also passed to the method
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func banGroupCallParticipants(
+        groupCallId: Int?,
+        userIds: [TdInt64]?
+    ) async throws -> Ok {
+        let query = BanGroupCallParticipants(
+            groupCallId: groupCallId,
+            userIds: userIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Invites users to an active video chat. Sends a service message of the type messageInviteVideoChatParticipants to the chat bound to the group call
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
-    public func inviteGroupCallParticipants(
+    public func inviteVideoChatParticipants(
         groupCallId: Int?,
         userIds: [Int64]?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = InviteGroupCallParticipants(
+        let query = InviteVideoChatParticipants(
             groupCallId: groupCallId,
             userIds: userIds
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
+    /// Invites users to an active video chat. Sends a service message of the type messageInviteVideoChatParticipants to the chat bound to the group call
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter userIds: User identifiers. At most 10 users can be invited simultaneously
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func inviteGroupCallParticipants(
+    public func inviteVideoChatParticipants(
         groupCallId: Int?,
         userIds: [Int64]?
     ) async throws -> Ok {
-        let query = InviteGroupCallParticipants(
+        let query = InviteVideoChatParticipants(
             groupCallId: groupCallId,
             userIds: userIds
         )
@@ -15234,15 +15337,15 @@ public final class TdApi {
     }
 
     /// Returns invite link to a video chat in a public chat
-    /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
+    /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinVideoChat would allow the invited user to unmute themselves. Requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     /// - Returns: Invite link to a video chat in a public chat
-    public func getGroupCallInviteLink(
+    public func getVideoChatInviteLink(
         canSelfUnmute: Bool?,
         groupCallId: Int?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
-        let query = GetGroupCallInviteLink(
+        let query = GetVideoChatInviteLink(
             canSelfUnmute: canSelfUnmute,
             groupCallId: groupCallId
         )
@@ -15250,22 +15353,22 @@ public final class TdApi {
     }
 
     /// Returns invite link to a video chat in a public chat
-    /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
+    /// - Parameter canSelfUnmute: Pass true if the invite link needs to contain an invite hash, passing which to joinVideoChat would allow the invited user to unmute themselves. Requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     /// - Returns: Invite link to a video chat in a public chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getGroupCallInviteLink(
+    public func getVideoChatInviteLink(
         canSelfUnmute: Bool?,
         groupCallId: Int?
     ) async throws -> HttpUrl {
-        let query = GetGroupCallInviteLink(
+        let query = GetVideoChatInviteLink(
             canSelfUnmute: canSelfUnmute,
             groupCallId: groupCallId
         )
         return try await self.execute(query: query)
     }
 
-    /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+    /// Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise
     /// - Parameter groupCallId: Group call identifier
     public func revokeGroupCallInviteLink(
         groupCallId: Int?,
@@ -15277,7 +15380,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+    /// Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15288,7 +15391,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
+    /// Starts recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter recordVideo: Pass true to record a video file instead of an audio file
     /// - Parameter title: Group call recording title; 0-64 characters
@@ -15309,7 +15412,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
+    /// Starts recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter recordVideo: Pass true to record a video file instead of an audio file
     /// - Parameter title: Group call recording title; 0-64 characters
@@ -15331,7 +15434,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+    /// Ends recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     public func endGroupCallRecording(
         groupCallId: Int?,
@@ -15343,7 +15446,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+    /// Ends recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15416,7 +15519,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Informs TDLib that speaking state of a participant of an active group has changed
+    /// Informs TDLib that speaking state of a participant of an active group call has changed
     /// - Parameter audioSource: Group call participant's synchronization audio source identifier, or 0 for the current user
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isSpeaking: Pass true if the user is speaking
@@ -15434,7 +15537,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that speaking state of a participant of an active group has changed
+    /// Informs TDLib that speaking state of a participant of an active group call has changed
     /// - Parameter audioSource: Group call participant's synchronization audio source identifier, or 0 for the current user
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isSpeaking: Pass true if the user is speaking
@@ -15490,7 +15593,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
+    /// Changes volume level of a participant of an active group call. If the current user can manage the group call or is the owner of the group call, then the participant's volume level will be changed for all users with the default volume level
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter participantId: Participant identifier
     /// - Parameter volumeLevel: New participant's volume level; 1-20000 in hundreds of percents
@@ -15508,7 +15611,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
+    /// Changes volume level of a participant of an active group call. If the current user can manage the group call or is the owner of the group call, then the participant's volume level will be changed for all users with the default volume level
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter participantId: Participant identifier
     /// - Parameter volumeLevel: New participant's volume level; 1-20000 in hundreds of percents
@@ -15527,9 +15630,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether a group call participant hand is rased
+    /// Toggles whether a group call participant hand is rased; for video chats only
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isHandRaised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+    /// - Parameter isHandRaised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand
     /// - Parameter participantId: Participant identifier
     public func toggleGroupCallParticipantIsHandRaised(
         groupCallId: Int?,
@@ -15545,9 +15648,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether a group call participant hand is rased
+    /// Toggles whether a group call participant hand is rased; for video chats only
     /// - Parameter groupCallId: Group call identifier
-    /// - Parameter isHandRaised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+    /// - Parameter isHandRaised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand
     /// - Parameter participantId: Participant identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15560,6 +15663,38 @@ public final class TdApi {
             groupCallId: groupCallId,
             isHandRaised: isHandRaised,
             participantId: participantId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns information about participants of a non-joined group call that is not bound to a chat
+    /// - Parameter inputGroupCall: The group call which participants will be returned
+    /// - Parameter limit: The maximum number of participants to return; must be positive
+    /// - Returns: Information about participants of a non-joined group call that is not bound to a chat
+    public func getGroupCallParticipants(
+        inputGroupCall: InputGroupCall?,
+        limit: Int?,
+        completion: @escaping (Result<GroupCallParticipants, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGroupCallParticipants(
+            inputGroupCall: inputGroupCall,
+            limit: limit
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about participants of a non-joined group call that is not bound to a chat
+    /// - Parameter inputGroupCall: The group call which participants will be returned
+    /// - Parameter limit: The maximum number of participants to return; must be positive
+    /// - Returns: Information about participants of a non-joined group call that is not bound to a chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGroupCallParticipants(
+        inputGroupCall: InputGroupCall?,
+        limit: Int?
+    ) async throws -> GroupCallParticipants {
+        let query = GetGroupCallParticipants(
+            inputGroupCall: inputGroupCall,
+            limit: limit
         )
         return try await self.execute(query: query)
     }
@@ -15618,7 +15753,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Ends a group call. Requires groupCall.can_be_managed
+    /// Ends a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise
     /// - Parameter groupCallId: Group call identifier
     public func endGroupCall(
         groupCallId: Int?,
@@ -15630,7 +15765,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Ends a group call. Requires groupCall.can_be_managed
+    /// Ends a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise
     /// - Parameter groupCallId: Group call identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15641,46 +15776,46 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about available group call streams
+    /// Returns information about available video chat streams
     /// - Parameter groupCallId: Group call identifier
-    /// - Returns: Information about available group call streams
-    public func getGroupCallStreams(
+    /// - Returns: Information about available video chat streams
+    public func getVideoChatStreams(
         groupCallId: Int?,
-        completion: @escaping (Result<GroupCallStreams, Swift.Error>) -> Void
+        completion: @escaping (Result<VideoChatStreams, Swift.Error>) -> Void
     ) throws {
-        let query = GetGroupCallStreams(
+        let query = GetVideoChatStreams(
             groupCallId: groupCallId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about available group call streams
+    /// Returns information about available video chat streams
     /// - Parameter groupCallId: Group call identifier
-    /// - Returns: Information about available group call streams
+    /// - Returns: Information about available video chat streams
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getGroupCallStreams(groupCallId: Int?) async throws -> GroupCallStreams {
-        let query = GetGroupCallStreams(
+    public func getVideoChatStreams(groupCallId: Int?) async throws -> VideoChatStreams {
+        let query = GetVideoChatStreams(
             groupCallId: groupCallId
         )
         return try await self.execute(query: query)
     }
 
-    /// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+    /// Returns a file with a segment of a video chat stream in a modified OGG format for audio or MPEG-4 format for video
     /// - Parameter channelId: Identifier of an audio/video channel to get as received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter scale: Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
     /// - Parameter timeOffset: Point in time when the stream segment begins; Unix timestamp in milliseconds
     /// - Parameter videoQuality: Video quality as received from tgcalls; pass null to get the worst available quality
-    /// - Returns: A file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
-    public func getGroupCallStreamSegment(
+    /// - Returns: A file with a segment of a video chat stream in a modified OGG format for audio or MPEG-4 format for video
+    public func getVideoChatStreamSegment(
         channelId: Int?,
         groupCallId: Int?,
         scale: Int?,
         timeOffset: Int64?,
         videoQuality: GroupCallVideoQuality?,
-        completion: @escaping (Result<FilePart, Swift.Error>) -> Void
+        completion: @escaping (Result<TdData, Swift.Error>) -> Void
     ) throws {
-        let query = GetGroupCallStreamSegment(
+        let query = GetVideoChatStreamSegment(
             channelId: channelId,
             groupCallId: groupCallId,
             scale: scale,
@@ -15690,27 +15825,111 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+    /// Returns a file with a segment of a video chat stream in a modified OGG format for audio or MPEG-4 format for video
     /// - Parameter channelId: Identifier of an audio/video channel to get as received from tgcalls
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter scale: Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
     /// - Parameter timeOffset: Point in time when the stream segment begins; Unix timestamp in milliseconds
     /// - Parameter videoQuality: Video quality as received from tgcalls; pass null to get the worst available quality
-    /// - Returns: A file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+    /// - Returns: A file with a segment of a video chat stream in a modified OGG format for audio or MPEG-4 format for video
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getGroupCallStreamSegment(
+    public func getVideoChatStreamSegment(
         channelId: Int?,
         groupCallId: Int?,
         scale: Int?,
         timeOffset: Int64?,
         videoQuality: GroupCallVideoQuality?
-    ) async throws -> FilePart {
-        let query = GetGroupCallStreamSegment(
+    ) async throws -> TdData {
+        let query = GetVideoChatStreamSegment(
             channelId: channelId,
             groupCallId: groupCallId,
             scale: scale,
             timeOffset: timeOffset,
             videoQuality: videoQuality
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Encrypts group call data before sending them over network using tgcalls
+    /// - Parameter data: Data to encrypt
+    /// - Parameter dataChannel: Data channel for which data is encrypted
+    /// - Parameter groupCallId: Group call identifier. The call must not be a video chat
+    /// - Parameter unencryptedPrefixSize: Size of data prefix that must be kept unencrypted
+    public func encryptGroupCallData(
+        data: Data?,
+        dataChannel: GroupCallDataChannel?,
+        groupCallId: Int?,
+        unencryptedPrefixSize: Int?,
+        completion: @escaping (Result<TdData, Swift.Error>) -> Void
+    ) throws {
+        let query = EncryptGroupCallData(
+            data: data,
+            dataChannel: dataChannel,
+            groupCallId: groupCallId,
+            unencryptedPrefixSize: unencryptedPrefixSize
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Encrypts group call data before sending them over network using tgcalls
+    /// - Parameter data: Data to encrypt
+    /// - Parameter dataChannel: Data channel for which data is encrypted
+    /// - Parameter groupCallId: Group call identifier. The call must not be a video chat
+    /// - Parameter unencryptedPrefixSize: Size of data prefix that must be kept unencrypted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func encryptGroupCallData(
+        data: Data?,
+        dataChannel: GroupCallDataChannel?,
+        groupCallId: Int?,
+        unencryptedPrefixSize: Int?
+    ) async throws -> TdData {
+        let query = EncryptGroupCallData(
+            data: data,
+            dataChannel: dataChannel,
+            groupCallId: groupCallId,
+            unencryptedPrefixSize: unencryptedPrefixSize
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Decrypts group call data received by tgcalls
+    /// - Parameter data: Data to decrypt
+    /// - Parameter dataChannel: Data channel for which data was encrypted; pass null if unknown
+    /// - Parameter groupCallId: Group call identifier. The call must not be a video chat
+    /// - Parameter participantId: Identifier of the group call participant, which sent the data
+    public func decryptGroupCallData(
+        data: Data?,
+        dataChannel: GroupCallDataChannel?,
+        groupCallId: Int?,
+        participantId: MessageSender?,
+        completion: @escaping (Result<TdData, Swift.Error>) -> Void
+    ) throws {
+        let query = DecryptGroupCallData(
+            data: data,
+            dataChannel: dataChannel,
+            groupCallId: groupCallId,
+            participantId: participantId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Decrypts group call data received by tgcalls
+    /// - Parameter data: Data to decrypt
+    /// - Parameter dataChannel: Data channel for which data was encrypted; pass null if unknown
+    /// - Parameter groupCallId: Group call identifier. The call must not be a video chat
+    /// - Parameter participantId: Identifier of the group call participant, which sent the data
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func decryptGroupCallData(
+        data: Data?,
+        dataChannel: GroupCallDataChannel?,
+        groupCallId: Int?,
+        participantId: MessageSender?
+    ) async throws -> TdData {
+        let query = DecryptGroupCallData(
+            data: data,
+            dataChannel: dataChannel,
+            groupCallId: groupCallId,
+            participantId: participantId
         )
         return try await self.execute(query: query)
     }
@@ -19754,6 +19973,37 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel. The chat must have at least chatBoostFeatures.min_automatic_translation_boost_level boost level to enable automatic translation
+    /// - Parameter hasAutomaticTranslation: The new value of has_automatic_translation
+    /// - Parameter supergroupId: The identifier of the channel
+    public func toggleSupergroupHasAutomaticTranslation(
+        hasAutomaticTranslation: Bool?,
+        supergroupId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleSupergroupHasAutomaticTranslation(
+            hasAutomaticTranslation: hasAutomaticTranslation,
+            supergroupId: supergroupId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Toggles whether messages are automatically translated in the channel chat; requires can_change_info administrator right in the channel. The chat must have at least chatBoostFeatures.min_automatic_translation_boost_level boost level to enable automatic translation
+    /// - Parameter hasAutomaticTranslation: The new value of has_automatic_translation
+    /// - Parameter supergroupId: The identifier of the channel
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func toggleSupergroupHasAutomaticTranslation(
+        hasAutomaticTranslation: Bool?,
+        supergroupId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleSupergroupHasAutomaticTranslation(
+            hasAutomaticTranslation: hasAutomaticTranslation,
+            supergroupId: supergroupId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
     /// - Parameter hasHiddenMembers: New value of has_hidden_members
     /// - Parameter supergroupId: Identifier of the supergroup
@@ -20294,7 +20544,7 @@ public final class TdApi {
 
     /// Returns gifts that can be sent to other users and channel chats
     /// - Returns: Gifts that can be sent to other users and channel chats
-    public func getAvailableGifts(completion: @escaping (Result<Gifts, Swift.Error>) -> Void) throws {
+    public func getAvailableGifts(completion: @escaping (Result<AvailableGifts, Swift.Error>) -> Void) throws {
         let query = GetAvailableGifts()
         self.execute(query: query, completion: completion)
     }
@@ -20302,7 +20552,7 @@ public final class TdApi {
     /// Returns gifts that can be sent to other users and channel chats
     /// - Returns: Gifts that can be sent to other users and channel chats
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getAvailableGifts() async throws -> Gifts {
+    public func getAvailableGifts() async throws -> AvailableGifts {
         let query = GetAvailableGifts()
         return try await self.execute(query: query)
     }
@@ -20591,6 +20841,43 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
+    /// - Parameter giftName: Name of the upgraded gift to send
+    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
+    /// - Parameter starCount: The amount of Telegram Stars required to pay for the gift
+    public func sendResoldGift(
+        giftName: String?,
+        ownerId: MessageSender?,
+        starCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendResoldGift(
+            giftName: giftName,
+            ownerId: ownerId,
+            starCount: starCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
+    /// - Parameter giftName: Name of the upgraded gift to send
+    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
+    /// - Parameter starCount: The amount of Telegram Stars required to pay for the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func sendResoldGift(
+        giftName: String?,
+        ownerId: MessageSender?,
+        starCount: Int64?
+    ) async throws -> Ok {
+        let query = SendResoldGift(
+            giftName: giftName,
+            ownerId: ownerId,
+            starCount: starCount
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns gifts received by the given user or chat
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
@@ -20747,6 +21034,87 @@ public final class TdApi {
         let query = GetUpgradedGiftWithdrawalUrl(
             password: password,
             receivedGiftId: receivedGiftId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes resale price of a unique gift owned by the current user
+    /// - Parameter receivedGiftId: Identifier of the unique gift
+    /// - Parameter resaleStarCount: The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift
+    public func setGiftResalePrice(
+        receivedGiftId: String?,
+        resaleStarCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetGiftResalePrice(
+            receivedGiftId: receivedGiftId,
+            resaleStarCount: resaleStarCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes resale price of a unique gift owned by the current user
+    /// - Parameter receivedGiftId: Identifier of the unique gift
+    /// - Parameter resaleStarCount: The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setGiftResalePrice(
+        receivedGiftId: String?,
+        resaleStarCount: Int64?
+    ) async throws -> Ok {
+        let query = SetGiftResalePrice(
+            receivedGiftId: receivedGiftId,
+            resaleStarCount: resaleStarCount
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns upgraded gifts that can be bought from other owners
+    /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
+    /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
+    /// - Parameter limit: The maximum number of gifts to return
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
+    /// - Parameter order: Order in which the results will be sorted
+    /// - Returns: Upgraded gifts that can be bought from other owners
+    public func searchGiftsForResale(
+        attributes: [UpgradedGiftAttributeId]?,
+        giftId: TdInt64?,
+        limit: Int?,
+        offset: String?,
+        order: GiftForResaleOrder?,
+        completion: @escaping (Result<GiftsForResale, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchGiftsForResale(
+            attributes: attributes,
+            giftId: giftId,
+            limit: limit,
+            offset: offset,
+            order: order
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns upgraded gifts that can be bought from other owners
+    /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
+    /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
+    /// - Parameter limit: The maximum number of gifts to return
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
+    /// - Parameter order: Order in which the results will be sorted
+    /// - Returns: Upgraded gifts that can be bought from other owners
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchGiftsForResale(
+        attributes: [UpgradedGiftAttributeId]?,
+        giftId: TdInt64?,
+        limit: Int?,
+        offset: String?,
+        order: GiftForResaleOrder?
+    ) async throws -> GiftsForResale {
+        let query = SearchGiftsForResale(
+            attributes: attributes,
+            giftId: giftId,
+            limit: limit,
+            offset: offset,
+            order: order
         )
         return try await self.execute(query: query)
     }

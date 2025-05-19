@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -124,6 +124,9 @@ public struct CallStateReady: Codable, Equatable, Hashable {
     /// Call encryption key
     public let encryptionKey: Data
 
+    /// True, if the other party supports upgrading of the call to a group call
+    public let isGroupCallSupported: Bool
+
     /// Call protocols supported by the other call participant
     public let `protocol`: CallProtocol
 
@@ -137,6 +140,7 @@ public struct CallStateReady: Codable, Equatable, Hashable {
         customParameters: String,
         emojis: [String],
         encryptionKey: Data,
+        isGroupCallSupported: Bool,
         `protocol`: CallProtocol,
         servers: [CallServer]
     ) {
@@ -145,6 +149,7 @@ public struct CallStateReady: Codable, Equatable, Hashable {
         self.customParameters = customParameters
         self.emojis = emojis
         self.encryptionKey = encryptionKey
+        self.isGroupCallSupported = isGroupCallSupported
         self.`protocol` = `protocol`
         self.servers = servers
     }

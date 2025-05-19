@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -37,6 +37,12 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the chat's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
+    /// Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
+    public let nextResaleDate: Int
+
+    /// Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    public let nextTransferDate: Int
+
     /// Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
     public let prepaidUpgradeStarCount: Int64
 
@@ -68,6 +74,8 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
         isPinned: Bool,
         isPrivate: Bool,
         isSaved: Bool,
+        nextResaleDate: Int,
+        nextTransferDate: Int,
         prepaidUpgradeStarCount: Int64,
         receivedGiftId: String,
         sellStarCount: Int64,
@@ -84,6 +92,8 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
         self.isPinned = isPinned
         self.isPrivate = isPrivate
         self.isSaved = isSaved
+        self.nextResaleDate = nextResaleDate
+        self.nextTransferDate = nextTransferDate
         self.prepaidUpgradeStarCount = prepaidUpgradeStarCount
         self.receivedGiftId = receivedGiftId
         self.sellStarCount = sellStarCount

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Contains statistics about interactions with a message sent in the chat or a story sent by the chat
+/// Contains statistics about interactions with a message sent in the chat or a story posted on behalf of the chat
 public struct ChatStatisticsInteractionInfo: Codable, Equatable, Hashable {
 
     /// Number of times the object was forwarded

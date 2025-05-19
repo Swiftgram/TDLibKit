@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct StoryInfo: Codable, Equatable, Hashable {
     /// True, if the story is available only to close friends
     public let isForCloseFriends: Bool
 
-    /// Unique story identifier among stories of the given sender
+    /// Unique story identifier among stories of the chat
     public let storyId: Int
 
 

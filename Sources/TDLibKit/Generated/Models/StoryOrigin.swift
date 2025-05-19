@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains information about the origin of a story that was reposted
 public indirect enum StoryOrigin: Codable, Equatable, Hashable {
 
-    /// The original story was a public story with known sender
+    /// The original story was a public story that was posted by a known chat
     case storyOriginPublicStory(StoryOriginPublicStory)
 
-    /// The original story was sent by an unknown user
+    /// The original story was posted by an unknown user
     case storyOriginHiddenUser(StoryOriginHiddenUser)
 
 
@@ -51,7 +51,7 @@ public indirect enum StoryOrigin: Codable, Equatable, Hashable {
     }
 }
 
-/// The original story was a public story with known sender
+/// The original story was a public story that was posted by a known chat
 public struct StoryOriginPublicStory: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that posted original story
@@ -70,15 +70,15 @@ public struct StoryOriginPublicStory: Codable, Equatable, Hashable {
     }
 }
 
-/// The original story was sent by an unknown user
+/// The original story was posted by an unknown user
 public struct StoryOriginHiddenUser: Codable, Equatable, Hashable {
 
-    /// Name of the story sender
-    public let senderName: String
+    /// Name of the user or the chat that posted the story
+    public let posterName: String
 
 
-    public init(senderName: String) {
-        self.senderName = senderName
+    public init(posterName: String) {
+        self.posterName = posterName
     }
 }
 

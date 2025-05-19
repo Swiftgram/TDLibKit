@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
     /// True, if message content must be displayed in notifications
     public let showPreview: Bool
 
-    /// True, if the sender of stories must be displayed in notifications
-    public let showStorySender: Bool
+    /// True, if the chat that posted a story must be displayed in notifications
+    public let showStoryPoster: Bool
 
     /// Identifier of the notification sound to be played for messages; 0 if sound is disabled
     public let soundId: TdInt64
@@ -52,8 +52,8 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
     /// If true, the value for the relevant type of chat or the forum chat is used instead of show_preview
     public let useDefaultShowPreview: Bool
 
-    /// If true, the value for the relevant type of chat is used instead of show_story_sender
-    public let useDefaultShowStorySender: Bool
+    /// If true, the value for the relevant type of chat is used instead of show_story_poster
+    public let useDefaultShowStoryPoster: Bool
 
     /// If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
     public let useDefaultSound: Bool
@@ -68,7 +68,7 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
         muteFor: Int,
         muteStories: Bool,
         showPreview: Bool,
-        showStorySender: Bool,
+        showStoryPoster: Bool,
         soundId: TdInt64,
         storySoundId: TdInt64,
         useDefaultDisableMentionNotifications: Bool,
@@ -76,7 +76,7 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
         useDefaultMuteFor: Bool,
         useDefaultMuteStories: Bool,
         useDefaultShowPreview: Bool,
-        useDefaultShowStorySender: Bool,
+        useDefaultShowStoryPoster: Bool,
         useDefaultSound: Bool,
         useDefaultStorySound: Bool
     ) {
@@ -85,7 +85,7 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
         self.muteFor = muteFor
         self.muteStories = muteStories
         self.showPreview = showPreview
-        self.showStorySender = showStorySender
+        self.showStoryPoster = showStoryPoster
         self.soundId = soundId
         self.storySoundId = storySoundId
         self.useDefaultDisableMentionNotifications = useDefaultDisableMentionNotifications
@@ -93,7 +93,7 @@ public struct ChatNotificationSettings: Codable, Equatable, Hashable {
         self.useDefaultMuteFor = useDefaultMuteFor
         self.useDefaultMuteStories = useDefaultMuteStories
         self.useDefaultShowPreview = useDefaultShowPreview
-        self.useDefaultShowStorySender = useDefaultShowStorySender
+        self.useDefaultShowStoryPoster = useDefaultShowStoryPoster
         self.useDefaultSound = useDefaultSound
         self.useDefaultStorySound = useDefaultStorySound
     }

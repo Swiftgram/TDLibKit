@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -84,6 +84,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A message with information about an ended call
     case messageCall(MessageCall)
+
+    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+    case messageGroupCall(MessageGroupCall)
 
     /// A new video chat was scheduled
     case messageVideoChatScheduled(MessageVideoChatScheduled)
@@ -273,6 +276,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageStory
         case messageInvoice
         case messageCall
+        case messageGroupCall
         case messageVideoChatScheduled
         case messageVideoChatStarted
         case messageVideoChatEnded
@@ -401,6 +405,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageCall:
             let value = try MessageCall(from: decoder)
             self = .messageCall(value)
+        case .messageGroupCall:
+            let value = try MessageGroupCall(from: decoder)
+            self = .messageGroupCall(value)
         case .messageVideoChatScheduled:
             let value = try MessageVideoChatScheduled(from: decoder)
             self = .messageVideoChatScheduled(value)
@@ -630,6 +637,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageCall(let value):
             try container.encode(Kind.messageCall, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageGroupCall(let value):
+            try container.encode(Kind.messageGroupCall, forKey: .type)
             try value.encode(to: encoder)
         case .messageVideoChatScheduled(let value):
             try container.encode(Kind.messageVideoChatScheduled, forKey: .type)
@@ -1208,7 +1218,7 @@ public struct MessageStory: Codable, Equatable, Hashable {
     public let storyId: Int
 
     /// Identifier of the chat that posted the story
-    public let storySenderChatId: Int64
+    public let storyPosterChatId: Int64
 
     /// True, if the story was automatically forwarded because of a mention of the user
     public let viaMention: Bool
@@ -1216,11 +1226,11 @@ public struct MessageStory: Codable, Equatable, Hashable {
 
     public init(
         storyId: Int,
-        storySenderChatId: Int64,
+        storyPosterChatId: Int64,
         viaMention: Bool
     ) {
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
         self.viaMention = viaMention
     }
 }
@@ -1300,6 +1310,40 @@ public struct MessageCall: Codable, Equatable, Hashable {
         self.discardReason = discardReason
         self.duration = duration
         self.isVideo = isVideo
+    }
+}
+
+/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+public struct MessageGroupCall: Codable, Equatable, Hashable {
+
+    /// Call duration, in seconds; for left calls only
+    public let duration: Int
+
+    /// True, if the call is active, i.e. the called user joined the call
+    public let isActive: Bool
+
+    /// True, if the call is a video call
+    public let isVideo: Bool
+
+    /// Identifiers of some other call participants
+    public let otherParticipantIds: [MessageSender]
+
+    /// True, if the called user missed or declined the call
+    public let wasMissed: Bool
+
+
+    public init(
+        duration: Int,
+        isActive: Bool,
+        isVideo: Bool,
+        otherParticipantIds: [MessageSender],
+        wasMissed: Bool
+    ) {
+        self.duration = duration
+        self.isActive = isActive
+        self.isVideo = isVideo
+        self.otherParticipantIds = otherParticipantIds
+        self.wasMissed = wasMissed
     }
 }
 
@@ -2250,8 +2294,17 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
-    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
+    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     public let isUpgrade: Bool
+
+    /// Number of Telegram Stars that were paid by the sender for the gift; 0 if the gift was upgraded or transferred
+    public let lastResaleStarCount: Int64
+
+    /// Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
+    public let nextResaleDate: Int
+
+    /// Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    public let nextTransferDate: Int
 
     /// Unique identifier of the received gift for the current user; only for the receiver of the gift
     public let receivedGiftId: String
@@ -2272,6 +2325,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         gift: UpgradedGift,
         isSaved: Bool,
         isUpgrade: Bool,
+        lastResaleStarCount: Int64,
+        nextResaleDate: Int,
+        nextTransferDate: Int,
         receivedGiftId: String,
         senderId: MessageSender?,
         transferStarCount: Int64,
@@ -2282,6 +2338,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.gift = gift
         self.isSaved = isSaved
         self.isUpgrade = isUpgrade
+        self.lastResaleStarCount = lastResaleStarCount
+        self.nextResaleDate = nextResaleDate
+        self.nextTransferDate = nextTransferDate
         self.receivedGiftId = receivedGiftId
         self.senderId = senderId
         self.transferStarCount = transferStarCount
@@ -2295,7 +2354,7 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
-    /// True, if the gift was obtained by upgrading of a previously received gift
+    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     public let isUpgrade: Bool
 
     /// Sender of the gift

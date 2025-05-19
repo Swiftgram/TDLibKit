@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Changes a story sent by the bot on behalf of a business account; for bots only
+/// Changes a story posted by the bot on behalf of a business account; for bots only
 public struct EditBusinessStory: Codable, Equatable, Hashable {
 
     /// New clickable rectangle areas to be shown on the story media
@@ -29,7 +29,7 @@ public struct EditBusinessStory: Codable, Equatable, Hashable {
     public let storyId: Int?
 
     /// Identifier of the chat that posted the story
-    public let storySenderChatId: Int64?
+    public let storyPosterChatId: Int64?
 
 
     public init(
@@ -38,14 +38,14 @@ public struct EditBusinessStory: Codable, Equatable, Hashable {
         content: InputStoryContent?,
         privacySettings: StoryPrivacySettings?,
         storyId: Int?,
-        storySenderChatId: Int64?
+        storyPosterChatId: Int64?
     ) {
         self.areas = areas
         self.caption = caption
         self.content = content
         self.privacySettings = privacySettings
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
     }
 }
 

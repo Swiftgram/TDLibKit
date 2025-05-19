@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+/// Ends recording of an active group call; for video chats only. Requires groupCall.can_be_managed right
 public struct EndGroupCallRecording: Codable, Equatable, Hashable {
 
     /// Group call identifier

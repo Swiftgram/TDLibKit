@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct BusinessBotRights: Codable, Equatable, Hashable {
     /// True, if the bot can edit username of the business account
     public let canEditUsername: Bool
 
-    /// True, if the bot can send, edit and delete stories
+    /// True, if the bot can post, edit and delete stories
     public let canManageStories: Bool
 
     /// True, if the bot can mark incoming private messages as read

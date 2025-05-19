@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -68,6 +68,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
+    /// The link is a link to a group call that isn't bound to a chat. Call joinGroupCall with the given invite_link
+    case internalLinkTypeGroupCall(InternalLinkTypeGroupCall)
+
     /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
     case internalLinkTypeInstantView(InternalLinkTypeInstantView)
 
@@ -88,6 +91,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
     case internalLinkTypeMessageDraft(InternalLinkTypeMessageDraft)
+
+    /// The link is a link to the screen with information about Telegram Star balance and transactions of the current user
+    case internalLinkTypeMyStars
 
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
@@ -125,7 +131,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     case internalLinkTypeStickerSet(InternalLinkTypeStickerSet)
 
-    /// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
+    /// The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
     case internalLinkTypeStory(InternalLinkTypeStory)
 
     /// The link is a link to a cloud theme. TDLib has no theme support yet
@@ -149,7 +155,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
     case internalLinkTypeUserToken(InternalLinkTypeUserToken)
 
-    /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
+    /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
     /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
@@ -175,6 +181,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
         case internalLinkTypeEditProfileSettings
         case internalLinkTypeGame
+        case internalLinkTypeGroupCall
         case internalLinkTypeInstantView
         case internalLinkTypeInvoice
         case internalLinkTypeLanguagePack
@@ -182,6 +189,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeMainWebApp
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
+        case internalLinkTypeMyStars
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
         case internalLinkTypePremiumFeatures
@@ -259,6 +267,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
+        case .internalLinkTypeGroupCall:
+            let value = try InternalLinkTypeGroupCall(from: decoder)
+            self = .internalLinkTypeGroupCall(value)
         case .internalLinkTypeInstantView:
             let value = try InternalLinkTypeInstantView(from: decoder)
             self = .internalLinkTypeInstantView(value)
@@ -279,6 +290,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeMessageDraft:
             let value = try InternalLinkTypeMessageDraft(from: decoder)
             self = .internalLinkTypeMessageDraft(value)
+        case .internalLinkTypeMyStars:
+            self = .internalLinkTypeMyStars
         case .internalLinkTypePassportDataRequest:
             let value = try InternalLinkTypePassportDataRequest(from: decoder)
             self = .internalLinkTypePassportDataRequest(value)
@@ -394,6 +407,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeGroupCall(let value):
+            try container.encode(Kind.internalLinkTypeGroupCall, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeInstantView(let value):
             try container.encode(Kind.internalLinkTypeInstantView, forKey: .type)
             try value.encode(to: encoder)
@@ -414,6 +430,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeMessageDraft(let value):
             try container.encode(Kind.internalLinkTypeMessageDraft, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeMyStars:
+            try container.encode(Kind.internalLinkTypeMyStars, forKey: .type)
         case .internalLinkTypePassportDataRequest(let value):
             try container.encode(Kind.internalLinkTypePassportDataRequest, forKey: .type)
             try value.encode(to: encoder)
@@ -698,6 +716,18 @@ public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to a group call that isn't bound to a chat. Call joinGroupCall with the given invite_link
+public struct InternalLinkTypeGroupCall: Codable, Equatable, Hashable {
+
+    /// Internal representation of the invite link
+    public let inviteLink: String
+
+
+    public init(inviteLink: String) {
+        self.inviteLink = inviteLink
+    }
+}
+
 /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
 public struct InternalLinkTypeInstantView: Codable, Equatable, Hashable {
 
@@ -952,22 +982,22 @@ public struct InternalLinkTypeStickerSet: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
+/// The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
 public struct InternalLinkTypeStory: Codable, Equatable, Hashable {
 
     /// Story identifier
     public let storyId: Int
 
-    /// Username of the sender of the story
-    public let storySenderUsername: String
+    /// Username of the poster of the story
+    public let storyPosterUsername: String
 
 
     public init(
         storyId: Int,
-        storySenderUsername: String
+        storyPosterUsername: String
     ) {
         self.storyId = storyId
-        self.storySenderUsername = storySenderUsername
+        self.storyPosterUsername = storyPosterUsername
     }
 }
 
@@ -1043,7 +1073,7 @@ public struct InternalLinkTypeUserToken: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
+/// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the link
 public struct InternalLinkTypeVideoChat: Codable, Equatable, Hashable {
 
     /// Username of the chat with the video chat

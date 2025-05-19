@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
     public let canBeForwarded: Bool
 
-    /// True, if the story can be replied in the chat with the story sender
+    /// True, if the story can be replied in the chat with the user that posted the story
     public let canBeReplied: Bool
 
     /// True, if interactions with the story can be received through getStoryInteractions
@@ -52,7 +52,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
     public let hasExpiredViewers: Bool
 
-    /// Unique story identifier among stories of the given sender
+    /// Unique story identifier among stories posted by the given chat
     public let id: Int
 
     /// Information about interactions with the story; may be null if the story isn't owned or there were no interactions
@@ -61,29 +61,29 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story is being edited by the current user
     public let isBeingEdited: Bool
 
-    /// True, if the story is being sent by the current user
-    public let isBeingSent: Bool
+    /// True, if the story is being posted by the current user
+    public let isBeingPosted: Bool
 
     /// True, if the story was edited
     public let isEdited: Bool
 
-    /// True, if the story is saved in the sender's profile and will be available there after expiration
+    /// True, if the story is saved in the profile of the chat that posted it and will be available there after expiration
     public let isPostedToChatPage: Bool
 
     /// True, if the story is visible only for the current user
     public let isVisibleOnlyForSelf: Bool
+
+    /// Identifier of the chat that posted the story
+    public let posterChatId: Int64
+
+    /// Identifier of the user or chat that posted the story; may be null if the story is posted on behalf of the poster_chat_id
+    public let posterId: MessageSender?
 
     /// Privacy rules affecting story visibility; may be approximate for non-owned stories
     public let privacySettings: StoryPrivacySettings
 
     /// Information about the original story; may be null if the story wasn't reposted
     public let repostInfo: StoryRepostInfo?
-
-    /// Identifier of the chat that posted the story
-    public let senderChatId: Int64
-
-    /// Identifier of the sender of the story; may be null if the story is posted on behalf of the sender_chat_id
-    public let senderId: MessageSender?
 
 
     public init(
@@ -103,14 +103,14 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         id: Int,
         interactionInfo: StoryInteractionInfo?,
         isBeingEdited: Bool,
-        isBeingSent: Bool,
+        isBeingPosted: Bool,
         isEdited: Bool,
         isPostedToChatPage: Bool,
         isVisibleOnlyForSelf: Bool,
+        posterChatId: Int64,
+        posterId: MessageSender?,
         privacySettings: StoryPrivacySettings,
-        repostInfo: StoryRepostInfo?,
-        senderChatId: Int64,
-        senderId: MessageSender?
+        repostInfo: StoryRepostInfo?
     ) {
         self.areas = areas
         self.canBeDeleted = canBeDeleted
@@ -128,14 +128,14 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.id = id
         self.interactionInfo = interactionInfo
         self.isBeingEdited = isBeingEdited
-        self.isBeingSent = isBeingSent
+        self.isBeingPosted = isBeingPosted
         self.isEdited = isEdited
         self.isPostedToChatPage = isPostedToChatPage
         self.isVisibleOnlyForSelf = isVisibleOnlyForSelf
+        self.posterChatId = posterChatId
+        self.posterId = posterId
         self.privacySettings = privacySettings
         self.repostInfo = repostInfo
-        self.senderChatId = senderChatId
-        self.senderId = senderId
     }
 }
 

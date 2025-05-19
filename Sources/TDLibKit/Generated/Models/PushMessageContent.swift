@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -720,7 +720,7 @@ public struct PushMessageContentGift: Codable, Equatable, Hashable {
 /// A message with an upgraded gift
 public struct PushMessageContentUpgradedGift: Codable, Equatable, Hashable {
 
-    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
+    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     public let isUpgrade: Bool
 
 

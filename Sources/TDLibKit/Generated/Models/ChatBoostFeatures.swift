@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
 
     /// The list of features
     public let features: [ChatBoostLevelFeatures]
+
+    /// The minimum boost level allowing to enable automatic translation of messages for non-Premium users; for channel chats only
+    public let minAutomaticTranslationBoostLevel: Int
 
     /// The minimum boost level required to set custom emoji for reply header and link preview background; for channel chats only
     public let minBackgroundCustomEmojiBoostLevel: Int
@@ -43,6 +46,7 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
 
     public init(
         features: [ChatBoostLevelFeatures],
+        minAutomaticTranslationBoostLevel: Int,
         minBackgroundCustomEmojiBoostLevel: Int,
         minChatThemeBackgroundBoostLevel: Int,
         minCustomBackgroundBoostLevel: Int,
@@ -53,6 +57,7 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
         minSponsoredMessageDisableBoostLevel: Int
     ) {
         self.features = features
+        self.minAutomaticTranslationBoostLevel = minAutomaticTranslationBoostLevel
         self.minBackgroundCustomEmojiBoostLevel = minBackgroundCustomEmojiBoostLevel
         self.minChatThemeBackgroundBoostLevel = minChatThemeBackgroundBoostLevel
         self.minCustomBackgroundBoostLevel = minCustomBackgroundBoostLevel

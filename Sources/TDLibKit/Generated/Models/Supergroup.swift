@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the supergroup or channel has non-expired stories available to the current user
     public let hasActiveStories: Bool
+
+    /// True, if automatic translation of messages is enabled in the channel
+    public let hasAutomaticTranslation: Bool
 
     /// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     public let hasLinkedChat: Bool
@@ -55,7 +58,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
     public let joinToSendMessages: Bool
 
-    /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories
+    /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToPostStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories
     public let memberCount: Int
 
     /// Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
@@ -84,6 +87,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         boostLevel: Int,
         date: Int,
         hasActiveStories: Bool,
+        hasAutomaticTranslation: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
         hasSensitiveContent: Bool,
@@ -107,6 +111,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.boostLevel = boostLevel
         self.date = date
         self.hasActiveStories = hasActiveStories
+        self.hasAutomaticTranslation = hasAutomaticTranslation
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation
         self.hasSensitiveContent = hasSensitiveContent

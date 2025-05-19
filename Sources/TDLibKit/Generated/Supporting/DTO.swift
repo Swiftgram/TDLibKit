@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -19,8 +19,8 @@ public final class DTO<T: Codable>: Codable {
     public init(_ payload: T, encoder: JSONEncoder? = nil) {
         self.payload = payload
         self.encoder = encoder
-        let payloadType = String(describing: T.self)
-        self.type = payloadType.prefix(1).lowercased() + payloadType.dropFirst()
+        let swiftType = String(describing: T.self)
+        self.type = tdLibTypeFromSwiftType(swiftType)  // TODO: replace with protocol
     }
 
     public init(from decoder: Decoder) throws {
@@ -46,4 +46,23 @@ extension DTO: TdQuery {
         let encoder = self.encoder ?? JSONEncoder()
         return try encoder.encode(self)
     }
+}
+
+// MARK: - Type Mapping Helpers
+private func tdLibTypeFromSwiftType(_ swiftType: String) -> String {
+    if let mapped = mapAmbiguousType(swiftType) {
+        return mapped
+    }
+    return swiftType.prefix(1).lowercased() + swiftType.dropFirst()
+}
+
+private func mapAmbiguousType(_ tlType: String) -> String? {
+    let mapping = [
+        "TdData": "data",
+    ]
+    return mapping[tlType]
+}
+
+private func resolveAmbiguousType(_ tlType: String) -> String {
+    return mapAmbiguousType(tlType) ?? tlType
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -55,13 +55,13 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
     /// The maximum number of active stories
     case premiumLimitTypeActiveStoryCount
 
-    /// The maximum number of stories sent per week
-    case premiumLimitTypeWeeklySentStoryCount
+    /// The maximum number of stories posted per week
+    case premiumLimitTypeWeeklyPostedStoryCount
 
-    /// The maximum number of stories sent per month
-    case premiumLimitTypeMonthlySentStoryCount
+    /// The maximum number of stories posted per month
+    case premiumLimitTypeMonthlyPostedStoryCount
 
-    /// The maximum length of captions of sent stories
+    /// The maximum length of captions of posted stories
     case premiumLimitTypeStoryCaptionLength
 
     /// The maximum number of suggested reaction areas on a story
@@ -86,8 +86,8 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
         case premiumLimitTypeChatFolderInviteLinkCount
         case premiumLimitTypeShareableChatFolderCount
         case premiumLimitTypeActiveStoryCount
-        case premiumLimitTypeWeeklySentStoryCount
-        case premiumLimitTypeMonthlySentStoryCount
+        case premiumLimitTypeWeeklyPostedStoryCount
+        case premiumLimitTypeMonthlyPostedStoryCount
         case premiumLimitTypeStoryCaptionLength
         case premiumLimitTypeStorySuggestedReactionAreaCount
         case premiumLimitTypeSimilarChatCount
@@ -125,10 +125,10 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
             self = .premiumLimitTypeShareableChatFolderCount
         case .premiumLimitTypeActiveStoryCount:
             self = .premiumLimitTypeActiveStoryCount
-        case .premiumLimitTypeWeeklySentStoryCount:
-            self = .premiumLimitTypeWeeklySentStoryCount
-        case .premiumLimitTypeMonthlySentStoryCount:
-            self = .premiumLimitTypeMonthlySentStoryCount
+        case .premiumLimitTypeWeeklyPostedStoryCount:
+            self = .premiumLimitTypeWeeklyPostedStoryCount
+        case .premiumLimitTypeMonthlyPostedStoryCount:
+            self = .premiumLimitTypeMonthlyPostedStoryCount
         case .premiumLimitTypeStoryCaptionLength:
             self = .premiumLimitTypeStoryCaptionLength
         case .premiumLimitTypeStorySuggestedReactionAreaCount:
@@ -169,10 +169,10 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumLimitTypeShareableChatFolderCount, forKey: .type)
         case .premiumLimitTypeActiveStoryCount:
             try container.encode(Kind.premiumLimitTypeActiveStoryCount, forKey: .type)
-        case .premiumLimitTypeWeeklySentStoryCount:
-            try container.encode(Kind.premiumLimitTypeWeeklySentStoryCount, forKey: .type)
-        case .premiumLimitTypeMonthlySentStoryCount:
-            try container.encode(Kind.premiumLimitTypeMonthlySentStoryCount, forKey: .type)
+        case .premiumLimitTypeWeeklyPostedStoryCount:
+            try container.encode(Kind.premiumLimitTypeWeeklyPostedStoryCount, forKey: .type)
+        case .premiumLimitTypeMonthlyPostedStoryCount:
+            try container.encode(Kind.premiumLimitTypeMonthlyPostedStoryCount, forKey: .type)
         case .premiumLimitTypeStoryCaptionLength:
             try container.encode(Kind.premiumLimitTypeStoryCaptionLength, forKey: .type)
         case .premiumLimitTypeStorySuggestedReactionAreaCount:

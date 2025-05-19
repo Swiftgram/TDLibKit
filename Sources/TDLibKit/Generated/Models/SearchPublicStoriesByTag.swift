@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -20,7 +20,7 @@ public struct SearchPublicStoriesByTag: Codable, Equatable, Hashable {
     public let offset: String?
 
     /// Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats
-    public let storySenderChatId: Int64?
+    public let storyPosterChatId: Int64?
 
     /// Hashtag or cashtag to search for
     public let tag: String?
@@ -29,12 +29,12 @@ public struct SearchPublicStoriesByTag: Codable, Equatable, Hashable {
     public init(
         limit: Int?,
         offset: String?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         tag: String?
     ) {
         self.limit = limit
         self.offset = offset
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
         self.tag = tag
     }
 }

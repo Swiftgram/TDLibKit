@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -19,8 +19,8 @@ public struct SetStoryReaction: Codable, Equatable, Hashable {
     /// The identifier of the story
     public let storyId: Int?
 
-    /// The identifier of the sender of the story
-    public let storySenderChatId: Int64?
+    /// The identifier of the poster of the story
+    public let storyPosterChatId: Int64?
 
     /// Pass true if the reaction needs to be added to recent reactions
     public let updateRecentReactions: Bool?
@@ -29,12 +29,12 @@ public struct SetStoryReaction: Codable, Equatable, Hashable {
     public init(
         reactionType: ReactionType?,
         storyId: Int?,
-        storySenderChatId: Int64?,
+        storyPosterChatId: Int64?,
         updateRecentReactions: Bool?
     ) {
         self.reactionType = reactionType
         self.storyId = storyId
-        self.storySenderChatId = storySenderChatId
+        self.storyPosterChatId = storyPosterChatId
         self.updateRecentReactions = updateRecentReactions
     }
 }

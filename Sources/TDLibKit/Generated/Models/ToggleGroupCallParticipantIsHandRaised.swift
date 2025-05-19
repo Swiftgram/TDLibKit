@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Toggles whether a group call participant hand is rased
+/// Toggles whether a group call participant hand is rased; for video chats only
 public struct ToggleGroupCallParticipantIsHandRaised: Codable, Equatable, Hashable {
 
     /// Group call identifier
     public let groupCallId: Int?
 
-    /// Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+    /// Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand
     public let isHandRaised: Bool?
 
     /// Participant identifier

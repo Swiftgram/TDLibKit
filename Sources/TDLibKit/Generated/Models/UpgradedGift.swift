@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Model of the upgraded gift
     public let model: UpgradedGiftModel
 
-    /// Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift
+    /// Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift or sendResoldGift
     public let name: String
 
     /// Unique number of the upgraded gift among gifts upgraded from the same gift
@@ -45,6 +45,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Name of the owner for the case when owner identifier and address aren't known
     public let ownerName: String
+
+    /// Number of Telegram Stars that must be paid to buy the gift and send it to someone else; 0 if resale isn't possible
+    public let resaleStarCount: Int64
 
     /// Symbol of the upgraded gift
     public let symbol: UpgradedGiftSymbol
@@ -68,6 +71,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         ownerAddress: String,
         ownerId: MessageSender?,
         ownerName: String,
+        resaleStarCount: Int64,
         symbol: UpgradedGiftSymbol,
         title: String,
         totalUpgradedCount: Int
@@ -83,6 +87,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.ownerAddress = ownerAddress
         self.ownerId = ownerId
         self.ownerName = ownerName
+        self.resaleStarCount = resaleStarCount
         self.symbol = symbol
         self.title = title
         self.totalUpgradedCount = totalUpgradedCount

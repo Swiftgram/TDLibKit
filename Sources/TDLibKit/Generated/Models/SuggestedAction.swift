@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -55,6 +55,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of required to buy Telegram Stars
     case suggestedActionExtendStarSubscriptions
 
+    /// A custom suggestion to be shown at the top of the chat list
+    case suggestedActionCustom(SuggestedActionCustom)
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -71,6 +74,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionSetProfilePhoto
         case suggestedActionExtendPremium
         case suggestedActionExtendStarSubscriptions
+        case suggestedActionCustom
     }
 
     public init(from decoder: Decoder) throws {
@@ -108,6 +112,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             self = .suggestedActionExtendPremium(value)
         case .suggestedActionExtendStarSubscriptions:
             self = .suggestedActionExtendStarSubscriptions
+        case .suggestedActionCustom:
+            let value = try SuggestedActionCustom(from: decoder)
+            self = .suggestedActionCustom(value)
         }
     }
 
@@ -145,6 +152,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .suggestedActionExtendStarSubscriptions:
             try container.encode(Kind.suggestedActionExtendStarSubscriptions, forKey: .type)
+        case .suggestedActionCustom(let value):
+            try container.encode(Kind.suggestedActionCustom, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -182,6 +192,34 @@ public struct SuggestedActionExtendPremium: Codable, Equatable, Hashable {
 
     public init(managePremiumSubscriptionUrl: String) {
         self.managePremiumSubscriptionUrl = managePremiumSubscriptionUrl
+    }
+}
+
+/// A custom suggestion to be shown at the top of the chat list
+public struct SuggestedActionCustom: Codable, Equatable, Hashable {
+
+    public let description: FormattedText
+
+    /// Unique name of the suggestion
+    public let name: String
+
+    /// Title of the suggestion
+    public let title: FormattedText
+
+    /// The link to open when the suggestion is clicked
+    public let url: String
+
+
+    public init(
+        description: FormattedText,
+        name: String,
+        title: FormattedText,
+        url: String
+    ) {
+        self.description = description
+        self.name = name
+        self.title = title
+        self.url = url
     }
 }
 

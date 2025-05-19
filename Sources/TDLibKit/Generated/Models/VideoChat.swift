@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
 
 
-/// Describes a video chat
+/// Describes a video chat, i.e. a group call bound to a chat
 public struct VideoChat: Codable, Equatable, Hashable {
 
     /// Default group call participant identifier to join the video chat; may be null

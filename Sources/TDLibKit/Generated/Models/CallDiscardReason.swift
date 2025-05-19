@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.49-51743dfd
+//  https://github.com/tdlib/td/tree/51743dfd
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
     /// The call was ended because one of the parties hung up
     case callDiscardReasonHungUp
 
-    /// The call was ended because it has been used successfully to transfer private encryption key for the associated group call
-    case callDiscardReasonAllowGroupCall(CallDiscardReasonAllowGroupCall)
+    /// The call was ended because it has been upgraded to a group call
+    case callDiscardReasonUpgradeToGroupCall(CallDiscardReasonUpgradeToGroupCall)
 
 
     private enum Kind: String, Codable {
@@ -38,7 +38,7 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
         case callDiscardReasonDeclined
         case callDiscardReasonDisconnected
         case callDiscardReasonHungUp
-        case callDiscardReasonAllowGroupCall
+        case callDiscardReasonUpgradeToGroupCall
     }
 
     public init(from decoder: Decoder) throws {
@@ -55,9 +55,9 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
             self = .callDiscardReasonDisconnected
         case .callDiscardReasonHungUp:
             self = .callDiscardReasonHungUp
-        case .callDiscardReasonAllowGroupCall:
-            let value = try CallDiscardReasonAllowGroupCall(from: decoder)
-            self = .callDiscardReasonAllowGroupCall(value)
+        case .callDiscardReasonUpgradeToGroupCall:
+            let value = try CallDiscardReasonUpgradeToGroupCall(from: decoder)
+            self = .callDiscardReasonUpgradeToGroupCall(value)
         }
     }
 
@@ -74,22 +74,22 @@ public indirect enum CallDiscardReason: Codable, Equatable, Hashable {
             try container.encode(Kind.callDiscardReasonDisconnected, forKey: .type)
         case .callDiscardReasonHungUp:
             try container.encode(Kind.callDiscardReasonHungUp, forKey: .type)
-        case .callDiscardReasonAllowGroupCall(let value):
-            try container.encode(Kind.callDiscardReasonAllowGroupCall, forKey: .type)
+        case .callDiscardReasonUpgradeToGroupCall(let value):
+            try container.encode(Kind.callDiscardReasonUpgradeToGroupCall, forKey: .type)
             try value.encode(to: encoder)
         }
     }
 }
 
-/// The call was ended because it has been used successfully to transfer private encryption key for the associated group call
-public struct CallDiscardReasonAllowGroupCall: Codable, Equatable, Hashable {
+/// The call was ended because it has been upgraded to a group call
+public struct CallDiscardReasonUpgradeToGroupCall: Codable, Equatable, Hashable {
 
-    /// Encrypted using the call private key encryption key for the associated group call
-    public let encryptedGroupCallKey: Data
+    /// Invite link for the group call
+    public let inviteLink: String
 
 
-    public init(encryptedGroupCallKey: Data) {
-        self.encryptedGroupCallKey = encryptedGroupCallKey
+    public init(inviteLink: String) {
+        self.inviteLink = inviteLink
     }
 }
 
