@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-51743dfd
-//  https://github.com/tdlib/td/tree/51743dfd
+//  Based on TDLib 1.8.49-e894536b
+//  https://github.com/tdlib/td/tree/e894536b
 //
 
 import Foundation
@@ -62,7 +62,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
     /// A message with an invoice; can be used only by bots
     case inputMessageInvoice(InputMessageInvoice)
 
-    /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
+    /// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot or the Saved Messages chat
     case inputMessagePoll(InputMessagePoll)
 
     /// A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
@@ -796,7 +796,7 @@ public struct InputMessageInvoice: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
+/// A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot or the Saved Messages chat
 public struct InputMessagePoll: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
@@ -811,7 +811,7 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// Amount of time the poll will be active after creation, in seconds; for bots only
     public let openPeriod: Int
 
-    /// List of poll answer options, 2-10 strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
+    /// List of poll answer options, 2-12 strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
     public let options: [FormattedText]
 
     /// Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
