@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -65,6 +65,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     public let customEmojiStickerSetId: TdInt64
 
     public let description: String
+
+    /// Chat identifier of a direct messages group for the channel, or a channel, for which the supergroup is the designated direct messages group; 0 if none
+    public let directMessagesChatId: Int64
 
     /// Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
     public let giftCount: Int
@@ -143,6 +146,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         canToggleAggressiveAntiSpam: Bool,
         customEmojiStickerSetId: TdInt64,
         description: String,
+        directMessagesChatId: Int64,
         giftCount: Int,
         hasAggressiveAntiSpamEnabled: Bool,
         hasHiddenMembers: Bool,
@@ -181,6 +185,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
         self.customEmojiStickerSetId = customEmojiStickerSetId
         self.description = description
+        self.directMessagesChatId = directMessagesChatId
         self.giftCount = giftCount
         self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
         self.hasHiddenMembers = hasHiddenMembers

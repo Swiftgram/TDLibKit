@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -19,7 +19,10 @@ public struct OpenWebApp: Codable, Equatable, Hashable {
     /// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     public let chatId: Int64?
 
-    /// If not 0, the message thread identifier in which the message will be sent
+    /// If not 0, unique identifier of the topic of channel direct messages chat to which the message will be sent
+    public let directMessagesChatTopicId: Int64?
+
+    /// If not 0, the message thread identifier to which the message will be sent
     public let messageThreadId: Int64?
 
     /// Parameters to use to open the Web App
@@ -35,6 +38,7 @@ public struct OpenWebApp: Codable, Equatable, Hashable {
     public init(
         botUserId: Int64?,
         chatId: Int64?,
+        directMessagesChatTopicId: Int64?,
         messageThreadId: Int64?,
         parameters: WebAppOpenParameters?,
         replyTo: InputMessageReplyTo?,
@@ -42,6 +46,7 @@ public struct OpenWebApp: Codable, Equatable, Hashable {
     ) {
         self.botUserId = botUserId
         self.chatId = chatId
+        self.directMessagesChatTopicId = directMessagesChatTopicId
         self.messageThreadId = messageThreadId
         self.parameters = parameters
         self.replyTo = replyTo

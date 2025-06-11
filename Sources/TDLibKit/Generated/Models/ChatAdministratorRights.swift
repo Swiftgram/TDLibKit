@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can invite new users to the chat
     public let canInviteUsers: Bool
 
-    /// True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+    /// True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
     /// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
@@ -43,7 +43,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can pin messages; applicable to basic groups and supergroups only
     public let canPinMessages: Bool
 
-    /// True, if the administrator can create channel posts or view channel statistics; applicable to channels only
+    /// True, if the administrator can create channel posts, answer to channel direct messages, or view channel statistics; applicable to channels only
     public let canPostMessages: Bool
 
     /// True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only

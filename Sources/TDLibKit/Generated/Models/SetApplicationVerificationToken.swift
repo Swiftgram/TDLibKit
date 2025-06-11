@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Application or reCAPTCHA verification has been completed. Can be called before authorization
 public struct SetApplicationVerificationToken: Codable, Equatable, Hashable {
 
-    /// Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request
     public let token: String?
 
     /// Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired

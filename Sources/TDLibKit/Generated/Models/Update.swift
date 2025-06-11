@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -168,6 +168,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// Number of Saved Messages topics has changed
     case updateSavedMessagesTopicCount(UpdateSavedMessagesTopicCount)
+
+    /// Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
+    case updateDirectMessagesChatTopic(UpdateDirectMessagesChatTopic)
+
+    /// Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+    case updateTopicMessageCount(UpdateTopicMessageCount)
 
     /// Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
     case updateQuickReplyShortcut(UpdateQuickReplyShortcut)
@@ -538,6 +544,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatOnlineMemberCount
         case updateSavedMessagesTopic
         case updateSavedMessagesTopicCount
+        case updateDirectMessagesChatTopic
+        case updateTopicMessageCount
         case updateQuickReplyShortcut
         case updateQuickReplyShortcutDeleted
         case updateQuickReplyShortcuts
@@ -805,6 +813,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSavedMessagesTopicCount:
             let value = try UpdateSavedMessagesTopicCount(from: decoder)
             self = .updateSavedMessagesTopicCount(value)
+        case .updateDirectMessagesChatTopic:
+            let value = try UpdateDirectMessagesChatTopic(from: decoder)
+            self = .updateDirectMessagesChatTopic(value)
+        case .updateTopicMessageCount:
+            let value = try UpdateTopicMessageCount(from: decoder)
+            self = .updateTopicMessageCount(value)
         case .updateQuickReplyShortcut:
             let value = try UpdateQuickReplyShortcut(from: decoder)
             self = .updateQuickReplyShortcut(value)
@@ -1281,6 +1295,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateSavedMessagesTopicCount(let value):
             try container.encode(Kind.updateSavedMessagesTopicCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateDirectMessagesChatTopic(let value):
+            try container.encode(Kind.updateDirectMessagesChatTopic, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateTopicMessageCount(let value):
+            try container.encode(Kind.updateTopicMessageCount, forKey: .type)
             try value.encode(to: encoder)
         case .updateQuickReplyShortcut(let value):
             try container.encode(Kind.updateQuickReplyShortcut, forKey: .type)
@@ -2639,6 +2659,42 @@ public struct UpdateSavedMessagesTopicCount: Codable, Equatable, Hashable {
     }
 }
 
+/// Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
+public struct UpdateDirectMessagesChatTopic: Codable, Equatable, Hashable {
+
+    /// New data about the topic
+    public let topic: DirectMessagesChatTopic
+
+
+    public init(topic: DirectMessagesChatTopic) {
+        self.topic = topic
+    }
+}
+
+/// Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+public struct UpdateTopicMessageCount: Codable, Equatable, Hashable {
+
+    /// Identifier of the chat in topic of which the number of messages has changed
+    public let chatId: Int64
+
+    /// Approximate number of messages in the topics
+    public let messageCount: Int
+
+    /// Identifier of the topic
+    public let topicId: MessageTopic
+
+
+    public init(
+        chatId: Int64,
+        messageCount: Int,
+        topicId: MessageTopic
+    ) {
+        self.chatId = chatId
+        self.messageCount = messageCount
+        self.topicId = topicId
+    }
+}
+
 /// Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
 public struct UpdateQuickReplyShortcut: Codable, Equatable, Hashable {
 
@@ -2727,6 +2783,12 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
     /// Notification settings for the topic
     public let notificationSettings: ChatNotificationSettings
 
+    /// Number of unread messages with a mention/reply in the topic
+    public let unreadMentionCount: Int
+
+    /// Number of messages with unread reactions in the topic
+    public let unreadReactionCount: Int
+
 
     public init(
         chatId: Int64,
@@ -2734,7 +2796,9 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
         messageThreadId: Int64,
-        notificationSettings: ChatNotificationSettings
+        notificationSettings: ChatNotificationSettings,
+        unreadMentionCount: Int,
+        unreadReactionCount: Int
     ) {
         self.chatId = chatId
         self.isPinned = isPinned
@@ -2742,6 +2806,8 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
         self.messageThreadId = messageThreadId
         self.notificationSettings = notificationSettings
+        self.unreadMentionCount = unreadMentionCount
+        self.unreadReactionCount = unreadReactionCount
     }
 }
 

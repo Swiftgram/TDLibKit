@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -68,7 +68,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
-    /// The link is a link to a group call that isn't bound to a chat. Call joinGroupCall with the given invite_link
+    /// The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen. Call joinGroupCall with the given invite_link to join the call
     case internalLinkTypeGroupCall(InternalLinkTypeGroupCall)
 
     /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
@@ -716,7 +716,7 @@ public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a group call that isn't bound to a chat. Call joinGroupCall with the given invite_link
+/// The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen. Call joinGroupCall with the given invite_link to join the call
 public struct InternalLinkTypeGroupCall: Codable, Equatable, Hashable {
 
     /// Internal representation of the invite link

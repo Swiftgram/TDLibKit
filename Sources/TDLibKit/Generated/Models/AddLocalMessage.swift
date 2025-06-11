@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
 public struct AddLocalMessage: Codable, Equatable, Hashable {
 
-    /// Target chat
+    /// Target chat; channel direct messages chats aren't supported
     public let chatId: Int64?
 
     /// Pass true to disable notification for the message

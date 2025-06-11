@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains properties of a message and describes actions that can be done with the message right now
 public struct MessageProperties: Codable, Equatable, Hashable {
+
+    /// True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
+    public let canBeCopied: Bool
 
     /// True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
     public let canBeCopiedToSecretChat: Bool
@@ -25,7 +28,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
     public let canBeEdited: Bool
 
-    /// True, if the message can be forwarded using inputMessageForwarded or forwardMessages
+    /// True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
     public let canBeForwarded: Bool
 
     /// True, if the message can be paid using inputInvoiceMessage
@@ -40,7 +43,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
     public let canBeRepliedInAnotherChat: Bool
 
-    /// True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
+    /// True, if content of the message can be saved locally
     public let canBeSaved: Bool
 
     /// True, if the message can be shared in a story using inputStoryAreaTypeMessage
@@ -51,6 +54,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
     /// True, if scheduling state of the message can be edited
     public let canEditSchedulingState: Bool
+
+    /// True, if author of the message sent on behalf of a chat can be received through getMessageAuthor
+    public let canGetAuthor: Bool
 
     /// True, if code for message embedding can be received using getMessageEmbeddingCode
     public let canGetEmbeddingCode: Bool
@@ -93,6 +99,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
 
     public init(
+        canBeCopied: Bool,
         canBeCopiedToSecretChat: Bool,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
@@ -106,6 +113,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canBeSharedInStory: Bool,
         canEditMedia: Bool,
         canEditSchedulingState: Bool,
+        canGetAuthor: Bool,
         canGetEmbeddingCode: Bool,
         canGetLink: Bool,
         canGetMediaTimestampLinks: Bool,
@@ -120,6 +128,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canSetFactCheck: Bool,
         needShowStatistics: Bool
     ) {
+        self.canBeCopied = canBeCopied
         self.canBeCopiedToSecretChat = canBeCopiedToSecretChat
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
@@ -133,6 +142,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canBeSharedInStory = canBeSharedInStory
         self.canEditMedia = canEditMedia
         self.canEditSchedulingState = canEditSchedulingState
+        self.canGetAuthor = canGetAuthor
         self.canGetEmbeddingCode = canGetEmbeddingCode
         self.canGetLink = canGetLink
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks

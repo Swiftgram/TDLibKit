@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -100,7 +100,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a sending of a paid message; for regular users only
     case starTransactionTypePaidMessageSend(StarTransactionTypePaidMessageSend)
 
-    /// The transaction is a receiving of a paid message; for regular users and supergroup chats only
+    /// The transaction is a receiving of a paid message; for regular users, supergroup and channel chats only
     case starTransactionTypePaidMessageReceive(StarTransactionTypePaidMessageReceive)
 
     /// The transaction is a purchase of Telegram Premium subscription; for regular users and bots only
@@ -856,7 +856,7 @@ public struct StarTransactionTypePaidMessageSend: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a receiving of a paid message; for regular users and supergroup chats only
+/// The transaction is a receiving of a paid message; for regular users, supergroup and channel chats only
 public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashable {
 
     /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending

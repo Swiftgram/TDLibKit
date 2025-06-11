@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -16,11 +16,14 @@ public indirect enum MessageSource: Codable, Equatable, Hashable {
     /// The message is from a chat history
     case messageSourceChatHistory
 
-    /// The message is from a message thread history
+    /// The message is from history of a message thread
     case messageSourceMessageThreadHistory
 
-    /// The message is from a forum topic history
+    /// The message is from history of a forum topic
     case messageSourceForumTopicHistory
+
+    /// The message is from history of a topic in a channel direct messages chat administered by the current user
+    case messageSourceDirectMessagesChatTopicHistory
 
     /// The message is from chat, message thread or forum topic history preview
     case messageSourceHistoryPreview
@@ -48,6 +51,7 @@ public indirect enum MessageSource: Codable, Equatable, Hashable {
         case messageSourceChatHistory
         case messageSourceMessageThreadHistory
         case messageSourceForumTopicHistory
+        case messageSourceDirectMessagesChatTopicHistory
         case messageSourceHistoryPreview
         case messageSourceChatList
         case messageSourceSearch
@@ -67,6 +71,8 @@ public indirect enum MessageSource: Codable, Equatable, Hashable {
             self = .messageSourceMessageThreadHistory
         case .messageSourceForumTopicHistory:
             self = .messageSourceForumTopicHistory
+        case .messageSourceDirectMessagesChatTopicHistory:
+            self = .messageSourceDirectMessagesChatTopicHistory
         case .messageSourceHistoryPreview:
             self = .messageSourceHistoryPreview
         case .messageSourceChatList:
@@ -93,6 +99,8 @@ public indirect enum MessageSource: Codable, Equatable, Hashable {
             try container.encode(Kind.messageSourceMessageThreadHistory, forKey: .type)
         case .messageSourceForumTopicHistory:
             try container.encode(Kind.messageSourceForumTopicHistory, forKey: .type)
+        case .messageSourceDirectMessagesChatTopicHistory:
+            try container.encode(Kind.messageSourceDirectMessagesChatTopicHistory, forKey: .type)
         case .messageSourceHistoryPreview:
             try container.encode(Kind.messageSourceHistoryPreview, forKey: .type)
         case .messageSourceChatList:

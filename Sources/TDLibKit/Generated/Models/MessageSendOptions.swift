@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     /// Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only
     public let allowPaidBroadcast: Bool
+
+    /// Unique identifier of the topic in a channel direct messages chat administered by the current user; pass 0 if the chat isn't a channel direct messages chat administered by the current user
+    public let directMessagesChatTopicId: Int64
 
     /// Pass true to disable notification for the message
     public let disableNotification: Bool
@@ -34,7 +37,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     /// Pass true if the content of the message must be protected from forwarding and saving; for bots only
     public let protectContent: Bool
 
-    /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, live location messages and self-destructing messages can't be scheduled
+    /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled
     public let schedulingState: MessageSchedulingState?
 
     /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
@@ -46,6 +49,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     public init(
         allowPaidBroadcast: Bool,
+        directMessagesChatTopicId: Int64,
         disableNotification: Bool,
         effectId: TdInt64,
         fromBackground: Bool,
@@ -57,6 +61,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         updateOrderOfInstalledStickerSets: Bool
     ) {
         self.allowPaidBroadcast = allowPaidBroadcast
+        self.directMessagesChatTopicId = directMessagesChatTopicId
         self.disableNotification = disableNotification
         self.effectId = effectId
         self.fromBackground = fromBackground

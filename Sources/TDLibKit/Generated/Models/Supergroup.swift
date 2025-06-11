@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -25,6 +25,12 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if automatic translation of messages is enabled in the channel
     public let hasAutomaticTranslation: Bool
 
+    /// True, if the channel has direct messages group
+    public let hasDirectMessagesGroup: Bool
+
+    /// True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
+    public let hasForumTabs: Bool
+
     /// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     public let hasLinkedChat: Bool
 
@@ -40,11 +46,17 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Supergroup or channel identifier
     public let id: Int64
 
+    /// True, if the supergroup is a direct messages group for a channel chat that is administered by the current user
+    public let isAdministeredDirectMessagesGroup: Bool
+
     /// True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     public let isBroadcastGroup: Bool
 
     /// True, if the supergroup is a channel
     public let isChannel: Bool
+
+    /// True, if the supergroup is a direct message group for a channel chat
+    public let isDirectMessagesGroup: Bool
 
     /// True, if the supergroup is a forum with topics
     public let isForum: Bool
@@ -88,13 +100,17 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         date: Int,
         hasActiveStories: Bool,
         hasAutomaticTranslation: Bool,
+        hasDirectMessagesGroup: Bool,
+        hasForumTabs: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
         hasSensitiveContent: Bool,
         hasUnreadActiveStories: Bool,
         id: Int64,
+        isAdministeredDirectMessagesGroup: Bool,
         isBroadcastGroup: Bool,
         isChannel: Bool,
+        isDirectMessagesGroup: Bool,
         isForum: Bool,
         isSlowModeEnabled: Bool,
         joinByRequest: Bool,
@@ -112,13 +128,17 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.date = date
         self.hasActiveStories = hasActiveStories
         self.hasAutomaticTranslation = hasAutomaticTranslation
+        self.hasDirectMessagesGroup = hasDirectMessagesGroup
+        self.hasForumTabs = hasForumTabs
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation
         self.hasSensitiveContent = hasSensitiveContent
         self.hasUnreadActiveStories = hasUnreadActiveStories
         self.id = id
+        self.isAdministeredDirectMessagesGroup = isAdministeredDirectMessagesGroup
         self.isBroadcastGroup = isBroadcastGroup
         self.isChannel = isChannel
+        self.isDirectMessagesGroup = isDirectMessagesGroup
         self.isForum = isForum
         self.isSlowModeEnabled = isSlowModeEnabled
         self.joinByRequest = joinByRequest

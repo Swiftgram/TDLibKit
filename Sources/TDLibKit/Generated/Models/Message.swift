@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     public let autoDeleteIn: Double
 
-    /// True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
+    /// True, if content of the message can be saved locally
     public let canBeSaved: Bool
 
     /// Chat identifier
@@ -73,9 +73,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message is pinned
     public let isPinned: Bool
 
-    /// True, if the message is a forum topic message
-    public let isTopicMessage: Bool
-
     /// Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     public let mediaAlbumId: TdInt64
 
@@ -93,9 +90,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     public let restrictionReason: String
-
-    /// Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
-    public let savedMessagesTopicId: Int64
 
     /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
@@ -117,6 +111,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     public let sendingState: MessageSendingState?
+
+    /// Identifier of the topic within the chat to which the message belongs; may be null if none
+    public let topicId: MessageTopic?
 
     /// Information about unread reactions added to the message
     public let unreadReactions: [UnreadReaction]
@@ -146,14 +143,12 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         isFromOffline: Bool,
         isOutgoing: Bool,
         isPinned: Bool,
-        isTopicMessage: Bool,
         mediaAlbumId: TdInt64,
         messageThreadId: Int64,
         paidMessageStarCount: Int64,
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
         restrictionReason: String,
-        savedMessagesTopicId: Int64,
         schedulingState: MessageSchedulingState?,
         selfDestructIn: Double,
         selfDestructType: MessageSelfDestructType?,
@@ -161,6 +156,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         senderBusinessBotUserId: Int64,
         senderId: MessageSender,
         sendingState: MessageSendingState?,
+        topicId: MessageTopic?,
         unreadReactions: [UnreadReaction],
         viaBotUserId: Int64
     ) {
@@ -184,14 +180,12 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.isFromOffline = isFromOffline
         self.isOutgoing = isOutgoing
         self.isPinned = isPinned
-        self.isTopicMessage = isTopicMessage
         self.mediaAlbumId = mediaAlbumId
         self.messageThreadId = messageThreadId
         self.paidMessageStarCount = paidMessageStarCount
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
         self.restrictionReason = restrictionReason
-        self.savedMessagesTopicId = savedMessagesTopicId
         self.schedulingState = schedulingState
         self.selfDestructIn = selfDestructIn
         self.selfDestructType = selfDestructType
@@ -199,6 +193,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.senderBusinessBotUserId = senderBusinessBotUserId
         self.senderId = senderId
         self.sendingState = sendingState
+        self.topicId = topicId
         self.unreadReactions = unreadReactions
         self.viaBotUserId = viaBotUserId
     }

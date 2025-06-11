@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct GetChatMessageCalendar: Codable, Equatable, Hashable {
     /// The message identifier from which to return information about messages; use 0 to get results from the last message
     public let fromMessageId: Int64?
 
-    /// If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
-    public let savedMessagesTopicId: Int64?
+    /// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported
+    public let topicId: MessageTopic?
 
 
     public init(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
-        savedMessagesTopicId: Int64?
+        topicId: MessageTopic?
     ) {
         self.chatId = chatId
         self.filter = filter
         self.fromMessageId = fromMessageId
-        self.savedMessagesTopicId = savedMessagesTopicId
+        self.topicId = topicId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -85,7 +85,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A message with information about an ended call
     case messageCall(MessageCall)
 
-    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
     case messageGroupCall(MessageGroupCall)
 
     /// A new video chat was scheduled
@@ -220,6 +220,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A price for paid messages was changed in the supergroup chat
     case messagePaidMessagePriceChanged(MessagePaidMessagePriceChanged)
 
+    /// A price for direct messages was changed in the channel chat
+    case messageDirectMessagePriceChanged(MessageDirectMessagePriceChanged)
+
     /// A contact has registered with Telegram
     case messageContactRegistered
 
@@ -321,6 +324,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageRefundedUpgradedGift
         case messagePaidMessagesRefunded
         case messagePaidMessagePriceChanged
+        case messageDirectMessagePriceChanged
         case messageContactRegistered
         case messageUsersShared
         case messageChatShared
@@ -536,6 +540,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messagePaidMessagePriceChanged:
             let value = try MessagePaidMessagePriceChanged(from: decoder)
             self = .messagePaidMessagePriceChanged(value)
+        case .messageDirectMessagePriceChanged:
+            let value = try MessageDirectMessagePriceChanged(from: decoder)
+            self = .messageDirectMessagePriceChanged(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUsersShared:
@@ -768,6 +775,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messagePaidMessagePriceChanged(let value):
             try container.encode(Kind.messagePaidMessagePriceChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageDirectMessagePriceChanged(let value):
+            try container.encode(Kind.messageDirectMessagePriceChanged, forKey: .type)
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
@@ -1313,7 +1323,7 @@ public struct MessageCall: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
 public struct MessageGroupCall: Codable, Equatable, Hashable {
 
     /// Call duration, in seconds; for left calls only
@@ -2226,6 +2236,9 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// Unique identifier of the received gift for the current user; only for the receiver of the gift
     public let receivedGiftId: String
 
+    /// Receiver of the gift
+    public let receiverId: MessageSender
+
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
     public let sellStarCount: Int64
 
@@ -2255,6 +2268,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
         isSaved: Bool,
         prepaidUpgradeStarCount: Int64,
         receivedGiftId: String,
+        receiverId: MessageSender,
         sellStarCount: Int64,
         senderId: MessageSender,
         text: FormattedText,
@@ -2269,6 +2283,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
         self.isSaved = isSaved
         self.prepaidUpgradeStarCount = prepaidUpgradeStarCount
         self.receivedGiftId = receivedGiftId
+        self.receiverId = receiverId
         self.sellStarCount = sellStarCount
         self.senderId = senderId
         self.text = text
@@ -2309,6 +2324,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// Unique identifier of the received gift for the current user; only for the receiver of the gift
     public let receivedGiftId: String
 
+    /// Receiver of the gift
+    public let receiverId: MessageSender
+
     /// Sender of the gift; may be null for anonymous gifts
     public let senderId: MessageSender?
 
@@ -2329,6 +2347,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         nextResaleDate: Int,
         nextTransferDate: Int,
         receivedGiftId: String,
+        receiverId: MessageSender,
         senderId: MessageSender?,
         transferStarCount: Int64,
         wasTransferred: Bool
@@ -2342,6 +2361,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.nextResaleDate = nextResaleDate
         self.nextTransferDate = nextTransferDate
         self.receivedGiftId = receivedGiftId
+        self.receiverId = receiverId
         self.senderId = senderId
         self.transferStarCount = transferStarCount
         self.wasTransferred = wasTransferred
@@ -2357,6 +2377,9 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     public let isUpgrade: Bool
 
+    /// Receiver of the gift
+    public let receiverId: MessageSender
+
     /// Sender of the gift
     public let senderId: MessageSender
 
@@ -2364,10 +2387,12 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
     public init(
         gift: Gift,
         isUpgrade: Bool,
+        receiverId: MessageSender,
         senderId: MessageSender
     ) {
         self.gift = gift
         self.isUpgrade = isUpgrade
+        self.receiverId = receiverId
         self.senderId = senderId
     }
 }
@@ -2399,6 +2424,25 @@ public struct MessagePaidMessagePriceChanged: Codable, Equatable, Hashable {
 
 
     public init(paidMessageStarCount: Int64) {
+        self.paidMessageStarCount = paidMessageStarCount
+    }
+}
+
+/// A price for direct messages was changed in the channel chat
+public struct MessageDirectMessagePriceChanged: Codable, Equatable, Hashable {
+
+    /// True, if direct messages group was enabled for the channel; false otherwise
+    public let isEnabled: Bool
+
+    /// The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free
+    public let paidMessageStarCount: Int64
+
+
+    public init(
+        isEnabled: Bool,
+        paidMessageStarCount: Int64
+    ) {
+        self.isEnabled = isEnabled
         self.paidMessageStarCount = paidMessageStarCount
     }
 }

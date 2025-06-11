@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.49-e894536b
-//  https://github.com/tdlib/td/tree/e894536b
+//  Based on TDLib 1.8.50-e133ac6d
+//  https://github.com/tdlib/td/tree/e133ac6d
 //
 
 import Foundation
@@ -1578,6 +1578,38 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns information about actual author of a message sent on behalf of a channel. The method can be called if messageProperties.can_get_author == true
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Information about actual author of a message sent on behalf of a channel
+    public func getMessageAuthor(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<User, Swift.Error>) -> Void
+    ) throws {
+        let query = GetMessageAuthor(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about actual author of a message sent on behalf of a channel. The method can be called if messageProperties.can_get_author == true
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Information about actual author of a message sent on behalf of a channel
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getMessageAuthor(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> User {
+        let query = GetMessageAuthor(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns information about a file. This is an offline method
     /// - Parameter fileId: Identifier of the file to get
     /// - Returns: Information about a file
@@ -2271,14 +2303,14 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
+    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives the error "CHANNELS_TOO_MUCH". Also, the limit can be increased with Telegram Premium
     /// - Returns: A list of recently inactive supergroups and channels
     public func getInactiveSupergroupChats(completion: @escaping (Result<Chats, Swift.Error>) -> Void) throws {
         let query = GetInactiveSupergroupChats()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
+    /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives the error "CHANNELS_TOO_MUCH". Also, the limit can be increased with Telegram Premium
     /// - Returns: A list of recently inactive supergroups and channels
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getInactiveSupergroupChats() async throws -> Chats {
@@ -2298,6 +2330,369 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSuitablePersonalChats() async throws -> Chats {
         let query = GetSuitablePersonalChats()
+        return try await self.execute(query: query)
+    }
+
+    /// Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter limit: The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    /// - Returns: A 404 error if all topics have been loaded
+    public func loadDirectMessagesChatTopics(
+        chatId: Int64?,
+        limit: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = LoadDirectMessagesChatTopics(
+            chatId: chatId,
+            limit: limit
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Loads more topics in a channel direct messages chat administered by the current user. The loaded topics will be sent through updateDirectMessagesChatTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter limit: The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+    /// - Returns: A 404 error if all topics have been loaded
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func loadDirectMessagesChatTopics(
+        chatId: Int64?,
+        limit: Int?
+    ) async throws -> Ok {
+        let query = LoadDirectMessagesChatTopics(
+            chatId: chatId,
+            limit: limit
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns information about the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter topicId: Identifier of the topic to get
+    /// - Returns: Information about the topic in a channel direct messages chat administered by the current user
+    public func getDirectMessagesChatTopic(
+        chatId: Int64?,
+        topicId: Int64?,
+        completion: @escaping (Result<DirectMessagesChatTopic, Swift.Error>) -> Void
+    ) throws {
+        let query = GetDirectMessagesChatTopic(
+            chatId: chatId,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter topicId: Identifier of the topic to get
+    /// - Returns: Information about the topic in a channel direct messages chat administered by the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDirectMessagesChatTopic(
+        chatId: Int64?,
+        topicId: Int64?
+    ) async throws -> DirectMessagesChatTopic {
+        let query = GetDirectMessagesChatTopic(
+            chatId: chatId,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter topicId: Identifier of the topic which messages will be fetched
+    /// - Returns: Messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+    public func getDirectMessagesChatTopicHistory(
+        chatId: Int64?,
+        fromMessageId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        topicId: Int64?,
+        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+    ) throws {
+        let query = GetDirectMessagesChatTopicHistory(
+            chatId: chatId,
+            fromMessageId: fromMessageId,
+            limit: limit,
+            offset: offset,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter fromMessageId: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+    /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
+    /// - Parameter topicId: Identifier of the topic which messages will be fetched
+    /// - Returns: Messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDirectMessagesChatTopicHistory(
+        chatId: Int64?,
+        fromMessageId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        topicId: Int64?
+    ) async throws -> Messages {
+        let query = GetDirectMessagesChatTopicHistory(
+            chatId: chatId,
+            fromMessageId: fromMessageId,
+            limit: limit,
+            offset: offset,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
+    /// - Parameter topicId: Identifier of the topic which messages will be fetched
+    /// - Returns: The last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
+    public func getDirectMessagesChatTopicMessageByDate(
+        chatId: Int64?,
+        date: Int?,
+        topicId: Int64?,
+        completion: @escaping (Result<Message, Swift.Error>) -> Void
+    ) throws {
+        let query = GetDirectMessagesChatTopicMessageByDate(
+            chatId: chatId,
+            date: date,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter date: Point in time (Unix timestamp) relative to which to search for messages
+    /// - Parameter topicId: Identifier of the topic which messages will be fetched
+    /// - Returns: The last message sent in the topic in a channel direct messages chat administered by the current user no later than the specified date
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getDirectMessagesChatTopicMessageByDate(
+        chatId: Int64?,
+        date: Int?,
+        topicId: Int64?
+    ) async throws -> Message {
+        let query = GetDirectMessagesChatTopicMessageByDate(
+            chatId: chatId,
+            date: date,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes all messages in the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter topicId: Identifier of the topic which messages will be deleted
+    public func deleteDirectMessagesChatTopicHistory(
+        chatId: Int64?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteDirectMessagesChatTopicHistory(
+            chatId: chatId,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes all messages in the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter topicId: Identifier of the topic which messages will be deleted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteDirectMessagesChatTopicHistory(
+        chatId: Int64?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = DeleteDirectMessagesChatTopicHistory(
+            chatId: chatId,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes all messages between the specified dates in the topic in a channel direct messages chat administered by the current user. Messages sent in the last 30 seconds will not be deleted
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter maxDate: The maximum date of the messages to delete
+    /// - Parameter minDate: The minimum date of the messages to delete
+    /// - Parameter topicId: Identifier of the topic which messages will be deleted
+    public func deleteDirectMessagesChatTopicMessagesByDate(
+        chatId: Int64?,
+        maxDate: Int?,
+        minDate: Int?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteDirectMessagesChatTopicMessagesByDate(
+            chatId: chatId,
+            maxDate: maxDate,
+            minDate: minDate,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes all messages between the specified dates in the topic in a channel direct messages chat administered by the current user. Messages sent in the last 30 seconds will not be deleted
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter maxDate: The maximum date of the messages to delete
+    /// - Parameter minDate: The minimum date of the messages to delete
+    /// - Parameter topicId: Identifier of the topic which messages will be deleted
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteDirectMessagesChatTopicMessagesByDate(
+        chatId: Int64?,
+        maxDate: Int?,
+        minDate: Int?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = DeleteDirectMessagesChatTopicMessagesByDate(
+            chatId: chatId,
+            maxDate: maxDate,
+            minDate: minDate,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the marked as unread state of the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter isMarkedAsUnread: New value of is_marked_as_unread
+    /// - Parameter topicId: Topic identifier
+    public func setDirectMessagesChatTopicIsMarkedAsUnread(
+        chatId: Int64?,
+        isMarkedAsUnread: Bool?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetDirectMessagesChatTopicIsMarkedAsUnread(
+            chatId: chatId,
+            isMarkedAsUnread: isMarkedAsUnread,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the marked as unread state of the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter isMarkedAsUnread: New value of is_marked_as_unread
+    /// - Parameter topicId: Topic identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setDirectMessagesChatTopicIsMarkedAsUnread(
+        chatId: Int64?,
+        isMarkedAsUnread: Bool?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = SetDirectMessagesChatTopicIsMarkedAsUnread(
+            chatId: chatId,
+            isMarkedAsUnread: isMarkedAsUnread,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes the draft message in the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter draftMessage: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    /// - Parameter topicId: Topic identifier
+    public func setDirectMessagesChatTopicDraftMessage(
+        chatId: Int64?,
+        draftMessage: DraftMessage?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetDirectMessagesChatTopicDraftMessage(
+            chatId: chatId,
+            draftMessage: draftMessage,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the draft message in the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter draftMessage: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    /// - Parameter topicId: Topic identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setDirectMessagesChatTopicDraftMessage(
+        chatId: Int64?,
+        draftMessage: DraftMessage?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = SetDirectMessagesChatTopicDraftMessage(
+            chatId: chatId,
+            draftMessage: draftMessage,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes all pinned messages from the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter topicId: Topic identifier
+    public func unpinAllDirectMessagesChatTopicMessages(
+        chatId: Int64?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = UnpinAllDirectMessagesChatTopicMessages(
+            chatId: chatId,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes all pinned messages from the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter topicId: Topic identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func unpinAllDirectMessagesChatTopicMessages(
+        chatId: Int64?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = UnpinAllDirectMessagesChatTopicMessages(
+            chatId: chatId,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes all unread reactions in the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter topicId: Topic identifier
+    public func readAllDirectMessagesChatTopicReactions(
+        chatId: Int64?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadAllDirectMessagesChatTopicReactions(
+            chatId: chatId,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes all unread reactions in the topic in a channel direct messages chat administered by the current user
+    /// - Parameter chatId: Identifier of the chat
+    /// - Parameter topicId: Topic identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func readAllDirectMessagesChatTopicReactions(
+        chatId: Int64?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = ReadAllDirectMessagesChatTopicReactions(
+            chatId: chatId,
+            topicId: topicId
+        )
         return try await self.execute(query: query)
     }
 
@@ -2714,27 +3109,25 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
+    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
-    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be returned; pass 0 to return all messages, or for chats other than Saved Messages
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    /// - Parameter topicId: Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchChatMessages(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?,
-        messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        savedMessagesTopicId: Int64?,
         senderId: MessageSender?,
+        topicId: MessageTopic?,
         completion: @escaping (Result<FoundChatMessages, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatMessages(
@@ -2742,25 +3135,23 @@ public final class TdApi {
             filter: filter,
             fromMessageId: fromMessageId,
             limit: limit,
-            messageThreadId: messageThreadId,
             offset: offset,
             query: query,
-            savedMessagesTopicId: savedMessagesTopicId,
-            senderId: senderId
+            senderId: senderId,
+            topicId: topicId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
+    /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
     /// - Parameter chatId: Identifier of the chat in which to search messages
     /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages
     /// - Parameter fromMessageId: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     /// - Parameter limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be returned; supergroups only
     /// - Parameter offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
     /// - Parameter query: Query to search for
-    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be returned; pass 0 to return all messages, or for chats other than Saved Messages
     /// - Parameter senderId: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    /// - Parameter topicId: Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
     /// - Returns: The results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchChatMessages(
@@ -2768,22 +3159,20 @@ public final class TdApi {
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
         limit: Int?,
-        messageThreadId: Int64?,
         offset: Int?,
         query: String?,
-        savedMessagesTopicId: Int64?,
-        senderId: MessageSender?
+        senderId: MessageSender?,
+        topicId: MessageTopic?
     ) async throws -> FoundChatMessages {
         let query = SearchChatMessages(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
             limit: limit,
-            messageThreadId: messageThreadId,
             offset: offset,
             query: query,
-            savedMessagesTopicId: savedMessagesTopicId,
-            senderId: senderId
+            senderId: senderId,
+            topicId: topicId
         )
         return try await self.execute(query: query)
     }
@@ -3415,20 +3804,20 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
-    /// - Parameter savedMessagesTopicId: If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+    /// - Parameter topicId: Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     public func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
-        savedMessagesTopicId: Int64?,
+        topicId: MessageTopic?,
         completion: @escaping (Result<MessageCalendar, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCalendar(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
-            savedMessagesTopicId: savedMessagesTopicId
+            topicId: topicId
         )
         self.execute(query: query, completion: completion)
     }
@@ -3437,114 +3826,108 @@ public final class TdApi {
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
-    /// - Parameter savedMessagesTopicId: If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+    /// - Parameter topicId: Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCalendar(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         fromMessageId: Int64?,
-        savedMessagesTopicId: Int64?
+        topicId: MessageTopic?
     ) async throws -> MessageCalendar {
         let query = GetChatMessageCalendar(
             chatId: chatId,
             filter: filter,
             fromMessageId: fromMessageId,
-            savedMessagesTopicId: savedMessagesTopicId
+            topicId: topicId
         )
         return try await self.execute(query: query)
     }
 
-    /// Returns approximate number of messages of the specified type in the chat
+    /// Returns approximate number of messages of the specified type in the chat or its topic
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
-    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages
-    /// - Returns: Approximate number of messages of the specified type in the chat
+    /// - Parameter topicId: Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics
+    /// - Returns: Approximate number of messages of the specified type in the chat or its topic
     public func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?,
-        savedMessagesTopicId: Int64?,
+        topicId: MessageTopic?,
         completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessageCount(
             chatId: chatId,
             filter: filter,
             returnLocal: returnLocal,
-            savedMessagesTopicId: savedMessagesTopicId
+            topicId: topicId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns approximate number of messages of the specified type in the chat
+    /// Returns approximate number of messages of the specified type in the chat or its topic
     /// - Parameter chatId: Identifier of the chat in which to count messages
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     /// - Parameter returnLocal: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
-    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages
-    /// - Returns: Approximate number of messages of the specified type in the chat
+    /// - Parameter topicId: Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics
+    /// - Returns: Approximate number of messages of the specified type in the chat or its topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessageCount(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         returnLocal: Bool?,
-        savedMessagesTopicId: Int64?
+        topicId: MessageTopic?
     ) async throws -> Count {
         let query = GetChatMessageCount(
             chatId: chatId,
             filter: filter,
             returnLocal: returnLocal,
-            savedMessagesTopicId: savedMessagesTopicId
+            topicId: topicId
         )
         return try await self.execute(query: query)
     }
 
-    /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+    /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
     /// - Parameter chatId: Identifier of the chat in which to find message position
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
-    /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
-    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages
-    /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
+    /// - Parameter topicId: Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages
+    /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic
     public func getChatMessagePosition(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         messageId: Int64?,
-        messageThreadId: Int64?,
-        savedMessagesTopicId: Int64?,
+        topicId: MessageTopic?,
         completion: @escaping (Result<Count, Swift.Error>) -> Void
     ) throws {
         let query = GetChatMessagePosition(
             chatId: chatId,
             filter: filter,
             messageId: messageId,
-            messageThreadId: messageThreadId,
-            savedMessagesTopicId: savedMessagesTopicId
+            topicId: topicId
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+    /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
     /// - Parameter chatId: Identifier of the chat in which to find message position
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
-    /// - Parameter messageThreadId: If not 0, only messages in the specified thread will be considered; supergroups only
-    /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages
-    /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat
+    /// - Parameter topicId: Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages
+    /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatMessagePosition(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
         messageId: Int64?,
-        messageThreadId: Int64?,
-        savedMessagesTopicId: Int64?
+        topicId: MessageTopic?
     ) async throws -> Count {
         let query = GetChatMessagePosition(
             chatId: chatId,
             filter: filter,
             messageId: messageId,
-            messageThreadId: messageThreadId,
-            savedMessagesTopicId: savedMessagesTopicId
+            topicId: topicId
         )
         return try await self.execute(query: query)
     }
@@ -4352,7 +4735,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
-    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_saved and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
+    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
     /// - Returns: The forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     public func forwardMessages(
         chatId: Int64?,
@@ -4383,7 +4766,7 @@ public final class TdApi {
     /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent; for forum threads only
     /// - Parameter options: Options to be used to send the messages; pass null to use default options
     /// - Parameter removeCaption: Pass true to remove media captions of message copies. Ignored if send_copy is false
-    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_saved and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
+    /// - Parameter sendCopy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
     /// - Returns: The forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func forwardMessages(
@@ -4488,7 +4871,7 @@ public final class TdApi {
     }
 
     /// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
-    /// - Parameter chatId: Target chat
+    /// - Parameter chatId: Target chat; channel direct messages chats aren't supported
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -4513,7 +4896,7 @@ public final class TdApi {
     }
 
     /// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
-    /// - Parameter chatId: Target chat
+    /// - Parameter chatId: Target chat; channel direct messages chats aren't supported
     /// - Parameter disableNotification: Pass true to disable notification for the message
     /// - Parameter inputMessageContent: The content of the message to be added
     /// - Parameter replyTo: Information about the message or story to be replied; pass null if none
@@ -8480,13 +8863,15 @@ public final class TdApi {
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
     /// - Parameter botUserId: Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
+    /// - Parameter directMessagesChatTopicId: If not 0, unique identifier of the topic of channel direct messages chat to which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier to which the message will be sent
     /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     public func openWebApp(
         botUserId: Int64?,
         chatId: Int64?,
+        directMessagesChatTopicId: Int64?,
         messageThreadId: Int64?,
         parameters: WebAppOpenParameters?,
         replyTo: InputMessageReplyTo?,
@@ -8496,6 +8881,7 @@ public final class TdApi {
         let query = OpenWebApp(
             botUserId: botUserId,
             chatId: chatId,
+            directMessagesChatTopicId: directMessagesChatTopicId,
             messageThreadId: messageThreadId,
             parameters: parameters,
             replyTo: replyTo,
@@ -8507,7 +8893,8 @@ public final class TdApi {
     /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
     /// - Parameter botUserId: Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
     /// - Parameter chatId: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    /// - Parameter messageThreadId: If not 0, the message thread identifier in which the message will be sent
+    /// - Parameter directMessagesChatTopicId: If not 0, unique identifier of the topic of channel direct messages chat to which the message will be sent
+    /// - Parameter messageThreadId: If not 0, the message thread identifier to which the message will be sent
     /// - Parameter parameters: Parameters to use to open the Web App
     /// - Parameter replyTo: Information about the message or story to be replied in the message sent by the Web App; pass null if none
     /// - Parameter url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
@@ -8515,6 +8902,7 @@ public final class TdApi {
     public func openWebApp(
         botUserId: Int64?,
         chatId: Int64?,
+        directMessagesChatTopicId: Int64?,
         messageThreadId: Int64?,
         parameters: WebAppOpenParameters?,
         replyTo: InputMessageReplyTo?,
@@ -8523,6 +8911,7 @@ public final class TdApi {
         let query = OpenWebApp(
             botUserId: botUserId,
             chatId: chatId,
+            directMessagesChatTopicId: directMessagesChatTopicId,
             messageThreadId: messageThreadId,
             parameters: parameters,
             replyTo: replyTo,
@@ -10956,6 +11345,43 @@ public final class TdApi {
         let query = SetChatDiscussionGroup(
             chatId: chatId,
             discussionChatId: discussionChatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes direct messages group settings for a channel chat; requires owner privileges in the chat
+    /// - Parameter chatId: Identifier of the channel chat
+    /// - Parameter isEnabled: Pass true if the direct messages group is enabled for the channel chat; pass false otherwise
+    /// - Parameter paidMessageStarCount: The new number of Telegram Stars that must be paid for each message that is sent to the direct messages chat unless the sender is an administrator of the channel chat; 0-getOption("paid_message_star_count_max"). The channel will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending. Requires supergroupFullInfo.can_enable_paid_messages for positive amounts
+    public func setChatDirectMessagesGroup(
+        chatId: Int64?,
+        isEnabled: Bool?,
+        paidMessageStarCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatDirectMessagesGroup(
+            chatId: chatId,
+            isEnabled: isEnabled,
+            paidMessageStarCount: paidMessageStarCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes direct messages group settings for a channel chat; requires owner privileges in the chat
+    /// - Parameter chatId: Identifier of the channel chat
+    /// - Parameter isEnabled: Pass true if the direct messages group is enabled for the channel chat; pass false otherwise
+    /// - Parameter paidMessageStarCount: The new number of Telegram Stars that must be paid for each message that is sent to the direct messages chat unless the sender is an administrator of the channel chat; 0-getOption("paid_message_star_count_max"). The channel will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending. Requires supergroupFullInfo.can_enable_paid_messages for positive amounts
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setChatDirectMessagesGroup(
+        chatId: Int64?,
+        isEnabled: Bool?,
+        paidMessageStarCount: Int64?
+    ) async throws -> Ok {
+        let query = SetChatDirectMessagesGroup(
+            chatId: chatId,
+            isEnabled: isEnabled,
+            paidMessageStarCount: paidMessageStarCount
         )
         return try await self.execute(query: query)
     }
@@ -13739,7 +14165,7 @@ public final class TdApi {
     }
 
     /// Application or reCAPTCHA verification has been completed. Can be called before authorization
-    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request
     /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
     public func setApplicationVerificationToken(
         token: String?,
@@ -13754,7 +14180,7 @@ public final class TdApi {
     }
 
     /// Application or reCAPTCHA verification has been completed. Can be called before authorization
-    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request
     /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -15519,15 +15945,16 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Informs TDLib that speaking state of a participant of an active group call has changed
+    /// Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
     /// - Parameter audioSource: Group call participant's synchronization audio source identifier, or 0 for the current user
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isSpeaking: Pass true if the user is speaking
+    /// - Returns: Identifier of the participant if it is found
     public func setGroupCallParticipantIsSpeaking(
         audioSource: Int?,
         groupCallId: Int?,
         isSpeaking: Bool?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<MessageSender, Swift.Error>) -> Void
     ) throws {
         let query = SetGroupCallParticipantIsSpeaking(
             audioSource: audioSource,
@@ -15537,17 +15964,17 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Informs TDLib that speaking state of a participant of an active group call has changed
+    /// Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
     /// - Parameter audioSource: Group call participant's synchronization audio source identifier, or 0 for the current user
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter isSpeaking: Pass true if the user is speaking
+    /// - Returns: Identifier of the participant if it is found
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public func setGroupCallParticipantIsSpeaking(
         audioSource: Int?,
         groupCallId: Int?,
         isSpeaking: Bool?
-    ) async throws -> Ok {
+    ) async throws -> MessageSender {
         let query = SetGroupCallParticipantIsSpeaking(
             audioSource: audioSource,
             groupCallId: groupCallId,
@@ -20067,14 +20494,17 @@ public final class TdApi {
     }
 
     /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+    /// - Parameter hasForumTabs: New value of has_forum_tabs; ignored if is_forum is false
     /// - Parameter isForum: New value of is_forum
     /// - Parameter supergroupId: Identifier of the supergroup
     public func toggleSupergroupIsForum(
+        hasForumTabs: Bool?,
         isForum: Bool?,
         supergroupId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSupergroupIsForum(
+            hasForumTabs: hasForumTabs,
             isForum: isForum,
             supergroupId: supergroupId
         )
@@ -20082,15 +20512,18 @@ public final class TdApi {
     }
 
     /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+    /// - Parameter hasForumTabs: New value of has_forum_tabs; ignored if is_forum is false
     /// - Parameter isForum: New value of is_forum
     /// - Parameter supergroupId: Identifier of the supergroup
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func toggleSupergroupIsForum(
+        hasForumTabs: Bool?,
         isForum: Bool?,
         supergroupId: Int64?
     ) async throws -> Ok {
         let query = ToggleSupergroupIsForum(
+            hasForumTabs: hasForumTabs,
             isForum: isForum,
             supergroupId: supergroupId
         )
