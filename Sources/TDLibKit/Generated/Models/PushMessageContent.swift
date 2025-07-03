@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -76,6 +76,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A text message
     case pushMessageContentText(PushMessageContentText)
 
+    /// A message with a checklist
+    case pushMessageContentChecklist(PushMessageContentChecklist)
+
     /// A video message
     case pushMessageContentVideo(PushMessageContentVideo)
 
@@ -130,6 +133,12 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A user in the chat came within proximity alert range from the current user
     case pushMessageContentProximityAlertTriggered(PushMessageContentProximityAlertTriggered)
 
+    /// Some tasks were added to a checklist
+    case pushMessageContentChecklistTasksAdded(PushMessageContentChecklistTasksAdded)
+
+    /// Some tasks from a checklist were marked as done or not done
+    case pushMessageContentChecklistTasksDone(PushMessageContentChecklistTasksDone)
+
     /// A forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
 
@@ -159,6 +168,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentSticker
         case pushMessageContentStory
         case pushMessageContentText
+        case pushMessageContentChecklist
         case pushMessageContentVideo
         case pushMessageContentVideoNote
         case pushMessageContentVoiceNote
@@ -177,6 +187,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentRecurringPayment
         case pushMessageContentSuggestProfilePhoto
         case pushMessageContentProximityAlertTriggered
+        case pushMessageContentChecklistTasksAdded
+        case pushMessageContentChecklistTasksDone
         case pushMessageContentMessageForwards
         case pushMessageContentMediaAlbum
     }
@@ -246,6 +258,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentText:
             let value = try PushMessageContentText(from: decoder)
             self = .pushMessageContentText(value)
+        case .pushMessageContentChecklist:
+            let value = try PushMessageContentChecklist(from: decoder)
+            self = .pushMessageContentChecklist(value)
         case .pushMessageContentVideo:
             let value = try PushMessageContentVideo(from: decoder)
             self = .pushMessageContentVideo(value)
@@ -293,6 +308,12 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentProximityAlertTriggered:
             let value = try PushMessageContentProximityAlertTriggered(from: decoder)
             self = .pushMessageContentProximityAlertTriggered(value)
+        case .pushMessageContentChecklistTasksAdded:
+            let value = try PushMessageContentChecklistTasksAdded(from: decoder)
+            self = .pushMessageContentChecklistTasksAdded(value)
+        case .pushMessageContentChecklistTasksDone:
+            let value = try PushMessageContentChecklistTasksDone(from: decoder)
+            self = .pushMessageContentChecklistTasksDone(value)
         case .pushMessageContentMessageForwards:
             let value = try PushMessageContentMessageForwards(from: decoder)
             self = .pushMessageContentMessageForwards(value)
@@ -366,6 +387,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentText(let value):
             try container.encode(Kind.pushMessageContentText, forKey: .type)
             try value.encode(to: encoder)
+        case .pushMessageContentChecklist(let value):
+            try container.encode(Kind.pushMessageContentChecklist, forKey: .type)
+            try value.encode(to: encoder)
         case .pushMessageContentVideo(let value):
             try container.encode(Kind.pushMessageContentVideo, forKey: .type)
             try value.encode(to: encoder)
@@ -412,6 +436,12 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try container.encode(Kind.pushMessageContentSuggestProfilePhoto, forKey: .type)
         case .pushMessageContentProximityAlertTriggered(let value):
             try container.encode(Kind.pushMessageContentProximityAlertTriggered, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentChecklistTasksAdded(let value):
+            try container.encode(Kind.pushMessageContentChecklistTasksAdded, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentChecklistTasksDone(let value):
+            try container.encode(Kind.pushMessageContentChecklistTasksDone, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentMessageForwards(let value):
             try container.encode(Kind.pushMessageContentMessageForwards, forKey: .type)
@@ -791,6 +821,25 @@ public struct PushMessageContentText: Codable, Equatable, Hashable {
     }
 }
 
+/// A message with a checklist
+public struct PushMessageContentChecklist: Codable, Equatable, Hashable {
+
+    /// True, if the message is a pinned message with the specified content
+    public let isPinned: Bool
+
+    /// Checklist title
+    public let title: String
+
+
+    public init(
+        isPinned: Bool,
+        title: String
+    ) {
+        self.isPinned = isPinned
+        self.title = title
+    }
+}
+
 /// A video message
 public struct PushMessageContentVideo: Codable, Equatable, Hashable {
 
@@ -975,6 +1024,30 @@ public struct PushMessageContentProximityAlertTriggered: Codable, Equatable, Has
 
     public init(distance: Int) {
         self.distance = distance
+    }
+}
+
+/// Some tasks were added to a checklist
+public struct PushMessageContentChecklistTasksAdded: Codable, Equatable, Hashable {
+
+    /// Number of added tasks
+    public let taskCount: Int
+
+
+    public init(taskCount: Int) {
+        self.taskCount = taskCount
+    }
+}
+
+/// Some tasks from a checklist were marked as done or not done
+public struct PushMessageContentChecklistTasksDone: Codable, Equatable, Hashable {
+
+    /// Number of changed tasks
+    public let taskCount: Int
+
+
+    public init(taskCount: Int) {
+        self.taskCount = taskCount
     }
 }
 

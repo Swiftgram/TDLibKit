@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -102,6 +102,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Number of times the current user boosted the supergroup or channel
     public let myBoostCount: Int
 
+    /// Number of Telegram Stars that must be paid by the current user for each sent message to the supergroup
+    public let outgoingPaidMessageStarCount: Int64
+
     /// Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
     public let photo: ChatPhoto?
 
@@ -158,6 +161,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         location: ChatLocation?,
         memberCount: Int,
         myBoostCount: Int,
+        outgoingPaidMessageStarCount: Int64,
         photo: ChatPhoto?,
         restrictedCount: Int,
         slowModeDelay: Int,
@@ -197,6 +201,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.location = location
         self.memberCount = memberCount
         self.myBoostCount = myBoostCount
+        self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount
         self.photo = photo
         self.restrictedCount = restrictedCount
         self.slowModeDelay = slowModeDelay

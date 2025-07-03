@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -1334,10 +1334,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     public final func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1350,10 +1350,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getRepliedMessage(
         chatId: Int64?,
@@ -2701,6 +2701,81 @@ public class TDLibApi {
     ) async throws -> Ok {
         let query = ReadAllDirectMessagesChatTopicReactions(
             chatId: chatId,
+            topicId: topicId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the total number of Telegram Stars received by the channel chat for direct messages from the given topic
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat administered by the current user
+    /// - Parameter topicId: Identifier of the topic
+    /// - Returns: The total number of Telegram Stars received by the channel chat for direct messages from the given topic
+    public final func getDirectMessagesChatTopicRevenue(
+        chatId: Int64?,
+        topicId: Int64?,
+        completion: @escaping (Result<StarCount, Swift.Error>) -> Void
+    ) throws {
+        let query = GetDirectMessagesChatTopicRevenue(
+            chatId: chatId,
+            topicId: topicId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the total number of Telegram Stars received by the channel chat for direct messages from the given topic
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat administered by the current user
+    /// - Parameter topicId: Identifier of the topic
+    /// - Returns: The total number of Telegram Stars received by the channel chat for direct messages from the given topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getDirectMessagesChatTopicRevenue(
+        chatId: Int64?,
+        topicId: Int64?
+    ) async throws -> StarCount {
+        let query = GetDirectMessagesChatTopicRevenue(
+            chatId: chatId,
+            topicId: topicId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
+    /// - Parameter canSendUnpaidMessages: Pass true to allow unpaid messages; pass false to disallow unpaid messages
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter refundPayments: Pass true to refund the user previously paid messages
+    /// - Parameter topicId: Identifier of the topic
+    public final func toggleDirectMessagesChatTopicCanSendUnpaidMessages(
+        canSendUnpaidMessages: Bool?,
+        chatId: Int64?,
+        refundPayments: Bool?,
+        topicId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ToggleDirectMessagesChatTopicCanSendUnpaidMessages(
+            canSendUnpaidMessages: canSendUnpaidMessages,
+            chatId: chatId,
+            refundPayments: refundPayments,
+            topicId: topicId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
+    /// - Parameter canSendUnpaidMessages: Pass true to allow unpaid messages; pass false to disallow unpaid messages
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter refundPayments: Pass true to refund the user previously paid messages
+    /// - Parameter topicId: Identifier of the topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func toggleDirectMessagesChatTopicCanSendUnpaidMessages(
+        canSendUnpaidMessages: Bool?,
+        chatId: Int64?,
+        refundPayments: Bool?,
+        topicId: Int64?
+    ) async throws -> Ok {
+        let query = ToggleDirectMessagesChatTopicCanSendUnpaidMessages(
+            canSendUnpaidMessages: canSendUnpaidMessages,
+            chatId: chatId,
+            refundPayments: refundPayments,
             topicId: topicId
         )
         return try await self.run(query: query)
@@ -4169,6 +4244,114 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns advertisements to be shown while a video from a message is watched. Available only if messageProperties.can_get_video_advertisements
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Advertisements to be shown while a video from a message is watched
+    public final func getVideoMessageAdvertisements(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<VideoMessageAdvertisements, Swift.Error>) -> Void
+    ) throws {
+        let query = GetVideoMessageAdvertisements(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns advertisements to be shown while a video from a message is watched. Available only if messageProperties.can_get_video_advertisements
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: Advertisements to be shown while a video from a message is watched
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getVideoMessageAdvertisements(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> VideoMessageAdvertisements {
+        let query = GetVideoMessageAdvertisements(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs TDLib that the user viewed a video message advertisement
+    /// - Parameter advertisementUniqueId: Unique identifier of the advertisement
+    public final func viewVideoMessageAdvertisement(
+        advertisementUniqueId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ViewVideoMessageAdvertisement(
+            advertisementUniqueId: advertisementUniqueId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that the user viewed a video message advertisement
+    /// - Parameter advertisementUniqueId: Unique identifier of the advertisement
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func viewVideoMessageAdvertisement(advertisementUniqueId: Int64?) async throws -> Ok {
+        let query = ViewVideoMessageAdvertisement(
+            advertisementUniqueId: advertisementUniqueId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs TDLib that the user clicked a video message advertisement
+    /// - Parameter advertisementUniqueId: Unique identifier of the advertisement
+    public final func clickVideoMessageAdvertisement(
+        advertisementUniqueId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ClickVideoMessageAdvertisement(
+            advertisementUniqueId: advertisementUniqueId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that the user clicked a video message advertisement
+    /// - Parameter advertisementUniqueId: Unique identifier of the advertisement
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func clickVideoMessageAdvertisement(advertisementUniqueId: Int64?) async throws -> Ok {
+        let query = ClickVideoMessageAdvertisement(
+            advertisementUniqueId: advertisementUniqueId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Reports a video message advertisement to Telegram moderators
+    /// - Parameter advertisementUniqueId: Unique identifier of the advertisement
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    public final func reportVideoMessageAdvertisement(
+        advertisementUniqueId: Int64?,
+        optionId: Data?,
+        completion: @escaping (Result<ReportSponsoredResult, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportVideoMessageAdvertisement(
+            advertisementUniqueId: advertisementUniqueId,
+            optionId: optionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Reports a video message advertisement to Telegram moderators
+    /// - Parameter advertisementUniqueId: Unique identifier of the advertisement
+    /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func reportVideoMessageAdvertisement(
+        advertisementUniqueId: Int64?,
+        optionId: Data?
+    ) async throws -> ReportSponsoredResult {
+        let query = ReportVideoMessageAdvertisement(
+            advertisementUniqueId: advertisementUniqueId,
+            optionId: optionId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
     /// - Parameter notificationGroupId: Identifier of notification group to which the notification belongs
     /// - Parameter notificationId: Identifier of removed notification
@@ -5147,6 +5330,50 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter checklist: The new checklist. If some tasks were completed, this information will be kept
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
+    public final func editMessageChecklist(
+        chatId: Int64?,
+        checklist: InputChecklist?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<Message, Swift.Error>) -> Void
+    ) throws {
+        let query = EditMessageChecklist(
+            chatId: chatId,
+            checklist: checklist,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Edits the message content of a checklist. Returns the edited message after the edit is completed on the server side
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter checklist: The new checklist. If some tasks were completed, this information will be kept
+    /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
+    /// - Returns: The edited message after the edit is completed on the server side
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func editMessageChecklist(
+        chatId: Int64?,
+        checklist: InputChecklist?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> Message {
+        let query = EditMessageChecklist(
+            chatId: chatId,
+            checklist: checklist,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.run(query: query)
+    }
+
     /// Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
@@ -5795,6 +6022,54 @@ public class TDLibApi {
             location: location,
             messageId: messageId,
             proximityAlertRadius: proximityAlertRadius,
+            replyMarkup: replyMarkup
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Edits the content of a checklist in a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter checklist: The new checklist. If some tasks were completed, this information will be kept
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public final func editBusinessMessageChecklist(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        checklist: InputChecklist?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = EditBusinessMessageChecklist(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            checklist: checklist,
+            messageId: messageId,
+            replyMarkup: replyMarkup
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Edits the content of a checklist in a message sent on behalf of a business account; for bots only
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter checklist: The new checklist. If some tasks were completed, this information will be kept
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func editBusinessMessageChecklist(
+        businessConnectionId: String?,
+        chatId: Int64?,
+        checklist: InputChecklist?,
+        messageId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> BusinessMessage {
+        let query = EditBusinessMessageChecklist(
+            businessConnectionId: businessConnectionId,
+            chatId: chatId,
+            checklist: checklist,
+            messageId: messageId,
             replyMarkup: replyMarkup
         )
         return try await self.run(query: query)
@@ -6573,7 +6848,7 @@ public class TDLibApi {
     }
 
     /// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
-    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
     /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: The added message
@@ -6592,7 +6867,7 @@ public class TDLibApi {
     }
 
     /// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
-    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
     /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: The added message
@@ -6730,8 +7005,8 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
-    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
     public final func editQuickReplyMessage(
@@ -6748,8 +7023,8 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
-    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8191,6 +8466,86 @@ public class TDLibApi {
             chatId: chatId,
             messageId: messageId,
             replyMarkup: replyMarkup
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds tasks to a checklist in a message
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter messageId: Identifier of the message containing the checklist. Use messageProperties.can_add_tasks to check whether the tasks can be added
+    /// - Parameter tasks: List of added tasks
+    public final func addChecklistTasks(
+        chatId: Int64?,
+        messageId: Int64?,
+        tasks: [InputChecklistTask]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddChecklistTasks(
+            chatId: chatId,
+            messageId: messageId,
+            tasks: tasks
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds tasks to a checklist in a message
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter messageId: Identifier of the message containing the checklist. Use messageProperties.can_add_tasks to check whether the tasks can be added
+    /// - Parameter tasks: List of added tasks
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func addChecklistTasks(
+        chatId: Int64?,
+        messageId: Int64?,
+        tasks: [InputChecklistTask]?
+    ) async throws -> Ok {
+        let query = AddChecklistTasks(
+            chatId: chatId,
+            messageId: messageId,
+            tasks: tasks
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds tasks of a checklist in a message as done or not done
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter markedAsDoneTaskIds: Identifiers of tasks that were marked as done
+    /// - Parameter markedAsNotDoneTaskIds: Identifiers of tasks that were marked as not done
+    /// - Parameter messageId: Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done
+    public final func markChecklistTasksAsDone(
+        chatId: Int64?,
+        markedAsDoneTaskIds: [Int]?,
+        markedAsNotDoneTaskIds: [Int]?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = MarkChecklistTasksAsDone(
+            chatId: chatId,
+            markedAsDoneTaskIds: markedAsDoneTaskIds,
+            markedAsNotDoneTaskIds: markedAsNotDoneTaskIds,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds tasks of a checklist in a message as done or not done
+    /// - Parameter chatId: Identifier of the chat with the message
+    /// - Parameter markedAsDoneTaskIds: Identifiers of tasks that were marked as done
+    /// - Parameter markedAsNotDoneTaskIds: Identifiers of tasks that were marked as not done
+    /// - Parameter messageId: Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func markChecklistTasksAsDone(
+        chatId: Int64?,
+        markedAsDoneTaskIds: [Int]?,
+        markedAsNotDoneTaskIds: [Int]?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = MarkChecklistTasksAsDone(
+            chatId: chatId,
+            markedAsDoneTaskIds: markedAsDoneTaskIds,
+            markedAsNotDoneTaskIds: markedAsNotDoneTaskIds,
+            messageId: messageId
         )
         return try await self.run(query: query)
     }

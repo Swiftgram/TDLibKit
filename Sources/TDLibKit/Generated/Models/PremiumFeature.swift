@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -85,6 +85,9 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to use all available message effects
     case premiumFeatureMessageEffects
 
+    /// The ability to create and use checklist messages
+    case premiumFeatureChecklists
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -111,6 +114,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureLastSeenTimes
         case premiumFeatureBusiness
         case premiumFeatureMessageEffects
+        case premiumFeatureChecklists
     }
 
     public init(from decoder: Decoder) throws {
@@ -165,6 +169,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureBusiness
         case .premiumFeatureMessageEffects:
             self = .premiumFeatureMessageEffects
+        case .premiumFeatureChecklists:
+            self = .premiumFeatureChecklists
         }
     }
 
@@ -219,6 +225,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureBusiness, forKey: .type)
         case .premiumFeatureMessageEffects:
             try container.encode(Kind.premiumFeatureMessageEffects, forKey: .type)
+        case .premiumFeatureChecklists:
+            try container.encode(Kind.premiumFeatureChecklists, forKey: .type)
         }
     }
 }

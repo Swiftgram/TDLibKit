@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -38,7 +38,7 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
     public let messageId: Int64
 
     /// Information about the sponsor of the message
-    public let sponsor: MessageSponsor
+    public let sponsor: AdvertisementSponsor
 
     /// Title of the sponsored message
     public let title: String
@@ -53,7 +53,7 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
         content: MessageContent,
         isRecommended: Bool,
         messageId: Int64,
-        sponsor: MessageSponsor,
+        sponsor: AdvertisementSponsor,
         title: String
     ) {
         self.accentColorId = accentColorId

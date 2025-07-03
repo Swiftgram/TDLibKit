@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about a topic in a channel direct messages chat administered by the current user
 public struct DirectMessagesChatTopic: Codable, Equatable, Hashable, Identifiable {
+
+    /// True, if the other party can send unpaid messages even if the chat has paid messages enabled
+    public let canSendUnpaidMessages: Bool
 
     /// Identifier of the chat to which the topic belongs
     public let chatId: Int64
@@ -48,6 +51,7 @@ public struct DirectMessagesChatTopic: Codable, Equatable, Hashable, Identifiabl
 
 
     public init(
+        canSendUnpaidMessages: Bool,
         chatId: Int64,
         draftMessage: DraftMessage?,
         id: Int64,
@@ -60,6 +64,7 @@ public struct DirectMessagesChatTopic: Codable, Equatable, Hashable, Identifiabl
         unreadCount: Int64,
         unreadReactionCount: Int64
     ) {
+        self.canSendUnpaidMessages = canSendUnpaidMessages
         self.chatId = chatId
         self.draftMessage = draftMessage
         self.id = id

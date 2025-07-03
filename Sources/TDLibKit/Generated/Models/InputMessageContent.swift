@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -68,6 +68,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
     /// A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
     case inputMessageStory(InputMessageStory)
 
+    /// A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
+    case inputMessageChecklist(InputMessageChecklist)
+
     /// A forwarded message
     case inputMessageForwarded(InputMessageForwarded)
 
@@ -91,6 +94,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case inputMessageInvoice
         case inputMessagePoll
         case inputMessageStory
+        case inputMessageChecklist
         case inputMessageForwarded
     }
 
@@ -152,6 +156,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case .inputMessageStory:
             let value = try InputMessageStory(from: decoder)
             self = .inputMessageStory(value)
+        case .inputMessageChecklist:
+            let value = try InputMessageChecklist(from: decoder)
+            self = .inputMessageChecklist(value)
         case .inputMessageForwarded:
             let value = try InputMessageForwarded(from: decoder)
             self = .inputMessageForwarded(value)
@@ -214,6 +221,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputMessageStory(let value):
             try container.encode(Kind.inputMessageStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputMessageChecklist(let value):
+            try container.encode(Kind.inputMessageChecklist, forKey: .type)
             try value.encode(to: encoder)
         case .inputMessageForwarded(let value):
             try container.encode(Kind.inputMessageForwarded, forKey: .type)
@@ -856,6 +866,18 @@ public struct InputMessageStory: Codable, Equatable, Hashable {
     ) {
         self.storyId = storyId
         self.storyPosterChatId = storyPosterChatId
+    }
+}
+
+/// A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
+public struct InputMessageChecklist: Codable, Equatable, Hashable {
+
+    /// The checklist to send
+    public let checklist: InputChecklist
+
+
+    public init(checklist: InputChecklist) {
+        self.checklist = checklist
     }
 }
 

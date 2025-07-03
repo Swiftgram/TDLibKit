@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -78,6 +78,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A message with a forwarded story
     case messageStory(MessageStory)
+
+    /// A message with a checklist
+    case messageChecklist(MessageChecklist)
 
     /// A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
     case messageInvoice(MessageInvoice)
@@ -223,6 +226,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A price for direct messages was changed in the channel chat
     case messageDirectMessagePriceChanged(MessageDirectMessagePriceChanged)
 
+    /// Some tasks from a checklist were marked as done or not done
+    case messageChecklistTasksDone(MessageChecklistTasksDone)
+
+    /// Some tasks were added to a checklist
+    case messageChecklistTasksAdded(MessageChecklistTasksAdded)
+
     /// A contact has registered with Telegram
     case messageContactRegistered
 
@@ -277,6 +286,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGame
         case messagePoll
         case messageStory
+        case messageChecklist
         case messageInvoice
         case messageCall
         case messageGroupCall
@@ -325,6 +335,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messagePaidMessagesRefunded
         case messagePaidMessagePriceChanged
         case messageDirectMessagePriceChanged
+        case messageChecklistTasksDone
+        case messageChecklistTasksAdded
         case messageContactRegistered
         case messageUsersShared
         case messageChatShared
@@ -403,6 +415,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageStory:
             let value = try MessageStory(from: decoder)
             self = .messageStory(value)
+        case .messageChecklist:
+            let value = try MessageChecklist(from: decoder)
+            self = .messageChecklist(value)
         case .messageInvoice:
             let value = try MessageInvoice(from: decoder)
             self = .messageInvoice(value)
@@ -543,6 +558,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageDirectMessagePriceChanged:
             let value = try MessageDirectMessagePriceChanged(from: decoder)
             self = .messageDirectMessagePriceChanged(value)
+        case .messageChecklistTasksDone:
+            let value = try MessageChecklistTasksDone(from: decoder)
+            self = .messageChecklistTasksDone(value)
+        case .messageChecklistTasksAdded:
+            let value = try MessageChecklistTasksAdded(from: decoder)
+            self = .messageChecklistTasksAdded(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUsersShared:
@@ -638,6 +659,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageStory(let value):
             try container.encode(Kind.messageStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChecklist(let value):
+            try container.encode(Kind.messageChecklist, forKey: .type)
             try value.encode(to: encoder)
         case .messageInvoice(let value):
             try container.encode(Kind.messageInvoice, forKey: .type)
@@ -778,6 +802,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageDirectMessagePriceChanged(let value):
             try container.encode(Kind.messageDirectMessagePriceChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChecklistTasksDone(let value):
+            try container.encode(Kind.messageChecklistTasksDone, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChecklistTasksAdded(let value):
+            try container.encode(Kind.messageChecklistTasksAdded, forKey: .type)
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
@@ -1013,6 +1043,9 @@ public struct MessageVideo: Codable, Equatable, Hashable {
     /// Timestamp from which the video playing must start, in seconds
     public let startTimestamp: Int
 
+    /// Available storyboards for the video
+    public let storyboards: [VideoStoryboard]
+
     /// The video description
     public let video: Video
 
@@ -1025,6 +1058,7 @@ public struct MessageVideo: Codable, Equatable, Hashable {
         isSecret: Bool,
         showCaptionAboveMedia: Bool,
         startTimestamp: Int,
+        storyboards: [VideoStoryboard],
         video: Video
     ) {
         self.alternativeVideos = alternativeVideos
@@ -1034,6 +1068,7 @@ public struct MessageVideo: Codable, Equatable, Hashable {
         self.isSecret = isSecret
         self.showCaptionAboveMedia = showCaptionAboveMedia
         self.startTimestamp = startTimestamp
+        self.storyboards = storyboards
         self.video = video
     }
 }
@@ -1242,6 +1277,18 @@ public struct MessageStory: Codable, Equatable, Hashable {
         self.storyId = storyId
         self.storyPosterChatId = storyPosterChatId
         self.viaMention = viaMention
+    }
+}
+
+/// A message with a checklist
+public struct MessageChecklist: Codable, Equatable, Hashable {
+
+    /// The checklist description
+    public let list: Checklist
+
+
+    public init(list: Checklist) {
+        self.list = list
     }
 }
 
@@ -2444,6 +2491,49 @@ public struct MessageDirectMessagePriceChanged: Codable, Equatable, Hashable {
     ) {
         self.isEnabled = isEnabled
         self.paidMessageStarCount = paidMessageStarCount
+    }
+}
+
+/// Some tasks from a checklist were marked as done or not done
+public struct MessageChecklistTasksDone: Codable, Equatable, Hashable {
+
+    /// Identifier of the message with the checklist; can be 0 if the message was deleted
+    public let checklistMessageId: Int64
+
+    /// Identifiers of tasks that were marked as done
+    public let markedAsDoneTaskIds: [Int]
+
+    /// Identifiers of tasks that were marked as not done
+    public let markedAsNotDoneTaskIds: [Int]
+
+
+    public init(
+        checklistMessageId: Int64,
+        markedAsDoneTaskIds: [Int],
+        markedAsNotDoneTaskIds: [Int]
+    ) {
+        self.checklistMessageId = checklistMessageId
+        self.markedAsDoneTaskIds = markedAsDoneTaskIds
+        self.markedAsNotDoneTaskIds = markedAsNotDoneTaskIds
+    }
+}
+
+/// Some tasks were added to a checklist
+public struct MessageChecklistTasksAdded: Codable, Equatable, Hashable {
+
+    /// Identifier of the message with the checklist; can be 0 if the message was deleted
+    public let checklistMessageId: Int64
+
+    /// List of tasks added to the checklist
+    public let tasks: [ChecklistTask]
+
+
+    public init(
+        checklistMessageId: Int64,
+        tasks: [ChecklistTask]
+    ) {
+        self.checklistMessageId = checklistMessageId
+        self.tasks = tasks
     }
 }
 

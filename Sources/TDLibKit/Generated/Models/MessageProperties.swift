@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains properties of a message and describes actions that can be done with the message right now
 public struct MessageProperties: Codable, Equatable, Hashable {
+
+    /// True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
+    public let canAddTasks: Bool
 
     /// True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
     public let canBeCopied: Bool
@@ -25,7 +28,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     public let canBeDeletedOnlyForSelf: Bool
 
-    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
+    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
     public let canBeEdited: Bool
 
     /// True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
@@ -76,8 +79,14 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
     public let canGetStatistics: Bool
 
+    /// True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
+    public let canGetVideoAdvertisements: Bool
+
     /// True, if chat members already viewed the message can be received through getMessageViewers
     public let canGetViewers: Bool
+
+    /// True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription
+    public let canMarkTasksAsDone: Bool
 
     /// True, if speech can be recognized for the message through recognizeSpeech
     public let canRecognizeSpeech: Bool
@@ -99,6 +108,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
 
     public init(
+        canAddTasks: Bool,
         canBeCopied: Bool,
         canBeCopiedToSecretChat: Bool,
         canBeDeletedForAllUsers: Bool,
@@ -120,7 +130,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canGetMessageThread: Bool,
         canGetReadDate: Bool,
         canGetStatistics: Bool,
+        canGetVideoAdvertisements: Bool,
         canGetViewers: Bool,
+        canMarkTasksAsDone: Bool,
         canRecognizeSpeech: Bool,
         canReportChat: Bool,
         canReportReactions: Bool,
@@ -128,6 +140,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canSetFactCheck: Bool,
         needShowStatistics: Bool
     ) {
+        self.canAddTasks = canAddTasks
         self.canBeCopied = canBeCopied
         self.canBeCopiedToSecretChat = canBeCopiedToSecretChat
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
@@ -149,7 +162,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canGetMessageThread = canGetMessageThread
         self.canGetReadDate = canGetReadDate
         self.canGetStatistics = canGetStatistics
+        self.canGetVideoAdvertisements = canGetVideoAdvertisements
         self.canGetViewers = canGetViewers
+        self.canMarkTasksAsDone = canMarkTasksAsDone
         self.canRecognizeSpeech = canRecognizeSpeech
         self.canReportChat = canReportChat
         self.canReportReactions = canReportReactions

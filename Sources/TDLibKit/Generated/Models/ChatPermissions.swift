@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.50-64852808
-//  https://github.com/tdlib/td/tree/64852808
+//  Based on TDLib 1.8.51-bb474a20
+//  https://github.com/tdlib/td/tree/bb474a20
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
     /// True, if the user can send photos
     public let canSendPhotos: Bool
 
-    /// True, if the user can send polls
+    /// True, if the user can send polls and checklists
     public let canSendPolls: Bool
 
     /// True, if the user can send video notes
