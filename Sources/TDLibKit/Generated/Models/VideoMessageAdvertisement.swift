@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6c8bfbb5
-//  https://github.com/tdlib/td/tree/6c8bfbb5
+//  Based on TDLib 1.8.51-0ece11a1
+//  https://github.com/tdlib/td/tree/0ece11a1
 //
 
 import Foundation
@@ -19,10 +19,10 @@ public struct VideoMessageAdvertisement: Codable, Equatable, Hashable {
     /// True, if the advertisement can be reported to Telegram moderators through reportVideoMessageAdvertisement
     public let canBeReported: Bool
 
-    /// The maximum amount of time the advertisement must be dispalyed before it must be automatically hidden, in seconds
+    /// The maximum amount of time the advertisement must be displayed before it must be automatically hidden, in seconds
     public let maxDisplayDuration: Int
 
-    /// The minimum amount of time the advertisement must be dispalyed before it can be hidden by the user, in seconds
+    /// The minimum amount of time the advertisement must be displayed before it can be hidden by the user, in seconds
     public let minDisplayDuration: Int
 
     /// Information about the sponsor of the advertisement

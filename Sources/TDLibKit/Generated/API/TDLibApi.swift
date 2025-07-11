@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6c8bfbb5
-//  https://github.com/tdlib/td/tree/6c8bfbb5
+//  Based on TDLib 1.8.51-0ece11a1
+//  https://github.com/tdlib/td/tree/0ece11a1
 //
 
 import Foundation
@@ -9825,7 +9825,7 @@ public class TDLibApi {
 
     /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
     /// - Parameter chatId: Chat identifier
-    /// - Parameter forceRead: Pass true to mark as read the specified messages even the chat is closed
+    /// - Parameter forceRead: Pass true to mark as read the specified messages even if the chat is closed
     /// - Parameter messageIds: The identifiers of the messages being viewed
     /// - Parameter source: Source of the message view; pass null to guess the source based on chat open state
     public final func viewMessages(
@@ -9846,7 +9846,7 @@ public class TDLibApi {
 
     /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
     /// - Parameter chatId: Chat identifier
-    /// - Parameter forceRead: Pass true to mark as read the specified messages even the chat is closed
+    /// - Parameter forceRead: Pass true to mark as read the specified messages even if the chat is closed
     /// - Parameter messageIds: The identifiers of the messages being viewed
     /// - Parameter source: Source of the message view; pass null to guess the source based on chat open state
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
