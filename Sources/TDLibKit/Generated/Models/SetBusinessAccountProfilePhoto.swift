@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-0ece11a1
-//  https://github.com/tdlib/td/tree/0ece11a1
+//  Based on TDLib 1.8.51-da4e46f2
+//  https://github.com/tdlib/td/tree/da4e46f2
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SetBusinessAccountProfilePhoto: Codable, Equatable, Hashable {
     /// Unique identifier of business connection
     public let businessConnectionId: String?
 
-    /// Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     public let isPublic: Bool?
 
     /// Profile photo to set; pass null to remove the photo

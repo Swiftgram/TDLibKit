@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-0ece11a1
-//  https://github.com/tdlib/td/tree/0ece11a1
+//  Based on TDLib 1.8.51-da4e46f2
+//  https://github.com/tdlib/td/tree/da4e46f2
 //
 
 import Foundation
@@ -76,7 +76,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
     case premiumFeatureMessagePrivacy
 
-    /// The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
+    /// The ability to view last seen and read times of other users even if they can't view last seen or read time for the current user
     case premiumFeatureLastSeenTimes
 
     /// The ability to use Business features

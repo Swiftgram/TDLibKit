@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-0ece11a1
-//  https://github.com/tdlib/td/tree/0ece11a1
+//  Based on TDLib 1.8.51-da4e46f2
+//  https://github.com/tdlib/td/tree/da4e46f2
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
     public let canBeReported: Bool
 
-    /// Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even it doesn't belong to the chat list and have no position in a chat list even it belongs to the chat list
+    /// Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even if it doesn't belong to the chat list and have no position in a chat list even if it belongs to the chat list
     public let chatLists: [ChatList]
 
     /// Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used

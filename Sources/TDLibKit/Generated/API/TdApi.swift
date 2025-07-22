@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-0ece11a1
-//  https://github.com/tdlib/td/tree/0ece11a1
+//  Based on TDLib 1.8.51-da4e46f2
+//  https://github.com/tdlib/td/tree/da4e46f2
 //
 
 import Foundation
@@ -6517,7 +6517,7 @@ public final class TdApi {
 
     /// Changes a profile photo of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
-    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set; pass null to remove the photo
     public func setBusinessAccountProfilePhoto(
         businessConnectionId: String?,
@@ -6535,7 +6535,7 @@ public final class TdApi {
 
     /// Changes a profile photo of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
-    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set; pass null to remove the photo
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -13924,15 +13924,15 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
-    /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    /// Returns the list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
     public func getDisallowedChatEmojiStatuses(completion: @escaping (Result<EmojiStatusCustomEmojis, Swift.Error>) -> Void) throws {
         let query = GetDisallowedChatEmojiStatuses()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
-    /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    /// Returns the list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
+    /// - Returns: The list of emoji statuses, which can't be used as chat emoji status, even if they are from a sticker set with is_allowed_as_chat_emoji_status == true
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getDisallowedChatEmojiStatuses() async throws -> EmojiStatusCustomEmojis {
         let query = GetDisallowedChatEmojiStatuses()
@@ -18438,7 +18438,7 @@ public final class TdApi {
     }
 
     /// Changes a profile photo for the current user
-    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     public func setProfilePhoto(
         isPublic: Bool?,
@@ -18453,7 +18453,7 @@ public final class TdApi {
     }
 
     /// Changes a profile photo for the current user
-    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    /// - Parameter isPublic: Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     /// - Parameter photo: Profile photo to set
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
