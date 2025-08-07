@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -43,6 +43,9 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     public let sendingId: Int
 
+    /// Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer
+    public let suggestedPostInfo: InputSuggestedPostInfo?
+
     /// Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
     public let updateOrderOfInstalledStickerSets: Bool
 
@@ -58,6 +61,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         protectContent: Bool,
         schedulingState: MessageSchedulingState?,
         sendingId: Int,
+        suggestedPostInfo: InputSuggestedPostInfo?,
         updateOrderOfInstalledStickerSets: Bool
     ) {
         self.allowPaidBroadcast = allowPaidBroadcast
@@ -70,6 +74,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         self.protectContent = protectContent
         self.schedulingState = schedulingState
         self.sendingId = sendingId
+        self.suggestedPostInfo = suggestedPostInfo
         self.updateOrderOfInstalledStickerSets = updateOrderOfInstalledStickerSets
     }
 }

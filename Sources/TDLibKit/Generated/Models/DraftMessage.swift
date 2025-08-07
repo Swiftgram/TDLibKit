@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct DraftMessage: Codable, Equatable, Hashable {
     /// Information about the message to be replied; must be of the type inputMessageReplyToMessage; may be null if none
     public let replyTo: InputMessageReplyTo?
 
+    /// Information about the suggested post; may be null if none
+    public let suggestedPostInfo: InputSuggestedPostInfo?
+
 
     public init(
         date: Int,
         effectId: TdInt64,
         inputMessageText: InputMessageContent,
-        replyTo: InputMessageReplyTo?
+        replyTo: InputMessageReplyTo?,
+        suggestedPostInfo: InputSuggestedPostInfo?
     ) {
         self.date = date
         self.effectId = effectId
         self.inputMessageText = inputMessageText
         self.replyTo = replyTo
+        self.suggestedPostInfo = suggestedPostInfo
     }
 }
 

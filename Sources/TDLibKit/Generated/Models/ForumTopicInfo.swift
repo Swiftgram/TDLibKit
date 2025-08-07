@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
     /// Icon of the topic
     public let icon: ForumTopicIcon
 
-    /// True, if the topic is closed
+    /// True, if the topic is closed. If the topic is closed, then the user must have can_manage_topics administrator right in the supergroup or must be the creator of the topic to send messages there
     public let isClosed: Bool
 
     /// True, if the topic is the General topic list

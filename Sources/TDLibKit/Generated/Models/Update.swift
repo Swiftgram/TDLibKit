@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -51,6 +51,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A fact-check added to a message was changed
     case updateMessageFactCheck(UpdateMessageFactCheck)
+
+    /// Information about suggested post of a message was changed
+    case updateMessageSuggestedPostInfo(UpdateMessageSuggestedPostInfo)
 
     /// A message with a live location was viewed. When the update is received, the application is expected to update the live location
     case updateMessageLiveLocationViewed(UpdateMessageLiveLocationViewed)
@@ -397,6 +400,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The number of Telegram Stars owned by the current user has changed
     case updateOwnedStarCount(UpdateOwnedStarCount)
 
+    /// The number of Toncoins owned by the current user has changed
+    case updateOwnedTonCount(UpdateOwnedTonCount)
+
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
 
@@ -505,6 +511,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateMessageMentionRead
         case updateMessageUnreadReactions
         case updateMessageFactCheck
+        case updateMessageSuggestedPostInfo
         case updateMessageLiveLocationViewed
         case updateVideoPublished
         case updateNewChat
@@ -620,6 +627,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateSavedMessagesTags
         case updateActiveLiveLocationMessages
         case updateOwnedStarCount
+        case updateOwnedTonCount
         case updateChatRevenueAmount
         case updateStarRevenueStatus
         case updateSpeechRecognitionTrial
@@ -696,6 +704,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageFactCheck:
             let value = try UpdateMessageFactCheck(from: decoder)
             self = .updateMessageFactCheck(value)
+        case .updateMessageSuggestedPostInfo:
+            let value = try UpdateMessageSuggestedPostInfo(from: decoder)
+            self = .updateMessageSuggestedPostInfo(value)
         case .updateMessageLiveLocationViewed:
             let value = try UpdateMessageLiveLocationViewed(from: decoder)
             self = .updateMessageLiveLocationViewed(value)
@@ -1041,6 +1052,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateOwnedStarCount:
             let value = try UpdateOwnedStarCount(from: decoder)
             self = .updateOwnedStarCount(value)
+        case .updateOwnedTonCount:
+            let value = try UpdateOwnedTonCount(from: decoder)
+            self = .updateOwnedTonCount(value)
         case .updateChatRevenueAmount:
             let value = try UpdateChatRevenueAmount(from: decoder)
             self = .updateChatRevenueAmount(value)
@@ -1178,6 +1192,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateMessageFactCheck(let value):
             try container.encode(Kind.updateMessageFactCheck, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateMessageSuggestedPostInfo(let value):
+            try container.encode(Kind.updateMessageSuggestedPostInfo, forKey: .type)
             try value.encode(to: encoder)
         case .updateMessageLiveLocationViewed(let value):
             try container.encode(Kind.updateMessageLiveLocationViewed, forKey: .type)
@@ -1523,6 +1540,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateOwnedStarCount(let value):
             try container.encode(Kind.updateOwnedStarCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateOwnedTonCount(let value):
+            try container.encode(Kind.updateOwnedTonCount, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatRevenueAmount(let value):
             try container.encode(Kind.updateChatRevenueAmount, forKey: .type)
@@ -1901,6 +1921,30 @@ public struct UpdateMessageFactCheck: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.factCheck = factCheck
         self.messageId = messageId
+    }
+}
+
+/// Information about suggested post of a message was changed
+public struct UpdateMessageSuggestedPostInfo: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Message identifier
+    public let messageId: Int64
+
+    /// The new information about the suggested post
+    public let suggestedPostInfo: SuggestedPostInfo
+
+
+    public init(
+        chatId: Int64,
+        messageId: Int64,
+        suggestedPostInfo: SuggestedPostInfo
+    ) {
+        self.chatId = chatId
+        self.messageId = messageId
+        self.suggestedPostInfo = suggestedPostInfo
     }
 }
 
@@ -4053,6 +4097,18 @@ public struct UpdateOwnedStarCount: Codable, Equatable, Hashable {
 
     public init(starAmount: StarAmount) {
         self.starAmount = starAmount
+    }
+}
+
+/// The number of Toncoins owned by the current user has changed
+public struct UpdateOwnedTonCount: Codable, Equatable, Hashable {
+
+    /// The new amount of owned Toncoins; in the smallest units of the cryptocurrency
+    public let tonAmount: Int64
+
+
+    public init(tonAmount: Int64) {
+        self.tonAmount = tonAmount
     }
 }
 

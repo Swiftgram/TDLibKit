@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -67,7 +67,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
     public let joinByRequest: Bool
 
-    /// True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
+    /// True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups
     public let joinToSendMessages: Bool
 
     /// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToPostStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories

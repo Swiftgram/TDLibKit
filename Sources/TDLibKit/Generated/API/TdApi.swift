@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -1324,10 +1324,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1340,10 +1340,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, the checklist message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted, messageChecklistTasksDone and messageChecklistTasksAdded, and topic messages without non-bundled replied message respectively. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -7083,7 +7083,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
@@ -7107,7 +7107,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
+    /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter editIconCustomEmoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     /// - Parameter iconCustomEmojiId: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
@@ -7289,7 +7289,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -7307,7 +7307,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
+    /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isClosed: Pass true to close the topic; pass false to reopen it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -7326,7 +7326,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     public func toggleGeneralForumTopicIsHidden(
@@ -7341,7 +7341,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup
+    /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter isHidden: Pass true to hide and close the General topic; pass false to unhide it
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7357,7 +7357,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+    /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
     /// - Parameter chatId: Chat identifier
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -7375,7 +7375,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+    /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
     /// - Parameter chatId: Chat identifier
     /// - Parameter isPinned: Pass true to pin the topic; pass false to unpin it
     /// - Parameter messageThreadId: Message thread identifier of the forum topic
@@ -7394,7 +7394,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
+    /// Changes the order of pinned forum topics; requires can_manage_topics administrator right in the supergroup
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadIds: The new list of pinned forum topics
     public func setPinnedForumTopics(
@@ -7409,7 +7409,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
+    /// Changes the order of pinned forum topics; requires can_manage_topics administrator right in the supergroup
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageThreadIds: The new list of pinned forum topics
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15259,6 +15259,118 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Approves a suggested post in a channel direct messages chat
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter messageId: Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
+    /// - Parameter sendDate: Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen
+    public func approveSuggestedPost(
+        chatId: Int64?,
+        messageId: Int64?,
+        sendDate: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ApproveSuggestedPost(
+            chatId: chatId,
+            messageId: messageId,
+            sendDate: sendDate
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Approves a suggested post in a channel direct messages chat
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter messageId: Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
+    /// - Parameter sendDate: Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func approveSuggestedPost(
+        chatId: Int64?,
+        messageId: Int64?,
+        sendDate: Int?
+    ) async throws -> Ok {
+        let query = ApproveSuggestedPost(
+            chatId: chatId,
+            messageId: messageId,
+            sendDate: sendDate
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Declines a suggested post in a channel direct messages chat
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter comment: Comment for the creator of the suggested post; 0-128 characters
+    /// - Parameter messageId: Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined
+    public func declineSuggestedPost(
+        chatId: Int64?,
+        comment: String?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeclineSuggestedPost(
+            chatId: chatId,
+            comment: comment,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Declines a suggested post in a channel direct messages chat
+    /// - Parameter chatId: Chat identifier of the channel direct messages chat
+    /// - Parameter comment: Comment for the creator of the suggested post; 0-128 characters
+    /// - Parameter messageId: Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func declineSuggestedPost(
+        chatId: Int64?,
+        comment: String?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = DeclineSuggestedPost(
+            chatId: chatId,
+            comment: comment,
+            messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sent a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message
+    /// - Parameter chatId: Identifier of the channel direct messages chat
+    /// - Parameter messageId: Identifier of the message in the chat which will be sent as suggested post. Use messageProperties.can_add_offer to check whether an offer can be added or messageProperties.can_edit_suggested_post_info to check whether price or time of sending of the post can be changed
+    /// - Parameter options: Options to be used to send the message. New information about the suggested post must always be specified
+    /// - Returns: The sent message
+    public func addOffer(
+        chatId: Int64?,
+        messageId: Int64?,
+        options: MessageSendOptions?,
+        completion: @escaping (Result<Message, Swift.Error>) -> Void
+    ) throws {
+        let query = AddOffer(
+            chatId: chatId,
+            messageId: messageId,
+            options: options
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sent a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message
+    /// - Parameter chatId: Identifier of the channel direct messages chat
+    /// - Parameter messageId: Identifier of the message in the chat which will be sent as suggested post. Use messageProperties.can_add_offer to check whether an offer can be added or messageProperties.can_edit_suggested_post_info to check whether price or time of sending of the post can be changed
+    /// - Parameter options: Options to be used to send the message. New information about the suggested post must always be specified
+    /// - Returns: The sent message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addOffer(
+        chatId: Int64?,
+        messageId: Int64?,
+        options: MessageSendOptions?
+    ) async throws -> Message {
+        let query = AddOffer(
+            chatId: chatId,
+            messageId: messageId,
+            options: options
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Creates a new call
     /// - Parameter isVideo: Pass true to create a video call
     /// - Parameter `protocol`: The call protocols supported by the application
@@ -21396,7 +21508,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sells a gift for Telegram Stars
+    /// Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     public func sellGift(
@@ -21411,7 +21523,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sells a gift for Telegram Stars
+    /// Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -21857,13 +21969,13 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns upgraded gifts that can be bought from other owners
+    /// Returns upgraded gifts that can be bought from other owners using sendResoldGift
     /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
     /// - Parameter order: Order in which the results will be sorted
-    /// - Returns: Upgraded gifts that can be bought from other owners
+    /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift
     public func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
         giftId: TdInt64?,
@@ -21882,13 +21994,13 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns upgraded gifts that can be bought from other owners
+    /// Returns upgraded gifts that can be bought from other owners using sendResoldGift
     /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
     /// - Parameter order: Order in which the results will be sorted
-    /// - Returns: Upgraded gifts that can be bought from other owners
+    /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
@@ -23114,13 +23226,13 @@ public final class TdApi {
 
     /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
-    /// - Parameter limit: The maximum number of transactions to be returned; up to 200
-    /// - Parameter offset: Number of transactions to skip
+    /// - Parameter limit: The maximum number of transactions to be returned; up to 100
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
     /// - Returns: The list of revenue transactions for a chat
     public func getChatRevenueTransactions(
         chatId: Int64?,
         limit: Int?,
-        offset: Int?,
+        offset: String?,
         completion: @escaping (Result<ChatRevenueTransactions, Swift.Error>) -> Void
     ) throws {
         let query = GetChatRevenueTransactions(
@@ -23133,17 +23245,55 @@ public final class TdApi {
 
     /// Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
     /// - Parameter chatId: Chat identifier
-    /// - Parameter limit: The maximum number of transactions to be returned; up to 200
-    /// - Parameter offset: Number of transactions to skip
+    /// - Parameter limit: The maximum number of transactions to be returned; up to 100
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
     /// - Returns: The list of revenue transactions for a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatRevenueTransactions(
         chatId: Int64?,
         limit: Int?,
-        offset: Int?
+        offset: String?
     ) async throws -> ChatRevenueTransactions {
         let query = GetChatRevenueTransactions(
             chatId: chatId,
+            limit: limit,
+            offset: offset
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of Toncoin transactions of the current user
+    /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter limit: The maximum number of transactions to return
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: The list of Toncoin transactions of the current user
+    public func getTonTransactions(
+        direction: TransactionDirection?,
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<TonTransactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonTransactions(
+            direction: direction,
+            limit: limit,
+            offset: offset
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of Toncoin transactions of the current user
+    /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter limit: The maximum number of transactions to return
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: The list of Toncoin transactions of the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getTonTransactions(
+        direction: TransactionDirection?,
+        limit: Int?,
+        offset: String?
+    ) async throws -> TonTransactions {
+        let query = GetTonTransactions(
+            direction: direction,
             limit: limit,
             offset: offset
         )
@@ -23185,7 +23335,7 @@ public final class TdApi {
     /// Returns a URL for Telegram Star withdrawal
     /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Parameter starCount: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// - Parameter starCount: The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
     /// - Returns: A URL for Telegram Star withdrawal
     public func getStarWithdrawalUrl(
         ownerId: MessageSender?,
@@ -23204,7 +23354,7 @@ public final class TdApi {
     /// Returns a URL for Telegram Star withdrawal
     /// - Parameter ownerId: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Parameter starCount: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// - Parameter starCount: The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
     /// - Returns: A URL for Telegram Star withdrawal
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStarWithdrawalUrl(
@@ -25130,7 +25280,7 @@ public final class TdApi {
     /// - Parameter subscriptionId: If non-empty, only transactions related to the Star Subscription will be returned
     /// - Returns: The list of Telegram Star transactions for the specified owner
     public func getStarTransactions(
-        direction: StarTransactionDirection?,
+        direction: TransactionDirection?,
         limit: Int?,
         offset: String?,
         ownerId: MessageSender?,
@@ -25156,7 +25306,7 @@ public final class TdApi {
     /// - Returns: The list of Telegram Star transactions for the specified owner
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStarTransactions(
-        direction: StarTransactionDirection?,
+        direction: TransactionDirection?,
         limit: Int?,
         offset: String?,
         ownerId: MessageSender?,

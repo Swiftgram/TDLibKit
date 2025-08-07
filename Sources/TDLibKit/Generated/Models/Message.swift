@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -70,6 +70,12 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message is outgoing
     public let isOutgoing: Bool
 
+    /// True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    public let isPaidStarSuggestedPost: Bool
+
+    /// True, if the message is a suggested channel post which was paid in Toncoins; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    public let isPaidTonSuggestedPost: Bool
+
     /// True, if the message is pinned
     public let isPinned: Bool
 
@@ -112,6 +118,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     public let sendingState: MessageSendingState?
 
+    /// Information about the suggested post; may be null if the message isn't a suggested post
+    public let suggestedPostInfo: SuggestedPostInfo?
+
     /// Identifier of the topic within the chat to which the message belongs; may be null if none
     public let topicId: MessageTopic?
 
@@ -142,6 +151,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         isChannelPost: Bool,
         isFromOffline: Bool,
         isOutgoing: Bool,
+        isPaidStarSuggestedPost: Bool,
+        isPaidTonSuggestedPost: Bool,
         isPinned: Bool,
         mediaAlbumId: TdInt64,
         messageThreadId: Int64,
@@ -156,6 +167,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         senderBusinessBotUserId: Int64,
         senderId: MessageSender,
         sendingState: MessageSendingState?,
+        suggestedPostInfo: SuggestedPostInfo?,
         topicId: MessageTopic?,
         unreadReactions: [UnreadReaction],
         viaBotUserId: Int64
@@ -179,6 +191,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.isChannelPost = isChannelPost
         self.isFromOffline = isFromOffline
         self.isOutgoing = isOutgoing
+        self.isPaidStarSuggestedPost = isPaidStarSuggestedPost
+        self.isPaidTonSuggestedPost = isPaidTonSuggestedPost
         self.isPinned = isPinned
         self.mediaAlbumId = mediaAlbumId
         self.messageThreadId = messageThreadId
@@ -193,6 +207,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.senderBusinessBotUserId = senderBusinessBotUserId
         self.senderId = senderId
         self.sendingState = sendingState
+        self.suggestedPostInfo = suggestedPostInfo
         self.topicId = topicId
         self.unreadReactions = unreadReactions
         self.viaBotUserId = viaBotUserId

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     public let lastSendDate: Int
 
+    /// Identifier of the chat that published the gift; 0 if none
+    public let publisherChatId: Int64
+
     /// Number of remaining times the gift can be purchased; 0 if not limited or the gift was sold out
     public let remainingCount: Int
 
@@ -50,6 +53,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         id: TdInt64,
         isForBirthday: Bool,
         lastSendDate: Int,
+        publisherChatId: Int64,
         remainingCount: Int,
         starCount: Int64,
         sticker: Sticker,
@@ -61,6 +65,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         self.id = id
         self.isForBirthday = isForBirthday
         self.lastSendDate = lastSendDate
+        self.publisherChatId = publisherChatId
         self.remainingCount = remainingCount
         self.starCount = starCount
         self.sticker = sticker

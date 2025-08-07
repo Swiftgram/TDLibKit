@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -13,14 +13,23 @@ import Foundation
 /// Contains properties of a message and describes actions that can be done with the message right now
 public struct MessageProperties: Codable, Equatable, Hashable {
 
+    /// True, if an offer can be added to the message using addOffer
+    public let canAddOffer: Bool
+
     /// True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
     public let canAddTasks: Bool
+
+    /// True, if the message is a suggested post that can be approved by the user using approveSuggestedPost
+    public let canBeApproved: Bool
 
     /// True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
     public let canBeCopied: Bool
 
     /// True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
     public let canBeCopiedToSecretChat: Bool
+
+    /// True, if the message is a suggested post that can be declined by the user using declineSuggestedPost
+    public let canBeDeclined: Bool
 
     /// True, if the message can be deleted for all users using the method deleteMessages with revoke == true
     public let canBeDeletedForAllUsers: Bool
@@ -57,6 +66,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
     /// True, if scheduling state of the message can be edited
     public let canEditSchedulingState: Bool
+
+    /// True, if another price or post send time can be suggested using addOffer
+    public let canEditSuggestedPostInfo: Bool
 
     /// True, if author of the message sent on behalf of a chat can be received through getMessageAuthor
     public let canGetAuthor: Bool
@@ -108,9 +120,12 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
 
     public init(
+        canAddOffer: Bool,
         canAddTasks: Bool,
+        canBeApproved: Bool,
         canBeCopied: Bool,
         canBeCopiedToSecretChat: Bool,
+        canBeDeclined: Bool,
         canBeDeletedForAllUsers: Bool,
         canBeDeletedOnlyForSelf: Bool,
         canBeEdited: Bool,
@@ -123,6 +138,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canBeSharedInStory: Bool,
         canEditMedia: Bool,
         canEditSchedulingState: Bool,
+        canEditSuggestedPostInfo: Bool,
         canGetAuthor: Bool,
         canGetEmbeddingCode: Bool,
         canGetLink: Bool,
@@ -140,9 +156,12 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canSetFactCheck: Bool,
         needShowStatistics: Bool
     ) {
+        self.canAddOffer = canAddOffer
         self.canAddTasks = canAddTasks
+        self.canBeApproved = canBeApproved
         self.canBeCopied = canBeCopied
         self.canBeCopiedToSecretChat = canBeCopiedToSecretChat
+        self.canBeDeclined = canBeDeclined
         self.canBeDeletedForAllUsers = canBeDeletedForAllUsers
         self.canBeDeletedOnlyForSelf = canBeDeletedOnlyForSelf
         self.canBeEdited = canBeEdited
@@ -155,6 +174,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canBeSharedInStory = canBeSharedInStory
         self.canEditMedia = canEditMedia
         self.canEditSchedulingState = canEditSchedulingState
+        self.canEditSuggestedPostInfo = canEditSuggestedPostInfo
         self.canGetAuthor = canGetAuthor
         self.canGetEmbeddingCode = canGetEmbeddingCode
         self.canGetLink = canGetLink

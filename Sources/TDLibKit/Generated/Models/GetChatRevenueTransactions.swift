@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -16,17 +16,17 @@ public struct GetChatRevenueTransactions: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// The maximum number of transactions to be returned; up to 200
+    /// The maximum number of transactions to be returned; up to 100
     public let limit: Int?
 
-    /// Number of transactions to skip
-    public let offset: Int?
+    /// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    public let offset: String?
 
 
     public init(
         chatId: Int64?,
         limit: Int?,
-        offset: Int?
+        offset: String?
     ) {
         self.chatId = chatId
         self.limit = limit

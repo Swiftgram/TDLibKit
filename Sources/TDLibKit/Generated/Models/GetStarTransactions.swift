@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct GetStarTransactions: Codable, Equatable, Hashable {
 
     /// Direction of the transactions to receive; pass null to get all transactions
-    public let direction: StarTransactionDirection?
+    public let direction: TransactionDirection?
 
     /// The maximum number of transactions to return
     public let limit: Int?
@@ -30,7 +30,7 @@ public struct GetStarTransactions: Codable, Equatable, Hashable {
 
 
     public init(
-        direction: StarTransactionDirection?,
+        direction: TransactionDirection?,
         limit: Int?,
         offset: String?,
         ownerId: MessageSender?,

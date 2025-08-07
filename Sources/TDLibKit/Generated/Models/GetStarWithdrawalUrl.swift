@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetStarWithdrawalUrl: Codable, Equatable, Hashable {
     /// The 2-step verification password of the current user
     public let password: String?
 
-    /// The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    /// The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
     public let starCount: Int64?
 
 

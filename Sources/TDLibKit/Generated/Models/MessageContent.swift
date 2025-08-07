@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -205,6 +205,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Telegram Stars were gifted to a user
     case messageGiftedStars(MessageGiftedStars)
 
+    /// Toncoins were gifted to a user
+    case messageGiftedTon(MessageGiftedTon)
+
     /// A Telegram Stars were received by the current user from a giveaway
     case messageGiveawayPrizeStars(MessageGiveawayPrizeStars)
 
@@ -231,6 +234,21 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// Some tasks were added to a checklist
     case messageChecklistTasksAdded(MessageChecklistTasksAdded)
+
+    /// Approval of suggested post has failed, because the user which proposed the post had no enough funds
+    case messageSuggestedPostApprovalFailed(MessageSuggestedPostApprovalFailed)
+
+    /// A suggested post was approved
+    case messageSuggestedPostApproved(MessageSuggestedPostApproved)
+
+    /// A suggested post was declined
+    case messageSuggestedPostDeclined(MessageSuggestedPostDeclined)
+
+    /// A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
+    case messageSuggestedPostPaid(MessageSuggestedPostPaid)
+
+    /// A suggested post was refunded
+    case messageSuggestedPostRefunded(MessageSuggestedPostRefunded)
 
     /// A contact has registered with Telegram
     case messageContactRegistered
@@ -328,6 +346,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGiveawayCompleted
         case messageGiveawayWinners
         case messageGiftedStars
+        case messageGiftedTon
         case messageGiveawayPrizeStars
         case messageGift
         case messageUpgradedGift
@@ -337,6 +356,11 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageDirectMessagePriceChanged
         case messageChecklistTasksDone
         case messageChecklistTasksAdded
+        case messageSuggestedPostApprovalFailed
+        case messageSuggestedPostApproved
+        case messageSuggestedPostDeclined
+        case messageSuggestedPostPaid
+        case messageSuggestedPostRefunded
         case messageContactRegistered
         case messageUsersShared
         case messageChatShared
@@ -537,6 +561,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiftedStars:
             let value = try MessageGiftedStars(from: decoder)
             self = .messageGiftedStars(value)
+        case .messageGiftedTon:
+            let value = try MessageGiftedTon(from: decoder)
+            self = .messageGiftedTon(value)
         case .messageGiveawayPrizeStars:
             let value = try MessageGiveawayPrizeStars(from: decoder)
             self = .messageGiveawayPrizeStars(value)
@@ -564,6 +591,21 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageChecklistTasksAdded:
             let value = try MessageChecklistTasksAdded(from: decoder)
             self = .messageChecklistTasksAdded(value)
+        case .messageSuggestedPostApprovalFailed:
+            let value = try MessageSuggestedPostApprovalFailed(from: decoder)
+            self = .messageSuggestedPostApprovalFailed(value)
+        case .messageSuggestedPostApproved:
+            let value = try MessageSuggestedPostApproved(from: decoder)
+            self = .messageSuggestedPostApproved(value)
+        case .messageSuggestedPostDeclined:
+            let value = try MessageSuggestedPostDeclined(from: decoder)
+            self = .messageSuggestedPostDeclined(value)
+        case .messageSuggestedPostPaid:
+            let value = try MessageSuggestedPostPaid(from: decoder)
+            self = .messageSuggestedPostPaid(value)
+        case .messageSuggestedPostRefunded:
+            let value = try MessageSuggestedPostRefunded(from: decoder)
+            self = .messageSuggestedPostRefunded(value)
         case .messageContactRegistered:
             self = .messageContactRegistered
         case .messageUsersShared:
@@ -782,6 +824,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiftedStars(let value):
             try container.encode(Kind.messageGiftedStars, forKey: .type)
             try value.encode(to: encoder)
+        case .messageGiftedTon(let value):
+            try container.encode(Kind.messageGiftedTon, forKey: .type)
+            try value.encode(to: encoder)
         case .messageGiveawayPrizeStars(let value):
             try container.encode(Kind.messageGiveawayPrizeStars, forKey: .type)
             try value.encode(to: encoder)
@@ -808,6 +853,21 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageChecklistTasksAdded(let value):
             try container.encode(Kind.messageChecklistTasksAdded, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestedPostApprovalFailed(let value):
+            try container.encode(Kind.messageSuggestedPostApprovalFailed, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestedPostApproved(let value):
+            try container.encode(Kind.messageSuggestedPostApproved, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestedPostDeclined(let value):
+            try container.encode(Kind.messageSuggestedPostDeclined, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestedPostPaid(let value):
+            try container.encode(Kind.messageSuggestedPostPaid, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestedPostRefunded(let value):
+            try container.encode(Kind.messageSuggestedPostRefunded, forKey: .type)
             try value.encode(to: encoder)
         case .messageContactRegistered:
             try container.encode(Kind.messageContactRegistered, forKey: .type)
@@ -2223,6 +2283,40 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
     }
 }
 
+/// Toncoins were gifted to a user
+public struct MessageGiftedTon: Codable, Equatable, Hashable {
+
+    /// The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing
+    public let gifterUserId: Int64
+
+    /// The identifier of a user that received Toncoins; 0 if the gift is incoming
+    public let receiverUserId: Int64
+
+    /// A sticker to be shown in the message; may be null if unknown
+    public let sticker: Sticker?
+
+    /// The received amount of Toncoins, in the smallest units of the cryptocurrency
+    public let tonAmount: Int64
+
+    /// Identifier of the transaction for Toncoin credit; for receiver only
+    public let transactionId: String
+
+
+    public init(
+        gifterUserId: Int64,
+        receiverUserId: Int64,
+        sticker: Sticker?,
+        tonAmount: Int64,
+        transactionId: String
+    ) {
+        self.gifterUserId = gifterUserId
+        self.receiverUserId = receiverUserId
+        self.sticker = sticker
+        self.tonAmount = tonAmount
+        self.transactionId = transactionId
+    }
+}
+
 /// A Telegram Stars were received by the current user from a giveaway
 public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
 
@@ -2356,17 +2450,14 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
-    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
-    public let isUpgrade: Bool
-
-    /// Number of Telegram Stars that were paid by the sender for the gift; 0 if the gift was upgraded or transferred
-    public let lastResaleStarCount: Int64
-
     /// Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
     public let nextResaleDate: Int
 
     /// Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
     public let nextTransferDate: Int
+
+    /// Origin of the upgraded gift
+    public let origin: UpgradedGiftOrigin
 
     /// Unique identifier of the received gift for the current user; only for the receiver of the gift
     public let receivedGiftId: String
@@ -2380,7 +2471,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
     public let transferStarCount: Int64
 
-    /// True, if the gift was transferred to another owner; only for the receiver of the gift
+    /// True, if the gift has already been transferred to another owner; only for the receiver of the gift
     public let wasTransferred: Bool
 
 
@@ -2389,10 +2480,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         exportDate: Int,
         gift: UpgradedGift,
         isSaved: Bool,
-        isUpgrade: Bool,
-        lastResaleStarCount: Int64,
         nextResaleDate: Int,
         nextTransferDate: Int,
+        origin: UpgradedGiftOrigin,
         receivedGiftId: String,
         receiverId: MessageSender,
         senderId: MessageSender?,
@@ -2403,10 +2493,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.exportDate = exportDate
         self.gift = gift
         self.isSaved = isSaved
-        self.isUpgrade = isUpgrade
-        self.lastResaleStarCount = lastResaleStarCount
         self.nextResaleDate = nextResaleDate
         self.nextTransferDate = nextTransferDate
+        self.origin = origin
         self.receivedGiftId = receivedGiftId
         self.receiverId = receiverId
         self.senderId = senderId
@@ -2534,6 +2623,111 @@ public struct MessageChecklistTasksAdded: Codable, Equatable, Hashable {
     ) {
         self.checklistMessageId = checklistMessageId
         self.tasks = tasks
+    }
+}
+
+/// Approval of suggested post has failed, because the user which proposed the post had no enough funds
+public struct MessageSuggestedPostApprovalFailed: Codable, Equatable, Hashable {
+
+    /// Price of the suggested post
+    public let price: SuggestedPostPrice
+
+    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    public let suggestedPostMessageId: Int64
+
+
+    public init(
+        price: SuggestedPostPrice,
+        suggestedPostMessageId: Int64
+    ) {
+        self.price = price
+        self.suggestedPostMessageId = suggestedPostMessageId
+    }
+}
+
+/// A suggested post was approved
+public struct MessageSuggestedPostApproved: Codable, Equatable, Hashable {
+
+    /// Price of the suggested post; may be null if the post is non-paid
+    public let price: SuggestedPostPrice?
+
+    /// Point in time (Unix timestamp) when the post is expected to be published
+    public let sendDate: Int
+
+    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    public let suggestedPostMessageId: Int64
+
+
+    public init(
+        price: SuggestedPostPrice?,
+        sendDate: Int,
+        suggestedPostMessageId: Int64
+    ) {
+        self.price = price
+        self.sendDate = sendDate
+        self.suggestedPostMessageId = suggestedPostMessageId
+    }
+}
+
+/// A suggested post was declined
+public struct MessageSuggestedPostDeclined: Codable, Equatable, Hashable {
+
+    /// Comment added by administrator of the channel when the post was declined
+    public let comment: String
+
+    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    public let suggestedPostMessageId: Int64
+
+
+    public init(
+        comment: String,
+        suggestedPostMessageId: Int64
+    ) {
+        self.comment = comment
+        self.suggestedPostMessageId = suggestedPostMessageId
+    }
+}
+
+/// A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
+public struct MessageSuggestedPostPaid: Codable, Equatable, Hashable {
+
+    /// The amount of received Telegram Stars
+    public let starAmount: StarAmount
+
+    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    public let suggestedPostMessageId: Int64
+
+    /// The amount of received Toncoins; in the smallest units of the cryptocurrency
+    public let tonAmount: Int64
+
+
+    public init(
+        starAmount: StarAmount,
+        suggestedPostMessageId: Int64,
+        tonAmount: Int64
+    ) {
+        self.starAmount = starAmount
+        self.suggestedPostMessageId = suggestedPostMessageId
+        self.tonAmount = tonAmount
+    }
+}
+
+/// A suggested post was refunded
+public struct MessageSuggestedPostRefunded: Codable, Equatable, Hashable {
+
+    /// Reason of the refund
+    public let reason: SuggestedPostRefundReason
+
+    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    public let suggestedPostMessageId: Int64
+
+
+    public init(
+        reason: SuggestedPostRefundReason,
+        suggestedPostMessageId: Int64
+    ) {
+        self.reason = reason
+        self.suggestedPostMessageId = suggestedPostMessageId
     }
 }
 

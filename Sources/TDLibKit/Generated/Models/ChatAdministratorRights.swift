@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
+    /// True, if the administrator can answer to channel direct messages; applicable to channels only
+    public let canManageDirectMessages: Bool
+
     /// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
     public let canManageTopics: Bool
 
@@ -43,7 +46,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can pin messages; applicable to basic groups and supergroups only
     public let canPinMessages: Bool
 
-    /// True, if the administrator can create channel posts, answer to channel direct messages, or view channel statistics; applicable to channels only
+    /// True, if the administrator can create channel posts, approve suggested channel posts, or view channel statistics; applicable to channels only
     public let canPostMessages: Bool
 
     /// True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only
@@ -67,6 +70,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
         canEditStories: Bool,
         canInviteUsers: Bool,
         canManageChat: Bool,
+        canManageDirectMessages: Bool,
         canManageTopics: Bool,
         canManageVideoChats: Bool,
         canPinMessages: Bool,
@@ -83,6 +87,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
         self.canEditStories = canEditStories
         self.canInviteUsers = canInviteUsers
         self.canManageChat = canManageChat
+        self.canManageDirectMessages = canManageDirectMessages
         self.canManageTopics = canManageTopics
         self.canManageVideoChats = canManageVideoChats
         self.canPinMessages = canPinMessages

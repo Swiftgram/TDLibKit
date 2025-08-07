@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -46,6 +46,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Name of the owner for the case when owner identifier and address aren't known
     public let ownerName: String
 
+    /// Identifier of the chat that published the gift; 0 if none
+    public let publisherChatId: Int64
+
     /// Number of Telegram Stars that must be paid to buy the gift and send it to someone else; 0 if resale isn't possible
     public let resaleStarCount: Int64
 
@@ -71,6 +74,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         ownerAddress: String,
         ownerId: MessageSender?,
         ownerName: String,
+        publisherChatId: Int64,
         resaleStarCount: Int64,
         symbol: UpgradedGiftSymbol,
         title: String,
@@ -87,6 +91,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.ownerAddress = ownerAddress
         self.ownerId = ownerId
         self.ownerName = ownerName
+        self.publisherChatId = publisherChatId
         self.resaleStarCount = resaleStarCount
         self.symbol = symbol
         self.title = title

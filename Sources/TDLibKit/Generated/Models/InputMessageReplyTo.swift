@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -64,6 +64,9 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
 /// Describes a message to be replied in the same chat and forum topic
 public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
 
+    /// Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message
+    public let checklistTaskId: Int
+
     /// The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied
     public let messageId: Int64
 
@@ -72,9 +75,11 @@ public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
 
 
     public init(
+        checklistTaskId: Int,
         messageId: Int64,
         quote: InputTextQuote?
     ) {
+        self.checklistTaskId = checklistTaskId
         self.messageId = messageId
         self.quote = quote
     }
@@ -86,6 +91,9 @@ public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
     /// The identifier of the chat to which the message to be replied belongs
     public let chatId: Int64
 
+    /// Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message
+    public let checklistTaskId: Int
+
     /// The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
     public let messageId: Int64
 
@@ -95,10 +103,12 @@ public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
 
     public init(
         chatId: Int64,
+        checklistTaskId: Int,
         messageId: Int64,
         quote: InputTextQuote?
     ) {
         self.chatId = chatId
+        self.checklistTaskId = checklistTaskId
         self.messageId = messageId
         self.quote = quote
     }

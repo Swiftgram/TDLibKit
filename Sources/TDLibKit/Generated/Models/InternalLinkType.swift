@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -94,6 +94,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to the screen with information about Telegram Star balance and transactions of the current user
     case internalLinkTypeMyStars
+
+    /// The link is a link to the screen with information about Toncoin balance and transactions of the current user
+    case internalLinkTypeMyToncoins
 
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
@@ -190,6 +193,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
         case internalLinkTypeMyStars
+        case internalLinkTypeMyToncoins
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
         case internalLinkTypePremiumFeatures
@@ -292,6 +296,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeMessageDraft(value)
         case .internalLinkTypeMyStars:
             self = .internalLinkTypeMyStars
+        case .internalLinkTypeMyToncoins:
+            self = .internalLinkTypeMyToncoins
         case .internalLinkTypePassportDataRequest:
             let value = try InternalLinkTypePassportDataRequest(from: decoder)
             self = .internalLinkTypePassportDataRequest(value)
@@ -432,6 +438,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeMyStars:
             try container.encode(Kind.internalLinkTypeMyStars, forKey: .type)
+        case .internalLinkTypeMyToncoins:
+            try container.encode(Kind.internalLinkTypeMyToncoins, forKey: .type)
         case .internalLinkTypePassportDataRequest(let value):
             try container.encode(Kind.internalLinkTypePassportDataRequest, forKey: .type)
             try value.encode(to: encoder)

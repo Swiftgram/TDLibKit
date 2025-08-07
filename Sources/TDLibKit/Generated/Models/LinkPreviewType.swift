@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -790,15 +790,20 @@ public struct LinkPreviewTypeVideoChat: Codable, Equatable, Hashable {
     /// True, if the video chat is expected to be a live stream in a channel or a broadcast group
     public let isLiveStream: Bool
 
+    /// True, if the user can use the link to join the video chat without being muted by administrators
+    public let joinsAsSpeaker: Bool
+
     /// Photo of the chat with the video chat; may be null if none
     public let photo: ChatPhoto?
 
 
     public init(
         isLiveStream: Bool,
+        joinsAsSpeaker: Bool,
         photo: ChatPhoto?
     ) {
         self.isLiveStream = isLiveStream
+        self.joinsAsSpeaker = joinsAsSpeaker
         self.photo = photo
     }
 }

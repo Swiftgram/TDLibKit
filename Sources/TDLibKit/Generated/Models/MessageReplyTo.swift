@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -57,6 +57,9 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     /// The identifier of the chat to which the message belongs; may be 0 if the replied message is in unknown chat
     public let chatId: Int64
 
+    /// Identifier of the checklist task in the original message that was replied; 0 if none
+    public let checklistTaskId: Int
+
     /// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
     public let content: MessageContent?
 
@@ -75,6 +78,7 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
 
     public init(
         chatId: Int64,
+        checklistTaskId: Int,
         content: MessageContent?,
         messageId: Int64,
         origin: MessageOrigin?,
@@ -82,6 +86,7 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
         quote: TextQuote?
     ) {
         self.chatId = chatId
+        self.checklistTaskId = checklistTaskId
         self.content = content
         self.messageId = messageId
         self.origin = origin

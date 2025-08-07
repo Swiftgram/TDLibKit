@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.51-6d74326c
-//  https://github.com/tdlib/td/tree/6d74326c
+//  Based on TDLib 1.8.52-4269f54e
+//  https://github.com/tdlib/td/tree/4269f54e
 //
 
 import Foundation
@@ -103,6 +103,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a receiving of a paid message; for regular users, supergroup and channel chats only
     case starTransactionTypePaidMessageReceive(StarTransactionTypePaidMessageReceive)
 
+    /// The transaction is a payment for a suggested post; for regular users only
+    case starTransactionTypeSuggestedPostPaymentSend(StarTransactionTypeSuggestedPostPaymentSend)
+
+    /// The transaction is a receiving of a payment for a suggested post by the channel chat; for channel chats only
+    case starTransactionTypeSuggestedPostPaymentReceive(StarTransactionTypeSuggestedPostPaymentReceive)
+
     /// The transaction is a purchase of Telegram Premium subscription; for regular users and bots only
     case starTransactionTypePremiumPurchase(StarTransactionTypePremiumPurchase)
 
@@ -147,6 +153,8 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypeAffiliateProgramCommission
         case starTransactionTypePaidMessageSend
         case starTransactionTypePaidMessageReceive
+        case starTransactionTypeSuggestedPostPaymentSend
+        case starTransactionTypeSuggestedPostPaymentReceive
         case starTransactionTypePremiumPurchase
         case starTransactionTypeBusinessBotTransferSend
         case starTransactionTypeBusinessBotTransferReceive
@@ -242,6 +250,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypePaidMessageReceive:
             let value = try StarTransactionTypePaidMessageReceive(from: decoder)
             self = .starTransactionTypePaidMessageReceive(value)
+        case .starTransactionTypeSuggestedPostPaymentSend:
+            let value = try StarTransactionTypeSuggestedPostPaymentSend(from: decoder)
+            self = .starTransactionTypeSuggestedPostPaymentSend(value)
+        case .starTransactionTypeSuggestedPostPaymentReceive:
+            let value = try StarTransactionTypeSuggestedPostPaymentReceive(from: decoder)
+            self = .starTransactionTypeSuggestedPostPaymentReceive(value)
         case .starTransactionTypePremiumPurchase:
             let value = try StarTransactionTypePremiumPurchase(from: decoder)
             self = .starTransactionTypePremiumPurchase(value)
@@ -343,6 +357,12 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .starTransactionTypePaidMessageReceive(let value):
             try container.encode(Kind.starTransactionTypePaidMessageReceive, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeSuggestedPostPaymentSend(let value):
+            try container.encode(Kind.starTransactionTypeSuggestedPostPaymentSend, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeSuggestedPostPaymentReceive(let value):
+            try container.encode(Kind.starTransactionTypeSuggestedPostPaymentReceive, forKey: .type)
             try value.encode(to: encoder)
         case .starTransactionTypePremiumPurchase(let value):
             try container.encode(Kind.starTransactionTypePremiumPurchase, forKey: .type)
@@ -882,6 +902,30 @@ public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashabl
         self.commissionStarAmount = commissionStarAmount
         self.messageCount = messageCount
         self.senderId = senderId
+    }
+}
+
+/// The transaction is a payment for a suggested post; for regular users only
+public struct StarTransactionTypeSuggestedPostPaymentSend: Codable, Equatable, Hashable {
+
+    /// Identifier of the channel chat that posted the post
+    public let chatId: Int64
+
+
+    public init(chatId: Int64) {
+        self.chatId = chatId
+    }
+}
+
+/// The transaction is a receiving of a payment for a suggested post by the channel chat; for channel chats only
+public struct StarTransactionTypeSuggestedPostPaymentReceive: Codable, Equatable, Hashable {
+
+    /// Identifier of the user that paid for the suggested post
+    public let userId: Int64
+
+
+    public init(userId: Int64) {
+        self.userId = userId
     }
 }
 
