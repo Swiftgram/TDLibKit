@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-bc32c4b2
-//  https://github.com/tdlib/td/tree/bc32c4b2
+//  Based on TDLib 1.8.52-5c77c469
+//  https://github.com/tdlib/td/tree/5c77c469
 //
 
 import Foundation
 
 
-/// Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat
+/// Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat
 public struct SetChatPinnedStories: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that posted the stories

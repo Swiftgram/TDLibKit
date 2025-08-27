@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-bc32c4b2
-//  https://github.com/tdlib/td/tree/bc32c4b2
+//  Based on TDLib 1.8.52-5c77c469
+//  https://github.com/tdlib/td/tree/5c77c469
 //
 
 import Foundation
@@ -11782,7 +11782,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
+    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     public final func setChatSlowModeDelay(
@@ -11797,7 +11797,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
+    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -12688,7 +12688,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Checks whether the current user can post a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
+    /// Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats
     /// - Parameter chatId: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     public final func canPostStory(
         chatId: Int64?,
@@ -12700,7 +12700,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Checks whether the current user can post a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
+    /// Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats
     /// - Parameter chatId: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func canPostStory(chatId: Int64?) async throws -> CanPostStoryResult {
@@ -12710,7 +12710,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Posts a new story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
+    /// Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
@@ -12747,7 +12747,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Posts a new story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
+    /// Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
@@ -13102,7 +13102,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -13121,7 +13121,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+    /// Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
     /// - Parameter chatId: Chat identifier
     /// - Parameter fromStoryId: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     /// - Parameter limit: The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -13140,7 +13140,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat
+    /// Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat
     /// - Parameter chatId: Identifier of the chat that posted the stories
     /// - Parameter storyIds: New list of pinned stories. All stories must be posted to the chat page first. There can be up to getOption("pinned_story_count_max") pinned stories on a chat page
     public final func setChatPinnedStories(
@@ -13155,7 +13155,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat
+    /// Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat
     /// - Parameter chatId: Identifier of the chat that posted the stories
     /// - Parameter storyIds: New list of pinned stories. All stories must be posted to the chat page first. There can be up to getOption("pinned_story_count_max") pinned stories on a chat page
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15272,7 +15272,7 @@ public class TDLibApi {
     /// Approves a suggested post in a channel direct messages chat
     /// - Parameter chatId: Chat identifier of the channel direct messages chat
     /// - Parameter messageId: Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
-    /// - Parameter sendDate: Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen
+    /// - Parameter sendDate: Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified, then the date must be in the future, but at most getOption("suggested_post_send_delay_max") seconds in the future
     public final func approveSuggestedPost(
         chatId: Int64?,
         messageId: Int64?,
@@ -15290,7 +15290,7 @@ public class TDLibApi {
     /// Approves a suggested post in a channel direct messages chat
     /// - Parameter chatId: Chat identifier of the channel direct messages chat
     /// - Parameter messageId: Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
-    /// - Parameter sendDate: Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen
+    /// - Parameter sendDate: Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified, then the date must be in the future, but at most getOption("suggested_post_send_delay_max") seconds in the future
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func approveSuggestedPost(

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-bc32c4b2
-//  https://github.com/tdlib/td/tree/bc32c4b2
+//  Based on TDLib 1.8.52-5c77c469
+//  https://github.com/tdlib/td/tree/5c77c469
 //
 
 import Foundation
 
 
-/// Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+/// Returns the list of all stories posted by the given chat; requires can_edit_stories administrator right in the chat. The stories are returned in reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
 public struct GetChatArchivedStories: Codable, Equatable, Hashable {
 
     /// Chat identifier

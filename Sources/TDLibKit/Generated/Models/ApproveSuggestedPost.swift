@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-bc32c4b2
-//  https://github.com/tdlib/td/tree/bc32c4b2
+//  Based on TDLib 1.8.52-5c77c469
+//  https://github.com/tdlib/td/tree/5c77c469
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ApproveSuggestedPost: Codable, Equatable, Hashable {
     /// Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
     public let messageId: Int64?
 
-    /// Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen
+    /// Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified, then the date must be in the future, but at most getOption("suggested_post_send_delay_max") seconds in the future
     public let sendDate: Int?
 
 
