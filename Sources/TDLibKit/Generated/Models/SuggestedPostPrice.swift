@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum SuggestedPostPrice: Codable, Equatable, Hashable {
 /// Describes price of a suggested post in Telegram Stars
 public struct SuggestedPostPriceStar: Codable, Equatable, Hashable {
 
-    /// The amount of Telegram Stars agreed to pay for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max")
+    /// The amount of Telegram Stars expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max")
     public let starCount: Int64
 
 
@@ -66,7 +66,7 @@ public struct SuggestedPostPriceStar: Codable, Equatable, Hashable {
 /// Describes price of a suggested post in Toncoins
 public struct SuggestedPostPriceTon: Codable, Equatable, Hashable {
 
-    /// The amount of 1/100 of Toncoin agreed to pay for the post; getOption("suggested_post_toncoin_cent_count_min")-getOption("suggested_post_toncoin_cent_count_max")
+    /// The amount of 1/100 of Toncoin expected to be paid for the post; getOption("suggested_post_toncoin_cent_count_min")-getOption("suggested_post_toncoin_cent_count_max")
     public let toncoinCentCount: Int64
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -76,8 +76,8 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Profile photo of the user; may be null
     public let profilePhoto: ProfilePhoto?
 
-    /// If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
-    public let restrictionReason: String
+    /// Information about restrictions that must be applied to the corresponding private chat; may be null if none
+    public let restrictionInfo: RestrictionInfo?
 
     /// True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them
     public let restrictsNewChats: Bool
@@ -117,7 +117,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         profileAccentColorId: Int,
         profileBackgroundCustomEmojiId: TdInt64,
         profilePhoto: ProfilePhoto?,
-        restrictionReason: String,
+        restrictionInfo: RestrictionInfo?,
         restrictsNewChats: Bool,
         status: UserStatus,
         type: UserType,
@@ -145,7 +145,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.profileAccentColorId = profileAccentColorId
         self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
         self.profilePhoto = profilePhoto
-        self.restrictionReason = restrictionReason
+        self.restrictionInfo = restrictionInfo
         self.restrictsNewChats = restrictsNewChats
         self.status = status
         self.type = type

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a chat
     case linkPreviewTypeChat(LinkPreviewTypeChat)
 
+    /// The link is a link to a direct messages chat of a channel
+    case linkPreviewTypeDirectMessagesChat(LinkPreviewTypeDirectMessagesChat)
+
     /// The link is a link to a general file
     case linkPreviewTypeDocument(LinkPreviewTypeDocument)
 
@@ -54,6 +57,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a video file
     case linkPreviewTypeExternalVideo(LinkPreviewTypeExternalVideo)
+
+    /// The link is a link to a gift collection
+    case linkPreviewTypeGiftCollection(LinkPreviewTypeGiftCollection)
 
     /// The link is a link to a group call that isn't bound to a chat
     case linkPreviewTypeGroupCall
@@ -81,6 +87,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a story. Link preview description is unavailable
     case linkPreviewTypeStory(LinkPreviewTypeStory)
+
+    /// The link is a link to an album of stories
+    case linkPreviewTypeStoryAlbum(LinkPreviewTypeStoryAlbum)
 
     /// The link is a link to boost a supergroup chat
     case linkPreviewTypeSupergroupBoost(LinkPreviewTypeSupergroupBoost)
@@ -122,12 +131,14 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeBackground
         case linkPreviewTypeChannelBoost
         case linkPreviewTypeChat
+        case linkPreviewTypeDirectMessagesChat
         case linkPreviewTypeDocument
         case linkPreviewTypeEmbeddedAnimationPlayer
         case linkPreviewTypeEmbeddedAudioPlayer
         case linkPreviewTypeEmbeddedVideoPlayer
         case linkPreviewTypeExternalAudio
         case linkPreviewTypeExternalVideo
+        case linkPreviewTypeGiftCollection
         case linkPreviewTypeGroupCall
         case linkPreviewTypeInvoice
         case linkPreviewTypeMessage
@@ -137,6 +148,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeSticker
         case linkPreviewTypeStickerSet
         case linkPreviewTypeStory
+        case linkPreviewTypeStoryAlbum
         case linkPreviewTypeSupergroupBoost
         case linkPreviewTypeTheme
         case linkPreviewTypeUnsupported
@@ -177,6 +189,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeChat:
             let value = try LinkPreviewTypeChat(from: decoder)
             self = .linkPreviewTypeChat(value)
+        case .linkPreviewTypeDirectMessagesChat:
+            let value = try LinkPreviewTypeDirectMessagesChat(from: decoder)
+            self = .linkPreviewTypeDirectMessagesChat(value)
         case .linkPreviewTypeDocument:
             let value = try LinkPreviewTypeDocument(from: decoder)
             self = .linkPreviewTypeDocument(value)
@@ -195,6 +210,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeExternalVideo:
             let value = try LinkPreviewTypeExternalVideo(from: decoder)
             self = .linkPreviewTypeExternalVideo(value)
+        case .linkPreviewTypeGiftCollection:
+            let value = try LinkPreviewTypeGiftCollection(from: decoder)
+            self = .linkPreviewTypeGiftCollection(value)
         case .linkPreviewTypeGroupCall:
             self = .linkPreviewTypeGroupCall
         case .linkPreviewTypeInvoice:
@@ -217,6 +235,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeStory:
             let value = try LinkPreviewTypeStory(from: decoder)
             self = .linkPreviewTypeStory(value)
+        case .linkPreviewTypeStoryAlbum:
+            let value = try LinkPreviewTypeStoryAlbum(from: decoder)
+            self = .linkPreviewTypeStoryAlbum(value)
         case .linkPreviewTypeSupergroupBoost:
             let value = try LinkPreviewTypeSupergroupBoost(from: decoder)
             self = .linkPreviewTypeSupergroupBoost(value)
@@ -276,6 +297,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeChat(let value):
             try container.encode(Kind.linkPreviewTypeChat, forKey: .type)
             try value.encode(to: encoder)
+        case .linkPreviewTypeDirectMessagesChat(let value):
+            try container.encode(Kind.linkPreviewTypeDirectMessagesChat, forKey: .type)
+            try value.encode(to: encoder)
         case .linkPreviewTypeDocument(let value):
             try container.encode(Kind.linkPreviewTypeDocument, forKey: .type)
             try value.encode(to: encoder)
@@ -293,6 +317,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypeExternalVideo(let value):
             try container.encode(Kind.linkPreviewTypeExternalVideo, forKey: .type)
+            try value.encode(to: encoder)
+        case .linkPreviewTypeGiftCollection(let value):
+            try container.encode(Kind.linkPreviewTypeGiftCollection, forKey: .type)
             try value.encode(to: encoder)
         case .linkPreviewTypeGroupCall:
             try container.encode(Kind.linkPreviewTypeGroupCall, forKey: .type)
@@ -315,6 +342,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypeStory(let value):
             try container.encode(Kind.linkPreviewTypeStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .linkPreviewTypeStoryAlbum(let value):
+            try container.encode(Kind.linkPreviewTypeStoryAlbum, forKey: .type)
             try value.encode(to: encoder)
         case .linkPreviewTypeSupergroupBoost(let value):
             try container.encode(Kind.linkPreviewTypeSupergroupBoost, forKey: .type)
@@ -468,6 +498,18 @@ public struct LinkPreviewTypeChat: Codable, Equatable, Hashable {
         self.createsJoinRequest = createsJoinRequest
         self.photo = photo
         self.type = type
+    }
+}
+
+/// The link is a link to a direct messages chat of a channel
+public struct LinkPreviewTypeDirectMessagesChat: Codable, Equatable, Hashable {
+
+    /// Photo of the channel chat; may be null
+    public let photo: ChatPhoto?
+
+
+    public init(photo: ChatPhoto?) {
+        self.photo = photo
     }
 }
 
@@ -643,6 +685,18 @@ public struct LinkPreviewTypeExternalVideo: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to a gift collection
+public struct LinkPreviewTypeGiftCollection: Codable, Equatable, Hashable {
+
+    /// Icons for some gifts from the collection; may be empty
+    public let icons: [Sticker]
+
+
+    public init(icons: [Sticker]) {
+        self.icons = icons
+    }
+}
+
 /// The link is a link to a photo
 public struct LinkPreviewTypePhoto: Codable, Equatable, Hashable {
 
@@ -695,6 +749,25 @@ public struct LinkPreviewTypeStory: Codable, Equatable, Hashable {
     ) {
         self.storyId = storyId
         self.storyPosterChatId = storyPosterChatId
+    }
+}
+
+/// The link is a link to an album of stories
+public struct LinkPreviewTypeStoryAlbum: Codable, Equatable, Hashable {
+
+    /// Icon of the album; may be null if none
+    public let photoIcon: Photo?
+
+    /// Video icon of the album; may be null if none
+    public let videoIcon: Video?
+
+
+    public init(
+        photoIcon: Photo?,
+        videoIcon: Video?
+    ) {
+        self.photoIcon = photoIcon
+        self.videoIcon = videoIcon
     }
 }
 

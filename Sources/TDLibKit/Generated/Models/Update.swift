@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -367,6 +367,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The freeze state of the current user's account has changed
     case updateFreezeState(UpdateFreezeState)
 
+    /// The parameters for age verification of the current user's account has changed
+    case updateAgeVerificationParameters(UpdateAgeVerificationParameters)
+
     /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     case updateTermsOfService(UpdateTermsOfService)
 
@@ -616,6 +619,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateLanguagePackStrings
         case updateConnectionState
         case updateFreezeState
+        case updateAgeVerificationParameters
         case updateTermsOfService
         case updateUnconfirmedSession
         case updateAttachmentMenuBots
@@ -1019,6 +1023,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateFreezeState:
             let value = try UpdateFreezeState(from: decoder)
             self = .updateFreezeState(value)
+        case .updateAgeVerificationParameters:
+            let value = try UpdateAgeVerificationParameters(from: decoder)
+            self = .updateAgeVerificationParameters(value)
         case .updateTermsOfService:
             let value = try UpdateTermsOfService(from: decoder)
             self = .updateTermsOfService(value)
@@ -1507,6 +1514,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateFreezeState(let value):
             try container.encode(Kind.updateFreezeState, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateAgeVerificationParameters(let value):
+            try container.encode(Kind.updateAgeVerificationParameters, forKey: .type)
             try value.encode(to: encoder)
         case .updateTermsOfService(let value):
             try container.encode(Kind.updateTermsOfService, forKey: .type)
@@ -2721,7 +2731,7 @@ public struct UpdateTopicMessageCount: Codable, Equatable, Hashable {
     /// Identifier of the chat in topic of which the number of messages has changed
     public let chatId: Int64
 
-    /// Approximate number of messages in the topics
+    /// Approximate number of messages in the topic
     public let messageCount: Int
 
     /// Identifier of the topic
@@ -3944,6 +3954,18 @@ public struct UpdateFreezeState: Codable, Equatable, Hashable {
         self.deletionDate = deletionDate
         self.freezingDate = freezingDate
         self.isFrozen = isFrozen
+    }
+}
+
+/// The parameters for age verification of the current user's account has changed
+public struct UpdateAgeVerificationParameters: Codable, Equatable, Hashable {
+
+    /// Parameters for the age verification; may be null if age verification isn't needed
+    public let parameters: AgeVerificationParameters?
+
+
+    public init(parameters: AgeVerificationParameters?) {
+        self.parameters = parameters
     }
 }
 

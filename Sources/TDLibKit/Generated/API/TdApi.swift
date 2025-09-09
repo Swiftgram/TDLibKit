@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -3492,6 +3492,72 @@ public final class TdApi {
         let query = SearchOutgoingDocumentMessages(
             limit: limit,
             query: query
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Checks public post search limits without actually performing the search
+    /// - Parameter query: Query that will be searched for
+    public func getPublicPostSearchLimits(
+        query: String?,
+        completion: @escaping (Result<PublicPostSearchLimits, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPublicPostSearchLimits(
+            query: query
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Checks public post search limits without actually performing the search
+    /// - Parameter query: Query that will be searched for
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPublicPostSearchLimits(query: String?) async throws -> PublicPostSearchLimits {
+        let query = GetPublicPostSearchLimits(
+            query: query
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter query: Query to search for
+    /// - Parameter starCount: The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+    /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    public func searchPublicPosts(
+        limit: Int?,
+        offset: String?,
+        query: String?,
+        starCount: Int64?,
+        completion: @escaping (Result<FoundPublicPosts, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchPublicPosts(
+            limit: limit,
+            offset: offset,
+            query: query,
+            starCount: starCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Searches for public channel posts using the given query. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter query: Query to search for
+    /// - Parameter starCount: The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+    /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchPublicPosts(
+        limit: Int?,
+        offset: String?,
+        query: String?,
+        starCount: Int64?
+    ) async throws -> FoundPublicPosts {
+        let query = SearchPublicPosts(
+            limit: limit,
+            offset: offset,
+            query: query,
+            starCount: starCount
         )
         return try await self.execute(query: query)
     }
@@ -12702,6 +12768,7 @@ public final class TdApi {
 
     /// Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// - Parameter albumIds: Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_story_count_max")
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     /// - Parameter chatId: Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
@@ -12713,6 +12780,7 @@ public final class TdApi {
     /// - Returns: A temporary story
     public func postStory(
         activePeriod: Int?,
+        albumIds: [Int]?,
         areas: InputStoryAreas?,
         caption: FormattedText?,
         chatId: Int64?,
@@ -12725,6 +12793,7 @@ public final class TdApi {
     ) throws {
         let query = PostStory(
             activePeriod: activePeriod,
+            albumIds: albumIds,
             areas: areas,
             caption: caption,
             chatId: chatId,
@@ -12739,6 +12808,7 @@ public final class TdApi {
 
     /// Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
     /// - Parameter activePeriod: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// - Parameter albumIds: Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_story_count_max")
     /// - Parameter areas: Clickable rectangle areas to be shown on the story media; pass null if none
     /// - Parameter caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     /// - Parameter chatId: Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
@@ -12751,6 +12821,7 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func postStory(
         activePeriod: Int?,
+        albumIds: [Int]?,
         areas: InputStoryAreas?,
         caption: FormattedText?,
         chatId: Int64?,
@@ -12762,6 +12833,7 @@ public final class TdApi {
     ) async throws -> Story {
         let query = PostStory(
             activePeriod: activePeriod,
+            albumIds: albumIds,
             areas: areas,
             caption: caption,
             chatId: chatId,
@@ -13504,6 +13576,324 @@ public final class TdApi {
             offset: offset,
             storyId: storyId,
             storyPosterChatId: storyPosterChatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of story albums owned by the given chat
+    /// - Parameter chatId: Chat identifier
+    /// - Returns: The list of story albums owned by the given chat
+    public func getChatStoryAlbums(
+        chatId: Int64?,
+        completion: @escaping (Result<StoryAlbums, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatStoryAlbums(
+            chatId: chatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of story albums owned by the given chat
+    /// - Parameter chatId: Chat identifier
+    /// - Returns: The list of story albums owned by the given chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatStoryAlbums(chatId: Int64?) async throws -> StoryAlbums {
+        let query = GetChatStoryAlbums(
+            chatId: chatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter limit: The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return; use 0 to get results from the first album story
+    /// - Parameter storyAlbumId: Story album identifier
+    /// - Returns: The list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
+    public func getStoryAlbumStories(
+        chatId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        storyAlbumId: Int?,
+        completion: @escaping (Result<Stories, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStoryAlbumStories(
+            chatId: chatId,
+            limit: limit,
+            offset: offset,
+            storyAlbumId: storyAlbumId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter limit: The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return; use 0 to get results from the first album story
+    /// - Parameter storyAlbumId: Story album identifier
+    /// - Returns: The list of stories added to the given story album. For optimal performance, the number of returned stories is chosen by TDLib
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStoryAlbumStories(
+        chatId: Int64?,
+        limit: Int?,
+        offset: Int?,
+        storyAlbumId: Int?
+    ) async throws -> Stories {
+        let query = GetStoryAlbumStories(
+            chatId: chatId,
+            limit: limit,
+            offset: offset,
+            storyAlbumId: storyAlbumId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Creates an album of stories; requires can_edit_stories administrator right for supergroup and channel chats
+    /// - Parameter name: Name of the album; 1-12 characters
+    /// - Parameter storyIds: Identifiers of stories to add to the album; 0-getOption("story_album_story_count_max") identifiers
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the stories
+    public func createStoryAlbum(
+        name: String?,
+        storyIds: [Int]?,
+        storyPosterChatId: Int64?,
+        completion: @escaping (Result<StoryAlbum, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateStoryAlbum(
+            name: name,
+            storyIds: storyIds,
+            storyPosterChatId: storyPosterChatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Creates an album of stories; requires can_edit_stories administrator right for supergroup and channel chats
+    /// - Parameter name: Name of the album; 1-12 characters
+    /// - Parameter storyIds: Identifiers of stories to add to the album; 0-getOption("story_album_story_count_max") identifiers
+    /// - Parameter storyPosterChatId: Identifier of the chat that posted the stories
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createStoryAlbum(
+        name: String?,
+        storyIds: [Int]?,
+        storyPosterChatId: Int64?
+    ) async throws -> StoryAlbum {
+        let query = CreateStoryAlbum(
+            name: name,
+            storyIds: storyIds,
+            storyPosterChatId: storyPosterChatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes order of story albums. If the albums are owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumIds: New order of story albums
+    public func reorderStoryAlbums(
+        chatId: Int64?,
+        storyAlbumIds: [Int]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderStoryAlbums(
+            chatId: chatId,
+            storyAlbumIds: storyAlbumIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes order of story albums. If the albums are owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumIds: New order of story albums
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func reorderStoryAlbums(
+        chatId: Int64?,
+        storyAlbumIds: [Int]?
+    ) async throws -> Ok {
+        let query = ReorderStoryAlbums(
+            chatId: chatId,
+            storyAlbumIds: storyAlbumIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes a story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    public func deleteStoryAlbum(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteStoryAlbum(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes a story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteStoryAlbum(
+        chatId: Int64?,
+        storyAlbumId: Int?
+    ) async throws -> Ok {
+        let query = DeleteStoryAlbum(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes name of an album of stories. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter name: New name of the album; 1-12 characters
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Returns: The changed album
+    public func setStoryAlbumName(
+        chatId: Int64?,
+        name: String?,
+        storyAlbumId: Int?,
+        completion: @escaping (Result<StoryAlbum, Swift.Error>) -> Void
+    ) throws {
+        let query = SetStoryAlbumName(
+            chatId: chatId,
+            name: name,
+            storyAlbumId: storyAlbumId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes name of an album of stories. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter name: New name of the album; 1-12 characters
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Returns: The changed album
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setStoryAlbumName(
+        chatId: Int64?,
+        name: String?,
+        storyAlbumId: Int?
+    ) async throws -> StoryAlbum {
+        let query = SetStoryAlbumName(
+            chatId: chatId,
+            name: name,
+            storyAlbumId: storyAlbumId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Parameter storyIds: Identifier of the stories to add to the album; 1-getOption("story_album_story_count_max") identifiers. If after addition the album has more than getOption("story_album_story_count_max") stories, then the last one are removed from the album
+    /// - Returns: The changed album
+    public func addStoryAlbumStories(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        storyIds: [Int]?,
+        completion: @escaping (Result<StoryAlbum, Swift.Error>) -> Void
+    ) throws {
+        let query = AddStoryAlbumStories(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId,
+            storyIds: storyIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds stories to the beginning of a previously created story album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Parameter storyIds: Identifier of the stories to add to the album; 1-getOption("story_album_story_count_max") identifiers. If after addition the album has more than getOption("story_album_story_count_max") stories, then the last one are removed from the album
+    /// - Returns: The changed album
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addStoryAlbumStories(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        storyIds: [Int]?
+    ) async throws -> StoryAlbum {
+        let query = AddStoryAlbumStories(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId,
+            storyIds: storyIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes stories from an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Parameter storyIds: Identifier of the stories to remove from the album
+    /// - Returns: The changed album
+    public func removeStoryAlbumStories(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        storyIds: [Int]?,
+        completion: @escaping (Result<StoryAlbum, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveStoryAlbumStories(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId,
+            storyIds: storyIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes stories from an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Parameter storyIds: Identifier of the stories to remove from the album
+    /// - Returns: The changed album
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func removeStoryAlbumStories(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        storyIds: [Int]?
+    ) async throws -> StoryAlbum {
+        let query = RemoveStoryAlbumStories(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId,
+            storyIds: storyIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Parameter storyIds: Identifier of the stories to move to the beginning of the album. All other stories are placed in the current order after the specified stories
+    /// - Returns: The changed album
+    public func reorderStoryAlbumStories(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        storyIds: [Int]?,
+        completion: @escaping (Result<StoryAlbum, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderStoryAlbumStories(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId,
+            storyIds: storyIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+    /// - Parameter chatId: Identifier of the chat that owns the stories
+    /// - Parameter storyAlbumId: Identifier of the story album
+    /// - Parameter storyIds: Identifier of the stories to move to the beginning of the album. All other stories are placed in the current order after the specified stories
+    /// - Returns: The changed album
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reorderStoryAlbumStories(
+        chatId: Int64?,
+        storyAlbumId: Int?,
+        storyIds: [Int]?
+    ) async throws -> StoryAlbum {
+        let query = ReorderStoryAlbumStories(
+            chatId: chatId,
+            storyAlbumId: storyAlbumId,
+            storyIds: storyIds
         )
         return try await self.execute(query: query)
     }
@@ -21744,17 +22134,17 @@ public final class TdApi {
     /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
     /// - Parameter giftName: Name of the upgraded gift to send
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the gift
+    /// - Parameter price: The price that the user agreed to pay for the gift
     public func sendResoldGift(
         giftName: String?,
         ownerId: MessageSender?,
-        starCount: Int64?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        price: GiftResalePrice?,
+        completion: @escaping (Result<GiftResaleResult, Swift.Error>) -> Void
     ) throws {
         let query = SendResoldGift(
             giftName: giftName,
             ownerId: ownerId,
-            starCount: starCount
+            price: price
         )
         self.execute(query: query, completion: completion)
     }
@@ -21762,24 +22152,24 @@ public final class TdApi {
     /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
     /// - Parameter giftName: Name of the upgraded gift to send
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the gift
+    /// - Parameter price: The price that the user agreed to pay for the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public func sendResoldGift(
         giftName: String?,
         ownerId: MessageSender?,
-        starCount: Int64?
-    ) async throws -> Ok {
+        price: GiftResalePrice?
+    ) async throws -> GiftResaleResult {
         let query = SendResoldGift(
             giftName: giftName,
             ownerId: ownerId,
-            starCount: starCount
+            price: price
         )
         return try await self.execute(query: query)
     }
 
     /// Returns gifts received by the given user or chat
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// - Parameter collectionId: Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections
     /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
     /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
     /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times
@@ -21792,6 +22182,7 @@ public final class TdApi {
     /// - Returns: Gifts received by the given user or chat
     public func getReceivedGifts(
         businessConnectionId: String?,
+        collectionId: Int?,
         excludeLimited: Bool?,
         excludeSaved: Bool?,
         excludeUnlimited: Bool?,
@@ -21805,6 +22196,7 @@ public final class TdApi {
     ) throws {
         let query = GetReceivedGifts(
             businessConnectionId: businessConnectionId,
+            collectionId: collectionId,
             excludeLimited: excludeLimited,
             excludeSaved: excludeSaved,
             excludeUnlimited: excludeUnlimited,
@@ -21820,6 +22212,7 @@ public final class TdApi {
 
     /// Returns gifts received by the given user or chat
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// - Parameter collectionId: Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections
     /// - Parameter excludeLimited: Pass true to exclude gifts that can be purchased limited number of times
     /// - Parameter excludeSaved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
     /// - Parameter excludeUnlimited: Pass true to exclude gifts that can be purchased unlimited number of times
@@ -21833,6 +22226,7 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getReceivedGifts(
         businessConnectionId: String?,
+        collectionId: Int?,
         excludeLimited: Bool?,
         excludeSaved: Bool?,
         excludeUnlimited: Bool?,
@@ -21845,6 +22239,7 @@ public final class TdApi {
     ) async throws -> ReceivedGifts {
         let query = GetReceivedGifts(
             businessConnectionId: businessConnectionId,
+            collectionId: collectionId,
             excludeLimited: excludeLimited,
             excludeSaved: excludeSaved,
             excludeUnlimited: excludeUnlimited,
@@ -21939,32 +22334,32 @@ public final class TdApi {
     }
 
     /// Changes resale price of a unique gift owned by the current user
+    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") Toncoins for each 1000 Toncoins paid for the gift if the gift price is in Toncoins
     /// - Parameter receivedGiftId: Identifier of the unique gift
-    /// - Parameter resaleStarCount: The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift
     public func setGiftResalePrice(
+        price: GiftResalePrice?,
         receivedGiftId: String?,
-        resaleStarCount: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SetGiftResalePrice(
-            receivedGiftId: receivedGiftId,
-            resaleStarCount: resaleStarCount
+            price: price,
+            receivedGiftId: receivedGiftId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Changes resale price of a unique gift owned by the current user
+    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") Toncoins for each 1000 Toncoins paid for the gift if the gift price is in Toncoins
     /// - Parameter receivedGiftId: Identifier of the unique gift
-    /// - Parameter resaleStarCount: The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setGiftResalePrice(
-        receivedGiftId: String?,
-        resaleStarCount: Int64?
+        price: GiftResalePrice?,
+        receivedGiftId: String?
     ) async throws -> Ok {
         let query = SetGiftResalePrice(
-            receivedGiftId: receivedGiftId,
-            resaleStarCount: resaleStarCount
+            price: price,
+            receivedGiftId: receivedGiftId
         )
         return try await self.execute(query: query)
     }
@@ -22015,6 +22410,282 @@ public final class TdApi {
             limit: limit,
             offset: offset,
             order: order
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns collections of gifts owned by the given user or chat
+    /// - Parameter ownerId: Identifier of the user or the channel chat that received the gifts
+    /// - Returns: Collections of gifts owned by the given user or chat
+    public func getGiftCollections(
+        ownerId: MessageSender?,
+        completion: @escaping (Result<GiftCollections, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGiftCollections(
+            ownerId: ownerId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns collections of gifts owned by the given user or chat
+    /// - Parameter ownerId: Identifier of the user or the channel chat that received the gifts
+    /// - Returns: Collections of gifts owned by the given user or chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGiftCollections(ownerId: MessageSender?) async throws -> GiftCollections {
+        let query = GetGiftCollections(
+            ownerId: ownerId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat. An owner can have up to getOption("gift_collection_count_max") gift collections. The new collection will be added to the end of the gift collection list of the owner. Returns the created collection
+    /// - Parameter name: Name of the collection; 1-12 characters
+    /// - Parameter ownerId: Identifier of the user or the channel chat that received the gifts
+    /// - Parameter receivedGiftIds: Identifier of the gifts to add to the collection; 0-getOption("gift_collection_gift_count_max") identifiers
+    /// - Returns: The created collection
+    public func createGiftCollection(
+        name: String?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?,
+        completion: @escaping (Result<GiftCollection, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateGiftCollection(
+            name: name,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Creates a collection from gifts on the current user's or a channel's profile page; requires can_post_messages administrator right in the channel chat. An owner can have up to getOption("gift_collection_count_max") gift collections. The new collection will be added to the end of the gift collection list of the owner. Returns the created collection
+    /// - Parameter name: Name of the collection; 1-12 characters
+    /// - Parameter ownerId: Identifier of the user or the channel chat that received the gifts
+    /// - Parameter receivedGiftIds: Identifier of the gifts to add to the collection; 0-getOption("gift_collection_gift_count_max") identifiers
+    /// - Returns: The created collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createGiftCollection(
+        name: String?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?
+    ) async throws -> GiftCollection {
+        let query = CreateGiftCollection(
+            name: name,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+    /// - Parameter collectionIds: New order of gift collections
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    public func reorderGiftCollections(
+        collectionIds: [Int]?,
+        ownerId: MessageSender?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderGiftCollections(
+            collectionIds: collectionIds,
+            ownerId: ownerId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+    /// - Parameter collectionIds: New order of gift collections
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func reorderGiftCollections(
+        collectionIds: [Int]?,
+        ownerId: MessageSender?
+    ) async throws -> Ok {
+        let query = ReorderGiftCollections(
+            collectionIds: collectionIds,
+            ownerId: ownerId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    public func deleteGiftCollection(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteGiftCollection(
+            collectionId: collectionId,
+            ownerId: ownerId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteGiftCollection(
+        collectionId: Int?,
+        ownerId: MessageSender?
+    ) async throws -> Ok {
+        let query = DeleteGiftCollection(
+            collectionId: collectionId,
+            ownerId: ownerId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes name of a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter name: New name of the collection; 1-12 characters
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Returns: The changed collection
+    public func setGiftCollectionName(
+        collectionId: Int?,
+        name: String?,
+        ownerId: MessageSender?,
+        completion: @escaping (Result<GiftCollection, Swift.Error>) -> Void
+    ) throws {
+        let query = SetGiftCollectionName(
+            collectionId: collectionId,
+            name: name,
+            ownerId: ownerId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes name of a gift collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter name: New name of the collection; 1-12 characters
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Returns: The changed collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func setGiftCollectionName(
+        collectionId: Int?,
+        name: String?,
+        ownerId: MessageSender?
+    ) async throws -> GiftCollection {
+        let query = SetGiftCollectionName(
+            collectionId: collectionId,
+            name: name,
+            ownerId: ownerId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Adds gifts to the beginning of a previously created collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Parameter receivedGiftIds: Identifier of the gifts to add to the collection; 1-getOption("gift_collection_gift_count_max") identifiers. If after addition the collection has more than getOption("gift_collection_gift_count_max") gifts, then the last one are removed from the collection
+    /// - Returns: The changed collection
+    public func addGiftCollectionGifts(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?,
+        completion: @escaping (Result<GiftCollection, Swift.Error>) -> Void
+    ) throws {
+        let query = AddGiftCollectionGifts(
+            collectionId: collectionId,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds gifts to the beginning of a previously created collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Parameter receivedGiftIds: Identifier of the gifts to add to the collection; 1-getOption("gift_collection_gift_count_max") identifiers. If after addition the collection has more than getOption("gift_collection_gift_count_max") gifts, then the last one are removed from the collection
+    /// - Returns: The changed collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addGiftCollectionGifts(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?
+    ) async throws -> GiftCollection {
+        let query = AddGiftCollectionGifts(
+            collectionId: collectionId,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes gifts from a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Parameter receivedGiftIds: Identifier of the gifts to remove from the collection
+    /// - Returns: The changed collection
+    public func removeGiftCollectionGifts(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?,
+        completion: @escaping (Result<GiftCollection, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveGiftCollectionGifts(
+            collectionId: collectionId,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes gifts from a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Parameter receivedGiftIds: Identifier of the gifts to remove from the collection
+    /// - Returns: The changed collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func removeGiftCollectionGifts(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?
+    ) async throws -> GiftCollection {
+        let query = RemoveGiftCollectionGifts(
+            collectionId: collectionId,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes order of gifts in a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Parameter receivedGiftIds: Identifier of the gifts to move to the beginning of the collection. All other gifts are placed in the current order after the specified gifts
+    /// - Returns: The changed collection
+    public func reorderGiftCollectionGifts(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?,
+        completion: @escaping (Result<GiftCollection, Swift.Error>) -> Void
+    ) throws {
+        let query = ReorderGiftCollectionGifts(
+            collectionId: collectionId,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes order of gifts in a collection. If the collection is owned by a channel chat, then requires can_post_messages administrator right in the channel chat. Returns the changed collection
+    /// - Parameter collectionId: Identifier of the gift collection
+    /// - Parameter ownerId: Identifier of the user or the channel chat that owns the collection
+    /// - Parameter receivedGiftIds: Identifier of the gifts to move to the beginning of the collection. All other gifts are placed in the current order after the specified gifts
+    /// - Returns: The changed collection
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func reorderGiftCollectionGifts(
+        collectionId: Int?,
+        ownerId: MessageSender?,
+        receivedGiftIds: [String]?
+    ) async throws -> GiftCollection {
+        let query = ReorderGiftCollectionGifts(
+            collectionId: collectionId,
+            ownerId: ownerId,
+            receivedGiftIds: receivedGiftIds
         )
         return try await self.execute(query: query)
     }

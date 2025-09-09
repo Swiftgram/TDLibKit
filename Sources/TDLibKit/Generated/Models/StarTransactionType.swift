@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -118,6 +118,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a transfer of Telegram Stars from a business account; for bots only
     case starTransactionTypeBusinessBotTransferReceive(StarTransactionTypeBusinessBotTransferReceive)
 
+    /// The transaction is a payment for search of posts in public Telegram channels; for regular users only
+    case starTransactionTypePublicPostSearch
+
     /// The transaction is a transaction of an unsupported type
     case starTransactionTypeUnsupported
 
@@ -158,6 +161,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypePremiumPurchase
         case starTransactionTypeBusinessBotTransferSend
         case starTransactionTypeBusinessBotTransferReceive
+        case starTransactionTypePublicPostSearch
         case starTransactionTypeUnsupported
     }
 
@@ -265,6 +269,8 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeBusinessBotTransferReceive:
             let value = try StarTransactionTypeBusinessBotTransferReceive(from: decoder)
             self = .starTransactionTypeBusinessBotTransferReceive(value)
+        case .starTransactionTypePublicPostSearch:
+            self = .starTransactionTypePublicPostSearch
         case .starTransactionTypeUnsupported:
             self = .starTransactionTypeUnsupported
         }
@@ -373,6 +379,8 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeBusinessBotTransferReceive(let value):
             try container.encode(Kind.starTransactionTypeBusinessBotTransferReceive, forKey: .type)
             try value.encode(to: encoder)
+        case .starTransactionTypePublicPostSearch:
+            try container.encode(Kind.starTransactionTypePublicPostSearch, forKey: .type)
         case .starTransactionTypeUnsupported:
             try container.encode(Kind.starTransactionTypeUnsupported, forKey: .type)
         }
@@ -779,8 +787,11 @@ public struct StarTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hasha
 /// The transaction is a sale of an upgraded gift; for regular users only
 public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
 
-    /// Information about commission received by Telegram from the transaction
-    public let affiliate: AffiliateInfo
+    /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
+    public let commissionPerMille: Int
+
+    /// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    public let commissionStarAmount: StarAmount
 
     /// The gift
     public let gift: UpgradedGift
@@ -790,11 +801,13 @@ public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable 
 
 
     public init(
-        affiliate: AffiliateInfo,
+        commissionPerMille: Int,
+        commissionStarAmount: StarAmount,
         gift: UpgradedGift,
         userId: Int64
     ) {
-        self.affiliate = affiliate
+        self.commissionPerMille = commissionPerMille
+        self.commissionStarAmount = commissionStarAmount
         self.gift = gift
         self.userId = userId
     }

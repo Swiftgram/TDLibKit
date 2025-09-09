@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -45,9 +45,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// Information about the initial message sender; may be null if none or unknown
     public let forwardInfo: MessageForwardInfo?
-
-    /// True, if media content of the message must be hidden with 18+ spoiler
-    public let hasSensitiveContent: Bool
 
     /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     public let hasTimestampedMedia: Bool
@@ -94,8 +91,8 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Information about the message or the story this message is replying to; may be null if none
     public let replyTo: MessageReplyTo?
 
-    /// If non-empty, contains a human-readable description of the reason why access to this message must be restricted
-    public let restrictionReason: String
+    /// Information about the restrictions that must be applied to the message content; may be null if none
+    public let restrictionInfo: RestrictionInfo?
 
     /// The scheduling state of the message; may be null if the message isn't scheduled
     public let schedulingState: MessageSchedulingState?
@@ -143,7 +140,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         effectId: TdInt64,
         factCheck: FactCheck?,
         forwardInfo: MessageForwardInfo?,
-        hasSensitiveContent: Bool,
         hasTimestampedMedia: Bool,
         id: Int64,
         importInfo: MessageImportInfo?,
@@ -159,7 +155,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         paidMessageStarCount: Int64,
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
-        restrictionReason: String,
+        restrictionInfo: RestrictionInfo?,
         schedulingState: MessageSchedulingState?,
         selfDestructIn: Double,
         selfDestructType: MessageSelfDestructType?,
@@ -183,7 +179,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.effectId = effectId
         self.factCheck = factCheck
         self.forwardInfo = forwardInfo
-        self.hasSensitiveContent = hasSensitiveContent
         self.hasTimestampedMedia = hasTimestampedMedia
         self.id = id
         self.importInfo = importInfo
@@ -199,7 +194,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.paidMessageStarCount = paidMessageStarCount
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
-        self.restrictionReason = restrictionReason
+        self.restrictionInfo = restrictionInfo
         self.schedulingState = schedulingState
         self.selfDestructIn = selfDestructIn
         self.selfDestructType = selfDestructType

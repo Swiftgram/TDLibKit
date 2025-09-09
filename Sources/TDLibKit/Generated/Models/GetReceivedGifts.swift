@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct GetReceivedGifts: Codable, Equatable, Hashable {
 
     /// Unique identifier of business connection on behalf of which to send the request; for bots only
     public let businessConnectionId: String?
+
+    /// Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections
+    public let collectionId: Int?
 
     /// Pass true to exclude gifts that can be purchased limited number of times
     public let excludeLimited: Bool?
@@ -46,6 +49,7 @@ public struct GetReceivedGifts: Codable, Equatable, Hashable {
 
     public init(
         businessConnectionId: String?,
+        collectionId: Int?,
         excludeLimited: Bool?,
         excludeSaved: Bool?,
         excludeUnlimited: Bool?,
@@ -57,6 +61,7 @@ public struct GetReceivedGifts: Codable, Equatable, Hashable {
         sortByPrice: Bool?
     ) {
         self.businessConnectionId = businessConnectionId
+        self.collectionId = collectionId
         self.excludeLimited = excludeLimited
         self.excludeSaved = excludeSaved
         self.excludeUnlimited = excludeUnlimited

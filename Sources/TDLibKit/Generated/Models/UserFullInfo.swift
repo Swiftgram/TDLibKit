@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -67,6 +67,12 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// Number of Telegram Stars that must be paid by the current user for each sent message to the user
     public let outgoingPaidMessageStarCount: Int64
 
+    /// The rating of the user after the next change; may be null if the user isn't the current user or there are no pending rating changes
+    public let pendingRating: UserRating?
+
+    /// Unix timestamp when rating of the user will change to pending_rating; 0 if the user isn't the current user or there are no pending rating changes
+    public let pendingRatingDate: Int
+
     /// Identifier of the personal chat of the user; 0 if none
     public let personalChatId: Int64
 
@@ -78,6 +84,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public let publicPhoto: ChatPhoto?
+
+    /// The current rating of the user; may be null if none
+    public let rating: UserRating?
 
     /// True, if the user set chat background for both chat users and it wasn't reverted yet
     public let setChatBackground: Bool
@@ -105,10 +114,13 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         incomingPaidMessageStarCount: Int64,
         needPhoneNumberPrivacyException: Bool,
         outgoingPaidMessageStarCount: Int64,
+        pendingRating: UserRating?,
+        pendingRatingDate: Int,
         personalChatId: Int64,
         personalPhoto: ChatPhoto?,
         photo: ChatPhoto?,
         publicPhoto: ChatPhoto?,
+        rating: UserRating?,
         setChatBackground: Bool,
         supportsVideoCalls: Bool
     ) {
@@ -130,10 +142,13 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.incomingPaidMessageStarCount = incomingPaidMessageStarCount
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
         self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount
+        self.pendingRating = pendingRating
+        self.pendingRatingDate = pendingRatingDate
         self.personalChatId = personalChatId
         self.personalPhoto = personalPhoto
         self.photo = photo
         self.publicPhoto = publicPhoto
+        self.rating = rating
         self.setChatBackground = setChatBackground
         self.supportsVideoCalls = supportsVideoCalls
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the gift
     public let id: TdInt64
+
+    /// True, if the original gift could have been bought only by Telegram Premium subscribers
+    public let isPremium: Bool
 
     /// The maximum number of gifts that can be upgraded from the same gift
     public let maxUpgradedCount: Int
@@ -49,8 +52,8 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the chat that published the gift; 0 if none
     public let publisherChatId: Int64
 
-    /// Number of Telegram Stars that must be paid to buy the gift and send it to someone else; 0 if resale isn't possible
-    public let resaleStarCount: Int64
+    /// Resale parameters of the gift; may be null if resale isn't possible
+    public let resaleParameters: GiftResaleParameters?
 
     /// Symbol of the upgraded gift
     public let symbol: UpgradedGiftSymbol
@@ -66,6 +69,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         backdrop: UpgradedGiftBackdrop,
         giftAddress: String,
         id: TdInt64,
+        isPremium: Bool,
         maxUpgradedCount: Int,
         model: UpgradedGiftModel,
         name: String,
@@ -75,7 +79,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         ownerId: MessageSender?,
         ownerName: String,
         publisherChatId: Int64,
-        resaleStarCount: Int64,
+        resaleParameters: GiftResaleParameters?,
         symbol: UpgradedGiftSymbol,
         title: String,
         totalUpgradedCount: Int
@@ -83,6 +87,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.backdrop = backdrop
         self.giftAddress = giftAddress
         self.id = id
+        self.isPremium = isPremium
         self.maxUpgradedCount = maxUpgradedCount
         self.model = model
         self.name = name
@@ -92,7 +97,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.ownerId = ownerId
         self.ownerName = ownerName
         self.publisherChatId = publisherChatId
-        self.resaleStarCount = resaleStarCount
+        self.resaleParameters = resaleParameters
         self.symbol = symbol
         self.title = title
         self.totalUpgradedCount = totalUpgradedCount

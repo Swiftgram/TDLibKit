@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -19,6 +19,12 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a payment for a suggested post
     case tonTransactionTypeSuggestedPostPayment(TonTransactionTypeSuggestedPostPayment)
 
+    /// The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+    case tonTransactionTypeUpgradedGiftPurchase(TonTransactionTypeUpgradedGiftPurchase)
+
+    /// The transaction is a sale of an upgraded gift; for regular users only
+    case tonTransactionTypeUpgradedGiftSale(TonTransactionTypeUpgradedGiftSale)
+
     /// The transaction is a transaction of an unsupported type
     case tonTransactionTypeUnsupported
 
@@ -26,6 +32,8 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case tonTransactionTypeFragmentDeposit
         case tonTransactionTypeSuggestedPostPayment
+        case tonTransactionTypeUpgradedGiftPurchase
+        case tonTransactionTypeUpgradedGiftSale
         case tonTransactionTypeUnsupported
     }
 
@@ -39,6 +47,12 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
         case .tonTransactionTypeSuggestedPostPayment:
             let value = try TonTransactionTypeSuggestedPostPayment(from: decoder)
             self = .tonTransactionTypeSuggestedPostPayment(value)
+        case .tonTransactionTypeUpgradedGiftPurchase:
+            let value = try TonTransactionTypeUpgradedGiftPurchase(from: decoder)
+            self = .tonTransactionTypeUpgradedGiftPurchase(value)
+        case .tonTransactionTypeUpgradedGiftSale:
+            let value = try TonTransactionTypeUpgradedGiftSale(from: decoder)
+            self = .tonTransactionTypeUpgradedGiftSale(value)
         case .tonTransactionTypeUnsupported:
             self = .tonTransactionTypeUnsupported
         }
@@ -52,6 +66,12 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .tonTransactionTypeSuggestedPostPayment(let value):
             try container.encode(Kind.tonTransactionTypeSuggestedPostPayment, forKey: .type)
+            try value.encode(to: encoder)
+        case .tonTransactionTypeUpgradedGiftPurchase(let value):
+            try container.encode(Kind.tonTransactionTypeUpgradedGiftPurchase, forKey: .type)
+            try value.encode(to: encoder)
+        case .tonTransactionTypeUpgradedGiftSale(let value):
+            try container.encode(Kind.tonTransactionTypeUpgradedGiftSale, forKey: .type)
             try value.encode(to: encoder)
         case .tonTransactionTypeUnsupported:
             try container.encode(Kind.tonTransactionTypeUnsupported, forKey: .type)
@@ -87,6 +107,54 @@ public struct TonTransactionTypeSuggestedPostPayment: Codable, Equatable, Hashab
 
     public init(chatId: Int64) {
         self.chatId = chatId
+    }
+}
+
+/// The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+public struct TonTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// Identifier of the user that sold the gift
+    public let userId: Int64
+
+
+    public init(
+        gift: UpgradedGift,
+        userId: Int64
+    ) {
+        self.gift = gift
+        self.userId = userId
+    }
+}
+
+/// The transaction is a sale of an upgraded gift; for regular users only
+public struct TonTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
+
+    /// The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
+    public let commissionPerMille: Int
+
+    /// The amount of Toncoins that were received by the Telegram; in the smallest units of the currency
+    public let commissionToncoinAmount: Int64
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// Identifier of the user that bought the gift
+    public let userId: Int64
+
+
+    public init(
+        commissionPerMille: Int,
+        commissionToncoinAmount: Int64,
+        gift: UpgradedGift,
+        userId: Int64
+    ) {
+        self.commissionPerMille = commissionPerMille
+        self.commissionToncoinAmount = commissionToncoinAmount
+        self.gift = gift
+        self.userId = userId
     }
 }
 

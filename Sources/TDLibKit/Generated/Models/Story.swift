@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -13,8 +13,14 @@ import Foundation
 /// Represents a story
 public struct Story: Codable, Equatable, Hashable, Identifiable {
 
+    /// Identifiers of story albums to which the story is added; only for manageable stories
+    public let albumIds: [Int]
+
     /// Clickable areas to be shown on the story content
     public let areas: [StoryArea]
+
+    /// True, if the story can be added to an album
+    public let canBeAddedToAlbum: Bool
 
     /// True, if the story can be deleted
     public let canBeDeleted: Bool
@@ -87,7 +93,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        albumIds: [Int],
         areas: [StoryArea],
+        canBeAddedToAlbum: Bool,
         canBeDeleted: Bool,
         canBeEdited: Bool,
         canBeForwarded: Bool,
@@ -112,7 +120,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         privacySettings: StoryPrivacySettings,
         repostInfo: StoryRepostInfo?
     ) {
+        self.albumIds = albumIds
         self.areas = areas
+        self.canBeAddedToAlbum = canBeAddedToAlbum
         self.canBeDeleted = canBeDeleted
         self.canBeEdited = canBeEdited
         self.canBeForwarded = canBeForwarded

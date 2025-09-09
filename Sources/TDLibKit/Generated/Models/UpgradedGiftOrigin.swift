@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -74,12 +74,12 @@ public struct UpgradedGiftOriginUpgrade: Codable, Equatable, Hashable {
 /// The gift was bought from another user
 public struct UpgradedGiftOriginResale: Codable, Equatable, Hashable {
 
-    /// Number of Telegram Stars that were paid by the sender for the gift
-    public let starCount: Int64
+    /// Price paid by the sender for the gift
+    public let price: GiftResalePrice
 
 
-    public init(starCount: Int64) {
-        self.starCount = starCount
+    public init(price: GiftResalePrice) {
+        self.price = price
     }
 }
 

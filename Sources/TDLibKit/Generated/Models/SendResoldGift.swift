@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -19,18 +19,18 @@ public struct SendResoldGift: Codable, Equatable, Hashable {
     /// Identifier of the user or the channel chat that will receive the gift
     public let ownerId: MessageSender?
 
-    /// The amount of Telegram Stars required to pay for the gift
-    public let starCount: Int64?
+    /// The price that the user agreed to pay for the gift
+    public let price: GiftResalePrice?
 
 
     public init(
         giftName: String?,
         ownerId: MessageSender?,
-        starCount: Int64?
+        price: GiftResalePrice?
     ) {
         self.giftName = giftName
         self.ownerId = ownerId
-        self.starCount = starCount
+        self.price = price
     }
 }
 

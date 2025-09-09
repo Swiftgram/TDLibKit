@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -36,9 +36,6 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     public let hasLocation: Bool
-
-    /// True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler
-    public let hasSensitiveContent: Bool
 
     /// True, if the supergroup or channel has unread non-expired stories available to the current user
     public let hasUnreadActiveStories: Bool
@@ -76,8 +73,8 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
     public let paidMessageStarCount: Int64
 
-    /// If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
-    public let restrictionReason: String
+    /// Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none
+    public let restrictionInfo: RestrictionInfo?
 
     /// True, if messages sent to the channel have information about the sender user. This field is only applicable to channels
     public let showMessageSender: Bool
@@ -104,7 +101,6 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         hasForumTabs: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
-        hasSensitiveContent: Bool,
         hasUnreadActiveStories: Bool,
         id: Int64,
         isAdministeredDirectMessagesGroup: Bool,
@@ -117,7 +113,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         joinToSendMessages: Bool,
         memberCount: Int,
         paidMessageStarCount: Int64,
-        restrictionReason: String,
+        restrictionInfo: RestrictionInfo?,
         showMessageSender: Bool,
         signMessages: Bool,
         status: ChatMemberStatus,
@@ -132,7 +128,6 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.hasForumTabs = hasForumTabs
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation
-        self.hasSensitiveContent = hasSensitiveContent
         self.hasUnreadActiveStories = hasUnreadActiveStories
         self.id = id
         self.isAdministeredDirectMessagesGroup = isAdministeredDirectMessagesGroup
@@ -145,7 +140,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.joinToSendMessages = joinToSendMessages
         self.memberCount = memberCount
         self.paidMessageStarCount = paidMessageStarCount
-        self.restrictionReason = restrictionReason
+        self.restrictionInfo = restrictionInfo
         self.showMessageSender = showMessageSender
         self.signMessages = signMessages
         self.status = status

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
 
     /// True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift
     public let canBeUpgraded: Bool
+
+    /// Identifiers of collections to which the gift is added; only for the receiver of the gift
+    public let collectionIds: [Int]
 
     /// Point in time (Unix timestamp) when the gift was sent
     public let date: Int
@@ -68,6 +71,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
     public init(
         canBeTransferred: Bool,
         canBeUpgraded: Bool,
+        collectionIds: [Int],
         date: Int,
         exportDate: Int,
         gift: SentGift,
@@ -86,6 +90,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
     ) {
         self.canBeTransferred = canBeTransferred
         self.canBeUpgraded = canBeUpgraded
+        self.collectionIds = collectionIds
         self.date = date
         self.exportDate = exportDate
         self.gift = gift

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -62,11 +62,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the default message auto-delete timer settings section of the application settings
     case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
 
+    /// The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
+    case internalLinkTypeDirectMessagesChat(InternalLinkTypeDirectMessagesChat)
+
     /// The link is a link to the edit profile section of the application settings
     case internalLinkTypeEditProfileSettings
 
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
+
+    /// The link is a link to a gift collection. Call searchPublicChat with the given username, then call getReceivedGifts with the received gift owner identifier and the given collection identifier, then show the collection if received
+    case internalLinkTypeGiftCollection(InternalLinkTypeGiftCollection)
 
     /// The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen. Call joinGroupCall with the given invite_link to join the call
     case internalLinkTypeGroupCall(InternalLinkTypeGroupCall)
@@ -137,6 +143,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
     case internalLinkTypeStory(InternalLinkTypeStory)
 
+    /// The link is a link to an album of stories. Call searchPublicChat with the given username, then call getStoryAlbumStories with the received chat identifier and the given story album identifier, then show the story album if received
+    case internalLinkTypeStoryAlbum(InternalLinkTypeStoryAlbum)
+
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
@@ -182,8 +191,10 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeChatFolderSettings
         case internalLinkTypeChatInvite
         case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+        case internalLinkTypeDirectMessagesChat
         case internalLinkTypeEditProfileSettings
         case internalLinkTypeGame
+        case internalLinkTypeGiftCollection
         case internalLinkTypeGroupCall
         case internalLinkTypeInstantView
         case internalLinkTypeInvoice
@@ -207,6 +218,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeSettings
         case internalLinkTypeStickerSet
         case internalLinkTypeStory
+        case internalLinkTypeStoryAlbum
         case internalLinkTypeTheme
         case internalLinkTypeThemeSettings
         case internalLinkTypeUnknownDeepLink
@@ -266,11 +278,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeChatInvite(value)
         case .internalLinkTypeDefaultMessageAutoDeleteTimerSettings:
             self = .internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+        case .internalLinkTypeDirectMessagesChat:
+            let value = try InternalLinkTypeDirectMessagesChat(from: decoder)
+            self = .internalLinkTypeDirectMessagesChat(value)
         case .internalLinkTypeEditProfileSettings:
             self = .internalLinkTypeEditProfileSettings
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
+        case .internalLinkTypeGiftCollection:
+            let value = try InternalLinkTypeGiftCollection(from: decoder)
+            self = .internalLinkTypeGiftCollection(value)
         case .internalLinkTypeGroupCall:
             let value = try InternalLinkTypeGroupCall(from: decoder)
             self = .internalLinkTypeGroupCall(value)
@@ -333,6 +351,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeStory:
             let value = try InternalLinkTypeStory(from: decoder)
             self = .internalLinkTypeStory(value)
+        case .internalLinkTypeStoryAlbum:
+            let value = try InternalLinkTypeStoryAlbum(from: decoder)
+            self = .internalLinkTypeStoryAlbum(value)
         case .internalLinkTypeTheme:
             let value = try InternalLinkTypeTheme(from: decoder)
             self = .internalLinkTypeTheme(value)
@@ -408,10 +429,16 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeDefaultMessageAutoDeleteTimerSettings:
             try container.encode(Kind.internalLinkTypeDefaultMessageAutoDeleteTimerSettings, forKey: .type)
+        case .internalLinkTypeDirectMessagesChat(let value):
+            try container.encode(Kind.internalLinkTypeDirectMessagesChat, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeEditProfileSettings:
             try container.encode(Kind.internalLinkTypeEditProfileSettings, forKey: .type)
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeGiftCollection(let value):
+            try container.encode(Kind.internalLinkTypeGiftCollection, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeGroupCall(let value):
             try container.encode(Kind.internalLinkTypeGroupCall, forKey: .type)
@@ -474,6 +501,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeStory(let value):
             try container.encode(Kind.internalLinkTypeStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeStoryAlbum(let value):
+            try container.encode(Kind.internalLinkTypeStoryAlbum, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeTheme(let value):
             try container.encode(Kind.internalLinkTypeTheme, forKey: .type)
@@ -705,6 +735,18 @@ public struct InternalLinkTypeChatInvite: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
+public struct InternalLinkTypeDirectMessagesChat: Codable, Equatable, Hashable {
+
+    /// Username of the channel
+    public let channelUsername: String
+
+
+    public init(channelUsername: String) {
+        self.channelUsername = channelUsername
+    }
+}
+
 /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
 public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
 
@@ -721,6 +763,25 @@ public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
     ) {
         self.botUsername = botUsername
         self.gameShortName = gameShortName
+    }
+}
+
+/// The link is a link to a gift collection. Call searchPublicChat with the given username, then call getReceivedGifts with the received gift owner identifier and the given collection identifier, then show the collection if received
+public struct InternalLinkTypeGiftCollection: Codable, Equatable, Hashable {
+
+    /// Gift collection identifier
+    public let collectionId: Int
+
+    /// Username of the owner of the gift collection
+    public let giftOwnerUsername: String
+
+
+    public init(
+        collectionId: Int,
+        giftOwnerUsername: String
+    ) {
+        self.collectionId = collectionId
+        self.giftOwnerUsername = giftOwnerUsername
     }
 }
 
@@ -1006,6 +1067,25 @@ public struct InternalLinkTypeStory: Codable, Equatable, Hashable {
     ) {
         self.storyId = storyId
         self.storyPosterUsername = storyPosterUsername
+    }
+}
+
+/// The link is a link to an album of stories. Call searchPublicChat with the given username, then call getStoryAlbumStories with the received chat identifier and the given story album identifier, then show the story album if received
+public struct InternalLinkTypeStoryAlbum: Codable, Equatable, Hashable {
+
+    /// Story album identifier
+    public let storyAlbumId: Int
+
+    /// Username of the owner of the story album
+    public let storyAlbumOwnerUsername: String
+
+
+    public init(
+        storyAlbumId: Int,
+        storyAlbumOwnerUsername: String
+    ) {
+        self.storyAlbumId = storyAlbumId
+        self.storyAlbumOwnerUsername = storyAlbumOwnerUsername
     }
 }
 

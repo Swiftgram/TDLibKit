@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -13,19 +13,19 @@ import Foundation
 /// Changes resale price of a unique gift owned by the current user
 public struct SetGiftResalePrice: Codable, Equatable, Hashable {
 
+    /// The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") Toncoins for each 1000 Toncoins paid for the gift if the gift price is in Toncoins
+    public let price: GiftResalePrice?
+
     /// Identifier of the unique gift
     public let receivedGiftId: String?
 
-    /// The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift
-    public let resaleStarCount: Int64?
-
 
     public init(
-        receivedGiftId: String?,
-        resaleStarCount: Int64?
+        price: GiftResalePrice?,
+        receivedGiftId: String?
     ) {
+        self.price = price
         self.receivedGiftId = receivedGiftId
-        self.resaleStarCount = resaleStarCount
     }
 }
 

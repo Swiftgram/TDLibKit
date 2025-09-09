@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.52-5c77c469
-//  https://github.com/tdlib/td/tree/5c77c469
+//  Based on TDLib 1.8.53-bdec6af5
+//  https://github.com/tdlib/td/tree/bdec6af5
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct AvailableGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
-    /// The minimum price for the gifts available for resale; 0 if there are no such gifts
+    /// The minimum price for the gifts available for resale in Telegram Star equivalent; 0 if there are no such gifts
     public let minResaleStarCount: Int64
 
     /// Number of gifts that are available for resale
