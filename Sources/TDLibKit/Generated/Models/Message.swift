@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -79,9 +79,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     public let mediaAlbumId: TdInt64
 
-    /// If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
-    public let messageThreadId: Int64
-
     /// The number of Telegram Stars the sender paid to send the message
     public let paidMessageStarCount: Int64
 
@@ -118,7 +115,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Information about the suggested post; may be null if the message isn't a suggested post
     public let suggestedPostInfo: SuggestedPostInfo?
 
-    /// Identifier of the topic within the chat to which the message belongs; may be null if none
+    /// Identifier of the topic within the chat to which the message belongs; may be null if none; may change when the chat is converted to a forum or back
     public let topicId: MessageTopic?
 
     /// Information about unread reactions added to the message
@@ -151,7 +148,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         isPaidTonSuggestedPost: Bool,
         isPinned: Bool,
         mediaAlbumId: TdInt64,
-        messageThreadId: Int64,
         paidMessageStarCount: Int64,
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
@@ -190,7 +186,6 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.isPaidTonSuggestedPost = isPaidTonSuggestedPost
         self.isPinned = isPinned
         self.mediaAlbumId = mediaAlbumId
-        self.messageThreadId = messageThreadId
         self.paidMessageStarCount = paidMessageStarCount
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo

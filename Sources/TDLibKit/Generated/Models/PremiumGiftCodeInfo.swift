@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,13 +19,16 @@ public struct PremiumGiftCodeInfo: Codable, Equatable, Hashable {
     /// Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
     public let creatorId: MessageSender?
 
+    /// Number of days the Telegram Premium subscription will be active after code activation
+    public let dayCount: Int
+
     /// Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message
     public let giveawayMessageId: Int64
 
     /// True, if the gift code was created for a giveaway
     public let isFromGiveaway: Bool
 
-    /// Number of months the Telegram Premium subscription will be active after code activation
+    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
     public let monthCount: Int
 
     /// Point in time (Unix timestamp) when the code was activated; 0 if none
@@ -38,6 +41,7 @@ public struct PremiumGiftCodeInfo: Codable, Equatable, Hashable {
     public init(
         creationDate: Int,
         creatorId: MessageSender?,
+        dayCount: Int,
         giveawayMessageId: Int64,
         isFromGiveaway: Bool,
         monthCount: Int,
@@ -46,6 +50,7 @@ public struct PremiumGiftCodeInfo: Codable, Equatable, Hashable {
     ) {
         self.creationDate = creationDate
         self.creatorId = creatorId
+        self.dayCount = dayCount
         self.giveawayMessageId = giveawayMessageId
         self.isFromGiveaway = isFromGiveaway
         self.monthCount = monthCount

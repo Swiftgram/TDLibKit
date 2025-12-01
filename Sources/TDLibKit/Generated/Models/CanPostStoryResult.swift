@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public indirect enum CanPostStoryResult: Codable, Equatable, Hashable {
     /// The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
     case canPostStoryResultMonthlyLimitExceeded(CanPostStoryResultMonthlyLimitExceeded)
 
+    /// The user or the chat has an active live story. The live story must be deleted first
+    case canPostStoryResultLiveStoryIsActive(CanPostStoryResultLiveStoryIsActive)
+
 
     private enum Kind: String, Codable {
         case canPostStoryResultOk
@@ -39,6 +42,7 @@ public indirect enum CanPostStoryResult: Codable, Equatable, Hashable {
         case canPostStoryResultActiveStoryLimitExceeded
         case canPostStoryResultWeeklyLimitExceeded
         case canPostStoryResultMonthlyLimitExceeded
+        case canPostStoryResultLiveStoryIsActive
     }
 
     public init(from decoder: Decoder) throws {
@@ -60,6 +64,9 @@ public indirect enum CanPostStoryResult: Codable, Equatable, Hashable {
         case .canPostStoryResultMonthlyLimitExceeded:
             let value = try CanPostStoryResultMonthlyLimitExceeded(from: decoder)
             self = .canPostStoryResultMonthlyLimitExceeded(value)
+        case .canPostStoryResultLiveStoryIsActive:
+            let value = try CanPostStoryResultLiveStoryIsActive(from: decoder)
+            self = .canPostStoryResultLiveStoryIsActive(value)
         }
     }
 
@@ -80,6 +87,9 @@ public indirect enum CanPostStoryResult: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .canPostStoryResultMonthlyLimitExceeded(let value):
             try container.encode(Kind.canPostStoryResultMonthlyLimitExceeded, forKey: .type)
+            try value.encode(to: encoder)
+        case .canPostStoryResultLiveStoryIsActive(let value):
+            try container.encode(Kind.canPostStoryResultLiveStoryIsActive, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -118,6 +128,18 @@ public struct CanPostStoryResultMonthlyLimitExceeded: Codable, Equatable, Hashab
 
     public init(retryAfter: Int) {
         self.retryAfter = retryAfter
+    }
+}
+
+/// The user or the chat has an active live story. The live story must be deleted first
+public struct CanPostStoryResultLiveStoryIsActive: Codable, Equatable, Hashable {
+
+    /// Identifier of the active live story
+    public let storyId: Int
+
+
+    public init(storyId: Int) {
+        self.storyId = storyId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct StoryInfo: Codable, Equatable, Hashable {
     /// True, if the story is available only to close friends
     public let isForCloseFriends: Bool
 
+    /// True, if the story is a live story
+    public let isLive: Bool
+
     /// Unique story identifier among stories of the chat
     public let storyId: Int
 
@@ -26,10 +29,12 @@ public struct StoryInfo: Codable, Equatable, Hashable {
     public init(
         date: Int,
         isForCloseFriends: Bool,
+        isLive: Bool,
         storyId: Int
     ) {
         self.date = date
         self.isForCloseFriends = isForCloseFriends
+        self.isLive = isLive
         self.storyId = storyId
     }
 }

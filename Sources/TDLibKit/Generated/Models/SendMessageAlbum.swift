@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,28 +19,28 @@ public struct SendMessageAlbum: Codable, Equatable, Hashable {
     /// Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     public let inputMessageContents: [InputMessageContent]?
 
-    /// If not 0, the message thread identifier in which the messages will be sent
-    public let messageThreadId: Int64?
-
     /// Options to be used to send the messages; pass null to use default options
     public let options: MessageSendOptions?
 
     /// Information about the message or story to be replied; pass null if none
     public let replyTo: InputMessageReplyTo?
 
+    /// Topic in which the messages will be sent; pass null if none
+    public let topicId: MessageTopic?
+
 
     public init(
         chatId: Int64?,
         inputMessageContents: [InputMessageContent]?,
-        messageThreadId: Int64?,
         options: MessageSendOptions?,
-        replyTo: InputMessageReplyTo?
+        replyTo: InputMessageReplyTo?,
+        topicId: MessageTopic?
     ) {
         self.chatId = chatId
         self.inputMessageContents = inputMessageContents
-        self.messageThreadId = messageThreadId
         self.options = options
         self.replyTo = replyTo
+        self.topicId = topicId
     }
 }
 

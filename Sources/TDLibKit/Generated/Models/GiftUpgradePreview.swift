@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,6 +19,12 @@ public struct GiftUpgradePreview: Codable, Equatable, Hashable {
     /// Examples of possible models that can be chosen for the gift after upgrade
     public let models: [UpgradedGiftModel]
 
+    /// Next changes for the price for gift upgrade with more granularity than in prices
+    public let nextPrices: [GiftUpgradePrice]
+
+    /// Examples of price for gift upgrade from the maximum price to the minimum price
+    public let prices: [GiftUpgradePrice]
+
     /// Examples of possible symbols that can be chosen for the gift after upgrade
     public let symbols: [UpgradedGiftSymbol]
 
@@ -26,10 +32,14 @@ public struct GiftUpgradePreview: Codable, Equatable, Hashable {
     public init(
         backdrops: [UpgradedGiftBackdrop],
         models: [UpgradedGiftModel],
+        nextPrices: [GiftUpgradePrice],
+        prices: [GiftUpgradePrice],
         symbols: [UpgradedGiftSymbol]
     ) {
         self.backdrops = backdrops
         self.models = models
+        self.nextPrices = nextPrices
+        self.prices = prices
         self.symbols = symbols
     }
 }

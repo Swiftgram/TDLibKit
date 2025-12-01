@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains basic information about a forum topic
 public struct ForumTopicInfo: Codable, Equatable, Hashable {
 
-    /// Identifier of the forum chat to which the topic belongs
+    /// Identifier of a forum supergroup chat or a chat with a bot to which the topic belongs
     public let chatId: Int64
 
     /// Point in time (Unix timestamp) when the topic was created
@@ -23,7 +23,7 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
     public let creatorId: MessageSender
 
     /// Forum topic identifier of the topic
-    public let forumTopicId: Int64
+    public let forumTopicId: Int
 
     /// Icon of the topic
     public let icon: ForumTopicIcon
@@ -31,17 +31,17 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
     /// True, if the topic is closed. If the topic is closed, then the user must have can_manage_topics administrator right in the supergroup or must be the creator of the topic to send messages there
     public let isClosed: Bool
 
-    /// True, if the topic is the General topic list
+    /// True, if the topic is the General topic
     public let isGeneral: Bool
 
     /// True, if the topic is hidden above the topic list and closed; for General topic only
     public let isHidden: Bool
 
+    /// True, if the name of the topic wasn't added explicitly
+    public let isNameImplicit: Bool
+
     /// True, if the topic was created by the current user
     public let isOutgoing: Bool
-
-    /// Message thread identifier of the topic
-    public let messageThreadId: Int64
 
     /// Name of the topic
     public let name: String
@@ -51,13 +51,13 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
         chatId: Int64,
         creationDate: Int,
         creatorId: MessageSender,
-        forumTopicId: Int64,
+        forumTopicId: Int,
         icon: ForumTopicIcon,
         isClosed: Bool,
         isGeneral: Bool,
         isHidden: Bool,
+        isNameImplicit: Bool,
         isOutgoing: Bool,
-        messageThreadId: Int64,
         name: String
     ) {
         self.chatId = chatId
@@ -68,8 +68,8 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
         self.isClosed = isClosed
         self.isGeneral = isGeneral
         self.isHidden = isHidden
+        self.isNameImplicit = isNameImplicit
         self.isOutgoing = isOutgoing
-        self.messageThreadId = messageThreadId
         self.name = name
     }
 }

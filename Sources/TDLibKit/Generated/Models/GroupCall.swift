@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -13,11 +13,23 @@ import Foundation
 /// Describes a group call
 public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
 
-    /// True, if the current user can manage the group call; for video chats only
+    /// True, if sending of messages is allowed in the group call
+    public let areMessagesAllowed: Bool
+
+    /// True, if the current user can manage the group call; for video chats and live stories only
     public let canBeManaged: Bool
+
+    /// True, if the user can delete messages in the group call
+    public let canDeleteMessages: Bool
 
     /// True, if the current user can broadcast video or share screen
     public let canEnableVideo: Bool
+
+    /// True, if the current user can send messages to the group call
+    public let canSendMessages: Bool
+
+    /// True, if the current user can enable or disable sending of messages in the group call
+    public let canToggleAreMessagesAllowed: Bool
 
     /// True, if the current user can enable or disable mute_new_participants setting; for video chats only
     public let canToggleMuteNewParticipants: Bool
@@ -34,7 +46,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
     /// Group call identifier
     public let id: Int
 
-    /// Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link
+    /// Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link. For live stories in chats with username call getInternalLink with internalLinkTypeLiveStory
     public let inviteLink: String
 
     /// True, if the call is active
@@ -42,6 +54,9 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the call is joined
     public let isJoined: Bool
+
+    /// True, if the call is a live story of a chat
+    public let isLiveStory: Bool
 
     /// True, if the current user's video is enabled
     public let isMyVideoEnabled: Bool
@@ -52,7 +67,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
     /// True, if the user is the owner of the call and can end the call, change volume level of other users, or ban users there; for group calls that aren't bound to a chat
     public let isOwned: Bool
 
-    /// True, if the call is an RTMP stream instead of an ordinary video chat; for video chats only
+    /// True, if the call is an RTMP stream instead of an ordinary video chat; for video chats and live stories only
     public let isRtmpStream: Bool
 
     /// True, if the call is bound to a chat
@@ -64,11 +79,17 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
     /// True, if all group call participants are loaded
     public let loadedAllParticipants: Bool
 
+    /// Message sender chosen to send messages to the group call; for live stories only; may be null if the call isn't a live story
+    public let messageSenderId: MessageSender?
+
     /// True, if only group call administrators can unmute new participants; for video chats only
     public let muteNewParticipants: Bool
 
     /// True, if user was kicked from the call because of network loss and the call needs to be rejoined
     public let needRejoin: Bool
+
+    /// The minimum number of Telegram Stars that must be paid by general participant for each sent message to the call; for live stories only
+    public let paidMessageStarCount: Int64
 
     /// Number of participants in the group call
     public let participantCount: Int
@@ -87,8 +108,12 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        areMessagesAllowed: Bool,
         canBeManaged: Bool,
+        canDeleteMessages: Bool,
         canEnableVideo: Bool,
+        canSendMessages: Bool,
+        canToggleAreMessagesAllowed: Bool,
         canToggleMuteNewParticipants: Bool,
         duration: Int,
         enabledStartNotification: Bool,
@@ -97,6 +122,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         inviteLink: String,
         isActive: Bool,
         isJoined: Bool,
+        isLiveStory: Bool,
         isMyVideoEnabled: Bool,
         isMyVideoPaused: Bool,
         isOwned: Bool,
@@ -104,16 +130,22 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         isVideoChat: Bool,
         isVideoRecorded: Bool,
         loadedAllParticipants: Bool,
+        messageSenderId: MessageSender?,
         muteNewParticipants: Bool,
         needRejoin: Bool,
+        paidMessageStarCount: Int64,
         participantCount: Int,
         recentSpeakers: [GroupCallRecentSpeaker],
         recordDuration: Int,
         scheduledStartDate: Int,
         title: String
     ) {
+        self.areMessagesAllowed = areMessagesAllowed
         self.canBeManaged = canBeManaged
+        self.canDeleteMessages = canDeleteMessages
         self.canEnableVideo = canEnableVideo
+        self.canSendMessages = canSendMessages
+        self.canToggleAreMessagesAllowed = canToggleAreMessagesAllowed
         self.canToggleMuteNewParticipants = canToggleMuteNewParticipants
         self.duration = duration
         self.enabledStartNotification = enabledStartNotification
@@ -122,6 +154,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         self.inviteLink = inviteLink
         self.isActive = isActive
         self.isJoined = isJoined
+        self.isLiveStory = isLiveStory
         self.isMyVideoEnabled = isMyVideoEnabled
         self.isMyVideoPaused = isMyVideoPaused
         self.isOwned = isOwned
@@ -129,8 +162,10 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         self.isVideoChat = isVideoChat
         self.isVideoRecorded = isVideoRecorded
         self.loadedAllParticipants = loadedAllParticipants
+        self.messageSenderId = messageSenderId
         self.muteNewParticipants = muteNewParticipants
         self.needRejoin = needRejoin
+        self.paidMessageStarCount = paidMessageStarCount
         self.participantCount = participantCount
         self.recentSpeakers = recentSpeakers
         self.recordDuration = recordDuration

@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
 
 
-/// Describes a user contact
+/// Describes a contact of a user
 public struct Contact: Codable, Equatable, Hashable {
 
-    /// First name of the user; 1-255 characters in length
+    /// First name of the user; 1-64 characters
     public let firstName: String
 
-    /// Last name of the user
+    /// Last name of the user; 0-64 characters
     public let lastName: String
 
     /// Phone number of the user

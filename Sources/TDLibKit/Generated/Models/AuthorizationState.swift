@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -155,9 +155,21 @@ public struct AuthorizationStateWaitPremiumPurchase: Codable, Equatable, Hashabl
     /// Identifier of the store product that must be bought
     public let storeProductId: String
 
+    /// Email address to use for support if the user has issues with Telegram Premium purchase
+    public let supportEmailAddress: String
 
-    public init(storeProductId: String) {
+    /// Subject for the email sent to the support email address
+    public let supportEmailSubject: String
+
+
+    public init(
+        storeProductId: String,
+        supportEmailAddress: String,
+        supportEmailSubject: String
+    ) {
         self.storeProductId = storeProductId
+        self.supportEmailAddress = supportEmailAddress
+        self.supportEmailSubject = supportEmailSubject
     }
 }
 

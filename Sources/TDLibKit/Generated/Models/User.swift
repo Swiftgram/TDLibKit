@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
 
     /// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
     public let accentColorId: Int
+
+    /// State of active stories of the user; may be null if the user has no active stories
+    public let activeStoryState: ActiveStoryState?
 
     /// True, if the user added the current bot to attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool
@@ -27,12 +30,6 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
 
     /// First name of the user
     public let firstName: String
-
-    /// True, if the user has non-expired stories available to the current user
-    public let hasActiveStories: Bool
-
-    /// True, if the user has unread non-expired stories available to the current user
-    public let hasUnreadActiveStories: Bool
 
     /// If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
     public let haveAccess: Bool
@@ -88,6 +85,9 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Type of the user
     public let type: UserType
 
+    /// Color scheme based on an upgraded gift to be used for the user instead of accent_color_id and background_custom_emoji_id; may be null if none
+    public let upgradedGiftColors: UpgradedGiftColors?
+
     /// Usernames of the user; may be null
     public let usernames: Usernames?
 
@@ -97,12 +97,11 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         accentColorId: Int,
+        activeStoryState: ActiveStoryState?,
         addedToAttachmentMenu: Bool,
         backgroundCustomEmojiId: TdInt64,
         emojiStatus: EmojiStatus?,
         firstName: String,
-        hasActiveStories: Bool,
-        hasUnreadActiveStories: Bool,
         haveAccess: Bool,
         id: Int64,
         isCloseFriend: Bool,
@@ -121,16 +120,16 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         restrictsNewChats: Bool,
         status: UserStatus,
         type: UserType,
+        upgradedGiftColors: UpgradedGiftColors?,
         usernames: Usernames?,
         verificationStatus: VerificationStatus?
     ) {
         self.accentColorId = accentColorId
+        self.activeStoryState = activeStoryState
         self.addedToAttachmentMenu = addedToAttachmentMenu
         self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.emojiStatus = emojiStatus
         self.firstName = firstName
-        self.hasActiveStories = hasActiveStories
-        self.hasUnreadActiveStories = hasUnreadActiveStories
         self.haveAccess = haveAccess
         self.id = id
         self.isCloseFriend = isCloseFriend
@@ -149,6 +148,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
         self.restrictsNewChats = restrictsNewChats
         self.status = status
         self.type = type
+        self.upgradedGiftColors = upgradedGiftColors
         self.usernames = usernames
         self.verificationStatus = verificationStatus
     }

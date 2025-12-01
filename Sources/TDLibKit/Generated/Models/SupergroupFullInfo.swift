@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -96,6 +96,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Location to which the supergroup is connected; may be null if none
     public let location: ChatLocation?
 
+    /// The main tab chosen by the administrators of the channel; may be null if not chosen manually
+    public let mainProfileTab: ProfileTab?
+
     /// Number of members in the supergroup or channel; 0 if unknown
     public let memberCount: Int
 
@@ -159,6 +162,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         isAllHistoryAvailable: Bool,
         linkedChatId: Int64,
         location: ChatLocation?,
+        mainProfileTab: ProfileTab?,
         memberCount: Int,
         myBoostCount: Int,
         outgoingPaidMessageStarCount: Int64,
@@ -199,6 +203,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.isAllHistoryAvailable = isAllHistoryAvailable
         self.linkedChatId = linkedChatId
         self.location = location
+        self.mainProfileTab = mainProfileTab
         self.memberCount = memberCount
         self.myBoostCount = myBoostCount
         self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     case pushMessageContentContact(PushMessageContentContact)
 
     /// A contact has registered with Telegram
-    case pushMessageContentContactRegistered
+    case pushMessageContentContactRegistered(PushMessageContentContactRegistered)
 
     /// A document message (a general file)
     case pushMessageContentDocument(PushMessageContentDocument)
@@ -130,6 +130,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A profile photo was suggested to the user
     case pushMessageContentSuggestProfilePhoto
 
+    /// A birthdate was suggested to be set
+    case pushMessageContentSuggestBirthdate
+
     /// A user in the chat came within proximity alert range from the current user
     case pushMessageContentProximityAlertTriggered(PushMessageContentProximityAlertTriggered)
 
@@ -186,6 +189,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentChatJoinByRequest
         case pushMessageContentRecurringPayment
         case pushMessageContentSuggestProfilePhoto
+        case pushMessageContentSuggestBirthdate
         case pushMessageContentProximityAlertTriggered
         case pushMessageContentChecklistTasksAdded
         case pushMessageContentChecklistTasksDone
@@ -210,7 +214,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             let value = try PushMessageContentContact(from: decoder)
             self = .pushMessageContentContact(value)
         case .pushMessageContentContactRegistered:
-            self = .pushMessageContentContactRegistered
+            let value = try PushMessageContentContactRegistered(from: decoder)
+            self = .pushMessageContentContactRegistered(value)
         case .pushMessageContentDocument:
             let value = try PushMessageContentDocument(from: decoder)
             self = .pushMessageContentDocument(value)
@@ -305,6 +310,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             self = .pushMessageContentRecurringPayment(value)
         case .pushMessageContentSuggestProfilePhoto:
             self = .pushMessageContentSuggestProfilePhoto
+        case .pushMessageContentSuggestBirthdate:
+            self = .pushMessageContentSuggestBirthdate
         case .pushMessageContentProximityAlertTriggered:
             let value = try PushMessageContentProximityAlertTriggered(from: decoder)
             self = .pushMessageContentProximityAlertTriggered(value)
@@ -338,8 +345,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentContact(let value):
             try container.encode(Kind.pushMessageContentContact, forKey: .type)
             try value.encode(to: encoder)
-        case .pushMessageContentContactRegistered:
+        case .pushMessageContentContactRegistered(let value):
             try container.encode(Kind.pushMessageContentContactRegistered, forKey: .type)
+            try value.encode(to: encoder)
         case .pushMessageContentDocument(let value):
             try container.encode(Kind.pushMessageContentDocument, forKey: .type)
             try value.encode(to: encoder)
@@ -434,6 +442,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentSuggestProfilePhoto:
             try container.encode(Kind.pushMessageContentSuggestProfilePhoto, forKey: .type)
+        case .pushMessageContentSuggestBirthdate:
+            try container.encode(Kind.pushMessageContentSuggestBirthdate, forKey: .type)
         case .pushMessageContentProximityAlertTriggered(let value):
             try container.encode(Kind.pushMessageContentProximityAlertTriggered, forKey: .type)
             try value.encode(to: encoder)
@@ -524,6 +534,18 @@ public struct PushMessageContentContact: Codable, Equatable, Hashable {
     ) {
         self.isPinned = isPinned
         self.name = name
+    }
+}
+
+/// A contact has registered with Telegram
+public struct PushMessageContentContactRegistered: Codable, Equatable, Hashable {
+
+    /// True, if the user joined Telegram as a Telegram Premium account
+    public let asPremiumAccount: Bool
+
+
+    public init(asPremiumAccount: Bool) {
+        self.asPremiumAccount = asPremiumAccount
     }
 }
 
@@ -738,11 +760,18 @@ public struct PushMessageContentGiveaway: Codable, Equatable, Hashable {
 /// A message with a gift
 public struct PushMessageContentGift: Codable, Equatable, Hashable {
 
+    /// True, if the message is about prepaid upgrade of the gift by another user instead of actual receiving of a new gift
+    public let isPrepaidUpgrade: Bool
+
     /// Number of Telegram Stars that sender paid for the gift
     public let starCount: Int64
 
 
-    public init(starCount: Int64) {
+    public init(
+        isPrepaidUpgrade: Bool,
+        starCount: Int64
+    ) {
+        self.isPrepaidUpgrade = isPrepaidUpgrade
         self.starCount = starCount
     }
 }
@@ -750,11 +779,18 @@ public struct PushMessageContentGift: Codable, Equatable, Hashable {
 /// A message with an upgraded gift
 public struct PushMessageContentUpgradedGift: Codable, Equatable, Hashable {
 
-    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
+    /// True, if the message is about completion of prepaid upgrade of the gift instead of actual receiving of a new gift
+    public let isPrepaidUpgrade: Bool
+
+    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift
     public let isUpgrade: Bool
 
 
-    public init(isUpgrade: Bool) {
+    public init(
+        isPrepaidUpgrade: Bool,
+        isUpgrade: Bool
+    ) {
+        self.isPrepaidUpgrade = isPrepaidUpgrade
         self.isUpgrade = isUpgrade
     }
 }
@@ -970,12 +1006,12 @@ public struct PushMessageContentChatSetBackground: Codable, Equatable, Hashable 
 /// A chat theme was edited
 public struct PushMessageContentChatSetTheme: Codable, Equatable, Hashable {
 
-    /// If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one
-    public let themeName: String
+    /// If non-empty, human-readable name of the new theme. Otherwise, the chat theme was reset to the default one
+    public let name: String
 
 
-    public init(themeName: String) {
-        self.themeName = themeName
+    public init(name: String) {
+        self.name = name
     }
 }
 

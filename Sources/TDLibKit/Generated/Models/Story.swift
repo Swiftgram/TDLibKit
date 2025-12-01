@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// Clickable areas to be shown on the story content
     public let areas: [StoryArea]
 
-    /// True, if the story can be added to an album
+    /// True, if the story can be added to an album using createStoryAlbum and addStoryAlbumStories
     public let canBeAddedToAlbum: Bool
 
     /// True, if the story can be deleted
@@ -28,7 +28,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story can be edited
     public let canBeEdited: Bool
 
-    /// True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
+    /// True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden
     public let canBeForwarded: Bool
 
     /// True, if the story can be replied in the chat with the user that posted the story
@@ -39,6 +39,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the story statistics are available through getStoryStatistics
     public let canGetStatistics: Bool
+
+    /// True, if the story privacy settings can be changed
+    public let canSetPrivacySettings: Bool
 
     /// True, if the story's is_posted_to_chat_page value can be changed
     public let canToggleIsPostedToChatPage: Bool
@@ -102,6 +105,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         canBeReplied: Bool,
         canGetInteractions: Bool,
         canGetStatistics: Bool,
+        canSetPrivacySettings: Bool,
         canToggleIsPostedToChatPage: Bool,
         caption: FormattedText,
         chosenReactionType: ReactionType?,
@@ -129,6 +133,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.canBeReplied = canBeReplied
         self.canGetInteractions = canGetInteractions
         self.canGetStatistics = canGetStatistics
+        self.canSetPrivacySettings = canSetPrivacySettings
         self.canToggleIsPostedToChatPage = canToggleIsPostedToChatPage
         self.caption = caption
         self.chosenReactionType = chosenReactionType

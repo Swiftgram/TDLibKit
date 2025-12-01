@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public struct ConnectedAffiliateProgram: Codable, Equatable, Hashable {
     public let parameters: AffiliateProgramParameters
 
     /// The number of Telegram Stars that were earned by the affiliate program
-    public let revenueStarCount: TdInt64
+    public let revenueStarCount: Int64
 
     /// The link that can be used to refer users if the program is still active
     public let url: String
@@ -40,7 +40,7 @@ public struct ConnectedAffiliateProgram: Codable, Equatable, Hashable {
         connectionDate: Int,
         isDisconnected: Bool,
         parameters: AffiliateProgramParameters,
-        revenueStarCount: TdInt64,
+        revenueStarCount: Int64,
         url: String,
         userCount: TdInt64
     ) {

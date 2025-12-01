@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetChatMessageCalendar: Codable, Equatable, Hashable {
     /// The message identifier from which to return information about messages; use 0 to get results from the last message
     public let fromMessageId: Int64?
 
-    /// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported
+    /// Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
     public let topicId: MessageTopic?
 
 

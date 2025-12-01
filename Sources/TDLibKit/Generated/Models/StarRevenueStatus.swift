@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
 
 
-/// Contains information about Telegram Stars earned by a bot or a chat
+/// Contains information about Telegram Stars earned by a user or a chat
 public struct StarRevenueStatus: Codable, Equatable, Hashable {
 
     /// The amount of Telegram Stars that are available for withdrawal

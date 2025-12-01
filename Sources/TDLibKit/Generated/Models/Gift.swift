@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
     public let firstSendDate: Int
 
+    /// True, if the gift can be used to customize the user's name, and backgrounds of profile photo, reply header, and link preview
+    public let hasColors: Bool
+
     /// Unique identifier of the gift
     public let id: TdInt64
 
@@ -30,6 +33,9 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
     /// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     public let lastSendDate: Int
+
+    /// Point in time (Unix timestamp) when the gift can be sent next time by the current user; can be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
+    public let nextSendDate: Int
 
     /// Number of times the gift can be purchased all users; may be null if not limited
     public let overallLimits: GiftPurchaseLimits?
@@ -53,10 +59,12 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     public init(
         defaultSellStarCount: Int64,
         firstSendDate: Int,
+        hasColors: Bool,
         id: TdInt64,
         isForBirthday: Bool,
         isPremium: Bool,
         lastSendDate: Int,
+        nextSendDate: Int,
         overallLimits: GiftPurchaseLimits?,
         publisherChatId: Int64,
         starCount: Int64,
@@ -66,10 +74,12 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     ) {
         self.defaultSellStarCount = defaultSellStarCount
         self.firstSendDate = firstSendDate
+        self.hasColors = hasColors
         self.id = id
         self.isForBirthday = isForBirthday
         self.isPremium = isPremium
         self.lastSendDate = lastSendDate
+        self.nextSendDate = nextSendDate
         self.overallLimits = overallLimits
         self.publisherChatId = publisherChatId
         self.starCount = starCount

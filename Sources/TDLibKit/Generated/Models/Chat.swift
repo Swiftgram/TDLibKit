@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -112,8 +112,8 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
     public let replyMarkupMessageId: Int64
 
-    /// If non-empty, name of a theme, set for the chat
-    public let themeName: String
+    /// Theme set for the chat; may be null if none
+    public let theme: ChatTheme?
 
     /// Chat title
     public let title: String
@@ -129,6 +129,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// Number of messages with unread reactions in the chat
     public let unreadReactionCount: Int
+
+    /// Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
+    public let upgradedGiftColors: UpgradedGiftColors?
 
     /// Information about video chat of the chat
     public let videoChat: VideoChat
@@ -171,12 +174,13 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         profileAccentColorId: Int,
         profileBackgroundCustomEmojiId: TdInt64,
         replyMarkupMessageId: Int64,
-        themeName: String,
+        theme: ChatTheme?,
         title: String,
         type: ChatType,
         unreadCount: Int,
         unreadMentionCount: Int,
         unreadReactionCount: Int,
+        upgradedGiftColors: UpgradedGiftColors?,
         videoChat: VideoChat,
         viewAsTopics: Bool
     ) {
@@ -213,12 +217,13 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.profileAccentColorId = profileAccentColorId
         self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
         self.replyMarkupMessageId = replyMarkupMessageId
-        self.themeName = themeName
+        self.theme = theme
         self.title = title
         self.type = type
         self.unreadCount = unreadCount
         self.unreadMentionCount = unreadMentionCount
         self.unreadReactionCount = unreadReactionCount
+        self.upgradedGiftColors = upgradedGiftColors
         self.videoChat = videoChat
         self.viewAsTopics = viewAsTopics
     }

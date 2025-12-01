@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,9 +19,6 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
     /// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     public let hideViaBot: Bool?
 
-    /// If not 0, the message thread identifier in which the message will be sent
-    public let messageThreadId: Int64?
-
     /// Options to be used to send the message; pass null to use default options
     public let options: MessageSendOptions?
 
@@ -34,23 +31,26 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
     /// Identifier of the inline query result
     public let resultId: String?
 
+    /// Topic in which the message will be sent; pass null if none
+    public let topicId: MessageTopic?
+
 
     public init(
         chatId: Int64?,
         hideViaBot: Bool?,
-        messageThreadId: Int64?,
         options: MessageSendOptions?,
         queryId: TdInt64?,
         replyTo: InputMessageReplyTo?,
-        resultId: String?
+        resultId: String?,
+        topicId: MessageTopic?
     ) {
         self.chatId = chatId
         self.hideViaBot = hideViaBot
-        self.messageThreadId = messageThreadId
         self.options = options
         self.queryId = queryId
         self.replyTo = replyTo
         self.resultId = resultId
+        self.topicId = topicId
     }
 }
 

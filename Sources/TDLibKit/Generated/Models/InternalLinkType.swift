@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -89,6 +89,12 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to the language section of the application settings
     case internalLinkTypeLanguageSettings
 
+    /// The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat, then find a live story among active stories of the chat, and then joinLiveStory to join the live story
+    case internalLinkTypeLiveStory(InternalLinkTypeLiveStory)
+
+    /// The link is a link to the login email set up section of the application settings, forcing set up of the login email
+    case internalLinkTypeLoginEmailSettings
+
     /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
     case internalLinkTypeMainWebApp(InternalLinkTypeMainWebApp)
 
@@ -107,8 +113,14 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
+    /// The link is a link to the password section of the application settings
+    case internalLinkTypePasswordSettings
+
     /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
+
+    /// The link is a link to the phone number privacy settings section of the application settings
+    case internalLinkTypePhoneNumberPrivacySettings
 
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
@@ -200,13 +212,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeInvoice
         case internalLinkTypeLanguagePack
         case internalLinkTypeLanguageSettings
+        case internalLinkTypeLiveStory
+        case internalLinkTypeLoginEmailSettings
         case internalLinkTypeMainWebApp
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
         case internalLinkTypeMyStars
         case internalLinkTypeMyToncoins
         case internalLinkTypePassportDataRequest
+        case internalLinkTypePasswordSettings
         case internalLinkTypePhoneNumberConfirmation
+        case internalLinkTypePhoneNumberPrivacySettings
         case internalLinkTypePremiumFeatures
         case internalLinkTypePremiumGift
         case internalLinkTypePremiumGiftCode
@@ -303,6 +319,11 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeLanguagePack(value)
         case .internalLinkTypeLanguageSettings:
             self = .internalLinkTypeLanguageSettings
+        case .internalLinkTypeLiveStory:
+            let value = try InternalLinkTypeLiveStory(from: decoder)
+            self = .internalLinkTypeLiveStory(value)
+        case .internalLinkTypeLoginEmailSettings:
+            self = .internalLinkTypeLoginEmailSettings
         case .internalLinkTypeMainWebApp:
             let value = try InternalLinkTypeMainWebApp(from: decoder)
             self = .internalLinkTypeMainWebApp(value)
@@ -319,9 +340,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypePassportDataRequest:
             let value = try InternalLinkTypePassportDataRequest(from: decoder)
             self = .internalLinkTypePassportDataRequest(value)
+        case .internalLinkTypePasswordSettings:
+            self = .internalLinkTypePasswordSettings
         case .internalLinkTypePhoneNumberConfirmation:
             let value = try InternalLinkTypePhoneNumberConfirmation(from: decoder)
             self = .internalLinkTypePhoneNumberConfirmation(value)
+        case .internalLinkTypePhoneNumberPrivacySettings:
+            self = .internalLinkTypePhoneNumberPrivacySettings
         case .internalLinkTypePremiumFeatures:
             let value = try InternalLinkTypePremiumFeatures(from: decoder)
             self = .internalLinkTypePremiumFeatures(value)
@@ -454,6 +479,11 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeLanguageSettings:
             try container.encode(Kind.internalLinkTypeLanguageSettings, forKey: .type)
+        case .internalLinkTypeLiveStory(let value):
+            try container.encode(Kind.internalLinkTypeLiveStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeLoginEmailSettings:
+            try container.encode(Kind.internalLinkTypeLoginEmailSettings, forKey: .type)
         case .internalLinkTypeMainWebApp(let value):
             try container.encode(Kind.internalLinkTypeMainWebApp, forKey: .type)
             try value.encode(to: encoder)
@@ -470,9 +500,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypePassportDataRequest(let value):
             try container.encode(Kind.internalLinkTypePassportDataRequest, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypePasswordSettings:
+            try container.encode(Kind.internalLinkTypePasswordSettings, forKey: .type)
         case .internalLinkTypePhoneNumberConfirmation(let value):
             try container.encode(Kind.internalLinkTypePhoneNumberConfirmation, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypePhoneNumberPrivacySettings:
+            try container.encode(Kind.internalLinkTypePhoneNumberPrivacySettings, forKey: .type)
         case .internalLinkTypePremiumFeatures(let value):
             try container.encode(Kind.internalLinkTypePremiumFeatures, forKey: .type)
             try value.encode(to: encoder)
@@ -837,6 +871,18 @@ public struct InternalLinkTypeLanguagePack: Codable, Equatable, Hashable {
 
     public init(languagePackId: String) {
         self.languagePackId = languagePackId
+    }
+}
+
+/// The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat, then find a live story among active stories of the chat, and then joinLiveStory to join the live story
+public struct InternalLinkTypeLiveStory: Codable, Equatable, Hashable {
+
+    /// Username of the poster of the story
+    public let storyPosterUsername: String
+
+
+    public init(storyPosterUsername: String) {
+        self.storyPosterUsername = storyPosterUsername
     }
 }
 

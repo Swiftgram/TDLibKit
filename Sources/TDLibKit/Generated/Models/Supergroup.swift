@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -13,14 +13,14 @@ import Foundation
 /// Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
 public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
+    /// State of active stories of the supergroup or channel; may be null if there are no active stories
+    public let activeStoryState: ActiveStoryState?
+
     /// Approximate boost level for the chat
     public let boostLevel: Int
 
     /// Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
     public let date: Int
-
-    /// True, if the supergroup or channel has non-expired stories available to the current user
-    public let hasActiveStories: Bool
 
     /// True, if automatic translation of messages is enabled in the channel
     public let hasAutomaticTranslation: Bool
@@ -36,9 +36,6 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     public let hasLocation: Bool
-
-    /// True, if the supergroup or channel has unread non-expired stories available to the current user
-    public let hasUnreadActiveStories: Bool
 
     /// Supergroup or channel identifier
     public let id: Int64
@@ -61,7 +58,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if the slow mode is enabled in the supergroup
     public let isSlowModeEnabled: Bool
 
-    /// True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
+    /// True, if all users directly joining the supergroup need to be approved by supergroup administrators. May be true only for non-broadcast supergroups with username, location, or a linked chat
     public let joinByRequest: Bool
 
     /// True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups
@@ -93,15 +90,14 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        activeStoryState: ActiveStoryState?,
         boostLevel: Int,
         date: Int,
-        hasActiveStories: Bool,
         hasAutomaticTranslation: Bool,
         hasDirectMessagesGroup: Bool,
         hasForumTabs: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
-        hasUnreadActiveStories: Bool,
         id: Int64,
         isAdministeredDirectMessagesGroup: Bool,
         isBroadcastGroup: Bool,
@@ -120,15 +116,14 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         usernames: Usernames?,
         verificationStatus: VerificationStatus?
     ) {
+        self.activeStoryState = activeStoryState
         self.boostLevel = boostLevel
         self.date = date
-        self.hasActiveStories = hasActiveStories
         self.hasAutomaticTranslation = hasAutomaticTranslation
         self.hasDirectMessagesGroup = hasDirectMessagesGroup
         self.hasForumTabs = hasForumTabs
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation
-        self.hasUnreadActiveStories = hasUnreadActiveStories
         self.id = id
         self.isAdministeredDirectMessagesGroup = isAdministeredDirectMessagesGroup
         self.isBroadcastGroup = isBroadcastGroup

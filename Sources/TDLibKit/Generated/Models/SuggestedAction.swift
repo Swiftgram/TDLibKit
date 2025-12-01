@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -58,6 +58,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     /// A custom suggestion to be shown at the top of the chat list
     case suggestedActionCustom(SuggestedActionCustom)
 
+    /// Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
+    case suggestedActionSetLoginEmailAddress(SuggestedActionSetLoginEmailAddress)
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -75,6 +78,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionExtendPremium
         case suggestedActionExtendStarSubscriptions
         case suggestedActionCustom
+        case suggestedActionSetLoginEmailAddress
     }
 
     public init(from decoder: Decoder) throws {
@@ -115,6 +119,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case .suggestedActionCustom:
             let value = try SuggestedActionCustom(from: decoder)
             self = .suggestedActionCustom(value)
+        case .suggestedActionSetLoginEmailAddress:
+            let value = try SuggestedActionSetLoginEmailAddress(from: decoder)
+            self = .suggestedActionSetLoginEmailAddress(value)
         }
     }
 
@@ -154,6 +161,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             try container.encode(Kind.suggestedActionExtendStarSubscriptions, forKey: .type)
         case .suggestedActionCustom(let value):
             try container.encode(Kind.suggestedActionCustom, forKey: .type)
+            try value.encode(to: encoder)
+        case .suggestedActionSetLoginEmailAddress(let value):
+            try container.encode(Kind.suggestedActionSetLoginEmailAddress, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -220,6 +230,18 @@ public struct SuggestedActionCustom: Codable, Equatable, Hashable {
         self.name = name
         self.title = title
         self.url = url
+    }
+}
+
+/// Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
+public struct SuggestedActionSetLoginEmailAddress: Codable, Equatable, Hashable {
+
+    /// True, if the suggested action can be hidden using hideSuggestedAction. Otherwise, the user must not be able to use the app without setting up the email address
+    public let canBeHidden: Bool
+
+
+    public init(canBeHidden: Bool) {
+        self.canBeHidden = canBeHidden
     }
 }
 

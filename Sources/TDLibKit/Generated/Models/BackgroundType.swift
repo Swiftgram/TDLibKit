@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum BackgroundType: Codable, Equatable, Hashable {
     /// A filled background
     case backgroundTypeFill(BackgroundTypeFill)
 
-    /// A background from a chat theme; can be used only as a chat background in channels
+    /// A background from a chat theme based on an emoji; can be used only as a chat background in channels
     case backgroundTypeChatTheme(BackgroundTypeChatTheme)
 
 
@@ -131,10 +131,10 @@ public struct BackgroundTypeFill: Codable, Equatable, Hashable {
     }
 }
 
-/// A background from a chat theme; can be used only as a chat background in channels
+/// A background from a chat theme based on an emoji; can be used only as a chat background in channels
 public struct BackgroundTypeChatTheme: Codable, Equatable, Hashable {
 
-    /// Name of the chat theme
+    /// Name of the emoji chat theme
     public let themeName: String
 
 

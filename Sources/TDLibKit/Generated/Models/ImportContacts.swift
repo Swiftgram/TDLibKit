@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -13,11 +13,11 @@ import Foundation
 /// Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
 public struct ImportContacts: Codable, Equatable, Hashable {
 
-    /// The list of contacts to import or edit; contacts' vCard are ignored and are not imported
-    public let contacts: [Contact]?
+    /// The list of contacts to import or edit
+    public let contacts: [ImportedContact]?
 
 
-    public init(contacts: [Contact]?) {
+    public init(contacts: [ImportedContact]?) {
         self.contacts = contacts
     }
 }

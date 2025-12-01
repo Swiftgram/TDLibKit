@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct SendChatAction: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// If not 0, the message thread identifier in which the action was performed
-    public let messageThreadId: Int64?
+    /// Identifier of the topic in which the action is performed
+    public let topicId: MessageTopic?
 
 
     public init(
         action: ChatAction?,
         businessConnectionId: String?,
         chatId: Int64?,
-        messageThreadId: Int64?
+        topicId: MessageTopic?
     ) {
         self.action = action
         self.businessConnectionId = businessConnectionId
         self.chatId = chatId
-        self.messageThreadId = messageThreadId
+        self.topicId = topicId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,9 +19,6 @@ public struct SendMessage: Codable, Equatable, Hashable {
     /// The content of the message to be sent
     public let inputMessageContent: InputMessageContent?
 
-    /// If not 0, the message thread identifier in which the message will be sent
-    public let messageThreadId: Int64?
-
     /// Options to be used to send the message; pass null to use default options
     public let options: MessageSendOptions?
 
@@ -31,21 +28,24 @@ public struct SendMessage: Codable, Equatable, Hashable {
     /// Information about the message or story to be replied; pass null if none
     public let replyTo: InputMessageReplyTo?
 
+    /// Topic in which the message will be sent; pass null if none
+    public let topicId: MessageTopic?
+
 
     public init(
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
-        messageThreadId: Int64?,
         options: MessageSendOptions?,
         replyMarkup: ReplyMarkup?,
-        replyTo: InputMessageReplyTo?
+        replyTo: InputMessageReplyTo?,
+        topicId: MessageTopic?
     ) {
         self.chatId = chatId
         self.inputMessageContent = inputMessageContent
-        self.messageThreadId = messageThreadId
         self.options = options
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
+        self.topicId = topicId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if the user can be called
     public let canBeCalled: Bool
 
+    /// The first audio file added to the user's profile; may be null if none
+    public let firstProfileAudio: Audio?
+
     /// Number of saved to profile gifts for other users or the total number of received gifts for the current user
     public let giftCount: Int
 
@@ -61,8 +64,14 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// Number of Telegram Stars that must be paid by the user for each sent message to the current user
     public let incomingPaidMessageStarCount: Int64
 
+    /// The main tab chosen by the user; may be null if not chosen manually
+    public let mainProfileTab: ProfileTab?
+
     /// True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     public let needPhoneNumberPrivacyException: Bool
+
+    /// Note added to the user's contact; may be null if none
+    public let note: FormattedText?
 
     /// Number of Telegram Stars that must be paid by the current user for each sent message to the user
     public let outgoingPaidMessageStarCount: Int64
@@ -103,6 +112,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         botVerification: BotVerification?,
         businessInfo: BusinessInfo?,
         canBeCalled: Bool,
+        firstProfileAudio: Audio?,
         giftCount: Int,
         giftSettings: GiftSettings,
         groupInCommonCount: Int,
@@ -112,7 +122,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         hasRestrictedVoiceAndVideoNoteMessages: Bool,
         hasSponsoredMessagesEnabled: Bool,
         incomingPaidMessageStarCount: Int64,
+        mainProfileTab: ProfileTab?,
         needPhoneNumberPrivacyException: Bool,
+        note: FormattedText?,
         outgoingPaidMessageStarCount: Int64,
         pendingRating: UserRating?,
         pendingRatingDate: Int,
@@ -131,6 +143,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.botVerification = botVerification
         self.businessInfo = businessInfo
         self.canBeCalled = canBeCalled
+        self.firstProfileAudio = firstProfileAudio
         self.giftCount = giftCount
         self.giftSettings = giftSettings
         self.groupInCommonCount = groupInCommonCount
@@ -140,7 +153,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.hasRestrictedVoiceAndVideoNoteMessages = hasRestrictedVoiceAndVideoNoteMessages
         self.hasSponsoredMessagesEnabled = hasSponsoredMessagesEnabled
         self.incomingPaidMessageStarCount = incomingPaidMessageStarCount
+        self.mainProfileTab = mainProfileTab
         self.needPhoneNumberPrivacyException = needPhoneNumberPrivacyException
+        self.note = note
         self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount
         self.pendingRating = pendingRating
         self.pendingRatingDate = pendingRatingDate

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -22,11 +22,19 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
     /// The gift was bought from another user
     case upgradedGiftOriginResale(UpgradedGiftOriginResale)
 
+    /// The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold or withdrawn to blockchain
+    case upgradedGiftOriginBlockchain
+
+    /// The sender or receiver of the message has paid for upgraid of the gift, which has been completed
+    case upgradedGiftOriginPrepaidUpgrade
+
 
     private enum Kind: String, Codable {
         case upgradedGiftOriginUpgrade
         case upgradedGiftOriginTransfer
         case upgradedGiftOriginResale
+        case upgradedGiftOriginBlockchain
+        case upgradedGiftOriginPrepaidUpgrade
     }
 
     public init(from decoder: Decoder) throws {
@@ -41,6 +49,10 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case .upgradedGiftOriginResale:
             let value = try UpgradedGiftOriginResale(from: decoder)
             self = .upgradedGiftOriginResale(value)
+        case .upgradedGiftOriginBlockchain:
+            self = .upgradedGiftOriginBlockchain
+        case .upgradedGiftOriginPrepaidUpgrade:
+            self = .upgradedGiftOriginPrepaidUpgrade
         }
     }
 
@@ -55,6 +67,10 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case .upgradedGiftOriginResale(let value):
             try container.encode(Kind.upgradedGiftOriginResale, forKey: .type)
             try value.encode(to: encoder)
+        case .upgradedGiftOriginBlockchain:
+            try container.encode(Kind.upgradedGiftOriginBlockchain, forKey: .type)
+        case .upgradedGiftOriginPrepaidUpgrade:
+            try container.encode(Kind.upgradedGiftOriginPrepaidUpgrade, forKey: .type)
         }
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -66,6 +66,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to an invoice
     case linkPreviewTypeInvoice
+
+    /// The link is a link to a live story group call
+    case linkPreviewTypeLiveStory(LinkPreviewTypeLiveStory)
 
     /// The link is a link to a text or a poll Telegram message
     case linkPreviewTypeMessage
@@ -141,6 +144,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeGiftCollection
         case linkPreviewTypeGroupCall
         case linkPreviewTypeInvoice
+        case linkPreviewTypeLiveStory
         case linkPreviewTypeMessage
         case linkPreviewTypePhoto
         case linkPreviewTypePremiumGiftCode
@@ -217,6 +221,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             self = .linkPreviewTypeGroupCall
         case .linkPreviewTypeInvoice:
             self = .linkPreviewTypeInvoice
+        case .linkPreviewTypeLiveStory:
+            let value = try LinkPreviewTypeLiveStory(from: decoder)
+            self = .linkPreviewTypeLiveStory(value)
         case .linkPreviewTypeMessage:
             self = .linkPreviewTypeMessage
         case .linkPreviewTypePhoto:
@@ -325,6 +332,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try container.encode(Kind.linkPreviewTypeGroupCall, forKey: .type)
         case .linkPreviewTypeInvoice:
             try container.encode(Kind.linkPreviewTypeInvoice, forKey: .type)
+        case .linkPreviewTypeLiveStory(let value):
+            try container.encode(Kind.linkPreviewTypeLiveStory, forKey: .type)
+            try value.encode(to: encoder)
         case .linkPreviewTypeMessage:
             try container.encode(Kind.linkPreviewTypeMessage, forKey: .type)
         case .linkPreviewTypePhoto(let value):
@@ -694,6 +704,25 @@ public struct LinkPreviewTypeGiftCollection: Codable, Equatable, Hashable {
 
     public init(icons: [Sticker]) {
         self.icons = icons
+    }
+}
+
+/// The link is a link to a live story group call
+public struct LinkPreviewTypeLiveStory: Codable, Equatable, Hashable {
+
+    /// Story identifier
+    public let storyId: Int
+
+    /// The identifier of the chat that posted the story
+    public let storyPosterChatId: Int64
+
+
+    public init(
+        storyId: Int,
+        storyPosterChatId: Int64
+    ) {
+        self.storyId = storyId
+        self.storyPosterChatId = storyPosterChatId
     }
 }
 

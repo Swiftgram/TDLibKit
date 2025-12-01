@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -92,12 +92,12 @@ public indirect enum ChatMembersFilter: Codable, Equatable, Hashable {
 /// Returns users which can be mentioned in the chat
 public struct ChatMembersFilterMention: Codable, Equatable, Hashable {
 
-    /// If non-zero, the identifier of the current message thread
-    public let messageThreadId: Int64
+    /// Identifier of the topic in which the users will be mentioned; pass null if none
+    public let topicId: MessageTopic?
 
 
-    public init(messageThreadId: Int64) {
-        self.messageThreadId = messageThreadId
+    public init(topicId: MessageTopic?) {
+        self.topicId = topicId
     }
 }
 

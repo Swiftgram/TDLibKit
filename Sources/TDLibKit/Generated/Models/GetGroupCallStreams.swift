@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
 
 
-/// Returns information about available group call streams
+/// Returns information about available streams in a video chat or a live story
 public struct GetGroupCallStreams: Codable, Equatable, Hashable {
 
     /// Group call identifier

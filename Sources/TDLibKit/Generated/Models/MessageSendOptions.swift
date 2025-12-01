@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -15,9 +15,6 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     /// Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only
     public let allowPaidBroadcast: Bool
-
-    /// Unique identifier of the topic in a channel direct messages chat administered by the current user; pass 0 if the chat isn't a channel direct messages chat administered by the current user
-    public let directMessagesChatTopicId: Int64
 
     /// Pass true to disable notification for the message
     public let disableNotification: Bool
@@ -52,7 +49,6 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
 
     public init(
         allowPaidBroadcast: Bool,
-        directMessagesChatTopicId: Int64,
         disableNotification: Bool,
         effectId: TdInt64,
         fromBackground: Bool,
@@ -65,7 +61,6 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
         updateOrderOfInstalledStickerSets: Bool
     ) {
         self.allowPaidBroadcast = allowPaidBroadcast
-        self.directMessagesChatTopicId = directMessagesChatTopicId
         self.disableNotification = disableNotification
         self.effectId = effectId
         self.fromBackground = fromBackground

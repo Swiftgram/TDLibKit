@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -13,8 +13,8 @@ import Foundation
 /// Describes a task in a checklist
 public struct ChecklistTask: Codable, Equatable, Hashable, Identifiable {
 
-    /// Identifier of the user that completed the task; 0 if the task isn't completed
-    public let completedByUserId: Int64
+    /// Identifier of the user or chat that completed the task; may be null if the task isn't completed yet
+    public let completedBy: MessageSender?
 
     /// Point in time (Unix timestamp) when the task was completed; 0 if the task isn't completed
     public let completionDate: Int
@@ -27,12 +27,12 @@ public struct ChecklistTask: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
-        completedByUserId: Int64,
+        completedBy: MessageSender?,
         completionDate: Int,
         id: Int,
         text: FormattedText
     ) {
-        self.completedByUserId = completedByUserId
+        self.completedBy = completedBy
         self.completionDate = completionDate
         self.id = id
         self.text = text

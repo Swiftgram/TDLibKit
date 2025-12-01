@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -28,8 +28,8 @@ public struct MessageLinkInfo: Codable, Equatable, Hashable {
     /// If found, the linked message; may be null
     public let message: Message?
 
-    /// If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
-    public let messageThreadId: Int64
+    /// Identifier of the specific topic in which the message must be opened, or a topic to open if the message is missing; may be null if none
+    public let topicId: MessageTopic?
 
 
     public init(
@@ -38,14 +38,14 @@ public struct MessageLinkInfo: Codable, Equatable, Hashable {
         isPublic: Bool,
         mediaTimestamp: Int,
         message: Message?,
-        messageThreadId: Int64
+        topicId: MessageTopic?
     ) {
         self.chatId = chatId
         self.forAlbum = forAlbum
         self.isPublic = isPublic
         self.mediaTimestamp = mediaTimestamp
         self.message = message
-        self.messageThreadId = messageThreadId
+        self.topicId = topicId
     }
 }
 

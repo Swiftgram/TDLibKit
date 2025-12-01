@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SendGift: Codable, Equatable, Hashable {
     /// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     public let isPrivate: Bool?
 
-    /// Identifier of the user or the channel chat that will receive the gift
+    /// Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
     public let ownerId: MessageSender?
 
     /// Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -220,6 +220,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A message sender activity in the chat has changed
     case updateChatAction(UpdateChatAction)
 
+    /// A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+    case updatePendingTextMessage(UpdatePendingTextMessage)
+
     /// The user went online or offline
     case updateUserStatus(UpdateUserStatus)
 
@@ -289,6 +292,21 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The verification state of an encrypted group call has changed; for group calls not bound to a chat only
     case updateGroupCallVerificationState(UpdateGroupCallVerificationState)
 
+    /// A new message was received in a group call
+    case updateNewGroupCallMessage(UpdateNewGroupCallMessage)
+
+    /// A new paid reaction was received in a live story group call
+    case updateNewGroupCallPaidReaction(UpdateNewGroupCallPaidReaction)
+
+    /// A group call message failed to send
+    case updateGroupCallMessageSendFailed(UpdateGroupCallMessageSendFailed)
+
+    /// Some group call messages were deleted
+    case updateGroupCallMessagesDeleted(UpdateGroupCallMessagesDeleted)
+
+    /// The list of top donors in live story group call has changed
+    case updateLiveStoryTopDonors(UpdateLiveStoryTopDonors)
+
     /// New call signaling data arrived
     case updateNewCallSignalingData(UpdateNewCallSignalingData)
 
@@ -322,6 +340,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Story stealth mode settings have changed
     case updateStoryStealthMode(UpdateStoryStealthMode)
 
+    /// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+    case updateTrustedMiniAppBots(UpdateTrustedMiniAppBots)
+
     /// An option changed its value
     case updateOption(UpdateOption)
 
@@ -349,8 +370,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The default background has changed
     case updateDefaultBackground(UpdateDefaultBackground)
 
-    /// The list of available chat themes has changed
-    case updateChatThemes(UpdateChatThemes)
+    /// The list of available emoji chat themes has changed
+    case updateEmojiChatThemes(UpdateEmojiChatThemes)
 
     /// The list of supported accent colors has changed
     case updateAccentColors(UpdateAccentColors)
@@ -409,11 +430,17 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
 
-    /// The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    /// The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
     case updateStarRevenueStatus(UpdateStarRevenueStatus)
+
+    /// The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+    case updateTonRevenueStatus(UpdateTonRevenueStatus)
 
     /// The parameters of speech recognition without Telegram Premium subscription has changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
+
+    /// The levels of live story group call messages have changed
+    case updateGroupCallMessageLevels(UpdateGroupCallMessageLevels)
 
     /// The list of supported dice emojis has changed
     case updateDiceEmojis(UpdateDiceEmojis)
@@ -570,6 +597,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateHavePendingNotifications
         case updateDeleteMessages
         case updateChatAction
+        case updatePendingTextMessage
         case updateUserStatus
         case updateUser
         case updateBasicGroup
@@ -593,6 +621,11 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateGroupCallParticipant
         case updateGroupCallParticipants
         case updateGroupCallVerificationState
+        case updateNewGroupCallMessage
+        case updateNewGroupCallPaidReaction
+        case updateGroupCallMessageSendFailed
+        case updateGroupCallMessagesDeleted
+        case updateLiveStoryTopDonors
         case updateNewCallSignalingData
         case updateUserPrivacySettingRules
         case updateUnreadMessageCount
@@ -604,6 +637,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatActiveStories
         case updateStoryListChatCount
         case updateStoryStealthMode
+        case updateTrustedMiniAppBots
         case updateOption
         case updateStickerSet
         case updateInstalledStickerSets
@@ -613,7 +647,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateSavedAnimations
         case updateSavedNotificationSounds
         case updateDefaultBackground
-        case updateChatThemes
+        case updateEmojiChatThemes
         case updateAccentColors
         case updateProfileAccentColors
         case updateLanguagePackStrings
@@ -634,7 +668,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateOwnedTonCount
         case updateChatRevenueAmount
         case updateStarRevenueStatus
+        case updateTonRevenueStatus
         case updateSpeechRecognitionTrial
+        case updateGroupCallMessageLevels
         case updateDiceEmojis
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
@@ -876,6 +912,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatAction:
             let value = try UpdateChatAction(from: decoder)
             self = .updateChatAction(value)
+        case .updatePendingTextMessage:
+            let value = try UpdatePendingTextMessage(from: decoder)
+            self = .updatePendingTextMessage(value)
         case .updateUserStatus:
             let value = try UpdateUserStatus(from: decoder)
             self = .updateUserStatus(value)
@@ -945,6 +984,21 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateGroupCallVerificationState:
             let value = try UpdateGroupCallVerificationState(from: decoder)
             self = .updateGroupCallVerificationState(value)
+        case .updateNewGroupCallMessage:
+            let value = try UpdateNewGroupCallMessage(from: decoder)
+            self = .updateNewGroupCallMessage(value)
+        case .updateNewGroupCallPaidReaction:
+            let value = try UpdateNewGroupCallPaidReaction(from: decoder)
+            self = .updateNewGroupCallPaidReaction(value)
+        case .updateGroupCallMessageSendFailed:
+            let value = try UpdateGroupCallMessageSendFailed(from: decoder)
+            self = .updateGroupCallMessageSendFailed(value)
+        case .updateGroupCallMessagesDeleted:
+            let value = try UpdateGroupCallMessagesDeleted(from: decoder)
+            self = .updateGroupCallMessagesDeleted(value)
+        case .updateLiveStoryTopDonors:
+            let value = try UpdateLiveStoryTopDonors(from: decoder)
+            self = .updateLiveStoryTopDonors(value)
         case .updateNewCallSignalingData:
             let value = try UpdateNewCallSignalingData(from: decoder)
             self = .updateNewCallSignalingData(value)
@@ -978,6 +1032,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStoryStealthMode:
             let value = try UpdateStoryStealthMode(from: decoder)
             self = .updateStoryStealthMode(value)
+        case .updateTrustedMiniAppBots:
+            let value = try UpdateTrustedMiniAppBots(from: decoder)
+            self = .updateTrustedMiniAppBots(value)
         case .updateOption:
             let value = try UpdateOption(from: decoder)
             self = .updateOption(value)
@@ -1005,9 +1062,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateDefaultBackground:
             let value = try UpdateDefaultBackground(from: decoder)
             self = .updateDefaultBackground(value)
-        case .updateChatThemes:
-            let value = try UpdateChatThemes(from: decoder)
-            self = .updateChatThemes(value)
+        case .updateEmojiChatThemes:
+            let value = try UpdateEmojiChatThemes(from: decoder)
+            self = .updateEmojiChatThemes(value)
         case .updateAccentColors:
             let value = try UpdateAccentColors(from: decoder)
             self = .updateAccentColors(value)
@@ -1068,9 +1125,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStarRevenueStatus:
             let value = try UpdateStarRevenueStatus(from: decoder)
             self = .updateStarRevenueStatus(value)
+        case .updateTonRevenueStatus:
+            let value = try UpdateTonRevenueStatus(from: decoder)
+            self = .updateTonRevenueStatus(value)
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
+        case .updateGroupCallMessageLevels:
+            let value = try UpdateGroupCallMessageLevels(from: decoder)
+            self = .updateGroupCallMessageLevels(value)
         case .updateDiceEmojis:
             let value = try UpdateDiceEmojis(from: decoder)
             self = .updateDiceEmojis(value)
@@ -1368,6 +1431,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatAction(let value):
             try container.encode(Kind.updateChatAction, forKey: .type)
             try value.encode(to: encoder)
+        case .updatePendingTextMessage(let value):
+            try container.encode(Kind.updatePendingTextMessage, forKey: .type)
+            try value.encode(to: encoder)
         case .updateUserStatus(let value):
             try container.encode(Kind.updateUserStatus, forKey: .type)
             try value.encode(to: encoder)
@@ -1437,6 +1503,21 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateGroupCallVerificationState(let value):
             try container.encode(Kind.updateGroupCallVerificationState, forKey: .type)
             try value.encode(to: encoder)
+        case .updateNewGroupCallMessage(let value):
+            try container.encode(Kind.updateNewGroupCallMessage, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewGroupCallPaidReaction(let value):
+            try container.encode(Kind.updateNewGroupCallPaidReaction, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateGroupCallMessageSendFailed(let value):
+            try container.encode(Kind.updateGroupCallMessageSendFailed, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateGroupCallMessagesDeleted(let value):
+            try container.encode(Kind.updateGroupCallMessagesDeleted, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateLiveStoryTopDonors(let value):
+            try container.encode(Kind.updateLiveStoryTopDonors, forKey: .type)
+            try value.encode(to: encoder)
         case .updateNewCallSignalingData(let value):
             try container.encode(Kind.updateNewCallSignalingData, forKey: .type)
             try value.encode(to: encoder)
@@ -1470,6 +1551,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStoryStealthMode(let value):
             try container.encode(Kind.updateStoryStealthMode, forKey: .type)
             try value.encode(to: encoder)
+        case .updateTrustedMiniAppBots(let value):
+            try container.encode(Kind.updateTrustedMiniAppBots, forKey: .type)
+            try value.encode(to: encoder)
         case .updateOption(let value):
             try container.encode(Kind.updateOption, forKey: .type)
             try value.encode(to: encoder)
@@ -1497,8 +1581,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateDefaultBackground(let value):
             try container.encode(Kind.updateDefaultBackground, forKey: .type)
             try value.encode(to: encoder)
-        case .updateChatThemes(let value):
-            try container.encode(Kind.updateChatThemes, forKey: .type)
+        case .updateEmojiChatThemes(let value):
+            try container.encode(Kind.updateEmojiChatThemes, forKey: .type)
             try value.encode(to: encoder)
         case .updateAccentColors(let value):
             try container.encode(Kind.updateAccentColors, forKey: .type)
@@ -1560,8 +1644,14 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStarRevenueStatus(let value):
             try container.encode(Kind.updateStarRevenueStatus, forKey: .type)
             try value.encode(to: encoder)
+        case .updateTonRevenueStatus(let value):
+            try container.encode(Kind.updateTonRevenueStatus, forKey: .type)
+            try value.encode(to: encoder)
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateGroupCallMessageLevels(let value):
+            try container.encode(Kind.updateGroupCallMessageLevels, forKey: .type)
             try value.encode(to: encoder)
         case .updateDiceEmojis(let value):
             try container.encode(Kind.updateDiceEmojis, forKey: .type)
@@ -2064,19 +2154,24 @@ public struct UpdateChatAccentColors: Codable, Equatable, Hashable {
     /// The new identifier of a custom emoji to be shown on the profile background; 0 if none
     public let profileBackgroundCustomEmojiId: TdInt64
 
+    /// Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
+    public let upgradedGiftColors: UpgradedGiftColors?
+
 
     public init(
         accentColorId: Int,
         backgroundCustomEmojiId: TdInt64,
         chatId: Int64,
         profileAccentColorId: Int,
-        profileBackgroundCustomEmojiId: TdInt64
+        profileBackgroundCustomEmojiId: TdInt64,
+        upgradedGiftColors: UpgradedGiftColors?
     ) {
         self.accentColorId = accentColorId
         self.backgroundCustomEmojiId = backgroundCustomEmojiId
         self.chatId = chatId
         self.profileAccentColorId = profileAccentColorId
         self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
+        self.upgradedGiftColors = upgradedGiftColors
     }
 }
 
@@ -2443,16 +2538,16 @@ public struct UpdateChatTheme: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new name of the chat theme; may be empty if theme was reset to default
-    public let themeName: String
+    /// The new theme of the chat; may be null if theme was reset to default
+    public let theme: ChatTheme?
 
 
     public init(
         chatId: Int64,
-        themeName: String
+        theme: ChatTheme?
     ) {
         self.chatId = chatId
-        self.themeName = themeName
+        self.theme = theme
     }
 }
 
@@ -2822,6 +2917,12 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
+    /// A draft of a message in the topic; may be null if none
+    public let draftMessage: DraftMessage?
+
+    /// Forum topic identifier of the topic
+    public let forumTopicId: Int
+
     /// True, if the topic is pinned in the topic list
     public let isPinned: Bool
 
@@ -2830,9 +2931,6 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
 
     /// Identifier of the last read outgoing message
     public let lastReadOutboxMessageId: Int64
-
-    /// Message thread identifier of the topic
-    public let messageThreadId: Int64
 
     /// Notification settings for the topic
     public let notificationSettings: ChatNotificationSettings
@@ -2846,19 +2944,21 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
 
     public init(
         chatId: Int64,
+        draftMessage: DraftMessage?,
+        forumTopicId: Int,
         isPinned: Bool,
         lastReadInboxMessageId: Int64,
         lastReadOutboxMessageId: Int64,
-        messageThreadId: Int64,
         notificationSettings: ChatNotificationSettings,
         unreadMentionCount: Int,
         unreadReactionCount: Int
     ) {
         self.chatId = chatId
+        self.draftMessage = draftMessage
+        self.forumTopicId = forumTopicId
         self.isPinned = isPinned
         self.lastReadInboxMessageId = lastReadInboxMessageId
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
-        self.messageThreadId = messageThreadId
         self.notificationSettings = notificationSettings
         self.unreadMentionCount = unreadMentionCount
         self.unreadReactionCount = unreadReactionCount
@@ -3033,23 +3133,52 @@ public struct UpdateChatAction: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// If not 0, the message thread identifier in which the action was performed
-    public let messageThreadId: Int64
-
     /// Identifier of a message sender performing the action
     public let senderId: MessageSender
+
+    /// Identifier of the specific topic in which the action was performed; may be null if none
+    public let topicId: MessageTopic?
 
 
     public init(
         action: ChatAction,
         chatId: Int64,
-        messageThreadId: Int64,
-        senderId: MessageSender
+        senderId: MessageSender,
+        topicId: MessageTopic?
     ) {
         self.action = action
         self.chatId = chatId
-        self.messageThreadId = messageThreadId
         self.senderId = senderId
+        self.topicId = topicId
+    }
+}
+
+/// A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+public struct UpdatePendingTextMessage: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Unique identifier of the message draft within the message thread
+    public let draftId: TdInt64
+
+    /// The forum topic identifier in which the message will be sent; 0 if none
+    public let forumTopicId: Int
+
+    /// Text of the pending message
+    public let text: FormattedText
+
+
+    public init(
+        chatId: Int64,
+        draftId: TdInt64,
+        forumTopicId: Int,
+        text: FormattedText
+    ) {
+        self.chatId = chatId
+        self.draftId = draftId
+        self.forumTopicId = forumTopicId
+        self.text = text
     }
 }
 
@@ -3474,6 +3603,111 @@ public struct UpdateGroupCallVerificationState: Codable, Equatable, Hashable {
     }
 }
 
+/// A new message was received in a group call
+public struct UpdateNewGroupCallMessage: Codable, Equatable, Hashable {
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+    /// The message
+    public let message: GroupCallMessage
+
+
+    public init(
+        groupCallId: Int,
+        message: GroupCallMessage
+    ) {
+        self.groupCallId = groupCallId
+        self.message = message
+    }
+}
+
+/// A new paid reaction was received in a live story group call
+public struct UpdateNewGroupCallPaidReaction: Codable, Equatable, Hashable {
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+    /// Identifier of the sender of the reaction
+    public let senderId: MessageSender
+
+    /// The number of Telegram Stars that were paid to send the reaction
+    public let starCount: Int64
+
+
+    public init(
+        groupCallId: Int,
+        senderId: MessageSender,
+        starCount: Int64
+    ) {
+        self.groupCallId = groupCallId
+        self.senderId = senderId
+        self.starCount = starCount
+    }
+}
+
+/// A group call message failed to send
+public struct UpdateGroupCallMessageSendFailed: Codable, Equatable, Hashable {
+
+    /// The cause of the message sending failure
+    public let error: Error
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+    /// Message identifier
+    public let messageId: Int
+
+
+    public init(
+        error: Error,
+        groupCallId: Int,
+        messageId: Int
+    ) {
+        self.error = error
+        self.groupCallId = groupCallId
+        self.messageId = messageId
+    }
+}
+
+/// Some group call messages were deleted
+public struct UpdateGroupCallMessagesDeleted: Codable, Equatable, Hashable {
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+    /// Identifiers of the deleted messages
+    public let messageIds: [Int]
+
+
+    public init(
+        groupCallId: Int,
+        messageIds: [Int]
+    ) {
+        self.groupCallId = groupCallId
+        self.messageIds = messageIds
+    }
+}
+
+/// The list of top donors in live story group call has changed
+public struct UpdateLiveStoryTopDonors: Codable, Equatable, Hashable {
+
+    /// New list of live story donors
+    public let donors: LiveStoryDonors
+
+    /// Identifier of the group call
+    public let groupCallId: Int
+
+
+    public init(
+        donors: LiveStoryDonors,
+        groupCallId: Int
+    ) {
+        self.donors = donors
+        self.groupCallId = groupCallId
+    }
+}
+
 /// New call signaling data arrived
 public struct UpdateNewCallSignalingData: Codable, Equatable, Hashable {
 
@@ -3699,6 +3933,18 @@ public struct UpdateStoryStealthMode: Codable, Equatable, Hashable {
     }
 }
 
+/// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+public struct UpdateTrustedMiniAppBots: Codable, Equatable, Hashable {
+
+    /// List of user identifiers of the bots; the corresponding users may not be sent using updateUser updates and may not be accessible
+    public let botUserIds: [Int64]
+
+
+    public init(botUserIds: [Int64]) {
+        self.botUserIds = botUserIds
+    }
+}
+
 /// An option changed its value
 public struct UpdateOption: Codable, Equatable, Hashable {
 
@@ -3842,14 +4088,14 @@ public struct UpdateDefaultBackground: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of available chat themes has changed
-public struct UpdateChatThemes: Codable, Equatable, Hashable {
+/// The list of available emoji chat themes has changed
+public struct UpdateEmojiChatThemes: Codable, Equatable, Hashable {
 
-    /// The new list of chat themes
-    public let chatThemes: [ChatTheme]
+    /// The new list of emoji chat themes
+    public let chatThemes: [EmojiChatTheme]
 
 
-    public init(chatThemes: [ChatTheme]) {
+    public init(chatThemes: [EmojiChatTheme]) {
         self.chatThemes = chatThemes
     }
 }
@@ -4153,7 +4399,7 @@ public struct UpdateChatRevenueAmount: Codable, Equatable, Hashable {
     }
 }
 
-/// The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+/// The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
 
     /// Identifier of the owner of the Telegram Stars
@@ -4168,6 +4414,18 @@ public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
         status: StarRevenueStatus
     ) {
         self.ownerId = ownerId
+        self.status = status
+    }
+}
+
+/// The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+public struct UpdateTonRevenueStatus: Codable, Equatable, Hashable {
+
+    /// New Toncoin revenue status
+    public let status: TonRevenueStatus
+
+
+    public init(status: TonRevenueStatus) {
         self.status = status
     }
 }
@@ -4198,6 +4456,18 @@ public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
         self.maxMediaDuration = maxMediaDuration
         self.nextResetDate = nextResetDate
         self.weeklyCount = weeklyCount
+    }
+}
+
+/// The levels of live story group call messages have changed
+public struct UpdateGroupCallMessageLevels: Codable, Equatable, Hashable {
+
+    /// New description of the levels in decreasing order of groupCallMessageLevel.min_star_count
+    public let levels: [GroupCallMessageLevel]
+
+
+    public init(levels: [GroupCallMessageLevel]) {
+        self.levels = levels
     }
 }
 

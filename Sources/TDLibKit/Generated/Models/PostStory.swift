@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct PostStory: Codable, Equatable, Hashable {
     /// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     public let activePeriod: Int?
 
-    /// Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_story_count_max")
+    /// Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
     public let albumIds: [Int]?
 
     /// Clickable rectangle areas to be shown on the story media; pass null if none

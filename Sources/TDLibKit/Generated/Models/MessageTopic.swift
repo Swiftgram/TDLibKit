@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -13,7 +13,10 @@ import Foundation
 /// Describes a topic of messages in a chat
 public indirect enum MessageTopic: Codable, Equatable, Hashable {
 
-    /// A topic in a forum supergroup chat
+    /// A topic in a non-forum supergroup chat
+    case messageTopicThread(MessageTopicThread)
+
+    /// A topic in a forum supergroup chat or a chat with a bot
     case messageTopicForum(MessageTopicForum)
 
     /// A topic in a channel direct messages chat administered by the current user
@@ -24,6 +27,7 @@ public indirect enum MessageTopic: Codable, Equatable, Hashable {
 
 
     private enum Kind: String, Codable {
+        case messageTopicThread
         case messageTopicForum
         case messageTopicDirectMessages
         case messageTopicSavedMessages
@@ -33,6 +37,9 @@ public indirect enum MessageTopic: Codable, Equatable, Hashable {
         let container = try decoder.container(keyedBy: DtoCodingKeys.self)
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
+        case .messageTopicThread:
+            let value = try MessageTopicThread(from: decoder)
+            self = .messageTopicThread(value)
         case .messageTopicForum:
             let value = try MessageTopicForum(from: decoder)
             self = .messageTopicForum(value)
@@ -48,6 +55,9 @@ public indirect enum MessageTopic: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
+        case .messageTopicThread(let value):
+            try container.encode(Kind.messageTopicThread, forKey: .type)
+            try value.encode(to: encoder)
         case .messageTopicForum(let value):
             try container.encode(Kind.messageTopicForum, forKey: .type)
             try value.encode(to: encoder)
@@ -61,14 +71,26 @@ public indirect enum MessageTopic: Codable, Equatable, Hashable {
     }
 }
 
-/// A topic in a forum supergroup chat
+/// A topic in a non-forum supergroup chat
+public struct MessageTopicThread: Codable, Equatable, Hashable {
+
+    /// Unique identifier of the message thread
+    public let messageThreadId: Int64
+
+
+    public init(messageThreadId: Int64) {
+        self.messageThreadId = messageThreadId
+    }
+}
+
+/// A topic in a forum supergroup chat or a chat with a bot
 public struct MessageTopicForum: Codable, Equatable, Hashable {
 
-    /// Unique identifier of the forum topic; all messages in a non-forum supergroup chats belongs to the General topic
-    public let forumTopicId: Int64
+    /// Unique identifier of the forum topic
+    public let forumTopicId: Int
 
 
-    public init(forumTopicId: Int64) {
+    public init(forumTopicId: Int) {
         self.forumTopicId = forumTopicId
     }
 }

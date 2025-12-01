@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -168,6 +168,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A profile photo was suggested to a user in a private chat
     case messageSuggestProfilePhoto(MessageSuggestProfilePhoto)
+
+    /// A birthdate was suggested to be set
+    case messageSuggestBirthdate(MessageSuggestBirthdate)
 
     /// A non-standard action has happened in the chat
     case messageCustomServiceAction(MessageCustomServiceAction)
@@ -334,6 +337,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageForumTopicIsClosedToggled
         case messageForumTopicIsHiddenToggled
         case messageSuggestProfilePhoto
+        case messageSuggestBirthdate
         case messageCustomServiceAction
         case messageGameScore
         case messagePaymentSuccessful
@@ -525,6 +529,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageSuggestProfilePhoto:
             let value = try MessageSuggestProfilePhoto(from: decoder)
             self = .messageSuggestProfilePhoto(value)
+        case .messageSuggestBirthdate:
+            let value = try MessageSuggestBirthdate(from: decoder)
+            self = .messageSuggestBirthdate(value)
         case .messageCustomServiceAction:
             let value = try MessageCustomServiceAction(from: decoder)
             self = .messageCustomServiceAction(value)
@@ -787,6 +794,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageSuggestProfilePhoto(let value):
             try container.encode(Kind.messageSuggestProfilePhoto, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageSuggestBirthdate(let value):
+            try container.encode(Kind.messageSuggestBirthdate, forKey: .type)
             try value.encode(to: encoder)
         case .messageCustomServiceAction(let value):
             try container.encode(Kind.messageCustomServiceAction, forKey: .type)
@@ -1675,12 +1685,12 @@ public struct MessageChatSetBackground: Codable, Equatable, Hashable {
 /// A theme in the chat has been changed
 public struct MessageChatSetTheme: Codable, Equatable, Hashable {
 
-    /// If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
-    public let themeName: String
+    /// New theme for the chat; may be null if chat theme was reset to the default one
+    public let theme: ChatTheme?
 
 
-    public init(themeName: String) {
-        self.themeName = themeName
+    public init(theme: ChatTheme?) {
+        self.theme = theme
     }
 }
 
@@ -1721,15 +1731,20 @@ public struct MessageForumTopicCreated: Codable, Equatable, Hashable {
     /// Icon of the topic
     public let icon: ForumTopicIcon
 
+    /// True, if the name of the topic wasn't added explicitly
+    public let isNameImplicit: Bool
+
     /// Name of the topic
     public let name: String
 
 
     public init(
         icon: ForumTopicIcon,
+        isNameImplicit: Bool,
         name: String
     ) {
         self.icon = icon
+        self.isNameImplicit = isNameImplicit
         self.name = name
     }
 }
@@ -1791,6 +1806,18 @@ public struct MessageSuggestProfilePhoto: Codable, Equatable, Hashable {
 
     public init(photo: ChatPhoto) {
         self.photo = photo
+    }
+}
+
+/// A birthdate was suggested to be set
+public struct MessageSuggestBirthdate: Codable, Equatable, Hashable {
+
+    /// The suggested birthdate. Use the method setBirthdate to apply the birthdate
+    public let birthdate: Birthdate
+
+
+    public init(birthdate: Birthdate) {
+        self.birthdate = birthdate
     }
 }
 
@@ -1992,10 +2019,13 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// Currency for the paid amount
     public let currency: String
 
+    /// Number of days the Telegram Premium subscription will be active
+    public let dayCount: Int
+
     /// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
-    /// Number of months the Telegram Premium subscription will be active
+    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
     public let monthCount: Int
 
     /// The identifier of a user that received Telegram Premium; 0 if the gift is incoming
@@ -2013,6 +2043,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         cryptocurrency: String,
         cryptocurrencyAmount: TdInt64,
         currency: String,
+        dayCount: Int,
         gifterUserId: Int64,
         monthCount: Int,
         receiverUserId: Int64,
@@ -2023,6 +2054,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
         self.cryptocurrency = cryptocurrency
         self.cryptocurrencyAmount = cryptocurrencyAmount
         self.currency = currency
+        self.dayCount = dayCount
         self.gifterUserId = gifterUserId
         self.monthCount = monthCount
         self.receiverUserId = receiverUserId
@@ -2052,13 +2084,16 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
     /// Currency for the paid amount; empty if unknown
     public let currency: String
 
+    /// Number of days the Telegram Premium subscription will be active after code activation
+    public let dayCount: Int
+
     /// True, if the gift code was created for a giveaway
     public let isFromGiveaway: Bool
 
     /// True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
     public let isUnclaimed: Bool
 
-    /// Number of months the Telegram Premium subscription will be active after code activation
+    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
     public let monthCount: Int
 
     /// A sticker to be shown in the message; may be null if unknown
@@ -2075,6 +2110,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
         cryptocurrency: String,
         cryptocurrencyAmount: TdInt64,
         currency: String,
+        dayCount: Int,
         isFromGiveaway: Bool,
         isUnclaimed: Bool,
         monthCount: Int,
@@ -2087,6 +2123,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
         self.cryptocurrency = cryptocurrency
         self.cryptocurrencyAmount = cryptocurrencyAmount
         self.currency = currency
+        self.dayCount = dayCount
         self.isFromGiveaway = isFromGiveaway
         self.isUnclaimed = isUnclaimed
         self.monthCount = monthCount
@@ -2365,11 +2402,20 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
+    /// True, if the message is about prepaid upgrade of the gift by another user
+    public let isPrepaidUpgrade: Bool
+
     /// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     public let isPrivate: Bool
 
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
+
+    /// True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost
+    public let isUpgradeSeparate: Bool
+
+    /// If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
+    public let prepaidUpgradeHash: String
 
     /// Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
     public let prepaidUpgradeStarCount: Int64
@@ -2383,8 +2429,8 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
     public let sellStarCount: Int64
 
-    /// Sender of the gift
-    public let senderId: MessageSender
+    /// Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users
+    public let senderId: MessageSender?
 
     /// Message added to the gift
     public let text: FormattedText
@@ -2405,13 +2451,16 @@ public struct MessageGift: Codable, Equatable, Hashable {
     public init(
         canBeUpgraded: Bool,
         gift: Gift,
+        isPrepaidUpgrade: Bool,
         isPrivate: Bool,
         isSaved: Bool,
+        isUpgradeSeparate: Bool,
+        prepaidUpgradeHash: String,
         prepaidUpgradeStarCount: Int64,
         receivedGiftId: String,
         receiverId: MessageSender,
         sellStarCount: Int64,
-        senderId: MessageSender,
+        senderId: MessageSender?,
         text: FormattedText,
         upgradedReceivedGiftId: String,
         wasConverted: Bool,
@@ -2420,8 +2469,11 @@ public struct MessageGift: Codable, Equatable, Hashable {
     ) {
         self.canBeUpgraded = canBeUpgraded
         self.gift = gift
+        self.isPrepaidUpgrade = isPrepaidUpgrade
         self.isPrivate = isPrivate
         self.isSaved = isSaved
+        self.isUpgradeSeparate = isUpgradeSeparate
+        self.prepaidUpgradeHash = prepaidUpgradeHash
         self.prepaidUpgradeStarCount = prepaidUpgradeStarCount
         self.receivedGiftId = receivedGiftId
         self.receiverId = receiverId
@@ -2441,7 +2493,10 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift can be transferred to another owner; only for the receiver of the gift
     public let canBeTransferred: Bool
 
-    /// Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    /// Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift
+    public let dropOriginalDetailsStarCount: Int64
+
+    /// Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
     public let exportDate: Int
 
     /// The gift
@@ -2450,10 +2505,10 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
-    /// Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
+    /// Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
     public let nextResaleDate: Int
 
-    /// Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    /// Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
     public let nextTransferDate: Int
 
     /// Origin of the upgraded gift
@@ -2477,6 +2532,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
 
     public init(
         canBeTransferred: Bool,
+        dropOriginalDetailsStarCount: Int64,
         exportDate: Int,
         gift: UpgradedGift,
         isSaved: Bool,
@@ -2490,6 +2546,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         wasTransferred: Bool
     ) {
         self.canBeTransferred = canBeTransferred
+        self.dropOriginalDetailsStarCount = dropOriginalDetailsStarCount
         self.exportDate = exportDate
         self.gift = gift
         self.isSaved = isSaved
@@ -2510,8 +2567,8 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
-    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
-    public let isUpgrade: Bool
+    /// Origin of the upgraded gift
+    public let origin: UpgradedGiftOrigin
 
     /// Receiver of the gift
     public let receiverId: MessageSender
@@ -2522,12 +2579,12 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
 
     public init(
         gift: Gift,
-        isUpgrade: Bool,
+        origin: UpgradedGiftOrigin,
         receiverId: MessageSender,
         senderId: MessageSender
     ) {
         self.gift = gift
-        self.isUpgrade = isUpgrade
+        self.origin = origin
         self.receiverId = receiverId
         self.senderId = senderId
     }

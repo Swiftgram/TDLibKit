@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -89,6 +89,9 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot has the main Web App
     public let hasMainWebApp: Bool
 
+    /// True, if the bot has topics
+    public let hasTopics: Bool
+
     /// Placeholder for inline queries (displayed on the application input field)
     public let inlineQueryPlaceholder: String
 
@@ -107,6 +110,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         canJoinGroups: Bool,
         canReadAllGroupMessages: Bool,
         hasMainWebApp: Bool,
+        hasTopics: Bool,
         inlineQueryPlaceholder: String,
         isInline: Bool,
         needLocation: Bool
@@ -118,6 +122,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         self.canJoinGroups = canJoinGroups
         self.canReadAllGroupMessages = canReadAllGroupMessages
         self.hasMainWebApp = hasMainWebApp
+        self.hasTopics = hasTopics
         self.inlineQueryPlaceholder = inlineQueryPlaceholder
         self.isInline = isInline
         self.needLocation = needLocation

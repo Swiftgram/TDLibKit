@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.47-971684a3
-//  https://github.com/tdlib/td/tree/971684a3
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
 
 
-/// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+/// Returns a file with a segment of a video chat or live story in a modified OGG format for audio or MPEG-4 format for video
 public struct GetGroupCallStreamSegment: Codable, Equatable, Hashable {
 
     /// Identifier of an audio/video channel to get as received from tgcalls

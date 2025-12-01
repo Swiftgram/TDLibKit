@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public indirect enum StoryContent: Codable, Equatable, Hashable {
     /// A video story
     case storyContentVideo(StoryContentVideo)
 
+    /// A live story
+    case storyContentLive(StoryContentLive)
+
     /// A story content that is not supported in the current TDLib version
     case storyContentUnsupported
 
@@ -26,6 +29,7 @@ public indirect enum StoryContent: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case storyContentPhoto
         case storyContentVideo
+        case storyContentLive
         case storyContentUnsupported
     }
 
@@ -39,6 +43,9 @@ public indirect enum StoryContent: Codable, Equatable, Hashable {
         case .storyContentVideo:
             let value = try StoryContentVideo(from: decoder)
             self = .storyContentVideo(value)
+        case .storyContentLive:
+            let value = try StoryContentLive(from: decoder)
+            self = .storyContentLive(value)
         case .storyContentUnsupported:
             self = .storyContentUnsupported
         }
@@ -52,6 +59,9 @@ public indirect enum StoryContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .storyContentVideo(let value):
             try container.encode(Kind.storyContentVideo, forKey: .type)
+            try value.encode(to: encoder)
+        case .storyContentLive(let value):
+            try container.encode(Kind.storyContentLive, forKey: .type)
             try value.encode(to: encoder)
         case .storyContentUnsupported:
             try container.encode(Kind.storyContentUnsupported, forKey: .type)
@@ -87,6 +97,25 @@ public struct StoryContentVideo: Codable, Equatable, Hashable {
     ) {
         self.alternativeVideo = alternativeVideo
         self.video = video
+    }
+}
+
+/// A live story
+public struct StoryContentLive: Codable, Equatable, Hashable {
+
+    /// Identifier of the corresponding group call. The group call can be received through the method getGroupCall
+    public let groupCallId: Int
+
+    /// True, if the call is an RTMP stream instead of an ordinary group call
+    public let isRtmpStream: Bool
+
+
+    public init(
+        groupCallId: Int,
+        isRtmpStream: Bool
+    ) {
+        self.groupCallId = groupCallId
+        self.isRtmpStream = isRtmpStream
     }
 }
 

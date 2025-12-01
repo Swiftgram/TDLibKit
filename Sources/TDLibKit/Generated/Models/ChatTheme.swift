@@ -3,34 +3,75 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
 
 
 /// Describes a chat theme
-public struct ChatTheme: Codable, Equatable, Hashable {
+public indirect enum ChatTheme: Codable, Equatable, Hashable {
 
-    /// Theme settings for a dark chat theme
-    public let darkSettings: ThemeSettings
+    /// A chat theme based on an emoji
+    case chatThemeEmoji(ChatThemeEmoji)
 
-    /// Theme settings for a light chat theme
-    public let lightSettings: ThemeSettings
+    /// A chat theme based on an upgraded gift
+    case chatThemeGift(ChatThemeGift)
 
-    /// Theme name
+
+    private enum Kind: String, Codable {
+        case chatThemeEmoji
+        case chatThemeGift
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: DtoCodingKeys.self)
+        let type = try container.decode(Kind.self, forKey: .type)
+        switch type {
+        case .chatThemeEmoji:
+            let value = try ChatThemeEmoji(from: decoder)
+            self = .chatThemeEmoji(value)
+        case .chatThemeGift:
+            let value = try ChatThemeGift(from: decoder)
+            self = .chatThemeGift(value)
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DtoCodingKeys.self)
+        switch self {
+        case .chatThemeEmoji(let value):
+            try container.encode(Kind.chatThemeEmoji, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatThemeGift(let value):
+            try container.encode(Kind.chatThemeGift, forKey: .type)
+            try value.encode(to: encoder)
+        }
+    }
+}
+
+/// A chat theme based on an emoji
+public struct ChatThemeEmoji: Codable, Equatable, Hashable {
+
+    /// Name of the theme; full theme description is received through updateEmojiChatThemes
     public let name: String
 
 
-    public init(
-        darkSettings: ThemeSettings,
-        lightSettings: ThemeSettings,
-        name: String
-    ) {
-        self.darkSettings = darkSettings
-        self.lightSettings = lightSettings
+    public init(name: String) {
         self.name = name
+    }
+}
+
+/// A chat theme based on an upgraded gift
+public struct ChatThemeGift: Codable, Equatable, Hashable {
+
+    /// The chat theme
+    public let giftTheme: GiftChatTheme
+
+
+    public init(giftTheme: GiftChatTheme) {
+        self.giftTheme = giftTheme
     }
 }
 

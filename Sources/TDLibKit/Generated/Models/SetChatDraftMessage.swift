@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
 
 
-/// Changes the draft message in a chat
+/// Changes the draft message in a chat or a topic
 public struct SetChatDraftMessage: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -19,18 +19,18 @@ public struct SetChatDraftMessage: Codable, Equatable, Hashable {
     /// New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
     public let draftMessage: DraftMessage?
 
-    /// If not 0, the message thread identifier in which the draft was changed
-    public let messageThreadId: Int64?
+    /// Topic in which the draft will be changed; pass null to change the draft for the chat itself
+    public let topicId: MessageTopic?
 
 
     public init(
         chatId: Int64?,
         draftMessage: DraftMessage?,
-        messageThreadId: Int64?
+        topicId: MessageTopic?
     ) {
         self.chatId = chatId
         self.draftMessage = draftMessage
-        self.messageThreadId = messageThreadId
+        self.topicId = topicId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -214,6 +214,9 @@ public struct TelegramPaymentPurposeStars: Codable, Equatable, Hashable {
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
+    /// Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none
+    public let chatId: Int64
+
     /// ISO 4217 currency code of the payment currency
     public let currency: String
 
@@ -223,10 +226,12 @@ public struct TelegramPaymentPurposeStars: Codable, Equatable, Hashable {
 
     public init(
         amount: Int64,
+        chatId: Int64,
         currency: String,
         starCount: Int64
     ) {
         self.amount = amount
+        self.chatId = chatId
         self.currency = currency
         self.starCount = starCount
     }

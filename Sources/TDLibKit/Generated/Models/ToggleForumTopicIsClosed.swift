@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -16,21 +16,21 @@ public struct ToggleForumTopicIsClosed: Codable, Equatable, Hashable {
     /// Identifier of the chat
     public let chatId: Int64?
 
+    /// Forum topic identifier
+    public let forumTopicId: Int?
+
     /// Pass true to close the topic; pass false to reopen it
     public let isClosed: Bool?
-
-    /// Message thread identifier of the forum topic
-    public let messageThreadId: Int64?
 
 
     public init(
         chatId: Int64?,
-        isClosed: Bool?,
-        messageThreadId: Int64?
+        forumTopicId: Int?,
+        isClosed: Bool?
     ) {
         self.chatId = chatId
+        self.forumTopicId = forumTopicId
         self.isClosed = isClosed
-        self.messageThreadId = messageThreadId
     }
 }
 

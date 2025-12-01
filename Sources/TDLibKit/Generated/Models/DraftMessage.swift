@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.53-bdec6af5
-//  https://github.com/tdlib/td/tree/bdec6af5
+//  Based on TDLib 1.8.57-f0d04d35
+//  https://github.com/tdlib/td/tree/f0d04d35
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct DraftMessage: Codable, Equatable, Hashable {
     /// Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote
     public let inputMessageText: InputMessageContent
 
-    /// Information about the message to be replied; must be of the type inputMessageReplyToMessage; may be null if none
+    /// Information about the message to be replied; inputMessageReplyToStory is unsupported; may be null if none
     public let replyTo: InputMessageReplyTo?
 
     /// Information about the suggested post; may be null if none
