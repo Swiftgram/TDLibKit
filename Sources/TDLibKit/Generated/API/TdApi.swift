@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -22788,6 +22788,180 @@ public final class TdApi {
             ownerId: ownerId,
             payForUpgrade: payForUpgrade,
             text: text
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns auction state for a gift
+    /// - Parameter auctionId: Unique identifier of the auction
+    /// - Returns: Auction state for a gift
+    public func getGiftAuctionState(
+        auctionId: String?,
+        completion: @escaping (Result<GiftAuctionState, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGiftAuctionState(
+            auctionId: auctionId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns auction state for a gift
+    /// - Parameter auctionId: Unique identifier of the auction
+    /// - Returns: Auction state for a gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGiftAuctionState(auctionId: String?) async throws -> GiftAuctionState {
+        let query = GetGiftAuctionState(
+            auctionId: auctionId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the gifts that were acquired by the current user on a gift auction
+    /// - Parameter giftId: Identifier of the auctioned gift
+    /// - Returns: The gifts that were acquired by the current user on a gift auction
+    public func getGiftAuctionAcquiredGifts(
+        giftId: TdInt64?,
+        completion: @escaping (Result<GiftAuctionAcquiredGifts, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGiftAuctionAcquiredGifts(
+            giftId: giftId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the gifts that were acquired by the current user on a gift auction
+    /// - Parameter giftId: Identifier of the auctioned gift
+    /// - Returns: The gifts that were acquired by the current user on a gift auction
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGiftAuctionAcquiredGifts(giftId: TdInt64?) async throws -> GiftAuctionAcquiredGifts {
+        let query = GetGiftAuctionAcquiredGifts(
+            giftId: giftId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Informs TDLib that a gift auction was opened by the user
+    /// - Parameter giftId: Identifier of the gift, which auction was opened
+    public func openGiftAuction(
+        giftId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = OpenGiftAuction(
+            giftId: giftId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a gift auction was opened by the user
+    /// - Parameter giftId: Identifier of the gift, which auction was opened
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func openGiftAuction(giftId: TdInt64?) async throws -> Ok {
+        let query = OpenGiftAuction(
+            giftId: giftId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Informs TDLib that a gift auction was closed by the user
+    /// - Parameter giftId: Identifier of the gift, which auction was closed
+    public func closeGiftAuction(
+        giftId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CloseGiftAuction(
+            giftId: giftId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that a gift auction was closed by the user
+    /// - Parameter giftId: Identifier of the gift, which auction was closed
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func closeGiftAuction(giftId: TdInt64?) async throws -> Ok {
+        let query = CloseGiftAuction(
+            giftId: giftId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Places a bid on an auction gift
+    /// - Parameter giftId: Identifier of the gift to place the bid on
+    /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter starCount: The number of Telegram Stars to place in the bid
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    /// - Parameter userId: Identifier of the user that will receive the gift
+    public func placeGiftAuctionBid(
+        giftId: TdInt64?,
+        isPrivate: Bool?,
+        starCount: Int64?,
+        text: FormattedText?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = PlaceGiftAuctionBid(
+            giftId: giftId,
+            isPrivate: isPrivate,
+            starCount: starCount,
+            text: text,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Places a bid on an auction gift
+    /// - Parameter giftId: Identifier of the gift to place the bid on
+    /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+    /// - Parameter starCount: The number of Telegram Stars to place in the bid
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    /// - Parameter userId: Identifier of the user that will receive the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func placeGiftAuctionBid(
+        giftId: TdInt64?,
+        isPrivate: Bool?,
+        starCount: Int64?,
+        text: FormattedText?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = PlaceGiftAuctionBid(
+            giftId: giftId,
+            isPrivate: isPrivate,
+            starCount: starCount,
+            text: text,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Increases a bid for an auction gift without changing gift text and receiver
+    /// - Parameter giftId: Identifier of the gift to put the bid on
+    /// - Parameter starCount: The number of Telegram Stars to put in the bid
+    public func increaseGiftAuctionBid(
+        giftId: TdInt64?,
+        starCount: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = IncreaseGiftAuctionBid(
+            giftId: giftId,
+            starCount: starCount
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Increases a bid for an auction gift without changing gift text and receiver
+    /// - Parameter giftId: Identifier of the gift to put the bid on
+    /// - Parameter starCount: The number of Telegram Stars to put in the bid
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func increaseGiftAuctionBid(
+        giftId: TdInt64?,
+        starCount: Int64?
+    ) async throws -> Ok {
+        let query = IncreaseGiftAuctionBid(
+            giftId: giftId,
+            starCount: starCount
         )
         return try await self.execute(query: query)
     }

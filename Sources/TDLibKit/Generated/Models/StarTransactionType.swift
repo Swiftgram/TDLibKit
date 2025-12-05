@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -69,6 +69,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
 
     /// The transaction is a sale of a subscription by the channel chat; for channel chats only
     case starTransactionTypeChannelSubscriptionSale(StarTransactionTypeChannelSubscriptionSale)
+
+    /// The transaction is a bid on a gift auction; for regular users only
+    case starTransactionTypeGiftAuctionBid(StarTransactionTypeGiftAuctionBid)
 
     /// The transaction is a purchase of a regular gift; for regular users and bots only
     case starTransactionTypeGiftPurchase(StarTransactionTypeGiftPurchase)
@@ -163,6 +166,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypeBotSubscriptionSale
         case starTransactionTypeChannelSubscriptionPurchase
         case starTransactionTypeChannelSubscriptionSale
+        case starTransactionTypeGiftAuctionBid
         case starTransactionTypeGiftPurchase
         case starTransactionTypeGiftTransfer
         case starTransactionTypeGiftOriginalDetailsDrop
@@ -245,6 +249,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeChannelSubscriptionSale:
             let value = try StarTransactionTypeChannelSubscriptionSale(from: decoder)
             self = .starTransactionTypeChannelSubscriptionSale(value)
+        case .starTransactionTypeGiftAuctionBid:
+            let value = try StarTransactionTypeGiftAuctionBid(from: decoder)
+            self = .starTransactionTypeGiftAuctionBid(value)
         case .starTransactionTypeGiftPurchase:
             let value = try StarTransactionTypeGiftPurchase(from: decoder)
             self = .starTransactionTypeGiftPurchase(value)
@@ -372,6 +379,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .starTransactionTypeChannelSubscriptionSale(let value):
             try container.encode(Kind.starTransactionTypeChannelSubscriptionSale, forKey: .type)
+            try value.encode(to: encoder)
+        case .starTransactionTypeGiftAuctionBid(let value):
+            try container.encode(Kind.starTransactionTypeGiftAuctionBid, forKey: .type)
             try value.encode(to: encoder)
         case .starTransactionTypeGiftPurchase(let value):
             try container.encode(Kind.starTransactionTypeGiftPurchase, forKey: .type)
@@ -746,6 +756,25 @@ public struct StarTransactionTypeChannelSubscriptionSale: Codable, Equatable, Ha
     ) {
         self.subscriptionPeriod = subscriptionPeriod
         self.userId = userId
+    }
+}
+
+/// The transaction is a bid on a gift auction; for regular users only
+public struct StarTransactionTypeGiftAuctionBid: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: Gift
+
+    /// Identifier of the user that will receive the gift
+    public let ownerId: MessageSender
+
+
+    public init(
+        gift: Gift,
+        ownerId: MessageSender
+    ) {
+        self.gift = gift
+        self.ownerId = ownerId
     }
 }
 

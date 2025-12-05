@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -2402,6 +2402,9 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
+    /// True, if the message is a notification about a gift won on an auction
+    public let isFromAuction: Bool
+
     /// True, if the message is about prepaid upgrade of the gift by another user
     public let isPrepaidUpgrade: Bool
 
@@ -2451,6 +2454,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
     public init(
         canBeUpgraded: Bool,
         gift: Gift,
+        isFromAuction: Bool,
         isPrepaidUpgrade: Bool,
         isPrivate: Bool,
         isSaved: Bool,
@@ -2469,6 +2473,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
     ) {
         self.canBeUpgraded = canBeUpgraded
         self.gift = gift
+        self.isFromAuction = isFromAuction
         self.isPrepaidUpgrade = isPrepaidUpgrade
         self.isPrivate = isPrivate
         self.isSaved = isSaved

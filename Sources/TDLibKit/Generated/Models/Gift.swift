@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Describes a gift that can be sent to another user or channel chat
 public struct Gift: Codable, Equatable, Hashable, Identifiable {
+
+    /// Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly
+    public let auctionInfo: GiftAuction?
 
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     public let defaultSellStarCount: Int64
@@ -57,6 +60,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        auctionInfo: GiftAuction?,
         defaultSellStarCount: Int64,
         firstSendDate: Int,
         hasColors: Bool,
@@ -72,6 +76,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         upgradeStarCount: Int64,
         userLimits: GiftPurchaseLimits?
     ) {
+        self.auctionInfo = auctionInfo
         self.defaultSellStarCount = defaultSellStarCount
         self.firstSendDate = firstSendDate
         self.hasColors = hasColors

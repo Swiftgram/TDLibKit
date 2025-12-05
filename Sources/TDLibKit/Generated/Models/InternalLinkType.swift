@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -70,6 +70,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
+
+    /// The link is a link to a gift auction. Call getGiftAuctionState with the given auction identifier to process the link
+    case internalLinkTypeGiftAuction(InternalLinkTypeGiftAuction)
 
     /// The link is a link to a gift collection. Call searchPublicChat with the given username, then call getReceivedGifts with the received gift owner identifier and the given collection identifier, then show the collection if received
     case internalLinkTypeGiftCollection(InternalLinkTypeGiftCollection)
@@ -206,6 +209,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeDirectMessagesChat
         case internalLinkTypeEditProfileSettings
         case internalLinkTypeGame
+        case internalLinkTypeGiftAuction
         case internalLinkTypeGiftCollection
         case internalLinkTypeGroupCall
         case internalLinkTypeInstantView
@@ -302,6 +306,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
+        case .internalLinkTypeGiftAuction:
+            let value = try InternalLinkTypeGiftAuction(from: decoder)
+            self = .internalLinkTypeGiftAuction(value)
         case .internalLinkTypeGiftCollection:
             let value = try InternalLinkTypeGiftCollection(from: decoder)
             self = .internalLinkTypeGiftCollection(value)
@@ -461,6 +468,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try container.encode(Kind.internalLinkTypeEditProfileSettings, forKey: .type)
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeGiftAuction(let value):
+            try container.encode(Kind.internalLinkTypeGiftAuction, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeGiftCollection(let value):
             try container.encode(Kind.internalLinkTypeGiftCollection, forKey: .type)
@@ -797,6 +807,18 @@ public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
     ) {
         self.botUsername = botUsername
         self.gameShortName = gameShortName
+    }
+}
+
+/// The link is a link to a gift auction. Call getGiftAuctionState with the given auction identifier to process the link
+public struct InternalLinkTypeGiftAuction: Codable, Equatable, Hashable {
+
+    /// Unique identifier of the auction
+    public let auctionId: String
+
+
+    public init(auctionId: String) {
+        self.auctionId = auctionId
     }
 }
 

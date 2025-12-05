@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -309,6 +309,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// New call signaling data arrived
     case updateNewCallSignalingData(UpdateNewCallSignalingData)
+
+    /// State of a gift auction was updated
+    case updateGiftAuctionState(UpdateGiftAuctionState)
+
+    /// The list of auctions in which participate the current user has changed
+    case updateActiveGiftAuctions(UpdateActiveGiftAuctions)
 
     /// Some privacy setting rules have been changed
     case updateUserPrivacySettingRules(UpdateUserPrivacySettingRules)
@@ -627,6 +633,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateGroupCallMessagesDeleted
         case updateLiveStoryTopDonors
         case updateNewCallSignalingData
+        case updateGiftAuctionState
+        case updateActiveGiftAuctions
         case updateUserPrivacySettingRules
         case updateUnreadMessageCount
         case updateUnreadChatCount
@@ -1002,6 +1010,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateNewCallSignalingData:
             let value = try UpdateNewCallSignalingData(from: decoder)
             self = .updateNewCallSignalingData(value)
+        case .updateGiftAuctionState:
+            let value = try UpdateGiftAuctionState(from: decoder)
+            self = .updateGiftAuctionState(value)
+        case .updateActiveGiftAuctions:
+            let value = try UpdateActiveGiftAuctions(from: decoder)
+            self = .updateActiveGiftAuctions(value)
         case .updateUserPrivacySettingRules:
             let value = try UpdateUserPrivacySettingRules(from: decoder)
             self = .updateUserPrivacySettingRules(value)
@@ -1520,6 +1534,12 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateNewCallSignalingData(let value):
             try container.encode(Kind.updateNewCallSignalingData, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateGiftAuctionState(let value):
+            try container.encode(Kind.updateGiftAuctionState, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateActiveGiftAuctions(let value):
+            try container.encode(Kind.updateActiveGiftAuctions, forKey: .type)
             try value.encode(to: encoder)
         case .updateUserPrivacySettingRules(let value):
             try container.encode(Kind.updateUserPrivacySettingRules, forKey: .type)
@@ -3724,6 +3744,30 @@ public struct UpdateNewCallSignalingData: Codable, Equatable, Hashable {
     ) {
         self.callId = callId
         self.data = data
+    }
+}
+
+/// State of a gift auction was updated
+public struct UpdateGiftAuctionState: Codable, Equatable, Hashable {
+
+    /// New state of the auction
+    public let state: GiftAuctionState
+
+
+    public init(state: GiftAuctionState) {
+        self.state = state
+    }
+}
+
+/// The list of auctions in which participate the current user has changed
+public struct UpdateActiveGiftAuctions: Codable, Equatable, Hashable {
+
+    /// New states of the auctions
+    public let states: [GiftAuctionState]
+
+
+    public init(states: [GiftAuctionState]) {
+        self.states = states
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.57-f0d04d35
-//  https://github.com/tdlib/td/tree/f0d04d35
+//  Based on TDLib 1.8.58-889bdf06
+//  https://github.com/tdlib/td/tree/889bdf06
 //
 
 import Foundation
@@ -57,6 +57,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a video file
     case linkPreviewTypeExternalVideo(LinkPreviewTypeExternalVideo)
+
+    /// The link is a link to a gift auction
+    case linkPreviewTypeGiftAuction(LinkPreviewTypeGiftAuction)
 
     /// The link is a link to a gift collection
     case linkPreviewTypeGiftCollection(LinkPreviewTypeGiftCollection)
@@ -141,6 +144,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeEmbeddedVideoPlayer
         case linkPreviewTypeExternalAudio
         case linkPreviewTypeExternalVideo
+        case linkPreviewTypeGiftAuction
         case linkPreviewTypeGiftCollection
         case linkPreviewTypeGroupCall
         case linkPreviewTypeInvoice
@@ -214,6 +218,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeExternalVideo:
             let value = try LinkPreviewTypeExternalVideo(from: decoder)
             self = .linkPreviewTypeExternalVideo(value)
+        case .linkPreviewTypeGiftAuction:
+            let value = try LinkPreviewTypeGiftAuction(from: decoder)
+            self = .linkPreviewTypeGiftAuction(value)
         case .linkPreviewTypeGiftCollection:
             let value = try LinkPreviewTypeGiftCollection(from: decoder)
             self = .linkPreviewTypeGiftCollection(value)
@@ -324,6 +331,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypeExternalVideo(let value):
             try container.encode(Kind.linkPreviewTypeExternalVideo, forKey: .type)
+            try value.encode(to: encoder)
+        case .linkPreviewTypeGiftAuction(let value):
+            try container.encode(Kind.linkPreviewTypeGiftAuction, forKey: .type)
             try value.encode(to: encoder)
         case .linkPreviewTypeGiftCollection(let value):
             try container.encode(Kind.linkPreviewTypeGiftCollection, forKey: .type)
@@ -692,6 +702,30 @@ public struct LinkPreviewTypeExternalVideo: Codable, Equatable, Hashable {
         self.mimeType = mimeType
         self.url = url
         self.width = width
+    }
+}
+
+/// The link is a link to a gift auction
+public struct LinkPreviewTypeGiftAuction: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) when the auction will be ended
+    public let auctionEndDate: Int
+
+    /// The gift
+    public let gift: Gift
+
+    /// Background of the gift
+    public let giftBackground: GiftBackground
+
+
+    public init(
+        auctionEndDate: Int,
+        gift: Gift,
+        giftBackground: GiftBackground
+    ) {
+        self.auctionEndDate = auctionEndDate
+        self.gift = gift
+        self.giftBackground = giftBackground
     }
 }
 
