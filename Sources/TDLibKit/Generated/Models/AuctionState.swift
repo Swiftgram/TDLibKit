@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-889bdf06
-//  https://github.com/tdlib/td/tree/889bdf06
+//  Based on TDLib 1.8.58-a9a8353d
+//  https://github.com/tdlib/td/tree/a9a8353d
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum AuctionState: Codable, Equatable, Hashable {
 /// Contains information about an ongoing auction
 public struct AuctionStateActive: Codable, Equatable, Hashable {
 
-    /// The number of items that were purchased by the current user on the auciton
+    /// The number of items that were purchased by the current user on the auction
     public let acquiredItemCount: Int
 
     /// A sparse list of bids that were made in the auction
@@ -69,7 +69,7 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the auction will be ended
     public let endDate: Int
 
-    /// The number of items that have to be distributed on the auciton
+    /// The number of items that have to be distributed on the auction
     public let leftItemCount: Int
 
     /// The minimum possible bid in the auction in Telegram Stars
@@ -118,7 +118,7 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
 /// Contains information about a finished auction
 public struct AuctionStateFinished: Codable, Equatable, Hashable {
 
-    /// The number of items that were purchased by the current user on the auciton
+    /// The number of items that were purchased by the current user on the auction
     public let acquiredItemCount: Int
 
     /// Average price of bought items in Telegram Stars

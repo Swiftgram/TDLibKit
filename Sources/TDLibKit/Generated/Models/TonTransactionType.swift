@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-889bdf06
-//  https://github.com/tdlib/td/tree/889bdf06
+//  Based on TDLib 1.8.58-a9a8353d
+//  https://github.com/tdlib/td/tree/a9a8353d
 //
 
 import Foundation
@@ -19,10 +19,10 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a payment for a suggested post
     case tonTransactionTypeSuggestedPostPayment(TonTransactionTypeSuggestedPostPayment)
 
-    /// The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+    /// The transaction is a purchase of an upgraded gift for some user or channel
     case tonTransactionTypeUpgradedGiftPurchase(TonTransactionTypeUpgradedGiftPurchase)
 
-    /// The transaction is a sale of an upgraded gift; for regular users only
+    /// The transaction is a sale of an upgraded gift
     case tonTransactionTypeUpgradedGiftSale(TonTransactionTypeUpgradedGiftSale)
 
     /// The transaction is a transaction of an unsupported type
@@ -110,7 +110,7 @@ public struct TonTransactionTypeSuggestedPostPayment: Codable, Equatable, Hashab
     }
 }
 
-/// The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+/// The transaction is a purchase of an upgraded gift for some user or channel
 public struct TonTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hashable {
 
     /// The gift
@@ -129,7 +129,7 @@ public struct TonTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hashab
     }
 }
 
-/// The transaction is a sale of an upgraded gift; for regular users only
+/// The transaction is a sale of an upgraded gift
 public struct TonTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
 
     /// The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
