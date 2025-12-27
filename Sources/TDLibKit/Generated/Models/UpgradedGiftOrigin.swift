@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
     /// The sender or receiver of the message has paid for upgraid of the gift, which has been completed
     case upgradedGiftOriginPrepaidUpgrade
 
+    /// The gift was bought through an offer
+    case upgradedGiftOriginOffer(UpgradedGiftOriginOffer)
+
 
     private enum Kind: String, Codable {
         case upgradedGiftOriginUpgrade
@@ -35,6 +38,7 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case upgradedGiftOriginResale
         case upgradedGiftOriginBlockchain
         case upgradedGiftOriginPrepaidUpgrade
+        case upgradedGiftOriginOffer
     }
 
     public init(from decoder: Decoder) throws {
@@ -53,6 +57,9 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
             self = .upgradedGiftOriginBlockchain
         case .upgradedGiftOriginPrepaidUpgrade:
             self = .upgradedGiftOriginPrepaidUpgrade
+        case .upgradedGiftOriginOffer:
+            let value = try UpgradedGiftOriginOffer(from: decoder)
+            self = .upgradedGiftOriginOffer(value)
         }
     }
 
@@ -71,6 +78,9 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
             try container.encode(Kind.upgradedGiftOriginBlockchain, forKey: .type)
         case .upgradedGiftOriginPrepaidUpgrade:
             try container.encode(Kind.upgradedGiftOriginPrepaidUpgrade, forKey: .type)
+        case .upgradedGiftOriginOffer(let value):
+            try container.encode(Kind.upgradedGiftOriginOffer, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
@@ -78,7 +88,7 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
 /// The gift was obtained by upgrading of a previously received gift
 public struct UpgradedGiftOriginUpgrade: Codable, Equatable, Hashable {
 
-    /// Identifier of the message with the regular gift that was upgraded; can be 0 or an identifier of a deleted message
+    /// Identifier of the message with the regular gift that was upgraded; may be 0 or an identifier of a deleted message
     public let giftMessageId: Int64
 
 
@@ -90,7 +100,19 @@ public struct UpgradedGiftOriginUpgrade: Codable, Equatable, Hashable {
 /// The gift was bought from another user
 public struct UpgradedGiftOriginResale: Codable, Equatable, Hashable {
 
-    /// Price paid by the sender for the gift
+    /// Price paid for the gift
+    public let price: GiftResalePrice
+
+
+    public init(price: GiftResalePrice) {
+        self.price = price
+    }
+}
+
+/// The gift was bought through an offer
+public struct UpgradedGiftOriginOffer: Codable, Equatable, Hashable {
+
+    /// Price paid for the gift
     public let price: GiftResalePrice
 
 

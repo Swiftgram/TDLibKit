@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -223,6 +223,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A gift which purchase, upgrade or transfer were refunded
     case messageRefundedUpgradedGift(MessageRefundedUpgradedGift)
 
+    /// An offer to purchase an upgraded gift was sent or received
+    case messageUpgradedGiftPurchaseOffer(MessageUpgradedGiftPurchaseOffer)
+
+    /// An offer to purchase a gift was declined or expired
+    case messageUpgradedGiftPurchaseOfferDeclined(MessageUpgradedGiftPurchaseOfferDeclined)
+
     /// Paid messages were refunded
     case messagePaidMessagesRefunded(MessagePaidMessagesRefunded)
 
@@ -355,6 +361,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGift
         case messageUpgradedGift
         case messageRefundedUpgradedGift
+        case messageUpgradedGiftPurchaseOffer
+        case messageUpgradedGiftPurchaseOfferDeclined
         case messagePaidMessagesRefunded
         case messagePaidMessagePriceChanged
         case messageDirectMessagePriceChanged
@@ -583,6 +591,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageRefundedUpgradedGift:
             let value = try MessageRefundedUpgradedGift(from: decoder)
             self = .messageRefundedUpgradedGift(value)
+        case .messageUpgradedGiftPurchaseOffer:
+            let value = try MessageUpgradedGiftPurchaseOffer(from: decoder)
+            self = .messageUpgradedGiftPurchaseOffer(value)
+        case .messageUpgradedGiftPurchaseOfferDeclined:
+            let value = try MessageUpgradedGiftPurchaseOfferDeclined(from: decoder)
+            self = .messageUpgradedGiftPurchaseOfferDeclined(value)
         case .messagePaidMessagesRefunded:
             let value = try MessagePaidMessagesRefunded(from: decoder)
             self = .messagePaidMessagesRefunded(value)
@@ -848,6 +862,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageRefundedUpgradedGift(let value):
             try container.encode(Kind.messageRefundedUpgradedGift, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageUpgradedGiftPurchaseOffer(let value):
+            try container.encode(Kind.messageUpgradedGiftPurchaseOffer, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageUpgradedGiftPurchaseOfferDeclined(let value):
+            try container.encode(Kind.messageUpgradedGiftPurchaseOfferDeclined, forKey: .type)
             try value.encode(to: encoder)
         case .messagePaidMessagesRefunded(let value):
             try container.encode(Kind.messagePaidMessagesRefunded, forKey: .type)
@@ -1866,7 +1886,7 @@ public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
     /// Identifier of the chat, containing the corresponding invoice message
     public let invoiceChatId: Int64
 
-    /// Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
+    /// Identifier of the message with the corresponding invoice; may be 0 or an identifier of a deleted message
     public let invoiceMessageId: Int64
 
     /// Name of the invoice; may be empty if unknown
@@ -2176,7 +2196,7 @@ public struct MessageGiveaway: Codable, Equatable, Hashable {
 /// A giveaway without public winners has been completed for the chat
 public struct MessageGiveawayCompleted: Codable, Equatable, Hashable {
 
-    /// Identifier of the message with the giveaway; can be 0 if the message was deleted
+    /// Identifier of the message with the giveaway; may be 0 or an identifier of a deleted message
     public let giveawayMessageId: Int64
 
     /// True, if the giveaway is a Telegram Star giveaway
@@ -2360,7 +2380,7 @@ public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
     /// Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
     public let boostedChatId: Int64
 
-    /// Identifier of the message with the giveaway in the boosted chat; can be 0 if the message was deleted
+    /// Identifier of the message with the giveaway in the boosted chat; may be 0 or an identifier of a deleted message
     public let giveawayMessageId: Int64
 
     /// True, if the corresponding winner wasn't chosen and the Telegram Stars were received by the owner of the boosted chat
@@ -2438,6 +2458,9 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// Message added to the gift
     public let text: FormattedText
 
+    /// Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
+    public let uniqueGiftNumber: Int
+
     /// Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift
     public let upgradedReceivedGiftId: String
 
@@ -2466,6 +2489,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
         sellStarCount: Int64,
         senderId: MessageSender?,
         text: FormattedText,
+        uniqueGiftNumber: Int,
         upgradedReceivedGiftId: String,
         wasConverted: Bool,
         wasRefunded: Bool,
@@ -2485,6 +2509,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
         self.sellStarCount = sellStarCount
         self.senderId = senderId
         self.text = text
+        self.uniqueGiftNumber = uniqueGiftNumber
         self.upgradedReceivedGiftId = upgradedReceivedGiftId
         self.wasConverted = wasConverted
         self.wasRefunded = wasRefunded
@@ -2595,6 +2620,64 @@ public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
     }
 }
 
+/// An offer to purchase an upgraded gift was sent or received
+public struct MessageUpgradedGiftPurchaseOffer: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) when the offer will expire or has expired
+    public let expirationDate: Int
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// The proposed price
+    public let price: GiftResalePrice
+
+    /// State of the offer
+    public let state: GiftPurchaseOfferState
+
+
+    public init(
+        expirationDate: Int,
+        gift: UpgradedGift,
+        price: GiftResalePrice,
+        state: GiftPurchaseOfferState
+    ) {
+        self.expirationDate = expirationDate
+        self.gift = gift
+        self.price = price
+        self.state = state
+    }
+}
+
+/// An offer to purchase a gift was declined or expired
+public struct MessageUpgradedGiftPurchaseOfferDeclined: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// Identifier of the message with purchase offer which was declined or expired; may be 0 or an identifier of a deleted message
+    public let offerMessageId: Int64
+
+    /// The proposed price
+    public let price: GiftResalePrice
+
+    /// True, if the offer has expired; otherwise, the offer was explicitly declined
+    public let wasExpired: Bool
+
+
+    public init(
+        gift: UpgradedGift,
+        offerMessageId: Int64,
+        price: GiftResalePrice,
+        wasExpired: Bool
+    ) {
+        self.gift = gift
+        self.offerMessageId = offerMessageId
+        self.price = price
+        self.wasExpired = wasExpired
+    }
+}
+
 /// Paid messages were refunded
 public struct MessagePaidMessagesRefunded: Codable, Equatable, Hashable {
 
@@ -2648,7 +2731,7 @@ public struct MessageDirectMessagePriceChanged: Codable, Equatable, Hashable {
 /// Some tasks from a checklist were marked as done or not done
 public struct MessageChecklistTasksDone: Codable, Equatable, Hashable {
 
-    /// Identifier of the message with the checklist; can be 0 if the message was deleted
+    /// Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
     public let checklistMessageId: Int64
 
     /// Identifiers of tasks that were marked as done
@@ -2672,7 +2755,7 @@ public struct MessageChecklistTasksDone: Codable, Equatable, Hashable {
 /// Some tasks were added to a checklist
 public struct MessageChecklistTasksAdded: Codable, Equatable, Hashable {
 
-    /// Identifier of the message with the checklist; can be 0 if the message was deleted
+    /// Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
     public let checklistMessageId: Int64
 
     /// List of tasks added to the checklist
@@ -2694,7 +2777,7 @@ public struct MessageSuggestedPostApprovalFailed: Codable, Equatable, Hashable {
     /// Price of the suggested post
     public let price: SuggestedPostPrice
 
-    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     public let suggestedPostMessageId: Int64
 
 
@@ -2716,7 +2799,7 @@ public struct MessageSuggestedPostApproved: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the post is expected to be published
     public let sendDate: Int
 
-    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     public let suggestedPostMessageId: Int64
 
 
@@ -2737,7 +2820,7 @@ public struct MessageSuggestedPostDeclined: Codable, Equatable, Hashable {
     /// Comment added by administrator of the channel when the post was declined
     public let comment: String
 
-    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     public let suggestedPostMessageId: Int64
 
 
@@ -2756,7 +2839,7 @@ public struct MessageSuggestedPostPaid: Codable, Equatable, Hashable {
     /// The amount of received Telegram Stars
     public let starAmount: StarAmount
 
-    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     public let suggestedPostMessageId: Int64
 
     /// The amount of received Toncoins; in the smallest units of the cryptocurrency
@@ -2780,7 +2863,7 @@ public struct MessageSuggestedPostRefunded: Codable, Equatable, Hashable {
     /// Reason of the refund
     public let reason: SuggestedPostRefundReason
 
-    /// Identifier of the message with the suggested post; can be 0 if the message was deleted
+    /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     public let suggestedPostMessageId: Int64
 
 

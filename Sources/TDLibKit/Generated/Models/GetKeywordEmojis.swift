@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
 
 
-/// Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+/// Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
 public struct GetKeywordEmojis: Codable, Equatable, Hashable {
 
     /// List of possible IETF language tags of the user's input language; may be empty if unknown

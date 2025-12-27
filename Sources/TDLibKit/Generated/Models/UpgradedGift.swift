@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Backdrop of the upgraded gift
     public let backdrop: UpgradedGiftBackdrop
+
+    /// True, if an offer to purchase the gift can be sent using sendGiftPurchaseOffer
+    public let canSendPurchaseOffer: Bool
 
     /// Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none
     public let colors: UpgradedGiftColors?
@@ -85,9 +88,13 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable
     public let valueCurrency: String
 
+    /// Estimated value of the gift in USD; in USD cents; 0 if unavailable
+    public let valueUsdAmount: Int64
+
 
     public init(
         backdrop: UpgradedGiftBackdrop,
+        canSendPurchaseOffer: Bool,
         colors: UpgradedGiftColors?,
         giftAddress: String,
         hostId: MessageSender?,
@@ -110,9 +117,11 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         totalUpgradedCount: Int,
         usedThemeChatId: Int64,
         valueAmount: Int64,
-        valueCurrency: String
+        valueCurrency: String,
+        valueUsdAmount: Int64
     ) {
         self.backdrop = backdrop
+        self.canSendPurchaseOffer = canSendPurchaseOffer
         self.colors = colors
         self.giftAddress = giftAddress
         self.hostId = hostId
@@ -136,6 +145,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.usedThemeChatId = usedThemeChatId
         self.valueAmount = valueAmount
         self.valueCurrency = valueCurrency
+        self.valueUsdAmount = valueUsdAmount
     }
 }
 

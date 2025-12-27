@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -357,6 +357,70 @@ public final class TdApi {
     public func requestQrCodeAuthentication(otherUserIds: [Int64]?) async throws -> Ok {
         let query = RequestQrCodeAuthentication(
             otherUserIds: otherUserIds
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns parameters for authentication using a passkey as JSON-serialized string
+    /// - Returns: Parameters for authentication using a passkey as JSON-serialized string
+    public func getAuthenticationPasskeyParameters(completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
+        let query = GetAuthenticationPasskeyParameters()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns parameters for authentication using a passkey as JSON-serialized string
+    /// - Returns: Parameters for authentication using a passkey as JSON-serialized string
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getAuthenticationPasskeyParameters() async throws -> Text {
+        let query = GetAuthenticationPasskeyParameters()
+        return try await self.execute(query: query)
+    }
+
+    /// Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is authorizationStateWaitPhoneNumber or authorizationStateWaitOtherDeviceConfirmation, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// - Parameter authenticatorData: Authenticator data of the application that created the credential
+    /// - Parameter clientData: JSON-encoded client data
+    /// - Parameter credentialId: Base64url-encoded identifier of the credential
+    /// - Parameter signature: Cryptographic signature of the credential
+    /// - Parameter userHandle: User handle of the passkey
+    public func checkAuthenticationPasskey(
+        authenticatorData: Data?,
+        clientData: String?,
+        credentialId: String?,
+        signature: Data?,
+        userHandle: Data?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckAuthenticationPasskey(
+            authenticatorData: authenticatorData,
+            clientData: clientData,
+            credentialId: credentialId,
+            signature: signature,
+            userHandle: userHandle
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Checks a passkey to log in to the corresponding account. Call getAuthenticationPasskeyParameters to get parameters for the passkey. Works only when the current authorization state is authorizationStateWaitPhoneNumber or authorizationStateWaitOtherDeviceConfirmation, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+    /// - Parameter authenticatorData: Authenticator data of the application that created the credential
+    /// - Parameter clientData: JSON-encoded client data
+    /// - Parameter credentialId: Base64url-encoded identifier of the credential
+    /// - Parameter signature: Cryptographic signature of the credential
+    /// - Parameter userHandle: User handle of the passkey
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func checkAuthenticationPasskey(
+        authenticatorData: Data?,
+        clientData: String?,
+        credentialId: String?,
+        signature: Data?,
+        userHandle: Data?
+    ) async throws -> Ok {
+        let query = CheckAuthenticationPasskey(
+            authenticatorData: authenticatorData,
+            clientData: clientData,
+            credentialId: credentialId,
+            signature: signature,
+            userHandle: userHandle
         )
         return try await self.execute(query: query)
     }
@@ -1338,10 +1402,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1354,10 +1418,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -6681,7 +6745,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Transfer Telegram Stars from the business account to the business bot; for bots only
+    /// Transfers Telegram Stars from the business account to the business bot; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
     /// - Parameter starCount: Number of Telegram Stars to transfer
     public func transferBusinessAccountStars(
@@ -6696,7 +6760,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Transfer Telegram Stars from the business account to the business bot; for bots only
+    /// Transfers Telegram Stars from the business account to the business bot; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
     /// - Parameter starCount: Number of Telegram Stars to transfer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -7644,6 +7708,91 @@ public final class TdApi {
         let query = UnpinAllForumTopicMessages(
             chatId: chatId,
             forumTopicId: forumTopicId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns parameters for creating of a new passkey as JSON-serialized string
+    /// - Returns: Parameters for creating of a new passkey as JSON-serialized string
+    public func getPasskeyParameters(completion: @escaping (Result<Text, Swift.Error>) -> Void) throws {
+        let query = GetPasskeyParameters()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns parameters for creating of a new passkey as JSON-serialized string
+    /// - Returns: Parameters for creating of a new passkey as JSON-serialized string
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPasskeyParameters() async throws -> Text {
+        let query = GetPasskeyParameters()
+        return try await self.execute(query: query)
+    }
+
+    /// Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
+    /// - Parameter attestationObject: Passkey attestation object
+    /// - Parameter clientData: JSON-encoded client data
+    /// - Returns: Adds a passkey allowed to be used for the login by the current user and returns the added passkey
+    public func addLoginPasskey(
+        attestationObject: Data?,
+        clientData: String?,
+        completion: @escaping (Result<Passkey, Swift.Error>) -> Void
+    ) throws {
+        let query = AddLoginPasskey(
+            attestationObject: attestationObject,
+            clientData: clientData
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds a passkey allowed to be used for the login by the current user and returns the added passkey. Call getPasskeyParameters to get parameters for creating of the passkey
+    /// - Parameter attestationObject: Passkey attestation object
+    /// - Parameter clientData: JSON-encoded client data
+    /// - Returns: Adds a passkey allowed to be used for the login by the current user and returns the added passkey
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func addLoginPasskey(
+        attestationObject: Data?,
+        clientData: String?
+    ) async throws -> Passkey {
+        let query = AddLoginPasskey(
+            attestationObject: attestationObject,
+            clientData: clientData
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the list of passkeys allowed to be used for the login by the current user
+    /// - Returns: The list of passkeys allowed to be used for the login by the current user
+    public func getLoginPasskeys(completion: @escaping (Result<Passkeys, Swift.Error>) -> Void) throws {
+        let query = GetLoginPasskeys()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the list of passkeys allowed to be used for the login by the current user
+    /// - Returns: The list of passkeys allowed to be used for the login by the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getLoginPasskeys() async throws -> Passkeys {
+        let query = GetLoginPasskeys()
+        return try await self.execute(query: query)
+    }
+
+    /// Removes a passkey from the list of passkeys allowed to be used for the login by the current user
+    /// - Parameter passkeyId: Unique identifier of the passkey to remove
+    public func removeLoginPasskey(
+        passkeyId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveLoginPasskey(
+            passkeyId: passkeyId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes a passkey from the list of passkeys allowed to be used for the login by the current user
+    /// - Parameter passkeyId: Unique identifier of the passkey to remove
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func removeLoginPasskey(passkeyId: String?) async throws -> Ok {
+        let query = RemoveLoginPasskey(
+            passkeyId: passkeyId
         )
         return try await self.execute(query: query)
     }
@@ -12746,7 +12895,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Traverse all chats in a chat list and marks all messages in the chats as read
+    /// Traverses all chats in a chat list and marks all messages in the chats as read
     /// - Parameter chatList: Chat list in which to mark all chats as read
     public func readChatList(
         chatList: ChatList?,
@@ -12758,7 +12907,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Traverse all chats in a chat list and marks all messages in the chats as read
+    /// Traverses all chats in a chat list and marks all messages in the chats as read
     /// - Parameter chatList: Chat list in which to mark all chats as read
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -14628,7 +14777,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
+    /// Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
@@ -14646,7 +14795,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
+    /// Preliminarily uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
     /// - Parameter file: File to upload
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
@@ -15065,7 +15214,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Application or reCAPTCHA verification has been completed. Can be called before authorization
+    /// Informs TDLib that application or reCAPTCHA verification has been completed. Can be called before authorization
     /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request
     /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
     public func setApplicationVerificationToken(
@@ -15080,7 +15229,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Application or reCAPTCHA verification has been completed. Can be called before authorization
+    /// Informs TDLib that application or reCAPTCHA verification has been completed. Can be called before authorization
     /// - Parameter token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request
     /// - Parameter verificationId: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -18590,6 +18739,44 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns outline of a sticker as an SVG path. This is an offline method. Returns an empty string if the outline isn't known
+    /// - Parameter forAnimatedEmoji: Pass true to get the outline scaled for animated emoji
+    /// - Parameter forClickedAnimatedEmojiMessage: Pass true to get the outline scaled for clicked animated emoji message
+    /// - Parameter stickerFileId: File identifier of the sticker
+    /// - Returns: Outline of a sticker as an SVG path. Returns an empty string if the outline isn't known
+    public func getStickerOutlineSvgPath(
+        forAnimatedEmoji: Bool?,
+        forClickedAnimatedEmojiMessage: Bool?,
+        stickerFileId: Int?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetStickerOutlineSvgPath(
+            forAnimatedEmoji: forAnimatedEmoji,
+            forClickedAnimatedEmojiMessage: forClickedAnimatedEmojiMessage,
+            stickerFileId: stickerFileId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns outline of a sticker as an SVG path. This is an offline method. Returns an empty string if the outline isn't known
+    /// - Parameter forAnimatedEmoji: Pass true to get the outline scaled for animated emoji
+    /// - Parameter forClickedAnimatedEmojiMessage: Pass true to get the outline scaled for clicked animated emoji message
+    /// - Parameter stickerFileId: File identifier of the sticker
+    /// - Returns: Outline of a sticker as an SVG path. Returns an empty string if the outline isn't known
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStickerOutlineSvgPath(
+        forAnimatedEmoji: Bool?,
+        forClickedAnimatedEmojiMessage: Bool?,
+        stickerFileId: Int?
+    ) async throws -> Text {
+        let query = GetStickerOutlineSvgPath(
+            forAnimatedEmoji: forAnimatedEmoji,
+            forClickedAnimatedEmojiMessage: forClickedAnimatedEmojiMessage,
+            stickerFileId: stickerFileId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
     /// - Parameter chatId: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     /// - Parameter limit: The maximum number of stickers to be returned
@@ -19353,7 +19540,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+    /// Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
     /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter text: Text to search for
     /// - Returns: Emojis matching the keyword
@@ -19369,7 +19556,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+    /// Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
     /// - Parameter inputLanguageCodes: List of possible IETF language tags of the user's input language; may be empty if unknown
     /// - Parameter text: Text to search for
     /// - Returns: Emojis matching the keyword
@@ -20342,7 +20529,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Check the authentication code and completes the request for which the code was sent if appropriate
+    /// Checks the authentication code and completes the request for which the code was sent if appropriate
     /// - Parameter code: Authentication code to check
     public func checkPhoneNumberCode(
         code: String?,
@@ -20354,7 +20541,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Check the authentication code and completes the request for which the code was sent if appropriate
+    /// Checks the authentication code and completes the request for which the code was sent if appropriate
     /// - Parameter code: Authentication code to check
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -21095,7 +21282,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Delete media previews from the list of media previews of a bot
+    /// Deletes media previews from the list of media previews of a bot
     /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
     /// - Parameter fileIds: File identifiers of the media to delete
     /// - Parameter languageCode: Language code of the media previews to delete
@@ -21113,7 +21300,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Delete media previews from the list of media previews of a bot
+    /// Deletes media previews from the list of media previews of a bot
     /// - Parameter botUserId: Identifier of the target bot. The bot must be owned and must have the main Web App
     /// - Parameter fileIds: File identifiers of the media to delete
     /// - Parameter languageCode: Language code of the media previews to delete
@@ -23114,6 +23301,30 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns all possible variants of upgraded gifts for a regular gift
+    /// - Parameter giftId: Identifier of the gift
+    /// - Returns: All possible variants of upgraded gifts for a regular gift
+    public func getGiftUpgradeVariants(
+        giftId: TdInt64?,
+        completion: @escaping (Result<GiftUpgradeVariants, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGiftUpgradeVariants(
+            giftId: giftId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns all possible variants of upgraded gifts for a regular gift
+    /// - Parameter giftId: Identifier of the gift
+    /// - Returns: All possible variants of upgraded gifts for a regular gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGiftUpgradeVariants(giftId: TdInt64?) async throws -> GiftUpgradeVariants {
+        let query = GetGiftUpgradeVariants(
+            giftId: giftId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Upgrades a regular gift
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
@@ -23299,6 +23510,86 @@ public final class TdApi {
             giftName: giftName,
             ownerId: ownerId,
             price: price
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sends an offer to purchase an upgraded gift
+    /// - Parameter duration: Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200. Can also be 120 if Telegram test environment is used
+    /// - Parameter giftName: Name of the upgraded gift
+    /// - Parameter ownerId: Identifier of the user or the channel chat that currently owns the gift and will receive the offer
+    /// - Parameter paidMessageStarCount: The number of Telegram Stars the user agreed to pay additionally for sending of the offer message to the current gift owner; pass userFullInfo.outgoing_paid_message_star_count for users and 0 otherwise
+    /// - Parameter price: The price that the user agreed to pay for the gift
+    public func sendGiftPurchaseOffer(
+        duration: Int?,
+        giftName: String?,
+        ownerId: MessageSender?,
+        paidMessageStarCount: Int64?,
+        price: GiftResalePrice?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendGiftPurchaseOffer(
+            duration: duration,
+            giftName: giftName,
+            ownerId: ownerId,
+            paidMessageStarCount: paidMessageStarCount,
+            price: price
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sends an offer to purchase an upgraded gift
+    /// - Parameter duration: Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200. Can also be 120 if Telegram test environment is used
+    /// - Parameter giftName: Name of the upgraded gift
+    /// - Parameter ownerId: Identifier of the user or the channel chat that currently owns the gift and will receive the offer
+    /// - Parameter paidMessageStarCount: The number of Telegram Stars the user agreed to pay additionally for sending of the offer message to the current gift owner; pass userFullInfo.outgoing_paid_message_star_count for users and 0 otherwise
+    /// - Parameter price: The price that the user agreed to pay for the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func sendGiftPurchaseOffer(
+        duration: Int?,
+        giftName: String?,
+        ownerId: MessageSender?,
+        paidMessageStarCount: Int64?,
+        price: GiftResalePrice?
+    ) async throws -> Ok {
+        let query = SendGiftPurchaseOffer(
+            duration: duration,
+            giftName: giftName,
+            ownerId: ownerId,
+            paidMessageStarCount: paidMessageStarCount,
+            price: price
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Handles a pending gift purchase offer
+    /// - Parameter approve: Pass true to approve the request; pass false to decline it
+    /// - Parameter messageId: Identifier of the message with the gift purchase offer
+    public func processGiftPurchaseOffer(
+        approve: Bool?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ProcessGiftPurchaseOffer(
+            approve: approve,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Handles a pending gift purchase offer
+    /// - Parameter approve: Pass true to approve the request; pass false to decline it
+    /// - Parameter messageId: Identifier of the message with the gift purchase offer
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func processGiftPurchaseOffer(
+        approve: Bool?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = ProcessGiftPurchaseOffer(
+            approve: approve,
+            messageId: messageId
         )
         return try await self.execute(query: query)
     }
@@ -23508,6 +23799,21 @@ public final class TdApi {
             password: password,
             receivedGiftId: receivedGiftId
         )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns promotional anumation for upgraded gifts
+    /// - Returns: Promotional anumation for upgraded gifts
+    public func getUpgradedGiftsPromotionalAnimation(completion: @escaping (Result<Animation, Swift.Error>) -> Void) throws {
+        let query = GetUpgradedGiftsPromotionalAnimation()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns promotional anumation for upgraded gifts
+    /// - Returns: Promotional anumation for upgraded gifts
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getUpgradedGiftsPromotionalAnimation() async throws -> Animation {
+        let query = GetUpgradedGiftsPromotionalAnimation()
         return try await self.execute(query: query)
     }
 
@@ -24672,7 +24978,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Check whether the current user can message another user or try to create a chat with them
+    /// Checks whether the current user can message another user or try to create a chat with them
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter userId: Identifier of the other user
     public func canSendMessageToUser(
@@ -24687,7 +24993,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Check whether the current user can message another user or try to create a chat with them
+    /// Checks whether the current user can message another user or try to create a chat with them
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter userId: Identifier of the other user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -26950,7 +27256,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Return information about a Telegram Premium gift code
+    /// Returns information about a Telegram Premium gift code
     /// - Parameter code: The code to check
     /// - Returns: Information about a Telegram Premium gift code
     public func checkPremiumGiftCode(
@@ -26963,7 +27269,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Return information about a Telegram Premium gift code
+    /// Returns information about a Telegram Premium gift code
     /// - Parameter code: The code to check
     /// - Returns: Information about a Telegram Premium gift code
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

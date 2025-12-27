@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -73,6 +73,9 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
     /// Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
     public let transferStarCount: Int64
 
+    /// Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
+    public let uniqueGiftNumber: Int
+
     /// True, if the gift was refunded and isn't available anymore
     public let wasRefunded: Bool
 
@@ -98,6 +101,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
         senderId: MessageSender?,
         text: FormattedText,
         transferStarCount: Int64,
+        uniqueGiftNumber: Int,
         wasRefunded: Bool
     ) {
         self.canBeTransferred = canBeTransferred
@@ -120,6 +124,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
         self.senderId = senderId
         self.text = text
         self.transferStarCount = transferStarCount
+        self.uniqueGiftNumber = uniqueGiftNumber
         self.wasRefunded = wasRefunded
     }
 }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct PremiumGiftCodeInfo: Codable, Equatable, Hashable {
     /// Number of days the Telegram Premium subscription will be active after code activation
     public let dayCount: Int
 
-    /// Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message
+    /// Identifier of the corresponding giveaway message in the creator_id chat; may be 0 or an identifier of a deleted message
     public let giveawayMessageId: Int64
 
     /// True, if the gift code was created for a giveaway

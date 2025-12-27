@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
 
 
-/// Check the authentication code and completes the request for which the code was sent if appropriate
+/// Checks the authentication code and completes the request for which the code was sent if appropriate
 public struct CheckPhoneNumberCode: Codable, Equatable, Hashable {
 
     /// Authentication code to check

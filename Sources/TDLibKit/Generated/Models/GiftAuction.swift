@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -19,13 +19,18 @@ public struct GiftAuction: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the auction
     public let id: String
 
+    /// Point in time (Unix timestamp) when the auction will start
+    public let startDate: Int
+
 
     public init(
         giftsPerRound: Int,
-        id: String
+        id: String,
+        startDate: Int
     ) {
         self.giftsPerRound = giftsPerRound
         self.id = id
+        self.startDate = startDate
     }
 }
 

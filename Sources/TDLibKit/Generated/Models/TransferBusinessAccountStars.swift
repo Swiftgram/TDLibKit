@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
 
 
-/// Transfer Telegram Stars from the business account to the business bot; for bots only
+/// Transfers Telegram Stars from the business account to the business bot; for bots only
 public struct TransferBusinessAccountStars: Codable, Equatable, Hashable {
 
     /// Unique identifier of business connection

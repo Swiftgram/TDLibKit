@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -16,8 +16,14 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a deposit of Toncoins from Fragment
     case tonTransactionTypeFragmentDeposit(TonTransactionTypeFragmentDeposit)
 
+    /// The transaction is a withdrawal of earned Toncoins to Fragment
+    case tonTransactionTypeFragmentWithdrawal(TonTransactionTypeFragmentWithdrawal)
+
     /// The transaction is a payment for a suggested post
     case tonTransactionTypeSuggestedPostPayment(TonTransactionTypeSuggestedPostPayment)
+
+    /// The transaction is an offer of gift purchase
+    case tonTransactionTypeGiftPurchaseOffer(TonTransactionTypeGiftPurchaseOffer)
 
     /// The transaction is a purchase of an upgraded gift for some user or channel
     case tonTransactionTypeUpgradedGiftPurchase(TonTransactionTypeUpgradedGiftPurchase)
@@ -31,7 +37,9 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case tonTransactionTypeFragmentDeposit
+        case tonTransactionTypeFragmentWithdrawal
         case tonTransactionTypeSuggestedPostPayment
+        case tonTransactionTypeGiftPurchaseOffer
         case tonTransactionTypeUpgradedGiftPurchase
         case tonTransactionTypeUpgradedGiftSale
         case tonTransactionTypeUnsupported
@@ -44,9 +52,15 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
         case .tonTransactionTypeFragmentDeposit:
             let value = try TonTransactionTypeFragmentDeposit(from: decoder)
             self = .tonTransactionTypeFragmentDeposit(value)
+        case .tonTransactionTypeFragmentWithdrawal:
+            let value = try TonTransactionTypeFragmentWithdrawal(from: decoder)
+            self = .tonTransactionTypeFragmentWithdrawal(value)
         case .tonTransactionTypeSuggestedPostPayment:
             let value = try TonTransactionTypeSuggestedPostPayment(from: decoder)
             self = .tonTransactionTypeSuggestedPostPayment(value)
+        case .tonTransactionTypeGiftPurchaseOffer:
+            let value = try TonTransactionTypeGiftPurchaseOffer(from: decoder)
+            self = .tonTransactionTypeGiftPurchaseOffer(value)
         case .tonTransactionTypeUpgradedGiftPurchase:
             let value = try TonTransactionTypeUpgradedGiftPurchase(from: decoder)
             self = .tonTransactionTypeUpgradedGiftPurchase(value)
@@ -64,8 +78,14 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
         case .tonTransactionTypeFragmentDeposit(let value):
             try container.encode(Kind.tonTransactionTypeFragmentDeposit, forKey: .type)
             try value.encode(to: encoder)
+        case .tonTransactionTypeFragmentWithdrawal(let value):
+            try container.encode(Kind.tonTransactionTypeFragmentWithdrawal, forKey: .type)
+            try value.encode(to: encoder)
         case .tonTransactionTypeSuggestedPostPayment(let value):
             try container.encode(Kind.tonTransactionTypeSuggestedPostPayment, forKey: .type)
+            try value.encode(to: encoder)
+        case .tonTransactionTypeGiftPurchaseOffer(let value):
+            try container.encode(Kind.tonTransactionTypeGiftPurchaseOffer, forKey: .type)
             try value.encode(to: encoder)
         case .tonTransactionTypeUpgradedGiftPurchase(let value):
             try container.encode(Kind.tonTransactionTypeUpgradedGiftPurchase, forKey: .type)
@@ -98,6 +118,18 @@ public struct TonTransactionTypeFragmentDeposit: Codable, Equatable, Hashable {
     }
 }
 
+/// The transaction is a withdrawal of earned Toncoins to Fragment
+public struct TonTransactionTypeFragmentWithdrawal: Codable, Equatable, Hashable {
+
+    /// State of the withdrawal; may be null for refunds from Fragment
+    public let withdrawalState: RevenueWithdrawalState?
+
+
+    public init(withdrawalState: RevenueWithdrawalState?) {
+        self.withdrawalState = withdrawalState
+    }
+}
+
 /// The transaction is a payment for a suggested post
 public struct TonTransactionTypeSuggestedPostPayment: Codable, Equatable, Hashable {
 
@@ -107,6 +139,18 @@ public struct TonTransactionTypeSuggestedPostPayment: Codable, Equatable, Hashab
 
     public init(chatId: Int64) {
         self.chatId = chatId
+    }
+}
+
+/// The transaction is an offer of gift purchase
+public struct TonTransactionTypeGiftPurchaseOffer: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+
+    public init(gift: UpgradedGift) {
+        self.gift = gift
     }
 }
 
@@ -144,17 +188,22 @@ public struct TonTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
     /// Identifier of the user that bought the gift
     public let userId: Int64
 
+    /// True, if the gift was sold through a purchase offer
+    public let viaOffer: Bool
+
 
     public init(
         commissionPerMille: Int,
         commissionToncoinAmount: Int64,
         gift: UpgradedGift,
-        userId: Int64
+        userId: Int64,
+        viaOffer: Bool
     ) {
         self.commissionPerMille = commissionPerMille
         self.commissionToncoinAmount = commissionToncoinAmount
         self.gift = gift
         self.userId = userId
+        self.viaOffer = viaOffer
     }
 }
 

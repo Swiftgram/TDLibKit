@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
     /// Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly
     public let auctionInfo: GiftAuction?
+
+    /// Background of the gift
+    public let background: GiftBackground
 
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     public let defaultSellStarCount: Int64
@@ -37,7 +40,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     public let lastSendDate: Int
 
-    /// Point in time (Unix timestamp) when the gift can be sent next time by the current user; can be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
+    /// Point in time (Unix timestamp) when the gift can be sent next time by the current user; may be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
     public let nextSendDate: Int
 
     /// Number of times the gift can be purchased all users; may be null if not limited
@@ -55,12 +58,16 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible
     public let upgradeStarCount: Int64
 
+    /// Number of unique gift variants that are available for the upgraded gift; 0 if unknown
+    public let upgradeVariantCount: Int
+
     /// Number of times the gift can be purchased by the current user; may be null if not limited
     public let userLimits: GiftPurchaseLimits?
 
 
     public init(
         auctionInfo: GiftAuction?,
+        background: GiftBackground,
         defaultSellStarCount: Int64,
         firstSendDate: Int,
         hasColors: Bool,
@@ -74,9 +81,11 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         starCount: Int64,
         sticker: Sticker,
         upgradeStarCount: Int64,
+        upgradeVariantCount: Int,
         userLimits: GiftPurchaseLimits?
     ) {
         self.auctionInfo = auctionInfo
+        self.background = background
         self.defaultSellStarCount = defaultSellStarCount
         self.firstSendDate = firstSendDate
         self.hasColors = hasColors
@@ -90,6 +99,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
         self.starCount = starCount
         self.sticker = sticker
         self.upgradeStarCount = upgradeStarCount
+        self.upgradeVariantCount = upgradeVariantCount
         self.userLimits = userLimits
     }
 }

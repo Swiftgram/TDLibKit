@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes state of an auction
 public indirect enum AuctionState: Codable, Equatable, Hashable {
 
-    /// Contains information about an ongoing auction
+    /// Contains information about an ongoing or scheduled auction
     case auctionStateActive(AuctionStateActive)
 
     /// Contains information about a finished auction
@@ -51,7 +51,7 @@ public indirect enum AuctionState: Codable, Equatable, Hashable {
     }
 }
 
-/// Contains information about an ongoing auction
+/// Contains information about an ongoing or scheduled auction
 public struct AuctionStateActive: Codable, Equatable, Hashable {
 
     /// The number of items that were purchased by the current user on the auction
@@ -66,6 +66,9 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
     /// 1-based number of the current round
     public let currentRoundNumber: Int
 
+    /// The number of items that were purchased on the auction by all users
+    public let distributedItemCount: Int
+
     /// Point in time (Unix timestamp) when the auction will be ended
     public let endDate: Int
 
@@ -75,7 +78,10 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
     /// The minimum possible bid in the auction in Telegram Stars
     public let minBid: Int64
 
-    /// Point in time (Unix timestamp) when the auction started
+    /// Rounds of the auction in which their duration or extension rules are changed
+    public let rounds: [AuctionRound]
+
+    /// Point in time (Unix timestamp) when the auction started or will start
     public let startDate: Int
 
     /// User identifiers of at most 3 users with the biggest bids
@@ -93,9 +99,11 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
         bidLevels: [AuctionBid],
         currentRoundEndDate: Int,
         currentRoundNumber: Int,
+        distributedItemCount: Int,
         endDate: Int,
         leftItemCount: Int,
         minBid: Int64,
+        rounds: [AuctionRound],
         startDate: Int,
         topBidderUserIds: [Int64],
         totalRoundCount: Int,
@@ -105,9 +113,11 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
         self.bidLevels = bidLevels
         self.currentRoundEndDate = currentRoundEndDate
         self.currentRoundNumber = currentRoundNumber
+        self.distributedItemCount = distributedItemCount
         self.endDate = endDate
         self.leftItemCount = leftItemCount
         self.minBid = minBid
+        self.rounds = rounds
         self.startDate = startDate
         self.topBidderUserIds = topBidderUserIds
         self.totalRoundCount = totalRoundCount
@@ -127,20 +137,35 @@ public struct AuctionStateFinished: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the auction will be ended
     public let endDate: Int
 
+    /// Number of items from the auction being resold on Fragment
+    public let fragmentListedItemCount: Int
+
+    /// The HTTPS link to the Fragment for the resold items; may be empty if there are no such items being sold on Fragment
+    public let fragmentUrl: String
+
     /// Point in time (Unix timestamp) when the auction started
     public let startDate: Int
+
+    /// Number of items from the auction being resold on Telegram
+    public let telegramListedItemCount: Int
 
 
     public init(
         acquiredItemCount: Int,
         averagePrice: Int64,
         endDate: Int,
-        startDate: Int
+        fragmentListedItemCount: Int,
+        fragmentUrl: String,
+        startDate: Int,
+        telegramListedItemCount: Int
     ) {
         self.acquiredItemCount = acquiredItemCount
         self.averagePrice = averagePrice
         self.endDate = endDate
+        self.fragmentListedItemCount = fragmentListedItemCount
+        self.fragmentUrl = fragmentUrl
         self.startDate = startDate
+        self.telegramListedItemCount = telegramListedItemCount
     }
 }
 

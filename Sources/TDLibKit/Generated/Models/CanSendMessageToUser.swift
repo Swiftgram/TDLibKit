@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
 
 
-/// Check whether the current user can message another user or try to create a chat with them
+/// Checks whether the current user can message another user or try to create a chat with them
 public struct CanSendMessageToUser: Codable, Equatable, Hashable {
 
     /// Pass true to get only locally available information without sending network requests

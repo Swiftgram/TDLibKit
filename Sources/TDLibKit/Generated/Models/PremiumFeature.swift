@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -88,6 +88,9 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to create and use checklist messages
     case premiumFeatureChecklists
 
+    /// The ability to require a payment for incoming messages in new chats
+    case premiumFeaturePaidMessages
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -115,6 +118,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureBusiness
         case premiumFeatureMessageEffects
         case premiumFeatureChecklists
+        case premiumFeaturePaidMessages
     }
 
     public init(from decoder: Decoder) throws {
@@ -171,6 +175,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureMessageEffects
         case .premiumFeatureChecklists:
             self = .premiumFeatureChecklists
+        case .premiumFeaturePaidMessages:
+            self = .premiumFeaturePaidMessages
         }
     }
 
@@ -227,6 +233,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureMessageEffects, forKey: .type)
         case .premiumFeatureChecklists:
             try container.encode(Kind.premiumFeatureChecklists, forKey: .type)
+        case .premiumFeaturePaidMessages:
+            try container.encode(Kind.premiumFeaturePaidMessages, forKey: .type)
         }
     }
 }

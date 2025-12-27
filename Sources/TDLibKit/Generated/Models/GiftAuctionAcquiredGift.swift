@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -34,6 +34,9 @@ public struct GiftAuctionAcquiredGift: Codable, Equatable, Hashable {
     /// Message added to the gift
     public let text: FormattedText
 
+    /// Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
+    public let uniqueGiftNumber: Int
+
 
     public init(
         auctionRoundNumber: Int,
@@ -42,7 +45,8 @@ public struct GiftAuctionAcquiredGift: Codable, Equatable, Hashable {
         isPrivate: Bool,
         receiverId: MessageSender,
         starCount: Int64,
-        text: FormattedText
+        text: FormattedText,
+        uniqueGiftNumber: Int
     ) {
         self.auctionRoundNumber = auctionRoundNumber
         self.auctionRoundPosition = auctionRoundPosition
@@ -51,6 +55,7 @@ public struct GiftAuctionAcquiredGift: Codable, Equatable, Hashable {
         self.receiverId = receiverId
         self.starCount = starCount
         self.text = text
+        self.uniqueGiftNumber = uniqueGiftNumber
     }
 }
 

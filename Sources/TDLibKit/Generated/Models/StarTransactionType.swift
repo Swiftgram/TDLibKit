@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -75,6 +75,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
 
     /// The transaction is a purchase of a regular gift; relevant for regular users and bots only
     case starTransactionTypeGiftPurchase(StarTransactionTypeGiftPurchase)
+
+    /// The transaction is an offer of gift purchase; relevant for regular users only
+    case starTransactionTypeGiftPurchaseOffer(StarTransactionTypeGiftPurchaseOffer)
 
     /// The transaction is a transfer of an upgraded gift; relevant for regular users only
     case starTransactionTypeGiftTransfer(StarTransactionTypeGiftTransfer)
@@ -168,6 +171,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case starTransactionTypeChannelSubscriptionSale
         case starTransactionTypeGiftAuctionBid
         case starTransactionTypeGiftPurchase
+        case starTransactionTypeGiftPurchaseOffer
         case starTransactionTypeGiftTransfer
         case starTransactionTypeGiftOriginalDetailsDrop
         case starTransactionTypeGiftSale
@@ -255,6 +259,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeGiftPurchase:
             let value = try StarTransactionTypeGiftPurchase(from: decoder)
             self = .starTransactionTypeGiftPurchase(value)
+        case .starTransactionTypeGiftPurchaseOffer:
+            let value = try StarTransactionTypeGiftPurchaseOffer(from: decoder)
+            self = .starTransactionTypeGiftPurchaseOffer(value)
         case .starTransactionTypeGiftTransfer:
             let value = try StarTransactionTypeGiftTransfer(from: decoder)
             self = .starTransactionTypeGiftTransfer(value)
@@ -386,6 +393,9 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
         case .starTransactionTypeGiftPurchase(let value):
             try container.encode(Kind.starTransactionTypeGiftPurchase, forKey: .type)
             try value.encode(to: encoder)
+        case .starTransactionTypeGiftPurchaseOffer(let value):
+            try container.encode(Kind.starTransactionTypeGiftPurchaseOffer, forKey: .type)
+            try value.encode(to: encoder)
         case .starTransactionTypeGiftTransfer(let value):
             try container.encode(Kind.starTransactionTypeGiftTransfer, forKey: .type)
             try value.encode(to: encoder)
@@ -482,7 +492,7 @@ public struct StarTransactionTypeGiveawayDeposit: Codable, Equatable, Hashable {
     /// Identifier of a supergroup or a channel chat that created the giveaway
     public let chatId: Int64
 
-    /// Identifier of the message with the giveaway; can be 0 or an identifier of a deleted message
+    /// Identifier of the message with the giveaway; may be 0 or an identifier of a deleted message
     public let giveawayMessageId: Int64
 
 
@@ -576,7 +586,7 @@ public struct StarTransactionTypeChannelPaidMediaPurchase: Codable, Equatable, H
     /// The bought media if the transaction wasn't refunded
     public let media: [PaidMedia]
 
-    /// Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message
+    /// Identifier of the corresponding message with paid media; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
 
@@ -597,7 +607,7 @@ public struct StarTransactionTypeChannelPaidMediaSale: Codable, Equatable, Hasha
     /// The bought media
     public let media: [PaidMedia]
 
-    /// Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message
+    /// Identifier of the corresponding message with paid media; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
     /// Identifier of the user that bought the media
@@ -797,6 +807,18 @@ public struct StarTransactionTypeGiftPurchase: Codable, Equatable, Hashable {
     }
 }
 
+/// The transaction is an offer of gift purchase; relevant for regular users only
+public struct StarTransactionTypeGiftPurchaseOffer: Codable, Equatable, Hashable {
+
+    /// The gift
+    public let gift: UpgradedGift
+
+
+    public init(gift: UpgradedGift) {
+        self.gift = gift
+    }
+}
+
 /// The transaction is a transfer of an upgraded gift; relevant for regular users only
 public struct StarTransactionTypeGiftTransfer: Codable, Equatable, Hashable {
 
@@ -926,17 +948,22 @@ public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable 
     /// Identifier of the user that bought the gift
     public let userId: Int64
 
+    /// True, if the gift was sold through a purchase offer
+    public let viaOffer: Bool
+
 
     public init(
         commissionPerMille: Int,
         commissionStarAmount: StarAmount,
         gift: UpgradedGift,
-        userId: Int64
+        userId: Int64,
+        viaOffer: Bool
     ) {
         self.commissionPerMille = commissionPerMille
         self.commissionStarAmount = commissionStarAmount
         self.gift = gift
         self.userId = userId
+        self.viaOffer = viaOffer
     }
 }
 
@@ -946,7 +973,7 @@ public struct StarTransactionTypeChannelPaidReactionSend: Codable, Equatable, Ha
     /// Identifier of the channel chat
     public let chatId: Int64
 
-    /// Identifier of the reacted message; can be 0 or an identifier of a deleted message
+    /// Identifier of the reacted message; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
 
@@ -962,7 +989,7 @@ public struct StarTransactionTypeChannelPaidReactionSend: Codable, Equatable, Ha
 /// The transaction is a receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
 public struct StarTransactionTypeChannelPaidReactionReceive: Codable, Equatable, Hashable {
 
-    /// Identifier of the reacted message; can be 0 or an identifier of a deleted message
+    /// Identifier of the reacted message; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
     /// Identifier of the user that added the paid reaction

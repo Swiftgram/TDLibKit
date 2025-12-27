@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     /// Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
     case suggestedActionSetLoginEmailAddress(SuggestedActionSetLoginEmailAddress)
 
+    /// Suggests the user to add a passkey for login using addLoginPasskey
+    case suggestedActionAddLoginPasskey
+
 
     private enum Kind: String, Codable {
         case suggestedActionEnableArchiveAndMuteNewChats
@@ -79,6 +82,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionExtendStarSubscriptions
         case suggestedActionCustom
         case suggestedActionSetLoginEmailAddress
+        case suggestedActionAddLoginPasskey
     }
 
     public init(from decoder: Decoder) throws {
@@ -122,6 +126,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case .suggestedActionSetLoginEmailAddress:
             let value = try SuggestedActionSetLoginEmailAddress(from: decoder)
             self = .suggestedActionSetLoginEmailAddress(value)
+        case .suggestedActionAddLoginPasskey:
+            self = .suggestedActionAddLoginPasskey
         }
     }
 
@@ -165,6 +171,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case .suggestedActionSetLoginEmailAddress(let value):
             try container.encode(Kind.suggestedActionSetLoginEmailAddress, forKey: .type)
             try value.encode(to: encoder)
+        case .suggestedActionAddLoginPasskey:
+            try container.encode(Kind.suggestedActionAddLoginPasskey, forKey: .type)
         }
     }
 }

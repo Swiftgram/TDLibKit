@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.58-a9a8353d
-//  https://github.com/tdlib/td/tree/a9a8353d
+//  Based on TDLib 1.8.59-cecbf129
+//  https://github.com/tdlib/td/tree/cecbf129
 //
 
 import Foundation
@@ -55,7 +55,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     public let canPromoteMembers: Bool
 
-    /// True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels
+    /// True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics
     public let canRestrictMembers: Bool
 
     /// True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
