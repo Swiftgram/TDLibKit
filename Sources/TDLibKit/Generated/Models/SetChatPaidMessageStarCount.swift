@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
 
 
-/// Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+/// Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
 public struct SetChatPaidMessageStarCount: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup chat

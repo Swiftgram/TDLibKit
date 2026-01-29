@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum SuggestedPostPrice: Codable, Equatable, Hashable {
 /// Describes price of a suggested post in Telegram Stars
 public struct SuggestedPostPriceStar: Codable, Equatable, Hashable {
 
-    /// The amount of Telegram Stars expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max")
+    /// The Telegram Star amount expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max")
     public let starCount: Int64
 
 

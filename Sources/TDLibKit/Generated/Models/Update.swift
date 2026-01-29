@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -451,6 +451,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of supported dice emojis has changed
     case updateDiceEmojis(UpdateDiceEmojis)
 
+    /// The stake dice state has changed
+    case updateStakeDiceState(UpdateStakeDiceState)
+
     /// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     case updateAnimatedEmojiMessageClicked(UpdateAnimatedEmojiMessageClicked)
 
@@ -680,6 +683,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateSpeechRecognitionTrial
         case updateGroupCallMessageLevels
         case updateDiceEmojis
+        case updateStakeDiceState
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
         case updateSuggestedActions
@@ -1151,6 +1155,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateDiceEmojis:
             let value = try UpdateDiceEmojis(from: decoder)
             self = .updateDiceEmojis(value)
+        case .updateStakeDiceState:
+            let value = try UpdateStakeDiceState(from: decoder)
+            self = .updateStakeDiceState(value)
         case .updateAnimatedEmojiMessageClicked:
             let value = try UpdateAnimatedEmojiMessageClicked(from: decoder)
             self = .updateAnimatedEmojiMessageClicked(value)
@@ -1675,6 +1682,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateDiceEmojis(let value):
             try container.encode(Kind.updateDiceEmojis, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateStakeDiceState(let value):
+            try container.encode(Kind.updateStakeDiceState, forKey: .type)
             try value.encode(to: encoder)
         case .updateAnimatedEmojiMessageClicked(let value):
             try container.encode(Kind.updateAnimatedEmojiMessageClicked, forKey: .type)
@@ -4524,6 +4534,18 @@ public struct UpdateDiceEmojis: Codable, Equatable, Hashable {
 
     public init(emojis: [String]) {
         self.emojis = emojis
+    }
+}
+
+/// The stake dice state has changed
+public struct UpdateStakeDiceState: Codable, Equatable, Hashable {
+
+    /// The new state. The state can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
+    public let state: StakeDiceState
+
+
+    public init(state: StakeDiceState) {
+        self.state = state
     }
 }
 

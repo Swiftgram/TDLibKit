@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct AffiliateInfo: Codable, Equatable, Hashable {
     /// The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner
     public let commissionPerMille: Int
 
-    /// The amount of Telegram Stars that were received by the affiliate; can be negative for refunds
+    /// The Telegram Star amount that was received by the affiliate; can be negative for refunds
     public let starAmount: StarAmount
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct PremiumGiftPaymentOption: Codable, Equatable, Hashable {
     /// Number of months the Telegram Premium subscription will be active
     public let monthCount: Int
 
-    /// The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible
+    /// The alternative Telegram Star amount to pay; 0 if payment in Telegram Stars is not possible
     public let starCount: Int64
 
     /// A sticker to be shown along with the option; may be null if unknown

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct UpgradedGiftValueInfo: Codable, Equatable, Hashable {
     /// Initial price of the gift; in the smallest units of the currency
     public let initialSalePrice: Int64
 
-    /// Amount of Telegram Stars that were paid for the gift
+    /// The Telegram Star amount that was paid for the gift
     public let initialSaleStarCount: Int64
 
     /// True, if the last sale was completed on Fragment

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -939,7 +939,7 @@ public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable 
     /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
     public let commissionPerMille: Int
 
-    /// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    /// The Telegram Star amount that was received by Telegram; can be negative for refunds
     public let commissionStarAmount: StarAmount
 
     /// The gift
@@ -1049,7 +1049,7 @@ public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashabl
     /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
     public let commissionPerMille: Int
 
-    /// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    /// The Telegram Star amount that was received by Telegram; can be negative for refunds
     public let commissionStarAmount: StarAmount
 
     /// Number of received paid messages
@@ -1090,7 +1090,7 @@ public struct StarTransactionTypePaidGroupCallMessageReceive: Codable, Equatable
     /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
     public let commissionPerMille: Int
 
-    /// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    /// The Telegram Star amount that was received by Telegram; can be negative for refunds
     public let commissionStarAmount: StarAmount
 
     /// Identifier of the sender of the message
@@ -1126,7 +1126,7 @@ public struct StarTransactionTypePaidGroupCallReactionReceive: Codable, Equatabl
     /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for reaction sending
     public let commissionPerMille: Int
 
-    /// The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    /// The Telegram Star amount that was received by Telegram; can be negative for refunds
     public let commissionStarAmount: StarAmount
 
     /// Identifier of the sender of the reaction

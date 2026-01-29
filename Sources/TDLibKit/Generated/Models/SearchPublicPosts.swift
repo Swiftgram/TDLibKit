@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct SearchPublicPosts: Codable, Equatable, Hashable {
     /// Query to search for
     public let query: String?
 
-    /// The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+    /// The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches
     public let starCount: Int64?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -65,6 +65,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
     /// A message with a poll. Polls can't be sent to secret chats and channel direct messages chats. Polls can be sent to a private chat only if the chat is a chat with a bot or the Saved Messages chat
     case inputMessagePoll(InputMessagePoll)
 
+    /// A stake dice message
+    case inputMessageStakeDice(InputMessageStakeDice)
+
     /// A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
     case inputMessageStory(InputMessageStory)
 
@@ -93,6 +96,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case inputMessageGame
         case inputMessageInvoice
         case inputMessagePoll
+        case inputMessageStakeDice
         case inputMessageStory
         case inputMessageChecklist
         case inputMessageForwarded
@@ -153,6 +157,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case .inputMessagePoll:
             let value = try InputMessagePoll(from: decoder)
             self = .inputMessagePoll(value)
+        case .inputMessageStakeDice:
+            let value = try InputMessageStakeDice(from: decoder)
+            self = .inputMessageStakeDice(value)
         case .inputMessageStory:
             let value = try InputMessageStory(from: decoder)
             self = .inputMessageStory(value)
@@ -219,6 +226,9 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case .inputMessagePoll(let value):
             try container.encode(Kind.inputMessagePoll, forKey: .type)
             try value.encode(to: encoder)
+        case .inputMessageStakeDice(let value):
+            try container.encode(Kind.inputMessageStakeDice, forKey: .type)
+            try value.encode(to: encoder)
         case .inputMessageStory(let value):
             try container.encode(Kind.inputMessageStory, forKey: .type)
             try value.encode(to: encoder)
@@ -235,7 +245,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
 /// A text message
 public struct InputMessageText: Codable, Equatable, Hashable {
 
-    /// True, if a chat message draft must be deleted
+    /// True, if the chat message draft must be deleted
     public let clearDraft: Bool
 
     /// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
@@ -847,6 +857,30 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
         self.options = options
         self.question = question
         self.type = type
+    }
+}
+
+/// A stake dice message
+public struct InputMessageStakeDice: Codable, Equatable, Hashable {
+
+    /// True, if the chat message draft must be deleted
+    public let clearDraft: Bool
+
+    /// The Toncoin amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
+    public let stakeToncoinAmount: Int64
+
+    /// Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
+    public let stateHash: String
+
+
+    public init(
+        clearDraft: Bool,
+        stakeToncoinAmount: Int64,
+        stateHash: String
+    ) {
+        self.clearDraft = clearDraft
+        self.stakeToncoinAmount = stakeToncoinAmount
+        self.stateHash = stateHash
     }
 }
 

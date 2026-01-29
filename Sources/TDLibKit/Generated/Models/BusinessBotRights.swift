@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -52,7 +52,7 @@ public struct BusinessBotRights: Codable, Equatable, Hashable {
     /// True, if the bot can transfer Telegram Stars received by the business account to account of the bot, or use them to upgrade and transfer gifts
     public let canTransferStars: Bool
 
-    /// True, if the bot can view gifts and amount of Telegram Stars owned by the business account
+    /// True, if the bot can view gifts and Telegram Star amount owned by the business account
     public let canViewGiftsAndStars: Bool
 
 

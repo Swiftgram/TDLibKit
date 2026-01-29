@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -1402,10 +1402,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1418,10 +1418,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferDeclined, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -3563,7 +3563,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for
-    /// - Parameter starCount: The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+    /// - Parameter starCount: The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches
     /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     public func searchPublicPosts(
         limit: Int?,
@@ -3585,7 +3585,7 @@ public final class TdApi {
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     /// - Parameter query: Query to search for
-    /// - Parameter starCount: The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+    /// - Parameter starCount: The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches
     /// - Returns: For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchPublicPosts(
@@ -4656,7 +4656,7 @@ public final class TdApi {
     /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
     public func translateMessageText(
         chatId: Int64?,
         messageId: Int64?,
@@ -4674,7 +4674,7 @@ public final class TdApi {
     /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func translateMessageText(
         chatId: Int64?,
@@ -4685,6 +4685,42 @@ public final class TdApi {
             chatId: chatId,
             messageId: messageId,
             toLanguageCode: toLanguageCode
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Summarizes content of the message with non-empty summary_language_code
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter translateToLanguageCode: Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
+    public func summarizeMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        translateToLanguageCode: String?,
+        completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
+    ) throws {
+        let query = SummarizeMessage(
+            chatId: chatId,
+            messageId: messageId,
+            translateToLanguageCode: translateToLanguageCode
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Summarizes content of the message with non-empty summary_language_code
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter translateToLanguageCode: Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func summarizeMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        translateToLanguageCode: String?
+    ) async throws -> FormattedText {
+        let query = SummarizeMessage(
+            chatId: chatId,
+            messageId: messageId,
+            translateToLanguageCode: translateToLanguageCode
         )
         return try await self.execute(query: query)
     }
@@ -6721,9 +6757,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the amount of Telegram Stars owned by a business account; for bots only
+    /// Returns the Telegram Star amount owned by a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
-    /// - Returns: The amount of Telegram Stars owned by a business account
+    /// - Returns: The Telegram Star amount owned by a business account
     public func getBusinessAccountStarAmount(
         businessConnectionId: String?,
         completion: @escaping (Result<StarAmount, Swift.Error>) -> Void
@@ -6734,9 +6770,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the amount of Telegram Stars owned by a business account; for bots only
+    /// Returns the Telegram Star amount owned by a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection
-    /// - Returns: The amount of Telegram Stars owned by a business account
+    /// - Returns: The Telegram Star amount owned by a business account
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getBusinessAccountStarAmount(businessConnectionId: String?) async throws -> StarAmount {
         let query = GetBusinessAccountStarAmount(
@@ -12616,6 +12652,21 @@ public final class TdApi {
         let query = ClearAllDraftMessages(
             excludeSecretChats: excludeSecretChats
         )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the current state of stake dice
+    /// - Returns: The current state of stake dice
+    public func getStakeDiceState(completion: @escaping (Result<StakeDiceState, Swift.Error>) -> Void) throws {
+        let query = GetStakeDiceState()
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the current state of stake dice
+    /// - Returns: The current state of stake dice
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getStakeDiceState() async throws -> StakeDiceState {
+        let query = GetStakeDiceState()
         return try await self.execute(query: query)
     }
 
@@ -23329,7 +23380,7 @@ public final class TdApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    /// - Parameter starCount: The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     public func upgradeGift(
         businessConnectionId: String?,
         keepOriginalDetails: Bool?,
@@ -23350,7 +23401,7 @@ public final class TdApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    /// - Parameter starCount: The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func upgradeGift(
         businessConnectionId: String?,
@@ -23370,7 +23421,7 @@ public final class TdApi {
     /// Pays for upgrade of a regular gift that is owned by another user or channel chat
     /// - Parameter ownerId: Identifier of the user or the channel chat that owns the gift
     /// - Parameter prepaidUpgradeHash: Prepaid upgrade hash as received along with the gift
-    /// - Parameter starCount: The amount of Telegram Stars the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
+    /// - Parameter starCount: The Telegram Star amount the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
     public func buyGiftUpgrade(
         ownerId: MessageSender?,
         prepaidUpgradeHash: String?,
@@ -23388,7 +23439,7 @@ public final class TdApi {
     /// Pays for upgrade of a regular gift that is owned by another user or channel chat
     /// - Parameter ownerId: Identifier of the user or the channel chat that owns the gift
     /// - Parameter prepaidUpgradeHash: Prepaid upgrade hash as received along with the gift
-    /// - Parameter starCount: The amount of Telegram Stars the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
+    /// - Parameter starCount: The Telegram Star amount the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func buyGiftUpgrade(
@@ -23408,7 +23459,7 @@ public final class TdApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter newOwnerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the transfer
+    /// - Parameter starCount: The Telegram Star amount required to pay for the transfer
     public func transferGift(
         businessConnectionId: String?,
         newOwnerId: MessageSender?,
@@ -23429,7 +23480,7 @@ public final class TdApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter newOwnerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the transfer
+    /// - Parameter starCount: The Telegram Star amount required to pay for the transfer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func transferGift(
@@ -23449,7 +23500,7 @@ public final class TdApi {
 
     /// Drops original details for an upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the operation
+    /// - Parameter starCount: The Telegram Star amount required to pay for the operation
     public func dropGiftOriginalDetails(
         receivedGiftId: String?,
         starCount: Int64?,
@@ -23464,7 +23515,7 @@ public final class TdApi {
 
     /// Drops original details for an upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The amount of Telegram Stars required to pay for the operation
+    /// - Parameter starCount: The Telegram Star amount required to pay for the operation
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func dropGiftOriginalDetails(
@@ -23564,31 +23615,31 @@ public final class TdApi {
     }
 
     /// Handles a pending gift purchase offer
-    /// - Parameter approve: Pass true to approve the request; pass false to decline it
+    /// - Parameter accept: Pass true to accept the request; pass false to reject it
     /// - Parameter messageId: Identifier of the message with the gift purchase offer
     public func processGiftPurchaseOffer(
-        approve: Bool?,
+        accept: Bool?,
         messageId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ProcessGiftPurchaseOffer(
-            approve: approve,
+            accept: accept,
             messageId: messageId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Handles a pending gift purchase offer
-    /// - Parameter approve: Pass true to approve the request; pass false to decline it
+    /// - Parameter accept: Pass true to accept the request; pass false to reject it
     /// - Parameter messageId: Identifier of the message with the gift purchase offer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func processGiftPurchaseOffer(
-        approve: Bool?,
+        accept: Bool?,
         messageId: Int64?
     ) async throws -> Ok {
         let query = ProcessGiftPurchaseOffer(
-            approve: approve,
+            accept: accept,
             messageId: messageId
         )
         return try await self.execute(query: query)
@@ -24947,7 +24998,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+    /// Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
     /// - Parameter chatId: Identifier of the supergroup chat
     /// - Parameter paidMessageStarCount: The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max"). The supergroup will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending
     public func setChatPaidMessageStarCount(
@@ -24962,7 +25013,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+    /// Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
     /// - Parameter chatId: Identifier of the supergroup chat
     /// - Parameter paidMessageStarCount: The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max"). The supergroup will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -27871,10 +27922,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+    /// Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
     /// - Parameter affiliate: The affiliate to which the affiliate program will be connected
     /// - Parameter botUserId: Identifier of the bot that created the program
-    /// - Returns: An affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+    /// - Returns: An affiliate program that was connected to the given affiliate by identifier of the bot that created the program
     public func getConnectedAffiliateProgram(
         affiliate: AffiliateType?,
         botUserId: Int64?,
@@ -27887,10 +27938,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+    /// Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
     /// - Parameter affiliate: The affiliate to which the affiliate program will be connected
     /// - Parameter botUserId: Identifier of the bot that created the program
-    /// - Returns: An affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+    /// - Returns: An affiliate program that was connected to the given affiliate by identifier of the bot that created the program
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getConnectedAffiliateProgram(
         affiliate: AffiliateType?,

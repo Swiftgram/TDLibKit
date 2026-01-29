@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -179,7 +179,7 @@ public struct TonTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
     /// The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
     public let commissionPerMille: Int
 
-    /// The amount of Toncoins that were received by the Telegram; in the smallest units of the currency
+    /// The Toncoin amount that was received by the Telegram; in the smallest units of the currency
     public let commissionToncoinAmount: Int64
 
     /// The gift

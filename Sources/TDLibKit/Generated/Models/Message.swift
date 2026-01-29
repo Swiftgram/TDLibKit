@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -115,6 +115,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Information about the suggested post; may be null if the message isn't a suggested post
     public let suggestedPostInfo: SuggestedPostInfo?
 
+    /// IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message
+    public let summaryLanguageCode: String
+
     /// Identifier of the topic within the chat to which the message belongs; may be null if none; may change when the chat is converted to a forum or back
     public let topicId: MessageTopic?
 
@@ -160,6 +163,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         senderId: MessageSender,
         sendingState: MessageSendingState?,
         suggestedPostInfo: SuggestedPostInfo?,
+        summaryLanguageCode: String,
         topicId: MessageTopic?,
         unreadReactions: [UnreadReaction],
         viaBotUserId: Int64
@@ -198,6 +202,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.senderId = senderId
         self.sendingState = sendingState
         self.suggestedPostInfo = suggestedPostInfo
+        self.summaryLanguageCode = summaryLanguageCode
         self.topicId = topicId
         self.unreadReactions = unreadReactions
         self.viaBotUserId = viaBotUserId

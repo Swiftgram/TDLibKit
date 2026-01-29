@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.59-cecbf129
-//  https://github.com/tdlib/td/tree/cecbf129
+//  Based on TDLib 1.8.60-cb863c16
+//  https://github.com/tdlib/td/tree/cb863c16
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum GiftResalePrice: Codable, Equatable, Hashable {
 /// Describes price of a resold gift in Telegram Stars
 public struct GiftResalePriceStar: Codable, Equatable, Hashable {
 
-    /// The amount of Telegram Stars expected to be paid for the gift. Must be in range getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max") for gifts put for resale
+    /// The Telegram Star amount expected to be paid for the gift. Must be in the range getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max") for gifts put for resale
     public let starCount: Int64
 
 
@@ -66,7 +66,7 @@ public struct GiftResalePriceStar: Codable, Equatable, Hashable {
 /// Describes price of a resold gift in Toncoins
 public struct GiftResalePriceTon: Codable, Equatable, Hashable {
 
-    /// The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max")
+    /// The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in the range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max")
     public let toncoinCentCount: Int64
 
 
