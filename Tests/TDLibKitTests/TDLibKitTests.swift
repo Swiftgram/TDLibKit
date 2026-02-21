@@ -111,6 +111,24 @@ class TDLibKitTests: XCTestCase {
 }
 
 class TDLibKitUnitTests: XCTestCase {
+
+    private func makeInlineKeyboardButton(text: String, type: String, typePayload: [String: Any] = [:]) -> InlineKeyboardButton {
+        var json: [String: Any] = [
+            "@type": "inlineKeyboardButton",
+            "text": text,
+            "icon_custom_emoji_id": 0,
+            "style": ["@type": "buttonStyleDefault"],
+            "type": ["@type": type]
+        ]
+        if !typePayload.isEmpty {
+            var typeObject = json["type"] as! [String: Any]
+            typeObject.merge(typePayload) { _, new in new }
+            json["type"] = typeObject
+        }
+
+        let data = try! JSONSerialization.data(withJSONObject: json)
+        return try! TDLibApi().decoder.decode(InlineKeyboardButton.self, from: data)
+    }
     
     func testEquatableStructs() {
         let struct1 = AddContact(contact: ImportedContact(firstName: "John", lastName: "Appleseed", note: FormattedText(entities: [], text: "empty"), phoneNumber: "+10000000000"), sharePhoneNumber: true, userId: 123456789)
@@ -126,7 +144,7 @@ class TDLibKitUnitTests: XCTestCase {
                 ReplyMarkupInlineKeyboard(
                     rows: [
                         [
-                            InlineKeyboardButton(text: "Buy me!", type: .inlineKeyboardButtonTypeBuy)
+                            makeInlineKeyboardButton(text: "Buy me!", type: "inlineKeyboardButtonTypeBuy")
                         ]
                     ]
                 )
@@ -138,11 +156,10 @@ class TDLibKitUnitTests: XCTestCase {
                 ReplyMarkupInlineKeyboard(
                     rows: [
                         [
-                            InlineKeyboardButton(
+                            makeInlineKeyboardButton(
                                 text: "Ate me!",
-                                type: .inlineKeyboardButtonTypeUrl(
-                                    InlineKeyboardButtonTypeUrl(url: "https://telegram.org")
-                                )
+                                type: "inlineKeyboardButtonTypeUrl",
+                                typePayload: ["url": "https://telegram.org"]
                             )
                         ]
                     ]
