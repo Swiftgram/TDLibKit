@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -13,9 +13,6 @@ import Foundation
 /// Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 /// This Swift enum is recursive.
 public indirect enum InternalLinkType: Codable, Equatable, Hashable {
-
-    /// The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
-    case internalLinkTypeActiveSessions
 
     /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     case internalLinkTypeAttachmentMenuBot(InternalLinkTypeAttachmentMenuBot)
@@ -38,11 +35,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
     case internalLinkTypeBusinessChat(InternalLinkTypeBusinessChat)
 
-    /// The link is a link to the Telegram Star purchase section of the application
-    case internalLinkTypeBuyStars(InternalLinkTypeBuyStars)
-
-    /// The link is a link to the change phone number section of the application
-    case internalLinkTypeChangePhoneNumber
+    /// The link is a link to the Call tab or page
+    case internalLinkTypeCallsPage(InternalLinkTypeCallsPage)
 
     /// The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
     case internalLinkTypeChatAffiliateProgram(InternalLinkTypeChatAffiliateProgram)
@@ -53,20 +47,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
     case internalLinkTypeChatFolderInvite(InternalLinkTypeChatFolderInvite)
 
-    /// The link is a link to the folder section of the application settings
-    case internalLinkTypeChatFolderSettings
-
     /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
-    /// The link is a link to the default message auto-delete timer settings section of the application settings
-    case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+    /// The link is a link that allows to select some chats
+    case internalLinkTypeChatSelection
+
+    /// The link is a link to the Contacts tab or page
+    case internalLinkTypeContactsPage(InternalLinkTypeContactsPage)
 
     /// The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
     case internalLinkTypeDirectMessagesChat(InternalLinkTypeDirectMessagesChat)
-
-    /// The link is a link to the edit profile section of the application settings
-    case internalLinkTypeEditProfileSettings
 
     /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
@@ -89,14 +80,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
     case internalLinkTypeLanguagePack(InternalLinkTypeLanguagePack)
 
-    /// The link is a link to the language section of the application settings
-    case internalLinkTypeLanguageSettings
-
     /// The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat, then find a live story among active stories of the chat, and then joinLiveStory to join the live story
     case internalLinkTypeLiveStory(InternalLinkTypeLiveStory)
-
-    /// The link is a link to the login email set up section of the application settings, forcing set up of the login email
-    case internalLinkTypeLoginEmailSettings
 
     /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
     case internalLinkTypeMainWebApp(InternalLinkTypeMainWebApp)
@@ -107,35 +92,35 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
     case internalLinkTypeMessageDraft(InternalLinkTypeMessageDraft)
 
-    /// The link is a link to the screen with information about Telegram Star balance and transactions of the current user
-    case internalLinkTypeMyStars
+    /// The link is a link to the My Profile application page
+    case internalLinkTypeMyProfilePage(InternalLinkTypeMyProfilePage)
 
-    /// The link is a link to the screen with information about Toncoin balance and transactions of the current user
-    case internalLinkTypeMyToncoins
+    /// The link is a link to the screen for creating a new channel chat
+    case internalLinkTypeNewChannelChat
+
+    /// The link is a link to the screen for creating a new group chat
+    case internalLinkTypeNewGroupChat
+
+    /// The link is a link to the screen for creating a new private chat with a contact
+    case internalLinkTypeNewPrivateChat
+
+    /// The link is a link to open the story posting interface
+    case internalLinkTypeNewStory(InternalLinkTypeNewStory)
 
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
-    /// The link is a link to the password section of the application settings
-    case internalLinkTypePasswordSettings
-
     /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
 
-    /// The link is a link to the phone number privacy settings section of the application settings
-    case internalLinkTypePhoneNumberPrivacySettings
-
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
-    case internalLinkTypePremiumFeatures(InternalLinkTypePremiumFeatures)
-
-    /// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
-    case internalLinkTypePremiumGift(InternalLinkTypePremiumGift)
+    case internalLinkTypePremiumFeaturesPage(InternalLinkTypePremiumFeaturesPage)
 
     /// The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
     case internalLinkTypePremiumGiftCode(InternalLinkTypePremiumGiftCode)
 
-    /// The link is a link to the privacy and security section of the application settings
-    case internalLinkTypePrivacyAndSecuritySettings
+    /// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
+    case internalLinkTypePremiumGiftPurchase(InternalLinkTypePremiumGiftPurchase)
 
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
@@ -149,8 +134,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link forces restore of App Store purchases when opened. For official iOS application only
     case internalLinkTypeRestorePurchases
 
+    /// The link is a link to the Saved Messages chat. Call createPrivateChat with getOption("my_id") and open the chat
+    case internalLinkTypeSavedMessages
+
+    /// The link is a link to the global chat and messages search field
+    case internalLinkTypeSearch
+
     /// The link is a link to application settings
-    case internalLinkTypeSettings
+    case internalLinkTypeSettings(InternalLinkTypeSettings)
+
+    /// The link is a link to the Telegram Star purchase section of the application
+    case internalLinkTypeStarPurchase(InternalLinkTypeStarPurchase)
 
     /// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     case internalLinkTypeStickerSet(InternalLinkTypeStickerSet)
@@ -164,14 +158,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
-    /// The link is a link to the theme section of the application settings
-    case internalLinkTypeThemeSettings
-
     /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     case internalLinkTypeUnknownDeepLink(InternalLinkTypeUnknownDeepLink)
-
-    /// The link is a link to an unsupported proxy. An alert can be shown to the user
-    case internalLinkTypeUnsupportedProxy
 
     /// The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
     case internalLinkTypeUpgradedGift(InternalLinkTypeUpgradedGift)
@@ -190,7 +178,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
 
     private enum Kind: String, Codable {
-        case internalLinkTypeActiveSessions
         case internalLinkTypeAttachmentMenuBot
         case internalLinkTypeAuthenticationCode
         case internalLinkTypeBackground
@@ -198,16 +185,14 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
         case internalLinkTypeBusinessChat
-        case internalLinkTypeBuyStars
-        case internalLinkTypeChangePhoneNumber
+        case internalLinkTypeCallsPage
         case internalLinkTypeChatAffiliateProgram
         case internalLinkTypeChatBoost
         case internalLinkTypeChatFolderInvite
-        case internalLinkTypeChatFolderSettings
         case internalLinkTypeChatInvite
-        case internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+        case internalLinkTypeChatSelection
+        case internalLinkTypeContactsPage
         case internalLinkTypeDirectMessagesChat
-        case internalLinkTypeEditProfileSettings
         case internalLinkTypeGame
         case internalLinkTypeGiftAuction
         case internalLinkTypeGiftCollection
@@ -215,34 +200,33 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeInstantView
         case internalLinkTypeInvoice
         case internalLinkTypeLanguagePack
-        case internalLinkTypeLanguageSettings
         case internalLinkTypeLiveStory
-        case internalLinkTypeLoginEmailSettings
         case internalLinkTypeMainWebApp
         case internalLinkTypeMessage
         case internalLinkTypeMessageDraft
-        case internalLinkTypeMyStars
-        case internalLinkTypeMyToncoins
+        case internalLinkTypeMyProfilePage
+        case internalLinkTypeNewChannelChat
+        case internalLinkTypeNewGroupChat
+        case internalLinkTypeNewPrivateChat
+        case internalLinkTypeNewStory
         case internalLinkTypePassportDataRequest
-        case internalLinkTypePasswordSettings
         case internalLinkTypePhoneNumberConfirmation
-        case internalLinkTypePhoneNumberPrivacySettings
-        case internalLinkTypePremiumFeatures
-        case internalLinkTypePremiumGift
+        case internalLinkTypePremiumFeaturesPage
         case internalLinkTypePremiumGiftCode
-        case internalLinkTypePrivacyAndSecuritySettings
+        case internalLinkTypePremiumGiftPurchase
         case internalLinkTypeProxy
         case internalLinkTypePublicChat
         case internalLinkTypeQrCodeAuthentication
         case internalLinkTypeRestorePurchases
+        case internalLinkTypeSavedMessages
+        case internalLinkTypeSearch
         case internalLinkTypeSettings
+        case internalLinkTypeStarPurchase
         case internalLinkTypeStickerSet
         case internalLinkTypeStory
         case internalLinkTypeStoryAlbum
         case internalLinkTypeTheme
-        case internalLinkTypeThemeSettings
         case internalLinkTypeUnknownDeepLink
-        case internalLinkTypeUnsupportedProxy
         case internalLinkTypeUpgradedGift
         case internalLinkTypeUserPhoneNumber
         case internalLinkTypeUserToken
@@ -254,8 +238,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         let container = try decoder.container(keyedBy: DtoCodingKeys.self)
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
-        case .internalLinkTypeActiveSessions:
-            self = .internalLinkTypeActiveSessions
         case .internalLinkTypeAttachmentMenuBot:
             let value = try InternalLinkTypeAttachmentMenuBot(from: decoder)
             self = .internalLinkTypeAttachmentMenuBot(value)
@@ -277,11 +259,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBusinessChat:
             let value = try InternalLinkTypeBusinessChat(from: decoder)
             self = .internalLinkTypeBusinessChat(value)
-        case .internalLinkTypeBuyStars:
-            let value = try InternalLinkTypeBuyStars(from: decoder)
-            self = .internalLinkTypeBuyStars(value)
-        case .internalLinkTypeChangePhoneNumber:
-            self = .internalLinkTypeChangePhoneNumber
+        case .internalLinkTypeCallsPage:
+            let value = try InternalLinkTypeCallsPage(from: decoder)
+            self = .internalLinkTypeCallsPage(value)
         case .internalLinkTypeChatAffiliateProgram:
             let value = try InternalLinkTypeChatAffiliateProgram(from: decoder)
             self = .internalLinkTypeChatAffiliateProgram(value)
@@ -291,18 +271,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeChatFolderInvite:
             let value = try InternalLinkTypeChatFolderInvite(from: decoder)
             self = .internalLinkTypeChatFolderInvite(value)
-        case .internalLinkTypeChatFolderSettings:
-            self = .internalLinkTypeChatFolderSettings
         case .internalLinkTypeChatInvite:
             let value = try InternalLinkTypeChatInvite(from: decoder)
             self = .internalLinkTypeChatInvite(value)
-        case .internalLinkTypeDefaultMessageAutoDeleteTimerSettings:
-            self = .internalLinkTypeDefaultMessageAutoDeleteTimerSettings
+        case .internalLinkTypeChatSelection:
+            self = .internalLinkTypeChatSelection
+        case .internalLinkTypeContactsPage:
+            let value = try InternalLinkTypeContactsPage(from: decoder)
+            self = .internalLinkTypeContactsPage(value)
         case .internalLinkTypeDirectMessagesChat:
             let value = try InternalLinkTypeDirectMessagesChat(from: decoder)
             self = .internalLinkTypeDirectMessagesChat(value)
-        case .internalLinkTypeEditProfileSettings:
-            self = .internalLinkTypeEditProfileSettings
         case .internalLinkTypeGame:
             let value = try InternalLinkTypeGame(from: decoder)
             self = .internalLinkTypeGame(value)
@@ -324,13 +303,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeLanguagePack:
             let value = try InternalLinkTypeLanguagePack(from: decoder)
             self = .internalLinkTypeLanguagePack(value)
-        case .internalLinkTypeLanguageSettings:
-            self = .internalLinkTypeLanguageSettings
         case .internalLinkTypeLiveStory:
             let value = try InternalLinkTypeLiveStory(from: decoder)
             self = .internalLinkTypeLiveStory(value)
-        case .internalLinkTypeLoginEmailSettings:
-            self = .internalLinkTypeLoginEmailSettings
         case .internalLinkTypeMainWebApp:
             let value = try InternalLinkTypeMainWebApp(from: decoder)
             self = .internalLinkTypeMainWebApp(value)
@@ -340,31 +315,33 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeMessageDraft:
             let value = try InternalLinkTypeMessageDraft(from: decoder)
             self = .internalLinkTypeMessageDraft(value)
-        case .internalLinkTypeMyStars:
-            self = .internalLinkTypeMyStars
-        case .internalLinkTypeMyToncoins:
-            self = .internalLinkTypeMyToncoins
+        case .internalLinkTypeMyProfilePage:
+            let value = try InternalLinkTypeMyProfilePage(from: decoder)
+            self = .internalLinkTypeMyProfilePage(value)
+        case .internalLinkTypeNewChannelChat:
+            self = .internalLinkTypeNewChannelChat
+        case .internalLinkTypeNewGroupChat:
+            self = .internalLinkTypeNewGroupChat
+        case .internalLinkTypeNewPrivateChat:
+            self = .internalLinkTypeNewPrivateChat
+        case .internalLinkTypeNewStory:
+            let value = try InternalLinkTypeNewStory(from: decoder)
+            self = .internalLinkTypeNewStory(value)
         case .internalLinkTypePassportDataRequest:
             let value = try InternalLinkTypePassportDataRequest(from: decoder)
             self = .internalLinkTypePassportDataRequest(value)
-        case .internalLinkTypePasswordSettings:
-            self = .internalLinkTypePasswordSettings
         case .internalLinkTypePhoneNumberConfirmation:
             let value = try InternalLinkTypePhoneNumberConfirmation(from: decoder)
             self = .internalLinkTypePhoneNumberConfirmation(value)
-        case .internalLinkTypePhoneNumberPrivacySettings:
-            self = .internalLinkTypePhoneNumberPrivacySettings
-        case .internalLinkTypePremiumFeatures:
-            let value = try InternalLinkTypePremiumFeatures(from: decoder)
-            self = .internalLinkTypePremiumFeatures(value)
-        case .internalLinkTypePremiumGift:
-            let value = try InternalLinkTypePremiumGift(from: decoder)
-            self = .internalLinkTypePremiumGift(value)
+        case .internalLinkTypePremiumFeaturesPage:
+            let value = try InternalLinkTypePremiumFeaturesPage(from: decoder)
+            self = .internalLinkTypePremiumFeaturesPage(value)
         case .internalLinkTypePremiumGiftCode:
             let value = try InternalLinkTypePremiumGiftCode(from: decoder)
             self = .internalLinkTypePremiumGiftCode(value)
-        case .internalLinkTypePrivacyAndSecuritySettings:
-            self = .internalLinkTypePrivacyAndSecuritySettings
+        case .internalLinkTypePremiumGiftPurchase:
+            let value = try InternalLinkTypePremiumGiftPurchase(from: decoder)
+            self = .internalLinkTypePremiumGiftPurchase(value)
         case .internalLinkTypeProxy:
             let value = try InternalLinkTypeProxy(from: decoder)
             self = .internalLinkTypeProxy(value)
@@ -375,8 +352,16 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypeQrCodeAuthentication
         case .internalLinkTypeRestorePurchases:
             self = .internalLinkTypeRestorePurchases
+        case .internalLinkTypeSavedMessages:
+            self = .internalLinkTypeSavedMessages
+        case .internalLinkTypeSearch:
+            self = .internalLinkTypeSearch
         case .internalLinkTypeSettings:
-            self = .internalLinkTypeSettings
+            let value = try InternalLinkTypeSettings(from: decoder)
+            self = .internalLinkTypeSettings(value)
+        case .internalLinkTypeStarPurchase:
+            let value = try InternalLinkTypeStarPurchase(from: decoder)
+            self = .internalLinkTypeStarPurchase(value)
         case .internalLinkTypeStickerSet:
             let value = try InternalLinkTypeStickerSet(from: decoder)
             self = .internalLinkTypeStickerSet(value)
@@ -389,13 +374,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeTheme:
             let value = try InternalLinkTypeTheme(from: decoder)
             self = .internalLinkTypeTheme(value)
-        case .internalLinkTypeThemeSettings:
-            self = .internalLinkTypeThemeSettings
         case .internalLinkTypeUnknownDeepLink:
             let value = try InternalLinkTypeUnknownDeepLink(from: decoder)
             self = .internalLinkTypeUnknownDeepLink(value)
-        case .internalLinkTypeUnsupportedProxy:
-            self = .internalLinkTypeUnsupportedProxy
         case .internalLinkTypeUpgradedGift:
             let value = try InternalLinkTypeUpgradedGift(from: decoder)
             self = .internalLinkTypeUpgradedGift(value)
@@ -417,8 +398,6 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .internalLinkTypeActiveSessions:
-            try container.encode(Kind.internalLinkTypeActiveSessions, forKey: .type)
         case .internalLinkTypeAttachmentMenuBot(let value):
             try container.encode(Kind.internalLinkTypeAttachmentMenuBot, forKey: .type)
             try value.encode(to: encoder)
@@ -440,11 +419,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBusinessChat(let value):
             try container.encode(Kind.internalLinkTypeBusinessChat, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeBuyStars(let value):
-            try container.encode(Kind.internalLinkTypeBuyStars, forKey: .type)
+        case .internalLinkTypeCallsPage(let value):
+            try container.encode(Kind.internalLinkTypeCallsPage, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeChangePhoneNumber:
-            try container.encode(Kind.internalLinkTypeChangePhoneNumber, forKey: .type)
         case .internalLinkTypeChatAffiliateProgram(let value):
             try container.encode(Kind.internalLinkTypeChatAffiliateProgram, forKey: .type)
             try value.encode(to: encoder)
@@ -454,18 +431,17 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeChatFolderInvite(let value):
             try container.encode(Kind.internalLinkTypeChatFolderInvite, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeChatFolderSettings:
-            try container.encode(Kind.internalLinkTypeChatFolderSettings, forKey: .type)
         case .internalLinkTypeChatInvite(let value):
             try container.encode(Kind.internalLinkTypeChatInvite, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeDefaultMessageAutoDeleteTimerSettings:
-            try container.encode(Kind.internalLinkTypeDefaultMessageAutoDeleteTimerSettings, forKey: .type)
+        case .internalLinkTypeChatSelection:
+            try container.encode(Kind.internalLinkTypeChatSelection, forKey: .type)
+        case .internalLinkTypeContactsPage(let value):
+            try container.encode(Kind.internalLinkTypeContactsPage, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeDirectMessagesChat(let value):
             try container.encode(Kind.internalLinkTypeDirectMessagesChat, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeEditProfileSettings:
-            try container.encode(Kind.internalLinkTypeEditProfileSettings, forKey: .type)
         case .internalLinkTypeGame(let value):
             try container.encode(Kind.internalLinkTypeGame, forKey: .type)
             try value.encode(to: encoder)
@@ -487,13 +463,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeLanguagePack(let value):
             try container.encode(Kind.internalLinkTypeLanguagePack, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeLanguageSettings:
-            try container.encode(Kind.internalLinkTypeLanguageSettings, forKey: .type)
         case .internalLinkTypeLiveStory(let value):
             try container.encode(Kind.internalLinkTypeLiveStory, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeLoginEmailSettings:
-            try container.encode(Kind.internalLinkTypeLoginEmailSettings, forKey: .type)
         case .internalLinkTypeMainWebApp(let value):
             try container.encode(Kind.internalLinkTypeMainWebApp, forKey: .type)
             try value.encode(to: encoder)
@@ -503,31 +475,33 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeMessageDraft(let value):
             try container.encode(Kind.internalLinkTypeMessageDraft, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeMyStars:
-            try container.encode(Kind.internalLinkTypeMyStars, forKey: .type)
-        case .internalLinkTypeMyToncoins:
-            try container.encode(Kind.internalLinkTypeMyToncoins, forKey: .type)
+        case .internalLinkTypeMyProfilePage(let value):
+            try container.encode(Kind.internalLinkTypeMyProfilePage, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeNewChannelChat:
+            try container.encode(Kind.internalLinkTypeNewChannelChat, forKey: .type)
+        case .internalLinkTypeNewGroupChat:
+            try container.encode(Kind.internalLinkTypeNewGroupChat, forKey: .type)
+        case .internalLinkTypeNewPrivateChat:
+            try container.encode(Kind.internalLinkTypeNewPrivateChat, forKey: .type)
+        case .internalLinkTypeNewStory(let value):
+            try container.encode(Kind.internalLinkTypeNewStory, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypePassportDataRequest(let value):
             try container.encode(Kind.internalLinkTypePassportDataRequest, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypePasswordSettings:
-            try container.encode(Kind.internalLinkTypePasswordSettings, forKey: .type)
         case .internalLinkTypePhoneNumberConfirmation(let value):
             try container.encode(Kind.internalLinkTypePhoneNumberConfirmation, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypePhoneNumberPrivacySettings:
-            try container.encode(Kind.internalLinkTypePhoneNumberPrivacySettings, forKey: .type)
-        case .internalLinkTypePremiumFeatures(let value):
-            try container.encode(Kind.internalLinkTypePremiumFeatures, forKey: .type)
-            try value.encode(to: encoder)
-        case .internalLinkTypePremiumGift(let value):
-            try container.encode(Kind.internalLinkTypePremiumGift, forKey: .type)
+        case .internalLinkTypePremiumFeaturesPage(let value):
+            try container.encode(Kind.internalLinkTypePremiumFeaturesPage, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypePremiumGiftCode(let value):
             try container.encode(Kind.internalLinkTypePremiumGiftCode, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypePrivacyAndSecuritySettings:
-            try container.encode(Kind.internalLinkTypePrivacyAndSecuritySettings, forKey: .type)
+        case .internalLinkTypePremiumGiftPurchase(let value):
+            try container.encode(Kind.internalLinkTypePremiumGiftPurchase, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeProxy(let value):
             try container.encode(Kind.internalLinkTypeProxy, forKey: .type)
             try value.encode(to: encoder)
@@ -538,8 +512,16 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try container.encode(Kind.internalLinkTypeQrCodeAuthentication, forKey: .type)
         case .internalLinkTypeRestorePurchases:
             try container.encode(Kind.internalLinkTypeRestorePurchases, forKey: .type)
-        case .internalLinkTypeSettings:
+        case .internalLinkTypeSavedMessages:
+            try container.encode(Kind.internalLinkTypeSavedMessages, forKey: .type)
+        case .internalLinkTypeSearch:
+            try container.encode(Kind.internalLinkTypeSearch, forKey: .type)
+        case .internalLinkTypeSettings(let value):
             try container.encode(Kind.internalLinkTypeSettings, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeStarPurchase(let value):
+            try container.encode(Kind.internalLinkTypeStarPurchase, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeStickerSet(let value):
             try container.encode(Kind.internalLinkTypeStickerSet, forKey: .type)
             try value.encode(to: encoder)
@@ -552,13 +534,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeTheme(let value):
             try container.encode(Kind.internalLinkTypeTheme, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeThemeSettings:
-            try container.encode(Kind.internalLinkTypeThemeSettings, forKey: .type)
         case .internalLinkTypeUnknownDeepLink(let value):
             try container.encode(Kind.internalLinkTypeUnknownDeepLink, forKey: .type)
             try value.encode(to: encoder)
-        case .internalLinkTypeUnsupportedProxy:
-            try container.encode(Kind.internalLinkTypeUnsupportedProxy, forKey: .type)
         case .internalLinkTypeUpgradedGift(let value):
             try container.encode(Kind.internalLinkTypeUpgradedGift, forKey: .type)
             try value.encode(to: encoder)
@@ -705,22 +683,15 @@ public struct InternalLinkTypeBusinessChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to the Telegram Star purchase section of the application
-public struct InternalLinkTypeBuyStars: Codable, Equatable, Hashable {
+/// The link is a link to the Call tab or page
+public struct InternalLinkTypeCallsPage: Codable, Equatable, Hashable {
 
-    /// Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
-    public let purpose: String
-
-    /// The number of Telegram Stars that must be owned by the user
-    public let starCount: Int64
+    /// Section of the page; may be one of "", "all", "missed", "edit", "show-tab", "start-call"
+    public let section: String
 
 
-    public init(
-        purpose: String,
-        starCount: Int64
-    ) {
-        self.purpose = purpose
-        self.starCount = starCount
+    public init(section: String) {
+        self.section = section
     }
 }
 
@@ -776,6 +747,18 @@ public struct InternalLinkTypeChatInvite: Codable, Equatable, Hashable {
 
     public init(inviteLink: String) {
         self.inviteLink = inviteLink
+    }
+}
+
+/// The link is a link to the Contacts tab or page
+public struct InternalLinkTypeContactsPage: Codable, Equatable, Hashable {
+
+    /// Section of the page; may be one of "", "search", "sort", "new", "invite", "manage"
+    public let section: String
+
+
+    public init(section: String) {
+        self.section = section
     }
 }
 
@@ -963,6 +946,30 @@ public struct InternalLinkTypeMessageDraft: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to the My Profile application page
+public struct InternalLinkTypeMyProfilePage: Codable, Equatable, Hashable {
+
+    /// Section of the page; may be one of "", "posts", "posts/all-stories", "posts/add-album", "gifts", "archived-posts"
+    public let section: String
+
+
+    public init(section: String) {
+        self.section = section
+    }
+}
+
+/// The link is a link to open the story posting interface
+public struct InternalLinkTypeNewStory: Codable, Equatable, Hashable {
+
+    /// The type of the content of the story to post; may be null if unspecified
+    public let contentType: StoryContentType?
+
+
+    public init(contentType: StoryContentType?) {
+        self.contentType = contentType
+    }
+}
+
 /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
 public struct InternalLinkTypePassportDataRequest: Codable, Equatable, Hashable {
 
@@ -1017,19 +1024,7 @@ public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable, Hasha
 }
 
 /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
-public struct InternalLinkTypePremiumFeatures: Codable, Equatable, Hashable {
-
-    /// Referrer specified in the link
-    public let referrer: String
-
-
-    public init(referrer: String) {
-        self.referrer = referrer
-    }
-}
-
-/// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
-public struct InternalLinkTypePremiumGift: Codable, Equatable, Hashable {
+public struct InternalLinkTypePremiumFeaturesPage: Codable, Equatable, Hashable {
 
     /// Referrer specified in the link
     public let referrer: String
@@ -1052,27 +1047,27 @@ public struct InternalLinkTypePremiumGiftCode: Codable, Equatable, Hashable {
     }
 }
 
+/// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
+public struct InternalLinkTypePremiumGiftPurchase: Codable, Equatable, Hashable {
+
+    /// Referrer specified in the link
+    public let referrer: String
+
+
+    public init(referrer: String) {
+        self.referrer = referrer
+    }
+}
+
 /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
 public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
 
-    /// Proxy server port
-    public let port: Int
-
-    /// Proxy server domain or IP address
-    public let server: String
-
-    /// Type of the proxy
-    public let type: ProxyType
+    /// The proxy; may be null if the proxy is unsupported, in which case an alert can be shown to the user
+    public let proxy: Proxy?
 
 
-    public init(
-        port: Int,
-        server: String,
-        type: ProxyType
-    ) {
-        self.port = port
-        self.server = server
-        self.type = type
+    public init(proxy: Proxy?) {
+        self.proxy = proxy
     }
 }
 
@@ -1097,6 +1092,37 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
         self.chatUsername = chatUsername
         self.draftText = draftText
         self.openProfile = openProfile
+    }
+}
+
+/// The link is a link to application settings
+public struct InternalLinkTypeSettings: Codable, Equatable, Hashable {
+
+    /// Section of the application settings to open; may be null if none
+    public let section: SettingsSection?
+
+
+    public init(section: SettingsSection?) {
+        self.section = section
+    }
+}
+
+/// The link is a link to the Telegram Star purchase section of the application
+public struct InternalLinkTypeStarPurchase: Codable, Equatable, Hashable {
+
+    /// Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+    public let purpose: String
+
+    /// The number of Telegram Stars that must be owned by the user
+    public let starCount: Int64
+
+
+    public init(
+        purpose: String,
+        starCount: Int64
+    ) {
+        self.purpose = purpose
+        self.starCount = starCount
     }
 }
 

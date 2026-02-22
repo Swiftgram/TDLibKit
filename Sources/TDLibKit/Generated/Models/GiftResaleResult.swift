@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public indirect enum GiftResaleResult: Codable, Equatable, Hashable {
 
     /// Operation was successfully completed
-    case giftResaleResultOk
+    case giftResaleResultOk(GiftResaleResultOk)
 
     /// Operation has failed, because price has increased. If the price has decreased, then the buying will succeed anyway
     case giftResaleResultPriceIncreased(GiftResaleResultPriceIncreased)
@@ -30,7 +30,8 @@ public indirect enum GiftResaleResult: Codable, Equatable, Hashable {
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
         case .giftResaleResultOk:
-            self = .giftResaleResultOk
+            let value = try GiftResaleResultOk(from: decoder)
+            self = .giftResaleResultOk(value)
         case .giftResaleResultPriceIncreased:
             let value = try GiftResaleResultPriceIncreased(from: decoder)
             self = .giftResaleResultPriceIncreased(value)
@@ -40,12 +41,25 @@ public indirect enum GiftResaleResult: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .giftResaleResultOk:
+        case .giftResaleResultOk(let value):
             try container.encode(Kind.giftResaleResultOk, forKey: .type)
+            try value.encode(to: encoder)
         case .giftResaleResultPriceIncreased(let value):
             try container.encode(Kind.giftResaleResultPriceIncreased, forKey: .type)
             try value.encode(to: encoder)
         }
+    }
+}
+
+/// Operation was successfully completed
+public struct GiftResaleResultOk: Codable, Equatable, Hashable {
+
+    /// Unique identifier of the received gift; only for the gifts sent to the current user
+    public let receivedGiftId: String
+
+
+    public init(receivedGiftId: String) {
+        self.receivedGiftId = receivedGiftId
     }
 }
 

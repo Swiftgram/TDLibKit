@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct PlaceGiftAuctionBid: Codable, Equatable, Hashable {
     /// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
     public let text: FormattedText?
 
-    /// Identifier of the user that will receive the gift
+    /// Identifier of the user who will receive the gift
     public let userId: Int64?
 
 

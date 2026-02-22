@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -12,6 +12,12 @@ import Foundation
 
 /// Represents a single button in an inline keyboard
 public struct InlineKeyboardButton: Codable, Equatable, Hashable {
+
+    /// Identifier of the custom emoji that must be shown on the button; 0 if none
+    public let iconCustomEmojiId: TdInt64
+
+    /// Style of the button
+    public let style: ButtonStyle
 
     /// Text of the button
     public let text: String
@@ -21,9 +27,13 @@ public struct InlineKeyboardButton: Codable, Equatable, Hashable {
 
 
     public init(
+        iconCustomEmojiId: TdInt64,
+        style: ButtonStyle,
         text: String,
         type: InlineKeyboardButtonType
     ) {
+        self.iconCustomEmojiId = iconCustomEmojiId
+        self.style = style
         self.text = text
         self.type = type
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -95,7 +95,7 @@ public struct ChatBoostSourceGiveaway: Codable, Equatable, Hashable {
     /// Number of Telegram Stars distributed among winners of the giveaway
     public let starCount: Int64
 
-    /// Identifier of a user that won in the giveaway; 0 if none
+    /// Identifier of a user who won in the giveaway; 0 if none
     public let userId: Int64
 
 

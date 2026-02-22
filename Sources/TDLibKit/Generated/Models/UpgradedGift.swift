@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -19,8 +19,11 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// True, if an offer to purchase the gift can be sent using sendGiftPurchaseOffer
     public let canSendPurchaseOffer: Bool
 
-    /// Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none
+    /// Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none or unknown
     public let colors: UpgradedGiftColors?
+
+    /// Probability that the gift adds to the chance of successful crafting of a new gift; 0 if the gift can't be used for crafting
+    public let craftProbabilityPerMille: Int
 
     /// Address of the gift NFT in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
     public let giftAddress: String
@@ -30,6 +33,12 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the gift
     public let id: TdInt64
+
+    /// True, if the gift was used to craft another gift
+    public let isBurned: Bool
+
+    /// True, if the gift was craft from another gifts
+    public let isCrafted: Bool
 
     /// True, if the original gift could have been bought only by Telegram Premium subscribers
     public let isPremium: Bool
@@ -96,9 +105,12 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         backdrop: UpgradedGiftBackdrop,
         canSendPurchaseOffer: Bool,
         colors: UpgradedGiftColors?,
+        craftProbabilityPerMille: Int,
         giftAddress: String,
         hostId: MessageSender?,
         id: TdInt64,
+        isBurned: Bool,
+        isCrafted: Bool,
         isPremium: Bool,
         isThemeAvailable: Bool,
         maxUpgradedCount: Int,
@@ -123,9 +135,12 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.backdrop = backdrop
         self.canSendPurchaseOffer = canSendPurchaseOffer
         self.colors = colors
+        self.craftProbabilityPerMille = craftProbabilityPerMille
         self.giftAddress = giftAddress
         self.hostId = hostId
         self.id = id
+        self.isBurned = isBurned
+        self.isCrafted = isCrafted
         self.isPremium = isPremium
         self.isThemeAvailable = isThemeAvailable
         self.maxUpgradedCount = maxUpgradedCount

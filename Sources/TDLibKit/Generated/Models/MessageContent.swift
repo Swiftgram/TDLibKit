@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -120,6 +120,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A deleted chat photo
     case messageChatDeletePhoto
+
+    /// The owner of the chat has left
+    case messageChatOwnerLeft(MessageChatOwnerLeft)
+
+    /// The owner of the chat has changed
+    case messageChatOwnerChanged(MessageChatOwnerChanged)
 
     /// New chat members were added
     case messageChatAddMembers(MessageChatAddMembers)
@@ -330,6 +336,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageChatChangeTitle
         case messageChatChangePhoto
         case messageChatDeletePhoto
+        case messageChatOwnerLeft
+        case messageChatOwnerChanged
         case messageChatAddMembers
         case messageChatJoinByLink
         case messageChatJoinByRequest
@@ -496,6 +504,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             self = .messageChatChangePhoto(value)
         case .messageChatDeletePhoto:
             self = .messageChatDeletePhoto
+        case .messageChatOwnerLeft:
+            let value = try MessageChatOwnerLeft(from: decoder)
+            self = .messageChatOwnerLeft(value)
+        case .messageChatOwnerChanged:
+            let value = try MessageChatOwnerChanged(from: decoder)
+            self = .messageChatOwnerChanged(value)
         case .messageChatAddMembers:
             let value = try MessageChatAddMembers(from: decoder)
             self = .messageChatAddMembers(value)
@@ -771,6 +785,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageChatDeletePhoto:
             try container.encode(Kind.messageChatDeletePhoto, forKey: .type)
+        case .messageChatOwnerLeft(let value):
+            try container.encode(Kind.messageChatOwnerLeft, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChatOwnerChanged(let value):
+            try container.encode(Kind.messageChatOwnerChanged, forKey: .type)
+            try value.encode(to: encoder)
         case .messageChatAddMembers(let value):
             try container.encode(Kind.messageChatAddMembers, forKey: .type)
             try value.encode(to: encoder)
@@ -1519,6 +1539,9 @@ public struct MessageGroupCall: Codable, Equatable, Hashable {
     /// Identifiers of some other call participants
     public let otherParticipantIds: [MessageSender]
 
+    /// Persistent unique group call identifier
+    public let uniqueId: TdInt64
+
     /// True, if the called user missed or declined the call
     public let wasMissed: Bool
 
@@ -1528,12 +1551,14 @@ public struct MessageGroupCall: Codable, Equatable, Hashable {
         isActive: Bool,
         isVideo: Bool,
         otherParticipantIds: [MessageSender],
+        uniqueId: TdInt64,
         wasMissed: Bool
     ) {
         self.duration = duration
         self.isActive = isActive
         self.isVideo = isVideo
         self.otherParticipantIds = otherParticipantIds
+        self.uniqueId = uniqueId
         self.wasMissed = wasMissed
     }
 }
@@ -1652,6 +1677,30 @@ public struct MessageChatChangePhoto: Codable, Equatable, Hashable {
 
     public init(photo: ChatPhoto) {
         self.photo = photo
+    }
+}
+
+/// The owner of the chat has left
+public struct MessageChatOwnerLeft: Codable, Equatable, Hashable {
+
+    /// Identifier of the user who will become the new owner of the chat if the previous owner isn't return; 0 if none
+    public let newOwnerUserId: Int64
+
+
+    public init(newOwnerUserId: Int64) {
+        self.newOwnerUserId = newOwnerUserId
+    }
+}
+
+/// The owner of the chat has changed
+public struct MessageChatOwnerChanged: Codable, Equatable, Hashable {
+
+    /// Identifier of the user who is the new owner of the chat
+    public let newOwnerUserId: Int64
+
+
+    public init(newOwnerUserId: Int64) {
+        self.newOwnerUserId = newOwnerUserId
     }
 }
 
@@ -2086,13 +2135,13 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// Number of days the Telegram Premium subscription will be active
     public let dayCount: Int
 
-    /// The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
+    /// The identifier of a user who gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
     /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
     public let monthCount: Int
 
-    /// The identifier of a user that received Telegram Premium; 0 if the gift is incoming
+    /// The identifier of a user who received Telegram Premium; 0 if the gift is incoming
     public let receiverUserId: Int64
 
     /// A sticker to be shown in the message; may be null if unknown
@@ -2136,7 +2185,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
     /// The gift code
     public let code: String
 
-    /// Identifier of a chat or a user that created the gift code; may be null if unknown
+    /// Identifier of a chat or a user who created the gift code; may be null if unknown
     public let creatorId: MessageSender?
 
     /// Cryptocurrency used to pay for the gift; may be empty if none or unknown
@@ -2345,10 +2394,10 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
     /// Currency for the paid amount
     public let currency: String
 
-    /// The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
+    /// The identifier of a user who gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
-    /// The identifier of a user that received Telegram Stars; 0 if the gift is incoming
+    /// The identifier of a user who received Telegram Stars; 0 if the gift is incoming
     public let receiverUserId: Int64
 
     /// Number of Telegram Stars that were gifted
@@ -2387,10 +2436,10 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
 /// Toncoins were gifted to a user
 public struct MessageGiftedTon: Codable, Equatable, Hashable {
 
-    /// The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing
+    /// The identifier of a user who gifted Toncoins; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
-    /// The identifier of a user that received Toncoins; 0 if the gift is incoming
+    /// The identifier of a user who received Toncoins; 0 if the gift is incoming
     public let receiverUserId: Int64
 
     /// A sticker to be shown in the message; may be null if unknown
@@ -2567,6 +2616,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift can be transferred to another owner; only for the receiver of the gift
     public let canBeTransferred: Bool
 
+    /// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+    public let craftDate: Int
+
     /// Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift
     public let dropOriginalDetailsStarCount: Int64
 
@@ -2606,6 +2658,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
 
     public init(
         canBeTransferred: Bool,
+        craftDate: Int,
         dropOriginalDetailsStarCount: Int64,
         exportDate: Int,
         gift: UpgradedGift,
@@ -2620,6 +2673,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         wasTransferred: Bool
     ) {
         self.canBeTransferred = canBeTransferred
+        self.craftDate = craftDate
         self.dropOriginalDetailsStarCount = dropOriginalDetailsStarCount
         self.exportDate = exportDate
         self.gift = gift

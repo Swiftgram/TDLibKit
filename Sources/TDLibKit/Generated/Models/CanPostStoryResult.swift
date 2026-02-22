@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -110,7 +110,7 @@ public struct CanPostStoryResultOk: Codable, Equatable, Hashable {
 /// The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
 public struct CanPostStoryResultWeeklyLimitExceeded: Codable, Equatable, Hashable {
 
-    /// Time left before the user can post the next story
+    /// Time left before the user can post the next story, in seconds
     public let retryAfter: Int
 
 
@@ -122,7 +122,7 @@ public struct CanPostStoryResultWeeklyLimitExceeded: Codable, Equatable, Hashabl
 /// The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
 public struct CanPostStoryResultMonthlyLimitExceeded: Codable, Equatable, Hashable {
 
-    /// Time left before the user can post the next story
+    /// Time left before the user can post the next story, in seconds
     public let retryAfter: Int
 
 

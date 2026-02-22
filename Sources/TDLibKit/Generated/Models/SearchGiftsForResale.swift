@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct SearchGiftsForResale: Codable, Equatable, Hashable {
 
     /// Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
     public let attributes: [UpgradedGiftAttributeId]?
+
+    /// Pass true to get only gifts suitable for crafting
+    public let forCrafting: Bool?
 
     /// Identifier of the regular gift that was upgraded to a unique gift
     public let giftId: TdInt64?
@@ -31,12 +34,14 @@ public struct SearchGiftsForResale: Codable, Equatable, Hashable {
 
     public init(
         attributes: [UpgradedGiftAttributeId]?,
+        forCrafting: Bool?,
         giftId: TdInt64?,
         limit: Int?,
         offset: String?,
         order: GiftForResaleOrder?
     ) {
         self.attributes = attributes
+        self.forCrafting = forCrafting
         self.giftId = giftId
         self.limit = limit
         self.offset = offset

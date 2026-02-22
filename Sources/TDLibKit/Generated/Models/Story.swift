@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden
     public let canBeForwarded: Bool
 
-    /// True, if the story can be replied in the chat with the user that posted the story
+    /// True, if the story can be replied in the chat with the user who posted the story
     public let canBeReplied: Bool
 
     /// True, if interactions with the story can be received through getStoryInteractions

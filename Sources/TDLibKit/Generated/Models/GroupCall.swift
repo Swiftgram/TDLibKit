@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -106,6 +106,9 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
     /// Group call title; for video chats only
     public let title: String
 
+    /// Persistent unique group call identifier
+    public let uniqueId: TdInt64
+
 
     public init(
         areMessagesAllowed: Bool,
@@ -138,7 +141,8 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         recentSpeakers: [GroupCallRecentSpeaker],
         recordDuration: Int,
         scheduledStartDate: Int,
-        title: String
+        title: String,
+        uniqueId: TdInt64
     ) {
         self.areMessagesAllowed = areMessagesAllowed
         self.canBeManaged = canBeManaged
@@ -171,6 +175,7 @@ public struct GroupCall: Codable, Equatable, Hashable, Identifiable {
         self.recordDuration = recordDuration
         self.scheduledStartDate = scheduledStartDate
         self.title = title
+        self.uniqueId = uniqueId
     }
 }
 

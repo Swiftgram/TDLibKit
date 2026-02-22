@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct AnswerInlineQuery: Codable, Equatable, Hashable {
     /// Identifier of the inline query
     public let inlineQueryId: TdInt64?
 
-    /// Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+    /// Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
     public let isPersonal: Bool?
 
     /// Offset for the next inline query; pass an empty string if there are no more results

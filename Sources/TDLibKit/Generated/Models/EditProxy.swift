@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -16,31 +16,21 @@ public struct EditProxy: Codable, Equatable, Hashable {
     /// Pass true to immediately enable the proxy
     public let enable: Bool?
 
-    /// Proxy server port
-    public let port: Int?
+    /// The new information about the proxy
+    public let proxy: Proxy?
 
     /// Proxy identifier
     public let proxyId: Int?
 
-    /// Proxy server domain or IP address
-    public let server: String?
-
-    /// Proxy type
-    public let type: ProxyType?
-
 
     public init(
         enable: Bool?,
-        port: Int?,
-        proxyId: Int?,
-        server: String?,
-        type: ProxyType?
+        proxy: Proxy?,
+        proxyId: Int?
     ) {
         self.enable = enable
-        self.port = port
+        self.proxy = proxy
         self.proxyId = proxyId
-        self.server = server
-        self.type = type
     }
 }
 

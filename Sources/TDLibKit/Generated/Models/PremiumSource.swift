@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public indirect enum PremiumSource: Codable, Equatable, Hashable {
     /// A user tried to use a Premium story feature
     case premiumSourceStoryFeature(PremiumSourceStoryFeature)
 
-    /// A user opened an internal link of the type internalLinkTypePremiumFeatures
+    /// A user opened an internal link of the type internalLinkTypePremiumFeaturesPage
     case premiumSourceLink(PremiumSourceLink)
 
     /// A user opened the Premium features screen from settings
@@ -137,7 +137,7 @@ public struct PremiumSourceStoryFeature: Codable, Equatable, Hashable {
     }
 }
 
-/// A user opened an internal link of the type internalLinkTypePremiumFeatures
+/// A user opened an internal link of the type internalLinkTypePremiumFeaturesPage
 public struct PremiumSourceLink: Codable, Equatable, Hashable {
 
     /// The referrer from the link

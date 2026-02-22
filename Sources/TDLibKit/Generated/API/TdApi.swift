@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -9017,7 +9017,7 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
-    /// - Parameter allowWriteAccess: Pass true to allow the bot to send messages to the current user
+    /// - Parameter allowWriteAccess: Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
@@ -9039,7 +9039,7 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
-    /// - Parameter allowWriteAccess: Pass true to allow the bot to send messages to the current user
+    /// - Parameter allowWriteAccess: Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
     /// - Parameter buttonId: Button identifier
     /// - Parameter chatId: Chat identifier of the message with the button
     /// - Parameter messageId: Message identifier of the message with the button
@@ -9212,7 +9212,7 @@ public final class TdApi {
     /// - Parameter button: Button to be shown above inline query results; pass null if none
     /// - Parameter cacheTime: Allowed time to cache the results of the query, in seconds
     /// - Parameter inlineQueryId: Identifier of the inline query
-    /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+    /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
     public func answerInlineQuery(
@@ -9239,7 +9239,7 @@ public final class TdApi {
     /// - Parameter button: Button to be shown above inline query results; pass null if none
     /// - Parameter cacheTime: Allowed time to cache the results of the query, in seconds
     /// - Parameter inlineQueryId: Identifier of the inline query
-    /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+    /// - Parameter isPersonal: Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
     /// - Parameter nextOffset: Offset for the next inline query; pass an empty string if there are no more results
     /// - Parameter results: The results of the query
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -10099,7 +10099,7 @@ public final class TdApi {
     /// - Parameter action: The action description; pass null to cancel the currently active action
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter chatId: Chat identifier
-    /// - Parameter topicId: Identifier of the topic in which the action is performed
+    /// - Parameter topicId: Identifier of the topic in which the action is performed; pass null if none
     public func sendChatAction(
         action: ChatAction?,
         businessConnectionId: String?,
@@ -10120,7 +10120,7 @@ public final class TdApi {
     /// - Parameter action: The action description; pass null to cancel the currently active action
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter chatId: Chat identifier
-    /// - Parameter topicId: Identifier of the topic in which the action is performed
+    /// - Parameter topicId: Identifier of the topic in which the action is performed; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendChatAction(
@@ -10413,32 +10413,38 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
-    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+    /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed. May return an empty link if just a toast about successful login has to be shown
+    /// - Parameter allowPhoneNumberAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
-    /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link
+    /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. May return an empty link if just a toast about successful login has to be shown
     public func getExternalLink(
+        allowPhoneNumberAccess: Bool?,
         allowWriteAccess: Bool?,
         link: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetExternalLink(
+            allowPhoneNumberAccess: allowPhoneNumberAccess,
             allowWriteAccess: allowWriteAccess,
             link: link
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
-    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+    /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed. May return an empty link if just a toast about successful login has to be shown
+    /// - Parameter allowPhoneNumberAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
-    /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link
+    /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. May return an empty link if just a toast about successful login has to be shown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getExternalLink(
+        allowPhoneNumberAccess: Bool?,
         allowWriteAccess: Bool?,
         link: String?
     ) async throws -> HttpUrl {
         let query = GetExternalLink(
+            allowPhoneNumberAccess: allowPhoneNumberAccess,
             allowWriteAccess: allowWriteAccess,
             link: link
         )
@@ -12443,7 +12449,7 @@ public final class TdApi {
     /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
-    /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+    /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user who is being removed. Always true for supergroups and channels
     /// - Returns: In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc
     public func banChatMember(
         bannedUntilDate: Int?,
@@ -12465,7 +12471,7 @@ public final class TdApi {
     /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier
-    /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+    /// - Parameter revokeMessages: Pass true to delete all messages in the chat for the user who is being removed. Always true for supergroups and channels
     /// - Returns: In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -12530,6 +12536,30 @@ public final class TdApi {
             chatId: chatId,
             password: password,
             userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat. Available only for supergroups and channel chats
+    /// - Parameter chatId: Chat identifier
+    /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period
+    public func getChatOwnerAfterLeaving(
+        chatId: Int64?,
+        completion: @escaping (Result<User, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatOwnerAfterLeaving(
+            chatId: chatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat. Available only for supergroups and channel chats
+    /// - Parameter chatId: Chat identifier
+    /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getChatOwnerAfterLeaving(chatId: Int64?) async throws -> User {
+        let query = GetChatOwnerAfterLeaving(
+            chatId: chatId
         )
         return try await self.execute(query: query)
     }
@@ -15934,7 +15964,7 @@ public final class TdApi {
     /// Handles a pending join request in a chat
     /// - Parameter approve: Pass true to approve the request; pass false to decline it
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: Identifier of the user that sent the request
+    /// - Parameter userId: Identifier of the user who sent the request
     public func processChatJoinRequest(
         approve: Bool?,
         chatId: Int64?,
@@ -15952,7 +15982,7 @@ public final class TdApi {
     /// Handles a pending join request in a chat
     /// - Parameter approve: Pass true to approve the request; pass false to decline it
     /// - Parameter chatId: Chat identifier
-    /// - Parameter userId: Identifier of the user that sent the request
+    /// - Parameter userId: Identifier of the user who sent the request
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func processChatJoinRequest(
@@ -23129,7 +23159,7 @@ public final class TdApi {
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter starCount: The number of Telegram Stars to place in the bid
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
-    /// - Parameter userId: Identifier of the user that will receive the gift
+    /// - Parameter userId: Identifier of the user who will receive the gift
     public func placeGiftAuctionBid(
         giftId: TdInt64?,
         isPrivate: Bool?,
@@ -23153,7 +23183,7 @@ public final class TdApi {
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter starCount: The number of Telegram Stars to place in the bid
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
-    /// - Parameter userId: Identifier of the user that will receive the gift
+    /// - Parameter userId: Identifier of the user who will receive the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func placeGiftAuctionBid(
@@ -23329,49 +23359,63 @@ public final class TdApi {
     }
 
     /// Returns examples of possible upgraded gifts for a regular gift
-    /// - Parameter giftId: Identifier of the gift
+    /// - Parameter regularGiftId: Identifier of the regular gift
     /// - Returns: Examples of possible upgraded gifts for a regular gift
     public func getGiftUpgradePreview(
-        giftId: TdInt64?,
+        regularGiftId: TdInt64?,
         completion: @escaping (Result<GiftUpgradePreview, Swift.Error>) -> Void
     ) throws {
         let query = GetGiftUpgradePreview(
-            giftId: giftId
+            regularGiftId: regularGiftId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns examples of possible upgraded gifts for a regular gift
-    /// - Parameter giftId: Identifier of the gift
+    /// - Parameter regularGiftId: Identifier of the regular gift
     /// - Returns: Examples of possible upgraded gifts for a regular gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getGiftUpgradePreview(giftId: TdInt64?) async throws -> GiftUpgradePreview {
+    public func getGiftUpgradePreview(regularGiftId: TdInt64?) async throws -> GiftUpgradePreview {
         let query = GetGiftUpgradePreview(
-            giftId: giftId
+            regularGiftId: regularGiftId
         )
         return try await self.execute(query: query)
     }
 
     /// Returns all possible variants of upgraded gifts for a regular gift
-    /// - Parameter giftId: Identifier of the gift
+    /// - Parameter regularGiftId: Identifier of the regular gift
+    /// - Parameter returnCraftModels: Pass true to get models that can be obtained by crafting a gift from upgraded gifts
+    /// - Parameter returnUpgradeModels: Pass true to get models that can be obtained by upgrading a regular gift
     /// - Returns: All possible variants of upgraded gifts for a regular gift
-    public func getGiftUpgradeVariants(
-        giftId: TdInt64?,
+    public func getUpgradedGiftVariants(
+        regularGiftId: TdInt64?,
+        returnCraftModels: Bool?,
+        returnUpgradeModels: Bool?,
         completion: @escaping (Result<GiftUpgradeVariants, Swift.Error>) -> Void
     ) throws {
-        let query = GetGiftUpgradeVariants(
-            giftId: giftId
+        let query = GetUpgradedGiftVariants(
+            regularGiftId: regularGiftId,
+            returnCraftModels: returnCraftModels,
+            returnUpgradeModels: returnUpgradeModels
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Returns all possible variants of upgraded gifts for a regular gift
-    /// - Parameter giftId: Identifier of the gift
+    /// - Parameter regularGiftId: Identifier of the regular gift
+    /// - Parameter returnCraftModels: Pass true to get models that can be obtained by crafting a gift from upgraded gifts
+    /// - Parameter returnUpgradeModels: Pass true to get models that can be obtained by upgrading a regular gift
     /// - Returns: All possible variants of upgraded gifts for a regular gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getGiftUpgradeVariants(giftId: TdInt64?) async throws -> GiftUpgradeVariants {
-        let query = GetGiftUpgradeVariants(
-            giftId: giftId
+    public func getUpgradedGiftVariants(
+        regularGiftId: TdInt64?,
+        returnCraftModels: Bool?,
+        returnUpgradeModels: Bool?
+    ) async throws -> GiftUpgradeVariants {
+        let query = GetUpgradedGiftVariants(
+            regularGiftId: regularGiftId,
+            returnCraftModels: returnCraftModels,
+            returnUpgradeModels: returnUpgradeModels
         )
         return try await self.execute(query: query)
     }
@@ -23451,6 +23495,28 @@ public final class TdApi {
             ownerId: ownerId,
             prepaidUpgradeHash: prepaidUpgradeHash,
             starCount: starCount
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Crafts a new gift from other gifts that will be permanently lost
+    /// - Parameter receivedGiftIds: Identifier of the gifts to use for crafting
+    public func craftGift(
+        receivedGiftIds: [String]?,
+        completion: @escaping (Result<CraftGiftResult, Swift.Error>) -> Void
+    ) throws {
+        let query = CraftGift(
+            receivedGiftIds: receivedGiftIds
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Crafts a new gift from other gifts that will be permanently lost
+    /// - Parameter receivedGiftIds: Identifier of the gifts to use for crafting
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func craftGift(receivedGiftIds: [String]?) async throws -> CraftGiftResult {
+        let query = CraftGift(
+            receivedGiftIds: receivedGiftIds
         )
         return try await self.execute(query: query)
     }
@@ -23773,6 +23839,44 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns upgraded gifts of the current user who can be used to craft another gifts
+    /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter regularGiftId: Identifier of the regular gift that will be used for crafting
+    /// - Returns: Upgraded gifts of the current user who can be used to craft another gifts
+    public func getGiftsForCrafting(
+        limit: Int?,
+        offset: String?,
+        regularGiftId: TdInt64?,
+        completion: @escaping (Result<GiftsForCrafting, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGiftsForCrafting(
+            limit: limit,
+            offset: offset,
+            regularGiftId: regularGiftId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns upgraded gifts of the current user who can be used to craft another gifts
+    /// - Parameter limit: The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Parameter regularGiftId: Identifier of the regular gift that will be used for crafting
+    /// - Returns: Upgraded gifts of the current user who can be used to craft another gifts
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGiftsForCrafting(
+        limit: Int?,
+        offset: String?,
+        regularGiftId: TdInt64?
+    ) async throws -> GiftsForCrafting {
+        let query = GetGiftsForCrafting(
+            limit: limit,
+            offset: offset,
+            regularGiftId: regularGiftId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns information about an upgraded gift by its name
     /// - Parameter name: Unique name of the upgraded gift
     /// - Returns: Information about an upgraded gift by its name
@@ -23901,6 +24005,7 @@ public final class TdApi {
 
     /// Returns upgraded gifts that can be bought from other owners using sendResoldGift
     /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
+    /// - Parameter forCrafting: Pass true to get only gifts suitable for crafting
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
@@ -23908,6 +24013,7 @@ public final class TdApi {
     /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift
     public func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
+        forCrafting: Bool?,
         giftId: TdInt64?,
         limit: Int?,
         offset: String?,
@@ -23916,6 +24022,7 @@ public final class TdApi {
     ) throws {
         let query = SearchGiftsForResale(
             attributes: attributes,
+            forCrafting: forCrafting,
             giftId: giftId,
             limit: limit,
             offset: offset,
@@ -23926,6 +24033,7 @@ public final class TdApi {
 
     /// Returns upgraded gifts that can be bought from other owners using sendResoldGift
     /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
+    /// - Parameter forCrafting: Pass true to get only gifts suitable for crafting
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
@@ -23934,6 +24042,7 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
+        forCrafting: Bool?,
         giftId: TdInt64?,
         limit: Int?,
         offset: String?,
@@ -23941,6 +24050,7 @@ public final class TdApi {
     ) async throws -> GiftsForResale {
         let query = SearchGiftsForResale(
             attributes: attributes,
+            forCrafting: forCrafting,
             giftId: giftId,
             limit: limit,
             offset: offset,
@@ -24257,7 +24367,7 @@ public final class TdApi {
 
     /// Refunds a previously done payment in Telegram Stars; for bots only
     /// - Parameter telegramPaymentChargeId: Telegram payment identifier
-    /// - Parameter userId: Identifier of the user that did the payment
+    /// - Parameter userId: Identifier of the user who did the payment
     public func refundStarPayment(
         telegramPaymentChargeId: String?,
         userId: Int64?,
@@ -24272,7 +24382,7 @@ public final class TdApi {
 
     /// Refunds a previously done payment in Telegram Stars; for bots only
     /// - Parameter telegramPaymentChargeId: Telegram payment identifier
-    /// - Parameter userId: Identifier of the user that did the payment
+    /// - Parameter userId: Identifier of the user who did the payment
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func refundStarPayment(
@@ -24286,15 +24396,15 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns a user that can be contacted to get support
-    /// - Returns: A user that can be contacted to get support
+    /// Returns a user who can be contacted to get support
+    /// - Returns: A user who can be contacted to get support
     public func getSupportUser(completion: @escaping (Result<User, Swift.Error>) -> Void) throws {
         let query = GetSupportUser()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a user that can be contacted to get support
-    /// - Returns: A user that can be contacted to get support
+    /// Returns a user who can be contacted to get support
+    /// - Returns: A user who can be contacted to get support
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getSupportUser() async throws -> User {
         let query = GetSupportUser()
@@ -26289,7 +26399,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+    /// Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
     /// - Parameter errors: The errors
     /// - Parameter userId: User identifier
     public func setPassportElementErrors(
@@ -26304,7 +26414,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+    /// Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
     /// - Parameter errors: The errors
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -27488,7 +27598,7 @@ public final class TdApi {
     }
 
     /// Returns available options for Telegram Stars gifting
-    /// - Parameter userId: Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+    /// - Parameter userId: Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user
     /// - Returns: Available options for Telegram Stars gifting
     public func getStarGiftPaymentOptions(
         userId: Int64?,
@@ -27501,7 +27611,7 @@ public final class TdApi {
     }
 
     /// Returns available options for Telegram Stars gifting
-    /// - Parameter userId: Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+    /// - Parameter userId: Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user
     /// - Returns: Available options for Telegram Stars gifting
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getStarGiftPaymentOptions(userId: Int64?) async throws -> StarPaymentOptions {
@@ -28370,90 +28480,66 @@ public final class TdApi {
 
     /// Adds a proxy server for network requests. Can be called before authorization
     /// - Parameter enable: Pass true to immediately enable the proxy
-    /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server domain or IP address
-    /// - Parameter type: Proxy type
+    /// - Parameter proxy: The proxy to add
     public func addProxy(
         enable: Bool?,
-        port: Int?,
-        server: String?,
-        type: ProxyType?,
-        completion: @escaping (Result<Proxy, Swift.Error>) -> Void
+        proxy: Proxy?,
+        completion: @escaping (Result<AddedProxy, Swift.Error>) -> Void
     ) throws {
         let query = AddProxy(
             enable: enable,
-            port: port,
-            server: server,
-            type: type
+            proxy: proxy
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Adds a proxy server for network requests. Can be called before authorization
     /// - Parameter enable: Pass true to immediately enable the proxy
-    /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server domain or IP address
-    /// - Parameter type: Proxy type
+    /// - Parameter proxy: The proxy to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addProxy(
         enable: Bool?,
-        port: Int?,
-        server: String?,
-        type: ProxyType?
-    ) async throws -> Proxy {
+        proxy: Proxy?
+    ) async throws -> AddedProxy {
         let query = AddProxy(
             enable: enable,
-            port: port,
-            server: server,
-            type: type
+            proxy: proxy
         )
         return try await self.execute(query: query)
     }
 
     /// Edits an existing proxy server for network requests. Can be called before authorization
     /// - Parameter enable: Pass true to immediately enable the proxy
-    /// - Parameter port: Proxy server port
+    /// - Parameter proxy: The new information about the proxy
     /// - Parameter proxyId: Proxy identifier
-    /// - Parameter server: Proxy server domain or IP address
-    /// - Parameter type: Proxy type
     public func editProxy(
         enable: Bool?,
-        port: Int?,
+        proxy: Proxy?,
         proxyId: Int?,
-        server: String?,
-        type: ProxyType?,
-        completion: @escaping (Result<Proxy, Swift.Error>) -> Void
+        completion: @escaping (Result<AddedProxy, Swift.Error>) -> Void
     ) throws {
         let query = EditProxy(
             enable: enable,
-            port: port,
-            proxyId: proxyId,
-            server: server,
-            type: type
+            proxy: proxy,
+            proxyId: proxyId
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Edits an existing proxy server for network requests. Can be called before authorization
     /// - Parameter enable: Pass true to immediately enable the proxy
-    /// - Parameter port: Proxy server port
+    /// - Parameter proxy: The new information about the proxy
     /// - Parameter proxyId: Proxy identifier
-    /// - Parameter server: Proxy server domain or IP address
-    /// - Parameter type: Proxy type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editProxy(
         enable: Bool?,
-        port: Int?,
-        proxyId: Int?,
-        server: String?,
-        type: ProxyType?
-    ) async throws -> Proxy {
+        proxy: Proxy?,
+        proxyId: Int?
+    ) async throws -> AddedProxy {
         let query = EditProxy(
             enable: enable,
-            port: port,
-            proxyId: proxyId,
-            server: server,
-            type: type
+            proxy: proxy,
+            proxyId: proxyId
         )
         return try await self.execute(query: query)
     }
@@ -28520,7 +28606,7 @@ public final class TdApi {
 
     /// Returns the list of proxies that are currently set up. Can be called before authorization
     /// - Returns: The list of proxies that are currently set up
-    public func getProxies(completion: @escaping (Result<Proxies, Swift.Error>) -> Void) throws {
+    public func getProxies(completion: @escaping (Result<AddedProxies, Swift.Error>) -> Void) throws {
         let query = GetProxies()
         self.execute(query: query, completion: completion)
     }
@@ -28528,53 +28614,29 @@ public final class TdApi {
     /// Returns the list of proxies that are currently set up. Can be called before authorization
     /// - Returns: The list of proxies that are currently set up
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getProxies() async throws -> Proxies {
+    public func getProxies() async throws -> AddedProxies {
         let query = GetProxies()
         return try await self.execute(query: query)
     }
 
-    /// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
-    /// - Parameter proxyId: Proxy identifier
-    /// - Returns: An HTTPS link, which can be used to add a proxy
-    public func getProxyLink(
-        proxyId: Int?,
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
-    ) throws {
-        let query = GetProxyLink(
-            proxyId: proxyId
-        )
-        self.execute(query: query, completion: completion)
-    }
-
-    /// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
-    /// - Parameter proxyId: Proxy identifier
-    /// - Returns: An HTTPS link, which can be used to add a proxy
-    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getProxyLink(proxyId: Int?) async throws -> HttpUrl {
-        let query = GetProxyLink(
-            proxyId: proxyId
-        )
-        return try await self.execute(query: query)
-    }
-
     /// Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
-    /// - Parameter proxyId: Proxy identifier. Use 0 to ping a Telegram server without a proxy
+    /// - Parameter proxy: The proxy to test; pass null to ping a Telegram server without a proxy
     public func pingProxy(
-        proxyId: Int?,
+        proxy: Proxy?,
         completion: @escaping (Result<Seconds, Swift.Error>) -> Void
     ) throws {
         let query = PingProxy(
-            proxyId: proxyId
+            proxy: proxy
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
-    /// - Parameter proxyId: Proxy identifier. Use 0 to ping a Telegram server without a proxy
+    /// - Parameter proxy: The proxy to test; pass null to ping a Telegram server without a proxy
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func pingProxy(proxyId: Int?) async throws -> Seconds {
+    public func pingProxy(proxy: Proxy?) async throws -> Seconds {
         let query = PingProxy(
-            proxyId: proxyId
+            proxy: proxy
         )
         return try await self.execute(query: query)
     }
@@ -29023,49 +29085,37 @@ public final class TdApi {
 
     /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
     /// - Parameter dcId: Identifier of a datacenter with which to test connection
-    /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server domain or IP address
+    /// - Parameter proxy: The proxy to test
     /// - Parameter timeout: The maximum overall timeout for the request
-    /// - Parameter type: Proxy type
     public func testProxy(
         dcId: Int?,
-        port: Int?,
-        server: String?,
+        proxy: Proxy?,
         timeout: Double?,
-        type: ProxyType?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = TestProxy(
             dcId: dcId,
-            port: port,
-            server: server,
-            timeout: timeout,
-            type: type
+            proxy: proxy,
+            timeout: timeout
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
     /// - Parameter dcId: Identifier of a datacenter with which to test connection
-    /// - Parameter port: Proxy server port
-    /// - Parameter server: Proxy server domain or IP address
+    /// - Parameter proxy: The proxy to test
     /// - Parameter timeout: The maximum overall timeout for the request
-    /// - Parameter type: Proxy type
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func testProxy(
         dcId: Int?,
-        port: Int?,
-        server: String?,
-        timeout: Double?,
-        type: ProxyType?
+        proxy: Proxy?,
+        timeout: Double?
     ) async throws -> Ok {
         let query = TestProxy(
             dcId: dcId,
-            port: port,
-            server: server,
-            timeout: timeout,
-            type: type
+            proxy: proxy,
+            timeout: timeout
         )
         return try await self.execute(query: query)
     }

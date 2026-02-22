@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -473,7 +473,7 @@ public struct StarTransactionTypeUserDeposit: Codable, Equatable, Hashable {
     /// The sticker to be shown in the transaction information; may be null if unknown
     public let sticker: Sticker?
 
-    /// Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous
+    /// Identifier of the user who gifted Telegram Stars; 0 if the user was anonymous
     public let userId: Int64
 
 
@@ -535,7 +535,7 @@ public struct StarTransactionTypeBotPaidMediaPurchase: Codable, Equatable, Hasha
     /// The bought media if the transaction wasn't refunded
     public let media: [PaidMedia]
 
-    /// Identifier of the bot or the business account user that sent the paid media
+    /// Identifier of the bot or the business account user who sent the paid media
     public let userId: Int64
 
 
@@ -560,7 +560,7 @@ public struct StarTransactionTypeBotPaidMediaSale: Codable, Equatable, Hashable 
     /// Bot-provided payload
     public let payload: String
 
-    /// Identifier of the user that bought the media
+    /// Identifier of the user who bought the media
     public let userId: Int64
 
 
@@ -610,7 +610,7 @@ public struct StarTransactionTypeChannelPaidMediaSale: Codable, Equatable, Hasha
     /// Identifier of the corresponding message with paid media; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
-    /// Identifier of the user that bought the media
+    /// Identifier of the user who bought the media
     public let userId: Int64
 
 
@@ -631,7 +631,7 @@ public struct StarTransactionTypeBotInvoicePurchase: Codable, Equatable, Hashabl
     /// Information about the bought product
     public let productInfo: ProductInfo
 
-    /// Identifier of the bot or the business account user that created the invoice
+    /// Identifier of the bot or the business account user who created the invoice
     public let userId: Int64
 
 
@@ -656,7 +656,7 @@ public struct StarTransactionTypeBotInvoiceSale: Codable, Equatable, Hashable {
     /// Information about the bought product
     public let productInfo: ProductInfo
 
-    /// Identifier of the user that bought the product
+    /// Identifier of the user who bought the product
     public let userId: Int64
 
 
@@ -682,7 +682,7 @@ public struct StarTransactionTypeBotSubscriptionPurchase: Codable, Equatable, Ha
     /// The number of seconds between consecutive Telegram Star debitings
     public let subscriptionPeriod: Int
 
-    /// Identifier of the bot or the business account user that created the subscription link
+    /// Identifier of the bot or the business account user who created the subscription link
     public let userId: Int64
 
 
@@ -712,7 +712,7 @@ public struct StarTransactionTypeBotSubscriptionSale: Codable, Equatable, Hashab
     /// The number of seconds between consecutive Telegram Star debitings
     public let subscriptionPeriod: Int
 
-    /// Identifier of the user that bought the subscription
+    /// Identifier of the user who bought the subscription
     public let userId: Int64
 
 
@@ -756,7 +756,7 @@ public struct StarTransactionTypeChannelSubscriptionSale: Codable, Equatable, Ha
     /// The number of seconds between consecutive Telegram Star debitings
     public let subscriptionPeriod: Int
 
-    /// Identifier of the user that bought the subscription
+    /// Identifier of the user who bought the subscription
     public let userId: Int64
 
 
@@ -775,7 +775,7 @@ public struct StarTransactionTypeGiftAuctionBid: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
-    /// Identifier of the user that will receive the gift
+    /// Identifier of the user who will receive the gift
     public let ownerId: MessageSender
 
 
@@ -863,7 +863,7 @@ public struct StarTransactionTypeGiftSale: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
-    /// Identifier of the user that sent the gift
+    /// Identifier of the user who sent the gift
     public let userId: Int64
 
 
@@ -882,7 +882,7 @@ public struct StarTransactionTypeGiftUpgrade: Codable, Equatable, Hashable {
     /// The upgraded gift
     public let gift: UpgradedGift
 
-    /// Identifier of the user that initially sent the gift
+    /// Identifier of the user who initially sent the gift
     public let userId: Int64
 
 
@@ -920,7 +920,7 @@ public struct StarTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hasha
     /// The gift
     public let gift: UpgradedGift
 
-    /// Identifier of the user that sold the gift
+    /// Identifier of the user who sold the gift
     public let userId: Int64
 
 
@@ -945,7 +945,7 @@ public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable 
     /// The gift
     public let gift: UpgradedGift
 
-    /// Identifier of the user that bought the gift
+    /// Identifier of the user who bought the gift
     public let userId: Int64
 
     /// True, if the gift was sold through a purchase offer
@@ -992,7 +992,7 @@ public struct StarTransactionTypeChannelPaidReactionReceive: Codable, Equatable,
     /// Identifier of the reacted message; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
-    /// Identifier of the user that added the paid reaction
+    /// Identifier of the user who added the paid reaction
     public let userId: Int64
 
 
@@ -1159,7 +1159,7 @@ public struct StarTransactionTypeSuggestedPostPaymentSend: Codable, Equatable, H
 /// The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
 public struct StarTransactionTypeSuggestedPostPaymentReceive: Codable, Equatable, Hashable {
 
-    /// Identifier of the user that paid for the suggested post
+    /// Identifier of the user who paid for the suggested post
     public let userId: Int64
 
 
@@ -1177,7 +1177,7 @@ public struct StarTransactionTypePremiumPurchase: Codable, Equatable, Hashable {
     /// A sticker to be shown in the transaction information; may be null if unknown
     public let sticker: Sticker?
 
-    /// Identifier of the user that received the Telegram Premium subscription
+    /// Identifier of the user who received the Telegram Premium subscription
     public let userId: Int64
 
 
@@ -1207,7 +1207,7 @@ public struct StarTransactionTypeBusinessBotTransferSend: Codable, Equatable, Ha
 /// The transaction is a transfer of Telegram Stars from a business account; relevant for bots only
 public struct StarTransactionTypeBusinessBotTransferReceive: Codable, Equatable, Hashable {
 
-    /// Identifier of the user that sent Telegram Stars
+    /// Identifier of the user who sent Telegram Stars
     public let userId: Int64
 
 

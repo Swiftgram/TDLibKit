@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -16,8 +16,8 @@ public struct UpgradedGiftSymbol: Codable, Equatable, Hashable {
     /// Name of the symbol
     public let name: String
 
-    /// The number of upgraded gifts that receive this symbol for each 1000 gifts upgraded
-    public let rarityPerMille: Int
+    /// The rarity of the symbol
+    public let rarity: UpgradedGiftAttributeRarity
 
     /// The sticker representing the symbol
     public let sticker: Sticker
@@ -25,11 +25,11 @@ public struct UpgradedGiftSymbol: Codable, Equatable, Hashable {
 
     public init(
         name: String,
-        rarityPerMille: Int,
+        rarity: UpgradedGiftAttributeRarity,
         sticker: Sticker
     ) {
         self.name = name
-        self.rarityPerMille = rarityPerMille
+        self.rarity = rarity
         self.sticker = sticker
     }
 }

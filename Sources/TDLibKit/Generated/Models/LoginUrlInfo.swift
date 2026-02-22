@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -76,8 +76,23 @@ public struct LoginUrlInfoRequestConfirmation: Codable, Equatable, Hashable {
     /// User identifier of a bot linked with the website
     public let botUserId: Int64
 
+    /// The version of a browser used for the authorization; may be empty if irrelevant
+    public let browser: String
+
     /// A domain of the URL
     public let domain: String
+
+    /// IP address from which the authorization is performed, in human-readable format; may be empty if irrelevant
+    public let ipAddress: String
+
+    /// Human-readable description of a country and a region from which the authorization is performed, based on the IP address; may be empty if irrelevant
+    public let location: String
+
+    /// Operating system the browser is running on; may be empty if irrelevant
+    public let platform: String
+
+    /// True, if the user must be asked for the permission to share their phone number
+    public let requestPhoneNumberAccess: Bool
 
     /// True, if the user must be asked for the permission to the bot to send them messages
     public let requestWriteAccess: Bool
@@ -88,12 +103,22 @@ public struct LoginUrlInfoRequestConfirmation: Codable, Equatable, Hashable {
 
     public init(
         botUserId: Int64,
+        browser: String,
         domain: String,
+        ipAddress: String,
+        location: String,
+        platform: String,
+        requestPhoneNumberAccess: Bool,
         requestWriteAccess: Bool,
         url: String
     ) {
         self.botUserId = botUserId
+        self.browser = browser
         self.domain = domain
+        self.ipAddress = ipAddress
+        self.location = location
+        self.platform = platform
+        self.requestPhoneNumberAccess = requestPhoneNumberAccess
         self.requestWriteAccess = requestWriteAccess
         self.url = url
     }

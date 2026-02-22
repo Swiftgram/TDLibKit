@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -31,6 +31,12 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a sale of an upgraded gift
     case tonTransactionTypeUpgradedGiftSale(TonTransactionTypeUpgradedGiftSale)
 
+    /// The transaction is a payment for stake dice throw
+    case tonTransactionTypeStakeDiceStake
+
+    /// The transaction is a payment for successful stake dice throw
+    case tonTransactionTypeStakeDicePayout
+
     /// The transaction is a transaction of an unsupported type
     case tonTransactionTypeUnsupported
 
@@ -42,6 +48,8 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
         case tonTransactionTypeGiftPurchaseOffer
         case tonTransactionTypeUpgradedGiftPurchase
         case tonTransactionTypeUpgradedGiftSale
+        case tonTransactionTypeStakeDiceStake
+        case tonTransactionTypeStakeDicePayout
         case tonTransactionTypeUnsupported
     }
 
@@ -67,6 +75,10 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
         case .tonTransactionTypeUpgradedGiftSale:
             let value = try TonTransactionTypeUpgradedGiftSale(from: decoder)
             self = .tonTransactionTypeUpgradedGiftSale(value)
+        case .tonTransactionTypeStakeDiceStake:
+            self = .tonTransactionTypeStakeDiceStake
+        case .tonTransactionTypeStakeDicePayout:
+            self = .tonTransactionTypeStakeDicePayout
         case .tonTransactionTypeUnsupported:
             self = .tonTransactionTypeUnsupported
         }
@@ -93,6 +105,10 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
         case .tonTransactionTypeUpgradedGiftSale(let value):
             try container.encode(Kind.tonTransactionTypeUpgradedGiftSale, forKey: .type)
             try value.encode(to: encoder)
+        case .tonTransactionTypeStakeDiceStake:
+            try container.encode(Kind.tonTransactionTypeStakeDiceStake, forKey: .type)
+        case .tonTransactionTypeStakeDicePayout:
+            try container.encode(Kind.tonTransactionTypeStakeDicePayout, forKey: .type)
         case .tonTransactionTypeUnsupported:
             try container.encode(Kind.tonTransactionTypeUnsupported, forKey: .type)
         }
@@ -160,7 +176,7 @@ public struct TonTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hashab
     /// The gift
     public let gift: UpgradedGift
 
-    /// Identifier of the user that sold the gift
+    /// Identifier of the user who sold the gift
     public let userId: Int64
 
 
@@ -185,7 +201,7 @@ public struct TonTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
     /// The gift
     public let gift: UpgradedGift
 
-    /// Identifier of the user that bought the gift
+    /// Identifier of the user who bought the gift
     public let userId: Int64
 
     /// True, if the gift was sold through a purchase offer

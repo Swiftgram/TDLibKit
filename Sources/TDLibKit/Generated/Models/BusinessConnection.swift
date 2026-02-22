@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct BusinessConnection: Codable, Equatable, Hashable, Identifiable {
     /// Chat identifier of the private chat with the user
     public let userChatId: Int64
 
-    /// Identifier of the business user that created the connection
+    /// Identifier of the business user who created the connection
     public let userId: Int64
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct PremiumGiftCodeInfo: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the code was created
     public let creationDate: Int
 
-    /// Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
+    /// Identifier of a chat or a user who created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
     public let creatorId: MessageSender?
 
     /// Number of days the Telegram Premium subscription will be active after code activation

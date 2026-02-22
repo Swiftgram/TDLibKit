@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
     /// The gift was bought through an offer
     case upgradedGiftOriginOffer(UpgradedGiftOriginOffer)
 
+    /// The gift was crafted from other gifts
+    case upgradedGiftOriginCraft
+
 
     private enum Kind: String, Codable {
         case upgradedGiftOriginUpgrade
@@ -39,6 +42,7 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case upgradedGiftOriginBlockchain
         case upgradedGiftOriginPrepaidUpgrade
         case upgradedGiftOriginOffer
+        case upgradedGiftOriginCraft
     }
 
     public init(from decoder: Decoder) throws {
@@ -60,6 +64,8 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case .upgradedGiftOriginOffer:
             let value = try UpgradedGiftOriginOffer(from: decoder)
             self = .upgradedGiftOriginOffer(value)
+        case .upgradedGiftOriginCraft:
+            self = .upgradedGiftOriginCraft
         }
     }
 
@@ -81,6 +87,8 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case .upgradedGiftOriginOffer(let value):
             try container.encode(Kind.upgradedGiftOriginOffer, forKey: .type)
             try value.encode(to: encoder)
+        case .upgradedGiftOriginCraft:
+            try container.encode(Kind.upgradedGiftOriginCraft, forKey: .type)
         }
     }
 }

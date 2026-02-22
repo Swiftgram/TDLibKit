@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns available options for Telegram Stars gifting
 public struct GetStarGiftPaymentOptions: Codable, Equatable, Hashable {
 
-    /// Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+    /// Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user
     public let userId: Int64?
 
 

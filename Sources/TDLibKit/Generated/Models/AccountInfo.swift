@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
 
 
-/// Contains basic information about another user that started a chat with the current user
+/// Contains basic information about another user who started a chat with the current user
 public struct AccountInfo: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the user changed name last time; 0 if unknown

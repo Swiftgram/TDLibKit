@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
 
 
-/// Returns a user that can be contacted to get support
+/// Returns a user who can be contacted to get support
 public struct GetSupportUser: Codable, Equatable, Hashable {
 
 

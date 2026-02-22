@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -22,20 +22,20 @@ public struct UpgradedGiftBackdrop: Codable, Equatable, Hashable, Identifiable {
     /// Name of the backdrop
     public let name: String
 
-    /// The number of upgraded gifts that receive this backdrop for each 1000 gifts upgraded
-    public let rarityPerMille: Int
+    /// The rarity of the backdrop
+    public let rarity: UpgradedGiftAttributeRarity
 
 
     public init(
         colors: UpgradedGiftBackdropColors,
         id: Int,
         name: String,
-        rarityPerMille: Int
+        rarity: UpgradedGiftAttributeRarity
     ) {
         self.colors = colors
         self.id = id
         self.name = name
-        self.rarityPerMille = rarityPerMille
+        self.rarity = rarity
     }
 }
 

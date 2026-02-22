@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.60-cb863c16
-//  https://github.com/tdlib/td/tree/cb863c16
+//  Based on TDLib 1.8.61-6d509061
+//  https://github.com/tdlib/td/tree/6d509061
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a user or a chat as a member of another chat
 public struct ChatMember: Codable, Equatable, Hashable {
 
-    /// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
+    /// Identifier of a user who invited/promoted/banned this member in the chat; 0 if unknown
     public let inviterUserId: Int64
 
     /// Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat
