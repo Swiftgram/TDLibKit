@@ -116,7 +116,7 @@ class TDLibKitUnitTests: XCTestCase {
         var json: [String: Any] = [
             "@type": "inlineKeyboardButton",
             "text": text,
-            "icon_custom_emoji_id": 0,
+            "icon_custom_emoji_id": "0",
             "style": ["@type": "buttonStyleDefault"],
             "type": ["@type": type]
         ]
