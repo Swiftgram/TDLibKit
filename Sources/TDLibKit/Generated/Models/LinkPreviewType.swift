@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -548,6 +548,9 @@ public struct LinkPreviewTypeDocument: Codable, Equatable, Hashable {
 /// The link is a link to an animation player
 public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashable {
 
+    /// The cached animation; may be null if unknown
+    public let animation: Animation?
+
     /// Duration of the animation, in seconds
     public let duration: Int
 
@@ -565,12 +568,14 @@ public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashab
 
 
     public init(
+        animation: Animation?,
         duration: Int,
         height: Int,
         thumbnail: Photo?,
         url: String,
         width: Int
     ) {
+        self.animation = animation
         self.duration = duration
         self.height = height
         self.thumbnail = thumbnail
@@ -581,6 +586,9 @@ public struct LinkPreviewTypeEmbeddedAnimationPlayer: Codable, Equatable, Hashab
 
 /// The link is a link to an audio player
 public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
+
+    /// The cached audio; may be null if unknown
+    public let audio: Audio?
 
     /// Duration of the audio, in seconds
     public let duration: Int
@@ -599,12 +607,14 @@ public struct LinkPreviewTypeEmbeddedAudioPlayer: Codable, Equatable, Hashable {
 
 
     public init(
+        audio: Audio?,
         duration: Int,
         height: Int,
         thumbnail: Photo?,
         url: String,
         width: Int
     ) {
+        self.audio = audio
         self.duration = duration
         self.height = height
         self.thumbnail = thumbnail
@@ -628,6 +638,9 @@ public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
     /// URL of the external video player
     public let url: String
 
+    /// The cached video; may be null if unknown
+    public let video: Video?
+
     /// Expected width of the embedded player
     public let width: Int
 
@@ -637,12 +650,14 @@ public struct LinkPreviewTypeEmbeddedVideoPlayer: Codable, Equatable, Hashable {
         height: Int,
         thumbnail: Photo?,
         url: String,
+        video: Video?,
         width: Int
     ) {
         self.duration = duration
         self.height = height
         self.thumbnail = thumbnail
         self.url = url
+        self.video = video
         self.width = width
     }
 }

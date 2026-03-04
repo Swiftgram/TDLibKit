@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -109,7 +109,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
     public let profileBackgroundCustomEmojiId: TdInt64
 
-    /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+    /// Identifier of the message from which reply markup needs to be used; 0 if there is no reply markup in the chat
     public let replyMarkupMessageId: Int64
 
     /// Theme set for the chat; may be null if none

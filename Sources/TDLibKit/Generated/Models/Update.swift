@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -121,7 +121,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The chat pending join requests were changed
     case updateChatPendingJoinRequests(UpdateChatPendingJoinRequests)
 
-    /// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
+    /// The chat reply markup was changed
     case updateChatReplyMarkup(UpdateChatReplyMarkup)
 
     /// The chat background was changed
@@ -249,6 +249,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
     case updateServiceNotification(UpdateServiceNotification)
+
+    /// An OAuth authorization request was received
+    case updateNewOauthRequest(UpdateNewOauthRequest)
 
     /// Information about a file was updated
     case updateFile(UpdateFile)
@@ -616,6 +619,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateBasicGroupFullInfo
         case updateSupergroupFullInfo
         case updateServiceNotification
+        case updateNewOauthRequest
         case updateFile
         case updateFileGenerationStart
         case updateFileGenerationStop
@@ -954,6 +958,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateServiceNotification:
             let value = try UpdateServiceNotification(from: decoder)
             self = .updateServiceNotification(value)
+        case .updateNewOauthRequest:
+            let value = try UpdateNewOauthRequest(from: decoder)
+            self = .updateNewOauthRequest(value)
         case .updateFile:
             let value = try UpdateFile(from: decoder)
             self = .updateFile(value)
@@ -1481,6 +1488,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateServiceNotification(let value):
             try container.encode(Kind.updateServiceNotification, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewOauthRequest(let value):
+            try container.encode(Kind.updateNewOauthRequest, forKey: .type)
             try value.encode(to: encoder)
         case .updateFile(let value):
             try container.encode(Kind.updateFile, forKey: .type)
@@ -2524,22 +2534,22 @@ public struct UpdateChatPendingJoinRequests: Codable, Equatable, Hashable {
     }
 }
 
-/// The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
+/// The chat reply markup was changed
 public struct UpdateChatReplyMarkup: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64
 
-    /// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-    public let replyMarkupMessageId: Int64
+    /// The message from which the reply markup must be used; may be null if there is no default reply markup in the chat
+    public let replyMarkupMessage: Message?
 
 
     public init(
         chatId: Int64,
-        replyMarkupMessageId: Int64
+        replyMarkupMessage: Message?
     ) {
         self.chatId = chatId
-        self.replyMarkupMessageId = replyMarkupMessageId
+        self.replyMarkupMessage = replyMarkupMessage
     }
 }
 
@@ -3352,6 +3362,30 @@ public struct UpdateServiceNotification: Codable, Equatable, Hashable {
     ) {
         self.content = content
         self.type = type
+    }
+}
+
+/// An OAuth authorization request was received
+public struct UpdateNewOauthRequest: Codable, Equatable, Hashable {
+
+    /// A domain of the URL where the user authorizes
+    public let domain: String
+
+    /// Human-readable description of a country and a region from which the authorization is performed, based on the IP address
+    public let location: String
+
+    /// The URL to pass to getOauthLinkInfo; the link is valid for 60 seconds
+    public let url: String
+
+
+    public init(
+        domain: String,
+        location: String,
+        url: String
+    ) {
+        self.domain = domain
+        self.location = location
+        self.url = url
     }
 }
 

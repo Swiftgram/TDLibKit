@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -79,7 +79,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
     public let signMessages: Bool
 
-    /// Status of the current user in the supergroup or channel; custom title will always be empty
+    /// Status of the current user in the supergroup or channel
     public let status: ChatMemberStatus
 
     /// Usernames of the supergroup or channel; may be null

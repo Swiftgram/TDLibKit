@@ -1,0 +1,36 @@
+//
+//  ProcessChatHasProtectedContentDisableRequest.swift
+//  tl2swift
+//
+//  Generated automatically. Any changes will be lost!
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
+//
+
+import Foundation
+
+
+/// Processes request to disable has_protected_content in a chat
+public struct ProcessChatHasProtectedContentDisableRequest: Codable, Equatable, Hashable {
+
+    /// Pass true to approve the request; pass false to reject the request
+    public let approve: Bool?
+
+    /// Chat identifier
+    public let chatId: Int64?
+
+    /// Identifier of the message with the request. The message must be incoming and has content of the type messageChatHasProtectedContentDisableRequested
+    public let requestMessageId: Int64?
+
+
+    public init(
+        approve: Bool?,
+        chatId: Int64?,
+        requestMessageId: Int64?
+    ) {
+        self.approve = approve
+        self.chatId = chatId
+        self.requestMessageId = requestMessageId
+    }
+}
+

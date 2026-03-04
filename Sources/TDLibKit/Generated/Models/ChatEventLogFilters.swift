@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public struct ChatEventLogFilters: Codable, Equatable, Hashable {
     /// True, if member restricted/unrestricted/banned/unbanned events need to be returned
     public let memberRestrictions: Bool
 
+    /// True, if member tag and custom title change events need to be returned
+    public let memberTagChanges: Bool
+
     /// True, if message deletions need to be returned
     public let messageDeletions: Bool
 
@@ -65,6 +68,7 @@ public struct ChatEventLogFilters: Codable, Equatable, Hashable {
         memberLeaves: Bool,
         memberPromotions: Bool,
         memberRestrictions: Bool,
+        memberTagChanges: Bool,
         messageDeletions: Bool,
         messageEdits: Bool,
         messagePins: Bool,
@@ -80,6 +84,7 @@ public struct ChatEventLogFilters: Codable, Equatable, Hashable {
         self.memberLeaves = memberLeaves
         self.memberPromotions = memberPromotions
         self.memberRestrictions = memberRestrictions
+        self.memberTagChanges = memberTagChanges
         self.messageDeletions = messageDeletions
         self.messageEdits = messageEdits
         self.messagePins = messagePins

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct ChatMember: Codable, Equatable, Hashable {
     /// Status of the member in the chat
     public let status: ChatMemberStatus
 
+    /// Tag of the chat member or its custom title if the member is an administrator of the chat; 0-16 characters without emoji; applicable to basic groups and supergroups only
+    public let tag: String
+
 
     public init(
         inviterUserId: Int64,
         joinedChatDate: Int,
         memberId: MessageSender,
-        status: ChatMemberStatus
+        status: ChatMemberStatus,
+        tag: String
     ) {
         self.inviterUserId = inviterUserId
         self.joinedChatDate = joinedChatDate
         self.memberId = memberId
         self.status = status
+        self.tag = tag
     }
 }
 

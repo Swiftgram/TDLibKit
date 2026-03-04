@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -106,6 +106,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
     /// The link is a link to open the story posting interface
     case internalLinkTypeNewStory(InternalLinkTypeNewStory)
+
+    /// The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest
+    case internalLinkTypeOauth(InternalLinkTypeOauth)
 
     /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
@@ -209,6 +212,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeNewGroupChat
         case internalLinkTypeNewPrivateChat
         case internalLinkTypeNewStory
+        case internalLinkTypeOauth
         case internalLinkTypePassportDataRequest
         case internalLinkTypePhoneNumberConfirmation
         case internalLinkTypePremiumFeaturesPage
@@ -327,6 +331,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeNewStory:
             let value = try InternalLinkTypeNewStory(from: decoder)
             self = .internalLinkTypeNewStory(value)
+        case .internalLinkTypeOauth:
+            let value = try InternalLinkTypeOauth(from: decoder)
+            self = .internalLinkTypeOauth(value)
         case .internalLinkTypePassportDataRequest:
             let value = try InternalLinkTypePassportDataRequest(from: decoder)
             self = .internalLinkTypePassportDataRequest(value)
@@ -486,6 +493,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try container.encode(Kind.internalLinkTypeNewPrivateChat, forKey: .type)
         case .internalLinkTypeNewStory(let value):
             try container.encode(Kind.internalLinkTypeNewStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeOauth(let value):
+            try container.encode(Kind.internalLinkTypeOauth, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypePassportDataRequest(let value):
             try container.encode(Kind.internalLinkTypePassportDataRequest, forKey: .type)
@@ -967,6 +977,18 @@ public struct InternalLinkTypeNewStory: Codable, Equatable, Hashable {
 
     public init(contentType: StoryContentType?) {
         self.contentType = contentType
+    }
+}
+
+/// The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest
+public struct InternalLinkTypeOauth: Codable, Equatable, Hashable {
+
+    /// URL to be passed to getOauthLinkInfo
+    public let url: String
+
+
+    public init(url: String) {
+        self.url = url
     }
 }
 

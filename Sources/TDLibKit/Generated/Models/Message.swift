@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -109,6 +109,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the sender of the message
     public let senderId: MessageSender
 
+    /// Tag of the sender of the message in the supergroup at the time the message was sent; may be empty if none or unknown. For messages sent in basic groups or supergroup administrators, the current custom title or tag must be used instead
+    public let senderTag: String
+
     /// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     public let sendingState: MessageSendingState?
 
@@ -161,6 +164,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         senderBoostCount: Int,
         senderBusinessBotUserId: Int64,
         senderId: MessageSender,
+        senderTag: String,
         sendingState: MessageSendingState?,
         suggestedPostInfo: SuggestedPostInfo?,
         summaryLanguageCode: String,
@@ -200,6 +204,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.senderBoostCount = senderBoostCount
         self.senderBusinessBotUserId = senderBusinessBotUserId
         self.senderId = senderId
+        self.senderTag = senderTag
         self.sendingState = sendingState
         self.suggestedPostInfo = suggestedPostInfo
         self.summaryLanguageCode = summaryLanguageCode

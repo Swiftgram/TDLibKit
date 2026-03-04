@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -115,6 +115,12 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if fact check for the message can be changed through setMessageFactCheck
     public let canSetFactCheck: Bool
 
+    /// True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false
+    public let hasProtectedContentByCurrentUser: Bool
+
+    /// True, if content of the message can't be saved locally, because it is protected by the other user; if true, then can_be_saved is false
+    public let hasProtectedContentByOtherUser: Bool
+
     /// True, if message statistics must be available from context menu of the message
     public let needShowStatistics: Bool
 
@@ -154,6 +160,8 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canReportReactions: Bool,
         canReportSupergroupSpam: Bool,
         canSetFactCheck: Bool,
+        hasProtectedContentByCurrentUser: Bool,
+        hasProtectedContentByOtherUser: Bool,
         needShowStatistics: Bool
     ) {
         self.canAddOffer = canAddOffer
@@ -190,6 +198,8 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canReportReactions = canReportReactions
         self.canReportSupergroupSpam = canReportSupergroupSpam
         self.canSetFactCheck = canSetFactCheck
+        self.hasProtectedContentByCurrentUser = hasProtectedContentByCurrentUser
+        self.hasProtectedContentByOtherUser = hasProtectedContentByOtherUser
         self.needShowStatistics = needShowStatistics
     }
 }

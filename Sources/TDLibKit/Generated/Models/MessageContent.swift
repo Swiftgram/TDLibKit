@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -126,6 +126,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// The owner of the chat has changed
     case messageChatOwnerChanged(MessageChatOwnerChanged)
+
+    /// Chat has_protected_content setting was changed or request to change it was rejected
+    case messageChatHasProtectedContentToggled(MessageChatHasProtectedContentToggled)
+
+    /// Chat has_protected_content setting was requested to be disabled
+    case messageChatHasProtectedContentDisableRequested(MessageChatHasProtectedContentDisableRequested)
 
     /// New chat members were added
     case messageChatAddMembers(MessageChatAddMembers)
@@ -338,6 +344,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageChatDeletePhoto
         case messageChatOwnerLeft
         case messageChatOwnerChanged
+        case messageChatHasProtectedContentToggled
+        case messageChatHasProtectedContentDisableRequested
         case messageChatAddMembers
         case messageChatJoinByLink
         case messageChatJoinByRequest
@@ -510,6 +518,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageChatOwnerChanged:
             let value = try MessageChatOwnerChanged(from: decoder)
             self = .messageChatOwnerChanged(value)
+        case .messageChatHasProtectedContentToggled:
+            let value = try MessageChatHasProtectedContentToggled(from: decoder)
+            self = .messageChatHasProtectedContentToggled(value)
+        case .messageChatHasProtectedContentDisableRequested:
+            let value = try MessageChatHasProtectedContentDisableRequested(from: decoder)
+            self = .messageChatHasProtectedContentDisableRequested(value)
         case .messageChatAddMembers:
             let value = try MessageChatAddMembers(from: decoder)
             self = .messageChatAddMembers(value)
@@ -790,6 +804,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageChatOwnerChanged(let value):
             try container.encode(Kind.messageChatOwnerChanged, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChatHasProtectedContentToggled(let value):
+            try container.encode(Kind.messageChatHasProtectedContentToggled, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChatHasProtectedContentDisableRequested(let value):
+            try container.encode(Kind.messageChatHasProtectedContentDisableRequested, forKey: .type)
             try value.encode(to: encoder)
         case .messageChatAddMembers(let value):
             try container.encode(Kind.messageChatAddMembers, forKey: .type)
@@ -1512,15 +1532,20 @@ public struct MessageCall: Codable, Equatable, Hashable {
     /// True, if the call was a video call
     public let isVideo: Bool
 
+    /// Persistent unique call identifier; 0 for calls from other devices, which can't be passed as inputCallFromMessage
+    public let uniqueId: TdInt64
+
 
     public init(
         discardReason: CallDiscardReason,
         duration: Int,
-        isVideo: Bool
+        isVideo: Bool,
+        uniqueId: TdInt64
     ) {
         self.discardReason = discardReason
         self.duration = duration
         self.isVideo = isVideo
+        self.uniqueId = uniqueId
     }
 }
 
@@ -1701,6 +1726,42 @@ public struct MessageChatOwnerChanged: Codable, Equatable, Hashable {
 
     public init(newOwnerUserId: Int64) {
         self.newOwnerUserId = newOwnerUserId
+    }
+}
+
+/// Chat has_protected_content setting was changed or request to change it was rejected
+public struct MessageChatHasProtectedContentToggled: Codable, Equatable, Hashable {
+
+    /// New value of the setting
+    public let newHasProtectedContent: Bool
+
+    /// Previous value of the setting
+    public let oldHasProtectedContent: Bool
+
+    /// Identifier of the message with the request to change the setting; can be an identifier of a deleted message or 0
+    public let requestMessageId: Int64
+
+
+    public init(
+        newHasProtectedContent: Bool,
+        oldHasProtectedContent: Bool,
+        requestMessageId: Int64
+    ) {
+        self.newHasProtectedContent = newHasProtectedContent
+        self.oldHasProtectedContent = oldHasProtectedContent
+        self.requestMessageId = requestMessageId
+    }
+}
+
+/// Chat has_protected_content setting was requested to be disabled
+public struct MessageChatHasProtectedContentDisableRequested: Codable, Equatable, Hashable {
+
+    /// True, if the request has expired
+    public let isExpired: Bool
+
+
+    public init(isExpired: Bool) {
+        self.isExpired = isExpired
     }
 }
 

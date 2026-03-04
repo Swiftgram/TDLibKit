@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -1402,10 +1402,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     public func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1418,10 +1418,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getRepliedMessage(
         chatId: Int64?,
@@ -8763,7 +8763,7 @@ public final class TdApi {
         messageId: Int64?,
         offset: Int?,
         optionId: Int?,
-        completion: @escaping (Result<MessageSenders, Swift.Error>) -> Void
+        completion: @escaping (Result<PollVoters, Swift.Error>) -> Void
     ) throws {
         let query = GetPollVoters(
             chatId: chatId,
@@ -8789,7 +8789,7 @@ public final class TdApi {
         messageId: Int64?,
         offset: Int?,
         optionId: Int?
-    ) async throws -> MessageSenders {
+    ) async throws -> PollVoters {
         let query = GetPollVoters(
             chatId: chatId,
             limit: limit,
@@ -10414,18 +10414,15 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed. May return an empty link if just a toast about successful login has to be shown
-    /// - Parameter allowPhoneNumberAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
     /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. May return an empty link if just a toast about successful login has to be shown
     public func getExternalLink(
-        allowPhoneNumberAccess: Bool?,
         allowWriteAccess: Bool?,
         link: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetExternalLink(
-            allowPhoneNumberAccess: allowPhoneNumberAccess,
             allowWriteAccess: allowWriteAccess,
             link: link
         )
@@ -10433,20 +10430,147 @@ public final class TdApi {
     }
 
     /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed. May return an empty link if just a toast about successful login has to be shown
-    /// - Parameter allowPhoneNumberAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to access their phone number
     /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages
     /// - Parameter link: The HTTP link
     /// - Returns: An HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. May return an empty link if just a toast about successful login has to be shown
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getExternalLink(
-        allowPhoneNumberAccess: Bool?,
         allowWriteAccess: Bool?,
         link: String?
     ) async throws -> HttpUrl {
         let query = GetExternalLink(
-            allowPhoneNumberAccess: allowPhoneNumberAccess,
             allowWriteAccess: allowWriteAccess,
             link: link
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
+    /// - Parameter inAppOrigin: Origin of the OAuth request if the request was received from the in-app browser; pass an empty string otherwise
+    /// - Parameter url: URL of the link
+    /// - Returns: Information about an OAuth deep link
+    public func getOauthLinkInfo(
+        inAppOrigin: String?,
+        url: String?,
+        completion: @escaping (Result<OauthLinkInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOauthLinkInfo(
+            inAppOrigin: inAppOrigin,
+            url: url
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link
+    /// - Parameter inAppOrigin: Origin of the OAuth request if the request was received from the in-app browser; pass an empty string otherwise
+    /// - Parameter url: URL of the link
+    /// - Returns: Information about an OAuth deep link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getOauthLinkInfo(
+        inAppOrigin: String?,
+        url: String?
+    ) async throws -> OauthLinkInfo {
+        let query = GetOauthLinkInfo(
+            inAppOrigin: inAppOrigin,
+            url: url
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise, authorization confirmation dialog must be shown and the link must be processed using acceptOauthRequest or declineOauthRequest
+    /// - Parameter matchCode: The matching code chosen by the user
+    /// - Parameter url: URL of the OAuth deep link
+    public func checkOauthRequestMatchCode(
+        matchCode: String?,
+        url: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckOauthRequestMatchCode(
+            matchCode: matchCode,
+            url: url
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Checks a match-code for an OAuth authorization request. If fails, then the authorization request has failed. Otherwise, authorization confirmation dialog must be shown and the link must be processed using acceptOauthRequest or declineOauthRequest
+    /// - Parameter matchCode: The matching code chosen by the user
+    /// - Parameter url: URL of the OAuth deep link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func checkOauthRequestMatchCode(
+        matchCode: String?,
+        url: String?
+    ) async throws -> Ok {
+        let query = CheckOauthRequestMatchCode(
+            matchCode: matchCode,
+            url: url
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization. May return an empty link if just a toast about successful login has to be shown
+    /// - Parameter allowPhoneNumberAccess: Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to access their phone number
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to send them messages
+    /// - Parameter matchCode: The matching code chosen by the user
+    /// - Parameter url: URL of the OAuth deep link
+    /// - Returns: An HTTP URL to open after successful authorization. May return an empty link if just a toast about successful login has to be shown
+    public func acceptOauthRequest(
+        allowPhoneNumberAccess: Bool?,
+        allowWriteAccess: Bool?,
+        matchCode: String?,
+        url: String?,
+        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = AcceptOauthRequest(
+            allowPhoneNumberAccess: allowPhoneNumberAccess,
+            allowWriteAccess: allowWriteAccess,
+            matchCode: matchCode,
+            url: url
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization. May return an empty link if just a toast about successful login has to be shown
+    /// - Parameter allowPhoneNumberAccess: Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to access their phone number
+    /// - Parameter allowWriteAccess: Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to send them messages
+    /// - Parameter matchCode: The matching code chosen by the user
+    /// - Parameter url: URL of the OAuth deep link
+    /// - Returns: An HTTP URL to open after successful authorization. May return an empty link if just a toast about successful login has to be shown
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func acceptOauthRequest(
+        allowPhoneNumberAccess: Bool?,
+        allowWriteAccess: Bool?,
+        matchCode: String?,
+        url: String?
+    ) async throws -> HttpUrl {
+        let query = AcceptOauthRequest(
+            allowPhoneNumberAccess: allowPhoneNumberAccess,
+            allowWriteAccess: allowWriteAccess,
+            matchCode: matchCode,
+            url: url
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Declines an OAuth authorization request
+    /// - Parameter url: URL of the OAuth deep link
+    public func declineOauthRequest(
+        url: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeclineOauthRequest(
+            url: url
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Declines an OAuth authorization request
+    /// - Parameter url: URL of the OAuth deep link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func declineOauthRequest(url: String?) async throws -> Ok {
+        let query = DeclineOauthRequest(
+            url: url
         )
         return try await self.execute(query: query)
     }
@@ -11815,7 +11939,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+    /// Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels. Requires Telegram Premium to enable protected content in private chats. Not available in Saved Messages and private chats with bots or support accounts
     /// - Parameter chatId: Chat identifier
     /// - Parameter hasProtectedContent: New value of has_protected_content
     public func toggleChatHasProtectedContent(
@@ -11830,7 +11954,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+    /// Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels. Requires Telegram Premium to enable protected content in private chats. Not available in Saved Messages and private chats with bots or support accounts
     /// - Parameter chatId: Chat identifier
     /// - Parameter hasProtectedContent: New value of has_protected_content
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -11842,6 +11966,43 @@ public final class TdApi {
         let query = ToggleChatHasProtectedContent(
             chatId: chatId,
             hasProtectedContent: hasProtectedContent
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Processes request to disable has_protected_content in a chat
+    /// - Parameter approve: Pass true to approve the request; pass false to reject the request
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter requestMessageId: Identifier of the message with the request. The message must be incoming and has content of the type messageChatHasProtectedContentDisableRequested
+    public func processChatHasProtectedContentDisableRequest(
+        approve: Bool?,
+        chatId: Int64?,
+        requestMessageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ProcessChatHasProtectedContentDisableRequest(
+            approve: approve,
+            chatId: chatId,
+            requestMessageId: requestMessageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Processes request to disable has_protected_content in a chat
+    /// - Parameter approve: Pass true to approve the request; pass false to reject the request
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter requestMessageId: Identifier of the message with the request. The message must be incoming and has content of the type messageChatHasProtectedContentDisableRequested
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func processChatHasProtectedContentDisableRequest(
+        approve: Bool?,
+        chatId: Int64?,
+        requestMessageId: Int64?
+    ) async throws -> Ok {
+        let query = ProcessChatHasProtectedContentDisableRequest(
+            approve: approve,
+            chatId: chatId,
+            requestMessageId: requestMessageId
         )
         return try await self.execute(query: query)
     }
@@ -12445,6 +12606,43 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter tag: The new tag of the member in the chat; 0-16 characters without emoji
+    /// - Parameter userId: Identifier of the user, which tag is changed. Chats can't have member tags
+    public func setChatMemberTag(
+        chatId: Int64?,
+        tag: String?,
+        userId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetChatMemberTag(
+            chatId: chatId,
+            tag: tag,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter tag: The new tag of the member in the chat; 0-16 characters without emoji
+    /// - Parameter userId: Identifier of the user, which tag is changed. Chats can't have member tags
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setChatMemberTag(
+        chatId: Int64?,
+        tag: String?,
+        userId: Int64?
+    ) async throws -> Ok {
+        let query = SetChatMemberTag(
+            chatId: chatId,
+            tag: tag,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
     /// - Parameter bannedUntilDate: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
     /// - Parameter chatId: Chat identifier
@@ -12503,7 +12701,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+    /// Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
@@ -12521,7 +12719,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+    /// Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
     /// - Parameter chatId: Chat identifier
     /// - Parameter password: The 2-step verification password of the current user
     /// - Parameter userId: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
@@ -12540,9 +12738,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat. Available only for supergroups and channel chats
+    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for supergroups and channel chats
     /// - Parameter chatId: Chat identifier
-    /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period
+    /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups
     public func getChatOwnerAfterLeaving(
         chatId: Int64?,
         completion: @escaping (Result<User, Swift.Error>) -> Void
@@ -12553,9 +12751,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period; requires owner privileges in the chat. Available only for supergroups and channel chats
+    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for supergroups and channel chats
     /// - Parameter chatId: Chat identifier
-    /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the chat during that period
+    /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getChatOwnerAfterLeaving(chatId: Int64?) async throws -> User {
         let query = GetChatOwnerAfterLeaving(
@@ -16306,7 +16504,7 @@ public final class TdApi {
     /// - Parameter problems: List of the exact types of problems with the call, specified by the user
     /// - Parameter rating: Call rating; 1-5
     public func sendCallRating(
-        callId: Int?,
+        callId: InputCall?,
         comment: String?,
         problems: [CallProblem]?,
         rating: Int?,
@@ -16329,7 +16527,7 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendCallRating(
-        callId: Int?,
+        callId: InputCall?,
         comment: String?,
         problems: [CallProblem]?,
         rating: Int?
@@ -16347,7 +16545,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter debugInformation: Debug information in application-specific format
     public func sendCallDebugInformation(
-        callId: Int?,
+        callId: InputCall?,
         debugInformation: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
@@ -16364,7 +16562,7 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendCallDebugInformation(
-        callId: Int?,
+        callId: InputCall?,
         debugInformation: String?
     ) async throws -> Ok {
         let query = SendCallDebugInformation(
@@ -16378,7 +16576,7 @@ public final class TdApi {
     /// - Parameter callId: Call identifier
     /// - Parameter logFile: Call log file. Only inputFileLocal and inputFileGenerated are supported
     public func sendCallLog(
-        callId: Int?,
+        callId: InputCall?,
         logFile: InputFile?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
@@ -16395,7 +16593,7 @@ public final class TdApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendCallLog(
-        callId: Int?,
+        callId: InputCall?,
         logFile: InputFile?
     ) async throws -> Ok {
         let query = SendCallLog(
@@ -16460,7 +16658,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
+    /// Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
     /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
@@ -16481,7 +16679,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
+    /// Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
     /// - Parameter chatId: Identifier of a chat in which the video chat will be created
     /// - Parameter isRtmpStream: Pass true to create an RTMP stream instead of an ordinary video chat
     /// - Parameter startDate: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
@@ -23500,7 +23698,7 @@ public final class TdApi {
     }
 
     /// Crafts a new gift from other gifts that will be permanently lost
-    /// - Parameter receivedGiftIds: Identifier of the gifts to use for crafting
+    /// - Parameter receivedGiftIds: Identifier of the gifts to use for crafting. In the case of a successful craft, the resulting gift will have the number of the first gift. Consequently, the first gift must not have been withdrawn to the TON blockchain as an NFT and must have an empty gift_address
     public func craftGift(
         receivedGiftIds: [String]?,
         completion: @escaping (Result<CraftGiftResult, Swift.Error>) -> Void
@@ -23512,7 +23710,7 @@ public final class TdApi {
     }
 
     /// Crafts a new gift from other gifts that will be permanently lost
-    /// - Parameter receivedGiftIds: Identifier of the gifts to use for crafting
+    /// - Parameter receivedGiftIds: Identifier of the gifts to use for crafting. In the case of a successful craft, the resulting gift will have the number of the first gift. Consequently, the first gift must not have been withdrawn to the TON blockchain as an NFT and must have an empty gift_address
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func craftGift(receivedGiftIds: [String]?) async throws -> CraftGiftResult {
         let query = CraftGift(

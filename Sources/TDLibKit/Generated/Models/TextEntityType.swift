@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -79,6 +79,9 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     /// A media timestamp
     case textEntityTypeMediaTimestamp(TextEntityTypeMediaTimestamp)
 
+    /// A date and time
+    case textEntityTypeDateTime(TextEntityTypeDateTime)
+
 
     private enum Kind: String, Codable {
         case textEntityTypeMention
@@ -103,6 +106,7 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
         case textEntityTypeMentionName
         case textEntityTypeCustomEmoji
         case textEntityTypeMediaTimestamp
+        case textEntityTypeDateTime
     }
 
     public init(from decoder: Decoder) throws {
@@ -158,6 +162,9 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
         case .textEntityTypeMediaTimestamp:
             let value = try TextEntityTypeMediaTimestamp(from: decoder)
             self = .textEntityTypeMediaTimestamp(value)
+        case .textEntityTypeDateTime:
+            let value = try TextEntityTypeDateTime(from: decoder)
+            self = .textEntityTypeDateTime(value)
         }
     }
 
@@ -212,6 +219,9 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .textEntityTypeMediaTimestamp(let value):
             try container.encode(Kind.textEntityTypeMediaTimestamp, forKey: .type)
+            try value.encode(to: encoder)
+        case .textEntityTypeDateTime(let value):
+            try container.encode(Kind.textEntityTypeDateTime, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -274,6 +284,25 @@ public struct TextEntityTypeMediaTimestamp: Codable, Equatable, Hashable {
 
     public init(mediaTimestamp: Int) {
         self.mediaTimestamp = mediaTimestamp
+    }
+}
+
+/// A date and time
+public struct TextEntityTypeDateTime: Codable, Equatable, Hashable {
+
+    /// Date and time formatting type; may be null if none and the original text must not be changed
+    public let formattingType: DateTimeFormattingType?
+
+    /// Point in time (Unix timestamp) representing the date and time
+    public let unixTime: Int
+
+
+    public init(
+        formattingType: DateTimeFormattingType?,
+        unixTime: Int
+    ) {
+        self.formattingType = formattingType
+        self.unixTime = unixTime
     }
 }
 

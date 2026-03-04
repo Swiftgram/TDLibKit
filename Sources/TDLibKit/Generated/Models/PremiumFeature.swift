@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -91,6 +91,9 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to require a payment for incoming messages in new chats
     case premiumFeaturePaidMessages
 
+    /// The ability to enable content protection in private chats
+    case premiumFeatureProtectPrivateChatContent
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -119,6 +122,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureMessageEffects
         case premiumFeatureChecklists
         case premiumFeaturePaidMessages
+        case premiumFeatureProtectPrivateChatContent
     }
 
     public init(from decoder: Decoder) throws {
@@ -177,6 +181,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeatureChecklists
         case .premiumFeaturePaidMessages:
             self = .premiumFeaturePaidMessages
+        case .premiumFeatureProtectPrivateChatContent:
+            self = .premiumFeatureProtectPrivateChatContent
         }
     }
 
@@ -235,6 +241,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeatureChecklists, forKey: .type)
         case .premiumFeaturePaidMessages:
             try container.encode(Kind.premiumFeaturePaidMessages, forKey: .type)
+        case .premiumFeatureProtectPrivateChatContent:
+            try container.encode(Kind.premiumFeatureProtectPrivateChatContent, forKey: .type)
         }
     }
 }

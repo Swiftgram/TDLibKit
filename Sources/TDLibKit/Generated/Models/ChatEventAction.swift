@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -48,6 +48,9 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
 
     /// A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
     case chatEventMemberRestricted(ChatEventMemberRestricted)
+
+    /// A chat member tag has been changed
+    case chatEventMemberTagChanged(ChatEventMemberTagChanged)
 
     /// A chat member extended their subscription to the chat
     case chatEventMemberSubscriptionExtended(ChatEventMemberSubscriptionExtended)
@@ -183,6 +186,7 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
         case chatEventMemberLeft
         case chatEventMemberPromoted
         case chatEventMemberRestricted
+        case chatEventMemberTagChanged
         case chatEventMemberSubscriptionExtended
         case chatEventAvailableReactionsChanged
         case chatEventBackgroundChanged
@@ -263,6 +267,9 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
         case .chatEventMemberRestricted:
             let value = try ChatEventMemberRestricted(from: decoder)
             self = .chatEventMemberRestricted(value)
+        case .chatEventMemberTagChanged:
+            let value = try ChatEventMemberTagChanged(from: decoder)
+            self = .chatEventMemberTagChanged(value)
         case .chatEventMemberSubscriptionExtended:
             let value = try ChatEventMemberSubscriptionExtended(from: decoder)
             self = .chatEventMemberSubscriptionExtended(value)
@@ -422,6 +429,9 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .chatEventMemberRestricted(let value):
             try container.encode(Kind.chatEventMemberRestricted, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatEventMemberTagChanged(let value):
+            try container.encode(Kind.chatEventMemberTagChanged, forKey: .type)
             try value.encode(to: encoder)
         case .chatEventMemberSubscriptionExtended(let value):
             try container.encode(Kind.chatEventMemberSubscriptionExtended, forKey: .type)
@@ -723,6 +733,30 @@ public struct ChatEventMemberRestricted: Codable, Equatable, Hashable {
         self.memberId = memberId
         self.newStatus = newStatus
         self.oldStatus = oldStatus
+    }
+}
+
+/// A chat member tag has been changed
+public struct ChatEventMemberTagChanged: Codable, Equatable, Hashable {
+
+    /// New tag of the chat member
+    public let newTag: String
+
+    /// Previous tag of the chat member
+    public let oldTag: String
+
+    /// Affected chat member user identifier
+    public let userId: Int64
+
+
+    public init(
+        newTag: String,
+        oldTag: String,
+        userId: Int64
+    ) {
+        self.newTag = newTag
+        self.oldTag = oldTag
+        self.userId = userId
     }
 }
 

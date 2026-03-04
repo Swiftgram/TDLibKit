@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -92,9 +92,6 @@ public indirect enum ChatMemberStatus: Codable, Equatable, Hashable {
 /// The user is the owner of the chat and has all the administrator privileges
 public struct ChatMemberStatusCreator: Codable, Equatable, Hashable {
 
-    /// A custom title of the owner; 0-16 characters without emoji; applicable to supergroups only
-    public let customTitle: String
-
     /// True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     public let isAnonymous: Bool
 
@@ -103,11 +100,9 @@ public struct ChatMemberStatusCreator: Codable, Equatable, Hashable {
 
 
     public init(
-        customTitle: String,
         isAnonymous: Bool,
         isMember: Bool
     ) {
-        self.customTitle = customTitle
         self.isAnonymous = isAnonymous
         self.isMember = isMember
     }
@@ -119,20 +114,15 @@ public struct ChatMemberStatusAdministrator: Codable, Equatable, Hashable {
     /// True, if the current user can edit the administrator privileges for the called user
     public let canBeEdited: Bool
 
-    /// A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only
-    public let customTitle: String
-
     /// Rights of the administrator
     public let rights: ChatAdministratorRights
 
 
     public init(
         canBeEdited: Bool,
-        customTitle: String,
         rights: ChatAdministratorRights
     ) {
         self.canBeEdited = canBeEdited
-        self.customTitle = customTitle
         self.rights = rights
     }
 }

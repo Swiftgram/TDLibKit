@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -36,6 +36,9 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
 
     /// True, if the administrator can answer to channel direct messages; applicable to channels only
     public let canManageDirectMessages: Bool
+
+    /// True, if the administrator can change tags of other users; applicable to basic groups and supergroups only
+    public let canManageTags: Bool
 
     /// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
     public let canManageTopics: Bool
@@ -71,6 +74,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
         canInviteUsers: Bool,
         canManageChat: Bool,
         canManageDirectMessages: Bool,
+        canManageTags: Bool,
         canManageTopics: Bool,
         canManageVideoChats: Bool,
         canPinMessages: Bool,
@@ -88,6 +92,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
         self.canInviteUsers = canInviteUsers
         self.canManageChat = canManageChat
         self.canManageDirectMessages = canManageDirectMessages
+        self.canManageTags = canManageTags
         self.canManageTopics = canManageTopics
         self.canManageVideoChats = canManageVideoChats
         self.canPinMessages = canPinMessages

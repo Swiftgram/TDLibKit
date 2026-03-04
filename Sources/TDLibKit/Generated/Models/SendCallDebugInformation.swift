@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.61-6d509061
-//  https://github.com/tdlib/td/tree/6d509061
+//  Based on TDLib 1.8.62-af0cb1d3
+//  https://github.com/tdlib/td/tree/af0cb1d3
 //
 
 import Foundation
@@ -14,14 +14,14 @@ import Foundation
 public struct SendCallDebugInformation: Codable, Equatable, Hashable {
 
     /// Call identifier
-    public let callId: Int?
+    public let callId: InputCall?
 
     /// Debug information in application-specific format
     public let debugInformation: String?
 
 
     public init(
-        callId: Int?,
+        callId: InputCall?,
         debugInformation: String?
     ) {
         self.callId = callId
