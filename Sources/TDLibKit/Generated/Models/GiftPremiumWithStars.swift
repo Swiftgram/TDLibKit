@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GiftPremiumWithStars: Codable, Equatable, Hashable {
     /// The number of Telegram Stars to pay for subscription
     public let starCount: Int64?
 
-    /// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     public let text: FormattedText?
 
     /// Identifier of the user which will receive Telegram Premium

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -103,6 +103,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if a video call can be created with the user
     public let supportsVideoCalls: Bool
 
+    /// True, if the user uses an unofficial application that poses a security risk
+    public let usesUnofficialApp: Bool
+
 
     public init(
         bio: FormattedText?,
@@ -134,7 +137,8 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         publicPhoto: ChatPhoto?,
         rating: UserRating?,
         setChatBackground: Bool,
-        supportsVideoCalls: Bool
+        supportsVideoCalls: Bool,
+        usesUnofficialApp: Bool
     ) {
         self.bio = bio
         self.birthdate = birthdate
@@ -166,6 +170,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.rating = rating
         self.setChatBackground = setChatBackground
         self.supportsVideoCalls = supportsVideoCalls
+        self.usesUnofficialApp = usesUnofficialApp
     }
 }
 

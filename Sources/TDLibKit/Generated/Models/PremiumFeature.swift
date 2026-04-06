@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -94,6 +94,9 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to enable content protection in private chats
     case premiumFeatureProtectPrivateChatContent
 
+    /// The ability to compose text with AI
+    case premiumFeatureTextComposition
+
 
     private enum Kind: String, Codable {
         case premiumFeatureIncreasedLimits
@@ -123,6 +126,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
         case premiumFeatureChecklists
         case premiumFeaturePaidMessages
         case premiumFeatureProtectPrivateChatContent
+        case premiumFeatureTextComposition
     }
 
     public init(from decoder: Decoder) throws {
@@ -183,6 +187,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             self = .premiumFeaturePaidMessages
         case .premiumFeatureProtectPrivateChatContent:
             self = .premiumFeatureProtectPrivateChatContent
+        case .premiumFeatureTextComposition:
+            self = .premiumFeatureTextComposition
         }
     }
 
@@ -243,6 +249,8 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumFeaturePaidMessages, forKey: .type)
         case .premiumFeatureProtectPrivateChatContent:
             try container.encode(Kind.premiumFeatureProtectPrivateChatContent, forKey: .type)
+        case .premiumFeatureTextComposition:
+            try container.encode(Kind.premiumFeatureTextComposition, forKey: .type)
         }
     }
 }

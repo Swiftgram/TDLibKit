@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -134,6 +134,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     case internalLinkTypeQrCodeAuthentication
 
+    /// The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
+    case internalLinkTypeRequestManagedBot(InternalLinkTypeRequestManagedBot)
+
     /// The link forces restore of App Store purchases when opened. For official iOS application only
     case internalLinkTypeRestorePurchases
 
@@ -221,6 +224,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeProxy
         case internalLinkTypePublicChat
         case internalLinkTypeQrCodeAuthentication
+        case internalLinkTypeRequestManagedBot
         case internalLinkTypeRestorePurchases
         case internalLinkTypeSavedMessages
         case internalLinkTypeSearch
@@ -357,6 +361,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             self = .internalLinkTypePublicChat(value)
         case .internalLinkTypeQrCodeAuthentication:
             self = .internalLinkTypeQrCodeAuthentication
+        case .internalLinkTypeRequestManagedBot:
+            let value = try InternalLinkTypeRequestManagedBot(from: decoder)
+            self = .internalLinkTypeRequestManagedBot(value)
         case .internalLinkTypeRestorePurchases:
             self = .internalLinkTypeRestorePurchases
         case .internalLinkTypeSavedMessages:
@@ -520,6 +527,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeQrCodeAuthentication:
             try container.encode(Kind.internalLinkTypeQrCodeAuthentication, forKey: .type)
+        case .internalLinkTypeRequestManagedBot(let value):
+            try container.encode(Kind.internalLinkTypeRequestManagedBot, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeRestorePurchases:
             try container.encode(Kind.internalLinkTypeRestorePurchases, forKey: .type)
         case .internalLinkTypeSavedMessages:
@@ -1114,6 +1124,30 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
         self.chatUsername = chatUsername
         self.draftText = draftText
         self.openProfile = openProfile
+    }
+}
+
+/// The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
+public struct InternalLinkTypeRequestManagedBot: Codable, Equatable, Hashable {
+
+    /// Username of the bot which will manage the new bot
+    public let managerBotUsername: String
+
+    /// Suggested name for the bot; may be empty if not specified
+    public let suggestedBotName: String
+
+    /// Suggested username for the bot
+    public let suggestedBotUsername: String
+
+
+    public init(
+        managerBotUsername: String,
+        suggestedBotName: String,
+        suggestedBotUsername: String
+    ) {
+        self.managerBotUsername = managerBotUsername
+        self.suggestedBotName = suggestedBotName
+        self.suggestedBotUsername = suggestedBotUsername
     }
 }
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
 
 
-/// Changes the user answer to a poll. A poll in quiz mode can be answered only once
+/// Changes the user answer to a poll
 public struct SetPollAnswer: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the poll belongs

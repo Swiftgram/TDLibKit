@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
 
 
-/// Describes a built-in theme of an official app
+/// Describes a built-in theme of an official application
 public indirect enum BuiltInTheme: Codable, Equatable, Hashable {
 
     /// Classic light theme

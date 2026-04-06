@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct GetMessageLink: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?
+
+    /// If not 0, identifier of the checklist task in the message to be linked
+    public let checklistTaskId: Int?
 
     /// Pass true to create a link for the whole media album
     public let forAlbum: Bool?
@@ -28,19 +31,26 @@ public struct GetMessageLink: Codable, Equatable, Hashable {
     /// Identifier of the message
     public let messageId: Int64?
 
+    /// If not empty, identifier of the poll option in the message to be linked
+    public let pollOptionId: String?
+
 
     public init(
         chatId: Int64?,
+        checklistTaskId: Int?,
         forAlbum: Bool?,
         inMessageThread: Bool?,
         mediaTimestamp: Int?,
-        messageId: Int64?
+        messageId: Int64?,
+        pollOptionId: String?
     ) {
         self.chatId = chatId
+        self.checklistTaskId = checklistTaskId
         self.forAlbum = forAlbum
         self.inMessageThread = inMessageThread
         self.mediaTimestamp = mediaTimestamp
         self.messageId = messageId
+        self.pollOptionId = pollOptionId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -106,6 +106,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A message with information about an invitation to a video chat
     case messageInviteVideoChatParticipants(MessageInviteVideoChatParticipants)
 
+    /// A message with information about an added poll option
+    case messagePollOptionAdded(MessagePollOptionAdded)
+
+    /// A message with information about a deleted poll option
+    case messagePollOptionDeleted(MessagePollOptionDeleted)
+
     /// A newly created basic group
     case messageBasicGroupChatCreate(MessageBasicGroupChatCreate)
 
@@ -192,6 +198,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A new high score was achieved in a game
     case messageGameScore(MessageGameScore)
+
+    /// A bot managed by another bot was created by the user
+    case messageManagedBotCreated(MessageManagedBotCreated)
 
     /// A payment has been sent to a bot or a business account
     case messagePaymentSuccessful(MessagePaymentSuccessful)
@@ -337,6 +346,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageVideoChatStarted
         case messageVideoChatEnded
         case messageInviteVideoChatParticipants
+        case messagePollOptionAdded
+        case messagePollOptionDeleted
         case messageBasicGroupChatCreate
         case messageSupergroupChatCreate
         case messageChatChangeTitle
@@ -366,6 +377,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageSuggestBirthdate
         case messageCustomServiceAction
         case messageGameScore
+        case messageManagedBotCreated
         case messagePaymentSuccessful
         case messagePaymentSuccessfulBot
         case messagePaymentRefunded
@@ -498,6 +510,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageInviteVideoChatParticipants:
             let value = try MessageInviteVideoChatParticipants(from: decoder)
             self = .messageInviteVideoChatParticipants(value)
+        case .messagePollOptionAdded:
+            let value = try MessagePollOptionAdded(from: decoder)
+            self = .messagePollOptionAdded(value)
+        case .messagePollOptionDeleted:
+            let value = try MessagePollOptionDeleted(from: decoder)
+            self = .messagePollOptionDeleted(value)
         case .messageBasicGroupChatCreate:
             let value = try MessageBasicGroupChatCreate(from: decoder)
             self = .messageBasicGroupChatCreate(value)
@@ -581,6 +599,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGameScore:
             let value = try MessageGameScore(from: decoder)
             self = .messageGameScore(value)
+        case .messageManagedBotCreated:
+            let value = try MessageManagedBotCreated(from: decoder)
+            self = .messageManagedBotCreated(value)
         case .messagePaymentSuccessful:
             let value = try MessagePaymentSuccessful(from: decoder)
             self = .messagePaymentSuccessful(value)
@@ -785,6 +806,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageInviteVideoChatParticipants(let value):
             try container.encode(Kind.messageInviteVideoChatParticipants, forKey: .type)
             try value.encode(to: encoder)
+        case .messagePollOptionAdded(let value):
+            try container.encode(Kind.messagePollOptionAdded, forKey: .type)
+            try value.encode(to: encoder)
+        case .messagePollOptionDeleted(let value):
+            try container.encode(Kind.messagePollOptionDeleted, forKey: .type)
+            try value.encode(to: encoder)
         case .messageBasicGroupChatCreate(let value):
             try container.encode(Kind.messageBasicGroupChatCreate, forKey: .type)
             try value.encode(to: encoder)
@@ -867,6 +894,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageGameScore(let value):
             try container.encode(Kind.messageGameScore, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageManagedBotCreated(let value):
+            try container.encode(Kind.messageManagedBotCreated, forKey: .type)
             try value.encode(to: encoder)
         case .messagePaymentSuccessful(let value):
             try container.encode(Kind.messagePaymentSuccessful, forKey: .type)
@@ -1124,19 +1154,24 @@ public struct MessagePhoto: Codable, Equatable, Hashable {
     /// True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo
     public let showCaptionAboveMedia: Bool
 
+    /// The video representing the live photo; may be null if the photo is static
+    public let video: Video?
+
 
     public init(
         caption: FormattedText,
         hasSpoiler: Bool,
         isSecret: Bool,
         photo: Photo,
-        showCaptionAboveMedia: Bool
+        showCaptionAboveMedia: Bool,
+        video: Video?
     ) {
         self.caption = caption
         self.hasSpoiler = hasSpoiler
         self.isSecret = isSecret
         self.photo = photo
         self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.video = video
     }
 }
 
@@ -1387,11 +1422,27 @@ public struct MessageGame: Codable, Equatable, Hashable {
 /// A message with a poll
 public struct MessagePoll: Codable, Equatable, Hashable {
 
-    /// The poll description
+    /// True, if an option can be added to the poll using addPollOption
+    public let canAddOption: Bool
+
+    public let description: FormattedText
+
+    /// Media attached to the poll. Currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
+    public let media: MessageContent
+
+    /// Information about the poll
     public let poll: Poll
 
 
-    public init(poll: Poll) {
+    public init(
+        canAddOption: Bool,
+        description: FormattedText,
+        media: MessageContent,
+        poll: Poll
+    ) {
+        self.canAddOption = canAddOption
+        self.description = description
+        self.media = media
         self.poll = poll
     }
 }
@@ -1647,6 +1698,54 @@ public struct MessageInviteVideoChatParticipants: Codable, Equatable, Hashable {
     ) {
         self.groupCallId = groupCallId
         self.userIds = userIds
+    }
+}
+
+/// A message with information about an added poll option
+public struct MessagePollOptionAdded: Codable, Equatable, Hashable {
+
+    /// Identifier of the added option in the poll
+    public let optionId: String
+
+    /// Identifier of the message with the poll; can be an identifier of a deleted message or 0
+    public let pollMessageId: Int64
+
+    /// Text of the option; 1-100 characters; may contain only custom emoji entities
+    public let text: FormattedText
+
+
+    public init(
+        optionId: String,
+        pollMessageId: Int64,
+        text: FormattedText
+    ) {
+        self.optionId = optionId
+        self.pollMessageId = pollMessageId
+        self.text = text
+    }
+}
+
+/// A message with information about a deleted poll option
+public struct MessagePollOptionDeleted: Codable, Equatable, Hashable {
+
+    /// Identifier of the deleted option in the poll
+    public let optionId: String
+
+    /// Identifier of the message with the poll; can be an identifier of a deleted message or 0
+    public let pollMessageId: Int64
+
+    /// Text of the option; 1-100 characters; may contain only custom emoji entities
+    public let text: FormattedText
+
+
+    public init(
+        optionId: String,
+        pollMessageId: Int64,
+        text: FormattedText
+    ) {
+        self.optionId = optionId
+        self.pollMessageId = pollMessageId
+        self.text = text
     }
 }
 
@@ -2028,6 +2127,18 @@ public struct MessageGameScore: Codable, Equatable, Hashable {
         self.gameId = gameId
         self.gameMessageId = gameMessageId
         self.score = score
+    }
+}
+
+/// A bot managed by another bot was created by the user
+public struct MessageManagedBotCreated: Codable, Equatable, Hashable {
+
+    /// User identifier of the created bot
+    public let botUserId: Int64
+
+
+    public init(botUserId: Int64) {
+        self.botUserId = botUserId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -31,6 +31,9 @@ public indirect enum KeyboardButtonType: Codable, Equatable, Hashable {
     /// A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
     case keyboardButtonTypeRequestChat(KeyboardButtonTypeRequestChat)
 
+    /// A button that requests creation of a managed bot by the current user; available only in private chats. Use the method createBot to complete the request
+    case keyboardButtonTypeRequestManagedBot(KeyboardButtonTypeRequestManagedBot)
+
     /// A button that opens a Web App by calling getWebAppUrl
     case keyboardButtonTypeWebApp(KeyboardButtonTypeWebApp)
 
@@ -42,6 +45,7 @@ public indirect enum KeyboardButtonType: Codable, Equatable, Hashable {
         case keyboardButtonTypeRequestPoll
         case keyboardButtonTypeRequestUsers
         case keyboardButtonTypeRequestChat
+        case keyboardButtonTypeRequestManagedBot
         case keyboardButtonTypeWebApp
     }
 
@@ -64,6 +68,9 @@ public indirect enum KeyboardButtonType: Codable, Equatable, Hashable {
         case .keyboardButtonTypeRequestChat:
             let value = try KeyboardButtonTypeRequestChat(from: decoder)
             self = .keyboardButtonTypeRequestChat(value)
+        case .keyboardButtonTypeRequestManagedBot:
+            let value = try KeyboardButtonTypeRequestManagedBot(from: decoder)
+            self = .keyboardButtonTypeRequestManagedBot(value)
         case .keyboardButtonTypeWebApp:
             let value = try KeyboardButtonTypeWebApp(from: decoder)
             self = .keyboardButtonTypeWebApp(value)
@@ -87,6 +94,9 @@ public indirect enum KeyboardButtonType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .keyboardButtonTypeRequestChat(let value):
             try container.encode(Kind.keyboardButtonTypeRequestChat, forKey: .type)
+            try value.encode(to: encoder)
+        case .keyboardButtonTypeRequestManagedBot(let value):
+            try container.encode(Kind.keyboardButtonTypeRequestManagedBot, forKey: .type)
             try value.encode(to: encoder)
         case .keyboardButtonTypeWebApp(let value):
             try container.encode(Kind.keyboardButtonTypeWebApp, forKey: .type)
@@ -239,6 +249,30 @@ public struct KeyboardButtonTypeRequestChat: Codable, Equatable, Hashable, Ident
         self.restrictChatHasUsername = restrictChatHasUsername
         self.restrictChatIsForum = restrictChatIsForum
         self.userAdministratorRights = userAdministratorRights
+    }
+}
+
+/// A button that requests creation of a managed bot by the current user; available only in private chats. Use the method createBot to complete the request
+public struct KeyboardButtonTypeRequestManagedBot: Codable, Equatable, Hashable, Identifiable {
+
+    /// Unique button identifier
+    public let id: Int
+
+    /// Suggested name for the bot; may be empty if not specified
+    public let suggestedName: String
+
+    /// Suggested username for the bot; may be empty if not specified
+    public let suggestedUsername: String
+
+
+    public init(
+        id: Int,
+        suggestedName: String,
+        suggestedUsername: String
+    ) {
+        self.id = id
+        self.suggestedName = suggestedName
+        self.suggestedUsername = suggestedUsername
     }
 }
 

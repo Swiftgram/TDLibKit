@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct MessageLinkInfo: Codable, Equatable, Hashable {
 
     /// If found, identifier of the chat to which the link points, 0 otherwise
     public let chatId: Int64
+
+    /// Identifier of the checklist task that is linked; 0 if none
+    public let checklistTaskId: Int
 
     /// True, if the whole media album to which the message belongs is linked
     public let forAlbum: Bool
@@ -28,23 +31,30 @@ public struct MessageLinkInfo: Codable, Equatable, Hashable {
     /// If found, the linked message; may be null
     public let message: Message?
 
+    /// Identifier of the poll option that is linked; empty if none
+    public let pollOptionId: String
+
     /// Identifier of the specific topic in which the message must be opened, or a topic to open if the message is missing; may be null if none
     public let topicId: MessageTopic?
 
 
     public init(
         chatId: Int64,
+        checklistTaskId: Int,
         forAlbum: Bool,
         isPublic: Bool,
         mediaTimestamp: Int,
         message: Message?,
+        pollOptionId: String,
         topicId: MessageTopic?
     ) {
         self.chatId = chatId
+        self.checklistTaskId = checklistTaskId
         self.forAlbum = forAlbum
         self.isPublic = isPublic
         self.mediaTimestamp = mediaTimestamp
         self.message = message
+        self.pollOptionId = pollOptionId
         self.topicId = topicId
     }
 }

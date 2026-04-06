@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -43,6 +43,9 @@ public struct ForumTopic: Codable, Equatable, Hashable {
     /// Number of unread messages with a mention/reply in the topic
     public let unreadMentionCount: Int
 
+    /// Number of messages with unread poll votes in the topic
+    public let unreadPollVoteCount: Int
+
     /// Number of messages with unread reactions in the topic
     public let unreadReactionCount: Int
 
@@ -58,6 +61,7 @@ public struct ForumTopic: Codable, Equatable, Hashable {
         order: TdInt64,
         unreadCount: Int,
         unreadMentionCount: Int,
+        unreadPollVoteCount: Int,
         unreadReactionCount: Int
     ) {
         self.draftMessage = draftMessage
@@ -70,6 +74,7 @@ public struct ForumTopic: Codable, Equatable, Hashable {
         self.order = order
         self.unreadCount = unreadCount
         self.unreadMentionCount = unreadMentionCount
+        self.unreadPollVoteCount = unreadPollVoteCount
         self.unreadReactionCount = unreadReactionCount
     }
 }

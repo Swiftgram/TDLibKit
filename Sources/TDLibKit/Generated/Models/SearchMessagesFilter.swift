@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
 
     /// Returns only photo messages
     case searchMessagesFilterPhoto
+
+    /// Returns only poll messages
+    case searchMessagesFilterPoll
 
     /// Returns only video messages
     case searchMessagesFilterVideo
@@ -52,11 +55,14 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
     /// Returns only messages with mentions of the current user, or messages that are replies to their messages
     case searchMessagesFilterMention
 
-    /// Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+    /// Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
     case searchMessagesFilterUnreadMention
 
-    /// Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+    /// Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
     case searchMessagesFilterUnreadReaction
+
+    /// Returns only messages with unread poll votes for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
+    case searchMessagesFilterUnreadPollVote
 
     /// Returns only failed to send messages. This filter can be used only if the message database is used
     case searchMessagesFilterFailedToSend
@@ -71,6 +77,7 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
         case searchMessagesFilterAudio
         case searchMessagesFilterDocument
         case searchMessagesFilterPhoto
+        case searchMessagesFilterPoll
         case searchMessagesFilterVideo
         case searchMessagesFilterVoiceNote
         case searchMessagesFilterPhotoAndVideo
@@ -81,6 +88,7 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
         case searchMessagesFilterMention
         case searchMessagesFilterUnreadMention
         case searchMessagesFilterUnreadReaction
+        case searchMessagesFilterUnreadPollVote
         case searchMessagesFilterFailedToSend
         case searchMessagesFilterPinned
     }
@@ -99,6 +107,8 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
             self = .searchMessagesFilterDocument
         case .searchMessagesFilterPhoto:
             self = .searchMessagesFilterPhoto
+        case .searchMessagesFilterPoll:
+            self = .searchMessagesFilterPoll
         case .searchMessagesFilterVideo:
             self = .searchMessagesFilterVideo
         case .searchMessagesFilterVoiceNote:
@@ -119,6 +129,8 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
             self = .searchMessagesFilterUnreadMention
         case .searchMessagesFilterUnreadReaction:
             self = .searchMessagesFilterUnreadReaction
+        case .searchMessagesFilterUnreadPollVote:
+            self = .searchMessagesFilterUnreadPollVote
         case .searchMessagesFilterFailedToSend:
             self = .searchMessagesFilterFailedToSend
         case .searchMessagesFilterPinned:
@@ -139,6 +151,8 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
             try container.encode(Kind.searchMessagesFilterDocument, forKey: .type)
         case .searchMessagesFilterPhoto:
             try container.encode(Kind.searchMessagesFilterPhoto, forKey: .type)
+        case .searchMessagesFilterPoll:
+            try container.encode(Kind.searchMessagesFilterPoll, forKey: .type)
         case .searchMessagesFilterVideo:
             try container.encode(Kind.searchMessagesFilterVideo, forKey: .type)
         case .searchMessagesFilterVoiceNote:
@@ -159,6 +173,8 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
             try container.encode(Kind.searchMessagesFilterUnreadMention, forKey: .type)
         case .searchMessagesFilterUnreadReaction:
             try container.encode(Kind.searchMessagesFilterUnreadReaction, forKey: .type)
+        case .searchMessagesFilterUnreadPollVote:
+            try container.encode(Kind.searchMessagesFilterUnreadPollVote, forKey: .type)
         case .searchMessagesFilterFailedToSend:
             try container.encode(Kind.searchMessagesFilterFailedToSend, forKey: .type)
         case .searchMessagesFilterPinned:

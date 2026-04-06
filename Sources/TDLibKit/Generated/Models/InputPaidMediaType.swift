@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public indirect enum InputPaidMediaType: Codable, Equatable, Hashable {
 
     /// The media is a photo. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
-    case inputPaidMediaTypePhoto
+    case inputPaidMediaTypePhoto(InputPaidMediaTypePhoto)
 
     /// The media is a video
     case inputPaidMediaTypeVideo(InputPaidMediaTypeVideo)
@@ -30,7 +30,8 @@ public indirect enum InputPaidMediaType: Codable, Equatable, Hashable {
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
         case .inputPaidMediaTypePhoto:
-            self = .inputPaidMediaTypePhoto
+            let value = try InputPaidMediaTypePhoto(from: decoder)
+            self = .inputPaidMediaTypePhoto(value)
         case .inputPaidMediaTypeVideo:
             let value = try InputPaidMediaTypeVideo(from: decoder)
             self = .inputPaidMediaTypeVideo(value)
@@ -40,12 +41,25 @@ public indirect enum InputPaidMediaType: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .inputPaidMediaTypePhoto:
+        case .inputPaidMediaTypePhoto(let value):
             try container.encode(Kind.inputPaidMediaTypePhoto, forKey: .type)
+            try value.encode(to: encoder)
         case .inputPaidMediaTypeVideo(let value):
             try container.encode(Kind.inputPaidMediaTypeVideo, forKey: .type)
             try value.encode(to: encoder)
         }
+    }
+}
+
+/// The media is a photo. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
+public struct InputPaidMediaTypePhoto: Codable, Equatable, Hashable {
+
+    /// Video of the live photo; pass null if the photo isn't a live photo
+    public let video: InputFile?
+
+
+    public init(video: InputFile?) {
+        self.video = video
     }
 }
 

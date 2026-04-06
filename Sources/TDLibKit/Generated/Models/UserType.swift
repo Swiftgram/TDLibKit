@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -86,6 +86,9 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot can be invited to basic group and supergroup chats
     public let canJoinGroups: Bool
 
+    /// True, if the bot can manage other bots
+    public let canManageBots: Bool
+
     /// True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
     public let canReadAllGroupMessages: Bool
 
@@ -112,6 +115,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         canBeEdited: Bool,
         canConnectToBusiness: Bool,
         canJoinGroups: Bool,
+        canManageBots: Bool,
         canReadAllGroupMessages: Bool,
         hasMainWebApp: Bool,
         hasTopics: Bool,
@@ -125,6 +129,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         self.canBeEdited = canBeEdited
         self.canConnectToBusiness = canConnectToBusiness
         self.canJoinGroups = canJoinGroups
+        self.canManageBots = canManageBots
         self.canReadAllGroupMessages = canReadAllGroupMessages
         self.hasMainWebApp = hasMainWebApp
         self.hasTopics = hasTopics

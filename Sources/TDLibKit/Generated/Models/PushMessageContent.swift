@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -142,6 +142,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// Some tasks from a checklist were marked as done or not done
     case pushMessageContentChecklistTasksDone(PushMessageContentChecklistTasksDone)
 
+    /// An option was added to a poll
+    case pushMessageContentPollOptionAdded(PushMessageContentPollOptionAdded)
+
     /// A forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
 
@@ -193,6 +196,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentProximityAlertTriggered
         case pushMessageContentChecklistTasksAdded
         case pushMessageContentChecklistTasksDone
+        case pushMessageContentPollOptionAdded
         case pushMessageContentMessageForwards
         case pushMessageContentMediaAlbum
     }
@@ -321,6 +325,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentChecklistTasksDone:
             let value = try PushMessageContentChecklistTasksDone(from: decoder)
             self = .pushMessageContentChecklistTasksDone(value)
+        case .pushMessageContentPollOptionAdded:
+            let value = try PushMessageContentPollOptionAdded(from: decoder)
+            self = .pushMessageContentPollOptionAdded(value)
         case .pushMessageContentMessageForwards:
             let value = try PushMessageContentMessageForwards(from: decoder)
             self = .pushMessageContentMessageForwards(value)
@@ -452,6 +459,9 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentChecklistTasksDone(let value):
             try container.encode(Kind.pushMessageContentChecklistTasksDone, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentPollOptionAdded(let value):
+            try container.encode(Kind.pushMessageContentPollOptionAdded, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentMessageForwards(let value):
             try container.encode(Kind.pushMessageContentMessageForwards, forKey: .type)
@@ -1084,6 +1094,18 @@ public struct PushMessageContentChecklistTasksDone: Codable, Equatable, Hashable
 
     public init(taskCount: Int) {
         self.taskCount = taskCount
+    }
+}
+
+/// An option was added to a poll
+public struct PushMessageContentPollOptionAdded: Codable, Equatable, Hashable {
+
+    /// Text of the option
+    public let text: String
+
+
+    public init(text: String) {
+        self.text = text
     }
 }
 

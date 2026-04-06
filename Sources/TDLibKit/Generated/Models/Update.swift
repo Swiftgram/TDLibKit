@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -135,6 +135,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The chat unread_reaction_count has changed
     case updateChatUnreadReactionCount(UpdateChatUnreadReactionCount)
+
+    /// The chat unread_poll_vote_count has changed
+    case updateChatUnreadPollVoteCount(UpdateChatUnreadPollVoteCount)
 
     /// A chat video chat state has changed
     case updateChatVideoChat(UpdateChatVideoChat)
@@ -463,6 +466,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The parameters of animation search through getOption("animation_search_bot_username") bot has changed
     case updateAnimationSearchParameters(UpdateAnimationSearchParameters)
 
+    /// The styles supported for text composition have changed
+    case updateTextCompositionStyles(UpdateTextCompositionStyles)
+
     /// The list of suggested to the user actions has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
@@ -519,6 +525,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A user changed the answer to a poll; for bots only
     case updatePollAnswer(UpdatePollAnswer)
+
+    /// A bot that can be managed by the current bot was created or updated; for bots only
+    case updateManagedBot(UpdateManagedBot)
 
     /// User rights changed in a chat; for bots only
     case updateChatMember(UpdateChatMember)
@@ -581,6 +590,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatTheme
         case updateChatUnreadMentionCount
         case updateChatUnreadReactionCount
+        case updateChatUnreadPollVoteCount
         case updateChatVideoChat
         case updateChatDefaultDisableNotification
         case updateChatHasProtectedContent
@@ -690,6 +700,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateStakeDiceState
         case updateAnimatedEmojiMessageClicked
         case updateAnimationSearchParameters
+        case updateTextCompositionStyles
         case updateSuggestedActions
         case updateSpeedLimitNotification
         case updateContactCloseBirthdays
@@ -709,6 +720,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateNewCustomQuery
         case updatePoll
         case updatePollAnswer
+        case updateManagedBot
         case updateChatMember
         case updateNewChatJoinRequest
         case updateChatBoost
@@ -844,6 +856,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatUnreadReactionCount:
             let value = try UpdateChatUnreadReactionCount(from: decoder)
             self = .updateChatUnreadReactionCount(value)
+        case .updateChatUnreadPollVoteCount:
+            let value = try UpdateChatUnreadPollVoteCount(from: decoder)
+            self = .updateChatUnreadPollVoteCount(value)
         case .updateChatVideoChat:
             let value = try UpdateChatVideoChat(from: decoder)
             self = .updateChatVideoChat(value)
@@ -1171,6 +1186,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateAnimationSearchParameters:
             let value = try UpdateAnimationSearchParameters(from: decoder)
             self = .updateAnimationSearchParameters(value)
+        case .updateTextCompositionStyles:
+            let value = try UpdateTextCompositionStyles(from: decoder)
+            self = .updateTextCompositionStyles(value)
         case .updateSuggestedActions:
             let value = try UpdateSuggestedActions(from: decoder)
             self = .updateSuggestedActions(value)
@@ -1228,6 +1246,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updatePollAnswer:
             let value = try UpdatePollAnswer(from: decoder)
             self = .updatePollAnswer(value)
+        case .updateManagedBot:
+            let value = try UpdateManagedBot(from: decoder)
+            self = .updateManagedBot(value)
         case .updateChatMember:
             let value = try UpdateChatMember(from: decoder)
             self = .updateChatMember(value)
@@ -1374,6 +1395,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateChatUnreadReactionCount(let value):
             try container.encode(Kind.updateChatUnreadReactionCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatUnreadPollVoteCount(let value):
+            try container.encode(Kind.updateChatUnreadPollVoteCount, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatVideoChat(let value):
             try container.encode(Kind.updateChatVideoChat, forKey: .type)
@@ -1702,6 +1726,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateAnimationSearchParameters(let value):
             try container.encode(Kind.updateAnimationSearchParameters, forKey: .type)
             try value.encode(to: encoder)
+        case .updateTextCompositionStyles(let value):
+            try container.encode(Kind.updateTextCompositionStyles, forKey: .type)
+            try value.encode(to: encoder)
         case .updateSuggestedActions(let value):
             try container.encode(Kind.updateSuggestedActions, forKey: .type)
             try value.encode(to: encoder)
@@ -1758,6 +1785,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updatePollAnswer(let value):
             try container.encode(Kind.updatePollAnswer, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateManagedBot(let value):
+            try container.encode(Kind.updateManagedBot, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatMember(let value):
             try container.encode(Kind.updateChatMember, forKey: .type)
@@ -2629,6 +2659,25 @@ public struct UpdateChatUnreadReactionCount: Codable, Equatable, Hashable {
     }
 }
 
+/// The chat unread_poll_vote_count has changed
+public struct UpdateChatUnreadPollVoteCount: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The number of messages with unread poll votes left in the chat
+    public let unreadPollVoteCount: Int
+
+
+    public init(
+        chatId: Int64,
+        unreadPollVoteCount: Int
+    ) {
+        self.chatId = chatId
+        self.unreadPollVoteCount = unreadPollVoteCount
+    }
+}
+
 /// A chat video chat state has changed
 public struct UpdateChatVideoChat: Codable, Equatable, Hashable {
 
@@ -2978,6 +3027,9 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
     /// Number of unread messages with a mention/reply in the topic
     public let unreadMentionCount: Int
 
+    /// Number of messages with unread poll votes in the topic
+    public let unreadPollVoteCount: Int
+
     /// Number of messages with unread reactions in the topic
     public let unreadReactionCount: Int
 
@@ -2991,6 +3043,7 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
         lastReadOutboxMessageId: Int64,
         notificationSettings: ChatNotificationSettings,
         unreadMentionCount: Int,
+        unreadPollVoteCount: Int,
         unreadReactionCount: Int
     ) {
         self.chatId = chatId
@@ -3001,6 +3054,7 @@ public struct UpdateForumTopic: Codable, Equatable, Hashable {
         self.lastReadOutboxMessageId = lastReadOutboxMessageId
         self.notificationSettings = notificationSettings
         self.unreadMentionCount = unreadMentionCount
+        self.unreadPollVoteCount = unreadPollVoteCount
         self.unreadReactionCount = unreadReactionCount
     }
 }
@@ -4194,7 +4248,7 @@ public struct UpdateAccentColors: Codable, Equatable, Hashable {
     /// The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order
     public let availableAccentColorIds: [Int]
 
-    /// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
+    /// Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the application theme
     public let colors: [AccentColor]
 
 
@@ -4623,6 +4677,18 @@ public struct UpdateAnimationSearchParameters: Codable, Equatable, Hashable {
     ) {
         self.emojis = emojis
         self.provider = provider
+    }
+}
+
+/// The styles supported for text composition have changed
+public struct UpdateTextCompositionStyles: Codable, Equatable, Hashable {
+
+    /// The new list of supported styles
+    public let styles: [TextCompositionStyle]
+
+
+    public init(styles: [TextCompositionStyle]) {
+        self.styles = styles
     }
 }
 
@@ -5071,8 +5137,11 @@ public struct UpdatePoll: Codable, Equatable, Hashable {
 /// A user changed the answer to a poll; for bots only
 public struct UpdatePollAnswer: Codable, Equatable, Hashable {
 
-    /// 0-based identifiers of answer options, chosen by the user
-    public let optionIds: [Int]
+    /// Unique identifiers of answer options, that were chosen by the user
+    public let optionIds: [String]
+
+    /// 0-based identifiers of answer options, that were chosen by the user
+    public let optionPositions: [Int]
 
     /// Unique poll identifier
     public let pollId: TdInt64
@@ -5082,13 +5151,34 @@ public struct UpdatePollAnswer: Codable, Equatable, Hashable {
 
 
     public init(
-        optionIds: [Int],
+        optionIds: [String],
+        optionPositions: [Int],
         pollId: TdInt64,
         voterId: MessageSender
     ) {
         self.optionIds = optionIds
+        self.optionPositions = optionPositions
         self.pollId = pollId
         self.voterId = voterId
+    }
+}
+
+/// A bot that can be managed by the current bot was created or updated; for bots only
+public struct UpdateManagedBot: Codable, Equatable, Hashable {
+
+    /// Identifier of the created managed bot
+    public let botUserId: Int64
+
+    /// Identifier of the user who created the bot
+    public let userId: Int64
+
+
+    public init(
+        botUserId: Int64,
+        userId: Int64
+    ) {
+        self.botUserId = botUserId
+        self.userId = userId
     }
 }
 

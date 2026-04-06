@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -16,31 +16,26 @@ public struct ShareUsersWithBot: Codable, Equatable, Hashable {
     /// Identifier of the button
     public let buttonId: Int?
 
-    /// Identifier of the chat with the bot
-    public let chatId: Int64?
-
-    /// Identifier of the message with the button
-    public let messageId: Int64?
-
     /// Pass true to check that the users can be shared by the button instead of actually sharing them
     public let onlyCheck: Bool?
 
     /// Identifiers of the shared users
     public let sharedUserIds: [Int64]?
 
+    /// Source of the button
+    public let source: KeyboardButtonSource?
+
 
     public init(
         buttonId: Int?,
-        chatId: Int64?,
-        messageId: Int64?,
         onlyCheck: Bool?,
-        sharedUserIds: [Int64]?
+        sharedUserIds: [Int64]?,
+        source: KeyboardButtonSource?
     ) {
         self.buttonId = buttonId
-        self.chatId = chatId
-        self.messageId = messageId
         self.onlyCheck = onlyCheck
         self.sharedUserIds = sharedUserIds
+        self.source = source
     }
 }
 

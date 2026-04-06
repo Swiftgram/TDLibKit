@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about a chat administrator
 public struct ChatAdministrator: Codable, Equatable, Hashable {
+
+    /// True, if the current user can edit the administrator privileges for the administrator
+    public let canBeEdited: Bool
 
     /// Custom title of the administrator
     public let customTitle: String
@@ -24,10 +27,12 @@ public struct ChatAdministrator: Codable, Equatable, Hashable {
 
 
     public init(
+        canBeEdited: Bool,
         customTitle: String,
         isOwner: Bool,
         userId: Int64
     ) {
+        self.canBeEdited = canBeEdited
         self.customTitle = customTitle
         self.isOwner = isOwner
         self.userId = userId

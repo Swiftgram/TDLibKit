@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a Telegram Premium gift code
     case linkPreviewTypePremiumGiftCode
 
+    /// The link is a link to a dialog for creating of a managed bot
+    case linkPreviewTypeRequestManagedBot
+
     /// The link is a link to a shareable chat folder
     case linkPreviewTypeShareableChatFolder
 
@@ -152,6 +155,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeMessage
         case linkPreviewTypePhoto
         case linkPreviewTypePremiumGiftCode
+        case linkPreviewTypeRequestManagedBot
         case linkPreviewTypeShareableChatFolder
         case linkPreviewTypeSticker
         case linkPreviewTypeStickerSet
@@ -238,6 +242,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             self = .linkPreviewTypePhoto(value)
         case .linkPreviewTypePremiumGiftCode:
             self = .linkPreviewTypePremiumGiftCode
+        case .linkPreviewTypeRequestManagedBot:
+            self = .linkPreviewTypeRequestManagedBot
         case .linkPreviewTypeShareableChatFolder:
             self = .linkPreviewTypeShareableChatFolder
         case .linkPreviewTypeSticker:
@@ -352,6 +358,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypePremiumGiftCode:
             try container.encode(Kind.linkPreviewTypePremiumGiftCode, forKey: .type)
+        case .linkPreviewTypeRequestManagedBot:
+            try container.encode(Kind.linkPreviewTypeRequestManagedBot, forKey: .type)
         case .linkPreviewTypeShareableChatFolder:
             try container.encode(Kind.linkPreviewTypeShareableChatFolder, forKey: .type)
         case .linkPreviewTypeSticker(let value):

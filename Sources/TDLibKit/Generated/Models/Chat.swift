@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -127,6 +127,9 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Number of unread messages with a mention/reply in the chat
     public let unreadMentionCount: Int
 
+    /// Number of messages with unread poll votes in the chat
+    public let unreadPollVoteCount: Int
+
     /// Number of messages with unread reactions in the chat
     public let unreadReactionCount: Int
 
@@ -179,6 +182,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         type: ChatType,
         unreadCount: Int,
         unreadMentionCount: Int,
+        unreadPollVoteCount: Int,
         unreadReactionCount: Int,
         upgradedGiftColors: UpgradedGiftColors?,
         videoChat: VideoChat,
@@ -222,6 +226,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.type = type
         self.unreadCount = unreadCount
         self.unreadMentionCount = unreadMentionCount
+        self.unreadPollVoteCount = unreadPollVoteCount
         self.unreadReactionCount = unreadReactionCount
         self.upgradedGiftColors = upgradedGiftColors
         self.videoChat = videoChat

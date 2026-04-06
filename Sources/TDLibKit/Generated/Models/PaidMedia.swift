@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -104,9 +104,16 @@ public struct PaidMediaPhoto: Codable, Equatable, Hashable {
     /// The photo
     public let photo: Photo
 
+    /// The video representing the live photo; may be null if the photo is static
+    public let video: Video?
 
-    public init(photo: Photo) {
+
+    public init(
+        photo: Photo,
+        video: Video?
+    ) {
         self.photo = photo
+        self.video = video
     }
 }
 

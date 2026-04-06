@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -51,6 +51,9 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// True, if the bot has media previews
     public let hasMediaPreviews: Bool
 
+    /// Identifier of the bot, which manages the bot; 0 if none or unknown; for owner of the bot only
+    public let managerBotUserId: Int64
+
     /// Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
     public let menuButton: BotMenuButton?
 
@@ -93,6 +96,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         editDescriptionMediaLink: InternalLinkType?,
         editSettingsLink: InternalLinkType?,
         hasMediaPreviews: Bool,
+        managerBotUserId: Int64,
         menuButton: BotMenuButton?,
         photo: Photo?,
         privacyPolicyUrl: String,
@@ -116,6 +120,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
         self.editDescriptionMediaLink = editDescriptionMediaLink
         self.editSettingsLink = editSettingsLink
         self.hasMediaPreviews = hasMediaPreviews
+        self.managerBotUserId = managerBotUserId
         self.menuButton = menuButton
         self.photo = photo
         self.privacyPolicyUrl = privacyPolicyUrl

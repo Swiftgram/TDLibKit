@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct SearchGiftsForResale: Codable, Equatable, Hashable {
 
     /// Pass true to get only gifts suitable for crafting
     public let forCrafting: Bool?
+
+    /// Pass true to get only gifts that can be bought using Telegram Stars
+    public let forStars: Bool?
 
     /// Identifier of the regular gift that was upgraded to a unique gift
     public let giftId: TdInt64?
@@ -35,6 +38,7 @@ public struct SearchGiftsForResale: Codable, Equatable, Hashable {
     public init(
         attributes: [UpgradedGiftAttributeId]?,
         forCrafting: Bool?,
+        forStars: Bool?,
         giftId: TdInt64?,
         limit: Int?,
         offset: String?,
@@ -42,6 +46,7 @@ public struct SearchGiftsForResale: Codable, Equatable, Hashable {
     ) {
         self.attributes = attributes
         self.forCrafting = forCrafting
+        self.forStars = forStars
         self.giftId = giftId
         self.limit = limit
         self.offset = offset

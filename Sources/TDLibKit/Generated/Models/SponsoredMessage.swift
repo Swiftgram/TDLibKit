@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct SponsoredMessage: Codable, Equatable, Hashable {
     /// True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage
     public let canBeReported: Bool
 
-    /// Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo. Video messages can be viewed fullscreen
+    /// Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo. Video messages can be viewed fullscreen. The content must be fully downloaded before the message is shown
     public let content: MessageContent
 
     /// True, if the message needs to be labeled as "recommended" instead of "sponsored"

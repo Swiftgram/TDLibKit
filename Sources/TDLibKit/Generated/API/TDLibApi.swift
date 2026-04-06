@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -1412,10 +1412,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     public final func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1428,10 +1428,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied by a given message. Also, returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getRepliedMessage(
         chatId: Int64?,
@@ -1566,6 +1566,44 @@ public class TDLibApi {
         let query = GetMessageProperties(
             chatId: chatId,
             messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns properties of a poll option. This is an offline method
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter pollOptionId: Unique identifier of the answer option, which properties will be returned
+    /// - Returns: Properties of a poll option
+    public final func getPollOptionProperties(
+        chatId: Int64?,
+        messageId: Int64?,
+        pollOptionId: String?,
+        completion: @escaping (Result<PollOptionProperties, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPollOptionProperties(
+            chatId: chatId,
+            messageId: messageId,
+            pollOptionId: pollOptionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns properties of a poll option. This is an offline method
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter pollOptionId: Unique identifier of the answer option, which properties will be returned
+    /// - Returns: Properties of a poll option
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getPollOptionProperties(
+        chatId: Int64?,
+        messageId: Int64?,
+        pollOptionId: String?
+    ) async throws -> PollOptionProperties {
+        let query = GetPollOptionProperties(
+            chatId: chatId,
+            messageId: messageId,
+            pollOptionId: pollOptionId
         )
         return try await self.run(query: query)
     }
@@ -3306,7 +3344,7 @@ public class TDLibApi {
     /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     /// - Parameter chatTypeFilter: Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
-    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
@@ -3340,7 +3378,7 @@ public class TDLibApi {
     /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter chatList: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     /// - Parameter chatTypeFilter: Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
-    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+    /// - Parameter filter: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
     /// - Parameter limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     /// - Parameter maxDate: If not 0, the maximum date of the messages to return
     /// - Parameter minDate: If not 0, the minimum date of the messages to return
@@ -3944,7 +3982,7 @@ public class TDLibApi {
 
     /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
@@ -3969,7 +4007,7 @@ public class TDLibApi {
 
     /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
@@ -3994,7 +4032,7 @@ public class TDLibApi {
 
     /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
     /// - Parameter topicId: Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
@@ -4016,7 +4054,7 @@ public class TDLibApi {
 
     /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     /// - Parameter chatId: Identifier of the chat in which to return information about messages
-    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+    /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about messages; use 0 to get results from the last message
     /// - Parameter topicId: Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
     /// - Returns: Information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day
@@ -4082,7 +4120,7 @@ public class TDLibApi {
 
     /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
     /// - Parameter chatId: Identifier of the chat in which to find message position
-    /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+    /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
     /// - Parameter topicId: Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
     /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic
@@ -4104,7 +4142,7 @@ public class TDLibApi {
 
     /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
     /// - Parameter chatId: Identifier of the chat in which to find message position
-    /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+    /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, and searchMessagesFilterFailedToSend are unsupported in this function
     /// - Parameter messageId: Message identifier
     /// - Parameter topicId: Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
     /// - Returns: Approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic
@@ -4523,50 +4561,62 @@ public class TDLibApi {
 
     /// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
     /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter checklistTaskId: If not 0, identifier of the checklist task in the message to be linked
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
     /// - Parameter messageId: Identifier of the message
+    /// - Parameter pollOptionId: If not empty, identifier of the poll option in the message to be linked
     /// - Returns: An HTTPS link to a message in a chat
     public final func getMessageLink(
         chatId: Int64?,
+        checklistTaskId: Int?,
         forAlbum: Bool?,
         inMessageThread: Bool?,
         mediaTimestamp: Int?,
         messageId: Int64?,
+        pollOptionId: String?,
         completion: @escaping (Result<MessageLink, Swift.Error>) -> Void
     ) throws {
         let query = GetMessageLink(
             chatId: chatId,
+            checklistTaskId: checklistTaskId,
             forAlbum: forAlbum,
             inMessageThread: inMessageThread,
             mediaTimestamp: mediaTimestamp,
-            messageId: messageId
+            messageId: messageId,
+            pollOptionId: pollOptionId
         )
         self.run(query: query, completion: completion)
     }
 
     /// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
     /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter checklistTaskId: If not 0, identifier of the checklist task in the message to be linked
     /// - Parameter forAlbum: Pass true to create a link for the whole media album
     /// - Parameter inMessageThread: Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     /// - Parameter mediaTimestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
     /// - Parameter messageId: Identifier of the message
+    /// - Parameter pollOptionId: If not empty, identifier of the poll option in the message to be linked
     /// - Returns: An HTTPS link to a message in a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getMessageLink(
         chatId: Int64?,
+        checklistTaskId: Int?,
         forAlbum: Bool?,
         inMessageThread: Bool?,
         mediaTimestamp: Int?,
-        messageId: Int64?
+        messageId: Int64?,
+        pollOptionId: String?
     ) async throws -> MessageLink {
         let query = GetMessageLink(
             chatId: chatId,
+            checklistTaskId: checklistTaskId,
             forAlbum: forAlbum,
             inMessageThread: inMessageThread,
             mediaTimestamp: mediaTimestamp,
-            messageId: messageId
+            messageId: messageId,
+            pollOptionId: pollOptionId
         )
         return try await self.run(query: query)
     }
@@ -4633,68 +4683,80 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+    /// Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
     /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter tone: Tone of the translation; must be one of "", "formal", "neutral", "casual"; defaults to "neutral"
     public final func translateText(
         text: FormattedText?,
         toLanguageCode: String?,
+        tone: String?,
         completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = TranslateText(
             text: text,
-            toLanguageCode: toLanguageCode
+            toLanguageCode: toLanguageCode,
+            tone: tone
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+    /// Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
     /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    /// - Parameter tone: Tone of the translation; must be one of "", "formal", "neutral", "casual"; defaults to "neutral"
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func translateText(
         text: FormattedText?,
-        toLanguageCode: String?
+        toLanguageCode: String?,
+        tone: String?
     ) async throws -> FormattedText {
         let query = TranslateText(
             text: text,
-            toLanguageCode: toLanguageCode
+            toLanguageCode: toLanguageCode,
+            tone: tone
         )
         return try await self.run(query: query)
     }
 
-    /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+    /// Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
     /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the translation; see translateText.tone for the list of supported values
     public final func translateMessageText(
         chatId: Int64?,
         messageId: Int64?,
         toLanguageCode: String?,
+        tone: String?,
         completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = TranslateMessageText(
             chatId: chatId,
             messageId: messageId,
-            toLanguageCode: toLanguageCode
+            toLanguageCode: toLanguageCode,
+            tone: tone
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+    /// Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
     /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the translation; see translateText.tone for the list of supported values
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func translateMessageText(
         chatId: Int64?,
         messageId: Int64?,
-        toLanguageCode: String?
+        toLanguageCode: String?,
+        tone: String?
     ) async throws -> FormattedText {
         let query = TranslateMessageText(
             chatId: chatId,
             messageId: messageId,
-            toLanguageCode: toLanguageCode
+            toLanguageCode: toLanguageCode,
+            tone: tone
         )
         return try await self.run(query: query)
     }
@@ -4702,16 +4764,19 @@ public class TDLibApi {
     /// Summarizes content of the message with non-empty summary_language_code
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter translateToLanguageCode: Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the summarization; see translateText.tone for the list of supported values
+    /// - Parameter translateToLanguageCode: Pass a language code to which the summary will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
     public final func summarizeMessage(
         chatId: Int64?,
         messageId: Int64?,
+        tone: String?,
         translateToLanguageCode: String?,
         completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
     ) throws {
         let query = SummarizeMessage(
             chatId: chatId,
             messageId: messageId,
+            tone: tone,
             translateToLanguageCode: translateToLanguageCode
         )
         self.run(query: query, completion: completion)
@@ -4720,17 +4785,88 @@ public class TDLibApi {
     /// Summarizes content of the message with non-empty summary_language_code
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter translateToLanguageCode: Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the summarization; see translateText.tone for the list of supported values
+    /// - Parameter translateToLanguageCode: Pass a language code to which the summary will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func summarizeMessage(
         chatId: Int64?,
         messageId: Int64?,
+        tone: String?,
         translateToLanguageCode: String?
     ) async throws -> FormattedText {
         let query = SummarizeMessage(
             chatId: chatId,
             messageId: messageId,
+            tone: tone,
             translateToLanguageCode: translateToLanguageCode
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter addEmojis: Pass true to add emoji to the text
+    /// - Parameter styleName: Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
+    /// - Parameter text: The original text
+    /// - Parameter translateToLanguageCode: Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    public final func composeTextWithAi(
+        addEmojis: Bool?,
+        styleName: String?,
+        text: FormattedText?,
+        translateToLanguageCode: String?,
+        completion: @escaping (Result<FormattedText, Swift.Error>) -> Void
+    ) throws {
+        let query = ComposeTextWithAi(
+            addEmojis: addEmojis,
+            styleName: styleName,
+            text: text,
+            translateToLanguageCode: translateToLanguageCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter addEmojis: Pass true to add emoji to the text
+    /// - Parameter styleName: Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
+    /// - Parameter text: The original text
+    /// - Parameter translateToLanguageCode: Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func composeTextWithAi(
+        addEmojis: Bool?,
+        styleName: String?,
+        text: FormattedText?,
+        translateToLanguageCode: String?
+    ) async throws -> FormattedText {
+        let query = ComposeTextWithAi(
+            addEmojis: addEmojis,
+            styleName: styleName,
+            text: text,
+            translateToLanguageCode: translateToLanguageCode
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter text: The original text
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    public final func fixTextWithAi(
+        text: FormattedText?,
+        completion: @escaping (Result<FixedText, Swift.Error>) -> Void
+    ) throws {
+        let query = FixTextWithAi(
+            text: text
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Fixes text using an AI model; must not be used in secret chats. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter text: The original text
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func fixTextWithAi(text: FormattedText?) async throws -> FixedText {
+        let query = FixTextWithAi(
+            text: text
         )
         return try await self.run(query: query)
     }
@@ -7727,6 +7863,37 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Marks all poll votes in a topic in a forum supergroup chat as read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter forumTopicId: Forum topic identifier in which poll votes are marked as read
+    public final func readAllForumTopicPollVotes(
+        chatId: Int64?,
+        forumTopicId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadAllForumTopicPollVotes(
+            chatId: chatId,
+            forumTopicId: forumTopicId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Marks all poll votes in a topic in a forum supergroup chat as read
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter forumTopicId: Forum topic identifier in which poll votes are marked as read
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func readAllForumTopicPollVotes(
+        chatId: Int64?,
+        forumTopicId: Int?
+    ) async throws -> Ok {
+        let query = ReadAllForumTopicPollVotes(
+            chatId: chatId,
+            forumTopicId: forumTopicId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Removes all pinned messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_pin_messages member right in the supergroup
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter forumTopicId: Forum topic identifier in which messages will be unpinned
@@ -8443,7 +8610,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and DateTime entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     public final func parseTextEntities(
@@ -8458,7 +8625,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and DateTime entities from a marked-up text. Can be called synchronously
     /// - Parameter parseMode: Text parse mode
     /// - Parameter text: The text to parse
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -8723,7 +8890,81 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the user answer to a poll. A poll in quiz mode can be answered only once
+    /// Adds an option to a poll
+    /// - Parameter chatId: Identifier of the chat to which the poll belongs
+    /// - Parameter messageId: Identifier of the message containing the poll. Use messagePoll.can_add_option to check whether an option can be added
+    /// - Parameter option: The new option
+    public final func addPollOption(
+        chatId: Int64?,
+        messageId: Int64?,
+        option: InputPollOption?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddPollOption(
+            chatId: chatId,
+            messageId: messageId,
+            option: option
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds an option to a poll
+    /// - Parameter chatId: Identifier of the chat to which the poll belongs
+    /// - Parameter messageId: Identifier of the message containing the poll. Use messagePoll.can_add_option to check whether an option can be added
+    /// - Parameter option: The new option
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func addPollOption(
+        chatId: Int64?,
+        messageId: Int64?,
+        option: InputPollOption?
+    ) async throws -> Ok {
+        let query = AddPollOption(
+            chatId: chatId,
+            messageId: messageId,
+            option: option
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds an option to a poll
+    /// - Parameter chatId: Identifier of the chat to which the poll belongs
+    /// - Parameter messageId: Identifier of the message containing the poll
+    /// - Parameter optionId: Unique identifier of the option. Use pollOptionProperties.can_be_deleted to check whether the option can be deleted by the user
+    public final func deletePollOption(
+        chatId: Int64?,
+        messageId: Int64?,
+        optionId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeletePollOption(
+            chatId: chatId,
+            messageId: messageId,
+            optionId: optionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds an option to a poll
+    /// - Parameter chatId: Identifier of the chat to which the poll belongs
+    /// - Parameter messageId: Identifier of the message containing the poll
+    /// - Parameter optionId: Unique identifier of the option. Use pollOptionProperties.can_be_deleted to check whether the option can be deleted by the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deletePollOption(
+        chatId: Int64?,
+        messageId: Int64?,
+        optionId: String?
+    ) async throws -> Ok {
+        let query = DeletePollOption(
+            chatId: chatId,
+            messageId: messageId,
+            optionId: optionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the user answer to a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter optionIds: 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
@@ -8741,7 +8982,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the user answer to a poll. A poll in quiz mode can be answered only once
+    /// Changes the user answer to a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter optionIds: 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
@@ -8760,13 +9001,13 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+    /// Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used. For optimal performance, the number of returned users is chosen by TDLib
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter limit: The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter offset: Number of voters to skip in the result; must be non-negative
     /// - Parameter optionId: 0-based identifier of the answer option
-    /// - Returns: Message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+    /// - Returns: Message senders voted for the specified option in a poll. For optimal performance, the number of returned users is chosen by TDLib
     public final func getPollVoters(
         chatId: Int64?,
         limit: Int?,
@@ -8785,13 +9026,13 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+    /// Returns message senders voted for the specified option in a poll; use poll.can_get_voters to check whether the method can be used. For optimal performance, the number of returned users is chosen by TDLib
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter limit: The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter offset: Number of voters to skip in the result; must be non-negative
     /// - Parameter optionId: 0-based identifier of the answer option
-    /// - Returns: Message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+    /// - Returns: Message senders voted for the specified option in a poll. For optimal performance, the number of returned users is chosen by TDLib
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getPollVoters(
         chatId: Int64?,
@@ -9072,98 +9313,86 @@ public class TDLibApi {
 
     /// Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
     /// - Parameter buttonId: Identifier of the button
-    /// - Parameter chatId: Identifier of the chat with the bot
-    /// - Parameter messageId: Identifier of the message with the button
     /// - Parameter onlyCheck: Pass true to check that the users can be shared by the button instead of actually sharing them
     /// - Parameter sharedUserIds: Identifiers of the shared users
+    /// - Parameter source: Source of the button
     public final func shareUsersWithBot(
         buttonId: Int?,
-        chatId: Int64?,
-        messageId: Int64?,
         onlyCheck: Bool?,
         sharedUserIds: [Int64]?,
+        source: KeyboardButtonSource?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ShareUsersWithBot(
             buttonId: buttonId,
-            chatId: chatId,
-            messageId: messageId,
             onlyCheck: onlyCheck,
-            sharedUserIds: sharedUserIds
+            sharedUserIds: sharedUserIds,
+            source: source
         )
         self.run(query: query, completion: completion)
     }
 
     /// Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
     /// - Parameter buttonId: Identifier of the button
-    /// - Parameter chatId: Identifier of the chat with the bot
-    /// - Parameter messageId: Identifier of the message with the button
     /// - Parameter onlyCheck: Pass true to check that the users can be shared by the button instead of actually sharing them
     /// - Parameter sharedUserIds: Identifiers of the shared users
+    /// - Parameter source: Source of the button
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func shareUsersWithBot(
         buttonId: Int?,
-        chatId: Int64?,
-        messageId: Int64?,
         onlyCheck: Bool?,
-        sharedUserIds: [Int64]?
+        sharedUserIds: [Int64]?,
+        source: KeyboardButtonSource?
     ) async throws -> Ok {
         let query = ShareUsersWithBot(
             buttonId: buttonId,
-            chatId: chatId,
-            messageId: messageId,
             onlyCheck: onlyCheck,
-            sharedUserIds: sharedUserIds
+            sharedUserIds: sharedUserIds,
+            source: source
         )
         return try await self.run(query: query)
     }
 
     /// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
     /// - Parameter buttonId: Identifier of the button
-    /// - Parameter chatId: Identifier of the chat with the bot
-    /// - Parameter messageId: Identifier of the message with the button
     /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions. If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat. If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
     /// - Parameter sharedChatId: Identifier of the shared chat
+    /// - Parameter source: Source of the button
     public final func shareChatWithBot(
         buttonId: Int?,
-        chatId: Int64?,
-        messageId: Int64?,
         onlyCheck: Bool?,
         sharedChatId: Int64?,
+        source: KeyboardButtonSource?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ShareChatWithBot(
             buttonId: buttonId,
-            chatId: chatId,
-            messageId: messageId,
             onlyCheck: onlyCheck,
-            sharedChatId: sharedChatId
+            sharedChatId: sharedChatId,
+            source: source
         )
         self.run(query: query, completion: completion)
     }
 
     /// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
     /// - Parameter buttonId: Identifier of the button
-    /// - Parameter chatId: Identifier of the chat with the bot
-    /// - Parameter messageId: Identifier of the message with the button
     /// - Parameter onlyCheck: Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions. If the bot must be a member, then all chats from getGroupsInCommon and all chats, where the user can add the bot, are suitable. In the latter case the bot will be automatically added to the chat. If the bot must be an administrator, then all chats, where the bot already has requested rights or can be added to administrators by the user, are suitable. In the latter case the bot will be automatically granted requested rights
     /// - Parameter sharedChatId: Identifier of the shared chat
+    /// - Parameter source: Source of the button
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func shareChatWithBot(
         buttonId: Int?,
-        chatId: Int64?,
-        messageId: Int64?,
         onlyCheck: Bool?,
-        sharedChatId: Int64?
+        sharedChatId: Int64?,
+        source: KeyboardButtonSource?
     ) async throws -> Ok {
         let query = ShareChatWithBot(
             buttonId: buttonId,
-            chatId: chatId,
-            messageId: messageId,
             onlyCheck: onlyCheck,
-            sharedChatId: sharedChatId
+            sharedChatId: sharedChatId,
+            source: source
         )
         return try await self.run(query: query)
     }
@@ -9335,6 +9564,68 @@ public class TDLibApi {
         let query = GetPreparedInlineMessage(
             botUserId: botUserId,
             preparedMessageId: preparedMessageId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Saves a keyboard button to be shown to the given user; for bots only
+    /// - Parameter button: The button; must be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+    /// - Parameter userId: Identifier of the user
+    public final func savePreparedKeyboardButton(
+        button: KeyboardButton?,
+        userId: Int64?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = SavePreparedKeyboardButton(
+            button: button,
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Saves a keyboard button to be shown to the given user; for bots only
+    /// - Parameter button: The button; must be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+    /// - Parameter userId: Identifier of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func savePreparedKeyboardButton(
+        button: KeyboardButton?,
+        userId: Int64?
+    ) async throws -> Text {
+        let query = SavePreparedKeyboardButton(
+            button: button,
+            userId: userId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a keyboard button prepared by the bot for the user. The button will be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+    /// - Parameter botUserId: Identifier of the bot that created the button
+    /// - Parameter preparedButtonId: Identifier of the prepared button
+    /// - Returns: A keyboard button prepared by the bot for the user
+    public final func getPreparedKeyboardButton(
+        botUserId: Int64?,
+        preparedButtonId: String?,
+        completion: @escaping (Result<KeyboardButton, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPreparedKeyboardButton(
+            botUserId: botUserId,
+            preparedButtonId: preparedButtonId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a keyboard button prepared by the bot for the user. The button will be of the type keyboardButtonTypeRequestUsers, keyboardButtonTypeRequestChat, or keyboardButtonTypeRequestManagedBot
+    /// - Parameter botUserId: Identifier of the bot that created the button
+    /// - Parameter preparedButtonId: Identifier of the prepared button
+    /// - Returns: A keyboard button prepared by the bot for the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getPreparedKeyboardButton(
+        botUserId: Int64?,
+        preparedButtonId: String?
+    ) async throws -> KeyboardButton {
+        let query = GetPreparedKeyboardButton(
+            botUserId: botUserId,
+            preparedButtonId: preparedButtonId
         )
         return try await self.run(query: query)
     }
@@ -10343,6 +10634,92 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Informs TDLib that an audio was listened by the user
+    /// - Parameter audioFileId: Identifier of the file with an audio
+    /// - Parameter duration: Duration of the listening to the audio, in seconds
+    public final func listenToAudio(
+        audioFileId: Int?,
+        duration: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ListenToAudio(
+            audioFileId: audioFileId,
+            duration: duration
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib that an audio was listened by the user
+    /// - Parameter audioFileId: Identifier of the file with an audio
+    /// - Parameter duration: Duration of the listening to the audio, in seconds
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func listenToAudio(
+        audioFileId: Int?,
+        duration: Int?
+    ) async throws -> Ok {
+        let query = ListenToAudio(
+            audioFileId: audioFileId,
+            duration: duration
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
+    /// - Parameter activeTimeInViewMs: The amount of time the message was seen by at least 1 pixel within 15 seconds after any action from the user; in milliseconds
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter heightToViewportRatioPerMille: The ratio of the post height to the viewport height in 1/1000 fractions
+    /// - Parameter messageId: The identifier of the message being viewed
+    /// - Parameter seenRangeRatioPerMille: The ratio of the viewed post height to the full post height in 1/1000 fractions; 0-1000
+    /// - Parameter timeInViewMs: The amount of time the message was seen by at least 1 pixel; in milliseconds
+    public final func sendMessageViewMetrics(
+        activeTimeInViewMs: Int?,
+        chatId: Int64?,
+        heightToViewportRatioPerMille: Int?,
+        messageId: Int64?,
+        seenRangeRatioPerMille: Int?,
+        timeInViewMs: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendMessageViewMetrics(
+            activeTimeInViewMs: activeTimeInViewMs,
+            chatId: chatId,
+            heightToViewportRatioPerMille: heightToViewportRatioPerMille,
+            messageId: messageId,
+            seenRangeRatioPerMille: seenRangeRatioPerMille,
+            timeInViewMs: timeInViewMs
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
+    /// - Parameter activeTimeInViewMs: The amount of time the message was seen by at least 1 pixel within 15 seconds after any action from the user; in milliseconds
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter heightToViewportRatioPerMille: The ratio of the post height to the viewport height in 1/1000 fractions
+    /// - Parameter messageId: The identifier of the message being viewed
+    /// - Parameter seenRangeRatioPerMille: The ratio of the viewed post height to the full post height in 1/1000 fractions; 0-1000
+    /// - Parameter timeInViewMs: The amount of time the message was seen by at least 1 pixel; in milliseconds
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func sendMessageViewMetrics(
+        activeTimeInViewMs: Int?,
+        chatId: Int64?,
+        heightToViewportRatioPerMille: Int?,
+        messageId: Int64?,
+        seenRangeRatioPerMille: Int?,
+        timeInViewMs: Int?
+    ) async throws -> Ok {
+        let query = SendMessageViewMetrics(
+            activeTimeInViewMs: activeTimeInViewMs,
+            chatId: chatId,
+            heightToViewportRatioPerMille: heightToViewportRatioPerMille,
+            messageId: messageId,
+            seenRangeRatioPerMille: seenRangeRatioPerMille,
+            timeInViewMs: timeInViewMs
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns an HTTPS or a tg: link with the given type. Can be called before authorization
     /// - Parameter isHttp: Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
     /// - Parameter type: Expected type of the link
@@ -10626,6 +11003,29 @@ public class TDLibApi {
     @discardableResult
     public final func readAllChatReactions(chatId: Int64?) async throws -> Ok {
         let query = ReadAllChatReactions(
+            chatId: chatId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Marks all poll votes in a chat as read
+    /// - Parameter chatId: Chat identifier
+    public final func readAllChatPollVotes(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReadAllChatPollVotes(
+            chatId: chatId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Marks all poll votes in a chat as read
+    /// - Parameter chatId: Chat identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func readAllChatPollVotes(chatId: Int64?) async throws -> Ok {
+        let query = ReadAllChatPollVotes(
             chatId: chatId
         )
         return try await self.run(query: query)
@@ -15582,7 +15982,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Imports messages exported from another app
+    /// Imports messages exported from another application
     /// - Parameter attachedFiles: Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
     /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     /// - Parameter messageFile: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
@@ -15600,7 +16000,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Imports messages exported from another app
+    /// Imports messages exported from another application
     /// - Parameter attachedFiles: Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
     /// - Parameter chatId: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     /// - Parameter messageFile: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
@@ -17275,7 +17675,7 @@ public class TDLibApi {
     /// Sends a message to other participants of a group call. Requires groupCall.can_send_messages right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter paidMessageStarCount: The number of Telegram Stars the user agreed to pay to send the message; for live stories only; 0-getOption("paid_group_call_message_star_count_max"). Must be 0 for messages sent to live stories posted by the current user
-    /// - Parameter text: Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions, which depends on paid_message_star_count. Can't contain line feeds for live stories
+    /// - Parameter text: Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions, which depends on paid_message_star_count. Can't contain line feeds for live stories. Can contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities for live stories
     public final func sendGroupCallMessage(
         groupCallId: Int?,
         paidMessageStarCount: Int64?,
@@ -17293,7 +17693,7 @@ public class TDLibApi {
     /// Sends a message to other participants of a group call. Requires groupCall.can_send_messages right
     /// - Parameter groupCallId: Group call identifier
     /// - Parameter paidMessageStarCount: The number of Telegram Stars the user agreed to pay to send the message; for live stories only; 0-getOption("paid_group_call_message_star_count_max"). Must be 0 for messages sent to live stories posted by the current user
-    /// - Parameter text: Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions, which depends on paid_message_star_count. Can't contain line feeds for live stories
+    /// - Parameter text: Text of the message to send; 1-getOption("group_call_message_text_length_max") characters for non-live-stories; see updateGroupCallMessageLevels for live story restrictions, which depends on paid_message_star_count. Can't contain line feeds for live stories. Can contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities for live stories
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func sendGroupCallMessage(
@@ -18603,7 +19003,7 @@ public class TDLibApi {
     }
 
     /// Changes a note of a contact user
-    /// - Parameter note: Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter note: Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     /// - Parameter userId: User identifier
     public final func setUserNote(
         note: FormattedText?,
@@ -18618,7 +19018,7 @@ public class TDLibApi {
     }
 
     /// Changes a note of a contact user
-    /// - Parameter note: Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter note: Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -21608,6 +22008,104 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+    /// - Parameter username: Username to be checked
+    public final func checkBotUsername(
+        username: String?,
+        completion: @escaping (Result<CheckChatUsernameResult, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckBotUsername(
+            username: username
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+    /// - Parameter username: Username to be checked
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func checkBotUsername(username: String?) async throws -> CheckChatUsernameResult {
+        let query = CheckBotUsername(
+            username: username
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount. An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
+    /// - Parameter managerBotUserId: Identifier of the bot that will manage the created bot
+    /// - Parameter name: Name of the bot; 1-64 characters
+    /// - Parameter username: Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+    /// - Parameter viaLink: Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
+    /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount
+    public final func createBot(
+        managerBotUserId: Int64?,
+        name: String?,
+        username: String?,
+        viaLink: Bool?,
+        completion: @escaping (Result<User, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateBot(
+            managerBotUserId: managerBotUserId,
+            name: name,
+            username: username,
+            viaLink: viaLink
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount. An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
+    /// - Parameter managerBotUserId: Identifier of the bot that will manage the created bot
+    /// - Parameter name: Name of the bot; 1-64 characters
+    /// - Parameter username: Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+    /// - Parameter viaLink: Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
+    /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func createBot(
+        managerBotUserId: Int64?,
+        name: String?,
+        username: String?,
+        viaLink: Bool?
+    ) async throws -> User {
+        let query = CreateBot(
+            managerBotUserId: managerBotUserId,
+            name: name,
+            username: username,
+            viaLink: viaLink
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns token of a created bot; for bots only
+    /// - Parameter botUserId: Identifier of the created bot
+    /// - Parameter revoke: Pass true to revoke the current token and create a new one
+    /// - Returns: Token of a created bot
+    public final func getBotToken(
+        botUserId: Int64?,
+        revoke: Bool?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetBotToken(
+            botUserId: botUserId,
+            revoke: revoke
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns token of a created bot; for bots only
+    /// - Parameter botUserId: Identifier of the created bot
+    /// - Parameter revoke: Pass true to revoke the current token and create a new one
+    /// - Returns: Token of a created bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getBotToken(
+        botUserId: Int64?,
+        revoke: Bool?
+    ) async throws -> Text {
+        let query = GetBotToken(
+            botUserId: botUserId,
+            revoke: revoke
+        )
+        return try await self.run(query: query)
+    }
+
     /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter languageCode: A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
@@ -23222,7 +23720,7 @@ public class TDLibApi {
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
     /// - Parameter payForUpgrade: Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
-    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages
     /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     public final func sendGift(
         giftId: TdInt64?,
@@ -23247,7 +23745,7 @@ public class TDLibApi {
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
     /// - Parameter payForUpgrade: Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
-    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages
     /// - Returns: May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -23366,7 +23864,7 @@ public class TDLibApi {
     /// - Parameter giftId: Identifier of the gift to place the bid on
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter starCount: The number of Telegram Stars to place in the bid
-    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages
     /// - Parameter userId: Identifier of the user who will receive the gift
     public final func placeGiftAuctionBid(
         giftId: TdInt64?,
@@ -23390,7 +23888,7 @@ public class TDLibApi {
     /// - Parameter giftId: Identifier of the gift to place the bid on
     /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter starCount: The number of Telegram Stars to place in the bid
-    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages
     /// - Parameter userId: Identifier of the user who will receive the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -24214,6 +24712,7 @@ public class TDLibApi {
     /// Returns upgraded gifts that can be bought from other owners using sendResoldGift
     /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
     /// - Parameter forCrafting: Pass true to get only gifts suitable for crafting
+    /// - Parameter forStars: Pass true to get only gifts that can be bought using Telegram Stars
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
@@ -24222,6 +24721,7 @@ public class TDLibApi {
     public final func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
         forCrafting: Bool?,
+        forStars: Bool?,
         giftId: TdInt64?,
         limit: Int?,
         offset: String?,
@@ -24231,6 +24731,7 @@ public class TDLibApi {
         let query = SearchGiftsForResale(
             attributes: attributes,
             forCrafting: forCrafting,
+            forStars: forStars,
             giftId: giftId,
             limit: limit,
             offset: offset,
@@ -24242,6 +24743,7 @@ public class TDLibApi {
     /// Returns upgraded gifts that can be bought from other owners using sendResoldGift
     /// - Parameter attributes: Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed
     /// - Parameter forCrafting: Pass true to get only gifts suitable for crafting
+    /// - Parameter forStars: Pass true to get only gifts that can be bought using Telegram Stars
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results
@@ -24251,6 +24753,7 @@ public class TDLibApi {
     public final func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
         forCrafting: Bool?,
+        forStars: Bool?,
         giftId: TdInt64?,
         limit: Int?,
         offset: String?,
@@ -24259,6 +24762,7 @@ public class TDLibApi {
         let query = SearchGiftsForResale(
             attributes: attributes,
             forCrafting: forCrafting,
+            forStars: forStars,
             giftId: giftId,
             limit: limit,
             offset: offset,
@@ -27675,7 +28179,7 @@ public class TDLibApi {
     /// Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
     /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active for the user
     /// - Parameter starCount: The number of Telegram Stars to pay for subscription
-    /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     /// - Parameter userId: Identifier of the user which will receive Telegram Premium
     public final func giftPremiumWithStars(
         monthCount: Int?,
@@ -27696,7 +28200,7 @@ public class TDLibApi {
     /// Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
     /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active for the user
     /// - Parameter starCount: The number of Telegram Stars to pay for subscription
-    /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     /// - Parameter userId: Identifier of the user which will receive Telegram Premium
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult

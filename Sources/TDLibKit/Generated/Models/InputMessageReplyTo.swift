@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -70,6 +70,9 @@ public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
     /// The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied
     public let messageId: Int64
 
+    /// Identifier of the poll option in the message to be replied; pass an empty string if none
+    public let pollOptionId: String
+
     /// Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
     public let quote: InputTextQuote?
 
@@ -77,10 +80,12 @@ public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
     public init(
         checklistTaskId: Int,
         messageId: Int64,
+        pollOptionId: String,
         quote: InputTextQuote?
     ) {
         self.checklistTaskId = checklistTaskId
         self.messageId = messageId
+        self.pollOptionId = pollOptionId
         self.quote = quote
     }
 }
@@ -97,6 +102,9 @@ public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
     /// The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
     public let messageId: Int64
 
+    /// Identifier of the poll option in the message to be replied; pass an empty string if none
+    public let pollOptionId: String
+
     /// Quote from the message to be replied; pass null if none
     public let quote: InputTextQuote?
 
@@ -105,11 +113,13 @@ public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
         chatId: Int64,
         checklistTaskId: Int,
         messageId: Int64,
+        pollOptionId: String,
         quote: InputTextQuote?
     ) {
         self.chatId = chatId
         self.checklistTaskId = checklistTaskId
         self.messageId = messageId
+        self.pollOptionId = pollOptionId
         self.quote = quote
     }
 }

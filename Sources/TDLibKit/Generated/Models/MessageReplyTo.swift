@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -72,6 +72,9 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
     public let originSendDate: Int
 
+    /// Identifier of the poll option in the original message that was replied; empty if none
+    public let pollOptionId: String
+
     /// Chosen quote from the replied message; may be null if none
     public let quote: TextQuote?
 
@@ -83,6 +86,7 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
         messageId: Int64,
         origin: MessageOrigin?,
         originSendDate: Int,
+        pollOptionId: String,
         quote: TextQuote?
     ) {
         self.chatId = chatId
@@ -91,6 +95,7 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
         self.messageId = messageId
         self.origin = origin
         self.originSendDate = originSendDate
+        self.pollOptionId = pollOptionId
         self.quote = quote
     }
 }

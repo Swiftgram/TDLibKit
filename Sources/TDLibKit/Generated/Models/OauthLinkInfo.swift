@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
 
     /// A domain of the URL
     public let domain: String
+
+    /// True, if the authorization originates from an application
+    public let fromApp: Bool
 
     /// IP address from which the authorization is performed, in human-readable format
     public let ipAddress: String
@@ -46,14 +49,18 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
     /// An HTTP URL where the user authorizes
     public let url: String
 
-    /// Identifier of the user for which the link was generated; may be 0 if unknown. The corresponding user may be unknown. If the user is logged in the app, then they must be chosen for authorization by default
+    /// Identifier of the user for which the link was generated; may be 0 if unknown. The corresponding user may be unknown. If the user is logged in the application, then they must be chosen for authorization by default
     public let userId: Int64
+
+    /// Verified name of the application; if empty, then "Unverified App" must be shown instead
+    public let verifiedAppName: String
 
 
     public init(
         botUserId: Int64,
         browser: String,
         domain: String,
+        fromApp: Bool,
         ipAddress: String,
         location: String,
         matchCodeFirst: Bool,
@@ -62,11 +69,13 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
         requestPhoneNumberAccess: Bool,
         requestWriteAccess: Bool,
         url: String,
-        userId: Int64
+        userId: Int64,
+        verifiedAppName: String
     ) {
         self.botUserId = botUserId
         self.browser = browser
         self.domain = domain
+        self.fromApp = fromApp
         self.ipAddress = ipAddress
         self.location = location
         self.matchCodeFirst = matchCodeFirst
@@ -76,6 +85,7 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
         self.requestWriteAccess = requestWriteAccess
         self.url = url
         self.userId = userId
+        self.verifiedAppName = verifiedAppName
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.62-0ae923c4
-//  https://github.com/tdlib/td/tree/0ae923c4
+//  Based on TDLib 1.8.63-1677a0c7
+//  https://github.com/tdlib/td/tree/1677a0c7
 //
 
 import Foundation
@@ -251,7 +251,7 @@ public struct InputMessageText: Codable, Equatable, Hashable {
     /// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     public let linkPreviewOptions: LinkPreviewOptions?
 
-    /// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    /// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and DateTime entities are allowed to be specified manually
     public let text: FormattedText
 
 
@@ -449,6 +449,9 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
     /// Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
     public let thumbnail: InputThumbnail?
 
+    /// Video of the live photo; not supported in secret chats; pass null if the photo isn't a live photo
+    public let video: InputFile?
+
     /// Photo width
     public let width: Int
 
@@ -462,6 +465,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
         selfDestructType: MessageSelfDestructType?,
         showCaptionAboveMedia: Bool,
         thumbnail: InputThumbnail?,
+        video: InputFile?,
         width: Int
     ) {
         self.addedStickerFileIds = addedStickerFileIds
@@ -472,6 +476,7 @@ public struct InputMessagePhoto: Codable, Equatable, Hashable {
         self.selfDestructType = selfDestructType
         self.showCaptionAboveMedia = showCaptionAboveMedia
         self.thumbnail = thumbnail
+        self.video = video
         self.width = width
     }
 }
@@ -819,8 +824,19 @@ public struct InputMessageInvoice: Codable, Equatable, Hashable {
 /// A message with a poll. Polls can't be sent to secret chats and channel direct messages chats. Polls can be sent to a private chat only if the chat is a chat with a bot or the Saved Messages chat
 public struct InputMessagePoll: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
+    /// True, if multiple answer options can be chosen simultaneously
+    public let allowsMultipleAnswers: Bool
+
+    /// True, if the poll can be answered multiple times
+    public let allowsRevoting: Bool
+
+    /// Point in time (Unix timestamp) when the poll will automatically be closed; must be 0-getOption("poll_open_period_max") seconds in the future; pass 0 if not specified
     public let closeDate: Int
+
+    public let description: FormattedText
+
+    /// True, if the poll results will appear only after the poll closes
+    public let hideResultsUntilCloses: Bool
 
     /// True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
     public let isAnonymous: Bool
@@ -828,34 +844,47 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// True, if the poll needs to be sent already closed; for bots only
     public let isClosed: Bool
 
-    /// Amount of time the poll will be active after creation, in seconds; for bots only
+    /// Amount of time the poll will be active after creation, in seconds; 0-getOption("poll_open_period_max"); pass 0 if not specified
     public let openPeriod: Int
 
-    /// List of poll answer options, 2-getOption("poll_answer_count_max") strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
-    public let options: [FormattedText]
+    /// List of poll answer options; 2-getOption("poll_answer_count_max") options
+    public let options: [InputPollOption]
 
     /// Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
     public let question: FormattedText
 
+    /// True, if poll options must be shown in a fixed random order
+    public let shuffleOptions: Bool
+
     /// Type of the poll
-    public let type: PollType
+    public let type: InputPollType
 
 
     public init(
+        allowsMultipleAnswers: Bool,
+        allowsRevoting: Bool,
         closeDate: Int,
+        description: FormattedText,
+        hideResultsUntilCloses: Bool,
         isAnonymous: Bool,
         isClosed: Bool,
         openPeriod: Int,
-        options: [FormattedText],
+        options: [InputPollOption],
         question: FormattedText,
-        type: PollType
+        shuffleOptions: Bool,
+        type: InputPollType
     ) {
+        self.allowsMultipleAnswers = allowsMultipleAnswers
+        self.allowsRevoting = allowsRevoting
         self.closeDate = closeDate
+        self.description = description
+        self.hideResultsUntilCloses = hideResultsUntilCloses
         self.isAnonymous = isAnonymous
         self.isClosed = isClosed
         self.openPeriod = openPeriod
         self.options = options
         self.question = question
+        self.shuffleOptions = shuffleOptions
         self.type = type
     }
 }
