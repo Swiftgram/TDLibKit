@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-1677a0c7
-//  https://github.com/tdlib/td/tree/1677a0c7
+//  Based on TDLib 1.8.63-8ff05a0e
+//  https://github.com/tdlib/td/tree/8ff05a0e
 //
 
 import Foundation
@@ -8927,7 +8927,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds an option to a poll
+    /// Deletes an option from a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter optionId: Unique identifier of the option. Use pollOptionProperties.can_be_deleted to check whether the option can be deleted by the user
@@ -8945,7 +8945,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Adds an option to a poll
+    /// Deletes an option from a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll
     /// - Parameter optionId: Unique identifier of the option. Use pollOptionProperties.can_be_deleted to check whether the option can be deleted by the user
