@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes rarity of an upgraded gift attribute
 public indirect enum UpgradedGiftAttributeRarity: Codable, Equatable, Hashable {
 
-    /// The rarity is represented as the numeric frequence of the model
+    /// The rarity is represented as the numeric frequency of the model
     case upgradedGiftAttributeRarityPerMille(UpgradedGiftAttributeRarityPerMille)
 
     /// The attribute is uncommon
@@ -73,7 +73,7 @@ public indirect enum UpgradedGiftAttributeRarity: Codable, Equatable, Hashable {
     }
 }
 
-/// The rarity is represented as the numeric frequence of the model
+/// The rarity is represented as the numeric frequency of the model
 public struct UpgradedGiftAttributeRarityPerMille: Codable, Equatable, Hashable {
 
     /// The number of upgraded gifts that receive this attribute for each 1000 gifts upgraded; if 0, then it can be shown as "<0.1%"

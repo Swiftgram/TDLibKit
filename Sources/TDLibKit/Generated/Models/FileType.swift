@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
@@ -49,7 +49,7 @@ public indirect enum FileType: Codable, Equatable, Hashable {
     /// The file is a file from Secure storage used for storing Telegram Passport files
     case fileTypeSecure
 
-    /// The file is a seld-destructing video for a live photo in a private chat
+    /// The file is a self-destructing video for a live photo in a private chat
     case fileTypeSelfDestructingLivePhotoVideo
 
     /// The file is a self-destructing photo in a private chat

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
@@ -91,7 +91,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
     public let canGetStatistics: Bool
 
-    /// True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
+    /// True, if advertisements for video of the message can be received through getVideoMessageAdvertisements
     public let canGetVideoAdvertisements: Bool
 
     /// True, if chat members already viewed the message can be received through getMessageViewers

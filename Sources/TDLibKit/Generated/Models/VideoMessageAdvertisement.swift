@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
 
 
-/// Describes an advertisent to be shown while a video from a message is watched
+/// Describes an advertisement to be shown while a video from a message is watched
 public struct VideoMessageAdvertisement: Codable, Equatable, Hashable {
 
     /// If non-empty, additional information about the sponsored message to be shown along with the message

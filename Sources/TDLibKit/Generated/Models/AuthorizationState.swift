@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
     /// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
     case authorizationStateWaitOtherDeviceConfirmation(AuthorizationStateWaitOtherDeviceConfirmation)
 
-    /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
+    /// The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
     case authorizationStateWaitRegistration(AuthorizationStateWaitRegistration)
 
     /// The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
@@ -245,7 +245,7 @@ public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable,
     }
 }
 
-/// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
+/// The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
 public struct AuthorizationStateWaitRegistration: Codable, Equatable, Hashable {
 
     /// Telegram terms of service

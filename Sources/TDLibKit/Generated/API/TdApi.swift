@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
@@ -24653,15 +24653,15 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns promotional anumation for upgraded gifts
-    /// - Returns: Promotional anumation for upgraded gifts
+    /// Returns promotional animation for upgraded gifts
+    /// - Returns: Promotional animation for upgraded gifts
     public func getUpgradedGiftsPromotionalAnimation(completion: @escaping (Result<Animation, Swift.Error>) -> Void) throws {
         let query = GetUpgradedGiftsPromotionalAnimation()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns promotional anumation for upgraded gifts
-    /// - Returns: Promotional anumation for upgraded gifts
+    /// Returns promotional animation for upgraded gifts
+    /// - Returns: Promotional animation for upgraded gifts
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUpgradedGiftsPromotionalAnimation() async throws -> Animation {
         let query = GetUpgradedGiftsPromotionalAnimation()

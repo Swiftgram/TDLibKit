@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8ff05a0e
-//  https://github.com/tdlib/td/tree/8ff05a0e
+//  Based on TDLib 1.8.63-a82128ab
+//  https://github.com/tdlib/td/tree/a82128ab
 //
 
 import Foundation
 
 
-/// Returns promotional anumation for upgraded gifts
+/// Returns promotional animation for upgraded gifts
 public struct GetUpgradedGiftsPromotionalAnimation: Codable, Equatable, Hashable {
 
 
