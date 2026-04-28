@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8921c22f
-//  https://github.com/tdlib/td/tree/8921c22f
+//  Based on TDLib 1.8.63-8fc2344f
+//  https://github.com/tdlib/td/tree/8fc2344f
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PollOption: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the user or chat who added the option; may be null if the option existed from creation of the poll
     public let author: MessageSender?
 
-    /// Unique identifier of the option in the poll
+    /// Unique identifier of the option in the poll; may be empty if yet unassigned
     public let id: String
 
     /// True, if the option is being chosen by a pending setPollAnswer request
