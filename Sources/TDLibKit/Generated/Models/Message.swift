@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message contains an unread mention for the current user
     public let containsUnreadMention: Bool
 
+    /// True, if the message is a poll message with unread votes
+    public let containsUnreadPollVotes: Bool
+
     /// Content of the message
     public let content: MessageContent
 
@@ -45,6 +48,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// Information about the initial message sender; may be null if none or unknown
     public let forwardInfo: MessageForwardInfo?
+
+    /// The identifier of the user or chat which used a guest bot to send the message; may be null if none
+    public let guestBotCallerId: MessageSender?
 
     /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     public let hasTimestampedMedia: Bool
@@ -137,12 +143,14 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         canBeSaved: Bool,
         chatId: Int64,
         containsUnreadMention: Bool,
+        containsUnreadPollVotes: Bool,
         content: MessageContent,
         date: Int,
         editDate: Int,
         effectId: TdInt64,
         factCheck: FactCheck?,
         forwardInfo: MessageForwardInfo?,
+        guestBotCallerId: MessageSender?,
         hasTimestampedMedia: Bool,
         id: Int64,
         importInfo: MessageImportInfo?,
@@ -177,12 +185,14 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.canBeSaved = canBeSaved
         self.chatId = chatId
         self.containsUnreadMention = containsUnreadMention
+        self.containsUnreadPollVotes = containsUnreadPollVotes
         self.content = content
         self.date = date
         self.editDate = editDate
         self.effectId = effectId
         self.factCheck = factCheck
         self.forwardInfo = forwardInfo
+        self.guestBotCallerId = guestBotCallerId
         self.hasTimestampedMedia = hasTimestampedMedia
         self.id = id
         self.importInfo = importInfo

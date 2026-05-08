@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Edits an existing proxy server for network requests. Can be called before authorization
 public struct EditProxy: Codable, Equatable, Hashable {
+
+    /// New comment for the proxy
+    public let comment: String?
 
     /// Pass true to immediately enable the proxy
     public let enable: Bool?
@@ -24,10 +27,12 @@ public struct EditProxy: Codable, Equatable, Hashable {
 
 
     public init(
+        comment: String?,
         enable: Bool?,
         proxy: Proxy?,
         proxyId: Int?
     ) {
+        self.comment = comment
         self.enable = enable
         self.proxy = proxy
         self.proxyId = proxyId

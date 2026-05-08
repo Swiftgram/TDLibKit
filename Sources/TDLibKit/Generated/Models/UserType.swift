@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -80,7 +80,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription
     public let canBeEdited: Bool
 
-    /// True, if the bot supports connection to Telegram Business accounts
+    /// True, if the bot supports connection to user accounts for chat automation
     public let canConnectToBusiness: Bool
 
     /// True, if the bot can be invited to basic group and supergroup chats
@@ -107,6 +107,9 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the location of the user is expected to be sent with every inline query to this bot
     public let needLocation: Bool
 
+    /// True, if the bot can be queried by username from any non-secret chat
+    public let supportsGuestQueries: Bool
+
 
     public init(
         activeUserCount: Int,
@@ -121,7 +124,8 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         hasTopics: Bool,
         inlineQueryPlaceholder: String,
         isInline: Bool,
-        needLocation: Bool
+        needLocation: Bool,
+        supportsGuestQueries: Bool
     ) {
         self.activeUserCount = activeUserCount
         self.allowsUsersToCreateTopics = allowsUsersToCreateTopics
@@ -136,6 +140,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         self.inlineQueryPlaceholder = inlineQueryPlaceholder
         self.isInline = isInline
         self.needLocation = needLocation
+        self.supportsGuestQueries = supportsGuestQueries
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -175,14 +175,17 @@ public final class TdApi {
     /// Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
     /// - Parameter amount: Paid amount, in the smallest units of the currency
     /// - Parameter currency: ISO 4217 currency code of the payment currency
+    /// - Parameter premiumDayCount: The number of days for which the Telegram Premium subscription will be granted
     public func checkAuthenticationPremiumPurchase(
         amount: Int64?,
         currency: String?,
+        premiumDayCount: Int?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = CheckAuthenticationPremiumPurchase(
             amount: amount,
-            currency: currency
+            currency: currency,
+            premiumDayCount: premiumDayCount
         )
         self.execute(query: query, completion: completion)
     }
@@ -190,15 +193,18 @@ public final class TdApi {
     /// Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
     /// - Parameter amount: Paid amount, in the smallest units of the currency
     /// - Parameter currency: ISO 4217 currency code of the payment currency
+    /// - Parameter premiumDayCount: The number of days for which the Telegram Premium subscription will be granted
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func checkAuthenticationPremiumPurchase(
         amount: Int64?,
-        currency: String?
+        currency: String?,
+        premiumDayCount: Int?
     ) async throws -> Ok {
         let query = CheckAuthenticationPremiumPurchase(
             amount: amount,
-            currency: currency
+            currency: currency,
+            premiumDayCount: premiumDayCount
         )
         return try await self.execute(query: query)
     }
@@ -207,11 +213,13 @@ public final class TdApi {
     /// - Parameter amount: Paid amount, in the smallest units of the currency
     /// - Parameter currency: ISO 4217 currency code of the payment currency
     /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+    /// - Parameter premiumDayCount: The number of days for which the Telegram Premium subscription will be granted
     /// - Parameter transaction: Information about the transaction
     public func setAuthenticationPremiumPurchaseTransaction(
         amount: Int64?,
         currency: String?,
         isRestore: Bool?,
+        premiumDayCount: Int?,
         transaction: StoreTransaction?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
@@ -219,6 +227,7 @@ public final class TdApi {
             amount: amount,
             currency: currency,
             isRestore: isRestore,
+            premiumDayCount: premiumDayCount,
             transaction: transaction
         )
         self.execute(query: query, completion: completion)
@@ -228,6 +237,7 @@ public final class TdApi {
     /// - Parameter amount: Paid amount, in the smallest units of the currency
     /// - Parameter currency: ISO 4217 currency code of the payment currency
     /// - Parameter isRestore: Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+    /// - Parameter premiumDayCount: The number of days for which the Telegram Premium subscription will be granted
     /// - Parameter transaction: Information about the transaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -235,12 +245,14 @@ public final class TdApi {
         amount: Int64?,
         currency: String?,
         isRestore: Bool?,
+        premiumDayCount: Int?,
         transaction: StoreTransaction?
     ) async throws -> Ok {
         let query = SetAuthenticationPremiumPurchaseTransaction(
             amount: amount,
             currency: currency,
             isRestore: isRestore,
+            premiumDayCount: premiumDayCount,
             transaction: transaction
         )
         return try await self.execute(query: query)
@@ -4673,6 +4685,223 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Creates a custom text composition style. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// - Parameter customEmojiId: Identifier of the custom emoji corresponding to the style
+    /// - Parameter prompt: Prompt that will be used for text composition; 1-getOption("text_composition_style_prompt_length_max") characters
+    /// - Parameter showCreator: Pass true if the current user must be shown as the creator of the style
+    /// - Parameter title: Title of the style; 1-getOption("text_composition_style_title_length_max") characters
+    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    public func createTextCompositionStyle(
+        customEmojiId: TdInt64?,
+        prompt: String?,
+        showCreator: Bool?,
+        title: String?,
+        completion: @escaping (Result<TextCompositionStyle, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateTextCompositionStyle(
+            customEmojiId: customEmojiId,
+            prompt: prompt,
+            showCreator: showCreator,
+            title: title
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Creates a custom text composition style. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// - Parameter customEmojiId: Identifier of the custom emoji corresponding to the style
+    /// - Parameter prompt: Prompt that will be used for text composition; 1-getOption("text_composition_style_prompt_length_max") characters
+    /// - Parameter showCreator: Pass true if the current user must be shown as the creator of the style
+    /// - Parameter title: Title of the style; 1-getOption("text_composition_style_title_length_max") characters
+    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createTextCompositionStyle(
+        customEmojiId: TdInt64?,
+        prompt: String?,
+        showCreator: Bool?,
+        title: String?
+    ) async throws -> TextCompositionStyle {
+        let query = CreateTextCompositionStyle(
+            customEmojiId: customEmojiId,
+            prompt: prompt,
+            showCreator: showCreator,
+            title: title
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits a custom text composition style that was created by the current user
+    /// - Parameter customEmojiId: Identifier of the custom emoji corresponding to the style
+    /// - Parameter name: Name of the style
+    /// - Parameter prompt: Prompt that will be used for text composition; 1-getOption("text_composition_style_prompt_length_max") characters
+    /// - Parameter showCreator: Pass true if the current user must be shown as the creator of the style
+    /// - Parameter title: Title of the style; 1-getOption("text_composition_style_title_length_max") characters
+    public func editTextCompositionStyle(
+        customEmojiId: TdInt64?,
+        name: String?,
+        prompt: String?,
+        showCreator: Bool?,
+        title: String?,
+        completion: @escaping (Result<TextCompositionStyle, Swift.Error>) -> Void
+    ) throws {
+        let query = EditTextCompositionStyle(
+            customEmojiId: customEmojiId,
+            name: name,
+            prompt: prompt,
+            showCreator: showCreator,
+            title: title
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits a custom text composition style that was created by the current user
+    /// - Parameter customEmojiId: Identifier of the custom emoji corresponding to the style
+    /// - Parameter name: Name of the style
+    /// - Parameter prompt: Prompt that will be used for text composition; 1-getOption("text_composition_style_prompt_length_max") characters
+    /// - Parameter showCreator: Pass true if the current user must be shown as the creator of the style
+    /// - Parameter title: Title of the style; 1-getOption("text_composition_style_title_length_max") characters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func editTextCompositionStyle(
+        customEmojiId: TdInt64?,
+        name: String?,
+        prompt: String?,
+        showCreator: Bool?,
+        title: String?
+    ) async throws -> TextCompositionStyle {
+        let query = EditTextCompositionStyle(
+            customEmojiId: customEmojiId,
+            name: name,
+            prompt: prompt,
+            showCreator: showCreator,
+            title: title
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes a custom text composition style that was created by the current user
+    /// - Parameter name: Name of the style
+    public func deleteTextCompositionStyle(
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteTextCompositionStyle(
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes a custom text composition style that was created by the current user
+    /// - Parameter name: Name of the style
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteTextCompositionStyle(name: String?) async throws -> Ok {
+        let query = DeleteTextCompositionStyle(
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Searches a custom text composition style by its name
+    /// - Parameter name: Name of the style
+    public func searchTextCompositionStyle(
+        name: String?,
+        completion: @escaping (Result<TextCompositionStyle, Swift.Error>) -> Void
+    ) throws {
+        let query = SearchTextCompositionStyle(
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Searches a custom text composition style by its name
+    /// - Parameter name: Name of the style
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func searchTextCompositionStyle(name: String?) async throws -> TextCompositionStyle {
+        let query = SearchTextCompositionStyle(
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns an example of usage of a custom text composition style
+    /// - Parameter exampleNumber: 0-based unique number of the requested example; must be non-negative and less than getOption("text_composition_style_example_count")
+    /// - Parameter name: Name of the style
+    /// - Returns: An example of usage of a custom text composition style
+    public func getTextCompositionStyleExample(
+        exampleNumber: Int?,
+        name: String?,
+        completion: @escaping (Result<TextCompositionStyleExample, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTextCompositionStyleExample(
+            exampleNumber: exampleNumber,
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns an example of usage of a custom text composition style
+    /// - Parameter exampleNumber: 0-based unique number of the requested example; must be non-negative and less than getOption("text_composition_style_example_count")
+    /// - Parameter name: Name of the style
+    /// - Returns: An example of usage of a custom text composition style
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getTextCompositionStyleExample(
+        exampleNumber: Int?,
+        name: String?
+    ) async throws -> TextCompositionStyleExample {
+        let query = GetTextCompositionStyleExample(
+            exampleNumber: exampleNumber,
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// - Parameter name: Name of the style
+    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    public func addTextCompositionStyle(
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddTextCompositionStyle(
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// - Parameter name: Name of the style
+    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func addTextCompositionStyle(name: String?) async throws -> Ok {
+        let query = AddTextCompositionStyle(
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
+    /// - Parameter name: Name of the style
+    public func removeTextCompositionStyle(
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveTextCompositionStyle(
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
+    /// - Parameter name: Name of the style
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func removeTextCompositionStyle(name: String?) async throws -> Ok {
+        let query = RemoveTextCompositionStyle(
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Translates a text to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter text: Text to translate
     /// - Parameter toLanguageCode: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
@@ -8177,6 +8406,74 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter senderId: Identifier of the sender of reactions to delete
+    public func deleteAllRecentMessageReactionsFromSender(
+        chatId: Int64?,
+        senderId: MessageSender?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteAllRecentMessageReactionsFromSender(
+            chatId: chatId,
+            senderId: senderId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes all recent reactions added by the specified sender in a chat. Supported only for basic groups and supergroups; requires can_delete_messages administrator right
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter senderId: Identifier of the sender of reactions to delete
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteAllRecentMessageReactionsFromSender(
+        chatId: Int64?,
+        senderId: MessageSender?
+    ) async throws -> Ok {
+        let query = DeleteAllRecentMessageReactionsFromSender(
+            chatId: chatId,
+            senderId: senderId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes all reactions added by the specified sender on a message
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message containing the reactions. Use messageProperties.can_delete_reactions to check whether the method can be used for a message
+    /// - Parameter senderId: Identifier of the sender of reactions to delete
+    public func deleteMessageReactionsFromSender(
+        chatId: Int64?,
+        messageId: Int64?,
+        senderId: MessageSender?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteMessageReactionsFromSender(
+            chatId: chatId,
+            messageId: messageId,
+            senderId: senderId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes all reactions added by the specified sender on a message
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter messageId: Identifier of the message containing the reactions. Use messageProperties.can_delete_reactions to check whether the method can be used for a message
+    /// - Parameter senderId: Identifier of the sender of reactions to delete
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteMessageReactionsFromSender(
+        chatId: Int64?,
+        messageId: Int64?,
+        senderId: MessageSender?
+    ) async throws -> Ok {
+        let query = DeleteMessageReactionsFromSender(
+            chatId: chatId,
+            messageId: messageId,
+            senderId: senderId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
     /// - Parameter chatId: Chat identifier
     /// - Returns: The list of message sender identifiers, which can be used to send a paid reaction in a chat
@@ -9041,6 +9338,44 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns statistics of poll votes in a poll
+    /// - Parameter chatId: Identifier of the chat to which the poll belongs
+    /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Parameter messageId: Identifier of the message containing the poll. Use messageProperties.can_get_poll_vote_statistics to check whether the method can be used for a message
+    /// - Returns: Statistics of poll votes in a poll
+    public func getPollVoteStatistics(
+        chatId: Int64?,
+        isDark: Bool?,
+        messageId: Int64?,
+        completion: @escaping (Result<PollVoteStatistics, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPollVoteStatistics(
+            chatId: chatId,
+            isDark: isDark,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns statistics of poll votes in a poll
+    /// - Parameter chatId: Identifier of the chat to which the poll belongs
+    /// - Parameter isDark: Pass true if a dark theme is used by the application
+    /// - Parameter messageId: Identifier of the message containing the poll. Use messageProperties.can_get_poll_vote_statistics to check whether the method can be used for a message
+    /// - Returns: Statistics of poll votes in a poll
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPollVoteStatistics(
+        chatId: Int64?,
+        isDark: Bool?,
+        messageId: Int64?
+    ) async throws -> PollVoteStatistics {
+        let query = GetPollVoteStatistics(
+            chatId: chatId,
+            isDark: isDark,
+            messageId: messageId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Stops a poll
     /// - Parameter chatId: Identifier of the chat to which the poll belongs
     /// - Parameter messageId: Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped
@@ -9488,6 +9823,36 @@ public final class TdApi {
             isPersonal: isPersonal,
             nextOffset: nextOffset,
             results: results
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sets the result of a guest query; for bots only
+    /// - Parameter guestQueryId: Identifier of the guest query
+    /// - Parameter result: The result of the query
+    public func answerGuestQuery(
+        guestQueryId: TdInt64?,
+        result: InputInlineQueryResult?,
+        completion: @escaping (Result<InlineMessageId, Swift.Error>) -> Void
+    ) throws {
+        let query = AnswerGuestQuery(
+            guestQueryId: guestQueryId,
+            result: result
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sets the result of a guest query; for bots only
+    /// - Parameter guestQueryId: Identifier of the guest query
+    /// - Parameter result: The result of the query
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func answerGuestQuery(
+        guestQueryId: TdInt64?,
+        result: InputInlineQueryResult?
+    ) async throws -> InlineMessageId {
+        let query = AnswerGuestQuery(
+            guestQueryId: guestQueryId,
+            result: result
         )
         return try await self.execute(query: query)
     }
@@ -9966,7 +10331,7 @@ public final class TdApi {
     public func answerWebAppQuery(
         result: InputInlineQueryResult?,
         webAppQueryId: String?,
-        completion: @escaping (Result<SentWebAppMessage, Swift.Error>) -> Void
+        completion: @escaping (Result<InlineMessageId, Swift.Error>) -> Void
     ) throws {
         let query = AnswerWebAppQuery(
             result: result,
@@ -9982,7 +10347,7 @@ public final class TdApi {
     public func answerWebAppQuery(
         result: InputInlineQueryResult?,
         webAppQueryId: String?
-    ) async throws -> SentWebAppMessage {
+    ) async throws -> InlineMessageId {
         let query = AnswerWebAppQuery(
             result: result,
             webAppQueryId: webAppQueryId
@@ -10433,7 +10798,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
-    /// - Parameter text: Draft text of the message
+    /// - Parameter text: Draft text of the message; pass null to show a "Thinking..." placeholder
     public func sendTextMessageDraft(
         chatId: Int64?,
         draftId: TdInt64?,
@@ -10454,7 +10819,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
-    /// - Parameter text: Draft text of the message
+    /// - Parameter text: Draft text of the message; pass null to show a "Thinking..." placeholder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendTextMessageDraft(
@@ -13303,7 +13668,7 @@ public final class TdApi {
     /// - Returns: Saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
     public func getSavedNotificationSound(
         notificationSoundId: TdInt64?,
-        completion: @escaping (Result<NotificationSounds, Swift.Error>) -> Void
+        completion: @escaping (Result<NotificationSound, Swift.Error>) -> Void
     ) throws {
         let query = GetSavedNotificationSound(
             notificationSoundId: notificationSoundId
@@ -13315,7 +13680,7 @@ public final class TdApi {
     /// - Parameter notificationSoundId: Identifier of the notification sound
     /// - Returns: Saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getSavedNotificationSound(notificationSoundId: TdInt64?) async throws -> NotificationSounds {
+    public func getSavedNotificationSound(notificationSoundId: TdInt64?) async throws -> NotificationSound {
         let query = GetSavedNotificationSound(
             notificationSoundId: notificationSoundId
         )
@@ -19147,6 +19512,38 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns messages in the personal chat of a given user; for bots only
+    /// - Parameter limit: The maximum number of messages to be returned; 1-20
+    /// - Parameter userId: User identifier
+    /// - Returns: Messages in the personal chat of a given user
+    public func getPersonalChatHistory(
+        limit: Int?,
+        userId: Int64?,
+        completion: @escaping (Result<Messages, Swift.Error>) -> Void
+    ) throws {
+        let query = GetPersonalChatHistory(
+            limit: limit,
+            userId: userId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns messages in the personal chat of a given user; for bots only
+    /// - Parameter limit: The maximum number of messages to be returned; 1-20
+    /// - Parameter userId: User identifier
+    /// - Returns: Messages in the personal chat of a given user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getPersonalChatHistory(
+        limit: Int?,
+        userId: Int64?
+    ) async throws -> Messages {
+        let query = GetPersonalChatHistory(
+            limit: limit,
+            userId: userId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Searches a user by their phone number. Returns a 404 error if the user can't be found
     /// - Parameter onlyLocal: Pass true to get only locally available information without sending network requests
     /// - Parameter phoneNumber: Phone number to search for
@@ -19304,24 +19701,44 @@ public final class TdApi {
     }
 
     /// Adds an audio file to the beginning of the profile audio files of the current user
-    /// - Parameter fileId: Identifier of the audio file to be added. The file must have been uploaded to the server
+    /// - Parameter audio: The audio file to be added
+    /// - Parameter duration: Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
+    /// - Parameter performer: Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
+    /// - Parameter title: Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
     public func addProfileAudio(
-        fileId: Int?,
+        audio: InputFile?,
+        duration: Int?,
+        performer: String?,
+        title: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddProfileAudio(
-            fileId: fileId
+            audio: audio,
+            duration: duration,
+            performer: performer,
+            title: title
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Adds an audio file to the beginning of the profile audio files of the current user
-    /// - Parameter fileId: Identifier of the audio file to be added. The file must have been uploaded to the server
+    /// - Parameter audio: The audio file to be added
+    /// - Parameter duration: Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
+    /// - Parameter performer: Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
+    /// - Parameter title: Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func addProfileAudio(fileId: Int?) async throws -> Ok {
+    public func addProfileAudio(
+        audio: InputFile?,
+        duration: Int?,
+        performer: String?,
+        title: String?
+    ) async throws -> Ok {
         let query = AddProfileAudio(
-            fileId: fileId
+            audio: audio,
+            duration: duration,
+            performer: performer,
+            title: title
         )
         return try await self.execute(query: query)
     }
@@ -22064,34 +22481,89 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns token of a created bot; for bots only
-    /// - Parameter botUserId: Identifier of the created bot
+    /// Returns token of a managed bot; for bots only
+    /// - Parameter botUserId: Identifier of the managed bot
     /// - Parameter revoke: Pass true to revoke the current token and create a new one
-    /// - Returns: Token of a created bot
-    public func getBotToken(
+    /// - Returns: Token of a managed bot
+    public func getManagedBotToken(
         botUserId: Int64?,
         revoke: Bool?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
     ) throws {
-        let query = GetBotToken(
+        let query = GetManagedBotToken(
             botUserId: botUserId,
             revoke: revoke
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns token of a created bot; for bots only
-    /// - Parameter botUserId: Identifier of the created bot
+    /// Returns token of a managed bot; for bots only
+    /// - Parameter botUserId: Identifier of the managed bot
     /// - Parameter revoke: Pass true to revoke the current token and create a new one
-    /// - Returns: Token of a created bot
+    /// - Returns: Token of a managed bot
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getBotToken(
+    public func getManagedBotToken(
         botUserId: Int64?,
         revoke: Bool?
     ) async throws -> Text {
-        let query = GetBotToken(
+        let query = GetManagedBotToken(
             botUserId: botUserId,
             revoke: revoke
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Returns access settings of a managed bot; for bots only
+    /// - Parameter botUserId: Identifier of the managed bot
+    /// - Returns: Access settings of a managed bot
+    public func getManagedBotAccessSettings(
+        botUserId: Int64?,
+        completion: @escaping (Result<BotAccessSettings, Swift.Error>) -> Void
+    ) throws {
+        let query = GetManagedBotAccessSettings(
+            botUserId: botUserId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns access settings of a managed bot; for bots only
+    /// - Parameter botUserId: Identifier of the managed bot
+    /// - Returns: Access settings of a managed bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getManagedBotAccessSettings(botUserId: Int64?) async throws -> BotAccessSettings {
+        let query = GetManagedBotAccessSettings(
+            botUserId: botUserId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Sets access settings of a managed bot; for bots only
+    /// - Parameter botUserId: Identifier of the managed bot
+    /// - Parameter settings: New access settings
+    public func setManagedBotAccessSettings(
+        botUserId: Int64?,
+        settings: BotAccessSettings?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetManagedBotAccessSettings(
+            botUserId: botUserId,
+            settings: settings
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sets access settings of a managed bot; for bots only
+    /// - Parameter botUserId: Identifier of the managed bot
+    /// - Parameter settings: New access settings
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setManagedBotAccessSettings(
+        botUserId: Int64?,
+        settings: BotAccessSettings?
+    ) async throws -> Ok {
+        let query = SetManagedBotAccessSettings(
+            botUserId: botUserId,
+            settings: settings
         )
         return try await self.execute(query: query)
     }
@@ -29181,14 +29653,17 @@ public final class TdApi {
     }
 
     /// Adds a proxy server for network requests. Can be called before authorization
+    /// - Parameter comment: Comment to set for the proxy
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter proxy: The proxy to add
     public func addProxy(
+        comment: String?,
         enable: Bool?,
         proxy: Proxy?,
         completion: @escaping (Result<AddedProxy, Swift.Error>) -> Void
     ) throws {
         let query = AddProxy(
+            comment: comment,
             enable: enable,
             proxy: proxy
         )
@@ -29196,14 +29671,17 @@ public final class TdApi {
     }
 
     /// Adds a proxy server for network requests. Can be called before authorization
+    /// - Parameter comment: Comment to set for the proxy
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter proxy: The proxy to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func addProxy(
+        comment: String?,
         enable: Bool?,
         proxy: Proxy?
     ) async throws -> AddedProxy {
         let query = AddProxy(
+            comment: comment,
             enable: enable,
             proxy: proxy
         )
@@ -29211,16 +29689,19 @@ public final class TdApi {
     }
 
     /// Edits an existing proxy server for network requests. Can be called before authorization
+    /// - Parameter comment: New comment for the proxy
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter proxy: The new information about the proxy
     /// - Parameter proxyId: Proxy identifier
     public func editProxy(
+        comment: String?,
         enable: Bool?,
         proxy: Proxy?,
         proxyId: Int?,
         completion: @escaping (Result<AddedProxy, Swift.Error>) -> Void
     ) throws {
         let query = EditProxy(
+            comment: comment,
             enable: enable,
             proxy: proxy,
             proxyId: proxyId
@@ -29229,16 +29710,19 @@ public final class TdApi {
     }
 
     /// Edits an existing proxy server for network requests. Can be called before authorization
+    /// - Parameter comment: New comment for the proxy
     /// - Parameter enable: Pass true to immediately enable the proxy
     /// - Parameter proxy: The new information about the proxy
     /// - Parameter proxyId: Proxy identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func editProxy(
+        comment: String?,
         enable: Bool?,
         proxy: Proxy?,
         proxyId: Int?
     ) async throws -> AddedProxy {
         let query = EditProxy(
+            comment: comment,
             enable: enable,
             proxy: proxy,
             proxyId: proxyId

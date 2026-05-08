@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be shared in a story using inputStoryAreaTypeMessage
     public let canBeSharedInStory: Bool
 
+    /// True, if the user can delete reactions of other users in the message using the method deleteMessageReactionsFromSender
+    public let canDeleteReactions: Bool
+
     /// True, if the message can be edited using the method editMessageMedia
     public let canEditMedia: Bool
 
@@ -84,6 +87,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
 
     /// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     public let canGetMessageThread: Bool
+
+    /// True, if the message is a poll and vote statistics are available through getPollVoteStatistics
+    public let canGetPollVoteStatistics: Bool
 
     /// True, if read date of the message can be received through getMessageReadDate
     public let canGetReadDate: Bool
@@ -142,6 +148,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canBeRepliedInAnotherChat: Bool,
         canBeSaved: Bool,
         canBeSharedInStory: Bool,
+        canDeleteReactions: Bool,
         canEditMedia: Bool,
         canEditSchedulingState: Bool,
         canEditSuggestedPostInfo: Bool,
@@ -150,6 +157,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canGetLink: Bool,
         canGetMediaTimestampLinks: Bool,
         canGetMessageThread: Bool,
+        canGetPollVoteStatistics: Bool,
         canGetReadDate: Bool,
         canGetStatistics: Bool,
         canGetVideoAdvertisements: Bool,
@@ -180,6 +188,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canBeRepliedInAnotherChat = canBeRepliedInAnotherChat
         self.canBeSaved = canBeSaved
         self.canBeSharedInStory = canBeSharedInStory
+        self.canDeleteReactions = canDeleteReactions
         self.canEditMedia = canEditMedia
         self.canEditSchedulingState = canEditSchedulingState
         self.canEditSuggestedPostInfo = canEditSuggestedPostInfo
@@ -188,6 +197,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canGetLink = canGetLink
         self.canGetMediaTimestampLinks = canGetMediaTimestampLinks
         self.canGetMessageThread = canGetMessageThread
+        self.canGetPollVoteStatistics = canGetPollVoteStatistics
         self.canGetReadDate = canGetReadDate
         self.canGetStatistics = canGetStatistics
         self.canGetVideoAdvertisements = canGetVideoAdvertisements

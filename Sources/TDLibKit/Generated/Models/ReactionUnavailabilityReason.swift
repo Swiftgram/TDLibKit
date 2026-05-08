@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -19,10 +19,14 @@ public indirect enum ReactionUnavailabilityReason: Codable, Equatable, Hashable 
     /// The user isn't a member of the supergroup and can't send messages and reactions there without joining
     case reactionUnavailabilityReasonGuest
 
+    /// The user is restricted in the chat
+    case reactionUnavailabilityReasonRestricted
+
 
     private enum Kind: String, Codable {
         case reactionUnavailabilityReasonAnonymousAdministrator
         case reactionUnavailabilityReasonGuest
+        case reactionUnavailabilityReasonRestricted
     }
 
     public init(from decoder: Decoder) throws {
@@ -33,6 +37,8 @@ public indirect enum ReactionUnavailabilityReason: Codable, Equatable, Hashable 
             self = .reactionUnavailabilityReasonAnonymousAdministrator
         case .reactionUnavailabilityReasonGuest:
             self = .reactionUnavailabilityReasonGuest
+        case .reactionUnavailabilityReasonRestricted:
+            self = .reactionUnavailabilityReasonRestricted
         }
     }
 
@@ -43,6 +49,8 @@ public indirect enum ReactionUnavailabilityReason: Codable, Equatable, Hashable 
             try container.encode(Kind.reactionUnavailabilityReasonAnonymousAdministrator, forKey: .type)
         case .reactionUnavailabilityReasonGuest:
             try container.encode(Kind.reactionUnavailabilityReasonGuest, forKey: .type)
+        case .reactionUnavailabilityReasonRestricted:
+            try container.encode(Kind.reactionUnavailabilityReasonRestricted, forKey: .type)
         }
     }
 }

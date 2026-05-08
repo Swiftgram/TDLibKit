@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -31,10 +31,10 @@ public struct ScopeNotificationSettings: Codable, Equatable, Hashable {
     /// True, if the chat that posted a story must be displayed in notifications
     public let showStoryPoster: Bool
 
-    /// Identifier of the notification sound to be played; 0 if sound is disabled
+    /// Identifier of the notification sound to be played; 0 if sound is disabled; pass -1 to use the app-dependent default sound
     public let soundId: TdInt64
 
-    /// Identifier of the notification sound to be played for stories; 0 if sound is disabled
+    /// Identifier of the notification sound to be played for stories; 0 if sound is disabled; pass -1 to use the app-dependent default sound
     public let storySoundId: TdInt64
 
     /// If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories

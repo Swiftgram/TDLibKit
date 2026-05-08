@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -152,6 +152,9 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
 /// The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
 public struct AuthorizationStateWaitPremiumPurchase: Codable, Equatable, Hashable {
 
+    /// Duration of the Telegram Premium subscription after the purchase; may be 0 if Telegram Premium subscription will not be granted
+    public let premiumDayCount: Int
+
     /// Identifier of the store product that must be bought
     public let storeProductId: String
 
@@ -163,10 +166,12 @@ public struct AuthorizationStateWaitPremiumPurchase: Codable, Equatable, Hashabl
 
 
     public init(
+        premiumDayCount: Int,
         storeProductId: String,
         supportEmailAddress: String,
         supportEmailSubject: String
     ) {
+        self.premiumDayCount = premiumDayCount
         self.storeProductId = storeProductId
         self.supportEmailAddress = supportEmailAddress
         self.supportEmailSubject = supportEmailSubject

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -103,6 +103,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to boost a supergroup chat
     case linkPreviewTypeSupergroupBoost(LinkPreviewTypeSupergroupBoost)
 
+    /// The link is a link to a text composition style
+    case linkPreviewTypeTextCompositionStyle(LinkPreviewTypeTextCompositionStyle)
+
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case linkPreviewTypeTheme(LinkPreviewTypeTheme)
 
@@ -162,6 +165,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeStory
         case linkPreviewTypeStoryAlbum
         case linkPreviewTypeSupergroupBoost
+        case linkPreviewTypeTextCompositionStyle
         case linkPreviewTypeTheme
         case linkPreviewTypeUnsupported
         case linkPreviewTypeUpgradedGift
@@ -261,6 +265,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeSupergroupBoost:
             let value = try LinkPreviewTypeSupergroupBoost(from: decoder)
             self = .linkPreviewTypeSupergroupBoost(value)
+        case .linkPreviewTypeTextCompositionStyle:
+            let value = try LinkPreviewTypeTextCompositionStyle(from: decoder)
+            self = .linkPreviewTypeTextCompositionStyle(value)
         case .linkPreviewTypeTheme:
             let value = try LinkPreviewTypeTheme(from: decoder)
             self = .linkPreviewTypeTheme(value)
@@ -376,6 +383,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .linkPreviewTypeSupergroupBoost(let value):
             try container.encode(Kind.linkPreviewTypeSupergroupBoost, forKey: .type)
+            try value.encode(to: encoder)
+        case .linkPreviewTypeTextCompositionStyle(let value):
+            try container.encode(Kind.linkPreviewTypeTextCompositionStyle, forKey: .type)
             try value.encode(to: encoder)
         case .linkPreviewTypeTheme(let value):
             try container.encode(Kind.linkPreviewTypeTheme, forKey: .type)
@@ -861,6 +871,18 @@ public struct LinkPreviewTypeSupergroupBoost: Codable, Equatable, Hashable {
 
     public init(photo: ChatPhoto?) {
         self.photo = photo
+    }
+}
+
+/// The link is a link to a text composition style
+public struct LinkPreviewTypeTextCompositionStyle: Codable, Equatable, Hashable {
+
+    /// Identifier of the custom emoji corresponding to the style; 0 if none
+    public let customEmojiId: TdInt64
+
+
+    public init(customEmojiId: TdInt64) {
+        self.customEmojiId = customEmojiId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -48,6 +48,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The list of unread reactions added to a message was changed
     case updateMessageUnreadReactions(UpdateMessageUnreadReactions)
+
+    /// Unread votes were added or removed from a poll message
+    case updateMessageContainsUnreadPollVotes(UpdateMessageContainsUnreadPollVotes)
 
     /// A fact-check added to a message was changed
     case updateMessageFactCheck(UpdateMessageFactCheck)
@@ -499,6 +502,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The user has chosen a result of an inline query; for bots only
     case updateNewChosenInlineResult(UpdateNewChosenInlineResult)
 
+    /// A new incoming guest query; for bots only
+    case updateNewGuestQuery(UpdateNewGuestQuery)
+
     /// A new incoming callback query; for bots only
     case updateNewCallbackQuery(UpdateNewCallbackQuery)
 
@@ -561,6 +567,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateMessageContentOpened
         case updateMessageMentionRead
         case updateMessageUnreadReactions
+        case updateMessageContainsUnreadPollVotes
         case updateMessageFactCheck
         case updateMessageSuggestedPostInfo
         case updateMessageLiveLocationViewed
@@ -711,6 +718,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateBusinessMessagesDeleted
         case updateNewInlineQuery
         case updateNewChosenInlineResult
+        case updateNewGuestQuery
         case updateNewCallbackQuery
         case updateNewInlineCallbackQuery
         case updateNewBusinessCallbackQuery
@@ -769,6 +777,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageUnreadReactions:
             let value = try UpdateMessageUnreadReactions(from: decoder)
             self = .updateMessageUnreadReactions(value)
+        case .updateMessageContainsUnreadPollVotes:
+            let value = try UpdateMessageContainsUnreadPollVotes(from: decoder)
+            self = .updateMessageContainsUnreadPollVotes(value)
         case .updateMessageFactCheck:
             let value = try UpdateMessageFactCheck(from: decoder)
             self = .updateMessageFactCheck(value)
@@ -1219,6 +1230,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateNewChosenInlineResult:
             let value = try UpdateNewChosenInlineResult(from: decoder)
             self = .updateNewChosenInlineResult(value)
+        case .updateNewGuestQuery:
+            let value = try UpdateNewGuestQuery(from: decoder)
+            self = .updateNewGuestQuery(value)
         case .updateNewCallbackQuery:
             let value = try UpdateNewCallbackQuery(from: decoder)
             self = .updateNewCallbackQuery(value)
@@ -1308,6 +1322,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateMessageUnreadReactions(let value):
             try container.encode(Kind.updateMessageUnreadReactions, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateMessageContainsUnreadPollVotes(let value):
+            try container.encode(Kind.updateMessageContainsUnreadPollVotes, forKey: .type)
             try value.encode(to: encoder)
         case .updateMessageFactCheck(let value):
             try container.encode(Kind.updateMessageFactCheck, forKey: .type)
@@ -1759,6 +1776,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateNewChosenInlineResult(let value):
             try container.encode(Kind.updateNewChosenInlineResult, forKey: .type)
             try value.encode(to: encoder)
+        case .updateNewGuestQuery(let value):
+            try container.encode(Kind.updateNewGuestQuery, forKey: .type)
+            try value.encode(to: encoder)
         case .updateNewCallbackQuery(let value):
             try container.encode(Kind.updateNewCallbackQuery, forKey: .type)
             try value.encode(to: encoder)
@@ -2050,7 +2070,7 @@ public struct UpdateMessageUnreadReactions: Codable, Equatable, Hashable {
     /// Message identifier
     public let messageId: Int64
 
-    /// The new number of messages with unread reactions left in the chat
+    /// The new number of messages with unread reactions in the chat
     public let unreadReactionCount: Int
 
     /// The new list of unread reactions
@@ -2067,6 +2087,35 @@ public struct UpdateMessageUnreadReactions: Codable, Equatable, Hashable {
         self.messageId = messageId
         self.unreadReactionCount = unreadReactionCount
         self.unreadReactions = unreadReactions
+    }
+}
+
+/// Unread votes were added or removed from a poll message
+public struct UpdateMessageContainsUnreadPollVotes: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// True, if the message is a poll message with unread votes
+    public let containsUnreadPollVotes: Bool
+
+    /// Message identifier
+    public let messageId: Int64
+
+    /// The new number of messages with unread poll votes in the chat
+    public let unreadPollVoteCount: Int
+
+
+    public init(
+        chatId: Int64,
+        containsUnreadPollVotes: Bool,
+        messageId: Int64,
+        unreadPollVoteCount: Int
+    ) {
+        self.chatId = chatId
+        self.containsUnreadPollVotes = containsUnreadPollVotes
+        self.messageId = messageId
+        self.unreadPollVoteCount = unreadPollVoteCount
     }
 }
 
@@ -4898,6 +4947,30 @@ public struct UpdateNewChosenInlineResult: Codable, Equatable, Hashable {
         self.resultId = resultId
         self.senderUserId = senderUserId
         self.userLocation = userLocation
+    }
+}
+
+/// A new incoming guest query; for bots only
+public struct UpdateNewGuestQuery: Codable, Equatable, Hashable, Identifiable {
+
+    /// Unique query identifier
+    public let id: TdInt64
+
+    /// The message with the query
+    public let message: Message
+
+    /// The list of reference messages
+    public let referenceMessages: [Message]
+
+
+    public init(
+        id: TdInt64,
+        message: Message,
+        referenceMessages: [Message]
+    ) {
+        self.id = id
+        self.message = message
+        self.referenceMessages = referenceMessages
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
 
     /// True, if the user can pin messages
     public let canPinMessages: Bool
+
+    /// True, if the user can react to messages
+    public let canReactToMessages: Bool
 
     /// True, if the user can send music files
     public let canSendAudios: Bool
@@ -66,6 +69,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
         canEditTag: Bool,
         canInviteUsers: Bool,
         canPinMessages: Bool,
+        canReactToMessages: Bool,
         canSendAudios: Bool,
         canSendBasicMessages: Bool,
         canSendDocuments: Bool,
@@ -82,6 +86,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
         self.canEditTag = canEditTag
         self.canInviteUsers = canInviteUsers
         self.canPinMessages = canPinMessages
+        self.canReactToMessages = canReactToMessages
         self.canSendAudios = canSendAudios
         self.canSendBasicMessages = canSendBasicMessages
         self.canSendDocuments = canSendDocuments

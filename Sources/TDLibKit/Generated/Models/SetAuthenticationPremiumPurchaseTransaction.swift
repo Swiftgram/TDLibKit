@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public struct SetAuthenticationPremiumPurchaseTransaction: Codable, Equatable, H
     /// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
     public let isRestore: Bool?
 
+    /// The number of days for which the Telegram Premium subscription will be granted
+    public let premiumDayCount: Int?
+
     /// Information about the transaction
     public let transaction: StoreTransaction?
 
@@ -30,11 +33,13 @@ public struct SetAuthenticationPremiumPurchaseTransaction: Codable, Equatable, H
         amount: Int64?,
         currency: String?,
         isRestore: Bool?,
+        premiumDayCount: Int?,
         transaction: StoreTransaction?
     ) {
         self.amount = amount
         self.currency = currency
         self.isRestore = isRestore
+        self.premiumDayCount = premiumDayCount
         self.transaction = transaction
     }
 }

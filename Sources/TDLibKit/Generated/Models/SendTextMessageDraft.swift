@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct SendTextMessageDraft: Codable, Equatable, Hashable {
     /// The forum topic identifier in which the message will be sent; pass 0 if none
     public let forumTopicId: Int?
 
-    /// Draft text of the message
+    /// Draft text of the message; pass null to show a "Thinking..." placeholder
     public let text: FormattedText?
 
 

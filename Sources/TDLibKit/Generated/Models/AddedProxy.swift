@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Contains information about a proxy server added to the list of proxies
 public struct AddedProxy: Codable, Equatable, Hashable, Identifiable {
+
+    /// Comment for the proxy added by the user
+    public let comment: String
 
     /// Unique identifier of the proxy
     public let id: Int
@@ -27,11 +30,13 @@ public struct AddedProxy: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        comment: String,
         id: Int,
         isEnabled: Bool,
         lastUsedDate: Int,
         proxy: Proxy
     ) {
+        self.comment = comment
         self.id = id
         self.isEnabled = isEnabled
         self.lastUsedDate = lastUsedDate

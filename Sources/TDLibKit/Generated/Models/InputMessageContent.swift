@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -833,6 +833,9 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the poll will automatically be closed; must be 0-getOption("poll_open_period_max") seconds in the future; pass 0 if not specified
     public let closeDate: Int
 
+    /// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote; for channel chats only. If empty, then all users can participate in the poll. There can be up to getOption("poll_country_count_max") chosen countries
+    public let countryCodes: [String]
+
     public let description: FormattedText
 
     /// True, if the poll results will appear only after the poll closes
@@ -844,10 +847,16 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// True, if the poll needs to be sent already closed; for bots only
     public let isClosed: Bool
 
+    /// Media attached to the poll; pass null if none. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, non-live inputMessageLocation, inputMessagePhoto, inputMessageVenue, or inputMessageVideo without caption
+    public let media: InputMessageContent?
+
+    /// True, if only the users that are members of the chat for more than a day will be able to vote; for channel chats only
+    public let membersOnly: Bool
+
     /// Amount of time the poll will be active after creation, in seconds; 0-getOption("poll_open_period_max"); pass 0 if not specified
     public let openPeriod: Int
 
-    /// List of poll answer options; 2-getOption("poll_answer_count_max") options
+    /// List of poll answer options; 1-getOption("poll_answer_count_max") options
     public let options: [InputPollOption]
 
     /// Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
@@ -864,10 +873,13 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
         allowsMultipleAnswers: Bool,
         allowsRevoting: Bool,
         closeDate: Int,
+        countryCodes: [String],
         description: FormattedText,
         hideResultsUntilCloses: Bool,
         isAnonymous: Bool,
         isClosed: Bool,
+        media: InputMessageContent?,
+        membersOnly: Bool,
         openPeriod: Int,
         options: [InputPollOption],
         question: FormattedText,
@@ -877,10 +889,13 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
         self.allowsMultipleAnswers = allowsMultipleAnswers
         self.allowsRevoting = allowsRevoting
         self.closeDate = closeDate
+        self.countryCodes = countryCodes
         self.description = description
         self.hideResultsUntilCloses = hideResultsUntilCloses
         self.isAnonymous = isAnonymous
         self.isClosed = isClosed
+        self.media = media
+        self.membersOnly = membersOnly
         self.openPeriod = openPeriod
         self.options = options
         self.question = question

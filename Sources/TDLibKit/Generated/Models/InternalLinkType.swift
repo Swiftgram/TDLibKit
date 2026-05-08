@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -161,6 +161,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to an album of stories. Call searchPublicChat with the given username, then call getStoryAlbumStories with the received chat identifier and the given story album identifier, then show the story album if received
     case internalLinkTypeStoryAlbum(InternalLinkTypeStoryAlbum)
 
+    /// The link is a link to a text composition style. Call searchTextCompositionStyle with the given style name to get information about the style. If the style is found and the user wants to add it, then call addTextCompositionStyle
+    case internalLinkTypeTextCompositionStyle(InternalLinkTypeTextCompositionStyle)
+
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
@@ -233,6 +236,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeStickerSet
         case internalLinkTypeStory
         case internalLinkTypeStoryAlbum
+        case internalLinkTypeTextCompositionStyle
         case internalLinkTypeTheme
         case internalLinkTypeUnknownDeepLink
         case internalLinkTypeUpgradedGift
@@ -385,6 +389,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeStoryAlbum:
             let value = try InternalLinkTypeStoryAlbum(from: decoder)
             self = .internalLinkTypeStoryAlbum(value)
+        case .internalLinkTypeTextCompositionStyle:
+            let value = try InternalLinkTypeTextCompositionStyle(from: decoder)
+            self = .internalLinkTypeTextCompositionStyle(value)
         case .internalLinkTypeTheme:
             let value = try InternalLinkTypeTheme(from: decoder)
             self = .internalLinkTypeTheme(value)
@@ -550,6 +557,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeStoryAlbum(let value):
             try container.encode(Kind.internalLinkTypeStoryAlbum, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeTextCompositionStyle(let value):
+            try container.encode(Kind.internalLinkTypeTextCompositionStyle, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeTheme(let value):
             try container.encode(Kind.internalLinkTypeTheme, forKey: .type)
@@ -1136,7 +1146,7 @@ public struct InternalLinkTypeRequestManagedBot: Codable, Equatable, Hashable {
     /// Suggested name for the bot; may be empty if not specified
     public let suggestedBotName: String
 
-    /// Suggested username for the bot
+    /// Suggested username for the bot; always ends with "bot" case-insensitive
     public let suggestedBotUsername: String
 
 
@@ -1236,6 +1246,18 @@ public struct InternalLinkTypeStoryAlbum: Codable, Equatable, Hashable {
     ) {
         self.storyAlbumId = storyAlbumId
         self.storyAlbumOwnerUsername = storyAlbumOwnerUsername
+    }
+}
+
+/// The link is a link to a text composition style. Call searchTextCompositionStyle with the given style name to get information about the style. If the style is found and the user wants to add it, then call addTextCompositionStyle
+public struct InternalLinkTypeTextCompositionStyle: Codable, Equatable, Hashable {
+
+    /// Name of the style
+    public let styleName: String
+
+
+    public init(styleName: String) {
+        self.styleName = styleName
     }
 }
 

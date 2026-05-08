@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -1427,8 +1427,8 @@ public struct MessagePoll: Codable, Equatable, Hashable {
 
     public let description: FormattedText
 
-    /// Media attached to the poll. Currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
-    public let media: MessageContent
+    /// Media attached to the poll; may be null if none. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
+    public let media: MessageContent?
 
     /// Information about the poll
     public let poll: Poll
@@ -1437,7 +1437,7 @@ public struct MessagePoll: Codable, Equatable, Hashable {
     public init(
         canAddOption: Bool,
         description: FormattedText,
-        media: MessageContent,
+        media: MessageContent?,
         poll: Poll
     ) {
         self.canAddOption = canAddOption

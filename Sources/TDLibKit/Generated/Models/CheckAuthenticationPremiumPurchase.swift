@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -19,13 +19,18 @@ public struct CheckAuthenticationPremiumPurchase: Codable, Equatable, Hashable {
     /// ISO 4217 currency code of the payment currency
     public let currency: String?
 
+    /// The number of days for which the Telegram Premium subscription will be granted
+    public let premiumDayCount: Int?
+
 
     public init(
         amount: Int64?,
-        currency: String?
+        currency: String?,
+        premiumDayCount: Int?
     ) {
         self.amount = amount
         self.currency = currency
+        self.premiumDayCount = premiumDayCount
     }
 }
 

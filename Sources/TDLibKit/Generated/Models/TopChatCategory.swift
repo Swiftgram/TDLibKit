@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -28,6 +28,9 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
     /// A category containing frequently used chats with inline bots sorted by their usage in inline mode
     case topChatCategoryInlineBots
 
+    /// A category containing frequently used chats with bots, which were used as guest bots
+    case topChatCategoryGuestBots
+
     /// A category containing frequently used chats with bots, which Web Apps were opened
     case topChatCategoryWebAppBots
 
@@ -44,6 +47,7 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
         case topChatCategoryGroups
         case topChatCategoryChannels
         case topChatCategoryInlineBots
+        case topChatCategoryGuestBots
         case topChatCategoryWebAppBots
         case topChatCategoryCalls
         case topChatCategoryForwardChats
@@ -63,6 +67,8 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
             self = .topChatCategoryChannels
         case .topChatCategoryInlineBots:
             self = .topChatCategoryInlineBots
+        case .topChatCategoryGuestBots:
+            self = .topChatCategoryGuestBots
         case .topChatCategoryWebAppBots:
             self = .topChatCategoryWebAppBots
         case .topChatCategoryCalls:
@@ -85,6 +91,8 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
             try container.encode(Kind.topChatCategoryChannels, forKey: .type)
         case .topChatCategoryInlineBots:
             try container.encode(Kind.topChatCategoryInlineBots, forKey: .type)
+        case .topChatCategoryGuestBots:
+            try container.encode(Kind.topChatCategoryGuestBots, forKey: .type)
         case .topChatCategoryWebAppBots:
             try container.encode(Kind.topChatCategoryWebAppBots, forKey: .type)
         case .topChatCategoryCalls:

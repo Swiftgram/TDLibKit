@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.63-8fc2344f
-//  https://github.com/tdlib/td/tree/8fc2344f
+//  Based on TDLib 1.8.64-49b3bcbb
+//  https://github.com/tdlib/td/tree/49b3bcbb
 //
 
 import Foundation
@@ -13,12 +13,29 @@ import Foundation
 /// Adds an audio file to the beginning of the profile audio files of the current user
 public struct AddProfileAudio: Codable, Equatable, Hashable {
 
-    /// Identifier of the audio file to be added. The file must have been uploaded to the server
-    public let fileId: Int?
+    /// The audio file to be added
+    public let audio: InputFile?
+
+    /// Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
+    public let duration: Int?
+
+    /// Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
+    public let performer: String?
+
+    /// Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
+    public let title: String?
 
 
-    public init(fileId: Int?) {
-        self.fileId = fileId
+    public init(
+        audio: InputFile?,
+        duration: Int?,
+        performer: String?,
+        title: String?
+    ) {
+        self.audio = audio
+        self.duration = duration
+        self.performer = performer
+        self.title = title
     }
 }
 
