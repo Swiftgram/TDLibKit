@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-49b3bcbb
-//  https://github.com/tdlib/td/tree/49b3bcbb
+//  Based on TDLib 1.8.64-7a7081bf
+//  https://github.com/tdlib/td/tree/7a7081bf
 //
 
 import Foundation
 
 
-/// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for supergroups and channel chats
+/// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for supergroups, basic groups and channel chats
 public struct GetChatOwnerAfterLeaving: Codable, Equatable, Hashable {
 
     /// Chat identifier
