@@ -3,39 +3,39 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
 
 
 /// Contains information about an unconfirmed session
-public struct UnconfirmedSession: Codable, Equatable, Hashable, Identifiable {
+public struct UnconfirmedSession: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) when the user has logged in or the business bot was connected
+    public let date: Int
 
     /// Model of the device that was used for the session creation, as provided by the application
     public let deviceModel: String
 
-    /// Session identifier
-    public let id: TdInt64
-
     /// A human-readable description of the location from which the session was created, based on the IP address
     public let location: String
 
-    /// Point in time (Unix timestamp) when the user has logged in
-    public let logInDate: Int
+    /// Session type
+    public let type: SessionType
 
 
     public init(
+        date: Int,
         deviceModel: String,
-        id: TdInt64,
         location: String,
-        logInDate: Int
+        type: SessionType
     ) {
+        self.date = date
         self.deviceModel = deviceModel
-        self.id = id
         self.location = location
-        self.logInDate = logInDate
+        self.type = type
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -71,6 +71,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
     public let giftCount: Int
+
+    /// User identifier of the guard bot in the group; for chat administrators only
+    public let guardBotUserId: Int64
 
     /// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
     public let hasAggressiveAntiSpamEnabled: Bool
@@ -154,6 +157,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         description: String,
         directMessagesChatId: Int64,
         giftCount: Int,
+        guardBotUserId: Int64,
         hasAggressiveAntiSpamEnabled: Bool,
         hasHiddenMembers: Bool,
         hasPaidMediaAllowed: Bool,
@@ -195,6 +199,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.description = description
         self.directMessagesChatId = directMessagesChatId
         self.giftCount = giftCount
+        self.guardBotUserId = guardBotUserId
         self.hasAggressiveAntiSpamEnabled = hasAggressiveAntiSpamEnabled
         self.hasHiddenMembers = hasHiddenMembers
         self.hasPaidMediaAllowed = hasPaidMediaAllowed

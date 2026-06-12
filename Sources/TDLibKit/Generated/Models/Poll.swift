@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -21,6 +21,9 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the current user can get voters in the poll using getPollVoters
     public let canGetVoters: Bool
+
+    /// True, if the current user can see results of the poll
+    public let canSeeResults: Bool
 
     /// Point in time (Unix timestamp) when the poll will automatically be closed
     public let closeDate: Int
@@ -69,6 +72,7 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
         allowsMultipleAnswers: Bool,
         allowsRevoting: Bool,
         canGetVoters: Bool,
+        canSeeResults: Bool,
         closeDate: Int,
         countryCodes: [String],
         id: TdInt64,
@@ -87,6 +91,7 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
         self.allowsMultipleAnswers = allowsMultipleAnswers
         self.allowsRevoting = allowsRevoting
         self.canGetVoters = canGetVoters
+        self.canSeeResults = canSeeResults
         self.closeDate = closeDate
         self.countryCodes = countryCodes
         self.id = id

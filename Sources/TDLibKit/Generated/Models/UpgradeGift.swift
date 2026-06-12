@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct UpgradeGift: Codable, Equatable, Hashable {
     /// Identifier of the gift
     public let receivedGiftId: String?
 
-    /// The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    /// The Telegram Star amount required to pay for the upgrade. If the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     public let starCount: Int64?
 
 

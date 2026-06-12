@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -157,7 +157,7 @@ public struct InputInlineQueryResultAnimation: Codable, Equatable, Hashable, Ide
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
@@ -223,7 +223,7 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
@@ -280,7 +280,7 @@ public struct InputInlineQueryResultAudio: Codable, Equatable, Hashable, Identif
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAudio, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// Performer of the audio file
@@ -321,7 +321,7 @@ public struct InputInlineQueryResultContact: Codable, Equatable, Hashable, Ident
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
@@ -367,7 +367,7 @@ public struct InputInlineQueryResultDocument: Codable, Equatable, Hashable, Iden
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageDocument, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
@@ -444,7 +444,7 @@ public struct InputInlineQueryResultLocation: Codable, Equatable, Hashable, Iden
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// Amount of time relative to the message sent time until the location can be updated, in seconds
@@ -500,7 +500,7 @@ public struct InputInlineQueryResultPhoto: Codable, Equatable, Hashable, Identif
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessagePhoto, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// Height of the photo
@@ -551,7 +551,7 @@ public struct InputInlineQueryResultSticker: Codable, Equatable, Hashable, Ident
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
@@ -595,7 +595,7 @@ public struct InputInlineQueryResultVenue: Codable, Equatable, Hashable, Identif
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
@@ -641,7 +641,7 @@ public struct InputInlineQueryResultVideo: Codable, Equatable, Hashable, Identif
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
@@ -702,7 +702,7 @@ public struct InputInlineQueryResultVoiceNote: Codable, Equatable, Hashable, Ide
     /// Unique identifier of the query result
     public let id: String
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
     /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null

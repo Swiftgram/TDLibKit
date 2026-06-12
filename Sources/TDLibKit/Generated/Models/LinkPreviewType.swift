@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to an app at App Store or Google Play
     case linkPreviewTypeApp(LinkPreviewTypeApp)
 
-    /// The link is a link to a web site
+    /// The link is a link to a website
     case linkPreviewTypeArticle(LinkPreviewTypeArticle)
 
     /// The link is a link to an audio
@@ -460,7 +460,7 @@ public struct LinkPreviewTypeApp: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a web site
+/// The link is a link to a website
 public struct LinkPreviewTypeArticle: Codable, Equatable, Hashable {
 
     /// Article's main photo; may be null

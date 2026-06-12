@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct EditMessageText: Codable, Equatable, Hashable {
     /// The chat the message belongs to
     public let chatId: Int64?
 
-    /// New text content of the message. Must be of type inputMessageText
+    /// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     public let inputMessageContent: InputMessageContent?
 
     /// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited

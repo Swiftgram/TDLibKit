@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -16,20 +16,11 @@ public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
     /// The chat the message belongs to
     public let chatId: Int64?
 
-    /// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-    public let heading: Int?
-
-    /// New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    public let livePeriod: Int?
-
-    /// New location content of the message; pass null to stop sharing the live location
-    public let location: Location?
+    /// New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
+    public let location: LiveLocation?
 
     /// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     public let messageId: Int64?
-
-    /// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-    public let proximityAlertRadius: Int?
 
     /// The new message reply markup; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup?
@@ -37,19 +28,13 @@ public struct EditMessageLiveLocation: Codable, Equatable, Hashable {
 
     public init(
         chatId: Int64?,
-        heading: Int?,
-        livePeriod: Int?,
-        location: Location?,
+        location: LiveLocation?,
         messageId: Int64?,
-        proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?
     ) {
         self.chatId = chatId
-        self.heading = heading
-        self.livePeriod = livePeriod
         self.location = location
         self.messageId = messageId
-        self.proximityAlertRadius = proximityAlertRadius
         self.replyMarkup = replyMarkup
     }
 }

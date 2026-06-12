@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A text message
     case messageText(MessageText)
+
+    /// A rich message; the message can have multiple media of the same type, all of which must be shown in the corresponding profile tab
+    case messageRichMessage(MessageRichMessage)
 
     /// An animation message (GIF-style).
     case messageAnimation(MessageAnimation)
@@ -54,6 +57,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A self-destructed voice note message
     case messageExpiredVoiceNote
+
+    /// A message with a live location
+    case messageLiveLocation(MessageLiveLocation)
 
     /// A message with a location
     case messageLocation(MessageLocation)
@@ -316,6 +322,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case messageText
+        case messageRichMessage
         case messageAnimation
         case messageAudio
         case messageDocument
@@ -329,6 +336,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageExpiredVideo
         case messageExpiredVideoNote
         case messageExpiredVoiceNote
+        case messageLiveLocation
         case messageLocation
         case messageVenue
         case messageContact
@@ -424,6 +432,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageText:
             let value = try MessageText(from: decoder)
             self = .messageText(value)
+        case .messageRichMessage:
+            let value = try MessageRichMessage(from: decoder)
+            self = .messageRichMessage(value)
         case .messageAnimation:
             let value = try MessageAnimation(from: decoder)
             self = .messageAnimation(value)
@@ -459,6 +470,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             self = .messageExpiredVideoNote
         case .messageExpiredVoiceNote:
             self = .messageExpiredVoiceNote
+        case .messageLiveLocation:
+            let value = try MessageLiveLocation(from: decoder)
+            self = .messageLiveLocation(value)
         case .messageLocation:
             let value = try MessageLocation(from: decoder)
             self = .messageLocation(value)
@@ -720,6 +734,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageText(let value):
             try container.encode(Kind.messageText, forKey: .type)
             try value.encode(to: encoder)
+        case .messageRichMessage(let value):
+            try container.encode(Kind.messageRichMessage, forKey: .type)
+            try value.encode(to: encoder)
         case .messageAnimation(let value):
             try container.encode(Kind.messageAnimation, forKey: .type)
             try value.encode(to: encoder)
@@ -755,6 +772,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try container.encode(Kind.messageExpiredVideoNote, forKey: .type)
         case .messageExpiredVoiceNote:
             try container.encode(Kind.messageExpiredVoiceNote, forKey: .type)
+        case .messageLiveLocation(let value):
+            try container.encode(Kind.messageLiveLocation, forKey: .type)
+            try value.encode(to: encoder)
         case .messageLocation(let value):
             try container.encode(Kind.messageLocation, forKey: .type)
             try value.encode(to: encoder)
@@ -1035,6 +1055,18 @@ public struct MessageText: Codable, Equatable, Hashable {
     }
 }
 
+/// A rich message; the message can have multiple media of the same type, all of which must be shown in the corresponding profile tab
+public struct MessageRichMessage: Codable, Equatable, Hashable {
+
+    /// The rich message
+    public let message: RichMessage
+
+
+    public init(message: RichMessage) {
+        self.message = message
+    }
+}
+
 /// An animation message (GIF-style).
 public struct MessageAnimation: Codable, Equatable, Hashable {
 
@@ -1296,37 +1328,34 @@ public struct MessageVoiceNote: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with a location
-public struct MessageLocation: Codable, Equatable, Hashable {
+/// A message with a live location
+public struct MessageLiveLocation: Codable, Equatable, Hashable {
 
     /// Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
     public let expiresIn: Int
 
-    /// For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
-    public let heading: Int
-
-    /// Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever
-    public let livePeriod: Int
-
-    /// The location description
-    public let location: Location
-
-    /// For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
-    public let proximityAlertRadius: Int
+    /// The current location
+    public let location: LiveLocation
 
 
     public init(
         expiresIn: Int,
-        heading: Int,
-        livePeriod: Int,
-        location: Location,
-        proximityAlertRadius: Int
+        location: LiveLocation
     ) {
         self.expiresIn = expiresIn
-        self.heading = heading
-        self.livePeriod = livePeriod
         self.location = location
-        self.proximityAlertRadius = proximityAlertRadius
+    }
+}
+
+/// A message with a location
+public struct MessageLocation: Codable, Equatable, Hashable {
+
+    /// The location
+    public let location: Location
+
+
+    public init(location: Location) {
+        self.location = location
     }
 }
 
@@ -1427,8 +1456,8 @@ public struct MessagePoll: Codable, Equatable, Hashable {
 
     public let description: FormattedText
 
-    /// Media attached to the poll; may be null if none. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
-    public let media: MessageContent?
+    /// Media attached to the poll; may be null if none. If present, currently, can be only of the types pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or pollMediaVideo
+    public let media: PollMedia?
 
     /// Information about the poll
     public let poll: Poll
@@ -1437,7 +1466,7 @@ public struct MessagePoll: Codable, Equatable, Hashable {
     public init(
         canAddOption: Bool,
         description: FormattedText,
-        media: MessageContent?,
+        media: PollMedia?,
         poll: Poll
     ) {
         self.canAddOption = canAddOption

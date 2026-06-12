@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -29,14 +29,38 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A strikethrough rich text
     case richTextStrikethrough(RichTextStrikethrough)
 
+    /// A spoilered rich text
+    case richTextSpoiler(RichTextSpoiler)
+
+    /// A date and time
+    case richTextDateTime(RichTextDateTime)
+
+    /// A mention of a Telegram user or chat by a username
+    case richTextMention(RichTextMention)
+
+    /// A hashtag
+    case richTextHashtag(RichTextHashtag)
+
+    /// A cashtag
+    case richTextCashtag(RichTextCashtag)
+
+    /// A bot command
+    case richTextBotCommand(RichTextBotCommand)
+
     /// A fixed-width rich text
     case richTextFixed(RichTextFixed)
+
+    /// A rich text that serves as a mention of a user
+    case richTextMentionName(RichTextMentionName)
 
     /// A rich text URL link
     case richTextUrl(RichTextUrl)
 
-    /// A rich text email link
+    /// A rich text email address
     case richTextEmailAddress(RichTextEmailAddress)
+
+    /// A bank card number
+    case richTextBankCardNumber(RichTextBankCardNumber)
 
     /// A subscript rich text
     case richTextSubscript(RichTextSubscript)
@@ -50,11 +74,20 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A rich text phone number
     case richTextPhoneNumber(RichTextPhoneNumber)
 
-    /// A small image inside the text
+    /// A custom emoji
+    case richTextCustomEmoji(RichTextCustomEmoji)
+
+    /// A small image inside the text; instant view only
     case richTextIcon(RichTextIcon)
 
-    /// A reference to a richTexts object on the same page
+    /// A mathematical expression
+    case richTextMathematicalExpression(RichTextMathematicalExpression)
+
+    /// A reference
     case richTextReference(RichTextReference)
+
+    /// A link to a reference on the same page
+    case richTextReferenceLink(RichTextReferenceLink)
 
     /// An anchor
     case richTextAnchor(RichTextAnchor)
@@ -72,15 +105,26 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case richTextItalic
         case richTextUnderline
         case richTextStrikethrough
+        case richTextSpoiler
+        case richTextDateTime
+        case richTextMention
+        case richTextHashtag
+        case richTextCashtag
+        case richTextBotCommand
         case richTextFixed
+        case richTextMentionName
         case richTextUrl
         case richTextEmailAddress
+        case richTextBankCardNumber
         case richTextSubscript
         case richTextSuperscript
         case richTextMarked
         case richTextPhoneNumber
+        case richTextCustomEmoji
         case richTextIcon
+        case richTextMathematicalExpression
         case richTextReference
+        case richTextReferenceLink
         case richTextAnchor
         case richTextAnchorLink
         case richTexts
@@ -105,15 +149,39 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextStrikethrough:
             let value = try RichTextStrikethrough(from: decoder)
             self = .richTextStrikethrough(value)
+        case .richTextSpoiler:
+            let value = try RichTextSpoiler(from: decoder)
+            self = .richTextSpoiler(value)
+        case .richTextDateTime:
+            let value = try RichTextDateTime(from: decoder)
+            self = .richTextDateTime(value)
+        case .richTextMention:
+            let value = try RichTextMention(from: decoder)
+            self = .richTextMention(value)
+        case .richTextHashtag:
+            let value = try RichTextHashtag(from: decoder)
+            self = .richTextHashtag(value)
+        case .richTextCashtag:
+            let value = try RichTextCashtag(from: decoder)
+            self = .richTextCashtag(value)
+        case .richTextBotCommand:
+            let value = try RichTextBotCommand(from: decoder)
+            self = .richTextBotCommand(value)
         case .richTextFixed:
             let value = try RichTextFixed(from: decoder)
             self = .richTextFixed(value)
+        case .richTextMentionName:
+            let value = try RichTextMentionName(from: decoder)
+            self = .richTextMentionName(value)
         case .richTextUrl:
             let value = try RichTextUrl(from: decoder)
             self = .richTextUrl(value)
         case .richTextEmailAddress:
             let value = try RichTextEmailAddress(from: decoder)
             self = .richTextEmailAddress(value)
+        case .richTextBankCardNumber:
+            let value = try RichTextBankCardNumber(from: decoder)
+            self = .richTextBankCardNumber(value)
         case .richTextSubscript:
             let value = try RichTextSubscript(from: decoder)
             self = .richTextSubscript(value)
@@ -126,12 +194,21 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextPhoneNumber:
             let value = try RichTextPhoneNumber(from: decoder)
             self = .richTextPhoneNumber(value)
+        case .richTextCustomEmoji:
+            let value = try RichTextCustomEmoji(from: decoder)
+            self = .richTextCustomEmoji(value)
         case .richTextIcon:
             let value = try RichTextIcon(from: decoder)
             self = .richTextIcon(value)
+        case .richTextMathematicalExpression:
+            let value = try RichTextMathematicalExpression(from: decoder)
+            self = .richTextMathematicalExpression(value)
         case .richTextReference:
             let value = try RichTextReference(from: decoder)
             self = .richTextReference(value)
+        case .richTextReferenceLink:
+            let value = try RichTextReferenceLink(from: decoder)
+            self = .richTextReferenceLink(value)
         case .richTextAnchor:
             let value = try RichTextAnchor(from: decoder)
             self = .richTextAnchor(value)
@@ -162,14 +239,38 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextStrikethrough(let value):
             try container.encode(Kind.richTextStrikethrough, forKey: .type)
             try value.encode(to: encoder)
+        case .richTextSpoiler(let value):
+            try container.encode(Kind.richTextSpoiler, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextDateTime(let value):
+            try container.encode(Kind.richTextDateTime, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextMention(let value):
+            try container.encode(Kind.richTextMention, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextHashtag(let value):
+            try container.encode(Kind.richTextHashtag, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextCashtag(let value):
+            try container.encode(Kind.richTextCashtag, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextBotCommand(let value):
+            try container.encode(Kind.richTextBotCommand, forKey: .type)
+            try value.encode(to: encoder)
         case .richTextFixed(let value):
             try container.encode(Kind.richTextFixed, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextMentionName(let value):
+            try container.encode(Kind.richTextMentionName, forKey: .type)
             try value.encode(to: encoder)
         case .richTextUrl(let value):
             try container.encode(Kind.richTextUrl, forKey: .type)
             try value.encode(to: encoder)
         case .richTextEmailAddress(let value):
             try container.encode(Kind.richTextEmailAddress, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextBankCardNumber(let value):
+            try container.encode(Kind.richTextBankCardNumber, forKey: .type)
             try value.encode(to: encoder)
         case .richTextSubscript(let value):
             try container.encode(Kind.richTextSubscript, forKey: .type)
@@ -183,11 +284,20 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextPhoneNumber(let value):
             try container.encode(Kind.richTextPhoneNumber, forKey: .type)
             try value.encode(to: encoder)
+        case .richTextCustomEmoji(let value):
+            try container.encode(Kind.richTextCustomEmoji, forKey: .type)
+            try value.encode(to: encoder)
         case .richTextIcon(let value):
             try container.encode(Kind.richTextIcon, forKey: .type)
             try value.encode(to: encoder)
+        case .richTextMathematicalExpression(let value):
+            try container.encode(Kind.richTextMathematicalExpression, forKey: .type)
+            try value.encode(to: encoder)
         case .richTextReference(let value):
             try container.encode(Kind.richTextReference, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextReferenceLink(let value):
+            try container.encode(Kind.richTextReferenceLink, forKey: .type)
             try value.encode(to: encoder)
         case .richTextAnchor(let value):
             try container.encode(Kind.richTextAnchor, forKey: .type)
@@ -262,6 +372,118 @@ public struct RichTextStrikethrough: Codable, Equatable, Hashable {
     }
 }
 
+/// A spoilered rich text
+public struct RichTextSpoiler: Codable, Equatable, Hashable {
+
+    /// Text
+    public let text: RichText
+
+
+    public init(text: RichText) {
+        self.text = text
+    }
+}
+
+/// A date and time
+public struct RichTextDateTime: Codable, Equatable, Hashable {
+
+    /// Date and time formatting type; may be null if none and the original text must not be changed
+    public let formattingType: DateTimeFormattingType?
+
+    /// Original text
+    public let text: RichText
+
+    /// Point in time (Unix timestamp) representing the date and time
+    public let unixTime: Int
+
+
+    public init(
+        formattingType: DateTimeFormattingType?,
+        text: RichText,
+        unixTime: Int
+    ) {
+        self.formattingType = formattingType
+        self.text = text
+        self.unixTime = unixTime
+    }
+}
+
+/// A mention of a Telegram user or chat by a username
+public struct RichTextMention: Codable, Equatable, Hashable {
+
+    /// Text
+    public let text: RichText
+
+    /// The username
+    public let username: String
+
+
+    public init(
+        text: RichText,
+        username: String
+    ) {
+        self.text = text
+        self.username = username
+    }
+}
+
+/// A hashtag
+public struct RichTextHashtag: Codable, Equatable, Hashable {
+
+    /// The hashtag
+    public let hashtag: String
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        hashtag: String,
+        text: RichText
+    ) {
+        self.hashtag = hashtag
+        self.text = text
+    }
+}
+
+/// A cashtag
+public struct RichTextCashtag: Codable, Equatable, Hashable {
+
+    /// The cashtag
+    public let cashtag: String
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        cashtag: String,
+        text: RichText
+    ) {
+        self.cashtag = cashtag
+        self.text = text
+    }
+}
+
+/// A bot command
+public struct RichTextBotCommand: Codable, Equatable, Hashable {
+
+    /// The bot command
+    public let botCommand: String
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        botCommand: String,
+        text: RichText
+    ) {
+        self.botCommand = botCommand
+        self.text = text
+    }
+}
+
 /// A fixed-width rich text
 public struct RichTextFixed: Codable, Equatable, Hashable {
 
@@ -274,10 +496,29 @@ public struct RichTextFixed: Codable, Equatable, Hashable {
     }
 }
 
+/// A rich text that serves as a mention of a user
+public struct RichTextMentionName: Codable, Equatable, Hashable {
+
+    /// Text
+    public let text: RichText
+
+    /// Identifier of the mentioned user
+    public let userId: Int64
+
+
+    public init(
+        text: RichText,
+        userId: Int64
+    ) {
+        self.text = text
+        self.userId = userId
+    }
+}
+
 /// A rich text URL link
 public struct RichTextUrl: Codable, Equatable, Hashable {
 
-    /// True, if the URL has cached instant view server-side
+    /// True, if the URL has cached instant view server-side; instant view only
     public let isCached: Bool
 
     /// Text
@@ -298,7 +539,7 @@ public struct RichTextUrl: Codable, Equatable, Hashable {
     }
 }
 
-/// A rich text email link
+/// A rich text email address
 public struct RichTextEmailAddress: Codable, Equatable, Hashable {
 
     /// Email address
@@ -313,6 +554,25 @@ public struct RichTextEmailAddress: Codable, Equatable, Hashable {
         text: RichText
     ) {
         self.emailAddress = emailAddress
+        self.text = text
+    }
+}
+
+/// A bank card number
+public struct RichTextBankCardNumber: Codable, Equatable, Hashable {
+
+    /// The number of the bank card
+    public let bankCardNumber: String
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        bankCardNumber: String,
+        text: RichText
+    ) {
+        self.bankCardNumber = bankCardNumber
         self.text = text
     }
 }
@@ -372,7 +632,26 @@ public struct RichTextPhoneNumber: Codable, Equatable, Hashable {
     }
 }
 
-/// A small image inside the text
+/// A custom emoji
+public struct RichTextCustomEmoji: Codable, Equatable, Hashable {
+
+    /// Alternative text for the custom emoji
+    public let alternativeText: String
+
+    /// Unique identifier of the custom emoji
+    public let customEmojiId: TdInt64
+
+
+    public init(
+        alternativeText: String,
+        customEmojiId: TdInt64
+    ) {
+        self.alternativeText = alternativeText
+        self.customEmojiId = customEmojiId
+    }
+}
+
+/// A small image inside the text; instant view only
 public struct RichTextIcon: Codable, Equatable, Hashable {
 
     /// The image represented as a document. The image can be in GIF, JPEG or PNG format
@@ -396,25 +675,56 @@ public struct RichTextIcon: Codable, Equatable, Hashable {
     }
 }
 
-/// A reference to a richTexts object on the same page
+/// A mathematical expression
+public struct RichTextMathematicalExpression: Codable, Equatable, Hashable {
+
+    /// The expression in LaTeX format
+    public let expression: String
+
+
+    public init(expression: String) {
+        self.expression = expression
+    }
+}
+
+/// A reference
 public struct RichTextReference: Codable, Equatable, Hashable {
 
-    /// The name of a richTextAnchor object, which is the first element of the target richTexts object
-    public let anchorName: String
+    /// Reference name
+    public let name: String
 
-    /// The text
+    /// Text of the reference
     public let text: RichText
 
-    /// An HTTP URL, opening the reference
+
+    public init(
+        name: String,
+        text: RichText
+    ) {
+        self.name = name
+        self.text = text
+    }
+}
+
+/// A link to a reference on the same page
+public struct RichTextReferenceLink: Codable, Equatable, Hashable {
+
+    /// The reference name
+    public let referenceName: String
+
+    /// The link text
+    public let text: RichText
+
+    /// An HTTP URL that opens the reference
     public let url: String
 
 
     public init(
-        anchorName: String,
+        referenceName: String,
         text: RichText,
         url: String
     ) {
-        self.anchorName = anchorName
+        self.referenceName = referenceName
         self.text = text
         self.url = url
     }
@@ -441,7 +751,7 @@ public struct RichTextAnchorLink: Codable, Equatable, Hashable {
     /// The link text
     public let text: RichText
 
-    /// An HTTP URL, opening the anchor
+    /// An HTTP URL that opens the anchor
     public let url: String
 
 

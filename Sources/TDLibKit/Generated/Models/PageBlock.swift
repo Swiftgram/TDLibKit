@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -14,22 +14,25 @@ import Foundation
 /// This Swift enum is recursive.
 public indirect enum PageBlock: Codable, Equatable, Hashable {
 
-    /// The title of a page
+    /// The title of a page; instant view only
     case pageBlockTitle(PageBlockTitle)
 
-    /// The subtitle of a page
+    /// The subtitle of a page; instant view only
     case pageBlockSubtitle(PageBlockSubtitle)
 
-    /// The author and publishing date of a page
+    /// The author and publishing date of a page; instant view only
     case pageBlockAuthorDate(PageBlockAuthorDate)
 
-    /// A header
+    /// A header; instant view only
     case pageBlockHeader(PageBlockHeader)
 
-    /// A subheader
+    /// A subheader; instant view only
     case pageBlockSubheader(PageBlockSubheader)
 
-    /// A kicker
+    /// A section heading
+    case pageBlockSectionHeading(PageBlockSectionHeading)
+
+    /// A kicker; instant view only
     case pageBlockKicker(PageBlockKicker)
 
     /// A text paragraph
@@ -41,8 +44,14 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     /// The footer of a page
     case pageBlockFooter(PageBlockFooter)
 
+    /// A "Thinking..." placeholder; for pending rich messages only
+    case pageBlockThinking(PageBlockThinking)
+
     /// An empty block separating a page
     case pageBlockDivider
+
+    /// A mathematical expression
+    case pageBlockMathematicalExpression(PageBlockMathematicalExpression)
 
     /// An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
     case pageBlockAnchor(PageBlockAnchor)
@@ -71,13 +80,13 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     /// A voice note
     case pageBlockVoiceNote(PageBlockVoiceNote)
 
-    /// A page cover
+    /// A page cover; instant view only
     case pageBlockCover(PageBlockCover)
 
-    /// An embedded web page
+    /// An embedded web page; instant view only
     case pageBlockEmbedded(PageBlockEmbedded)
 
-    /// An embedded post
+    /// An embedded post; instant view only
     case pageBlockEmbeddedPost(PageBlockEmbeddedPost)
 
     /// A collage
@@ -86,7 +95,7 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     /// A slideshow
     case pageBlockSlideshow(PageBlockSlideshow)
 
-    /// A link to a chat
+    /// A link to a chat; instant view only
     case pageBlockChatLink(PageBlockChatLink)
 
     /// A table
@@ -95,7 +104,7 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     /// A collapsible block
     case pageBlockDetails(PageBlockDetails)
 
-    /// Related articles
+    /// Related articles; instant view only
     case pageBlockRelatedArticles(PageBlockRelatedArticles)
 
     /// A map
@@ -108,11 +117,14 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case pageBlockAuthorDate
         case pageBlockHeader
         case pageBlockSubheader
+        case pageBlockSectionHeading
         case pageBlockKicker
         case pageBlockParagraph
         case pageBlockPreformatted
         case pageBlockFooter
+        case pageBlockThinking
         case pageBlockDivider
+        case pageBlockMathematicalExpression
         case pageBlockAnchor
         case pageBlockList
         case pageBlockBlockQuote
@@ -153,6 +165,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockSubheader:
             let value = try PageBlockSubheader(from: decoder)
             self = .pageBlockSubheader(value)
+        case .pageBlockSectionHeading:
+            let value = try PageBlockSectionHeading(from: decoder)
+            self = .pageBlockSectionHeading(value)
         case .pageBlockKicker:
             let value = try PageBlockKicker(from: decoder)
             self = .pageBlockKicker(value)
@@ -165,8 +180,14 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockFooter:
             let value = try PageBlockFooter(from: decoder)
             self = .pageBlockFooter(value)
+        case .pageBlockThinking:
+            let value = try PageBlockThinking(from: decoder)
+            self = .pageBlockThinking(value)
         case .pageBlockDivider:
             self = .pageBlockDivider
+        case .pageBlockMathematicalExpression:
+            let value = try PageBlockMathematicalExpression(from: decoder)
+            self = .pageBlockMathematicalExpression(value)
         case .pageBlockAnchor:
             let value = try PageBlockAnchor(from: decoder)
             self = .pageBlockAnchor(value)
@@ -245,6 +266,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockSubheader(let value):
             try container.encode(Kind.pageBlockSubheader, forKey: .type)
             try value.encode(to: encoder)
+        case .pageBlockSectionHeading(let value):
+            try container.encode(Kind.pageBlockSectionHeading, forKey: .type)
+            try value.encode(to: encoder)
         case .pageBlockKicker(let value):
             try container.encode(Kind.pageBlockKicker, forKey: .type)
             try value.encode(to: encoder)
@@ -257,8 +281,14 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockFooter(let value):
             try container.encode(Kind.pageBlockFooter, forKey: .type)
             try value.encode(to: encoder)
+        case .pageBlockThinking(let value):
+            try container.encode(Kind.pageBlockThinking, forKey: .type)
+            try value.encode(to: encoder)
         case .pageBlockDivider:
             try container.encode(Kind.pageBlockDivider, forKey: .type)
+        case .pageBlockMathematicalExpression(let value):
+            try container.encode(Kind.pageBlockMathematicalExpression, forKey: .type)
+            try value.encode(to: encoder)
         case .pageBlockAnchor(let value):
             try container.encode(Kind.pageBlockAnchor, forKey: .type)
             try value.encode(to: encoder)
@@ -320,7 +350,7 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     }
 }
 
-/// The title of a page
+/// The title of a page; instant view only
 public struct PageBlockTitle: Codable, Equatable, Hashable {
 
     /// Title
@@ -332,7 +362,7 @@ public struct PageBlockTitle: Codable, Equatable, Hashable {
     }
 }
 
-/// The subtitle of a page
+/// The subtitle of a page; instant view only
 public struct PageBlockSubtitle: Codable, Equatable, Hashable {
 
     /// Subtitle
@@ -344,7 +374,7 @@ public struct PageBlockSubtitle: Codable, Equatable, Hashable {
     }
 }
 
-/// The author and publishing date of a page
+/// The author and publishing date of a page; instant view only
 public struct PageBlockAuthorDate: Codable, Equatable, Hashable {
 
     /// Author
@@ -363,7 +393,7 @@ public struct PageBlockAuthorDate: Codable, Equatable, Hashable {
     }
 }
 
-/// A header
+/// A header; instant view only
 public struct PageBlockHeader: Codable, Equatable, Hashable {
 
     /// Header
@@ -375,7 +405,7 @@ public struct PageBlockHeader: Codable, Equatable, Hashable {
     }
 }
 
-/// A subheader
+/// A subheader; instant view only
 public struct PageBlockSubheader: Codable, Equatable, Hashable {
 
     /// Subheader
@@ -387,7 +417,26 @@ public struct PageBlockSubheader: Codable, Equatable, Hashable {
     }
 }
 
-/// A kicker
+/// A section heading
+public struct PageBlockSectionHeading: Codable, Equatable, Hashable {
+
+    /// Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
+    public let size: Int
+
+    /// Text of the section heading
+    public let text: RichText
+
+
+    public init(
+        size: Int,
+        text: RichText
+    ) {
+        self.size = size
+        self.text = text
+    }
+}
+
+/// A kicker; instant view only
 public struct PageBlockKicker: Codable, Equatable, Hashable {
 
     /// Kicker
@@ -442,6 +491,30 @@ public struct PageBlockFooter: Codable, Equatable, Hashable {
     }
 }
 
+/// A "Thinking..." placeholder; for pending rich messages only
+public struct PageBlockThinking: Codable, Equatable, Hashable {
+
+    /// Text of the placeholder
+    public let text: RichText
+
+
+    public init(text: RichText) {
+        self.text = text
+    }
+}
+
+/// A mathematical expression
+public struct PageBlockMathematicalExpression: Codable, Equatable, Hashable {
+
+    /// The expression in LaTeX format
+    public let expression: String
+
+
+    public init(expression: String) {
+        self.expression = expression
+    }
+}
+
 /// An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
 public struct PageBlockAnchor: Codable, Equatable, Hashable {
 
@@ -469,34 +542,34 @@ public struct PageBlockList: Codable, Equatable, Hashable {
 /// A block quote
 public struct PageBlockBlockQuote: Codable, Equatable, Hashable {
 
-    /// Quote credit
-    public let credit: RichText
+    /// Quote blocks
+    public let blocks: [PageBlock]
 
-    /// Quote text
-    public let text: RichText
+    /// Quote credit; may be null if none
+    public let credit: RichText?
 
 
     public init(
-        credit: RichText,
-        text: RichText
+        blocks: [PageBlock],
+        credit: RichText?
     ) {
+        self.blocks = blocks
         self.credit = credit
-        self.text = text
     }
 }
 
 /// A pull quote
 public struct PageBlockPullQuote: Codable, Equatable, Hashable {
 
-    /// Quote credit
-    public let credit: RichText
+    /// Quote credit; may be null if none
+    public let credit: RichText?
 
     /// Quote text
     public let text: RichText
 
 
     public init(
-        credit: RichText,
+        credit: RichText?,
         text: RichText
     ) {
         self.credit = credit
@@ -510,8 +583,11 @@ public struct PageBlockAnimation: Codable, Equatable, Hashable {
     /// Animation file; may be null
     public let animation: Animation?
 
-    /// Animation caption
-    public let caption: PageBlockCaption
+    /// Animation caption; may be null if none
+    public let caption: PageBlockCaption?
+
+    /// True, if the animation preview must be covered by a spoiler animation
+    public let hasSpoiler: Bool
 
     /// True, if the animation must be played automatically
     public let needAutoplay: Bool
@@ -519,11 +595,13 @@ public struct PageBlockAnimation: Codable, Equatable, Hashable {
 
     public init(
         animation: Animation?,
-        caption: PageBlockCaption,
+        caption: PageBlockCaption?,
+        hasSpoiler: Bool,
         needAutoplay: Bool
     ) {
         self.animation = animation
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.needAutoplay = needAutoplay
     }
 }
@@ -534,13 +612,13 @@ public struct PageBlockAudio: Codable, Equatable, Hashable {
     /// Audio file; may be null
     public let audio: Audio?
 
-    /// Audio file caption
-    public let caption: PageBlockCaption
+    /// Audio file caption; may be null if none
+    public let caption: PageBlockCaption?
 
 
     public init(
         audio: Audio?,
-        caption: PageBlockCaption
+        caption: PageBlockCaption?
     ) {
         self.audio = audio
         self.caption = caption
@@ -550,22 +628,27 @@ public struct PageBlockAudio: Codable, Equatable, Hashable {
 /// A photo
 public struct PageBlockPhoto: Codable, Equatable, Hashable {
 
-    /// Photo caption
-    public let caption: PageBlockCaption
+    /// Photo caption; may be null if none
+    public let caption: PageBlockCaption?
+
+    /// True, if the photo preview must be covered by a spoiler animation
+    public let hasSpoiler: Bool
 
     /// Photo file; may be null
     public let photo: Photo?
 
-    /// URL that needs to be opened when the photo is clicked
+    /// URL that needs to be opened when the photo is clicked; instant view only
     public let url: String
 
 
     public init(
-        caption: PageBlockCaption,
+        caption: PageBlockCaption?,
+        hasSpoiler: Bool,
         photo: Photo?,
         url: String
     ) {
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.photo = photo
         self.url = url
     }
@@ -574,8 +657,11 @@ public struct PageBlockPhoto: Codable, Equatable, Hashable {
 /// A video
 public struct PageBlockVideo: Codable, Equatable, Hashable {
 
-    /// Video caption
-    public let caption: PageBlockCaption
+    /// Video caption; may be null if none
+    public let caption: PageBlockCaption?
+
+    /// True, if the video preview must be covered by a spoiler animation
+    public let hasSpoiler: Bool
 
     /// True, if the video must be looped
     public let isLooped: Bool
@@ -588,12 +674,14 @@ public struct PageBlockVideo: Codable, Equatable, Hashable {
 
 
     public init(
-        caption: PageBlockCaption,
+        caption: PageBlockCaption?,
+        hasSpoiler: Bool,
         isLooped: Bool,
         needAutoplay: Bool,
         video: Video?
     ) {
         self.caption = caption
+        self.hasSpoiler = hasSpoiler
         self.isLooped = isLooped
         self.needAutoplay = needAutoplay
         self.video = video
@@ -603,15 +691,15 @@ public struct PageBlockVideo: Codable, Equatable, Hashable {
 /// A voice note
 public struct PageBlockVoiceNote: Codable, Equatable, Hashable {
 
-    /// Voice note caption
-    public let caption: PageBlockCaption
+    /// Voice note caption; may be null if none
+    public let caption: PageBlockCaption?
 
     /// Voice note; may be null
     public let voiceNote: VoiceNote?
 
 
     public init(
-        caption: PageBlockCaption,
+        caption: PageBlockCaption?,
         voiceNote: VoiceNote?
     ) {
         self.caption = caption
@@ -619,7 +707,7 @@ public struct PageBlockVoiceNote: Codable, Equatable, Hashable {
     }
 }
 
-/// A page cover
+/// A page cover; instant view only
 public struct PageBlockCover: Codable, Equatable, Hashable {
 
     /// Cover
@@ -631,14 +719,14 @@ public struct PageBlockCover: Codable, Equatable, Hashable {
     }
 }
 
-/// An embedded web page
+/// An embedded web page; instant view only
 public struct PageBlockEmbedded: Codable, Equatable, Hashable {
 
     /// True, if scrolling needs to be allowed
     public let allowScrolling: Bool
 
-    /// Block caption
-    public let caption: PageBlockCaption
+    /// Block caption; may be null if none
+    public let caption: PageBlockCaption?
 
     /// Block height; 0 if unknown
     public let height: Int
@@ -661,7 +749,7 @@ public struct PageBlockEmbedded: Codable, Equatable, Hashable {
 
     public init(
         allowScrolling: Bool,
-        caption: PageBlockCaption,
+        caption: PageBlockCaption?,
         height: Int,
         html: String,
         isFullWidth: Bool,
@@ -680,7 +768,7 @@ public struct PageBlockEmbedded: Codable, Equatable, Hashable {
     }
 }
 
-/// An embedded post
+/// An embedded post; instant view only
 public struct PageBlockEmbeddedPost: Codable, Equatable, Hashable {
 
     /// Post author
@@ -689,14 +777,14 @@ public struct PageBlockEmbeddedPost: Codable, Equatable, Hashable {
     /// Post author photo; may be null
     public let authorPhoto: Photo?
 
-    /// Post caption
-    public let caption: PageBlockCaption
+    /// Post content
+    public let blocks: [PageBlock]
+
+    /// Post caption; may be null if none
+    public let caption: PageBlockCaption?
 
     /// Point in time (Unix timestamp) when the post was created; 0 if unknown
     public let date: Int
-
-    /// Post content
-    public let pageBlocks: [PageBlock]
 
     /// URL of the embedded post
     public let url: String
@@ -705,16 +793,16 @@ public struct PageBlockEmbeddedPost: Codable, Equatable, Hashable {
     public init(
         author: String,
         authorPhoto: Photo?,
-        caption: PageBlockCaption,
+        blocks: [PageBlock],
+        caption: PageBlockCaption?,
         date: Int,
-        pageBlocks: [PageBlock],
         url: String
     ) {
         self.author = author
         self.authorPhoto = authorPhoto
+        self.blocks = blocks
         self.caption = caption
         self.date = date
-        self.pageBlocks = pageBlocks
         self.url = url
     }
 }
@@ -722,42 +810,42 @@ public struct PageBlockEmbeddedPost: Codable, Equatable, Hashable {
 /// A collage
 public struct PageBlockCollage: Codable, Equatable, Hashable {
 
-    /// Block caption
-    public let caption: PageBlockCaption
-
     /// Collage item contents
-    public let pageBlocks: [PageBlock]
+    public let blocks: [PageBlock]
+
+    /// Block caption; may be null if none
+    public let caption: PageBlockCaption?
 
 
     public init(
-        caption: PageBlockCaption,
-        pageBlocks: [PageBlock]
+        blocks: [PageBlock],
+        caption: PageBlockCaption?
     ) {
+        self.blocks = blocks
         self.caption = caption
-        self.pageBlocks = pageBlocks
     }
 }
 
 /// A slideshow
 public struct PageBlockSlideshow: Codable, Equatable, Hashable {
 
-    /// Block caption
-    public let caption: PageBlockCaption
-
     /// Slideshow item contents
-    public let pageBlocks: [PageBlock]
+    public let blocks: [PageBlock]
+
+    /// Block caption; may be null if none
+    public let caption: PageBlockCaption?
 
 
     public init(
-        caption: PageBlockCaption,
-        pageBlocks: [PageBlock]
+        blocks: [PageBlock],
+        caption: PageBlockCaption?
     ) {
+        self.blocks = blocks
         self.caption = caption
-        self.pageBlocks = pageBlocks
     }
 }
 
-/// A link to a chat
+/// A link to a chat; instant view only
 public struct PageBlockChatLink: Codable, Equatable, Hashable {
 
     /// Identifier of the accent color for chat title and background of chat photo
@@ -789,8 +877,8 @@ public struct PageBlockChatLink: Codable, Equatable, Hashable {
 /// A table
 public struct PageBlockTable: Codable, Equatable, Hashable {
 
-    /// Table caption
-    public let caption: RichText
+    /// Table caption; may be null if none
+    public let caption: RichText?
 
     /// Table cells
     public let cells: [[PageBlockTableCell]]
@@ -803,7 +891,7 @@ public struct PageBlockTable: Codable, Equatable, Hashable {
 
 
     public init(
-        caption: RichText,
+        caption: RichText?,
         cells: [[PageBlockTableCell]],
         isBordered: Bool,
         isStriped: Bool
@@ -818,28 +906,28 @@ public struct PageBlockTable: Codable, Equatable, Hashable {
 /// A collapsible block
 public struct PageBlockDetails: Codable, Equatable, Hashable {
 
+    /// Block contents
+    public let blocks: [PageBlock]
+
     /// Always visible heading for the block
     public let header: RichText
 
     /// True, if the block is open by default
     public let isOpen: Bool
 
-    /// Block contents
-    public let pageBlocks: [PageBlock]
-
 
     public init(
+        blocks: [PageBlock],
         header: RichText,
-        isOpen: Bool,
-        pageBlocks: [PageBlock]
+        isOpen: Bool
     ) {
+        self.blocks = blocks
         self.header = header
         self.isOpen = isOpen
-        self.pageBlocks = pageBlocks
     }
 }
 
-/// Related articles
+/// Related articles; instant view only
 public struct PageBlockRelatedArticles: Codable, Equatable, Hashable {
 
     /// List of related articles
@@ -861,8 +949,8 @@ public struct PageBlockRelatedArticles: Codable, Equatable, Hashable {
 /// A map
 public struct PageBlockMap: Codable, Equatable, Hashable {
 
-    /// Block caption
-    public let caption: PageBlockCaption
+    /// Block caption; may be null if none
+    public let caption: PageBlockCaption?
 
     /// Map height
     public let height: Int
@@ -878,7 +966,7 @@ public struct PageBlockMap: Codable, Equatable, Hashable {
 
 
     public init(
-        caption: PageBlockCaption,
+        caption: PageBlockCaption?,
         height: Int,
         location: Location,
         width: Int,

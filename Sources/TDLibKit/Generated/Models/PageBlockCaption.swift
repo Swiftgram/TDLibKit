@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -13,15 +13,15 @@ import Foundation
 /// Contains a caption of another block
 public struct PageBlockCaption: Codable, Equatable, Hashable {
 
-    /// Block credit (like HTML tag <cite>)
-    public let credit: RichText
+    /// Block credit (like HTML tag <cite>); may be null if none
+    public let credit: RichText?
 
     /// Content of the caption
     public let text: RichText
 
 
     public init(
-        credit: RichText,
+        credit: RichText?,
         text: RichText
     ) {
         self.credit = credit

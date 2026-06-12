@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Describes an instant view page for a web page
 public struct WebPageInstantView: Codable, Equatable, Hashable {
+
+    /// Content of the instant view page
+    public let blocks: [PageBlock]
 
     /// An internal link to be opened to leave feedback about the instant view
     public let feedbackLink: InternalLinkType
@@ -22,9 +25,6 @@ public struct WebPageInstantView: Codable, Equatable, Hashable {
     /// True, if the instant view must be shown from right to left
     public let isRtl: Bool
 
-    /// Content of the instant view page
-    public let pageBlocks: [PageBlock]
-
     /// Version of the instant view; currently, can be 1 or 2
     public let version: Int
 
@@ -33,17 +33,17 @@ public struct WebPageInstantView: Codable, Equatable, Hashable {
 
 
     public init(
+        blocks: [PageBlock],
         feedbackLink: InternalLinkType,
         isFull: Bool,
         isRtl: Bool,
-        pageBlocks: [PageBlock],
         version: Int,
         viewCount: Int
     ) {
+        self.blocks = blocks
         self.feedbackLink = feedbackLink
         self.isFull = isFull
         self.isRtl = isRtl
-        self.pageBlocks = pageBlocks
         self.version = version
         self.viewCount = viewCount
     }

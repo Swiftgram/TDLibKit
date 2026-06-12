@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -72,14 +72,14 @@ public struct InputPollTypeQuiz: Codable, Equatable, Hashable {
     /// Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds
     public let explanation: FormattedText
 
-    /// Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; pass null if none. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, non-live inputMessageLocation, inputMessagePhoto, inputMessageVenue, or inputMessageVideo without caption
-    public let explanationMedia: InputMessageContent?
+    /// Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; pass null if none. Must be one of the following types: inputPollMediaAnimation, inputPollMediaAudio, inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaVenue, or inputPollMediaVideo without caption
+    public let explanationMedia: InputPollMedia?
 
 
     public init(
         correctOptionIds: [Int],
         explanation: FormattedText,
-        explanationMedia: InputMessageContent?
+        explanationMedia: InputPollMedia?
     ) {
         self.correctOptionIds = correctOptionIds
         self.explanation = explanation

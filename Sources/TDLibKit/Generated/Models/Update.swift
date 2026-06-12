@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -226,8 +226,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A message sender activity in the chat has changed
     case updateChatAction(UpdateChatAction)
 
-    /// A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
-    case updatePendingTextMessage(UpdatePendingTextMessage)
+    /// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+    case updatePendingMessage(UpdatePendingMessage)
 
     /// The user went online or offline
     case updateUserStatus(UpdateUserStatus)
@@ -334,6 +334,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
     case updateUnreadChatCount(UpdateUnreadChatCount)
 
+    /// A join request from the user was completed
+    case updateChatJoinResult(UpdateChatJoinResult)
+
     /// A story was changed
     case updateStory(UpdateStory)
 
@@ -393,6 +396,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The list of supported accent colors for user profiles has changed
     case updateProfileAccentColors(UpdateProfileAccentColors)
+
+    /// Web browser settings have been updated
+    case updateWebBrowserSettings(UpdateWebBrowserSettings)
 
     /// Some language pack strings have been updated
     case updateLanguagePackStrings(UpdateLanguagePackStrings)
@@ -626,7 +632,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateHavePendingNotifications
         case updateDeleteMessages
         case updateChatAction
-        case updatePendingTextMessage
+        case updatePendingMessage
         case updateUserStatus
         case updateUser
         case updateBasicGroup
@@ -662,6 +668,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateUserPrivacySettingRules
         case updateUnreadMessageCount
         case updateUnreadChatCount
+        case updateChatJoinResult
         case updateStory
         case updateStoryDeleted
         case updateStoryPostSucceeded
@@ -682,6 +689,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateEmojiChatThemes
         case updateAccentColors
         case updateProfileAccentColors
+        case updateWebBrowserSettings
         case updateLanguagePackStrings
         case updateConnectionState
         case updateFreezeState
@@ -954,9 +962,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatAction:
             let value = try UpdateChatAction(from: decoder)
             self = .updateChatAction(value)
-        case .updatePendingTextMessage:
-            let value = try UpdatePendingTextMessage(from: decoder)
-            self = .updatePendingTextMessage(value)
+        case .updatePendingMessage:
+            let value = try UpdatePendingMessage(from: decoder)
+            self = .updatePendingMessage(value)
         case .updateUserStatus:
             let value = try UpdateUserStatus(from: decoder)
             self = .updateUserStatus(value)
@@ -1062,6 +1070,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateUnreadChatCount:
             let value = try UpdateUnreadChatCount(from: decoder)
             self = .updateUnreadChatCount(value)
+        case .updateChatJoinResult:
+            let value = try UpdateChatJoinResult(from: decoder)
+            self = .updateChatJoinResult(value)
         case .updateStory:
             let value = try UpdateStory(from: decoder)
             self = .updateStory(value)
@@ -1122,6 +1133,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateProfileAccentColors:
             let value = try UpdateProfileAccentColors(from: decoder)
             self = .updateProfileAccentColors(value)
+        case .updateWebBrowserSettings:
+            let value = try UpdateWebBrowserSettings(from: decoder)
+            self = .updateWebBrowserSettings(value)
         case .updateLanguagePackStrings:
             let value = try UpdateLanguagePackStrings(from: decoder)
             self = .updateLanguagePackStrings(value)
@@ -1500,8 +1514,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatAction(let value):
             try container.encode(Kind.updateChatAction, forKey: .type)
             try value.encode(to: encoder)
-        case .updatePendingTextMessage(let value):
-            try container.encode(Kind.updatePendingTextMessage, forKey: .type)
+        case .updatePendingMessage(let value):
+            try container.encode(Kind.updatePendingMessage, forKey: .type)
             try value.encode(to: encoder)
         case .updateUserStatus(let value):
             try container.encode(Kind.updateUserStatus, forKey: .type)
@@ -1608,6 +1622,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateUnreadChatCount(let value):
             try container.encode(Kind.updateUnreadChatCount, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatJoinResult(let value):
+            try container.encode(Kind.updateChatJoinResult, forKey: .type)
+            try value.encode(to: encoder)
         case .updateStory(let value):
             try container.encode(Kind.updateStory, forKey: .type)
             try value.encode(to: encoder)
@@ -1667,6 +1684,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateProfileAccentColors(let value):
             try container.encode(Kind.updateProfileAccentColors, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateWebBrowserSettings(let value):
+            try container.encode(Kind.updateWebBrowserSettings, forKey: .type)
             try value.encode(to: encoder)
         case .updateLanguagePackStrings(let value):
             try container.encode(Kind.updateLanguagePackStrings, forKey: .type)
@@ -3296,11 +3316,14 @@ public struct UpdateChatAction: Codable, Equatable, Hashable {
     }
 }
 
-/// A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
-public struct UpdatePendingTextMessage: Codable, Equatable, Hashable {
+/// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+public struct UpdatePendingMessage: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64
+
+    /// Content of the message; always of the type messageText or messageRichMessage
+    public let content: MessageContent
 
     /// Unique identifier of the message draft within the message thread
     public let draftId: TdInt64
@@ -3308,20 +3331,17 @@ public struct UpdatePendingTextMessage: Codable, Equatable, Hashable {
     /// The forum topic identifier in which the message will be sent; 0 if none
     public let forumTopicId: Int
 
-    /// Text of the pending message
-    public let text: FormattedText
-
 
     public init(
         chatId: Int64,
+        content: MessageContent,
         draftId: TdInt64,
-        forumTopicId: Int,
-        text: FormattedText
+        forumTopicId: Int
     ) {
         self.chatId = chatId
+        self.content = content
         self.draftId = draftId
         self.forumTopicId = forumTopicId
-        self.text = text
     }
 }
 
@@ -4000,6 +4020,30 @@ public struct UpdateUnreadChatCount: Codable, Equatable, Hashable {
     }
 }
 
+/// A join request from the user was completed
+public struct UpdateChatJoinResult: Codable, Equatable, Hashable {
+
+    /// Identifier of the joined chat, or 0 if the request wasn't approved
+    public let chatId: Int64
+
+    /// Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is stiil open, then it must be closed
+    public let queryId: TdInt64
+
+    /// Result of the join
+    public let result: ChatJoinRequestResult
+
+
+    public init(
+        chatId: Int64,
+        queryId: TdInt64,
+        result: ChatJoinRequestResult
+    ) {
+        self.chatId = chatId
+        self.queryId = queryId
+        self.result = result
+    }
+}
+
 /// A story was changed
 public struct UpdateStory: Codable, Equatable, Hashable {
 
@@ -4329,6 +4373,18 @@ public struct UpdateProfileAccentColors: Codable, Equatable, Hashable {
     }
 }
 
+/// Web browser settings have been updated
+public struct UpdateWebBrowserSettings: Codable, Equatable, Hashable {
+
+    /// New settings
+    public let settings: WebBrowserSettings
+
+
+    public init(settings: WebBrowserSettings) {
+        self.settings = settings
+    }
+}
+
 /// Some language pack strings have been updated
 public struct UpdateLanguagePackStrings: Codable, Equatable, Hashable {
 
@@ -4431,9 +4487,16 @@ public struct UpdateUnconfirmedSession: Codable, Equatable, Hashable {
     /// The unconfirmed session; may be null if none
     public let session: UnconfirmedSession?
 
+    /// The total number of unconfirmed sessions
+    public let unconfirmedSessionCount: Int
 
-    public init(session: UnconfirmedSession?) {
+
+    public init(
+        session: UnconfirmedSession?,
+        unconfirmedSessionCount: Int
+    ) {
         self.session = session
+        self.unconfirmedSessionCount = unconfirmedSessionCount
     }
 }
 
@@ -5313,6 +5376,9 @@ public struct UpdateNewChatJoinRequest: Codable, Equatable, Hashable {
     /// The invite link, which was used to send join request; may be null
     public let inviteLink: ChatInviteLink?
 
+    /// Identifier of the join request query, which can be used in answerChatJoinRequestQuery; 0 if none
+    public let queryId: TdInt64
+
     /// Join request
     public let request: ChatJoinRequest
 
@@ -5323,11 +5389,13 @@ public struct UpdateNewChatJoinRequest: Codable, Equatable, Hashable {
     public init(
         chatId: Int64,
         inviteLink: ChatInviteLink?,
+        queryId: TdInt64,
         request: ChatJoinRequest,
         userChatId: Int64
     ) {
         self.chatId = chatId
         self.inviteLink = inviteLink
+        self.queryId = queryId
         self.request = request
         self.userChatId = userChatId
     }

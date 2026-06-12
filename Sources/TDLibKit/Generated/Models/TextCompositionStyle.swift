@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a style that can be used to compose a text
 public struct TextCompositionStyle: Codable, Equatable, Hashable {
 
-    /// User identifier of the creator of the style; 0 if none of unknown
+    /// User identifier of the creator of the style; 0 if none or unknown
     public let creatorUserId: Int64
 
     /// Identifier of the custom emoji corresponding to the style; 0 if none

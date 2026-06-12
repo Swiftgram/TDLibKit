@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
 
     /// Model of the device the application has been run or is running on, as provided by the application
     public let deviceModel: String
+
+    /// Session device type based on the system and application version, which can be used to display a corresponding icon
+    public let deviceType: SessionDeviceType
 
     /// Session identifier
     public let id: TdInt64
@@ -64,9 +67,6 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
     /// Version of the operating system the application has been run or is running on, as provided by the application
     public let systemVersion: String
 
-    /// Session type based on the system and application version, which can be used to display a corresponding icon
-    public let type: SessionType
-
 
     public init(
         apiId: Int,
@@ -75,6 +75,7 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
         canAcceptCalls: Bool,
         canAcceptSecretChats: Bool,
         deviceModel: String,
+        deviceType: SessionDeviceType,
         id: TdInt64,
         ipAddress: String,
         isCurrent: Bool,
@@ -85,8 +86,7 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
         location: String,
         logInDate: Int,
         platform: String,
-        systemVersion: String,
-        type: SessionType
+        systemVersion: String
     ) {
         self.apiId = apiId
         self.applicationName = applicationName
@@ -94,6 +94,7 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
         self.canAcceptCalls = canAcceptCalls
         self.canAcceptSecretChats = canAcceptSecretChats
         self.deviceModel = deviceModel
+        self.deviceType = deviceType
         self.id = id
         self.ipAddress = ipAddress
         self.isCurrent = isCurrent
@@ -105,7 +106,6 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
         self.logInDate = logInDate
         self.platform = platform
         self.systemVersion = systemVersion
-        self.type = type
     }
 }
 

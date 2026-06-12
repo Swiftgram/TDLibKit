@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -39,6 +39,9 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
 
     /// The maximum number of pinned Saved Messages topics
     case premiumLimitTypePinnedSavedMessagesTopicCount
+
+    /// The maximum length of text of sent messages
+    case premiumLimitTypeMessageTextLength
 
     /// The maximum length of sent media caption
     case premiumLimitTypeCaptionLength
@@ -87,6 +90,7 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
         case premiumLimitTypeChatFolderChosenChatCount
         case premiumLimitTypePinnedArchivedChatCount
         case premiumLimitTypePinnedSavedMessagesTopicCount
+        case premiumLimitTypeMessageTextLength
         case premiumLimitTypeCaptionLength
         case premiumLimitTypeBioLength
         case premiumLimitTypeChatFolderInviteLinkCount
@@ -123,6 +127,8 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
             self = .premiumLimitTypePinnedArchivedChatCount
         case .premiumLimitTypePinnedSavedMessagesTopicCount:
             self = .premiumLimitTypePinnedSavedMessagesTopicCount
+        case .premiumLimitTypeMessageTextLength:
+            self = .premiumLimitTypeMessageTextLength
         case .premiumLimitTypeCaptionLength:
             self = .premiumLimitTypeCaptionLength
         case .premiumLimitTypeBioLength:
@@ -171,6 +177,8 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
             try container.encode(Kind.premiumLimitTypePinnedArchivedChatCount, forKey: .type)
         case .premiumLimitTypePinnedSavedMessagesTopicCount:
             try container.encode(Kind.premiumLimitTypePinnedSavedMessagesTopicCount, forKey: .type)
+        case .premiumLimitTypeMessageTextLength:
+            try container.encode(Kind.premiumLimitTypeMessageTextLength, forKey: .type)
         case .premiumLimitTypeCaptionLength:
             try container.encode(Kind.premiumLimitTypeCaptionLength, forKey: .type)
         case .premiumLimitTypeBioLength:

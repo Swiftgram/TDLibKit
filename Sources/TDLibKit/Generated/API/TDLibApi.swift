@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.64-e0943d06
-//  https://github.com/tdlib/td/tree/e0943d06
+//  Based on TDLib 1.8.65-d6debbb2
+//  https://github.com/tdlib/td/tree/d6debbb2
 //
 
 import Foundation
@@ -443,6 +443,37 @@ public class TDLibApi {
             credentialId: credentialId,
             signature: signature,
             userHandle: userHandle
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is authorizationStateWaitPhoneNumber or authorizationStateWaitOtherDeviceConfirmation
+    /// - Parameter dcId: Identifier of the datacenter of the user
+    /// - Parameter token: The token to check
+    public final func checkAuthenticationWebToken(
+        dcId: Int?,
+        token: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = CheckAuthenticationWebToken(
+            dcId: dcId,
+            token: token
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Checks a web token to log in to the corresponding account; for official Telegram apps only. Works only when the current authorization state is authorizationStateWaitPhoneNumber or authorizationStateWaitOtherDeviceConfirmation
+    /// - Parameter dcId: Identifier of the datacenter of the user
+    /// - Parameter token: The token to check
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func checkAuthenticationWebToken(
+        dcId: Int?,
+        token: String?
+    ) async throws -> Ok {
+        let query = CheckAuthenticationWebToken(
+            dcId: dcId,
+            token: token
         )
         return try await self.run(query: query)
     }
@@ -1550,6 +1581,38 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns the full version of a rich message
+    /// - Parameter chatId: Identifier of the chat the messages belong to
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: The full version of a rich message
+    public final func getFullRichMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<RichMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = GetFullRichMessage(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the full version of a rich message
+    /// - Parameter chatId: Identifier of the chat the messages belong to
+    /// - Parameter messageId: Identifier of the message
+    /// - Returns: The full version of a rich message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getFullRichMessage(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> RichMessage {
+        let query = GetFullRichMessage(
+            chatId: chatId,
+            messageId: messageId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns properties of a message. This is an offline method
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageId: Identifier of the message
@@ -1772,7 +1835,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+    /// Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter remoteFileId: Remote identifier of the file to get
     /// - Returns: Information about a file by its remote identifier
@@ -1788,7 +1851,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+    /// Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even if the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     /// - Parameter fileType: File type; pass null if unknown
     /// - Parameter remoteFileId: Remote identifier of the file to get
     /// - Returns: Information about a file by its remote identifier
@@ -1895,24 +1958,32 @@ public class TDLibApi {
 
     /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
     /// - Parameter query: Query to search for
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     /// - Returns: A meaningful number of results
     public final func searchPublicChats(
         query: String?,
+        typeFilter: SearchChatTypeFilter?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchPublicChats(
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         self.run(query: query, completion: completion)
     }
 
     /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
     /// - Parameter query: Query to search for
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     /// - Returns: A meaningful number of results
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func searchPublicChats(query: String?) async throws -> Chats {
+    public final func searchPublicChats(
+        query: String?,
+        typeFilter: SearchChatTypeFilter?
+    ) async throws -> Chats {
         let query = SearchPublicChats(
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         return try await self.run(query: query)
     }
@@ -1920,15 +1991,18 @@ public class TDLibApi {
     /// Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for. If the query is empty, returns up to 50 recently found chats
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     /// - Returns: Chats in the order seen in the main chat list
     public final func searchChats(
         limit: Int?,
         query: String?,
+        typeFilter: SearchChatTypeFilter?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchChats(
             limit: limit,
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         self.run(query: query, completion: completion)
     }
@@ -1936,15 +2010,18 @@ public class TDLibApi {
     /// Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for. If the query is empty, returns up to 50 recently found chats
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     /// - Returns: Chats in the order seen in the main chat list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchChats(
         limit: Int?,
-        query: String?
+        query: String?,
+        typeFilter: SearchChatTypeFilter?
     ) async throws -> Chats {
         let query = SearchChats(
             limit: limit,
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         return try await self.run(query: query)
     }
@@ -1952,15 +2029,18 @@ public class TDLibApi {
     /// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     /// - Returns: Chats in the order seen in the main chat list
     public final func searchChatsOnServer(
         limit: Int?,
         query: String?,
+        typeFilter: SearchChatTypeFilter?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchChatsOnServer(
             limit: limit,
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         self.run(query: query, completion: completion)
     }
@@ -1968,15 +2048,18 @@ public class TDLibApi {
     /// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     /// - Returns: Chats in the order seen in the main chat list
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchChatsOnServer(
         limit: Int?,
-        query: String?
+        query: String?,
+        typeFilter: SearchChatTypeFilter?
     ) async throws -> Chats {
         let query = SearchChatsOnServer(
             limit: limit,
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         return try await self.run(query: query)
     }
@@ -2236,14 +2319,17 @@ public class TDLibApi {
     /// Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     public final func searchRecentlyFoundChats(
         limit: Int?,
         query: String?,
+        typeFilter: SearchChatTypeFilter?,
         completion: @escaping (Result<Chats, Swift.Error>) -> Void
     ) throws {
         let query = SearchRecentlyFoundChats(
             limit: limit,
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         self.run(query: query, completion: completion)
     }
@@ -2251,14 +2337,17 @@ public class TDLibApi {
     /// Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
     /// - Parameter limit: The maximum number of chats to be returned
     /// - Parameter query: Query to search for
+    /// - Parameter typeFilter: Additional filter for type of the chats to be returned; pass null to search for chats of all types
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchRecentlyFoundChats(
         limit: Int?,
-        query: String?
+        query: String?,
+        typeFilter: SearchChatTypeFilter?
     ) async throws -> Chats {
         let query = SearchRecentlyFoundChats(
             limit: limit,
-            query: query
+            query: query,
+            typeFilter: typeFilter
         )
         return try await self.run(query: query)
     }
@@ -3928,10 +4017,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+    /// Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of messages to be returned
-    /// - Returns: Information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+    /// - Returns: Information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
     public final func searchChatRecentLocationMessages(
         chatId: Int64?,
         limit: Int?,
@@ -3944,10 +4033,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+    /// Returns information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
     /// - Parameter chatId: Chat identifier
     /// - Parameter limit: The maximum number of messages to be returned
-    /// - Returns: Information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+    /// - Returns: Information about the recent live locations of chat members that were sent to the chat. Returns at most one live location message per user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchChatRecentLocationMessages(
         chatId: Int64?,
@@ -3992,13 +4081,13 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
+    /// Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
-    /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Returns: Sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     public final func getChatSparseMessagePositions(
         chatId: Int64?,
         filter: SearchMessagesFilter?,
@@ -4017,13 +4106,13 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
+    /// Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
     /// - Parameter chatId: Identifier of the chat in which to return information about message positions
     /// - Parameter filter: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     /// - Parameter fromMessageId: The message identifier from which to return information about message positions
     /// - Parameter limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     /// - Parameter savedMessagesTopicId: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
-    /// - Returns: Sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
+    /// - Returns: Sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getChatSparseMessagePositions(
         chatId: Int64?,
@@ -5734,7 +5823,7 @@ public class TDLibApi {
 
     /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
@@ -5756,7 +5845,7 @@ public class TDLibApi {
 
     /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
@@ -5778,30 +5867,21 @@ public class TDLibApi {
 
     /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
+    /// - Parameter location: New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
-    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     public final func editMessageLiveLocation(
         chatId: Int64?,
-        heading: Int?,
-        livePeriod: Int?,
-        location: Location?,
+        location: LiveLocation?,
         messageId: Int64?,
-        proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?,
         completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = EditMessageLiveLocation(
             chatId: chatId,
-            heading: heading,
-            livePeriod: livePeriod,
             location: location,
             messageId: messageId,
-            proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
         )
         self.run(query: query, completion: completion)
@@ -5809,30 +5889,21 @@ public class TDLibApi {
 
     /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
+    /// - Parameter location: New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
     /// - Parameter messageId: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
-    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none; for bots only
     /// - Returns: The edited message after the edit is completed on the server side
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func editMessageLiveLocation(
         chatId: Int64?,
-        heading: Int?,
-        livePeriod: Int?,
-        location: Location?,
+        location: LiveLocation?,
         messageId: Int64?,
-        proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?
     ) async throws -> Message {
         let query = EditMessageLiveLocation(
             chatId: chatId,
-            heading: heading,
-            livePeriod: livePeriod,
             location: location,
             messageId: messageId,
-            proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
         )
         return try await self.run(query: query)
@@ -6016,7 +6087,7 @@ public class TDLibApi {
 
     /// Edits the text of an inline text or game message sent via a bot; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public final func editInlineMessageText(
         inlineMessageId: String?,
@@ -6034,7 +6105,7 @@ public class TDLibApi {
 
     /// Edits the text of an inline text or game message sent via a bot; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -6052,55 +6123,37 @@ public class TDLibApi {
     }
 
     /// Edits the content of a live location in an inline message sent via a bot; for bots only
-    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
-    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+    /// - Parameter location: New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public final func editInlineMessageLiveLocation(
-        heading: Int?,
         inlineMessageId: String?,
-        livePeriod: Int?,
-        location: Location?,
-        proximityAlertRadius: Int?,
+        location: LiveLocation?,
         replyMarkup: ReplyMarkup?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = EditInlineMessageLiveLocation(
-            heading: heading,
             inlineMessageId: inlineMessageId,
-            livePeriod: livePeriod,
             location: location,
-            proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
         )
         self.run(query: query, completion: completion)
     }
 
     /// Edits the content of a live location in an inline message sent via a bot; for bots only
-    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
-    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+    /// - Parameter location: New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editInlineMessageLiveLocation(
-        heading: Int?,
         inlineMessageId: String?,
-        livePeriod: Int?,
-        location: Location?,
-        proximityAlertRadius: Int?,
+        location: LiveLocation?,
         replyMarkup: ReplyMarkup?
     ) async throws -> Ok {
         let query = EditInlineMessageLiveLocation(
-            heading: heading,
             inlineMessageId: inlineMessageId,
-            livePeriod: livePeriod,
             location: location,
-            proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
         )
         return try await self.run(query: query)
@@ -6424,7 +6477,7 @@ public class TDLibApi {
     /// Edits the text of a text or game message sent on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public final func editBusinessMessageText(
@@ -6448,7 +6501,7 @@ public class TDLibApi {
     /// Edits the text of a text or game message sent on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     /// - Parameter messageId: Identifier of the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -6472,31 +6525,22 @@ public class TDLibApi {
     /// Edits the content of a live location in a message sent on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
+    /// - Parameter location: New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public final func editBusinessMessageLiveLocation(
         businessConnectionId: String?,
         chatId: Int64?,
-        heading: Int?,
-        livePeriod: Int?,
-        location: Location?,
+        location: LiveLocation?,
         messageId: Int64?,
-        proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?,
         completion: @escaping (Result<BusinessMessage, Swift.Error>) -> Void
     ) throws {
         let query = EditBusinessMessageLiveLocation(
             businessConnectionId: businessConnectionId,
             chatId: chatId,
-            heading: heading,
-            livePeriod: livePeriod,
             location: location,
             messageId: messageId,
-            proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
         )
         self.run(query: query, completion: completion)
@@ -6505,31 +6549,22 @@ public class TDLibApi {
     /// Edits the content of a live location in a message sent on behalf of a business account; for bots only
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which the message was sent
     /// - Parameter chatId: The chat the message belongs to
-    /// - Parameter heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-    /// - Parameter livePeriod: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
-    /// - Parameter location: New location content of the message; pass null to stop sharing the live location
+    /// - Parameter location: New live location of the message; pass null to stop sharing the live location. If the new live_period isn't set to 0x7FFFFFFF, then it must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days
     /// - Parameter messageId: Identifier of the message
-    /// - Parameter proximityAlertRadius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func editBusinessMessageLiveLocation(
         businessConnectionId: String?,
         chatId: Int64?,
-        heading: Int?,
-        livePeriod: Int?,
-        location: Location?,
+        location: LiveLocation?,
         messageId: Int64?,
-        proximityAlertRadius: Int?,
         replyMarkup: ReplyMarkup?
     ) async throws -> BusinessMessage {
         let query = EditBusinessMessageLiveLocation(
             businessConnectionId: businessConnectionId,
             chatId: chatId,
-            heading: heading,
-            livePeriod: livePeriod,
             location: location,
             messageId: messageId,
-            proximityAlertRadius: proximityAlertRadius,
             replyMarkup: replyMarkup
         )
         return try await self.run(query: query)
@@ -7356,7 +7391,7 @@ public class TDLibApi {
     }
 
     /// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
-    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLiveLocation
     /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: The added message
@@ -7375,7 +7410,7 @@ public class TDLibApi {
     }
 
     /// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
-    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    /// - Parameter inputMessageContent: The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLiveLocation
     /// - Parameter replyToMessageId: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: The added message
@@ -7514,7 +7549,7 @@ public class TDLibApi {
     }
 
     /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
-    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageText, or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
     public final func editQuickReplyMessage(
@@ -7532,7 +7567,7 @@ public class TDLibApi {
     }
 
     /// Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
-    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageText, or inputMessageVideo
     /// - Parameter messageId: Identifier of the message
     /// - Parameter shortcutId: Unique identifier of the quick reply shortcut with the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -10098,7 +10133,7 @@ public class TDLibApi {
         parameters: WebAppOpenParameters?,
         startParameter: String?,
         webAppShortName: String?,
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+        completion: @escaping (Result<WebAppUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetWebAppLinkUrl(
             allowWriteAccess: allowWriteAccess,
@@ -10127,7 +10162,7 @@ public class TDLibApi {
         parameters: WebAppOpenParameters?,
         startParameter: String?,
         webAppShortName: String?
-    ) async throws -> HttpUrl {
+    ) async throws -> WebAppUrl {
         let query = GetWebAppLinkUrl(
             allowWriteAccess: allowWriteAccess,
             botUserId: botUserId,
@@ -10192,7 +10227,7 @@ public class TDLibApi {
         botUserId: Int64?,
         parameters: WebAppOpenParameters?,
         url: String?,
-        completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
+        completion: @escaping (Result<WebAppUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetWebAppUrl(
             botUserId: botUserId,
@@ -10212,7 +10247,7 @@ public class TDLibApi {
         botUserId: Int64?,
         parameters: WebAppOpenParameters?,
         url: String?
-    ) async throws -> HttpUrl {
+    ) async throws -> WebAppUrl {
         let query = GetWebAppUrl(
             botUserId: botUserId,
             parameters: parameters,
@@ -10397,6 +10432,43 @@ public class TDLibApi {
         let query = CheckWebAppFileDownload(
             botUserId: botUserId,
             fileName: fileName,
+            url: url
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sets the result of a chat join query; for bots only
+    /// - Parameter queryId: Identifier of the query
+    /// - Parameter result: The result
+    /// - Parameter url: URL of the Web App to open
+    public final func answerChatJoinRequestQuery(
+        queryId: TdInt64?,
+        result: ChatJoinRequestResult?,
+        url: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AnswerChatJoinRequestQuery(
+            queryId: queryId,
+            result: result,
+            url: url
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sets the result of a chat join query; for bots only
+    /// - Parameter queryId: Identifier of the query
+    /// - Parameter result: The result
+    /// - Parameter url: URL of the Web App to open
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func answerChatJoinRequestQuery(
+        queryId: TdInt64?,
+        result: ChatJoinRequestResult?,
+        url: String?
+    ) async throws -> Ok {
+        let query = AnswerChatJoinRequestQuery(
+            queryId: queryId,
+            result: result,
             url: url
         )
         return try await self.run(query: query)
@@ -10847,6 +10919,49 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Sends a draft for a being generated rich message; for bots only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter draftId: Unique identifier of the draft
+    /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
+    /// - Parameter message: Draft of the message
+    public final func sendRichMessageDraft(
+        chatId: Int64?,
+        draftId: TdInt64?,
+        forumTopicId: Int?,
+        message: InputRichMessage?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendRichMessageDraft(
+            chatId: chatId,
+            draftId: draftId,
+            forumTopicId: forumTopicId,
+            message: message
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sends a draft for a being generated rich message; for bots only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter draftId: Unique identifier of the draft
+    /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
+    /// - Parameter message: Draft of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func sendRichMessageDraft(
+        chatId: Int64?,
+        draftId: TdInt64?,
+        forumTopicId: Int?,
+        message: InputRichMessage?
+    ) async throws -> Ok {
+        let query = SendRichMessageDraft(
+            chatId: chatId,
+            draftId: draftId,
+            forumTopicId: forumTopicId,
+            message: message
+        )
+        return try await self.run(query: query)
+    }
+
     /// Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
     /// - Parameter chatId: Chat identifier
     public final func openChat(
@@ -11141,7 +11256,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
+    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats, and use directly getLinkWebBrowserType
     /// - Parameter link: The link
     /// - Returns: Information about an action to be done when the current user clicks an external link
     public final func getExternalLinkInfo(
@@ -11154,7 +11269,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
+    /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats, and use directly getLinkWebBrowserType
     /// - Parameter link: The link
     /// - Returns: Information about an action to be done when the current user clicks an external link
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -11192,6 +11307,30 @@ public class TDLibApi {
     ) async throws -> HttpUrl {
         let query = GetExternalLink(
             allowWriteAccess: allowWriteAccess,
+            link: link
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a type of the web browser which must be used to open the link
+    /// - Parameter link: The HTTP link
+    /// - Returns: A type of the web browser which must be used to open the link
+    public final func getLinkWebBrowserType(
+        link: String?,
+        completion: @escaping (Result<WebBrowserType, Swift.Error>) -> Void
+    ) throws {
+        let query = GetLinkWebBrowserType(
+            link: link
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a type of the web browser which must be used to open the link
+    /// - Parameter link: The HTTP link
+    /// - Returns: A type of the web browser which must be used to open the link
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getLinkWebBrowserType(link: String?) async throws -> WebBrowserType {
+        let query = GetLinkWebBrowserType(
             link: link
         )
         return try await self.run(query: query)
@@ -13226,12 +13365,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
     /// - Parameter chatId: Chat identifier
-    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     public final func joinChat(
         chatId: Int64?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<ChatJoinResult, Swift.Error>) -> Void
     ) throws {
         let query = JoinChat(
             chatId: chatId
@@ -13239,12 +13377,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+    /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
     /// - Parameter chatId: Chat identifier
-    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public final func joinChat(chatId: Int64?) async throws -> Ok {
+    public final func joinChat(chatId: Int64?) async throws -> ChatJoinResult {
         let query = JoinChat(
             chatId: chatId
         )
@@ -16860,12 +16996,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+    /// Uses an invite link to add the current user to the chat if possible
     /// - Parameter inviteLink: Invite link to use
-    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     public final func joinChatByInviteLink(
         inviteLink: String?,
-        completion: @escaping (Result<Chat, Swift.Error>) -> Void
+        completion: @escaping (Result<ChatJoinResult, Swift.Error>) -> Void
     ) throws {
         let query = JoinChatByInviteLink(
             inviteLink: inviteLink
@@ -16873,11 +17008,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+    /// Uses an invite link to add the current user to the chat if possible
     /// - Parameter inviteLink: Invite link to use
-    /// - Returns: May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func joinChatByInviteLink(inviteLink: String?) async throws -> Chat {
+    public final func joinChatByInviteLink(inviteLink: String?) async throws -> ChatJoinResult {
         let query = JoinChatByInviteLink(
             inviteLink: inviteLink
         )
@@ -21658,17 +21792,17 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
-    /// - Returns: The business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
-    public final func getBusinessConnectedBot(completion: @escaping (Result<BusinessConnectedBot, Swift.Error>) -> Void) throws {
+    /// Returns information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    /// - Returns: Information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    public final func getBusinessConnectedBot(completion: @escaping (Result<BusinessConnectedBotInfo, Swift.Error>) -> Void) throws {
         let query = GetBusinessConnectedBot()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
-    /// - Returns: The business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    /// Returns information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+    /// - Returns: Information about the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getBusinessConnectedBot() async throws -> BusinessConnectedBot {
+    public final func getBusinessConnectedBot() async throws -> BusinessConnectedBotInfo {
         let query = GetBusinessConnectedBot()
         return try await self.run(query: query)
     }
@@ -21692,6 +21826,29 @@ public class TDLibApi {
     public final func setBusinessConnectedBot(bot: BusinessConnectedBot?) async throws -> Ok {
         let query = SetBusinessConnectedBot(
             bot: bot
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Confirms an unconfirmed business connection of the current user from another device
+    /// - Parameter botUserId: User identifier of the bot
+    public final func confirmBusinessConnectedBot(
+        botUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ConfirmBusinessConnectedBot(
+            botUserId: botUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Confirms an unconfirmed business connection of the current user from another device
+    /// - Parameter botUserId: User identifier of the bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func confirmBusinessConnectedBot(botUserId: Int64?) async throws -> Ok {
+        let query = ConfirmBusinessConnectedBot(
+            botUserId: botUserId
         )
         return try await self.run(query: query)
     }
@@ -22954,14 +23111,14 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns all active sessions of the current user
+    /// Returns all active sessions of the current user. Additionally, getBusinessConnectedBot must be used to show the bot on top of active sessions
     /// - Returns: All active sessions of the current user
     public final func getActiveSessions(completion: @escaping (Result<Sessions, Swift.Error>) -> Void) throws {
         let query = GetActiveSessions()
         self.run(query: query, completion: completion)
     }
 
-    /// Returns all active sessions of the current user
+    /// Returns all active sessions of the current user. Additionally, getBusinessConnectedBot must be used to show the bot on top of active sessions
     /// - Returns: All active sessions of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getActiveSessions() async throws -> Sessions {
@@ -22992,13 +23149,13 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Terminates all other sessions of the current user
+    /// Terminates all other sessions of the current user. Additionally, the user must be suggested to delete the connected business bot using deleteBusinessConnectedBot if there is any
     public final func terminateAllOtherSessions(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
         let query = TerminateAllOtherSessions()
         self.run(query: query, completion: completion)
     }
 
-    /// Terminates all other sessions of the current user
+    /// Terminates all other sessions of the current user. Additionally, the user must be suggested to delete the connected business bot using deleteBusinessConnectedBot if there is any
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func terminateAllOtherSessions() async throws -> Ok {
@@ -23483,14 +23640,20 @@ public class TDLibApi {
     }
 
     /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+    /// - Parameter applyToInviteLinks: Pass true to apply the change to the existing invite links, including primary links
+    /// - Parameter guardBotUserId: Identifier of the bot which will be the guard bot in the group; pass 0 if none; ignored if join_by_request == false. The bot must have administrator privileges and can_invite_users right in the supergroup chat, and must have userTypeBot.is_guard == true
     /// - Parameter joinByRequest: New value of join_by_request
     /// - Parameter supergroupId: Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group
     public final func toggleSupergroupJoinByRequest(
+        applyToInviteLinks: Bool?,
+        guardBotUserId: Int64?,
         joinByRequest: Bool?,
         supergroupId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = ToggleSupergroupJoinByRequest(
+            applyToInviteLinks: applyToInviteLinks,
+            guardBotUserId: guardBotUserId,
             joinByRequest: joinByRequest,
             supergroupId: supergroupId
         )
@@ -23498,15 +23661,21 @@ public class TDLibApi {
     }
 
     /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+    /// - Parameter applyToInviteLinks: Pass true to apply the change to the existing invite links, including primary links
+    /// - Parameter guardBotUserId: Identifier of the bot which will be the guard bot in the group; pass 0 if none; ignored if join_by_request == false. The bot must have administrator privileges and can_invite_users right in the supergroup chat, and must have userTypeBot.is_guard == true
     /// - Parameter joinByRequest: New value of join_by_request
     /// - Parameter supergroupId: Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func toggleSupergroupJoinByRequest(
+        applyToInviteLinks: Bool?,
+        guardBotUserId: Int64?,
         joinByRequest: Bool?,
         supergroupId: Int64?
     ) async throws -> Ok {
         let query = ToggleSupergroupJoinByRequest(
+            applyToInviteLinks: applyToInviteLinks,
+            guardBotUserId: guardBotUserId,
             joinByRequest: joinByRequest,
             supergroupId: supergroupId
         )
@@ -24602,7 +24771,7 @@ public class TDLibApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    /// - Parameter starCount: The Telegram Star amount required to pay for the upgrade. If the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     public final func upgradeGift(
         businessConnectionId: String?,
         keepOriginalDetails: Bool?,
@@ -24623,7 +24792,7 @@ public class TDLibApi {
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter keepOriginalDetails: Pass true to keep the original gift text, sender and receiver in the upgraded gift
     /// - Parameter receivedGiftId: Identifier of the gift
-    /// - Parameter starCount: The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    /// - Parameter starCount: The Telegram Star amount required to pay for the upgrade. If the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func upgradeGift(
         businessConnectionId: String?,
@@ -27448,6 +27617,105 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Changes web browser settings
+    /// - Parameter displayCloseButton: Pass true if a close button must be shown in the in-app browser; for Android app only
+    /// - Parameter openExternalBrowser: Pass true if links must be opened in an external browser by default
+    public final func changeWebBrowserSettings(
+        displayCloseButton: Bool?,
+        openExternalBrowser: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ChangeWebBrowserSettings(
+            displayCloseButton: displayCloseButton,
+            openExternalBrowser: openExternalBrowser
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes web browser settings
+    /// - Parameter displayCloseButton: Pass true if a close button must be shown in the in-app browser; for Android app only
+    /// - Parameter openExternalBrowser: Pass true if links must be opened in an external browser by default
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func changeWebBrowserSettings(
+        displayCloseButton: Bool?,
+        openExternalBrowser: Bool?
+    ) async throws -> Ok {
+        let query = ChangeWebBrowserSettings(
+            displayCloseButton: displayCloseButton,
+            openExternalBrowser: openExternalBrowser
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds a special handling for the opening of the specified URL
+    /// - Parameter openExternalBrowser: Pass true if the specified website must be opened in an external browser; pass false to open it in the in-app browser. There can be at most 100 exceptions in each list of the exceptions
+    /// - Parameter url: URL of the website
+    public final func addWebBrowserSettingsException(
+        openExternalBrowser: Bool?,
+        url: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddWebBrowserSettingsException(
+            openExternalBrowser: openExternalBrowser,
+            url: url
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds a special handling for the opening of the specified URL
+    /// - Parameter openExternalBrowser: Pass true if the specified website must be opened in an external browser; pass false to open it in the in-app browser. There can be at most 100 exceptions in each list of the exceptions
+    /// - Parameter url: URL of the website
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func addWebBrowserSettingsException(
+        openExternalBrowser: Bool?,
+        url: String?
+    ) async throws -> Ok {
+        let query = AddWebBrowserSettingsException(
+            openExternalBrowser: openExternalBrowser,
+            url: url
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Removes a special handling for the opening of the specified URL
+    /// - Parameter url: URL of the website
+    public final func removeWebBrowserSettingsException(
+        url: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = RemoveWebBrowserSettingsException(
+            url: url
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Removes a special handling for the opening of the specified URL
+    /// - Parameter url: URL of the website
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func removeWebBrowserSettingsException(url: String?) async throws -> Ok {
+        let query = RemoveWebBrowserSettingsException(
+            url: url
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Removes special handling for the opening of all links
+    public final func removeAllWebBrowserSettingsExceptions(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = RemoveAllWebBrowserSettingsExceptions()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Removes special handling for the opening of all links
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func removeAllWebBrowserSettingsExceptions() async throws -> Ok {
+        let query = RemoveAllWebBrowserSettingsExceptions()
+        return try await self.run(query: query)
+    }
+
     /// Returns information about a bank card
     /// - Parameter bankCardNumber: The bank card number
     /// - Returns: Information about a bank card
@@ -29473,6 +29741,30 @@ public class TDLibApi {
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getCountries() async throws -> Countries {
         let query = GetCountries()
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about an existing country. Can be called before authorization
+    /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code
+    /// - Returns: Information about an existing country
+    public final func getCountry(
+        countryCode: String?,
+        completion: @escaping (Result<CountryInfo, Swift.Error>) -> Void
+    ) throws {
+        let query = GetCountry(
+            countryCode: countryCode
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about an existing country. Can be called before authorization
+    /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code
+    /// - Returns: Information about an existing country
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getCountry(countryCode: String?) async throws -> CountryInfo {
+        let query = GetCountry(
+            countryCode: countryCode
+        )
         return try await self.run(query: query)
     }
 
