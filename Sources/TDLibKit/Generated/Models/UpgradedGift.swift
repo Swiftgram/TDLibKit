@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// True, if the gift was used to craft another gift
     public let isBurned: Bool
 
-    /// True, if the gift was craft from another gifts
+    /// True, if the gift was crafted from other gifts
     public let isCrafted: Bool
 
     /// True, if the original gift could have been bought only by Telegram Premium subscribers

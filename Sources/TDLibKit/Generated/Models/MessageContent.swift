@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -241,7 +241,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Toncoins were gifted to a user
     case messageGiftedTon(MessageGiftedTon)
 
-    /// A Telegram Stars were received by the current user from a giveaway
+    /// Telegram Stars were received by the current user from a giveaway
     case messageGiveawayPrizeStars(MessageGiveawayPrizeStars)
 
     /// A regular gift was received or sent by the current user, or the current user was notified about a channel gift
@@ -274,7 +274,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Some tasks were added to a checklist
     case messageChecklistTasksAdded(MessageChecklistTasksAdded)
 
-    /// Approval of suggested post has failed, because the user which proposed the post had no enough funds
+    /// Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
     case messageSuggestedPostApprovalFailed(MessageSuggestedPostApprovalFailed)
 
     /// A suggested post was approved
@@ -2668,7 +2668,7 @@ public struct MessageGiftedTon: Codable, Equatable, Hashable {
     }
 }
 
-/// A Telegram Stars were received by the current user from a giveaway
+/// Telegram Stars were received by the current user from a giveaway
 public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
@@ -2817,7 +2817,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// True, if the gift can be transferred to another owner; only for the receiver of the gift
     public let canBeTransferred: Bool
 
-    /// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+    /// Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
     public let craftDate: Int
 
     /// Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift
@@ -3070,7 +3070,7 @@ public struct MessageChecklistTasksAdded: Codable, Equatable, Hashable {
     }
 }
 
-/// Approval of suggested post has failed, because the user which proposed the post had no enough funds
+/// Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
 public struct MessageSuggestedPostApprovalFailed: Codable, Equatable, Hashable {
 
     /// Price of the suggested post

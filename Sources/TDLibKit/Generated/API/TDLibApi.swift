@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -13480,7 +13480,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+    /// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters need to be passed
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier. Chats can be only banned and unbanned in supergroups and channels
     /// - Parameter status: The new status of the member in the chat
@@ -13498,7 +13498,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+    /// Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters need to be passed
     /// - Parameter chatId: Chat identifier
     /// - Parameter memberId: Member identifier. Chats can be only banned and unbanned in supergroups and channels
     /// - Parameter status: The new status of the member in the chat
@@ -16775,7 +16775,7 @@ public class TDLibApi {
     /// Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter creatorUserId: User identifier of a chat administrator. Must be an identifier of the current user for non-owner
-    /// - Parameter isRevoked: Pass true if revoked links needs to be returned instead of active or expired
+    /// - Parameter isRevoked: Pass true if revoked links need to be returned instead of active or expired
     /// - Parameter limit: The maximum number of invite links to return; up to 100
     /// - Parameter offsetDate: Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     /// - Parameter offsetInviteLink: Invite link starting after which to return invite links; use empty string to get results from the beginning
@@ -16803,7 +16803,7 @@ public class TDLibApi {
     /// Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter creatorUserId: User identifier of a chat administrator. Must be an identifier of the current user for non-owner
-    /// - Parameter isRevoked: Pass true if revoked links needs to be returned instead of active or expired
+    /// - Parameter isRevoked: Pass true if revoked links need to be returned instead of active or expired
     /// - Parameter limit: The maximum number of invite links to return; up to 100
     /// - Parameter offsetDate: Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     /// - Parameter offsetInviteLink: Invite link starting after which to return invite links; use empty string to get results from the beginning
@@ -27851,7 +27851,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+    /// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
     /// - Parameter errors: The errors
     /// - Parameter userId: User identifier
     public final func setPassportElementErrors(
@@ -27866,7 +27866,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Informs the user who some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+    /// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
     /// - Parameter errors: The errors
     /// - Parameter userId: User identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -28103,7 +28103,7 @@ public class TDLibApi {
     }
 
     /// Uploads a file with a sticker; returns the uploaded file
-    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// - Parameter sticker: File to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     /// - Parameter stickerFormat: Sticker format
     /// - Parameter userId: Sticker file owner; ignored for regular users
     /// - Returns: The uploaded file
@@ -28122,7 +28122,7 @@ public class TDLibApi {
     }
 
     /// Uploads a file with a sticker; returns the uploaded file
-    /// - Parameter sticker: File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// - Parameter sticker: File to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     /// - Parameter stickerFormat: Sticker format
     /// - Parameter userId: Sticker file owner; ignored for regular users
     /// - Returns: The uploaded file
@@ -29140,7 +29140,7 @@ public class TDLibApi {
 
     /// Returns the list of Telegram Star subscriptions for the current user
     /// - Parameter offset: Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter onlyExpiring: Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+    /// - Parameter onlyExpiring: Pass true to receive only expiring subscriptions for which there aren't enough Telegram Stars to extend
     /// - Returns: The list of Telegram Star subscriptions for the current user
     public final func getStarSubscriptions(
         offset: String?,
@@ -29156,7 +29156,7 @@ public class TDLibApi {
 
     /// Returns the list of Telegram Star subscriptions for the current user
     /// - Parameter offset: Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Parameter onlyExpiring: Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+    /// - Parameter onlyExpiring: Pass true to receive only expiring subscriptions for which there aren't enough Telegram Stars to extend
     /// - Returns: The list of Telegram Star subscriptions for the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getStarSubscriptions(
@@ -29517,7 +29517,7 @@ public class TDLibApi {
     }
 
     /// Returns affiliate programs that were connected to the given affiliate
-    /// - Parameter affiliate: The affiliate to which the affiliate program were connected
+    /// - Parameter affiliate: The affiliate to which the affiliate programs were connected
     /// - Parameter limit: The maximum number of affiliate programs to return
     /// - Parameter offset: Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
     /// - Returns: Affiliate programs that were connected to the given affiliate
@@ -29536,7 +29536,7 @@ public class TDLibApi {
     }
 
     /// Returns affiliate programs that were connected to the given affiliate
-    /// - Parameter affiliate: The affiliate to which the affiliate program were connected
+    /// - Parameter affiliate: The affiliate to which the affiliate programs were connected
     /// - Parameter limit: The maximum number of affiliate programs to return
     /// - Parameter offset: Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
     /// - Returns: Affiliate programs that were connected to the given affiliate
@@ -29578,7 +29578,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Accepts Telegram terms of services
+    /// Accepts Telegram terms of service
     /// - Parameter termsOfServiceId: Terms of service identifier
     public final func acceptTermsOfService(
         termsOfServiceId: String?,
@@ -29590,7 +29590,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Accepts Telegram terms of services
+    /// Accepts Telegram terms of service
     /// - Parameter termsOfServiceId: Terms of service identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult

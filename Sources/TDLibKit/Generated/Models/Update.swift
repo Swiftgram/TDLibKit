@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -322,7 +322,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// State of a gift auction was updated
     case updateGiftAuctionState(UpdateGiftAuctionState)
 
-    /// The list of auctions in which participate the current user has changed
+    /// The list of auctions in which the current user participates has changed
     case updateActiveGiftAuctions(UpdateActiveGiftAuctions)
 
     /// Some privacy setting rules have been changed
@@ -409,7 +409,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The freeze state of the current user's account has changed
     case updateFreezeState(UpdateFreezeState)
 
-    /// The parameters for age verification of the current user's account has changed
+    /// The parameters for age verification of the current user's account have changed
     case updateAgeVerificationParameters(UpdateAgeVerificationParameters)
 
     /// New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
@@ -457,7 +457,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
     case updateTonRevenueStatus(UpdateTonRevenueStatus)
 
-    /// The parameters of speech recognition without Telegram Premium subscription has changed
+    /// The parameters of speech recognition without Telegram Premium subscription have changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
     /// The levels of live story group call messages have changed
@@ -472,7 +472,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     case updateAnimatedEmojiMessageClicked(UpdateAnimatedEmojiMessageClicked)
 
-    /// The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+    /// The parameters of animation search through getOption("animation_search_bot_username") bot have changed
     case updateAnimationSearchParameters(UpdateAnimationSearchParameters)
 
     /// The styles supported for text composition have changed
@@ -481,7 +481,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of suggested to the user actions has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
-    /// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+    /// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
     case updateSpeedLimitNotification(UpdateSpeedLimitNotification)
 
     /// The list of contacts that had birthdays recently or will have birthday soon has changed
@@ -3926,7 +3926,7 @@ public struct UpdateGiftAuctionState: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of auctions in which participate the current user has changed
+/// The list of auctions in which the current user participates has changed
 public struct UpdateActiveGiftAuctions: Codable, Equatable, Hashable {
 
     /// New states of the auctions
@@ -4026,7 +4026,7 @@ public struct UpdateChatJoinResult: Codable, Equatable, Hashable {
     /// Identifier of the joined chat, or 0 if the request wasn't approved
     public let chatId: Int64
 
-    /// Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is stiil open, then it must be closed
+    /// Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is still open, then it must be closed
     public let queryId: TdInt64
 
     /// Result of the join
@@ -4450,7 +4450,7 @@ public struct UpdateFreezeState: Codable, Equatable, Hashable {
     }
 }
 
-/// The parameters for age verification of the current user's account has changed
+/// The parameters for age verification of the current user's account have changed
 public struct UpdateAgeVerificationParameters: Codable, Equatable, Hashable {
 
     /// Parameters for the age verification; may be null if age verification isn't needed
@@ -4684,7 +4684,7 @@ public struct UpdateTonRevenueStatus: Codable, Equatable, Hashable {
     }
 }
 
-/// The parameters of speech recognition without Telegram Premium subscription has changed
+/// The parameters of speech recognition without Telegram Premium subscription have changed
 public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
 
     /// Number of left speech recognition attempts this week
@@ -4773,7 +4773,7 @@ public struct UpdateAnimatedEmojiMessageClicked: Codable, Equatable, Hashable {
     }
 }
 
-/// The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+/// The parameters of animation search through getOption("animation_search_bot_username") bot have changed
 public struct UpdateAnimationSearchParameters: Codable, Equatable, Hashable {
 
     /// The new list of emojis suggested for searching
@@ -4823,7 +4823,7 @@ public struct UpdateSuggestedActions: Codable, Equatable, Hashable {
     }
 }
 
-/// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+/// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
 public struct UpdateSpeedLimitNotification: Codable, Equatable, Hashable {
 
     /// True, if upload speed was limited; false, if download speed was limited

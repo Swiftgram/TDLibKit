@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a venue
     case storyAreaTypeVenue(StoryAreaTypeVenue)
 
-    /// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+    /// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
     case storyAreaTypeSuggestedReaction(StoryAreaTypeSuggestedReaction)
 
     /// An area pointing to a message
@@ -132,7 +132,7 @@ public struct StoryAreaTypeVenue: Codable, Equatable, Hashable {
     }
 }
 
-/// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+/// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
 public struct StoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable {
 
     /// True, if reaction has a dark background

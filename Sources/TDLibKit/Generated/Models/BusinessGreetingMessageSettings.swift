@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes settings for greeting messages that are automatically sent by a Telegram Business account as response to incoming messages in an inactive private chat
 public struct BusinessGreetingMessageSettings: Codable, Equatable, Hashable {
 
-    /// The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28
+    /// The number of days after which a chat will be considered as inactive; currently, must be one of 7, 14, 21, or 28
     public let inactivityDays: Int
 
     /// Chosen recipients of the greeting messages

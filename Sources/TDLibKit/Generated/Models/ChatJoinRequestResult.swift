@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ChatJoinRequestResult: Codable, Equatable, Hashable {
     /// The request was approved
     case chatJoinRequestResultApproved
 
-    /// The request was decline
+    /// The request was declined
     case chatJoinRequestResultDeclined
 
     /// The request was postponed without a decision

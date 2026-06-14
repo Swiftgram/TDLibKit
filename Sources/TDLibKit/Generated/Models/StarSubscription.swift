@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct StarSubscription: Codable, Equatable, Hashable, Identifiable {
     /// True, if the subscription was canceled
     public let isCanceled: Bool
 
-    /// True, if the subscription expires soon and there are no enough Telegram Stars on the user's balance to extend it
+    /// True, if the subscription expires soon and there aren't enough Telegram Stars on the user's balance to extend it
     public let isExpiring: Bool
 
     /// The subscription plan

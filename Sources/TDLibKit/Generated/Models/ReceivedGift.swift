@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
     /// Identifiers of collections to which the gift is added; only for the receiver of the gift
     public let collectionIds: [Int]
 
-    /// Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+    /// Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
     public let craftDate: Int
 
     /// Point in time (Unix timestamp) when the gift was sent

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetChatInviteLinks: Codable, Equatable, Hashable {
     /// User identifier of a chat administrator. Must be an identifier of the current user for non-owner
     public let creatorUserId: Int64?
 
-    /// Pass true if revoked links needs to be returned instead of active or expired
+    /// Pass true if revoked links need to be returned instead of active or expired
     public let isRevoked: Bool?
 
     /// The maximum number of invite links to return; up to 100

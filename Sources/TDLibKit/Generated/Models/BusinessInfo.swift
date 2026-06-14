@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct BusinessInfo: Codable, Equatable, Hashable {
     /// The greeting message; may be null if none or the Business account is not of the current user
     public let greetingMessageSettings: BusinessGreetingMessageSettings?
 
-    /// Opening hours of the business in the local time; may be null if none. The hours are guaranteed to be valid and has already been split by week days. Local time zone identifier will be empty. An updateUserFullInfo update is not triggered when value of this field changes
+    /// Opening hours of the business in the local time; may be null if none. The hours are guaranteed to be valid and have already been split by week days. Local time zone identifier will be empty. An updateUserFullInfo update is not triggered when value of this field changes
     public let localOpeningHours: BusinessOpeningHours?
 
     /// Location of the business; may be null if none
@@ -31,7 +31,7 @@ public struct BusinessInfo: Codable, Equatable, Hashable {
     /// Time left before the business will open the next time, in seconds; 0 if unknown. An updateUserFullInfo update is not triggered when value of this field changes
     public let nextOpenIn: Int
 
-    /// Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days
+    /// Opening hours of the business; may be null if none. The hours are guaranteed to be valid and have already been split by week days
     public let openingHours: BusinessOpeningHours?
 
     /// Information about start page of the account; may be null if none

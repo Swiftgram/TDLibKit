@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns affiliate programs that were connected to the given affiliate
 public struct GetConnectedAffiliatePrograms: Codable, Equatable, Hashable {
 
-    /// The affiliate to which the affiliate program were connected
+    /// The affiliate to which the affiliate programs were connected
     public let affiliate: AffiliateType?
 
     /// The maximum number of affiliate programs to return

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public struct StarSubscriptionTypeChannel: Codable, Equatable, Hashable {
     /// True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
     public let canReuse: Bool
 
-    /// The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
+    /// The invite link that can be used to renew the subscription if it has expired; may be empty if the link isn't available anymore
     public let inviteLink: String
 
 

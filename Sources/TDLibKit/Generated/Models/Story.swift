@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
@@ -58,7 +58,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the story was published
     public let date: Int
 
-    /// True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+    /// True, if users who viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
     public let hasExpiredViewers: Bool
 
     /// Unique story identifier among stories posted by the given chat

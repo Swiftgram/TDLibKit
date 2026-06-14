@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-062f2605
-//  https://github.com/tdlib/td/tree/062f2605
+//  Based on TDLib 1.8.65-a17f87c4
+//  https://github.com/tdlib/td/tree/a17f87c4
 //
 
 import Foundation
 
 
-/// Accepts Telegram terms of services
+/// Accepts Telegram terms of service
 public struct AcceptTermsOfService: Codable, Equatable, Hashable {
 
     /// Terms of service identifier
