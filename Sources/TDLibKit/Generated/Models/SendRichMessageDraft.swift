@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct SendRichMessageDraft: Codable, Equatable, Hashable {
     /// The forum topic identifier in which the message will be sent; pass 0 if none
     public let forumTopicId: Int?
 
-    /// Draft of the message
+    /// Draft of the message; file upload isn't supported
     public let message: InputRichMessage?
 
 

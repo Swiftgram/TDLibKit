@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
 
 
-/// Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
+/// Represents a supergroup or channel with zero or more members (subscribers in the case of channels)
 public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     /// State of active stories of the supergroup or channel; may be null if there are no active stories
@@ -46,7 +46,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     public let isBroadcastGroup: Bool
 
-    /// True, if the supergroup is a channel
+    /// True, if the supergroup is a channel, which can have an unlimited number of subscribers, but only administrators can post there and see the list of subscribers
     public let isChannel: Bool
 
     /// True, if the supergroup is a direct message group for a channel chat

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -13,23 +13,23 @@ import Foundation
 /// Contains a list of chat revenue transactions
 public struct ChatRevenueTransactions: Codable, Equatable, Hashable {
 
+    /// The amount of owned TON Grams; in the smallest units of the cryptocurrency
+    public let gramAmount: Int64
+
     /// The offset for the next request. If empty, then there are no more results
     public let nextOffset: String
-
-    /// The amount of owned Toncoins; in the smallest units of the cryptocurrency
-    public let tonAmount: Int64
 
     /// List of transactions
     public let transactions: [ChatRevenueTransaction]
 
 
     public init(
+        gramAmount: Int64,
         nextOffset: String,
-        tonAmount: Int64,
         transactions: [ChatRevenueTransaction]
     ) {
+        self.gramAmount = gramAmount
         self.nextOffset = nextOffset
-        self.tonAmount = tonAmount
         self.transactions = transactions
     }
 }

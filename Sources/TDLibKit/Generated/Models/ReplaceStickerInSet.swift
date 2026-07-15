@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct ReplaceStickerInSet: Codable, Equatable, Hashable {
     public let name: String?
 
     /// Sticker to add to the set
-    public let newSticker: InputSticker?
+    public let newSticker: NewSticker?
 
     /// Sticker to remove from the set
     public let oldSticker: InputFile?
@@ -28,7 +28,7 @@ public struct ReplaceStickerInSet: Codable, Equatable, Hashable {
 
     public init(
         name: String?,
-        newSticker: InputSticker?,
+        newSticker: NewSticker?,
         oldSticker: InputFile?,
         userId: Int64?
     ) {

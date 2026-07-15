@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
 
 
-/// Edits the text of an inline text or game message sent via a bot; for bots only
+/// Edits the text of an inline text or game message sent via the bot; for bots only
 public struct EditInlineMessageText: Codable, Equatable, Hashable {
 
     /// Inline message identifier
     public let inlineMessageId: String?
 
-    /// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
+    /// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage; file upload isn't supported
     public let inputMessageContent: InputMessageContent?
 
     /// The new message reply markup; pass null if none

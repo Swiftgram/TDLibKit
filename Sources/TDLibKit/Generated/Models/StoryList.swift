@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum StoryList: Codable, Equatable, Hashable {
     /// The list of stories, shown in the main chat list and folder chat lists
     case storyListMain
 
-    /// The list of stories, shown in the Arvhive chat list
+    /// The list of stories, shown in the Archive chat list
     case storyListArchive
 
 

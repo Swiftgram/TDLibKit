@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public struct CountryInfo: Codable, Equatable, Hashable {
     /// English name of the country
     public let englishName: String
 
+    /// An emoji for the flag of the country; may be empty if unknown
+    public let flagEmoji: String
+
     /// True, if the country must be hidden from the list of all countries
     public let isHidden: Bool
 
@@ -33,12 +36,14 @@ public struct CountryInfo: Codable, Equatable, Hashable {
         callingCodes: [String],
         countryCode: String,
         englishName: String,
+        flagEmoji: String,
         isHidden: Bool,
         name: String
     ) {
         self.callingCodes = callingCodes
         self.countryCode = countryCode
         self.englishName = englishName
+        self.flagEmoji = flagEmoji
         self.isHidden = isHidden
         self.name = name
     }

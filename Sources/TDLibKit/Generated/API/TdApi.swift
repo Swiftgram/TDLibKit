@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -4943,9 +4943,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles getOption("added_text_composition_style_count_max") has been reached
     /// - Parameter name: Name of the style
-    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles getOption("added_text_composition_style_count_max") has been reached
     public func addTextCompositionStyle(
         name: String?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -4956,9 +4956,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles getOption("added_text_composition_style_count_max") has been reached
     /// - Parameter name: Name of the style
-    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached
+    /// - Returns: May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles getOption("added_text_composition_style_count_max") has been reached
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func addTextCompositionStyle(name: String?) async throws -> Ok {
@@ -5027,6 +5027,42 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Translates a rich message to the given language
+    /// - Parameter message: Rich message to translate
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the translation; see translateText.tone for the list of supported values
+    public func translateRichMessage(
+        message: InputRichMessage?,
+        toLanguageCode: String?,
+        tone: String?,
+        completion: @escaping (Result<RichMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = TranslateRichMessage(
+            message: message,
+            toLanguageCode: toLanguageCode,
+            tone: tone
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Translates a rich message to the given language
+    /// - Parameter message: Rich message to translate
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the translation; see translateText.tone for the list of supported values
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func translateRichMessage(
+        message: InputRichMessage?,
+        toLanguageCode: String?,
+        tone: String?
+    ) async throws -> RichMessage {
+        let query = TranslateRichMessage(
+            message: message,
+            toLanguageCode: toLanguageCode,
+            tone: tone
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
@@ -5069,6 +5105,48 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Extracts rich message of the given message and translates it to the given language
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the translation; see translateText.tone for the list of supported values
+    public func translateMessageRichMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        toLanguageCode: String?,
+        tone: String?,
+        completion: @escaping (Result<RichMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = TranslateMessageRichMessage(
+            chatId: chatId,
+            messageId: messageId,
+            toLanguageCode: toLanguageCode,
+            tone: tone
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Extracts rich message of the given message and translates it to the given language
+    /// - Parameter chatId: Identifier of the chat to which the message belongs
+    /// - Parameter messageId: Identifier of the message
+    /// - Parameter toLanguageCode: Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    /// - Parameter tone: Tone of the translation; see translateText.tone for the list of supported values
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func translateMessageRichMessage(
+        chatId: Int64?,
+        messageId: Int64?,
+        toLanguageCode: String?,
+        tone: String?
+    ) async throws -> RichMessage {
+        let query = TranslateMessageRichMessage(
+            chatId: chatId,
+            messageId: messageId,
+            toLanguageCode: toLanguageCode,
+            tone: tone
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Summarizes content of the message with non-empty summary_language_code
     /// - Parameter chatId: Identifier of the chat to which the message belongs
     /// - Parameter messageId: Identifier of the message
@@ -5151,6 +5229,94 @@ public final class TdApi {
             styleName: styleName,
             text: text,
             translateToLanguageCode: translateToLanguageCode
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter addEmojis: Pass true to add emoji to the text
+    /// - Parameter customPrompt: Custom prompt that will be used instead of style_name; 0-getOption("text_composition_style_prompt_length_max") characters
+    /// - Parameter message: The original message
+    /// - Parameter styleName: Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
+    /// - Parameter translateToLanguageCode: Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    public func composeRichMessageWithAi(
+        addEmojis: Bool?,
+        customPrompt: String?,
+        message: InputRichMessage?,
+        styleName: String?,
+        translateToLanguageCode: String?,
+        completion: @escaping (Result<RichMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = ComposeRichMessageWithAi(
+            addEmojis: addEmojis,
+            customPrompt: customPrompt,
+            message: message,
+            styleName: styleName,
+            translateToLanguageCode: translateToLanguageCode
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter addEmojis: Pass true to add emoji to the text
+    /// - Parameter customPrompt: Custom prompt that will be used instead of style_name; 0-getOption("text_composition_style_prompt_length_max") characters
+    /// - Parameter message: The original message
+    /// - Parameter styleName: Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
+    /// - Parameter translateToLanguageCode: Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func composeRichMessageWithAi(
+        addEmojis: Bool?,
+        customPrompt: String?,
+        message: InputRichMessage?,
+        styleName: String?,
+        translateToLanguageCode: String?
+    ) async throws -> RichMessage {
+        let query = ComposeRichMessageWithAi(
+            addEmojis: addEmojis,
+            customPrompt: customPrompt,
+            message: message,
+            styleName: styleName,
+            translateToLanguageCode: translateToLanguageCode
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Creates a new rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter addEmojis: Pass true to add emoji to the text
+    /// - Parameter languageCode: Pass a language code in which the text will be created
+    /// - Parameter prompt: Prompt that will be used to create the message; 0-getOption("text_composition_style_prompt_length_max") characters
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    public func createRichMessageWithAi(
+        addEmojis: Bool?,
+        languageCode: String?,
+        prompt: String?,
+        completion: @escaping (Result<RichMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateRichMessageWithAi(
+            addEmojis: addEmojis,
+            languageCode: languageCode,
+            prompt: prompt
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Creates a new rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter addEmojis: Pass true to add emoji to the text
+    /// - Parameter languageCode: Pass a language code in which the text will be created
+    /// - Parameter prompt: Prompt that will be used to create the message; 0-getOption("text_composition_style_prompt_length_max") characters
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createRichMessageWithAi(
+        addEmojis: Bool?,
+        languageCode: String?,
+        prompt: String?
+    ) async throws -> RichMessage {
+        let query = CreateRichMessageWithAi(
+            addEmojis: addEmojis,
+            languageCode: languageCode,
+            prompt: prompt
         )
         return try await self.execute(query: query)
     }
@@ -5175,6 +5341,30 @@ public final class TdApi {
     public func fixTextWithAi(text: FormattedText?) async throws -> FixedText {
         let query = FixTextWithAi(
             text: text
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter message: The original message
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    public func fixRichMessageWithAi(
+        message: InputRichMessage?,
+        completion: @escaping (Result<RichMessage, Swift.Error>) -> Void
+    ) throws {
+        let query = FixRichMessageWithAi(
+            message: message
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Fixes a rich message using an AI model. May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    /// - Parameter message: The original message
+    /// - Returns: May return an error with a message "AICOMPOSE_FLOOD_PREMIUM" if Telegram Premium is required to send further requests
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func fixRichMessageWithAi(message: InputRichMessage?) async throws -> RichMessage {
+        let query = FixRichMessageWithAi(
+            message: message
         )
         return try await self.execute(query: query)
     }
@@ -5650,6 +5840,80 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
+    /// - Parameter callbackQueryId: Identifier of the callback query which triggered the message; for bots only
+    /// - Parameter chatId: Target chat
+    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    /// - Parameter onlyPreview: Pass true to get a fake message instead of actually sending them
+    /// - Parameter receiverUserId: Identifier of the user who will receive the message
+    /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
+    /// - Parameter replyTo: Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
+    /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// - Parameter topicId: Topic in which the message will be sent; pass null if none
+    /// - Returns: The sent message
+    public func sendEphemeralMessage(
+        callbackQueryId: TdInt64?,
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        onlyPreview: Bool?,
+        receiverUserId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        replyTo: InputMessageReplyTo?,
+        sendingId: Int?,
+        topicId: MessageTopic?,
+        completion: @escaping (Result<Message, Swift.Error>) -> Void
+    ) throws {
+        let query = SendEphemeralMessage(
+            callbackQueryId: callbackQueryId,
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            onlyPreview: onlyPreview,
+            receiverUserId: receiverUserId,
+            replyMarkup: replyMarkup,
+            replyTo: replyTo,
+            sendingId: sendingId,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
+    /// - Parameter callbackQueryId: Identifier of the callback query which triggered the message; for bots only
+    /// - Parameter chatId: Target chat
+    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    /// - Parameter onlyPreview: Pass true to get a fake message instead of actually sending them
+    /// - Parameter receiverUserId: Identifier of the user who will receive the message
+    /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
+    /// - Parameter replyTo: Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
+    /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// - Parameter topicId: Topic in which the message will be sent; pass null if none
+    /// - Returns: The sent message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func sendEphemeralMessage(
+        callbackQueryId: TdInt64?,
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        onlyPreview: Bool?,
+        receiverUserId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        replyTo: InputMessageReplyTo?,
+        sendingId: Int?,
+        topicId: MessageTopic?
+    ) async throws -> Message {
+        let query = SendEphemeralMessage(
+            callbackQueryId: callbackQueryId,
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            onlyPreview: onlyPreview,
+            receiverUserId: receiverUserId,
+            replyMarkup: replyMarkup,
+            replyTo: replyTo,
+            sendingId: sendingId,
+            topicId: topicId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
     /// - Parameter chatId: Target chat; channel direct messages chats aren't supported
     /// - Parameter disableNotification: Pass true to disable notification for the message
@@ -5733,6 +5997,43 @@ public final class TdApi {
             chatId: chatId,
             messageIds: messageIds,
             revoke: revoke
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes an ephemeral message; for bots only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter ephemeralMessageId: Identifiers of the message to be deleted
+    /// - Parameter receiverUserId: Identifier of the user who received the message
+    public func deleteEphemeralMessage(
+        chatId: Int64?,
+        ephemeralMessageId: Int?,
+        receiverUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteEphemeralMessage(
+            chatId: chatId,
+            ephemeralMessageId: ephemeralMessageId,
+            receiverUserId: receiverUserId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes an ephemeral message; for bots only
+    /// - Parameter chatId: Chat identifier
+    /// - Parameter ephemeralMessageId: Identifiers of the message to be deleted
+    /// - Parameter receiverUserId: Identifier of the user who received the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteEphemeralMessage(
+        chatId: Int64?,
+        ephemeralMessageId: Int?,
+        receiverUserId: Int64?
+    ) async throws -> Ok {
+        let query = DeleteEphemeralMessage(
+            chatId: chatId,
+            ephemeralMessageId: ephemeralMessageId,
+            receiverUserId: receiverUserId
         )
         return try await self.execute(query: query)
     }
@@ -6075,9 +6376,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Edits the text of an inline text or game message sent via a bot; for bots only
+    /// Edits the text of an inline text or game message sent via the bot; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage; file upload isn't supported
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public func editInlineMessageText(
         inlineMessageId: String?,
@@ -6093,9 +6394,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Edits the text of an inline text or game message sent via a bot; for bots only
+    /// Edits the text of an inline text or game message sent via the bot; for bots only
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
+    /// - Parameter inputMessageContent: New text content of the message. Must be of type inputMessageText or inputMessageRichMessage; file upload isn't supported
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -6255,6 +6556,55 @@ public final class TdApi {
     ) async throws -> Ok {
         let query = EditInlineMessageReplyMarkup(
             inlineMessageId: inlineMessageId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter ephemeralMessageId: Identifier of the ephemeral message
+    /// - Parameter inputMessageContent: New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter receiverUserId: Identifier of the user who received the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public func editEphemeralMessage(
+        chatId: Int64?,
+        ephemeralMessageId: Int?,
+        inputMessageContent: InputMessageContent?,
+        receiverUserId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditEphemeralMessage(
+            chatId: chatId,
+            ephemeralMessageId: ephemeralMessageId,
+            inputMessageContent: inputMessageContent,
+            receiverUserId: receiverUserId,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter ephemeralMessageId: Identifier of the ephemeral message
+    /// - Parameter inputMessageContent: New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter receiverUserId: Identifier of the user who received the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func editEphemeralMessage(
+        chatId: Int64?,
+        ephemeralMessageId: Int?,
+        inputMessageContent: InputMessageContent?,
+        receiverUserId: Int64?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> Ok {
+        let query = EditEphemeralMessage(
+            chatId: chatId,
+            ephemeralMessageId: ephemeralMessageId,
+            inputMessageContent: inputMessageContent,
+            receiverUserId: receiverUserId,
             replyMarkup: replyMarkup
         )
         return try await self.execute(query: query)
@@ -9006,9 +9356,9 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+    /// Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously
     /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
-    /// - Returns: An emoji for the given country. Returns an empty string on failure
+    /// - Returns: An emoji for the flag of the given country. Returns an empty string on failure
     public func getCountryFlagEmoji(
         countryCode: String?,
         completion: @escaping (Result<Text, Swift.Error>) -> Void
@@ -9019,9 +9369,9 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+    /// Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously
     /// - Parameter countryCode: A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
-    /// - Returns: An emoji for the given country. Returns an empty string on failure
+    /// - Returns: An emoji for the flag of the given country. Returns an empty string on failure
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getCountryFlagEmoji(countryCode: String?) async throws -> Text {
         let query = GetCountryFlagEmoji(
@@ -10246,6 +10596,38 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns an HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
+    /// - Parameter parameters: Parameters to use to open the Web App
+    /// - Parameter queryId: Unique identifier of the join request as received in chatJoinResultGuardBotApprovalRequired
+    /// - Returns: An HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
+    public func getGuardBotWebAppUrl(
+        parameters: WebAppOpenParameters?,
+        queryId: TdInt64?,
+        completion: @escaping (Result<WebAppUrl, Swift.Error>) -> Void
+    ) throws {
+        let query = GetGuardBotWebAppUrl(
+            parameters: parameters,
+            queryId: queryId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns an HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
+    /// - Parameter parameters: Parameters to use to open the Web App
+    /// - Parameter queryId: Unique identifier of the join request as received in chatJoinResultGuardBotApprovalRequired
+    /// - Returns: An HTTPS URL of a Web App of a guard bot to open after receiving chatJoinResultGuardBotApprovalRequired
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func getGuardBotWebAppUrl(
+        parameters: WebAppOpenParameters?,
+        queryId: TdInt64?
+    ) async throws -> WebAppUrl {
+        let query = GetGuardBotWebAppUrl(
+            parameters: parameters,
+            queryId: queryId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
     /// - Parameter botUserId: Identifier of the target bot
     /// - Parameter buttonText: Text of the keyboardButtonTypeWebApp button, which opened the Web App
@@ -10913,7 +11295,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
-    /// - Parameter message: Draft of the message
+    /// - Parameter message: Draft of the message; file upload isn't supported
     public func sendRichMessageDraft(
         chatId: Int64?,
         draftId: TdInt64?,
@@ -10934,7 +11316,7 @@ public final class TdApi {
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
-    /// - Parameter message: Draft of the message
+    /// - Parameter message: Draft of the message; file upload isn't supported
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendRichMessageDraft(
@@ -19835,44 +20217,24 @@ public final class TdApi {
     }
 
     /// Adds an audio file to the beginning of the profile audio files of the current user
-    /// - Parameter audio: The audio file to be added
-    /// - Parameter duration: Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
-    /// - Parameter performer: Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
-    /// - Parameter title: Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
+    /// - Parameter audio: The audio to add
     public func addProfileAudio(
-        audio: InputFile?,
-        duration: Int?,
-        performer: String?,
-        title: String?,
+        audio: InputAudio?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = AddProfileAudio(
-            audio: audio,
-            duration: duration,
-            performer: performer,
-            title: title
+            audio: audio
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Adds an audio file to the beginning of the profile audio files of the current user
-    /// - Parameter audio: The audio file to be added
-    /// - Parameter duration: Duration of the audio, in seconds; may be replaced by the server; ignored for already uploaded files
-    /// - Parameter performer: Performer of the audio; 0-64 characters, may be replaced by the server; ignored for already uploaded files
-    /// - Parameter title: Title of the audio; 0-64 characters; may be replaced by the server; ignored for already uploaded files
+    /// - Parameter audio: The audio to add
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public func addProfileAudio(
-        audio: InputFile?,
-        duration: Int?,
-        performer: String?,
-        title: String?
-    ) async throws -> Ok {
+    public func addProfileAudio(audio: InputAudio?) async throws -> Ok {
         let query = AddProfileAudio(
-            audio: audio,
-            duration: duration,
-            performer: performer,
-            title: title
+            audio: audio
         )
         return try await self.execute(query: query)
     }
@@ -22594,12 +22956,12 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount. An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
+    /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max"). An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
     /// - Parameter managerBotUserId: Identifier of the bot that will manage the created bot
     /// - Parameter name: Name of the bot; 1-64 characters
     /// - Parameter username: Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
     /// - Parameter viaLink: Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
-    /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount
+    /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max")
     public func createBot(
         managerBotUserId: Int64?,
         name: String?,
@@ -22616,12 +22978,12 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount. An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
+    /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max"). An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
     /// - Parameter managerBotUserId: Identifier of the bot that will manage the created bot
     /// - Parameter name: Name of the bot; 1-64 characters
     /// - Parameter username: Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
     /// - Parameter viaLink: Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
-    /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per premiumLimitTypeOwnedBotCount
+    /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max")
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func createBot(
         managerBotUserId: Int64?,
@@ -25310,7 +25672,7 @@ public final class TdApi {
     }
 
     /// Changes resale price of a unique gift owned by the current user
-    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") Toncoins for each 1000 Toncoins paid for the gift if the gift price is in Toncoins
+    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
     /// - Parameter receivedGiftId: Identifier of the unique gift
     public func setGiftResalePrice(
         price: GiftResalePrice?,
@@ -25325,7 +25687,7 @@ public final class TdApi {
     }
 
     /// Changes resale price of a unique gift owned by the current user
-    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") Toncoins for each 1000 Toncoins paid for the gift if the gift price is in Toncoins
+    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
     /// - Parameter receivedGiftId: Identifier of the unique gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -26921,11 +27283,11 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of Toncoin transactions of the current user
+    /// Returns the list of TON blockchain transactions of the current user
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: The list of Toncoin transactions of the current user
+    /// - Returns: The list of TON blockchain transactions of the current user
     public func getTonTransactions(
         direction: TransactionDirection?,
         limit: Int?,
@@ -26940,11 +27302,11 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of Toncoin transactions of the current user
+    /// Returns the list of TON blockchain transactions of the current user
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: The list of Toncoin transactions of the current user
+    /// - Returns: The list of TON blockchain transactions of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTonTransactions(
         direction: TransactionDirection?,
@@ -27053,49 +27415,49 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns detailed Toncoin revenue statistics of the current user
+    /// Returns detailed TON Gram revenue statistics of the current user
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Returns: Detailed Toncoin revenue statistics of the current user
-    public func getTonRevenueStatistics(
+    /// - Returns: Detailed TON Gram revenue statistics of the current user
+    public func getGramRevenueStatistics(
         isDark: Bool?,
-        completion: @escaping (Result<TonRevenueStatistics, Swift.Error>) -> Void
+        completion: @escaping (Result<GramRevenueStatistics, Swift.Error>) -> Void
     ) throws {
-        let query = GetTonRevenueStatistics(
+        let query = GetGramRevenueStatistics(
             isDark: isDark
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns detailed Toncoin revenue statistics of the current user
+    /// Returns detailed TON Gram revenue statistics of the current user
     /// - Parameter isDark: Pass true if a dark theme is used by the application
-    /// - Returns: Detailed Toncoin revenue statistics of the current user
+    /// - Returns: Detailed TON Gram revenue statistics of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getTonRevenueStatistics(isDark: Bool?) async throws -> TonRevenueStatistics {
-        let query = GetTonRevenueStatistics(
+    public func getGramRevenueStatistics(isDark: Bool?) async throws -> GramRevenueStatistics {
+        let query = GetGramRevenueStatistics(
             isDark: isDark
         )
         return try await self.execute(query: query)
     }
 
-    /// Returns a URL for Toncoin withdrawal from the current user's account. The user must have at least 10 toncoins to withdraw and can withdraw up to 100000 Toncoins in one transaction
+    /// Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw and can withdraw up to 100000 Grams in one transaction
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Returns: A URL for Toncoin withdrawal from the current user's account
-    public func getTonWithdrawalUrl(
+    /// - Returns: A URL for TON Gram withdrawal from the current user's account
+    public func getGramWithdrawalUrl(
         password: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
-        let query = GetTonWithdrawalUrl(
+        let query = GetGramWithdrawalUrl(
             password: password
         )
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a URL for Toncoin withdrawal from the current user's account. The user must have at least 10 toncoins to withdraw and can withdraw up to 100000 Toncoins in one transaction
+    /// Returns a URL for TON Gram withdrawal from the current user's account. The user must have at least 10 Grams to withdraw and can withdraw up to 100000 Grams in one transaction
     /// - Parameter password: The 2-step verification password of the current user
-    /// - Returns: A URL for Toncoin withdrawal from the current user's account
+    /// - Returns: A URL for TON Gram withdrawal from the current user's account
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getTonWithdrawalUrl(password: String?) async throws -> HttpUrl {
-        let query = GetTonWithdrawalUrl(
+    public func getGramWithdrawalUrl(password: String?) async throws -> HttpUrl {
+        let query = GetGramWithdrawalUrl(
             password: password
         )
         return try await self.execute(query: query)
@@ -28190,7 +28552,7 @@ public final class TdApi {
         needsRepainting: Bool?,
         source: String?,
         stickerType: StickerType?,
-        stickers: [InputSticker]?,
+        stickers: [NewSticker]?,
         title: String?,
         userId: Int64?,
         completion: @escaping (Result<StickerSet, Swift.Error>) -> Void
@@ -28222,7 +28584,7 @@ public final class TdApi {
         needsRepainting: Bool?,
         source: String?,
         stickerType: StickerType?,
-        stickers: [InputSticker]?,
+        stickers: [NewSticker]?,
         title: String?,
         userId: Int64?
     ) async throws -> StickerSet {
@@ -28244,7 +28606,7 @@ public final class TdApi {
     /// - Parameter userId: Sticker set owner; ignored for regular users
     public func addStickerToSet(
         name: String?,
-        sticker: InputSticker?,
+        sticker: NewSticker?,
         userId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
@@ -28264,7 +28626,7 @@ public final class TdApi {
     @discardableResult
     public func addStickerToSet(
         name: String?,
-        sticker: InputSticker?,
+        sticker: NewSticker?,
         userId: Int64?
     ) async throws -> Ok {
         let query = AddStickerToSet(
@@ -28282,7 +28644,7 @@ public final class TdApi {
     /// - Parameter userId: Sticker set owner; ignored for regular users
     public func replaceStickerInSet(
         name: String?,
-        newSticker: InputSticker?,
+        newSticker: NewSticker?,
         oldSticker: InputFile?,
         userId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
@@ -28305,7 +28667,7 @@ public final class TdApi {
     @discardableResult
     public func replaceStickerInSet(
         name: String?,
-        newSticker: InputSticker?,
+        newSticker: NewSticker?,
         oldSticker: InputFile?,
         userId: Int64?
     ) async throws -> Ok {

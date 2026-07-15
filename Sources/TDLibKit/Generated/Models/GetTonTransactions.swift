@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
 
 
-/// Returns the list of Toncoin transactions of the current user
+/// Returns the list of TON blockchain transactions of the current user
 public struct GetTonTransactions: Codable, Equatable, Hashable {
 
     /// Direction of the transactions to receive; pass null to get all transactions

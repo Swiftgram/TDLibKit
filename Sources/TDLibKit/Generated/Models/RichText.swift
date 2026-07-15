@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -32,6 +32,15 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A spoilered rich text
     case richTextSpoiler(RichTextSpoiler)
 
+    /// A subscript rich text
+    case richTextSubscript(RichTextSubscript)
+
+    /// A superscript rich text
+    case richTextSuperscript(RichTextSuperscript)
+
+    /// A marked rich text
+    case richTextMarked(RichTextMarked)
+
     /// A date and time
     case richTextDateTime(RichTextDateTime)
 
@@ -43,6 +52,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
 
     /// A cashtag
     case richTextCashtag(RichTextCashtag)
+
+    /// A bank card number
+    case richTextBankCardNumber(RichTextBankCardNumber)
 
     /// A bot command
     case richTextBotCommand(RichTextBotCommand)
@@ -59,18 +71,6 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A rich text email address
     case richTextEmailAddress(RichTextEmailAddress)
 
-    /// A bank card number
-    case richTextBankCardNumber(RichTextBankCardNumber)
-
-    /// A subscript rich text
-    case richTextSubscript(RichTextSubscript)
-
-    /// A superscript rich text
-    case richTextSuperscript(RichTextSuperscript)
-
-    /// A marked rich text
-    case richTextMarked(RichTextMarked)
-
     /// A rich text phone number
     case richTextPhoneNumber(RichTextPhoneNumber)
 
@@ -82,6 +82,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
 
     /// A mathematical expression
     case richTextMathematicalExpression(RichTextMathematicalExpression)
+
+    /// A rich text replacing another rich text; not supported in inputRichMessage
+    case richTextDiff(RichTextDiff)
 
     /// A reference
     case richTextReference(RichTextReference)
@@ -106,23 +109,24 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case richTextUnderline
         case richTextStrikethrough
         case richTextSpoiler
+        case richTextSubscript
+        case richTextSuperscript
+        case richTextMarked
         case richTextDateTime
         case richTextMention
         case richTextHashtag
         case richTextCashtag
+        case richTextBankCardNumber
         case richTextBotCommand
         case richTextFixed
         case richTextMentionName
         case richTextUrl
         case richTextEmailAddress
-        case richTextBankCardNumber
-        case richTextSubscript
-        case richTextSuperscript
-        case richTextMarked
         case richTextPhoneNumber
         case richTextCustomEmoji
         case richTextIcon
         case richTextMathematicalExpression
+        case richTextDiff
         case richTextReference
         case richTextReferenceLink
         case richTextAnchor
@@ -152,6 +156,15 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextSpoiler:
             let value = try RichTextSpoiler(from: decoder)
             self = .richTextSpoiler(value)
+        case .richTextSubscript:
+            let value = try RichTextSubscript(from: decoder)
+            self = .richTextSubscript(value)
+        case .richTextSuperscript:
+            let value = try RichTextSuperscript(from: decoder)
+            self = .richTextSuperscript(value)
+        case .richTextMarked:
+            let value = try RichTextMarked(from: decoder)
+            self = .richTextMarked(value)
         case .richTextDateTime:
             let value = try RichTextDateTime(from: decoder)
             self = .richTextDateTime(value)
@@ -164,6 +177,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextCashtag:
             let value = try RichTextCashtag(from: decoder)
             self = .richTextCashtag(value)
+        case .richTextBankCardNumber:
+            let value = try RichTextBankCardNumber(from: decoder)
+            self = .richTextBankCardNumber(value)
         case .richTextBotCommand:
             let value = try RichTextBotCommand(from: decoder)
             self = .richTextBotCommand(value)
@@ -179,18 +195,6 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextEmailAddress:
             let value = try RichTextEmailAddress(from: decoder)
             self = .richTextEmailAddress(value)
-        case .richTextBankCardNumber:
-            let value = try RichTextBankCardNumber(from: decoder)
-            self = .richTextBankCardNumber(value)
-        case .richTextSubscript:
-            let value = try RichTextSubscript(from: decoder)
-            self = .richTextSubscript(value)
-        case .richTextSuperscript:
-            let value = try RichTextSuperscript(from: decoder)
-            self = .richTextSuperscript(value)
-        case .richTextMarked:
-            let value = try RichTextMarked(from: decoder)
-            self = .richTextMarked(value)
         case .richTextPhoneNumber:
             let value = try RichTextPhoneNumber(from: decoder)
             self = .richTextPhoneNumber(value)
@@ -203,6 +207,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextMathematicalExpression:
             let value = try RichTextMathematicalExpression(from: decoder)
             self = .richTextMathematicalExpression(value)
+        case .richTextDiff:
+            let value = try RichTextDiff(from: decoder)
+            self = .richTextDiff(value)
         case .richTextReference:
             let value = try RichTextReference(from: decoder)
             self = .richTextReference(value)
@@ -242,6 +249,15 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextSpoiler(let value):
             try container.encode(Kind.richTextSpoiler, forKey: .type)
             try value.encode(to: encoder)
+        case .richTextSubscript(let value):
+            try container.encode(Kind.richTextSubscript, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextSuperscript(let value):
+            try container.encode(Kind.richTextSuperscript, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextMarked(let value):
+            try container.encode(Kind.richTextMarked, forKey: .type)
+            try value.encode(to: encoder)
         case .richTextDateTime(let value):
             try container.encode(Kind.richTextDateTime, forKey: .type)
             try value.encode(to: encoder)
@@ -253,6 +269,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .richTextCashtag(let value):
             try container.encode(Kind.richTextCashtag, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextBankCardNumber(let value):
+            try container.encode(Kind.richTextBankCardNumber, forKey: .type)
             try value.encode(to: encoder)
         case .richTextBotCommand(let value):
             try container.encode(Kind.richTextBotCommand, forKey: .type)
@@ -269,18 +288,6 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextEmailAddress(let value):
             try container.encode(Kind.richTextEmailAddress, forKey: .type)
             try value.encode(to: encoder)
-        case .richTextBankCardNumber(let value):
-            try container.encode(Kind.richTextBankCardNumber, forKey: .type)
-            try value.encode(to: encoder)
-        case .richTextSubscript(let value):
-            try container.encode(Kind.richTextSubscript, forKey: .type)
-            try value.encode(to: encoder)
-        case .richTextSuperscript(let value):
-            try container.encode(Kind.richTextSuperscript, forKey: .type)
-            try value.encode(to: encoder)
-        case .richTextMarked(let value):
-            try container.encode(Kind.richTextMarked, forKey: .type)
-            try value.encode(to: encoder)
         case .richTextPhoneNumber(let value):
             try container.encode(Kind.richTextPhoneNumber, forKey: .type)
             try value.encode(to: encoder)
@@ -292,6 +299,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .richTextMathematicalExpression(let value):
             try container.encode(Kind.richTextMathematicalExpression, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextDiff(let value):
+            try container.encode(Kind.richTextDiff, forKey: .type)
             try value.encode(to: encoder)
         case .richTextReference(let value):
             try container.encode(Kind.richTextReference, forKey: .type)
@@ -384,6 +394,42 @@ public struct RichTextSpoiler: Codable, Equatable, Hashable {
     }
 }
 
+/// A subscript rich text
+public struct RichTextSubscript: Codable, Equatable, Hashable {
+
+    /// Text
+    public let text: RichText
+
+
+    public init(text: RichText) {
+        self.text = text
+    }
+}
+
+/// A superscript rich text
+public struct RichTextSuperscript: Codable, Equatable, Hashable {
+
+    /// Text
+    public let text: RichText
+
+
+    public init(text: RichText) {
+        self.text = text
+    }
+}
+
+/// A marked rich text
+public struct RichTextMarked: Codable, Equatable, Hashable {
+
+    /// Text
+    public let text: RichText
+
+
+    public init(text: RichText) {
+        self.text = text
+    }
+}
+
 /// A date and time
 public struct RichTextDateTime: Codable, Equatable, Hashable {
 
@@ -461,6 +507,25 @@ public struct RichTextCashtag: Codable, Equatable, Hashable {
         text: RichText
     ) {
         self.cashtag = cashtag
+        self.text = text
+    }
+}
+
+/// A bank card number
+public struct RichTextBankCardNumber: Codable, Equatable, Hashable {
+
+    /// The number of the bank card
+    public let bankCardNumber: String
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        bankCardNumber: String,
+        text: RichText
+    ) {
+        self.bankCardNumber = bankCardNumber
         self.text = text
     }
 }
@@ -558,61 +623,6 @@ public struct RichTextEmailAddress: Codable, Equatable, Hashable {
     }
 }
 
-/// A bank card number
-public struct RichTextBankCardNumber: Codable, Equatable, Hashable {
-
-    /// The number of the bank card
-    public let bankCardNumber: String
-
-    /// Text
-    public let text: RichText
-
-
-    public init(
-        bankCardNumber: String,
-        text: RichText
-    ) {
-        self.bankCardNumber = bankCardNumber
-        self.text = text
-    }
-}
-
-/// A subscript rich text
-public struct RichTextSubscript: Codable, Equatable, Hashable {
-
-    /// Text
-    public let text: RichText
-
-
-    public init(text: RichText) {
-        self.text = text
-    }
-}
-
-/// A superscript rich text
-public struct RichTextSuperscript: Codable, Equatable, Hashable {
-
-    /// Text
-    public let text: RichText
-
-
-    public init(text: RichText) {
-        self.text = text
-    }
-}
-
-/// A marked rich text
-public struct RichTextMarked: Codable, Equatable, Hashable {
-
-    /// Text
-    public let text: RichText
-
-
-    public init(text: RichText) {
-        self.text = text
-    }
-}
-
 /// A rich text phone number
 public struct RichTextPhoneNumber: Codable, Equatable, Hashable {
 
@@ -684,6 +694,25 @@ public struct RichTextMathematicalExpression: Codable, Equatable, Hashable {
 
     public init(expression: String) {
         self.expression = expression
+    }
+}
+
+/// A rich text replacing another rich text; not supported in inputRichMessage
+public struct RichTextDiff: Codable, Equatable, Hashable {
+
+    /// The old text
+    public let oldText: RichText
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        oldText: RichText,
+        text: RichText
+    ) {
+        self.oldText = oldText
+        self.text = text
     }
 }
 

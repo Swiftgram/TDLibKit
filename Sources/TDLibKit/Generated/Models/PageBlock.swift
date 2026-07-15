@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
 
 
-/// Describes a block of an instant view for a web page
+/// Describes a block of an instant view for a web page or a block of a rich message
 /// This Swift enum is recursive.
 public indirect enum PageBlock: Codable, Equatable, Hashable {
 

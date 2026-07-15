@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -85,21 +85,16 @@ public struct ChatJoinResultGuardBotApprovalRequired: Codable, Equatable, Hashab
     /// Identifier of the guard bot
     public let botUserId: Int64
 
-    /// Unique identifier of the join request, which will be used in updateChatJoinResult
-    public let queryId: Int64
-
-    /// The URL of the Web App to open
-    public let url: WebAppUrl
+    /// Unique identifier of the join request, which will be used in getGuardBotWebAppUrl and updateChatJoinResult
+    public let queryId: TdInt64
 
 
     public init(
         botUserId: Int64,
-        queryId: Int64,
-        url: WebAppUrl
+        queryId: TdInt64
     ) {
         self.botUserId = botUserId
         self.queryId = queryId
-        self.url = url
     }
 }
 

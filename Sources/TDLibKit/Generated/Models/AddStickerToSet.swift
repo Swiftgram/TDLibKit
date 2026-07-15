@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct AddStickerToSet: Codable, Equatable, Hashable {
     public let name: String?
 
     /// Sticker to add to the set
-    public let sticker: InputSticker?
+    public let sticker: NewSticker?
 
     /// Sticker set owner; ignored for regular users
     public let userId: Int64?
@@ -25,7 +25,7 @@ public struct AddStickerToSet: Codable, Equatable, Hashable {
 
     public init(
         name: String?,
-        sticker: InputSticker?,
+        sticker: NewSticker?,
         userId: Int64?
     ) {
         self.name = name

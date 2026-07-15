@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -37,11 +37,14 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
     public let date: Int
 
-    /// Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
+    /// Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages. If getOption("show_message_edit_date_by_default") is true, then the date must be shown along with the message instead of the date when the message was sent
     public let editDate: Int
 
     /// Unique identifier of the effect added to the message; 0 if none
     public let effectId: TdInt64
+
+    /// Unique identifier of the ephemeral message if the message is ephemeral; for bots only
+    public let ephemeralMessageId: Int
 
     /// Information about fact-check added to the message; may be null if none
     public let factCheck: FactCheck?
@@ -73,11 +76,11 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// True, if the message is outgoing
     public let isOutgoing: Bool
 
+    /// True, if the message is a suggested channel post which was paid in TON Grams; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    public let isPaidGramSuggestedPost: Bool
+
     /// True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     public let isPaidStarSuggestedPost: Bool
-
-    /// True, if the message is a suggested channel post which was paid in Toncoins; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
-    public let isPaidTonSuggestedPost: Bool
 
     /// True, if the message is pinned
     public let isPinned: Bool
@@ -87,6 +90,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// The number of Telegram Stars the sender paid to send the message
     public let paidMessageStarCount: Int64
+
+    /// Identifier of the user or the chat which received the ephemeral message; may be null. Always null for non-ephemeral messages
+    public let receiverId: MessageSender?
 
     /// Reply markup for the message; may be null if none
     public let replyMarkup: ReplyMarkup?
@@ -148,6 +154,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         date: Int,
         editDate: Int,
         effectId: TdInt64,
+        ephemeralMessageId: Int,
         factCheck: FactCheck?,
         forwardInfo: MessageForwardInfo?,
         guestBotCallerId: MessageSender?,
@@ -158,11 +165,12 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         isChannelPost: Bool,
         isFromOffline: Bool,
         isOutgoing: Bool,
+        isPaidGramSuggestedPost: Bool,
         isPaidStarSuggestedPost: Bool,
-        isPaidTonSuggestedPost: Bool,
         isPinned: Bool,
         mediaAlbumId: TdInt64,
         paidMessageStarCount: Int64,
+        receiverId: MessageSender?,
         replyMarkup: ReplyMarkup?,
         replyTo: MessageReplyTo?,
         restrictionInfo: RestrictionInfo?,
@@ -190,6 +198,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.date = date
         self.editDate = editDate
         self.effectId = effectId
+        self.ephemeralMessageId = ephemeralMessageId
         self.factCheck = factCheck
         self.forwardInfo = forwardInfo
         self.guestBotCallerId = guestBotCallerId
@@ -200,11 +209,12 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.isChannelPost = isChannelPost
         self.isFromOffline = isFromOffline
         self.isOutgoing = isOutgoing
+        self.isPaidGramSuggestedPost = isPaidGramSuggestedPost
         self.isPaidStarSuggestedPost = isPaidStarSuggestedPost
-        self.isPaidTonSuggestedPost = isPaidTonSuggestedPost
         self.isPinned = isPinned
         self.mediaAlbumId = mediaAlbumId
         self.paidMessageStarCount = paidMessageStarCount
+        self.receiverId = receiverId
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
         self.restrictionInfo = restrictionInfo

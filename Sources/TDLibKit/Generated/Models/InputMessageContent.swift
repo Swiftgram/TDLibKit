@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -446,31 +446,16 @@ public struct InputMessageSticker: Codable, Equatable, Hashable {
     /// Emoji used to choose the sticker
     public let emoji: String
 
-    /// Sticker height
-    public let height: Int
-
     /// Sticker to be sent
-    public let sticker: InputFile
-
-    /// Sticker thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail?
-
-    /// Sticker width
-    public let width: Int
+    public let sticker: InputSticker
 
 
     public init(
         emoji: String,
-        height: Int,
-        sticker: InputFile,
-        thumbnail: InputThumbnail?,
-        width: Int
+        sticker: InputSticker
     ) {
         self.emoji = emoji
-        self.height = height
         self.sticker = sticker
-        self.thumbnail = thumbnail
-        self.width = width
     }
 }
 
@@ -511,33 +496,18 @@ public struct InputMessageVideo: Codable, Equatable, Hashable {
 /// A video note message
 public struct InputMessageVideoNote: Codable, Equatable, Hashable {
 
-    /// Duration of the video, in seconds; 0-60
-    public let duration: Int
-
-    /// Video width and height; must be positive and not greater than 640
-    public let length: Int
-
     /// Video note self-destruct type; may be null if none; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
-    /// Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail?
-
-    /// Video note to be sent. The video is expected to be encoded to MPEG4 format with H.264 codec and have no data outside of the visible circle
-    public let videoNote: InputFile
+    /// Video note to be sent
+    public let videoNote: InputVideoNote
 
 
     public init(
-        duration: Int,
-        length: Int,
         selfDestructType: MessageSelfDestructType?,
-        thumbnail: InputThumbnail?,
-        videoNote: InputFile
+        videoNote: InputVideoNote
     ) {
-        self.duration = duration
-        self.length = length
         self.selfDestructType = selfDestructType
-        self.thumbnail = thumbnail
         self.videoNote = videoNote
     }
 }
@@ -548,31 +518,21 @@ public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
     /// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Duration of the voice note, in seconds
-    public let duration: Int
-
     /// Voice note self-destruct type; may be null if none; pass null if none; private chats only
     public let selfDestructType: MessageSelfDestructType?
 
-    /// Voice note to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio
-    public let voiceNote: InputFile
-
-    /// Waveform representation of the voice note in 5-bit format
-    public let waveform: Data
+    /// Voice note to be sent
+    public let voiceNote: InputVoiceNote
 
 
     public init(
         caption: FormattedText?,
-        duration: Int,
         selfDestructType: MessageSelfDestructType?,
-        voiceNote: InputFile,
-        waveform: Data
+        voiceNote: InputVoiceNote
     ) {
         self.caption = caption
-        self.duration = duration
         self.selfDestructType = selfDestructType
         self.voiceNote = voiceNote
-        self.waveform = waveform
     }
 }
 
@@ -824,8 +784,8 @@ public struct InputMessageStakeDice: Codable, Equatable, Hashable {
     /// Pass true to delete message draft in the chat
     public let clearDraft: Bool
 
-    /// The Toncoin amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
-    public let stakeToncoinAmount: Int64
+    /// The TON Gram amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
+    public let stakeGramAmount: Int64
 
     /// Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
     public let stateHash: String
@@ -833,11 +793,11 @@ public struct InputMessageStakeDice: Codable, Equatable, Hashable {
 
     public init(
         clearDraft: Bool,
-        stakeToncoinAmount: Int64,
+        stakeGramAmount: Int64,
         stateHash: String
     ) {
         self.clearDraft = clearDraft
-        self.stakeToncoinAmount = stakeToncoinAmount
+        self.stakeGramAmount = stakeGramAmount
         self.stateHash = stateHash
     }
 }

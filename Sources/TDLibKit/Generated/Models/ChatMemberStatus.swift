@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ChatMemberStatus: Codable, Equatable, Hashable {
     /// The user is the owner of the chat and has all the administrator privileges
     case chatMemberStatusCreator(ChatMemberStatusCreator)
 
-    /// The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
+    /// The user is a member of the chat and has some additional privileges. In basic groups, administrators have all applicable rights. In supergroups and channels, any subset of the rights can be chosen for an administrator
     case chatMemberStatusAdministrator(ChatMemberStatusAdministrator)
 
     /// The user is a member of the chat, without any additional privileges or restrictions
@@ -108,7 +108,7 @@ public struct ChatMemberStatusCreator: Codable, Equatable, Hashable {
     }
 }
 
-/// The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
+/// The user is a member of the chat and has some additional privileges. In basic groups, administrators have all applicable rights. In supergroups and channels, any subset of the rights can be chosen for an administrator
 public struct ChatMemberStatusAdministrator: Codable, Equatable, Hashable {
 
     /// True, if the current user can edit the administrator privileges for the called user

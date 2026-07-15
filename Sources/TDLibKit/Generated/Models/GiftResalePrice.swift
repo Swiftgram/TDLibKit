@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public indirect enum GiftResalePrice: Codable, Equatable, Hashable {
     /// Describes price of a resold gift in Telegram Stars
     case giftResalePriceStar(GiftResalePriceStar)
 
-    /// Describes price of a resold gift in Toncoins
-    case giftResalePriceTon(GiftResalePriceTon)
+    /// Describes price of a resold gift in TON Grams
+    case giftResalePriceGram(GiftResalePriceGram)
 
 
     private enum Kind: String, Codable {
         case giftResalePriceStar
-        case giftResalePriceTon
+        case giftResalePriceGram
     }
 
     public init(from decoder: Decoder) throws {
@@ -32,9 +32,9 @@ public indirect enum GiftResalePrice: Codable, Equatable, Hashable {
         case .giftResalePriceStar:
             let value = try GiftResalePriceStar(from: decoder)
             self = .giftResalePriceStar(value)
-        case .giftResalePriceTon:
-            let value = try GiftResalePriceTon(from: decoder)
-            self = .giftResalePriceTon(value)
+        case .giftResalePriceGram:
+            let value = try GiftResalePriceGram(from: decoder)
+            self = .giftResalePriceGram(value)
         }
     }
 
@@ -44,8 +44,8 @@ public indirect enum GiftResalePrice: Codable, Equatable, Hashable {
         case .giftResalePriceStar(let value):
             try container.encode(Kind.giftResalePriceStar, forKey: .type)
             try value.encode(to: encoder)
-        case .giftResalePriceTon(let value):
-            try container.encode(Kind.giftResalePriceTon, forKey: .type)
+        case .giftResalePriceGram(let value):
+            try container.encode(Kind.giftResalePriceGram, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -63,15 +63,15 @@ public struct GiftResalePriceStar: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes price of a resold gift in Toncoins
-public struct GiftResalePriceTon: Codable, Equatable, Hashable {
+/// Describes price of a resold gift in TON Grams
+public struct GiftResalePriceGram: Codable, Equatable, Hashable {
 
-    /// The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in the range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max")
-    public let toncoinCentCount: Int64
+    /// The amount of 1/100 of Gram expected to be paid for the gift. Must be in the range getOption("gift_resale_gram_cent_count_min")-getOption("gift_resale_gram_cent_count_max")
+    public let gramCentCount: Int64
 
 
-    public init(toncoinCentCount: Int64) {
-        self.toncoinCentCount = toncoinCentCount
+    public init(gramCentCount: Int64) {
+        self.gramCentCount = gramCentCount
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public indirect enum GiveawayParticipantStatus: Codable, Equatable, Hashable {
     /// The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
     case giveawayParticipantStatusAdministrator(GiveawayParticipantStatusAdministrator)
 
-    /// The user can't participate in the giveaway, because they phone number is from a disallowed country
+    /// The user can't participate in the giveaway, because their phone number is from a disallowed country
     case giveawayParticipantStatusDisallowedCountry(GiveawayParticipantStatusDisallowedCountry)
 
 
@@ -101,7 +101,7 @@ public struct GiveawayParticipantStatusAdministrator: Codable, Equatable, Hashab
     }
 }
 
-/// The user can't participate in the giveaway, because they phone number is from a disallowed country
+/// The user can't participate in the giveaway, because their phone number is from a disallowed country
 public struct GiveawayParticipantStatusDisallowedCountry: Codable, Equatable, Hashable {
 
     /// A two-letter ISO 3166-1 alpha-2 country code of the user's country

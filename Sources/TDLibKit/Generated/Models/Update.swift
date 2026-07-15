@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -229,6 +229,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
     case updatePendingMessage(UpdatePendingMessage)
 
+    /// Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
+    case updateCommunity(UpdateCommunity)
+
     /// The user went online or offline
     case updateUserStatus(UpdateUserStatus)
 
@@ -445,8 +448,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The number of Telegram Stars owned by the current user has changed
     case updateOwnedStarCount(UpdateOwnedStarCount)
 
-    /// The number of Toncoins owned by the current user has changed
-    case updateOwnedTonCount(UpdateOwnedTonCount)
+    /// The number of TON Grams owned by the current user has changed
+    case updateOwnedGramCount(UpdateOwnedGramCount)
 
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
@@ -454,8 +457,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
     case updateStarRevenueStatus(UpdateStarRevenueStatus)
 
-    /// The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
-    case updateTonRevenueStatus(UpdateTonRevenueStatus)
+    /// The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+    case updateGramRevenueStatus(UpdateGramRevenueStatus)
 
     /// The parameters of speech recognition without Telegram Premium subscription have changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
@@ -531,6 +534,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A new incoming query; for bots only
     case updateNewCustomQuery(UpdateNewCustomQuery)
+
+    /// Subscription of a user to the bot was changed; for bots only
+    case updateUserSubscription(UpdateUserSubscription)
 
     /// A poll was updated; for bots only
     case updatePoll(UpdatePoll)
@@ -633,6 +639,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateDeleteMessages
         case updateChatAction
         case updatePendingMessage
+        case updateCommunity
         case updateUserStatus
         case updateUser
         case updateBasicGroup
@@ -705,10 +712,10 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateSavedMessagesTags
         case updateActiveLiveLocationMessages
         case updateOwnedStarCount
-        case updateOwnedTonCount
+        case updateOwnedGramCount
         case updateChatRevenueAmount
         case updateStarRevenueStatus
-        case updateTonRevenueStatus
+        case updateGramRevenueStatus
         case updateSpeechRecognitionTrial
         case updateGroupCallMessageLevels
         case updateDiceEmojis
@@ -734,6 +741,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateNewPreCheckoutQuery
         case updateNewCustomEvent
         case updateNewCustomQuery
+        case updateUserSubscription
         case updatePoll
         case updatePollAnswer
         case updateManagedBot
@@ -965,6 +973,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updatePendingMessage:
             let value = try UpdatePendingMessage(from: decoder)
             self = .updatePendingMessage(value)
+        case .updateCommunity:
+            let value = try UpdateCommunity(from: decoder)
+            self = .updateCommunity(value)
         case .updateUserStatus:
             let value = try UpdateUserStatus(from: decoder)
             self = .updateUserStatus(value)
@@ -1181,18 +1192,18 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateOwnedStarCount:
             let value = try UpdateOwnedStarCount(from: decoder)
             self = .updateOwnedStarCount(value)
-        case .updateOwnedTonCount:
-            let value = try UpdateOwnedTonCount(from: decoder)
-            self = .updateOwnedTonCount(value)
+        case .updateOwnedGramCount:
+            let value = try UpdateOwnedGramCount(from: decoder)
+            self = .updateOwnedGramCount(value)
         case .updateChatRevenueAmount:
             let value = try UpdateChatRevenueAmount(from: decoder)
             self = .updateChatRevenueAmount(value)
         case .updateStarRevenueStatus:
             let value = try UpdateStarRevenueStatus(from: decoder)
             self = .updateStarRevenueStatus(value)
-        case .updateTonRevenueStatus:
-            let value = try UpdateTonRevenueStatus(from: decoder)
-            self = .updateTonRevenueStatus(value)
+        case .updateGramRevenueStatus:
+            let value = try UpdateGramRevenueStatus(from: decoder)
+            self = .updateGramRevenueStatus(value)
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
@@ -1268,6 +1279,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateNewCustomQuery:
             let value = try UpdateNewCustomQuery(from: decoder)
             self = .updateNewCustomQuery(value)
+        case .updateUserSubscription:
+            let value = try UpdateUserSubscription(from: decoder)
+            self = .updateUserSubscription(value)
         case .updatePoll:
             let value = try UpdatePoll(from: decoder)
             self = .updatePoll(value)
@@ -1517,6 +1531,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updatePendingMessage(let value):
             try container.encode(Kind.updatePendingMessage, forKey: .type)
             try value.encode(to: encoder)
+        case .updateCommunity(let value):
+            try container.encode(Kind.updateCommunity, forKey: .type)
+            try value.encode(to: encoder)
         case .updateUserStatus(let value):
             try container.encode(Kind.updateUserStatus, forKey: .type)
             try value.encode(to: encoder)
@@ -1733,8 +1750,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateOwnedStarCount(let value):
             try container.encode(Kind.updateOwnedStarCount, forKey: .type)
             try value.encode(to: encoder)
-        case .updateOwnedTonCount(let value):
-            try container.encode(Kind.updateOwnedTonCount, forKey: .type)
+        case .updateOwnedGramCount(let value):
+            try container.encode(Kind.updateOwnedGramCount, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatRevenueAmount(let value):
             try container.encode(Kind.updateChatRevenueAmount, forKey: .type)
@@ -1742,8 +1759,8 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStarRevenueStatus(let value):
             try container.encode(Kind.updateStarRevenueStatus, forKey: .type)
             try value.encode(to: encoder)
-        case .updateTonRevenueStatus(let value):
-            try container.encode(Kind.updateTonRevenueStatus, forKey: .type)
+        case .updateGramRevenueStatus(let value):
+            try container.encode(Kind.updateGramRevenueStatus, forKey: .type)
             try value.encode(to: encoder)
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
@@ -1819,6 +1836,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateNewCustomQuery(let value):
             try container.encode(Kind.updateNewCustomQuery, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateUserSubscription(let value):
+            try container.encode(Kind.updateUserSubscription, forKey: .type)
             try value.encode(to: encoder)
         case .updatePoll(let value):
             try container.encode(Kind.updatePoll, forKey: .type)
@@ -3345,6 +3365,18 @@ public struct UpdatePendingMessage: Codable, Equatable, Hashable {
     }
 }
 
+/// Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
+public struct UpdateCommunity: Codable, Equatable, Hashable {
+
+    /// New data about the community
+    public let community: Community
+
+
+    public init(community: Community) {
+        self.community = community
+    }
+}
+
 /// The user went online or offline
 public struct UpdateUserStatus: Codable, Equatable, Hashable {
 
@@ -4622,15 +4654,15 @@ public struct UpdateOwnedStarCount: Codable, Equatable, Hashable {
     }
 }
 
-/// The number of Toncoins owned by the current user has changed
-public struct UpdateOwnedTonCount: Codable, Equatable, Hashable {
+/// The number of TON Grams owned by the current user has changed
+public struct UpdateOwnedGramCount: Codable, Equatable, Hashable {
 
-    /// The new amount of owned Toncoins; in the smallest units of the cryptocurrency
-    public let tonAmount: Int64
+    /// The new amount of owned Grams; in the smallest units of the cryptocurrency
+    public let gramAmount: Int64
 
 
-    public init(tonAmount: Int64) {
-        self.tonAmount = tonAmount
+    public init(gramAmount: Int64) {
+        self.gramAmount = gramAmount
     }
 }
 
@@ -4672,14 +4704,14 @@ public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
     }
 }
 
-/// The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
-public struct UpdateTonRevenueStatus: Codable, Equatable, Hashable {
+/// The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+public struct UpdateGramRevenueStatus: Codable, Equatable, Hashable {
 
-    /// New Toncoin revenue status
-    public let status: TonRevenueStatus
+    /// New Gram revenue status
+    public let status: GramRevenueStatus
 
 
-    public init(status: TonRevenueStatus) {
+    public init(status: GramRevenueStatus) {
         self.status = status
     }
 }
@@ -5255,6 +5287,40 @@ public struct UpdateNewCustomQuery: Codable, Equatable, Hashable, Identifiable {
         self.data = data
         self.id = id
         self.timeout = timeout
+    }
+}
+
+/// Subscription of a user to the bot was changed; for bots only
+public struct UpdateUserSubscription: Codable, Equatable, Hashable {
+
+    /// True, if the subscription was canceled
+    public let isCanceled: Bool
+
+    /// True, if the payment for the subscription has failed
+    public let isPaymentFailed: Bool
+
+    /// True, if the subscription was restored
+    public let isRestored: Bool
+
+    /// Bot-specified subscription invoice payload
+    public let payload: String
+
+    /// Identifier of the user
+    public let userId: Int64
+
+
+    public init(
+        isCanceled: Bool,
+        isPaymentFailed: Bool,
+        isRestored: Bool,
+        payload: String,
+        userId: Int64
+    ) {
+        self.isCanceled = isCanceled
+        self.isPaymentFailed = isPaymentFailed
+        self.isRestored = isRestored
+        self.payload = payload
+        self.userId = userId
     }
 }
 

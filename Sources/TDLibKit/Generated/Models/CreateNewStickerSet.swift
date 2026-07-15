@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public struct CreateNewStickerSet: Codable, Equatable, Hashable {
     public let stickerType: StickerType?
 
     /// List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
-    public let stickers: [InputSticker]?
+    public let stickers: [NewSticker]?
 
     /// Sticker set title; 1-64 characters
     public let title: String?
@@ -40,7 +40,7 @@ public struct CreateNewStickerSet: Codable, Equatable, Hashable {
         needsRepainting: Bool?,
         source: String?,
         stickerType: StickerType?,
-        stickers: [InputSticker]?,
+        stickers: [NewSticker]?,
         title: String?,
         userId: Int64?
     ) {

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -49,7 +49,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
     public let canBePinned: Bool
 
-    /// True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage
+    /// True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage. Ephemeral messages can be replied only by other ephemeral messages
     public let canBeReplied: Bool
 
     /// True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -157,6 +157,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A chat member was deleted
     case messageChatDeleteMember(MessageChatDeleteMember)
 
+    /// The chat was added to a community
+    case messageChatAddedToCommunity(MessageChatAddedToCommunity)
+
+    /// The chat was removed from a community
+    case messageChatRemovedFromCommunity
+
     /// A basic group was upgraded to a supergroup and was deactivated as the result
     case messageChatUpgradeTo(MessageChatUpgradeTo)
 
@@ -238,7 +244,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Telegram Stars were gifted to a user
     case messageGiftedStars(MessageGiftedStars)
 
-    /// Toncoins were gifted to a user
+    /// TON Grams were gifted to a user
     case messageGiftedTon(MessageGiftedTon)
 
     /// Telegram Stars were received by the current user from a giveaway
@@ -369,6 +375,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageChatJoinByLink
         case messageChatJoinByRequest
         case messageChatDeleteMember
+        case messageChatAddedToCommunity
+        case messageChatRemovedFromCommunity
         case messageChatUpgradeTo
         case messageChatUpgradeFrom
         case messagePinMessage
@@ -566,6 +574,11 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageChatDeleteMember:
             let value = try MessageChatDeleteMember(from: decoder)
             self = .messageChatDeleteMember(value)
+        case .messageChatAddedToCommunity:
+            let value = try MessageChatAddedToCommunity(from: decoder)
+            self = .messageChatAddedToCommunity(value)
+        case .messageChatRemovedFromCommunity:
+            self = .messageChatRemovedFromCommunity
         case .messageChatUpgradeTo:
             let value = try MessageChatUpgradeTo(from: decoder)
             self = .messageChatUpgradeTo(value)
@@ -868,6 +881,11 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageChatDeleteMember(let value):
             try container.encode(Kind.messageChatDeleteMember, forKey: .type)
             try value.encode(to: encoder)
+        case .messageChatAddedToCommunity(let value):
+            try container.encode(Kind.messageChatAddedToCommunity, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageChatRemovedFromCommunity:
+            try container.encode(Kind.messageChatRemovedFromCommunity, forKey: .type)
         case .messageChatUpgradeTo(let value):
             try container.encode(Kind.messageChatUpgradeTo, forKey: .type)
             try value.encode(to: encoder)
@@ -1485,11 +1503,11 @@ public struct MessageStakeDice: Codable, Equatable, Hashable {
     /// The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
     public let initialState: DiceStickers?
 
-    /// The Toncoin amount that was gained from the roll; in the smallest units of the currency; -1 if the dice don't have final state yet
-    public let prizeToncoinAmount: Int64
+    /// The TON Gram amount that was gained from the roll; in the smallest units of the currency; -1 if the dice don't have final state yet
+    public let prizeGramAmount: Int64
 
-    /// The Toncoin amount that was staked; in the smallest units of the currency
-    public let stakeToncoinAmount: Int64
+    /// The TON Gram amount that was staked; in the smallest units of the currency
+    public let stakeGramAmount: Int64
 
     /// The dice value. If the value is 0, then the dice don't have final state yet
     public let value: Int
@@ -1498,14 +1516,14 @@ public struct MessageStakeDice: Codable, Equatable, Hashable {
     public init(
         finalState: DiceStickers?,
         initialState: DiceStickers?,
-        prizeToncoinAmount: Int64,
-        stakeToncoinAmount: Int64,
+        prizeGramAmount: Int64,
+        stakeGramAmount: Int64,
         value: Int
     ) {
         self.finalState = finalState
         self.initialState = initialState
-        self.prizeToncoinAmount = prizeToncoinAmount
-        self.stakeToncoinAmount = stakeToncoinAmount
+        self.prizeGramAmount = prizeGramAmount
+        self.stakeGramAmount = stakeGramAmount
         self.value = value
     }
 }
@@ -1914,6 +1932,18 @@ public struct MessageChatDeleteMember: Codable, Equatable, Hashable {
 
     public init(userId: Int64) {
         self.userId = userId
+    }
+}
+
+/// The chat was added to a community
+public struct MessageChatAddedToCommunity: Codable, Equatable, Hashable {
+
+    /// Identifier of the community to which the chat was added
+    public let communityId: Int64
+
+
+    public init(communityId: Int64) {
+        self.communityId = communityId
     }
 }
 
@@ -2634,36 +2664,36 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
     }
 }
 
-/// Toncoins were gifted to a user
+/// TON Grams were gifted to a user
 public struct MessageGiftedTon: Codable, Equatable, Hashable {
 
-    /// The identifier of a user who gifted Toncoins; 0 if the gift was anonymous or is outgoing
+    /// The identifier of a user who gifted Grams; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
-    /// The identifier of a user who received Toncoins; 0 if the gift is incoming
+    /// The received Gram amount, in the smallest units of the cryptocurrency
+    public let gramAmount: Int64
+
+    /// The identifier of a user who received Grams; 0 if the gift is incoming
     public let receiverUserId: Int64
 
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
 
-    /// The received Toncoin amount, in the smallest units of the cryptocurrency
-    public let tonAmount: Int64
-
-    /// Identifier of the transaction for Toncoin credit; for receiver only
+    /// Identifier of the transaction for Gram credit; for receiver only
     public let transactionId: String
 
 
     public init(
         gifterUserId: Int64,
+        gramAmount: Int64,
         receiverUserId: Int64,
         sticker: Sticker?,
-        tonAmount: Int64,
         transactionId: String
     ) {
         self.gifterUserId = gifterUserId
+        self.gramAmount = gramAmount
         self.receiverUserId = receiverUserId
         self.sticker = sticker
-        self.tonAmount = tonAmount
         self.transactionId = transactionId
     }
 }
@@ -3135,24 +3165,24 @@ public struct MessageSuggestedPostDeclined: Codable, Equatable, Hashable {
 /// A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
 public struct MessageSuggestedPostPaid: Codable, Equatable, Hashable {
 
+    /// The amount of received TON Grams; in the smallest units of the cryptocurrency
+    public let gramAmount: Int64
+
     /// The amount of received Telegram Stars
     public let starAmount: StarAmount
 
     /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     public let suggestedPostMessageId: Int64
 
-    /// The amount of received Toncoins; in the smallest units of the cryptocurrency
-    public let tonAmount: Int64
-
 
     public init(
+        gramAmount: Int64,
         starAmount: StarAmount,
-        suggestedPostMessageId: Int64,
-        tonAmount: Int64
+        suggestedPostMessageId: Int64
     ) {
+        self.gramAmount = gramAmount
         self.starAmount = starAmount
         self.suggestedPostMessageId = suggestedPostMessageId
-        self.tonAmount = tonAmount
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -22,11 +22,15 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
     /// Describes a story to be replied
     case inputMessageReplyToStory(InputMessageReplyToStory)
 
+    /// Describes an ephemeral message to be replied; for bots only
+    case inputMessageReplyToEphemeralMessage(InputMessageReplyToEphemeralMessage)
+
 
     private enum Kind: String, Codable {
         case inputMessageReplyToMessage
         case inputMessageReplyToExternalMessage
         case inputMessageReplyToStory
+        case inputMessageReplyToEphemeralMessage
     }
 
     public init(from decoder: Decoder) throws {
@@ -42,6 +46,9 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
         case .inputMessageReplyToStory:
             let value = try InputMessageReplyToStory(from: decoder)
             self = .inputMessageReplyToStory(value)
+        case .inputMessageReplyToEphemeralMessage:
+            let value = try InputMessageReplyToEphemeralMessage(from: decoder)
+            self = .inputMessageReplyToEphemeralMessage(value)
         }
     }
 
@@ -56,6 +63,9 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputMessageReplyToStory(let value):
             try container.encode(Kind.inputMessageReplyToStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputMessageReplyToEphemeralMessage(let value):
+            try container.encode(Kind.inputMessageReplyToEphemeralMessage, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -140,6 +150,18 @@ public struct InputMessageReplyToStory: Codable, Equatable, Hashable {
     ) {
         self.storyId = storyId
         self.storyPosterChatId = storyPosterChatId
+    }
+}
+
+/// Describes an ephemeral message to be replied; for bots only
+public struct InputMessageReplyToEphemeralMessage: Codable, Equatable, Hashable {
+
+    /// The identifier of the ephemeral message to be replied
+    public let ephemeralMessageId: Int
+
+
+    public init(ephemeralMessageId: Int) {
+        self.ephemeralMessageId = ephemeralMessageId
     }
 }
 

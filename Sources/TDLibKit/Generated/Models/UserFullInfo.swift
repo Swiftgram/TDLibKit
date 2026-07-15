@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -33,6 +33,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
 
     /// True, if the user can be called
     public let canBeCalled: Bool
+
+    /// Identifier of the community to which chat with the bot was added; for bots only
+    public let communityId: Int64
 
     /// The first audio file added to the user's profile; may be null if none
     public let firstProfileAudio: Audio?
@@ -115,6 +118,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         botVerification: BotVerification?,
         businessInfo: BusinessInfo?,
         canBeCalled: Bool,
+        communityId: Int64,
         firstProfileAudio: Audio?,
         giftCount: Int,
         giftSettings: GiftSettings,
@@ -147,6 +151,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.botVerification = botVerification
         self.businessInfo = businessInfo
         self.canBeCalled = canBeCalled
+        self.communityId = communityId
         self.firstProfileAudio = firstProfileAudio
         self.giftCount = giftCount
         self.giftSettings = giftSettings

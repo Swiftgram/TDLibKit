@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -196,29 +196,12 @@ public struct InputPollMediaPhoto: Codable, Equatable, Hashable {
 /// A sticker
 public struct InputPollMediaSticker: Codable, Equatable, Hashable {
 
-    /// Sticker height
-    public let height: Int
-
     /// Sticker to be sent
-    public let sticker: InputFile
-
-    /// Sticker thumbnail; pass null to skip thumbnail uploading
-    public let thumbnail: InputThumbnail?
-
-    /// Sticker width
-    public let width: Int
+    public let sticker: InputSticker
 
 
-    public init(
-        height: Int,
-        sticker: InputFile,
-        thumbnail: InputThumbnail?,
-        width: Int
-    ) {
-        self.height = height
+    public init(sticker: InputSticker) {
         self.sticker = sticker
-        self.thumbnail = thumbnail
-        self.width = width
     }
 }
 

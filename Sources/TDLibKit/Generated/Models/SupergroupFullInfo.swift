@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -60,6 +60,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
 
     /// True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     public let canToggleAggressiveAntiSpam: Bool
+
+    /// Identifier of the community to which the corresponding chat was added
+    public let communityId: Int64
 
     /// Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
     public let customEmojiStickerSetId: TdInt64
@@ -153,6 +156,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         canSetLocation: Bool,
         canSetStickerSet: Bool,
         canToggleAggressiveAntiSpam: Bool,
+        communityId: Int64,
         customEmojiStickerSetId: TdInt64,
         description: String,
         directMessagesChatId: Int64,
@@ -195,6 +199,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.canSetLocation = canSetLocation
         self.canSetStickerSet = canSetStickerSet
         self.canToggleAggressiveAntiSpam = canToggleAggressiveAntiSpam
+        self.communityId = communityId
         self.customEmojiStickerSetId = customEmojiStickerSetId
         self.description = description
         self.directMessagesChatId = directMessagesChatId

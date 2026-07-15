@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.65-a17f87c4
-//  https://github.com/tdlib/td/tree/a17f87c4
+//  Based on TDLib 1.8.66-07d3a097
+//  https://github.com/tdlib/td/tree/07d3a097
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public indirect enum SuggestedPostPrice: Codable, Equatable, Hashable {
     /// Describes price of a suggested post in Telegram Stars
     case suggestedPostPriceStar(SuggestedPostPriceStar)
 
-    /// Describes price of a suggested post in Toncoins
-    case suggestedPostPriceTon(SuggestedPostPriceTon)
+    /// Describes price of a suggested post in TON Grams
+    case suggestedPostPriceGram(SuggestedPostPriceGram)
 
 
     private enum Kind: String, Codable {
         case suggestedPostPriceStar
-        case suggestedPostPriceTon
+        case suggestedPostPriceGram
     }
 
     public init(from decoder: Decoder) throws {
@@ -32,9 +32,9 @@ public indirect enum SuggestedPostPrice: Codable, Equatable, Hashable {
         case .suggestedPostPriceStar:
             let value = try SuggestedPostPriceStar(from: decoder)
             self = .suggestedPostPriceStar(value)
-        case .suggestedPostPriceTon:
-            let value = try SuggestedPostPriceTon(from: decoder)
-            self = .suggestedPostPriceTon(value)
+        case .suggestedPostPriceGram:
+            let value = try SuggestedPostPriceGram(from: decoder)
+            self = .suggestedPostPriceGram(value)
         }
     }
 
@@ -44,8 +44,8 @@ public indirect enum SuggestedPostPrice: Codable, Equatable, Hashable {
         case .suggestedPostPriceStar(let value):
             try container.encode(Kind.suggestedPostPriceStar, forKey: .type)
             try value.encode(to: encoder)
-        case .suggestedPostPriceTon(let value):
-            try container.encode(Kind.suggestedPostPriceTon, forKey: .type)
+        case .suggestedPostPriceGram(let value):
+            try container.encode(Kind.suggestedPostPriceGram, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -63,15 +63,15 @@ public struct SuggestedPostPriceStar: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes price of a suggested post in Toncoins
-public struct SuggestedPostPriceTon: Codable, Equatable, Hashable {
+/// Describes price of a suggested post in TON Grams
+public struct SuggestedPostPriceGram: Codable, Equatable, Hashable {
 
-    /// The amount of 1/100 of Toncoin expected to be paid for the post; getOption("suggested_post_toncoin_cent_count_min")-getOption("suggested_post_toncoin_cent_count_max")
-    public let toncoinCentCount: Int64
+    /// The amount of 1/100 of Gram expected to be paid for the post; getOption("suggested_post_gram_cent_count_min")-getOption("suggested_post_gram_cent_count_max")
+    public let gramCentCount: Int64
 
 
-    public init(toncoinCentCount: Int64) {
-        self.toncoinCentCount = toncoinCentCount
+    public init(gramCentCount: Int64) {
+        self.gramCentCount = gramCentCount
     }
 }
 
