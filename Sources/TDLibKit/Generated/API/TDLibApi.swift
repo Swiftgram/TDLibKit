@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-07d3a097
-//  https://github.com/tdlib/td/tree/07d3a097
+//  Based on TDLib 1.8.66-1b08c83b
+//  https://github.com/tdlib/td/tree/1b08c83b
 //
 
 import Foundation
@@ -7866,8 +7866,8 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is readded, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
-    /// - Parameter messageIds: Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+    /// Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// - Parameter messageIds: Identifiers of the quick reply messages to re-add. Message identifiers must be in a strictly increasing order
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
     public final func readdQuickReplyShortcutMessages(
@@ -7882,8 +7882,8 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is readded, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
-    /// - Parameter messageIds: Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+    /// Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// - Parameter messageIds: Identifiers of the quick reply messages to re-add. Message identifiers must be in a strictly increasing order
     /// - Parameter shortcutName: Name of the target shortcut
     /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
