@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-1b08c83b
-//  https://github.com/tdlib/td/tree/1b08c83b
+//  Based on TDLib 1.8.66-d8d46dfa
+//  https://github.com/tdlib/td/tree/d8d46dfa
 //
 
 import Foundation
 
 
-/// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
+/// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
 public struct AddChatMembers: Codable, Equatable, Hashable {
 
     /// Chat identifier

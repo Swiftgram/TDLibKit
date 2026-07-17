@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-1b08c83b
-//  https://github.com/tdlib/td/tree/1b08c83b
+//  Based on TDLib 1.8.66-d8d46dfa
+//  https://github.com/tdlib/td/tree/d8d46dfa
 //
 
 import Foundation
@@ -13820,7 +13820,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
+    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     /// - Returns: Information about members that weren't added
@@ -13836,7 +13836,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
+    /// Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is available only in supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
     /// - Parameter chatId: Chat identifier
     /// - Parameter userIds: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     /// - Returns: Information about members that weren't added
@@ -16998,7 +16998,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -17025,7 +17025,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    /// Edits a non-primary invite link for a chat. Available in basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -17250,7 +17250,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
+    /// Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to be revoked
     /// - Returns: If a primary link is revoked, then additionally to the revoked link returns new primary link
@@ -17266,7 +17266,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
+    /// Revokes invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
     /// - Parameter chatId: Chat identifier
     /// - Parameter inviteLink: Invite link to be revoked
     /// - Returns: If a primary link is revoked, then additionally to the revoked link returns new primary link
@@ -24378,7 +24378,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
     /// - Parameter chatId: Chat identifier
     /// - Parameter filters: The types of events to return; pass null to get chat events of all types
     /// - Parameter fromEventId: Identifier of an event from which to return results. Use 0 to get results from the latest events
@@ -24406,7 +24406,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+    /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
     /// - Parameter chatId: Chat identifier
     /// - Parameter filters: The types of events to return; pass null to get chat events of all types
     /// - Parameter fromEventId: Identifier of an event from which to return results. Use 0 to get results from the latest events
@@ -25672,7 +25672,7 @@ public final class TdApi {
     }
 
     /// Changes resale price of a unique gift owned by the current user
-    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
+    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_gram_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
     /// - Parameter receivedGiftId: Identifier of the unique gift
     public func setGiftResalePrice(
         price: GiftResalePrice?,
@@ -25687,7 +25687,7 @@ public final class TdApi {
     }
 
     /// Changes resale price of a unique gift owned by the current user
-    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
+    /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_gram_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
     /// - Parameter receivedGiftId: Identifier of the unique gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
