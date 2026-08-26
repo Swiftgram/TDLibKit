@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -132,7 +132,7 @@ public struct StorePaymentPurposePremiumGift: Codable, Equatable, Hashable {
     /// Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     public let text: FormattedText
 
-    /// Identifiers of the user which will receive Telegram Premium
+    /// Identifier of the user who will receive Telegram Premium
     public let userId: Int64
 
 
@@ -164,7 +164,7 @@ public struct StorePaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable 
     /// Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     public let text: FormattedText
 
-    /// Identifiers of the users which can activate the gift codes
+    /// Identifiers of the users who can activate the gift codes
     public let userIds: [Int64]
 
 

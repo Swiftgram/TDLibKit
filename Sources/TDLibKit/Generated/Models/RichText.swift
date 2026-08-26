@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -83,6 +83,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A mathematical expression
     case richTextMathematicalExpression(RichTextMathematicalExpression)
 
+    /// A button
+    case richTextButton(RichTextButton)
+
     /// A rich text replacing another rich text; not supported in inputRichMessage
     case richTextDiff(RichTextDiff)
 
@@ -126,6 +129,7 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case richTextCustomEmoji
         case richTextIcon
         case richTextMathematicalExpression
+        case richTextButton
         case richTextDiff
         case richTextReference
         case richTextReferenceLink
@@ -207,6 +211,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextMathematicalExpression:
             let value = try RichTextMathematicalExpression(from: decoder)
             self = .richTextMathematicalExpression(value)
+        case .richTextButton:
+            let value = try RichTextButton(from: decoder)
+            self = .richTextButton(value)
         case .richTextDiff:
             let value = try RichTextDiff(from: decoder)
             self = .richTextDiff(value)
@@ -299,6 +306,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .richTextMathematicalExpression(let value):
             try container.encode(Kind.richTextMathematicalExpression, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextButton(let value):
+            try container.encode(Kind.richTextButton, forKey: .type)
             try value.encode(to: encoder)
         case .richTextDiff(let value):
             try container.encode(Kind.richTextDiff, forKey: .type)
@@ -694,6 +704,18 @@ public struct RichTextMathematicalExpression: Codable, Equatable, Hashable {
 
     public init(expression: String) {
         self.expression = expression
+    }
+}
+
+/// A button
+public struct RichTextButton: Codable, Equatable, Hashable {
+
+    /// The button
+    public let button: InlineButton
+
+
+    public init(button: InlineButton) {
+        self.button = button
     }
 }
 

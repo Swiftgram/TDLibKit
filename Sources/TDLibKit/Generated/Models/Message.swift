@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -25,6 +25,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Chat identifier
     public let chatId: Int64
 
+    /// Identifier that uniquely corresponds to the chat to which the message was sent; for bots only
+    public let chatInstance: TdInt64
+
     /// True, if the message contains an unread mention for the current user
     public let containsUnreadMention: Bool
 
@@ -42,6 +45,9 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the effect added to the message; 0 if none
     public let effectId: TdInt64
+
+    /// Content of the message, which is visible only to the current user and must be shown instead of the regular content; may be null if none
+    public let ephemeralContent: EphemeralMessageContent?
 
     /// Unique identifier of the ephemeral message if the message is ephemeral; for bots only
     public let ephemeralMessageId: Int
@@ -148,12 +154,14 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         autoDeleteIn: Double,
         canBeSaved: Bool,
         chatId: Int64,
+        chatInstance: TdInt64,
         containsUnreadMention: Bool,
         containsUnreadPollVotes: Bool,
         content: MessageContent,
         date: Int,
         editDate: Int,
         effectId: TdInt64,
+        ephemeralContent: EphemeralMessageContent?,
         ephemeralMessageId: Int,
         factCheck: FactCheck?,
         forwardInfo: MessageForwardInfo?,
@@ -192,12 +200,14 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
         self.autoDeleteIn = autoDeleteIn
         self.canBeSaved = canBeSaved
         self.chatId = chatId
+        self.chatInstance = chatInstance
         self.containsUnreadMention = containsUnreadMention
         self.containsUnreadPollVotes = containsUnreadPollVotes
         self.content = content
         self.date = date
         self.editDate = editDate
         self.effectId = effectId
+        self.ephemeralContent = ephemeralContent
         self.ephemeralMessageId = ephemeralMessageId
         self.factCheck = factCheck
         self.forwardInfo = forwardInfo

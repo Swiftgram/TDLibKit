@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -30,6 +30,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The message content has changed
     case updateMessageContent(UpdateMessageContent)
+
+    /// The message ephemeral content has changed
+    case updateMessageEphemeralContent(UpdateMessageEphemeralContent)
 
     /// A message was edited. Changes in the message content will come in a separate updateMessageContent
     case updateMessageEdited(UpdateMessageEdited)
@@ -166,6 +169,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A chat's has_scheduled_messages field has changed
     case updateChatHasScheduledMessages(UpdateChatHasScheduledMessages)
 
+    /// A chat's has_welcome_messages field has changed
+    case updateChatHasWelcomeMessages(UpdateChatHasWelcomeMessages)
+
     /// The list of chat folders or a chat folder has changed
     case updateChatFolders(UpdateChatFolders)
 
@@ -195,6 +201,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The list of quick reply shortcut messages has changed
     case updateQuickReplyShortcutMessages(UpdateQuickReplyShortcutMessages)
+
+    /// The list of welcome messages of a chat has changed
+    case updateChatWelcomeMessages(UpdateChatWelcomeMessages)
 
     /// Basic information about a topic in a forum chat was changed
     case updateForumTopicInfo(UpdateForumTopicInfo)
@@ -226,8 +235,11 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A message sender activity in the chat has changed
     case updateChatAction(UpdateChatAction)
 
-    /// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+    /// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id with animation, and be deleted whenever any incoming message or a pending message with another draft_id is received in the message thread
     case updatePendingMessage(UpdatePendingMessage)
+
+    /// A message draft generation was stopped by the user
+    case updateStopMessageDraft(UpdateStopMessageDraft)
 
     /// Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
     case updateCommunity(UpdateCommunity)
@@ -255,6 +267,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// Some data in supergroupFullInfo has been changed
     case updateSupergroupFullInfo(UpdateSupergroupFullInfo)
+
+    /// Some data in communityFullInfo has been changed
+    case updateCommunityFullInfo(UpdateCommunityFullInfo)
 
     /// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
     case updateServiceNotification(UpdateServiceNotification)
@@ -573,6 +588,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateMessageSendSucceeded
         case updateMessageSendFailed
         case updateMessageContent
+        case updateMessageEphemeralContent
         case updateMessageEdited
         case updateMessageIsPinned
         case updateMessageInteractionInfo
@@ -618,6 +634,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatViewAsTopics
         case updateChatBlockList
         case updateChatHasScheduledMessages
+        case updateChatHasWelcomeMessages
         case updateChatFolders
         case updateChatOnlineMemberCount
         case updateSavedMessagesTopic
@@ -628,6 +645,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateQuickReplyShortcutDeleted
         case updateQuickReplyShortcuts
         case updateQuickReplyShortcutMessages
+        case updateChatWelcomeMessages
         case updateForumTopicInfo
         case updateForumTopic
         case updateScopeNotificationSettings
@@ -639,6 +657,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateDeleteMessages
         case updateChatAction
         case updatePendingMessage
+        case updateStopMessageDraft
         case updateCommunity
         case updateUserStatus
         case updateUser
@@ -648,6 +667,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateUserFullInfo
         case updateBasicGroupFullInfo
         case updateSupergroupFullInfo
+        case updateCommunityFullInfo
         case updateServiceNotification
         case updateNewOauthRequest
         case updateFile
@@ -775,6 +795,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageContent:
             let value = try UpdateMessageContent(from: decoder)
             self = .updateMessageContent(value)
+        case .updateMessageEphemeralContent:
+            let value = try UpdateMessageEphemeralContent(from: decoder)
+            self = .updateMessageEphemeralContent(value)
         case .updateMessageEdited:
             let value = try UpdateMessageEdited(from: decoder)
             self = .updateMessageEdited(value)
@@ -910,6 +933,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatHasScheduledMessages:
             let value = try UpdateChatHasScheduledMessages(from: decoder)
             self = .updateChatHasScheduledMessages(value)
+        case .updateChatHasWelcomeMessages:
+            let value = try UpdateChatHasWelcomeMessages(from: decoder)
+            self = .updateChatHasWelcomeMessages(value)
         case .updateChatFolders:
             let value = try UpdateChatFolders(from: decoder)
             self = .updateChatFolders(value)
@@ -940,6 +966,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateQuickReplyShortcutMessages:
             let value = try UpdateQuickReplyShortcutMessages(from: decoder)
             self = .updateQuickReplyShortcutMessages(value)
+        case .updateChatWelcomeMessages:
+            let value = try UpdateChatWelcomeMessages(from: decoder)
+            self = .updateChatWelcomeMessages(value)
         case .updateForumTopicInfo:
             let value = try UpdateForumTopicInfo(from: decoder)
             self = .updateForumTopicInfo(value)
@@ -973,6 +1002,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updatePendingMessage:
             let value = try UpdatePendingMessage(from: decoder)
             self = .updatePendingMessage(value)
+        case .updateStopMessageDraft:
+            let value = try UpdateStopMessageDraft(from: decoder)
+            self = .updateStopMessageDraft(value)
         case .updateCommunity:
             let value = try UpdateCommunity(from: decoder)
             self = .updateCommunity(value)
@@ -1000,6 +1032,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSupergroupFullInfo:
             let value = try UpdateSupergroupFullInfo(from: decoder)
             self = .updateSupergroupFullInfo(value)
+        case .updateCommunityFullInfo:
+            let value = try UpdateCommunityFullInfo(from: decoder)
+            self = .updateCommunityFullInfo(value)
         case .updateServiceNotification:
             let value = try UpdateServiceNotification(from: decoder)
             self = .updateServiceNotification(value)
@@ -1333,6 +1368,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateMessageContent(let value):
             try container.encode(Kind.updateMessageContent, forKey: .type)
             try value.encode(to: encoder)
+        case .updateMessageEphemeralContent(let value):
+            try container.encode(Kind.updateMessageEphemeralContent, forKey: .type)
+            try value.encode(to: encoder)
         case .updateMessageEdited(let value):
             try container.encode(Kind.updateMessageEdited, forKey: .type)
             try value.encode(to: encoder)
@@ -1468,6 +1506,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatHasScheduledMessages(let value):
             try container.encode(Kind.updateChatHasScheduledMessages, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatHasWelcomeMessages(let value):
+            try container.encode(Kind.updateChatHasWelcomeMessages, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatFolders(let value):
             try container.encode(Kind.updateChatFolders, forKey: .type)
             try value.encode(to: encoder)
@@ -1497,6 +1538,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateQuickReplyShortcutMessages(let value):
             try container.encode(Kind.updateQuickReplyShortcutMessages, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateChatWelcomeMessages(let value):
+            try container.encode(Kind.updateChatWelcomeMessages, forKey: .type)
             try value.encode(to: encoder)
         case .updateForumTopicInfo(let value):
             try container.encode(Kind.updateForumTopicInfo, forKey: .type)
@@ -1531,6 +1575,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updatePendingMessage(let value):
             try container.encode(Kind.updatePendingMessage, forKey: .type)
             try value.encode(to: encoder)
+        case .updateStopMessageDraft(let value):
+            try container.encode(Kind.updateStopMessageDraft, forKey: .type)
+            try value.encode(to: encoder)
         case .updateCommunity(let value):
             try container.encode(Kind.updateCommunity, forKey: .type)
             try value.encode(to: encoder)
@@ -1557,6 +1604,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateSupergroupFullInfo(let value):
             try container.encode(Kind.updateSupergroupFullInfo, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateCommunityFullInfo(let value):
+            try container.encode(Kind.updateCommunityFullInfo, forKey: .type)
             try value.encode(to: encoder)
         case .updateServiceNotification(let value):
             try container.encode(Kind.updateServiceNotification, forKey: .type)
@@ -1978,6 +2028,30 @@ public struct UpdateMessageContent: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.messageId = messageId
         self.newContent = newContent
+    }
+}
+
+/// The message ephemeral content has changed
+public struct UpdateMessageEphemeralContent: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New ephemeral content of the message; may be null if none
+    public let ephemeralContent: EphemeralMessageContent?
+
+    /// Message identifier
+    public let messageId: Int64
+
+
+    public init(
+        chatId: Int64,
+        ephemeralContent: EphemeralMessageContent?,
+        messageId: Int64
+    ) {
+        self.chatId = chatId
+        self.ephemeralContent = ephemeralContent
+        self.messageId = messageId
     }
 }
 
@@ -2919,6 +2993,25 @@ public struct UpdateChatHasScheduledMessages: Codable, Equatable, Hashable {
     }
 }
 
+/// A chat's has_welcome_messages field has changed
+public struct UpdateChatHasWelcomeMessages: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// New value of has_welcome_messages
+    public let hasWelcomeMessages: Bool
+
+
+    public init(
+        chatId: Int64,
+        hasWelcomeMessages: Bool
+    ) {
+        self.chatId = chatId
+        self.hasWelcomeMessages = hasWelcomeMessages
+    }
+}
+
 /// The list of chat folders or a chat folder has changed
 public struct UpdateChatFolders: Codable, Equatable, Hashable {
 
@@ -3074,6 +3167,25 @@ public struct UpdateQuickReplyShortcutMessages: Codable, Equatable, Hashable {
     ) {
         self.messages = messages
         self.shortcutId = shortcutId
+    }
+}
+
+/// The list of welcome messages of a chat has changed
+public struct UpdateChatWelcomeMessages: Codable, Equatable, Hashable {
+
+    /// The identifier of the chat
+    public let chatId: Int64
+
+    /// The new list of welcome messages of the chat in the order from the first to the last sent
+    public let messages: [WelcomeMessage]
+
+
+    public init(
+        chatId: Int64,
+        messages: [WelcomeMessage]
+    ) {
+        self.chatId = chatId
+        self.messages = messages
     }
 }
 
@@ -3336,8 +3448,11 @@ public struct UpdateChatAction: Codable, Equatable, Hashable {
     }
 }
 
-/// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+/// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id with animation, and be deleted whenever any incoming message or a pending message with another draft_id is received in the message thread
 public struct UpdatePendingMessage: Codable, Equatable, Hashable {
+
+    /// True, if a button that calls stopPendingMessage to stop further message generation must be shown
+    public let canStop: Bool
 
     /// Chat identifier
     public let chatId: Int64
@@ -3351,15 +3466,46 @@ public struct UpdatePendingMessage: Codable, Equatable, Hashable {
     /// The forum topic identifier in which the message will be sent; 0 if none
     public let forumTopicId: Int
 
+    /// True, if the pending message must not be automatically deleted when the user presses the Stop button
+    public let keepOnStop: Bool
+
+
+    public init(
+        canStop: Bool,
+        chatId: Int64,
+        content: MessageContent,
+        draftId: TdInt64,
+        forumTopicId: Int,
+        keepOnStop: Bool
+    ) {
+        self.canStop = canStop
+        self.chatId = chatId
+        self.content = content
+        self.draftId = draftId
+        self.forumTopicId = forumTopicId
+        self.keepOnStop = keepOnStop
+    }
+}
+
+/// A message draft generation was stopped by the user
+public struct UpdateStopMessageDraft: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// Identifier of the message draft within the message thread
+    public let draftId: TdInt64
+
+    /// The forum topic identifier of the message draft
+    public let forumTopicId: Int
+
 
     public init(
         chatId: Int64,
-        content: MessageContent,
         draftId: TdInt64,
         forumTopicId: Int
     ) {
         self.chatId = chatId
-        self.content = content
         self.draftId = draftId
         self.forumTopicId = forumTopicId
     }
@@ -3498,6 +3644,25 @@ public struct UpdateSupergroupFullInfo: Codable, Equatable, Hashable {
     ) {
         self.supergroupFullInfo = supergroupFullInfo
         self.supergroupId = supergroupId
+    }
+}
+
+/// Some data in communityFullInfo has been changed
+public struct UpdateCommunityFullInfo: Codable, Equatable, Hashable {
+
+    /// New full information about the community
+    public let communityFullInfo: CommunityFullInfo
+
+    /// Identifier of the community
+    public let communityId: Int64
+
+
+    public init(
+        communityFullInfo: CommunityFullInfo,
+        communityId: Int64
+    ) {
+        self.communityFullInfo = communityFullInfo
+        self.communityId = communityId
     }
 }
 

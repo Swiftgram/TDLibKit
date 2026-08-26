@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -61,6 +61,9 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics
     public let canRestrictMembers: Bool
 
+    /// True, if the administrator can manage and send welcome messages
+    public let canSendWelcomeMessages: Bool
+
     /// True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     public let isAnonymous: Bool
 
@@ -82,6 +85,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
         canPostStories: Bool,
         canPromoteMembers: Bool,
         canRestrictMembers: Bool,
+        canSendWelcomeMessages: Bool,
         isAnonymous: Bool
     ) {
         self.canChangeInfo = canChangeInfo
@@ -100,6 +104,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
         self.canPostStories = canPostStories
         self.canPromoteMembers = canPromoteMembers
         self.canRestrictMembers = canRestrictMembers
+        self.canSendWelcomeMessages = canSendWelcomeMessages
         self.isAnonymous = isAnonymous
     }
 }

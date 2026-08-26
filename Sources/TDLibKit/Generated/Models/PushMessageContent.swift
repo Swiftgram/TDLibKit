@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -752,7 +752,7 @@ public struct PushMessageContentGiveaway: Codable, Equatable, Hashable {
     /// Prize of the giveaway; may be null for pinned message
     public let prize: GiveawayPrize?
 
-    /// Number of users which will receive giveaway prizes; 0 for pinned message
+    /// Number of users who will receive giveaway prizes; 0 for pinned message
     public let winnerCount: Int
 
 

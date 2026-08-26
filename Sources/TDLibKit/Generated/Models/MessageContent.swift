@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -154,6 +154,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A new member was accepted to the chat by an administrator
     case messageChatJoinByRequest
 
+    /// A new member joined the chat from a community
+    case messageChatJoinFromCommunity(MessageChatJoinFromCommunity)
+
     /// A chat member was deleted
     case messageChatDeleteMember(MessageChatDeleteMember)
 
@@ -245,7 +248,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     case messageGiftedStars(MessageGiftedStars)
 
     /// TON Grams were gifted to a user
-    case messageGiftedTon(MessageGiftedTon)
+    case messageGiftedGrams(MessageGiftedGrams)
 
     /// Telegram Stars were received by the current user from a giveaway
     case messageGiveawayPrizeStars(MessageGiveawayPrizeStars)
@@ -298,7 +301,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A contact has registered with Telegram
     case messageContactRegistered
 
-    /// The current user shared users, which were requested by the bot
+    /// The current user shared users who were requested by the bot
     case messageUsersShared(MessageUsersShared)
 
     /// The current user shared a chat, which was requested by the bot
@@ -374,6 +377,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageChatAddMembers
         case messageChatJoinByLink
         case messageChatJoinByRequest
+        case messageChatJoinFromCommunity
         case messageChatDeleteMember
         case messageChatAddedToCommunity
         case messageChatRemovedFromCommunity
@@ -404,7 +408,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGiveawayCompleted
         case messageGiveawayWinners
         case messageGiftedStars
-        case messageGiftedTon
+        case messageGiftedGrams
         case messageGiveawayPrizeStars
         case messageGift
         case messageUpgradedGift
@@ -571,6 +575,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             self = .messageChatJoinByLink
         case .messageChatJoinByRequest:
             self = .messageChatJoinByRequest
+        case .messageChatJoinFromCommunity:
+            let value = try MessageChatJoinFromCommunity(from: decoder)
+            self = .messageChatJoinFromCommunity(value)
         case .messageChatDeleteMember:
             let value = try MessageChatDeleteMember(from: decoder)
             self = .messageChatDeleteMember(value)
@@ -659,9 +666,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiftedStars:
             let value = try MessageGiftedStars(from: decoder)
             self = .messageGiftedStars(value)
-        case .messageGiftedTon:
-            let value = try MessageGiftedTon(from: decoder)
-            self = .messageGiftedTon(value)
+        case .messageGiftedGrams:
+            let value = try MessageGiftedGrams(from: decoder)
+            self = .messageGiftedGrams(value)
         case .messageGiveawayPrizeStars:
             let value = try MessageGiveawayPrizeStars(from: decoder)
             self = .messageGiveawayPrizeStars(value)
@@ -878,6 +885,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try container.encode(Kind.messageChatJoinByLink, forKey: .type)
         case .messageChatJoinByRequest:
             try container.encode(Kind.messageChatJoinByRequest, forKey: .type)
+        case .messageChatJoinFromCommunity(let value):
+            try container.encode(Kind.messageChatJoinFromCommunity, forKey: .type)
+            try value.encode(to: encoder)
         case .messageChatDeleteMember(let value):
             try container.encode(Kind.messageChatDeleteMember, forKey: .type)
             try value.encode(to: encoder)
@@ -966,8 +976,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiftedStars(let value):
             try container.encode(Kind.messageGiftedStars, forKey: .type)
             try value.encode(to: encoder)
-        case .messageGiftedTon(let value):
-            try container.encode(Kind.messageGiftedTon, forKey: .type)
+        case .messageGiftedGrams(let value):
+            try container.encode(Kind.messageGiftedGrams, forKey: .type)
             try value.encode(to: encoder)
         case .messageGiveawayPrizeStars(let value):
             try container.encode(Kind.messageGiveawayPrizeStars, forKey: .type)
@@ -1923,6 +1933,18 @@ public struct MessageChatAddMembers: Codable, Equatable, Hashable {
     }
 }
 
+/// A new member joined the chat from a community
+public struct MessageChatJoinFromCommunity: Codable, Equatable, Hashable {
+
+    /// Identifier of the community from which the user joined the chat
+    public let communityId: Int64
+
+
+    public init(communityId: Int64) {
+        self.communityId = communityId
+    }
+}
+
 /// A chat member was deleted
 public struct MessageChatDeleteMember: Codable, Equatable, Hashable {
 
@@ -2195,9 +2217,16 @@ public struct MessageManagedBotCreated: Codable, Equatable, Hashable {
     /// User identifier of the created bot
     public let botUserId: Int64
 
+    /// Identifier of the bot which will manage the new bot
+    public let managerBotUserId: Int64
 
-    public init(botUserId: Int64) {
+
+    public init(
+        botUserId: Int64,
+        managerBotUserId: Int64
+    ) {
         self.botUserId = botUserId
+        self.managerBotUserId = managerBotUserId
     }
 }
 
@@ -2500,7 +2529,7 @@ public struct MessageGiveaway: Codable, Equatable, Hashable {
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
 
-    /// Number of users which will receive Telegram Premium subscription gift codes
+    /// Number of users who will receive Telegram Premium subscription gift codes
     public let winnerCount: Int
 
 
@@ -2665,7 +2694,7 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
 }
 
 /// TON Grams were gifted to a user
-public struct MessageGiftedTon: Codable, Equatable, Hashable {
+public struct MessageGiftedGrams: Codable, Equatable, Hashable {
 
     /// The identifier of a user who gifted Grams; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
@@ -2859,6 +2888,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: UpgradedGift
 
+    /// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
+    public let isPrivate: Bool
+
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
@@ -2880,6 +2912,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// Sender of the gift; may be null for anonymous gifts
     public let senderId: MessageSender?
 
+    /// Message added to the gift
+    public let text: FormattedText
+
     /// Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
     public let transferStarCount: Int64
 
@@ -2893,6 +2928,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         dropOriginalDetailsStarCount: Int64,
         exportDate: Int,
         gift: UpgradedGift,
+        isPrivate: Bool,
         isSaved: Bool,
         nextResaleDate: Int,
         nextTransferDate: Int,
@@ -2900,6 +2936,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         receivedGiftId: String,
         receiverId: MessageSender,
         senderId: MessageSender?,
+        text: FormattedText,
         transferStarCount: Int64,
         wasTransferred: Bool
     ) {
@@ -2908,6 +2945,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.dropOriginalDetailsStarCount = dropOriginalDetailsStarCount
         self.exportDate = exportDate
         self.gift = gift
+        self.isPrivate = isPrivate
         self.isSaved = isSaved
         self.nextResaleDate = nextResaleDate
         self.nextTransferDate = nextTransferDate
@@ -2915,6 +2953,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.receivedGiftId = receivedGiftId
         self.receiverId = receiverId
         self.senderId = senderId
+        self.text = text
         self.transferStarCount = transferStarCount
         self.wasTransferred = wasTransferred
     }
@@ -3205,7 +3244,7 @@ public struct MessageSuggestedPostRefunded: Codable, Equatable, Hashable {
     }
 }
 
-/// The current user shared users, which were requested by the bot
+/// The current user shared users who were requested by the bot
 public struct MessageUsersShared: Codable, Equatable, Hashable {
 
     /// Identifier of the keyboard button with the request

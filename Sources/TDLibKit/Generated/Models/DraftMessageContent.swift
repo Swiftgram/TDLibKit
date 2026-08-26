@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -19,6 +19,9 @@ public indirect enum DraftMessageContent: Codable, Equatable, Hashable {
     /// A rich message draft; not supported in setChatDraftMessage
     case draftMessageContentRichMessage(DraftMessageContentRichMessage)
 
+    /// A rich message draft; only for setChatDraftMessage
+    case draftMessageContentInputRichMessage(DraftMessageContentInputRichMessage)
+
     /// A video note message draft
     case draftMessageContentVideoNote(DraftMessageContentVideoNote)
 
@@ -29,6 +32,7 @@ public indirect enum DraftMessageContent: Codable, Equatable, Hashable {
     private enum Kind: String, Codable {
         case draftMessageContentText
         case draftMessageContentRichMessage
+        case draftMessageContentInputRichMessage
         case draftMessageContentVideoNote
         case draftMessageContentVoiceNote
     }
@@ -43,6 +47,9 @@ public indirect enum DraftMessageContent: Codable, Equatable, Hashable {
         case .draftMessageContentRichMessage:
             let value = try DraftMessageContentRichMessage(from: decoder)
             self = .draftMessageContentRichMessage(value)
+        case .draftMessageContentInputRichMessage:
+            let value = try DraftMessageContentInputRichMessage(from: decoder)
+            self = .draftMessageContentInputRichMessage(value)
         case .draftMessageContentVideoNote:
             let value = try DraftMessageContentVideoNote(from: decoder)
             self = .draftMessageContentVideoNote(value)
@@ -60,6 +67,9 @@ public indirect enum DraftMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .draftMessageContentRichMessage(let value):
             try container.encode(Kind.draftMessageContentRichMessage, forKey: .type)
+            try value.encode(to: encoder)
+        case .draftMessageContentInputRichMessage(let value):
+            try container.encode(Kind.draftMessageContentInputRichMessage, forKey: .type)
             try value.encode(to: encoder)
         case .draftMessageContentVideoNote(let value):
             try container.encode(Kind.draftMessageContentVideoNote, forKey: .type)
@@ -93,11 +103,23 @@ public struct DraftMessageContentText: Codable, Equatable, Hashable {
 /// A rich message draft; not supported in setChatDraftMessage
 public struct DraftMessageContentRichMessage: Codable, Equatable, Hashable {
 
-    /// The rich message; the message must not have not yet uploaded media
+    /// The rich message
     public let message: RichMessage
 
 
     public init(message: RichMessage) {
+        self.message = message
+    }
+}
+
+/// A rich message draft; only for setChatDraftMessage
+public struct DraftMessageContentInputRichMessage: Codable, Equatable, Hashable {
+
+    /// The rich message
+    public let message: InputRichMessage
+
+
+    public init(message: InputRichMessage) {
         self.message = message
     }
 }

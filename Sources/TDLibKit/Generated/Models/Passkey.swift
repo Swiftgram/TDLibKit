@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct Passkey: Codable, Equatable, Hashable, Identifiable {
     /// Name of the passkey
     public let name: String
 
-    /// Identifier of the custom emoji that is used as the icon of the software, which created the passkey; 0 if unknown
+    /// Identifier of the custom emoji that is used as the icon of the software that created the passkey; 0 if unknown
     public let softwareIconCustomEmojiId: TdInt64
 
 

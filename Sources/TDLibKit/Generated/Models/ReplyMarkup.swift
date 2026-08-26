@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -105,6 +105,9 @@ public struct ReplyMarkupForceReply: Codable, Equatable, Hashable {
 /// Contains a custom keyboard layout to quickly reply to bots
 public struct ReplyMarkupShowKeyboard: Codable, Equatable, Hashable {
 
+    /// True, if the keyboard must force reply to the message with the keyboard
+    public let forceReply: Bool
+
     /// If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
     public let inputFieldPlaceholder: String
 
@@ -125,6 +128,7 @@ public struct ReplyMarkupShowKeyboard: Codable, Equatable, Hashable {
 
 
     public init(
+        forceReply: Bool,
         inputFieldPlaceholder: String,
         isPersistent: Bool,
         isPersonal: Bool,
@@ -132,6 +136,7 @@ public struct ReplyMarkupShowKeyboard: Codable, Equatable, Hashable {
         resizeKeyboard: Bool,
         rows: [[KeyboardButton]]
     ) {
+        self.forceReply = forceReply
         self.inputFieldPlaceholder = inputFieldPlaceholder
         self.isPersistent = isPersistent
         self.isPersonal = isPersonal
@@ -144,11 +149,18 @@ public struct ReplyMarkupShowKeyboard: Codable, Equatable, Hashable {
 /// Contains an inline keyboard layout
 public struct ReplyMarkupInlineKeyboard: Codable, Equatable, Hashable {
 
+    /// True, if a reply to the message must be forced when the message is received
+    public let forceReply: Bool
+
     /// A list of rows of inline keyboard buttons
     public let rows: [[InlineKeyboardButton]]
 
 
-    public init(rows: [[InlineKeyboardButton]]) {
+    public init(
+        forceReply: Bool,
+        rows: [[InlineKeyboardButton]]
+    ) {
+        self.forceReply = forceReply
         self.rows = rows
     }
 }

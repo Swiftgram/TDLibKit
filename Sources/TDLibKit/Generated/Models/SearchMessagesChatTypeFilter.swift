@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -22,11 +22,15 @@ public indirect enum SearchMessagesChatTypeFilter: Codable, Equatable, Hashable 
     /// Returns only messages in channel chats
     case searchMessagesChatTypeFilterChannel
 
+    /// Returns only messages in the specified community
+    case searchMessagesChatTypeFilterCommunity(SearchMessagesChatTypeFilterCommunity)
+
 
     private enum Kind: String, Codable {
         case searchMessagesChatTypeFilterPrivate
         case searchMessagesChatTypeFilterGroup
         case searchMessagesChatTypeFilterChannel
+        case searchMessagesChatTypeFilterCommunity
     }
 
     public init(from decoder: Decoder) throws {
@@ -39,6 +43,9 @@ public indirect enum SearchMessagesChatTypeFilter: Codable, Equatable, Hashable 
             self = .searchMessagesChatTypeFilterGroup
         case .searchMessagesChatTypeFilterChannel:
             self = .searchMessagesChatTypeFilterChannel
+        case .searchMessagesChatTypeFilterCommunity:
+            let value = try SearchMessagesChatTypeFilterCommunity(from: decoder)
+            self = .searchMessagesChatTypeFilterCommunity(value)
         }
     }
 
@@ -51,7 +58,22 @@ public indirect enum SearchMessagesChatTypeFilter: Codable, Equatable, Hashable 
             try container.encode(Kind.searchMessagesChatTypeFilterGroup, forKey: .type)
         case .searchMessagesChatTypeFilterChannel:
             try container.encode(Kind.searchMessagesChatTypeFilterChannel, forKey: .type)
+        case .searchMessagesChatTypeFilterCommunity(let value):
+            try container.encode(Kind.searchMessagesChatTypeFilterCommunity, forKey: .type)
+            try value.encode(to: encoder)
         }
+    }
+}
+
+/// Returns only messages in the specified community
+public struct SearchMessagesChatTypeFilterCommunity: Codable, Equatable, Hashable {
+
+    /// Identifier of the community to search in
+    public let communityId: Int64
+
+
+    public init(communityId: Int64) {
+        self.communityId = communityId
     }
 }
 

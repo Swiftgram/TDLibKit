@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -43,6 +43,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
     /// A block quote
     case inputPageBlockBlockQuote(InputPageBlockBlockQuote)
 
+    /// An expandable block quote
+    case inputPageBlockExpandableBlockQuote(InputPageBlockExpandableBlockQuote)
+
     /// A pull quote
     case inputPageBlockPullQuote(InputPageBlockPullQuote)
 
@@ -51,6 +54,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
 
     /// An audio file
     case inputPageBlockAudio(InputPageBlockAudio)
+
+    /// A general file
+    case inputPageBlockDocument(InputPageBlockDocument)
 
     /// A photo
     case inputPageBlockPhoto(InputPageBlockPhoto)
@@ -76,6 +82,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
     /// A map. The map's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
     case inputPageBlockMap(InputPageBlockMap)
 
+    /// A list of buttons shown in a row
+    case inputPageBlockButtonRow(InputPageBlockButtonRow)
+
 
     private enum Kind: String, Codable {
         case inputPageBlockSectionHeading
@@ -88,9 +97,11 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
         case inputPageBlockAnchor
         case inputPageBlockList
         case inputPageBlockBlockQuote
+        case inputPageBlockExpandableBlockQuote
         case inputPageBlockPullQuote
         case inputPageBlockAnimation
         case inputPageBlockAudio
+        case inputPageBlockDocument
         case inputPageBlockPhoto
         case inputPageBlockVideo
         case inputPageBlockVoiceNote
@@ -99,6 +110,7 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
         case inputPageBlockTable
         case inputPageBlockDetails
         case inputPageBlockMap
+        case inputPageBlockButtonRow
     }
 
     public init(from decoder: Decoder) throws {
@@ -134,6 +146,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
         case .inputPageBlockBlockQuote:
             let value = try InputPageBlockBlockQuote(from: decoder)
             self = .inputPageBlockBlockQuote(value)
+        case .inputPageBlockExpandableBlockQuote:
+            let value = try InputPageBlockExpandableBlockQuote(from: decoder)
+            self = .inputPageBlockExpandableBlockQuote(value)
         case .inputPageBlockPullQuote:
             let value = try InputPageBlockPullQuote(from: decoder)
             self = .inputPageBlockPullQuote(value)
@@ -143,6 +158,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
         case .inputPageBlockAudio:
             let value = try InputPageBlockAudio(from: decoder)
             self = .inputPageBlockAudio(value)
+        case .inputPageBlockDocument:
+            let value = try InputPageBlockDocument(from: decoder)
+            self = .inputPageBlockDocument(value)
         case .inputPageBlockPhoto:
             let value = try InputPageBlockPhoto(from: decoder)
             self = .inputPageBlockPhoto(value)
@@ -167,6 +185,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
         case .inputPageBlockMap:
             let value = try InputPageBlockMap(from: decoder)
             self = .inputPageBlockMap(value)
+        case .inputPageBlockButtonRow:
+            let value = try InputPageBlockButtonRow(from: decoder)
+            self = .inputPageBlockButtonRow(value)
         }
     }
 
@@ -202,6 +223,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
         case .inputPageBlockBlockQuote(let value):
             try container.encode(Kind.inputPageBlockBlockQuote, forKey: .type)
             try value.encode(to: encoder)
+        case .inputPageBlockExpandableBlockQuote(let value):
+            try container.encode(Kind.inputPageBlockExpandableBlockQuote, forKey: .type)
+            try value.encode(to: encoder)
         case .inputPageBlockPullQuote(let value):
             try container.encode(Kind.inputPageBlockPullQuote, forKey: .type)
             try value.encode(to: encoder)
@@ -210,6 +234,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputPageBlockAudio(let value):
             try container.encode(Kind.inputPageBlockAudio, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputPageBlockDocument(let value):
+            try container.encode(Kind.inputPageBlockDocument, forKey: .type)
             try value.encode(to: encoder)
         case .inputPageBlockPhoto(let value):
             try container.encode(Kind.inputPageBlockPhoto, forKey: .type)
@@ -234,6 +261,9 @@ public indirect enum InputPageBlock: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputPageBlockMap(let value):
             try container.encode(Kind.inputPageBlockMap, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputPageBlockButtonRow(let value):
+            try container.encode(Kind.inputPageBlockButtonRow, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -368,6 +398,25 @@ public struct InputPageBlockBlockQuote: Codable, Equatable, Hashable {
     }
 }
 
+/// An expandable block quote
+public struct InputPageBlockExpandableBlockQuote: Codable, Equatable, Hashable {
+
+    /// Quote credit; pass null if none
+    public let credit: RichText?
+
+    /// Quote text
+    public let text: RichText
+
+
+    public init(
+        credit: RichText?,
+        text: RichText
+    ) {
+        self.credit = credit
+        self.text = text
+    }
+}
+
 /// A pull quote
 public struct InputPageBlockPullQuote: Codable, Equatable, Hashable {
 
@@ -427,6 +476,25 @@ public struct InputPageBlockAudio: Codable, Equatable, Hashable {
     ) {
         self.audio = audio
         self.caption = caption
+    }
+}
+
+/// A general file
+public struct InputPageBlockDocument: Codable, Equatable, Hashable {
+
+    /// File caption; pass null if none
+    public let caption: PageBlockCaption?
+
+    /// The file to be sent
+    public let document: InputDocument
+
+
+    public init(
+        caption: PageBlockCaption?,
+        document: InputDocument
+    ) {
+        self.caption = caption
+        self.document = document
     }
 }
 
@@ -544,10 +612,13 @@ public struct InputPageBlockTable: Codable, Equatable, Hashable {
     /// Table cells
     public let cells: [[PageBlockTableCell]]
 
-    /// True, if the table is bordered
+    /// Pass true if the table is bordered
     public let isBordered: Bool
 
-    /// True, if the table is striped
+    /// Pass true if table cells must have smaller indents
+    public let isCompact: Bool
+
+    /// Pass true if the table is striped
     public let isStriped: Bool
 
 
@@ -555,11 +626,13 @@ public struct InputPageBlockTable: Codable, Equatable, Hashable {
         caption: RichText,
         cells: [[PageBlockTableCell]],
         isBordered: Bool,
+        isCompact: Bool,
         isStriped: Bool
     ) {
         self.caption = caption
         self.cells = cells
         self.isBordered = isBordered
+        self.isCompact = isCompact
         self.isStriped = isStriped
     }
 }
@@ -619,6 +692,25 @@ public struct InputPageBlockMap: Codable, Equatable, Hashable {
         self.location = location
         self.width = width
         self.zoom = zoom
+    }
+}
+
+/// A list of buttons shown in a row
+public struct InputPageBlockButtonRow: Codable, Equatable, Hashable {
+
+    /// Horizontal alignment of the buttons; pass null if the buttons must be shown full-width
+    public let align: PageBlockHorizontalAlignment?
+
+    /// The buttons
+    public let buttons: [InlineButton]
+
+
+    public init(
+        align: PageBlockHorizontalAlignment?,
+        buttons: [InlineButton]
+    ) {
+        self.align = align
+        self.buttons = buttons
     }
 }
 

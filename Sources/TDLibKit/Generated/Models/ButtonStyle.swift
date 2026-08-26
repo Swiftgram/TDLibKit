@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -25,12 +25,16 @@ public indirect enum ButtonStyle: Codable, Equatable, Hashable {
     /// The button has green color
     case buttonStyleSuccess
 
+    /// The button must be shown as a link. The style is allowed only for callback buttons in inlineButton
+    case buttonStyleLink
+
 
     private enum Kind: String, Codable {
         case buttonStyleDefault
         case buttonStylePrimary
         case buttonStyleDanger
         case buttonStyleSuccess
+        case buttonStyleLink
     }
 
     public init(from decoder: Decoder) throws {
@@ -45,6 +49,8 @@ public indirect enum ButtonStyle: Codable, Equatable, Hashable {
             self = .buttonStyleDanger
         case .buttonStyleSuccess:
             self = .buttonStyleSuccess
+        case .buttonStyleLink:
+            self = .buttonStyleLink
         }
     }
 
@@ -59,6 +65,8 @@ public indirect enum ButtonStyle: Codable, Equatable, Hashable {
             try container.encode(Kind.buttonStyleDanger, forKey: .type)
         case .buttonStyleSuccess:
             try container.encode(Kind.buttonStyleSuccess, forKey: .type)
+        case .buttonStyleLink:
+            try container.encode(Kind.buttonStyleLink, forKey: .type)
         }
     }
 }

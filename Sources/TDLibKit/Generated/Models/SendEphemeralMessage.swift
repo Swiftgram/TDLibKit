@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -19,14 +19,20 @@ public struct SendEphemeralMessage: Codable, Equatable, Hashable {
     /// Target chat
     public let chatId: Int64?
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     public let inputMessageContent: InputMessageContent?
 
     /// Pass true to get a fake message instead of actually sending them
     public let onlyPreview: Bool?
 
+    /// Pass true if the content of the message must be protected from forwarding and saving; for bots only
+    public let protectContent: Bool?
+
     /// Identifier of the user who will receive the message
     public let receiverUserId: Int64?
+
+    /// Pass true if the ephemeral message must replace the message from which the callback query originated; for bots only
+    public let replaceCallbackQueryMessage: Bool?
 
     /// Markup for replying to the message; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup?
@@ -46,7 +52,9 @@ public struct SendEphemeralMessage: Codable, Equatable, Hashable {
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
         onlyPreview: Bool?,
+        protectContent: Bool?,
         receiverUserId: Int64?,
+        replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?,
         replyTo: InputMessageReplyTo?,
         sendingId: Int?,
@@ -56,7 +64,9 @@ public struct SendEphemeralMessage: Codable, Equatable, Hashable {
         self.chatId = chatId
         self.inputMessageContent = inputMessageContent
         self.onlyPreview = onlyPreview
+        self.protectContent = protectContent
         self.receiverUserId = receiverUserId
+        self.replaceCallbackQueryMessage = replaceCallbackQueryMessage
         self.replyMarkup = replyMarkup
         self.replyTo = replyTo
         self.sendingId = sendingId

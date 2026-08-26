@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -3166,6 +3166,100 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Returns full information about a community. The data will be sent through update.
+    /// - Parameter communityId: Community identifier
+    /// - Returns: Full information about a community
+    public func loadCommunityFullInfo(
+        communityId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = LoadCommunityFullInfo(
+            communityId: communityId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Returns full information about a community. The data will be sent through update.
+    /// - Parameter communityId: Community identifier
+    /// - Returns: Full information about a community
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func loadCommunityFullInfo(communityId: Int64?) async throws -> Ok {
+        let query = LoadCommunityFullInfo(
+            communityId: communityId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Creates a new community for the given chat. Returns identifier of the created community
+    /// - Parameter chatId: Identifier of the chat in the community; only chats with owned bots and owned basic group, supergroup and channel chats are allowed; basic group chats will be automatically upgraded to supergroup chats
+    /// - Parameter isChatHidden: Pass true if the chat will be visible only to administrators of the community
+    /// - Parameter name: Name of the new community
+    /// - Returns: Identifier of the created community
+    public func createCommunity(
+        chatId: Int64?,
+        isChatHidden: Bool?,
+        name: String?,
+        completion: @escaping (Result<CommunityId, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateCommunity(
+            chatId: chatId,
+            isChatHidden: isChatHidden,
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Creates a new community for the given chat. Returns identifier of the created community
+    /// - Parameter chatId: Identifier of the chat in the community; only chats with owned bots and owned basic group, supergroup and channel chats are allowed; basic group chats will be automatically upgraded to supergroup chats
+    /// - Parameter isChatHidden: Pass true if the chat will be visible only to administrators of the community
+    /// - Parameter name: Name of the new community
+    /// - Returns: Identifier of the created community
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public func createCommunity(
+        chatId: Int64?,
+        isChatHidden: Bool?,
+        name: String?
+    ) async throws -> CommunityId {
+        let query = CreateCommunity(
+            chatId: chatId,
+            isChatHidden: isChatHidden,
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Changes name of the given community; requires can_change_info administrator right in the community
+    /// - Parameter communityId: Identifier of the community
+    /// - Parameter name: New name of the community
+    public func setCommunityName(
+        communityId: Int64?,
+        name: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetCommunityName(
+            communityId: communityId,
+            name: name
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Changes name of the given community; requires can_change_info administrator right in the community
+    /// - Parameter communityId: Identifier of the community
+    /// - Parameter name: New name of the community
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func setCommunityName(
+        communityId: Int64?,
+        name: String?
+    ) async throws -> Ok {
+        let query = SetCommunityName(
+            communityId: communityId,
+            name: name
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
     /// - Parameter limit: The maximum number of chats to be returned; up to 100
     /// - Parameter offsetChatId: Chat identifier starting from which to return chats; use 0 for the first request
@@ -5843,9 +5937,11 @@ public final class TdApi {
     /// Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
     /// - Parameter callbackQueryId: Identifier of the callback query which triggered the message; for bots only
     /// - Parameter chatId: Target chat
-    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     /// - Parameter onlyPreview: Pass true to get a fake message instead of actually sending them
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving; for bots only
     /// - Parameter receiverUserId: Identifier of the user who will receive the message
+    /// - Parameter replaceCallbackQueryMessage: Pass true if the ephemeral message must replace the message from which the callback query originated; for bots only
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
     /// - Parameter replyTo: Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
     /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
@@ -5856,7 +5952,9 @@ public final class TdApi {
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
         onlyPreview: Bool?,
+        protectContent: Bool?,
         receiverUserId: Int64?,
+        replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?,
         replyTo: InputMessageReplyTo?,
         sendingId: Int?,
@@ -5868,7 +5966,9 @@ public final class TdApi {
             chatId: chatId,
             inputMessageContent: inputMessageContent,
             onlyPreview: onlyPreview,
+            protectContent: protectContent,
             receiverUserId: receiverUserId,
+            replaceCallbackQueryMessage: replaceCallbackQueryMessage,
             replyMarkup: replyMarkup,
             replyTo: replyTo,
             sendingId: sendingId,
@@ -5880,9 +5980,11 @@ public final class TdApi {
     /// Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
     /// - Parameter callbackQueryId: Identifier of the callback query which triggered the message; for bots only
     /// - Parameter chatId: Target chat
-    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     /// - Parameter onlyPreview: Pass true to get a fake message instead of actually sending them
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving; for bots only
     /// - Parameter receiverUserId: Identifier of the user who will receive the message
+    /// - Parameter replaceCallbackQueryMessage: Pass true if the ephemeral message must replace the message from which the callback query originated; for bots only
     /// - Parameter replyMarkup: Markup for replying to the message; pass null if none; for bots only
     /// - Parameter replyTo: Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
     /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
@@ -5894,7 +5996,9 @@ public final class TdApi {
         chatId: Int64?,
         inputMessageContent: InputMessageContent?,
         onlyPreview: Bool?,
+        protectContent: Bool?,
         receiverUserId: Int64?,
+        replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?,
         replyTo: InputMessageReplyTo?,
         sendingId: Int?,
@@ -5905,7 +6009,9 @@ public final class TdApi {
             chatId: chatId,
             inputMessageContent: inputMessageContent,
             onlyPreview: onlyPreview,
+            protectContent: protectContent,
             receiverUserId: receiverUserId,
+            replaceCallbackQueryMessage: replaceCallbackQueryMessage,
             replyMarkup: replyMarkup,
             replyTo: replyTo,
             sendingId: sendingId,
@@ -6003,7 +6109,7 @@ public final class TdApi {
 
     /// Deletes an ephemeral message; for bots only
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ephemeralMessageId: Identifiers of the message to be deleted
+    /// - Parameter ephemeralMessageId: Identifier of the message to be deleted
     /// - Parameter receiverUserId: Identifier of the user who received the message
     public func deleteEphemeralMessage(
         chatId: Int64?,
@@ -6021,7 +6127,7 @@ public final class TdApi {
 
     /// Deletes an ephemeral message; for bots only
     /// - Parameter chatId: Chat identifier
-    /// - Parameter ephemeralMessageId: Identifiers of the message to be deleted
+    /// - Parameter ephemeralMessageId: Identifier of the message to be deleted
     /// - Parameter receiverUserId: Identifier of the user who received the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -6561,10 +6667,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+    /// Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter ephemeralMessageId: Identifier of the ephemeral message
-    /// - Parameter inputMessageContent: New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter inputMessageContent: New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
     /// - Parameter receiverUserId: Identifier of the user who received the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     public func editEphemeralMessage(
@@ -6585,10 +6691,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+    /// Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter ephemeralMessageId: Identifier of the ephemeral message
-    /// - Parameter inputMessageContent: New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter inputMessageContent: New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
     /// - Parameter receiverUserId: Identifier of the user who received the message
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -6605,6 +6711,104 @@ public final class TdApi {
             ephemeralMessageId: ephemeralMessageId,
             inputMessageContent: inputMessageContent,
             receiverUserId: receiverUserId,
+            replyMarkup: replyMarkup
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the caption and reply markup of an ephemeral message sent by the bot; for bots only
+    /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter ephemeralMessageId: Identifier of the ephemeral message
+    /// - Parameter receiverUserId: Identifier of the user who received the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+    public func editEphemeralMessageCaption(
+        caption: FormattedText?,
+        chatId: Int64?,
+        ephemeralMessageId: Int?,
+        receiverUserId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditEphemeralMessageCaption(
+            caption: caption,
+            chatId: chatId,
+            ephemeralMessageId: ephemeralMessageId,
+            receiverUserId: receiverUserId,
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the caption and reply markup of an ephemeral message sent by the bot; for bots only
+    /// - Parameter caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter ephemeralMessageId: Identifier of the ephemeral message
+    /// - Parameter receiverUserId: Identifier of the user who received the message
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Parameter showCaptionAboveMedia: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func editEphemeralMessageCaption(
+        caption: FormattedText?,
+        chatId: Int64?,
+        ephemeralMessageId: Int?,
+        receiverUserId: Int64?,
+        replyMarkup: ReplyMarkup?,
+        showCaptionAboveMedia: Bool?
+    ) async throws -> Ok {
+        let query = EditEphemeralMessageCaption(
+            caption: caption,
+            chatId: chatId,
+            ephemeralMessageId: ephemeralMessageId,
+            receiverUserId: receiverUserId,
+            replyMarkup: replyMarkup,
+            showCaptionAboveMedia: showCaptionAboveMedia
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits the message from which a callback query has originated with an ephemeral message; for bots only
+    /// - Parameter callbackQueryId: Identifier of the callback query
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    public func editCallbackQueryMessage(
+        callbackQueryId: TdInt64?,
+        inputMessageContent: InputMessageContent?,
+        protectContent: Bool?,
+        replyMarkup: ReplyMarkup?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditCallbackQueryMessage(
+            callbackQueryId: callbackQueryId,
+            inputMessageContent: inputMessageContent,
+            protectContent: protectContent,
+            replyMarkup: replyMarkup
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits the message from which a callback query has originated with an ephemeral message; for bots only
+    /// - Parameter callbackQueryId: Identifier of the callback query
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func editCallbackQueryMessage(
+        callbackQueryId: TdInt64?,
+        inputMessageContent: InputMessageContent?,
+        protectContent: Bool?,
+        replyMarkup: ReplyMarkup?
+    ) async throws -> Ok {
+        let query = EditCallbackQueryMessage(
+            callbackQueryId: callbackQueryId,
+            inputMessageContent: inputMessageContent,
+            protectContent: protectContent,
             replyMarkup: replyMarkup
         )
         return try await self.execute(query: query)
@@ -6643,6 +6847,37 @@ public final class TdApi {
             chatId: chatId,
             messageId: messageId,
             schedulingState: schedulingState
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Removes message ephemeral content and reverts message state to the original
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    public func deleteMessageEphemeralContent(
+        chatId: Int64?,
+        messageId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteMessageEphemeralContent(
+            chatId: chatId,
+            messageId: messageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Removes message ephemeral content and reverts message state to the original
+    /// - Parameter chatId: The chat the message belongs to
+    /// - Parameter messageId: Identifier of the message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteMessageEphemeralContent(
+        chatId: Int64?,
+        messageId: Int64?
+    ) async throws -> Ok {
+        let query = DeleteMessageEphemeralContent(
+            chatId: chatId,
+            messageId: messageId
         )
         return try await self.execute(query: query)
     }
@@ -7856,10 +8091,10 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-added, null will be returned instead of the message
     /// - Parameter messageIds: Identifiers of the quick reply messages to re-add. Message identifiers must be in a strictly increasing order
     /// - Parameter shortcutName: Name of the target shortcut
-    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-added, null will be returned instead of the message
     public func readdQuickReplyShortcutMessages(
         messageIds: [Int64]?,
         shortcutName: String?,
@@ -7872,10 +8107,10 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// Re-adds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-added, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-added, null will be returned instead of the message
     /// - Parameter messageIds: Identifiers of the quick reply messages to re-add. Message identifiers must be in a strictly increasing order
     /// - Parameter shortcutName: Name of the target shortcut
-    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+    /// - Returns: The sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-added, null will be returned instead of the message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func readdQuickReplyShortcutMessages(
         messageIds: [Int64]?,
@@ -7921,6 +8156,151 @@ public final class TdApi {
             inputMessageContent: inputMessageContent,
             messageId: messageId,
             shortcutId: shortcutId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Loads welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. The loaded messages will be sent through updateChatWelcomeMessages
+    /// - Parameter chatId: The identifier of the chat
+    public func loadChatWelcomeMessages(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = LoadChatWelcomeMessages(
+            chatId: chatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Loads welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. The loaded messages will be sent through updateChatWelcomeMessages
+    /// - Parameter chatId: The identifier of the chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func loadChatWelcomeMessages(chatId: Int64?) async throws -> Ok {
+        let query = LoadChatWelcomeMessages(
+            chatId: chatId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Adds a message to the list of welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. There can be up to getOption("welcome_message_count_max") welcome messages in a chat
+    /// - Parameter chatId: The identifier of the chat
+    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    public func addChatWelcomeMessage(
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddChatWelcomeMessage(
+            chatId: chatId,
+            inputMessageContent: inputMessageContent
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Adds a message to the list of welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat. There can be up to getOption("welcome_message_count_max") welcome messages in a chat
+    /// - Parameter chatId: The identifier of the chat
+    /// - Parameter inputMessageContent: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func addChatWelcomeMessage(
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?
+    ) async throws -> Ok {
+        let query = AddChatWelcomeMessage(
+            chatId: chatId,
+            inputMessageContent: inputMessageContent
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+    /// - Parameter chatId: The identifier of the chat
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter welcomeMessageId: The identifier of the welcome message
+    public func editChatWelcomeMessage(
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        welcomeMessageId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EditChatWelcomeMessage(
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            welcomeMessageId: welcomeMessageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Edits a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+    /// - Parameter chatId: The identifier of the chat
+    /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// - Parameter welcomeMessageId: The identifier of the welcome message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func editChatWelcomeMessage(
+        chatId: Int64?,
+        inputMessageContent: InputMessageContent?,
+        welcomeMessageId: Int?
+    ) async throws -> Ok {
+        let query = EditChatWelcomeMessage(
+            chatId: chatId,
+            inputMessageContent: inputMessageContent,
+            welcomeMessageId: welcomeMessageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+    /// - Parameter chatId: The identifier of the chat
+    /// - Parameter welcomeMessageId: The identifier of the welcome message
+    public func deleteChatWelcomeMessage(
+        chatId: Int64?,
+        welcomeMessageId: Int?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteChatWelcomeMessage(
+            chatId: chatId,
+            welcomeMessageId: welcomeMessageId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes a welcome message of a chat; requires can_send_welcome_messages administrator right in the chat
+    /// - Parameter chatId: The identifier of the chat
+    /// - Parameter welcomeMessageId: The identifier of the welcome message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteChatWelcomeMessage(
+        chatId: Int64?,
+        welcomeMessageId: Int?
+    ) async throws -> Ok {
+        let query = DeleteChatWelcomeMessage(
+            chatId: chatId,
+            welcomeMessageId: welcomeMessageId
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Deletes all welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat
+    /// - Parameter chatId: The identifier of the chat
+    public func deleteAllChatWelcomeMessages(
+        chatId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteAllChatWelcomeMessages(
+            chatId: chatId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes all welcome messages of a chat; requires can_send_welcome_messages administrator right in the chat
+    /// - Parameter chatId: The identifier of the chat
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteAllChatWelcomeMessages(chatId: Int64?) async throws -> Ok {
+        let query = DeleteAllChatWelcomeMessages(
+            chatId: chatId
         )
         return try await self.execute(query: query)
     }
@@ -11249,87 +11629,148 @@ public final class TdApi {
     }
 
     /// Sends a draft for a being generated text message; for bots only
+    /// - Parameter canStop: Pass true to show the user a button to stop further drafts
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
+    /// - Parameter keepOnStop: Pass true to keep the current draft when the user stops further generation
     /// - Parameter text: Draft text of the message; pass null to show a "Thinking..." placeholder
     public func sendTextMessageDraft(
+        canStop: Bool?,
         chatId: Int64?,
         draftId: TdInt64?,
         forumTopicId: Int?,
+        keepOnStop: Bool?,
         text: FormattedText?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendTextMessageDraft(
+            canStop: canStop,
             chatId: chatId,
             draftId: draftId,
             forumTopicId: forumTopicId,
+            keepOnStop: keepOnStop,
             text: text
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Sends a draft for a being generated text message; for bots only
+    /// - Parameter canStop: Pass true to show the user a button to stop further drafts
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
+    /// - Parameter keepOnStop: Pass true to keep the current draft when the user stops further generation
     /// - Parameter text: Draft text of the message; pass null to show a "Thinking..." placeholder
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendTextMessageDraft(
+        canStop: Bool?,
         chatId: Int64?,
         draftId: TdInt64?,
         forumTopicId: Int?,
+        keepOnStop: Bool?,
         text: FormattedText?
     ) async throws -> Ok {
         let query = SendTextMessageDraft(
+            canStop: canStop,
             chatId: chatId,
             draftId: draftId,
             forumTopicId: forumTopicId,
+            keepOnStop: keepOnStop,
             text: text
         )
         return try await self.execute(query: query)
     }
 
     /// Sends a draft for a being generated rich message; for bots only
+    /// - Parameter canStop: Pass true to show the user a button to stop further drafts
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
+    /// - Parameter keepOnStop: Pass true to keep the current draft when the user stops further generation
     /// - Parameter message: Draft of the message; file upload isn't supported
     public func sendRichMessageDraft(
+        canStop: Bool?,
         chatId: Int64?,
         draftId: TdInt64?,
         forumTopicId: Int?,
+        keepOnStop: Bool?,
         message: InputRichMessage?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
         let query = SendRichMessageDraft(
+            canStop: canStop,
             chatId: chatId,
             draftId: draftId,
             forumTopicId: forumTopicId,
+            keepOnStop: keepOnStop,
             message: message
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Sends a draft for a being generated rich message; for bots only
+    /// - Parameter canStop: Pass true to show the user a button to stop further drafts
     /// - Parameter chatId: Chat identifier
     /// - Parameter draftId: Unique identifier of the draft
     /// - Parameter forumTopicId: The forum topic identifier in which the message will be sent; pass 0 if none
+    /// - Parameter keepOnStop: Pass true to keep the current draft when the user stops further generation
     /// - Parameter message: Draft of the message; file upload isn't supported
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func sendRichMessageDraft(
+        canStop: Bool?,
         chatId: Int64?,
         draftId: TdInt64?,
         forumTopicId: Int?,
+        keepOnStop: Bool?,
         message: InputRichMessage?
     ) async throws -> Ok {
         let query = SendRichMessageDraft(
+            canStop: canStop,
             chatId: chatId,
             draftId: draftId,
             forumTopicId: forumTopicId,
+            keepOnStop: keepOnStop,
             message: message
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Stops a pending message generation by a bot
+    /// - Parameter chatId: Identifier of the chat with the bot
+    /// - Parameter draftId: Unique identifier of the message draft within the message thread
+    /// - Parameter topicId: Identifier of the topic in which the action is performed; pass null if none
+    public func stopPendingMessage(
+        chatId: Int64?,
+        draftId: TdInt64?,
+        topicId: MessageTopic?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = StopPendingMessage(
+            chatId: chatId,
+            draftId: draftId,
+            topicId: topicId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Stops a pending message generation by a bot
+    /// - Parameter chatId: Identifier of the chat with the bot
+    /// - Parameter draftId: Unique identifier of the message draft within the message thread
+    /// - Parameter topicId: Identifier of the topic in which the action is performed; pass null if none
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func stopPendingMessage(
+        chatId: Int64?,
+        draftId: TdInt64?,
+        topicId: MessageTopic?
+    ) async throws -> Ok {
+        let query = StopPendingMessage(
+            chatId: chatId,
+            draftId: draftId,
+            topicId: topicId
         )
         return try await self.execute(query: query)
     }
@@ -13159,7 +13600,7 @@ public final class TdApi {
 
     /// Changes the draft message in a chat or a topic
     /// - Parameter chatId: Chat identifier
-    /// - Parameter draftMessage: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    /// - Parameter draftMessage: New draft message; pass null to remove the draft
     /// - Parameter topicId: Topic in which the draft will be changed; pass null to change the draft for the chat itself
     public func setChatDraftMessage(
         chatId: Int64?,
@@ -13177,7 +13618,7 @@ public final class TdApi {
 
     /// Changes the draft message in a chat or a topic
     /// - Parameter chatId: Chat identifier
-    /// - Parameter draftMessage: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    /// - Parameter draftMessage: New draft message; pass null to remove the draft
     /// - Parameter topicId: Topic in which the draft will be changed; pass null to change the draft for the chat itself
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
@@ -13892,7 +14333,7 @@ public final class TdApi {
     /// Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
     /// - Parameter chatId: Chat identifier
     /// - Parameter tag: The new tag of the member in the chat; 0-16 characters without emoji
-    /// - Parameter userId: Identifier of the user, which tag is changed. Chats can't have member tags
+    /// - Parameter userId: Identifier of the user whose tag is changed. Chats can't have member tags
     public func setChatMemberTag(
         chatId: Int64?,
         tag: String?,
@@ -13910,7 +14351,7 @@ public final class TdApi {
     /// Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
     /// - Parameter chatId: Chat identifier
     /// - Parameter tag: The new tag of the member in the chat; 0-16 characters without emoji
-    /// - Parameter userId: Identifier of the user, which tag is changed. Chats can't have member tags
+    /// - Parameter userId: Identifier of the user whose tag is changed. Chats can't have member tags
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func setChatMemberTag(
@@ -25296,36 +25737,48 @@ public final class TdApi {
 
     /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
     /// - Parameter giftName: Name of the upgraded gift to send
+    /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter price: The price that the user agreed to pay for the gift
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages and the price of the gift is less than the price of a paid message to the user
     public func sendResoldGift(
         giftName: String?,
+        isPrivate: Bool?,
         ownerId: MessageSender?,
         price: GiftResalePrice?,
+        text: FormattedText?,
         completion: @escaping (Result<GiftResaleResult, Swift.Error>) -> Void
     ) throws {
         let query = SendResoldGift(
             giftName: giftName,
+            isPrivate: isPrivate,
             ownerId: ownerId,
-            price: price
+            price: price,
+            text: text
         )
         self.execute(query: query, completion: completion)
     }
 
     /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
     /// - Parameter giftName: Name of the upgraded gift to send
+    /// - Parameter isPrivate: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
     /// - Parameter price: The price that the user agreed to pay for the gift
+    /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages and the price of the gift is less than the price of a paid message to the user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func sendResoldGift(
         giftName: String?,
+        isPrivate: Bool?,
         ownerId: MessageSender?,
-        price: GiftResalePrice?
+        price: GiftResalePrice?,
+        text: FormattedText?
     ) async throws -> GiftResaleResult {
         let query = SendResoldGift(
             giftName: giftName,
+            isPrivate: isPrivate,
             ownerId: ownerId,
-            price: price
+            price: price,
+            text: text
         )
         return try await self.execute(query: query)
     }
@@ -29272,7 +29725,7 @@ public final class TdApi {
     /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active for the user
     /// - Parameter starCount: The number of Telegram Stars to pay for subscription
     /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
-    /// - Parameter userId: Identifier of the user which will receive Telegram Premium
+    /// - Parameter userId: Identifier of the user who will receive Telegram Premium
     public func giftPremiumWithStars(
         monthCount: Int?,
         starCount: Int64?,
@@ -29293,7 +29746,7 @@ public final class TdApi {
     /// - Parameter monthCount: Number of months the Telegram Premium subscription will be active for the user
     /// - Parameter starCount: The number of Telegram Stars to pay for subscription
     /// - Parameter text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
-    /// - Parameter userId: Identifier of the user which will receive Telegram Premium
+    /// - Parameter userId: Identifier of the user who will receive Telegram Premium
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func giftPremiumWithStars(

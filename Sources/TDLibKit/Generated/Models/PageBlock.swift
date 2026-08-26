@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -62,6 +62,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     /// A block quote
     case pageBlockBlockQuote(PageBlockBlockQuote)
 
+    /// An expandable block quote
+    case pageBlockExpandableBlockQuote(PageBlockExpandableBlockQuote)
+
     /// A pull quote
     case pageBlockPullQuote(PageBlockPullQuote)
 
@@ -70,6 +73,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
 
     /// An audio file
     case pageBlockAudio(PageBlockAudio)
+
+    /// A general file
+    case pageBlockDocument(PageBlockDocument)
 
     /// A photo
     case pageBlockPhoto(PageBlockPhoto)
@@ -110,6 +116,12 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
     /// A map
     case pageBlockMap(PageBlockMap)
 
+    /// A list of buttons shown in a row
+    case pageBlockButtonRow(PageBlockButtonRow)
+
+    /// Represents a block unsupported by the current application version
+    case pageBlockUnsupported
+
 
     private enum Kind: String, Codable {
         case pageBlockTitle
@@ -128,9 +140,11 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case pageBlockAnchor
         case pageBlockList
         case pageBlockBlockQuote
+        case pageBlockExpandableBlockQuote
         case pageBlockPullQuote
         case pageBlockAnimation
         case pageBlockAudio
+        case pageBlockDocument
         case pageBlockPhoto
         case pageBlockVideo
         case pageBlockVoiceNote
@@ -144,6 +158,8 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case pageBlockDetails
         case pageBlockRelatedArticles
         case pageBlockMap
+        case pageBlockButtonRow
+        case pageBlockUnsupported
     }
 
     public init(from decoder: Decoder) throws {
@@ -197,6 +213,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockBlockQuote:
             let value = try PageBlockBlockQuote(from: decoder)
             self = .pageBlockBlockQuote(value)
+        case .pageBlockExpandableBlockQuote:
+            let value = try PageBlockExpandableBlockQuote(from: decoder)
+            self = .pageBlockExpandableBlockQuote(value)
         case .pageBlockPullQuote:
             let value = try PageBlockPullQuote(from: decoder)
             self = .pageBlockPullQuote(value)
@@ -206,6 +225,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockAudio:
             let value = try PageBlockAudio(from: decoder)
             self = .pageBlockAudio(value)
+        case .pageBlockDocument:
+            let value = try PageBlockDocument(from: decoder)
+            self = .pageBlockDocument(value)
         case .pageBlockPhoto:
             let value = try PageBlockPhoto(from: decoder)
             self = .pageBlockPhoto(value)
@@ -245,6 +267,11 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockMap:
             let value = try PageBlockMap(from: decoder)
             self = .pageBlockMap(value)
+        case .pageBlockButtonRow:
+            let value = try PageBlockButtonRow(from: decoder)
+            self = .pageBlockButtonRow(value)
+        case .pageBlockUnsupported:
+            self = .pageBlockUnsupported
         }
     }
 
@@ -298,6 +325,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockBlockQuote(let value):
             try container.encode(Kind.pageBlockBlockQuote, forKey: .type)
             try value.encode(to: encoder)
+        case .pageBlockExpandableBlockQuote(let value):
+            try container.encode(Kind.pageBlockExpandableBlockQuote, forKey: .type)
+            try value.encode(to: encoder)
         case .pageBlockPullQuote(let value):
             try container.encode(Kind.pageBlockPullQuote, forKey: .type)
             try value.encode(to: encoder)
@@ -306,6 +336,9 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pageBlockAudio(let value):
             try container.encode(Kind.pageBlockAudio, forKey: .type)
+            try value.encode(to: encoder)
+        case .pageBlockDocument(let value):
+            try container.encode(Kind.pageBlockDocument, forKey: .type)
             try value.encode(to: encoder)
         case .pageBlockPhoto(let value):
             try container.encode(Kind.pageBlockPhoto, forKey: .type)
@@ -346,6 +379,11 @@ public indirect enum PageBlock: Codable, Equatable, Hashable {
         case .pageBlockMap(let value):
             try container.encode(Kind.pageBlockMap, forKey: .type)
             try value.encode(to: encoder)
+        case .pageBlockButtonRow(let value):
+            try container.encode(Kind.pageBlockButtonRow, forKey: .type)
+            try value.encode(to: encoder)
+        case .pageBlockUnsupported:
+            try container.encode(Kind.pageBlockUnsupported, forKey: .type)
         }
     }
 }
@@ -558,6 +596,25 @@ public struct PageBlockBlockQuote: Codable, Equatable, Hashable {
     }
 }
 
+/// An expandable block quote
+public struct PageBlockExpandableBlockQuote: Codable, Equatable, Hashable {
+
+    /// Quote credit; may be null if none
+    public let credit: RichText?
+
+    /// Text of the quote
+    public let text: RichText
+
+
+    public init(
+        credit: RichText?,
+        text: RichText
+    ) {
+        self.credit = credit
+        self.text = text
+    }
+}
+
 /// A pull quote
 public struct PageBlockPullQuote: Codable, Equatable, Hashable {
 
@@ -609,19 +666,38 @@ public struct PageBlockAnimation: Codable, Equatable, Hashable {
 /// An audio file
 public struct PageBlockAudio: Codable, Equatable, Hashable {
 
-    /// Audio file; may be null
-    public let audio: Audio?
+    /// Audio file
+    public let audio: Audio
 
     /// Audio file caption; may be null if none
     public let caption: PageBlockCaption?
 
 
     public init(
-        audio: Audio?,
+        audio: Audio,
         caption: PageBlockCaption?
     ) {
         self.audio = audio
         self.caption = caption
+    }
+}
+
+/// A general file
+public struct PageBlockDocument: Codable, Equatable, Hashable {
+
+    /// File caption; may be null if none
+    public let caption: PageBlockCaption?
+
+    /// The file
+    public let document: Document
+
+
+    public init(
+        caption: PageBlockCaption?,
+        document: Document
+    ) {
+        self.caption = caption
+        self.document = document
     }
 }
 
@@ -694,13 +770,13 @@ public struct PageBlockVoiceNote: Codable, Equatable, Hashable {
     /// Voice note caption; may be null if none
     public let caption: PageBlockCaption?
 
-    /// Voice note; may be null
-    public let voiceNote: VoiceNote?
+    /// Voice note
+    public let voiceNote: VoiceNote
 
 
     public init(
         caption: PageBlockCaption?,
-        voiceNote: VoiceNote?
+        voiceNote: VoiceNote
     ) {
         self.caption = caption
         self.voiceNote = voiceNote
@@ -886,6 +962,9 @@ public struct PageBlockTable: Codable, Equatable, Hashable {
     /// True, if the table is bordered
     public let isBordered: Bool
 
+    /// True, if table cells must have smaller indents
+    public let isCompact: Bool
+
     /// True, if the table is striped
     public let isStriped: Bool
 
@@ -894,11 +973,13 @@ public struct PageBlockTable: Codable, Equatable, Hashable {
         caption: RichText?,
         cells: [[PageBlockTableCell]],
         isBordered: Bool,
+        isCompact: Bool,
         isStriped: Bool
     ) {
         self.caption = caption
         self.cells = cells
         self.isBordered = isBordered
+        self.isCompact = isCompact
         self.isStriped = isStriped
     }
 }
@@ -977,6 +1058,25 @@ public struct PageBlockMap: Codable, Equatable, Hashable {
         self.location = location
         self.width = width
         self.zoom = zoom
+    }
+}
+
+/// A list of buttons shown in a row
+public struct PageBlockButtonRow: Codable, Equatable, Hashable {
+
+    /// Horizontal alignment of the buttons; may be null if the buttons must be shown full-width
+    public let align: PageBlockHorizontalAlignment?
+
+    /// The buttons
+    public let buttons: [InlineButton]
+
+
+    public init(
+        align: PageBlockHorizontalAlignment?,
+        buttons: [InlineButton]
+    ) {
+        self.align = align
+        self.buttons = buttons
     }
 }
 

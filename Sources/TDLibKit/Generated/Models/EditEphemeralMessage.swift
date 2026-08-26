@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
 
 
-/// Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only
+/// Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only
 public struct EditEphemeralMessage: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
@@ -19,7 +19,7 @@ public struct EditEphemeralMessage: Codable, Equatable, Hashable {
     /// Identifier of the ephemeral message
     public let ephemeralMessageId: Int?
 
-    /// New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    /// New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
     public let inputMessageContent: InputMessageContent?
 
     /// Identifier of the user who received the message

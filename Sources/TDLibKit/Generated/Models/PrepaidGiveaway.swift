@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct PrepaidGiveaway: Codable, Equatable, Hashable, Identifiable {
     /// Prize of the giveaway
     public let prize: GiveawayPrize
 
-    /// Number of users which will receive giveaway prize
+    /// Number of users who will receive giveaway prize
     public let winnerCount: Int
 
 

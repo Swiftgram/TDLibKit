@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum SupergroupMembersFilter: Codable, Equatable, Hashable {
     /// Returns recently active users in reverse chronological order
     case supergroupMembersFilterRecent
 
-    /// Returns contacts of the user, which are members of the supergroup or channel
+    /// Returns contacts of the current user who are members of the supergroup or channel
     case supergroupMembersFilterContacts(SupergroupMembersFilterContacts)
 
     /// Returns the owner and administrators
@@ -31,7 +31,7 @@ public indirect enum SupergroupMembersFilter: Codable, Equatable, Hashable {
     /// Returns users banned from the supergroup or channel; can be used only by administrators
     case supergroupMembersFilterBanned(SupergroupMembersFilterBanned)
 
-    /// Returns users which can be mentioned in the supergroup
+    /// Returns users who can be mentioned in the supergroup
     case supergroupMembersFilterMention(SupergroupMembersFilterMention)
 
     /// Returns bot members of the supergroup or channel
@@ -105,7 +105,7 @@ public indirect enum SupergroupMembersFilter: Codable, Equatable, Hashable {
     }
 }
 
-/// Returns contacts of the user, which are members of the supergroup or channel
+/// Returns contacts of the current user who are members of the supergroup or channel
 public struct SupergroupMembersFilterContacts: Codable, Equatable, Hashable {
 
     /// Query to search for
@@ -153,7 +153,7 @@ public struct SupergroupMembersFilterBanned: Codable, Equatable, Hashable {
     }
 }
 
-/// Returns users which can be mentioned in the supergroup
+/// Returns users who can be mentioned in the supergroup
 public struct SupergroupMembersFilterMention: Codable, Equatable, Hashable {
 
     /// Query to search for

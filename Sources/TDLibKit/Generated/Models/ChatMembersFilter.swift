@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.66-022d6020
-//  https://github.com/tdlib/td/tree/022d6020
+//  Based on TDLib 1.8.66-afbfb4d8
+//  https://github.com/tdlib/td/tree/afbfb4d8
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum ChatMembersFilter: Codable, Equatable, Hashable {
     /// Returns all chat members, including restricted chat members
     case chatMembersFilterMembers
 
-    /// Returns users which can be mentioned in the chat
+    /// Returns users who can be mentioned in the chat
     case chatMembersFilterMention(ChatMembersFilterMention)
 
     /// Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
@@ -89,7 +89,7 @@ public indirect enum ChatMembersFilter: Codable, Equatable, Hashable {
     }
 }
 
-/// Returns users which can be mentioned in the chat
+/// Returns users who can be mentioned in the chat
 public struct ChatMembersFilterMention: Codable, Equatable, Hashable {
 
     /// Identifier of the topic in which the users will be mentioned; pass null if none
