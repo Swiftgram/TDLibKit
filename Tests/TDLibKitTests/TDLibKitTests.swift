@@ -142,6 +142,7 @@ class TDLibKitUnitTests: XCTestCase {
         let struct1 = EditMessageLiveLocation(
             chatId: 1234567, location: LiveLocation(heading: 10, livePeriod: 0x7FFFFFFF, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), proximityAlertRadius: 30), messageId: 12345, replyMarkup: .replyMarkupInlineKeyboard(
                 ReplyMarkupInlineKeyboard(
+                    forceReply: false,
                     rows: [
                         [
                             makeInlineKeyboardButton(text: "Buy me!", type: "inlineKeyboardButtonTypeBuy")
@@ -154,6 +155,7 @@ class TDLibKitUnitTests: XCTestCase {
         let struct2 = EditMessageLiveLocation(
             chatId: 1234567, location: LiveLocation(heading: 10, livePeriod: 0x7FFFFFFF, location: Location(horizontalAccuracy: 10.0, latitude: 358.0, longitude: 259.1), proximityAlertRadius: 30), messageId: 12345, replyMarkup: .replyMarkupInlineKeyboard(
                 ReplyMarkupInlineKeyboard(
+                    forceReply: false,
                     rows: [
                         [
                             makeInlineKeyboardButton(
