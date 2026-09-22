@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-d1085f9c
-//  https://github.com/tdlib/td/tree/d1085f9c
+//  Based on TDLib 1.8.67-e7e457ca
+//  https://github.com/tdlib/td/tree/e7e457ca
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
     /// Chat invite link
     public let inviteLink: String
 
-    /// True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
+    /// True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. Primary link can create join requests only if this is set up using toggleSupergroupJoinByRequest. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
     public let isPrimary: Bool
 
     /// True, if the link was revoked
