@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-8b765a16
-//  https://github.com/tdlib/td/tree/8b765a16
+//  Based on TDLib 1.8.67-ea97bcdd
+//  https://github.com/tdlib/td/tree/ea97bcdd
 //
 
 import Foundation
@@ -106,7 +106,7 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
     /// The chat's profile accent color or profile background custom emoji were changed
     case chatEventProfileAccentColorChanged(ChatEventProfileAccentColorChanged)
 
-    /// The has_protected_content setting of a channel was toggled
+    /// The has_protected_content setting of a chat was toggled
     case chatEventHasProtectedContentToggled(ChatEventHasProtectedContentToggled)
 
     /// The can_invite_users permission of a supergroup chat was toggled
@@ -151,7 +151,7 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
     /// A video chat participant volume level was changed
     case chatEventVideoChatParticipantVolumeLevelChanged(ChatEventVideoChatParticipantVolumeLevelChanged)
 
-    /// The is_forum setting of a channel was toggled
+    /// The is_forum setting of a supergroup was toggled
     case chatEventIsForumToggled(ChatEventIsForumToggled)
 
     /// A new forum topic was created
@@ -1127,7 +1127,7 @@ public struct ChatEventProfileAccentColorChanged: Codable, Equatable, Hashable {
     }
 }
 
-/// The has_protected_content setting of a channel was toggled
+/// The has_protected_content setting of a chat was toggled
 public struct ChatEventHasProtectedContentToggled: Codable, Equatable, Hashable {
 
     /// New value of has_protected_content
@@ -1328,7 +1328,7 @@ public struct ChatEventVideoChatParticipantVolumeLevelChanged: Codable, Equatabl
     }
 }
 
-/// The is_forum setting of a channel was toggled
+/// The is_forum setting of a supergroup was toggled
 public struct ChatEventIsForumToggled: Codable, Equatable, Hashable {
 
     /// New value of is_forum
