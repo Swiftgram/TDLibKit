@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -167,6 +167,12 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case internalLinkTypeTheme(InternalLinkTypeTheme)
 
+    /// The link is a universal TON Connect link
+    case internalLinkTypeTonConnect(InternalLinkTypeTonConnect)
+
+    /// The link is a link for sending Grams from the user's TON wallet
+    case internalLinkTypeTonWalletTransfer(InternalLinkTypeTonWalletTransfer)
+
     /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     case internalLinkTypeUnknownDeepLink(InternalLinkTypeUnknownDeepLink)
 
@@ -238,6 +244,8 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeStoryAlbum
         case internalLinkTypeTextCompositionStyle
         case internalLinkTypeTheme
+        case internalLinkTypeTonConnect
+        case internalLinkTypeTonWalletTransfer
         case internalLinkTypeUnknownDeepLink
         case internalLinkTypeUpgradedGift
         case internalLinkTypeUserPhoneNumber
@@ -395,6 +403,12 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeTheme:
             let value = try InternalLinkTypeTheme(from: decoder)
             self = .internalLinkTypeTheme(value)
+        case .internalLinkTypeTonConnect:
+            let value = try InternalLinkTypeTonConnect(from: decoder)
+            self = .internalLinkTypeTonConnect(value)
+        case .internalLinkTypeTonWalletTransfer:
+            let value = try InternalLinkTypeTonWalletTransfer(from: decoder)
+            self = .internalLinkTypeTonWalletTransfer(value)
         case .internalLinkTypeUnknownDeepLink:
             let value = try InternalLinkTypeUnknownDeepLink(from: decoder)
             self = .internalLinkTypeUnknownDeepLink(value)
@@ -563,6 +577,12 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .internalLinkTypeTheme(let value):
             try container.encode(Kind.internalLinkTypeTheme, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeTonConnect(let value):
+            try container.encode(Kind.internalLinkTypeTonConnect, forKey: .type)
+            try value.encode(to: encoder)
+        case .internalLinkTypeTonWalletTransfer(let value):
+            try container.encode(Kind.internalLinkTypeTonWalletTransfer, forKey: .type)
             try value.encode(to: encoder)
         case .internalLinkTypeUnknownDeepLink(let value):
             try container.encode(Kind.internalLinkTypeUnknownDeepLink, forKey: .type)
@@ -1146,7 +1166,7 @@ public struct InternalLinkTypeRequestManagedBot: Codable, Equatable, Hashable {
     /// Suggested name for the bot; may be empty if not specified
     public let suggestedBotName: String
 
-    /// Suggested username for the bot; always ends with "bot" case-insensitive
+    /// Suggested username for the bot; always ends with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive
     public let suggestedBotUsername: String
 
 
@@ -1270,6 +1290,64 @@ public struct InternalLinkTypeTheme: Codable, Equatable, Hashable {
 
     public init(themeName: String) {
         self.themeName = themeName
+    }
+}
+
+/// The link is a universal TON Connect link
+public struct InternalLinkTypeTonConnect: Codable, Equatable, Hashable {
+
+    /// TON Connect connect request
+    public let connectRequest: TonConnectConnectRequest
+
+    /// Hex-encoded public X25519 key of the dApp
+    public let dappClientId: String
+
+    /// Request return strategy; one of "back", "none", or a URL to open
+    public let returnStrategy: String
+
+    /// Embedded RPC request represented as base64url-encoded JSON
+    public let rpcRequest: String
+
+    /// Identifier to trace the connection request
+    public let traceId: String
+
+    /// TON Connect version
+    public let version: Int
+
+
+    public init(
+        connectRequest: TonConnectConnectRequest,
+        dappClientId: String,
+        returnStrategy: String,
+        rpcRequest: String,
+        traceId: String,
+        version: Int
+    ) {
+        self.connectRequest = connectRequest
+        self.dappClientId = dappClientId
+        self.returnStrategy = returnStrategy
+        self.rpcRequest = rpcRequest
+        self.traceId = traceId
+        self.version = version
+    }
+}
+
+/// The link is a link for sending Grams from the user's TON wallet
+public struct InternalLinkTypeTonWalletTransfer: Codable, Equatable, Hashable {
+
+    /// The pre-filled amount of TON Grams to send; in the smallest units of the cryptocurrency
+    public let gramAmount: Int64
+
+    /// Chosen receiver of the transfer; may be null if none
+    public let receiver: TonWalletTransferReceiver?
+
+
+    public init(
+        gramAmount: Int64,
+        receiver: TonWalletTransferReceiver?
+    ) {
+        self.gramAmount = gramAmount
+        self.receiver = receiver
     }
 }
 

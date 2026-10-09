@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -3176,26 +3176,25 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns full information about a community. The data will be sent through update.
+    /// Returns full information about a community
     /// - Parameter communityId: Community identifier
     /// - Returns: Full information about a community
-    public final func loadCommunityFullInfo(
+    public final func getCommunityFullInfo(
         communityId: Int64?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<CommunityFullInfo, Swift.Error>) -> Void
     ) throws {
-        let query = LoadCommunityFullInfo(
+        let query = GetCommunityFullInfo(
             communityId: communityId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns full information about a community. The data will be sent through update.
+    /// Returns full information about a community
     /// - Parameter communityId: Community identifier
     /// - Returns: Full information about a community
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
-    public final func loadCommunityFullInfo(communityId: Int64?) async throws -> Ok {
-        let query = LoadCommunityFullInfo(
+    public final func getCommunityFullInfo(communityId: Int64?) async throws -> CommunityFullInfo {
+        let query = GetCommunityFullInfo(
             communityId: communityId
         )
         return try await self.run(query: query)
@@ -3266,6 +3265,91 @@ public class TDLibApi {
         let query = SetCommunityName(
             communityId: communityId,
             name: name
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes the photo of a community; requires can_change_info administrator right in the community
+    /// - Parameter communityId: Identifier of the community
+    /// - Parameter photo: New chat photo; pass null to delete the chat photo
+    public final func setCommunityPhoto(
+        communityId: Int64?,
+        photo: InputChatPhoto?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetCommunityPhoto(
+            communityId: communityId,
+            photo: photo
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes the photo of a community; requires can_change_info administrator right in the community
+    /// - Parameter communityId: Identifier of the community
+    /// - Parameter photo: New chat photo; pass null to delete the chat photo
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setCommunityPhoto(
+        communityId: Int64?,
+        photo: InputChatPhoto?
+    ) async throws -> Ok {
+        let query = SetCommunityPhoto(
+            communityId: communityId,
+            photo: photo
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes permissions of regular members in the given community; requires can_ban_members administrator right in the community
+    /// - Parameter communityId: Identifier of the community
+    /// - Parameter permissions: New permissions of the community
+    public final func setCommunityPermissions(
+        communityId: Int64?,
+        permissions: CommunityPermissions?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetCommunityPermissions(
+            communityId: communityId,
+            permissions: permissions
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes permissions of regular members in the given community; requires can_ban_members administrator right in the community
+    /// - Parameter communityId: Identifier of the community
+    /// - Parameter permissions: New permissions of the community
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setCommunityPermissions(
+        communityId: Int64?,
+        permissions: CommunityPermissions?
+    ) async throws -> Ok {
+        let query = SetCommunityPermissions(
+            communityId: communityId,
+            permissions: permissions
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes a community; requires owner privileges
+    /// - Parameter communityId: Identifier of the community
+    public final func deleteCommunity(
+        communityId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteCommunity(
+            communityId: communityId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes a community; requires owner privileges
+    /// - Parameter communityId: Identifier of the community
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteCommunity(communityId: Int64?) async throws -> Ok {
+        let query = DeleteCommunity(
+            communityId: communityId
         )
         return try await self.run(query: query)
     }
@@ -6781,44 +6865,50 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Edits the message from which a callback query has originated with an ephemeral message; for bots only
+    /// Replies to a callback query with an ephemeral message; for bots only
     /// - Parameter callbackQueryId: Identifier of the callback query
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replaceCallbackQueryMessage: Pass true if the ephemeral message must replace the message from which the callback query originated
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
-    public final func editCallbackQueryMessage(
+    public final func replyToCallbackQueryWithEphemeralMessage(
         callbackQueryId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
+        replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = EditCallbackQueryMessage(
+        let query = ReplyToCallbackQueryWithEphemeralMessage(
             callbackQueryId: callbackQueryId,
             inputMessageContent: inputMessageContent,
             protectContent: protectContent,
+            replaceCallbackQueryMessage: replaceCallbackQueryMessage,
             replyMarkup: replyMarkup
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Edits the message from which a callback query has originated with an ephemeral message; for bots only
+    /// Replies to a callback query with an ephemeral message; for bots only
     /// - Parameter callbackQueryId: Identifier of the callback query
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
+    /// - Parameter replaceCallbackQueryMessage: Pass true if the ephemeral message must replace the message from which the callback query originated
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func editCallbackQueryMessage(
+    public final func replyToCallbackQueryWithEphemeralMessage(
         callbackQueryId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
+        replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?
     ) async throws -> Ok {
-        let query = EditCallbackQueryMessage(
+        let query = ReplyToCallbackQueryWithEphemeralMessage(
             callbackQueryId: callbackQueryId,
             inputMessageContent: inputMessageContent,
             protectContent: protectContent,
+            replaceCallbackQueryMessage: replaceCallbackQueryMessage,
             replyMarkup: replyMarkup
         )
         return try await self.run(query: query)
@@ -9648,9 +9738,9 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entities
-    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
+    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text
     public final func getTextEntities(
         text: String?,
         completion: @escaping (Result<TextEntities, Swift.Error>) -> Void
@@ -9661,9 +9751,9 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+    /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text. Can be called synchronously
     /// - Parameter text: The text in which to look for entities
-    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text
+    /// - Returns: All entities (mentions, hashtags, cashtags, bot commands, bank card numbers, TON blockchain addresses, URLs, and email addresses) found in the text
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getTextEntities(text: String?) async throws -> TextEntities {
         let query = GetTextEntities(
@@ -23385,23 +23475,31 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+    /// Checks whether a username can be set for a new bot or assigned as a secondary username to an existing bot. Use checkChatUsername to check username for other chat types
+    /// - Parameter isSecondary: Pass true to check whether the username is suitable as a secondary username for an existing bot; pass false to check whether the username is suitable for createBot
     /// - Parameter username: Username to be checked
     public final func checkBotUsername(
+        isSecondary: Bool?,
         username: String?,
         completion: @escaping (Result<CheckChatUsernameResult, Swift.Error>) -> Void
     ) throws {
         let query = CheckBotUsername(
+            isSecondary: isSecondary,
             username: username
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+    /// Checks whether a username can be set for a new bot or assigned as a secondary username to an existing bot. Use checkChatUsername to check username for other chat types
+    /// - Parameter isSecondary: Pass true to check whether the username is suitable as a secondary username for an existing bot; pass false to check whether the username is suitable for createBot
     /// - Parameter username: Username to be checked
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func checkBotUsername(username: String?) async throws -> CheckChatUsernameResult {
+    public final func checkBotUsername(
+        isSecondary: Bool?,
+        username: String?
+    ) async throws -> CheckChatUsernameResult {
         let query = CheckBotUsername(
+            isSecondary: isSecondary,
             username: username
         )
         return try await self.run(query: query)
@@ -23410,7 +23508,7 @@ public class TDLibApi {
     /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max"). An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
     /// - Parameter managerBotUserId: Identifier of the bot that will manage the created bot
     /// - Parameter name: Name of the bot; 1-64 characters
-    /// - Parameter username: Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+    /// - Parameter username: Username of the bot. The username must end with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive. Use checkBotUsername to find whether the name is suitable. If the username doesn't end with "bot", then the current user must have Telegram Premium subscription, the chosen username will be assigned as secondary and an additional regular username ending with "bot" will be automatically assigned to the created bot
     /// - Parameter viaLink: Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
     /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max")
     public final func createBot(
@@ -23432,7 +23530,7 @@ public class TDLibApi {
     /// Creates a bot which will be managed by another bot. Returns the created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max"). An internal link "https://t.me/BotFather?start=deletebot" can be processed to handle the error
     /// - Parameter managerBotUserId: Identifier of the bot that will manage the created bot
     /// - Parameter name: Name of the bot; 1-64 characters
-    /// - Parameter username: Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+    /// - Parameter username: Username of the bot. The username must end with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive. Use checkBotUsername to find whether the name is suitable. If the username doesn't end with "bot", then the current user must have Telegram Premium subscription, the chosen username will be assigned as secondary and an additional regular username ending with "bot" will be automatically assigned to the created bot
     /// - Parameter viaLink: Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
     /// - Returns: The created bot. May return an error with a message "BOT_CREATE_LIMIT_EXCEEDED" if the user already owns the maximum allowed number of bots as per getOption("owned_bot_count_max")
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -23634,6 +23732,62 @@ public class TDLibApi {
         let query = SetBotProfilePhoto(
             botUserId: botUserId,
             photo: photo
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription. May return an error with a message "OWNER_USERNAMES_LIMIT_EXCEEDED" if the current user already owns at least getOption("secondary_bot_username_count_max") bots with a secondary username
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter username: The new secondary username; must be non-empty. Use checkBotUsername to check username validness
+    /// - Returns: May return an error with a message "OWNER_USERNAMES_LIMIT_EXCEEDED" if the current user already owns at least getOption("secondary_bot_username_count_max") bots with a secondary username
+    public final func addBotSecondaryUsername(
+        botUserId: Int64?,
+        username: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AddBotSecondaryUsername(
+            botUserId: botUserId,
+            username: username
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Adds a secondary username to a bot. Can be called only if userTypeBot.can_be_edited, the bot has no secondary username and the current user has Telegram Premium subscription. May return an error with a message "OWNER_USERNAMES_LIMIT_EXCEEDED" if the current user already owns at least getOption("secondary_bot_username_count_max") bots with a secondary username
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter username: The new secondary username; must be non-empty. Use checkBotUsername to check username validness
+    /// - Returns: May return an error with a message "OWNER_USERNAMES_LIMIT_EXCEEDED" if the current user already owns at least getOption("secondary_bot_username_count_max") bots with a secondary username
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func addBotSecondaryUsername(
+        botUserId: Int64?,
+        username: String?
+    ) async throws -> Ok {
+        let query = AddBotSecondaryUsername(
+            botUserId: botUserId,
+            username: username
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Removes a secondary username from a bot. Can be called only if userTypeBot.can_be_edited == true and the bot has a secondary username
+    /// - Parameter botUserId: Identifier of the target bot
+    public final func deleteBotSecondaryUsername(
+        botUserId: Int64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteBotSecondaryUsername(
+            botUserId: botUserId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Removes a secondary username from a bot. Can be called only if userTypeBot.can_be_edited == true and the bot has a secondary username
+    /// - Parameter botUserId: Identifier of the target bot
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteBotSecondaryUsername(botUserId: Int64?) async throws -> Ok {
+        let query = DeleteBotSecondaryUsername(
+            botUserId: botUserId
         )
         return try await self.run(query: query)
     }
@@ -23848,11 +24002,11 @@ public class TDLibApi {
 
     /// Changes the verification status of a user or a chat by an owned bot
     /// - Parameter botUserId: Identifier of the owned bot, which will verify the user or the chat
-    /// - Parameter customDescription: Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max"). If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
+    /// - Parameter customDescription: Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max") characters. Only TextUrl entities are supported. If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
     /// - Parameter verifiedId: Identifier of the user or the supergroup or channel chat, which will be verified by the bot
     public final func setMessageSenderBotVerification(
         botUserId: Int64?,
-        customDescription: String?,
+        customDescription: FormattedText?,
         verifiedId: MessageSender?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
@@ -23866,13 +24020,13 @@ public class TDLibApi {
 
     /// Changes the verification status of a user or a chat by an owned bot
     /// - Parameter botUserId: Identifier of the owned bot, which will verify the user or the chat
-    /// - Parameter customDescription: Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max"). If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
+    /// - Parameter customDescription: Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max") characters. Only TextUrl entities are supported. If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
     /// - Parameter verifiedId: Identifier of the user or the supergroup or channel chat, which will be verified by the bot
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func setMessageSenderBotVerification(
         botUserId: Int64?,
-        customDescription: String?,
+        customDescription: FormattedText?,
         verifiedId: MessageSender?
     ) async throws -> Ok {
         let query = SetMessageSenderBotVerification(
@@ -27522,7 +27676,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageIds: Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
     /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
@@ -27543,7 +27697,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+    /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageIds: Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
     /// - Parameter optionId: Option identifier chosen by the user; leave empty for the initial request
@@ -27746,11 +27900,11 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of TON blockchain transactions of the current user
+    /// Returns the list of TON Gram transactions of the current user
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: The list of TON blockchain transactions of the current user
+    /// - Returns: The list of TON Gram transactions of the current user
     public final func getTonTransactions(
         direction: TransactionDirection?,
         limit: Int?,
@@ -27765,11 +27919,11 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of TON blockchain transactions of the current user
+    /// Returns the list of TON Gram transactions of the current user
     /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
     /// - Parameter limit: The maximum number of transactions to return
     /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
-    /// - Returns: The list of TON blockchain transactions of the current user
+    /// - Returns: The list of TON Gram transactions of the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getTonTransactions(
         direction: TransactionDirection?,
@@ -27781,6 +27935,1132 @@ public class TDLibApi {
             limit: limit,
             offset: offset
         )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the list of TON wallet transactions of the current user; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter limit: The maximum number of transactions to return
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: The list of TON wallet transactions of the current user
+    public final func getTonWalletTransactions(
+        direction: TransactionDirection?,
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<TonWalletTransactions, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonWalletTransactions(
+            direction: direction,
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of TON wallet transactions of the current user; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter direction: Direction of the transactions to receive; pass null to get all transactions
+    /// - Parameter limit: The maximum number of transactions to return
+    /// - Parameter offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: The list of TON wallet transactions of the current user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonWalletTransactions(
+        direction: TransactionDirection?,
+        limit: Int?,
+        offset: String?
+    ) async throws -> TonWalletTransactions {
+        let query = GetTonWalletTransactions(
+            direction: direction,
+            limit: limit,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a TON wallet transaction by their identifier
+    /// - Parameter transactionId: Identifier of the transaction
+    /// - Returns: A TON wallet transaction by their identifier
+    public final func getTonWalletTransaction(
+        transactionId: String?,
+        completion: @escaping (Result<TonWalletTransaction, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonWalletTransaction(
+            transactionId: transactionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a TON wallet transaction by their identifier
+    /// - Parameter transactionId: Identifier of the transaction
+    /// - Returns: A TON wallet transaction by their identifier
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonWalletTransaction(transactionId: String?) async throws -> TonWalletTransaction {
+        let query = GetTonWalletTransaction(
+            transactionId: transactionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a TON wallet transaction by their msg_hash; return an error if the transaction isn't finalized yet
+    /// - Parameter msgHash: Value of msg_hash of the transaction
+    /// - Returns: A TON wallet transaction by their msg_hash. return an error if the transaction isn't finalized yet
+    public final func getTonWalletTransactionByMsgHash(
+        msgHash: String?,
+        completion: @escaping (Result<TonWalletTransaction, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonWalletTransactionByMsgHash(
+            msgHash: msgHash
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a TON wallet transaction by their msg_hash; return an error if the transaction isn't finalized yet
+    /// - Parameter msgHash: Value of msg_hash of the transaction
+    /// - Returns: A TON wallet transaction by their msg_hash. return an error if the transaction isn't finalized yet
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonWalletTransactionByMsgHash(msgHash: String?) async throws -> TonWalletTransaction {
+        let query = GetTonWalletTransactionByMsgHash(
+            msgHash: msgHash
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Loads state of the TON wallet of the current user; can be used only if getOption("can_use_ton_wallet")
+    public final func loadTonWalletState(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = LoadTonWalletState()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Loads state of the TON wallet of the current user; can be used only if getOption("can_use_ton_wallet")
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func loadTonWalletState() async throws -> Ok {
+        let query = LoadTonWalletState()
+        return try await self.run(query: query)
+    }
+
+    /// Loads or reloads the current state of gasless transfers for the current user; can be used only if getOption("can_use_ton_wallet")
+    public final func loadTonWalletGaslessTransfersInfo(completion: @escaping (Result<Ok, Swift.Error>) -> Void) throws {
+        let query = LoadTonWalletGaslessTransfersInfo()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Loads or reloads the current state of gasless transfers for the current user; can be used only if getOption("can_use_ton_wallet")
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func loadTonWalletGaslessTransfersInfo() async throws -> Ok {
+        let query = LoadTonWalletGaslessTransfersInfo()
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about balance of the current user in the bot https://t.me/walt; can be used only if getOption("can_use_ton_wallet")
+    /// - Returns: Information about balance of the current user in the bot https://t
+    public final func checkWalletBotBalance(completion: @escaping (Result<WalletBotBalance, Swift.Error>) -> Void) throws {
+        let query = CheckWalletBotBalance()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about balance of the current user in the bot https://t.me/walt; can be used only if getOption("can_use_ton_wallet")
+    /// - Returns: Information about balance of the current user in the bot https://t
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func checkWalletBotBalance() async throws -> WalletBotBalance {
+        let query = CheckWalletBotBalance()
+        return try await self.run(query: query)
+    }
+
+    /// Returns TON wallet addresses of the specified users; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter userIds: Identifiers of the users whose wallet addresses have to be returned. If a user has no TON wallet, it will be skipped in the result
+    /// - Returns: TON wallet addresses of the specified users
+    public final func getUserTonWalletAddresses(
+        userIds: [Int64]?,
+        completion: @escaping (Result<UserTonWalletAddresses, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUserTonWalletAddresses(
+            userIds: userIds
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns TON wallet addresses of the specified users; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter userIds: Identifiers of the users whose wallet addresses have to be returned. If a user has no TON wallet, it will be skipped in the result
+    /// - Returns: TON wallet addresses of the specified users
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getUserTonWalletAddresses(userIds: [Int64]?) async throws -> UserTonWalletAddresses {
+        let query = GetUserTonWalletAddresses(
+            userIds: userIds
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Creates a TON wallet for the specified regular user; can be used only if getOption("can_use_ton_wallet"). The current user must have positive TON wallet balance
+    /// - Parameter userId: Identifier of the user
+    public final func createUserTonWallet(
+        userId: Int64?,
+        completion: @escaping (Result<UserTonWalletAddress, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateUserTonWallet(
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Creates a TON wallet for the specified regular user; can be used only if getOption("can_use_ton_wallet"). The current user must have positive TON wallet balance
+    /// - Parameter userId: Identifier of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func createUserTonWallet(userId: Int64?) async throws -> UserTonWalletAddress {
+        let query = CreateUserTonWallet(
+            userId: userId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns information about a TON wallet with the given address; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter address: Address in the TON blockchain
+    /// - Returns: Information about a TON wallet with the given address
+    public final func getAddressTonWallet(
+        address: String?,
+        completion: @escaping (Result<UserTonWalletAddress, Swift.Error>) -> Void
+    ) throws {
+        let query = GetAddressTonWallet(
+            address: address
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns information about a TON wallet with the given address; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter address: Address in the TON blockchain
+    /// - Returns: Information about a TON wallet with the given address
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getAddressTonWallet(address: String?) async throws -> UserTonWalletAddress {
+        let query = GetAddressTonWallet(
+            address: address
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    /// - Returns: The secret phrase of the user's TON wallet as a space separated list of words
+    public final func getTonWalletSecretPhrase(
+        password: String?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonWalletSecretPhrase(
+            password: password
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    /// - Returns: The secret phrase of the user's TON wallet as a space separated list of words
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonWalletSecretPhrase(password: String?) async throws -> Text {
+        let query = GetTonWalletSecretPhrase(
+            password: password
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a challenge which may be used to proof ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
+    /// - Returns: A challenge which may be used to proof ownership of a TON wallet
+    public final func getTonWalletOwnershipProofChallenge(completion: @escaping (Result<TonWalletOwnershipProofChallenge, Swift.Error>) -> Void) throws {
+        let query = GetTonWalletOwnershipProofChallenge()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a challenge which may be used to proof ownership of a TON wallet; can be used only if getOption("can_use_ton_wallet")
+    /// - Returns: A challenge which may be used to proof ownership of a TON wallet
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonWalletOwnershipProofChallenge() async throws -> TonWalletOwnershipProofChallenge {
+        let query = GetTonWalletOwnershipProofChallenge()
+        return try await self.run(query: query)
+    }
+
+    /// Enables backup of the TON wallet of the user. Works only if tonWalletState.can_enable_backup is true
+    /// - Parameter proof: Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+    /// - Parameter secretPhrase: The secret phrase of the user's TON wallet as a space separated list of words
+    public final func enableTonWalletBackup(
+        proof: TonWalletOwnershipProof?,
+        secretPhrase: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = EnableTonWalletBackup(
+            proof: proof,
+            secretPhrase: secretPhrase
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Enables backup of the TON wallet of the user. Works only if tonWalletState.can_enable_backup is true
+    /// - Parameter proof: Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+    /// - Parameter secretPhrase: The secret phrase of the user's TON wallet as a space separated list of words
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func enableTonWalletBackup(
+        proof: TonWalletOwnershipProof?,
+        secretPhrase: String?
+    ) async throws -> Ok {
+        let query = EnableTonWalletBackup(
+            proof: proof,
+            secretPhrase: secretPhrase
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Disables backup of the TON wallet of the user. Works only if tonWalletState.is_backup_enabled is true
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    public final func disableTonWalletBackup(
+        password: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DisableTonWalletBackup(
+            password: password
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Disables backup of the TON wallet of the user. Works only if tonWalletState.is_backup_enabled is true
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func disableTonWalletBackup(password: String?) async throws -> Ok {
+        let query = DisableTonWalletBackup(
+            password: password
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Disables backup of the TON wallet of the user using proof of wallet ownership instead of the password. Works only if tonWalletState.is_backup_enabled is true
+    /// - Parameter proof: Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+    public final func disableTonWalletBackupWithProof(
+        proof: TonWalletOwnershipProof?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DisableTonWalletBackupWithProof(
+            proof: proof
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Disables backup of the TON wallet of the user using proof of wallet ownership instead of the password. Works only if tonWalletState.is_backup_enabled is true
+    /// - Parameter proof: Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func disableTonWalletBackupWithProof(proof: TonWalletOwnershipProof?) async throws -> Ok {
+        let query = DisableTonWalletBackupWithProof(
+            proof: proof
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sends a cryptocurrency from the user's TON wallet; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter address: Address in the TON blockchain of the transaction peer
+    /// - Parameter amount: The amount of the sent cryptocurrency, in the smallest units of the cryptocurrency
+    /// - Parameter comment: Comment added to the transaction
+    /// - Parameter gaslessTransferData: Serialized data for gasless cryptocurrency transfer request; pass an empty string to force a regular request. The minimum allowed transfer amount for a gassless transfer is getOption("ton_wallet_gasless_transfer_amount_min")
+    /// - Parameter isCommentEncrypted: Pass true if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+    /// - Parameter regularTransferData: Serialized data for regular cryptocurrency transfer request. The minimum allowed transfer amount is getOption("ton_wallet_transfer_amount_min")
+    /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// - Parameter userId: Identifier of the user who will receive the transfer; pass 0 if unknown
+    public final func sendTonWalletTransfer(
+        address: String?,
+        amount: Int64?,
+        comment: String?,
+        gaslessTransferData: Data?,
+        isCommentEncrypted: Bool?,
+        regularTransferData: Data?,
+        sendingId: Int?,
+        userId: Int64?,
+        completion: @escaping (Result<TonWalletTransferResult, Swift.Error>) -> Void
+    ) throws {
+        let query = SendTonWalletTransfer(
+            address: address,
+            amount: amount,
+            comment: comment,
+            gaslessTransferData: gaslessTransferData,
+            isCommentEncrypted: isCommentEncrypted,
+            regularTransferData: regularTransferData,
+            sendingId: sendingId,
+            userId: userId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sends a cryptocurrency from the user's TON wallet; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter address: Address in the TON blockchain of the transaction peer
+    /// - Parameter amount: The amount of the sent cryptocurrency, in the smallest units of the cryptocurrency
+    /// - Parameter comment: Comment added to the transaction
+    /// - Parameter gaslessTransferData: Serialized data for gasless cryptocurrency transfer request; pass an empty string to force a regular request. The minimum allowed transfer amount for a gassless transfer is getOption("ton_wallet_gasless_transfer_amount_min")
+    /// - Parameter isCommentEncrypted: Pass true if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+    /// - Parameter regularTransferData: Serialized data for regular cryptocurrency transfer request. The minimum allowed transfer amount is getOption("ton_wallet_transfer_amount_min")
+    /// - Parameter sendingId: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// - Parameter userId: Identifier of the user who will receive the transfer; pass 0 if unknown
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func sendTonWalletTransfer(
+        address: String?,
+        amount: Int64?,
+        comment: String?,
+        gaslessTransferData: Data?,
+        isCommentEncrypted: Bool?,
+        regularTransferData: Data?,
+        sendingId: Int?,
+        userId: Int64?
+    ) async throws -> TonWalletTransferResult {
+        let query = SendTonWalletTransfer(
+            address: address,
+            amount: amount,
+            comment: comment,
+            gaslessTransferData: gaslessTransferData,
+            isCommentEncrypted: isCommentEncrypted,
+            regularTransferData: regularTransferData,
+            sendingId: sendingId,
+            userId: userId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Deletes the current TON wallet of the user and creates a new one; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    public final func deleteTonWallet(
+        password: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteTonWallet(
+            password: password
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Deletes the current TON wallet of the user and creates a new one; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func deleteTonWallet(password: String?) async throws -> Ok {
+        let query = DeleteTonWallet(
+            password: password
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Replaces the current TON wallet with another existing v6r2 wallet or changes private key of the current TON wallet; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter anchorPublicKey: Original public key of the new TON wallet
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    /// - Parameter proof: Proof of ownership of the new private key of the TON wallet; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+    public final func replaceTonWallet(
+        anchorPublicKey: Data?,
+        password: String?,
+        proof: TonWalletOwnershipProof?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReplaceTonWallet(
+            anchorPublicKey: anchorPublicKey,
+            password: password,
+            proof: proof
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Replaces the current TON wallet with another existing v6r2 wallet or changes private key of the current TON wallet; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter anchorPublicKey: Original public key of the new TON wallet
+    /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    /// - Parameter proof: Proof of ownership of the new private key of the TON wallet; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func replaceTonWallet(
+        anchorPublicKey: Data?,
+        password: String?,
+        proof: TonWalletOwnershipProof?
+    ) async throws -> Ok {
+        let query = ReplaceTonWallet(
+            anchorPublicKey: anchorPublicKey,
+            password: password,
+            proof: proof
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns exchange rates of currencies to USD
+    /// - Returns: Exchange rates of currencies to USD
+    public final func getCurrencyExchangeRates(completion: @escaping (Result<CurrencyExchangeRates, Swift.Error>) -> Void) throws {
+        let query = GetCurrencyExchangeRates()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns exchange rates of currencies to USD
+    /// - Returns: Exchange rates of currencies to USD
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getCurrencyExchangeRates() async throws -> CurrencyExchangeRates {
+        let query = GetCurrencyExchangeRates()
+        return try await self.run(query: query)
+    }
+
+    /// Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter limit: The maximum number of NFTs to be returned; must be positive and can't be greater than 20
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: NFTs stored on the TON wallet of the user
+    public final func getTonWalletNfts(
+        limit: Int?,
+        offset: String?,
+        completion: @escaping (Result<TonNfts, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonWalletNfts(
+            limit: limit,
+            offset: offset
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns NFTs stored on the TON wallet of the user; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter limit: The maximum number of NFTs to be returned; must be positive and can't be greater than 20
+    /// - Parameter offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// - Returns: NFTs stored on the TON wallet of the user
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonWalletNfts(
+        limit: Int?,
+        offset: String?
+    ) async throws -> TonNfts {
+        let query = GetTonWalletNfts(
+            limit: limit,
+            offset: offset
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns active TON Connect sessions; can be used only if getOption("can_use_ton_wallet")
+    /// - Returns: Active TON Connect sessions
+    public final func getTonConnectSessions(completion: @escaping (Result<TonConnectSessions, Swift.Error>) -> Void) throws {
+        let query = GetTonConnectSessions()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns active TON Connect sessions; can be used only if getOption("can_use_ton_wallet")
+    /// - Returns: Active TON Connect sessions
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonConnectSessions() async throws -> TonConnectSessions {
+        let query = GetTonConnectSessions()
+        return try await self.run(query: query)
+    }
+
+    /// Creates a TON Connect session; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter dappClientId: Hex-encoded public X25519 key of the dApp
+    /// - Parameter manifestUrl: URL of the manifest of the dApp
+    public final func createTonConnectSession(
+        dappClientId: String?,
+        manifestUrl: String?,
+        completion: @escaping (Result<TonConnectSession, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateTonConnectSession(
+            dappClientId: dappClientId,
+            manifestUrl: manifestUrl
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Creates a TON Connect session; can be used only if getOption("can_use_ton_wallet")
+    /// - Parameter dappClientId: Hex-encoded public X25519 key of the dApp
+    /// - Parameter manifestUrl: URL of the manifest of the dApp
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func createTonConnectSession(
+        dappClientId: String?,
+        manifestUrl: String?
+    ) async throws -> TonConnectSession {
+        let query = CreateTonConnectSession(
+            dappClientId: dappClientId,
+            manifestUrl: manifestUrl
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+    /// - Parameter sessionId: Unique identifier of the session
+    /// - Parameter walletClientId: Hex-encoded public X25519 key of the current user's application calculated from the TON wallet private key and session parameters
+    public final func setTonConnectSessionWalletClientId(
+        sessionId: TdInt64?,
+        walletClientId: String?,
+        completion: @escaping (Result<TonConnectChallenge, Swift.Error>) -> Void
+    ) throws {
+        let query = SetTonConnectSessionWalletClientId(
+            sessionId: sessionId,
+            walletClientId: walletClientId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+    /// - Parameter sessionId: Unique identifier of the session
+    /// - Parameter walletClientId: Hex-encoded public X25519 key of the current user's application calculated from the TON wallet private key and session parameters
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func setTonConnectSessionWalletClientId(
+        sessionId: TdInt64?,
+        walletClientId: String?
+    ) async throws -> TonConnectChallenge {
+        let query = SetTonConnectSessionWalletClientId(
+            sessionId: sessionId,
+            walletClientId: walletClientId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Accepts or rejects a TON Connect session
+    /// - Parameter body: Body of the result
+    /// - Parameter challengeAnswer: Answer to the challenge received from setTonConnectSessionWalletClientId
+    /// - Parameter isError: Pass true to reject the request; pass false to accept it
+    /// - Parameter sessionId: Unique identifier of the session
+    /// - Parameter traceId: Identifier to trace the connection request
+    public final func sendTonConnectSessionConnectResult(
+        body: Data?,
+        challengeAnswer: Data?,
+        isError: Bool?,
+        sessionId: TdInt64?,
+        traceId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SendTonConnectSessionConnectResult(
+            body: body,
+            challengeAnswer: challengeAnswer,
+            isError: isError,
+            sessionId: sessionId,
+            traceId: traceId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Accepts or rejects a TON Connect session
+    /// - Parameter body: Body of the result
+    /// - Parameter challengeAnswer: Answer to the challenge received from setTonConnectSessionWalletClientId
+    /// - Parameter isError: Pass true to reject the request; pass false to accept it
+    /// - Parameter sessionId: Unique identifier of the session
+    /// - Parameter traceId: Identifier to trace the connection request
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func sendTonConnectSessionConnectResult(
+        body: Data?,
+        challengeAnswer: Data?,
+        isError: Bool?,
+        sessionId: TdInt64?,
+        traceId: String?
+    ) async throws -> Ok {
+        let query = SendTonConnectSessionConnectResult(
+            body: body,
+            challengeAnswer: challengeAnswer,
+            isError: isError,
+            sessionId: sessionId,
+            traceId: traceId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns pending requests in a TON Connect session
+    /// - Parameter sessionId: Unique identifier of the session
+    /// - Returns: Pending requests in a TON Connect session
+    public final func getTonConnectSessionPendingRequests(
+        sessionId: TdInt64?,
+        completion: @escaping (Result<TonConnectRequests, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonConnectSessionPendingRequests(
+            sessionId: sessionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns pending requests in a TON Connect session
+    /// - Parameter sessionId: Unique identifier of the session
+    /// - Returns: Pending requests in a TON Connect session
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonConnectSessionPendingRequests(sessionId: TdInt64?) async throws -> TonConnectRequests {
+        let query = GetTonConnectSessionPendingRequests(
+            sessionId: sessionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns pending requests with a dApp through TON Connect
+    /// - Parameter dappClientId: Hex-encoded public X25519 key of the dApp
+    /// - Returns: Pending requests with a dApp through TON Connect
+    public final func getTonConnectDAppPendingRequests(
+        dappClientId: String?,
+        completion: @escaping (Result<TonConnectRequests, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonConnectDAppPendingRequests(
+            dappClientId: dappClientId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns pending requests with a dApp through TON Connect
+    /// - Parameter dappClientId: Hex-encoded public X25519 key of the dApp
+    /// - Returns: Pending requests with a dApp through TON Connect
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonConnectDAppPendingRequests(dappClientId: String?) async throws -> TonConnectRequests {
+        let query = GetTonConnectDAppPendingRequests(
+            dappClientId: dappClientId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Claims a request received through TON Connect for processing on this device
+    /// - Parameter dappRequestId: Identifier of the request assigned by the dApp
+    /// - Parameter isRejected: Pass true to reject the request
+    /// - Parameter messageId: Identifier of the message with the request
+    /// - Parameter sessionId: Unique identifier of the TON Connect session
+    public final func claimTonConnectRequest(
+        dappRequestId: String?,
+        isRejected: Bool?,
+        messageId: Int64?,
+        sessionId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ClaimTonConnectRequest(
+            dappRequestId: dappRequestId,
+            isRejected: isRejected,
+            messageId: messageId,
+            sessionId: sessionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Claims a request received through TON Connect for processing on this device
+    /// - Parameter dappRequestId: Identifier of the request assigned by the dApp
+    /// - Parameter isRejected: Pass true to reject the request
+    /// - Parameter messageId: Identifier of the message with the request
+    /// - Parameter sessionId: Unique identifier of the TON Connect session
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func claimTonConnectRequest(
+        dappRequestId: String?,
+        isRejected: Bool?,
+        messageId: Int64?,
+        sessionId: TdInt64?
+    ) async throws -> Ok {
+        let query = ClaimTonConnectRequest(
+            dappRequestId: dappRequestId,
+            isRejected: isRejected,
+            messageId: messageId,
+            sessionId: sessionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sends an answer for a request received through TON Connect
+    /// - Parameter body: Body of the response
+    /// - Parameter messageId: Identifier of the message with the request
+    /// - Parameter sessionId: Unique identifier of the TON Connect session
+    /// - Parameter traceId: Identifier to trace the request
+    public final func answerTonConnectRequest(
+        body: Data?,
+        messageId: Int64?,
+        sessionId: TdInt64?,
+        traceId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = AnswerTonConnectRequest(
+            body: body,
+            messageId: messageId,
+            sessionId: sessionId,
+            traceId: traceId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sends an answer for a request received through TON Connect
+    /// - Parameter body: Body of the response
+    /// - Parameter messageId: Identifier of the message with the request
+    /// - Parameter sessionId: Unique identifier of the TON Connect session
+    /// - Parameter traceId: Identifier to trace the request
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func answerTonConnectRequest(
+        body: Data?,
+        messageId: Int64?,
+        sessionId: TdInt64?,
+        traceId: String?
+    ) async throws -> Ok {
+        let query = AnswerTonConnectRequest(
+            body: body,
+            messageId: messageId,
+            sessionId: sessionId,
+            traceId: traceId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the next event identifier for the given TON Connect session
+    /// - Parameter sessionId: Unique identifier of the TON Connect session
+    /// - Returns: The next event identifier for the given TON Connect session
+    public final func getTonConnectSessionNextEventId(
+        sessionId: TdInt64?,
+        completion: @escaping (Result<TonConnectSessionEventId, Swift.Error>) -> Void
+    ) throws {
+        let query = GetTonConnectSessionNextEventId(
+            sessionId: sessionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the next event identifier for the given TON Connect session
+    /// - Parameter sessionId: Unique identifier of the TON Connect session
+    /// - Returns: The next event identifier for the given TON Connect session
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonConnectSessionNextEventId(sessionId: TdInt64?) async throws -> TonConnectSessionEventId {
+        let query = GetTonConnectSessionNextEventId(
+            sessionId: sessionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Closes a TON Connect session
+    /// - Parameter body: Encrypted body of the disconnect event; may be empty if the session has already been closed. Use getTonConnectSessionNextEventId to get event identifier for the event
+    /// - Parameter sessionId: Unique identifier of the TON Connect session to close
+    public final func disconnectTonConnectSession(
+        body: Data?,
+        sessionId: TdInt64?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DisconnectTonConnectSession(
+            body: body,
+            sessionId: sessionId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Closes a TON Connect session
+    /// - Parameter body: Encrypted body of the disconnect event; may be empty if the session has already been closed. Use getTonConnectSessionNextEventId to get event identifier for the event
+    /// - Parameter sessionId: Unique identifier of the TON Connect session to close
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func disconnectTonConnectSession(
+        body: Data?,
+        sessionId: TdInt64?
+    ) async throws -> Ok {
+        let query = DisconnectTonConnectSession(
+            body: body,
+            sessionId: sessionId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns available on-ramp providers
+    /// - Parameter cryptocurrency: Pass a cryptocurrency to receive only providers that support it; pass an empty string to receive all providers
+    /// - Returns: Available on-ramp providers
+    public final func getOnRampProviders(
+        cryptocurrency: String?,
+        completion: @escaping (Result<OnRampProviders, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOnRampProviders(
+            cryptocurrency: cryptocurrency
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns available on-ramp providers
+    /// - Parameter cryptocurrency: Pass a cryptocurrency to receive only providers that support it; pass an empty string to receive all providers
+    /// - Returns: Available on-ramp providers
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getOnRampProviders(cryptocurrency: String?) async throws -> OnRampProviders {
+        let query = GetOnRampProviders(
+            cryptocurrency: cryptocurrency
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter providerId: Unique identifier of the on-ramp provider; only for providers that supports base currencies
+    /// - Returns: The list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
+    public final func getOnRampProviderBaseCurrencies(
+        cryptocurrency: String?,
+        providerId: String?,
+        completion: @escaping (Result<Currencies, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOnRampProviderBaseCurrencies(
+            cryptocurrency: cryptocurrency,
+            providerId: providerId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter providerId: Unique identifier of the on-ramp provider; only for providers that supports base currencies
+    /// - Returns: The list of fiat currencies supported by an on-ramp provider for the given cryptocurrency
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getOnRampProviderBaseCurrencies(
+        cryptocurrency: String?,
+        providerId: String?
+    ) async throws -> Currencies {
+        let query = GetOnRampProviderBaseCurrencies(
+            cryptocurrency: cryptocurrency,
+            providerId: providerId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the available on-ramp payment methods based on the current user location
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Returns: The available on-ramp payment methods based on the current user location
+    public final func getOnRampPaymentAvailability(
+        baseCurrency: String?,
+        cryptocurrency: String?,
+        providerId: String?,
+        completion: @escaping (Result<OnRampPaymentAvailability, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOnRampPaymentAvailability(
+            baseCurrency: baseCurrency,
+            cryptocurrency: cryptocurrency,
+            providerId: providerId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the available on-ramp payment methods based on the current user location
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Returns: The available on-ramp payment methods based on the current user location
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getOnRampPaymentAvailability(
+        baseCurrency: String?,
+        cryptocurrency: String?,
+        providerId: String?
+    ) async throws -> OnRampPaymentAvailability {
+        let query = GetOnRampPaymentAvailability(
+            baseCurrency: baseCurrency,
+            cryptocurrency: cryptocurrency,
+            providerId: providerId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter paymentMethodName: Name of the chosen payment method; pass an empty string if none
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Returns: The limits for an on-ramp payment
+    public final func getOnRampPaymentLimits(
+        baseCurrency: String?,
+        cryptocurrency: String?,
+        paymentMethodName: String?,
+        providerId: String?,
+        completion: @escaping (Result<OnRampPaymentLimits, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOnRampPaymentLimits(
+            baseCurrency: baseCurrency,
+            cryptocurrency: cryptocurrency,
+            paymentMethodName: paymentMethodName,
+            providerId: providerId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns the limits for an on-ramp payment; only for providers that supports limits retrieval
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter paymentMethodName: Name of the chosen payment method; pass an empty string if none
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Returns: The limits for an on-ramp payment
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getOnRampPaymentLimits(
+        baseCurrency: String?,
+        cryptocurrency: String?,
+        paymentMethodName: String?,
+        providerId: String?
+    ) async throws -> OnRampPaymentLimits {
+        let query = GetOnRampPaymentLimits(
+            baseCurrency: baseCurrency,
+            cryptocurrency: cryptocurrency,
+            paymentMethodName: paymentMethodName,
+            providerId: providerId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase
+    /// - Parameter baseCurrencyAmount: The amount of the base currency to spend; pass an empty string if the user selected cryptocurrency_amount
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter cryptocurrencyAmount: The amount of the cryptocurrency to buy; pass an empty string if the user selected base_currency_amount
+    /// - Parameter paymentMethodName: Name of the chosen payment method; pass an empty string if none
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Returns: A quote for an on-ramp payment
+    public final func getOnRampPaymentQuote(
+        baseCurrency: String?,
+        baseCurrencyAmount: String?,
+        cryptocurrency: String?,
+        cryptocurrencyAmount: String?,
+        paymentMethodName: String?,
+        providerId: String?,
+        completion: @escaping (Result<OnRampPaymentQuote, Swift.Error>) -> Void
+    ) throws {
+        let query = GetOnRampPaymentQuote(
+            baseCurrency: baseCurrency,
+            baseCurrencyAmount: baseCurrencyAmount,
+            cryptocurrency: cryptocurrency,
+            cryptocurrencyAmount: cryptocurrencyAmount,
+            paymentMethodName: paymentMethodName,
+            providerId: providerId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a quote for an on-ramp payment; only for providers that supports quote retrieval
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase
+    /// - Parameter baseCurrencyAmount: The amount of the base currency to spend; pass an empty string if the user selected cryptocurrency_amount
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter cryptocurrencyAmount: The amount of the cryptocurrency to buy; pass an empty string if the user selected base_currency_amount
+    /// - Parameter paymentMethodName: Name of the chosen payment method; pass an empty string if none
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Returns: A quote for an on-ramp payment
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getOnRampPaymentQuote(
+        baseCurrency: String?,
+        baseCurrencyAmount: String?,
+        cryptocurrency: String?,
+        cryptocurrencyAmount: String?,
+        paymentMethodName: String?,
+        providerId: String?
+    ) async throws -> OnRampPaymentQuote {
+        let query = GetOnRampPaymentQuote(
+            baseCurrency: baseCurrency,
+            baseCurrencyAmount: baseCurrencyAmount,
+            cryptocurrency: cryptocurrency,
+            cryptocurrencyAmount: cryptocurrencyAmount,
+            paymentMethodName: paymentMethodName,
+            providerId: providerId
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Creates a session for an on-ramp payment
+    /// - Parameter address: Address to which the cryptocurrency will be sent
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+    /// - Parameter baseCurrencyAmount: The amount of the base currency to spend; pass an empty string if the user selected cryptocurrency_amount
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter cryptocurrencyAmount: The amount of the cryptocurrency to buy; pass an empty string if the user selected base_currency_amount
+    /// - Parameter failReturnUrl: The URL opened on failed payment; pass an empty string if none
+    /// - Parameter memo: Memo for the query; pass an empty string if none
+    /// - Parameter paymentMethodName: Name of the chosen payment method; pass an empty string if none
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Parameter successReturnUrl: The URL opened on successful payment; pass an empty string if none
+    /// - Parameter theme: Preferred theme for the WebView; pass "light" for a light theme, "dark" for a dark theme, or leave empty for a default theme
+    public final func createOnRampPaymentSession(
+        address: String?,
+        baseCurrency: String?,
+        baseCurrencyAmount: String?,
+        cryptocurrency: String?,
+        cryptocurrencyAmount: String?,
+        failReturnUrl: String?,
+        memo: String?,
+        paymentMethodName: String?,
+        providerId: String?,
+        successReturnUrl: String?,
+        theme: String?,
+        completion: @escaping (Result<OnRampPaymentSession, Swift.Error>) -> Void
+    ) throws {
+        let query = CreateOnRampPaymentSession(
+            address: address,
+            baseCurrency: baseCurrency,
+            baseCurrencyAmount: baseCurrencyAmount,
+            cryptocurrency: cryptocurrency,
+            cryptocurrencyAmount: cryptocurrencyAmount,
+            failReturnUrl: failReturnUrl,
+            memo: memo,
+            paymentMethodName: paymentMethodName,
+            providerId: providerId,
+            successReturnUrl: successReturnUrl,
+            theme: theme
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Creates a session for an on-ramp payment
+    /// - Parameter address: Address to which the cryptocurrency will be sent
+    /// - Parameter baseCurrency: ISO 4217 currency code of the currency that will be used for the purchase; pass an empty string if unknown
+    /// - Parameter baseCurrencyAmount: The amount of the base currency to spend; pass an empty string if the user selected cryptocurrency_amount
+    /// - Parameter cryptocurrency: The cryptocurrency that will be bought
+    /// - Parameter cryptocurrencyAmount: The amount of the cryptocurrency to buy; pass an empty string if the user selected base_currency_amount
+    /// - Parameter failReturnUrl: The URL opened on failed payment; pass an empty string if none
+    /// - Parameter memo: Memo for the query; pass an empty string if none
+    /// - Parameter paymentMethodName: Name of the chosen payment method; pass an empty string if none
+    /// - Parameter providerId: Unique identifier of the on-ramp provider
+    /// - Parameter successReturnUrl: The URL opened on successful payment; pass an empty string if none
+    /// - Parameter theme: Preferred theme for the WebView; pass "light" for a light theme, "dark" for a dark theme, or leave empty for a default theme
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func createOnRampPaymentSession(
+        address: String?,
+        baseCurrency: String?,
+        baseCurrencyAmount: String?,
+        cryptocurrency: String?,
+        cryptocurrencyAmount: String?,
+        failReturnUrl: String?,
+        memo: String?,
+        paymentMethodName: String?,
+        providerId: String?,
+        successReturnUrl: String?,
+        theme: String?
+    ) async throws -> OnRampPaymentSession {
+        let query = CreateOnRampPaymentSession(
+            address: address,
+            baseCurrency: baseCurrency,
+            baseCurrencyAmount: baseCurrencyAmount,
+            cryptocurrency: cryptocurrency,
+            cryptocurrencyAmount: cryptocurrencyAmount,
+            failReturnUrl: failReturnUrl,
+            memo: memo,
+            paymentMethodName: paymentMethodName,
+            providerId: providerId,
+            successReturnUrl: successReturnUrl,
+            theme: theme
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Sends a request to TON Center API and returns its response in JSON format
+    /// - Parameter endpoint: The path of the requested endpoint. See https://toncenter.com/api/v3/index.html for the list of supported endpoints
+    /// - Parameter type: Type of the request
+    /// - Returns: Sends a request to TON Center API and returns its response in JSON format
+    public final func sendTonCenterApiRequest(
+        endpoint: String?,
+        type: TonCenterApiRequestType?,
+        completion: @escaping (Result<Text, Swift.Error>) -> Void
+    ) throws {
+        let query = SendTonCenterApiRequest(
+            endpoint: endpoint,
+            type: type
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Sends a request to TON Center API and returns its response in JSON format
+    /// - Parameter endpoint: The path of the requested endpoint. See https://toncenter.com/api/v3/index.html for the list of supported endpoints
+    /// - Parameter type: Type of the request
+    /// - Returns: Sends a request to TON Center API and returns its response in JSON format
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func sendTonCenterApiRequest(
+        endpoint: String?,
+        type: TonCenterApiRequestType?
+    ) async throws -> Text {
+        let query = SendTonCenterApiRequest(
+            endpoint: endpoint,
+            type: type
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Returns a URL for TON Center Streaming API
+    /// - Returns: A URL for TON Center Streaming API
+    public final func getTonCenterStreamingApiUrl(completion: @escaping (Result<TonCenterStreamingApiUrl, Swift.Error>) -> Void) throws {
+        let query = GetTonCenterStreamingApiUrl()
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns a URL for TON Center Streaming API
+    /// - Returns: A URL for TON Center Streaming API
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getTonCenterStreamingApiUrl() async throws -> TonCenterStreamingApiUrl {
+        let query = GetTonCenterStreamingApiUrl()
         return try await self.run(query: query)
     }
 
@@ -30698,6 +31978,29 @@ public class TDLibApi {
     public final func getDeepLinkInfo(link: String?) async throws -> DeepLinkInfo {
         let query = GetDeepLinkInfo(
             link: link
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Dismissess a received web token without consumption; for official Telegram apps only
+    /// - Parameter token: The token to dismiss
+    public final func dismissWebToken(
+        token: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DismissWebToken(
+            token: token
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Dismissess a received web token without consumption; for official Telegram apps only
+    /// - Parameter token: The token to dismiss
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func dismissWebToken(token: String?) async throws -> Ok {
+        let query = DismissWebToken(
+            token: token
         )
         return try await self.run(query: query)
     }

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -24,6 +24,9 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
 
     /// Suggests the user to view a hint about the meaning of one and two check marks on sent messages
     case suggestedActionViewChecksHint
+
+    /// Suggests the user to view a hint about receiving of the first TON wallet transfer
+    case suggestedActionViewFirstTonWalletTransferHint
 
     /// Suggests the user to convert specified supergroup to a broadcast group
     case suggestedActionConvertToBroadcastGroup(SuggestedActionConvertToBroadcastGroup)
@@ -70,6 +73,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
         case suggestedActionCheckPassword
         case suggestedActionCheckPhoneNumber
         case suggestedActionViewChecksHint
+        case suggestedActionViewFirstTonWalletTransferHint
         case suggestedActionConvertToBroadcastGroup
         case suggestedActionSetPassword
         case suggestedActionUpgradePremium
@@ -97,6 +101,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             self = .suggestedActionCheckPhoneNumber
         case .suggestedActionViewChecksHint:
             self = .suggestedActionViewChecksHint
+        case .suggestedActionViewFirstTonWalletTransferHint:
+            self = .suggestedActionViewFirstTonWalletTransferHint
         case .suggestedActionConvertToBroadcastGroup:
             let value = try SuggestedActionConvertToBroadcastGroup(from: decoder)
             self = .suggestedActionConvertToBroadcastGroup(value)
@@ -142,6 +148,8 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
             try container.encode(Kind.suggestedActionCheckPhoneNumber, forKey: .type)
         case .suggestedActionViewChecksHint:
             try container.encode(Kind.suggestedActionViewChecksHint, forKey: .type)
+        case .suggestedActionViewFirstTonWalletTransferHint:
+            try container.encode(Kind.suggestedActionViewFirstTonWalletTransferHint, forKey: .type)
         case .suggestedActionConvertToBroadcastGroup(let value):
             try container.encode(Kind.suggestedActionConvertToBroadcastGroup, forKey: .type)
             try value.encode(to: encoder)

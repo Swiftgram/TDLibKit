@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct StarRevenueStatistics: Codable, Equatable, Hashable {
     /// Telegram Star revenue status
     public let status: StarRevenueStatus
 
-    /// Current conversion rate of a Telegram Star to USD
+    /// Current exchange rate of a Telegram Star to USD
     public let usdRate: Double
 
 

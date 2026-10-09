@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -214,7 +214,7 @@ public struct TelegramPaymentPurposeStars: Codable, Equatable, Hashable {
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
-    /// Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none
+    /// Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none. If non-zero and getOption("star_top_up_disabled"), then the payment isn't allowed and the user can't buy Telegram Stars in this place
     public let chatId: Int64
 
     /// ISO 4217 currency code of the payment currency

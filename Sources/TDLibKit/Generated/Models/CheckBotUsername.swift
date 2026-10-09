@@ -3,21 +3,28 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
 
 
-/// Checks whether a username can be set for a new bot. Use checkChatUsername to check username for other chat types
+/// Checks whether a username can be set for a new bot or assigned as a secondary username to an existing bot. Use checkChatUsername to check username for other chat types
 public struct CheckBotUsername: Codable, Equatable, Hashable {
+
+    /// Pass true to check whether the username is suitable as a secondary username for an existing bot; pass false to check whether the username is suitable for createBot
+    public let isSecondary: Bool?
 
     /// Username to be checked
     public let username: String?
 
 
-    public init(username: String?) {
+    public init(
+        isSecondary: Bool?,
+        username: String?
+    ) {
+        self.isSecondary = isSecondary
         self.username = username
     }
 }

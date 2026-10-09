@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -25,17 +25,22 @@ public struct Usernames: Codable, Equatable, Hashable {
     /// Active or disabled username, which may be changed with setUsername or setSupergroupUsername
     public let editableUsername: String
 
+    /// Secondary non-collectible username; for bots only. Can't be used in toggleBotUsernameIsActive; use addBotSecondaryUsername or deleteBotSecondaryUsername to edit it. If the username is disabled, then Telegram Premium subscription is required to re-enable it
+    public let secondaryUsername: String
+
 
     public init(
         activeUsernames: [String],
         collectibleUsernames: [String],
         disabledUsernames: [String],
-        editableUsername: String
+        editableUsername: String,
+        secondaryUsername: String
     ) {
         self.activeUsernames = activeUsernames
         self.collectibleUsernames = collectibleUsernames
         self.disabledUsernames = disabledUsernames
         self.editableUsername = editableUsername
+        self.secondaryUsername = secondaryUsername
     }
 }
 

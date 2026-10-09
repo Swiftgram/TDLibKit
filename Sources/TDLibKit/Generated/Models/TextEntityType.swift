@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -36,6 +36,9 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
 
     /// A bank card number. The getBankCardInfo method can be used to get information about the bank card
     case textEntityTypeBankCardNumber
+
+    /// An address in the TON blockchain
+    case textEntityTypeTonAddress
 
     /// A bold text
     case textEntityTypeBold
@@ -92,6 +95,7 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
         case textEntityTypeEmailAddress
         case textEntityTypePhoneNumber
         case textEntityTypeBankCardNumber
+        case textEntityTypeTonAddress
         case textEntityTypeBold
         case textEntityTypeItalic
         case textEntityTypeUnderline
@@ -129,6 +133,8 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
             self = .textEntityTypePhoneNumber
         case .textEntityTypeBankCardNumber:
             self = .textEntityTypeBankCardNumber
+        case .textEntityTypeTonAddress:
+            self = .textEntityTypeTonAddress
         case .textEntityTypeBold:
             self = .textEntityTypeBold
         case .textEntityTypeItalic:
@@ -187,6 +193,8 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
             try container.encode(Kind.textEntityTypePhoneNumber, forKey: .type)
         case .textEntityTypeBankCardNumber:
             try container.encode(Kind.textEntityTypeBankCardNumber, forKey: .type)
+        case .textEntityTypeTonAddress:
+            try container.encode(Kind.textEntityTypeTonAddress, forKey: .type)
         case .textEntityTypeBold:
             try container.encode(Kind.textEntityTypeBold, forKey: .type)
         case .textEntityTypeItalic:

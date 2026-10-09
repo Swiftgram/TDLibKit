@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -253,6 +253,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Telegram Stars were received by the current user from a giveaway
     case messageGiveawayPrizeStars(MessageGiveawayPrizeStars)
 
+    /// Represents a transfer with the TON wallet of the current user
+    case messageTonWalletTransfer(MessageTonWalletTransfer)
+
+    /// A request from a dApp was received through TON Connect
+    case messageTonConnectRequest(MessageTonConnectRequest)
+
     /// A regular gift was received or sent by the current user, or the current user was notified about a channel gift
     case messageGift(MessageGift)
 
@@ -410,6 +416,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageGiftedStars
         case messageGiftedGrams
         case messageGiveawayPrizeStars
+        case messageTonWalletTransfer
+        case messageTonConnectRequest
         case messageGift
         case messageUpgradedGift
         case messageRefundedUpgradedGift
@@ -672,6 +680,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageGiveawayPrizeStars:
             let value = try MessageGiveawayPrizeStars(from: decoder)
             self = .messageGiveawayPrizeStars(value)
+        case .messageTonWalletTransfer:
+            let value = try MessageTonWalletTransfer(from: decoder)
+            self = .messageTonWalletTransfer(value)
+        case .messageTonConnectRequest:
+            let value = try MessageTonConnectRequest(from: decoder)
+            self = .messageTonConnectRequest(value)
         case .messageGift:
             let value = try MessageGift(from: decoder)
             self = .messageGift(value)
@@ -981,6 +995,12 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageGiveawayPrizeStars(let value):
             try container.encode(Kind.messageGiveawayPrizeStars, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageTonWalletTransfer(let value):
+            try container.encode(Kind.messageTonWalletTransfer, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageTonConnectRequest(let value):
+            try container.encode(Kind.messageTonConnectRequest, forKey: .type)
             try value.encode(to: encoder)
         case .messageGift(let value):
             try container.encode(Kind.messageGift, forKey: .type)
@@ -2763,6 +2783,79 @@ public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
         self.starCount = starCount
         self.sticker = sticker
         self.transactionId = transactionId
+    }
+}
+
+/// Represents a transfer with the TON wallet of the current user
+public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
+
+    /// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
+    public let amount: Int64
+
+    /// Comment added to the transaction
+    public let comment: String
+
+    /// True, if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+    public let isCommentEncrypted: Bool
+
+    /// Address in the TON blockchain of the transaction peer
+    public let peerAddress: String
+
+    /// Sender of the transfer; 0 if unknown
+    public let senderUserId: Int64
+
+    /// Unique identifier of the transaction; may be empty if the transfer isn't send yet. Use getTonWalletTransaction to get additional information about the transaction
+    public let transactionId: String
+
+
+    public init(
+        amount: Int64,
+        comment: String,
+        isCommentEncrypted: Bool,
+        peerAddress: String,
+        senderUserId: Int64,
+        transactionId: String
+    ) {
+        self.amount = amount
+        self.comment = comment
+        self.isCommentEncrypted = isCommentEncrypted
+        self.peerAddress = peerAddress
+        self.senderUserId = senderUserId
+        self.transactionId = transactionId
+    }
+}
+
+/// A request from a dApp was received through TON Connect
+public struct MessageTonConnectRequest: Codable, Equatable, Hashable {
+
+    /// Name of the dApp; may be empty if unknown
+    public let dappName: String
+
+    /// Unique identifier of the TON Connect session
+    public let sessionId: TdInt64
+
+    /// State of the request
+    public let state: TonConnectRequestState
+
+    /// Topic of the request; may be empty if none
+    public let topic: String
+
+    /// Identifier to trace the request; may be empty if none
+    public let traceId: String
+
+
+    public init(
+        dappName: String,
+        sessionId: TdInt64,
+        state: TonConnectRequestState,
+        topic: String,
+        traceId: String
+    ) {
+        self.dappName = dappName
+        self.sessionId = sessionId
+        self.state = state
+        self.topic = topic
+        self.traceId = traceId
     }
 }
 

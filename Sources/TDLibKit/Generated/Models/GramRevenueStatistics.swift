@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GramRevenueStatistics: Codable, Equatable, Hashable {
     /// Amount of earned revenue
     public let status: GramRevenueStatus
 
-    /// Current conversion rate of nanogram to USD cents
+    /// Current exchange rate of nanogram to USD cents
     public let usdRate: Double
 
 

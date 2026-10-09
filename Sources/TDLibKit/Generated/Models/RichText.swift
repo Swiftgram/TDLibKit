@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -55,6 +55,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
 
     /// A bank card number
     case richTextBankCardNumber(RichTextBankCardNumber)
+
+    /// An address in the TON blockchain
+    case richTextTonAddress(RichTextTonAddress)
 
     /// A bot command
     case richTextBotCommand(RichTextBotCommand)
@@ -120,6 +123,7 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case richTextHashtag
         case richTextCashtag
         case richTextBankCardNumber
+        case richTextTonAddress
         case richTextBotCommand
         case richTextFixed
         case richTextMentionName
@@ -184,6 +188,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
         case .richTextBankCardNumber:
             let value = try RichTextBankCardNumber(from: decoder)
             self = .richTextBankCardNumber(value)
+        case .richTextTonAddress:
+            let value = try RichTextTonAddress(from: decoder)
+            self = .richTextTonAddress(value)
         case .richTextBotCommand:
             let value = try RichTextBotCommand(from: decoder)
             self = .richTextBotCommand(value)
@@ -279,6 +286,9 @@ public indirect enum RichText: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .richTextBankCardNumber(let value):
             try container.encode(Kind.richTextBankCardNumber, forKey: .type)
+            try value.encode(to: encoder)
+        case .richTextTonAddress(let value):
+            try container.encode(Kind.richTextTonAddress, forKey: .type)
             try value.encode(to: encoder)
         case .richTextBotCommand(let value):
             try container.encode(Kind.richTextBotCommand, forKey: .type)
@@ -536,6 +546,25 @@ public struct RichTextBankCardNumber: Codable, Equatable, Hashable {
         text: RichText
     ) {
         self.bankCardNumber = bankCardNumber
+        self.text = text
+    }
+}
+
+/// An address in the TON blockchain
+public struct RichTextTonAddress: Codable, Equatable, Hashable {
+
+    /// The address
+    public let address: String
+
+    /// Text
+    public let text: RichText
+
+
+    public init(
+        address: String,
+        text: RichText
+    ) {
+        self.address = address
         self.text = text
     }
 }

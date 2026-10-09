@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -57,6 +57,12 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
 
     /// A message with a giveaway
     case pushMessageContentGiveaway(PushMessageContentGiveaway)
+
+    /// A message with a TON wallet transfer
+    case pushMessageContentTonWalletTransfer(PushMessageContentTonWalletTransfer)
+
+    /// A message with a request from a dApp was received through TON Connect
+    case pushMessageContentTonConnectRequest(PushMessageContentTonConnectRequest)
 
     /// A message with a gift
     case pushMessageContentGift(PushMessageContentGift)
@@ -168,6 +174,8 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case pushMessageContentPoll
         case pushMessageContentPremiumGiftCode
         case pushMessageContentGiveaway
+        case pushMessageContentTonWalletTransfer
+        case pushMessageContentTonConnectRequest
         case pushMessageContentGift
         case pushMessageContentUpgradedGift
         case pushMessageContentScreenshotTaken
@@ -250,6 +258,12 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
         case .pushMessageContentGiveaway:
             let value = try PushMessageContentGiveaway(from: decoder)
             self = .pushMessageContentGiveaway(value)
+        case .pushMessageContentTonWalletTransfer:
+            let value = try PushMessageContentTonWalletTransfer(from: decoder)
+            self = .pushMessageContentTonWalletTransfer(value)
+        case .pushMessageContentTonConnectRequest:
+            let value = try PushMessageContentTonConnectRequest(from: decoder)
+            self = .pushMessageContentTonConnectRequest(value)
         case .pushMessageContentGift:
             let value = try PushMessageContentGift(from: decoder)
             self = .pushMessageContentGift(value)
@@ -384,6 +398,12 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .pushMessageContentGiveaway(let value):
             try container.encode(Kind.pushMessageContentGiveaway, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentTonWalletTransfer(let value):
+            try container.encode(Kind.pushMessageContentTonWalletTransfer, forKey: .type)
+            try value.encode(to: encoder)
+        case .pushMessageContentTonConnectRequest(let value):
+            try container.encode(Kind.pushMessageContentTonConnectRequest, forKey: .type)
             try value.encode(to: encoder)
         case .pushMessageContentGift(let value):
             try container.encode(Kind.pushMessageContentGift, forKey: .type)
@@ -764,6 +784,42 @@ public struct PushMessageContentGiveaway: Codable, Equatable, Hashable {
         self.isPinned = isPinned
         self.prize = prize
         self.winnerCount = winnerCount
+    }
+}
+
+/// A message with a TON wallet transfer
+public struct PushMessageContentTonWalletTransfer: Codable, Equatable, Hashable {
+
+    /// String representation of the received amount
+    public let amount: String
+
+    /// Comment added to the transaction if it is public
+    public let comment: String
+
+    /// Sender of the transfer; 0 if unknown
+    public let senderUserId: Int64
+
+
+    public init(
+        amount: String,
+        comment: String,
+        senderUserId: Int64
+    ) {
+        self.amount = amount
+        self.comment = comment
+        self.senderUserId = senderUserId
+    }
+}
+
+/// A message with a request from a dApp was received through TON Connect
+public struct PushMessageContentTonConnectRequest: Codable, Equatable, Hashable {
+
+    /// Name of the dApp; may be empty if unknown
+    public let dappName: String
+
+
+    public init(dappName: String) {
+        self.dappName = dappName
     }
 }
 

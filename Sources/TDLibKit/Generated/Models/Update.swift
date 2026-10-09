@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -376,6 +376,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Story stealth mode settings have changed
     case updateStoryStealthMode(UpdateStoryStealthMode)
 
+    /// Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+    case updateAllowedBotUsernamePremiumSuffixes(UpdateAllowedBotUsernamePremiumSuffixes)
+
     /// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
     case updateTrustedMiniAppBots(UpdateTrustedMiniAppBots)
 
@@ -465,6 +468,18 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// The number of TON Grams owned by the current user has changed
     case updateOwnedGramCount(UpdateOwnedGramCount)
+
+    /// The state of the TON wallet of the current user has changed
+    case updateTonWalletState(UpdateTonWalletState)
+
+    /// The information about gasless transfers has changed
+    case updateTonWalletGaslessTransfersInfo(UpdateTonWalletGaslessTransfersInfo)
+
+    /// A session of a TON Connect has changed
+    case updateTonWalletTonConnectSession(UpdateTonWalletTonConnectSession)
+
+    /// TON Connect sessions must be disconnected in a regular way
+    case updateTonWalletTonConnectSessionDisconnectRequired(UpdateTonWalletTonConnectSessionDisconnectRequired)
 
     /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
@@ -703,6 +718,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatActiveStories
         case updateStoryListChatCount
         case updateStoryStealthMode
+        case updateAllowedBotUsernamePremiumSuffixes
         case updateTrustedMiniAppBots
         case updateOption
         case updateStickerSet
@@ -733,6 +749,10 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateActiveLiveLocationMessages
         case updateOwnedStarCount
         case updateOwnedGramCount
+        case updateTonWalletState
+        case updateTonWalletGaslessTransfersInfo
+        case updateTonWalletTonConnectSession
+        case updateTonWalletTonConnectSessionDisconnectRequired
         case updateChatRevenueAmount
         case updateStarRevenueStatus
         case updateGramRevenueStatus
@@ -1140,6 +1160,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStoryStealthMode:
             let value = try UpdateStoryStealthMode(from: decoder)
             self = .updateStoryStealthMode(value)
+        case .updateAllowedBotUsernamePremiumSuffixes:
+            let value = try UpdateAllowedBotUsernamePremiumSuffixes(from: decoder)
+            self = .updateAllowedBotUsernamePremiumSuffixes(value)
         case .updateTrustedMiniAppBots:
             let value = try UpdateTrustedMiniAppBots(from: decoder)
             self = .updateTrustedMiniAppBots(value)
@@ -1230,6 +1253,18 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateOwnedGramCount:
             let value = try UpdateOwnedGramCount(from: decoder)
             self = .updateOwnedGramCount(value)
+        case .updateTonWalletState:
+            let value = try UpdateTonWalletState(from: decoder)
+            self = .updateTonWalletState(value)
+        case .updateTonWalletGaslessTransfersInfo:
+            let value = try UpdateTonWalletGaslessTransfersInfo(from: decoder)
+            self = .updateTonWalletGaslessTransfersInfo(value)
+        case .updateTonWalletTonConnectSession:
+            let value = try UpdateTonWalletTonConnectSession(from: decoder)
+            self = .updateTonWalletTonConnectSession(value)
+        case .updateTonWalletTonConnectSessionDisconnectRequired:
+            let value = try UpdateTonWalletTonConnectSessionDisconnectRequired(from: decoder)
+            self = .updateTonWalletTonConnectSessionDisconnectRequired(value)
         case .updateChatRevenueAmount:
             let value = try UpdateChatRevenueAmount(from: decoder)
             self = .updateChatRevenueAmount(value)
@@ -1713,6 +1748,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateStoryStealthMode(let value):
             try container.encode(Kind.updateStoryStealthMode, forKey: .type)
             try value.encode(to: encoder)
+        case .updateAllowedBotUsernamePremiumSuffixes(let value):
+            try container.encode(Kind.updateAllowedBotUsernamePremiumSuffixes, forKey: .type)
+            try value.encode(to: encoder)
         case .updateTrustedMiniAppBots(let value):
             try container.encode(Kind.updateTrustedMiniAppBots, forKey: .type)
             try value.encode(to: encoder)
@@ -1802,6 +1840,18 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateOwnedGramCount(let value):
             try container.encode(Kind.updateOwnedGramCount, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateTonWalletState(let value):
+            try container.encode(Kind.updateTonWalletState, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateTonWalletGaslessTransfersInfo(let value):
+            try container.encode(Kind.updateTonWalletGaslessTransfersInfo, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateTonWalletTonConnectSession(let value):
+            try container.encode(Kind.updateTonWalletTonConnectSession, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateTonWalletTonConnectSessionDisconnectRequired(let value):
+            try container.encode(Kind.updateTonWalletTonConnectSessionDisconnectRequired, forKey: .type)
             try value.encode(to: encoder)
         case .updateChatRevenueAmount(let value):
             try container.encode(Kind.updateChatRevenueAmount, forKey: .type)
@@ -4365,6 +4415,18 @@ public struct UpdateStoryStealthMode: Codable, Equatable, Hashable {
     }
 }
 
+/// Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+public struct UpdateAllowedBotUsernamePremiumSuffixes: Codable, Equatable, Hashable {
+
+    /// The list of allowed suffixes
+    public let suffixes: [String]
+
+
+    public init(suffixes: [String]) {
+        self.suffixes = suffixes
+    }
+}
+
 /// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
 public struct UpdateTrustedMiniAppBots: Codable, Equatable, Hashable {
 
@@ -4828,6 +4890,54 @@ public struct UpdateOwnedGramCount: Codable, Equatable, Hashable {
 
     public init(gramAmount: Int64) {
         self.gramAmount = gramAmount
+    }
+}
+
+/// The state of the TON wallet of the current user has changed
+public struct UpdateTonWalletState: Codable, Equatable, Hashable {
+
+    /// The new state of the wallet
+    public let state: TonWalletState
+
+
+    public init(state: TonWalletState) {
+        self.state = state
+    }
+}
+
+/// The information about gasless transfers has changed
+public struct UpdateTonWalletGaslessTransfersInfo: Codable, Equatable, Hashable {
+
+    /// The new state of the wallet
+    public let info: TonWalletGaslessTransfersInfo
+
+
+    public init(info: TonWalletGaslessTransfersInfo) {
+        self.info = info
+    }
+}
+
+/// A session of a TON Connect has changed
+public struct UpdateTonWalletTonConnectSession: Codable, Equatable, Hashable {
+
+    /// The new state of the session
+    public let session: TonConnectSession
+
+
+    public init(session: TonConnectSession) {
+        self.session = session
+    }
+}
+
+/// TON Connect sessions must be disconnected in a regular way
+public struct UpdateTonWalletTonConnectSessionDisconnectRequired: Codable, Equatable, Hashable {
+
+    /// Identifiers of the sessions
+    public let sessionIds: [TdInt64]
+
+
+    public init(sessionIds: [TdInt64]) {
+        self.sessionIds = sessionIds
     }
 }
 

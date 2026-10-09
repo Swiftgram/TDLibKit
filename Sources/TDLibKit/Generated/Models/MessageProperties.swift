@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -121,6 +121,9 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if fact check for the message can be changed through setMessageFactCheck
     public let canSetFactCheck: Bool
 
+    /// Identifiers of custom emoji used in the message
+    public let customEmojiIds: [TdInt64]
+
     /// True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false
     public let hasProtectedContentByCurrentUser: Bool
 
@@ -168,6 +171,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         canReportReactions: Bool,
         canReportSupergroupSpam: Bool,
         canSetFactCheck: Bool,
+        customEmojiIds: [TdInt64],
         hasProtectedContentByCurrentUser: Bool,
         hasProtectedContentByOtherUser: Bool,
         needShowStatistics: Bool
@@ -208,6 +212,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
         self.canReportReactions = canReportReactions
         self.canReportSupergroupSpam = canReportSupergroupSpam
         self.canSetFactCheck = canSetFactCheck
+        self.customEmojiIds = customEmojiIds
         self.hasProtectedContentByCurrentUser = hasProtectedContentByCurrentUser
         self.hasProtectedContentByOtherUser = hasProtectedContentByOtherUser
         self.needShowStatistics = needShowStatistics

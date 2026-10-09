@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct AnimatedEmoji: Codable, Equatable, Hashable {
 
     /// Emoji modifier fitzpatrick type; 0-6; 0 if none
     public let fitzpatrickType: Int
+
+    /// True, if the emoji is a regular emoji
+    public let isRegularEmoji: Bool
 
     /// File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
     public let sound: File?
@@ -31,12 +34,14 @@ public struct AnimatedEmoji: Codable, Equatable, Hashable {
 
     public init(
         fitzpatrickType: Int,
+        isRegularEmoji: Bool,
         sound: File?,
         sticker: Sticker?,
         stickerHeight: Int,
         stickerWidth: Int
     ) {
         self.fitzpatrickType = fitzpatrickType
+        self.isRegularEmoji = isRegularEmoji
         self.sound = sound
         self.sticker = sticker
         self.stickerHeight = stickerHeight

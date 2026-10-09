@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.67-0efabf93
-//  https://github.com/tdlib/td/tree/0efabf93
+//  Based on TDLib 1.8.68-c15d3f5a
+//  https://github.com/tdlib/td/tree/c15d3f5a
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct CreateBot: Codable, Equatable, Hashable {
     /// Name of the bot; 1-64 characters
     public let name: String?
 
-    /// Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+    /// Username of the bot. The username must end with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive. Use checkBotUsername to find whether the name is suitable. If the username doesn't end with "bot", then the current user must have Telegram Premium subscription, the chosen username will be assigned as secondary and an additional regular username ending with "bot" will be automatically assigned to the created bot
     public let username: String?
 
     /// Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
