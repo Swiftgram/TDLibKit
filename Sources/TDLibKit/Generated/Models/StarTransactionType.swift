@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-ab8d769f
-//  https://github.com/tdlib/td/tree/ab8d769f
+//  Based on TDLib 1.8.68-4a85043f
+//  https://github.com/tdlib/td/tree/4a85043f
 //
 
 import Foundation
@@ -676,8 +676,8 @@ public struct StarTransactionTypeBotInvoiceSale: Codable, Equatable, Hashable {
 /// The transaction is a purchase of a subscription from a bot or a business account by the current user; relevant for regular users only
 public struct StarTransactionTypeBotSubscriptionPurchase: Codable, Equatable, Hashable {
 
-    /// Information about the bought subscription
-    public let productInfo: ProductInfo
+    /// Information about the bought subscription; may be null if no information about the subscription is available
+    public let productInfo: ProductInfo?
 
     /// The number of seconds between consecutive Telegram Star debitings
     public let subscriptionPeriod: Int
@@ -687,7 +687,7 @@ public struct StarTransactionTypeBotSubscriptionPurchase: Codable, Equatable, Ha
 
 
     public init(
-        productInfo: ProductInfo,
+        productInfo: ProductInfo?,
         subscriptionPeriod: Int,
         userId: Int64
     ) {
@@ -706,8 +706,8 @@ public struct StarTransactionTypeBotSubscriptionSale: Codable, Equatable, Hashab
     /// Invoice payload
     public let invoicePayload: Data
 
-    /// Information about the bought subscription
-    public let productInfo: ProductInfo
+    /// Information about the bought subscription; may be null if no information about the subscription is available
+    public let productInfo: ProductInfo?
 
     /// The number of seconds between consecutive Telegram Star debitings
     public let subscriptionPeriod: Int
@@ -719,7 +719,7 @@ public struct StarTransactionTypeBotSubscriptionSale: Codable, Equatable, Hashab
     public init(
         affiliate: AffiliateInfo?,
         invoicePayload: Data,
-        productInfo: ProductInfo,
+        productInfo: ProductInfo?,
         subscriptionPeriod: Int,
         userId: Int64
     ) {

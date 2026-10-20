@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-ab8d769f
-//  https://github.com/tdlib/td/tree/ab8d769f
+//  Based on TDLib 1.8.68-4a85043f
+//  https://github.com/tdlib/td/tree/4a85043f
 //
 
 import Foundation
@@ -19,8 +19,8 @@ public struct EncryptedPassportElement: Codable, Equatable, Hashable {
     /// List of attached files
     public let files: [DatedFile]
 
-    /// The front side of an identity document
-    public let frontSide: DatedFile
+    /// The front side of an identity document; may be null if the element isn't an identity document
+    public let frontSide: DatedFile?
 
     /// Hash of the entire element
     public let hash: String
@@ -44,7 +44,7 @@ public struct EncryptedPassportElement: Codable, Equatable, Hashable {
     public init(
         data: Data,
         files: [DatedFile],
-        frontSide: DatedFile,
+        frontSide: DatedFile?,
         hash: String,
         reverseSide: DatedFile?,
         selfie: DatedFile?,

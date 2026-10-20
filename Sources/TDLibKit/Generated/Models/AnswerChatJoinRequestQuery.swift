@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-ab8d769f
-//  https://github.com/tdlib/td/tree/ab8d769f
+//  Based on TDLib 1.8.68-4a85043f
+//  https://github.com/tdlib/td/tree/4a85043f
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public struct AnswerChatJoinRequestQuery: Codable, Equatable, Hashable {
     /// Identifier of the query
     public let queryId: TdInt64?
 
-    /// The result
+    /// The result; must be null if a URL is passed
     public let result: ChatJoinRequestResult?
 
-    /// URL of the Web App to open
+    /// URL of the Web App to open; must be empty if a result is passed
     public let url: String?
 
 

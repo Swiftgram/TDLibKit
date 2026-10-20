@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-ab8d769f
-//  https://github.com/tdlib/td/tree/ab8d769f
+//  Based on TDLib 1.8.68-4a85043f
+//  https://github.com/tdlib/td/tree/4a85043f
 //
 
 import Foundation
@@ -10501,7 +10501,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
+    /// Shares users after pressing a keyboardButtonTypeRequestUsers or keyboardButtonTypeRequestManagedBot button with the bot
     /// - Parameter buttonId: Identifier of the button
     /// - Parameter onlyCheck: Pass true to check that the users can be shared by the button instead of actually sharing them
     /// - Parameter sharedUserIds: Identifiers of the shared users
@@ -10522,7 +10522,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
+    /// Shares users after pressing a keyboardButtonTypeRequestUsers or keyboardButtonTypeRequestManagedBot button with the bot
     /// - Parameter buttonId: Identifier of the button
     /// - Parameter onlyCheck: Pass true to check that the users can be shared by the button instead of actually sharing them
     /// - Parameter sharedUserIds: Identifiers of the shared users
@@ -11291,8 +11291,8 @@ public class TDLibApi {
 
     /// Sets the result of a chat join query; for bots only
     /// - Parameter queryId: Identifier of the query
-    /// - Parameter result: The result
-    /// - Parameter url: URL of the Web App to open
+    /// - Parameter result: The result; must be null if a URL is passed
+    /// - Parameter url: URL of the Web App to open; must be empty if a result is passed
     public final func answerChatJoinRequestQuery(
         queryId: TdInt64?,
         result: ChatJoinRequestResult?,
@@ -11309,8 +11309,8 @@ public class TDLibApi {
 
     /// Sets the result of a chat join query; for bots only
     /// - Parameter queryId: Identifier of the query
-    /// - Parameter result: The result
-    /// - Parameter url: URL of the Web App to open
+    /// - Parameter result: The result; must be null if a URL is passed
+    /// - Parameter url: URL of the Web App to open; must be empty if a result is passed
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func answerChatJoinRequestQuery(

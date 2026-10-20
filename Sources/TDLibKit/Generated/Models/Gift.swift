@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-ab8d769f
-//  https://github.com/tdlib/td/tree/ab8d769f
+//  Based on TDLib 1.8.68-4a85043f
+//  https://github.com/tdlib/td/tree/4a85043f
 //
 
 import Foundation
@@ -16,8 +16,8 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
     /// Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly
     public let auctionInfo: GiftAuction?
 
-    /// Background of the gift
-    public let background: GiftBackground
+    /// Background of the gift; may be null if the gift has no background
+    public let background: GiftBackground?
 
     /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     public let defaultSellStarCount: Int64
@@ -67,7 +67,7 @@ public struct Gift: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         auctionInfo: GiftAuction?,
-        background: GiftBackground,
+        background: GiftBackground?,
         defaultSellStarCount: Int64,
         firstSendDate: Int,
         hasColors: Bool,
