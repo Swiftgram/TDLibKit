@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ComposeTextWithAi: Codable, Equatable, Hashable {
     /// Pass true to add emoji to the text
     public let addEmojis: Bool?
 
-    /// Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
+    /// Name of the style of the resulting text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text
     public let styleName: String?
 
     /// The original text

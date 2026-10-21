@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program
 public struct GetConnectedAffiliateProgram: Codable, Equatable, Hashable {
 
-    /// The affiliate to which the affiliate program will be connected
+    /// The affiliate to which the affiliate program is connected
     public let affiliate: AffiliateType?
 
     /// Identifier of the bot that created the program

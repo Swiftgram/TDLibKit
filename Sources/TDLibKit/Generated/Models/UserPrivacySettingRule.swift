@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
     /// A rule to allow certain specified users to do something
     case userPrivacySettingRuleAllowUsers(UserPrivacySettingRuleAllowUsers)
 
-    /// A rule to allow all members of certain specified basic groups and supergroups to doing something
+    /// A rule to allow all members of certain specified basic groups and supergroups to do something
     case userPrivacySettingRuleAllowChatMembers(UserPrivacySettingRuleAllowChatMembers)
 
     /// A rule to restrict all users from doing something
@@ -139,7 +139,7 @@ public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable, Hashable {
     }
 }
 
-/// A rule to allow all members of certain specified basic groups and supergroups to doing something
+/// A rule to allow all members of certain specified basic groups and supergroups to do something
 public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable, Hashable {
 
     /// The chat identifiers, total number of chats in all rules must not exceed 20

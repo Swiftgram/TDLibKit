@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a list of gifts received by a user or a chat
 public struct GiftsForCrafting: Codable, Equatable, Hashable {
 
-    /// The 4 objects that describe probabilities of the crafted gift to have the backdrop or symbol of one of the original gifts for the cases when 1, 2, 3 or 4 gifts are used in the craft correspondingly
+    /// The 4 objects that describe probabilities of the crafted gift to have the backdrop or symbol of one of the original gifts for the cases when 1-4 gifts are used in the craft correspondingly
     public let attributePersistenceProbabilities: [AttributeCraftPersistenceProbability]
 
     /// The list of gifts

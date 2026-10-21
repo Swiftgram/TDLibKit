@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
     /// True, if the gift is pinned to the top of the chat's profile page
     public let isPinned: Bool
 
-    /// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone are able to see them
+    /// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone is able to see them
     public let isPrivate: Bool
 
     /// True, if the gift is displayed on the chat's profile page; only for the receiver of the gift

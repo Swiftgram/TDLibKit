@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -121,7 +121,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a receiving of a paid group call message; relevant for regular users and channel chats only
     case starTransactionTypePaidGroupCallMessageReceive(StarTransactionTypePaidGroupCallMessageReceive)
 
-    /// The transaction is a sending of a paid group reaction; relevant for regular users only
+    /// The transaction is a sending of a paid group call reaction; relevant for regular users only
     case starTransactionTypePaidGroupCallReactionSend(StarTransactionTypePaidGroupCallReactionSend)
 
     /// The transaction is a receiving of a paid group call reaction; relevant for regular users and channel chats only
@@ -1108,7 +1108,7 @@ public struct StarTransactionTypePaidGroupCallMessageReceive: Codable, Equatable
     }
 }
 
-/// The transaction is a sending of a paid group reaction; relevant for regular users only
+/// The transaction is a sending of a paid group call reaction; relevant for regular users only
 public struct StarTransactionTypePaidGroupCallReactionSend: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that received the payment

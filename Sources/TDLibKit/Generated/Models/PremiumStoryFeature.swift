@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum PremiumStoryFeature: Codable, Equatable, Hashable {
     /// Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels
     case premiumStoryFeaturePriorityOrder
 
-    /// The ability to hide the fact that the user viewed other's stories
+    /// The ability to hide the fact that the user viewed others' stories
     case premiumStoryFeatureStealthMode
 
     /// The ability to check who opened the current user's stories after they expire
@@ -25,7 +25,7 @@ public indirect enum PremiumStoryFeature: Codable, Equatable, Hashable {
     /// The ability to set custom expiration duration for stories
     case premiumStoryFeatureCustomExpirationDuration
 
-    /// The ability to save other's unprotected stories
+    /// The ability to save others' unprotected stories
     case premiumStoryFeatureSaveStories
 
     /// The ability to use links and formatting in story caption, and use inputStoryAreaTypeLink areas

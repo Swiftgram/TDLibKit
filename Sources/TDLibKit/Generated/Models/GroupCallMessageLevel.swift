@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a level of features for a message sent in a live story group call
 public struct GroupCallMessageLevel: Codable, Equatable, Hashable {
 
-    /// Background color for the message the RGB format
+    /// Background color for the message in the RGB format
     public let backgroundColor: Int
 
     /// The first color used to show the message text in the RGB format

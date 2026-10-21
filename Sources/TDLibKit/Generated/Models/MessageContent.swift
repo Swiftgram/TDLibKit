@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -97,7 +97,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A message with information about an ended call
     case messageCall(MessageCall)
 
-    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
     case messageGroupCall(MessageGroupCall)
 
     /// A new video chat was scheduled
@@ -265,7 +265,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
     case messageUpgradedGift(MessageUpgradedGift)
 
-    /// A gift which purchase, upgrade or transfer were refunded
+    /// A gift which purchase, upgrade, or transfer were refunded
     case messageRefundedUpgradedGift(MessageRefundedUpgradedGift)
 
     /// An offer to purchase an upgraded gift was sent or received
@@ -282,6 +282,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A price for direct messages was changed in the channel chat
     case messageDirectMessagePriceChanged(MessageDirectMessagePriceChanged)
+
+    /// The sender of the message used a link of the other user, which allows to send unpaid messages to the user
+    case messageUnpaidMessagesAllowedByLink
 
     /// Some tasks from a checklist were marked as done or not done
     case messageChecklistTasksDone(MessageChecklistTasksDone)
@@ -426,6 +429,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messagePaidMessagesRefunded
         case messagePaidMessagePriceChanged
         case messageDirectMessagePriceChanged
+        case messageUnpaidMessagesAllowedByLink
         case messageChecklistTasksDone
         case messageChecklistTasksAdded
         case messageSuggestedPostApprovalFailed
@@ -710,6 +714,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageDirectMessagePriceChanged:
             let value = try MessageDirectMessagePriceChanged(from: decoder)
             self = .messageDirectMessagePriceChanged(value)
+        case .messageUnpaidMessagesAllowedByLink:
+            self = .messageUnpaidMessagesAllowedByLink
         case .messageChecklistTasksDone:
             let value = try MessageChecklistTasksDone(from: decoder)
             self = .messageChecklistTasksDone(value)
@@ -1026,6 +1032,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageDirectMessagePriceChanged(let value):
             try container.encode(Kind.messageDirectMessagePriceChanged, forKey: .type)
             try value.encode(to: encoder)
+        case .messageUnpaidMessagesAllowedByLink:
+            try container.encode(Kind.messageUnpaidMessagesAllowedByLink, forKey: .type)
         case .messageChecklistTasksDone(let value):
             try container.encode(Kind.messageChecklistTasksDone, forKey: .type)
             try value.encode(to: encoder)
@@ -1677,7 +1685,7 @@ public struct MessageCall: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
 public struct MessageGroupCall: Codable, Equatable, Hashable {
 
     /// Call duration, in seconds; for left calls only
@@ -1884,7 +1892,7 @@ public struct MessageChatChangePhoto: Codable, Equatable, Hashable {
 /// The owner of the chat has left
 public struct MessageChatOwnerLeft: Codable, Equatable, Hashable {
 
-    /// Identifier of the user who will become the new owner of the chat if the previous owner isn't return; 0 if none
+    /// Identifier of the user who will become the new owner of the chat if the previous owner doesn't return; 0 if none
     public let newOwnerUserId: Int64
 
 
@@ -2804,7 +2812,7 @@ public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
     /// Sender of the transfer; 0 if unknown
     public let senderUserId: Int64
 
-    /// Unique identifier of the transaction; may be empty if the transfer isn't send yet. Use getTonWalletTransaction to get additional information about the transaction
+    /// Unique identifier of the transaction; may be empty if the transfer isn't sent yet. Use getTonWalletTransaction to get additional information about the transaction
     public let transactionId: String
 
 
@@ -3052,7 +3060,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     }
 }
 
-/// A gift which purchase, upgrade or transfer were refunded
+/// A gift which purchase, upgrade, or transfer were refunded
 public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
 
     /// The gift

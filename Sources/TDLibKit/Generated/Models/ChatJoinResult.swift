@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ChatJoinResult: Codable, Equatable, Hashable {
     /// The chat was joined successfully
     case chatJoinResultSuccess(ChatJoinResultSuccess)
 
-    /// The join request was sent and have to be approved by administrators of the chat
+    /// The join request was sent and has to be approved by administrators of the chat
     case chatJoinResultRequestSent
 
     /// An approval from a guard bot through a Web App is required to join the chat

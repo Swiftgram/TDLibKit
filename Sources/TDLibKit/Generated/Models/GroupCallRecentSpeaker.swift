@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a recently speaking participant in a group call
 public struct GroupCallRecentSpeaker: Codable, Equatable, Hashable {
 
-    /// True, is the user has spoken recently
+    /// True, if the user has spoken recently
     public let isSpeaking: Bool
 
     /// Group call participant identifier

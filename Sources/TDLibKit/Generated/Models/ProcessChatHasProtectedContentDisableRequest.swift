@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ProcessChatHasProtectedContentDisableRequest: Codable, Equatable, 
     /// Chat identifier
     public let chatId: Int64?
 
-    /// Identifier of the message with the request. The message must be incoming and has content of the type messageChatHasProtectedContentDisableRequested
+    /// Identifier of the message with the request. The message must be incoming and have content of the type messageChatHasProtectedContentDisableRequested
     public let requestMessageId: Int64?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct ChatPhoto: Codable, Equatable, Hashable, Identifiable {
     /// Photo minithumbnail; may be null
     public let minithumbnail: Minithumbnail?
 
-    /// Available variants of the photo in JPEG format, in different size
+    /// Available variants of the photo in JPEG format, in different sizes
     public let sizes: [PhotoSize]
 
     /// A small (160x160) animated variant of the photo in MPEG4 format; may be null even if the big animation is available

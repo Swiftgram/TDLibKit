@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -4841,7 +4841,7 @@ public struct UpdateDefaultPaidReactionType: Codable, Equatable, Hashable {
 /// Tags used in Saved Messages or a Saved Messages topic have changed
 public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
 
-    /// Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
+    /// Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat have changed
     public let savedMessagesTopicId: Int64
 
     /// The new tags
@@ -4908,7 +4908,7 @@ public struct UpdateTonWalletState: Codable, Equatable, Hashable {
 /// The information about gasless transfers has changed
 public struct UpdateTonWalletGaslessTransfersInfo: Codable, Equatable, Hashable {
 
-    /// The new state of the wallet
+    /// The new information about gasless transfers
     public let info: TonWalletGaslessTransfersInfo
 
 

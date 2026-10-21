@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct SendEphemeralMessage: Codable, Equatable, Hashable {
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     public let inputMessageContent: InputMessageContent?
 
-    /// Pass true to get a fake message instead of actually sending them
+    /// Pass true to get a fake message instead of actually sending it
     public let onlyPreview: Bool?
 
     /// Pass true if the content of the message must be protected from forwarding and saving; for bots only

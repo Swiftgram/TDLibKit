@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -73,7 +73,7 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     /// A text description shown instead of a raw URL
     case textEntityTypeTextUrl(TextEntityTypeTextUrl)
 
-    /// A text shows instead of a raw mention of the user (e.g., when the user has no username)
+    /// A text shown instead of a raw mention of the user (e.g., when the user has no username)
     case textEntityTypeMentionName(TextEntityTypeMentionName)
 
     /// A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
@@ -259,7 +259,7 @@ public struct TextEntityTypeTextUrl: Codable, Equatable, Hashable {
     }
 }
 
-/// A text shows instead of a raw mention of the user (e.g., when the user has no username)
+/// A text shown instead of a raw mention of the user (e.g., when the user has no username)
 public struct TextEntityTypeMentionName: Codable, Equatable, Hashable {
 
     /// Identifier of the mentioned user

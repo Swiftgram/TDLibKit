@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -14,14 +14,14 @@ import Foundation
 public struct InputStoryArea: Codable, Equatable, Hashable {
 
     /// Position of the area
-    public let position: StoryAreaPosition
+    public let position: AreaPosition
 
     /// Type of the area
     public let type: InputStoryAreaType
 
 
     public init(
-        position: StoryAreaPosition,
+        position: AreaPosition,
         type: InputStoryAreaType
     ) {
         self.position = position

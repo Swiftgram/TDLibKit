@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
     /// Amount of time the poll will be active after creation, in seconds
     public let openPeriod: Int
 
-    /// The list of 0-based poll identifiers in which the options of the poll must be shown; empty if the order of options must not be changed
+    /// The list of 0-based poll option identifiers in which the options of the poll must be shown; empty if the order of options must not be changed
     public let optionOrder: [Int]
 
     /// List of poll answer options

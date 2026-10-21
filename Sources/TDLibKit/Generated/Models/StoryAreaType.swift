@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a message
     case storyAreaTypeMessage(StoryAreaTypeMessage)
 
-    /// An area pointing to a HTTP or tg:// link
+    /// An area pointing to an HTTP or tg:// link
     case storyAreaTypeLink(StoryAreaTypeLink)
 
     /// An area with information about weather
@@ -180,7 +180,7 @@ public struct StoryAreaTypeMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// An area pointing to a HTTP or tg:// link
+/// An area pointing to an HTTP or tg:// link
 public struct StoryAreaTypeLink: Codable, Equatable, Hashable {
 
     /// HTTP or tg:// URL to be opened when the area is clicked

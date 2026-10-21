@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -151,7 +151,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// An option was added to a poll
     case pushMessageContentPollOptionAdded(PushMessageContentPollOptionAdded)
 
-    /// A forwarded messages
+    /// Forwarded messages
     case pushMessageContentMessageForwards(PushMessageContentMessageForwards)
 
     /// A media album
@@ -1165,7 +1165,7 @@ public struct PushMessageContentPollOptionAdded: Codable, Equatable, Hashable {
     }
 }
 
-/// A forwarded messages
+/// Forwarded messages
 public struct PushMessageContentMessageForwards: Codable, Equatable, Hashable {
 
     /// Number of forwarded messages

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     public let canBeDeletedOnlyForSelf: Bool
 
-    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
+    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this field shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
     public let canBeEdited: Bool
 
     /// True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
@@ -82,7 +82,7 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if a link can be generated for the message using getMessageLink
     public let canGetLink: Bool
 
-    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description using getMessageLink
+    /// True, if media timestamp links can be generated for media timestamp entities in the message text, caption, or link preview description using getMessageLink
     public let canGetMediaTimestampLinks: Bool
 
     /// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory

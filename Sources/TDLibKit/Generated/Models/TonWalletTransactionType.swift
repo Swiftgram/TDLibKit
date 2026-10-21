@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
     /// A transfer of a TON NFT to or from the wallet
     case tonWalletTransactionTypeNftTransfer(TonWalletTransactionTypeNftTransfer)
 
+    /// A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back
+    case tonWalletTransactionTypeTelegramGiftTransfer(TonWalletTransactionTypeTelegramGiftTransfer)
+
     /// Change of the wallet key
     case tonWalletTransactionTypeKeyChange
 
@@ -30,6 +33,7 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
         case tonWalletTransactionTypeOnRampDeposit
         case tonWalletTransactionTypeTransfer
         case tonWalletTransactionTypeNftTransfer
+        case tonWalletTransactionTypeTelegramGiftTransfer
         case tonWalletTransactionTypeKeyChange
     }
 
@@ -46,6 +50,9 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
         case .tonWalletTransactionTypeNftTransfer:
             let value = try TonWalletTransactionTypeNftTransfer(from: decoder)
             self = .tonWalletTransactionTypeNftTransfer(value)
+        case .tonWalletTransactionTypeTelegramGiftTransfer:
+            let value = try TonWalletTransactionTypeTelegramGiftTransfer(from: decoder)
+            self = .tonWalletTransactionTypeTelegramGiftTransfer(value)
         case .tonWalletTransactionTypeKeyChange:
             self = .tonWalletTransactionTypeKeyChange
         }
@@ -62,6 +69,9 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .tonWalletTransactionTypeNftTransfer(let value):
             try container.encode(Kind.tonWalletTransactionTypeNftTransfer, forKey: .type)
+            try value.encode(to: encoder)
+        case .tonWalletTransactionTypeTelegramGiftTransfer(let value):
+            try container.encode(Kind.tonWalletTransactionTypeTelegramGiftTransfer, forKey: .type)
             try value.encode(to: encoder)
         case .tonWalletTransactionTypeKeyChange:
             try container.encode(Kind.tonWalletTransactionTypeKeyChange, forKey: .type)
@@ -142,6 +152,25 @@ public struct TonWalletTransactionTypeNftTransfer: Codable, Equatable, Hashable 
         self.comment = comment
         self.isCommentEncrypted = isCommentEncrypted
         self.isOutgoing = isOutgoing
+        self.nft = nft
+    }
+}
+
+/// A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back
+public struct TonWalletTransactionTypeTelegramGiftTransfer: Codable, Equatable, Hashable {
+
+    /// True, if the gift was displayed on the current user's profile page before or after the transfer
+    public let isSaved: Bool
+
+    /// The minted or transferred NFT
+    public let nft: TonNft
+
+
+    public init(
+        isSaved: Bool,
+        nft: TonNft
+    ) {
+        self.isSaved = isSaved
         self.nft = nft
     }
 }

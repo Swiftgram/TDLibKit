@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -83,7 +83,7 @@ public struct ChatBoostSourceGiftCode: Codable, Equatable, Hashable {
 /// The chat created a giveaway
 public struct ChatBoostSourceGiveaway: Codable, Equatable, Hashable {
 
-    /// The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only
+    /// The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveaways only
     public let giftCode: String
 
     /// Identifier of the corresponding giveaway message; can be an identifier of a deleted message

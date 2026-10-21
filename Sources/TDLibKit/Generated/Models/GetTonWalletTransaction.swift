@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Returns a TON wallet transaction by their identifier
+/// Returns a TON wallet transaction by its identifier
 public struct GetTonWalletTransaction: Codable, Equatable, Hashable {
 
     /// Identifier of the transaction

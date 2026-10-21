@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct LiveStoryDonors: Codable, Equatable, Hashable {
     /// List of top donors in the live story
     public let topDonors: [PaidReactor]
 
-    /// Total amount of spend Telegram Stars
+    /// Total amount of spent Telegram Stars
     public let totalStarCount: Int64
 
 

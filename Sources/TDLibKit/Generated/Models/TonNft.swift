@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -29,6 +29,9 @@ public struct TonNft: Codable, Equatable, Hashable {
 
     /// Additional data about the NFT; may be null if none
     public let extra: JsonValue?
+
+    /// The upgraded gift corresponding to the NFT; may be null if the NFT doesn't belong to a Telegram gift collection. Information about the owner of the gift isn't available. Original details of the gift are available only to participants of the original gift sending
+    public let gift: UpgradedGift?
 
     /// Image of the NFT; may be null if none
     public let image: PhotoSize?
@@ -56,6 +59,7 @@ public struct TonNft: Codable, Equatable, Hashable {
         content: Document?,
         description: String,
         extra: JsonValue?,
+        gift: UpgradedGift?,
         image: PhotoSize?,
         index: String,
         name: String,
@@ -69,6 +73,7 @@ public struct TonNft: Codable, Equatable, Hashable {
         self.content = content
         self.description = description
         self.extra = extra
+        self.gift = gift
         self.image = image
         self.index = index
         self.name = name

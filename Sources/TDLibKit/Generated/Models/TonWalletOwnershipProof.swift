@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct TonWalletOwnershipProof: Codable, Equatable, Hashable {
     /// Public key of the wallet
     public let publicKey: Data
 
-    /// The signature prooving the ownership
+    /// The signature proving the ownership
     public let signature: Data
 
     /// The current UNIX timestamp which was used to create the proof

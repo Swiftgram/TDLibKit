@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Process new chats added to a shareable chat folder by its owner
+/// Processes new chats added to a shareable chat folder by its owner
 public struct ProcessChatFolderNewChats: Codable, Equatable, Hashable {
 
     /// Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a message
     case inputStoryAreaTypeMessage(InputStoryAreaTypeMessage)
 
-    /// An area pointing to a HTTP or tg:// link
+    /// An area pointing to an HTTP or tg:// link
     case inputStoryAreaTypeLink(InputStoryAreaTypeLink)
 
     /// An area with information about weather
@@ -133,7 +133,7 @@ public struct InputStoryAreaTypeLocation: Codable, Equatable, Hashable {
 /// An area pointing to a venue found by the bot getOption("venue_search_bot_username")
 public struct InputStoryAreaTypeFoundVenue: Codable, Equatable, Hashable {
 
-    /// Identifier of the inline query, used to found the venue
+    /// Identifier of the inline query, used to find the venue
     public let queryId: TdInt64
 
     /// Identifier of the inline query result
@@ -211,7 +211,7 @@ public struct InputStoryAreaTypeMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// An area pointing to a HTTP or tg:// link
+/// An area pointing to an HTTP or tg:// link
 public struct InputStoryAreaTypeLink: Codable, Equatable, Hashable {
 
     /// HTTP or tg:// URL to be opened when the area is clicked

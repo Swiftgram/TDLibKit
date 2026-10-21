@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Saves an inline message to be sent by the given user
+/// Returns an inline message prepared by a bot to be sent by the current user
 public struct GetPreparedInlineMessage: Codable, Equatable, Hashable {
 
     /// Identifier of the bot that created the message

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -18,6 +18,9 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
 
     /// The version of a browser used for the authorization
     public let browser: String
+
+    /// Hex-encoded public X25519 key of the dApp; may be empty if TON wallet access wasn't requested
+    public let dappClientId: String
 
     /// A domain of the URL
     public let domain: String
@@ -43,8 +46,17 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
     /// True, if the user must be asked for the permission to share their phone number
     public let requestPhoneNumberAccess: Bool
 
+    /// True, if access to the user's TON wallet is requested by the app. If true and user agrees to give the access, then use createTonConnectSession to create the TON Connect session, then setTonConnectSessionWalletClientId, then create a TON Proof with payload ton_proof_payload, and then pass all data to acceptOauthRequest in the parameter ton_connect_connect_data
+    public let requestTonWalletAccess: Bool
+
     /// True, if the user must be asked for the permission to the bot to send them messages
     public let requestWriteAccess: Bool
+
+    /// URL of the TON Connect manifest of the dApp; may be empty if TON wallet access wasn't requested
+    public let tonConnectManifestUrl: String
+
+    /// Payload for TON wallet ownership proof; may be empty if TON wallet access wasn't requested
+    public let tonProofPayload: String
 
     /// An HTTP URL where the user authorizes
     public let url: String
@@ -59,6 +71,7 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
     public init(
         botUserId: Int64,
         browser: String,
+        dappClientId: String,
         domain: String,
         fromApp: Bool,
         ipAddress: String,
@@ -67,13 +80,17 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
         matchCodes: [String],
         platform: String,
         requestPhoneNumberAccess: Bool,
+        requestTonWalletAccess: Bool,
         requestWriteAccess: Bool,
+        tonConnectManifestUrl: String,
+        tonProofPayload: String,
         url: String,
         userId: Int64,
         verifiedAppName: String
     ) {
         self.botUserId = botUserId
         self.browser = browser
+        self.dappClientId = dappClientId
         self.domain = domain
         self.fromApp = fromApp
         self.ipAddress = ipAddress
@@ -82,7 +99,10 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
         self.matchCodes = matchCodes
         self.platform = platform
         self.requestPhoneNumberAccess = requestPhoneNumberAccess
+        self.requestTonWalletAccess = requestTonWalletAccess
         self.requestWriteAccess = requestWriteAccess
+        self.tonConnectManifestUrl = tonConnectManifestUrl
+        self.tonProofPayload = tonProofPayload
         self.url = url
         self.userId = userId
         self.verifiedAppName = verifiedAppName

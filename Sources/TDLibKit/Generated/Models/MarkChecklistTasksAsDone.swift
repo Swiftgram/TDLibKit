@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Adds tasks of a checklist in a message as done or not done
+/// Marks tasks of a checklist in a message as done or not done
 public struct MarkChecklistTasksAsDone: Codable, Equatable, Hashable {
 
     /// Identifier of the chat with the message

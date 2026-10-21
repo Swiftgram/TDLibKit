@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
+/// Adds, edits, or deletes a string in a custom local language pack. Can be called before authorization
 public struct SetCustomLanguagePackString: Codable, Equatable, Hashable {
 
     /// Identifier of a previously added custom local language pack in the current localization target

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -703,7 +703,7 @@ public struct RichTextCustomEmoji: Codable, Equatable, Hashable {
 /// A small image inside the text; instant view only
 public struct RichTextIcon: Codable, Equatable, Hashable {
 
-    /// The image represented as a document. The image can be in GIF, JPEG or PNG format
+    /// The image represented as a document. The image can be in GIF, JPEG, or PNG format
     public let document: Document
 
     /// Height of a bounding box in which the image must be shown; 0 if unknown

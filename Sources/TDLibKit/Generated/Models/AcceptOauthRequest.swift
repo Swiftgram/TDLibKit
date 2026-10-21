@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public struct AcceptOauthRequest: Codable, Equatable, Hashable {
     /// The matching code chosen by the user
     public let matchCode: String?
 
+    /// Pass data required to access the user's TON wallet via TON Connect if the current user allowed this; pass null if the access wasn't requested or the user declined access
+    public let tonConnectConnectData: TonConnectConnectData?
+
     /// URL of the OAuth deep link
     public let url: String?
 
@@ -30,11 +33,13 @@ public struct AcceptOauthRequest: Codable, Equatable, Hashable {
         allowPhoneNumberAccess: Bool?,
         allowWriteAccess: Bool?,
         matchCode: String?,
+        tonConnectConnectData: TonConnectConnectData?,
         url: String?
     ) {
         self.allowPhoneNumberAccess = allowPhoneNumberAccess
         self.allowWriteAccess = allowWriteAccess
         self.matchCode = matchCode
+        self.tonConnectConnectData = tonConnectConnectData
         self.url = url
     }
 }

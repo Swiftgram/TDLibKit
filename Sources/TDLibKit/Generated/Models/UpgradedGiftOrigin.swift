@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
     /// The gift was bought from another user
     case upgradedGiftOriginResale(UpgradedGiftOriginResale)
 
-    /// The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold or withdrawn to blockchain
+    /// The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold, or withdrawn to blockchain
     case upgradedGiftOriginBlockchain
 
     /// The sender or receiver of the message has paid for upgrade of the gift, which has been completed

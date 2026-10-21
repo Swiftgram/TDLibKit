@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -15,6 +15,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Backdrop of the upgraded gift
     public let backdrop: UpgradedGiftBackdrop
+
+    /// True, if the gift NFT can be used as background_nft_address in setTonWalletCardStickers
+    public let canBeTonWalletCardBackground: Bool
 
     /// True, if an offer to purchase the gift can be sent using sendGiftPurchaseOffer
     public let canSendPurchaseOffer: Bool
@@ -103,6 +106,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         backdrop: UpgradedGiftBackdrop,
+        canBeTonWalletCardBackground: Bool,
         canSendPurchaseOffer: Bool,
         colors: UpgradedGiftColors?,
         craftProbabilityPerMille: Int,
@@ -133,6 +137,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         valueUsdAmount: Int64
     ) {
         self.backdrop = backdrop
+        self.canBeTonWalletCardBackground = canBeTonWalletCardBackground
         self.canSendPurchaseOffer = canSendPurchaseOffer
         self.colors = colors
         self.craftProbabilityPerMille = craftProbabilityPerMille

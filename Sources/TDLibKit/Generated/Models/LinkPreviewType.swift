@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -82,7 +82,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a Telegram Premium gift code
     case linkPreviewTypePremiumGiftCode
 
-    /// The link is a link to a dialog for creating of a managed bot
+    /// The link is a link to a dialog for creating a managed bot
     case linkPreviewTypeRequestManagedBot
 
     /// The link is a link to a shareable chat folder

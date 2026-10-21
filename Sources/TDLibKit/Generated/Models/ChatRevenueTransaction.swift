@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Contains a chat revenue transactions
+/// Contains a chat revenue transaction
 public struct ChatRevenueTransaction: Codable, Equatable, Hashable {
 
     /// Cryptocurrency in which revenue is calculated

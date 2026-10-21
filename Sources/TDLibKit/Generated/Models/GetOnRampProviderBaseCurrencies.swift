@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetOnRampProviderBaseCurrencies: Codable, Equatable, Hashable {
     /// The cryptocurrency that will be bought
     public let cryptocurrency: String?
 
-    /// Unique identifier of the on-ramp provider; only for providers that supports base currencies
+    /// Unique identifier of the on-ramp provider; only for providers that support base currencies
     public let providerId: String?
 
 

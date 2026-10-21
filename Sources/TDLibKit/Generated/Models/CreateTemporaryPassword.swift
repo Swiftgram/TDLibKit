@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
 
 
-/// Creates a new temporary password for processing payments
+/// Creates a new temporary password for processing payments and withdrawal of upgraded gifts
 public struct CreateTemporaryPassword: Codable, Equatable, Hashable {
 
     /// The 2-step verification password of the current user

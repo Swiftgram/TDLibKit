@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-4a85043f
-//  https://github.com/tdlib/td/tree/4a85043f
+//  Based on TDLib 1.8.68-74e914ee
+//  https://github.com/tdlib/td/tree/74e914ee
 //
 
 import Foundation
@@ -106,6 +106,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if a video call can be created with the user
     public let supportsVideoCalls: Bool
 
+    /// TON wallet card of the user; may be null if none
+    public let tonWalletCard: TonWalletCard?
+
     /// True, if the user uses an unofficial application that poses a security risk
     public let usesUnofficialApp: Bool
 
@@ -142,6 +145,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         rating: UserRating?,
         setChatBackground: Bool,
         supportsVideoCalls: Bool,
+        tonWalletCard: TonWalletCard?,
         usesUnofficialApp: Bool
     ) {
         self.bio = bio
@@ -175,6 +179,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.rating = rating
         self.setChatBackground = setChatBackground
         self.supportsVideoCalls = supportsVideoCalls
+        self.tonWalletCard = tonWalletCard
         self.usesUnofficialApp = usesUnofficialApp
     }
 }
