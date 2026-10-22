@@ -3,28 +3,21 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-74e914ee
-//  https://github.com/tdlib/td/tree/74e914ee
+//  Based on TDLib 1.8.68-7601cdfb
+//  https://github.com/tdlib/td/tree/7601cdfb
 //
 
 import Foundation
 
 
-/// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
+/// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat. The user must have a valid temporary password; see createTemporaryPassword
 public struct GetUpgradedGiftWithdrawalUrl: Codable, Equatable, Hashable {
-
-    /// The 2-step verification password of the current user
-    public let password: String?
 
     /// Identifier of the gift
     public let receivedGiftId: String?
 
 
-    public init(
-        password: String?,
-        receivedGiftId: String?
-    ) {
-        self.password = password
+    public init(receivedGiftId: String?) {
         self.receivedGiftId = receivedGiftId
     }
 }

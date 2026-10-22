@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-74e914ee
-//  https://github.com/tdlib/td/tree/74e914ee
+//  Based on TDLib 1.8.68-7601cdfb
+//  https://github.com/tdlib/td/tree/7601cdfb
 //
 
 import Foundation
@@ -22950,17 +22950,40 @@ public class TDLibApi {
     }
 
     /// Returns an HTTPS link, which can be used to get information about the current user
+    /// - Parameter removeMessagesFee: Pass true to get a link, which allows other users to send messages to the current user without paying the fee for incoming messages. By default, a temporary link is returned in this case
+    /// - Parameter returnPermanentLink: Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if userLink.can_get_permanent_link is true
+    /// - Parameter revokePreviousLinks: Pass true to revoke previously created links, which allow other users to send messages to the current user without paying the fee; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
     /// - Returns: An HTTPS link, which can be used to get information about the current user
-    public final func getUserLink(completion: @escaping (Result<UserLink, Swift.Error>) -> Void) throws {
-        let query = GetUserLink()
+    public final func getUserLink(
+        removeMessagesFee: Bool?,
+        returnPermanentLink: Bool?,
+        revokePreviousLinks: Bool?,
+        completion: @escaping (Result<UserLink, Swift.Error>) -> Void
+    ) throws {
+        let query = GetUserLink(
+            removeMessagesFee: removeMessagesFee,
+            returnPermanentLink: returnPermanentLink,
+            revokePreviousLinks: revokePreviousLinks
+        )
         self.run(query: query, completion: completion)
     }
 
     /// Returns an HTTPS link, which can be used to get information about the current user
+    /// - Parameter removeMessagesFee: Pass true to get a link, which allows other users to send messages to the current user without paying the fee for incoming messages. By default, a temporary link is returned in this case
+    /// - Parameter returnPermanentLink: Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if userLink.can_get_permanent_link is true
+    /// - Parameter revokePreviousLinks: Pass true to revoke previously created links, which allow other users to send messages to the current user without paying the fee; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
     /// - Returns: An HTTPS link, which can be used to get information about the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getUserLink() async throws -> UserLink {
-        let query = GetUserLink()
+    public final func getUserLink(
+        removeMessagesFee: Bool?,
+        returnPermanentLink: Bool?,
+        revokePreviousLinks: Bool?
+    ) async throws -> UserLink {
+        let query = GetUserLink(
+            removeMessagesFee: removeMessagesFee,
+            returnPermanentLink: returnPermanentLink,
+            revokePreviousLinks: revokePreviousLinks
+        )
         return try await self.run(query: query)
     }
 
@@ -26280,33 +26303,25 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
-    /// - Parameter password: The 2-step verification password of the current user
+    /// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat. The user must have a valid temporary password; see createTemporaryPassword
     /// - Parameter receivedGiftId: Identifier of the gift
     /// - Returns: A URL for upgraded gift withdrawal in the TON blockchain as an NFT
     public final func getUpgradedGiftWithdrawalUrl(
-        password: String?,
         receivedGiftId: String?,
         completion: @escaping (Result<HttpUrl, Swift.Error>) -> Void
     ) throws {
         let query = GetUpgradedGiftWithdrawalUrl(
-            password: password,
             receivedGiftId: receivedGiftId
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
-    /// - Parameter password: The 2-step verification password of the current user
+    /// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat. The user must have a valid temporary password; see createTemporaryPassword
     /// - Parameter receivedGiftId: Identifier of the gift
     /// - Returns: A URL for upgraded gift withdrawal in the TON blockchain as an NFT
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getUpgradedGiftWithdrawalUrl(
-        password: String?,
-        receivedGiftId: String?
-    ) async throws -> HttpUrl {
+    public final func getUpgradedGiftWithdrawalUrl(receivedGiftId: String?) async throws -> HttpUrl {
         let query = GetUpgradedGiftWithdrawalUrl(
-            password: password,
             receivedGiftId: receivedGiftId
         )
         return try await self.run(query: query)
