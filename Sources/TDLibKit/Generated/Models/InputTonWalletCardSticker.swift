@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a sticker to be placed on the TON wallet card of the current user
 public struct InputTonWalletCardSticker: Codable, Equatable, Hashable {
 
-    /// Address of an NFT from a Telegram gift collection owned by the wallet; use getTonWalletNfts to get the list of owned NFTs. The NFT must not be used as a gift shown on the profile page
+    /// Address of an NFT owned by the wallet, which is an upgraded gift; use getTonWalletNfts to get the list of owned NFTs
     public let nftAddress: String
 
     /// Position of the sticker on the card

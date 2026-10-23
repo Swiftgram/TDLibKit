@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -22940,9 +22940,9 @@ public final class TdApi {
     }
 
     /// Returns an HTTPS link, which can be used to get information about the current user
-    /// - Parameter removeMessagesFee: Pass true to get a link, which allows other users to send messages to the current user without paying the fee for incoming messages. By default, a temporary link is returned in this case
-    /// - Parameter returnPermanentLink: Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if userLink.can_get_permanent_link is true
-    /// - Parameter revokePreviousLinks: Pass true to revoke previously created links, which allow other users to send messages to the current user without paying the fee; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
+    /// - Parameter removeMessagesFee: Pass true to get a link, which allows other users to send unpaid messages to the current user. By default, a temporary link is returned in this case
+    /// - Parameter returnPermanentLink: Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if can_get_permanent_link is true in a previously received userLink
+    /// - Parameter revokePreviousLinks: Pass true to revoke previously created links, which allow other users to send unpaid messages to the current user; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
     /// - Returns: An HTTPS link, which can be used to get information about the current user
     public func getUserLink(
         removeMessagesFee: Bool?,
@@ -22959,9 +22959,9 @@ public final class TdApi {
     }
 
     /// Returns an HTTPS link, which can be used to get information about the current user
-    /// - Parameter removeMessagesFee: Pass true to get a link, which allows other users to send messages to the current user without paying the fee for incoming messages. By default, a temporary link is returned in this case
-    /// - Parameter returnPermanentLink: Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if userLink.can_get_permanent_link is true
-    /// - Parameter revokePreviousLinks: Pass true to revoke previously created links, which allow other users to send messages to the current user without paying the fee; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
+    /// - Parameter removeMessagesFee: Pass true to get a link, which allows other users to send unpaid messages to the current user. By default, a temporary link is returned in this case
+    /// - Parameter returnPermanentLink: Pass true to get a permanent link; ignored if remove_messages_fee is false. Can be used only if can_get_permanent_link is true in a previously received userLink
+    /// - Parameter revokePreviousLinks: Pass true to revoke previously created links, which allow other users to send unpaid messages to the current user; ignored if remove_messages_fee is false. If return_permanent_link is true, then the permanent link is revoked too; otherwise, only temporary links are revoked
     /// - Returns: An HTTPS link, which can be used to get information about the current user
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getUserLink(
@@ -25621,6 +25621,37 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
+    /// Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// - Parameter receivedGiftId: Identifier of the gift
+    public func deleteGift(
+        businessConnectionId: String?,
+        receivedGiftId: String?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = DeleteGift(
+            businessConnectionId: businessConnectionId,
+            receivedGiftId: receivedGiftId
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+    /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// - Parameter receivedGiftId: Identifier of the gift
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func deleteGift(
+        businessConnectionId: String?,
+        receivedGiftId: String?
+    ) async throws -> Ok {
+        let query = DeleteGift(
+            businessConnectionId: businessConnectionId,
+            receivedGiftId: receivedGiftId
+        )
+        return try await self.execute(query: query)
+    }
+
     /// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
     /// - Parameter isSaved: Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
     /// - Parameter receivedGiftId: Identifier of the gift
@@ -26388,7 +26419,7 @@ public final class TdApi {
 
     /// Shows an upgraded gift from the TON wallet of the current user on a profile page or hides it from all profile pages; the gift remains in the wallet
     /// - Parameter name: Unique name of the upgraded gift
-    /// - Parameter ownerId: Identifier of the current user or a channel chat owned by the current user on which profile page the gift will be shown; pass null to hide the gift from all profile pages
+    /// - Parameter ownerId: Identifier of the current user or a channel chat owned by the current user on whose profile page the gift will be shown; pass null to hide the gift from all profile pages
     public func displayUpgradedGift(
         name: String?,
         ownerId: MessageSender?,
@@ -26403,7 +26434,7 @@ public final class TdApi {
 
     /// Shows an upgraded gift from the TON wallet of the current user on a profile page or hides it from all profile pages; the gift remains in the wallet
     /// - Parameter name: Unique name of the upgraded gift
-    /// - Parameter ownerId: Identifier of the current user or a channel chat owned by the current user on which profile page the gift will be shown; pass null to hide the gift from all profile pages
+    /// - Parameter ownerId: Identifier of the current user or a channel chat owned by the current user on whose profile page the gift will be shown; pass null to hide the gift from all profile pages
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public func displayUpgradedGift(
@@ -27049,15 +27080,15 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the list of backdrops, which can be used as a theme of the screen for sharing a link to a user or a chat
-    /// - Returns: The list of backdrops, which can be used as a theme of the screen for sharing a link to a user or a chat
+    /// Returns the list of backdrops, which can be used as a background of a theme of the screen for sharing a link to a user or a chat
+    /// - Returns: The list of backdrops, which can be used as a background of a theme of the screen for sharing a link to a user or a chat
     public func getProfileShareThemeBackdrops(completion: @escaping (Result<ProfileShareThemeBackdrops, Swift.Error>) -> Void) throws {
         let query = GetProfileShareThemeBackdrops()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the list of backdrops, which can be used as a theme of the screen for sharing a link to a user or a chat
-    /// - Returns: The list of backdrops, which can be used as a theme of the screen for sharing a link to a user or a chat
+    /// Returns the list of backdrops, which can be used as a background of a theme of the screen for sharing a link to a user or a chat
+    /// - Returns: The list of backdrops, which can be used as a background of a theme of the screen for sharing a link to a user or a chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getProfileShareThemeBackdrops() async throws -> ProfileShareThemeBackdrops {
         let query = GetProfileShareThemeBackdrops()
@@ -28327,12 +28358,12 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
+    /// Returns the secret phrase of the user's TON wallet. Works only if tonWalletState.can_export_phrase is true
     /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
-    /// - Returns: The secret phrase of the user's TON wallet as a space separated list of words
+    /// - Returns: The secret phrase of the user's TON wallet
     public func getTonWalletSecretPhrase(
         password: String?,
-        completion: @escaping (Result<Text, Swift.Error>) -> Void
+        completion: @escaping (Result<TonWalletSecretPhrase, Swift.Error>) -> Void
     ) throws {
         let query = GetTonWalletSecretPhrase(
             password: password
@@ -28340,11 +28371,11 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true
+    /// Returns the secret phrase of the user's TON wallet. Works only if tonWalletState.can_export_phrase is true
     /// - Parameter password: Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
-    /// - Returns: The secret phrase of the user's TON wallet as a space separated list of words
+    /// - Returns: The secret phrase of the user's TON wallet
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public func getTonWalletSecretPhrase(password: String?) async throws -> Text {
+    public func getTonWalletSecretPhrase(password: String?) async throws -> TonWalletSecretPhrase {
         let query = GetTonWalletSecretPhrase(
             password: password
         )
@@ -28616,14 +28647,14 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Returns names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers
+    /// Returns names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers; can be used only if getOption("can_use_ton_wallet")
     /// - Returns: Names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers
     public func getTonWalletCardBackgroundGiftCollectionNames(completion: @escaping (Result<UpgradedGiftCollectionNames, Swift.Error>) -> Void) throws {
         let query = GetTonWalletCardBackgroundGiftCollectionNames()
         self.execute(query: query, completion: completion)
     }
 
-    /// Returns names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers
+    /// Returns names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers; can be used only if getOption("can_use_ton_wallet")
     /// - Returns: Names of upgraded gift collections whose NFTs can be used as background_nft_address in setTonWalletCardStickers
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public func getTonWalletCardBackgroundGiftCollectionNames() async throws -> UpgradedGiftCollectionNames {
@@ -28632,7 +28663,7 @@ public final class TdApi {
     }
 
     /// Changes the list of stickers on the TON wallet card of the current user; can be used only if getOption("can_use_ton_wallet"). The whole list of stickers is replaced. The request can take up to 20 seconds to complete, so it must be called only on explicit user action. Stickers are removed automatically if the corresponding NFT leaves the wallet or the wallet is replaced. Returns the updated card
-    /// - Parameter backgroundNftAddress: Address of the NFT from the new list of stickers, which colors will be used for the card background; pass an empty string to use the default background. The NFT must correspond to an upgraded gift with can_be_ton_wallet_card_background == true
+    /// - Parameter backgroundNftAddress: Address of the NFT from the new list of stickers, whose colors will be used for the card background; pass an empty string to use the default background. The NFT must correspond to an upgraded gift with can_be_ton_wallet_card_background == true
     /// - Parameter stickers: The new list of stickers; pass an empty list to remove all stickers. Up to 10 stickers can be added. Each NFT can be used only once
     /// - Returns: The updated card
     public func setTonWalletCardStickers(
@@ -28648,7 +28679,7 @@ public final class TdApi {
     }
 
     /// Changes the list of stickers on the TON wallet card of the current user; can be used only if getOption("can_use_ton_wallet"). The whole list of stickers is replaced. The request can take up to 20 seconds to complete, so it must be called only on explicit user action. Stickers are removed automatically if the corresponding NFT leaves the wallet or the wallet is replaced. Returns the updated card
-    /// - Parameter backgroundNftAddress: Address of the NFT from the new list of stickers, which colors will be used for the card background; pass an empty string to use the default background. The NFT must correspond to an upgraded gift with can_be_ton_wallet_card_background == true
+    /// - Parameter backgroundNftAddress: Address of the NFT from the new list of stickers, whose colors will be used for the card background; pass an empty string to use the default background. The NFT must correspond to an upgraded gift with can_be_ton_wallet_card_background == true
     /// - Parameter stickers: The new list of stickers; pass an empty list to remove all stickers. Up to 10 stickers can be added. Each NFT can be used only once
     /// - Returns: The updated card
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -28708,7 +28739,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+    /// Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session. If the session was created for an OAuth request, then acceptOauthRequest must be used instead
     /// - Parameter sessionId: Unique identifier of the session
     /// - Parameter walletClientId: Hex-encoded public X25519 key of the current user's application calculated from the TON wallet private key and session parameters
     public func setTonConnectSessionWalletClientId(
@@ -28723,7 +28754,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session
+    /// Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session. If the session was created for an OAuth request, then acceptOauthRequest must be used instead
     /// - Parameter sessionId: Unique identifier of the session
     /// - Parameter walletClientId: Hex-encoded public X25519 key of the current user's application calculated from the TON wallet private key and session parameters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

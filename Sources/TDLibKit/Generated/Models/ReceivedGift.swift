@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents a gift received by a user or a chat
 public struct ReceivedGift: Codable, Equatable, Hashable {
+
+    /// True, if the gift is a regular gift that can be deleted using deleteGift; only for the receiver of the gift
+    public let canBeDeleted: Bool
 
     /// True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift
     public let canBeTransferred: Bool
@@ -84,6 +87,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
 
 
     public init(
+        canBeDeleted: Bool,
         canBeTransferred: Bool,
         canBeUpgraded: Bool,
         collectionIds: [Int],
@@ -108,6 +112,7 @@ public struct ReceivedGift: Codable, Equatable, Hashable {
         uniqueGiftNumber: Int,
         wasRefunded: Bool
     ) {
+        self.canBeDeleted = canBeDeleted
         self.canBeTransferred = canBeTransferred
         self.canBeUpgraded = canBeUpgraded
         self.collectionIds = collectionIds

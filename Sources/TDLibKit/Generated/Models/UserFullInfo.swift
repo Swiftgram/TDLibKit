@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -103,6 +103,9 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if the user set chat background for both chat users and it wasn't reverted yet
     public let setChatBackground: Bool
 
+    /// Theme of the screen for sharing a link to the user; may be null if the default theme is used
+    public let shareTheme: ProfileShareTheme?
+
     /// True, if a video call can be created with the user
     public let supportsVideoCalls: Bool
 
@@ -144,6 +147,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         publicPhoto: ChatPhoto?,
         rating: UserRating?,
         setChatBackground: Bool,
+        shareTheme: ProfileShareTheme?,
         supportsVideoCalls: Bool,
         tonWalletCard: TonWalletCard?,
         usesUnofficialApp: Bool
@@ -178,6 +182,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
         self.publicPhoto = publicPhoto
         self.rating = rating
         self.setChatBackground = setChatBackground
+        self.shareTheme = shareTheme
         self.supportsVideoCalls = supportsVideoCalls
         self.tonWalletCard = tonWalletCard
         self.usesUnofficialApp = usesUnofficialApp

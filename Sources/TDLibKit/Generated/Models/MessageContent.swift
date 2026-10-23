@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -283,7 +283,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A price for direct messages was changed in the channel chat
     case messageDirectMessagePriceChanged(MessageDirectMessagePriceChanged)
 
-    /// The sender of the message used a link of the other user, which allows to send unpaid messages to the user
+    /// The sender of the message used a link of the other user, which allows sending unpaid messages to the user
     case messageUnpaidMessagesAllowedByLink
 
     /// Some tasks from a checklist were marked as done or not done
@@ -2870,6 +2870,9 @@ public struct MessageTonConnectRequest: Codable, Equatable, Hashable {
 /// A regular gift was received or sent by the current user, or the current user was notified about a channel gift
 public struct MessageGift: Codable, Equatable, Hashable {
 
+    /// True, if the gift can be deleted using deleteGift; only for the receiver of the gift
+    public let canBeDeleted: Bool
+
     /// True, if the gift can be upgraded to a unique gift; only for the receiver of the gift
     public let canBeUpgraded: Bool
 
@@ -2929,6 +2932,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
 
 
     public init(
+        canBeDeleted: Bool,
         canBeUpgraded: Bool,
         gift: Gift,
         isFromAuction: Bool,
@@ -2949,6 +2953,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
         wasRefunded: Bool,
         wasUpgraded: Bool
     ) {
+        self.canBeDeleted = canBeDeleted
         self.canBeUpgraded = canBeUpgraded
         self.gift = gift
         self.isFromAuction = isFromAuction

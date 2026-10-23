@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -120,6 +120,9 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Number of restricted users in the supergroup; 0 if unknown
     public let restrictedCount: Int
 
+    /// Theme of the screen for sharing a link to the supergroup or the channel; may be null if the default theme is used
+    public let shareTheme: ProfileShareTheme?
+
     /// Delay between consecutive sent messages for non-administrator supergroup members, in seconds
     public let slowModeDelay: Int
 
@@ -176,6 +179,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         outgoingPaidMessageStarCount: Int64,
         photo: ChatPhoto?,
         restrictedCount: Int,
+        shareTheme: ProfileShareTheme?,
         slowModeDelay: Int,
         slowModeDelayExpiresIn: Double,
         stickerSetId: TdInt64,
@@ -219,6 +223,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
         self.outgoingPaidMessageStarCount = outgoingPaidMessageStarCount
         self.photo = photo
         self.restrictedCount = restrictedCount
+        self.shareTheme = shareTheme
         self.slowModeDelay = slowModeDelay
         self.slowModeDelayExpiresIn = slowModeDelayExpiresIn
         self.stickerSetId = stickerSetId

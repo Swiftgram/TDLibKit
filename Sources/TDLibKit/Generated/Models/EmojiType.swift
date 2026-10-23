@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -17,12 +17,12 @@ public indirect enum EmojiType: Codable, Equatable, Hashable {
     case emojiTypeRegular(EmojiTypeRegular)
 
     /// A custom emoji
-    case emojiTypeCustom(EmojiTypeCustom)
+    case emojiTypeCustomEmoji(EmojiTypeCustomEmoji)
 
 
     private enum Kind: String, Codable {
         case emojiTypeRegular
-        case emojiTypeCustom
+        case emojiTypeCustomEmoji
     }
 
     public init(from decoder: Decoder) throws {
@@ -32,9 +32,9 @@ public indirect enum EmojiType: Codable, Equatable, Hashable {
         case .emojiTypeRegular:
             let value = try EmojiTypeRegular(from: decoder)
             self = .emojiTypeRegular(value)
-        case .emojiTypeCustom:
-            let value = try EmojiTypeCustom(from: decoder)
-            self = .emojiTypeCustom(value)
+        case .emojiTypeCustomEmoji:
+            let value = try EmojiTypeCustomEmoji(from: decoder)
+            self = .emojiTypeCustomEmoji(value)
         }
     }
 
@@ -44,8 +44,8 @@ public indirect enum EmojiType: Codable, Equatable, Hashable {
         case .emojiTypeRegular(let value):
             try container.encode(Kind.emojiTypeRegular, forKey: .type)
             try value.encode(to: encoder)
-        case .emojiTypeCustom(let value):
-            try container.encode(Kind.emojiTypeCustom, forKey: .type)
+        case .emojiTypeCustomEmoji(let value):
+            try container.encode(Kind.emojiTypeCustomEmoji, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -64,7 +64,7 @@ public struct EmojiTypeRegular: Codable, Equatable, Hashable {
 }
 
 /// A custom emoji
-public struct EmojiTypeCustom: Codable, Equatable, Hashable {
+public struct EmojiTypeCustomEmoji: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji
     public let customEmojiId: TdInt64

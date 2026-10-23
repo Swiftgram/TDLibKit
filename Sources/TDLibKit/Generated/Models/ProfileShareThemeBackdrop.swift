@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
 
 
-/// Describes a backdrop, which can be used as a theme of the screen for sharing a link to a user or a chat
+/// Describes a backdrop, which can be used as a background of a theme of the screen for sharing a link to a user or a chat
 public struct ProfileShareThemeBackdrop: Codable, Equatable, Hashable, Identifiable {
 
     /// Colors of the backdrop

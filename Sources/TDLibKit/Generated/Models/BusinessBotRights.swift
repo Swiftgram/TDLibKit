@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public struct BusinessBotRights: Codable, Equatable, Hashable {
     /// True, if the bot can send and edit messages in the private chats that had incoming messages in the last 24 hours
     public let canReply: Bool
 
-    /// True, if the bot can sell regular gifts received by the business account
+    /// True, if the bot can sell or delete regular gifts received by the business account
     public let canSellGifts: Bool
 
     /// True, if the bot can transfer and upgrade gifts received by the business account

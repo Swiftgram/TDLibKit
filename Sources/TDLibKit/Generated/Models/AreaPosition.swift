@@ -3,32 +3,32 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
 
 
-/// Describes position of a clickable rectangle area on a story media or a TON wallet card
+/// Describes position of a rectangle area on a story media or a TON wallet card
 public struct AreaPosition: Codable, Equatable, Hashable {
 
-    /// The radius of the rectangle corner rounding, as a percentage of the media width
+    /// The radius of the rectangle corner rounding, as a percentage of the media or the card width
     public let cornerRadiusPercentage: Double
 
-    /// The height of the rectangle, as a percentage of the media height
+    /// The height of the rectangle, as a percentage of the media or the card height
     public let heightPercentage: Double
 
     /// Clockwise rotation angle of the rectangle, in degrees; 0-360
     public let rotationAngle: Double
 
-    /// The width of the rectangle, as a percentage of the media width
+    /// The width of the rectangle, as a percentage of the media or the card width
     public let widthPercentage: Double
 
-    /// The abscissa of the rectangle's center, as a percentage of the media width
+    /// The abscissa of the rectangle's center, as a percentage of the media or the card width
     public let xPercentage: Double
 
-    /// The ordinate of the rectangle's center, as a percentage of the media height
+    /// The ordinate of the rectangle's center, as a percentage of the media or the card height
     public let yPercentage: Double
 
 

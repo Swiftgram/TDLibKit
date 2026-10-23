@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -12,9 +12,6 @@ import Foundation
 
 /// Describes a theme of the screen for sharing a link to a user or a chat
 public indirect enum ProfileShareTheme: Codable, Equatable, Hashable {
-
-    /// The default theme
-    case profileShareThemeDefault
 
     /// A theme with emoji placed on a background
     case profileShareThemeEmoji(ProfileShareThemeEmoji)
@@ -24,7 +21,6 @@ public indirect enum ProfileShareTheme: Codable, Equatable, Hashable {
 
 
     private enum Kind: String, Codable {
-        case profileShareThemeDefault
         case profileShareThemeEmoji
         case profileShareThemeUpgradedGift
     }
@@ -33,8 +29,6 @@ public indirect enum ProfileShareTheme: Codable, Equatable, Hashable {
         let container = try decoder.container(keyedBy: DtoCodingKeys.self)
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
-        case .profileShareThemeDefault:
-            self = .profileShareThemeDefault
         case .profileShareThemeEmoji:
             let value = try ProfileShareThemeEmoji(from: decoder)
             self = .profileShareThemeEmoji(value)
@@ -47,8 +41,6 @@ public indirect enum ProfileShareTheme: Codable, Equatable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .profileShareThemeDefault:
-            try container.encode(Kind.profileShareThemeDefault, forKey: .type)
         case .profileShareThemeEmoji(let value):
             try container.encode(Kind.profileShareThemeEmoji, forKey: .type)
             try value.encode(to: encoder)

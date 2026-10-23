@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -1145,7 +1145,7 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
     /// True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
     public let openProfile: Bool
 
-    /// Token, which allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the chat is a private chat with a regular user, then call applyUnpaidMessagesToken with the user and the token
+    /// Token, which allows the current user to send unpaid messages; may be empty if none. If the token isn't empty and the chat is a private chat with a regular user, then call applyUnpaidMessagesToken with the user and the token
     public let unpaidMessagesToken: String
 
 

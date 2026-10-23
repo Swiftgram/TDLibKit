@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public struct OauthLinkInfo: Codable, Equatable, Hashable {
     /// True, if the user must be asked for the permission to share their phone number
     public let requestPhoneNumberAccess: Bool
 
-    /// True, if access to the user's TON wallet is requested by the app. If true and user agrees to give the access, then use createTonConnectSession to create the TON Connect session, then setTonConnectSessionWalletClientId, then create a TON Proof with payload ton_proof_payload, and then pass all data to acceptOauthRequest in the parameter ton_connect_connect_data
+    /// True, if access to the user's TON wallet is requested by the app. If true and the user agrees to give access, then use createTonConnectSession with dapp_client_id and ton_connect_manifest_url to create the TON Connect session, then setTonConnectSessionWalletClientId, then create a tonWalletOwnershipProof for the given domain with the payload ton_proof_payload, and then pass all data to acceptOauthRequest in the parameter ton_connect_connect_data
     public let requestTonWalletAccess: Bool
 
     /// True, if the user must be asked for the permission to the bot to send them messages

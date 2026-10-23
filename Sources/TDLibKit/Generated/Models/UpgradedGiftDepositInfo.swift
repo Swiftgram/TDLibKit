@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-7601cdfb
-//  https://github.com/tdlib/td/tree/7601cdfb
+//  Based on TDLib 1.8.68-18c8f7a0
+//  https://github.com/tdlib/td/tree/18c8f7a0
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information needed to deposit an upgraded gift from the TON wallet of the current user to a Telegram account. The gift must be transferred by an internal message from the wallet to nft_address with gram_amount attached and with payload as the message body
 public struct UpgradedGiftDepositInfo: Codable, Equatable, Hashable {
 
-    /// The amount of nanograms that must be attached to the message to cover fees; excess amount will be returned to the wallet
+    /// The amount of TON Grams that must be attached to the message to cover fees, in the smallest units of the cryptocurrency; excess amount will be returned to the wallet
     public let gramAmount: Int64
 
     /// Address in TON blockchain to which the message must be sent
