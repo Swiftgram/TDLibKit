@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-18c8f7a0
-//  https://github.com/tdlib/td/tree/18c8f7a0
+//  Based on TDLib 1.8.69-0e88653d
+//  https://github.com/tdlib/td/tree/0e88653d
 //
 
 import Foundation
@@ -32511,6 +32511,68 @@ public final class TdApi {
     public func pingProxy(proxy: Proxy?) async throws -> Seconds {
         let query = PingProxy(
             proxy: proxy
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Passes a message, which the page of a web proxy carrier passed to postMessage of the bridge object, to TDLib. Must be called in the order in which the messages were passed. Can be called before authorization
+    /// - Parameter carrierId: Identifier of the carrier
+    /// - Parameter message: The received message
+    public func processWebProxyCarrierMessage(
+        carrierId: Int?,
+        message: WebProxyCarrierMessage?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ProcessWebProxyCarrierMessage(
+            carrierId: carrierId,
+            message: message
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Passes a message, which the page of a web proxy carrier passed to postMessage of the bridge object, to TDLib. Must be called in the order in which the messages were passed. Can be called before authorization
+    /// - Parameter carrierId: Identifier of the carrier
+    /// - Parameter message: The received message
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func processWebProxyCarrierMessage(
+        carrierId: Int?,
+        message: WebProxyCarrierMessage?
+    ) async throws -> Ok {
+        let query = ProcessWebProxyCarrierMessage(
+            carrierId: carrierId,
+            message: message
+        )
+        return try await self.execute(query: query)
+    }
+
+    /// Reports that a web proxy carrier failed. TDLib closes the carrier and decides whether and when to request a new one. Can be called before authorization
+    /// - Parameter carrierId: Identifier of the carrier
+    /// - Parameter error: The error
+    public func reportWebProxyCarrierError(
+        carrierId: Int?,
+        error: WebProxyCarrierError?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = ReportWebProxyCarrierError(
+            carrierId: carrierId,
+            error: error
+        )
+        self.execute(query: query, completion: completion)
+    }
+
+    /// Reports that a web proxy carrier failed. TDLib closes the carrier and decides whether and when to request a new one. Can be called before authorization
+    /// - Parameter carrierId: Identifier of the carrier
+    /// - Parameter error: The error
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public func reportWebProxyCarrierError(
+        carrierId: Int?,
+        error: WebProxyCarrierError?
+    ) async throws -> Ok {
+        let query = ReportWebProxyCarrierError(
+            carrierId: carrierId,
+            error: error
         )
         return try await self.execute(query: query)
     }

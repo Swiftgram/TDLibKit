@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-18c8f7a0
-//  https://github.com/tdlib/td/tree/18c8f7a0
+//  Based on TDLib 1.8.69-0e88653d
+//  https://github.com/tdlib/td/tree/0e88653d
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
     /// A transfer of a TON NFT to or from the wallet
     case tonWalletTransactionTypeNftTransfer(TonWalletTransactionTypeNftTransfer)
 
-    /// A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back
+    /// A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back; peer details aren't available for the transaction
     case tonWalletTransactionTypeTelegramGiftTransfer(TonWalletTransactionTypeTelegramGiftTransfer)
 
     /// Change of the wallet key
@@ -156,8 +156,11 @@ public struct TonWalletTransactionTypeNftTransfer: Codable, Equatable, Hashable 
     }
 }
 
-/// A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back
+/// A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back; peer details aren't available for the transaction
 public struct TonWalletTransactionTypeTelegramGiftTransfer: Codable, Equatable, Hashable {
+
+    /// True, if the transfer is from the wallet to Telegram
+    public let isOutgoing: Bool
 
     /// True, if the gift was displayed on the current user's profile page before or after the transfer
     public let isSaved: Bool
@@ -167,9 +170,11 @@ public struct TonWalletTransactionTypeTelegramGiftTransfer: Codable, Equatable, 
 
 
     public init(
+        isOutgoing: Bool,
         isSaved: Bool,
         nft: TonNft
     ) {
+        self.isOutgoing = isOutgoing
         self.isSaved = isSaved
         self.nft = nft
     }

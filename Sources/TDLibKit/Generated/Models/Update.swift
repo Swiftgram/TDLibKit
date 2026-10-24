@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-18c8f7a0
-//  https://github.com/tdlib/td/tree/18c8f7a0
+//  Based on TDLib 1.8.69-0e88653d
+//  https://github.com/tdlib/td/tree/0e88653d
 //
 
 import Foundation
@@ -427,6 +427,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The connection state has changed. This update must be used only to show a human-readable description of the connection state
     case updateConnectionState(UpdateConnectionState)
 
+    /// A web proxy carrier must be opened as described in webProxyCarrier. Messages passed by the page to the bridge object must be passed to processWebProxyCarrierMessage. Failures of the carrier must be reported with reportWebProxyCarrierError
+    case updateWebProxyCarrierOpened(UpdateWebProxyCarrierOpened)
+
+    /// Data must be delivered as an ArrayBuffer to the page of a web proxy carrier through the onmessage function of the bridge object, in the order of the updates
+    case updateWebProxyCarrierData(UpdateWebProxyCarrierData)
+
+    /// A web proxy carrier must be closed. If the page has passed any message to the bridge object, then the application must deliver the string {"t":"close"} to the page, so that it can end its relay session, and destroy the web view shortly after, for example, in 200 milliseconds; otherwise, the web view must be destroyed immediately. Messages from the carrier received after this update must be ignored
+    case updateWebProxyCarrierClosed(UpdateWebProxyCarrierClosed)
+
     /// The freeze state of the current user's account has changed
     case updateFreezeState(UpdateFreezeState)
 
@@ -735,6 +744,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateWebBrowserSettings
         case updateLanguagePackStrings
         case updateConnectionState
+        case updateWebProxyCarrierOpened
+        case updateWebProxyCarrierData
+        case updateWebProxyCarrierClosed
         case updateFreezeState
         case updateAgeVerificationParameters
         case updateTermsOfService
@@ -1211,6 +1223,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateConnectionState:
             let value = try UpdateConnectionState(from: decoder)
             self = .updateConnectionState(value)
+        case .updateWebProxyCarrierOpened:
+            let value = try UpdateWebProxyCarrierOpened(from: decoder)
+            self = .updateWebProxyCarrierOpened(value)
+        case .updateWebProxyCarrierData:
+            let value = try UpdateWebProxyCarrierData(from: decoder)
+            self = .updateWebProxyCarrierData(value)
+        case .updateWebProxyCarrierClosed:
+            let value = try UpdateWebProxyCarrierClosed(from: decoder)
+            self = .updateWebProxyCarrierClosed(value)
         case .updateFreezeState:
             let value = try UpdateFreezeState(from: decoder)
             self = .updateFreezeState(value)
@@ -1798,6 +1819,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateConnectionState(let value):
             try container.encode(Kind.updateConnectionState, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateWebProxyCarrierOpened(let value):
+            try container.encode(Kind.updateWebProxyCarrierOpened, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateWebProxyCarrierData(let value):
+            try container.encode(Kind.updateWebProxyCarrierData, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateWebProxyCarrierClosed(let value):
+            try container.encode(Kind.updateWebProxyCarrierClosed, forKey: .type)
             try value.encode(to: encoder)
         case .updateFreezeState(let value):
             try container.encode(Kind.updateFreezeState, forKey: .type)
@@ -4677,6 +4707,49 @@ public struct UpdateConnectionState: Codable, Equatable, Hashable {
 
     public init(state: ConnectionState) {
         self.state = state
+    }
+}
+
+/// A web proxy carrier must be opened as described in webProxyCarrier. Messages passed by the page to the bridge object must be passed to processWebProxyCarrierMessage. Failures of the carrier must be reported with reportWebProxyCarrierError
+public struct UpdateWebProxyCarrierOpened: Codable, Equatable, Hashable {
+
+    /// The carrier
+    public let carrier: WebProxyCarrier
+
+
+    public init(carrier: WebProxyCarrier) {
+        self.carrier = carrier
+    }
+}
+
+/// Data must be delivered as an ArrayBuffer to the page of a web proxy carrier through the onmessage function of the bridge object, in the order of the updates
+public struct UpdateWebProxyCarrierData: Codable, Equatable, Hashable {
+
+    /// Identifier of the carrier
+    public let carrierId: Int
+
+    /// The data to deliver
+    public let data: Data
+
+
+    public init(
+        carrierId: Int,
+        data: Data
+    ) {
+        self.carrierId = carrierId
+        self.data = data
+    }
+}
+
+/// A web proxy carrier must be closed. If the page has passed any message to the bridge object, then the application must deliver the string {"t":"close"} to the page, so that it can end its relay session, and destroy the web view shortly after, for example, in 200 milliseconds; otherwise, the web view must be destroyed immediately. Messages from the carrier received after this update must be ignored
+public struct UpdateWebProxyCarrierClosed: Codable, Equatable, Hashable {
+
+    /// Identifier of the carrier
+    public let carrierId: Int
+
+
+    public init(carrierId: Int) {
+        self.carrierId = carrierId
     }
 }
 

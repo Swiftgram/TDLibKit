@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.68-18c8f7a0
-//  https://github.com/tdlib/td/tree/18c8f7a0
+//  Based on TDLib 1.8.69-0e88653d
+//  https://github.com/tdlib/td/tree/0e88653d
 //
 
 import Foundation
 
 
-/// Describes type of a request to TON Center API
+/// Describes a type of request to the TON Center API
 public indirect enum TonCenterApiRequestType: Codable, Equatable, Hashable {
 
     /// A GET request
