@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -502,6 +502,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The parameters of speech recognition without Telegram Premium subscription have changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
+    /// Speech in an audio file was partially recognized. The final result will be returned by the corresponding recognizeSpeechInFile request
+    case updateSpeechRecognitionInFile(UpdateSpeechRecognitionInFile)
+
     /// The levels of live story group call messages have changed
     case updateGroupCallMessageLevels(UpdateGroupCallMessageLevels)
 
@@ -561,6 +564,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
 
     /// A new incoming callback query from a business message; for bots only
     case updateNewBusinessCallbackQuery(UpdateNewBusinessCallbackQuery)
+
+    /// A new incoming widget query; for bots only
+    case updateNewWidgetQuery(UpdateNewWidgetQuery)
+
+    /// A new incoming widget query from a message sent via a bot; for bots only
+    case updateNewInlineWidgetQuery(UpdateNewInlineWidgetQuery)
+
+    /// A new incoming widget query from a copy of a shared widget; for bots only
+    case updateNewWidgetCopyQuery(UpdateNewWidgetCopyQuery)
 
     /// A new incoming shipping query; for bots only. Only for invoices with flexible price
     case updateNewShippingQuery(UpdateNewShippingQuery)
@@ -769,6 +781,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateStarRevenueStatus
         case updateGramRevenueStatus
         case updateSpeechRecognitionTrial
+        case updateSpeechRecognitionInFile
         case updateGroupCallMessageLevels
         case updateDiceEmojis
         case updateStakeDiceState
@@ -789,6 +802,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateNewCallbackQuery
         case updateNewInlineCallbackQuery
         case updateNewBusinessCallbackQuery
+        case updateNewWidgetQuery
+        case updateNewInlineWidgetQuery
+        case updateNewWidgetCopyQuery
         case updateNewShippingQuery
         case updateNewPreCheckoutQuery
         case updateNewCustomEvent
@@ -1298,6 +1314,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSpeechRecognitionTrial:
             let value = try UpdateSpeechRecognitionTrial(from: decoder)
             self = .updateSpeechRecognitionTrial(value)
+        case .updateSpeechRecognitionInFile:
+            let value = try UpdateSpeechRecognitionInFile(from: decoder)
+            self = .updateSpeechRecognitionInFile(value)
         case .updateGroupCallMessageLevels:
             let value = try UpdateGroupCallMessageLevels(from: decoder)
             self = .updateGroupCallMessageLevels(value)
@@ -1358,6 +1377,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateNewBusinessCallbackQuery:
             let value = try UpdateNewBusinessCallbackQuery(from: decoder)
             self = .updateNewBusinessCallbackQuery(value)
+        case .updateNewWidgetQuery:
+            let value = try UpdateNewWidgetQuery(from: decoder)
+            self = .updateNewWidgetQuery(value)
+        case .updateNewInlineWidgetQuery:
+            let value = try UpdateNewInlineWidgetQuery(from: decoder)
+            self = .updateNewInlineWidgetQuery(value)
+        case .updateNewWidgetCopyQuery:
+            let value = try UpdateNewWidgetCopyQuery(from: decoder)
+            self = .updateNewWidgetCopyQuery(value)
         case .updateNewShippingQuery:
             let value = try UpdateNewShippingQuery(from: decoder)
             self = .updateNewShippingQuery(value)
@@ -1895,6 +1923,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateSpeechRecognitionTrial(let value):
             try container.encode(Kind.updateSpeechRecognitionTrial, forKey: .type)
             try value.encode(to: encoder)
+        case .updateSpeechRecognitionInFile(let value):
+            try container.encode(Kind.updateSpeechRecognitionInFile, forKey: .type)
+            try value.encode(to: encoder)
         case .updateGroupCallMessageLevels(let value):
             try container.encode(Kind.updateGroupCallMessageLevels, forKey: .type)
             try value.encode(to: encoder)
@@ -1954,6 +1985,15 @@ public indirect enum Update: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .updateNewBusinessCallbackQuery(let value):
             try container.encode(Kind.updateNewBusinessCallbackQuery, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewWidgetQuery(let value):
+            try container.encode(Kind.updateNewWidgetQuery, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewInlineWidgetQuery(let value):
+            try container.encode(Kind.updateNewInlineWidgetQuery, forKey: .type)
+            try value.encode(to: encoder)
+        case .updateNewWidgetCopyQuery(let value):
+            try container.encode(Kind.updateNewWidgetCopyQuery, forKey: .type)
             try value.encode(to: encoder)
         case .updateNewShippingQuery(let value):
             try container.encode(Kind.updateNewShippingQuery, forKey: .type)
@@ -5093,6 +5133,25 @@ public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
     }
 }
 
+/// Speech in an audio file was partially recognized. The final result will be returned by the corresponding recognizeSpeechInFile request
+public struct UpdateSpeechRecognitionInFile: Codable, Equatable, Hashable {
+
+    /// Partially recognized text
+    public let partialText: String
+
+    /// Identifier of the speech recognition as specified in recognizeSpeechInFile
+    public let recognitionId: TdInt64
+
+
+    public init(
+        partialText: String,
+        recognitionId: TdInt64
+    ) {
+        self.partialText = partialText
+        self.recognitionId = recognitionId
+    }
+}
+
 /// The levels of live story group call messages have changed
 public struct UpdateGroupCallMessageLevels: Codable, Equatable, Hashable {
 
@@ -5526,6 +5585,158 @@ public struct UpdateNewBusinessCallbackQuery: Codable, Equatable, Hashable, Iden
         self.message = message
         self.payload = payload
         self.senderUserId = senderUserId
+    }
+}
+
+/// A new incoming widget query; for bots only
+public struct UpdateNewWidgetQuery: Codable, Equatable, Hashable, Identifiable {
+
+    /// Identifier of the chat where the query was sent
+    public let chatId: Int64
+
+    /// Identifier that uniquely corresponds to the chat to which the message was sent
+    public let chatInstance: TdInt64
+
+    /// Type of the chat to which the message was sent
+    public let chatType: String
+
+    /// Data of the query
+    public let data: Data
+
+    /// Unique query identifier
+    public let id: TdInt64
+
+    /// Identifier of the message from which the query originated
+    public let messageId: Int64
+
+    /// Type of the query
+    public let queryType: WidgetQueryType
+
+    /// Identifier of the user who sent the query
+    public let senderUserId: Int64
+
+    /// TON wallet card of the user who sent the query; may be null if none
+    public let walletCard: TonWalletCard?
+
+    /// Identifier of the shared widget from which the query originated; 0 if the widget isn't shared
+    public let widgetId: TdInt64
+
+
+    public init(
+        chatId: Int64,
+        chatInstance: TdInt64,
+        chatType: String,
+        data: Data,
+        id: TdInt64,
+        messageId: Int64,
+        queryType: WidgetQueryType,
+        senderUserId: Int64,
+        walletCard: TonWalletCard?,
+        widgetId: TdInt64
+    ) {
+        self.chatId = chatId
+        self.chatInstance = chatInstance
+        self.chatType = chatType
+        self.data = data
+        self.id = id
+        self.messageId = messageId
+        self.queryType = queryType
+        self.senderUserId = senderUserId
+        self.walletCard = walletCard
+        self.widgetId = widgetId
+    }
+}
+
+/// A new incoming widget query from a message sent via a bot; for bots only
+public struct UpdateNewInlineWidgetQuery: Codable, Equatable, Hashable, Identifiable {
+
+    /// Identifier that uniquely corresponds to the chat to which the message was sent
+    public let chatInstance: TdInt64
+
+    /// Type of the chat to which the message was sent
+    public let chatType: String
+
+    /// Data of the query
+    public let data: Data
+
+    /// Unique query identifier
+    public let id: TdInt64
+
+    /// Identifier of the inline message from which the query originated
+    public let inlineMessageId: String
+
+    /// Type of the query
+    public let queryType: WidgetQueryType
+
+    /// Identifier of the user who sent the query
+    public let senderUserId: Int64
+
+    /// TON wallet card of the user who sent the query; may be null if none
+    public let walletCard: TonWalletCard?
+
+    /// Identifier of the shared widget from which the query originated; 0 if the widget isn't shared
+    public let widgetId: TdInt64
+
+
+    public init(
+        chatInstance: TdInt64,
+        chatType: String,
+        data: Data,
+        id: TdInt64,
+        inlineMessageId: String,
+        queryType: WidgetQueryType,
+        senderUserId: Int64,
+        walletCard: TonWalletCard?,
+        widgetId: TdInt64
+    ) {
+        self.chatInstance = chatInstance
+        self.chatType = chatType
+        self.data = data
+        self.id = id
+        self.inlineMessageId = inlineMessageId
+        self.queryType = queryType
+        self.senderUserId = senderUserId
+        self.walletCard = walletCard
+        self.widgetId = widgetId
+    }
+}
+
+/// A new incoming widget query from a copy of a shared widget; for bots only
+public struct UpdateNewWidgetCopyQuery: Codable, Equatable, Hashable, Identifiable {
+
+    /// Data of the query
+    public let data: Data
+
+    /// Unique query identifier
+    public let id: TdInt64
+
+    /// Type of the query
+    public let queryType: WidgetQueryType
+
+    /// Identifier of the user who sent the query
+    public let senderUserId: Int64
+
+    /// TON wallet card of the user who sent the query; may be null if none
+    public let walletCard: TonWalletCard?
+
+    /// Identifier of the shared widget from which the query originated
+    public let widgetId: TdInt64
+
+
+    public init(
+        data: Data,
+        id: TdInt64,
+        queryType: WidgetQueryType,
+        senderUserId: Int64,
+        walletCard: TonWalletCard?,
+        widgetId: TdInt64
+    ) {
+        self.data = data
+        self.id = id
+        self.queryType = queryType
+        self.senderUserId = senderUserId
+        self.walletCard = walletCard
+        self.widgetId = widgetId
     }
 }
 

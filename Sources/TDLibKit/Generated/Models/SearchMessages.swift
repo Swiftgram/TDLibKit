@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
 
 
-/// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+/// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (message.date, message.chat_id, message.id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 public struct SearchMessages: Codable, Equatable, Hashable {
 
     /// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported

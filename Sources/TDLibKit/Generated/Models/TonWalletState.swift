@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -23,7 +23,7 @@ public struct TonWalletState: Codable, Equatable, Hashable {
     public let canExportPhrase: Bool
 
     /// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
-    public let gramAmount: Int64
+    public let gramAmount: TdInt64
 
     /// True, if backup for the wallet key is enabled
     public let isBackupEnabled: Bool
@@ -39,7 +39,7 @@ public struct TonWalletState: Codable, Equatable, Hashable {
         address: String,
         canEnableBackup: Bool,
         canExportPhrase: Bool,
-        gramAmount: Int64,
+        gramAmount: TdInt64,
         isBackupEnabled: Bool,
         isBeingCreated: Bool,
         publicKey: Data

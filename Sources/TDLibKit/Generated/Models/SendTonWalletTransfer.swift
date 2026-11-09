@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct SendTonWalletTransfer: Codable, Equatable, Hashable {
     public let address: String?
 
     /// The amount of the sent cryptocurrency, in the smallest units of the cryptocurrency
-    public let amount: Int64?
+    public let amount: TdInt64?
 
     /// Comment added to the transaction
     public let comment: String?
@@ -40,7 +40,7 @@ public struct SendTonWalletTransfer: Codable, Equatable, Hashable {
 
     public init(
         address: String?,
-        amount: Int64?,
+        amount: TdInt64?,
         comment: String?,
         gaslessTransferData: Data?,
         isCommentEncrypted: Bool?,

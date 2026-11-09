@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story is visible only for the current user
     public let isVisibleOnlyForSelf: Bool
 
+    /// Music attached to the story; may be null if none
+    public let music: Audio?
+
     /// Identifier of the chat that posted the story
     public let posterChatId: Int64
 
@@ -119,6 +122,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         isEdited: Bool,
         isPostedToChatPage: Bool,
         isVisibleOnlyForSelf: Bool,
+        music: Audio?,
         posterChatId: Int64,
         posterId: MessageSender?,
         privacySettings: StoryPrivacySettings,
@@ -147,6 +151,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
         self.isEdited = isEdited
         self.isPostedToChatPage = isPostedToChatPage
         self.isVisibleOnlyForSelf = isVisibleOnlyForSelf
+        self.music = music
         self.posterChatId = posterChatId
         self.posterId = posterId
         self.privacySettings = privacySettings

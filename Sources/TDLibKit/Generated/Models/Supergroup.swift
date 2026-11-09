@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -27,6 +27,9 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the channel has direct messages group
     public let hasDirectMessagesGroup: Bool
+
+    /// True, if the supergroup is a forum, which topics are shown in a sidebar. If true, then has_forum_tabs is false
+    public let hasForumSidebar: Bool
 
     /// True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
     public let hasForumTabs: Bool
@@ -95,6 +98,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         date: Int,
         hasAutomaticTranslation: Bool,
         hasDirectMessagesGroup: Bool,
+        hasForumSidebar: Bool,
         hasForumTabs: Bool,
         hasLinkedChat: Bool,
         hasLocation: Bool,
@@ -121,6 +125,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
         self.date = date
         self.hasAutomaticTranslation = hasAutomaticTranslation
         self.hasDirectMessagesGroup = hasDirectMessagesGroup
+        self.hasForumSidebar = hasForumSidebar
         self.hasForumTabs = hasForumTabs
         self.hasLinkedChat = hasLinkedChat
         self.hasLocation = hasLocation

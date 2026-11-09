@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public struct PostStory: Codable, Equatable, Hashable {
     /// Pass true to keep the story accessible after expiration
     public let isPostedToChatPage: Bool?
 
+    /// Music to be attached to the story; pass null if none. The music can be up to 60 seconds long
+    public let music: InputAudio?
+
     /// The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     public let privacySettings: StoryPrivacySettings?
 
@@ -53,6 +56,7 @@ public struct PostStory: Codable, Equatable, Hashable {
         content: InputStoryContent?,
         fromStoryFullId: StoryFullId?,
         isPostedToChatPage: Bool?,
+        music: InputAudio?,
         privacySettings: StoryPrivacySettings?,
         protectContent: Bool?
     ) {
@@ -64,6 +68,7 @@ public struct PostStory: Codable, Equatable, Hashable {
         self.content = content
         self.fromStoryFullId = fromStoryFullId
         self.isPostedToChatPage = isPostedToChatPage
+        self.music = music
         self.privacySettings = privacySettings
         self.protectContent = protectContent
     }

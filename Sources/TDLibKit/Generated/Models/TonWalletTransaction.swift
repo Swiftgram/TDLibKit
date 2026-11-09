@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public struct TonWalletTransaction: Codable, Equatable, Hashable, Identifiable {
     public let date: Int
 
     /// The fee amount paid for the transaction in TON Grams, in the smallest units of the cryptocurrency
-    public let feeAmount: Int64
+    public let feeAmount: TdInt64
 
     /// Unique identifier of the transaction
     public let id: String
@@ -40,7 +40,7 @@ public struct TonWalletTransaction: Codable, Equatable, Hashable, Identifiable {
 
     public init(
         date: Int,
-        feeAmount: Int64,
+        feeAmount: TdInt64,
         id: String,
         peerAddress: String,
         peerDomain: String,

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct UpgradedGiftDepositInfo: Codable, Equatable, Hashable {
 
     /// The amount of TON Grams that must be attached to the message to cover fees, in the smallest units of the cryptocurrency; excess amount will be returned to the wallet
-    public let gramAmount: Int64
+    public let gramAmount: TdInt64
 
     /// Address in TON blockchain to which the message must be sent
     public let nftAddress: String
@@ -24,7 +24,7 @@ public struct UpgradedGiftDepositInfo: Codable, Equatable, Hashable {
 
 
     public init(
-        gramAmount: Int64,
+        gramAmount: TdInt64,
         nftAddress: String,
         payload: Data
     ) {

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -80,6 +80,12 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
     /// A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
     case inputMessageChecklist(InputMessageChecklist)
 
+    /// A message with an HTML widget; for bots only
+    case inputMessageWidget(InputMessageWidget)
+
+    /// A message with an existing shared widget; for bots only
+    case inputMessageSharedWidget(InputMessageSharedWidget)
+
     /// A forwarded message
     case inputMessageForwarded(InputMessageForwarded)
 
@@ -107,6 +113,8 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case inputMessageStakeDice
         case inputMessageStory
         case inputMessageChecklist
+        case inputMessageWidget
+        case inputMessageSharedWidget
         case inputMessageForwarded
     }
 
@@ -180,6 +188,12 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
         case .inputMessageChecklist:
             let value = try InputMessageChecklist(from: decoder)
             self = .inputMessageChecklist(value)
+        case .inputMessageWidget:
+            let value = try InputMessageWidget(from: decoder)
+            self = .inputMessageWidget(value)
+        case .inputMessageSharedWidget:
+            let value = try InputMessageSharedWidget(from: decoder)
+            self = .inputMessageSharedWidget(value)
         case .inputMessageForwarded:
             let value = try InputMessageForwarded(from: decoder)
             self = .inputMessageForwarded(value)
@@ -254,6 +268,12 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .inputMessageChecklist(let value):
             try container.encode(Kind.inputMessageChecklist, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputMessageWidget(let value):
+            try container.encode(Kind.inputMessageWidget, forKey: .type)
+            try value.encode(to: encoder)
+        case .inputMessageSharedWidget(let value):
+            try container.encode(Kind.inputMessageSharedWidget, forKey: .type)
             try value.encode(to: encoder)
         case .inputMessageForwarded(let value):
             try container.encode(Kind.inputMessageForwarded, forKey: .type)
@@ -830,6 +850,89 @@ public struct InputMessageChecklist: Codable, Equatable, Hashable {
 
     public init(checklist: InputChecklist) {
         self.checklist = checklist
+    }
+}
+
+/// A message with an HTML widget; for bots only
+public struct InputMessageWidget: Codable, Equatable, Hashable {
+
+    /// Pass true to allow the widget to send queries to the bot
+    public let allowQueries: Bool
+
+    /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    public let caption: FormattedText?
+
+    /// Data of the widget, which is specific to the chat
+    public let chatData: String
+
+    /// Height of the widget; 0 if the height of the widget isn't fixed
+    public let height: Int
+
+    /// HTML code of the widget; 1-32768 bytes; must not contain zero character and must not exceed 4096 bytes when compressed by zlib with the maximal compression level
+    public let html: String
+
+    /// Pass true to create a shared widget, which can be sent again by its identifier
+    public let isShared: Bool
+
+    /// Public data of the widget, which will be available in copies and forwards of the message
+    public let publicData: String
+
+    /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+    public let showCaptionAboveMedia: Bool
+
+    /// Width of the widget; 0 if the widget must occupy the whole width of the message bubble
+    public let width: Int
+
+
+    public init(
+        allowQueries: Bool,
+        caption: FormattedText?,
+        chatData: String,
+        height: Int,
+        html: String,
+        isShared: Bool,
+        publicData: String,
+        showCaptionAboveMedia: Bool,
+        width: Int
+    ) {
+        self.allowQueries = allowQueries
+        self.caption = caption
+        self.chatData = chatData
+        self.height = height
+        self.html = html
+        self.isShared = isShared
+        self.publicData = publicData
+        self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.width = width
+    }
+}
+
+/// A message with an existing shared widget; for bots only
+public struct InputMessageSharedWidget: Codable, Equatable, Hashable {
+
+    /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    public let caption: FormattedText?
+
+    /// Data of the widget, which is specific to the chat
+    public let chatData: String
+
+    /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+    public let showCaptionAboveMedia: Bool
+
+    /// Identifier of the shared widget
+    public let widgetId: TdInt64
+
+
+    public init(
+        caption: FormattedText?,
+        chatData: String,
+        showCaptionAboveMedia: Bool,
+        widgetId: TdInt64
+    ) {
+        self.caption = caption
+        self.chatData = chatData
+        self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.widgetId = widgetId
     }
 }
 

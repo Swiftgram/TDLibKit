@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -83,14 +83,14 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
 public struct TonWalletTransactionTypeOnRampDeposit: Codable, Equatable, Hashable {
 
     /// The amount of received cryptocurrency, in the smallest units of the cryptocurrency
-    public let amount: Int64
+    public let amount: TdInt64
 
     /// Name of the on-ramp provider
     public let providerName: String
 
 
     public init(
-        amount: Int64,
+        amount: TdInt64,
         providerName: String
     ) {
         self.amount = amount
@@ -102,7 +102,7 @@ public struct TonWalletTransactionTypeOnRampDeposit: Codable, Equatable, Hashabl
 public struct TonWalletTransactionTypeTransfer: Codable, Equatable, Hashable {
 
     /// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
-    public let amount: Int64
+    public let amount: TdInt64
 
     /// Comment added to the transaction
     public let comment: String
@@ -115,7 +115,7 @@ public struct TonWalletTransactionTypeTransfer: Codable, Equatable, Hashable {
 
 
     public init(
-        amount: Int64,
+        amount: TdInt64,
         comment: String,
         isCommentEncrypted: Bool,
         isGasless: Bool

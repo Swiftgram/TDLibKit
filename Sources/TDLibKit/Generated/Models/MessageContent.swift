@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -87,6 +87,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A message with a forwarded story
     case messageStory(MessageStory)
+
+    /// A message with an HTML widget
+    case messageWidget(MessageWidget)
 
     /// A message with a checklist
     case messageChecklist(MessageChecklist)
@@ -364,6 +367,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messagePoll
         case messageStakeDice
         case messageStory
+        case messageWidget
         case messageChecklist
         case messageInvoice
         case messageCall
@@ -524,6 +528,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageStory:
             let value = try MessageStory(from: decoder)
             self = .messageStory(value)
+        case .messageWidget:
+            let value = try MessageWidget(from: decoder)
+            self = .messageWidget(value)
         case .messageChecklist:
             let value = try MessageChecklist(from: decoder)
             self = .messageChecklist(value)
@@ -841,6 +848,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageStory(let value):
             try container.encode(Kind.messageStory, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageWidget(let value):
+            try container.encode(Kind.messageWidget, forKey: .type)
             try value.encode(to: encoder)
         case .messageChecklist(let value):
             try container.encode(Kind.messageChecklist, forKey: .type)
@@ -1587,6 +1597,70 @@ public struct MessageStory: Codable, Equatable, Hashable {
         self.storyId = storyId
         self.storyPosterChatId = storyPosterChatId
         self.viaMention = viaMention
+    }
+}
+
+/// A message with an HTML widget
+public struct MessageWidget: Codable, Equatable, Hashable {
+
+    /// True, if the widget can send queries to the bot in the background
+    public let canSendBackgroundQueries: Bool
+
+    /// True, if the widget can send queries to the bot
+    public let canSendQueries: Bool
+
+    /// Widget caption
+    public let caption: FormattedText
+
+    /// Data of the widget, which is specific to the chat
+    public let chatData: String
+
+    /// Height of the widget; 0 if the height of the widget isn't fixed
+    public let height: Int
+
+    /// HTML code of the widget
+    public let html: String
+
+    /// True, if the message is a copy of the widget
+    public let isCopy: Bool
+
+    /// Public data of the widget
+    public let publicData: String
+
+    /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+    public let showCaptionAboveMedia: Bool
+
+    /// Identifier of the shared widget; 0 if the widget isn't shared
+    public let widgetId: TdInt64
+
+    /// Width of the widget; 0 if the widget must occupy the whole width of the message bubble
+    public let width: Int
+
+
+    public init(
+        canSendBackgroundQueries: Bool,
+        canSendQueries: Bool,
+        caption: FormattedText,
+        chatData: String,
+        height: Int,
+        html: String,
+        isCopy: Bool,
+        publicData: String,
+        showCaptionAboveMedia: Bool,
+        widgetId: TdInt64,
+        width: Int
+    ) {
+        self.canSendBackgroundQueries = canSendBackgroundQueries
+        self.canSendQueries = canSendQueries
+        self.caption = caption
+        self.chatData = chatData
+        self.height = height
+        self.html = html
+        self.isCopy = isCopy
+        self.publicData = publicData
+        self.showCaptionAboveMedia = showCaptionAboveMedia
+        self.widgetId = widgetId
+        self.width = width
     }
 }
 
@@ -2798,7 +2872,7 @@ public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
 public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
 
     /// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
-    public let amount: Int64
+    public let amount: TdInt64
 
     /// Comment added to the transaction
     public let comment: String
@@ -2817,7 +2891,7 @@ public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
 
 
     public init(
-        amount: Int64,
+        amount: TdInt64,
         comment: String,
         isCommentEncrypted: Bool,
         peerAddress: String,

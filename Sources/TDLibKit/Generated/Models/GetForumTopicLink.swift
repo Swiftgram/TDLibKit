@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
 
 
-/// Returns an HTTPS link to a topic in a forum supergroup chat. This is an offline method
+/// Returns an HTTPS link to a topic in a forum supergroup chat or a chat with a bot. This is an offline method
 public struct GetForumTopicLink: Codable, Equatable, Hashable {
 
     /// Identifier of the chat

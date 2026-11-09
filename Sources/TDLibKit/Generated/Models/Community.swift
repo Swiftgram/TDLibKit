@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -12,6 +12,9 @@ import Foundation
 
 /// Represents a community consisting of supergroup chats, channel chats and chats with bots
 public struct Community: Codable, Equatable, Hashable, Identifiable {
+
+    /// True, if all chats of the community are collapsed into one entry in the chat list
+    public let areChatsCollapsed: Bool
 
     /// Point in time (Unix timestamp) when the community was joined, or the point in time when the community was created, in case the user is not a member of any chat in the community
     public let date: Int
@@ -36,6 +39,7 @@ public struct Community: Codable, Equatable, Hashable, Identifiable {
 
 
     public init(
+        areChatsCollapsed: Bool,
         date: Int,
         haveAccess: Bool,
         id: Int64,
@@ -44,6 +48,7 @@ public struct Community: Codable, Equatable, Hashable, Identifiable {
         photo: ChatPhotoInfo?,
         status: CommunityMemberStatus
     ) {
+        self.areChatsCollapsed = areChatsCollapsed
         self.date = date
         self.haveAccess = haveAccess
         self.id = id

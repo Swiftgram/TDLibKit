@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import Foundation
 public struct TonWalletTransactions: Codable, Equatable, Hashable {
 
     /// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
-    public let gramAmount: Int64
+    public let gramAmount: TdInt64
 
     /// The offset for the next request. If empty, then there are no more results
     public let nextOffset: String
@@ -24,7 +24,7 @@ public struct TonWalletTransactions: Codable, Equatable, Hashable {
 
 
     public init(
-        gramAmount: Int64,
+        gramAmount: TdInt64,
         nextOffset: String,
         transactions: [TonWalletTransaction]
     ) {

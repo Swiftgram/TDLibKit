@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -15,9 +15,6 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
 
     /// An area pointing to a location
     case inputStoryAreaTypeLocation(InputStoryAreaTypeLocation)
-
-    /// An area pointing to a venue found by the bot getOption("venue_search_bot_username")
-    case inputStoryAreaTypeFoundVenue(InputStoryAreaTypeFoundVenue)
 
     /// An area pointing to a venue already added to the story
     case inputStoryAreaTypePreviousVenue(InputStoryAreaTypePreviousVenue)
@@ -40,7 +37,6 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
 
     private enum Kind: String, Codable {
         case inputStoryAreaTypeLocation
-        case inputStoryAreaTypeFoundVenue
         case inputStoryAreaTypePreviousVenue
         case inputStoryAreaTypeSuggestedReaction
         case inputStoryAreaTypeMessage
@@ -56,9 +52,6 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         case .inputStoryAreaTypeLocation:
             let value = try InputStoryAreaTypeLocation(from: decoder)
             self = .inputStoryAreaTypeLocation(value)
-        case .inputStoryAreaTypeFoundVenue:
-            let value = try InputStoryAreaTypeFoundVenue(from: decoder)
-            self = .inputStoryAreaTypeFoundVenue(value)
         case .inputStoryAreaTypePreviousVenue:
             let value = try InputStoryAreaTypePreviousVenue(from: decoder)
             self = .inputStoryAreaTypePreviousVenue(value)
@@ -85,9 +78,6 @@ public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
         switch self {
         case .inputStoryAreaTypeLocation(let value):
             try container.encode(Kind.inputStoryAreaTypeLocation, forKey: .type)
-            try value.encode(to: encoder)
-        case .inputStoryAreaTypeFoundVenue(let value):
-            try container.encode(Kind.inputStoryAreaTypeFoundVenue, forKey: .type)
             try value.encode(to: encoder)
         case .inputStoryAreaTypePreviousVenue(let value):
             try container.encode(Kind.inputStoryAreaTypePreviousVenue, forKey: .type)
@@ -127,25 +117,6 @@ public struct InputStoryAreaTypeLocation: Codable, Equatable, Hashable {
     ) {
         self.address = address
         self.location = location
-    }
-}
-
-/// An area pointing to a venue found by the bot getOption("venue_search_bot_username")
-public struct InputStoryAreaTypeFoundVenue: Codable, Equatable, Hashable {
-
-    /// Identifier of the inline query, used to find the venue
-    public let queryId: TdInt64
-
-    /// Identifier of the inline query result
-    public let resultId: String
-
-
-    public init(
-        queryId: TdInt64,
-        resultId: String
-    ) {
-        self.queryId = queryId
-        self.resultId = resultId
     }
 }
 

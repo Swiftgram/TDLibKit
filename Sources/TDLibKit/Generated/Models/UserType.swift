@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -95,6 +95,9 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot has the main Web App
     public let hasMainWebApp: Bool
 
+    /// True, if the bot has topics, which are shown in a sidebar
+    public let hasTopicSidebar: Bool
+
     /// True, if the bot has topics
     public let hasTopics: Bool
 
@@ -124,6 +127,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         canManageBots: Bool,
         canReadAllGroupMessages: Bool,
         hasMainWebApp: Bool,
+        hasTopicSidebar: Bool,
         hasTopics: Bool,
         inlineQueryPlaceholder: String,
         isGuard: Bool,
@@ -140,6 +144,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
         self.canManageBots = canManageBots
         self.canReadAllGroupMessages = canReadAllGroupMessages
         self.hasMainWebApp = hasMainWebApp
+        self.hasTopicSidebar = hasTopicSidebar
         self.hasTopics = hasTopics
         self.inlineQueryPlaceholder = inlineQueryPlaceholder
         self.isGuard = isGuard

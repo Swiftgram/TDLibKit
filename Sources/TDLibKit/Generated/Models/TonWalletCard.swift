@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -20,7 +20,7 @@ public struct TonWalletCard: Codable, Equatable, Hashable {
     public let backgroundNftAddress: String
 
     /// Balance of the wallet, in the smallest units of the cryptocurrency; may be slightly outdated
-    public let gramAmount: Int64
+    public let gramAmount: TdInt64
 
     /// Stickers placed on the card
     public let stickers: [TonWalletCardSticker]
@@ -29,7 +29,7 @@ public struct TonWalletCard: Codable, Equatable, Hashable {
     public init(
         address: String,
         backgroundNftAddress: String,
-        gramAmount: Int64,
+        gramAmount: TdInt64,
         stickers: [TonWalletCardSticker]
     ) {
         self.address = address

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-4c6377aa
-//  https://github.com/tdlib/td/tree/4c6377aa
+//  Based on TDLib 1.8.69-6126ecae
+//  https://github.com/tdlib/td/tree/6126ecae
 //
 
 import Foundation
@@ -1341,14 +1341,14 @@ public struct InternalLinkTypeTonConnect: Codable, Equatable, Hashable {
 public struct InternalLinkTypeTonWalletTransfer: Codable, Equatable, Hashable {
 
     /// The pre-filled amount of TON Grams to send; in the smallest units of the cryptocurrency
-    public let gramAmount: Int64
+    public let gramAmount: TdInt64
 
     /// Chosen receiver of the transfer; may be null if none
     public let receiver: TonWalletTransferReceiver?
 
 
     public init(
-        gramAmount: Int64,
+        gramAmount: TdInt64,
         receiver: TonWalletTransferReceiver?
     ) {
         self.gramAmount = gramAmount
