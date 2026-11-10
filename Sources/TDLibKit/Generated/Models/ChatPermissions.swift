@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-6126ecae
-//  https://github.com/tdlib/td/tree/6126ecae
+//  Based on TDLib 1.8.69-ad2c1516
+//  https://github.com/tdlib/td/tree/ad2c1516
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public struct ChatPermissions: Codable, Equatable, Hashable {
     /// True, if the user can send documents
     public let canSendDocuments: Bool
 
-    /// True, if the user can send animations, games, stickers, and dice and use inline bots
+    /// True, if the user can send animations, games, stickers, widgets, and dice and use inline bots
     public let canSendOtherMessages: Bool
 
     /// True, if the user can send photos

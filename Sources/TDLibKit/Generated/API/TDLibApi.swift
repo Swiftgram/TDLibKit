@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-6126ecae
-//  https://github.com/tdlib/td/tree/6126ecae
+//  Based on TDLib 1.8.69-ad2c1516
+//  https://github.com/tdlib/td/tree/ad2c1516
 //
 
 import Foundation
@@ -7016,12 +7016,12 @@ public class TDLibApi {
     }
 
     /// Edits data of a widget sent by the bot; for bots only
-    /// - Parameter chatData: New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+    /// - Parameter chatData: New data of the widget, which is specific to the chat; must not contain zero character; ignored if edit_chat_data is false
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter editChatData: Pass true to edit data of the widget, which is specific to the chat
     /// - Parameter editPublicData: Pass true to edit public data of the widget
     /// - Parameter messageId: Identifier of the widget message
-    /// - Parameter publicData: New public data of the widget; ignored if edit_public_data is false
+    /// - Parameter publicData: New public data of the widget; must not contain zero character; ignored if edit_public_data is false
     public final func editMessageWidgetData(
         chatData: String?,
         chatId: Int64?,
@@ -7043,12 +7043,12 @@ public class TDLibApi {
     }
 
     /// Edits data of a widget sent by the bot; for bots only
-    /// - Parameter chatData: New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+    /// - Parameter chatData: New data of the widget, which is specific to the chat; must not contain zero character; ignored if edit_chat_data is false
     /// - Parameter chatId: The chat the message belongs to
     /// - Parameter editChatData: Pass true to edit data of the widget, which is specific to the chat
     /// - Parameter editPublicData: Pass true to edit public data of the widget
     /// - Parameter messageId: Identifier of the widget message
-    /// - Parameter publicData: New public data of the widget; ignored if edit_public_data is false
+    /// - Parameter publicData: New public data of the widget; must not contain zero character; ignored if edit_public_data is false
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editMessageWidgetData(
@@ -7256,11 +7256,11 @@ public class TDLibApi {
     }
 
     /// Edits data of a widget in an inline message sent via the bot; for bots only
-    /// - Parameter chatData: New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+    /// - Parameter chatData: New data of the widget, which is specific to the chat; must not contain zero character; ignored if edit_chat_data is false
     /// - Parameter editChatData: Pass true to edit data of the widget, which is specific to the chat
     /// - Parameter editPublicData: Pass true to edit public data of the widget
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter publicData: New public data of the widget; ignored if edit_public_data is false
+    /// - Parameter publicData: New public data of the widget; must not contain zero character; ignored if edit_public_data is false
     public final func editInlineMessageWidgetData(
         chatData: String?,
         editChatData: Bool?,
@@ -7280,11 +7280,11 @@ public class TDLibApi {
     }
 
     /// Edits data of a widget in an inline message sent via the bot; for bots only
-    /// - Parameter chatData: New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+    /// - Parameter chatData: New data of the widget, which is specific to the chat; must not contain zero character; ignored if edit_chat_data is false
     /// - Parameter editChatData: Pass true to edit data of the widget, which is specific to the chat
     /// - Parameter editPublicData: Pass true to edit public data of the widget
     /// - Parameter inlineMessageId: Inline message identifier
-    /// - Parameter publicData: New public data of the widget; ignored if edit_public_data is false
+    /// - Parameter publicData: New public data of the widget; must not contain zero character; ignored if edit_public_data is false
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
     public final func editInlineMessageWidgetData(
@@ -7306,7 +7306,7 @@ public class TDLibApi {
 
     /// Edits public data of a shared widget created by the bot; for bots only
     /// - Parameter cacheTime: Time during which the public data can be cached, in seconds; 5-3600. Pass 0 to keep the current value, which is 30 by default
-    /// - Parameter publicData: New public data of the widget
+    /// - Parameter publicData: New public data of the widget; must not contain zero character
     /// - Parameter widgetId: Identifier of the shared widget
     public final func editWidgetData(
         cacheTime: Int?,
@@ -7324,7 +7324,7 @@ public class TDLibApi {
 
     /// Edits public data of a shared widget created by the bot; for bots only
     /// - Parameter cacheTime: Time during which the public data can be cached, in seconds; 5-3600. Pass 0 to keep the current value, which is 30 by default
-    /// - Parameter publicData: New public data of the widget
+    /// - Parameter publicData: New public data of the widget; must not contain zero character
     /// - Parameter widgetId: Identifier of the shared widget
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult

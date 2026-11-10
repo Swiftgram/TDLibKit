@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-6126ecae
-//  https://github.com/tdlib/td/tree/6126ecae
+//  Based on TDLib 1.8.69-ad2c1516
+//  https://github.com/tdlib/td/tree/ad2c1516
 //
 
 import Foundation
@@ -862,7 +862,7 @@ public struct InputMessageWidget: Codable, Equatable, Hashable {
     /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Data of the widget, which is specific to the chat
+    /// Data of the widget, which is specific to the chat; must not contain zero character
     public let chatData: String
 
     /// Height of the widget; 0 if the height of the widget isn't fixed
@@ -874,7 +874,7 @@ public struct InputMessageWidget: Codable, Equatable, Hashable {
     /// Pass true to create a shared widget, which can be sent again by its identifier
     public let isShared: Bool
 
-    /// Public data of the widget, which will be available in copies and forwards of the message
+    /// Public data of the widget, which will be available in copies and forwards of the message; must not contain zero character
     public let publicData: String
 
     /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
@@ -913,7 +913,7 @@ public struct InputMessageSharedWidget: Codable, Equatable, Hashable {
     /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Data of the widget, which is specific to the chat
+    /// Data of the widget, which is specific to the chat; must not contain zero character
     public let chatData: String
 
     /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
