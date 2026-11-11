@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-ad2c1516
-//  https://github.com/tdlib/td/tree/ad2c1516
+//  Based on TDLib 1.8.69-1f390d90
+//  https://github.com/tdlib/td/tree/1f390d90
 //
 
 import Foundation
@@ -862,19 +862,19 @@ public struct InputMessageWidget: Codable, Equatable, Hashable {
     /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Data of the widget, which is specific to the chat; must not contain zero character
+    /// Data of the widget, which is specific to the chat
     public let chatData: String
 
     /// Height of the widget; 0 if the height of the widget isn't fixed
     public let height: Int
 
-    /// HTML code of the widget; 1-32768 bytes; must not contain zero character and must not exceed 4096 bytes when compressed by zlib with the maximal compression level
+    /// HTML code of the widget; 1-32768 bytes; must not exceed 4096 bytes when compressed by zlib with the maximal compression level
     public let html: String
 
     /// Pass true to create a shared widget, which can be sent again by its identifier
     public let isShared: Bool
 
-    /// Public data of the widget, which will be available in copies and forwards of the message; must not contain zero character
+    /// Public data of the widget, which will be available in copies and forwards of the message
     public let publicData: String
 
     /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
@@ -913,7 +913,7 @@ public struct InputMessageSharedWidget: Codable, Equatable, Hashable {
     /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Data of the widget, which is specific to the chat; must not contain zero character
+    /// Data of the widget, which is specific to the chat
     public let chatData: String
 
     /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget

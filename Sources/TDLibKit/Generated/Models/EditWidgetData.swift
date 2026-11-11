@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-ad2c1516
-//  https://github.com/tdlib/td/tree/ad2c1516
+//  Based on TDLib 1.8.69-1f390d90
+//  https://github.com/tdlib/td/tree/1f390d90
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct EditWidgetData: Codable, Equatable, Hashable {
     /// Time during which the public data can be cached, in seconds; 5-3600. Pass 0 to keep the current value, which is 30 by default
     public let cacheTime: Int?
 
-    /// New public data of the widget; must not contain zero character
+    /// New public data of the widget
     public let publicData: String?
 
     /// Identifier of the shared widget
