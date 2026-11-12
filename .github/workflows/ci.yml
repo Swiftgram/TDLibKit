@@ -83,8 +83,8 @@ jobs:
 
       - name: Tests (${{ matrix.platform }})
         run: |
-          chmod +x ./scripts/test.sh 
-          ./scripts/test.sh ${{ matrix.platform }} "${{ matrix.os_list }}" "${{ matrix.device_name }}" "${{ matrix.action }}" || ./scripts/test.sh ${{ matrix.platform }} "${{ matrix.os_list }}" "${{ matrix.device_name }}" "${{ matrix.action }}" 
+          chmod +x ./scripts/test.sh
+          ./scripts/test.sh ${{ matrix.platform }} "${{ matrix.os_list }}" "${{ matrix.device_name }}" "${{ matrix.action }}"
   
   release:
     if: ${{ github.ref == 'refs/heads/main' }}
