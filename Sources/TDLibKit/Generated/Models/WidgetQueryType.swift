@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-1f390d90
-//  https://github.com/tdlib/td/tree/1f390d90
+//  Based on TDLib 1.8.70-23383aef
+//  https://github.com/tdlib/td/tree/23383aef
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public indirect enum WidgetQueryType: Codable, Equatable, Hashable {
     /// The query contains data for the bot
     case widgetQueryTypeData(WidgetQueryTypeData)
 
-    /// The query contains data signed by a TON wallet of the user that sends the query
+    /// The query contains data signed by a TON wallet of the user who sends the query
     case widgetQueryTypeSignData(WidgetQueryTypeSignData)
 
-    /// The query notifies the bot about a transaction sent from a TON wallet of the user that sends the query
+    /// The query notifies the bot about a transaction sent from a TON wallet of the user who sends the query
     case widgetQueryTypeSentTransaction(WidgetQueryTypeSentTransaction)
 
 
@@ -64,7 +64,7 @@ public indirect enum WidgetQueryType: Codable, Equatable, Hashable {
 /// The query contains data for the bot
 public struct WidgetQueryTypeData: Codable, Equatable, Hashable {
 
-    /// True, if the TON wallet card of the user that sends the query is sent to the bot along with the query
+    /// True, if the TON wallet card of the user who sends the query is sent to the bot along with the query
     public let withWallet: Bool
 
 
@@ -73,7 +73,7 @@ public struct WidgetQueryTypeData: Codable, Equatable, Hashable {
     }
 }
 
-/// The query contains data signed by a TON wallet of the user that sends the query
+/// The query contains data signed by a TON wallet of the user who sends the query
 public struct WidgetQueryTypeSignData: Codable, Equatable, Hashable {
 
     /// JSON-serialized signed data
@@ -92,7 +92,7 @@ public struct WidgetQueryTypeSignData: Codable, Equatable, Hashable {
     }
 }
 
-/// The query notifies the bot about a transaction sent from a TON wallet of the user that sends the query
+/// The query notifies the bot about a transaction sent from a TON wallet of the user who sends the query
 public struct WidgetQueryTypeSentTransaction: Codable, Equatable, Hashable {
 
     /// Value of msg_hash of the transaction

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.69-1f390d90
-//  https://github.com/tdlib/td/tree/1f390d90
+//  Based on TDLib 1.8.70-23383aef
+//  https://github.com/tdlib/td/tree/23383aef
 //
 
 import Foundation
 
 
-/// Describes a TON wallet of the user, which is used in a widget query
+/// Describes a TON wallet of the user, who is used in a widget query
 public struct WidgetQueryWallet: Codable, Equatable, Hashable {
 
     /// Address of the wallet
