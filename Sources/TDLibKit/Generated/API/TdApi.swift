@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-23383aef
-//  https://github.com/tdlib/td/tree/23383aef
+//  Based on TDLib 1.8.70-fe61d641
+//  https://github.com/tdlib/td/tree/fe61d641
 //
 
 import Foundation
@@ -7435,19 +7435,20 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Replies to a callback query with an ephemeral message; for bots only
+    /// Replies to a callback query with an ephemeral message; for bots only. Returns the sent message
     /// - Parameter callbackQueryId: Identifier of the callback query
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
     /// - Parameter replaceCallbackQueryMessage: Pass true if the ephemeral message must replace the message from which the callback query originated
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Returns: The sent message
     public func replyToCallbackQueryWithEphemeralMessage(
         callbackQueryId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
         replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?,
-        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+        completion: @escaping (Result<Message, Swift.Error>) -> Void
     ) throws {
         let query = ReplyToCallbackQueryWithEphemeralMessage(
             callbackQueryId: callbackQueryId,
@@ -7459,21 +7460,21 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Replies to a callback query with an ephemeral message; for bots only
+    /// Replies to a callback query with an ephemeral message; for bots only. Returns the sent message
     /// - Parameter callbackQueryId: Identifier of the callback query
     /// - Parameter inputMessageContent: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     /// - Parameter protectContent: Pass true if the content of the message must be protected from forwarding and saving
     /// - Parameter replaceCallbackQueryMessage: Pass true if the ephemeral message must replace the message from which the callback query originated
     /// - Parameter replyMarkup: The new message reply markup; pass null if none
+    /// - Returns: The sent message
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    @discardableResult
     public func replyToCallbackQueryWithEphemeralMessage(
         callbackQueryId: TdInt64?,
         inputMessageContent: InputMessageContent?,
         protectContent: Bool?,
         replaceCallbackQueryMessage: Bool?,
         replyMarkup: ReplyMarkup?
-    ) async throws -> Ok {
+    ) async throws -> Message {
         let query = ReplyToCallbackQueryWithEphemeralMessage(
             callbackQueryId: callbackQueryId,
             inputMessageContent: inputMessageContent,
@@ -15838,7 +15839,7 @@ public final class TdApi {
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
-    /// - Parameter music: Music to be attached to the story; pass null if none. The music can be up to 60 seconds long
+    /// - Parameter music: Music to be attached to the story; pass null if none. The music can be up to 60 seconds long. The bot getOption("audio_search_bot_username") can be used to find the music files
     /// - Parameter privacySettings: The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story
@@ -15881,7 +15882,7 @@ public final class TdApi {
     /// - Parameter content: Content of the story
     /// - Parameter fromStoryFullId: Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     /// - Parameter isPostedToChatPage: Pass true to keep the story accessible after expiration
-    /// - Parameter music: Music to be attached to the story; pass null if none. The music can be up to 60 seconds long
+    /// - Parameter music: Music to be attached to the story; pass null if none. The music can be up to 60 seconds long. The bot getOption("audio_search_bot_username") can be used to find the music files
     /// - Parameter privacySettings: The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     /// - Parameter protectContent: Pass true if the content of the story must be protected from forwarding and screenshotting
     /// - Returns: A temporary story

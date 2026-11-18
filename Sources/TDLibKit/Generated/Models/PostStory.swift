@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-23383aef
-//  https://github.com/tdlib/td/tree/23383aef
+//  Based on TDLib 1.8.70-fe61d641
+//  https://github.com/tdlib/td/tree/fe61d641
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public struct PostStory: Codable, Equatable, Hashable {
     /// Pass true to keep the story accessible after expiration
     public let isPostedToChatPage: Bool?
 
-    /// Music to be attached to the story; pass null if none. The music can be up to 60 seconds long
+    /// Music to be attached to the story; pass null if none. The music can be up to 60 seconds long. The bot getOption("audio_search_bot_username") can be used to find the music files
     public let music: InputAudio?
 
     /// The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
