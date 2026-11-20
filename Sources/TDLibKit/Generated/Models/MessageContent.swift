@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-fe61d641
-//  https://github.com/tdlib/td/tree/fe61d641
+//  Based on TDLib 1.8.70-03220f6b
+//  https://github.com/tdlib/td/tree/03220f6b
 //
 
 import Foundation
@@ -2980,7 +2980,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// Receiver of the gift
     public let receiverId: MessageSender
 
-    /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
+    /// Number of Telegram Stars that can be claimed by the receiver instead of the regular gift within getOption("gift_sell_period") seconds from its sending; 0 if the gift can't be sold by the receiver
     public let sellStarCount: Int64
 
     /// Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users

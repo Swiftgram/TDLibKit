@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-fe61d641
-//  https://github.com/tdlib/td/tree/fe61d641
+//  Based on TDLib 1.8.70-03220f6b
+//  https://github.com/tdlib/td/tree/03220f6b
 //
 
 import Foundation
@@ -26351,7 +26351,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
+    /// Sells a gift for Telegram Stars. Use receivedGift.sell_star_count or messageGift.sell_star_count to check whether the gift is soldable. A gift can be sold if it is soldable and not more than getOption("gift_sell_period") seconds passed since gift sending
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     public func sellGift(
@@ -26366,7 +26366,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat
+    /// Sells a gift for Telegram Stars. Use receivedGift.sell_star_count or messageGift.sell_star_count to check whether the gift is soldable. A gift can be sold if it is soldable and not more than getOption("gift_sell_period") seconds passed since gift sending
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -26382,7 +26382,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+    /// Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted. The gift may be deleted even it can still be sold using sellGift
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     public func deleteGift(
@@ -26397,7 +26397,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted
+    /// Deletes a gift without receiving Telegram Stars for it. Use receivedGift.can_be_deleted or messageGift.can_be_deleted to check whether the gift can be deleted. The gift may be deleted even it can still be sold using sellGift
     /// - Parameter businessConnectionId: Unique identifier of business connection on behalf of which to send the request; for bots only
     /// - Parameter receivedGiftId: Identifier of the gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
