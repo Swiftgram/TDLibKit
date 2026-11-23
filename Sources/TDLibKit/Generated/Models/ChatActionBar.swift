@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes actions which must be possible to do through a chat action bar
+/// Describes actions that must be possible to do through a chat action bar
 public indirect enum ChatActionBar: Codable, Equatable, Hashable {
 
     /// The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
@@ -28,8 +28,11 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
     /// The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
     case chatActionBarSharePhoneNumber
 
-    /// The chat is a private chat with an administrator of a chat to which the user sent join request
+    /// The chat is a private chat with an administrator of a chat to which the user sent a join request
     case chatActionBarJoinRequest(ChatActionBarJoinRequest)
+
+    /// The chat is a private chat with a bot to which the current user was invited by another user. The chat can be reported as spam using the method reportChat with an empty option_id and message_ids; the user who sent the invitation will be reported. The bot can be blocked using the method setMessageSenderBlockList
+    case chatActionBarBotInvite(ChatActionBarBotInvite)
 
 
     private enum Kind: String, Codable {
@@ -39,6 +42,7 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
         case chatActionBarAddContact
         case chatActionBarSharePhoneNumber
         case chatActionBarJoinRequest
+        case chatActionBarBotInvite
     }
 
     public init(from decoder: Decoder) throws {
@@ -60,6 +64,9 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
         case .chatActionBarJoinRequest:
             let value = try ChatActionBarJoinRequest(from: decoder)
             self = .chatActionBarJoinRequest(value)
+        case .chatActionBarBotInvite:
+            let value = try ChatActionBarBotInvite(from: decoder)
+            self = .chatActionBarBotInvite(value)
         }
     }
 
@@ -80,6 +87,9 @@ public indirect enum ChatActionBar: Codable, Equatable, Hashable {
             try container.encode(Kind.chatActionBarSharePhoneNumber, forKey: .type)
         case .chatActionBarJoinRequest(let value):
             try container.encode(Kind.chatActionBarJoinRequest, forKey: .type)
+            try value.encode(to: encoder)
+        case .chatActionBarBotInvite(let value):
+            try container.encode(Kind.chatActionBarBotInvite, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -116,7 +126,7 @@ public struct ChatActionBarReportAddBlock: Codable, Equatable, Hashable {
     }
 }
 
-/// The chat is a private chat with an administrator of a chat to which the user sent join request
+/// The chat is a private chat with an administrator of a chat to which the user sent a join request
 public struct ChatActionBarJoinRequest: Codable, Equatable, Hashable {
 
     /// True, if the join request was sent to a channel chat
@@ -137,6 +147,30 @@ public struct ChatActionBarJoinRequest: Codable, Equatable, Hashable {
         self.isChannel = isChannel
         self.requestDate = requestDate
         self.title = title
+    }
+}
+
+/// The chat is a private chat with a bot to which the current user was invited by another user. The chat can be reported as spam using the method reportChat with an empty option_id and message_ids; the user who sent the invitation will be reported. The bot can be blocked using the method setMessageSenderBlockList
+public struct ChatActionBarBotInvite: Codable, Equatable, Hashable {
+
+    /// If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
+    public let canUnarchive: Bool
+
+    /// Identifier of the user who invited the current user to the bot
+    public let inviterUserId: Int64
+
+    /// Identifier of the current owner of the bot; 0 if unknown
+    public let ownerUserId: Int64
+
+
+    public init(
+        canUnarchive: Bool,
+        inviterUserId: Int64,
+        ownerUserId: Int64
+    ) {
+        self.canUnarchive = canUnarchive
+        self.inviterUserId = inviterUserId
+        self.ownerUserId = ownerUserId
     }
 }
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
     /// Target chat
     public let chatId: Int64?
 
-    /// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
+    /// Pass true to hide the bot via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
     public let hideViaBot: Bool?
 
     /// Options to be used to send the message; pass null to use default options
@@ -25,7 +25,7 @@ public struct SendInlineQueryResultMessage: Codable, Equatable, Hashable {
     /// Identifier of the inline query
     public let queryId: TdInt64?
 
-    /// Information about the message or story to be replied; pass null if none
+    /// Information about the message or story to be replied to; pass null if none
     public let replyTo: InputMessageReplyTo?
 
     /// Identifier of the inline query result

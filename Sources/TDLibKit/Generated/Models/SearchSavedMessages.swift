@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message.id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+/// Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e., in order of decreasing message.id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 public struct SearchSavedMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message

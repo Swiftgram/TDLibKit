@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Loads an asynchronous or a zoomed in statistical graph
+/// Loads an asynchronous or a zoomed-in statistical graph
 public struct GetStatisticalGraph: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -19,7 +19,7 @@ public struct GetStatisticalGraph: Codable, Equatable, Hashable {
     /// The token for graph loading
     public let token: String?
 
-    /// X-value for zoomed in graph or 0 otherwise
+    /// X-value for a zoomed-in graph or 0 otherwise
     public let x: Int64?
 
 

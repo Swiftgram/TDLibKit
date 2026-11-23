@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+/// Represents result of checking whether the current session can be used to transfer chat ownership to another user
 public indirect enum CanTransferOwnershipResult: Codable, Equatable, Hashable {
 
     /// The session can be used
@@ -19,10 +19,10 @@ public indirect enum CanTransferOwnershipResult: Codable, Equatable, Hashable {
     /// The 2-step verification needs to be enabled first
     case canTransferOwnershipResultPasswordNeeded
 
-    /// The 2-step verification was enabled recently, user needs to wait
+    /// The 2-step verification was enabled recently; the user needs to wait
     case canTransferOwnershipResultPasswordTooFresh(CanTransferOwnershipResultPasswordTooFresh)
 
-    /// The session was created recently, user needs to wait
+    /// The session was created recently; the user needs to wait
     case canTransferOwnershipResultSessionTooFresh(CanTransferOwnershipResultSessionTooFresh)
 
 
@@ -67,7 +67,7 @@ public indirect enum CanTransferOwnershipResult: Codable, Equatable, Hashable {
     }
 }
 
-/// The 2-step verification was enabled recently, user needs to wait
+/// The 2-step verification was enabled recently; the user needs to wait
 public struct CanTransferOwnershipResultPasswordTooFresh: Codable, Equatable, Hashable {
 
     /// Time left before the session can be used to transfer ownership of a chat, in seconds
@@ -79,7 +79,7 @@ public struct CanTransferOwnershipResultPasswordTooFresh: Codable, Equatable, Ha
     }
 }
 
-/// The session was created recently, user needs to wait
+/// The session was created recently; the user needs to wait
 public struct CanTransferOwnershipResultSessionTooFresh: Codable, Equatable, Hashable {
 
     /// Time left before the session can be used to transfer ownership of a chat, in seconds

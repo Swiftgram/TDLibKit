@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum PaymentFormType: Codable, Equatable, Hashable {
     /// The payment form is for a payment in Telegram Stars
     case paymentFormTypeStars(PaymentFormTypeStars)
 
-    /// The payment form is for a payment in Telegram Stars for subscription
+    /// The payment form is for a payment in Telegram Stars for a subscription
     case paymentFormTypeStarSubscription(PaymentFormTypeStarSubscription)
 
 
@@ -73,7 +73,7 @@ public struct PaymentFormTypeRegular: Codable, Equatable, Hashable {
     /// Full information about the invoice
     public let invoice: Invoice
 
-    /// True, if the user will be able to save credentials, if sets up a 2-step verification password
+    /// True, if the user will be able to save credentials if they set up a 2-step verification password
     public let needPassword: Bool
 
     /// Information about the payment provider
@@ -122,10 +122,10 @@ public struct PaymentFormTypeStars: Codable, Equatable, Hashable {
     }
 }
 
-/// The payment form is for a payment in Telegram Stars for subscription
+/// The payment form is for a payment in Telegram Stars for a subscription
 public struct PaymentFormTypeStarSubscription: Codable, Equatable, Hashable {
 
-    /// Information about subscription plan
+    /// Information about the subscription plan
     public let pricing: StarSubscriptionPricing
 
 

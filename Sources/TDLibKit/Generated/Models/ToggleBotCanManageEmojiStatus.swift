@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Toggles whether the bot can manage emoji status of the current user
+/// Toggles whether the bot can manage the emoji status of the current user
 public struct ToggleBotCanManageEmojiStatus: Codable, Equatable, Hashable {
 
     /// User identifier of the bot
     public let botUserId: Int64?
 
-    /// Pass true if the bot is allowed to change emoji status of the user; pass false otherwise
+    /// Pass true if the bot is allowed to change the emoji status of the user; pass false otherwise
     public let canManageEmojiStatus: Bool?
 
 

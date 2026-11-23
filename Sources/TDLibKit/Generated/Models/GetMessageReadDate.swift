@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
+/// Returns the read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
 public struct GetMessageReadDate: Codable, Equatable, Hashable {
 
     /// Chat identifier

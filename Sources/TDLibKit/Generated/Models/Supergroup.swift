@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,19 +25,19 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if automatic translation of messages is enabled in the channel
     public let hasAutomaticTranslation: Bool
 
-    /// True, if the channel has direct messages group
+    /// True, if the channel has a direct messages group
     public let hasDirectMessagesGroup: Bool
 
-    /// True, if the supergroup is a forum, which topics are shown in a sidebar. If true, then has_forum_tabs is false
+    /// True, if the supergroup is a forum whose topics are shown in a sidebar. If true, then has_forum_tabs is false
     public let hasForumSidebar: Bool
 
-    /// True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
+    /// True, if the supergroup is a forum whose topics are shown in the same way as in channel direct messages groups
     public let hasForumTabs: Bool
 
     /// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     public let hasLinkedChat: Bool
 
-    /// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
+    /// True, if the supergroup is connected to a location, i.e., the supergroup is a location-based supergroup
     public let hasLocation: Bool
 
     /// Supergroup or channel identifier
@@ -46,13 +46,13 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if the supergroup is a direct messages group for a channel chat that is administered by the current user
     public let isAdministeredDirectMessagesGroup: Bool
 
-    /// True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
+    /// True, if the supergroup is a broadcast group, i.e., only administrators can send messages and there is no limit on the number of members
     public let isBroadcastGroup: Bool
 
     /// True, if the supergroup is a channel, which can have an unlimited number of subscribers, but only administrators can post there and see the list of subscribers
     public let isChannel: Bool
 
-    /// True, if the supergroup is a direct message group for a channel chat
+    /// True, if the supergroup is a direct messages group for a channel chat
     public let isDirectMessagesGroup: Bool
 
     /// True, if the supergroup is a forum with topics
@@ -79,7 +79,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// True, if messages sent to the channel have information about the sender user. This field is only applicable to channels
     public let showMessageSender: Bool
 
-    /// True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
+    /// True, if messages sent to the channel contain the name of the sender. This field is only applicable to channels
     public let signMessages: Bool
 
     /// Status of the current user in the supergroup or channel
@@ -88,7 +88,7 @@ public struct Supergroup: Codable, Equatable, Hashable, Identifiable {
     /// Usernames of the supergroup or channel; may be null
     public let usernames: Usernames?
 
-    /// Information about verification status of the supergroup or channel; may be null if none
+    /// Information about the verification status of the supergroup or channel; may be null if none
     public let verificationStatus: VerificationStatus?
 
 

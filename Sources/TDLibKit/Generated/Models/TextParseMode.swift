@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum TextParseMode: Codable, Equatable, Hashable {
     /// The text uses Markdown-style formatting
     case textParseModeMarkdown(TextParseModeMarkdown)
 
-    /// The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
+    /// The text uses HTML-style formatting. The same as the Telegram Bot API "HTML" parse mode
     case textParseModeHTML
 
 
@@ -52,7 +52,7 @@ public indirect enum TextParseMode: Codable, Equatable, Hashable {
 /// The text uses Markdown-style formatting
 public struct TextParseModeMarkdown: Codable, Equatable, Hashable {
 
-    /// Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
+    /// Version of the parser: 0 or 1 for the Telegram Bot API "Markdown" parse mode; 2 for the Telegram Bot API "MarkdownV2" parse mode
     public let version: Int
 
 

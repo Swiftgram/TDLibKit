@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct GetChatJoinRequests: Codable, Equatable, Hashable {
     /// A chat join request from which to return next requests; pass null to get results from the beginning
     public let offsetRequest: ChatJoinRequest?
 
-    /// A query to search for in the first names, last names and usernames of the users to return
+    /// A query to search for in the first names, last names, and usernames of the users to return
     public let query: String?
 
 

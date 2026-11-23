@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends a request to TON Center API and returns its response in JSON format
+/// Sends a request to the TON Center API and returns its response in JSON format
 public struct SendTonCenterApiRequest: Codable, Equatable, Hashable {
 
     /// The path of the requested endpoint. See https://toncenter.com/api/v3/index.html for the list of supported endpoints

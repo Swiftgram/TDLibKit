@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,16 +16,16 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if an offer can be added to the message using addOffer
     public let canAddOffer: Bool
 
-    /// True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
+    /// True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has a Telegram Premium subscription
     public let canAddTasks: Bool
 
     /// True, if the message is a suggested post that can be approved by the user using approveSuggestedPost
     public let canBeApproved: Bool
 
-    /// True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
+    /// True, if the content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
     public let canBeCopied: Bool
 
-    /// True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
+    /// True, if the content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
     public let canBeCopiedToSecretChat: Bool
 
     /// True, if the message is a suggested post that can be declined by the user using declineSuggestedPost
@@ -37,25 +37,25 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     public let canBeDeletedOnlyForSelf: Bool
 
-    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this field shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
+    /// True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages, this field shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
     public let canBeEdited: Bool
 
     /// True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
     public let canBeForwarded: Bool
 
-    /// True, if the message can be paid using inputInvoiceMessage
+    /// True, if the message can be paid for using inputInvoiceMessage
     public let canBePaid: Bool
 
     /// True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
     public let canBePinned: Bool
 
-    /// True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage. Ephemeral messages can be replied only by other ephemeral messages
+    /// True, if the message can be replied to in the same chat and forum topic using inputMessageReplyToMessage. Ephemeral messages can be replied to only by other ephemeral messages
     public let canBeReplied: Bool
 
-    /// True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
+    /// True, if the message can be replied to in another chat or forum topic using inputMessageReplyToExternalMessage
     public let canBeRepliedInAnotherChat: Bool
 
-    /// True, if content of the message can be saved locally
+    /// True, if the content of the message can be saved locally
     public let canBeSaved: Bool
 
     /// True, if the message can be shared in a story using inputStoryAreaTypeMessage
@@ -67,13 +67,13 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be edited using the method editMessageMedia
     public let canEditMedia: Bool
 
-    /// True, if scheduling state of the message can be edited
+    /// True, if the scheduling state of the message can be edited
     public let canEditSchedulingState: Bool
 
     /// True, if another price or post send time can be suggested using addOffer
     public let canEditSuggestedPostInfo: Bool
 
-    /// True, if author of the message sent on behalf of a chat can be received through getMessageAuthor
+    /// True, if the author of the message sent on behalf of a chat can be received through getMessageAuthor
     public let canGetAuthor: Bool
 
     /// True, if code for message embedding can be received using getMessageEmbeddingCode
@@ -91,19 +91,19 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message is a poll and vote statistics are available through getPollVoteStatistics
     public let canGetPollVoteStatistics: Bool
 
-    /// True, if read date of the message can be received through getMessageReadDate
+    /// True, if the read date of the message can be received through getMessageReadDate
     public let canGetReadDate: Bool
 
     /// True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
     public let canGetStatistics: Bool
 
-    /// True, if advertisements for video of the message can be received through getVideoMessageAdvertisements
+    /// True, if advertisements for the video of the message can be received through getVideoMessageAdvertisements
     public let canGetVideoAdvertisements: Bool
 
-    /// True, if chat members already viewed the message can be received through getMessageViewers
+    /// True, if chat members who already viewed the message can be received through getMessageViewers
     public let canGetViewers: Bool
 
-    /// True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription
+    /// True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has a Telegram Premium subscription
     public let canMarkTasksAsDone: Bool
 
     /// True, if speech can be recognized for the message through recognizeSpeech
@@ -118,19 +118,19 @@ public struct MessageProperties: Codable, Equatable, Hashable {
     /// True, if the message can be reported using reportSupergroupSpam
     public let canReportSupergroupSpam: Bool
 
-    /// True, if fact check for the message can be changed through setMessageFactCheck
+    /// True, if the fact-check for the message can be changed through setMessageFactCheck
     public let canSetFactCheck: Bool
 
     /// Identifiers of custom emoji used in the message
     public let customEmojiIds: [TdInt64]
 
-    /// True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false
+    /// True, if the content of the message can't be saved locally because it is protected by the current user; if true, then can_be_saved is false
     public let hasProtectedContentByCurrentUser: Bool
 
-    /// True, if content of the message can't be saved locally, because it is protected by the other user; if true, then can_be_saved is false
+    /// True, if the content of the message can't be saved locally because it is protected by the other user; if true, then can_be_saved is false
     public let hasProtectedContentByOtherUser: Bool
 
-    /// True, if message statistics must be available from context menu of the message
+    /// True, if message statistics must be available from the context menu of the message
     public let needShowStatistics: Bool
 
 

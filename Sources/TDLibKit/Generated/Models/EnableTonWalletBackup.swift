@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct EnableTonWalletBackup: Codable, Equatable, Hashable {
     /// Proof of the TON wallet ownership; use getTonWalletOwnershipProofChallenge to get a challenge for the proof
     public let proof: TonWalletOwnershipProof?
 
-    /// The secret phrase of the user's TON wallet as a space separated list of words
+    /// The secret phrase of the user's TON wallet as a space-separated list of words
     public let secretPhrase: String?
 
 

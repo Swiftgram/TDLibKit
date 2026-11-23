@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
+/// A chat; can be a private chat, basic group, supergroup, or secret chat
 public struct Chat: Codable, Equatable, Hashable, Identifiable {
 
     /// Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview
     public let accentColorId: Int
 
-    /// Information about actions which must be possible to do through the chat action bar; may be null if none
+    /// Information about actions that must be possible to do through the chat action bar; may be null if none
     public let actionBar: ChatActionBar?
 
-    /// Types of reaction, available in the chat
+    /// Types of reaction available in the chat
     public let availableReactions: ChatAvailableReactions
 
     /// Background set for the chat; may be null if none
@@ -31,7 +31,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Block list to which the chat is added; may be null if none
     public let blockList: BlockList?
 
-    /// Information about bar for managing a business bot in the chat; may be null if none
+    /// Information about the bar for managing a business bot in the chat; may be null if none
     public let businessBotManageBar: BusinessBotManageBar?
 
     /// True, if the chat messages can be deleted for all users
@@ -55,7 +55,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// A draft of a message in the chat; may be null if none
     public let draftMessage: DraftMessage?
 
-    /// Emoji status to be shown along with chat title; may be null
+    /// Emoji status to be shown along with the chat title; may be null
     public let emojiStatus: EmojiStatus?
 
     /// True, if chat content can't be saved locally, forwarded, or copied
@@ -85,10 +85,10 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the last read outgoing message
     public let lastReadOutboxMessageId: Int64
 
-    /// Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
+    /// Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. The self-destruct timer in secret chats starts after the message or its content is viewed. The auto-delete timer in other chats starts from the send date
     public let messageAutoDeleteTime: Int
 
-    /// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
+    /// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change the message sender
     public let messageSenderId: MessageSender?
 
     /// Notification settings for the chat
@@ -112,8 +112,11 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
     public let profileBackgroundCustomEmojiId: TdInt64
 
-    /// Identifier of the message from which reply markup needs to be used; 0 if there is no reply markup in the chat
+    /// Identifier of the message from which the reply markup needs to be used; 0 if there is no reply markup in the chat
     public let replyMarkupMessageId: Int64
+
+    /// Default parameters for text composition with AI in the chat; may be null if none
+    public let textCompositionParameters: TextCompositionParameters?
 
     /// Theme set for the chat; may be null if none
     public let theme: ChatTheme?
@@ -139,10 +142,10 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
     public let upgradedGiftColors: UpgradedGiftColors?
 
-    /// Information about video chat of the chat
+    /// Information about the video chat of the chat
     public let videoChat: VideoChat
 
-    /// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats"
+    /// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or the Saved Messages chat that must be shown in the "View as chats" mode
     public let viewAsTopics: Bool
 
 
@@ -181,6 +184,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         profileAccentColorId: Int,
         profileBackgroundCustomEmojiId: TdInt64,
         replyMarkupMessageId: Int64,
+        textCompositionParameters: TextCompositionParameters?,
         theme: ChatTheme?,
         title: String,
         type: ChatType,
@@ -226,6 +230,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
         self.profileAccentColorId = profileAccentColorId
         self.profileBackgroundCustomEmojiId = profileBackgroundCustomEmojiId
         self.replyMarkupMessageId = replyMarkupMessageId
+        self.textCompositionParameters = textCompositionParameters
         self.theme = theme
         self.title = title
         self.type = type

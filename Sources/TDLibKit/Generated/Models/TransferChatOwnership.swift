@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
+/// Changes the owner of a chat; for basic groups, supergroups, and channel chats only; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session
 public struct TransferChatOwnership: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -19,7 +19,7 @@ public struct TransferChatOwnership: Codable, Equatable, Hashable {
     /// The 2-step verification password of the current user
     public let password: String?
 
-    /// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+    /// Identifier of the user to whom to transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
     public let userId: Int64?
 
 

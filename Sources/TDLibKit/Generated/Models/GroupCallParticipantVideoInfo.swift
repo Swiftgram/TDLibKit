@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GroupCallParticipantVideoInfo: Codable, Equatable, Hashable {
     /// Video channel endpoint identifier
     public let endpointId: String
 
-    /// True, if the video is paused. This flag needs to be ignored, if new video frames are received
+    /// True, if the video is paused. This flag needs to be ignored if new video frames are received
     public let isPaused: Bool
 
     /// List of synchronization source groups of the video

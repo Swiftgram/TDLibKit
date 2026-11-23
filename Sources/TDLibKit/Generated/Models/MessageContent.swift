@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -100,7 +100,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A message with information about an ended call
     case messageCall(MessageCall)
 
-    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
+    /// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then the incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
     case messageGroupCall(MessageGroupCall)
 
     /// A new video chat was scheduled
@@ -142,10 +142,10 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// The owner of the chat has changed
     case messageChatOwnerChanged(MessageChatOwnerChanged)
 
-    /// Chat has_protected_content setting was changed or request to change it was rejected
+    /// The chat has_protected_content setting was changed or a request to change it was rejected
     case messageChatHasProtectedContentToggled(MessageChatHasProtectedContentToggled)
 
-    /// Chat has_protected_content setting was requested to be disabled
+    /// The chat has_protected_content setting was requested to be disabled
     case messageChatHasProtectedContentDisableRequested(MessageChatHasProtectedContentDisableRequested)
 
     /// New chat members were added
@@ -169,7 +169,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// The chat was removed from a community
     case messageChatRemovedFromCommunity
 
-    /// A basic group was upgraded to a supergroup and was deactivated as the result
+    /// A basic group was upgraded to a supergroup and was deactivated as a result
     case messageChatUpgradeTo(MessageChatUpgradeTo)
 
     /// A supergroup has been created from a basic group
@@ -202,7 +202,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A forum topic has been closed or opened
     case messageForumTopicIsClosedToggled(MessageForumTopicIsClosedToggled)
 
-    /// A General forum topic has been hidden or unhidden
+    /// The General forum topic has been hidden or unhidden
     case messageForumTopicIsHiddenToggled(MessageForumTopicIsHiddenToggled)
 
     /// A profile photo was suggested to a user in a private chat
@@ -219,6 +219,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// A bot managed by another bot was created by the user
     case messageManagedBotCreated(MessageManagedBotCreated)
+
+    /// A user was invited to the private chat with a bot by the owner of the bot
+    case messageBotInvite(MessageBotInvite)
 
     /// A payment has been sent to a bot or a business account
     case messagePaymentSuccessful(MessagePaymentSuccessful)
@@ -268,7 +271,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
     case messageUpgradedGift(MessageUpgradedGift)
 
-    /// A gift which purchase, upgrade, or transfer were refunded
+    /// A gift whose purchase, upgrade, or transfer was refunded
     case messageRefundedUpgradedGift(MessageRefundedUpgradedGift)
 
     /// An offer to purchase an upgraded gift was sent or received
@@ -276,6 +279,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
 
     /// An offer to purchase a gift was rejected or expired
     case messageUpgradedGiftPurchaseOfferRejected(MessageUpgradedGiftPurchaseOfferRejected)
+
+    /// An on-chain offer to purchase an upgraded gift was sent or received
+    case messageUpgradedGiftOnchainPurchaseOffer(MessageUpgradedGiftOnchainPurchaseOffer)
 
     /// Paid messages were refunded
     case messagePaidMessagesRefunded(MessagePaidMessagesRefunded)
@@ -286,7 +292,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A price for direct messages was changed in the channel chat
     case messageDirectMessagePriceChanged(MessageDirectMessagePriceChanged)
 
-    /// The sender of the message used a link of the other user, which allows sending unpaid messages to the user
+    /// The sender of the message used the other user's link that allows sending unpaid messages to them
     case messageUnpaidMessagesAllowedByLink
 
     /// Some tasks from a checklist were marked as done or not done
@@ -295,7 +301,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Some tasks were added to a checklist
     case messageChecklistTasksAdded(MessageChecklistTasksAdded)
 
-    /// Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
+    /// Approval of the suggested post has failed because the user who proposed the post didn't have enough funds
     case messageSuggestedPostApprovalFailed(MessageSuggestedPostApprovalFailed)
 
     /// A suggested post was approved
@@ -316,7 +322,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// The current user shared users who were requested by the bot
     case messageUsersShared(MessageUsersShared)
 
-    /// The current user shared a chat, which was requested by the bot
+    /// The current user shared a chat that was requested by the bot
     case messageChatShared(MessageChatShared)
 
     /// The user allowed the bot to send messages
@@ -334,10 +340,10 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// Telegram Passport data has been received; for bots only
     case messagePassportDataReceived(MessagePassportDataReceived)
 
-    /// A user in the chat came within proximity alert range
+    /// A user in the chat came within the proximity alert range
     case messageProximityAlertTriggered(MessageProximityAlertTriggered)
 
-    /// A message content that is not supported in the current TDLib version
+    /// Message content that is not supported in the current TDLib version
     case messageUnsupported
 
 
@@ -411,6 +417,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageCustomServiceAction
         case messageGameScore
         case messageManagedBotCreated
+        case messageBotInvite
         case messagePaymentSuccessful
         case messagePaymentSuccessfulBot
         case messagePaymentRefunded
@@ -430,6 +437,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageRefundedUpgradedGift
         case messageUpgradedGiftPurchaseOffer
         case messageUpgradedGiftPurchaseOfferRejected
+        case messageUpgradedGiftOnchainPurchaseOffer
         case messagePaidMessagesRefunded
         case messagePaidMessagePriceChanged
         case messageDirectMessagePriceChanged
@@ -655,6 +663,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageManagedBotCreated:
             let value = try MessageManagedBotCreated(from: decoder)
             self = .messageManagedBotCreated(value)
+        case .messageBotInvite:
+            let value = try MessageBotInvite(from: decoder)
+            self = .messageBotInvite(value)
         case .messagePaymentSuccessful:
             let value = try MessagePaymentSuccessful(from: decoder)
             self = .messagePaymentSuccessful(value)
@@ -712,6 +723,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageUpgradedGiftPurchaseOfferRejected:
             let value = try MessageUpgradedGiftPurchaseOfferRejected(from: decoder)
             self = .messageUpgradedGiftPurchaseOfferRejected(value)
+        case .messageUpgradedGiftOnchainPurchaseOffer:
+            let value = try MessageUpgradedGiftOnchainPurchaseOffer(from: decoder)
+            self = .messageUpgradedGiftOnchainPurchaseOffer(value)
         case .messagePaidMessagesRefunded:
             let value = try MessagePaidMessagesRefunded(from: decoder)
             self = .messagePaidMessagesRefunded(value)
@@ -976,6 +990,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageManagedBotCreated(let value):
             try container.encode(Kind.messageManagedBotCreated, forKey: .type)
             try value.encode(to: encoder)
+        case .messageBotInvite(let value):
+            try container.encode(Kind.messageBotInvite, forKey: .type)
+            try value.encode(to: encoder)
         case .messagePaymentSuccessful(let value):
             try container.encode(Kind.messagePaymentSuccessful, forKey: .type)
             try value.encode(to: encoder)
@@ -1032,6 +1049,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .messageUpgradedGiftPurchaseOfferRejected(let value):
             try container.encode(Kind.messageUpgradedGiftPurchaseOfferRejected, forKey: .type)
+            try value.encode(to: encoder)
+        case .messageUpgradedGiftOnchainPurchaseOffer(let value):
+            try container.encode(Kind.messageUpgradedGiftOnchainPurchaseOffer, forKey: .type)
             try value.encode(to: encoder)
         case .messagePaidMessagesRefunded(let value):
             try container.encode(Kind.messagePaidMessagesRefunded, forKey: .type)
@@ -1103,7 +1123,7 @@ public struct MessageText: Codable, Equatable, Hashable {
     /// A link preview attached to the message; may be null
     public let linkPreview: LinkPreview?
 
-    /// Options which were used for generation of the link preview; may be null if default options were used
+    /// Options that were used for generation of the link preview; may be null if default options were used
     public let linkPreviewOptions: LinkPreviewOptions?
 
     /// Text of the message
@@ -1276,7 +1296,7 @@ public struct MessagePhoto: Codable, Equatable, Hashable {
 /// A sticker message
 public struct MessageSticker: Codable, Equatable, Hashable {
 
-    /// True, if premium animation of the sticker must be played
+    /// True, if the premium animation of the sticker must be played
     public let isPremium: Bool
 
     /// The sticker description
@@ -1397,7 +1417,7 @@ public struct MessageVoiceNote: Codable, Equatable, Hashable {
 /// A message with a live location
 public struct MessageLiveLocation: Codable, Equatable, Hashable {
 
-    /// Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
+    /// Remaining time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
     public let expiresIn: Int
 
     /// The current location
@@ -1474,16 +1494,16 @@ public struct MessageDice: Codable, Equatable, Hashable {
     /// Emoji on which the dice throw animation is based
     public let emoji: String
 
-    /// The animated stickers with the final dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
+    /// The animated stickers with the final dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker becomes known
     public let finalState: DiceStickers?
 
-    /// The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
+    /// The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker becomes known
     public let initialState: DiceStickers?
 
-    /// Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
+    /// Number of the frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
     public let successAnimationFrameNumber: Int
 
-    /// The dice value. If the value is 0, then the dice don't have final state yet
+    /// The dice value. If the value is 0, then the dice don't have a final state yet
     public let value: Int
 
 
@@ -1522,7 +1542,7 @@ public struct MessagePoll: Codable, Equatable, Hashable {
 
     public let description: FormattedText
 
-    /// Media attached to the poll; may be null if none. If present, currently, can be only of the types pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or pollMediaVideo
+    /// Media attached to the poll; may be null if none. If present, currently, can only be of the types pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or pollMediaVideo
     public let media: PollMedia?
 
     /// Information about the poll
@@ -1545,19 +1565,19 @@ public struct MessagePoll: Codable, Equatable, Hashable {
 /// A stake dice message. The dice value is randomly generated by the server
 public struct MessageStakeDice: Codable, Equatable, Hashable {
 
-    /// The animated stickers with the final dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
+    /// The animated stickers with the final dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker becomes known
     public let finalState: DiceStickers?
 
-    /// The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known
+    /// The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker becomes known
     public let initialState: DiceStickers?
 
-    /// The TON Gram amount that was gained from the roll; in the smallest units of the currency; -1 if the dice don't have final state yet
+    /// The TON Gram amount that was gained from the roll, in the smallest units of the currency; -1 if the dice don't have a final state yet
     public let prizeGramAmount: Int64
 
-    /// The TON Gram amount that was staked; in the smallest units of the currency
+    /// The TON Gram amount that was staked, in the smallest units of the currency
     public let stakeGramAmount: Int64
 
-    /// The dice value. If the value is 0, then the dice don't have final state yet
+    /// The dice value. If the value is 0, then the dice don't have a final state yet
     public let value: Int
 
 
@@ -1612,7 +1632,7 @@ public struct MessageWidget: Codable, Equatable, Hashable {
     /// Widget caption
     public let caption: FormattedText
 
-    /// Data of the widget, which is specific to the chat
+    /// Data of the widget that is specific to the chat
     public let chatData: String
 
     /// Height of the widget; 0 if the height of the widget isn't fixed
@@ -1759,13 +1779,13 @@ public struct MessageCall: Codable, Equatable, Hashable {
     }
 }
 
-/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
+/// A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then the incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
 public struct MessageGroupCall: Codable, Equatable, Hashable {
 
     /// Call duration, in seconds; for left calls only
     public let duration: Int
 
-    /// True, if the call is active, i.e. the called user joined the call
+    /// True, if the call is active, i.e., the called user joined the call
     public let isActive: Bool
 
     /// True, if the call is a video call
@@ -1987,7 +2007,7 @@ public struct MessageChatOwnerChanged: Codable, Equatable, Hashable {
     }
 }
 
-/// Chat has_protected_content setting was changed or request to change it was rejected
+/// The chat has_protected_content setting was changed or a request to change it was rejected
 public struct MessageChatHasProtectedContentToggled: Codable, Equatable, Hashable {
 
     /// New value of the setting
@@ -2011,7 +2031,7 @@ public struct MessageChatHasProtectedContentToggled: Codable, Equatable, Hashabl
     }
 }
 
-/// Chat has_protected_content setting was requested to be disabled
+/// The chat has_protected_content setting was requested to be disabled
 public struct MessageChatHasProtectedContentDisableRequested: Codable, Equatable, Hashable {
 
     /// True, if the request has expired
@@ -2071,7 +2091,7 @@ public struct MessageChatAddedToCommunity: Codable, Equatable, Hashable {
     }
 }
 
-/// A basic group was upgraded to a supergroup and was deactivated as the result
+/// A basic group was upgraded to a supergroup and was deactivated as a result
 public struct MessageChatUpgradeTo: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup to which the basic group was upgraded
@@ -2105,7 +2125,7 @@ public struct MessageChatUpgradeFrom: Codable, Equatable, Hashable {
 /// A message has been pinned
 public struct MessagePinMessage: Codable, Equatable, Hashable {
 
-    /// Identifier of the pinned message, can be an identifier of a deleted message or 0
+    /// Identifier of the pinned message; can be an identifier of a deleted message or 0
     public let messageId: Int64
 
 
@@ -2141,7 +2161,7 @@ public struct MessageChatSetBackground: Codable, Equatable, Hashable {
 /// A theme in the chat has been changed
 public struct MessageChatSetTheme: Codable, Equatable, Hashable {
 
-    /// New theme for the chat; may be null if chat theme was reset to the default one
+    /// New theme for the chat; may be null if the chat theme was reset to the default one
     public let theme: ChatTheme?
 
 
@@ -2153,10 +2173,10 @@ public struct MessageChatSetTheme: Codable, Equatable, Hashable {
 /// The auto-delete or self-destruct timer for messages in the chat has been changed
 public struct MessageChatSetMessageAutoDeleteTime: Codable, Equatable, Hashable {
 
-    /// If not 0, a user identifier, which default setting was automatically applied
+    /// If not 0, the identifier of the user whose default setting was automatically applied
     public let fromUserId: Int64
 
-    /// New value auto-delete or self-destruct time, in seconds; 0 if disabled
+    /// New value of the auto-delete or self-destruct time, in seconds; 0 if disabled
     public let messageAutoDeleteTime: Int
 
 
@@ -2241,7 +2261,7 @@ public struct MessageForumTopicIsClosedToggled: Codable, Equatable, Hashable {
     }
 }
 
-/// A General forum topic has been hidden or unhidden
+/// The General forum topic has been hidden or unhidden
 public struct MessageForumTopicIsHiddenToggled: Codable, Equatable, Hashable {
 
     /// True, if the topic was hidden; otherwise, the topic was unhidden
@@ -2295,7 +2315,7 @@ public struct MessageGameScore: Codable, Equatable, Hashable {
     /// Identifier of the game; may be different from the games presented in the message with the game
     public let gameId: TdInt64
 
-    /// Identifier of the message with the game, can be an identifier of a deleted message
+    /// Identifier of the message with the game; can be an identifier of a deleted message
     public let gameMessageId: Int64
 
     /// New score
@@ -2319,7 +2339,7 @@ public struct MessageManagedBotCreated: Codable, Equatable, Hashable {
     /// User identifier of the created bot
     public let botUserId: Int64
 
-    /// Identifier of the bot which will manage the new bot
+    /// Identifier of the bot that will manage the new bot
     public let managerBotUserId: Int64
 
 
@@ -2332,13 +2352,25 @@ public struct MessageManagedBotCreated: Codable, Equatable, Hashable {
     }
 }
 
+/// A user was invited to the private chat with a bot by the owner of the bot
+public struct MessageBotInvite: Codable, Equatable, Hashable {
+
+    /// Identifier of the user who sent the invitation
+    public let inviterUserId: Int64
+
+
+    public init(inviterUserId: Int64) {
+        self.inviterUserId = inviterUserId
+    }
+}
+
 /// A payment has been sent to a bot or a business account
 public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
 
     /// Currency for the price of the product
     public let currency: String
 
-    /// Identifier of the chat, containing the corresponding invoice message
+    /// Identifier of the chat containing the corresponding invoice message
     public let invoiceChatId: Int64
 
     /// Identifier of the message with the corresponding invoice; may be 0 or an identifier of a deleted message
@@ -2384,7 +2416,7 @@ public struct MessagePaymentSuccessful: Codable, Equatable, Hashable {
 /// A payment has been received by the bot or the business account
 public struct MessagePaymentSuccessfulBot: Codable, Equatable, Hashable {
 
-    /// Currency for price of the product
+    /// Currency for the price of the product
     public let currency: String
 
     /// Invoice payload
@@ -2500,7 +2532,7 @@ public struct MessageGiftedPremium: Codable, Equatable, Hashable {
     /// The identifier of a user who gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
-    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
+    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't an integer
     public let monthCount: Int
 
     /// The identifier of a user who received Telegram Premium; 0 if the gift is incoming
@@ -2568,7 +2600,7 @@ public struct MessagePremiumGiftCode: Codable, Equatable, Hashable {
     /// True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
     public let isUnclaimed: Bool
 
-    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
+    /// Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't an integer
     public let monthCount: Int
 
     /// A sticker to be shown in the message; may be null if unknown
@@ -2680,13 +2712,13 @@ public struct MessageGiveawayCompleted: Codable, Equatable, Hashable {
 /// A giveaway with public winners has been completed for the chat
 public struct MessageGiveawayWinners: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+    /// Point in time (Unix timestamp) when the winners were selected. May be later than the winners selection date specified in the parameters of the giveaway
     public let actualWinnersSelectionDate: Int
 
     /// Number of other chats that participated in the giveaway
     public let additionalChatCount: Int
 
-    /// Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
+    /// Identifier of the supergroup or channel chat that was automatically boosted by the winners of the giveaway
     public let boostedChatId: Int64
 
     /// Identifier of the message with the giveaway in the boosted chat
@@ -2768,7 +2800,7 @@ public struct MessageGiftedStars: Codable, Equatable, Hashable {
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
 
-    /// Identifier of the transaction for Telegram Stars purchase; for receiver only
+    /// Identifier of the transaction for Telegram Stars purchase; for the receiver only
     public let transactionId: String
 
 
@@ -2801,7 +2833,7 @@ public struct MessageGiftedGrams: Codable, Equatable, Hashable {
     /// The identifier of a user who gifted Grams; 0 if the gift was anonymous or is outgoing
     public let gifterUserId: Int64
 
-    /// The received Gram amount, in the smallest units of the cryptocurrency
+    /// The received amount, in the smallest units of TON Grams
     public let gramAmount: Int64
 
     /// The identifier of a user who received Grams; 0 if the gift is incoming
@@ -2810,7 +2842,7 @@ public struct MessageGiftedGrams: Codable, Equatable, Hashable {
     /// A sticker to be shown in the message; may be null if unknown
     public let sticker: Sticker?
 
-    /// Identifier of the transaction for Gram credit; for receiver only
+    /// Identifier of the transaction for Gram credit; for the receiver only
     public let transactionId: String
 
 
@@ -2832,7 +2864,7 @@ public struct MessageGiftedGrams: Codable, Equatable, Hashable {
 /// Telegram Stars were received by the current user from a giveaway
 public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
 
-    /// Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
+    /// Identifier of the supergroup or channel chat that was automatically boosted by the winners of the giveaway
     public let boostedChatId: Int64
 
     /// Identifier of the message with the giveaway in the boosted chat; may be 0 or an identifier of a deleted message
@@ -2871,7 +2903,7 @@ public struct MessageGiveawayPrizeStars: Codable, Equatable, Hashable {
 /// Represents a transfer with the TON wallet of the current user
 public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
 
-    /// The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
+    /// The received amount, in the smallest units of TON Grams; negative for outgoing transactions
     public let amount: TdInt64
 
     /// Comment added to the transaction
@@ -2880,7 +2912,10 @@ public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
     /// True, if the comment is encrypted and must be decrypted using the receiver's or sender's private key
     public let isCommentEncrypted: Bool
 
-    /// Address in the TON blockchain of the transaction peer
+    /// Name of the on-ramp provider if the transfer is an on-ramp deposit; empty otherwise
+    public let onRampProviderName: String
+
+    /// Address on the TON blockchain of the transaction peer
     public let peerAddress: String
 
     /// Sender of the transfer; 0 if unknown
@@ -2894,6 +2929,7 @@ public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
         amount: TdInt64,
         comment: String,
         isCommentEncrypted: Bool,
+        onRampProviderName: String,
         peerAddress: String,
         senderUserId: Int64,
         transactionId: String
@@ -2901,6 +2937,7 @@ public struct MessageTonWalletTransfer: Codable, Equatable, Hashable {
         self.amount = amount
         self.comment = comment
         self.isCommentEncrypted = isCommentEncrypted
+        self.onRampProviderName = onRampProviderName
         self.peerAddress = peerAddress
         self.senderUserId = senderUserId
         self.transactionId = transactionId
@@ -2953,7 +2990,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// The gift
     public let gift: Gift
 
-    /// True, if the message is a notification about a gift won on an auction
+    /// True, if the message is a notification about a gift won at an auction
     public let isFromAuction: Bool
 
     /// True, if the message is about prepaid upgrade of the gift by another user
@@ -2965,7 +3002,7 @@ public struct MessageGift: Codable, Equatable, Hashable {
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
 
-    /// True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost
+    /// True, if the upgrade was bought after the gift was sent. In this case, the prepaid upgrade cost must not be added to the gift cost
     public let isUpgradeSeparate: Bool
 
     /// If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
@@ -3059,11 +3096,8 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
     public let craftDate: Int
 
-    /// Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift
+    /// Number of Telegram Stars that must be paid to drop the original details of the upgraded gift; 0 if not available; only for the receiver of the gift
     public let dropOriginalDetailsStarCount: Int64
-
-    /// Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
-    public let exportDate: Int
 
     /// The gift
     public let gift: UpgradedGift
@@ -3073,6 +3107,9 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
 
     /// True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     public let isSaved: Bool
+
+    /// Point in time (Unix timestamp) when the gift can be minted as an NFT; can be in the past; 0 if the gift can't be minted; only for the receiver of the gift
+    public let mintDate: Int
 
     /// Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
     public let nextResaleDate: Int
@@ -3106,10 +3143,10 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         canBeTransferred: Bool,
         craftDate: Int,
         dropOriginalDetailsStarCount: Int64,
-        exportDate: Int,
         gift: UpgradedGift,
         isPrivate: Bool,
         isSaved: Bool,
+        mintDate: Int,
         nextResaleDate: Int,
         nextTransferDate: Int,
         origin: UpgradedGiftOrigin,
@@ -3123,10 +3160,10 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
         self.canBeTransferred = canBeTransferred
         self.craftDate = craftDate
         self.dropOriginalDetailsStarCount = dropOriginalDetailsStarCount
-        self.exportDate = exportDate
         self.gift = gift
         self.isPrivate = isPrivate
         self.isSaved = isSaved
+        self.mintDate = mintDate
         self.nextResaleDate = nextResaleDate
         self.nextTransferDate = nextTransferDate
         self.origin = origin
@@ -3139,7 +3176,7 @@ public struct MessageUpgradedGift: Codable, Equatable, Hashable {
     }
 }
 
-/// A gift which purchase, upgrade, or transfer were refunded
+/// A gift whose purchase, upgrade, or transfer was refunded
 public struct MessageRefundedUpgradedGift: Codable, Equatable, Hashable {
 
     /// The gift
@@ -3203,7 +3240,7 @@ public struct MessageUpgradedGiftPurchaseOfferRejected: Codable, Equatable, Hash
     /// The gift
     public let gift: UpgradedGift
 
-    /// Identifier of the message with purchase offer which was rejected or expired; may be 0 or an identifier of a deleted message
+    /// Identifier of the message with the purchase offer that was rejected or expired; may be 0 or an identifier of a deleted message
     public let offerMessageId: Int64
 
     /// The proposed price
@@ -3223,6 +3260,55 @@ public struct MessageUpgradedGiftPurchaseOfferRejected: Codable, Equatable, Hash
         self.offerMessageId = offerMessageId
         self.price = price
         self.wasExpired = wasExpired
+    }
+}
+
+/// An on-chain offer to purchase an upgraded gift was sent or received
+public struct MessageUpgradedGiftOnchainPurchaseOffer: Codable, Equatable, Hashable {
+
+    /// Point in time (Unix timestamp) when the offer will expire or has expired
+    public let expirationDate: Int
+
+    /// The fee paid by the buyer in addition to the price, in basis points; 1 basis point is 0.01%
+    public let feeBasisPoints: Int
+
+    /// The gift
+    public let gift: UpgradedGift
+
+    /// The price offered for the gift, in the smallest units of TON Grams; the owner of the gift receives the full price if the offer is accepted
+    public let gramAmount: TdInt64
+
+    /// True, if the offer was sent by the current user; otherwise, the offer was received by the current user as the owner of the gift
+    public let isBuyer: Bool
+
+    /// Address of the smart contract of the offer on the TON blockchain; can be used to match TON wallet transactions related to the offer
+    public let offerAddress: String
+
+    /// Identifier of the message with the offer if this message was received after the offer has ended; otherwise, 0. May be an identifier of a deleted message
+    public let offerMessageId: Int64
+
+    /// State of the offer
+    public let state: GiftOnchainPurchaseOfferState
+
+
+    public init(
+        expirationDate: Int,
+        feeBasisPoints: Int,
+        gift: UpgradedGift,
+        gramAmount: TdInt64,
+        isBuyer: Bool,
+        offerAddress: String,
+        offerMessageId: Int64,
+        state: GiftOnchainPurchaseOfferState
+    ) {
+        self.expirationDate = expirationDate
+        self.feeBasisPoints = feeBasisPoints
+        self.gift = gift
+        self.gramAmount = gramAmount
+        self.isBuyer = isBuyer
+        self.offerAddress = offerAddress
+        self.offerMessageId = offerMessageId
+        self.state = state
     }
 }
 
@@ -3260,7 +3346,7 @@ public struct MessagePaidMessagePriceChanged: Codable, Equatable, Hashable {
 /// A price for direct messages was changed in the channel chat
 public struct MessageDirectMessagePriceChanged: Codable, Equatable, Hashable {
 
-    /// True, if direct messages group was enabled for the channel; false otherwise
+    /// True, if the direct messages group was enabled for the channel; false otherwise
     public let isEnabled: Bool
 
     /// The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free
@@ -3319,7 +3405,7 @@ public struct MessageChecklistTasksAdded: Codable, Equatable, Hashable {
     }
 }
 
-/// Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
+/// Approval of the suggested post has failed because the user who proposed the post didn't have enough funds
 public struct MessageSuggestedPostApprovalFailed: Codable, Equatable, Hashable {
 
     /// Price of the suggested post
@@ -3365,7 +3451,7 @@ public struct MessageSuggestedPostApproved: Codable, Equatable, Hashable {
 /// A suggested post was declined
 public struct MessageSuggestedPostDeclined: Codable, Equatable, Hashable {
 
-    /// Comment added by administrator of the channel when the post was declined
+    /// Comment added by an administrator of the channel when the post was declined
     public let comment: String
 
     /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
@@ -3384,7 +3470,7 @@ public struct MessageSuggestedPostDeclined: Codable, Equatable, Hashable {
 /// A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
 public struct MessageSuggestedPostPaid: Codable, Equatable, Hashable {
 
-    /// The amount of received TON Grams; in the smallest units of the cryptocurrency
+    /// The received amount, in the smallest units of TON Grams
     public let gramAmount: Int64
 
     /// The amount of received Telegram Stars
@@ -3408,7 +3494,7 @@ public struct MessageSuggestedPostPaid: Codable, Equatable, Hashable {
 /// A suggested post was refunded
 public struct MessageSuggestedPostRefunded: Codable, Equatable, Hashable {
 
-    /// Reason of the refund
+    /// Reason for the refund
     public let reason: SuggestedPostRefundReason
 
     /// Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
@@ -3443,7 +3529,7 @@ public struct MessageUsersShared: Codable, Equatable, Hashable {
     }
 }
 
-/// The current user shared a chat, which was requested by the bot
+/// The current user shared a chat that was requested by the bot
 public struct MessageChatShared: Codable, Equatable, Hashable {
 
     /// Identifier of the keyboard button with the request
@@ -3477,7 +3563,7 @@ public struct MessageBotWriteAccessAllowed: Codable, Equatable, Hashable {
 /// Data from a Web App has been sent to a bot
 public struct MessageWebAppDataSent: Codable, Equatable, Hashable {
 
-    /// Text of the keyboardButtonTypeWebApp button, which opened the Web App
+    /// Text of the keyboardButtonTypeWebApp button that opened the Web App
     public let buttonText: String
 
 
@@ -3489,7 +3575,7 @@ public struct MessageWebAppDataSent: Codable, Equatable, Hashable {
 /// Data from a Web App has been received; for bots only
 public struct MessageWebAppDataReceived: Codable, Equatable, Hashable {
 
-    /// Text of the keyboardButtonTypeWebApp button, which opened the Web App
+    /// Text of the keyboardButtonTypeWebApp button that opened the Web App
     public let buttonText: String
 
     /// The data
@@ -3536,7 +3622,7 @@ public struct MessagePassportDataReceived: Codable, Equatable, Hashable {
     }
 }
 
-/// A user in the chat came within proximity alert range
+/// A user in the chat came within the proximity alert range
 public struct MessageProximityAlertTriggered: Codable, Equatable, Hashable {
 
     /// The distance between the users
@@ -3545,7 +3631,7 @@ public struct MessageProximityAlertTriggered: Codable, Equatable, Hashable {
     /// The identifier of a user or chat that triggered the proximity alert
     public let travelerId: MessageSender
 
-    /// The identifier of a user or chat that subscribed for the proximity alert
+    /// The identifier of a user or chat that subscribed to the proximity alert
     public let watcherId: MessageSender
 
 

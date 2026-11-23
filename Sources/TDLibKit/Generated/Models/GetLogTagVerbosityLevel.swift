@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
+/// Returns the current verbosity level for a specified TDLib internal log tag. Can be called synchronously
 public struct GetLogTagVerbosityLevel: Codable, Equatable, Hashable {
 
-    /// Logging tag to change verbosity level
+    /// Logging tag for which to change the verbosity level
     public let tag: String?
 
 

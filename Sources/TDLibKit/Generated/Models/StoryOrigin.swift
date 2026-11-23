@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum StoryOrigin: Codable, Equatable, Hashable {
 /// The original story was a public story that was posted by a known chat
 public struct StoryOriginPublicStory: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat that posted original story
+    /// Identifier of the chat that posted the original story
     public let chatId: Int64
 
     /// Story identifier of the original story

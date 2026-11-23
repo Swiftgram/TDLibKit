@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes state of the wallet of the current user in the TON blockchain
+/// Describes state of the wallet of the current user on the TON blockchain
 public struct TonWalletState: Codable, Equatable, Hashable {
 
     /// Address of the wallet; may be empty if none
@@ -22,7 +22,7 @@ public struct TonWalletState: Codable, Equatable, Hashable {
     /// True, if the wallet key can be exported using getTonWalletSecretPhrase
     public let canExportPhrase: Bool
 
-    /// The total amount of owned TON Grams, in the smallest units of the cryptocurrency
+    /// The total owned amount, in the smallest units of TON Grams
     public let gramAmount: TdInt64
 
     /// True, if backup for the wallet key is enabled

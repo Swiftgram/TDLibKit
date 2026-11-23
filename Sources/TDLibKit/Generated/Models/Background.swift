@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,10 +19,10 @@ public struct Background: Codable, Equatable, Hashable, Identifiable {
     /// Unique background identifier
     public let id: TdInt64
 
-    /// True, if the background is dark and is recommended to be used with dark theme
+    /// True, if the background is dark and is recommended to be used with a dark theme
     public let isDark: Bool
 
-    /// True, if this is one of default backgrounds
+    /// True, if this is one of the default backgrounds
     public let isDefault: Bool
 
     /// Unique background name

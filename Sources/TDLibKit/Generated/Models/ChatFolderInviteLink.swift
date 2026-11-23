@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains a chat folder invite link
 public struct ChatFolderInviteLink: Codable, Equatable, Hashable {
 
-    /// Identifiers of chats, included in the link
+    /// Identifiers of chats included in the link
     public let chatIds: [Int64]
 
     /// The chat folder invite link

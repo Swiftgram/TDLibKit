@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
 public struct RegisterUser: Codable, Equatable, Hashable {
 
-    /// Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
+    /// Pass true to disable notification about the current user joining Telegram for other users who added them to the contact list
     public let disableNotification: Bool?
 
     /// The first name of the user; 1-64 characters

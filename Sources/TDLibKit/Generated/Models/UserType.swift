@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -74,7 +74,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if users can create and delete topics in the chat with the bot
     public let allowsUsersToCreateTopics: Bool
 
-    /// True, if the bot can be added to attachment or side menu
+    /// True, if the bot can be added to the attachment or side menu
     public let canBeAddedToAttachmentMenu: Bool
 
     /// True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription
@@ -101,7 +101,7 @@ public struct UserTypeBot: Codable, Equatable, Hashable {
     /// True, if the bot has topics
     public let hasTopics: Bool
 
-    /// Placeholder for inline queries (displayed on the application input field)
+    /// Placeholder for inline queries (displayed in the application input field)
     public let inlineQueryPlaceholder: String
 
     /// True, if the bot can be set as a guard bot in supergroup chats

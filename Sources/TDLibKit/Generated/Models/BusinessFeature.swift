@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a feature available to Business user accounts
 public indirect enum BusinessFeature: Codable, Equatable, Hashable {
 
-    /// The ability to set location
+    /// The ability to set the location
     case businessFeatureLocation
 
     /// The ability to set opening hours
@@ -31,7 +31,7 @@ public indirect enum BusinessFeature: Codable, Equatable, Hashable {
     /// The ability to create links to the business account with predefined message text
     case businessFeatureAccountLinks
 
-    /// The ability to customize start page
+    /// The ability to customize the start page
     case businessFeatureStartPage
 
     /// The ability to connect a bot to the account

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GroupCallJoinParameters: Codable, Equatable, Hashable {
     /// Audio channel synchronization source identifier; received from tgcalls
     public let audioSourceId: Int
 
-    /// Pass true to join the call with muted microphone
+    /// Pass true to join the call with a muted microphone
     public let isMuted: Bool
 
     /// Pass true if the user's video is enabled

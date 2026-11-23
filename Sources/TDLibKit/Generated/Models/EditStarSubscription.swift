@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Cancels or re-enables Telegram Star subscription
+/// Cancels or re-enables a Telegram Star subscription
 public struct EditStarSubscription: Codable, Equatable, Hashable {
 
     /// New value of is_canceled

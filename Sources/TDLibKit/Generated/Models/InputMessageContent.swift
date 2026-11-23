@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -285,7 +285,7 @@ public indirect enum InputMessageContent: Codable, Equatable, Hashable {
 /// A text message
 public struct InputMessageText: Codable, Equatable, Hashable {
 
-    /// Pass true to delete message draft in the chat
+    /// Pass true to delete the message draft in the chat
     public let clearDraft: Bool
 
     /// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
@@ -309,7 +309,7 @@ public struct InputMessageText: Codable, Equatable, Hashable {
 /// A rich message
 public struct InputMessageRichMessage: Codable, Equatable, Hashable {
 
-    /// Pass true to delete message draft in the chat
+    /// Pass true to delete the message draft in the chat
     public let clearDraft: Bool
 
     /// The rich message to send
@@ -559,7 +559,7 @@ public struct InputMessageVoiceNote: Codable, Equatable, Hashable {
 /// A message with a live location
 public struct InputMessageLiveLocation: Codable, Equatable, Hashable {
 
-    /// Initial state of the live location to be sent. Live period must be equal to 0x7FFFFFFF for permanent live locations, or between 60 and 86400
+    /// Initial state of the live location to be sent. The live period must be equal to 0x7FFFFFFF for permanent live locations, or between 60 and 86400
     public let location: LiveLocation
 
 
@@ -607,7 +607,7 @@ public struct InputMessageContact: Codable, Equatable, Hashable {
 /// A dice message
 public struct InputMessageDice: Codable, Equatable, Hashable {
 
-    /// Pass true to delete message draft in the chat
+    /// Pass true to delete the message draft in the chat
     public let clearDraft: Bool
 
     /// Emoji on which the dice throw animation is based
@@ -727,7 +727,7 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the poll will automatically be closed; must be 0-getOption("poll_open_period_max") seconds in the future; pass 0 if not specified
     public let closeDate: Int
 
-    /// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote; for channel chats only. If empty, then all users can participate in the poll. There can be up to getOption("poll_country_count_max") chosen countries
+    /// The list of two-letter ISO 3166-1 alpha-2 codes of countries whose users will be able to vote; for channel chats only. If empty, then all users can participate in the poll. There can be up to getOption("poll_country_count_max") chosen countries
     public let countryCodes: [String]
 
     public let description: FormattedText
@@ -744,7 +744,7 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
     /// Media attached to the poll; pass null if none. Must be one of the following types: inputPollMediaAnimation, inputPollMediaAudio, inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaVenue, or inputPollMediaVideo without caption
     public let media: InputPollMedia?
 
-    /// True, if only the users that are members of the chat for more than a day will be able to vote; for channel chats only
+    /// True, if only the users who have been members of the chat for more than a day will be able to vote; for channel chats only
     public let membersOnly: Bool
 
     /// Amount of time the poll will be active after creation, in seconds; 0-getOption("poll_open_period_max"); pass 0 if not specified
@@ -801,10 +801,10 @@ public struct InputMessagePoll: Codable, Equatable, Hashable {
 /// A stake dice message
 public struct InputMessageStakeDice: Codable, Equatable, Hashable {
 
-    /// Pass true to delete message draft in the chat
+    /// Pass true to delete the message draft in the chat
     public let clearDraft: Bool
 
-    /// The TON Gram amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
+    /// The TON Gram amount that will be staked, in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
     public let stakeGramAmount: Int64
 
     /// Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
@@ -862,7 +862,7 @@ public struct InputMessageWidget: Codable, Equatable, Hashable {
     /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Data of the widget, which is specific to the chat
+    /// Data of the widget that is specific to the chat
     public let chatData: String
 
     /// Height of the widget; 0 if the height of the widget isn't fixed
@@ -913,7 +913,7 @@ public struct InputMessageSharedWidget: Codable, Equatable, Hashable {
     /// Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
-    /// Data of the widget, which is specific to the chat
+    /// Data of the widget that is specific to the chat
     public let chatData: String
 
     /// True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
@@ -939,7 +939,7 @@ public struct InputMessageSharedWidget: Codable, Equatable, Hashable {
 /// A forwarded message
 public struct InputMessageForwarded: Codable, Equatable, Hashable {
 
-    /// Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
+    /// Options to be used to copy the content of the message without reference to the original sender; pass null to forward the message as usual
     public let copyOptions: MessageCopyOptions?
 
     /// Identifier for the chat this forwarded message came from
@@ -954,7 +954,7 @@ public struct InputMessageForwarded: Codable, Equatable, Hashable {
     /// The new video start timestamp; ignored if replace_video_start_timestamp == false
     public let newVideoStartTimestamp: Int
 
-    /// Pass true to replace video start timestamp in the forwarded message
+    /// Pass true to replace the video start timestamp in the forwarded message
     public let replaceVideoStartTimestamp: Bool
 
 

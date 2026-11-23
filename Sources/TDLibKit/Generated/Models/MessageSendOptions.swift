@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     /// Pass true if the message is sent from the background
     public let fromBackground: Bool
 
-    /// Pass true to get a fake message instead of actually sending them
+    /// Pass true to get fake messages instead of actually sending them
     public let onlyPreview: Bool
 
     /// The number of Telegram Stars the user agreed to pay to send the messages
@@ -34,13 +34,13 @@ public struct MessageSendOptions: Codable, Equatable, Hashable {
     /// Pass true if the content of the message must be protected from forwarding and saving; for bots only
     public let protectContent: Bool
 
-    /// Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled
+    /// Message scheduling state; pass null to send the message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled
     public let schedulingState: MessageSchedulingState?
 
-    /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// Non-persistent identifier, which will be returned in the messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     public let sendingId: Int
 
-    /// Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer
+    /// Information about the suggested post; pass null if none. For messages to a channel direct messages chat only. Applicable only to sendMessage and addOffer
     public let suggestedPostInfo: InputSuggestedPostInfo?
 
     /// Pass true if the user has explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Describes the type of notifications in a notification group
 public indirect enum NotificationGroupType: Codable, Equatable, Hashable {
 
-    /// A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
+    /// A group containing notifications of the types notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
     case notificationGroupTypeMessages
 
-    /// A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
+    /// A group containing notifications of the types notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
     case notificationGroupTypeMentions
 
-    /// A group containing a notification of type notificationTypeNewSecretChat
+    /// A group containing a notification of the type notificationTypeNewSecretChat
     case notificationGroupTypeSecretChat
 
-    /// A group containing notifications of type notificationTypeNewCall
+    /// A group containing notifications of the type notificationTypeNewCall
     case notificationGroupTypeCalls
 
 

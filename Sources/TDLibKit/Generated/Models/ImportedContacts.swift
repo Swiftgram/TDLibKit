@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents the result of an importContacts request
 public struct ImportedContacts: Codable, Equatable, Hashable {
 
-    /// The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
+    /// The number of users who imported the corresponding contact; 0 for already registered users or if unavailable
     public let importerCount: [Int]
 
     /// User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information about an unconfirmed session
 public struct UnconfirmedSession: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) when the user has logged in or the business bot was connected
+    /// Point in time (Unix timestamp) when the user logged in or the business bot was connected
     public let date: Int
 
     /// Model of the device that was used for the session creation, as provided by the application

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains basic information about a chat folder
 public struct ChatFolderInfo: Codable, Equatable, Hashable, Identifiable {
 
-    /// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled
+    /// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then the color is disabled
     public let colorId: Int
 
     /// True, if the chat folder has invite links created by the current user

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ProfileAccentColors: Codable, Equatable, Hashable {
     /// The list of 1-2 colors in RGB format, describing the colors, as expected to be shown in the color palette settings
     public let paletteColors: [Int]
 
-    /// The list of 2 colors in RGB format, describing the colors of the gradient to be used for the unread active story indicator around profile photo
+    /// The list of 2 colors in RGB format, describing the colors of the gradient to be used for the unread active story indicator around the profile photo
     public let storyColors: [Int]
 
 

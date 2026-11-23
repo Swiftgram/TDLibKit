@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes a chat member joined a chat via an invite link
+/// Describes a chat member who joined a chat via an invite link
 public struct ChatInviteLinkMember: Codable, Equatable, Hashable {
 
-    /// User identifier of the chat administrator, approved user join request
+    /// User identifier of the chat administrator who approved the user join request
     public let approverUserId: Int64
 
     /// Point in time (Unix timestamp) when the user joined the chat

@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains a detailed statistics about a chat
+/// Contains detailed statistics about a chat
 public indirect enum ChatStatistics: Codable, Equatable, Hashable {
 
-    /// A detailed statistics about a supergroup chat
+    /// Detailed statistics about a supergroup chat
     case chatStatisticsSupergroup(ChatStatisticsSupergroup)
 
-    /// A detailed statistics about a channel chat
+    /// Detailed statistics about a channel chat
     case chatStatisticsChannel(ChatStatisticsChannel)
 
 
@@ -51,55 +51,55 @@ public indirect enum ChatStatistics: Codable, Equatable, Hashable {
     }
 }
 
-/// A detailed statistics about a supergroup chat
+/// Detailed statistics about a supergroup chat
 public struct ChatStatisticsSupergroup: Codable, Equatable, Hashable {
 
-    /// A graph containing number of different actions in the chat
+    /// A graph containing the number of different actions in the chat
     public let actionGraph: StatisticalGraph
 
-    /// A graph containing distribution of message views per hour
+    /// A graph containing the distribution of message views per hour
     public let dayGraph: StatisticalGraph
 
-    /// A graph containing number of new member joins per source
+    /// A graph containing the number of new member joins per source
     public let joinBySourceGraph: StatisticalGraph
 
-    /// A graph containing number of members joined and left the chat
+    /// A graph containing the number of members who joined and left the chat
     public let joinGraph: StatisticalGraph
 
-    /// A graph containing distribution of active users per language
+    /// A graph containing the distribution of active users per language
     public let languageGraph: StatisticalGraph
 
     /// Number of members in the chat
     public let memberCount: StatisticalValue
 
-    /// A graph containing number of members in the chat
+    /// A graph containing the number of members in the chat
     public let memberCountGraph: StatisticalGraph
 
-    /// A graph containing distribution of sent messages by content type
+    /// A graph containing the distribution of sent messages by content type
     public let messageContentGraph: StatisticalGraph
 
     /// Number of messages sent to the chat
     public let messageCount: StatisticalValue
 
-    /// A period to which the statistics applies
+    /// A period to which the statistics apply
     public let period: DateRange
 
     /// Number of users who sent messages to the chat
     public let senderCount: StatisticalValue
 
-    /// List of most active administrators in the last week
+    /// List of the most active administrators in the last week
     public let topAdministrators: [ChatStatisticsAdministratorActionsInfo]
 
-    /// List of most active inviters of new members in the last week
+    /// List of the most active inviters of new members in the last week
     public let topInviters: [ChatStatisticsInviterInfo]
 
-    /// List of users sent most messages in the last week
+    /// List of users who sent the most messages in the last week
     public let topSenders: [ChatStatisticsMessageSenderInfo]
 
     /// Number of users who viewed messages in the chat
     public let viewerCount: StatisticalValue
 
-    /// A graph containing distribution of message views per day of week
+    /// A graph containing the distribution of message views per day of the week
     public let weekGraph: StatisticalGraph
 
 
@@ -140,22 +140,22 @@ public struct ChatStatisticsSupergroup: Codable, Equatable, Hashable {
     }
 }
 
-/// A detailed statistics about a channel chat
+/// Detailed statistics about a channel chat
 public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
 
     /// A percentage of users with enabled notifications for the chat; 0-100
     public let enabledNotificationsPercentage: Double
 
-    /// A graph containing number of views of associated with the chat instant views
+    /// A graph containing the number of views of instant views associated with the chat
     public let instantViewInteractionGraph: StatisticalGraph
 
-    /// A graph containing number of new member joins per source
+    /// A graph containing the number of new member joins per source
     public let joinBySourceGraph: StatisticalGraph
 
-    /// A graph containing number of members joined and left the chat
+    /// A graph containing the number of members who joined and left the chat
     public let joinGraph: StatisticalGraph
 
-    /// A graph containing number of users viewed chat messages per language
+    /// A graph containing the number of users who viewed chat messages per language
     public let languageGraph: StatisticalGraph
 
     /// Mean number of times reactions were added to the recently sent messages
@@ -179,34 +179,34 @@ public struct ChatStatisticsChannel: Codable, Equatable, Hashable {
     /// Number of members in the chat
     public let memberCount: StatisticalValue
 
-    /// A graph containing number of members in the chat
+    /// A graph containing the number of members in the chat
     public let memberCountGraph: StatisticalGraph
 
-    /// A graph containing number of chat message views and shares
+    /// A graph containing the number of chat message views and shares
     public let messageInteractionGraph: StatisticalGraph
 
-    /// A graph containing number of reactions on messages
+    /// A graph containing the number of reactions on messages
     public let messageReactionGraph: StatisticalGraph
 
-    /// A graph containing number of members muted and unmuted the chat
+    /// A graph containing the number of members who muted and unmuted the chat
     public let muteGraph: StatisticalGraph
 
-    /// A period to which the statistics applies
+    /// A period to which the statistics apply
     public let period: DateRange
 
-    /// Detailed statistics about number of views and shares of recently sent messages and posted stories
+    /// Detailed statistics about the number of views and shares of recently sent messages and posted stories
     public let recentInteractions: [ChatStatisticsInteractionInfo]
 
-    /// A graph containing number of story views and shares
+    /// A graph containing the number of story views and shares
     public let storyInteractionGraph: StatisticalGraph
 
-    /// A graph containing number of reactions on stories
+    /// A graph containing the number of reactions on stories
     public let storyReactionGraph: StatisticalGraph
 
-    /// A graph containing number of message views in a given hour in the last two weeks
+    /// A graph containing the number of message views in a given hour in the last two weeks
     public let viewCountByHourGraph: StatisticalGraph
 
-    /// A graph containing number of message views per source
+    /// A graph containing the number of message views per source
     public let viewCountBySourceGraph: StatisticalGraph
 
 

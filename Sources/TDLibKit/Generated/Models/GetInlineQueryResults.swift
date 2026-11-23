@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,13 +19,13 @@ public struct GetInlineQueryResults: Codable, Equatable, Hashable {
     /// Identifier of the chat where the query was sent
     public let chatId: Int64?
 
-    /// Offset of the first entry to return; use empty string to get the first chunk of results
+    /// Offset of the first entry to return; use an empty string to get the first chunk of results
     public let offset: String?
 
     /// Text of the query
     public let query: String?
 
-    /// Location of the user; pass null if unknown or the bot doesn't need user's location
+    /// Location of the user; pass null if unknown or the bot doesn't need the user's location
     public let userLocation: Location?
 
 

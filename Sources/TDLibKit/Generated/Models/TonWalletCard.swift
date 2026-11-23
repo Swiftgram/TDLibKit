@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct TonWalletCard: Codable, Equatable, Hashable {
     /// Address of the NFT of one of the stickers, whose colors must be used for the card background; may be empty if the default background must be used
     public let backgroundNftAddress: String
 
-    /// Balance of the wallet, in the smallest units of the cryptocurrency; may be slightly outdated
+    /// Balance of the wallet, in the smallest units of TON Grams; may be slightly outdated
     public let gramAmount: TdInt64
 
     /// Stickers placed on the card

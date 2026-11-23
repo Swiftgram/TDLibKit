@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum InputChatPhoto: Codable, Equatable, Hashable {
     /// A static photo in JPEG format
     case inputChatPhotoStatic(InputChatPhotoStatic)
 
-    /// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
+    /// An animation in MPEG4 format; must be square, at most 10 seconds long, have a width between 160 and 1280 and be at most 2 MB in size
     case inputChatPhotoAnimation(InputChatPhotoAnimation)
 
     /// A sticker on a custom background
@@ -95,13 +95,13 @@ public struct InputChatPhotoStatic: Codable, Equatable, Hashable {
     }
 }
 
-/// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
+/// An animation in MPEG4 format; must be square, at most 10 seconds long, have a width between 160 and 1280 and be at most 2 MB in size
 public struct InputChatPhotoAnimation: Codable, Equatable, Hashable {
 
     /// Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
     public let animation: InputFile
 
-    /// Timestamp of the frame, which will be used as static chat photo
+    /// Timestamp of the frame that will be used as a static chat photo
     public let mainFrameTimestamp: Double
 
 

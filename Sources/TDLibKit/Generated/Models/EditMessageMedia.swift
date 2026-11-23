@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Edits the media content of a message, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+/// Edits the media content of a message, including the message caption. If only the caption needs to be edited, use editMessageCaption instead. The type of message content in an album can't be changed with the exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
 public struct EditMessageMedia: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to

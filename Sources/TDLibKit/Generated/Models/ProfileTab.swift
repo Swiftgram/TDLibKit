@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a tab shown in a user or a chat profile
 public indirect enum ProfileTab: Codable, Equatable, Hashable {
 
-    /// A tab with stories posted by the user or the channel chat and saved to profile
+    /// A tab with stories posted by the user or the channel chat and saved to the profile
     case profileTabPosts
 
     /// A tab with gifts received by the user or the channel chat

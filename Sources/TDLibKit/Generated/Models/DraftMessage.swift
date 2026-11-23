@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct DraftMessage: Codable, Equatable, Hashable {
     /// Identifier of the effect to apply to the message when it is sent; 0 if none
     public let effectId: TdInt64
 
-    /// Information about the message to be replied; inputMessageReplyToStory is unsupported; may be null if none
+    /// Information about the message to be replied to; inputMessageReplyToStory is unsupported; may be null if none
     public let replyTo: InputMessageReplyTo?
 
     /// Information about the suggested post; may be null if none

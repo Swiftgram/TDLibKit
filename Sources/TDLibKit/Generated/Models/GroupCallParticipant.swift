@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public struct GroupCallParticipant: Codable, Equatable, Hashable {
     /// True, if the participant is the current user
     public let isCurrentUser: Bool
 
-    /// True, if the participant hand is raised
+    /// True, if the participant's hand is raised
     public let isHandRaised: Bool
 
     /// True, if the participant is muted for all users
@@ -49,7 +49,7 @@ public struct GroupCallParticipant: Codable, Equatable, Hashable {
     /// True, if the participant is speaking as set by setGroupCallParticipantIsSpeaking
     public let isSpeaking: Bool
 
-    /// User's order in the group call participant list. Orders must be compared lexicographically. The bigger is order, the higher is user in the list. If order is empty, the user must be removed from the participant list
+    /// User's order in the group call participant list. Orders must be compared lexicographically. The greater the order, the higher the user is in the list. If the order is empty, the user must be removed from the participant list
     public let order: String
 
     /// Identifier of the group call participant
@@ -58,13 +58,13 @@ public struct GroupCallParticipant: Codable, Equatable, Hashable {
     /// User's screen sharing audio channel synchronization source identifier
     public let screenSharingAudioSourceId: Int
 
-    /// Information about user's screen sharing video channel; may be null if there is no active screen sharing video
+    /// Information about the user's screen sharing video channel; may be null if there is no active screen sharing video
     public let screenSharingVideoInfo: GroupCallParticipantVideoInfo?
 
-    /// Information about user's video channel; may be null if there is no active video
+    /// Information about the user's video channel; may be null if there is no active video
     public let videoInfo: GroupCallParticipantVideoInfo?
 
-    /// Participant's volume level; 1-20000 in hundreds of percents
+    /// Participant's volume level; 1-20000 in hundredths of a percent
     public let volumeLevel: Int
 
 

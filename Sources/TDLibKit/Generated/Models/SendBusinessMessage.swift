@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
 public struct SendBusinessMessage: Codable, Equatable, Hashable {
 
-    /// Unique identifier of business connection on behalf of which to send the request
+    /// Unique identifier of the business connection on behalf of which to send the request
     public let businessConnectionId: String?
 
     /// Target chat
@@ -34,7 +34,7 @@ public struct SendBusinessMessage: Codable, Equatable, Hashable {
     /// Markup for replying to the message; pass null if none
     public let replyMarkup: ReplyMarkup?
 
-    /// Information about the message to be replied; pass null if none
+    /// Information about the message to be replied to; pass null if none
     public let replyTo: InputMessageReplyTo?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Describes a reason why a bot was allowed to write messages to the current user
 public indirect enum BotWriteAccessAllowReason: Codable, Equatable, Hashable {
 
-    /// The user connected a website by logging in using Telegram Login Widget on it
+    /// The user connected a website by logging in using the Telegram Login Widget on it
     case botWriteAccessAllowReasonConnectedWebsite(BotWriteAccessAllowReasonConnectedWebsite)
 
-    /// The user added the bot to attachment or side menu using toggleBotIsAddedToAttachmentMenu
+    /// The user added the bot to the attachment or side menu using toggleBotIsAddedToAttachmentMenu
     case botWriteAccessAllowReasonAddedToAttachmentMenu
 
     /// The user launched a Web App using getWebAppLinkUrl
     case botWriteAccessAllowReasonLaunchedWebApp(BotWriteAccessAllowReasonLaunchedWebApp)
 
-    /// The user accepted bot's request to send messages with allowBotToSendMessages
+    /// The user accepted the bot's request to send messages with allowBotToSendMessages
     case botWriteAccessAllowReasonAcceptedRequest
 
 
@@ -67,7 +67,7 @@ public indirect enum BotWriteAccessAllowReason: Codable, Equatable, Hashable {
     }
 }
 
-/// The user connected a website by logging in using Telegram Login Widget on it
+/// The user connected a website by logging in using the Telegram Login Widget on it
 public struct BotWriteAccessAllowReasonConnectedWebsite: Codable, Equatable, Hashable {
 
     /// Domain name of the connected website

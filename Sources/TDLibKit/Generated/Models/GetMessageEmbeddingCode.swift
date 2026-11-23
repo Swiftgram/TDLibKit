@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
+/// Returns HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
 public struct GetMessageEmbeddingCode: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs
     public let chatId: Int64?
 
-    /// Pass true to return an HTML code for embedding of the whole media album
+    /// Pass true to return HTML code for embedding the whole media album
     public let forAlbum: Bool?
 
     /// Identifier of the message

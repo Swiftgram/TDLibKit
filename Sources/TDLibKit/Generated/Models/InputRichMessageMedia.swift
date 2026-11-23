@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes a media to be used in a sent rich message
+/// Describes media to be used in a sent rich message
 public struct InputRichMessageMedia: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the media; 1-64 base64url characters

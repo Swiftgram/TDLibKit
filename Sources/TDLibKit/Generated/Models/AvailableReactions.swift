@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct AvailableReactions: Codable, Equatable, Hashable {
     /// List of reactions to be shown at the top
     public let topReactions: [AvailableReaction]
 
-    /// The reason why the current user can't add reactions to the message, despite some other users can; may be null if none
+    /// The reason why the current user can't add reactions to the message, even though some other users can; may be null if none
     public let unavailabilityReason: ReactionUnavailabilityReason?
 
 

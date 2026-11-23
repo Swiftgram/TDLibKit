@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Changes a profile photo of a business account; for bots only
 public struct SetBusinessAccountProfilePhoto: Codable, Equatable, Hashable {
 
-    /// Unique identifier of business connection
+    /// Unique identifier of the business connection
     public let businessConnectionId: String?
 
     /// Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings

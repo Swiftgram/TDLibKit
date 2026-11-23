@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct InputAudio: Codable, Equatable, Hashable {
     /// Duration of the audio, in seconds; may be replaced by the server
     public let duration: Int
 
-    /// Performer of the audio; 0-64 characters, may be replaced by the server
+    /// Performer of the audio; 0-64 characters; may be replaced by the server
     public let performer: String
 
     /// Title of the audio; 0-64 characters; may be replaced by the server

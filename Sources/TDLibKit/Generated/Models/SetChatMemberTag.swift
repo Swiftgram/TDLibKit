@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change tag of other users; for basic groups and supergroups only
+/// Changes the tag or custom title of a chat member; requires can_manage_tags administrator right to change the tag of other users; for basic groups and supergroups only
 public struct SetChatMemberTag: Codable, Equatable, Hashable {
 
     /// Chat identifier

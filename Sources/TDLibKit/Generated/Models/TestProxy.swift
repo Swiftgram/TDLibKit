@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+/// Sends a simple network request to the Telegram servers via a proxy; for testing only. Can be called before authorization
 public struct TestProxy: Codable, Equatable, Hashable {
 
-    /// Identifier of a datacenter with which to test connection
+    /// Identifier of a datacenter with which to test the connection
     public let dcId: Int?
 
     /// The proxy to test

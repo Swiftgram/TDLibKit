@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum CallbackQueryPayload: Codable, Equatable, Hashable {
     /// The payload for a general callback button
     case callbackQueryPayloadData(CallbackQueryPayloadData)
 
-    /// The payload for a callback button requiring password
+    /// The payload for a callback button requiring a password
     case callbackQueryPayloadDataWithPassword(CallbackQueryPayloadDataWithPassword)
 
     /// The payload for a game callback button
@@ -73,7 +73,7 @@ public struct CallbackQueryPayloadData: Codable, Equatable, Hashable {
     }
 }
 
-/// The payload for a callback button requiring password
+/// The payload for a callback button requiring a password
 public struct CallbackQueryPayloadDataWithPassword: Codable, Equatable, Hashable {
 
     /// Data that was attached to the callback button

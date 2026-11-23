@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
     /// A rule to allow all bots to do something
     case userPrivacySettingRuleAllowBots
 
-    /// A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
+    /// A rule to allow all Premium users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
     case userPrivacySettingRuleAllowPremiumUsers
 
     /// A rule to allow certain specified users to do something
@@ -130,7 +130,7 @@ public indirect enum UserPrivacySettingRule: Codable, Equatable, Hashable {
 /// A rule to allow certain specified users to do something
 public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable, Hashable {
 
-    /// The user identifiers, total number of users in all rules must not exceed 1000
+    /// The user identifiers; the total number of users in all rules must not exceed 1000
     public let userIds: [Int64]
 
 
@@ -142,7 +142,7 @@ public struct UserPrivacySettingRuleAllowUsers: Codable, Equatable, Hashable {
 /// A rule to allow all members of certain specified basic groups and supergroups to do something
 public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable, Hashable {
 
-    /// The chat identifiers, total number of chats in all rules must not exceed 20
+    /// The chat identifiers; the total number of chats in all rules must not exceed 20
     public let chatIds: [Int64]
 
 
@@ -154,7 +154,7 @@ public struct UserPrivacySettingRuleAllowChatMembers: Codable, Equatable, Hashab
 /// A rule to restrict all specified users from doing something
 public struct UserPrivacySettingRuleRestrictUsers: Codable, Equatable, Hashable {
 
-    /// The user identifiers, total number of users in all rules must not exceed 1000
+    /// The user identifiers; the total number of users in all rules must not exceed 1000
     public let userIds: [Int64]
 
 
@@ -166,7 +166,7 @@ public struct UserPrivacySettingRuleRestrictUsers: Codable, Equatable, Hashable 
 /// A rule to restrict all members of specified basic groups and supergroups from doing something
 public struct UserPrivacySettingRuleRestrictChatMembers: Codable, Equatable, Hashable {
 
-    /// The chat identifiers, total number of chats in all rules must not exceed 20
+    /// The chat identifiers; the total number of chats in all rules must not exceed 20
     public let chatIds: [Int64]
 
 

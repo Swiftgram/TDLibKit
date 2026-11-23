@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct AddGiftCollectionGifts: Codable, Equatable, Hashable {
     /// Identifier of the user or the channel chat that owns the collection
     public let ownerId: MessageSender?
 
-    /// Identifier of the gifts to add to the collection; 1-getOption("gift_collection_size_max") identifiers. If after addition the collection has more than getOption("gift_collection_size_max") gifts, then the last ones are removed from the collection
+    /// Identifiers of the gifts to add to the collection; 1-getOption("gift_collection_size_max") identifiers. If after addition the collection has more than getOption("gift_collection_size_max") gifts, then the last ones are removed from the collection
     public let receivedGiftIds: [String]?
 
 

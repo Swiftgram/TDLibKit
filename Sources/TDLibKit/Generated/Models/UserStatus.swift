@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -116,7 +116,7 @@ public struct UserStatusOffline: Codable, Equatable, Hashable {
 /// The user was online recently
 public struct UserStatusRecently: Codable, Equatable, Hashable {
 
-    /// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+    /// The user's exact status is hidden because the current user enabled the userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
     public let byMyPrivacySettings: Bool
 
 
@@ -128,7 +128,7 @@ public struct UserStatusRecently: Codable, Equatable, Hashable {
 /// The user is offline, but was online last week
 public struct UserStatusLastWeek: Codable, Equatable, Hashable {
 
-    /// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+    /// The user's exact status is hidden because the current user enabled the userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
     public let byMyPrivacySettings: Bool
 
 
@@ -140,7 +140,7 @@ public struct UserStatusLastWeek: Codable, Equatable, Hashable {
 /// The user is offline, but was online last month
 public struct UserStatusLastMonth: Codable, Equatable, Hashable {
 
-    /// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+    /// The user's exact status is hidden because the current user enabled the userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
     public let byMyPrivacySettings: Bool
 
 

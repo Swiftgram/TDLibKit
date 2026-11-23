@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -58,7 +58,7 @@ public struct Session: Codable, Equatable, Hashable, Identifiable {
     /// A human-readable description of the location from which the session was created, based on the IP address
     public let location: String
 
-    /// Point in time (Unix timestamp) when the user has logged in
+    /// Point in time (Unix timestamp) when the user logged in
     public let logInDate: Int
 
     /// Operating system the application has been run or is running on, as provided by the application

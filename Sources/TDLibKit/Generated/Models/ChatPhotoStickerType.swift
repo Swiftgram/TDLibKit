@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes type of sticker, which was used to create a chat photo
+/// Describes type of sticker that was used to create a chat photo
 public indirect enum ChatPhotoStickerType: Codable, Equatable, Hashable {
 
-    /// Information about the sticker, which was used to create the chat photo
+    /// Information about the sticker that was used to create the chat photo
     case chatPhotoStickerTypeRegularOrMask(ChatPhotoStickerTypeRegularOrMask)
 
-    /// Information about the custom emoji, which was used to create the chat photo
+    /// Information about the custom emoji that was used to create the chat photo
     case chatPhotoStickerTypeCustomEmoji(ChatPhotoStickerTypeCustomEmoji)
 
 
@@ -51,7 +51,7 @@ public indirect enum ChatPhotoStickerType: Codable, Equatable, Hashable {
     }
 }
 
-/// Information about the sticker, which was used to create the chat photo
+/// Information about the sticker that was used to create the chat photo
 public struct ChatPhotoStickerTypeRegularOrMask: Codable, Equatable, Hashable {
 
     /// Identifier of the sticker in the set
@@ -70,7 +70,7 @@ public struct ChatPhotoStickerTypeRegularOrMask: Codable, Equatable, Hashable {
     }
 }
 
-/// Information about the custom emoji, which was used to create the chat photo
+/// Information about the custom emoji that was used to create the chat photo
 public struct ChatPhotoStickerTypeCustomEmoji: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji

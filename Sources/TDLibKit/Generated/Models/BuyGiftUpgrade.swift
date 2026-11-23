@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Pays for upgrade of a regular gift that is owned by another user or channel chat
+/// Pays for the upgrade of a regular gift that is owned by another user or channel chat
 public struct BuyGiftUpgrade: Codable, Equatable, Hashable {
 
     /// Identifier of the user or the channel chat that owns the gift

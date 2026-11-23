@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct Audio: Codable, Equatable, Hashable {
     /// The minithumbnail of the album cover; may be null
     public let albumCoverMinithumbnail: Minithumbnail?
 
-    /// The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is expected to be extracted from the downloaded audio file; may be null
+    /// The thumbnail of the album cover in JPEG format; as defined by the sender. The full-size thumbnail is expected to be extracted from the downloaded audio file; may be null
     public let albumCoverThumbnail: Thumbnail?
 
     /// File containing the audio

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
+/// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If the message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e., it continues if downloadFile is canceled or is used to download a part of the file
 public struct AddFileToDownloads: Codable, Equatable, Hashable {
 
     /// Chat identifier of the message with the file

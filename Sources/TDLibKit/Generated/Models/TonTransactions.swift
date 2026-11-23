@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a list of TON Gram transactions
 public struct TonTransactions: Codable, Equatable, Hashable {
 
-    /// The total amount of owned Grams, in the smallest units of the cryptocurrency
+    /// The total owned amount, in the smallest units of TON Grams
     public let gramAmount: Int64
 
     /// The offset for the next request. If empty, then there are no more results

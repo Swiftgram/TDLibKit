@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Saves application log event on the server. Can be called before authorization
+/// Saves an application log event on the server. Can be called before authorization
 public struct SaveApplicationLogEvent: Codable, Equatable, Hashable {
 
-    /// Optional chat identifier, associated with the event
+    /// Optional chat identifier associated with the event
     public let chatId: Int64?
 
     /// The log event data

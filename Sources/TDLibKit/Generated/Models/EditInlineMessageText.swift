@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct EditInlineMessageText: Codable, Equatable, Hashable {
     /// Inline message identifier
     public let inlineMessageId: String?
 
-    /// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage; file upload isn't supported
+    /// New text content of the message. Must be of the type inputMessageText or inputMessageRichMessage; file upload isn't supported
     public let inputMessageContent: InputMessageContent?
 
     /// The new message reply markup; pass null if none

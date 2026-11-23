@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Starts a new live story on behalf of a chat; requires can_post_stories administrator right for channel chats
 public struct StartLiveStory: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat that will start the live story. Pass Saved Messages chat identifier when starting a live story on behalf of the current user, or a channel chat identifier
+    /// Identifier of the chat that will start the live story. Pass the Saved Messages chat identifier when starting a live story on behalf of the current user, or a channel chat identifier
     public let chatId: Int64?
 
     /// Pass true to allow viewers of the story to send messages

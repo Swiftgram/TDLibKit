@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Deletes messages on behalf of a business account; for bots only
 public struct DeleteBusinessMessages: Codable, Equatable, Hashable {
 
-    /// Unique identifier of business connection through which the messages were received
+    /// Unique identifier of the business connection through which the messages were received
     public let businessConnectionId: String?
 
-    /// Identifier of the messages
+    /// Identifiers of the messages
     public let messageIds: [Int64]?
 
 

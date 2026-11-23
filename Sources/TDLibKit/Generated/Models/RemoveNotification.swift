@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
+/// Removes an active notification from the notification list. Needs to be called only if the notification is removed by the current user
 public struct RemoveNotification: Codable, Equatable, Hashable {
 
-    /// Identifier of notification group to which the notification belongs
+    /// Identifier of the notification group to which the notification belongs
     public let notificationGroupId: Int?
 
-    /// Identifier of removed notification
+    /// Identifier of the removed notification
     public let notificationId: Int?
 
 

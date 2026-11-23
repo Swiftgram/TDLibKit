@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Contains information about an effect added to a message
 public struct MessageEffect: Codable, Equatable, Hashable, Identifiable {
 
-    /// Emoji corresponding to the effect that can be used if static icon isn't available
+    /// Emoji corresponding to the effect that can be used if the static icon isn't available
     public let emoji: String
 
     /// Unique identifier of the effect
     public let id: TdInt64
 
-    /// True, if Telegram Premium subscription is required to use the effect
+    /// True, if a Telegram Premium subscription is required to use the effect
     public let isPremium: Bool
 
     /// Static icon for the effect in WEBP format; may be null if none

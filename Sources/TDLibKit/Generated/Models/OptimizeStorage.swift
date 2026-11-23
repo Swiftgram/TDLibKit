@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
+/// Optimizes storage usage, i.e., deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
 public struct OptimizeStorage: Codable, Equatable, Hashable {
 
     /// If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
@@ -25,7 +25,7 @@ public struct OptimizeStorage: Codable, Equatable, Hashable {
     /// If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
     public let excludeChatIds: [Int64]?
 
-    /// If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
+    /// If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers, and wallpapers are deleted
     public let fileTypes: [FileType]?
 
     /// The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value

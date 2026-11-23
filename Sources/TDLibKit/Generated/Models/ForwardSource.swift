@@ -3,29 +3,29 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about the last message from which a new message was forwarded last time
+/// Contains information about the last message from which a new message was last forwarded
 public struct ForwardSource: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message that was forwarded belonged; may be 0 if unknown
     public let chatId: Int64
 
-    /// Point in time (Unix timestamp) when the message is sent; 0 if unknown
+    /// Point in time (Unix timestamp) when the message was sent; 0 if unknown
     public let date: Int
 
-    /// True, if the message that was forwarded is outgoing; always false if sender is unknown
+    /// True, if the message that was forwarded is outgoing; always false if the sender is unknown
     public let isOutgoing: Bool
 
     /// Identifier of the message; may be 0 if unknown
     public let messageId: Int64
 
-    /// Identifier of the sender of the message; may be null if unknown or the new message was forwarded not to Saved Messages
+    /// Identifier of the sender of the message; may be null if unknown or the new message wasn't forwarded to Saved Messages
     public let senderId: MessageSender?
 
     /// Name of the sender of the message if the sender is hidden by their privacy settings

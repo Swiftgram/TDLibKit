@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true
+/// Changes the fact-check of a message. Can only be used if messageProperties.can_set_fact_check == true
 public struct SetMessageFactCheck: Codable, Equatable, Hashable {
 
     /// The channel chat the message belongs to

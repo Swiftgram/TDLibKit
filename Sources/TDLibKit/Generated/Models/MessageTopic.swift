@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum MessageTopic: Codable, Equatable, Hashable {
     /// A topic in a channel direct messages chat administered by the current user
     case messageTopicDirectMessages(MessageTopicDirectMessages)
 
-    /// A topic in Saved Messages chat
+    /// A topic in the Saved Messages chat
     case messageTopicSavedMessages(MessageTopicSavedMessages)
 
 
@@ -107,7 +107,7 @@ public struct MessageTopicDirectMessages: Codable, Equatable, Hashable {
     }
 }
 
-/// A topic in Saved Messages chat
+/// A topic in the Saved Messages chat
 public struct MessageTopicSavedMessages: Codable, Equatable, Hashable {
 
     /// Unique identifier of the Saved Messages topic

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
     /// The number of boosts received by the chat
     public let boostCount: Int
 
-    /// An HTTP URL, which can be used to boost the chat
+    /// An HTTP URL that can be used to boost the chat
     public let boostUrl: String
 
     /// The number of boosts added to reach the current level
@@ -34,10 +34,10 @@ public struct ChatBoostStatus: Codable, Equatable, Hashable {
     /// The number of boosts needed to reach the next level; 0 if the next level isn't available
     public let nextLevelBoostCount: Int
 
-    /// Approximate number of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat
+    /// Approximate number of Telegram Premium subscribers who joined the chat; always 0 if the current user isn't an administrator in the chat
     public let premiumMemberCount: Int
 
-    /// A percentage of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat
+    /// A percentage of Telegram Premium subscribers who joined the chat; always 0 if the current user isn't an administrator in the chat
     public let premiumMemberPercentage: Double
 
     /// The list of prepaid giveaways available for the chat; only for chat administrators

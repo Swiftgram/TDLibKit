@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct LiveLocation: Codable, Equatable, Hashable {
     /// The direction in which the location moves, in degrees; 1-360; 0 if unknown
     public let heading: Int
 
-    /// Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever
+    /// Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then the location can be updated forever
     public let livePeriod: Int
 
     /// The current location

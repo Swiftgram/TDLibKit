@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes type of clickable area on a story media to be added
+/// Describes type of clickable area on story media to be added
 public indirect enum InputStoryAreaType: Codable, Equatable, Hashable {
 
     /// An area pointing to a location
@@ -142,10 +142,10 @@ public struct InputStoryAreaTypePreviousVenue: Codable, Equatable, Hashable {
 /// An area pointing to a suggested reaction
 public struct InputStoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable {
 
-    /// True, if reaction has a dark background
+    /// True, if the reaction has a dark background
     public let isDark: Bool
 
-    /// True, if reaction corner is flipped
+    /// True, if the reaction corner is flipped
     public let isFlipped: Bool
 
     /// Type of the reaction
@@ -203,7 +203,7 @@ public struct InputStoryAreaTypeWeather: Codable, Equatable, Hashable {
     /// Emoji representing the weather
     public let emoji: String
 
-    /// Temperature, in degree Celsius
+    /// Temperature, in degrees Celsius
     public let temperature: Double
 
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents a bot, which can be added to attachment or side menu
+/// Represents a bot that can be added to the attachment or side menu
 public struct AttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Icon for the bot in TGS format for the official Android app; may be null
@@ -25,7 +25,7 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
     /// Default icon for the bot in SVG format; may be null
     public let defaultIcon: File?
 
-    /// Color to highlight selected icon of the bot if appropriate; may be null
+    /// Color to highlight the selected icon of the bot if appropriate; may be null
     public let iconColor: AttachmentMenuBotColor?
 
     /// Icon for the bot in TGS format for the official iOS app; may be null
@@ -37,7 +37,7 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
     /// Icon for the bot in SVG format for the official iOS app; may be null
     public let iosStaticIcon: File?
 
-    /// True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
+    /// True, if the bot was explicitly added by the user. If the bot isn't added, then, on the first bot launch, toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
     public let isAdded: Bool
 
     /// Icon for the bot in TGS format for the official native macOS app; may be null
@@ -46,16 +46,16 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
     /// Icon for the bot in PNG format for the official macOS app side menu; may be null
     public let macosSideMenuIcon: File?
 
-    /// Name for the bot in attachment menu
+    /// Name for the bot in the attachment menu
     public let name: String
 
-    /// Color to highlight selected name of the bot if appropriate; may be null
+    /// Color to highlight the selected name of the bot if appropriate; may be null
     public let nameColor: AttachmentMenuBotColor?
 
     /// True, if the user must be asked for the permission to send messages to the bot
     public let requestWriteAccess: Bool
 
-    /// True, if a disclaimer, why the bot is shown in the side menu, is needed
+    /// True, if a disclaimer explaining why the bot is shown in the side menu is needed
     public let showDisclaimerInSideMenu: Bool
 
     /// True, if the bot must be shown in the attachment menu
@@ -64,19 +64,19 @@ public struct AttachmentMenuBot: Codable, Equatable, Hashable {
     /// True, if the bot must be shown in the side menu
     public let showInSideMenu: Bool
 
-    /// True, if the bot supports opening from attachment menu in private chats with other bots
+    /// True, if the bot supports opening from the attachment menu in private chats with other bots
     public let supportsBotChats: Bool
 
-    /// True, if the bot supports opening from attachment menu in channel chats
+    /// True, if the bot supports opening from the attachment menu in channel chats
     public let supportsChannelChats: Bool
 
-    /// True, if the bot supports opening from attachment menu in basic group and supergroup chats
+    /// True, if the bot supports opening from the attachment menu in basic group and supergroup chats
     public let supportsGroupChats: Bool
 
-    /// True, if the bot supports opening from attachment menu in the chat with the bot
+    /// True, if the bot supports opening from the attachment menu in the chat with the bot
     public let supportsSelfChat: Bool
 
-    /// True, if the bot supports opening from attachment menu in private chats with ordinary users
+    /// True, if the bot supports opening from the attachment menu in private chats with ordinary users
     public let supportsUserChats: Bool
 
     /// Default placeholder for opened Web Apps in SVG format; may be null

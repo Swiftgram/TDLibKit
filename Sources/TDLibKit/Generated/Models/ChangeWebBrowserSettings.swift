@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Changes web browser settings
 public struct ChangeWebBrowserSettings: Codable, Equatable, Hashable {
 
-    /// Pass true if a close button must be shown in the in-app browser; for Android app only
+    /// Pass true if a close button must be shown in the in-app browser; for the Android app only
     public let displayCloseButton: Bool?
 
     /// Pass true if links must be opened in an external browser by default

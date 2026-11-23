@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -104,10 +104,10 @@ public indirect enum StorePaymentPurpose: Codable, Equatable, Hashable {
 /// The user subscribing to Telegram Premium
 public struct StorePaymentPurposePremiumSubscription: Codable, Equatable, Hashable {
 
-    /// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+    /// Pass true if this is a restore of a Telegram Premium purchase; only for the App Store
     public let isRestore: Bool
 
-    /// Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
+    /// Pass true if this is an upgrade from a monthly subscription to a yearly subscription; only for the App Store
     public let isUpgrade: Bool
 
 
@@ -155,7 +155,7 @@ public struct StorePaymentPurposePremiumGiftCodes: Codable, Equatable, Hashable 
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
-    /// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
+    /// Identifier of the supergroup or channel chat that will be automatically boosted by the users for the duration of the Premium subscription and that is administered by the user
     public let boostedChatId: Int64
 
     /// ISO 4217 currency code of the payment currency
@@ -282,7 +282,7 @@ public struct StorePaymentPurposeGiftedStars: Codable, Equatable, Hashable {
     /// Number of bought Telegram Stars
     public let starCount: Int64
 
-    /// Identifier of the user to which Telegram Stars are gifted
+    /// Identifier of the user to whom Telegram Stars are gifted
     public let userId: Int64
 
 

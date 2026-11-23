@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes an option for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members. Use telegramPaymentPurposePremiumGiftCodes or telegramPaymentPurposePremiumGiveaway for out-of-store payments
+/// Describes an option for creating a Telegram Premium giveaway or manual distribution of Telegram Premium among chat members. Use telegramPaymentPurposePremiumGiftCodes or telegramPaymentPurposePremiumGiveaway for out-of-store payments
 public struct PremiumGiveawayPaymentOption: Codable, Equatable, Hashable {
 
     /// The amount to pay, in the smallest units of the currency
@@ -25,7 +25,7 @@ public struct PremiumGiveawayPaymentOption: Codable, Equatable, Hashable {
     /// Identifier of the store product associated with the option; may be empty if none
     public let storeProductId: String
 
-    /// Number of times the store product must be paid
+    /// Number of times the store product must be paid for
     public let storeProductQuantity: Int
 
     /// Number of users who will be able to activate the gift codes

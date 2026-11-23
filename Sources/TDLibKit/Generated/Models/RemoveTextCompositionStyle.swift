@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Removes a custom text composition style from the list of used by the user styles. If the style was created by the current user, then it can only be deleted
+/// Removes a custom text composition style from the list of styles used by the user. If the style was created by the current user, then it can only be deleted
 public struct RemoveTextCompositionStyle: Codable, Equatable, Hashable {
 
     /// Name of the style

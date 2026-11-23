@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Sends an offer to purchase an upgraded gift
 public struct SendGiftPurchaseOffer: Codable, Equatable, Hashable {
 
-    /// Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200. Can also be 120 if Telegram test environment is used
+    /// Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200. Can also be 120 if the Telegram test environment is used
     public let duration: Int?
 
     /// Name of the upgraded gift
@@ -22,7 +22,7 @@ public struct SendGiftPurchaseOffer: Codable, Equatable, Hashable {
     /// Identifier of the user or the channel chat that currently owns the gift and will receive the offer
     public let ownerId: MessageSender?
 
-    /// The number of Telegram Stars the user agreed to pay additionally for sending of the offer message to the current gift owner; pass userFullInfo.outgoing_paid_message_star_count for users and 0 otherwise
+    /// The number of Telegram Stars the user agreed to pay additionally for sending the offer message to the current gift owner; pass userFullInfo.outgoing_paid_message_star_count for users and 0 otherwise
     public let paidMessageStarCount: Int64?
 
     /// The price that the user agreed to pay for the gift

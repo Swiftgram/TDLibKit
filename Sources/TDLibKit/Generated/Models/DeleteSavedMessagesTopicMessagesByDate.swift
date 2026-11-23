@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct DeleteSavedMessagesTopicMessagesByDate: Codable, Equatable, Hashab
     /// The minimum date of the messages to delete
     public let minDate: Int?
 
-    /// Identifier of Saved Messages topic which messages will be deleted
+    /// Identifier of the Saved Messages topic whose messages will be deleted
     public let savedMessagesTopicId: Int64?
 
 

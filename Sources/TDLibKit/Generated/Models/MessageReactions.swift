@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct MessageReactions: Codable, Equatable, Hashable {
     /// True, if the list of added reactions is available using getMessageAddedReactions
     public let canGetAddedReactions: Bool
 
-    /// Information about top users that added the paid reaction
+    /// Information about top users who added the paid reaction
     public let paidReactors: [PaidReactor]
 
     /// List of added reactions

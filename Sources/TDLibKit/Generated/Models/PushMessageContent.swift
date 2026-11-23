@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -139,7 +139,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A birthdate was suggested to be set
     case pushMessageContentSuggestBirthdate
 
-    /// A user in the chat came within proximity alert range from the current user
+    /// A user in the chat came within the proximity alert range from the current user
     case pushMessageContentProximityAlertTriggered(PushMessageContentProximityAlertTriggered)
 
     /// Some tasks were added to a checklist
@@ -604,7 +604,7 @@ public struct PushMessageContentGame: Codable, Equatable, Hashable {
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// Game title, empty for pinned game message
+    /// Game title; empty for a pinned game message
     public let title: String
 
 
@@ -623,10 +623,10 @@ public struct PushMessageContentGameScore: Codable, Equatable, Hashable {
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// New score, 0 for pinned message
+    /// New score; 0 for a pinned message
     public let score: Int
 
-    /// Game title, empty for pinned message
+    /// Game title; empty for a pinned message
     public let title: String
 
 
@@ -685,7 +685,7 @@ public struct PushMessageContentPaidMedia: Codable, Equatable, Hashable {
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// Number of Telegram Stars needed to buy access to the media in the message; 0 for pinned message
+    /// Number of Telegram Stars needed to buy access to the media in the message; 0 for a pinned message
     public let starCount: Int64
 
 
@@ -769,10 +769,10 @@ public struct PushMessageContentGiveaway: Codable, Equatable, Hashable {
     /// True, if the message is a pinned message with the specified content
     public let isPinned: Bool
 
-    /// Prize of the giveaway; may be null for pinned message
+    /// Prize of the giveaway; may be null for a pinned message
     public let prize: GiveawayPrize?
 
-    /// Number of users who will receive giveaway prizes; 0 for pinned message
+    /// Number of users who will receive giveaway prizes; 0 for a pinned message
     public let winnerCount: Int
 
 
@@ -826,10 +826,10 @@ public struct PushMessageContentTonConnectRequest: Codable, Equatable, Hashable 
 /// A message with a gift
 public struct PushMessageContentGift: Codable, Equatable, Hashable {
 
-    /// True, if the message is about prepaid upgrade of the gift by another user instead of actual receiving of a new gift
+    /// True, if the message is about a prepaid upgrade of the gift by another user instead of the actual receipt of a new gift
     public let isPrepaidUpgrade: Bool
 
-    /// Number of Telegram Stars that sender paid for the gift
+    /// Number of Telegram Stars that the sender paid for the gift
     public let starCount: Int64
 
 
@@ -845,10 +845,10 @@ public struct PushMessageContentGift: Codable, Equatable, Hashable {
 /// A message with an upgraded gift
 public struct PushMessageContentUpgradedGift: Codable, Equatable, Hashable {
 
-    /// True, if the message is about completion of prepaid upgrade of the gift instead of actual receiving of a new gift
+    /// True, if the message is about the completion of a prepaid upgrade of the gift instead of the actual receipt of a new gift
     public let isPrepaidUpgrade: Bool
 
-    /// True, if the gift was obtained by upgrading of a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift
+    /// True, if the gift was obtained by upgrading a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift
     public let isUpgrade: Bool
 
 
@@ -1117,7 +1117,7 @@ public struct PushMessageContentRecurringPayment: Codable, Equatable, Hashable {
     }
 }
 
-/// A user in the chat came within proximity alert range from the current user
+/// A user in the chat came within the proximity alert range from the current user
 public struct PushMessageContentProximityAlertTriggered: Codable, Equatable, Hashable {
 
     /// The distance to the user

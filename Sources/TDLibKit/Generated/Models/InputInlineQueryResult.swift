@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public indirect enum InputInlineQueryResult: Codable, Equatable, Hashable {
     /// Represents a point on the map
     case inputInlineQueryResultLocation(InputInlineQueryResultLocation)
 
-    /// Represents link to a JPEG image
+    /// Represents a link to a JPEG image
     case inputInlineQueryResultPhoto(InputInlineQueryResultPhoto)
 
     /// Represents a link to a WEBP, TGS, or WEBM sticker
@@ -46,7 +46,7 @@ public indirect enum InputInlineQueryResult: Codable, Equatable, Hashable {
     /// Represents a link to a page containing an embedded video player or a video file
     case inputInlineQueryResultVideo(InputInlineQueryResultVideo)
 
-    /// Represents a link to an opus-encoded audio file within an OGG container, single channel audio
+    /// Represents a link to an Opus-encoded audio file within an OGG container, single-channel audio
     case inputInlineQueryResultVoiceNote(InputInlineQueryResultVoiceNote)
 
 
@@ -160,10 +160,10 @@ public struct InputInlineQueryResultAnimation: Codable, Equatable, Hashable, Ide
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
-    /// MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif" and "video/mp4"
+    /// MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif", and "video/mp4"
     public let thumbnailMimeType: String
 
     /// URL of the result thumbnail (JPEG, GIF, or MPEG4), if it exists
@@ -181,7 +181,7 @@ public struct InputInlineQueryResultAnimation: Codable, Equatable, Hashable, Ide
     /// MIME type of the video file. Must be one of "image/gif" and "video/mp4"
     public let videoMimeType: String
 
-    /// The URL of the video file (file size must not exceed 1MB)
+    /// The URL of the video file (file size must not exceed 1 MB)
     public let videoUrl: String
 
     /// Width of the video
@@ -226,7 +226,7 @@ public struct InputInlineQueryResultArticle: Codable, Equatable, Hashable, Ident
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
@@ -286,7 +286,7 @@ public struct InputInlineQueryResultAudio: Codable, Equatable, Hashable, Identif
     /// Performer of the audio file
     public let performer: String
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Title of the audio file
@@ -324,7 +324,7 @@ public struct InputInlineQueryResultContact: Codable, Equatable, Hashable, Ident
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
@@ -373,7 +373,7 @@ public struct InputInlineQueryResultDocument: Codable, Equatable, Hashable, Iden
     /// MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
     public let mimeType: String
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Height of the thumbnail
@@ -423,7 +423,7 @@ public struct InputInlineQueryResultGame: Codable, Equatable, Hashable, Identifi
     /// Unique identifier of the query result
     public let id: String
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
 
@@ -453,7 +453,7 @@ public struct InputInlineQueryResultLocation: Codable, Equatable, Hashable, Iden
     /// Location result
     public let location: Location
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
@@ -492,7 +492,7 @@ public struct InputInlineQueryResultLocation: Codable, Equatable, Hashable, Iden
     }
 }
 
-/// Represents link to a JPEG image
+/// Represents a link to a JPEG image
 public struct InputInlineQueryResultPhoto: Codable, Equatable, Hashable, Identifiable {
 
     public let description: String
@@ -506,13 +506,13 @@ public struct InputInlineQueryResultPhoto: Codable, Equatable, Hashable, Identif
     /// Height of the photo
     public let photoHeight: Int
 
-    /// The URL of the JPEG photo (photo size must not exceed 5MB)
+    /// The URL of the JPEG photo (photo size must not exceed 5 MB)
     public let photoUrl: String
 
     /// Width of the photo
     public let photoWidth: Int
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// URL of the photo thumbnail, if it exists
@@ -554,13 +554,13 @@ public struct InputInlineQueryResultSticker: Codable, Equatable, Hashable, Ident
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Height of the sticker
     public let stickerHeight: Int
 
-    /// The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB)
+    /// The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5 MB)
     public let stickerUrl: String
 
     /// Width of the sticker
@@ -598,7 +598,7 @@ public struct InputInlineQueryResultVenue: Codable, Equatable, Hashable, Identif
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Thumbnail height, if known
@@ -644,10 +644,10 @@ public struct InputInlineQueryResultVideo: Codable, Equatable, Hashable, Identif
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
+    /// MIME type of the content of the video URL; only "text/html" or "video/mp4" are currently supported
     public let mimeType: String
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// The URL of the video thumbnail (JPEG), if it exists
@@ -696,7 +696,7 @@ public struct InputInlineQueryResultVideo: Codable, Equatable, Hashable, Identif
     }
 }
 
-/// Represents a link to an opus-encoded audio file within an OGG container, single channel audio
+/// Represents a link to an Opus-encoded audio file within an OGG container, single-channel audio
 public struct InputInlineQueryResultVoiceNote: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique identifier of the query result
@@ -705,7 +705,7 @@ public struct InputInlineQueryResultVoiceNote: Codable, Equatable, Hashable, Ide
     /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, inputMessageWidget, inputMessageSharedWidget, or inputMessageContact
     public let inputMessageContent: InputMessageContent
 
-    /// The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+    /// The message reply markup; pass null if none. Must be of the type replyMarkupInlineKeyboard or null
     public let replyMarkup: ReplyMarkup?
 
     /// Title of the voice note

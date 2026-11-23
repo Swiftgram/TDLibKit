@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes the reason why a web proxy carrier failed
 public indirect enum WebProxyCarrierError: Codable, Equatable, Hashable {
 
-    /// The application can't open the carrier, because the platform can't create hidden web views or define the bridge object; TDLib will not retry until the proxy is enabled again
+    /// The application can't open the carrier because the platform can't create hidden web views or define the bridge object; TDLib will not retry until the proxy is enabled again
     case webProxyCarrierErrorUnsupported
 
     /// The application can't open the carrier now, for example, because it is in the background; TDLib will request it again after the next call to setNetworkType or after a delay

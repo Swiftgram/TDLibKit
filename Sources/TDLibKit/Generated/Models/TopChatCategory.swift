@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -28,10 +28,10 @@ public indirect enum TopChatCategory: Codable, Equatable, Hashable {
     /// A category containing frequently used chats with inline bots sorted by their usage in inline mode
     case topChatCategoryInlineBots
 
-    /// A category containing frequently used chats with bots, which were used as guest bots
+    /// A category containing frequently used chats with bots that were used as guest bots
     case topChatCategoryGuestBots
 
-    /// A category containing frequently used chats with bots, which Web Apps were opened
+    /// A category containing frequently used chats with bots whose Web Apps were opened
     case topChatCategoryWebAppBots
 
     /// A category containing frequently used chats used for calls

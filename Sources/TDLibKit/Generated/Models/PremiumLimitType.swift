@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes type of limit, increased for Premium users
+/// Describes type of limit increased for Premium users
 public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
 
     /// The maximum number of joined supergroups and channels
@@ -31,7 +31,7 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
     /// The maximum number of chat folders
     case premiumLimitTypeChatFolderCount
 
-    /// The maximum number of pinned and always included, or always excluded chats in a chat folder
+    /// The maximum number of pinned and always included or always excluded chats in a chat folder
     case premiumLimitTypeChatFolderChosenChatCount
 
     /// The maximum number of pinned chats in the archive chat list
@@ -43,7 +43,7 @@ public indirect enum PremiumLimitType: Codable, Equatable, Hashable {
     /// The maximum length of text of sent messages
     case premiumLimitTypeMessageTextLength
 
-    /// The maximum length of sent media caption
+    /// The maximum length of sent media captions
     case premiumLimitTypeCaptionLength
 
     /// The maximum length of the user's bio

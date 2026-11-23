@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct StarRevenueStatus: Codable, Equatable, Hashable {
     /// The Telegram Star amount that isn't withdrawn yet
     public let currentAmount: StarAmount
 
-    /// Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
+    /// Time left before the next withdrawal can be started, in seconds; 0 if a withdrawal can be started now
     public let nextWithdrawalIn: Int
 
     /// Total Telegram Star amount earned

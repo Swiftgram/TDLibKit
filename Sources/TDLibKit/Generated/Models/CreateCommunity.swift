@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Creates a new community for the given chat. Returns identifier of the created community
+/// Creates a new community for the given chat. Returns the identifier of the created community
 public struct CreateCommunity: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat in the community; only chats with owned bots and owned basic group, supergroup and channel chats are allowed; basic group chats will be automatically upgraded to supergroup chats
+    /// Identifier of the chat in the community; only chats with owned bots and owned basic group, supergroup, and channel chats are allowed; basic group chats will be automatically upgraded to supergroup chats
     public let chatId: Int64?
 
     /// Pass true if the chat will be visible only to administrators of the community

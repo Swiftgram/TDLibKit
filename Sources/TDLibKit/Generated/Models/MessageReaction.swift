@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct MessageReaction: Codable, Equatable, Hashable {
     /// True, if the reaction is chosen by the current user
     public let isChosen: Bool
 
-    /// Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats
+    /// Identifiers of at most 3 recent message senders who added the reaction; available in private, basic group and supergroup chats
     public let recentSenderIds: [MessageSender]
 
     /// Number of times the reaction was added

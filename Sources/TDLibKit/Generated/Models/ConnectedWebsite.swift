@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about one website the current user is logged in with Telegram
+/// Contains information about one website the current user is logged in to with Telegram
 public struct ConnectedWebsite: Codable, Equatable, Hashable, Identifiable {
 
     /// User identifier of a bot linked with the website
@@ -28,7 +28,7 @@ public struct ConnectedWebsite: Codable, Equatable, Hashable, Identifiable {
     /// IP address from which the user was logged in, in human-readable format
     public let ipAddress: String
 
-    /// Point in time (Unix timestamp) when obtained authorization was last used
+    /// Point in time (Unix timestamp) when the obtained authorization was last used
     public let lastActiveDate: Int
 
     /// Human-readable description of a country and a region from which the user was logged in, based on the IP address

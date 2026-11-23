@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+/// Returns invite links for a chat created by the specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
 public struct GetChatInviteLinks: Codable, Equatable, Hashable {
 
     /// Chat identifier
     public let chatId: Int64?
 
-    /// User identifier of a chat administrator. Must be an identifier of the current user for non-owner
+    /// User identifier of a chat administrator. Must be an identifier of the current user for non-owners
     public let creatorUserId: Int64?
 
     /// Pass true if revoked links need to be returned instead of active or expired
@@ -28,7 +28,7 @@ public struct GetChatInviteLinks: Codable, Equatable, Hashable {
     /// Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     public let offsetDate: Int?
 
-    /// Invite link starting after which to return invite links; use empty string to get results from the beginning
+    /// Invite link starting after which to return invite links; use an empty string to get results from the beginning
     public let offsetInviteLink: String?
 
 

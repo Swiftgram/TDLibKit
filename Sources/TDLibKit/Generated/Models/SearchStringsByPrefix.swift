@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+/// Searches for the specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
 public struct SearchStringsByPrefix: Codable, Equatable, Hashable {
 
     /// The maximum number of objects to return

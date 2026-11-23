@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl or an external link
+/// Contains information about an inline button of the type inlineKeyboardButtonTypeLoginUrl or an external link
 public indirect enum LoginUrlInfo: Codable, Equatable, Hashable {
 
-    /// An HTTP URL needs to be open
+    /// An HTTP URL needs to be opened
     case loginUrlInfoOpen(LoginUrlInfoOpen)
 
     /// An authorization confirmation dialog needs to be shown to the user
@@ -51,7 +51,7 @@ public indirect enum LoginUrlInfo: Codable, Equatable, Hashable {
     }
 }
 
-/// An HTTP URL needs to be open
+/// An HTTP URL needs to be opened
 public struct LoginUrlInfoOpen: Codable, Equatable, Hashable {
 
     /// True, if there is no need to show an ordinary open URL confirmation
@@ -79,7 +79,7 @@ public struct LoginUrlInfoRequestConfirmation: Codable, Equatable, Hashable {
     /// A domain of the URL
     public let domain: String
 
-    /// True, if the user must be asked for the permission to the bot to send them messages
+    /// True, if the user must be asked for the permission for the bot to send them messages
     public let requestWriteAccess: Bool
 
     /// An HTTP URL to be opened

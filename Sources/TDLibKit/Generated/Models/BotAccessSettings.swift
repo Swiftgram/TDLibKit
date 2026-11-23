@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes users that have access to a bot
+/// Describes users who have access to a bot
 public struct BotAccessSettings: Codable, Equatable, Hashable {
 
-    /// Identifiers of the users who can use the bot additionally to the owner of the bot
+    /// Identifiers of the users who can use the bot in addition to the owner of the bot
     public let addedUserIds: [Int64]
 
     /// True, if access to the bot is restricted to its owner and selected users

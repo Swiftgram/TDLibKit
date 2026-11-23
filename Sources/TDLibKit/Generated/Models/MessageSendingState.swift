@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -72,13 +72,13 @@ public struct MessageSendingStateFailed: Codable, Equatable, Hashable {
     /// The cause of the message sending failure
     public let error: Error
 
-    /// True, if the message can be re-sent only if another quote is chosen in the message that is replied by the given message
+    /// True, if the message can be re-sent only if another quote is chosen in the message that is replied to by the given message
     public let needAnotherReplyQuote: Bool
 
     /// True, if the message can be re-sent only on behalf of a different sender
     public let needAnotherSender: Bool
 
-    /// True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages
+    /// True, if the message can be re-sent only if the message to be replied to is removed. This will be done automatically by resendMessages
     public let needDropReply: Bool
 
     /// The number of Telegram Stars that must be paid to send the message; 0 if the current amount is correct

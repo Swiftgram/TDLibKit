@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PassportElementError: Codable, Equatable, Hashable {
     /// Error source
     public let source: PassportElementErrorSource
 
-    /// Type of the Telegram Passport element which has the error
+    /// Type of the Telegram Passport element that has the error
     public let type: PassportElementType
 
 

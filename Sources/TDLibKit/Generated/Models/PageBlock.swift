@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -458,7 +458,7 @@ public struct PageBlockSubheader: Codable, Equatable, Hashable {
 /// A section heading
 public struct PageBlockSectionHeading: Codable, Equatable, Hashable {
 
-    /// Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
+    /// Relative size of the text font; 1-6; 1 is the largest, 6 is the smallest
     public let size: Int
 
     /// Text of the section heading
@@ -599,19 +599,19 @@ public struct PageBlockBlockQuote: Codable, Equatable, Hashable {
 /// An expandable block quote
 public struct PageBlockExpandableBlockQuote: Codable, Equatable, Hashable {
 
+    /// Quote blocks
+    public let blocks: [PageBlock]
+
     /// Quote credit; may be null if none
     public let credit: RichText?
 
-    /// Text of the quote
-    public let text: RichText
-
 
     public init(
-        credit: RichText?,
-        text: RichText
+        blocks: [PageBlock],
+        credit: RichText?
     ) {
+        self.blocks = blocks
         self.credit = credit
-        self.text = text
     }
 }
 
@@ -807,7 +807,7 @@ public struct PageBlockEmbedded: Codable, Equatable, Hashable {
     /// Block height; 0 if unknown
     public let height: Int
 
-    /// HTML-markup of the embedded page
+    /// HTML markup of the embedded page
     public let html: String
 
     /// True, if the block must be full width

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public struct VideoStoryboard: Codable, Equatable, Hashable {
     /// Height of a tile
     public let height: Int
 
-    /// File that describes mapping of position in the video to a tile in the JPEG file
+    /// File that describes the mapping of a position in the video to a tile in the JPEG file
     public let mapFile: File
 
-    /// A JPEG file that contains tiled previews of video
+    /// A JPEG file that contains tiled previews of the video
     public let storyboardFile: File
 
     /// Width of a tile

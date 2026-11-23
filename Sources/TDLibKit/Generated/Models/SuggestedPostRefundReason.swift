@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Describes reason for refund of the payment for a suggested post
 public indirect enum SuggestedPostRefundReason: Codable, Equatable, Hashable {
 
-    /// The post was refunded, because it was deleted by channel administrators in less than getOption("suggested_post_lifetime_min") seconds
+    /// The post was refunded because it was deleted by channel administrators in less than getOption("suggested_post_lifetime_min") seconds
     case suggestedPostRefundReasonPostDeleted
 
-    /// The post was refunded, because the payment for the post was refunded
+    /// The post was refunded because the payment for the post was refunded
     case suggestedPostRefundReasonPaymentRefunded
 
 

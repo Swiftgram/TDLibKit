@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -86,10 +86,10 @@ public struct PaymentProviderStripe: Codable, Equatable, Hashable {
     /// True, if the cardholder name must be provided
     public let needCardholderName: Bool
 
-    /// True, if the user country must be provided
+    /// True, if the user's country must be provided
     public let needCountry: Bool
 
-    /// True, if the user ZIP/postal code must be provided
+    /// True, if the user's ZIP/postal code must be provided
     public let needPostalCode: Bool
 
     /// Stripe API publishable key

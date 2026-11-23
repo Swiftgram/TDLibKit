@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public struct SetTdlibParameters: Codable, Equatable, Hashable {
     /// Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
     public let systemVersion: String?
 
-    /// Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
+    /// Pass true to keep cache of users, basic groups, supergroups, channels, and secret chats between restarts. Implies use_file_database
     public let useChatInfoDatabase: Bool?
 
     /// Pass true to keep information about downloaded and uploaded files between application restarts
@@ -52,7 +52,7 @@ public struct SetTdlibParameters: Codable, Equatable, Hashable {
     /// Pass true to enable support for secret chats
     public let useSecretChats: Bool?
 
-    /// Pass true to use Telegram test environment instead of the production environment
+    /// Pass true to use the Telegram test environment instead of the production environment
     public let useTestDc: Bool?
 
 

@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+/// Returns available options for creating a Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
 public struct GetPremiumGiveawayPaymentOptions: Codable, Equatable, Hashable {
 
-    /// Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user
+    /// Identifier of the supergroup or channel chat that will be automatically boosted by receivers of the gift codes and that is administered by the user
     public let boostedChatId: Int64?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct DeleteAllRevokedChatInviteLinks: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
+    /// User identifier of a chat administrator whose links will be deleted. Must be an identifier of the current user for non-owners
     public let creatorUserId: Int64?
 
 

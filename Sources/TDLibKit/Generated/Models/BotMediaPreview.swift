@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct BotMediaPreview: Codable, Equatable, Hashable {
     /// Content of the preview; may only be of the types storyContentPhoto, storyContentVideo, or storyContentUnsupported
     public let content: StoryContent
 
-    /// Point in time (Unix timestamp) when the preview was added or changed last time
+    /// Point in time (Unix timestamp) when the preview was last added or changed
     public let date: Int
 
 

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes music attached to a story. Can be called only if story.can_be_edited == true and the story isn't being edited now
+/// Changes the music attached to a story. Can be called only if story.can_be_edited == true and the story isn't being edited now
 public struct EditStoryMusic: Codable, Equatable, Hashable {
 
     /// The new music; pass null to remove music from the story. The music can be up to 60 seconds long

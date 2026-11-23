@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SendChatAction: Codable, Equatable, Hashable {
     /// The action description; pass null to cancel the currently active action
     public let action: ChatAction?
 
-    /// Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// Unique identifier of the business connection on behalf of which to send the request; for bots only
     public let businessConnectionId: String?
 
     /// Chat identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -40,7 +40,7 @@ public struct Invoice: Codable, Equatable, Hashable {
     /// A list of objects used to calculate the total price of the product
     public let priceParts: [LabeledPricePart]
 
-    /// An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
+    /// An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before being allowed to pay
     public let recurringPaymentTermsOfServiceUrl: String
 
     /// True, if the user's email address will be sent to the provider
@@ -49,13 +49,13 @@ public struct Invoice: Codable, Equatable, Hashable {
     /// True, if the user's phone number will be sent to the provider
     public let sendPhoneNumberToProvider: Bool
 
-    /// The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription
+    /// The number of seconds between consecutive Telegram Star debits for subscription invoices; 0 if the invoice doesn't create a subscription
     public let subscriptionPeriod: Int
 
     /// Suggested amounts of tip in the smallest units of the currency
     public let suggestedTipAmounts: [Int64]
 
-    /// An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
+    /// An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before being allowed to pay
     public let termsOfServiceUrl: String
 
 

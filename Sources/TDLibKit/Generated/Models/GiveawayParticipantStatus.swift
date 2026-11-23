@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about status of a user in a giveaway
+/// Contains information about the status of a user in a giveaway
 public indirect enum GiveawayParticipantStatus: Codable, Equatable, Hashable {
 
     /// The user is eligible for the giveaway
@@ -19,13 +19,13 @@ public indirect enum GiveawayParticipantStatus: Codable, Equatable, Hashable {
     /// The user participates in the giveaway
     case giveawayParticipantStatusParticipating
 
-    /// The user can't participate in the giveaway, because they have already been member of the chat
+    /// The user can't participate in the giveaway because they have already been a member of the chat
     case giveawayParticipantStatusAlreadyWasMember(GiveawayParticipantStatusAlreadyWasMember)
 
-    /// The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
+    /// The user can't participate in the giveaway because they are an administrator in one of the chats that created the giveaway
     case giveawayParticipantStatusAdministrator(GiveawayParticipantStatusAdministrator)
 
-    /// The user can't participate in the giveaway, because their phone number is from a disallowed country
+    /// The user can't participate in the giveaway because their phone number is from a disallowed country
     case giveawayParticipantStatusDisallowedCountry(GiveawayParticipantStatusDisallowedCountry)
 
 
@@ -77,7 +77,7 @@ public indirect enum GiveawayParticipantStatus: Codable, Equatable, Hashable {
     }
 }
 
-/// The user can't participate in the giveaway, because they have already been member of the chat
+/// The user can't participate in the giveaway because they have already been a member of the chat
 public struct GiveawayParticipantStatusAlreadyWasMember: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the user joined the chat
@@ -89,7 +89,7 @@ public struct GiveawayParticipantStatusAlreadyWasMember: Codable, Equatable, Has
     }
 }
 
-/// The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
+/// The user can't participate in the giveaway because they are an administrator in one of the chats that created the giveaway
 public struct GiveawayParticipantStatusAdministrator: Codable, Equatable, Hashable {
 
     /// Identifier of the chat administered by the user
@@ -101,7 +101,7 @@ public struct GiveawayParticipantStatusAdministrator: Codable, Equatable, Hashab
     }
 }
 
-/// The user can't participate in the giveaway, because their phone number is from a disallowed country
+/// The user can't participate in the giveaway because their phone number is from a disallowed country
 public struct GiveawayParticipantStatusDisallowedCountry: Codable, Equatable, Hashable {
 
     /// A two-letter ISO 3166-1 alpha-2 country code of the user's country

@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains settings for automatic moving of chats to and from the Archive chat lists
+/// Contains settings for automatic moving of chats to and from the Archive chat list
 public struct ArchiveChatListSettings: Codable, Equatable, Hashable {
 
     /// True, if new chats from non-contacts will be automatically archived and muted. Can be set to true only if the option "can_archive_and_mute_new_chats_from_unknown_users" is true
     public let archiveAndMuteNewChatsFromUnknownUsers: Bool
 
-    /// True, if unmuted chats, that are always included or pinned in a folder, will be kept in the Archive chat list when they get a new message. Ignored if keep_unmuted_chats_archived == true
+    /// True, if unmuted chats that are always included or pinned in a folder will be kept in the Archive chat list when they get a new message. Ignored if keep_unmuted_chats_archived == true
     public let keepChatsFromFoldersArchived: Bool
 
     /// True, if unmuted chats will be kept in the Archive chat list when they get a new message

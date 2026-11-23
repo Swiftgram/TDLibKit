@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SearchMessages: Codable, Equatable, Hashable {
     /// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
     public let chatList: ChatList?
 
-    /// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
+    /// Additional filter for the type of the chat of the searched messages; pass null to search for messages in all chats
     public let chatTypeFilter: SearchMessagesChatTypeFilter?
 
     /// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
@@ -31,7 +31,7 @@ public struct SearchMessages: Codable, Equatable, Hashable {
     /// If not 0, the minimum date of the messages to return
     public let minDate: Int?
 
-    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
     public let offset: String?
 
     /// Query to search for

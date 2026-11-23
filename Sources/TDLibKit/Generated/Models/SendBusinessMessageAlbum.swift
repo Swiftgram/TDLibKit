@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+/// Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo, and video messages can be grouped into an album. Documents and audio files can only be grouped in an album with messages of the same type. Returns the sent messages
 public struct SendBusinessMessageAlbum: Codable, Equatable, Hashable {
 
-    /// Unique identifier of business connection on behalf of which to send the request
+    /// Unique identifier of the business connection on behalf of which to send the request
     public let businessConnectionId: String?
 
     /// Target chat
@@ -31,7 +31,7 @@ public struct SendBusinessMessageAlbum: Codable, Equatable, Hashable {
     /// Pass true if the content of the message must be protected from forwarding and saving
     public let protectContent: Bool?
 
-    /// Information about the message to be replied; pass null if none
+    /// Information about the message to be replied to; pass null if none
     public let replyTo: InputMessageReplyTo?
 
 

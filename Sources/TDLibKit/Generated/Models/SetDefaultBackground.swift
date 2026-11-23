@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sets default background for chats; adds the background to the list of installed backgrounds
+/// Sets the default background for chats; adds the background to the list of installed backgrounds
 public struct SetDefaultBackground: Codable, Equatable, Hashable {
 
     /// The input background to use; pass null to create a new filled background

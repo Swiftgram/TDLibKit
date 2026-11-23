@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
+/// Upgrades a supergroup to a broadcast group; requires owner privileges in the supergroup
 public struct ToggleSupergroupIsBroadcastGroup: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup

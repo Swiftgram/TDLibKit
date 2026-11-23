@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Edits data of a widget sent by the bot; for bots only
 public struct EditMessageWidgetData: Codable, Equatable, Hashable {
 
-    /// New data of the widget, which is specific to the chat; ignored if edit_chat_data is false
+    /// New data of the widget that is specific to the chat; ignored if edit_chat_data is false
     public let chatData: String?
 
     /// The chat the message belongs to
     public let chatId: Int64?
 
-    /// Pass true to edit data of the widget, which is specific to the chat
+    /// Pass true to edit data of the widget that is specific to the chat
     public let editChatData: Bool?
 
     /// Pass true to edit public data of the widget

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum ReportReason: Codable, Equatable, Hashable {
     /// The chat contains pornographic messages
     case reportReasonPornography
 
-    /// The chat has child abuse related content
+    /// The chat has content related to child abuse
     case reportReasonChildAbuse
 
     /// The chat contains copyrighted content
@@ -34,7 +34,7 @@ public indirect enum ReportReason: Codable, Equatable, Hashable {
     /// The chat represents a fake account
     case reportReasonFake
 
-    /// The chat has illegal drugs related content
+    /// The chat has content related to illegal drugs
     case reportReasonIllegalDrugs
 
     /// The chat contains messages with personal details

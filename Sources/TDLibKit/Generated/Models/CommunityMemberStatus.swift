@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public indirect enum CommunityMemberStatus: Codable, Equatable, Hashable {
     /// The user or the chat is not a community member
     case communityMemberStatusLeft
 
-    /// The user or the chat was banned in the community; implies ban in all chats in the community
+    /// The user or the chat was banned in the community; implies a ban in all chats in the community
     case communityMemberStatusBanned
 
 

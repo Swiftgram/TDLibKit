@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum TonConnectConnectItem: Codable, Equatable, Hashable {
 /// Address of the wallet
 public struct TonConnectConnectItemAddress: Codable, Equatable, Hashable {
 
-    /// Stringified TON network global_id (e.g. "-239" for mainnet); may be empty
+    /// Stringified TON network global_id (e.g., "-239" for mainnet); may be empty
     public let network: String
 
 
@@ -66,7 +66,7 @@ public struct TonConnectConnectItemAddress: Codable, Equatable, Hashable {
 /// Proof of the wallet ownership
 public struct TonConnectConnectItemProof: Codable, Equatable, Hashable {
 
-    /// Payload to be used for the proof (e.g. nonce + expiration timestamp)
+    /// Payload to be used for the proof (e.g., nonce + expiration timestamp)
     public let payload: String
 
 

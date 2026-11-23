@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct ThemeSettings: Codable, Equatable, Hashable {
     /// Base theme for this theme
     public let baseTheme: BuiltInTheme
 
-    /// True, if there is chosen accent color for outgoing messages; otherwise, the color must be deduced from other theme settings
+    /// True, if there is a chosen accent color for outgoing messages; otherwise, the color must be deduced from other theme settings
     public let hasOutgoingMessageAccentColor: Bool
 
     /// Accent color of outgoing messages in ARGB format; must be ignored if has_outgoing_message_accent_color is false

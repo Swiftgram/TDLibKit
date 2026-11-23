@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about verification status of a chat or a user
+/// Contains information about the verification status of a chat or a user
 public struct VerificationStatus: Codable, Equatable, Hashable {
 
     /// Identifier of the custom emoji to be shown as verification sign provided by a bot for the user; 0 if none

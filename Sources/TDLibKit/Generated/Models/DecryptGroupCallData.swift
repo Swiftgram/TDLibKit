@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct DecryptGroupCallData: Codable, Equatable, Hashable {
     /// Group call identifier. The call must not be a video chat
     public let groupCallId: Int?
 
-    /// Identifier of the group call participant, which sent the data
+    /// Identifier of the group call participant who sent the data
     public let participantId: MessageSender?
 
 

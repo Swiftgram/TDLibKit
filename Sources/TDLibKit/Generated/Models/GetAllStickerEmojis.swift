@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+/// Returns unique emoji that correspond to stickers to be found by getStickers(sticker_type, query, 1000000, chat_id)
 public struct GetAllStickerEmojis: Codable, Equatable, Hashable {
 
     /// Chat identifier for which to find stickers
@@ -19,7 +19,7 @@ public struct GetAllStickerEmojis: Codable, Equatable, Hashable {
     /// Search query
     public let query: String?
 
-    /// Pass true if only main emoji for each found sticker must be included in the result
+    /// Pass true if only the main emoji for each found sticker must be included in the result
     public let returnOnlyMainEmoji: Bool?
 
     /// Type of the stickers to search for

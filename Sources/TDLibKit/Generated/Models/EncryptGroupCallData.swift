@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Encrypts group call data before sending them over network using tgcalls
+/// Encrypts group call data before sending it over the network using tgcalls
 public struct EncryptGroupCallData: Codable, Equatable, Hashable {
 
     /// Data to encrypt
@@ -22,7 +22,7 @@ public struct EncryptGroupCallData: Codable, Equatable, Hashable {
     /// Group call identifier. The call must not be a video chat
     public let groupCallId: Int?
 
-    /// Size of data prefix that must be kept unencrypted
+    /// Size of the data prefix that must be kept unencrypted
     public let unencryptedPrefixSize: Int?
 
 

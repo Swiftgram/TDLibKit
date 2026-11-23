@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -28,10 +28,10 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story can be edited
     public let canBeEdited: Bool
 
-    /// True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden
+    /// True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must also be forbidden
     public let canBeForwarded: Bool
 
-    /// True, if the story can be replied in the chat with the user who posted the story
+    /// True, if the story can be replied to in the chat with the user who posted the story
     public let canBeReplied: Bool
 
     /// True, if interactions with the story can be received through getStoryInteractions
@@ -58,7 +58,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the story was published
     public let date: Int
 
-    /// True, if users who viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+    /// True, if users who viewed the story can't be received because the story expired more than getOption("story_viewers_expiration_delay") seconds ago
     public let hasExpiredViewers: Bool
 
     /// Unique story identifier among stories posted by the given chat
@@ -79,7 +79,7 @@ public struct Story: Codable, Equatable, Hashable, Identifiable {
     /// True, if the story is saved in the profile of the chat that posted it and will be available there after expiration
     public let isPostedToChatPage: Bool
 
-    /// True, if the story is visible only for the current user
+    /// True, if the story is visible only to the current user
     public let isVisibleOnlyForSelf: Bool
 
     /// Music attached to the story; may be null if none

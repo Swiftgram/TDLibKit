@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
+/// Allows buying a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
 public struct GiftPremiumWithStars: Codable, Equatable, Hashable {
 
     /// Number of months the Telegram Premium subscription will be active for the user
     public let monthCount: Int?
 
-    /// The number of Telegram Stars to pay for subscription
+    /// The number of Telegram Stars to pay for a subscription
     public let starCount: Int64?
 
     /// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed

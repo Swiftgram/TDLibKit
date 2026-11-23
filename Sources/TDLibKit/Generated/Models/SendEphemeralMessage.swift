@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends an ephemeral message which will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
+/// Sends an ephemeral message that will be received only by one bot in a chat. Currently, only ephemeral bot commands and replies to bot ephemeral messages can be sent using the method. The message is persistent across application restarts only if the message database is used. Returns the sent message
 public struct SendEphemeralMessage: Codable, Equatable, Hashable {
 
-    /// Identifier of the callback query which triggered the message; for bots only
+    /// Identifier of the callback query that triggered the message; for bots only
     public let callbackQueryId: TdInt64?
 
     /// Target chat
     public let chatId: Int64?
 
-    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
+    /// The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, or inputMessageContact
     public let inputMessageContent: InputMessageContent?
 
     /// Pass true to get a fake message instead of actually sending it
@@ -37,10 +37,10 @@ public struct SendEphemeralMessage: Codable, Equatable, Hashable {
     /// Markup for replying to the message; pass null if none; for bots only
     public let replyMarkup: ReplyMarkup?
 
-    /// Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
+    /// Information about the message to be replied to; pass null if none. The message can be an incoming ephemeral message
     public let replyTo: InputMessageReplyTo?
 
-    /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// Non-persistent identifier, which will be returned in the messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     public let sendingId: Int?
 
     /// Topic in which the message will be sent; pass null if none

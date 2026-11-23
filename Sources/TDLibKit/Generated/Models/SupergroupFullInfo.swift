@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,19 +16,19 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Number of privileged users in the supergroup or channel; 0 if unknown
     public let administratorCount: Int
 
-    /// Number of users banned from chat; 0 if unknown
+    /// Number of users banned from the chat; 0 if unknown
     public let bannedCount: Int
 
     /// List of commands of bots in the group
     public let botCommands: [BotCommands]
 
-    /// Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
+    /// Information about the verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
     public let botVerification: BotVerification?
 
-    /// True, if paid messages can be enabled in the supergroup chat; for supergroup only
+    /// True, if paid messages can be enabled in the supergroup chat; for supergroups only
     public let canEnablePaidMessages: Bool
 
-    /// True, if paid reaction can be enabled in the channel chat; for channels only
+    /// True, if the paid reaction can be enabled in the channel chat; for channels only
     public let canEnablePaidReaction: Bool
 
     /// True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
@@ -64,7 +64,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Identifier of the community to which the corresponding chat was added
     public let communityId: Int64
 
-    /// Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
+    /// Identifier of the custom emoji sticker set that can be used in the supergroup without a Telegram Premium subscription; 0 if none
     public let customEmojiStickerSetId: TdInt64
 
     public let description: String
@@ -72,7 +72,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Chat identifier of a direct messages group for the channel, or a channel, for which the supergroup is the designated direct messages group; 0 if none
     public let directMessagesChatId: Int64
 
-    /// Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
+    /// Number of gifts saved to the profile for channels without can_post_messages administrator right; otherwise, the total number of received gifts
     public let giftCount: Int
 
     /// User identifier of the guard bot in the group; for chat administrators only
@@ -126,7 +126,7 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Delay between consecutive sent messages for non-administrator supergroup members, in seconds
     public let slowModeDelay: Int
 
-    /// Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
+    /// Time left before the next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when the value of this field changes, but both new and old values are non-zero
     public let slowModeDelayExpiresIn: Double
 
     /// Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
@@ -135,10 +135,10 @@ public struct SupergroupFullInfo: Codable, Equatable, Hashable {
     /// Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
     public let unrestrictBoostCount: Int
 
-    /// Identifier of the basic group from which supergroup was upgraded; 0 if none
+    /// Identifier of the basic group from which the supergroup was upgraded; 0 if none
     public let upgradedFromBasicGroupId: Int64
 
-    /// Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
+    /// Identifier of the last message in the basic group from which the supergroup was upgraded; 0 if none
     public let upgradedFromMaxMessageId: Int64
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct PollOption: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the option was added; 0 if the option existed from creation of the poll
     public let additionDate: Int
 
-    /// Identifier of the user or chat who added the option; may be null if the option existed from creation of the poll
+    /// Identifier of the user or chat that added the option; may be null if the option existed from creation of the poll
     public let author: MessageSender?
 
     /// Unique identifier of the option in the poll; may be empty if yet unassigned
@@ -28,7 +28,7 @@ public struct PollOption: Codable, Equatable, Hashable, Identifiable {
     /// True, if the option was chosen by the user
     public let isChosen: Bool
 
-    /// Option media; may be null if none. If present, currently, can be only of the types pollMediaAnimation, pollMediaLink, pollMediaLocation, pollMediaPhoto, pollMediaSticker, pollMediaVenue, or pollMediaVideo
+    /// Option media; may be null if none. If present, currently, can only be of the types pollMediaAnimation, pollMediaLink, pollMediaLocation, pollMediaPhoto, pollMediaSticker, pollMediaVenue, or pollMediaVideo
     public let media: PollMedia?
 
     /// Identifiers of recent voters for the option, if the poll is non-anonymous and poll results are available
@@ -40,7 +40,7 @@ public struct PollOption: Codable, Equatable, Hashable, Identifiable {
     /// The percentage of votes for this option; 0-100
     public let votePercentage: Int
 
-    /// Number of voters for this option, available only for closed or voted polls, or if the current user is the creator of the poll
+    /// Number of voters for this option; available only for closed or voted polls, or if the current user is the creator of the poll
     public let voterCount: Int
 
 

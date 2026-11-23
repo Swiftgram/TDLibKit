@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes reset state of an email address
 public indirect enum EmailAddressResetState: Codable, Equatable, Hashable {
 
-    /// Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
+    /// The email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
     case emailAddressResetStateAvailable(EmailAddressResetStateAvailable)
 
     /// Email address reset has already been requested. Call resetAuthenticationEmailAddress to check whether immediate reset is possible
@@ -51,7 +51,7 @@ public indirect enum EmailAddressResetState: Codable, Equatable, Hashable {
     }
 }
 
-/// Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
+/// The email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
 public struct EmailAddressResetStateAvailable: Codable, Equatable, Hashable {
 
     /// Time required to wait before the email address can be reset; 0 if the user is subscribed to Telegram Premium
@@ -66,7 +66,7 @@ public struct EmailAddressResetStateAvailable: Codable, Equatable, Hashable {
 /// Email address reset has already been requested. Call resetAuthenticationEmailAddress to check whether immediate reset is possible
 public struct EmailAddressResetStatePending: Codable, Equatable, Hashable {
 
-    /// Left time before the email address will be reset, in seconds. updateAuthorizationState is not sent when this field changes
+    /// Time left before the email address will be reset, in seconds. updateAuthorizationState is not sent when this field changes
     public let resetIn: Int
 
 

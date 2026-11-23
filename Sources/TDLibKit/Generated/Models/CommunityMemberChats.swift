@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about chats in a community, which are joined or owned by a member of the community
+/// Contains information about chats in a community that are joined or owned by a member of the community
 public struct CommunityMemberChats: Codable, Equatable, Hashable {
 
     /// Identifiers of the non-owned chats joined by the member

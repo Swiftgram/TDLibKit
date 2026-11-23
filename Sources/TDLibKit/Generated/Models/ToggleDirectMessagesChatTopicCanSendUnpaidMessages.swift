@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Allows to send unpaid messages to the given topic of the channel direct messages chat administered by the current user
+/// Allows sending unpaid messages to the given topic of the channel direct messages chat administered by the current user
 public struct ToggleDirectMessagesChatTopicCanSendUnpaidMessages: Codable, Equatable, Hashable {
 
     /// Pass true to allow unpaid messages; pass false to disallow unpaid messages

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns information about messages. If a message is not found, returns null on the corresponding position of the result
+/// Returns information about messages. If a message is not found, returns null at the corresponding position of the result
 public struct GetMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat the messages belong to

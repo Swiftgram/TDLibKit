@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct AddPendingPaidMessageReaction: Codable, Equatable, Hashable {
     /// Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
     public let starCount: Int64?
 
-    /// Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble
+    /// Type of the paid reaction; pass null if the user didn't choose the reaction type explicitly, for example, if the reaction is set from the message bubble
     public let type: PaidReactionType?
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains privacy settings for chats with non-contacts
 public struct NewChatPrivacySettings: Codable, Equatable, Hashable {
 
-    /// True, if non-contacts users are able to write first to the current user. Telegram Premium subscribers are able to write first regardless of this setting
+    /// True, if non-contact users are able to write first to the current user. Telegram Premium subscribers are able to write first regardless of this setting
     public let allowNewChatsFromUnknownUsers: Bool
 
-    /// Number of Telegram Stars that must be paid for every incoming private message by non-contacts; 0-getOption("paid_message_star_count_max"). If positive, then allow_new_chats_from_unknown_users must be true. The current user will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending. Can be positive, only if getOption("can_enable_paid_messages") is true
+    /// Number of Telegram Stars that must be paid for every incoming private message by non-contacts; 0-getOption("paid_message_star_count_max"). If positive, then allow_new_chats_from_unknown_users must be true. The current user will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending. Can be positive only if getOption("can_enable_paid_messages") is true
     public let incomingPaidMessageStarCount: Int64
 
 

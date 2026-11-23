@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Describes a checklist
 public struct Checklist: Codable, Equatable, Hashable {
 
-    /// True, if the current user can add tasks to the list if they have Telegram Premium subscription
+    /// True, if the current user can add tasks to the list if they have a Telegram Premium subscription
     public let canAddTasks: Bool
 
-    /// True, if the current user can mark tasks as done or not done if they have Telegram Premium subscription
+    /// True, if the current user can mark tasks as done or not done if they have a Telegram Premium subscription
     public let canMarkTasksAsDone: Bool
 
-    /// True, if users other than creator of the list can add tasks to the list
+    /// True, if users other than the creator of the list can add tasks to the list
     public let othersCanAddTasks: Bool
 
-    /// True, if users other than creator of the list can mark tasks as done or not done. If true, then the checklist is called "group checklist"
+    /// True, if users other than the creator of the list can mark tasks as done or not done. If true, then the checklist is called "group checklist"
     public let othersCanMarkTasksAsDone: Bool
 
     /// List of tasks in the checklist

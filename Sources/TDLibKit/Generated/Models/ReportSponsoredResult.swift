@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum ReportSponsoredResult: Codable, Equatable, Hashable {
     /// The sponsored message is too old or not found
     case reportSponsoredResultFailed
 
-    /// The user must choose an option to report the message and repeat request with the chosen option
+    /// The user must choose an option to report the message and repeat the request with the chosen option
     case reportSponsoredResultOptionRequired(ReportSponsoredResultOptionRequired)
 
     /// Sponsored messages were hidden for the user in all chats
@@ -73,7 +73,7 @@ public indirect enum ReportSponsoredResult: Codable, Equatable, Hashable {
     }
 }
 
-/// The user must choose an option to report the message and repeat request with the chosen option
+/// The user must choose an option to report the message and repeat the request with the chosen option
 public struct ReportSponsoredResultOptionRequired: Codable, Equatable, Hashable {
 
     /// List of available options

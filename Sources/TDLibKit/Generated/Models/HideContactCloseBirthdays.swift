@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Hides the list of contacts that have close birthdays for 24 hours
+/// Hides the list of contacts who have close birthdays for 24 hours
 public struct HideContactCloseBirthdays: Codable, Equatable, Hashable {
 
 

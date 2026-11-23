@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Describes result of sending a resold gift
 public indirect enum GiftResaleResult: Codable, Equatable, Hashable {
 
-    /// Operation was successfully completed
+    /// The operation was successfully completed
     case giftResaleResultOk(GiftResaleResultOk)
 
-    /// Operation has failed, because price has increased. If the price has decreased, then the buying will succeed anyway
+    /// The operation has failed because the price has increased. If the price has decreased, then the buying will succeed anyway
     case giftResaleResultPriceIncreased(GiftResaleResultPriceIncreased)
 
 
@@ -51,7 +51,7 @@ public indirect enum GiftResaleResult: Codable, Equatable, Hashable {
     }
 }
 
-/// Operation was successfully completed
+/// The operation was successfully completed
 public struct GiftResaleResultOk: Codable, Equatable, Hashable {
 
     /// Unique identifier of the received gift; only for the gifts sent to the current user
@@ -63,7 +63,7 @@ public struct GiftResaleResultOk: Codable, Equatable, Hashable {
     }
 }
 
-/// Operation has failed, because price has increased. If the price has decreased, then the buying will succeed anyway
+/// The operation has failed because the price has increased. If the price has decreased, then the buying will succeed anyway
 public struct GiftResaleResultPriceIncreased: Codable, Equatable, Hashable {
 
     /// New price for the gift

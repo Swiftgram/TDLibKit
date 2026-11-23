@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Upgrades a regular gift
 public struct UpgradeGift: Codable, Equatable, Hashable {
 
-    /// Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// Unique identifier of the business connection on behalf of which to send the request; for bots only
     public let businessConnectionId: String?
 
-    /// Pass true to keep the original gift text, sender and receiver in the upgraded gift
+    /// Pass true to keep the original gift text, sender, and receiver in the upgraded gift
     public let keepOriginalDetails: Bool?
 
     /// Identifier of the gift
     public let receivedGiftId: String?
 
-    /// The Telegram Star amount required to pay for the upgrade. If the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    /// The Telegram Star amount that must be paid for the upgrade. If the gift has prepaid_upgrade_star_count > 0, then pass 0; otherwise, pass gift.upgrade_star_count
     public let starCount: Int64?
 
 

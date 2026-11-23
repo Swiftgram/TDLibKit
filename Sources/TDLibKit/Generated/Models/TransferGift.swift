@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Sends an upgraded gift to another user or channel chat
 public struct TransferGift: Codable, Equatable, Hashable {
 
-    /// Unique identifier of business connection on behalf of which to send the request; for bots only
+    /// Unique identifier of the business connection on behalf of which to send the request; for bots only
     public let businessConnectionId: String?
 
     /// Identifier of the user or the channel chat that will receive the gift
@@ -22,7 +22,7 @@ public struct TransferGift: Codable, Equatable, Hashable {
     /// Identifier of the gift
     public let receivedGiftId: String?
 
-    /// The Telegram Star amount required to pay for the transfer
+    /// The Telegram Star amount that must be paid for the transfer
     public let starCount: Int64?
 
 

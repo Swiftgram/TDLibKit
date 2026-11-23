@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
+/// Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such a message doesn't exist
 public struct GetChatMessageByDate: Codable, Equatable, Hashable {
 
     /// Chat identifier

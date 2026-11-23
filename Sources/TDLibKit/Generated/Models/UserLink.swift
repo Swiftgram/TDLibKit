@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains an HTTPS URL, which can be used to get information about a user
+/// Contains an HTTPS URL that can be used to get information about a user
 public struct UserLink: Codable, Equatable, Hashable {
 
     /// True, if a permanent link to the current user can be received; false if all links to the current user expire
     public let canGetPermanentLink: Bool
 
-    /// Left time for which the link is valid, in seconds; 0 if the link is permanent
+    /// Remaining time for which the link is valid, in seconds; 0 if the link is permanent
     public let expiresIn: Int
 
     /// The URL

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes an option for buying Telegram Premium to a user
+/// Describes an option for buying Telegram Premium for a user
 public struct PremiumPaymentOption: Codable, Equatable, Hashable {
 
     /// The amount to pay, in the smallest units of the currency
@@ -25,7 +25,7 @@ public struct PremiumPaymentOption: Codable, Equatable, Hashable {
     /// Number of months the Telegram Premium subscription will be active. Use getPremiumInfoSticker to get the sticker to be used as representation of the Telegram Premium subscription
     public let monthCount: Int
 
-    /// An internal link to be opened for buying Telegram Premium to the user if store payment isn't possible; may be null if direct payment isn't available
+    /// An internal link to be opened for buying Telegram Premium for the user if store payment isn't possible; may be null if direct payment isn't available
     public let paymentLink: InternalLinkType?
 
     /// Identifier of the store product associated with the option

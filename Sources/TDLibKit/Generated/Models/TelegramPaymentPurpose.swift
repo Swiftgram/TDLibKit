@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -141,7 +141,7 @@ public struct TelegramPaymentPurposePremiumGiftCodes: Codable, Equatable, Hashab
     /// Paid amount, in the smallest units of the currency
     public let amount: Int64
 
-    /// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
+    /// Identifier of the supergroup or channel chat that will be automatically boosted by the users for the duration of the Premium subscription and that is administered by the user
     public let boostedChatId: Int64
 
     /// ISO 4217 currency code of the payment currency
@@ -249,7 +249,7 @@ public struct TelegramPaymentPurposeGiftedStars: Codable, Equatable, Hashable {
     /// Number of bought Telegram Stars
     public let starCount: Int64
 
-    /// Identifier of the user to which Telegram Stars are gifted
+    /// Identifier of the user to whom Telegram Stars are gifted
     public let userId: Int64
 
 

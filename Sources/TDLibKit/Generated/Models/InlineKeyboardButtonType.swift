@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
     /// A button that opens a specified URL
     case inlineKeyboardButtonTypeUrl(InlineKeyboardButtonTypeUrl)
 
-    /// A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo; not supported in ephemeral messages
+    /// A button that opens a specified URL and automatically authorizes the current user by calling getLoginUrlInfo; not supported in ephemeral messages
     case inlineKeyboardButtonTypeLoginUrl(InlineKeyboardButtonTypeLoginUrl)
 
     /// A button that opens a Web App by calling openWebApp
@@ -40,7 +40,7 @@ public indirect enum InlineKeyboardButtonType: Codable, Equatable, Hashable {
     /// A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
     case inlineKeyboardButtonTypeUser(InlineKeyboardButtonTypeUser)
 
-    /// A button that copies specified text to clipboard
+    /// A button that copies the specified text to the clipboard
     case inlineKeyboardButtonTypeCopyText(InlineKeyboardButtonTypeCopyText)
 
     /// A disabled button
@@ -147,7 +147,7 @@ public struct InlineKeyboardButtonTypeUrl: Codable, Equatable, Hashable {
     }
 }
 
-/// A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo; not supported in ephemeral messages
+/// A button that opens a specified URL and automatically authorizes the current user by calling getLoginUrlInfo; not supported in ephemeral messages
 public struct InlineKeyboardButtonTypeLoginUrl: Codable, Equatable, Hashable, Identifiable {
 
     /// If non-empty, new text of the button in forwarded messages
@@ -238,10 +238,10 @@ public struct InlineKeyboardButtonTypeUser: Codable, Equatable, Hashable {
     }
 }
 
-/// A button that copies specified text to clipboard
+/// A button that copies the specified text to the clipboard
 public struct InlineKeyboardButtonTypeCopyText: Codable, Equatable, Hashable {
 
-    /// The text to copy to clipboard
+    /// The text to copy to the clipboard
     public let text: String
 
 

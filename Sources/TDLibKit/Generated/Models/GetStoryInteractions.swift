@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetStoryInteractions: Codable, Equatable, Hashable {
     /// The maximum number of story interactions to return
     public let limit: Int?
 
-    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
     public let offset: String?
 
     /// Pass true to get only interactions by contacts; pass false to get all relevant interactions
@@ -25,10 +25,10 @@ public struct GetStoryInteractions: Codable, Equatable, Hashable {
     /// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
     public let preferForwards: Bool?
 
-    /// Pass true to get interactions with reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
+    /// Pass true to get interactions with a reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
     public let preferWithReaction: Bool?
 
-    /// Query to search for in names, usernames and titles; may be empty to get all relevant interactions
+    /// Query to search for in names, usernames, and titles; may be empty to get all relevant interactions
     public let query: String?
 
     /// Story identifier

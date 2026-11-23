@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Contains information about TON Grams earned by the current user
 public struct GramRevenueStatus: Codable, Equatable, Hashable {
 
-    /// The Gram amount that is available for withdrawal; in the smallest units of the cryptocurrency
+    /// The amount that is available for withdrawal, in the smallest units of TON Grams
     public let availableAmount: TdInt64
 
-    /// The Gram amount that isn't withdrawn yet; in the smallest units of the cryptocurrency
+    /// The amount that isn't withdrawn yet, in the smallest units of TON Grams
     public let balanceAmount: TdInt64
 
-    /// Total Gram amount earned; in the smallest units of the cryptocurrency
+    /// Total amount earned, in the smallest units of TON Grams
     public let totalAmount: TdInt64
 
     /// True, if Grams can be withdrawn

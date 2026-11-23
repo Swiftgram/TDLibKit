@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -66,7 +66,7 @@ public struct SuggestedPostPriceStar: Codable, Equatable, Hashable {
 /// Describes price of a suggested post in TON Grams
 public struct SuggestedPostPriceGram: Codable, Equatable, Hashable {
 
-    /// The amount of 1/100 of Gram expected to be paid for the post; getOption("suggested_post_gram_cent_count_min")-getOption("suggested_post_gram_cent_count_max")
+    /// The amount of 1/100 of a Gram expected to be paid for the post; getOption("suggested_post_gram_cent_count_min")-getOption("suggested_post_gram_cent_count_max")
     public let gramCentCount: Int64
 
 

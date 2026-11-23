@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// For channel posts and anonymous group messages, optional author signature
     public let authorSignature: String
 
-    /// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
+    /// Time left before the message will be automatically deleted by the message_auto_delete_time setting of the chat, in seconds; 0 if never
     public let autoDeleteIn: Double
 
-    /// True, if content of the message can be saved locally
+    /// True, if the content of the message can be saved locally
     public let canBeSaved: Bool
 
     /// Chat identifier
@@ -52,16 +52,16 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Unique identifier of the ephemeral message if the message is ephemeral; for bots only
     public let ephemeralMessageId: Int
 
-    /// Information about fact-check added to the message; may be null if none
+    /// Information about the fact-check added to the message; may be null if none
     public let factCheck: FactCheck?
 
     /// Information about the initial message sender; may be null if none or unknown
     public let forwardInfo: MessageForwardInfo?
 
-    /// The identifier of the user or chat which used a guest bot to send the message; may be null if none
+    /// The identifier of the user or chat that used a guest bot to send the message; may be null if none
     public let guestBotCallerId: MessageSender?
 
-    /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
+    /// True, if media timestamp entities refer to media in this message as opposed to media in the replied-to message
     public let hasTimestampedMedia: Bool
 
     /// Message identifier; unique for the chat to which the message belongs
@@ -73,19 +73,19 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Information about interactions with the message; may be null if none
     public let interactionInfo: MessageInteractionInfo?
 
-    /// True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
+    /// True, if the message is a channel post. All messages to channels are channel posts; all other messages are not channel posts
     public let isChannelPost: Bool
 
-    /// True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message
+    /// True, if the message was sent because of a scheduled action by the message sender, for example, as an away or greeting service message
     public let isFromOffline: Bool
 
     /// True, if the message is outgoing
     public let isOutgoing: Bool
 
-    /// True, if the message is a suggested channel post which was paid in TON Grams; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    /// True, if the message is a suggested channel post that was paid for in TON Grams; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     public let isPaidGramSuggestedPost: Bool
 
-    /// True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    /// True, if the message is a suggested channel post that was paid for in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     public let isPaidStarSuggestedPost: Bool
 
     /// True, if the message is pinned
@@ -97,7 +97,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// The number of Telegram Stars the sender paid to send the message
     public let paidMessageStarCount: Int64
 
-    /// Identifier of the user or the chat which received the ephemeral message; may be null. Always null for non-ephemeral messages
+    /// Identifier of the user or the chat that received the ephemeral message; may be null. Always null for non-ephemeral messages
     public let receiverId: MessageSender?
 
     /// Reply markup for the message; may be null if none
@@ -136,7 +136,7 @@ public struct Message: Codable, Equatable, Hashable, Identifiable {
     /// Information about the suggested post; may be null if the message isn't a suggested post
     public let suggestedPostInfo: SuggestedPostInfo?
 
-    /// IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message
+    /// IETF language tag of the message language in which it can be summarized; empty if a summary isn't available for the message
     public let summaryLanguageCode: String
 
     /// Identifier of the topic within the chat to which the message belongs; may be null if none; may change when the chat is converted to a forum or back

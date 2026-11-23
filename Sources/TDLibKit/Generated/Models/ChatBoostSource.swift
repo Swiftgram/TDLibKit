@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum ChatBoostSource: Codable, Equatable, Hashable {
     /// The chat created a giveaway
     case chatBoostSourceGiveaway(ChatBoostSourceGiveaway)
 
-    /// A user with Telegram Premium subscription or gifted Telegram Premium boosted the chat
+    /// A user with a Telegram Premium subscription or gifted Telegram Premium boosted the chat
     case chatBoostSourcePremium(ChatBoostSourcePremium)
 
 
@@ -67,7 +67,7 @@ public struct ChatBoostSourceGiftCode: Codable, Equatable, Hashable {
     /// The created Telegram Premium gift code, which is known only if this is a gift code for the current user, or it has already been claimed
     public let giftCode: String
 
-    /// Identifier of a user, for which the gift code was created
+    /// Identifier of a user for whom the gift code was created
     public let userId: Int64
 
 
@@ -89,7 +89,7 @@ public struct ChatBoostSourceGiveaway: Codable, Equatable, Hashable {
     /// Identifier of the corresponding giveaway message; can be an identifier of a deleted message
     public let giveawayMessageId: Int64
 
-    /// True, if the winner for the corresponding giveaway prize wasn't chosen, because there were not enough participants
+    /// True, if the winner for the corresponding giveaway prize wasn't chosen because there were not enough participants
     public let isUnclaimed: Bool
 
     /// Number of Telegram Stars distributed among winners of the giveaway
@@ -114,7 +114,7 @@ public struct ChatBoostSourceGiveaway: Codable, Equatable, Hashable {
     }
 }
 
-/// A user with Telegram Premium subscription or gifted Telegram Premium boosted the chat
+/// A user with a Telegram Premium subscription or gifted Telegram Premium boosted the chat
 public struct ChatBoostSourcePremium: Codable, Equatable, Hashable {
 
     /// Identifier of the user

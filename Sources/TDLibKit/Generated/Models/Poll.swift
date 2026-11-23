@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,13 +22,13 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
     /// True, if the current user can get voters in the poll using getPollVoters
     public let canGetVoters: Bool
 
-    /// True, if the current user can see results of the poll
+    /// True, if the current user can see the results of the poll
     public let canSeeResults: Bool
 
     /// Point in time (Unix timestamp) when the poll will automatically be closed
     public let closeDate: Int
 
-    /// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote. If empty, then all users can participate in the poll
+    /// The list of two-letter ISO 3166-1 alpha-2 codes of countries whose users will be able to vote. If empty, then all users can participate in the poll
     public let countryCodes: [String]
 
     /// Unique poll identifier
@@ -40,13 +40,13 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
     /// True, if the poll is closed
     public let isClosed: Bool
 
-    /// True, if only the users that are members of the chat for more than a day will be able to vote
+    /// True, if only the users who have been members of the chat for more than a day will be able to vote
     public let membersOnly: Bool
 
     /// Amount of time the poll will be active after creation, in seconds
     public let openPeriod: Int
 
-    /// The list of 0-based poll option identifiers in which the options of the poll must be shown; empty if the order of options must not be changed
+    /// The list of 0-based poll option identifiers in the order in which the options of the poll must be shown; empty if the order of options must not be changed
     public let optionOrder: [Int]
 
     /// List of poll answer options
@@ -58,13 +58,13 @@ public struct Poll: Codable, Equatable, Hashable, Identifiable {
     /// Identifiers of recent voters, if the poll is non-anonymous and poll results are available
     public let recentVoterIds: [MessageSender]
 
-    /// Total number of voters, participating in the poll
+    /// Total number of voters participating in the poll
     public let totalVoterCount: Int
 
     /// Type of the poll
     public let type: PollType
 
-    /// The reason describing, why the current user can't vote in the poll; may be null if the user can vote in the poll
+    /// The reason describing why the current user can't vote in the poll; may be null if the user can vote in the poll
     public let voteRestrictionReason: PollVoteRestrictionReason?
 
 

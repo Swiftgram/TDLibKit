@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes content and caption of a story. Can be called only if story.can_be_edited == true
+/// Changes the content and caption of a story. Can be called only if story.can_be_edited == true
 public struct EditStory: Codable, Equatable, Hashable {
 
-    /// New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
+    /// New clickable rectangular areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if the story content isn't changed
     public let areas: InputStoryAreas?
 
     /// New story caption; pass null to keep the current caption

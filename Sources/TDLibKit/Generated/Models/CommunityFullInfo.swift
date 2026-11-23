@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct CommunityFullInfo: Codable, Equatable, Hashable {
     /// Chats belonging to the community
     public let chats: [CommunityChat]
 
-    /// Notification settings for the community. Default notification settings are chosen based on the type of a chat in the community
+    /// Notification settings for the community. Default notification settings are chosen based on the type of chat in the community
     public let notificationSettings: ChatNotificationSettings
 
     /// Photo of the community

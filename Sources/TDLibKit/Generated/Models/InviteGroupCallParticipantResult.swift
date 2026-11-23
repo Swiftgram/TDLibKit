@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum InviteGroupCallParticipantResult: Codable, Equatable, Hasha
     /// The user can't be invited because they were banned by the owner of the call and can be invited back only by the owner of the group call
     case inviteGroupCallParticipantResultUserWasBanned
 
-    /// The user was invited and a service message of the type messageGroupCall was sent which can be used in declineGroupCallInvitation to cancel the invitation
+    /// The user was invited and a service message of the type messageGroupCall was sent; the message can be used in declineGroupCallInvitation to cancel the invitation
     case inviteGroupCallParticipantResultSuccess(InviteGroupCallParticipantResultSuccess)
 
 
@@ -65,7 +65,7 @@ public indirect enum InviteGroupCallParticipantResult: Codable, Equatable, Hasha
     }
 }
 
-/// The user was invited and a service message of the type messageGroupCall was sent which can be used in declineGroupCallInvitation to cancel the invitation
+/// The user was invited and a service message of the type messageGroupCall was sent; the message can be used in declineGroupCallInvitation to cancel the invitation
 public struct InviteGroupCallParticipantResultSuccess: Codable, Equatable, Hashable {
 
     /// Identifier of the chat with the invitation message

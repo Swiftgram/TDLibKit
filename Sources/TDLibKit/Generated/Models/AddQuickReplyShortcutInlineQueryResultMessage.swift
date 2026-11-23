@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+/// Adds a message to a quick reply shortcut via an inline bot. If the shortcut doesn't exist and there are fewer than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
 public struct AddQuickReplyShortcutInlineQueryResultMessage: Codable, Equatable, Hashable {
 
-    /// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
+    /// Pass true to hide the bot via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
     public let hideViaBot: Bool?
 
     /// Identifier of the inline query
     public let queryId: TdInt64?
 
-    /// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// Identifier of a quick reply message in the same shortcut to be replied to; pass 0 if none
     public let replyToMessageId: Int64?
 
     /// Identifier of the inline query result

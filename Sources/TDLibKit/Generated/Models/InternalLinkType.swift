@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -14,25 +14,28 @@ import Foundation
 /// This Swift enum is recursive.
 public indirect enum InternalLinkType: Codable, Equatable, Hashable {
 
-    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+    /// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process the given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to the attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to the attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their terms of service and confirm adding the bot to the side and attachment menu. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to the attachment menu and can be used in the chat, then use openWebApp with the given URL
     case internalLinkTypeAttachmentMenuBot(InternalLinkTypeAttachmentMenuBot)
 
     /// The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
     case internalLinkTypeAuthenticationCode(InternalLinkTypeAuthenticationCode)
 
-    /// The link is a link to a background. Call searchBackground with the given background name to process the link. If background is found and the user wants to apply it, then call setDefaultBackground
+    /// The link is a link to a background. Call searchBackground with the given background name to process the link. If the background is found and the user wants to apply it, then call setDefaultBackground
     case internalLinkTypeBackground(InternalLinkTypeBackground)
 
-    /// The link is a link to a Telegram bot, which is expected to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+    /// The link is a link to a Telegram bot, which is expected to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username, check that the user is a bot, and ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat, and if the bot is already an administrator, check that the current user can edit its administrator rights and combine the received rights with the requested administrator rights. Then, show a confirmation box to the user and call setChatMemberStatus with the chosen chat and confirmed rights
     case internalLinkTypeBotAddToChannel(InternalLinkTypeBotAddToChannel)
 
-    /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
+    /// The link is a link to invite users to private chats with a bot. Call searchPublicChat with the given bot username. If the chat is found, the chat is a chat with a bot, and the bot has can_be_edited == true, then ask the current user to select up to 10 users to invite and call inviteUsersToBot. Otherwise, show an error message
+    case internalLinkTypeBotInvite(InternalLinkTypeBotInvite)
+
+    /// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show the START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
     case internalLinkTypeBotStart(InternalLinkTypeBotStart)
 
-    /// The link is a link to a Telegram bot, which is expected to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat
+    /// The link is a link to a Telegram bot, which is expected to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat, and if the bot is already an administrator, check that the current user can edit its administrator rights, combine the received rights with the requested administrator rights, show a confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before a call to setChatMemberStatus, it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send the /start message with the bot's username added to the chat
     case internalLinkTypeBotStartInGroup(InternalLinkTypeBotStartInGroup)
 
-    /// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
+    /// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open the received private chat and replace the chat draft with the provided text
     case internalLinkTypeBusinessChat(InternalLinkTypeBusinessChat)
 
     /// The link is a link to the Call tab or page
@@ -50,16 +53,16 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     case internalLinkTypeChatInvite(InternalLinkTypeChatInvite)
 
-    /// The link is a link that allows to select some chats
+    /// The link is a link that allows selecting some chats
     case internalLinkTypeChatSelection
 
     /// The link is a link to the Contacts tab or page
     case internalLinkTypeContactsPage(InternalLinkTypeContactsPage)
 
-    /// The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
+    /// The link is a link to a channel direct messages chat by the username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is a channel, open the direct messages chat of the channel
     case internalLinkTypeDirectMessagesChat(InternalLinkTypeDirectMessagesChat)
 
-    /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
+    /// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game to, and then call sendMessage with inputMessageGame
     case internalLinkTypeGame(InternalLinkTypeGame)
 
     /// The link is a link to a gift auction. Call getGiftAuctionState with the given auction identifier to process the link
@@ -71,7 +74,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen. Call joinGroupCall with the given invite_link to join the call
     case internalLinkTypeGroupCall(InternalLinkTypeGroupCall)
 
-    /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
+    /// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it; otherwise, open the fallback URL in an external browser
     case internalLinkTypeInstantView(InternalLinkTypeInstantView)
 
     /// The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
@@ -83,13 +86,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat, then find a live story among active stories of the chat, and then joinLiveStory to join the live story
     case internalLinkTypeLiveStory(InternalLinkTypeLiveStory)
 
-    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
+    /// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to the attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to the side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their terms of service and confirm adding the bot to the side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
     case internalLinkTypeMainWebApp(InternalLinkTypeMainWebApp)
 
-    /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
+    /// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open the received forum topic or chat and show the message there
     case internalLinkTypeMessage(InternalLinkTypeMessage)
 
-    /// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
+    /// The link contains a message draft text. A share screen needs to be shown to the user; then the chosen chat must be opened and the text must be added to the input field
     case internalLinkTypeMessageDraft(InternalLinkTypeMessageDraft)
 
     /// The link is a link to the My Profile application page
@@ -107,13 +110,13 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to open the story posting interface
     case internalLinkTypeNewStory(InternalLinkTypeNewStory)
 
-    /// The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest
+    /// The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user a confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest
     case internalLinkTypeOauth(InternalLinkTypeOauth)
 
-    /// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
+    /// The link contains a request for Telegram Passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     case internalLinkTypePassportDataRequest(InternalLinkTypePassportDataRequest)
 
-    /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
+    /// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check the code entered by the user, or resendPhoneNumberCode to resend it
     case internalLinkTypePhoneNumberConfirmation(InternalLinkTypePhoneNumberConfirmation)
 
     /// The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
@@ -128,16 +131,16 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     case internalLinkTypeProxy(InternalLinkTypeProxy)
 
-    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
+    /// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If the draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
     case internalLinkTypePublicChat(InternalLinkTypePublicChat)
 
-    /// The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
+    /// The link can be used to log in the current user on another device, but it must be scanned from a QR code using the in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     case internalLinkTypeQrCodeAuthentication
 
-    /// The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
+    /// The link is a link to create a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot, and the bot has can_manage_bots == true, then show a bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If the user agrees, call createBot with via_link == true to create the bot
     case internalLinkTypeRequestManagedBot(InternalLinkTypeRequestManagedBot)
 
-    /// The link forces restore of App Store purchases when opened. For official iOS application only
+    /// The link forces a restore of App Store purchases when opened. For the official iOS application only
     case internalLinkTypeRestorePurchases
 
     /// The link is a link to the Saved Messages chat. Call createPrivateChat with getOption("my_id") and open the chat
@@ -179,7 +182,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
     case internalLinkTypeUpgradedGift(InternalLinkTypeUpgradedGift)
 
-    /// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
+    /// The link is a link to a user by their phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the user's profile information screen or the chat itself. If the draft text isn't empty, then put the draft text in the input field
     case internalLinkTypeUserPhoneNumber(InternalLinkTypeUserPhoneNumber)
 
     /// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
@@ -188,7 +191,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     /// The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the link
     case internalLinkTypeVideoChat(InternalLinkTypeVideoChat)
 
-    /// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+    /// The link is a link to a Web App. Call searchPublicChat with the given bot username and check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process the received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to the attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their terms of service. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     case internalLinkTypeWebApp(InternalLinkTypeWebApp)
 
 
@@ -197,6 +200,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case internalLinkTypeAuthenticationCode
         case internalLinkTypeBackground
         case internalLinkTypeBotAddToChannel
+        case internalLinkTypeBotInvite
         case internalLinkTypeBotStart
         case internalLinkTypeBotStartInGroup
         case internalLinkTypeBusinessChat
@@ -270,6 +274,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBotAddToChannel:
             let value = try InternalLinkTypeBotAddToChannel(from: decoder)
             self = .internalLinkTypeBotAddToChannel(value)
+        case .internalLinkTypeBotInvite:
+            let value = try InternalLinkTypeBotInvite(from: decoder)
+            self = .internalLinkTypeBotInvite(value)
         case .internalLinkTypeBotStart:
             let value = try InternalLinkTypeBotStart(from: decoder)
             self = .internalLinkTypeBotStart(value)
@@ -445,6 +452,9 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
         case .internalLinkTypeBotAddToChannel(let value):
             try container.encode(Kind.internalLinkTypeBotAddToChannel, forKey: .type)
             try value.encode(to: encoder)
+        case .internalLinkTypeBotInvite(let value):
+            try container.encode(Kind.internalLinkTypeBotInvite, forKey: .type)
+            try value.encode(to: encoder)
         case .internalLinkTypeBotStart(let value):
             try container.encode(Kind.internalLinkTypeBotStart, forKey: .type)
             try value.encode(to: encoder)
@@ -606,7 +616,7 @@ public indirect enum InternalLinkType: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+/// The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process the given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to the attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to the attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their terms of service and confirm adding the bot to the side and attachment menu. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to the attachment menu and can be used in the chat, then use openWebApp with the given URL
 public struct InternalLinkTypeAttachmentMenuBot: Codable, Equatable, Hashable {
 
     /// Username of the bot
@@ -642,7 +652,7 @@ public struct InternalLinkTypeAuthenticationCode: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a background. Call searchBackground with the given background name to process the link. If background is found and the user wants to apply it, then call setDefaultBackground
+/// The link is a link to a background. Call searchBackground with the given background name to process the link. If the background is found and the user wants to apply it, then call setDefaultBackground
 public struct InternalLinkTypeBackground: Codable, Equatable, Hashable {
 
     /// Name of the background
@@ -654,7 +664,7 @@ public struct InternalLinkTypeBackground: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Telegram bot, which is expected to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+/// The link is a link to a Telegram bot, which is expected to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username, check that the user is a bot, and ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat, and if the bot is already an administrator, check that the current user can edit its administrator rights and combine the received rights with the requested administrator rights. Then, show a confirmation box to the user and call setChatMemberStatus with the chosen chat and confirmed rights
 public struct InternalLinkTypeBotAddToChannel: Codable, Equatable, Hashable {
 
     /// Expected administrator rights for the bot
@@ -673,7 +683,19 @@ public struct InternalLinkTypeBotAddToChannel: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
+/// The link is a link to invite users to private chats with a bot. Call searchPublicChat with the given bot username. If the chat is found, the chat is a chat with a bot, and the bot has can_be_edited == true, then ask the current user to select up to 10 users to invite and call inviteUsersToBot. Otherwise, show an error message
+public struct InternalLinkTypeBotInvite: Codable, Equatable, Hashable {
+
+    /// Username of the bot
+    public let botUsername: String
+
+
+    public init(botUsername: String) {
+        self.botUsername = botUsername
+    }
+}
+
+/// The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show the START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
 public struct InternalLinkTypeBotStart: Codable, Equatable, Hashable {
 
     /// True, if sendBotStartMessage must be called automatically without showing the START button
@@ -697,7 +719,7 @@ public struct InternalLinkTypeBotStart: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Telegram bot, which is expected to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat
+/// The link is a link to a Telegram bot, which is expected to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat, and if the bot is already an administrator, check that the current user can edit its administrator rights, combine the received rights with the requested administrator rights, show a confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before a call to setChatMemberStatus, it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send the /start message with the bot's username added to the chat
 public struct InternalLinkTypeBotStartInGroup: Codable, Equatable, Hashable {
 
     /// Expected administrator rights for the bot; may be null
@@ -721,7 +743,7 @@ public struct InternalLinkTypeBotStartInGroup: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
+/// The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open the received private chat and replace the chat draft with the provided text
 public struct InternalLinkTypeBusinessChat: Codable, Equatable, Hashable {
 
     /// Name of the link
@@ -812,7 +834,7 @@ public struct InternalLinkTypeContactsPage: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
+/// The link is a link to a channel direct messages chat by the username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is a channel, open the direct messages chat of the channel
 public struct InternalLinkTypeDirectMessagesChat: Codable, Equatable, Hashable {
 
     /// Username of the channel
@@ -824,7 +846,7 @@ public struct InternalLinkTypeDirectMessagesChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
+/// The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game to, and then call sendMessage with inputMessageGame
 public struct InternalLinkTypeGame: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the game
@@ -886,10 +908,10 @@ public struct InternalLinkTypeGroupCall: Codable, Equatable, Hashable {
     }
 }
 
-/// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
+/// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it; otherwise, open the fallback URL in an external browser
 public struct InternalLinkTypeInstantView: Codable, Equatable, Hashable {
 
-    /// An URL to open if getWebPageInstantView fails
+    /// A URL to open if getWebPageInstantView fails
     public let fallbackUrl: String
 
     /// URL to be passed to getWebPageInstantView
@@ -941,7 +963,7 @@ public struct InternalLinkTypeLiveStory: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
+/// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to the attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to the side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their terms of service and confirm adding the bot to the side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
 public struct InternalLinkTypeMainWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot
@@ -965,7 +987,7 @@ public struct InternalLinkTypeMainWebApp: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
+/// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open the received forum topic or chat and show the message there
 public struct InternalLinkTypeMessage: Codable, Equatable, Hashable {
 
     /// URL to be passed to getMessageLinkInfo
@@ -977,7 +999,7 @@ public struct InternalLinkTypeMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
+/// The link contains a message draft text. A share screen needs to be shown to the user; then the chosen chat must be opened and the text must be added to the input field
 public struct InternalLinkTypeMessageDraft: Codable, Equatable, Hashable {
 
     /// True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
@@ -1020,7 +1042,7 @@ public struct InternalLinkTypeNewStory: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest
+/// The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user a confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest
 public struct InternalLinkTypeOauth: Codable, Equatable, Hashable {
 
     /// URL to be passed to getOauthLinkInfo
@@ -1032,13 +1054,13 @@ public struct InternalLinkTypeOauth: Codable, Equatable, Hashable {
     }
 }
 
-/// The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
+/// The link contains a request for Telegram Passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
 public struct InternalLinkTypePassportDataRequest: Codable, Equatable, Hashable {
 
-    /// User identifier of the service's bot; the corresponding user may be unknown yet
+    /// User identifier of the service's bot; the corresponding user may not be known yet
     public let botUserId: Int64
 
-    /// An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
+    /// An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=..., respectively. If empty, then the onActivityResult method must be used to return the response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
     public let callbackUrl: String
 
     /// Unique request identifier provided by the service
@@ -1066,7 +1088,7 @@ public struct InternalLinkTypePassportDataRequest: Codable, Equatable, Hashable 
     }
 }
 
-/// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
+/// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check the code entered by the user, or resendPhoneNumberCode to resend it
 public struct InternalLinkTypePhoneNumberConfirmation: Codable, Equatable, Hashable {
 
     /// Hash value from the link
@@ -1133,19 +1155,19 @@ public struct InternalLinkTypeProxy: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
+/// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If the draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
 public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
 
     /// Username of the chat
     public let chatUsername: String
 
-    /// Draft text for message to send in the chat
+    /// Draft text for the message to send in the chat
     public let draftText: String
 
-    /// True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
+    /// True, if the chat profile information screen must be opened; otherwise, the chat itself must be opened
     public let openProfile: Bool
 
-    /// Token, which allows the current user to send unpaid messages; may be empty if none. If the token isn't empty and the chat is a private chat with a regular user, then call applyUnpaidMessagesToken with the user and the token
+    /// Token that allows the current user to send unpaid messages; may be empty if none. If the token isn't empty and the chat is a private chat with a regular user, then call applyUnpaidMessagesToken with the user and the token
     public let unpaidMessagesToken: String
 
 
@@ -1162,16 +1184,16 @@ public struct InternalLinkTypePublicChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
+/// The link is a link to create a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot, and the bot has can_manage_bots == true, then show a bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If the user agrees, call createBot with via_link == true to create the bot
 public struct InternalLinkTypeRequestManagedBot: Codable, Equatable, Hashable {
 
-    /// Username of the bot which will manage the new bot
+    /// Username of the bot that will manage the new bot
     public let managerBotUsername: String
 
     /// Suggested name for the bot; may be empty if not specified
     public let suggestedBotName: String
 
-    /// Suggested username for the bot; always ends with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive
+    /// Suggested username for the bot; always ends with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes, case-insensitive
     public let suggestedBotUsername: String
 
 
@@ -1201,7 +1223,7 @@ public struct InternalLinkTypeSettings: Codable, Equatable, Hashable {
 /// The link is a link to the Telegram Star purchase section of the application
 public struct InternalLinkTypeStarPurchase: Codable, Equatable, Hashable {
 
-    /// Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+    /// Purpose of the Telegram Star purchase. An arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
     public let purpose: String
 
     /// The number of Telegram Stars that must be owned by the user
@@ -1340,7 +1362,7 @@ public struct InternalLinkTypeTonConnect: Codable, Equatable, Hashable {
 /// The link is a link for sending Grams from the user's TON wallet
 public struct InternalLinkTypeTonWalletTransfer: Codable, Equatable, Hashable {
 
-    /// The pre-filled amount of TON Grams to send; in the smallest units of the cryptocurrency
+    /// The pre-filled amount to send, in the smallest units of TON Grams
     public let gramAmount: TdInt64
 
     /// Chosen receiver of the transfer; may be null if none
@@ -1380,19 +1402,19 @@ public struct InternalLinkTypeUpgradedGift: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
+/// The link is a link to a user by their phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the user's profile information screen or the chat itself. If the draft text isn't empty, then put the draft text in the input field
 public struct InternalLinkTypeUserPhoneNumber: Codable, Equatable, Hashable {
 
-    /// Draft text for message to send in the chat
+    /// Draft text for the message to send in the chat
     public let draftText: String
 
-    /// True, if user's profile information screen must be opened; otherwise, the chat itself must be opened
+    /// True, if the user's profile information screen must be opened; otherwise, the chat itself must be opened
     public let openProfile: Bool
 
     /// Phone number of the user
     public let phoneNumber: String
 
-    /// Token, which allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the user is found, then call applyUnpaidMessagesToken with the user and the token
+    /// Token that allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the user is found, then call applyUnpaidMessagesToken with the user and the token
     public let unpaidMessagesToken: String
 
 
@@ -1415,7 +1437,7 @@ public struct InternalLinkTypeUserToken: Codable, Equatable, Hashable {
     /// The token
     public let token: String
 
-    /// Token, which allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the user is found, then call applyUnpaidMessagesToken with the user and the token
+    /// Token that allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the user is found, then call applyUnpaidMessagesToken with the user and the token
     public let unpaidMessagesToken: String
 
 
@@ -1452,7 +1474,7 @@ public struct InternalLinkTypeVideoChat: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+/// The link is a link to a Web App. Call searchPublicChat with the given bot username and check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process the received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to the attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their terms of service. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
 public struct InternalLinkTypeWebApp: Codable, Equatable, Hashable {
 
     /// Username of the bot that owns the Web App

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct BotInfo: Codable, Equatable, Hashable {
     /// True, if the bot's revenue statistics are available to the current user
     public let canGetRevenueStatistics: Bool
 
-    /// True, if the bot can manage emoji status of the current user
+    /// True, if the bot can manage the emoji status of the current user
     public let canManageEmojiStatus: Bool
 
     /// List of the bot commands
@@ -36,31 +36,31 @@ public struct BotInfo: Codable, Equatable, Hashable {
 
     public let description: String
 
-    /// The internal link, which can be used to edit bot commands; may be null
+    /// The internal link that can be used to edit bot commands; may be null
     public let editCommandsLink: InternalLinkType?
 
-    /// The internal link, which can be used to edit bot description; may be null
+    /// The internal link that can be used to edit the bot description; may be null
     public let editDescriptionLink: InternalLinkType?
 
-    /// The internal link, which can be used to edit the photo or animation shown in the chat with the bot if the chat is empty; may be null
+    /// The internal link that can be used to edit the photo or animation shown in the chat with the bot if the chat is empty; may be null
     public let editDescriptionMediaLink: InternalLinkType?
 
-    /// The internal link, which can be used to edit bot settings; may be null
+    /// The internal link that can be used to edit bot settings; may be null
     public let editSettingsLink: InternalLinkType?
 
     /// True, if the bot has media previews
     public let hasMediaPreviews: Bool
 
-    /// Identifier of the bot, which manages the bot; 0 if none or unknown; for owner of the bot only
+    /// Identifier of the bot that manages the bot; 0 if none or unknown; for the owner of the bot only
     public let managerBotUserId: Int64
 
-    /// Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
+    /// Information about a button to show instead of the bot commands menu button; may be null if the ordinary bot commands menu must be shown
     public let menuButton: BotMenuButton?
 
     /// Photo shown in the chat with the bot if the chat is empty; may be null
     public let photo: Photo?
 
-    /// The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
+    /// The HTTP link to the privacy policy of the bot. If empty, then the /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
     public let privacyPolicyUrl: String
 
     /// The text that is shown on the bot's profile page and is sent together with the link when users share the bot

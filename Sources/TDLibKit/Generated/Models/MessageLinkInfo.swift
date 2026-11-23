@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information about a link to a message or a forum topic in a chat
 public struct MessageLinkInfo: Codable, Equatable, Hashable {
 
-    /// If found, identifier of the chat to which the link points, 0 otherwise
+    /// If found, the identifier of the chat to which the link points; 0 otherwise
     public let chatId: Int64
 
     /// Identifier of the checklist task that is linked; 0 if none

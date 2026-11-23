@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a video file posted as a story
 public struct StoryVideo: Codable, Equatable, Hashable {
 
-    /// Timestamp of the frame used as video thumbnail
+    /// Timestamp of the frame used as the video thumbnail
     public let coverFrameTimestamp: Double
 
     /// Duration of the video, in seconds
@@ -31,7 +31,7 @@ public struct StoryVideo: Codable, Equatable, Hashable {
     /// Video minithumbnail; may be null
     public let minithumbnail: Minithumbnail?
 
-    /// Size of file prefix, which is expected to be preloaded, in bytes
+    /// Size of the file prefix, which is expected to be preloaded, in bytes
     public let preloadPrefixSize: Int
 
     /// Video thumbnail in JPEG or MPEG4 format; may be null

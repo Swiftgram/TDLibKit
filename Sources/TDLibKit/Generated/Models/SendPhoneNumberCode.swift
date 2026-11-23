@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
+/// Sends a code to the specified phone number. Aborts the previous phone number verification if there was one. On success, returns information about the sent code
 public struct SendPhoneNumberCode: Codable, Equatable, Hashable {
 
     /// The phone number, in international format

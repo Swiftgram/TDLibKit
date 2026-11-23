@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 public indirect enum ReplyMarkup: Codable, Equatable, Hashable {
 
-    /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
+    /// Instructs the application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
     case replyMarkupRemoveKeyboard(ReplyMarkupRemoveKeyboard)
 
-    /// Instructs application to force a reply to this message
+    /// Instructs the application to force a reply to this message
     case replyMarkupForceReply(ReplyMarkupForceReply)
 
     /// Contains a custom keyboard layout to quickly reply to bots
@@ -71,7 +71,7 @@ public indirect enum ReplyMarkup: Codable, Equatable, Hashable {
     }
 }
 
-/// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
+/// Instructs the application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
 public struct ReplyMarkupRemoveKeyboard: Codable, Equatable, Hashable {
 
     /// True, if the keyboard is removed only for the mentioned users or the target user of a reply
@@ -83,7 +83,7 @@ public struct ReplyMarkupRemoveKeyboard: Codable, Equatable, Hashable {
     }
 }
 
-/// Instructs application to force a reply to this message
+/// Instructs the application to force a reply to this message
 public struct ReplyMarkupForceReply: Codable, Equatable, Hashable {
 
     /// If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters
@@ -105,7 +105,7 @@ public struct ReplyMarkupForceReply: Codable, Equatable, Hashable {
 /// Contains a custom keyboard layout to quickly reply to bots
 public struct ReplyMarkupShowKeyboard: Codable, Equatable, Hashable {
 
-    /// True, if the keyboard must force reply to the message with the keyboard
+    /// True, if the keyboard must force a reply to the message with the keyboard
     public let forceReply: Bool
 
     /// If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters

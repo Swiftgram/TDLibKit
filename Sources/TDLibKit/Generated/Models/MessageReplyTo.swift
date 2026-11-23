@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains information about the message or the story a message is replying to
 public indirect enum MessageReplyTo: Codable, Equatable, Hashable {
 
-    /// Describes a message replied by a given message
+    /// Describes a message replied to by a given message
     case messageReplyToMessage(MessageReplyToMessage)
 
-    /// Describes a story replied by a given message
+    /// Describes a story replied to by a given message
     case messageReplyToStory(MessageReplyToStory)
 
 
@@ -51,31 +51,31 @@ public indirect enum MessageReplyTo: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a message replied by a given message
+/// Describes a message replied to by a given message
 public struct MessageReplyToMessage: Codable, Equatable, Hashable {
 
-    /// The identifier of the chat to which the message belongs; may be 0 if the replied message is in unknown chat
+    /// The identifier of the chat to which the message belongs; may be 0 if the replied-to message is in an unknown chat
     public let chatId: Int64
 
-    /// Identifier of the checklist task in the original message that was replied; 0 if none
+    /// Identifier of the checklist task in the original message that was replied to; 0 if none
     public let checklistTaskId: Int
 
-    /// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageStakeDice, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, messageVoiceNote, or messageWidget
+    /// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can only be one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageStakeDice, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, messageVoiceNote, or messageWidget
     public let content: MessageContent?
 
-    /// The identifier of the message; may be 0 if the replied message is in unknown chat
+    /// The identifier of the message; may be 0 if the replied-to message is in an unknown chat
     public let messageId: Int64
 
-    /// Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat
+    /// Information about the origin of the message if the message was from another chat or topic; may be null for messages from the same chat
     public let origin: MessageOrigin?
 
     /// Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
     public let originSendDate: Int
 
-    /// Identifier of the poll option in the original message that was replied; empty if none
+    /// Identifier of the poll option in the original message that was replied to; empty if none
     public let pollOptionId: String
 
-    /// Chosen quote from the replied message; may be null if none
+    /// Chosen quote from the replied-to message; may be null if none
     public let quote: TextQuote?
 
 
@@ -100,7 +100,7 @@ public struct MessageReplyToMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a story replied by a given message
+/// Describes a story replied to by a given message
 public struct MessageReplyToStory: Codable, Equatable, Hashable {
 
     /// The identifier of the story

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct AutoDownloadSettings: Codable, Equatable, Hashable {
     /// True, if stories need to be preloaded
     public let preloadStories: Bool
 
-    /// True, if "use less data for calls" option needs to be enabled
+    /// True, if the "use less data for calls" option needs to be enabled
     public let useLessDataForCalls: Bool
 
     /// The maximum suggested bitrate for uploaded videos, in kbit/s

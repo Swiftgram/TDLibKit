@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
+/// Searches for a specified query in the first name, last name, and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
 public struct SearchChatMembers: Codable, Equatable, Hashable {
 
     /// Chat identifier

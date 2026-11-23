@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public struct ProfilePhoto: Codable, Equatable, Hashable, Identifiable {
     /// A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
     public let big: File
 
-    /// True, if the photo has animated variant
+    /// True, if the photo has an animated variant
     public let hasAnimation: Bool
 
     /// Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
     public let id: TdInt64
 
-    /// True, if the photo is visible only for the current user
+    /// True, if the photo is visible only to the current user
     public let isPersonal: Bool
 
     /// User profile photo minithumbnail; may be null

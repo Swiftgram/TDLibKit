@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents a filter for type of the chats in which to search for messages
+/// Represents a filter for the type of the chats in which to search for messages
 public indirect enum SearchMessagesChatTypeFilter: Codable, Equatable, Hashable {
 
     /// Returns only messages in private chats

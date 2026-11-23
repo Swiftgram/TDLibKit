@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ChatMember: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat
     public let joinedChatDate: Int
 
-    /// Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
+    /// Identifier of the chat member. Currently, other chats can only be Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
     public let memberId: MessageSender
 
     /// Status of the member in the chat

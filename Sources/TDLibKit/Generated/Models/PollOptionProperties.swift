@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public struct PollOptionProperties: Codable, Equatable, Hashable {
     /// True, if the option can be deleted using deletePollOption
     public let canBeDeleted: Bool
 
-    /// True, if the poll option can be replied in the same chat and forum topic using inputMessageReplyToMessage
+    /// True, if the poll option can be replied to in the same chat and forum topic using inputMessageReplyToMessage
     public let canBeReplied: Bool
 
-    /// True, if the poll option can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
+    /// True, if the poll option can be replied to in another chat or forum topic using inputMessageReplyToExternalMessage
     public let canBeRepliedInAnotherChat: Bool
 
     /// True, if a link can be generated for the poll option using getMessageLink

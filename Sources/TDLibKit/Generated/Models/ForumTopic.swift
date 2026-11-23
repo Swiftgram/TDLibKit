@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct ForumTopic: Codable, Equatable, Hashable {
     /// Notification settings for the topic
     public let notificationSettings: ChatNotificationSettings
 
-    /// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
+    /// A parameter used to determine the order of the topic in the topic list. Topics must be sorted by the order in descending order
     public let order: TdInt64
 
     /// Number of unread messages in the topic

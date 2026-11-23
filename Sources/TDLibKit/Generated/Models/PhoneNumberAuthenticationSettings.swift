@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
     /// Pass true if the authentication code may be sent via a missed call to the specified phone number
     public let allowMissedCall: Bool
 
-    /// For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
+    /// For official applications only. True, if the application can use the Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
     public let allowSmsRetrieverApi: Bool
 
     /// List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions; for setAuthenticationPhoneNumber only
@@ -28,7 +28,7 @@ public struct PhoneNumberAuthenticationSettings: Codable, Equatable, Hashable {
     /// For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication
     public let firebaseAuthenticationSettings: FirebaseAuthenticationSettings?
 
-    /// Pass true if there is a SIM card in the current device, but it is not possible to check whether phone number matches
+    /// Pass true if there is a SIM card in the current device, but it is not possible to check whether the phone number matches
     public let hasUnknownPhoneNumber: Bool
 
     /// Pass true if the authenticated phone number is used on the current device

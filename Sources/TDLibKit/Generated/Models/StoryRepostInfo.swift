@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about original story that was reposted
+/// Contains information about the original story that was reposted
 public struct StoryRepostInfo: Codable, Equatable, Hashable {
 
-    /// True, if story content was modified during reposting; otherwise, story wasn't modified
+    /// True, if the story content was modified during reposting; otherwise, the story wasn't modified
     public let isContentModified: Bool
 
     /// Origin of the story that was reposted

@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Informs TDLib about details of a message view by the user from a chat, a message thread or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
+/// Informs TDLib about details of a message view by the user from a chat, a message thread, or a forum topic history. The method must be called if the message wasn't seen for more than 300 milliseconds, the viewport was destroyed, or the total view duration exceeded 5 minutes
 public struct SendMessageViewMetrics: Codable, Equatable, Hashable {
 
-    /// The amount of time the message was seen by at least 1 pixel within 15 seconds after any action from the user; in milliseconds
+    /// The amount of time the message was seen by at least 1 pixel within 15 seconds after any action from the user, in milliseconds
     public let activeTimeInViewMs: Int?
 
     /// Chat identifier
@@ -28,7 +28,7 @@ public struct SendMessageViewMetrics: Codable, Equatable, Hashable {
     /// The ratio of the viewed post height to the full post height in 1/1000 fractions; 0-1000
     public let seenRangeRatioPerMille: Int?
 
-    /// The amount of time the message was seen by at least 1 pixel; in milliseconds
+    /// The amount of time the message was seen by at least 1 pixel, in milliseconds
     public let timeInViewMs: Int?
 
 

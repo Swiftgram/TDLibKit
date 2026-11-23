@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct CreateChatInviteLink: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the link will expire; pass 0 if never
     public let expirationDate: Int?
 
-    /// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+    /// The maximum number of chat members who can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     public let memberLimit: Int?
 
     /// Invite link name; 0-32 characters

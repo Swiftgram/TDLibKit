@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes a stream to which TDLib internal log is written
+/// Describes a stream to which the TDLib internal log is written
 public indirect enum LogStream: Codable, Equatable, Hashable {
 
-    /// The log is written to stderr or an OS specific log
+    /// The log is written to stderr or an OS-specific log
     case logStreamDefault
 
     /// The log is written to a file
@@ -60,10 +60,10 @@ public indirect enum LogStream: Codable, Equatable, Hashable {
 /// The log is written to a file
 public struct LogStreamFile: Codable, Equatable, Hashable {
 
-    /// The maximum size of the file to where the internal TDLib log is written before the file will automatically be rotated, in bytes
+    /// The maximum size of the file to which the internal TDLib log is written before the file will automatically be rotated, in bytes
     public let maxFileSize: Int64
 
-    /// Path to the file to where the internal TDLib log will be written
+    /// Path to the file to which the internal TDLib log will be written
     public let path: String
 
     /// Pass true to additionally redirect stderr to the log file. Ignored on Windows

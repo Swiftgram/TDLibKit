@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -72,7 +72,7 @@ public indirect enum StoryPrivacySettings: Codable, Equatable, Hashable {
 /// The story can be viewed by everyone
 public struct StoryPrivacySettingsEveryone: Codable, Equatable, Hashable {
 
-    /// Identifiers of the users that can't see the story; always unknown and empty for non-owned stories
+    /// Identifiers of the users who can't see the story; always unknown and empty for non-owned stories
     public let exceptUserIds: [Int64]
 
 
@@ -84,7 +84,7 @@ public struct StoryPrivacySettingsEveryone: Codable, Equatable, Hashable {
 /// The story can be viewed by all contacts except chosen users
 public struct StoryPrivacySettingsContacts: Codable, Equatable, Hashable {
 
-    /// User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories
+    /// User identifiers of the contacts who can't see the story; always unknown and empty for non-owned stories
     public let exceptUserIds: [Int64]
 
 

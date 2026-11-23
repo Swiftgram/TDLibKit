@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Joins an active video chat. Returns join response payload for tgcalls
+/// Joins an active video chat. Returns the join response payload for tgcalls
 public struct JoinVideoChat: Codable, Equatable, Hashable {
 
     /// Group call identifier
@@ -22,7 +22,7 @@ public struct JoinVideoChat: Codable, Equatable, Hashable {
     /// Parameters to join the call
     public let joinParameters: GroupCallJoinParameters?
 
-    /// Identifier of a group call participant, which will be used to join the call; pass null to join as self
+    /// Identifier of a group call participant that will be used to join the call; pass null to join as self
     public let participantId: MessageSender?
 
 

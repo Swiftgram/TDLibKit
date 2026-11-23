@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+/// Changes reactions available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
 public struct SetChatAvailableReactions: Codable, Equatable, Hashable {
 
-    /// Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
+    /// Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats, up to the chat's boost level custom emoji reactions can be explicitly specified
     public let availableReactions: ChatAvailableReactions?
 
     /// Identifier of the chat

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,16 +16,16 @@ public indirect enum MessageReadDate: Codable, Equatable, Hashable {
     /// Contains read date of the message
     case messageReadDateRead(MessageReadDateRead)
 
-    /// The message is unread yet
+    /// The message is still unread
     case messageReadDateUnread
 
-    /// The message is too old to get read date
+    /// The message is too old to get the read date
     case messageReadDateTooOld
 
-    /// The read date is unknown due to privacy settings of the other user
+    /// The read date is unknown due to the privacy settings of the other user
     case messageReadDateUserPrivacyRestricted
 
-    /// The read date is unknown due to privacy settings of the current user, but will be known if the user subscribes to Telegram Premium
+    /// The read date is unknown due to the privacy settings of the current user, but will be known if the user subscribes to Telegram Premium
     case messageReadDateMyPrivacyRestricted
 
 

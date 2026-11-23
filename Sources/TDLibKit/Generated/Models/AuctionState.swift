@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -54,7 +54,7 @@ public indirect enum AuctionState: Codable, Equatable, Hashable {
 /// Contains information about an ongoing or scheduled auction
 public struct AuctionStateActive: Codable, Equatable, Hashable {
 
-    /// The number of items that were purchased by the current user on the auction
+    /// The number of items that were purchased by the current user at the auction
     public let acquiredItemCount: Int
 
     /// A sparse list of bids that were made in the auction
@@ -66,13 +66,13 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
     /// 1-based number of the current round
     public let currentRoundNumber: Int
 
-    /// The number of items that were purchased on the auction by all users
+    /// The number of items that were purchased at the auction by all users
     public let distributedItemCount: Int
 
-    /// Point in time (Unix timestamp) when the auction will be ended
+    /// Point in time (Unix timestamp) when the auction will end
     public let endDate: Int
 
-    /// The number of items that have to be distributed on the auction
+    /// The number of items that have to be distributed at the auction
     public let leftItemCount: Int
 
     /// The minimum possible bid in the auction in Telegram Stars
@@ -84,7 +84,7 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the auction started or will start
     public let startDate: Int
 
-    /// User identifiers of at most 3 users with the biggest bids
+    /// User identifiers of at most 3 users with the largest bids
     public let topBidderUserIds: [Int64]
 
     /// The total number of rounds
@@ -128,19 +128,19 @@ public struct AuctionStateActive: Codable, Equatable, Hashable {
 /// Contains information about a finished auction
 public struct AuctionStateFinished: Codable, Equatable, Hashable {
 
-    /// The number of items that were purchased by the current user on the auction
+    /// The number of items that were purchased by the current user at the auction
     public let acquiredItemCount: Int
 
     /// Average price of bought items in Telegram Stars
     public let averagePrice: Int64
 
-    /// Point in time (Unix timestamp) when the auction will be ended
+    /// Point in time (Unix timestamp) when the auction will end
     public let endDate: Int
 
     /// Number of items from the auction being resold on Fragment
     public let fragmentListedItemCount: Int
 
-    /// The HTTPS link to the Fragment for the resold items; may be empty if there are no such items being sold on Fragment
+    /// The HTTPS link to Fragment for the resold items; may be empty if there are no such items being sold on Fragment
     public let fragmentUrl: String
 
     /// Point in time (Unix timestamp) when the auction started

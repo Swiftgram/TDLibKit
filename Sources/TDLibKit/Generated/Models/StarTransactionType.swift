@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a deposit of Telegram Stars from the Premium bot; relevant for regular users only
     case starTransactionTypePremiumBotDeposit
 
-    /// The transaction is a deposit of Telegram Stars from App Store; relevant for regular users only
+    /// The transaction is a deposit of Telegram Stars from the App Store; relevant for regular users only
     case starTransactionTypeAppStoreDeposit
 
     /// The transaction is a deposit of Telegram Stars from Google Play; relevant for regular users only
@@ -31,10 +31,10 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a deposit of Telegram Stars from a giveaway; relevant for regular users only
     case starTransactionTypeGiveawayDeposit(StarTransactionTypeGiveawayDeposit)
 
-    /// The transaction is a withdrawal of earned Telegram Stars to Fragment; relevant for regular users, bots, supergroup and channel chats only
+    /// The transaction is a withdrawal of earned Telegram Stars to Fragment; relevant for regular users, bots, and supergroup and channel chats only
     case starTransactionTypeFragmentWithdrawal(StarTransactionTypeFragmentWithdrawal)
 
-    /// The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; relevant for bots and channel chats only
+    /// The transaction is a withdrawal of earned Telegram Stars to the Telegram Ad platform; relevant for bots and channel chats only
     case starTransactionTypeTelegramAdsWithdrawal
 
     /// The transaction is a payment for Telegram API usage; relevant for bots only
@@ -82,7 +82,7 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a transfer of an upgraded gift; relevant for regular users only
     case starTransactionTypeGiftTransfer(StarTransactionTypeGiftTransfer)
 
-    /// The transaction is a drop of original details of an upgraded gift; relevant for regular users only
+    /// The transaction is a drop of the original details of an upgraded gift; relevant for regular users only
     case starTransactionTypeGiftOriginalDetailsDrop(StarTransactionTypeGiftOriginalDetailsDrop)
 
     /// The transaction is a sale of a received gift; relevant for regular users and channel chats only
@@ -100,40 +100,40 @@ public indirect enum StarTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a sale of an upgraded gift; relevant for regular users only
     case starTransactionTypeUpgradedGiftSale(StarTransactionTypeUpgradedGiftSale)
 
-    /// The transaction is a sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only
+    /// The transaction is the sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only
     case starTransactionTypeChannelPaidReactionSend(StarTransactionTypeChannelPaidReactionSend)
 
-    /// The transaction is a receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
+    /// The transaction is the receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
     case starTransactionTypeChannelPaidReactionReceive(StarTransactionTypeChannelPaidReactionReceive)
 
-    /// The transaction is a receiving of a commission from an affiliate program; relevant for regular users, bots and channel chats only
+    /// The transaction is the receiving of a commission from an affiliate program; relevant for regular users, bots, and channel chats only
     case starTransactionTypeAffiliateProgramCommission(StarTransactionTypeAffiliateProgramCommission)
 
-    /// The transaction is a sending of a paid message; relevant for regular users only
+    /// The transaction is the sending of a paid message; relevant for regular users only
     case starTransactionTypePaidMessageSend(StarTransactionTypePaidMessageSend)
 
-    /// The transaction is a receiving of a paid message; relevant for regular users, supergroup and channel chats only
+    /// The transaction is the receiving of a paid message; relevant for regular users and supergroup and channel chats only
     case starTransactionTypePaidMessageReceive(StarTransactionTypePaidMessageReceive)
 
-    /// The transaction is a sending of a paid group call message; relevant for regular users only
+    /// The transaction is the sending of a paid group call message; relevant for regular users only
     case starTransactionTypePaidGroupCallMessageSend(StarTransactionTypePaidGroupCallMessageSend)
 
-    /// The transaction is a receiving of a paid group call message; relevant for regular users and channel chats only
+    /// The transaction is the receiving of a paid group call message; relevant for regular users and channel chats only
     case starTransactionTypePaidGroupCallMessageReceive(StarTransactionTypePaidGroupCallMessageReceive)
 
-    /// The transaction is a sending of a paid group call reaction; relevant for regular users only
+    /// The transaction is the sending of a paid group call reaction; relevant for regular users only
     case starTransactionTypePaidGroupCallReactionSend(StarTransactionTypePaidGroupCallReactionSend)
 
-    /// The transaction is a receiving of a paid group call reaction; relevant for regular users and channel chats only
+    /// The transaction is the receiving of a paid group call reaction; relevant for regular users and channel chats only
     case starTransactionTypePaidGroupCallReactionReceive(StarTransactionTypePaidGroupCallReactionReceive)
 
     /// The transaction is a payment for a suggested post; relevant for regular users only
     case starTransactionTypeSuggestedPostPaymentSend(StarTransactionTypeSuggestedPostPaymentSend)
 
-    /// The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
+    /// The transaction is the receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
     case starTransactionTypeSuggestedPostPaymentReceive(StarTransactionTypeSuggestedPostPaymentReceive)
 
-    /// The transaction is a purchase of Telegram Premium subscription; relevant for regular users and bots only
+    /// The transaction is a purchase of a Telegram Premium subscription; relevant for regular users and bots only
     case starTransactionTypePremiumPurchase(StarTransactionTypePremiumPurchase)
 
     /// The transaction is a transfer of Telegram Stars to a business bot; relevant for regular users only
@@ -505,7 +505,7 @@ public struct StarTransactionTypeGiveawayDeposit: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a withdrawal of earned Telegram Stars to Fragment; relevant for regular users, bots, supergroup and channel chats only
+/// The transaction is a withdrawal of earned Telegram Stars to Fragment; relevant for regular users, bots, and supergroup and channel chats only
 public struct StarTransactionTypeFragmentWithdrawal: Codable, Equatable, Hashable {
 
     /// State of the withdrawal; may be null for refunds from Fragment
@@ -551,7 +551,7 @@ public struct StarTransactionTypeBotPaidMediaPurchase: Codable, Equatable, Hasha
 /// The transaction is a sale of paid media by the bot or a business account managed by the bot; relevant for bots only
 public struct StarTransactionTypeBotPaidMediaSale: Codable, Equatable, Hashable {
 
-    /// Information about the affiliate which received commission from the transaction; may be null if none
+    /// Information about the affiliate that received commission from the transaction; may be null if none
     public let affiliate: AffiliateInfo?
 
     /// The bought media
@@ -647,7 +647,7 @@ public struct StarTransactionTypeBotInvoicePurchase: Codable, Equatable, Hashabl
 /// The transaction is a sale of a product by the bot; relevant for bots only
 public struct StarTransactionTypeBotInvoiceSale: Codable, Equatable, Hashable {
 
-    /// Information about the affiliate which received commission from the transaction; may be null if none
+    /// Information about the affiliate that received commission from the transaction; may be null if none
     public let affiliate: AffiliateInfo?
 
     /// Invoice payload
@@ -679,7 +679,7 @@ public struct StarTransactionTypeBotSubscriptionPurchase: Codable, Equatable, Ha
     /// Information about the bought subscription; may be null if no information about the subscription is available
     public let productInfo: ProductInfo?
 
-    /// The number of seconds between consecutive Telegram Star debitings
+    /// The number of seconds between consecutive Telegram Star debits
     public let subscriptionPeriod: Int
 
     /// Identifier of the bot or the business account user who created the subscription link
@@ -700,7 +700,7 @@ public struct StarTransactionTypeBotSubscriptionPurchase: Codable, Equatable, Ha
 /// The transaction is a sale of a subscription by the bot; relevant for bots only
 public struct StarTransactionTypeBotSubscriptionSale: Codable, Equatable, Hashable {
 
-    /// Information about the affiliate which received commission from the transaction; may be null if none
+    /// Information about the affiliate that received commission from the transaction; may be null if none
     public let affiliate: AffiliateInfo?
 
     /// Invoice payload
@@ -709,7 +709,7 @@ public struct StarTransactionTypeBotSubscriptionSale: Codable, Equatable, Hashab
     /// Information about the bought subscription; may be null if no information about the subscription is available
     public let productInfo: ProductInfo?
 
-    /// The number of seconds between consecutive Telegram Star debitings
+    /// The number of seconds between consecutive Telegram Star debits
     public let subscriptionPeriod: Int
 
     /// Identifier of the user who bought the subscription
@@ -737,7 +737,7 @@ public struct StarTransactionTypeChannelSubscriptionPurchase: Codable, Equatable
     /// Identifier of the channel chat that created the subscription
     public let chatId: Int64
 
-    /// The number of seconds between consecutive Telegram Star debitings
+    /// The number of seconds between consecutive Telegram Star debits
     public let subscriptionPeriod: Int
 
 
@@ -753,7 +753,7 @@ public struct StarTransactionTypeChannelSubscriptionPurchase: Codable, Equatable
 /// The transaction is a sale of a subscription by the channel chat; relevant for channel chats only
 public struct StarTransactionTypeChannelSubscriptionSale: Codable, Equatable, Hashable {
 
-    /// The number of seconds between consecutive Telegram Star debitings
+    /// The number of seconds between consecutive Telegram Star debits
     public let subscriptionPeriod: Int
 
     /// Identifier of the user who bought the subscription
@@ -838,7 +838,7 @@ public struct StarTransactionTypeGiftTransfer: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a drop of original details of an upgraded gift; relevant for regular users only
+/// The transaction is a drop of the original details of an upgraded gift; relevant for regular users only
 public struct StarTransactionTypeGiftOriginalDetailsDrop: Codable, Equatable, Hashable {
 
     /// The gift
@@ -936,7 +936,7 @@ public struct StarTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hasha
 /// The transaction is a sale of an upgraded gift; relevant for regular users only
 public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
 
-    /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
+    /// The number of Telegram Stars received by Telegram for each 1000 Telegram Stars received by the seller of the gift
     public let commissionPerMille: Int
 
     /// The Telegram Star amount that was received by Telegram; can be negative for refunds
@@ -967,13 +967,13 @@ public struct StarTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable 
     }
 }
 
-/// The transaction is a sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only
+/// The transaction is the sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only
 public struct StarTransactionTypeChannelPaidReactionSend: Codable, Equatable, Hashable {
 
     /// Identifier of the channel chat
     public let chatId: Int64
 
-    /// Identifier of the reacted message; may be 0 or an identifier of a deleted message
+    /// Identifier of the message that was reacted to; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
 
@@ -986,10 +986,10 @@ public struct StarTransactionTypeChannelPaidReactionSend: Codable, Equatable, Ha
     }
 }
 
-/// The transaction is a receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
+/// The transaction is the receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
 public struct StarTransactionTypeChannelPaidReactionReceive: Codable, Equatable, Hashable {
 
-    /// Identifier of the reacted message; may be 0 or an identifier of a deleted message
+    /// Identifier of the message that was reacted to; may be 0 or an identifier of a deleted message
     public let messageId: Int64
 
     /// Identifier of the user who added the paid reaction
@@ -1005,7 +1005,7 @@ public struct StarTransactionTypeChannelPaidReactionReceive: Codable, Equatable,
     }
 }
 
-/// The transaction is a receiving of a commission from an affiliate program; relevant for regular users, bots and channel chats only
+/// The transaction is the receiving of a commission from an affiliate program; relevant for regular users, bots, and channel chats only
 public struct StarTransactionTypeAffiliateProgramCommission: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that created the affiliate program
@@ -1024,7 +1024,7 @@ public struct StarTransactionTypeAffiliateProgramCommission: Codable, Equatable,
     }
 }
 
-/// The transaction is a sending of a paid message; relevant for regular users only
+/// The transaction is the sending of a paid message; relevant for regular users only
 public struct StarTransactionTypePaidMessageSend: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that received the payment
@@ -1043,10 +1043,10 @@ public struct StarTransactionTypePaidMessageSend: Codable, Equatable, Hashable {
     }
 }
 
-/// The transaction is a receiving of a paid message; relevant for regular users, supergroup and channel chats only
+/// The transaction is the receiving of a paid message; relevant for regular users and supergroup and channel chats only
 public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashable {
 
-    /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
+    /// The number of Telegram Stars received by Telegram for each 1000 Telegram Stars paid for message sending
     public let commissionPerMille: Int
 
     /// The Telegram Star amount that was received by Telegram; can be negative for refunds
@@ -1072,7 +1072,7 @@ public struct StarTransactionTypePaidMessageReceive: Codable, Equatable, Hashabl
     }
 }
 
-/// The transaction is a sending of a paid group call message; relevant for regular users only
+/// The transaction is the sending of a paid group call message; relevant for regular users only
 public struct StarTransactionTypePaidGroupCallMessageSend: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that received the payment
@@ -1084,10 +1084,10 @@ public struct StarTransactionTypePaidGroupCallMessageSend: Codable, Equatable, H
     }
 }
 
-/// The transaction is a receiving of a paid group call message; relevant for regular users and channel chats only
+/// The transaction is the receiving of a paid group call message; relevant for regular users and channel chats only
 public struct StarTransactionTypePaidGroupCallMessageReceive: Codable, Equatable, Hashable {
 
-    /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
+    /// The number of Telegram Stars received by Telegram for each 1000 Telegram Stars paid for message sending
     public let commissionPerMille: Int
 
     /// The Telegram Star amount that was received by Telegram; can be negative for refunds
@@ -1108,7 +1108,7 @@ public struct StarTransactionTypePaidGroupCallMessageReceive: Codable, Equatable
     }
 }
 
-/// The transaction is a sending of a paid group call reaction; relevant for regular users only
+/// The transaction is the sending of a paid group call reaction; relevant for regular users only
 public struct StarTransactionTypePaidGroupCallReactionSend: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that received the payment
@@ -1120,10 +1120,10 @@ public struct StarTransactionTypePaidGroupCallReactionSend: Codable, Equatable, 
     }
 }
 
-/// The transaction is a receiving of a paid group call reaction; relevant for regular users and channel chats only
+/// The transaction is the receiving of a paid group call reaction; relevant for regular users and channel chats only
 public struct StarTransactionTypePaidGroupCallReactionReceive: Codable, Equatable, Hashable {
 
-    /// The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for reaction sending
+    /// The number of Telegram Stars received by Telegram for each 1000 Telegram Stars paid for reaction sending
     public let commissionPerMille: Int
 
     /// The Telegram Star amount that was received by Telegram; can be negative for refunds
@@ -1156,7 +1156,7 @@ public struct StarTransactionTypeSuggestedPostPaymentSend: Codable, Equatable, H
     }
 }
 
-/// The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
+/// The transaction is the receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
 public struct StarTransactionTypeSuggestedPostPaymentReceive: Codable, Equatable, Hashable {
 
     /// Identifier of the user who paid for the suggested post
@@ -1168,7 +1168,7 @@ public struct StarTransactionTypeSuggestedPostPaymentReceive: Codable, Equatable
     }
 }
 
-/// The transaction is a purchase of Telegram Premium subscription; relevant for regular users and bots only
+/// The transaction is a purchase of a Telegram Premium subscription; relevant for regular users and bots only
 public struct StarTransactionTypePremiumPurchase: Codable, Equatable, Hashable {
 
     /// Number of months the Telegram Premium subscription will be active

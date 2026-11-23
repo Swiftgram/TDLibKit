@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// Allowed to use custom emoji stickers in message texts and captions
     case premiumFeatureCustomEmoji
 
-    /// Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
+    /// Ability to change the position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joining Telegram
     case premiumFeatureAdvancedChatManagement
 
     /// A badge in the user's profile
@@ -55,7 +55,7 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// Allowed to set premium application icons
     case premiumFeatureAppIcons
 
-    /// Allowed to translate chat messages real-time
+    /// Allowed to translate chat messages in real time
     case premiumFeatureRealTimeChatTranslation
 
     /// Allowed to use many additional features for stories
@@ -64,10 +64,10 @@ public indirect enum PremiumFeature: Codable, Equatable, Hashable {
     /// The ability to boost chats
     case premiumFeatureChatBoost
 
-    /// The ability to choose accent color for replies and user profile
+    /// The ability to choose an accent color for replies and the user profile
     case premiumFeatureAccentColor
 
-    /// The ability to set private chat background for both users
+    /// The ability to set a private chat background for both users
     case premiumFeatureBackgroundForBoth
 
     /// The ability to use tags in Saved Messages

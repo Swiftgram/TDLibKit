@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,13 +16,16 @@ public struct TonWalletTransaction: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the transaction was completed
     public let date: Int
 
-    /// The fee amount paid for the transaction in TON Grams, in the smallest units of the cryptocurrency
+    /// The fee amount paid for the transaction, in the smallest units of TON Grams
     public let feeAmount: TdInt64
 
     /// Unique identifier of the transaction
     public let id: String
 
-    /// Address in the TON blockchain of the transaction peer; may be empty if the transaction isn't a wallet transfer
+    /// True, if the transaction is suspected to be spam
+    public let isSuspectedSpam: Bool
+
+    /// Address on the TON blockchain of the transaction peer; may be empty if the transaction isn't a wallet transfer
     public let peerAddress: String
 
     /// Identifier of the domain assigned to the peer address; may be empty if none
@@ -42,6 +45,7 @@ public struct TonWalletTransaction: Codable, Equatable, Hashable, Identifiable {
         date: Int,
         feeAmount: TdInt64,
         id: String,
+        isSuspectedSpam: Bool,
         peerAddress: String,
         peerDomain: String,
         peerUserId: Int64,
@@ -51,6 +55,7 @@ public struct TonWalletTransaction: Codable, Equatable, Hashable, Identifiable {
         self.date = date
         self.feeAmount = feeAmount
         self.id = id
+        self.isSuspectedSpam = isSuspectedSpam
         self.peerAddress = peerAddress
         self.peerDomain = peerDomain
         self.peerUserId = peerUserId

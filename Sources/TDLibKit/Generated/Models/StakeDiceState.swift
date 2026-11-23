@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public struct StakeDiceState: Codable, Equatable, Hashable {
     /// The number of rolled sixes towards the streak; 0-2
     public let currentStreak: Int
 
-    /// The number of Grams received by the user for each 1000 Grams staked if the dice outcome is 1-6 correspondingly; may be empty if the stake dice can't be sent by the current user
+    /// The number of Grams received by the user for each 1000 Grams staked if the dice outcome is 1-6 respectively; may be empty if the stake dice can't be sent by the current user
     public let prizePerMille: [Int]
 
-    /// The amount of TON Grams staked in the previous roll; in the smallest units of the currency
+    /// The amount of TON Grams staked in the previous roll, in the smallest units of the currency
     public let stakeGramAmount: Int64
 
     /// Hash of the state to use for sending the next dice; may be empty if the stake dice can't be sent by the current user
@@ -28,7 +28,7 @@ public struct StakeDiceState: Codable, Equatable, Hashable {
     /// The number of Grams received by the user for each 1000 Grams staked if the dice outcome is 6 three times in a row with the same stake
     public let streakPrizePerMille: Int
 
-    /// The amounts of Grams that are suggested to be staked; in the smallest units of the currency
+    /// The amounts of Grams that are suggested to be staked, in the smallest units of the currency
     public let suggestedStakeGramAmounts: [Int64]
 
 

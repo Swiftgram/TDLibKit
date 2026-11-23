@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct UnreadReaction: Codable, Equatable, Hashable {
     /// True, if the reaction was added with a big animation
     public let isBig: Bool
 
-    /// Identifier of the sender, added the reaction
+    /// Identifier of the sender who added the reaction
     public let senderId: MessageSender
 
     /// Type of the reaction

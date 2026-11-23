@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ChatPosition: Codable, Equatable, Hashable {
     /// The chat list
     public let list: ChatList
 
-    /// A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
+    /// A parameter used to determine the order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
     public let order: TdInt64
 
     /// Source of the chat in the chat list; may be null

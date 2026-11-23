@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct ChatEvent: Codable, Equatable, Hashable, Identifiable {
     /// Chat event identifier
     public let id: TdInt64
 
-    /// Identifier of the user or chat who performed the action
+    /// Identifier of the user or chat that performed the action
     public let memberId: MessageSender
 
 

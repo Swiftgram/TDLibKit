@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes a TON wallet of the user, who is used in a widget query
+/// Describes the user's TON wallet used in a widget query
 public struct WidgetQueryWallet: Codable, Equatable, Hashable {
 
     /// Address of the wallet
     public let address: String
 
-    /// Balance of the wallet, in the smallest units of the cryptocurrency
+    /// Balance of the wallet, in the smallest units of TON Grams
     public let gramAmount: TdInt64
 
     /// Public key of the wallet; may be empty if unknown

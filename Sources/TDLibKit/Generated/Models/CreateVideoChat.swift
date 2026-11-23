@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right
+/// Creates a video chat (a group call bound to a chat); for basic groups, supergroups, and channels only; requires can_manage_video_chats administrator right
 public struct CreateVideoChat: Codable, Equatable, Hashable {
 
     /// Identifier of a chat in which the video chat will be created
@@ -22,7 +22,7 @@ public struct CreateVideoChat: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
     public let startDate: Int?
 
-    /// Group call title; if empty, chat title will be used
+    /// Group call title; if empty, the chat title will be used
     public let title: String?
 
 

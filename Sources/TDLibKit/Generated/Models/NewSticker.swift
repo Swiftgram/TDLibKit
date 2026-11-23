@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,13 +19,13 @@ public struct NewSticker: Codable, Equatable, Hashable {
     /// Format of the sticker
     public let format: StickerFormat
 
-    /// List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+    /// List of up to 20 keywords with a total length of up to 64 characters, which can be used to find the sticker
     public let keywords: [String]
 
     /// Position where the mask is placed; pass null if not specified
     public let maskPosition: MaskPosition?
 
-    /// File with the sticker; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    /// File with the sticker; must fit in a 512x512 square. For WEBP stickers, the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     public let sticker: InputFile
 
 

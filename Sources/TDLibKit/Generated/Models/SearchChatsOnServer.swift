@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
+/// Searches for the specified query in the title and username of already known chats via a request to the server. Returns chats in the order seen in the main chat list
 public struct SearchChatsOnServer: Codable, Equatable, Hashable {
 
     /// The maximum number of chats to be returned
@@ -19,7 +19,7 @@ public struct SearchChatsOnServer: Codable, Equatable, Hashable {
     /// Query to search for
     public let query: String?
 
-    /// Additional filter for type of the chats to be returned; pass null to search for chats of all types
+    /// Additional filter for the type of the chats to be returned; pass null to search for chats of all types
     public let typeFilter: SearchChatTypeFilter?
 
 

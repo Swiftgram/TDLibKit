@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
+/// Describes an upgraded gift that can be transferred to another owner or minted as an NFT on the TON blockchain
 public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
 
     /// Backdrop of the upgraded gift
@@ -22,16 +22,19 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// True, if an offer to purchase the gift can be sent using sendGiftPurchaseOffer
     public let canSendPurchaseOffer: Bool
 
-    /// Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none or unknown
+    /// Colors that can be set for user's name, background of empty chat photo, replies to messages, and link previews; may be null if none or unknown
     public let colors: UpgradedGiftColors?
 
     /// Probability that the gift adds to the chance of successful crafting of a new gift; 0 if the gift can't be used for crafting
     public let craftProbabilityPerMille: Int
 
-    /// Address of the gift NFT in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
+    /// The fee for the sale of the gift, in basis points; 1 basis point is 0.01%; 0 if unknown. The fee is deducted from the price received by the seller
+    public let feeBasisPoints: Int
+
+    /// Address of the gift NFT on the TON blockchain; empty if the gift isn't minted. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
     public let giftAddress: String
 
-    /// Identifier of the user or the chat to which the upgraded gift was assigned from blockchain; may be null if none or unknown
+    /// Identifier of the user or the chat to which the minted gift is linked; may be null if none or unknown
     public let hostId: MessageSender?
 
     /// Unique identifier of the gift
@@ -52,6 +55,9 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// The maximum number of gifts that can be upgraded from the same gift
     public let maxUpgradedCount: Int
 
+    /// The minimum price for an on-chain offer to purchase the gift, in the smallest units of TON Grams; 0 if on-chain purchase offers can't be sent for the gift
+    public let minOnchainPurchaseOfferGramAmount: TdInt64
+
     /// Model of the upgraded gift
     public let model: UpgradedGiftModel
 
@@ -64,19 +70,19 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Information about the originally sent gift; may be null if unknown
     public let originalDetails: UpgradedGiftOriginalDetails?
 
-    /// Address of the gift NFT owner in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
+    /// Address of the gift NFT owner on the TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
     public let ownerAddress: String
 
     /// Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown
     public let ownerId: MessageSender?
 
-    /// Name of the owner for the case when owner identifier and address aren't known
+    /// Name of the owner for the case when the owner identifier and address aren't known
     public let ownerName: String
 
     /// Identifier of the chat that published the gift; 0 if none
     public let publisherChatId: Int64
 
-    /// Unique identifier of the regular gift from which the gift was upgraded; may be 0 for short period of time for old gifts from database
+    /// Unique identifier of the regular gift from which the gift was upgraded; may be 0 for a short period of time for old gifts from the database
     public let regularGiftId: TdInt64
 
     /// Resale parameters of the gift; may be null if resale isn't possible
@@ -94,10 +100,13 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user
     public let usedThemeChatId: Int64
 
-    /// Estimated value of the gift; in the smallest units of the currency; 0 if unavailable
+    /// True, if the gift must be bought, put up for sale, and delisted using getGiftOnchainPurchaseTransaction, getGiftOnchainListingTransaction, and getGiftOnchainDelistingTransaction; otherwise, sendResoldGift and setGiftResalePrice must be used
+    public let usesOnchainResale: Bool
+
+    /// Estimated value of the gift, in the smallest units of the currency; 0 if unavailable
     public let valueAmount: Int64
 
-    /// ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable
+    /// ISO 4217 currency code of the currency in which the value of the gift is represented; may be empty if unavailable
     public let valueCurrency: String
 
     /// Estimated value of the gift in USD; in USD cents; 0 if unavailable
@@ -110,6 +119,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         canSendPurchaseOffer: Bool,
         colors: UpgradedGiftColors?,
         craftProbabilityPerMille: Int,
+        feeBasisPoints: Int,
         giftAddress: String,
         hostId: MessageSender?,
         id: TdInt64,
@@ -118,6 +128,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         isPremium: Bool,
         isThemeAvailable: Bool,
         maxUpgradedCount: Int,
+        minOnchainPurchaseOfferGramAmount: TdInt64,
         model: UpgradedGiftModel,
         name: String,
         number: Int,
@@ -132,6 +143,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         title: String,
         totalUpgradedCount: Int,
         usedThemeChatId: Int64,
+        usesOnchainResale: Bool,
         valueAmount: Int64,
         valueCurrency: String,
         valueUsdAmount: Int64
@@ -141,6 +153,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.canSendPurchaseOffer = canSendPurchaseOffer
         self.colors = colors
         self.craftProbabilityPerMille = craftProbabilityPerMille
+        self.feeBasisPoints = feeBasisPoints
         self.giftAddress = giftAddress
         self.hostId = hostId
         self.id = id
@@ -149,6 +162,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.isPremium = isPremium
         self.isThemeAvailable = isThemeAvailable
         self.maxUpgradedCount = maxUpgradedCount
+        self.minOnchainPurchaseOfferGramAmount = minOnchainPurchaseOfferGramAmount
         self.model = model
         self.name = name
         self.number = number
@@ -163,6 +177,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.title = title
         self.totalUpgradedCount = totalUpgradedCount
         self.usedThemeChatId = usedThemeChatId
+        self.usesOnchainResale = usesOnchainResale
         self.valueAmount = valueAmount
         self.valueCurrency = valueCurrency
         self.valueUsdAmount = valueUsdAmount

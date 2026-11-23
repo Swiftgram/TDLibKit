@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information about an affiliate that received commission from a Telegram Star transaction
 public struct AffiliateInfo: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat which received the commission
+    /// Identifier of the chat that received the commission
     public let affiliateChatId: Int64
 
     /// The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner

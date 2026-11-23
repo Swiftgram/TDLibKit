@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains information about a user who has failed to be added to a chat
 public struct FailedToAddMember: Codable, Equatable, Hashable {
 
-    /// True, if subscription to Telegram Premium is required to send the user chat invite link
+    /// True, if a subscription to Telegram Premium is required to send the user a chat invite link
     public let premiumRequiredToSendMessages: Bool
 
-    /// True, if subscription to Telegram Premium would have allowed to add the user to the chat
+    /// True, if a subscription to Telegram Premium would have allowed adding the user to the chat
     public let premiumWouldAllowInvite: Bool
 
     /// User identifier

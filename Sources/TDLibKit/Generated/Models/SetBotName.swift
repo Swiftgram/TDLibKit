@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SetBotName: Codable, Equatable, Hashable {
     /// A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
     public let languageCode: String?
 
-    /// New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
+    /// New bot's name in the specified language; 0-64 characters; must be non-empty if the language code is empty
     public let name: String?
 
 

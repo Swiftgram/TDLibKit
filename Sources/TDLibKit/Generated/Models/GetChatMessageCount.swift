@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns approximate number of messages of the specified type in the chat or its topic
+/// Returns the approximate number of messages of the specified type in the chat or its topic
 public struct GetChatMessageCount: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to count messages
@@ -22,7 +22,7 @@ public struct GetChatMessageCount: Codable, Equatable, Hashable {
     /// Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     public let returnLocal: Bool?
 
-    /// Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics; message threads aren't supported
+    /// Pass a topic identifier to get the number of messages only in a specific topic; pass null to get the number of messages in all topics; message threads aren't supported
     public let topicId: MessageTopic?
 
 

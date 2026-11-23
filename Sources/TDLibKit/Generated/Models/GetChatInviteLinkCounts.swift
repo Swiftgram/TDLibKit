@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
+/// Returns the list of chat administrators with the number of their invite links. Requires owner privileges in the chat
 public struct GetChatInviteLinkCounts: Codable, Equatable, Hashable {
 
     /// Chat identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct GetMessageAddedReactions: Codable, Equatable, Hashable {
     /// Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
     public let messageId: Int64?
 
-    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
     public let offset: String?
 
     /// Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains a list of options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+/// Contains a list of options for creating a Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
 public struct PremiumGiveawayPaymentOptions: Codable, Equatable, Hashable {
 
     /// The list of options

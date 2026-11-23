@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes state of a request received from a dApp through TON Connect
 public indirect enum TonConnectRequestState: Codable, Equatable, Hashable {
 
-    /// The request must be accepted or rejected if it isn't expired yet
+    /// The request must be accepted or rejected if it hasn't expired yet
     case tonConnectRequestStatePending(TonConnectRequestStatePending)
 
     /// The request was accepted
@@ -57,7 +57,7 @@ public indirect enum TonConnectRequestState: Codable, Equatable, Hashable {
     }
 }
 
-/// The request must be accepted or rejected if it isn't expired yet
+/// The request must be accepted or rejected if it hasn't expired yet
 public struct TonConnectRequestStatePending: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the request will expire or has expired

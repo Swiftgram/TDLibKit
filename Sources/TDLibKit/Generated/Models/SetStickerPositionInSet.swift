@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
 public struct SetStickerPositionInSet: Codable, Equatable, Hashable {
 
-    /// New position of the sticker in the set, 0-based
+    /// New position of the sticker in the set; 0-based
     public let position: Int?
 
     /// Sticker

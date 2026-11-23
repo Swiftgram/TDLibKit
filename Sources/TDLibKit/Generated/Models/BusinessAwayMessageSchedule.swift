@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes conditions for sending of away messages by a Telegram Business account
+/// Describes conditions for sending away messages by a Telegram Business account
 public indirect enum BusinessAwayMessageSchedule: Codable, Equatable, Hashable {
 
     /// Send away messages always
@@ -60,7 +60,7 @@ public indirect enum BusinessAwayMessageSchedule: Codable, Equatable, Hashable {
 /// Send away messages only in the specified time span
 public struct BusinessAwayMessageScheduleCustom: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) when the away messages will stop to be sent
+    /// Point in time (Unix timestamp) when the away messages will stop being sent
     public let endDate: Int
 
     /// Point in time (Unix timestamp) when the away messages will start to be sent

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct DiscardCall: Codable, Equatable, Hashable {
     /// The call duration, in seconds
     public let duration: Int?
 
-    /// If the call was upgraded to a group call, pass invite link to the group call
+    /// If the call was upgraded to a group call, pass the invite link to the group call
     public let inviteLink: String?
 
     /// Pass true if the user was disconnected

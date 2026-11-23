@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct GetPollOptionProperties: Codable, Equatable, Hashable {
     /// Identifier of the message
     public let messageId: Int64?
 
-    /// Unique identifier of the answer option, which properties will be returned
+    /// Unique identifier of the answer option whose properties will be returned
     public let pollOptionId: String?
 
 

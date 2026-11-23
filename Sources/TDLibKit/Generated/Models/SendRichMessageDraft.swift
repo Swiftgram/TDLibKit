@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends a draft for a being generated rich message; for bots only
+/// Sends a draft for a rich message being generated; for bots only
 public struct SendRichMessageDraft: Codable, Equatable, Hashable {
 
     /// Pass true to show the user a button to stop further drafts
@@ -22,7 +22,7 @@ public struct SendRichMessageDraft: Codable, Equatable, Hashable {
     /// Unique identifier of the draft
     public let draftId: TdInt64?
 
-    /// The forum topic identifier in which the message will be sent; pass 0 if none
+    /// The identifier of the forum topic in which the message will be sent; pass 0 if none
     public let forumTopicId: Int?
 
     /// Pass true to keep the current draft when the user stops further generation

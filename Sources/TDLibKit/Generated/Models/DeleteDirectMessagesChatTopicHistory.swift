@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct DeleteDirectMessagesChatTopicHistory: Codable, Equatable, Hashable
     /// Chat identifier of the channel direct messages chat
     public let chatId: Int64?
 
-    /// Identifier of the topic which messages will be deleted
+    /// Identifier of the topic whose messages will be deleted
     public let topicId: Int64?
 
 

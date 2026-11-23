@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -76,7 +76,7 @@ public struct StoryInteractionTypeView: Codable, Equatable, Hashable {
 /// A forward of the story as a message
 public struct StoryInteractionTypeForward: Codable, Equatable, Hashable {
 
-    /// The message with story forward
+    /// The message with the story forward
     public let message: Message
 
 

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Sets the result of a shipping query; for bots only
 public struct AnswerShippingQuery: Codable, Equatable, Hashable {
 
-    /// An error message, empty on success
+    /// An error message; empty on success
     public let errorMessage: String?
 
     /// Available shipping options

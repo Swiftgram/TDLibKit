@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,16 +22,16 @@ public struct BusinessBotRights: Codable, Equatable, Hashable {
     /// True, if the bot can delete sent messages
     public let canDeleteSentMessages: Bool
 
-    /// True, if the bot can edit bio of the business account
+    /// True, if the bot can edit the bio of the business account
     public let canEditBio: Bool
 
-    /// True, if the bot can edit name of the business account
+    /// True, if the bot can edit the name of the business account
     public let canEditName: Bool
 
-    /// True, if the bot can edit profile photo of the business account
+    /// True, if the bot can edit the profile photo of the business account
     public let canEditProfilePhoto: Bool
 
-    /// True, if the bot can edit username of the business account
+    /// True, if the bot can edit the username of the business account
     public let canEditUsername: Bool
 
     /// True, if the bot can post, edit and delete stories
@@ -49,10 +49,10 @@ public struct BusinessBotRights: Codable, Equatable, Hashable {
     /// True, if the bot can transfer and upgrade gifts received by the business account
     public let canTransferAndUpgradeGifts: Bool
 
-    /// True, if the bot can transfer Telegram Stars received by the business account to account of the bot, or use them to upgrade and transfer gifts
+    /// True, if the bot can transfer Telegram Stars received by the business account to the account of the bot, or use them to upgrade and transfer gifts
     public let canTransferStars: Bool
 
-    /// True, if the bot can view gifts and Telegram Star amount owned by the business account
+    /// True, if the bot can view gifts and the Telegram Star amount owned by the business account
     public let canViewGiftsAndStars: Bool
 
 

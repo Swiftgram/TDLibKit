@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public indirect enum AuthenticationCodeType: Codable, Equatable, Hashable {
     /// A digit-only authentication code is delivered via a private Telegram message, which can be viewed from another active session
     case authenticationCodeTypeTelegramMessage(AuthenticationCodeTypeTelegramMessage)
 
-    /// A digit-only authentication code is delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    /// A digit-only authentication code is delivered via an SMS message to the specified phone number; unofficial applications may not receive this type of code
     case authenticationCodeTypeSms(AuthenticationCodeTypeSms)
 
-    /// An authentication code is a word delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    /// An authentication code is a word delivered via an SMS message to the specified phone number; unofficial applications may not receive this type of code
     case authenticationCodeTypeSmsWord(AuthenticationCodeTypeSmsWord)
 
-    /// An authentication code is a phrase from multiple words delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    /// An authentication code is a phrase of multiple words delivered via an SMS message to the specified phone number; unofficial applications may not receive this type of code
     case authenticationCodeTypeSmsPhrase(AuthenticationCodeTypeSmsPhrase)
 
     /// A digit-only authentication code is delivered via a phone call to the specified phone number
@@ -143,7 +143,7 @@ public struct AuthenticationCodeTypeTelegramMessage: Codable, Equatable, Hashabl
     }
 }
 
-/// A digit-only authentication code is delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+/// A digit-only authentication code is delivered via an SMS message to the specified phone number; unofficial applications may not receive this type of code
 public struct AuthenticationCodeTypeSms: Codable, Equatable, Hashable {
 
     /// Length of the code
@@ -155,7 +155,7 @@ public struct AuthenticationCodeTypeSms: Codable, Equatable, Hashable {
     }
 }
 
-/// An authentication code is a word delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+/// An authentication code is a word delivered via an SMS message to the specified phone number; unofficial applications may not receive this type of code
 public struct AuthenticationCodeTypeSmsWord: Codable, Equatable, Hashable {
 
     /// The first letters of the word if known
@@ -167,7 +167,7 @@ public struct AuthenticationCodeTypeSmsWord: Codable, Equatable, Hashable {
     }
 }
 
-/// An authentication code is a phrase from multiple words delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+/// An authentication code is a phrase of multiple words delivered via an SMS message to the specified phone number; unofficial applications may not receive this type of code
 public struct AuthenticationCodeTypeSmsPhrase: Codable, Equatable, Hashable {
 
     /// The first word of the phrase if known
@@ -266,10 +266,10 @@ public struct AuthenticationCodeTypeFirebaseIos: Codable, Equatable, Hashable {
     /// Length of the code
     public let length: Int
 
-    /// Time after the next authentication method is expected to be used if verification push notification isn't received, in seconds
+    /// Time after which the next authentication method is expected to be used if the verification push notification isn't received, in seconds
     public let pushTimeout: Int
 
-    /// Receipt of successful application token validation to compare with receipt from push notification
+    /// Receipt of successful application token validation to compare with the receipt from a push notification
     public let receipt: String
 
 

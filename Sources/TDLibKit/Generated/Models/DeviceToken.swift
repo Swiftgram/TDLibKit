@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents a data needed to subscribe for push notifications through registerDevice method.
+/// Represents data needed to subscribe to push notifications through the registerDevice method.
 public indirect enum DeviceToken: Codable, Equatable, Hashable {
 
     /// A token for Firebase Cloud Messaging
     case deviceTokenFirebaseCloudMessaging(DeviceTokenFirebaseCloudMessaging)
 
-    /// A token for Apple Push Notification service
+    /// A token for the Apple Push Notification service
     case deviceTokenApplePush(DeviceTokenApplePush)
 
-    /// A token for Apple Push Notification service VoIP notifications
+    /// A token for the Apple Push Notification service VoIP notifications
     case deviceTokenApplePushVoIP(DeviceTokenApplePushVoIP)
 
     /// A token for Windows Push Notification Services
@@ -31,13 +31,13 @@ public indirect enum DeviceToken: Codable, Equatable, Hashable {
     /// A token for Microsoft Push Notification Service VoIP channel
     case deviceTokenMicrosoftPushVoIP(DeviceTokenMicrosoftPushVoIP)
 
-    /// A token for web Push API
+    /// A token for the web Push API
     case deviceTokenWebPush(DeviceTokenWebPush)
 
-    /// A token for Simple Push API for Firefox OS
+    /// A token for the Simple Push API for Firefox OS
     case deviceTokenSimplePush(DeviceTokenSimplePush)
 
-    /// A token for Ubuntu Push Client service
+    /// A token for the Ubuntu Push Client service
     case deviceTokenUbuntuPush(DeviceTokenUbuntuPush)
 
     /// A token for BlackBerry Push Service
@@ -170,7 +170,7 @@ public struct DeviceTokenFirebaseCloudMessaging: Codable, Equatable, Hashable {
     }
 }
 
-/// A token for Apple Push Notification service
+/// A token for the Apple Push Notification service
 public struct DeviceTokenApplePush: Codable, Equatable, Hashable {
 
     /// Device token; may be empty to deregister a device
@@ -189,7 +189,7 @@ public struct DeviceTokenApplePush: Codable, Equatable, Hashable {
     }
 }
 
-/// A token for Apple Push Notification service VoIP notifications
+/// A token for the Apple Push Notification service VoIP notifications
 public struct DeviceTokenApplePushVoIP: Codable, Equatable, Hashable {
 
     /// Device token; may be empty to deregister a device
@@ -249,7 +249,7 @@ public struct DeviceTokenMicrosoftPushVoIP: Codable, Equatable, Hashable {
     }
 }
 
-/// A token for web Push API
+/// A token for the web Push API
 public struct DeviceTokenWebPush: Codable, Equatable, Hashable {
 
     /// Base64url-encoded authentication secret
@@ -273,7 +273,7 @@ public struct DeviceTokenWebPush: Codable, Equatable, Hashable {
     }
 }
 
-/// A token for Simple Push API for Firefox OS
+/// A token for the Simple Push API for Firefox OS
 public struct DeviceTokenSimplePush: Codable, Equatable, Hashable {
 
     /// Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
@@ -285,7 +285,7 @@ public struct DeviceTokenSimplePush: Codable, Equatable, Hashable {
     }
 }
 
-/// A token for Ubuntu Push Client service
+/// A token for the Ubuntu Push Client service
 public struct DeviceTokenUbuntuPush: Codable, Equatable, Hashable {
 
     /// Token; may be empty to deregister a device

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,19 +13,19 @@ import Foundation
 /// Options to be used for generation of a link preview
 public struct LinkPreviewOptions: Codable, Equatable, Hashable {
 
-    /// True, if shown media preview must be large; ignored in secret chats or if the URL isn't explicitly specified
+    /// True, if the shown media preview must be large; ignored in secret chats or if the URL isn't explicitly specified
     public let forceLargeMedia: Bool
 
-    /// True, if shown media preview must be small; ignored in secret chats or if the URL isn't explicitly specified
+    /// True, if the shown media preview must be small; ignored in secret chats or if the URL isn't explicitly specified
     public let forceSmallMedia: Bool
 
-    /// True, if link preview must be disabled
+    /// True, if the link preview must be disabled
     public let isDisabled: Bool
 
-    /// True, if link preview must be shown above message text; otherwise, the link preview will be shown below the message text; ignored in secret chats
+    /// True, if the link preview must be shown above the message text; otherwise, the link preview will be shown below the message text; ignored in secret chats
     public let showAboveText: Bool
 
-    /// URL to use for link preview. If empty, then the first URL found in the message text will be used
+    /// URL to use for the link preview. If empty, then the first URL found in the message text will be used
     public let url: String
 
 

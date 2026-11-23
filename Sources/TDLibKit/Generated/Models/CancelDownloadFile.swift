@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct CancelDownloadFile: Codable, Equatable, Hashable {
     /// Identifier of a file to stop downloading
     public let fileId: Int?
 
-    /// Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
+    /// Pass true to stop downloading only if it hasn't been started, i.e., the request hasn't been sent to the server
     public let onlyIfPending: Bool?
 
 

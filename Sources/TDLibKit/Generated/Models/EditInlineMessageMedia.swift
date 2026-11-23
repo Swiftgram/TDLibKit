@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+/// Edits the media content of a message with a text, an animation, an audio, a document, a photo, or a video in an inline message sent via a bot; for bots only
 public struct EditInlineMessageMedia: Codable, Equatable, Hashable {
 
     /// Inline message identifier

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ProxyType: Codable, Equatable, Hashable {
     /// A SOCKS5 proxy server
     case proxyTypeSocks5(ProxyTypeSocks5)
 
-    /// A HTTP transparent proxy server
+    /// An HTTP transparent proxy server
     case proxyTypeHttp(ProxyTypeHttp)
 
     /// An MTProto proxy server
@@ -90,10 +90,10 @@ public struct ProxyTypeSocks5: Codable, Equatable, Hashable {
     }
 }
 
-/// A HTTP transparent proxy server
+/// An HTTP transparent proxy server
 public struct ProxyTypeHttp: Codable, Equatable, Hashable {
 
-    /// Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+    /// Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via the HTTP CONNECT method
     public let httpOnly: Bool
 
     /// Password for logging in; may be empty

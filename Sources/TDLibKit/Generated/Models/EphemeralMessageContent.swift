@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes an ephemeral content of a regular message, which must be shown instead of the regular content
+/// Describes ephemeral content of a regular message, which must be shown instead of the regular content
 public struct EphemeralMessageContent: Codable, Equatable, Hashable {
 
-    /// True, if content of the message can be saved locally
+    /// True, if the content of the message can be saved locally
     public let canBeSaved: Bool
 
     /// Content of the message
     public let content: MessageContent
 
-    /// True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
+    /// True, if media timestamp entities refer to media in this message as opposed to media in the replied-to message
     public let hasTimestampedMedia: Bool
 
     /// Reply markup for the message; may be null if none

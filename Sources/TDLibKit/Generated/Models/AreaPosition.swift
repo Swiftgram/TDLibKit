@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes position of a rectangle area on a story media or a TON wallet card
+/// Describes position of a rectangular area on story media or a TON wallet card
 public struct AreaPosition: Codable, Equatable, Hashable {
 
     /// The radius of the rectangle corner rounding, as a percentage of the media or the card width

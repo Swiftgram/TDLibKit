@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// State of active stories of the user; may be null if the user has no active stories
     public let activeStoryState: ActiveStoryState?
 
-    /// True, if the user added the current bot to attachment menu; only available to bots
+    /// True, if the user added the current bot to the attachment menu; only available to bots
     public let addedToAttachmentMenu: Bool
 
     /// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
@@ -31,7 +31,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// First name of the user
     public let firstName: String
 
-    /// If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
+    /// If false, the user is inaccessible, and the only information known about the user is inside this class. The identifier of the user can't be passed to any method
     public let haveAccess: Bool
 
     /// User identifier
@@ -49,7 +49,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// True, if the user is a Telegram Premium user
     public let isPremium: Bool
 
-    /// True, if the user is Telegram support account
+    /// True, if the user is a Telegram support account
     public let isSupport: Bool
 
     /// IETF language tag of the user's language; only available to bots
@@ -58,7 +58,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Last name of the user
     public let lastName: String
 
-    /// Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay
+    /// Number of Telegram Stars that must be paid by a general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay
     public let paidMessageStarCount: Int64
 
     /// Phone number of the user
@@ -91,7 +91,7 @@ public struct User: Codable, Equatable, Hashable, Identifiable {
     /// Usernames of the user; may be null
     public let usernames: Usernames?
 
-    /// Information about verification status of the user; may be null if none
+    /// Information about the verification status of the user; may be null if none
     public let verificationStatus: VerificationStatus?
 
 

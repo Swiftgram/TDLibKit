@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+/// Changes the editable username of a supergroup or channel; requires owner privileges in the supergroup or channel
 public struct SetSupergroupUsername: Codable, Equatable, Hashable {
 
     /// Identifier of the supergroup or channel

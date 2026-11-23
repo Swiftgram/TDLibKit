@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,13 +19,13 @@ public struct UserAuctionBid: Codable, Equatable, Hashable {
     /// The minimum number of Telegram Stars that can be put for the next bid
     public let nextBidStarCount: Int64
 
-    /// Identifier of the user or the chat that will receive the auctioned item. If the auction is opened in context of another user or chat, then a warning is supposed to be shown to the current user
+    /// Identifier of the user or the chat that will receive the auctioned item. If the auction is opened in the context of another user or chat, then a warning is supposed to be shown to the current user
     public let ownerId: MessageSender
 
     /// The number of Telegram Stars that were put in the bid
     public let starCount: Int64
 
-    /// True, if the bid was returned to the user, because it was outbid and can't win anymore
+    /// True, if the bid was returned to the user because it was outbid and can't win anymore
     public let wasReturned: Bool
 
 

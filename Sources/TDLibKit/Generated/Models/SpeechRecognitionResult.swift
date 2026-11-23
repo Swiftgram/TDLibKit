@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -88,7 +88,7 @@ public struct SpeechRecognitionResultText: Codable, Equatable, Hashable {
 /// The speech recognition failed
 public struct SpeechRecognitionResultError: Codable, Equatable, Hashable {
 
-    /// Recognition error. An error with a message "MSG_VOICE_TOO_LONG" is returned when media duration is too big to be recognized
+    /// Recognition error. An error with a message "MSG_VOICE_TOO_LONG" is returned when the media duration is too long to be recognized
     public let error: Error
 
 

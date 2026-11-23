@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes an in-store transaction
 public indirect enum StoreTransaction: Codable, Equatable, Hashable {
 
-    /// A purchase through App Store
+    /// A purchase through the App Store
     case storeTransactionAppStore(StoreTransactionAppStore)
 
     /// A purchase through Google Play
@@ -51,7 +51,7 @@ public indirect enum StoreTransaction: Codable, Equatable, Hashable {
     }
 }
 
-/// A purchase through App Store
+/// A purchase through the App Store
 public struct StoreTransactionAppStore: Codable, Equatable, Hashable {
 
     /// App Store receipt

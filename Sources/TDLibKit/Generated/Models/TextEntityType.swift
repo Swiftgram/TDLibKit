@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents a part of the text which must be formatted differently
+/// Represents a part of the text that must be formatted differently
 public indirect enum TextEntityType: Codable, Equatable, Hashable {
 
     /// A mention of a user, a supergroup, or a channel by their username
@@ -37,7 +37,7 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     /// A bank card number. The getBankCardInfo method can be used to get information about the bank card
     case textEntityTypeBankCardNumber
 
-    /// An address in the TON blockchain
+    /// An address on the TON blockchain
     case textEntityTypeTonAddress
 
     /// A bold text
@@ -61,13 +61,13 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     /// Text that must be formatted as if inside a pre HTML tag
     case textEntityTypePre
 
-    /// Text that must be formatted as if inside pre, and code HTML tags
+    /// Text that must be formatted as if inside pre and code HTML tags
     case textEntityTypePreCode(TextEntityTypePreCode)
 
     /// Text that must be formatted as if inside a blockquote HTML tag; not supported in secret chats
     case textEntityTypeBlockQuote
 
-    /// Text that must be formatted as if inside a blockquote HTML tag and collapsed by default to 3 lines with the ability to show full text; not supported in secret chats
+    /// Text that must be formatted as if inside a blockquote HTML tag and collapsed by default to 3 lines with the ability to show the full text; not supported in secret chats
     case textEntityTypeExpandableBlockQuote
 
     /// A text description shown instead of a raw URL
@@ -235,7 +235,7 @@ public indirect enum TextEntityType: Codable, Equatable, Hashable {
     }
 }
 
-/// Text that must be formatted as if inside pre, and code HTML tags
+/// Text that must be formatted as if inside pre and code HTML tags
 public struct TextEntityTypePreCode: Codable, Equatable, Hashable {
 
     /// Programming language of the code; as defined by the sender
@@ -286,7 +286,7 @@ public struct TextEntityTypeCustomEmoji: Codable, Equatable, Hashable {
 /// A media timestamp
 public struct TextEntityTypeMediaTimestamp: Codable, Equatable, Hashable {
 
-    /// Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the link preview of the current message, or in the same places in the replied message
+    /// Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the link preview of the current message, or in the same places in the replied-to message
     public let mediaTimestamp: Int
 
 

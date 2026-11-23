@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains a chat invite link
 public struct ChatInviteLink: Codable, Equatable, Hashable {
 
-    /// True, if the link only creates join request. If true, total number of joining members will be unlimited
+    /// True, if the link only creates a join request. If true, the total number of joining members will be unlimited
     public let createsJoinRequest: Bool
 
-    /// User identifier of an administrator created the link
+    /// User identifier of an administrator who created the link
     public let creatorUserId: Int64
 
     /// Point in time (Unix timestamp) when the link was created
@@ -28,22 +28,22 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the link will expire; 0 if never
     public let expirationDate: Int
 
-    /// Number of chat members, which joined the chat using the link, but have already left because of expired subscription; for subscription links only
+    /// Number of chat members who joined the chat using the link, but have already left because of an expired subscription; for subscription links only
     public let expiredMemberCount: Int
 
     /// Chat invite link
     public let inviteLink: String
 
-    /// True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. Primary link can create join requests only if this is set up using toggleSupergroupJoinByRequest. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
+    /// True, if the link is primary. A primary invite link can't have a name, expiration date, or usage limit. A primary link can create join requests only if this is set up using toggleSupergroupJoinByRequest. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
     public let isPrimary: Bool
 
     /// True, if the link was revoked
     public let isRevoked: Bool
 
-    /// Number of chat members, which joined the chat using the link
+    /// Number of chat members who joined the chat using the link
     public let memberCount: Int
 
-    /// The maximum number of members, which can join the chat using the link simultaneously; 0 if not limited. Always 0 if the link requires approval
+    /// The maximum number of members who can join the chat using the link simultaneously; 0 if not limited. Always 0 if the link requires approval
     public let memberLimit: Int
 
     /// Name of the link
@@ -52,7 +52,7 @@ public struct ChatInviteLink: Codable, Equatable, Hashable {
     /// Number of pending join requests created using this link
     public let pendingJoinRequestCount: Int
 
-    /// Information about subscription plan that is applied to the users joining the chat by the link; may be null if the link doesn't require subscription
+    /// Information about the subscription plan that is applied to the users joining the chat by the link; may be null if the link doesn't require a subscription
     public let subscriptionPricing: StarSubscriptionPricing?
 
 

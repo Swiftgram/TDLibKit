@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes origin from which the upgraded gift was obtained
 public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
 
-    /// The gift was obtained by upgrading of a previously received gift
+    /// The gift was obtained by upgrading a previously received gift
     case upgradedGiftOriginUpgrade(UpgradedGiftOriginUpgrade)
 
     /// The gift was transferred from another owner
@@ -22,10 +22,10 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
     /// The gift was bought from another user
     case upgradedGiftOriginResale(UpgradedGiftOriginResale)
 
-    /// The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold, or withdrawn to blockchain
+    /// The minted gift was linked to a user or a chat and isn't owned by the current user. The gift can't be transferred or resold
     case upgradedGiftOriginBlockchain
 
-    /// The sender or receiver of the message has paid for upgrade of the gift, which has been completed
+    /// The sender or receiver of the message has paid for the upgrade of the gift, which has been completed
     case upgradedGiftOriginPrepaidUpgrade
 
     /// The gift was bought through an offer
@@ -33,6 +33,12 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
 
     /// The gift was crafted from other gifts
     case upgradedGiftOriginCraft
+
+    /// The gift was bought on the TON blockchain using a fixed-price sale contract
+    case upgradedGiftOriginOnchainResale(UpgradedGiftOriginOnchainResale)
+
+    /// The gift was bought through an on-chain purchase offer
+    case upgradedGiftOriginOnchainOffer(UpgradedGiftOriginOnchainOffer)
 
 
     private enum Kind: String, Codable {
@@ -43,6 +49,8 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case upgradedGiftOriginPrepaidUpgrade
         case upgradedGiftOriginOffer
         case upgradedGiftOriginCraft
+        case upgradedGiftOriginOnchainResale
+        case upgradedGiftOriginOnchainOffer
     }
 
     public init(from decoder: Decoder) throws {
@@ -66,6 +74,12 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
             self = .upgradedGiftOriginOffer(value)
         case .upgradedGiftOriginCraft:
             self = .upgradedGiftOriginCraft
+        case .upgradedGiftOriginOnchainResale:
+            let value = try UpgradedGiftOriginOnchainResale(from: decoder)
+            self = .upgradedGiftOriginOnchainResale(value)
+        case .upgradedGiftOriginOnchainOffer:
+            let value = try UpgradedGiftOriginOnchainOffer(from: decoder)
+            self = .upgradedGiftOriginOnchainOffer(value)
         }
     }
 
@@ -89,11 +103,17 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .upgradedGiftOriginCraft:
             try container.encode(Kind.upgradedGiftOriginCraft, forKey: .type)
+        case .upgradedGiftOriginOnchainResale(let value):
+            try container.encode(Kind.upgradedGiftOriginOnchainResale, forKey: .type)
+            try value.encode(to: encoder)
+        case .upgradedGiftOriginOnchainOffer(let value):
+            try container.encode(Kind.upgradedGiftOriginOnchainOffer, forKey: .type)
+            try value.encode(to: encoder)
         }
     }
 }
 
-/// The gift was obtained by upgrading of a previously received gift
+/// The gift was obtained by upgrading a previously received gift
 public struct UpgradedGiftOriginUpgrade: Codable, Equatable, Hashable {
 
     /// Identifier of the message with the regular gift that was upgraded; may be 0 or an identifier of a deleted message
@@ -126,6 +146,30 @@ public struct UpgradedGiftOriginOffer: Codable, Equatable, Hashable {
 
     public init(price: GiftResalePrice) {
         self.price = price
+    }
+}
+
+/// The gift was bought on the TON blockchain using a fixed-price sale contract
+public struct UpgradedGiftOriginOnchainResale: Codable, Equatable, Hashable {
+
+    /// Price paid for the gift, in the smallest units of TON Grams
+    public let gramAmount: TdInt64
+
+
+    public init(gramAmount: TdInt64) {
+        self.gramAmount = gramAmount
+    }
+}
+
+/// The gift was bought through an on-chain purchase offer
+public struct UpgradedGiftOriginOnchainOffer: Codable, Equatable, Hashable {
+
+    /// Price paid for the gift, in the smallest units of TON Grams
+    public let gramAmount: TdInt64
+
+
+    public init(gramAmount: TdInt64) {
+        self.gramAmount = gramAmount
     }
 }
 

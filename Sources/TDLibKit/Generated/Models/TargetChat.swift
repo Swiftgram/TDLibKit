@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum TargetChat: Codable, Equatable, Hashable {
     /// The chat needs to be chosen by the user among chats of the specified types
     case targetChatChosen(TargetChatChosen)
 
-    /// The chat needs to be open with the provided internal link
+    /// The chat needs to be opened with the provided internal link
     case targetChatInternalLink(TargetChatInternalLink)
 
 
@@ -71,7 +71,7 @@ public struct TargetChatChosen: Codable, Equatable, Hashable {
     }
 }
 
-/// The chat needs to be open with the provided internal link
+/// The chat needs to be opened with the provided internal link
 public struct TargetChatInternalLink: Codable, Equatable, Hashable {
 
     /// An internal link pointing to the chat

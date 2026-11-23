@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Reason of vote restriction in the poll for the current user
+/// Reason for vote restriction in the poll for the current user
 public indirect enum PollVoteRestrictionReason: Codable, Equatable, Hashable {
 
     /// The poll is closed
@@ -22,13 +22,13 @@ public indirect enum PollVoteRestrictionReason: Codable, Equatable, Hashable {
     /// The poll is from a scheduled message
     case pollVoteRestrictionReasonScheduled
 
-    /// The user is from a country, users from which aren't allowed to vote
+    /// The user is from a country whose users aren't allowed to vote
     case pollVoteRestrictionReasonCountryRestricted(PollVoteRestrictionReasonCountryRestricted)
 
-    /// The user must be a member of the chat for at least a day to vote
+    /// The user must have been a member of the chat for at least a day to vote
     case pollVoteRestrictionReasonMembershipRequired(PollVoteRestrictionReasonMembershipRequired)
 
-    /// The poll can't be voted by the user due to some other reason
+    /// The user can't vote in the poll due to some other reason
     case pollVoteRestrictionReasonOther
 
 
@@ -83,7 +83,7 @@ public indirect enum PollVoteRestrictionReason: Codable, Equatable, Hashable {
     }
 }
 
-/// The user is from a country, users from which aren't allowed to vote
+/// The user is from a country whose users aren't allowed to vote
 public struct PollVoteRestrictionReasonCountryRestricted: Codable, Equatable, Hashable {
 
     /// Two-letter ISO 3166-1 alpha-2 code of the current user's country
@@ -95,10 +95,10 @@ public struct PollVoteRestrictionReasonCountryRestricted: Codable, Equatable, Ha
     }
 }
 
-/// The user must be a member of the chat for at least a day to vote
+/// The user must have been a member of the chat for at least a day to vote
 public struct PollVoteRestrictionReasonMembershipRequired: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat which must be joined for at least a day before the user can vote
+    /// Identifier of the chat that must be joined for at least a day before the user can vote
     public let chatId: Int64
 
 

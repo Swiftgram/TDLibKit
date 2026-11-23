@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -108,10 +108,10 @@ public indirect enum KeyboardButtonType: Codable, Equatable, Hashable {
 /// A button that allows the user to create and send a poll when pressed; available only in private chats
 public struct KeyboardButtonTypeRequestPoll: Codable, Equatable, Hashable {
 
-    /// If true, only polls in quiz mode must be allowed to create
+    /// If true, only polls in quiz mode must be allowed to be created
     public let forceQuiz: Bool
 
-    /// If true, only regular polls must be allowed to create
+    /// If true, only regular polls must be allowed to be created
     public let forceRegular: Bool
 
 
@@ -133,13 +133,13 @@ public struct KeyboardButtonTypeRequestUsers: Codable, Equatable, Hashable, Iden
     /// The maximum number of users to share
     public let maxQuantity: Int
 
-    /// Pass true to request name of the users; bots only
+    /// Pass true to request the names of the users; bots only
     public let requestName: Bool
 
-    /// Pass true to request photo of the users; bots only
+    /// Pass true to request the photos of the users; bots only
     public let requestPhoto: Bool
 
-    /// Pass true to request username of the users; bots only
+    /// Pass true to request the usernames of the users; bots only
     public let requestUsername: Bool
 
     /// True, if the shared users must or must not be bots
@@ -202,13 +202,13 @@ public struct KeyboardButtonTypeRequestChat: Codable, Equatable, Hashable, Ident
     /// Unique button identifier
     public let id: Int
 
-    /// Pass true to request photo of the chat; bots only
+    /// Pass true to request the photo of the chat; bots only
     public let requestPhoto: Bool
 
-    /// Pass true to request title of the chat; bots only
+    /// Pass true to request the title of the chat; bots only
     public let requestTitle: Bool
 
-    /// Pass true to request username of the chat; bots only
+    /// Pass true to request the username of the chat; bots only
     public let requestUsername: Bool
 
     /// True, if the chat must or must not have a username

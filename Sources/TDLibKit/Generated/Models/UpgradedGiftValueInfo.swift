@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about value of an upgraded gift
+/// Contains information about the value of an upgraded gift
 public struct UpgradedGiftValueInfo: Codable, Equatable, Hashable {
 
-    /// The average sale price in the last month of gifts upgraded from the same gift; in the smallest units of the currency; 0 if there were no such sales
+    /// The average sale price in the last month of gifts upgraded from the same gift, in the smallest units of the currency; 0 if there were no such sales
     public let averageSalePrice: Int64
 
     /// ISO 4217 currency code of the currency in which the prices are represented
@@ -22,13 +22,13 @@ public struct UpgradedGiftValueInfo: Codable, Equatable, Hashable {
     /// Number of gifts upgraded from the same gift being resold on Fragment
     public let fragmentListedGiftCount: Int
 
-    /// The HTTPS link to the Fragment for the gift; may be empty if there are no such gifts being sold on Fragment
+    /// The HTTPS link to Fragment for the gift; may be empty if there are no such gifts being sold on Fragment
     public let fragmentUrl: String
 
     /// Point in time (Unix timestamp) when the corresponding regular gift was originally purchased
     public let initialSaleDate: Int
 
-    /// Initial price of the gift; in the smallest units of the currency
+    /// Initial price of the gift, in the smallest units of the currency
     public let initialSalePrice: Int64
 
     /// The Telegram Star amount that was paid for the gift
@@ -37,22 +37,22 @@ public struct UpgradedGiftValueInfo: Codable, Equatable, Hashable {
     /// True, if the last sale was completed on Fragment
     public let isLastSaleOnFragment: Bool
 
-    /// True, if the value is calculated as average value of similar sold gifts. Otherwise, it is based on the sale price of the gift
+    /// True, if the value is calculated as the average value of similar sold gifts. Otherwise, it is based on the sale price of the gift
     public let isValueAverage: Bool
 
-    /// Point in time (Unix timestamp) when the upgraded gift was purchased last time; 0 if never
+    /// Point in time (Unix timestamp) when the upgraded gift was last purchased; 0 if never
     public let lastSaleDate: Int
 
-    /// Last purchase price of the gift; in the smallest units of the currency; 0 if the gift has never been resold
+    /// Last purchase price of the gift, in the smallest units of the currency; 0 if the gift has never been resold
     public let lastSalePrice: Int64
 
-    /// The current minimum price of gifts upgraded from the same gift; in the smallest units of the currency; 0 if there are no such gifts
-    public let minimumPrice: Int64
+    /// The current minimum price of gifts upgraded from the same gift, in the smallest units of the currency; 0 if there are no such gifts
+    public let minPrice: Int64
 
     /// Number of gifts upgraded from the same gift being resold on Telegram
     public let telegramListedGiftCount: Int
 
-    /// Estimated value of the gift; in the smallest units of the currency
+    /// Estimated value of the gift, in the smallest units of the currency
     public let value: Int64
 
 
@@ -68,7 +68,7 @@ public struct UpgradedGiftValueInfo: Codable, Equatable, Hashable {
         isValueAverage: Bool,
         lastSaleDate: Int,
         lastSalePrice: Int64,
-        minimumPrice: Int64,
+        minPrice: Int64,
         telegramListedGiftCount: Int,
         value: Int64
     ) {
@@ -83,7 +83,7 @@ public struct UpgradedGiftValueInfo: Codable, Equatable, Hashable {
         self.isValueAverage = isValueAverage
         self.lastSaleDate = lastSaleDate
         self.lastSalePrice = lastSalePrice
-        self.minimumPrice = minimumPrice
+        self.minPrice = minPrice
         self.telegramListedGiftCount = telegramListedGiftCount
         self.value = value
     }

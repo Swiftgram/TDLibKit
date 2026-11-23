@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Recognizes speech in an audio file and returns the recognized text. The file must be in OGG format with Opus codec and must have size up to 1 MB. The same rules as for recognizeSpeech apply to the Telegram Premium requirement and speech recognition trial; must not be used in secret chats
+/// Recognizes speech in an audio file and returns the recognized text; can be used only if getOption("can_recognize_speech"); must not be used in secret chats. The file must be in OGG format with the Opus codec and must have a size of up to 1 MB
 public struct RecognizeSpeechInFile: Codable, Equatable, Hashable {
 
     /// The audio file

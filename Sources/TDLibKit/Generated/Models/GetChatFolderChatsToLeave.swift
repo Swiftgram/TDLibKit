@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+/// Returns identifiers of pinned or always included chats from a chat folder that are suggested to be left when the chat folder is deleted
 public struct GetChatFolderChatsToLeave: Codable, Equatable, Hashable {
 
     /// Chat folder identifier

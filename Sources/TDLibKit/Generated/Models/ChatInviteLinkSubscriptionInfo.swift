@@ -3,23 +3,23 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about subscription plan that must be paid by the user to use a chat invite link
+/// Contains information about the subscription plan that must be paid for by the user to use a chat invite link
 public struct ChatInviteLinkSubscriptionInfo: Codable, Equatable, Hashable {
 
     /// True, if the user has already paid for the subscription and can use joinChatByInviteLink to join the subscribed chat again
     public let canReuse: Bool
 
-    /// Identifier of the payment form to use for subscription payment; 0 if the subscription can't be paid
+    /// Identifier of the payment form to use for subscription payment; 0 if the subscription can't be paid for
     public let formId: TdInt64
 
-    /// Information about subscription plan that must be paid by the user to use the link
+    /// Information about the subscription plan that must be paid for by the user to use the link
     public let pricing: StarSubscriptionPricing
 
 

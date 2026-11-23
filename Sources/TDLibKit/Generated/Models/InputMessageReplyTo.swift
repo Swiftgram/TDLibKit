@@ -3,26 +3,26 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains information about the message or the story to be replied
+/// Contains information about the message or the story to be replied to
 public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
 
-    /// Describes a message to be replied in the same chat and forum topic
+    /// Describes a message to be replied to in the same chat and forum topic
     case inputMessageReplyToMessage(InputMessageReplyToMessage)
 
-    /// Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
+    /// Describes a message to be replied to that is from a different chat or a forum topic; not supported in secret chats
     case inputMessageReplyToExternalMessage(InputMessageReplyToExternalMessage)
 
-    /// Describes a story to be replied
+    /// Describes a story to be replied to
     case inputMessageReplyToStory(InputMessageReplyToStory)
 
-    /// Describes an ephemeral message to be replied; for bots only
+    /// Describes an ephemeral message to be replied to; for bots only
     case inputMessageReplyToEphemeralMessage(InputMessageReplyToEphemeralMessage)
 
 
@@ -71,19 +71,19 @@ public indirect enum InputMessageReplyTo: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a message to be replied in the same chat and forum topic
+/// Describes a message to be replied to in the same chat and forum topic
 public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
 
-    /// Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message
+    /// Identifier of the checklist task in the message to be replied to; pass 0 to reply to the whole message
     public let checklistTaskId: Int
 
-    /// The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied
+    /// The identifier of the message to be replied to in the same chat and forum topic. A message can be replied to in the same chat and forum topic only if messageProperties.can_be_replied
     public let messageId: Int64
 
-    /// Identifier of the poll option in the message to be replied; pass an empty string if none
+    /// Identifier of the poll option in the message to be replied to; pass an empty string if none
     public let pollOptionId: String
 
-    /// Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
+    /// Quote from the message to be replied to; pass null if none. Must always be null for replies in secret chats
     public let quote: InputTextQuote?
 
 
@@ -100,22 +100,22 @@ public struct InputMessageReplyToMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
+/// Describes a message to be replied to that is from a different chat or a forum topic; not supported in secret chats
 public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
 
-    /// The identifier of the chat to which the message to be replied belongs
+    /// The identifier of the chat to which the message to be replied to belongs
     public let chatId: Int64
 
-    /// Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message
+    /// Identifier of the checklist task in the message to be replied to; pass 0 to reply to the whole message
     public let checklistTaskId: Int
 
-    /// The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
+    /// The identifier of the message to be replied to in the specified chat. A message can be replied to in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
     public let messageId: Int64
 
-    /// Identifier of the poll option in the message to be replied; pass an empty string if none
+    /// Identifier of the poll option in the message to be replied to; pass an empty string if none
     public let pollOptionId: String
 
-    /// Quote from the message to be replied; pass null if none
+    /// Quote from the message to be replied to; pass null if none
     public let quote: InputTextQuote?
 
 
@@ -134,13 +134,13 @@ public struct InputMessageReplyToExternalMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes a story to be replied
+/// Describes a story to be replied to
 public struct InputMessageReplyToStory: Codable, Equatable, Hashable {
 
     /// The identifier of the story
     public let storyId: Int
 
-    /// The identifier of the poster of the story. Currently, stories can be replied only in the chat that posted the story; channel stories can't be replied
+    /// The identifier of the poster of the story. Currently, stories can be replied to only in the chat that posted the story; channel stories can't be replied to
     public let storyPosterChatId: Int64
 
 
@@ -153,10 +153,10 @@ public struct InputMessageReplyToStory: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes an ephemeral message to be replied; for bots only
+/// Describes an ephemeral message to be replied to; for bots only
 public struct InputMessageReplyToEphemeralMessage: Codable, Equatable, Hashable {
 
-    /// The identifier of the ephemeral message to be replied
+    /// The identifier of the ephemeral message to be replied to
     public let ephemeralMessageId: Int
 
 

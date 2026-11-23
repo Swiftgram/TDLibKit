@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only
+/// Reports that the authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only
 public struct ReportPhoneNumberCodeMissing: Codable, Equatable, Hashable {
 
     /// Current mobile network code

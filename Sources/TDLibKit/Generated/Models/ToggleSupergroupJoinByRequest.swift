@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,13 +16,13 @@ public struct ToggleSupergroupJoinByRequest: Codable, Equatable, Hashable {
     /// Pass true to apply the change to the existing invite links, including primary links
     public let applyToInviteLinks: Bool?
 
-    /// Identifier of the bot which will be the guard bot in the group; pass 0 if none; ignored if join_by_request == false. The bot must have administrator privileges and can_invite_users right in the supergroup chat, and must have userTypeBot.is_guard == true
+    /// Identifier of the bot that will be the guard bot in the group; pass 0 if none; ignored if join_by_request == false. The bot must have administrator privileges and can_invite_users right in the supergroup chat, and must have userTypeBot.is_guard == true
     public let guardBotUserId: Int64?
 
     /// New value of join_by_request
     public let joinByRequest: Bool?
 
-    /// Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group
+    /// Identifier of the supergroup that isn't a broadcast group and isn't a channel direct messages group
     public let supergroupId: Int64?
 
 

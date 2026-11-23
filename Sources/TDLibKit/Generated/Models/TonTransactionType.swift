@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -31,10 +31,10 @@ public indirect enum TonTransactionType: Codable, Equatable, Hashable {
     /// The transaction is a sale of an upgraded gift
     case tonTransactionTypeUpgradedGiftSale(TonTransactionTypeUpgradedGiftSale)
 
-    /// The transaction is a payment for stake dice throw
+    /// The transaction is a payment for a stake dice throw
     case tonTransactionTypeStakeDiceStake
 
-    /// The transaction is a payment for successful stake dice throw
+    /// The transaction is a payment for a successful stake dice throw
     case tonTransactionTypeStakeDicePayout
 
     /// The transaction is a transaction of an unsupported type
@@ -192,10 +192,10 @@ public struct TonTransactionTypeUpgradedGiftPurchase: Codable, Equatable, Hashab
 /// The transaction is a sale of an upgraded gift
 public struct TonTransactionTypeUpgradedGiftSale: Codable, Equatable, Hashable {
 
-    /// The Gram amount that was received by the Telegram; in the smallest units of the currency
+    /// The Gram amount that was received by Telegram, in the smallest units of the currency
     public let commissionGramAmount: Int64
 
-    /// The number of Grams received by the Telegram for each 1000 Grams received by the seller of the gift
+    /// The number of Grams received by Telegram for each 1000 Grams received by the seller of the gift
     public let commissionPerMille: Int
 
     /// The gift

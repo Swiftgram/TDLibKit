@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Increases a bid for an auction gift without changing gift text and receiver
+/// Increases a bid for an auction gift without changing the gift text and receiver
 public struct IncreaseGiftAuctionBid: Codable, Equatable, Hashable {
 
     /// Identifier of the gift to put the bid on

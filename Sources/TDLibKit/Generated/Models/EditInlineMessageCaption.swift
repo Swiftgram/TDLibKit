@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Edits the caption of an inline message sent via a bot; for bots only
 public struct EditInlineMessageCaption: Codable, Equatable, Hashable {
 
-    /// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+    /// New message content caption; pass null to remove the caption; 0-getOption("message_caption_length_max") characters
     public let caption: FormattedText?
 
     /// Inline message identifier

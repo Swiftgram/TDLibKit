@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct StarSubscriptions: Codable, Equatable, Hashable {
     /// The offset for the next request. If empty, then there are no more results
     public let nextOffset: String
 
-    /// The number of Telegram Stars required to buy to extend subscriptions expiring soon
+    /// The number of Telegram Stars that must be bought to extend subscriptions expiring soon
     public let requiredStarCount: Int64
 
     /// The amount of owned Telegram Stars

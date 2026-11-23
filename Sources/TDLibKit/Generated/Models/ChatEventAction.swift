@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -148,7 +148,7 @@ public indirect enum ChatEventAction: Codable, Equatable, Hashable {
     /// A video chat participant was muted or unmuted
     case chatEventVideoChatParticipantIsMutedToggled(ChatEventVideoChatParticipantIsMutedToggled)
 
-    /// A video chat participant volume level was changed
+    /// A video chat participant's volume level was changed
     case chatEventVideoChatParticipantVolumeLevelChanged(ChatEventVideoChatParticipantVolumeLevelChanged)
 
     /// The is_forum setting of a supergroup was toggled
@@ -653,7 +653,7 @@ public struct ChatEventMemberJoinedByInviteLink: Codable, Equatable, Hashable {
 /// A new member was accepted to the chat by an administrator
 public struct ChatEventMemberJoinedByRequest: Codable, Equatable, Hashable {
 
-    /// User identifier of the chat administrator, approved user join request
+    /// User identifier of the chat administrator who approved the user join request
     public let approverUserId: Int64
 
     /// Invite link used to join the chat; may be null
@@ -1101,13 +1101,13 @@ public struct ChatEventAccentColorChanged: Codable, Equatable, Hashable {
 /// The chat's profile accent color or profile background custom emoji were changed
 public struct ChatEventProfileAccentColorChanged: Codable, Equatable, Hashable {
 
-    /// New identifier of chat's profile accent color; -1 if none
+    /// New identifier of the chat's profile accent color; -1 if none
     public let newProfileAccentColorId: Int
 
     /// New identifier of the custom emoji; 0 if none
     public let newProfileBackgroundCustomEmojiId: TdInt64
 
-    /// Previous identifier of chat's profile accent color; -1 if none
+    /// Previous identifier of the chat's profile accent color; -1 if none
     public let oldProfileAccentColorId: Int
 
     /// Previous identifier of the custom emoji; 0 if none
@@ -1142,7 +1142,7 @@ public struct ChatEventHasProtectedContentToggled: Codable, Equatable, Hashable 
 /// The can_invite_users permission of a supergroup chat was toggled
 public struct ChatEventInvitesToggled: Codable, Equatable, Hashable {
 
-    /// New value of can_invite_users permission
+    /// New value of the can_invite_users permission
     public let canInviteUsers: Bool
 
 
@@ -1309,13 +1309,13 @@ public struct ChatEventVideoChatParticipantIsMutedToggled: Codable, Equatable, H
     }
 }
 
-/// A video chat participant volume level was changed
+/// A video chat participant's volume level was changed
 public struct ChatEventVideoChatParticipantVolumeLevelChanged: Codable, Equatable, Hashable {
 
     /// Identifier of the affected group call participant
     public let participantId: MessageSender
 
-    /// New value of volume_level; 1-20000 in hundreds of percents
+    /// New value of volume_level; 1-20000 in hundredths of a percent
     public let volumeLevel: Int
 
 

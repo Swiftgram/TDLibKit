@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct GetDirectMessagesChatTopicHistory: Codable, Equatable, Hashable {
     /// Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages
     public let offset: Int?
 
-    /// Identifier of the topic which messages will be fetched
+    /// Identifier of the topic whose messages will be fetched
     public let topicId: Int64?
 
 

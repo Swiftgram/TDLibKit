@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -56,7 +56,7 @@ public indirect enum RichText: Codable, Equatable, Hashable {
     /// A bank card number
     case richTextBankCardNumber(RichTextBankCardNumber)
 
-    /// An address in the TON blockchain
+    /// An address on the TON blockchain
     case richTextTonAddress(RichTextTonAddress)
 
     /// A bot command
@@ -550,7 +550,7 @@ public struct RichTextBankCardNumber: Codable, Equatable, Hashable {
     }
 }
 
-/// An address in the TON blockchain
+/// An address on the TON blockchain
 public struct RichTextTonAddress: Codable, Equatable, Hashable {
 
     /// The address
@@ -622,7 +622,7 @@ public struct RichTextMentionName: Codable, Equatable, Hashable {
 /// A rich text URL link
 public struct RichTextUrl: Codable, Equatable, Hashable {
 
-    /// True, if the URL has cached instant view server-side; instant view only
+    /// True, if the URL has a cached instant view server-side; instant view only
     public let isCached: Bool
 
     /// Text
@@ -825,7 +825,7 @@ public struct RichTextAnchor: Codable, Equatable, Hashable {
 /// A link to an anchor on the same page
 public struct RichTextAnchorLink: Codable, Equatable, Hashable {
 
-    /// The anchor name. If the name is empty, the link must bring back to top
+    /// The anchor name. If the name is empty, the link must bring back to the top
     public let anchorName: String
 
     /// The link text

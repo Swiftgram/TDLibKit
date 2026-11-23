@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,13 +13,13 @@ import Foundation
 /// Describes parameters for age verification of the current user
 public struct AgeVerificationParameters: Codable, Equatable, Hashable {
 
-    /// Unique name for the country or region, which legislation required age verification. May be used to get the corresponding localization key
+    /// Unique name for the country or region whose legislation required age verification. May be used to get the corresponding localization key
     public let country: String
 
     /// The minimum age required to view restricted content
     public let minAge: Int
 
-    /// Username of the bot which main Web App may be used to verify age of the user
+    /// Username of the bot whose main Web App may be used to verify the age of the user
     public let verificationBotUsername: String
 
 

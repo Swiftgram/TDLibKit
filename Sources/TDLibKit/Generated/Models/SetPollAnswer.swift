@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct SetPollAnswer: Codable, Equatable, Hashable {
     /// Identifier of the message containing the poll
     public let messageId: Int64?
 
-    /// 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only if the poll allows multiple answers
+    /// 0-based identifiers of answer options chosen by the user. The user can choose more than 1 answer option only if the poll allows multiple answers
     public let optionIds: [Int]?
 
 

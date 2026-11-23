@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Informs TDLib that a gift auction was closed by the user
 public struct CloseGiftAuction: Codable, Equatable, Hashable {
 
-    /// Identifier of the gift, which auction was closed
+    /// Identifier of the gift whose auction was closed
     public let giftId: TdInt64?
 
 

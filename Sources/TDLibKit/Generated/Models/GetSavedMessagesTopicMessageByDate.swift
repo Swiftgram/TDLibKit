@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct GetSavedMessagesTopicMessageByDate: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) relative to which to search for messages
     public let date: Int?
 
-    /// Identifier of Saved Messages topic which message will be returned
+    /// Identifier of the Saved Messages topic whose message will be returned
     public let savedMessagesTopicId: Int64?
 
 

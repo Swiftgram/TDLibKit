@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ReportChatResult: Codable, Equatable, Hashable {
     /// The chat was reported successfully
     case reportChatResultOk
 
-    /// The user must choose an option to report the chat and repeat request with the chosen option
+    /// The user must choose an option to report the chat and repeat the request with the chosen option
     case reportChatResultOptionRequired(ReportChatResultOptionRequired)
 
     /// The user must add additional text details to the report
@@ -67,7 +67,7 @@ public indirect enum ReportChatResult: Codable, Equatable, Hashable {
     }
 }
 
-/// The user must choose an option to report the chat and repeat request with the chosen option
+/// The user must choose an option to report the chat and repeat the request with the chosen option
 public struct ReportChatResultOptionRequired: Codable, Equatable, Hashable {
 
     /// List of available options

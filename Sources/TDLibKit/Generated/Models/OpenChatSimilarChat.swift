@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods
+/// Informs TDLib that a chat was opened from the list of similar chats. The method is independent of the openChat and closeChat methods
 public struct OpenChatSimilarChat: Codable, Equatable, Hashable {
 
-    /// Identifier of the original chat, which similar chats were requested
+    /// Identifier of the original chat for which similar chats were requested
     public let chatId: Int64?
 
     /// Identifier of the opened chat

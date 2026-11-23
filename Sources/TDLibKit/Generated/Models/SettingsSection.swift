@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -314,7 +314,7 @@ public struct SettingsSectionInAppBrowser: Codable, Equatable, Hashable {
 /// The application language section
 public struct SettingsSectionLanguage: Codable, Equatable, Hashable {
 
-    /// Subsection of the section; may be one of "", "show-button" for Show Translate Button toggle, "translate-chats" for Translate Entire Chats toggle, "do-not-translate" - for Do Not Translate language list
+    /// Subsection of the section; may be one of "", "show-button" for the Show Translate Button toggle, "translate-chats" for the Translate Entire Chats toggle, "do-not-translate" for the Do Not Translate language list
     public let subsection: String
 
 

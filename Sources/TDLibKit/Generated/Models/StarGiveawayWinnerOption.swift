@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct StarGiveawayWinnerOption: Codable, Equatable, Hashable {
     /// True, if the option must be chosen by default
     public let isDefault: Bool
 
-    /// The number of users that will be chosen as winners
+    /// The number of users who will be chosen as winners
     public let winnerCount: Int
 
     /// The number of Telegram Stars that will be won by the winners of the giveaway

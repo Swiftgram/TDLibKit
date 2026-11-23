@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public struct ForumTopicInfo: Codable, Equatable, Hashable {
     /// True, if the topic is the General topic
     public let isGeneral: Bool
 
-    /// True, if the topic is hidden above the topic list and closed; for General topic only
+    /// True, if the topic is hidden above the topic list and closed; for the General topic only
     public let isHidden: Bool
 
     /// True, if the name of the topic wasn't added explicitly

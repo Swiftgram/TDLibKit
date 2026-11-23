@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents short information about a sticker set
 public struct StickerSetInfo: Codable, Equatable, Hashable, Identifiable {
 
-    /// Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
+    /// Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers, the full sticker set needs to be requested
     public let covers: [Sticker]
 
     /// Identifier of the sticker set

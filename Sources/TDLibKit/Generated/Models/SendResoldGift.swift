@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method
+/// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method. Gifts for which upgradedGift.uses_onchain_resale is true must be bought using getGiftOnchainPurchaseTransaction
 public struct SendResoldGift: Codable, Equatable, Hashable {
 
     /// Name of the upgraded gift to send
     public let giftName: String?
 
-    /// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
+    /// Pass true to show the gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     public let isPrivate: Bool?
 
     /// Identifier of the user or the channel chat that will receive the gift

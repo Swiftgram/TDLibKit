@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,10 +16,10 @@ public struct PhoneNumberInfo: Codable, Equatable, Hashable {
     /// Information about the country to which the phone number belongs; may be null
     public let country: CountryInfo?
 
-    /// The part of the phone number denoting country calling code or its part
+    /// The part of the phone number denoting the country calling code or a part of it
     public let countryCallingCode: String
 
-    /// The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
+    /// The phone number without the country calling code formatted according to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
     public let formattedPhoneNumber: String
 
     /// True, if the phone number was bought at https://fragment.com and isn't tied to a SIM card. Information about the phone number can be received using getCollectibleItemInfo

@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes name of a quick reply shortcut
+/// Changes the name of a quick reply shortcut
 public struct SetQuickReplyShortcutName: Codable, Equatable, Hashable {
 
-    /// New name for the shortcut. Use checkQuickReplyShortcutName to check its validness
+    /// New name for the shortcut. Use checkQuickReplyShortcutName to check its validity
     public let name: String?
 
     /// Unique identifier of the quick reply shortcut

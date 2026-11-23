@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents result of cryptocurrency transfer from the current user's TON wallet
+/// Represents result of sending a transaction from the current user's TON wallet
 public struct TonWalletTransferResult: Codable, Equatable, Hashable {
 
     /// True, if the transfer is gasless

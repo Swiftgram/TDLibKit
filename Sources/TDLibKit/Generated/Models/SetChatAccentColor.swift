@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
+/// Changes the accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
 public struct SetChatAccentColor: Codable, Equatable, Hashable {
 
     /// Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color

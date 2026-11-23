@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Represents a filter for message search results
 public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
 
-    /// Returns all found messages, no filter is applied
+    /// Returns all found messages; no filter is applied
     case searchMessagesFilterEmpty
 
     /// Returns only animation messages
@@ -55,16 +55,16 @@ public indirect enum SearchMessagesFilter: Codable, Equatable, Hashable {
     /// Returns only messages with mentions of the current user, or messages that are replies to their messages
     case searchMessagesFilterMention
 
-    /// Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
+    /// Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter, the results can't be additionally filtered by a query or by the sending user
     case searchMessagesFilterUnreadMention
 
-    /// Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
+    /// Returns only messages with unread reactions for the current user. When using this filter, the results can't be additionally filtered by a query or by the sending user
     case searchMessagesFilterUnreadReaction
 
-    /// Returns only messages with unread poll votes for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
+    /// Returns only messages with unread poll votes for the current user. When using this filter, the results can't be additionally filtered by a query or by the sending user
     case searchMessagesFilterUnreadPollVote
 
-    /// Returns only failed to send messages. This filter can be used only if the message database is used
+    /// Returns only messages that failed to send. This filter can be used only if the message database is used
     case searchMessagesFilterFailedToSend
 
     /// Returns only pinned messages

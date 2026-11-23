@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret chats
+/// Returns the approximate 1-based position of a message among messages that can be found by the specified filter in the chat and topic. Cannot be used in secret chats
 public struct GetChatMessagePosition: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat in which to find message position
+    /// Identifier of the chat in which to find the message position
     public let chatId: Int64?
 
     /// Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, and searchMessagesFilterFailedToSend are unsupported in this function
@@ -22,7 +22,7 @@ public struct GetChatMessagePosition: Codable, Equatable, Hashable {
     /// Message identifier
     public let messageId: Int64?
 
-    /// Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
+    /// Pass a topic identifier to get the position among messages only in a specific topic; pass null to get the position among all chat messages; message threads aren't supported
     public let topicId: MessageTopic?
 
 

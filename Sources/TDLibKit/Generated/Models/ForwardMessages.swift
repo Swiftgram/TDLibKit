@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public struct ForwardMessages: Codable, Equatable, Hashable {
     /// Pass true to remove media captions of message copies. Ignored if send_copy is false
     public let removeCaption: Bool?
 
-    /// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
+    /// Pass true to copy the content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
     public let sendCopy: Bool?
 
     /// Topic in which the messages will be forwarded; message threads aren't supported; pass null if none

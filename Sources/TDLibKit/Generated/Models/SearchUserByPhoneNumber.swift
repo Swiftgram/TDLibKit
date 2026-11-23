@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches a user by their phone number. Returns a 404 error if the user can't be found
+/// Searches for a user by their phone number. Returns a 404 error if the user can't be found
 public struct SearchUserByPhoneNumber: Codable, Equatable, Hashable {
 
     /// Pass true to get only locally available information without sending network requests

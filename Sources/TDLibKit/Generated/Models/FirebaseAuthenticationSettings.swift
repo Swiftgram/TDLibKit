@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -52,7 +52,7 @@ public indirect enum FirebaseAuthenticationSettings: Codable, Equatable, Hashabl
 /// Settings for Firebase Authentication in the official iOS application
 public struct FirebaseAuthenticationSettingsIos: Codable, Equatable, Hashable {
 
-    /// Device token from Apple Push Notification service
+    /// Device token from the Apple Push Notification service
     public let deviceToken: String
 
     /// True, if App Sandbox is enabled

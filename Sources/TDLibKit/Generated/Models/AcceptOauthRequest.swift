@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Accepts an OAuth authorization request. Returns an HTTP URL to open after successful authorization. May return an empty link if just a toast about successful login has to be shown
 public struct AcceptOauthRequest: Codable, Equatable, Hashable {
 
-    /// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to access their phone number
+    /// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo to access their phone number
     public let allowPhoneNumberAccess: Bool?
 
-    /// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo, to send them messages
+    /// Pass true if the current user allowed the bot that was returned in getOauthLinkInfo to send them messages
     public let allowWriteAccess: Bool?
 
     /// The matching code chosen by the user

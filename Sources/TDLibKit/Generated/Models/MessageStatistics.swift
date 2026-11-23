@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// A detailed statistics about a message
+/// Detailed statistics about a message
 public struct MessageStatistics: Codable, Equatable, Hashable {
 
-    /// A graph containing number of message views and shares
+    /// A graph containing the number of message views and shares
     public let messageInteractionGraph: StatisticalGraph
 
-    /// A graph containing number of message reactions
+    /// A graph containing the number of message reactions
     public let messageReactionGraph: StatisticalGraph
 
 

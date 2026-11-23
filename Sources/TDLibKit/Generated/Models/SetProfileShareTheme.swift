@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Changes the theme of the screen for sharing a link to the current user or a chat. The chat must have a username. Requires can_change_info administrator right in supergroups and channels
 public struct SetProfileShareTheme: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat with the current user, or identifier of a supergroup or a channel chat
+    /// Identifier of the chat with the current user, or an identifier of a supergroup or a channel chat
     public let chatId: Int64?
 
     /// The new theme; pass null to use the default theme

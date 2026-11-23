@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message.id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
+/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e., in order of decreasing message.id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter, and topic_id search criteria is expected to be supported only if it is required for the official Telegram application implementation
 public struct SearchChatMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to search messages
@@ -34,7 +34,7 @@ public struct SearchChatMessages: Codable, Equatable, Hashable {
     /// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     public let senderId: MessageSender?
 
-    /// Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics
+    /// Pass a topic identifier to search messages only in a specific topic; pass null to search for messages in all topics
     public let topicId: MessageTopic?
 
 

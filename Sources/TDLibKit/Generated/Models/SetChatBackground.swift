@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
+/// Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with a sufficient boost level and can_change_info administrator right
 public struct SetChatBackground: Codable, Equatable, Hashable {
 
     /// The input background to use; pass null to create a new filled or chat theme background
@@ -22,10 +22,10 @@ public struct SetChatBackground: Codable, Equatable, Hashable {
     /// Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
     public let darkThemeDimming: Int?
 
-    /// Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
+    /// Pass true to set the background only for self; pass false to set the background for all chat users. Always false for backgrounds set in boosted chats. The background can be set for both users only by Telegram Premium users and if the set background isn't of the type inputBackgroundPrevious
     public let onlyForSelf: Bool?
 
-    /// Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
+    /// Background type; pass null to use the default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat
     public let type: BackgroundType?
 
 

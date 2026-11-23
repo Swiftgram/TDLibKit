@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,16 +16,16 @@ public indirect enum MessageSource: Codable, Equatable, Hashable {
     /// The message is from a chat history
     case messageSourceChatHistory
 
-    /// The message is from history of a message thread
+    /// The message is from the history of a message thread
     case messageSourceMessageThreadHistory
 
-    /// The message is from history of a forum topic
+    /// The message is from the history of a forum topic
     case messageSourceForumTopicHistory
 
-    /// The message is from history of a topic in a channel direct messages chat administered by the current user
+    /// The message is from the history of a topic in a channel direct messages chat administered by the current user
     case messageSourceDirectMessagesChatTopicHistory
 
-    /// The message is from chat, message thread or forum topic history preview
+    /// The message is from a chat, message thread or forum topic history preview
     case messageSourceHistoryPreview
 
     /// The message is from a chat list or a forum topic list

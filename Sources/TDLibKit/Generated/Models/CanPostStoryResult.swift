@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,16 +19,16 @@ public indirect enum CanPostStoryResult: Codable, Equatable, Hashable {
     /// The user must subscribe to Telegram Premium to be able to post stories
     case canPostStoryResultPremiumNeeded
 
-    /// The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+    /// The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get the current boost status of the chat
     case canPostStoryResultBoostNeeded
 
-    /// The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
+    /// The limit for the number of active stories was exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
     case canPostStoryResultActiveStoryLimitExceeded
 
-    /// The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+    /// The weekly limit for the number of posted stories was exceeded. The user needs to buy Telegram Premium or wait for the specified time
     case canPostStoryResultWeeklyLimitExceeded(CanPostStoryResultWeeklyLimitExceeded)
 
-    /// The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+    /// The monthly limit for the number of posted stories was exceeded. The user needs to buy Telegram Premium or wait for the specified time
     case canPostStoryResultMonthlyLimitExceeded(CanPostStoryResultMonthlyLimitExceeded)
 
     /// The user or the chat has an active live story. The live story must be deleted first
@@ -107,7 +107,7 @@ public struct CanPostStoryResultOk: Codable, Equatable, Hashable {
     }
 }
 
-/// The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+/// The weekly limit for the number of posted stories was exceeded. The user needs to buy Telegram Premium or wait for the specified time
 public struct CanPostStoryResultWeeklyLimitExceeded: Codable, Equatable, Hashable {
 
     /// Time left before the user can post the next story, in seconds
@@ -119,7 +119,7 @@ public struct CanPostStoryResultWeeklyLimitExceeded: Codable, Equatable, Hashabl
     }
 }
 
-/// The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+/// The monthly limit for the number of posted stories was exceeded. The user needs to buy Telegram Premium or wait for the specified time
 public struct CanPostStoryResultMonthlyLimitExceeded: Codable, Equatable, Hashable {
 
     /// Time left before the user can post the next story, in seconds

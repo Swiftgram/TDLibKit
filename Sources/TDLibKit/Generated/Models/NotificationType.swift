@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Contains detailed information about a notification
 public indirect enum NotificationType: Codable, Equatable, Hashable {
 
-    /// New message was received
+    /// A new message was received
     case notificationTypeNewMessage(NotificationTypeNewMessage)
 
-    /// New secret chat was created
+    /// A new secret chat was created
     case notificationTypeNewSecretChat
 
-    /// New call was received
+    /// A new call was received
     case notificationTypeNewCall(NotificationTypeNewCall)
 
-    /// New message was received through a push notification
+    /// A new message was received through a push notification
     case notificationTypeNewPushMessage(NotificationTypeNewPushMessage)
 
 
@@ -69,7 +69,7 @@ public indirect enum NotificationType: Codable, Equatable, Hashable {
     }
 }
 
-/// New message was received
+/// A new message was received
 public struct NotificationTypeNewMessage: Codable, Equatable, Hashable {
 
     /// The message
@@ -88,7 +88,7 @@ public struct NotificationTypeNewMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// New call was received
+/// A new call was received
 public struct NotificationTypeNewCall: Codable, Equatable, Hashable {
 
     /// Call identifier
@@ -100,7 +100,7 @@ public struct NotificationTypeNewCall: Codable, Equatable, Hashable {
     }
 }
 
-/// New message was received through a push notification
+/// A new message was received through a push notification
 public struct NotificationTypeNewPushMessage: Codable, Equatable, Hashable {
 
     /// Push message content
@@ -109,10 +109,10 @@ public struct NotificationTypeNewPushMessage: Codable, Equatable, Hashable {
     /// True, if the message is outgoing
     public let isOutgoing: Bool
 
-    /// The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to be replied in the same chat
+    /// The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to be replied to in the same chat
     public let messageId: Int64
 
-    /// Identifier of the sender of the message. Corresponding user or chat may be inaccessible
+    /// Identifier of the sender of the message. The corresponding user or chat may be inaccessible
     public let senderId: MessageSender
 
     /// Name of the sender

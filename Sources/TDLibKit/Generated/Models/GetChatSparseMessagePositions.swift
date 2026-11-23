@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
+/// Returns sparse positions of messages of the specified type in the chat to be used for Shared Media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with the searchMessagesFilterFailedToSend filter without an enabled message database
 public struct GetChatSparseMessagePositions: Codable, Equatable, Hashable {
 
     /// Identifier of the chat in which to return information about message positions
@@ -22,7 +22,7 @@ public struct GetChatSparseMessagePositions: Codable, Equatable, Hashable {
     /// The message identifier from which to return information about message positions
     public let fromMessageId: Int64?
 
-    /// The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    /// The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned if there are not enough appropriate messages
     public let limit: Int?
 
     /// If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages

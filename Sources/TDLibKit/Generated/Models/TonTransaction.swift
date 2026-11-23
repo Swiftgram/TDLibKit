@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct TonTransaction: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the transaction was completed
     public let date: Int
 
-    /// The amount of added owned Grams, in the smallest units of the cryptocurrency; negative for outgoing transactions
+    /// The added amount, in the smallest units of TON Grams; negative for outgoing transactions
     public let gramAmount: Int64
 
     /// Unique identifier of the transaction

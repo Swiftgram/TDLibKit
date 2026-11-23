@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes active stories posted by a chat
 public struct ChatActiveStories: Codable, Equatable, Hashable {
 
-    /// True, if the stories are shown in the main story list and can be archived; otherwise, the stories can be hidden from the main story list only by calling removeTopChat with topChatCategoryUsers and the chat_id. Stories of the current user can't be archived nor hidden using removeTopChat
+    /// True, if the stories are shown in the main story list and can be archived; otherwise, the stories can be hidden from the main story list only by calling removeTopChat with topChatCategoryUsers and the chat_id. Stories of the current user can't be archived or hidden using removeTopChat
     public let canBeArchived: Bool
 
     /// Identifier of the chat that posted the stories
@@ -25,7 +25,7 @@ public struct ChatActiveStories: Codable, Equatable, Hashable {
     /// Identifier of the last read active story
     public let maxReadStoryId: Int
 
-    /// A parameter used to determine order of the stories in the story list; 0 if the stories don't need to be shown in the story list. Stories must be sorted by the pair (order, chat_id) in descending order
+    /// A parameter used to determine the order of the stories in the story list; 0 if the stories don't need to be shown in the story list. Stories must be sorted by the pair (order, chat_id) in descending order
     public let order: Int64
 
     /// Basic information about the stories; use getStory to get full information about the stories. The stories are in chronological order (i.e., in order of increasing story identifiers)

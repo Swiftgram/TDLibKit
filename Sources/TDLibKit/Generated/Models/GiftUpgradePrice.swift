@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes a price required to pay to upgrade a gift
+/// Describes a price that must be paid to upgrade a gift
 public struct GiftUpgradePrice: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the price will be in effect
     public let date: Int
 
-    /// The Telegram Star amount required to pay to upgrade the gift
+    /// The Telegram Star amount that must be paid to upgrade the gift
     public let starCount: Int64
 
 

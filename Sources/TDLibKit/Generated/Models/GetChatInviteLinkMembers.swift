@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+/// Returns chat members who joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 public struct GetChatInviteLinkMembers: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -25,7 +25,7 @@ public struct GetChatInviteLinkMembers: Codable, Equatable, Hashable {
     /// A chat member from which to return next chat members; pass null to get results from the beginning
     public let offsetMember: ChatInviteLinkMember?
 
-    /// Pass true if the link is a subscription link and only members with expired subscription must be returned
+    /// Pass true if the link is a subscription link and only members with an expired subscription must be returned
     public let onlyWithExpiredSubscription: Bool?
 
 

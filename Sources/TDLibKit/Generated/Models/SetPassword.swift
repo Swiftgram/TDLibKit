@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct SetPassword: Codable, Equatable, Hashable {
     /// Previous 2-step verification password of the user
     public let oldPassword: String?
 
-    /// Pass true to change also the recovery email address
+    /// Pass true to also change the recovery email address
     public let setRecoveryEmailAddress: Bool?
 
 

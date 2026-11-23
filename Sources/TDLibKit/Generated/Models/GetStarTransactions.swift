@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,10 +19,10 @@ public struct GetStarTransactions: Codable, Equatable, Hashable {
     /// The maximum number of transactions to return
     public let limit: Int?
 
-    /// Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    /// Offset of the first transaction to return as received from the previous request; use an empty string to get the first chunk of results
     public let offset: String?
 
-    /// Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    /// Identifier of the owner of the Telegram Stars; can be the identifier of the current user, an identifier of an owned bot, or an identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     public let ownerId: MessageSender?
 
     /// If non-empty, only transactions related to the Star Subscription will be returned

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -76,7 +76,7 @@ public struct InputStoryContentVideo: Codable, Equatable, Hashable {
     /// File identifiers of the stickers added to the video, if applicable
     public let addedStickerFileIds: [Int]
 
-    /// Timestamp of the frame, which will be used as video thumbnail
+    /// Timestamp of the frame that will be used as the video thumbnail
     public let coverFrameTimestamp: Double
 
     /// Precise duration of the video, in seconds; 0-60

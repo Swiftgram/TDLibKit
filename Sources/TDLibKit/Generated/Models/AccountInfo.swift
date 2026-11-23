@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,10 +13,10 @@ import Foundation
 /// Contains basic information about another user who started a chat with the current user
 public struct AccountInfo: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) when the user changed name last time; 0 if unknown
+    /// Point in time (Unix timestamp) when the user last changed their name; 0 if unknown
     public let lastNameChangeDate: Int
 
-    /// Point in time (Unix timestamp) when the user changed photo last time; 0 if unknown
+    /// Point in time (Unix timestamp) when the user last changed their photo; 0 if unknown
     public let lastPhotoChangeDate: Int
 
     /// A two-letter ISO 3166-1 alpha-2 country code based on the phone number of the user; may be empty if unknown

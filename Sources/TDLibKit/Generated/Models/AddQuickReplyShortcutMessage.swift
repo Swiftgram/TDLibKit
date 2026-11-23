@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+/// Adds a message to a quick reply shortcut. If the shortcut doesn't exist and there are fewer than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
 public struct AddQuickReplyShortcutMessage: Codable, Equatable, Hashable {
 
-    /// The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLiveLocation aren't supported
+    /// The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded, and inputMessageLiveLocation aren't supported
     public let inputMessageContent: InputMessageContent?
 
-    /// Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+    /// Identifier of a quick reply message in the same shortcut to be replied to; pass 0 if none
     public let replyToMessageId: Int64?
 
     /// Name of the target shortcut

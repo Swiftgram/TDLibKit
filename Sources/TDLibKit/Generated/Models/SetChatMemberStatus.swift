@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct SetChatMemberStatus: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64?
 
-    /// Member identifier. Chats can be only banned and unbanned in supergroups and channels
+    /// Member identifier. Chats can only be banned and unbanned in supergroups and channels
     public let memberId: MessageSender?
 
     /// The new status of the member in the chat

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains information about a language pack
 public struct LanguagePackInfo: Codable, Equatable, Hashable, Identifiable {
 
-    /// Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs
+    /// Identifier of a base language pack; may be empty. If a string is missing in the language pack, then it must be fetched from the base language pack. Unsupported in custom language packs
     public let baseLanguagePackId: String
 
     /// Unique language pack identifier
@@ -49,7 +49,7 @@ public struct LanguagePackInfo: Codable, Equatable, Hashable, Identifiable {
     /// Total number of translated strings from the language pack
     public let translatedStringCount: Int
 
-    /// Link to language translation interface; empty for custom local language packs
+    /// Link to the language translation interface; empty for custom local language packs
     public let translationUrl: String
 
 

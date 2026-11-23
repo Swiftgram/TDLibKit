@@ -3,17 +3,17 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Information about the sticker, which was used to create the chat photo. The sticker is shown at the center of the photo and occupies at most 67% of it
+/// Information about the sticker that was used to create the chat photo. The sticker is shown at the center of the photo and occupies at most 67% of it
 public struct ChatPhotoSticker: Codable, Equatable, Hashable {
 
-    /// The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported
+    /// The fill to be used as the background for the sticker; rotation angle in backgroundFillGradient isn't supported
     public let backgroundFill: BackgroundFill
 
     /// Type of the sticker

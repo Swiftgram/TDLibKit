@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The information about interactions with a message has changed
     case updateMessageInteractionInfo(UpdateMessageInteractionInfo)
 
-    /// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
+    /// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed", and starts the self-destruct timer
     case updateMessageContentOpened(UpdateMessageContentOpened)
 
     /// A message with an unread mention was read
@@ -52,19 +52,19 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of unread reactions added to a message was changed
     case updateMessageUnreadReactions(UpdateMessageUnreadReactions)
 
-    /// Unread votes were added or removed from a poll message
+    /// Unread votes were added to or removed from a poll message
     case updateMessageContainsUnreadPollVotes(UpdateMessageContainsUnreadPollVotes)
 
     /// A fact-check added to a message was changed
     case updateMessageFactCheck(UpdateMessageFactCheck)
 
-    /// Information about suggested post of a message was changed
+    /// Information about the suggested post of a message was changed
     case updateMessageSuggestedPostInfo(UpdateMessageSuggestedPostInfo)
 
     /// A message with a live location was viewed. When the update is received, the application is expected to update the live location
     case updateMessageLiveLocationViewed(UpdateMessageLiveLocationViewed)
 
-    /// An automatically scheduled message with video has been successfully sent after conversion
+    /// An automatically scheduled message with a video has been successfully sent after conversion
     case updateVideoPublished(UpdateVideoPublished)
 
     /// A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
@@ -103,7 +103,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The chat action bar was changed
     case updateChatActionBar(UpdateChatActionBar)
 
-    /// The bar for managing business bot was changed in a chat
+    /// The bar for managing a business bot was changed in a chat
     case updateChatBusinessBotManageBar(UpdateChatBusinessBotManageBar)
 
     /// The chat available reactions were changed
@@ -112,7 +112,10 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     case updateChatDraftMessage(UpdateChatDraftMessage)
 
-    /// Chat emoji status has changed
+    /// Default parameters for text composition with AI in a chat have changed
+    case updateChatTextCompositionParameters(UpdateChatTextCompositionParameters)
+
+    /// The emoji status of a chat has changed
     case updateChatEmojiStatus(UpdateChatEmojiStatus)
 
     /// The message sender that is selected to send messages in a chat has changed
@@ -145,13 +148,13 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The chat unread_poll_vote_count has changed
     case updateChatUnreadPollVoteCount(UpdateChatUnreadPollVoteCount)
 
-    /// A chat video chat state has changed
+    /// A chat's video chat state has changed
     case updateChatVideoChat(UpdateChatVideoChat)
 
     /// The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
     case updateChatDefaultDisableNotification(UpdateChatDefaultDisableNotification)
 
-    /// A chat content was allowed or restricted for saving
+    /// Chat content was allowed or restricted for saving
     case updateChatHasProtectedContent(UpdateChatHasProtectedContent)
 
     /// Translation of chat messages was enabled or disabled
@@ -160,7 +163,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A chat was marked as unread or was read
     case updateChatIsMarkedAsUnread(UpdateChatIsMarkedAsUnread)
 
-    /// A chat default appearance has changed
+    /// A chat's default appearance has changed
     case updateChatViewAsTopics(UpdateChatViewAsTopics)
 
     /// A chat was blocked or unblocked
@@ -175,19 +178,19 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of chat folders or a chat folder has changed
     case updateChatFolders(UpdateChatFolders)
 
-    /// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
+    /// The number of online group members has changed. This update with a non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
     case updateChatOnlineMemberCount(UpdateChatOnlineMemberCount)
 
     /// Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
     case updateSavedMessagesTopic(UpdateSavedMessagesTopic)
 
-    /// Number of Saved Messages topics has changed
+    /// The number of Saved Messages topics has changed
     case updateSavedMessagesTopicCount(UpdateSavedMessagesTopicCount)
 
     /// Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
     case updateDirectMessagesChatTopic(UpdateDirectMessagesChatTopic)
 
-    /// Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+    /// The number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
     case updateTopicMessageCount(UpdateTopicMessageCount)
 
     /// Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
@@ -223,16 +226,16 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A list of active notifications in a notification group has changed
     case updateNotificationGroup(UpdateNotificationGroup)
 
-    /// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+    /// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case, it comes once before any updateNotification and updateNotificationGroup updates
     case updateActiveNotifications(UpdateActiveNotifications)
 
-    /// Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
+    /// Describes whether there are some pending notification updates. Can be used to prevent the application from being killed while there are some pending notifications
     case updateHavePendingNotifications(UpdateHavePendingNotifications)
 
     /// Some messages were deleted
     case updateDeleteMessages(UpdateDeleteMessages)
 
-    /// A message sender activity in the chat has changed
+    /// A message sender's activity in the chat has changed
     case updateChatAction(UpdateChatAction)
 
     /// A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id with animation, and be deleted whenever any incoming message or a pending message with another draft_id is received in the message thread
@@ -271,7 +274,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Some data in communityFullInfo has been changed
     case updateCommunityFullInfo(UpdateCommunityFullInfo)
 
-    /// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
+    /// A service notification from the server was received. Upon receiving this, the application must show a popup with the content of the notification
     case updateServiceNotification(UpdateServiceNotification)
 
     /// An OAuth authorization request was received
@@ -289,13 +292,13 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The state of the file download list has changed
     case updateFileDownloads(UpdateFileDownloads)
 
-    /// A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+    /// A file was added to the file download list. This update is sent only after the file download list is loaded for the first time
     case updateFileAddedToDownloads(UpdateFileAddedToDownloads)
 
-    /// A file download was changed. This update is sent only after file download list is loaded for the first time
+    /// A file download was changed. This update is sent only after the file download list is loaded for the first time
     case updateFileDownload(UpdateFileDownload)
 
-    /// A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+    /// A file was removed from the file download list. This update is sent only after the file download list is loaded for the first time
     case updateFileRemovedFromDownloads(UpdateFileRemovedFromDownloads)
 
     /// A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
@@ -304,7 +307,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
     case updateApplicationRecaptchaVerificationRequired(UpdateApplicationRecaptchaVerificationRequired)
 
-    /// New call was created or information about a call was updated
+    /// A new call was created or information about a call was updated
     case updateCall(UpdateCall)
 
     /// Information about a group call was updated
@@ -313,7 +316,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
     case updateGroupCallParticipant(UpdateGroupCallParticipant)
 
-    /// The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+    /// The list of group call participants who can send and receive encrypted call data has changed; for group calls not bound to a chat only
     case updateGroupCallParticipants(UpdateGroupCallParticipants)
 
     /// The verification state of an encrypted group call has changed; for group calls not bound to a chat only
@@ -331,13 +334,13 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Some group call messages were deleted
     case updateGroupCallMessagesDeleted(UpdateGroupCallMessagesDeleted)
 
-    /// The list of top donors in live story group call has changed
+    /// The list of top donors in the live story group call has changed
     case updateLiveStoryTopDonors(UpdateLiveStoryTopDonors)
 
     /// New call signaling data arrived
     case updateNewCallSignalingData(UpdateNewCallSignalingData)
 
-    /// State of a gift auction was updated
+    /// The state of a gift auction was updated
     case updateGiftAuctionState(UpdateGiftAuctionState)
 
     /// The list of auctions in which the current user participates has changed
@@ -346,10 +349,10 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Some privacy setting rules have been changed
     case updateUserPrivacySettingRules(UpdateUserPrivacySettingRules)
 
-    /// Number of unread messages in a chat list has changed. This update is sent only if the message database is used
+    /// The number of unread messages in a chat list has changed. This update is sent only if the message database is used
     case updateUnreadMessageCount(UpdateUnreadMessageCount)
 
-    /// Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
+    /// The number of unread chats, i.e., with unread messages or marked as unread, has changed. This update is sent only if the message database is used
     case updateUnreadChatCount(UpdateUnreadChatCount)
 
     /// A join request from the user was completed
@@ -370,16 +373,16 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The list of active stories posted by a specific chat has changed
     case updateChatActiveStories(UpdateChatActiveStories)
 
-    /// Number of chats in a story list has changed
+    /// The number of chats in a story list has changed
     case updateStoryListChatCount(UpdateStoryListChatCount)
 
     /// Story stealth mode settings have changed
     case updateStoryStealthMode(UpdateStoryStealthMode)
 
-    /// Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+    /// Lists of suffixes allowed in secondary bot usernames, which can be added in addition to the main username if the bot's owner has a Telegram Premium subscription
     case updateAllowedBotUsernamePremiumSuffixes(UpdateAllowedBotUsernamePremiumSuffixes)
 
-    /// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+    /// Lists of bots whose Mini Apps must be allowed to read text from the clipboard and must be opened without a warning
     case updateTrustedMiniAppBots(UpdateTrustedMiniAppBots)
 
     /// An option changed its value
@@ -448,7 +451,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The first unconfirmed session has changed
     case updateUnconfirmedSession(UpdateUnconfirmedSession)
 
-    /// The list of bots added to attachment or side menu has changed
+    /// The list of bots added to the attachment or side menu has changed
     case updateAttachmentMenuBots(UpdateAttachmentMenuBots)
 
     /// A message was sent by an opened Web App, so the Web App needs to be closed
@@ -469,7 +472,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Tags used in Saved Messages or a Saved Messages topic have changed
     case updateSavedMessagesTags(UpdateSavedMessagesTags)
 
-    /// The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+    /// The list of messages with an active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
     case updateActiveLiveLocationMessages(UpdateActiveLiveLocationMessages)
 
     /// The number of Telegram Stars owned by the current user has changed
@@ -484,22 +487,22 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// The information about gasless transfers has changed
     case updateTonWalletGaslessTransfersInfo(UpdateTonWalletGaslessTransfersInfo)
 
-    /// A session of a TON Connect has changed
+    /// A TON Connect session has changed
     case updateTonWalletTonConnectSession(UpdateTonWalletTonConnectSession)
 
     /// TON Connect sessions must be disconnected in a regular way
     case updateTonWalletTonConnectSessionDisconnectRequired(UpdateTonWalletTonConnectSessionDisconnectRequired)
 
-    /// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+    /// The revenue earned from sponsored messages in a chat has changed. If the chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     case updateChatRevenueAmount(UpdateChatRevenueAmount)
 
-    /// The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    /// The Telegram Star revenue earned by a user or a chat has changed. If the Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
     case updateStarRevenueStatus(UpdateStarRevenueStatus)
 
-    /// The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+    /// The TON Gram revenue earned by the current user has changed. If the Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
     case updateGramRevenueStatus(UpdateGramRevenueStatus)
 
-    /// The parameters of speech recognition without Telegram Premium subscription have changed
+    /// The parameters of speech recognition without a Telegram Premium subscription have changed
     case updateSpeechRecognitionTrial(UpdateSpeechRecognitionTrial)
 
     /// Speech in an audio file was partially recognized. The final result will be returned by the corresponding recognizeSpeechInFile request
@@ -517,19 +520,19 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     case updateAnimatedEmojiMessageClicked(UpdateAnimatedEmojiMessageClicked)
 
-    /// The parameters of animation search through getOption("animation_search_bot_username") bot have changed
+    /// The parameters of animation search through the getOption("animation_search_bot_username") bot have changed
     case updateAnimationSearchParameters(UpdateAnimationSearchParameters)
 
     /// The styles supported for text composition have changed
     case updateTextCompositionStyles(UpdateTextCompositionStyles)
 
-    /// The list of suggested to the user actions has changed
+    /// The list of actions suggested to the user has changed
     case updateSuggestedActions(UpdateSuggestedActions)
 
-    /// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+    /// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get the expected speedup after subscription to Telegram Premium
     case updateSpeedLimitNotification(UpdateSpeedLimitNotification)
 
-    /// The list of contacts that had birthdays recently or will have birthday soon has changed
+    /// The list of contacts who had birthdays recently or will have a birthday soon has changed
     case updateContactCloseBirthdays(UpdateContactCloseBirthdays)
 
     /// Autosave settings for some type of chats were updated
@@ -574,7 +577,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A new incoming widget query from a copy of a shared widget; for bots only
     case updateNewWidgetCopyQuery(UpdateNewWidgetCopyQuery)
 
-    /// A new incoming shipping query; for bots only. Only for invoices with flexible price
+    /// A new incoming shipping query; for bots only. Only for invoices with a flexible price
     case updateNewShippingQuery(UpdateNewShippingQuery)
 
     /// A new incoming pre-checkout query; for bots only. Contains full information about a checkout
@@ -586,7 +589,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A new incoming query; for bots only
     case updateNewCustomQuery(UpdateNewCustomQuery)
 
-    /// Subscription of a user to the bot was changed; for bots only
+    /// The subscription of a user to the bot was changed; for bots only
     case updateUserSubscription(UpdateUserSubscription)
 
     /// A poll was updated; for bots only
@@ -607,7 +610,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
     /// A chat boost has changed; for bots only
     case updateChatBoost(UpdateChatBoost)
 
-    /// User changed its reactions on a message with public reactions; for bots only
+    /// A user changed their reactions on a message with public reactions; for bots only
     case updateMessageReaction(UpdateMessageReaction)
 
     /// Reactions added to a message with anonymous reactions have changed; for bots only
@@ -651,6 +654,7 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case updateChatBusinessBotManageBar
         case updateChatAvailableReactions
         case updateChatDraftMessage
+        case updateChatTextCompositionParameters
         case updateChatEmojiStatus
         case updateChatMessageSender
         case updateChatMessageAutoDeleteTime
@@ -924,6 +928,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatDraftMessage:
             let value = try UpdateChatDraftMessage(from: decoder)
             self = .updateChatDraftMessage(value)
+        case .updateChatTextCompositionParameters:
+            let value = try UpdateChatTextCompositionParameters(from: decoder)
+            self = .updateChatTextCompositionParameters(value)
         case .updateChatEmojiStatus:
             let value = try UpdateChatEmojiStatus(from: decoder)
             self = .updateChatEmojiStatus(value)
@@ -1533,6 +1540,9 @@ public indirect enum Update: Codable, Equatable, Hashable {
         case .updateChatDraftMessage(let value):
             try container.encode(Kind.updateChatDraftMessage, forKey: .type)
             try value.encode(to: encoder)
+        case .updateChatTextCompositionParameters(let value):
+            try container.encode(Kind.updateChatTextCompositionParameters, forKey: .type)
+            try value.encode(to: encoder)
         case .updateChatEmojiStatus(let value):
             try container.encode(Kind.updateChatEmojiStatus, forKey: .type)
             try value.encode(to: encoder)
@@ -2087,7 +2097,7 @@ public struct UpdateMessageSendAcknowledged: Codable, Equatable, Hashable {
 /// A message has been successfully sent
 public struct UpdateMessageSendSucceeded: Codable, Equatable, Hashable {
 
-    /// The sent message. Almost any field of the new message can be different from the corresponding field of the original message. For example, the field scheduling_state may change, making the message scheduled, or non-scheduled
+    /// The sent message. Almost any field of the new message can be different from the corresponding field of the original message. For example, the field scheduling_state may change, making the message scheduled or non-scheduled
     public let message: Message
 
     /// The previous temporary message identifier
@@ -2109,7 +2119,7 @@ public struct UpdateMessageSendFailed: Codable, Equatable, Hashable {
     /// The cause of the message sending failure
     public let error: Error
 
-    /// The failed to send message
+    /// The message that failed to send
     public let message: Message
 
     /// The previous temporary message identifier
@@ -2252,7 +2262,7 @@ public struct UpdateMessageInteractionInfo: Codable, Equatable, Hashable {
     }
 }
 
-/// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer
+/// The message content was opened. Updates voice note messages to "listened", video note messages to "viewed", and starts the self-destruct timer
 public struct UpdateMessageContentOpened: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -2324,7 +2334,7 @@ public struct UpdateMessageUnreadReactions: Codable, Equatable, Hashable {
     }
 }
 
-/// Unread votes were added or removed from a poll message
+/// Unread votes were added to or removed from a poll message
 public struct UpdateMessageContainsUnreadPollVotes: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -2377,7 +2387,7 @@ public struct UpdateMessageFactCheck: Codable, Equatable, Hashable {
     }
 }
 
-/// Information about suggested post of a message was changed
+/// Information about the suggested post of a message was changed
 public struct UpdateMessageSuggestedPostInfo: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -2407,7 +2417,7 @@ public struct UpdateMessageLiveLocationViewed: Codable, Equatable, Hashable {
     /// Identifier of the chat with the live location message
     public let chatId: Int64
 
-    /// Identifier of the message with live location
+    /// Identifier of the message with the live location
     public let messageId: Int64
 
 
@@ -2420,7 +2430,7 @@ public struct UpdateMessageLiveLocationViewed: Codable, Equatable, Hashable {
     }
 }
 
-/// An automatically scheduled message with video has been successfully sent after conversion
+/// An automatically scheduled message with a video has been successfully sent after conversion
 public struct UpdateVideoPublished: Codable, Equatable, Hashable {
 
     /// Identifier of the chat with the message
@@ -2553,7 +2563,7 @@ public struct UpdateChatLastMessage: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new last message in the chat; may be null if the last message became unknown. While the last message is unknown, new messages can be added to the chat without corresponding updateNewMessage update
+    /// The new last message in the chat; may be null if the last message became unknown. While the last message is unknown, new messages can be added to the chat without the corresponding updateNewMessage update
     public let lastMessage: Message?
 
     /// The new chat positions in the chat lists
@@ -2577,7 +2587,7 @@ public struct UpdateChatPosition: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// New chat position. If new order is 0, then the chat needs to be removed from the list
+    /// New chat position. If the new order is 0, then the chat needs to be removed from the list
     public let position: ChatPosition
 
 
@@ -2658,7 +2668,7 @@ public struct UpdateChatReadOutbox: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// Identifier of last read outgoing message
+    /// Identifier of the last read outgoing message
     public let lastReadOutboxMessageId: Int64
 
 
@@ -2690,7 +2700,7 @@ public struct UpdateChatActionBar: Codable, Equatable, Hashable {
     }
 }
 
-/// The bar for managing business bot was changed in a chat
+/// The bar for managing a business bot was changed in a chat
 public struct UpdateChatBusinessBotManageBar: Codable, Equatable, Hashable {
 
     /// The new value of the business bot manage bar; may be null
@@ -2712,7 +2722,7 @@ public struct UpdateChatBusinessBotManageBar: Codable, Equatable, Hashable {
 /// The chat available reactions were changed
 public struct UpdateChatAvailableReactions: Codable, Equatable, Hashable {
 
-    /// The new reactions, available in the chat
+    /// The new reactions available in the chat
     public let availableReactions: ChatAvailableReactions
 
     /// Chat identifier
@@ -2752,7 +2762,26 @@ public struct UpdateChatDraftMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// Chat emoji status has changed
+/// Default parameters for text composition with AI in a chat have changed
+public struct UpdateChatTextCompositionParameters: Codable, Equatable, Hashable {
+
+    /// Chat identifier
+    public let chatId: Int64
+
+    /// The new default parameters; may be null if none
+    public let textCompositionParameters: TextCompositionParameters?
+
+
+    public init(
+        chatId: Int64,
+        textCompositionParameters: TextCompositionParameters?
+    ) {
+        self.chatId = chatId
+        self.textCompositionParameters = textCompositionParameters
+    }
+}
+
+/// The emoji status of a chat has changed
 public struct UpdateChatEmojiStatus: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -2777,7 +2806,7 @@ public struct UpdateChatMessageSender: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// New value of message_sender_id; may be null if the user can't change message sender
+    /// New value of message_sender_id; may be null if the user can't change the message sender
     public let messageSenderId: MessageSender?
 
 
@@ -2869,7 +2898,7 @@ public struct UpdateChatReplyMarkup: Codable, Equatable, Hashable {
 /// The chat background was changed
 public struct UpdateChatBackground: Codable, Equatable, Hashable {
 
-    /// The new chat background; may be null if background was reset to default
+    /// The new chat background; may be null if the background was reset to the default
     public let background: ChatBackground?
 
     /// Chat identifier
@@ -2891,7 +2920,7 @@ public struct UpdateChatTheme: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The new theme of the chat; may be null if theme was reset to default
+    /// The new theme of the chat; may be null if the theme was reset to the default
     public let theme: ChatTheme?
 
 
@@ -2961,7 +2990,7 @@ public struct UpdateChatUnreadPollVoteCount: Codable, Equatable, Hashable {
     }
 }
 
-/// A chat video chat state has changed
+/// A chat's video chat state has changed
 public struct UpdateChatVideoChat: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -2999,7 +3028,7 @@ public struct UpdateChatDefaultDisableNotification: Codable, Equatable, Hashable
     }
 }
 
-/// A chat content was allowed or restricted for saving
+/// Chat content was allowed or restricted for saving
 public struct UpdateChatHasProtectedContent: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -3056,7 +3085,7 @@ public struct UpdateChatIsMarkedAsUnread: Codable, Equatable, Hashable {
     }
 }
 
-/// A chat default appearance has changed
+/// A chat's default appearance has changed
 public struct UpdateChatViewAsTopics: Codable, Equatable, Hashable {
 
     /// Chat identifier
@@ -3141,7 +3170,7 @@ public struct UpdateChatFolders: Codable, Equatable, Hashable {
     /// The new list of chat folders
     public let chatFolders: [ChatFolderInfo]
 
-    /// Position of the main chat list among chat folders, 0-based
+    /// Position of the main chat list among chat folders; 0-based
     public let mainChatListPosition: Int
 
 
@@ -3156,7 +3185,7 @@ public struct UpdateChatFolders: Codable, Equatable, Hashable {
     }
 }
 
-/// The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
+/// The number of online group members has changed. This update with a non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
 public struct UpdateChatOnlineMemberCount: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
@@ -3187,7 +3216,7 @@ public struct UpdateSavedMessagesTopic: Codable, Equatable, Hashable {
     }
 }
 
-/// Number of Saved Messages topics has changed
+/// The number of Saved Messages topics has changed
 public struct UpdateSavedMessagesTopicCount: Codable, Equatable, Hashable {
 
     /// Approximate total number of Saved Messages topics
@@ -3211,10 +3240,10 @@ public struct UpdateDirectMessagesChatTopic: Codable, Equatable, Hashable {
     }
 }
 
-/// Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+/// The number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
 public struct UpdateTopicMessageCount: Codable, Equatable, Hashable {
 
-    /// Identifier of the chat in topic of which the number of messages has changed
+    /// Identifier of the chat in a topic of which the number of messages has changed
     public let chatId: Int64
 
     /// Approximate number of messages in the topic
@@ -3442,7 +3471,7 @@ public struct UpdateNotificationGroup: Codable, Equatable, Hashable {
     /// Unique notification group identifier
     public let notificationGroupId: Int
 
-    /// Chat identifier, which notification settings must be applied to the added notifications
+    /// Identifier of the chat whose notification settings must be applied to the added notifications
     public let notificationSettingsChatId: Int64
 
     /// Identifier of the notification sound to be played; 0 if sound is disabled
@@ -3451,7 +3480,7 @@ public struct UpdateNotificationGroup: Codable, Equatable, Hashable {
     /// Identifiers of removed group notifications, sorted by notification identifier
     public let removedNotificationIds: [Int]
 
-    /// Total number of unread notifications in the group, can be bigger than number of active notifications
+    /// Total number of unread notifications in the group; can be greater than the number of active notifications
     public let totalCount: Int
 
     /// New type of the notification group
@@ -3479,7 +3508,7 @@ public struct UpdateNotificationGroup: Codable, Equatable, Hashable {
     }
 }
 
-/// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+/// Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case, it comes once before any updateNotification and updateNotificationGroup updates
 public struct UpdateActiveNotifications: Codable, Equatable, Hashable {
 
     /// Lists of active notification groups
@@ -3491,7 +3520,7 @@ public struct UpdateActiveNotifications: Codable, Equatable, Hashable {
     }
 }
 
-/// Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
+/// Describes whether there are some pending notification updates. Can be used to prevent the application from being killed while there are some pending notifications
 public struct UpdateHavePendingNotifications: Codable, Equatable, Hashable {
 
     /// True, if there are some delayed notification updates, which will be sent soon
@@ -3539,7 +3568,7 @@ public struct UpdateDeleteMessages: Codable, Equatable, Hashable {
     }
 }
 
-/// A message sender activity in the chat has changed
+/// A message sender's activity in the chat has changed
 public struct UpdateChatAction: Codable, Equatable, Hashable {
 
     /// The action
@@ -3583,7 +3612,7 @@ public struct UpdatePendingMessage: Codable, Equatable, Hashable {
     /// Unique identifier of the message draft within the message thread
     public let draftId: TdInt64
 
-    /// The forum topic identifier in which the message will be sent; 0 if none
+    /// The identifier of the forum topic in which the message will be sent; 0 if none
     public let forumTopicId: Int
 
     /// True, if the pending message must not be automatically deleted when the user presses the Stop button
@@ -3786,13 +3815,13 @@ public struct UpdateCommunityFullInfo: Codable, Equatable, Hashable {
     }
 }
 
-/// A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
+/// A service notification from the server was received. Upon receiving this, the application must show a popup with the content of the notification
 public struct UpdateServiceNotification: Codable, Equatable, Hashable {
 
     /// Notification content
     public let content: MessageContent
 
-    /// Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
+    /// Notification type. If the type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under the notification; if the user presses the second, all local data must be destroyed using the Destroy method
     public let type: String
 
 
@@ -3906,10 +3935,10 @@ public struct UpdateFileDownloads: Codable, Equatable, Hashable {
     }
 }
 
-/// A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+/// A file was added to the file download list. This update is sent only after the file download list is loaded for the first time
 public struct UpdateFileAddedToDownloads: Codable, Equatable, Hashable {
 
-    /// New number of being downloaded and recently downloaded files found
+    /// New number of files being downloaded and recently downloaded files found
     public let counts: DownloadedFileCounts
 
     /// The added file download
@@ -3925,13 +3954,13 @@ public struct UpdateFileAddedToDownloads: Codable, Equatable, Hashable {
     }
 }
 
-/// A file download was changed. This update is sent only after file download list is loaded for the first time
+/// A file download was changed. This update is sent only after the file download list is loaded for the first time
 public struct UpdateFileDownload: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
     public let completeDate: Int
 
-    /// New number of being downloaded and recently downloaded files found
+    /// New number of files being downloaded and recently downloaded files found
     public let counts: DownloadedFileCounts
 
     /// File identifier
@@ -3954,10 +3983,10 @@ public struct UpdateFileDownload: Codable, Equatable, Hashable {
     }
 }
 
-/// A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+/// A file was removed from the file download list. This update is sent only after the file download list is loaded for the first time
 public struct UpdateFileRemovedFromDownloads: Codable, Equatable, Hashable {
 
-    /// New number of being downloaded and recently downloaded files found
+    /// New number of files being downloaded and recently downloaded files found
     public let counts: DownloadedFileCounts
 
     /// File identifier
@@ -3979,7 +4008,7 @@ public struct UpdateApplicationVerificationRequired: Codable, Equatable, Hashabl
     /// Cloud project number to pass to the Play Integrity API on Android
     public let cloudProjectNumber: TdInt64
 
-    /// Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    /// Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with the verify_nonce field from a push notification for iOS
     public let nonce: String
 
     /// Unique identifier for the verification process
@@ -4021,7 +4050,7 @@ public struct UpdateApplicationRecaptchaVerificationRequired: Codable, Equatable
     }
 }
 
-/// New call was created or information about a call was updated
+/// A new call was created or information about a call was updated
 public struct UpdateCall: Codable, Equatable, Hashable {
 
     /// New data about a call
@@ -4064,7 +4093,7 @@ public struct UpdateGroupCallParticipant: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+/// The list of group call participants who can send and receive encrypted call data has changed; for group calls not bound to a chat only
 public struct UpdateGroupCallParticipants: Codable, Equatable, Hashable {
 
     /// Identifier of the group call
@@ -4089,7 +4118,7 @@ public struct UpdateGroupCallVerificationState: Codable, Equatable, Hashable {
     /// Group call state fingerprint represented as 4 emoji; may be empty if the state isn't verified yet
     public let emojis: [String]
 
-    /// The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different
+    /// The call state generation to which the emoji corresponds. If the generation is different for two users, then their emoji may also be different
     public let generation: Int
 
     /// Identifier of the group call
@@ -4193,7 +4222,7 @@ public struct UpdateGroupCallMessagesDeleted: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of top donors in live story group call has changed
+/// The list of top donors in the live story group call has changed
 public struct UpdateLiveStoryTopDonors: Codable, Equatable, Hashable {
 
     /// New list of live story donors
@@ -4231,7 +4260,7 @@ public struct UpdateNewCallSignalingData: Codable, Equatable, Hashable {
     }
 }
 
-/// State of a gift auction was updated
+/// The state of a gift auction was updated
 public struct UpdateGiftAuctionState: Codable, Equatable, Hashable {
 
     /// New state of the auction
@@ -4274,10 +4303,10 @@ public struct UpdateUserPrivacySettingRules: Codable, Equatable, Hashable {
     }
 }
 
-/// Number of unread messages in a chat list has changed. This update is sent only if the message database is used
+/// The number of unread messages in a chat list has changed. This update is sent only if the message database is used
 public struct UpdateUnreadMessageCount: Codable, Equatable, Hashable {
 
-    /// The chat list with changed number of unread messages
+    /// The chat list with a changed number of unread messages
     public let chatList: ChatList
 
     /// Total number of unread messages
@@ -4298,10 +4327,10 @@ public struct UpdateUnreadMessageCount: Codable, Equatable, Hashable {
     }
 }
 
-/// Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
+/// The number of unread chats, i.e., with unread messages or marked as unread, has changed. This update is sent only if the message database is used
 public struct UpdateUnreadChatCount: Codable, Equatable, Hashable {
 
-    /// The chat list with changed number of unread messages
+    /// The chat list with a changed number of unread messages
     public let chatList: ChatList
 
     /// Total number of chats marked as unread
@@ -4420,7 +4449,7 @@ public struct UpdateStoryPostFailed: Codable, Equatable, Hashable {
     /// Type of the error; may be null if unknown
     public let errorType: CanPostStoryResult?
 
-    /// The failed to post story
+    /// The story that failed to post
     public let story: Story
 
 
@@ -4447,7 +4476,7 @@ public struct UpdateChatActiveStories: Codable, Equatable, Hashable {
     }
 }
 
-/// Number of chats in a story list has changed
+/// The number of chats in a story list has changed
 public struct UpdateStoryListChatCount: Codable, Equatable, Hashable {
 
     /// Approximate total number of chats with active stories in the list
@@ -4469,7 +4498,7 @@ public struct UpdateStoryListChatCount: Codable, Equatable, Hashable {
 /// Story stealth mode settings have changed
 public struct UpdateStoryStealthMode: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled
+    /// Point in time (Unix timestamp) until which stealth mode is active; 0 if it is disabled
     public let activeUntilDate: Int
 
     /// Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown
@@ -4485,7 +4514,7 @@ public struct UpdateStoryStealthMode: Codable, Equatable, Hashable {
     }
 }
 
-/// Lists of suffixes allowed in secondary bot usernames, which can be added additionally to the main username if the bot's owner has a Telegram Premium subscription
+/// Lists of suffixes allowed in secondary bot usernames, which can be added in addition to the main username if the bot's owner has a Telegram Premium subscription
 public struct UpdateAllowedBotUsernamePremiumSuffixes: Codable, Equatable, Hashable {
 
     /// The list of allowed suffixes
@@ -4497,7 +4526,7 @@ public struct UpdateAllowedBotUsernamePremiumSuffixes: Codable, Equatable, Hasha
     }
 }
 
-/// Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+/// Lists of bots whose Mini Apps must be allowed to read text from the clipboard and must be opened without a warning
 public struct UpdateTrustedMiniAppBots: Codable, Equatable, Hashable {
 
     /// List of user identifiers of the bots; the corresponding users may not be sent using updateUser updates and may not be accessible
@@ -4639,7 +4668,7 @@ public struct UpdateDefaultBackground: Codable, Equatable, Hashable {
     /// The new default background; may be null
     public let background: Background?
 
-    /// True, if default background for dark theme has changed
+    /// True, if the default background for a dark theme has changed
     public let forDarkTheme: Bool
 
 
@@ -4872,10 +4901,10 @@ public struct UpdateUnconfirmedSession: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of bots added to attachment or side menu has changed
+/// The list of bots added to the attachment or side menu has changed
 public struct UpdateAttachmentMenuBots: Codable, Equatable, Hashable {
 
-    /// The new list of bots. The bots must not be shown on scheduled messages screen
+    /// The new list of bots. The bots must not be shown on the scheduled messages screen
     public let bots: [AttachmentMenuBot]
 
 
@@ -4887,7 +4916,7 @@ public struct UpdateAttachmentMenuBots: Codable, Equatable, Hashable {
 /// A message was sent by an opened Web App, so the Web App needs to be closed
 public struct UpdateWebAppMessageSent: Codable, Equatable, Hashable {
 
-    /// Identifier of Web App launch
+    /// Identifier of the Web App launch
     public let webAppLaunchId: TdInt64
 
 
@@ -4954,7 +4983,7 @@ public struct UpdateDefaultPaidReactionType: Codable, Equatable, Hashable {
 /// Tags used in Saved Messages or a Saved Messages topic have changed
 public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
 
-    /// Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat have changed
+    /// Identifier of the Saved Messages topic whose tags were changed; 0 if tags for the whole chat have changed
     public let savedMessagesTopicId: Int64
 
     /// The new tags
@@ -4970,7 +4999,7 @@ public struct UpdateSavedMessagesTags: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+/// The list of messages with an active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
 public struct UpdateActiveLiveLocationMessages: Codable, Equatable, Hashable {
 
     /// The list of messages with active live locations
@@ -4997,7 +5026,7 @@ public struct UpdateOwnedStarCount: Codable, Equatable, Hashable {
 /// The number of TON Grams owned by the current user has changed
 public struct UpdateOwnedGramCount: Codable, Equatable, Hashable {
 
-    /// The new amount of owned Grams; in the smallest units of the cryptocurrency
+    /// The new owned amount, in the smallest units of TON Grams
     public let gramAmount: Int64
 
 
@@ -5030,7 +5059,7 @@ public struct UpdateTonWalletGaslessTransfersInfo: Codable, Equatable, Hashable 
     }
 }
 
-/// A session of a TON Connect has changed
+/// A TON Connect session has changed
 public struct UpdateTonWalletTonConnectSession: Codable, Equatable, Hashable {
 
     /// The new state of the session
@@ -5054,7 +5083,7 @@ public struct UpdateTonWalletTonConnectSessionDisconnectRequired: Codable, Equat
     }
 }
 
-/// The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+/// The revenue earned from sponsored messages in a chat has changed. If the chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
 public struct UpdateChatRevenueAmount: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
@@ -5073,7 +5102,7 @@ public struct UpdateChatRevenueAmount: Codable, Equatable, Hashable {
     }
 }
 
-/// The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+/// The Telegram Star revenue earned by a user or a chat has changed. If the Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
 
     /// Identifier of the owner of the Telegram Stars
@@ -5092,7 +5121,7 @@ public struct UpdateStarRevenueStatus: Codable, Equatable, Hashable {
     }
 }
 
-/// The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+/// The TON Gram revenue earned by the current user has changed. If the Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
 public struct UpdateGramRevenueStatus: Codable, Equatable, Hashable {
 
     /// New Gram revenue status
@@ -5104,13 +5133,13 @@ public struct UpdateGramRevenueStatus: Codable, Equatable, Hashable {
     }
 }
 
-/// The parameters of speech recognition without Telegram Premium subscription have changed
+/// The parameters of speech recognition without a Telegram Premium subscription have changed
 public struct UpdateSpeechRecognitionTrial: Codable, Equatable, Hashable {
 
-    /// Number of left speech recognition attempts this week
+    /// Number of remaining speech recognition attempts this week
     public let leftCount: Int
 
-    /// The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
+    /// The maximum allowed duration of media for speech recognition without a Telegram Premium subscription, in seconds
     public let maxMediaDuration: Int
 
     /// Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
@@ -5212,7 +5241,7 @@ public struct UpdateAnimatedEmojiMessageClicked: Codable, Equatable, Hashable {
     }
 }
 
-/// The parameters of animation search through getOption("animation_search_bot_username") bot have changed
+/// The parameters of animation search through the getOption("animation_search_bot_username") bot have changed
 public struct UpdateAnimationSearchParameters: Codable, Equatable, Hashable {
 
     /// The new list of emojis suggested for searching
@@ -5243,7 +5272,7 @@ public struct UpdateTextCompositionStyles: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of suggested to the user actions has changed
+/// The list of actions suggested to the user has changed
 public struct UpdateSuggestedActions: Codable, Equatable, Hashable {
 
     /// Added suggested actions
@@ -5262,7 +5291,7 @@ public struct UpdateSuggestedActions: Codable, Equatable, Hashable {
     }
 }
 
-/// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+/// Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get the expected speedup after subscription to Telegram Premium
 public struct UpdateSpeedLimitNotification: Codable, Equatable, Hashable {
 
     /// True, if upload speed was limited; false, if download speed was limited
@@ -5274,10 +5303,10 @@ public struct UpdateSpeedLimitNotification: Codable, Equatable, Hashable {
     }
 }
 
-/// The list of contacts that had birthdays recently or will have birthday soon has changed
+/// The list of contacts who had birthdays recently or will have a birthday soon has changed
 public struct UpdateContactCloseBirthdays: Codable, Equatable, Hashable {
 
-    /// List of contact users with close birthday
+    /// List of contact users with close birthdays
     public let closeBirthdayUsers: [CloseBirthdayUser]
 
 
@@ -5292,7 +5321,7 @@ public struct UpdateAutosaveSettings: Codable, Equatable, Hashable {
     /// Type of chats for which autosave settings were updated
     public let scope: AutosaveSettingsScope
 
-    /// The new autosave settings; may be null if the settings are reset to default
+    /// The new autosave settings; may be null if the settings are reset to the default
     public let settings: ScopeAutosaveSettings?
 
 
@@ -5740,7 +5769,7 @@ public struct UpdateNewWidgetCopyQuery: Codable, Equatable, Hashable, Identifiab
     }
 }
 
-/// A new incoming shipping query; for bots only. Only for invoices with flexible price
+/// A new incoming shipping query; for bots only. Only for invoices with a flexible price
 public struct UpdateNewShippingQuery: Codable, Equatable, Hashable, Identifiable {
 
     /// Unique query identifier
@@ -5849,7 +5878,7 @@ public struct UpdateNewCustomQuery: Codable, Equatable, Hashable, Identifiable {
     }
 }
 
-/// Subscription of a user to the bot was changed; for bots only
+/// The subscription of a user to the bot was changed; for bots only
 public struct UpdateUserSubscription: Codable, Equatable, Hashable {
 
     /// True, if the subscription was canceled
@@ -5898,10 +5927,10 @@ public struct UpdatePoll: Codable, Equatable, Hashable {
 /// A user changed the answer to a poll; for bots only
 public struct UpdatePollAnswer: Codable, Equatable, Hashable {
 
-    /// Unique identifiers of answer options, that were chosen by the user
+    /// Unique identifiers of answer options that were chosen by the user
     public let optionIds: [String]
 
-    /// 0-based identifiers of answer options, that were chosen by the user
+    /// 0-based identifiers of answer options that were chosen by the user
     public let optionPositions: [Int]
 
     /// Unique poll identifier
@@ -5946,7 +5975,7 @@ public struct UpdateManagedBot: Codable, Equatable, Hashable {
 /// User rights changed in a chat; for bots only
 public struct UpdateChatMember: Codable, Equatable, Hashable {
 
-    /// Identifier of the user, changing the rights
+    /// Identifier of the user changing the rights
     public let actorUserId: Int64
 
     /// Chat identifier
@@ -5955,7 +5984,7 @@ public struct UpdateChatMember: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the user rights were changed
     public let date: Int
 
-    /// If user has joined the chat using an invite link, the invite link; may be null
+    /// If the user has joined the chat using an invite link, the invite link; may be null
     public let inviteLink: ChatInviteLink?
 
     /// New chat member
@@ -5998,7 +6027,7 @@ public struct UpdateNewChatJoinRequest: Codable, Equatable, Hashable {
     /// Chat identifier
     public let chatId: Int64
 
-    /// The invite link, which was used to send join request; may be null
+    /// The invite link that was used to send the join request; may be null
     public let inviteLink: ChatInviteLink?
 
     /// Identifier of the join request query, which can be used in answerChatJoinRequestQuery; 0 if none
@@ -6045,7 +6074,7 @@ public struct UpdateChatBoost: Codable, Equatable, Hashable {
     }
 }
 
-/// User changed its reactions on a message with public reactions; for bots only
+/// A user changed their reactions on a message with public reactions; for bots only
 public struct UpdateMessageReaction: Codable, Equatable, Hashable {
 
     /// Identifier of the user or chat that changed reactions

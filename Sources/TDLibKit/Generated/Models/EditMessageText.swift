@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+/// Edits the text of a message (or the text of a game message). Returns the edited message after the edit is completed on the server side
 public struct EditMessageText: Codable, Equatable, Hashable {
 
     /// The chat the message belongs to
     public let chatId: Int64?
 
-    /// New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
+    /// New text content of the message. Must be of the type inputMessageText or inputMessageRichMessage
     public let inputMessageContent: InputMessageContent?
 
     /// Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited

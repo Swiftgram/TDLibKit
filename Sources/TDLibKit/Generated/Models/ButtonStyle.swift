@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Describes style of a button
 public indirect enum ButtonStyle: Codable, Equatable, Hashable {
 
-    /// The button has default style
+    /// The button has the default style
     case buttonStyleDefault
 
-    /// The button has dark blue color
+    /// The button has a dark blue color
     case buttonStylePrimary
 
-    /// The button has red color
+    /// The button has a red color
     case buttonStyleDanger
 
-    /// The button has green color
+    /// The button has a green color
     case buttonStyleSuccess
 
     /// The button must be shown as a link. The style is allowed only for callback buttons in inlineButton

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes parameters of verification that is provided by a bot
 public struct BotVerificationParameters: Codable, Equatable, Hashable {
 
-    /// True, if the bot is allowed to provide custom description for verified entities
+    /// True, if the bot is allowed to provide a custom description for verified entities
     public let canSetCustomDescription: Bool
 
     /// Default custom description of verification reason to be used as placeholder in setMessageSenderBotVerification; may be null if none

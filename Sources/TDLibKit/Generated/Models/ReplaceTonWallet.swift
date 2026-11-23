@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Replaces the current TON wallet with another existing v6r2 wallet or changes private key of the current TON wallet; can be used only if getOption("can_use_ton_wallet")
+/// Replaces the current TON wallet with another existing v6r2 wallet or changes the private key of the current TON wallet; can be used only if getOption("can_use_ton_wallet")
 public struct ReplaceTonWallet: Codable, Equatable, Hashable {
 
     /// Original public key of the new TON wallet
     public let anchorPublicKey: Data?
 
-    /// Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request
+    /// Password of the current user; pass an empty string unless an error with a message "PASSWORD_MISSING" was received for a passwordless request
     public let password: String?
 
     /// Proof of ownership of the new private key of the TON wallet; use getTonWalletOwnershipProofChallenge to get a challenge for the proof

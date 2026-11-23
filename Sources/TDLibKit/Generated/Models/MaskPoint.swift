@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,16 +13,16 @@ import Foundation
 /// Part of the face, relative to which a mask is placed
 public indirect enum MaskPoint: Codable, Equatable, Hashable {
 
-    /// The mask is placed relatively to the forehead
+    /// The mask is placed relative to the forehead
     case maskPointForehead
 
-    /// The mask is placed relatively to the eyes
+    /// The mask is placed relative to the eyes
     case maskPointEyes
 
-    /// The mask is placed relatively to the mouth
+    /// The mask is placed relative to the mouth
     case maskPointMouth
 
-    /// The mask is placed relatively to the chin
+    /// The mask is placed relative to the chin
     case maskPointChin
 
 

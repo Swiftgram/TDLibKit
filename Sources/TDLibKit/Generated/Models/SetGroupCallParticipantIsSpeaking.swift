@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found
+/// Informs TDLib that the speaking state of a participant of an active group call has changed. Returns the identifier of the participant if it is found
 public struct SetGroupCallParticipantIsSpeaking: Codable, Equatable, Hashable {
 
     /// Group call participant's synchronization audio source identifier, or 0 for the current user

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Contains a list of features available on a specific chat boost level
 public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
 
-    /// Number of custom colors for background of empty chat photo, replies to messages and link previews
+    /// Number of custom colors for background of empty chat photo, replies to messages, and link previews
     public let accentColorCount: Int
 
     /// True, if sponsored messages can be disabled in the chat
@@ -25,19 +25,19 @@ public struct ChatBoostLevelFeatures: Codable, Equatable, Hashable {
     /// True, if speech recognition can be used for video note and voice note messages by all users
     public let canRecognizeSpeech: Bool
 
-    /// True, if custom emoji for reply header and link preview background can be set
+    /// True, if a custom emoji for the reply header and link preview background can be set
     public let canSetBackgroundCustomEmoji: Bool
 
-    /// True, if custom background can be set in the chat for all users
+    /// True, if a custom background can be set in the chat for all users
     public let canSetCustomBackground: Bool
 
-    /// True, if custom emoji sticker set can be set for the chat
+    /// True, if a custom emoji sticker set can be set for the chat
     public let canSetCustomEmojiStickerSet: Bool
 
-    /// True, if emoji status can be set
+    /// True, if an emoji status can be set
     public let canSetEmojiStatus: Bool
 
-    /// True, if custom emoji for profile background can be set
+    /// True, if a custom emoji for the profile background can be set
     public let canSetProfileBackgroundCustomEmoji: Bool
 
     /// Number of chat theme backgrounds that can be set as chat background

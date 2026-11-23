@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Refunds a previously done payment in Telegram Stars; for bots only
+/// Refunds a previously made payment in Telegram Stars; for bots only
 public struct RefundStarPayment: Codable, Equatable, Hashable {
 
     /// Telegram payment identifier
     public let telegramPaymentChargeId: String?
 
-    /// Identifier of the user who did the payment
+    /// Identifier of the user who made the payment
     public let userId: Int64?
 
 

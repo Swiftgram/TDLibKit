@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a chat or user profile photo
 public struct ChatPhoto: Codable, Equatable, Hashable, Identifiable {
 
-    /// Point in time (Unix timestamp) when the photo has been added
+    /// Point in time (Unix timestamp) when the photo was added
     public let addedDate: Int
 
     /// A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null

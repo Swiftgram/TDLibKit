@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Contains identifier of a story along with identifier of the chat that posted it
+/// Contains the identifier of a story along with the identifier of the chat that posted it
 public struct StoryFullId: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that posted the story

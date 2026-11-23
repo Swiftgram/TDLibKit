@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes type of clickable area on a story media
+/// Describes type of clickable area on story media
 public indirect enum StoryAreaType: Codable, Equatable, Hashable {
 
     /// An area pointing to a location
@@ -19,7 +19,7 @@ public indirect enum StoryAreaType: Codable, Equatable, Hashable {
     /// An area pointing to a venue
     case storyAreaTypeVenue(StoryAreaTypeVenue)
 
-    /// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
+    /// An area pointing to a suggested reaction. The app needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
     case storyAreaTypeSuggestedReaction(StoryAreaTypeSuggestedReaction)
 
     /// An area pointing to a message
@@ -132,13 +132,13 @@ public struct StoryAreaTypeVenue: Codable, Equatable, Hashable {
     }
 }
 
-/// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
+/// An area pointing to a suggested reaction. The app needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
 public struct StoryAreaTypeSuggestedReaction: Codable, Equatable, Hashable {
 
-    /// True, if reaction has a dark background
+    /// True, if the reaction has a dark background
     public let isDark: Bool
 
-    /// True, if reaction corner is flipped
+    /// True, if the reaction corner is flipped
     public let isFlipped: Bool
 
     /// Type of the reaction
@@ -201,7 +201,7 @@ public struct StoryAreaTypeWeather: Codable, Equatable, Hashable {
     /// Emoji representing the weather
     public let emoji: String
 
-    /// Temperature, in degree Celsius
+    /// Temperature, in degrees Celsius
     public let temperature: Double
 
 

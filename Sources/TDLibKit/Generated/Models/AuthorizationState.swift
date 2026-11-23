@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
     /// The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
     case authorizationStateWaitPremiumPurchase(AuthorizationStateWaitPremiumPurchase)
 
-    /// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
+    /// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with an Apple ID/Google ID token if allowed
     case authorizationStateWaitEmailAddress(AuthorizationStateWaitEmailAddress)
 
     /// TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
@@ -31,10 +31,10 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
     /// TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code
     case authorizationStateWaitCode(AuthorizationStateWaitCode)
 
-    /// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
+    /// The user needs to confirm authorization on another logged-in device by scanning a QR code with the provided link
     case authorizationStateWaitOtherDeviceConfirmation(AuthorizationStateWaitOtherDeviceConfirmation)
 
-    /// The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
+    /// The user is unregistered and needs to accept the terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
     case authorizationStateWaitRegistration(AuthorizationStateWaitRegistration)
 
     /// The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
@@ -46,10 +46,10 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
     /// The user is currently logging out
     case authorizationStateLoggingOut
 
-    /// TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
+    /// TDLib is closing; all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
     case authorizationStateClosing
 
-    /// TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to with error code 500. To continue working, one must create a new instance of the TDLib client
+    /// The TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to with error code 500. To continue working, one must create a new instance of the TDLib client
     case authorizationStateClosed
 
 
@@ -152,13 +152,13 @@ public indirect enum AuthorizationState: Codable, Equatable, Hashable {
 /// The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
 public struct AuthorizationStateWaitPremiumPurchase: Codable, Equatable, Hashable {
 
-    /// Duration of the Telegram Premium subscription after the purchase; may be 0 if Telegram Premium subscription will not be granted
+    /// Duration of the Telegram Premium subscription after the purchase; may be 0 if a Telegram Premium subscription will not be granted
     public let premiumDayCount: Int
 
     /// Identifier of the store product that must be bought
     public let storeProductId: String
 
-    /// Email address to use for support if the user has issues with Telegram Premium purchase
+    /// Email address to use for support if the user has issues with the Telegram Premium purchase
     public let supportEmailAddress: String
 
     /// Subject for the email sent to the support email address
@@ -178,7 +178,7 @@ public struct AuthorizationStateWaitPremiumPurchase: Codable, Equatable, Hashabl
     }
 }
 
-/// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
+/// TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with an Apple ID/Google ID token if allowed
 public struct AuthorizationStateWaitEmailAddress: Codable, Equatable, Hashable {
 
     /// True, if authorization through Apple ID is allowed
@@ -238,7 +238,7 @@ public struct AuthorizationStateWaitCode: Codable, Equatable, Hashable {
     }
 }
 
-/// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
+/// The user needs to confirm authorization on another logged-in device by scanning a QR code with the provided link
 public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable, Hashable {
 
     /// A tg:// URL for the QR code. The link will be updated frequently
@@ -250,7 +250,7 @@ public struct AuthorizationStateWaitOtherDeviceConfirmation: Codable, Equatable,
     }
 }
 
-/// The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
+/// The user is unregistered and needs to accept the terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
 public struct AuthorizationStateWaitRegistration: Codable, Equatable, Hashable {
 
     /// Telegram terms of service

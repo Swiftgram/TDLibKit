@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,10 +22,10 @@ public struct TextCompositionStyle: Codable, Equatable, Hashable {
     /// Example of the style usage in English; may be null if unknown
     public let englishExample: TextCompositionStyleExample?
 
-    /// Number of users that installed the style; for created custom styles only; 0 if unknown
+    /// Number of users who installed the style; for created custom styles only; 0 if unknown
     public let installCount: Int
 
-    /// True, if the user is creator of the style
+    /// True, if the user is the creator of the style
     public let isCreator: Bool
 
     /// True, if the style is created by a user

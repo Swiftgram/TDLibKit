@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
+/// Changes the order of gift collections. If the collections are owned by a channel chat, then requires can_post_messages administrator right in the channel chat
 public struct ReorderGiftCollections: Codable, Equatable, Hashable {
 
     /// New order of gift collections

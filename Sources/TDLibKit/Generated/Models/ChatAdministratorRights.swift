@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,16 +25,16 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can edit messages of other users and pin messages; applicable to channels only
     public let canEditMessages: Bool
 
-    /// True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access story archive; applicable to supergroups and channels only
+    /// True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the story archive; applicable to supergroups and channels only
     public let canEditStories: Bool
 
     /// True, if the administrator can invite new users to the chat
     public let canInviteUsers: Bool
 
-    /// True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only
+    /// True, if the administrator can access the chat event log, get the boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only
     public let canManageChat: Bool
 
-    /// True, if the administrator can answer to channel direct messages; applicable to channels only
+    /// True, if the administrator can answer channel direct messages; applicable to channels only
     public let canManageDirectMessages: Bool
 
     /// True, if the administrator can change tags of other users; applicable to basic groups and supergroups only
@@ -55,7 +55,7 @@ public struct ChatAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only
     public let canPostStories: Bool
 
-    /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them; applicable to supergroups and channels only
+    /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators who were directly or indirectly promoted by them; applicable to supergroups and channels only
     public let canPromoteMembers: Bool
 
     /// True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics

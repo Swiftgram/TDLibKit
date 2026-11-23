@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public indirect enum ChatRevenueTransactionType: Codable, Equatable, Hashable {
     /// Describes a withdrawal of earnings through Fragment
     case chatRevenueTransactionTypeFragmentWithdrawal(ChatRevenueTransactionTypeFragmentWithdrawal)
 
-    /// Describes a refund for failed withdrawal of earnings through Fragment
+    /// Describes a refund for a failed withdrawal of earnings through Fragment
     case chatRevenueTransactionTypeFragmentRefund(ChatRevenueTransactionTypeFragmentRefund)
 
 
@@ -129,7 +129,7 @@ public struct ChatRevenueTransactionTypeFragmentWithdrawal: Codable, Equatable, 
     }
 }
 
-/// Describes a refund for failed withdrawal of earnings through Fragment
+/// Describes a refund for a failed withdrawal of earnings through Fragment
 public struct ChatRevenueTransactionTypeFragmentRefund: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the transaction was refunded

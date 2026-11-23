@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public struct LaunchPrepaidGiveaway: Codable, Equatable, Hashable {
     /// The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways
     public let starCount: Int64?
 
-    /// The number of users to receive giveaway prize
+    /// The number of users to receive a giveaway prize
     public let winnerCount: Int?
 
 

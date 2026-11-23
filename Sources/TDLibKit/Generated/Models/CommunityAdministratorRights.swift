@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes rights of the administrator in a community
 public struct CommunityAdministratorRights: Codable, Equatable, Hashable {
 
-    /// True, if the administrator can ban, or unban community members
+    /// True, if the administrator can ban or unban community members
     public let canBanMembers: Bool
 
     /// True, if the administrator can change the community name, photo, and other settings
@@ -25,7 +25,7 @@ public struct CommunityAdministratorRights: Codable, Equatable, Hashable {
     /// True, if the user is an administrator. Implied by any other privilege
     public let canManageCommunity: Bool
 
-    /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
+    /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators who were directly or indirectly promoted by them
     public let canPromoteMembers: Bool
 
 

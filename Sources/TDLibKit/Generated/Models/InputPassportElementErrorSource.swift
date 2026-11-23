@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -215,7 +215,7 @@ public struct InputPassportElementErrorSourceTranslationFiles: Codable, Equatabl
 /// The file contains an error. The error is considered resolved when the file changes
 public struct InputPassportElementErrorSourceFile: Codable, Equatable, Hashable {
 
-    /// Current hash of the file which has the error
+    /// Current hash of the file that has the error
     public let fileHash: Data
 
 

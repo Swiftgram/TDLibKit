@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
     /// The list of features
     public let features: [ChatBoostLevelFeatures]
 
-    /// The minimum boost level allowing to enable automatic translation of messages for non-Premium users; for channel chats only
+    /// The minimum boost level required to enable automatic translation of messages for non-Premium users; for channel chats only
     public let minAutomaticTranslationBoostLevel: Int
 
     /// The minimum boost level required to set custom emoji for reply header and link preview background; for channel chats only
@@ -25,22 +25,22 @@ public struct ChatBoostFeatures: Codable, Equatable, Hashable {
     /// The minimum boost level required to set a chat theme background as chat background
     public let minChatThemeBackgroundBoostLevel: Int
 
-    /// The minimum boost level required to set custom chat background
+    /// The minimum boost level required to set a custom chat background
     public let minCustomBackgroundBoostLevel: Int
 
-    /// The minimum boost level required to set custom emoji sticker set for the chat; for supergroup chats only
+    /// The minimum boost level required to set a custom emoji sticker set for the chat; for supergroup chats only
     public let minCustomEmojiStickerSetBoostLevel: Int
 
-    /// The minimum boost level required to set emoji status
+    /// The minimum boost level required to set an emoji status
     public let minEmojiStatusBoostLevel: Int
 
     /// The minimum boost level required to set custom emoji for profile background
     public let minProfileBackgroundCustomEmojiBoostLevel: Int
 
-    /// The minimum boost level allowing to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only
+    /// The minimum boost level required to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only
     public let minSpeechRecognitionBoostLevel: Int
 
-    /// The minimum boost level allowing to disable sponsored messages in the chat; for channel chats only
+    /// The minimum boost level required to disable sponsored messages in the chat; for channel chats only
     public let minSponsoredMessageDisableBoostLevel: Int
 
 

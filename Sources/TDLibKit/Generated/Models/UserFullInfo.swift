@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// For bots, information about the bot; may be null if the user isn't a bot
     public let botInfo: BotInfo?
 
-    /// Information about verification status of the user provided by a bot; may be null if none or unknown
+    /// Information about the verification status of the user provided by a bot; may be null if none or unknown
     public let botVerification: BotVerification?
 
     /// Information about business settings for Telegram Business accounts; may be null if none
@@ -34,19 +34,19 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// True, if the user can be called
     public let canBeCalled: Bool
 
-    /// Identifier of the community to which chat with the bot was added; for bots only
+    /// Identifier of the community to which the chat with the bot was added; for bots only
     public let communityId: Int64
 
     /// The first audio file added to the user's profile; may be null if none
     public let firstProfileAudio: Audio?
 
-    /// Number of saved to profile gifts for other users or the total number of received gifts for the current user
+    /// Number of gifts saved to the profile for other users or the total number of received gifts for the current user
     public let giftCount: Int
 
     /// Settings for gift receiving for the user
     public let giftSettings: GiftSettings
 
-    /// Number of group chats where both the other user and the current user are a member; 0 for the current user
+    /// Number of group chats where both the other user and the current user are members; 0 for the current user
     public let groupInCommonCount: Int
 
     /// True, if the user has posted to profile stories
@@ -70,7 +70,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// The main tab chosen by the user; may be null if not chosen manually
     public let mainProfileTab: ProfileTab?
 
-    /// True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
+    /// True, if the current user needs to explicitly allow sharing their phone number with the user when the method addContact is used
     public let needPhoneNumberPrivacyException: Bool
 
     /// Note added to the user's contact; may be null if none
@@ -82,7 +82,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// The rating of the user after the next change; may be null if the user isn't the current user or there are no pending rating changes
     public let pendingRating: UserRating?
 
-    /// Unix timestamp when rating of the user will change to pending_rating; 0 if the user isn't the current user or there are no pending rating changes
+    /// Unix timestamp when the rating of the user will change to pending_rating; 0 if the user isn't the current user or there are no pending rating changes
     public let pendingRatingDate: Int
 
     /// Identifier of the personal chat of the user; 0 if none
@@ -100,7 +100,7 @@ public struct UserFullInfo: Codable, Equatable, Hashable {
     /// The current rating of the user; may be null if none
     public let rating: UserRating?
 
-    /// True, if the user set chat background for both chat users and it wasn't reverted yet
+    /// True, if the user set the chat background for both chat users and it hasn't been reverted yet
     public let setChatBackground: Bool
 
     /// Theme of the screen for sharing a link to the user; may be null if the default theme is used

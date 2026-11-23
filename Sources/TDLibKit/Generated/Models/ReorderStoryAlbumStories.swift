@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes order of stories in an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
+/// Changes the order of stories in an album. If the album is owned by a supergroup or a channel chat, then requires can_edit_stories administrator right in the chat. Returns the changed album
 public struct ReorderStoryAlbumStories: Codable, Equatable, Hashable {
 
     /// Identifier of the chat that owns the stories
@@ -19,7 +19,7 @@ public struct ReorderStoryAlbumStories: Codable, Equatable, Hashable {
     /// Identifier of the story album
     public let storyAlbumId: Int?
 
-    /// Identifier of the stories to move to the beginning of the album. All other stories are placed in the current order after the specified stories
+    /// Identifiers of the stories to move to the beginning of the album. All other stories are placed in the current order after the specified stories
     public let storyIds: [Int]?
 
 

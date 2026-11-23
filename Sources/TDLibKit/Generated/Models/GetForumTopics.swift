@@ -3,18 +3,27 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about topic list from the server
+/// Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about the topic list from the server
 public struct GetForumTopics: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?
+
+    /// Pass true to exclude closed topics; must be false in chats with bots
+    public let excludeClosed: Bool?
+
+    /// Pass true to exclude open topics; must be false in chats with bots
+    public let excludeOpen: Bool?
+
+    /// If non-zero, then only topics with the icon with the given custom emoji identifier will be returned; must be 0 in chats with bots
+    public let iconCustomEmojiId: TdInt64?
 
     /// The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
     public let limit: Int?
@@ -34,6 +43,9 @@ public struct GetForumTopics: Codable, Equatable, Hashable {
 
     public init(
         chatId: Int64?,
+        excludeClosed: Bool?,
+        excludeOpen: Bool?,
+        iconCustomEmojiId: TdInt64?,
         limit: Int?,
         offsetDate: Int?,
         offsetForumTopicId: Int?,
@@ -41,6 +53,9 @@ public struct GetForumTopics: Codable, Equatable, Hashable {
         query: String?
     ) {
         self.chatId = chatId
+        self.excludeClosed = excludeClosed
+        self.excludeOpen = excludeOpen
+        self.iconCustomEmojiId = iconCustomEmojiId
         self.limit = limit
         self.offsetDate = offsetDate
         self.offsetForumTopicId = offsetForumTopicId

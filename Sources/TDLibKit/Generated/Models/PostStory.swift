@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,25 +13,25 @@ import Foundation
 /// Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story
 public struct PostStory: Codable, Equatable, Hashable {
 
-    /// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+    /// Period after which the story is moved to the archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     public let activePeriod: Int?
 
     /// Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
     public let albumIds: [Int]?
 
-    /// Clickable rectangle areas to be shown on the story media; pass null if none
+    /// Clickable rectangular areas to be shown on the story media; pass null if none
     public let areas: InputStoryAreas?
 
     /// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     public let caption: FormattedText?
 
-    /// Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user
+    /// Identifier of the chat that will post the story. Pass the Saved Messages chat identifier when posting a story on behalf of the current user
     public let chatId: Int64?
 
     /// Content of the story
     public let content: InputStoryContent?
 
-    /// Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
+    /// Full identifier of the original story whose content was used to create the story; pass null if the story isn't a repost of another story
     public let fromStoryFullId: StoryFullId?
 
     /// Pass true to keep the story accessible after expiration

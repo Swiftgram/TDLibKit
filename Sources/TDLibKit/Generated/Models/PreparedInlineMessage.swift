@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Represents a ready to send inline message. Use sendInlineQueryResultMessage to send the message
+/// Represents a ready-to-send inline message. Use sendInlineQueryResultMessage to send the message
 public struct PreparedInlineMessage: Codable, Equatable, Hashable {
 
     /// Types of the chats to which the message can be sent
@@ -19,7 +19,7 @@ public struct PreparedInlineMessage: Codable, Equatable, Hashable {
     /// Unique identifier of the inline query to pass to sendInlineQueryResultMessage
     public let inlineQueryId: TdInt64
 
-    /// Resulted inline message of the query
+    /// Resulting inline message of the query
     public let result: InlineQueryResult
 
 

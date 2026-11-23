@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -74,10 +74,10 @@ public indirect enum BackgroundType: Codable, Equatable, Hashable {
 /// A wallpaper in JPEG format
 public struct BackgroundTypeWallpaper: Codable, Equatable, Hashable {
 
-    /// True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
+    /// True, if the wallpaper must be downscaled to fit in a 450x450 square and then box-blurred with a radius of 12
     public let isBlurred: Bool
 
-    /// True, if the background needs to be slightly moved when device is tilted
+    /// True, if the background needs to be slightly moved when the device is tilted
     public let isMoving: Bool
 
 
@@ -102,7 +102,7 @@ public struct BackgroundTypePattern: Codable, Equatable, Hashable {
     /// True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
     public let isInverted: Bool
 
-    /// True, if the background needs to be slightly moved when device is tilted
+    /// True, if the background needs to be slightly moved when the device is tilted
     public let isMoving: Bool
 
 

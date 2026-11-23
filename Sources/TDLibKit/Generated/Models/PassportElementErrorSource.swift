@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public indirect enum PassportElementErrorSource: Codable, Equatable, Hashable {
     /// The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
     case passportElementErrorSourceSelfie
 
-    /// One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
+    /// One of the files with the translation of the document contains an error. The error will be considered resolved when the file changes
     case passportElementErrorSourceTranslationFile(PassportElementErrorSourceTranslationFile)
 
     /// The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
@@ -121,7 +121,7 @@ public struct PassportElementErrorSourceDataField: Codable, Equatable, Hashable 
     }
 }
 
-/// One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
+/// One of the files with the translation of the document contains an error. The error will be considered resolved when the file changes
 public struct PassportElementErrorSourceTranslationFile: Codable, Equatable, Hashable {
 
     /// Index of a file with the error

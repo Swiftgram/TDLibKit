@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
+/// Sends messages from a quick reply shortcut. Requires a Telegram Business subscription. Can't be used to send paid messages
 public struct SendQuickReplyShortcutMessages: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
     public let chatId: Int64?
 
-    /// Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    /// Non-persistent identifier, which will be returned in the messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     public let sendingId: Int?
 
     /// Unique identifier of the quick reply shortcut

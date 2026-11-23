@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
+/// Changes the type of the paid message reaction of the current user on a message. The message must have a paid reaction added by the current user
 public struct SetPaidMessageReactionType: Codable, Equatable, Hashable {
 
     /// Identifier of the chat to which the message belongs

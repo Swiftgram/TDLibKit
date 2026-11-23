@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct Community: Codable, Equatable, Hashable, Identifiable {
     /// Point in time (Unix timestamp) when the community was joined, or the point in time when the community was created, in case the user is not a member of any chat in the community
     public let date: Int
 
-    /// If false, the community is inaccessible, and the only information known about the community is inside this class. Identifier of the community can't be passed to any method
+    /// If false, the community is inaccessible, and the only information known about the community is inside this class. The identifier of the community can't be passed to any method
     public let haveAccess: Bool
 
     /// Community identifier

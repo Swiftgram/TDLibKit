@@ -3,26 +3,26 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator right unless the user is creator of the topic
+/// Edits the title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats, requires can_manage_topics administrator right unless the user is the creator of the topic
 public struct EditForumTopic: Codable, Equatable, Hashable {
 
     /// Identifier of the chat
     public let chatId: Int64?
 
-    /// Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+    /// Pass true to edit the icon of the topic. The icon of the General topic can't be edited
     public let editIconCustomEmoji: Bool?
 
     /// Forum topic identifier
     public let forumTopicId: Int?
 
-    /// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+    /// Identifier of the new custom emoji for the topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji; other users can use only a custom emoji returned by getForumTopicDefaultIcons
     public let iconCustomEmojiId: TdInt64?
 
     /// New name of the topic; 0-128 characters. If empty, the previous topic name is kept

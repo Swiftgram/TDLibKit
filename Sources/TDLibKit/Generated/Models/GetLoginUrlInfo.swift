@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
+/// Returns information about a button of the type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
 public struct GetLoginUrlInfo: Codable, Equatable, Hashable {
 
     /// Button identifier

@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Describes a message that can be used for quick reply
+/// Describes a message that can be used for a quick reply
 public struct QuickReplyMessage: Codable, Equatable, Hashable, Identifiable {
 
     /// True, if the message can be edited

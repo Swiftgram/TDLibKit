@@ -3,20 +3,20 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
+/// Returns interactions with a story posted in a chat. Can be used only if the story is posted on behalf of a chat and the user is an administrator in the chat
 public struct GetChatStoryInteractions: Codable, Equatable, Hashable {
 
     /// The maximum number of story interactions to return
     public let limit: Int?
 
-    /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    /// Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
     public let offset: String?
 
     /// Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date

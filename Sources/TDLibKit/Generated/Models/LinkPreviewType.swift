@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to an animation
     case linkPreviewTypeAnimation(LinkPreviewTypeAnimation)
 
-    /// The link is a link to an app at App Store or Google Play
+    /// The link is a link to an app in the App Store or on Google Play
     case linkPreviewTypeApp(LinkPreviewTypeApp)
 
     /// The link is a link to a website
@@ -30,6 +30,9 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
 
     /// The link is a link to a background. Link preview title and description are available only for filled backgrounds
     case linkPreviewTypeBackground(LinkPreviewTypeBackground)
+
+    /// The link is a link to invite users to private chats with a bot
+    case linkPreviewTypeBotInvite
 
     /// The link is a link to boost a channel chat
     case linkPreviewTypeChannelBoost(LinkPreviewTypeChannelBoost)
@@ -82,7 +85,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a Telegram Premium gift code
     case linkPreviewTypePremiumGiftCode
 
-    /// The link is a link to a dialog for creating a managed bot
+    /// The link is a link to create a managed bot
     case linkPreviewTypeRequestManagedBot
 
     /// The link is a link to a shareable chat folder
@@ -94,7 +97,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a sticker set
     case linkPreviewTypeStickerSet(LinkPreviewTypeStickerSet)
 
-    /// The link is a link to a story. Link preview description is unavailable
+    /// The link is a link to a story. The link preview description is unavailable
     case linkPreviewTypeStory(LinkPreviewTypeStory)
 
     /// The link is a link to an album of stories
@@ -109,7 +112,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
     /// The link is a link to a cloud theme. TDLib has no theme support yet
     case linkPreviewTypeTheme(LinkPreviewTypeTheme)
 
-    /// The link preview type is unsupported yet
+    /// The link preview type isn't supported yet
     case linkPreviewTypeUnsupported
 
     /// The link is a link to an upgraded gift
@@ -141,6 +144,7 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case linkPreviewTypeArticle
         case linkPreviewTypeAudio
         case linkPreviewTypeBackground
+        case linkPreviewTypeBotInvite
         case linkPreviewTypeChannelBoost
         case linkPreviewTypeChat
         case linkPreviewTypeDirectMessagesChat
@@ -199,6 +203,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeBackground:
             let value = try LinkPreviewTypeBackground(from: decoder)
             self = .linkPreviewTypeBackground(value)
+        case .linkPreviewTypeBotInvite:
+            self = .linkPreviewTypeBotInvite
         case .linkPreviewTypeChannelBoost:
             let value = try LinkPreviewTypeChannelBoost(from: decoder)
             self = .linkPreviewTypeChannelBoost(value)
@@ -318,6 +324,8 @@ public indirect enum LinkPreviewType: Codable, Equatable, Hashable {
         case .linkPreviewTypeBackground(let value):
             try container.encode(Kind.linkPreviewTypeBackground, forKey: .type)
             try value.encode(to: encoder)
+        case .linkPreviewTypeBotInvite:
+            try container.encode(Kind.linkPreviewTypeBotInvite, forKey: .type)
         case .linkPreviewTypeChannelBoost(let value):
             try container.encode(Kind.linkPreviewTypeChannelBoost, forKey: .type)
             try value.encode(to: encoder)
@@ -448,7 +456,7 @@ public struct LinkPreviewTypeAnimation: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to an app at App Store or Google Play
+/// The link is a link to an app in the App Store or on Google Play
 public struct LinkPreviewTypeApp: Codable, Equatable, Hashable {
 
     /// Photo for the app
@@ -518,7 +526,7 @@ public struct LinkPreviewTypeChannelBoost: Codable, Equatable, Hashable {
 /// The link is a link to a chat
 public struct LinkPreviewTypeChat: Codable, Equatable, Hashable {
 
-    /// True, if the link only creates join request
+    /// True, if the link only creates a join request
     public let createsJoinRequest: Bool
 
     /// Photo of the chat; may be null
@@ -741,7 +749,7 @@ public struct LinkPreviewTypeExternalVideo: Codable, Equatable, Hashable {
 /// The link is a link to a gift auction
 public struct LinkPreviewTypeGiftAuction: Codable, Equatable, Hashable {
 
-    /// Point in time (Unix timestamp) when the auction will be ended
+    /// Point in time (Unix timestamp) when the auction will end
     public let auctionEndDate: Int
 
     /// The gift
@@ -803,7 +811,7 @@ public struct LinkPreviewTypePhoto: Codable, Equatable, Hashable {
 /// The link is a link to a sticker
 public struct LinkPreviewTypeSticker: Codable, Equatable, Hashable {
 
-    /// The sticker. It can be an arbitrary WEBP image and can have dimensions bigger than 512
+    /// The sticker. It can be an arbitrary WEBP image and can have dimensions larger than 512
     public let sticker: Sticker
 
 
@@ -824,7 +832,7 @@ public struct LinkPreviewTypeStickerSet: Codable, Equatable, Hashable {
     }
 }
 
-/// The link is a link to a story. Link preview description is unavailable
+/// The link is a link to a story. The link preview description is unavailable
 public struct LinkPreviewTypeStory: Codable, Equatable, Hashable {
 
     /// Story identifier
@@ -889,7 +897,7 @@ public struct LinkPreviewTypeTextCompositionStyle: Codable, Equatable, Hashable 
 /// The link is a link to a cloud theme. TDLib has no theme support yet
 public struct LinkPreviewTypeTheme: Codable, Equatable, Hashable {
 
-    /// The list of files with theme description
+    /// The list of files with the theme description
     public let documents: [Document]
 
     /// Settings for the cloud theme; may be null if unknown

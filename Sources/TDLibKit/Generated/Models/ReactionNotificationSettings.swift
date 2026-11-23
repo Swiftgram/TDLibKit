@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public struct ReactionNotificationSettings: Codable, Equatable, Hashable {
     /// Source of poll votes for which notifications are shown
     public let pollVoteSource: ReactionNotificationSource
 
-    /// True, if reaction sender and emoji must be displayed in notifications
+    /// True, if the reaction sender and emoji must be displayed in notifications
     public let showPreview: Bool
 
     /// Identifier of the notification sound to be played; 0 if sound is disabled; pass -1 to use the app-dependent default sound

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,58 +13,58 @@ import Foundation
 /// Describes an action suggested to the current user
 public indirect enum SuggestedAction: Codable, Equatable, Hashable {
 
-    /// Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
+    /// Suggests that the user enable the archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
     case suggestedActionEnableArchiveAndMuteNewChats
 
-    /// Suggests the user to check whether they still remember their 2-step verification password
+    /// Suggests that the user check whether they still remember their 2-step verification password
     case suggestedActionCheckPassword
 
-    /// Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
+    /// Suggests that the user check whether the authorization phone number is correct and change the phone number if it is inaccessible
     case suggestedActionCheckPhoneNumber
 
-    /// Suggests the user to view a hint about the meaning of one and two check marks on sent messages
+    /// Suggests that the user view a hint about the meaning of one and two check marks on sent messages
     case suggestedActionViewChecksHint
 
-    /// Suggests the user to view a hint about receiving of the first TON wallet transfer
+    /// Suggests that the user view a hint about receiving the first TON wallet transfer
     case suggestedActionViewFirstTonWalletTransferHint
 
-    /// Suggests the user to convert specified supergroup to a broadcast group
+    /// Suggests that the user convert the specified supergroup to a broadcast group
     case suggestedActionConvertToBroadcastGroup(SuggestedActionConvertToBroadcastGroup)
 
-    /// Suggests the user to set a 2-step verification password to be able to log in again
+    /// Suggests that the user set a 2-step verification password to be able to log in again
     case suggestedActionSetPassword(SuggestedActionSetPassword)
 
-    /// Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
+    /// Suggests that the user upgrade the Premium subscription from monthly payments to annual payments
     case suggestedActionUpgradePremium
 
-    /// Suggests the user to restore a recently expired Premium subscription
+    /// Suggests that the user restore a recently expired Premium subscription
     case suggestedActionRestorePremium
 
-    /// Suggests the user to subscribe to the Premium subscription with annual payments
+    /// Suggests that the user subscribe to the Premium subscription with annual payments
     case suggestedActionSubscribeToAnnualPremium
 
-    /// Suggests the user to gift Telegram Premium to friends for Christmas
+    /// Suggests that the user gift Telegram Premium to friends for Christmas
     case suggestedActionGiftPremiumForChristmas
 
-    /// Suggests the user to set birthdate
+    /// Suggests that the user set their birthdate
     case suggestedActionSetBirthdate
 
-    /// Suggests the user to set profile photo
+    /// Suggests that the user set a profile photo
     case suggestedActionSetProfilePhoto
 
-    /// Suggests the user to extend their expiring Telegram Premium subscription
+    /// Suggests that the user extend their expiring Telegram Premium subscription
     case suggestedActionExtendPremium(SuggestedActionExtendPremium)
 
-    /// Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of required to buy Telegram Stars
+    /// Suggests that the user extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of Telegram Stars that must be bought
     case suggestedActionExtendStarSubscriptions
 
     /// A custom suggestion to be shown at the top of the chat list
     case suggestedActionCustom(SuggestedActionCustom)
 
-    /// Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
+    /// Suggests that the user add a login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
     case suggestedActionSetLoginEmailAddress(SuggestedActionSetLoginEmailAddress)
 
-    /// Suggests the user to add a passkey for login using addLoginPasskey
+    /// Suggests that the user add a passkey for login using addLoginPasskey
     case suggestedActionAddLoginPasskey
 
 
@@ -185,7 +185,7 @@ public indirect enum SuggestedAction: Codable, Equatable, Hashable {
     }
 }
 
-/// Suggests the user to convert specified supergroup to a broadcast group
+/// Suggests that the user convert the specified supergroup to a broadcast group
 public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable, Hashable {
 
     /// Supergroup identifier
@@ -197,10 +197,10 @@ public struct SuggestedActionConvertToBroadcastGroup: Codable, Equatable, Hashab
     }
 }
 
-/// Suggests the user to set a 2-step verification password to be able to log in again
+/// Suggests that the user set a 2-step verification password to be able to log in again
 public struct SuggestedActionSetPassword: Codable, Equatable, Hashable {
 
-    /// The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
+    /// The number of days to pass between consecutive authorizations if the user declines to set a password; if 0, then the user is advised to set the password for security reasons
     public let authorizationDelay: Int
 
 
@@ -209,10 +209,10 @@ public struct SuggestedActionSetPassword: Codable, Equatable, Hashable {
     }
 }
 
-/// Suggests the user to extend their expiring Telegram Premium subscription
+/// Suggests that the user extend their expiring Telegram Premium subscription
 public struct SuggestedActionExtendPremium: Codable, Equatable, Hashable {
 
-    /// A URL for managing Telegram Premium subscription
+    /// A URL for managing the Telegram Premium subscription
     public let managePremiumSubscriptionUrl: String
 
 
@@ -249,7 +249,7 @@ public struct SuggestedActionCustom: Codable, Equatable, Hashable {
     }
 }
 
-/// Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
+/// Suggests that the user add a login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
 public struct SuggestedActionSetLoginEmailAddress: Codable, Equatable, Hashable {
 
     /// True, if the suggested action can be hidden using hideSuggestedAction. Otherwise, the user must not be able to use the application without setting up the email address

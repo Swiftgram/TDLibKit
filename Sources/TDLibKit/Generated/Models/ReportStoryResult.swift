@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum ReportStoryResult: Codable, Equatable, Hashable {
     /// The story was reported successfully
     case reportStoryResultOk
 
-    /// The user must choose an option to report the story and repeat request with the chosen option
+    /// The user must choose an option to report the story and repeat the request with the chosen option
     case reportStoryResultOptionRequired(ReportStoryResultOptionRequired)
 
     /// The user must add additional text details to the report
@@ -59,7 +59,7 @@ public indirect enum ReportStoryResult: Codable, Equatable, Hashable {
     }
 }
 
-/// The user must choose an option to report the story and repeat request with the chosen option
+/// The user must choose an option to report the story and repeat the request with the chosen option
 public struct ReportStoryResultOptionRequired: Codable, Equatable, Hashable {
 
     /// List of available options

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public struct GiveawayInfoOngoing: Codable, Equatable, Hashable {
     /// Point in time (Unix timestamp) when the giveaway was created
     public let creationDate: Int
 
-    /// True, if the giveaway has ended and results are being prepared
+    /// True, if the giveaway has ended and the results are being prepared
     public let isEnded: Bool
 
     /// Status of the current user in the giveaway
@@ -78,10 +78,10 @@ public struct GiveawayInfoOngoing: Codable, Equatable, Hashable {
 /// Describes a completed giveaway
 public struct GiveawayInfoCompleted: Codable, Equatable, Hashable {
 
-    /// Number of winners, which activated their gift codes; for Telegram Premium giveaways only
+    /// Number of winners who activated their gift codes; for Telegram Premium giveaways only
     public let activationCount: Int
 
-    /// Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+    /// Point in time (Unix timestamp) when the winners were selected. May be later than the winners selection date specified in the parameters of the giveaway
     public let actualWinnersSelectionDate: Int
 
     /// Point in time (Unix timestamp) when the giveaway was created

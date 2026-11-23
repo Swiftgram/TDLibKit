@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public struct MessageReplyInfo: Codable, Equatable, Hashable {
     /// Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup. The users and chats are expected to be inaccessible: only their photo and name will be available
     public let recentReplierIds: [MessageSender]
 
-    /// Number of times the message was directly or indirectly replied
+    /// Number of times the message was directly or indirectly replied to
     public let replyCount: Int
 
 

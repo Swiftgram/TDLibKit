@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
 
 
-/// Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
+/// Searches for sticker sets by looking for the specified query in their title and name. Excludes installed sticker sets from the results
 public struct SearchStickerSets: Codable, Equatable, Hashable {
 
     /// Query to search for

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-03220f6b
-//  https://github.com/tdlib/td/tree/03220f6b
+//  Based on TDLib 1.8.70-61f1d106
+//  https://github.com/tdlib/td/tree/61f1d106
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 /// Describes a call
 public struct Call: Codable, Equatable, Hashable, Identifiable {
 
-    /// Call identifier, not persistent
+    /// Call identifier; not persistent
     public let id: Int
 
     /// True, if the call is outgoing
@@ -25,7 +25,7 @@ public struct Call: Codable, Equatable, Hashable, Identifiable {
     /// Call state
     public let state: CallState
 
-    /// Persistent unique call identifier; 0 if isn't assigned yet by the server
+    /// Persistent unique call identifier; 0 if it isn't assigned yet by the server
     public let uniqueId: TdInt64
 
     /// User identifier of the other call participant
