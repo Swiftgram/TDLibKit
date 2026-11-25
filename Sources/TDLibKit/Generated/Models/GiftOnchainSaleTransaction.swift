@@ -1,58 +1,58 @@
 //
-//  GiftOnchainSaleTransaction.swift
+//  GiftOnChainSaleTransaction.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
 
 
 /// Describes a transaction that must be sent from the TON wallet of the current user to buy an upgraded gift on-chain,
-public indirect enum GiftOnchainSaleTransaction: Codable, Equatable, Hashable {
+public indirect enum GiftOnChainSaleTransaction: Codable, Equatable, Hashable {
 
     /// The transaction for a gift sold on-chain on Fragment. The transaction consists of one message, which must be sent to nft_address with gram_amount attached and with payload as the message body. Use sendTonWalletTransaction to send the transaction
-    case giftOnchainSaleTransactionFragment(GiftOnchainSaleTransactionFragment)
+    case giftOnChainSaleTransactionFragment(GiftOnChainSaleTransactionFragment)
 
     /// The transaction for a gift sold on-chain using a fixed-price sale contract. All messages must be signed and sent in one transfer in the specified order. Use sendTonWalletTransaction with regular_transaction_data and gasless_transaction_data created from messages and gasless_messages respectively to send the transaction
-    case giftOnchainSaleTransactionFixedPrice(GiftOnchainSaleTransactionFixedPrice)
+    case giftOnChainSaleTransactionFixedPrice(GiftOnChainSaleTransactionFixedPrice)
 
 
     private enum Kind: String, Codable {
-        case giftOnchainSaleTransactionFragment
-        case giftOnchainSaleTransactionFixedPrice
+        case giftOnChainSaleTransactionFragment
+        case giftOnChainSaleTransactionFixedPrice
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DtoCodingKeys.self)
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
-        case .giftOnchainSaleTransactionFragment:
-            let value = try GiftOnchainSaleTransactionFragment(from: decoder)
-            self = .giftOnchainSaleTransactionFragment(value)
-        case .giftOnchainSaleTransactionFixedPrice:
-            let value = try GiftOnchainSaleTransactionFixedPrice(from: decoder)
-            self = .giftOnchainSaleTransactionFixedPrice(value)
+        case .giftOnChainSaleTransactionFragment:
+            let value = try GiftOnChainSaleTransactionFragment(from: decoder)
+            self = .giftOnChainSaleTransactionFragment(value)
+        case .giftOnChainSaleTransactionFixedPrice:
+            let value = try GiftOnChainSaleTransactionFixedPrice(from: decoder)
+            self = .giftOnChainSaleTransactionFixedPrice(value)
         }
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .giftOnchainSaleTransactionFragment(let value):
-            try container.encode(Kind.giftOnchainSaleTransactionFragment, forKey: .type)
+        case .giftOnChainSaleTransactionFragment(let value):
+            try container.encode(Kind.giftOnChainSaleTransactionFragment, forKey: .type)
             try value.encode(to: encoder)
-        case .giftOnchainSaleTransactionFixedPrice(let value):
-            try container.encode(Kind.giftOnchainSaleTransactionFixedPrice, forKey: .type)
+        case .giftOnChainSaleTransactionFixedPrice(let value):
+            try container.encode(Kind.giftOnChainSaleTransactionFixedPrice, forKey: .type)
             try value.encode(to: encoder)
         }
     }
 }
 
 /// The transaction for a gift sold on-chain on Fragment. The transaction consists of one message, which must be sent to nft_address with gram_amount attached and with payload as the message body. Use sendTonWalletTransaction to send the transaction
-public struct GiftOnchainSaleTransactionFragment: Codable, Equatable, Hashable {
+public struct GiftOnChainSaleTransactionFragment: Codable, Equatable, Hashable {
 
     /// The amount that must be sent with the transaction, in the smallest units of TON Grams
     public let gramAmount: TdInt64
@@ -81,7 +81,7 @@ public struct GiftOnchainSaleTransactionFragment: Codable, Equatable, Hashable {
 }
 
 /// The transaction for a gift sold on-chain using a fixed-price sale contract. All messages must be signed and sent in one transfer in the specified order. Use sendTonWalletTransaction with regular_transaction_data and gasless_transaction_data created from messages and gasless_messages respectively to send the transaction
-public struct GiftOnchainSaleTransactionFixedPrice: Codable, Equatable, Hashable {
+public struct GiftOnChainSaleTransactionFixedPrice: Codable, Equatable, Hashable {
 
     /// The messages that must be sent for a gasless transfer instead of messages; empty if gasless transfer isn't available
     public let gaslessMessages: [TonWalletMessage]

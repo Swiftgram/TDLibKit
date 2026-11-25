@@ -1,17 +1,17 @@
 //
-//  SendGiftOnchainPurchaseOffer.swift
+//  SendGiftOnChainPurchaseOffer.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
 
 
 /// Sends an on-chain offer to purchase an upgraded gift for TON Grams; can be used only if getOption("can_use_ton_wallet"). Returns the transaction that must be sent from the TON wallet of the current user to create the offer. The offer is created only after the transaction is executed on the TON blockchain
-public struct SendGiftOnchainPurchaseOffer: Codable, Equatable, Hashable {
+public struct SendGiftOnChainPurchaseOffer: Codable, Equatable, Hashable {
 
     /// Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200
     public let duration: Int?
@@ -19,7 +19,7 @@ public struct SendGiftOnchainPurchaseOffer: Codable, Equatable, Hashable {
     /// Name of the upgraded gift
     public let giftName: String?
 
-    /// The price offered for the gift, in the smallest units of TON Grams; must be at least upgradedGift.min_onchain_purchase_offer_gram_amount
+    /// The price offered for the gift, in the smallest units of TON Grams; must be at least upgradedGift.min_on_chain_purchase_offer_gram_amount
     public let gramAmount: TdInt64?
 
 

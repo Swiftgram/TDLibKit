@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
@@ -1455,10 +1455,10 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnchainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnChainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnchainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnChainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
     public final func getRepliedMessage(
         chatId: Int64?,
         messageId: Int64?,
@@ -1471,10 +1471,10 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnchainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
+    /// Returns information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnChainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
     /// - Parameter chatId: Identifier of the chat the message belongs to
     /// - Parameter messageId: Identifier of the reply message
-    /// - Returns: Information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnchainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
+    /// - Returns: Information about a non-bundled message that is replied to by a given message. Also returns the pinned message for messagePinMessage, the game message for messageGameScore, the invoice message for messagePaymentSuccessful, the message with a previously set same background for messageChatSetBackground, the giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone and messageChecklistTasksAdded, the message with suggested post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid, and messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade, the message with the gift purchase offer for messageUpgradedGiftPurchaseOfferRejected and messageUpgradedGiftOnChainPurchaseOffer, the message with the request to disable content protection for messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for topic messages without a non-bundled replied-to message. Returns a 404 error if the message doesn't exist
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func getRepliedMessage(
         chatId: Int64?,
@@ -4732,6 +4732,50 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
+    /// Returns approximate numbers of messages of the specified types in the chat or its topic
+    /// - Parameter chatId: Identifier of the chat in which to count messages
+    /// - Parameter filters: Filters for message content; searchMessagesFilterEmpty is unsupported in this function
+    /// - Parameter returnLocal: Pass true to get the numbers of messages without sending network requests; -1 is returned for the numbers of messages, which are unknown locally
+    /// - Parameter topicId: Pass a topic identifier to get the numbers of messages only in a specific topic; pass null to get the numbers of messages in all topics; message threads aren't supported
+    /// - Returns: Approximate numbers of messages of the specified types in the chat or its topic
+    public final func getChatMessageCounts(
+        chatId: Int64?,
+        filters: [SearchMessagesFilter]?,
+        returnLocal: Bool?,
+        topicId: MessageTopic?,
+        completion: @escaping (Result<ChatMessageCounts, Swift.Error>) -> Void
+    ) throws {
+        let query = GetChatMessageCounts(
+            chatId: chatId,
+            filters: filters,
+            returnLocal: returnLocal,
+            topicId: topicId
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Returns approximate numbers of messages of the specified types in the chat or its topic
+    /// - Parameter chatId: Identifier of the chat in which to count messages
+    /// - Parameter filters: Filters for message content; searchMessagesFilterEmpty is unsupported in this function
+    /// - Parameter returnLocal: Pass true to get the numbers of messages without sending network requests; -1 is returned for the numbers of messages, which are unknown locally
+    /// - Parameter topicId: Pass a topic identifier to get the numbers of messages only in a specific topic; pass null to get the numbers of messages in all topics; message threads aren't supported
+    /// - Returns: Approximate numbers of messages of the specified types in the chat or its topic
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    public final func getChatMessageCounts(
+        chatId: Int64?,
+        filters: [SearchMessagesFilter]?,
+        returnLocal: Bool?,
+        topicId: MessageTopic?
+    ) async throws -> ChatMessageCounts {
+        let query = GetChatMessageCounts(
+            chatId: chatId,
+            filters: filters,
+            returnLocal: returnLocal,
+            topicId: topicId
+        )
+        return try await self.run(query: query)
+    }
+
     /// Returns the approximate 1-based position of a message among messages that can be found by the specified filter in the chat and topic. Cannot be used in secret chats
     /// - Parameter chatId: Identifier of the chat in which to find the message position
     /// - Parameter filter: Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, and searchMessagesFilterFailedToSend are unsupported in this function
@@ -6008,7 +6052,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Recognizes speech in an audio file and returns the recognized text; can be used only if getOption("can_recognize_speech"); must not be used in secret chats. The file must be in OGG format with the Opus codec and must have a size of up to 1 MB
+    /// Recognizes speech in an audio file and returns the recognized text; can be used only if getOption("can_recognize_speech") or speech recognition trial is available; must not be used in secret chats. The file must be in OGG format with the Opus codec and must have a size of up to 1 MB
     /// - Parameter audioFile: The audio file
     /// - Parameter recognitionId: Unique identifier of the speech recognition, which will be used in updateSpeechRecognitionInFile to send partially recognized text; pass 0 if partial results aren't needed
     /// - Returns: Recognizes speech in an audio file and returns the recognized text
@@ -6024,7 +6068,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Recognizes speech in an audio file and returns the recognized text; can be used only if getOption("can_recognize_speech"); must not be used in secret chats. The file must be in OGG format with the Opus codec and must have a size of up to 1 MB
+    /// Recognizes speech in an audio file and returns the recognized text; can be used only if getOption("can_recognize_speech") or speech recognition trial is available; must not be used in secret chats. The file must be in OGG format with the Opus codec and must have a size of up to 1 MB
     /// - Parameter audioFile: The audio file
     /// - Parameter recognitionId: Unique identifier of the speech recognition, which will be used in updateSpeechRecognitionInFile to send partially recognized text; pass 0 if partial results aren't needed
     /// - Returns: Recognizes speech in an audio file and returns the recognized text
@@ -9304,7 +9348,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the list of custom emoji that are most often used as icons of recent topics in a forum supergroup chat; the list can be empty
+    /// Returns the list of custom emoji that are most often used as icons of recent topics in a forum supergroup chat
     /// - Parameter chatId: Identifier of the chat
     /// - Returns: The list of custom emoji that are most often used as icons of recent topics in a forum supergroup chat
     public final func getForumTopicPopularIcons(
@@ -9317,7 +9361,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the list of custom emoji that are most often used as icons of recent topics in a forum supergroup chat; the list can be empty
+    /// Returns the list of custom emoji that are most often used as icons of recent topics in a forum supergroup chat
     /// - Parameter chatId: Identifier of the chat
     /// - Returns: The list of custom emoji that are most often used as icons of recent topics in a forum supergroup chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14775,7 +14819,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes reactions available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+    /// Changes reactions available in a chat. Available in basic groups, supergroups, and channels. Requires can_change_info member right
     /// - Parameter availableReactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats, up to the chat's boost level custom emoji reactions can be explicitly specified
     /// - Parameter chatId: Identifier of the chat
     public final func setChatAvailableReactions(
@@ -14790,7 +14834,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes reactions available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+    /// Changes reactions available in a chat. Available in basic groups, supergroups, and channels. Requires can_change_info member right
     /// - Parameter availableReactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats, up to the chat's boost level custom emoji reactions can be explicitly specified
     /// - Parameter chatId: Identifier of the chat
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14837,7 +14881,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+    /// Changes information about a chat. Available in basic groups, supergroups, and channels. Requires can_change_info member right
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter description: 
     public final func setChatDescription(
@@ -14852,7 +14896,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
+    /// Changes information about a chat. Available in basic groups, supergroups, and channels. Requires can_change_info member right
     /// - Parameter chatId: Identifier of the chat
     /// - Parameter description: 
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14936,7 +14980,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the location of a chat. Available only for some location-based supergroups; use supergroupFullInfo.can_set_location to check whether the method can be used
+    /// Changes the location of a chat. Use supergroupFullInfo.can_set_location to check whether the method can be used
     /// - Parameter chatId: Chat identifier
     /// - Parameter location: New location for the chat; must be valid and not null
     public final func setChatLocation(
@@ -14951,7 +14995,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the location of a chat. Available only for some location-based supergroups; use supergroupFullInfo.can_set_location to check whether the method can be used
+    /// Changes the location of a chat. Use supergroupFullInfo.can_set_location to check whether the method can be used
     /// - Parameter chatId: Chat identifier
     /// - Parameter location: New location for the chat; must be valid and not null
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -14967,7 +15011,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right
+    /// Changes the slow mode delay of a chat. Available only in supergroups; requires can_restrict_members administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 5, 10, 30, 60, 300, 900, or 3600
     public final func setChatSlowModeDelay(
@@ -14982,7 +15026,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right
+    /// Changes the slow mode delay of a chat. Available only in supergroups; requires can_restrict_members administrator right
     /// - Parameter chatId: Chat identifier
     /// - Parameter slowModeDelay: New slow mode delay for the chat, in seconds; must be one of 0, 5, 10, 30, 60, 300, 900, or 3600
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -15379,7 +15423,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for basic groups, supergroups, and channel chats
+    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only in basic groups, supergroups, and channel chats
     /// - Parameter chatId: Chat identifier
     /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups
     public final func getChatOwnerAfterLeaving(
@@ -15392,7 +15436,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only for basic groups, supergroups, and channel chats
+    /// Returns the user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups; requires owner privileges in the chat. Available only in basic groups, supergroups, and channel chats
     /// - Parameter chatId: Chat identifier
     /// - Returns: The user who will become the owner of the chat after 7 days if the current user does not return to the supergroup or channel during that period or immediately for basic groups
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -18293,7 +18337,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Replaces the current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
+    /// Replaces the current primary invite link for a chat with a new primary invite link. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
     /// - Parameter chatId: Chat identifier
     public final func replacePrimaryChatInviteLink(
         chatId: Int64?,
@@ -18305,7 +18349,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Replaces the current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
+    /// Replaces the current primary invite link for a chat with a new primary invite link. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
     /// - Parameter chatId: Chat identifier
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func replacePrimaryChatInviteLink(chatId: Int64?) async throws -> ChatInviteLink {
@@ -18315,7 +18359,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
+    /// Creates a new invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -18339,7 +18383,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
+    /// Creates a new invite link for a chat. Available in basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
     /// - Parameter chatId: Chat identifier
     /// - Parameter createsJoinRequest: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     /// - Parameter expirationDate: Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -24550,7 +24594,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Invites users to private chats with a bot owned by the current user. Can be called only if userTypeBot.can_be_edited == true. Each invited user will receive a message messageBotInvite and the bot will be able to send messages to the user. The request succeeds if at least one user was invited
+    /// Invites users to private chats with a bot owned by the current user. Can be called only if userTypeBot.can_be_edited == true. Each invited user will receive a message of the type messageBotInvite, and the bot will be able to send messages to that user. The request succeeds if at least one user was invited
     /// - Parameter botUserId: Identifier of the bot
     /// - Parameter userIds: Identifiers of the users to invite; 1-10 different users
     public final func inviteUsersToBot(
@@ -24565,7 +24609,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Invites users to private chats with a bot owned by the current user. Can be called only if userTypeBot.can_be_edited == true. Each invited user will receive a message messageBotInvite and the bot will be able to send messages to the user. The request succeeds if at least one user was invited
+    /// Invites users to private chats with a bot owned by the current user. Can be called only if userTypeBot.can_be_edited == true. Each invited user will receive a message of the type messageBotInvite, and the bot will be able to send messages to that user. The request succeeds if at least one user was invited
     /// - Parameter botUserId: Identifier of the bot
     /// - Parameter userIds: Identifiers of the users to invite; 1-10 different users
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -24577,6 +24621,37 @@ public class TDLibApi {
         let query = InviteUsersToBot(
             botUserId: botUserId,
             userIds: userIds
+        )
+        return try await self.run(query: query)
+    }
+
+    /// Changes settings of a bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter settings: The new settings of the bot; settings that aren't specified remain unchanged
+    public final func setBotSettings(
+        botUserId: Int64?,
+        settings: [BotSetting]?,
+        completion: @escaping (Result<Ok, Swift.Error>) -> Void
+    ) throws {
+        let query = SetBotSettings(
+            botUserId: botUserId,
+            settings: settings
+        )
+        self.run(query: query, completion: completion)
+    }
+
+    /// Changes settings of a bot. Can be called only if userTypeBot.can_be_edited == true
+    /// - Parameter botUserId: Identifier of the target bot
+    /// - Parameter settings: The new settings of the bot; settings that aren't specified remain unchanged
+    @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
+    public final func setBotSettings(
+        botUserId: Int64?,
+        settings: [BotSetting]?
+    ) async throws -> Ok {
+        let query = SetBotSettings(
+            botUserId: botUserId,
+            settings: settings
         )
         return try await self.run(query: query)
     }
@@ -26881,7 +26956,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method. Gifts for which upgradedGift.uses_onchain_resale is true must be bought using getGiftOnchainPurchaseTransaction
+    /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method. Gifts for which upgradedGift.uses_on_chain_resale is true must be bought using getGiftOnChainPurchaseTransaction
     /// - Parameter giftName: Name of the upgraded gift to send
     /// - Parameter isPrivate: Pass true to show the gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
@@ -26905,7 +26980,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method. Gifts for which upgradedGift.uses_onchain_resale is true must be bought using getGiftOnchainPurchaseTransaction
+    /// Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method. Gifts for which upgradedGift.uses_on_chain_resale is true must be bought using getGiftOnChainPurchaseTransaction
     /// - Parameter giftName: Name of the upgraded gift to send
     /// - Parameter isPrivate: Pass true to show the gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift
@@ -27012,15 +27087,15 @@ public class TDLibApi {
     /// Sends an on-chain offer to purchase an upgraded gift for TON Grams; can be used only if getOption("can_use_ton_wallet"). Returns the transaction that must be sent from the TON wallet of the current user to create the offer. The offer is created only after the transaction is executed on the TON blockchain
     /// - Parameter duration: Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200
     /// - Parameter giftName: Name of the upgraded gift
-    /// - Parameter gramAmount: The price offered for the gift, in the smallest units of TON Grams; must be at least upgradedGift.min_onchain_purchase_offer_gram_amount
+    /// - Parameter gramAmount: The price offered for the gift, in the smallest units of TON Grams; must be at least upgradedGift.min_on_chain_purchase_offer_gram_amount
     /// - Returns: The transaction that must be sent from the TON wallet of the current user to create the offer
-    public final func sendGiftOnchainPurchaseOffer(
+    public final func sendGiftOnChainPurchaseOffer(
         duration: Int?,
         giftName: String?,
         gramAmount: TdInt64?,
-        completion: @escaping (Result<GiftOnchainPurchaseOfferTransaction, Swift.Error>) -> Void
+        completion: @escaping (Result<GiftOnChainPurchaseOfferTransaction, Swift.Error>) -> Void
     ) throws {
-        let query = SendGiftOnchainPurchaseOffer(
+        let query = SendGiftOnChainPurchaseOffer(
             duration: duration,
             giftName: giftName,
             gramAmount: gramAmount
@@ -27031,15 +27106,15 @@ public class TDLibApi {
     /// Sends an on-chain offer to purchase an upgraded gift for TON Grams; can be used only if getOption("can_use_ton_wallet"). Returns the transaction that must be sent from the TON wallet of the current user to create the offer. The offer is created only after the transaction is executed on the TON blockchain
     /// - Parameter duration: Duration of the offer, in seconds; must be one of 21600, 43200, 86400, 129600, 172800, or 259200
     /// - Parameter giftName: Name of the upgraded gift
-    /// - Parameter gramAmount: The price offered for the gift, in the smallest units of TON Grams; must be at least upgradedGift.min_onchain_purchase_offer_gram_amount
+    /// - Parameter gramAmount: The price offered for the gift, in the smallest units of TON Grams; must be at least upgradedGift.min_on_chain_purchase_offer_gram_amount
     /// - Returns: The transaction that must be sent from the TON wallet of the current user to create the offer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func sendGiftOnchainPurchaseOffer(
+    public final func sendGiftOnChainPurchaseOffer(
         duration: Int?,
         giftName: String?,
         gramAmount: TdInt64?
-    ) async throws -> GiftOnchainPurchaseOfferTransaction {
-        let query = SendGiftOnchainPurchaseOffer(
+    ) async throws -> GiftOnChainPurchaseOfferTransaction {
+        let query = SendGiftOnChainPurchaseOffer(
             duration: duration,
             giftName: giftName,
             gramAmount: gramAmount
@@ -27048,92 +27123,92 @@ public class TDLibApi {
     }
 
     /// Cancels an on-chain gift purchase offer sent by the current user; can be used only if getOption("can_use_ton_wallet"). A fine may be charged if the offer is canceled before it expires. Returns the transaction that must be sent from the TON wallet of the current user to cancel the offer. The offer is canceled only after the transaction is executed on the TON blockchain
-    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnchainPurchaseOffer with the offer in the chat 777000
+    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnChainPurchaseOffer with the offer in the chat 777000
     /// - Returns: The transaction that must be sent from the TON wallet of the current user to cancel the offer
-    public final func cancelGiftOnchainPurchaseOffer(
+    public final func cancelGiftOnChainPurchaseOffer(
         messageId: Int64?,
-        completion: @escaping (Result<GiftOnchainPurchaseOfferTransaction, Swift.Error>) -> Void
+        completion: @escaping (Result<GiftOnChainPurchaseOfferTransaction, Swift.Error>) -> Void
     ) throws {
-        let query = CancelGiftOnchainPurchaseOffer(
+        let query = CancelGiftOnChainPurchaseOffer(
             messageId: messageId
         )
         self.run(query: query, completion: completion)
     }
 
     /// Cancels an on-chain gift purchase offer sent by the current user; can be used only if getOption("can_use_ton_wallet"). A fine may be charged if the offer is canceled before it expires. Returns the transaction that must be sent from the TON wallet of the current user to cancel the offer. The offer is canceled only after the transaction is executed on the TON blockchain
-    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnchainPurchaseOffer with the offer in the chat 777000
+    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnChainPurchaseOffer with the offer in the chat 777000
     /// - Returns: The transaction that must be sent from the TON wallet of the current user to cancel the offer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func cancelGiftOnchainPurchaseOffer(messageId: Int64?) async throws -> GiftOnchainPurchaseOfferTransaction {
-        let query = CancelGiftOnchainPurchaseOffer(
+    public final func cancelGiftOnChainPurchaseOffer(messageId: Int64?) async throws -> GiftOnChainPurchaseOfferTransaction {
+        let query = CancelGiftOnChainPurchaseOffer(
             messageId: messageId
         )
         return try await self.run(query: query)
     }
 
     /// Accepts an on-chain gift purchase offer received by the current user; can be used only if getOption("can_use_ton_wallet"). The gift must not be listed for sale. Other offers for the gift will be canceled after the gift is sold. Returns the transaction that must be sent from the TON wallet of the current user to accept the offer. The offer is accepted only after the transaction is executed on the TON blockchain and the gift is transferred to the buyer
-    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnchainPurchaseOffer with the offer in the chat 777000
+    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnChainPurchaseOffer with the offer in the chat 777000
     /// - Returns: The transaction that must be sent from the TON wallet of the current user to accept the offer
-    public final func acceptGiftOnchainPurchaseOffer(
+    public final func acceptGiftOnChainPurchaseOffer(
         messageId: Int64?,
-        completion: @escaping (Result<GiftOnchainPurchaseOfferTransaction, Swift.Error>) -> Void
+        completion: @escaping (Result<GiftOnChainPurchaseOfferTransaction, Swift.Error>) -> Void
     ) throws {
-        let query = AcceptGiftOnchainPurchaseOffer(
+        let query = AcceptGiftOnChainPurchaseOffer(
             messageId: messageId
         )
         self.run(query: query, completion: completion)
     }
 
     /// Accepts an on-chain gift purchase offer received by the current user; can be used only if getOption("can_use_ton_wallet"). The gift must not be listed for sale. Other offers for the gift will be canceled after the gift is sold. Returns the transaction that must be sent from the TON wallet of the current user to accept the offer. The offer is accepted only after the transaction is executed on the TON blockchain and the gift is transferred to the buyer
-    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnchainPurchaseOffer with the offer in the chat 777000
+    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnChainPurchaseOffer with the offer in the chat 777000
     /// - Returns: The transaction that must be sent from the TON wallet of the current user to accept the offer
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func acceptGiftOnchainPurchaseOffer(messageId: Int64?) async throws -> GiftOnchainPurchaseOfferTransaction {
-        let query = AcceptGiftOnchainPurchaseOffer(
+    public final func acceptGiftOnChainPurchaseOffer(messageId: Int64?) async throws -> GiftOnChainPurchaseOfferTransaction {
+        let query = AcceptGiftOnChainPurchaseOffer(
             messageId: messageId
         )
         return try await self.run(query: query)
     }
 
     /// Declines an on-chain gift purchase offer received by the current user. The offer is declined and the buyer is refunded only after the offer is canceled on the TON blockchain
-    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnchainPurchaseOffer with the offer in the chat 777000
-    public final func declineGiftOnchainPurchaseOffer(
+    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnChainPurchaseOffer with the offer in the chat 777000
+    public final func declineGiftOnChainPurchaseOffer(
         messageId: Int64?,
         completion: @escaping (Result<Ok, Swift.Error>) -> Void
     ) throws {
-        let query = DeclineGiftOnchainPurchaseOffer(
+        let query = DeclineGiftOnChainPurchaseOffer(
             messageId: messageId
         )
         self.run(query: query, completion: completion)
     }
 
     /// Declines an on-chain gift purchase offer received by the current user. The offer is declined and the buyer is refunded only after the offer is canceled on the TON blockchain
-    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnchainPurchaseOffer with the offer in the chat 777000
+    /// - Parameter messageId: Identifier of the message messageUpgradedGiftOnChainPurchaseOffer with the offer in the chat 777000
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     @discardableResult
-    public final func declineGiftOnchainPurchaseOffer(messageId: Int64?) async throws -> Ok {
-        let query = DeclineGiftOnchainPurchaseOffer(
+    public final func declineGiftOnChainPurchaseOffer(messageId: Int64?) async throws -> Ok {
+        let query = DeclineGiftOnChainPurchaseOffer(
             messageId: messageId
         )
         return try await self.run(query: query)
     }
 
-    /// Returns a transaction that must be sent from the TON wallet of the current user to buy an upgraded gift for which upgradedGift.uses_onchain_resale is true; can be used only if getOption("can_use_ton_wallet"). Gifts for which giftResaleParameters.is_fixed_onchain is true can be bought only if getOption("can_buy_onchain_fixed_price_gifts") is true, and other gifts can be bought only if getOption("can_buy_onchain_gifts") is true. The type of the returned transaction depends on the type of the sale. The gift will be received by the new owner after the transaction is executed on the TON blockchain. If the gift is bought for the current user, then it will be received by the TON wallet of the current user, and will be shown on the user's profile page if it is still in the wallet
+    /// Returns a transaction that must be sent from the TON wallet of the current user to buy an upgraded gift for which upgradedGift.uses_on_chain_resale is true; can be used only if getOption("can_use_ton_wallet"). Gifts for which giftResaleParameters.is_fixed_on_chain is true can be bought only if getOption("can_buy_on_chain_fixed_price_gifts") is true, and other gifts can be bought only if getOption("can_buy_on_chain_gifts") is true. The type of the returned transaction depends on the type of the sale. The gift will be received by the new owner after the transaction is executed on the TON blockchain. If the gift is bought for the current user, then it will be received by the TON wallet of the current user, and will be shown on the user's profile page if it is still in the wallet
     /// - Parameter giftName: Name of the upgraded gift
     /// - Parameter gramAmount: The price of the gift, in the smallest units of TON Grams; must be equal to giftResaleParameters.gram_amount. The request fails with the error "STARGIFT_ONCHAIN_PRICE_CHANGED" if the price has changed. The amount that will be paid can be greater than the price because of blockchain fees
     /// - Parameter isPrivate: Pass true to show the gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
-    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift; must be the current user if giftResaleParameters.is_fixed_onchain is false
+    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift; must be the current user if giftResaleParameters.is_fixed_on_chain is false
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages and the price of the gift is less than the price of a paid message to the user
     /// - Returns: A transaction that must be sent from the TON wallet of the current user to buy an upgraded gift for which upgradedGift. The type of the returned transaction depends on the type of the sale
-    public final func getGiftOnchainPurchaseTransaction(
+    public final func getGiftOnChainPurchaseTransaction(
         giftName: String?,
         gramAmount: TdInt64?,
         isPrivate: Bool?,
         ownerId: MessageSender?,
         text: FormattedText?,
-        completion: @escaping (Result<GiftOnchainSaleTransaction, Swift.Error>) -> Void
+        completion: @escaping (Result<GiftOnChainSaleTransaction, Swift.Error>) -> Void
     ) throws {
-        let query = GetGiftOnchainPurchaseTransaction(
+        let query = GetGiftOnChainPurchaseTransaction(
             giftName: giftName,
             gramAmount: gramAmount,
             isPrivate: isPrivate,
@@ -27143,22 +27218,22 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a transaction that must be sent from the TON wallet of the current user to buy an upgraded gift for which upgradedGift.uses_onchain_resale is true; can be used only if getOption("can_use_ton_wallet"). Gifts for which giftResaleParameters.is_fixed_onchain is true can be bought only if getOption("can_buy_onchain_fixed_price_gifts") is true, and other gifts can be bought only if getOption("can_buy_onchain_gifts") is true. The type of the returned transaction depends on the type of the sale. The gift will be received by the new owner after the transaction is executed on the TON blockchain. If the gift is bought for the current user, then it will be received by the TON wallet of the current user, and will be shown on the user's profile page if it is still in the wallet
+    /// Returns a transaction that must be sent from the TON wallet of the current user to buy an upgraded gift for which upgradedGift.uses_on_chain_resale is true; can be used only if getOption("can_use_ton_wallet"). Gifts for which giftResaleParameters.is_fixed_on_chain is true can be bought only if getOption("can_buy_on_chain_fixed_price_gifts") is true, and other gifts can be bought only if getOption("can_buy_on_chain_gifts") is true. The type of the returned transaction depends on the type of the sale. The gift will be received by the new owner after the transaction is executed on the TON blockchain. If the gift is bought for the current user, then it will be received by the TON wallet of the current user, and will be shown on the user's profile page if it is still in the wallet
     /// - Parameter giftName: Name of the upgraded gift
     /// - Parameter gramAmount: The price of the gift, in the smallest units of TON Grams; must be equal to giftResaleParameters.gram_amount. The request fails with the error "STARGIFT_ONCHAIN_PRICE_CHANGED" if the price has changed. The amount that will be paid can be greater than the price because of blockchain fees
     /// - Parameter isPrivate: Pass true to show the gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
-    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift; must be the current user if giftResaleParameters.is_fixed_onchain is false
+    /// - Parameter ownerId: Identifier of the user or the channel chat that will receive the gift; must be the current user if giftResaleParameters.is_fixed_on_chain is false
     /// - Parameter text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages and the price of the gift is less than the price of a paid message to the user
     /// - Returns: A transaction that must be sent from the TON wallet of the current user to buy an upgraded gift for which upgradedGift. The type of the returned transaction depends on the type of the sale
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getGiftOnchainPurchaseTransaction(
+    public final func getGiftOnChainPurchaseTransaction(
         giftName: String?,
         gramAmount: TdInt64?,
         isPrivate: Bool?,
         ownerId: MessageSender?,
         text: FormattedText?
-    ) async throws -> GiftOnchainSaleTransaction {
-        let query = GetGiftOnchainPurchaseTransaction(
+    ) async throws -> GiftOnChainSaleTransaction {
+        let query = GetGiftOnChainPurchaseTransaction(
             giftName: giftName,
             gramAmount: gramAmount,
             isPrivate: isPrivate,
@@ -27168,32 +27243,32 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns a transaction that must be sent from the TON wallet of the current user to put an upgraded gift for which upgradedGift.uses_onchain_resale is true up for sale, or to change the price of a gift for which giftResaleParameters.is_fixed_onchain and giftResaleParameters.can_be_managed are true; can be used only if getOption("can_use_ton_wallet"). The type of the sale is chosen by the server. The gift is put up for sale only after the transaction is executed on the TON blockchain and the sale smart contract confirms that it has received the gift. The price of the gift minus the fee specified in upgradedGift.fee_basis_points will be received by the TON wallet of the current user when the gift is sold. If giftResaleParameters.is_fixed_onchain is false, then the current sale must be canceled first using getGiftOnchainDelistingTransaction to change the price of the gift
+    /// Returns a transaction that must be sent from the TON wallet of the current user to put an upgraded gift for which upgradedGift.uses_on_chain_resale is true up for sale, or to change the price of a gift for which giftResaleParameters.is_fixed_on_chain and giftResaleParameters.can_be_managed are true; can be used only if getOption("can_use_ton_wallet"). The type of the sale is chosen by the server. The gift is put up for sale only after the transaction is executed on the TON blockchain and the sale smart contract confirms that it has received the gift. The price of the gift minus the fee specified in upgradedGift.fee_basis_points will be received by the TON wallet of the current user when the gift is sold. If giftResaleParameters.is_fixed_on_chain is false, then the current sale must be canceled first using getGiftOnChainDelistingTransaction to change the price of the gift
     /// - Parameter giftName: Name of the upgraded gift
     /// - Parameter gramAmount: The price of the gift that the buyer will pay, in the smallest units of TON Grams. The price in 1/100 of a Gram must be in the range getOption("gift_resale_gram_cent_count_min")-getOption("gift_resale_gram_cent_count_max")
     /// - Returns: A transaction that must be sent from the TON wallet of the current user to put an upgraded gift for which upgradedGift
-    public final func getGiftOnchainListingTransaction(
+    public final func getGiftOnChainListingTransaction(
         giftName: String?,
         gramAmount: TdInt64?,
-        completion: @escaping (Result<GiftOnchainSaleTransaction, Swift.Error>) -> Void
+        completion: @escaping (Result<GiftOnChainSaleTransaction, Swift.Error>) -> Void
     ) throws {
-        let query = GetGiftOnchainListingTransaction(
+        let query = GetGiftOnChainListingTransaction(
             giftName: giftName,
             gramAmount: gramAmount
         )
         self.run(query: query, completion: completion)
     }
 
-    /// Returns a transaction that must be sent from the TON wallet of the current user to put an upgraded gift for which upgradedGift.uses_onchain_resale is true up for sale, or to change the price of a gift for which giftResaleParameters.is_fixed_onchain and giftResaleParameters.can_be_managed are true; can be used only if getOption("can_use_ton_wallet"). The type of the sale is chosen by the server. The gift is put up for sale only after the transaction is executed on the TON blockchain and the sale smart contract confirms that it has received the gift. The price of the gift minus the fee specified in upgradedGift.fee_basis_points will be received by the TON wallet of the current user when the gift is sold. If giftResaleParameters.is_fixed_onchain is false, then the current sale must be canceled first using getGiftOnchainDelistingTransaction to change the price of the gift
+    /// Returns a transaction that must be sent from the TON wallet of the current user to put an upgraded gift for which upgradedGift.uses_on_chain_resale is true up for sale, or to change the price of a gift for which giftResaleParameters.is_fixed_on_chain and giftResaleParameters.can_be_managed are true; can be used only if getOption("can_use_ton_wallet"). The type of the sale is chosen by the server. The gift is put up for sale only after the transaction is executed on the TON blockchain and the sale smart contract confirms that it has received the gift. The price of the gift minus the fee specified in upgradedGift.fee_basis_points will be received by the TON wallet of the current user when the gift is sold. If giftResaleParameters.is_fixed_on_chain is false, then the current sale must be canceled first using getGiftOnChainDelistingTransaction to change the price of the gift
     /// - Parameter giftName: Name of the upgraded gift
     /// - Parameter gramAmount: The price of the gift that the buyer will pay, in the smallest units of TON Grams. The price in 1/100 of a Gram must be in the range getOption("gift_resale_gram_cent_count_min")-getOption("gift_resale_gram_cent_count_max")
     /// - Returns: A transaction that must be sent from the TON wallet of the current user to put an upgraded gift for which upgradedGift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getGiftOnchainListingTransaction(
+    public final func getGiftOnChainListingTransaction(
         giftName: String?,
         gramAmount: TdInt64?
-    ) async throws -> GiftOnchainSaleTransaction {
-        let query = GetGiftOnchainListingTransaction(
+    ) async throws -> GiftOnChainSaleTransaction {
+        let query = GetGiftOnChainListingTransaction(
             giftName: giftName,
             gramAmount: gramAmount
         )
@@ -27203,11 +27278,11 @@ public class TDLibApi {
     /// Returns a transaction that must be sent from the TON wallet of the current user to cancel the on-chain sale of an upgraded gift for which giftResaleParameters.can_be_managed is true; can be used only if getOption("can_use_ton_wallet"). The sale is canceled only after the transaction is executed on the TON blockchain. Then, the gift will be in the TON wallet of the current user
     /// - Parameter giftName: Name of the upgraded gift
     /// - Returns: A transaction that must be sent from the TON wallet of the current user to cancel the on-chain sale of an upgraded gift for which giftResaleParameters
-    public final func getGiftOnchainDelistingTransaction(
+    public final func getGiftOnChainDelistingTransaction(
         giftName: String?,
-        completion: @escaping (Result<GiftOnchainSaleTransaction, Swift.Error>) -> Void
+        completion: @escaping (Result<GiftOnChainSaleTransaction, Swift.Error>) -> Void
     ) throws {
-        let query = GetGiftOnchainDelistingTransaction(
+        let query = GetGiftOnChainDelistingTransaction(
             giftName: giftName
         )
         self.run(query: query, completion: completion)
@@ -27217,8 +27292,8 @@ public class TDLibApi {
     /// - Parameter giftName: Name of the upgraded gift
     /// - Returns: A transaction that must be sent from the TON wallet of the current user to cancel the on-chain sale of an upgraded gift for which giftResaleParameters
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
-    public final func getGiftOnchainDelistingTransaction(giftName: String?) async throws -> GiftOnchainSaleTransaction {
-        let query = GetGiftOnchainDelistingTransaction(
+    public final func getGiftOnChainDelistingTransaction(giftName: String?) async throws -> GiftOnChainSaleTransaction {
+        let query = GetGiftOnChainDelistingTransaction(
             giftName: giftName
         )
         return try await self.run(query: query)
@@ -27577,7 +27652,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Changes the resale price of a unique gift owned by the current user; can be used only for gifts for which upgradedGift.uses_onchain_resale is false
+    /// Changes the resale price of a unique gift owned by the current user; can be used only for gifts for which upgradedGift.uses_on_chain_resale is false
     /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_gram_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
     /// - Parameter receivedGiftId: Identifier of the unique gift
     public final func setGiftResalePrice(
@@ -27592,7 +27667,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Changes the resale price of a unique gift owned by the current user; can be used only for gifts for which upgradedGift.uses_onchain_resale is false
+    /// Changes the resale price of a unique gift owned by the current user; can be used only for gifts for which upgradedGift.uses_on_chain_resale is false
     /// - Parameter price: The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_gram_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams
     /// - Parameter receivedGiftId: Identifier of the unique gift
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
@@ -27608,17 +27683,17 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Returns upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnchainPurchaseTransaction
+    /// Returns upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnChainPurchaseTransaction
     /// - Parameter attributes: Attributes used to filter gifts. If multiple attributes of the same type are specified, then all of them are allowed. If no attributes of a specific type are specified, then all values for this attribute type are allowed
     /// - Parameter forCrafting: Pass true to get only gifts suitable for crafting
-    /// - Parameter forFragment: Pass true to get gifts sold on-chain on Fragment; can be true only if getOption("can_buy_onchain_gifts") is true. Must be false if for_crafting is true or if the gift will be bought for another user or a channel chat
-    /// - Parameter forGrams: Pass true to get gifts that can be bought using TON Grams, including gifts sold on-chain using a fixed-price sale contract if getOption("can_buy_onchain_fixed_price_gifts") is true. The filter must be shown only if getOption("show_gift_resale_gram_filter") is true and must be selected by default if getOption("select_gift_resale_gram_filter_by_default") is true
+    /// - Parameter forFragment: Pass true to get gifts sold on-chain on Fragment; may be true only if getOption("can_buy_on_chain_gifts") is true. Must be false if for_crafting is true or if the gift will be bought for another user or a channel chat
+    /// - Parameter forGrams: Pass true to get gifts that can be bought using TON Grams, including gifts sold on-chain using a fixed-price sale contract if getOption("can_buy_on_chain_fixed_price_gifts") is true. The filter must be shown only if getOption("show_gift_resale_gram_filter") is true and must be selected by default if getOption("select_gift_resale_gram_filter_by_default") is true
     /// - Parameter forStars: Pass true to get gifts that can be bought using Telegram Stars. If none of for_stars, for_grams, and for_fragment is true, then gifts that can be bought using Telegram Stars or TON Grams are returned, except gifts sold on-chain. The filter must be shown only if getOption("show_gift_resale_star_filter") is true and must be selected by default if getOption("select_gift_resale_star_filter_by_default") is true
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use an empty string to get the first chunk of results
     /// - Parameter order: Order in which the results will be sorted
-    /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnchainPurchaseTransaction
+    /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnChainPurchaseTransaction
     public final func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
         forCrafting: Bool?,
@@ -27645,17 +27720,17 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Returns upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnchainPurchaseTransaction
+    /// Returns upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnChainPurchaseTransaction
     /// - Parameter attributes: Attributes used to filter gifts. If multiple attributes of the same type are specified, then all of them are allowed. If no attributes of a specific type are specified, then all values for this attribute type are allowed
     /// - Parameter forCrafting: Pass true to get only gifts suitable for crafting
-    /// - Parameter forFragment: Pass true to get gifts sold on-chain on Fragment; can be true only if getOption("can_buy_onchain_gifts") is true. Must be false if for_crafting is true or if the gift will be bought for another user or a channel chat
-    /// - Parameter forGrams: Pass true to get gifts that can be bought using TON Grams, including gifts sold on-chain using a fixed-price sale contract if getOption("can_buy_onchain_fixed_price_gifts") is true. The filter must be shown only if getOption("show_gift_resale_gram_filter") is true and must be selected by default if getOption("select_gift_resale_gram_filter_by_default") is true
+    /// - Parameter forFragment: Pass true to get gifts sold on-chain on Fragment; may be true only if getOption("can_buy_on_chain_gifts") is true. Must be false if for_crafting is true or if the gift will be bought for another user or a channel chat
+    /// - Parameter forGrams: Pass true to get gifts that can be bought using TON Grams, including gifts sold on-chain using a fixed-price sale contract if getOption("can_buy_on_chain_fixed_price_gifts") is true. The filter must be shown only if getOption("show_gift_resale_gram_filter") is true and must be selected by default if getOption("select_gift_resale_gram_filter_by_default") is true
     /// - Parameter forStars: Pass true to get gifts that can be bought using Telegram Stars. If none of for_stars, for_grams, and for_fragment is true, then gifts that can be bought using Telegram Stars or TON Grams are returned, except gifts sold on-chain. The filter must be shown only if getOption("show_gift_resale_star_filter") is true and must be selected by default if getOption("select_gift_resale_star_filter_by_default") is true
     /// - Parameter giftId: Identifier of the regular gift that was upgraded to a unique gift
     /// - Parameter limit: The maximum number of gifts to return
     /// - Parameter offset: Offset of the first entry to return as received from the previous request with the same order and attributes; use an empty string to get the first chunk of results
     /// - Parameter order: Order in which the results will be sorted
-    /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnchainPurchaseTransaction
+    /// - Returns: Upgraded gifts that can be bought from other owners using sendResoldGift or getGiftOnChainPurchaseTransaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)
     public final func searchGiftsForResale(
         attributes: [UpgradedGiftAttributeId]?,
@@ -29666,7 +29741,7 @@ public class TDLibApi {
         return try await self.run(query: query)
     }
 
-    /// Sends a transaction signed by the application from the TON wallet of the current user without adding a message about it to any chat; can be used only if getOption("can_use_ton_wallet"). Use the method to send transactions described by upgradedGiftDepositInfo, giftOnchainPurchaseOfferTransaction, and GiftOnchainSaleTransaction objects
+    /// Sends a transaction signed by the application from the TON wallet of the current user without adding a message about it to any chat; can be used only if getOption("can_use_ton_wallet"). Use the method to send transactions described by upgradedGiftDepositInfo, giftOnChainPurchaseOfferTransaction, and GiftOnChainSaleTransaction objects
     /// - Parameter gaslessTransactionData: Serialized signed data for a gasless transaction; pass an empty string to force a regular transaction
     /// - Parameter regularTransactionData: Serialized signed data for a regular transaction
     public final func sendTonWalletTransaction(
@@ -29681,7 +29756,7 @@ public class TDLibApi {
         self.run(query: query, completion: completion)
     }
 
-    /// Sends a transaction signed by the application from the TON wallet of the current user without adding a message about it to any chat; can be used only if getOption("can_use_ton_wallet"). Use the method to send transactions described by upgradedGiftDepositInfo, giftOnchainPurchaseOfferTransaction, and GiftOnchainSaleTransaction objects
+    /// Sends a transaction signed by the application from the TON wallet of the current user without adding a message about it to any chat; can be used only if getOption("can_use_ton_wallet"). Use the method to send transactions described by upgradedGiftDepositInfo, giftOnChainPurchaseOfferTransaction, and GiftOnChainSaleTransaction objects
     /// - Parameter gaslessTransactionData: Serialized signed data for a gasless transaction; pass an empty string to force a regular transaction
     /// - Parameter regularTransactionData: Serialized signed data for a regular transaction
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

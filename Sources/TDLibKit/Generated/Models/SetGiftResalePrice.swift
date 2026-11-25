@@ -3,14 +3,14 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
 
 
-/// Changes the resale price of a unique gift owned by the current user; can be used only for gifts for which upgradedGift.uses_onchain_resale is false
+/// Changes the resale price of a unique gift owned by the current user; can be used only for gifts for which upgradedGift.uses_on_chain_resale is false
 public struct SetGiftResalePrice: Codable, Equatable, Hashable {
 
     /// The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_gram_earnings_per_mille") TON Grams for each 1000 Grams paid for the gift if the gift price is in Grams

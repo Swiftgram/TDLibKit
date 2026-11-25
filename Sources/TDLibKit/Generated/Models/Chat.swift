@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public struct Chat: Codable, Equatable, Hashable, Identifiable {
     /// Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even if it doesn't belong to the chat list and have no position in a chat list even if it belongs to the chat list
     public let chatLists: [ChatList]
 
-    /// Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
+    /// Application-specific data associated with the chat, for example, the chat scroll position or local chat notification settings. Persistent if the message database is used
     public let clientData: String
 
     /// Default value of the disable_notification parameter, used when a message is sent to the chat

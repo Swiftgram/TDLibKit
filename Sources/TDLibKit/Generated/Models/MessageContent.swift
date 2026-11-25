@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
@@ -281,7 +281,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     case messageUpgradedGiftPurchaseOfferRejected(MessageUpgradedGiftPurchaseOfferRejected)
 
     /// An on-chain offer to purchase an upgraded gift was sent or received
-    case messageUpgradedGiftOnchainPurchaseOffer(MessageUpgradedGiftOnchainPurchaseOffer)
+    case messageUpgradedGiftOnChainPurchaseOffer(MessageUpgradedGiftOnChainPurchaseOffer)
 
     /// Paid messages were refunded
     case messagePaidMessagesRefunded(MessagePaidMessagesRefunded)
@@ -437,7 +437,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case messageRefundedUpgradedGift
         case messageUpgradedGiftPurchaseOffer
         case messageUpgradedGiftPurchaseOfferRejected
-        case messageUpgradedGiftOnchainPurchaseOffer
+        case messageUpgradedGiftOnChainPurchaseOffer
         case messagePaidMessagesRefunded
         case messagePaidMessagePriceChanged
         case messageDirectMessagePriceChanged
@@ -723,9 +723,9 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageUpgradedGiftPurchaseOfferRejected:
             let value = try MessageUpgradedGiftPurchaseOfferRejected(from: decoder)
             self = .messageUpgradedGiftPurchaseOfferRejected(value)
-        case .messageUpgradedGiftOnchainPurchaseOffer:
-            let value = try MessageUpgradedGiftOnchainPurchaseOffer(from: decoder)
-            self = .messageUpgradedGiftOnchainPurchaseOffer(value)
+        case .messageUpgradedGiftOnChainPurchaseOffer:
+            let value = try MessageUpgradedGiftOnChainPurchaseOffer(from: decoder)
+            self = .messageUpgradedGiftOnChainPurchaseOffer(value)
         case .messagePaidMessagesRefunded:
             let value = try MessagePaidMessagesRefunded(from: decoder)
             self = .messagePaidMessagesRefunded(value)
@@ -1050,8 +1050,8 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
         case .messageUpgradedGiftPurchaseOfferRejected(let value):
             try container.encode(Kind.messageUpgradedGiftPurchaseOfferRejected, forKey: .type)
             try value.encode(to: encoder)
-        case .messageUpgradedGiftOnchainPurchaseOffer(let value):
-            try container.encode(Kind.messageUpgradedGiftOnchainPurchaseOffer, forKey: .type)
+        case .messageUpgradedGiftOnChainPurchaseOffer(let value):
+            try container.encode(Kind.messageUpgradedGiftOnChainPurchaseOffer, forKey: .type)
             try value.encode(to: encoder)
         case .messagePaidMessagesRefunded(let value):
             try container.encode(Kind.messagePaidMessagesRefunded, forKey: .type)
@@ -3264,7 +3264,7 @@ public struct MessageUpgradedGiftPurchaseOfferRejected: Codable, Equatable, Hash
 }
 
 /// An on-chain offer to purchase an upgraded gift was sent or received
-public struct MessageUpgradedGiftOnchainPurchaseOffer: Codable, Equatable, Hashable {
+public struct MessageUpgradedGiftOnChainPurchaseOffer: Codable, Equatable, Hashable {
 
     /// Point in time (Unix timestamp) when the offer will expire or has expired
     public let expirationDate: Int
@@ -3288,7 +3288,7 @@ public struct MessageUpgradedGiftOnchainPurchaseOffer: Codable, Equatable, Hasha
     public let offerMessageId: Int64
 
     /// State of the offer
-    public let state: GiftOnchainPurchaseOfferState
+    public let state: GiftOnChainPurchaseOfferState
 
 
     public init(
@@ -3299,7 +3299,7 @@ public struct MessageUpgradedGiftOnchainPurchaseOffer: Codable, Equatable, Hasha
         isBuyer: Bool,
         offerAddress: String,
         offerMessageId: Int64,
-        state: GiftOnchainPurchaseOfferState
+        state: GiftOnChainPurchaseOfferState
     ) {
         self.expirationDate = expirationDate
         self.feeBasisPoints = feeBasisPoints

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
@@ -56,7 +56,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     public let maxUpgradedCount: Int
 
     /// The minimum price for an on-chain offer to purchase the gift, in the smallest units of TON Grams; 0 if on-chain purchase offers can't be sent for the gift
-    public let minOnchainPurchaseOfferGramAmount: TdInt64
+    public let minOnChainPurchaseOfferGramAmount: TdInt64
 
     /// Model of the upgraded gift
     public let model: UpgradedGiftModel
@@ -100,8 +100,8 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
     /// Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user
     public let usedThemeChatId: Int64
 
-    /// True, if the gift must be bought, put up for sale, and delisted using getGiftOnchainPurchaseTransaction, getGiftOnchainListingTransaction, and getGiftOnchainDelistingTransaction; otherwise, sendResoldGift and setGiftResalePrice must be used
-    public let usesOnchainResale: Bool
+    /// True, if the gift must be bought, put up for sale, and delisted using getGiftOnChainPurchaseTransaction, getGiftOnChainListingTransaction, and getGiftOnChainDelistingTransaction; otherwise, sendResoldGift and setGiftResalePrice must be used
+    public let usesOnChainResale: Bool
 
     /// Estimated value of the gift, in the smallest units of the currency; 0 if unavailable
     public let valueAmount: Int64
@@ -128,7 +128,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         isPremium: Bool,
         isThemeAvailable: Bool,
         maxUpgradedCount: Int,
-        minOnchainPurchaseOfferGramAmount: TdInt64,
+        minOnChainPurchaseOfferGramAmount: TdInt64,
         model: UpgradedGiftModel,
         name: String,
         number: Int,
@@ -143,7 +143,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         title: String,
         totalUpgradedCount: Int,
         usedThemeChatId: Int64,
-        usesOnchainResale: Bool,
+        usesOnChainResale: Bool,
         valueAmount: Int64,
         valueCurrency: String,
         valueUsdAmount: Int64
@@ -162,7 +162,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.isPremium = isPremium
         self.isThemeAvailable = isThemeAvailable
         self.maxUpgradedCount = maxUpgradedCount
-        self.minOnchainPurchaseOfferGramAmount = minOnchainPurchaseOfferGramAmount
+        self.minOnChainPurchaseOfferGramAmount = minOnChainPurchaseOfferGramAmount
         self.model = model
         self.name = name
         self.number = number
@@ -177,7 +177,7 @@ public struct UpgradedGift: Codable, Equatable, Hashable, Identifiable {
         self.title = title
         self.totalUpgradedCount = totalUpgradedCount
         self.usedThemeChatId = usedThemeChatId
-        self.usesOnchainResale = usesOnchainResale
+        self.usesOnChainResale = usesOnChainResale
         self.valueAmount = valueAmount
         self.valueCurrency = valueCurrency
         self.valueUsdAmount = valueUsdAmount

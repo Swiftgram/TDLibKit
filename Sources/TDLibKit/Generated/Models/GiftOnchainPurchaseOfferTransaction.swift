@@ -1,17 +1,17 @@
 //
-//  GiftOnchainPurchaseOfferTransaction.swift
+//  GiftOnChainPurchaseOfferTransaction.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
 
 
-/// Contains information about a transaction that must be sent from the TON wallet of the current user to send, accept, or cancel an on-chain gift purchase offer. Use sendTonWalletTransaction with regular_transaction_data and gasless_transaction_data created from message and gasless_message respectively to send the transaction. Successful sending of the transaction doesn't mean that the operation was completed; the result of the operation must be checked in the corresponding messageUpgradedGiftOnchainPurchaseOffer message in the chat 777000
-public struct GiftOnchainPurchaseOfferTransaction: Codable, Equatable, Hashable {
+/// Contains information about a transaction that must be sent from the TON wallet of the current user to send, accept, or cancel an on-chain gift purchase offer. Use sendTonWalletTransaction with regular_transaction_data and gasless_transaction_data created from message and gasless_message respectively to send the transaction. Successful sending of the transaction doesn't mean that the operation was completed; the result of the operation must be checked in the corresponding messageUpgradedGiftOnChainPurchaseOffer message in the chat 777000
+public struct GiftOnChainPurchaseOfferTransaction: Codable, Equatable, Hashable {
 
     /// The amount included in the message for execution of the offer smart contract, in the smallest units of TON Grams; 0 if none
     public let executionAllowanceAmount: TdInt64

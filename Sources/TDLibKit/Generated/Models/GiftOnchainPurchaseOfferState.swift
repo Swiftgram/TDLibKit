@@ -1,100 +1,100 @@
 //
-//  GiftOnchainPurchaseOfferState.swift
+//  GiftOnChainPurchaseOfferState.swift
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
 
 
 /// Describes state of an on-chain gift purchase offer
-public indirect enum GiftOnchainPurchaseOfferState: Codable, Equatable, Hashable {
+public indirect enum GiftOnChainPurchaseOfferState: Codable, Equatable, Hashable {
 
     /// The offer is waiting for a response from the owner of the gift
-    case giftOnchainPurchaseOfferStatePending
+    case giftOnChainPurchaseOfferStatePending
 
     /// The offer was accepted and executed on the TON blockchain; the gift is being transferred to the buyer
-    case giftOnchainPurchaseOfferStateSettled
+    case giftOnChainPurchaseOfferStateSettled
 
     /// The offer was accepted and the gift was transferred to the TON wallet of the buyer
-    case giftOnchainPurchaseOfferStateAccepted
+    case giftOnChainPurchaseOfferStateAccepted
 
     /// The offer is being canceled and the buyer is being refunded
-    case giftOnchainPurchaseOfferStateCanceling
+    case giftOnChainPurchaseOfferStateCanceling
 
     /// The offer was declined
-    case giftOnchainPurchaseOfferStateDeclined(GiftOnchainPurchaseOfferStateDeclined)
+    case giftOnChainPurchaseOfferStateDeclined(GiftOnChainPurchaseOfferStateDeclined)
 
     /// The offer was canceled
-    case giftOnchainPurchaseOfferStateCanceled(GiftOnchainPurchaseOfferStateCanceled)
+    case giftOnChainPurchaseOfferStateCanceled(GiftOnChainPurchaseOfferStateCanceled)
 
     /// The offer has expired and the buyer was refunded
-    case giftOnchainPurchaseOfferStateExpired(GiftOnchainPurchaseOfferStateExpired)
+    case giftOnChainPurchaseOfferStateExpired(GiftOnChainPurchaseOfferStateExpired)
 
 
     private enum Kind: String, Codable {
-        case giftOnchainPurchaseOfferStatePending
-        case giftOnchainPurchaseOfferStateSettled
-        case giftOnchainPurchaseOfferStateAccepted
-        case giftOnchainPurchaseOfferStateCanceling
-        case giftOnchainPurchaseOfferStateDeclined
-        case giftOnchainPurchaseOfferStateCanceled
-        case giftOnchainPurchaseOfferStateExpired
+        case giftOnChainPurchaseOfferStatePending
+        case giftOnChainPurchaseOfferStateSettled
+        case giftOnChainPurchaseOfferStateAccepted
+        case giftOnChainPurchaseOfferStateCanceling
+        case giftOnChainPurchaseOfferStateDeclined
+        case giftOnChainPurchaseOfferStateCanceled
+        case giftOnChainPurchaseOfferStateExpired
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DtoCodingKeys.self)
         let type = try container.decode(Kind.self, forKey: .type)
         switch type {
-        case .giftOnchainPurchaseOfferStatePending:
-            self = .giftOnchainPurchaseOfferStatePending
-        case .giftOnchainPurchaseOfferStateSettled:
-            self = .giftOnchainPurchaseOfferStateSettled
-        case .giftOnchainPurchaseOfferStateAccepted:
-            self = .giftOnchainPurchaseOfferStateAccepted
-        case .giftOnchainPurchaseOfferStateCanceling:
-            self = .giftOnchainPurchaseOfferStateCanceling
-        case .giftOnchainPurchaseOfferStateDeclined:
-            let value = try GiftOnchainPurchaseOfferStateDeclined(from: decoder)
-            self = .giftOnchainPurchaseOfferStateDeclined(value)
-        case .giftOnchainPurchaseOfferStateCanceled:
-            let value = try GiftOnchainPurchaseOfferStateCanceled(from: decoder)
-            self = .giftOnchainPurchaseOfferStateCanceled(value)
-        case .giftOnchainPurchaseOfferStateExpired:
-            let value = try GiftOnchainPurchaseOfferStateExpired(from: decoder)
-            self = .giftOnchainPurchaseOfferStateExpired(value)
+        case .giftOnChainPurchaseOfferStatePending:
+            self = .giftOnChainPurchaseOfferStatePending
+        case .giftOnChainPurchaseOfferStateSettled:
+            self = .giftOnChainPurchaseOfferStateSettled
+        case .giftOnChainPurchaseOfferStateAccepted:
+            self = .giftOnChainPurchaseOfferStateAccepted
+        case .giftOnChainPurchaseOfferStateCanceling:
+            self = .giftOnChainPurchaseOfferStateCanceling
+        case .giftOnChainPurchaseOfferStateDeclined:
+            let value = try GiftOnChainPurchaseOfferStateDeclined(from: decoder)
+            self = .giftOnChainPurchaseOfferStateDeclined(value)
+        case .giftOnChainPurchaseOfferStateCanceled:
+            let value = try GiftOnChainPurchaseOfferStateCanceled(from: decoder)
+            self = .giftOnChainPurchaseOfferStateCanceled(value)
+        case .giftOnChainPurchaseOfferStateExpired:
+            let value = try GiftOnChainPurchaseOfferStateExpired(from: decoder)
+            self = .giftOnChainPurchaseOfferStateExpired(value)
         }
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DtoCodingKeys.self)
         switch self {
-        case .giftOnchainPurchaseOfferStatePending:
-            try container.encode(Kind.giftOnchainPurchaseOfferStatePending, forKey: .type)
-        case .giftOnchainPurchaseOfferStateSettled:
-            try container.encode(Kind.giftOnchainPurchaseOfferStateSettled, forKey: .type)
-        case .giftOnchainPurchaseOfferStateAccepted:
-            try container.encode(Kind.giftOnchainPurchaseOfferStateAccepted, forKey: .type)
-        case .giftOnchainPurchaseOfferStateCanceling:
-            try container.encode(Kind.giftOnchainPurchaseOfferStateCanceling, forKey: .type)
-        case .giftOnchainPurchaseOfferStateDeclined(let value):
-            try container.encode(Kind.giftOnchainPurchaseOfferStateDeclined, forKey: .type)
+        case .giftOnChainPurchaseOfferStatePending:
+            try container.encode(Kind.giftOnChainPurchaseOfferStatePending, forKey: .type)
+        case .giftOnChainPurchaseOfferStateSettled:
+            try container.encode(Kind.giftOnChainPurchaseOfferStateSettled, forKey: .type)
+        case .giftOnChainPurchaseOfferStateAccepted:
+            try container.encode(Kind.giftOnChainPurchaseOfferStateAccepted, forKey: .type)
+        case .giftOnChainPurchaseOfferStateCanceling:
+            try container.encode(Kind.giftOnChainPurchaseOfferStateCanceling, forKey: .type)
+        case .giftOnChainPurchaseOfferStateDeclined(let value):
+            try container.encode(Kind.giftOnChainPurchaseOfferStateDeclined, forKey: .type)
             try value.encode(to: encoder)
-        case .giftOnchainPurchaseOfferStateCanceled(let value):
-            try container.encode(Kind.giftOnchainPurchaseOfferStateCanceled, forKey: .type)
+        case .giftOnChainPurchaseOfferStateCanceled(let value):
+            try container.encode(Kind.giftOnChainPurchaseOfferStateCanceled, forKey: .type)
             try value.encode(to: encoder)
-        case .giftOnchainPurchaseOfferStateExpired(let value):
-            try container.encode(Kind.giftOnchainPurchaseOfferStateExpired, forKey: .type)
+        case .giftOnChainPurchaseOfferStateExpired(let value):
+            try container.encode(Kind.giftOnChainPurchaseOfferStateExpired, forKey: .type)
             try value.encode(to: encoder)
         }
     }
 }
 
 /// The offer was declined
-public struct GiftOnchainPurchaseOfferStateDeclined: Codable, Equatable, Hashable {
+public struct GiftOnChainPurchaseOfferStateDeclined: Codable, Equatable, Hashable {
 
     /// The amount returned to the buyer, in the smallest units of TON Grams; -1 if unknown
     public let refundAmount: TdInt64
@@ -106,7 +106,7 @@ public struct GiftOnchainPurchaseOfferStateDeclined: Codable, Equatable, Hashabl
 }
 
 /// The offer was canceled
-public struct GiftOnchainPurchaseOfferStateCanceled: Codable, Equatable, Hashable {
+public struct GiftOnChainPurchaseOfferStateCanceled: Codable, Equatable, Hashable {
 
     /// The fine for the cancellation of the offer, in the smallest units of TON Grams; -1 if unknown
     public let fineAmount: TdInt64
@@ -125,7 +125,7 @@ public struct GiftOnchainPurchaseOfferStateCanceled: Codable, Equatable, Hashabl
 }
 
 /// The offer has expired and the buyer was refunded
-public struct GiftOnchainPurchaseOfferStateExpired: Codable, Equatable, Hashable {
+public struct GiftOnChainPurchaseOfferStateExpired: Codable, Equatable, Hashable {
 
     /// The amount returned to the buyer, in the smallest units of TON Grams; -1 if unknown
     public let refundAmount: TdInt64

@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
@@ -35,10 +35,10 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
     case upgradedGiftOriginCraft
 
     /// The gift was bought on the TON blockchain using a fixed-price sale contract
-    case upgradedGiftOriginOnchainResale(UpgradedGiftOriginOnchainResale)
+    case upgradedGiftOriginOnChainResale(UpgradedGiftOriginOnChainResale)
 
     /// The gift was bought through an on-chain purchase offer
-    case upgradedGiftOriginOnchainOffer(UpgradedGiftOriginOnchainOffer)
+    case upgradedGiftOriginOnChainOffer(UpgradedGiftOriginOnChainOffer)
 
 
     private enum Kind: String, Codable {
@@ -49,8 +49,8 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
         case upgradedGiftOriginPrepaidUpgrade
         case upgradedGiftOriginOffer
         case upgradedGiftOriginCraft
-        case upgradedGiftOriginOnchainResale
-        case upgradedGiftOriginOnchainOffer
+        case upgradedGiftOriginOnChainResale
+        case upgradedGiftOriginOnChainOffer
     }
 
     public init(from decoder: Decoder) throws {
@@ -74,12 +74,12 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
             self = .upgradedGiftOriginOffer(value)
         case .upgradedGiftOriginCraft:
             self = .upgradedGiftOriginCraft
-        case .upgradedGiftOriginOnchainResale:
-            let value = try UpgradedGiftOriginOnchainResale(from: decoder)
-            self = .upgradedGiftOriginOnchainResale(value)
-        case .upgradedGiftOriginOnchainOffer:
-            let value = try UpgradedGiftOriginOnchainOffer(from: decoder)
-            self = .upgradedGiftOriginOnchainOffer(value)
+        case .upgradedGiftOriginOnChainResale:
+            let value = try UpgradedGiftOriginOnChainResale(from: decoder)
+            self = .upgradedGiftOriginOnChainResale(value)
+        case .upgradedGiftOriginOnChainOffer:
+            let value = try UpgradedGiftOriginOnChainOffer(from: decoder)
+            self = .upgradedGiftOriginOnChainOffer(value)
         }
     }
 
@@ -103,11 +103,11 @@ public indirect enum UpgradedGiftOrigin: Codable, Equatable, Hashable {
             try value.encode(to: encoder)
         case .upgradedGiftOriginCraft:
             try container.encode(Kind.upgradedGiftOriginCraft, forKey: .type)
-        case .upgradedGiftOriginOnchainResale(let value):
-            try container.encode(Kind.upgradedGiftOriginOnchainResale, forKey: .type)
+        case .upgradedGiftOriginOnChainResale(let value):
+            try container.encode(Kind.upgradedGiftOriginOnChainResale, forKey: .type)
             try value.encode(to: encoder)
-        case .upgradedGiftOriginOnchainOffer(let value):
-            try container.encode(Kind.upgradedGiftOriginOnchainOffer, forKey: .type)
+        case .upgradedGiftOriginOnChainOffer(let value):
+            try container.encode(Kind.upgradedGiftOriginOnChainOffer, forKey: .type)
             try value.encode(to: encoder)
         }
     }
@@ -150,7 +150,7 @@ public struct UpgradedGiftOriginOffer: Codable, Equatable, Hashable {
 }
 
 /// The gift was bought on the TON blockchain using a fixed-price sale contract
-public struct UpgradedGiftOriginOnchainResale: Codable, Equatable, Hashable {
+public struct UpgradedGiftOriginOnChainResale: Codable, Equatable, Hashable {
 
     /// Price paid for the gift, in the smallest units of TON Grams
     public let gramAmount: TdInt64
@@ -162,7 +162,7 @@ public struct UpgradedGiftOriginOnchainResale: Codable, Equatable, Hashable {
 }
 
 /// The gift was bought through an on-chain purchase offer
-public struct UpgradedGiftOriginOnchainOffer: Codable, Equatable, Hashable {
+public struct UpgradedGiftOriginOnChainOffer: Codable, Equatable, Hashable {
 
     /// Price paid for the gift, in the smallest units of TON Grams
     public let gramAmount: TdInt64

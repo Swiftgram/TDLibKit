@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.70-61f1d106
-//  https://github.com/tdlib/td/tree/61f1d106
+//  Based on TDLib 1.8.71-f10611ee
+//  https://github.com/tdlib/td/tree/f10611ee
 //
 
 import Foundation
@@ -22,7 +22,7 @@ public indirect enum TonWalletTransactionType: Codable, Equatable, Hashable {
     /// A transfer of a TON NFT to or from the wallet
     case tonWalletTransactionTypeNftTransfer(TonWalletTransactionTypeNftTransfer)
 
-    /// A Telegram gift was minted as a TON NFT directly to the wallet, or a minted gift was linked to or unlinked from a Telegram account; peer details aren't available for the transaction
+    /// A Telegram gift was minted as a TON NFT directly to the wallet, or a minted gift was linked to or unlinked from a Telegram account. Information about the other user isn't available
     case tonWalletTransactionTypeTelegramGiftTransfer(TonWalletTransactionTypeTelegramGiftTransfer)
 
     /// A Telegram gift was bought on the TON blockchain
@@ -246,7 +246,7 @@ public struct TonWalletTransactionTypeNftTransfer: Codable, Equatable, Hashable 
     }
 }
 
-/// A Telegram gift was minted as a TON NFT directly to the wallet, or a minted gift was linked to or unlinked from a Telegram account; peer details aren't available for the transaction
+/// A Telegram gift was minted as a TON NFT directly to the wallet, or a minted gift was linked to or unlinked from a Telegram account. Information about the other user isn't available
 public struct TonWalletTransactionTypeTelegramGiftTransfer: Codable, Equatable, Hashable {
 
     /// True, if the transfer is from the wallet to Telegram
