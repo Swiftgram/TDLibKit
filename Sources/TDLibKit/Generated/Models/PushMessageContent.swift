@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.71-9b0bfd15
-//  https://github.com/tdlib/td/tree/9b0bfd15
+//  Based on TDLib 1.8.71-18f0716b
+//  https://github.com/tdlib/td/tree/18f0716b
 //
 
 import Foundation
@@ -16,7 +16,7 @@ public indirect enum PushMessageContent: Codable, Equatable, Hashable {
     /// A general message with hidden content
     case pushMessageContentHidden(PushMessageContentHidden)
 
-    /// An animation message (GIF-style).
+    /// An animation message (GIF-style)
     case pushMessageContentAnimation(PushMessageContentAnimation)
 
     /// An audio message
@@ -505,7 +505,7 @@ public struct PushMessageContentHidden: Codable, Equatable, Hashable {
     }
 }
 
-/// An animation message (GIF-style).
+/// An animation message (GIF-style)
 public struct PushMessageContentAnimation: Codable, Equatable, Hashable {
 
     /// Message content; may be null

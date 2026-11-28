@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.71-9b0bfd15
-//  https://github.com/tdlib/td/tree/9b0bfd15
+//  Based on TDLib 1.8.71-18f0716b
+//  https://github.com/tdlib/td/tree/18f0716b
 //
 
 import Foundation
@@ -14282,7 +14282,7 @@ public final class TdApi {
         return try await self.execute(query: query)
     }
 
-    /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires can_change_info administrator right in basic groups, supergroups, and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+    /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires can_change_info administrator right in basic groups, supergroups, and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageAutoDeleteTime: New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     public func setChatMessageAutoDeleteTime(
@@ -14297,7 +14297,7 @@ public final class TdApi {
         self.execute(query: query, completion: completion)
     }
 
-    /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires can_change_info administrator right in basic groups, supergroups, and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+    /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires can_change_info administrator right in basic groups, supergroups, and channels. Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
     /// - Parameter chatId: Chat identifier
     /// - Parameter messageAutoDeleteTime: New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     @available(iOS 13.0, macOS 10.15, watchOS 6.0, tvOS 13.0, *)

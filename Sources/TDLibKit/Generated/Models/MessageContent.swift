@@ -3,8 +3,8 @@
 //  tl2swift
 //
 //  Generated automatically. Any changes will be lost!
-//  Based on TDLib 1.8.71-9b0bfd15
-//  https://github.com/tdlib/td/tree/9b0bfd15
+//  Based on TDLib 1.8.71-18f0716b
+//  https://github.com/tdlib/td/tree/18f0716b
 //
 
 import Foundation
@@ -19,7 +19,7 @@ public indirect enum MessageContent: Codable, Equatable, Hashable {
     /// A rich message; the message can have multiple media of the same type, all of which must be shown in the corresponding profile tab
     case messageRichMessage(MessageRichMessage)
 
-    /// An animation message (GIF-style).
+    /// An animation message (GIF-style)
     case messageAnimation(MessageAnimation)
 
     /// An audio message
@@ -1153,7 +1153,7 @@ public struct MessageRichMessage: Codable, Equatable, Hashable {
     }
 }
 
-/// An animation message (GIF-style).
+/// An animation message (GIF-style)
 public struct MessageAnimation: Codable, Equatable, Hashable {
 
     /// The animation description
